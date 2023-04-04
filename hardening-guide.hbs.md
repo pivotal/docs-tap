@@ -148,7 +148,7 @@ All data should be encrypted at rest.  The Tanzu Application Platform runs on to
 
 ### Ports and Protocols
 
-Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-dev-components.html)
+Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html)
 
 
 ## Networking
