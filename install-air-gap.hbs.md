@@ -250,10 +250,10 @@ shared:
 profile: full
 ceip_policy_disclosed: true
 buildservice:
-  kp_default_repository: "REPOSITORY"
+  kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-    name: "REGISTRY-SECRET"
-    namespace: "REGISTRY-SECRET-NAMESPACE"
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -342,10 +342,14 @@ Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
-    - Harbor: `harbor.io/my-project/build-service`.
-    - Artifactory: `artifactory.com/my-project/build-service`.
-- `REGISTRY-SECRET` and `REGISTRY-SECRET-NAMESPACE` are the secret containing internal registry credentials and namespace for the secret respectively. Please create the secret prior to the installation.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+    * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    * Please create the secret prior to the installation. For example registry-credentials secret created above could be used here.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where KP-DEFAULT-REPO-SECRET is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
