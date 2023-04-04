@@ -3,30 +3,30 @@
 This topic describes steps to migrate Spring applications to Tanzu Application Platform from
 Tanzu Application Service or Azure Spring Apps.
 
-## <a id="prereqs"></a> Prerequisites
+## <a id="prereqs"></a> Prerequisite
 
 If your applications are currently using Spring Cloud Configuration Service or
 Spring Cloud Service Registry,
 [install the Application Configuration Service](../application-configuration-service/install-app-config-service.hbs.md)
 optional package.
 
-## <a id="service-to-service"></a> Managing Service-to-Service Communication
+## <a id="service-to-service"></a> Manage Service-to-Service Communication
 
 In some cases, Spring applications running on Tanzu Application Service rely on Spring Cloud Services
 for service registration and discovery.
 For more information, see the
 [Spring Cloud Services documentation](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/index.html).
 
-Because this service is not available in Tanzu Application Platform, we recommend the following steps
-to inject configuration into your application that will disable the Spring Cloud DiscoveryClient and
-provide the necessary connection information to allow applications to reach each other via
+This service is not available in Tanzu Application Platform. A workaround is to inject
+configuration into your application that deactivates the Spring Cloud DiscoveryClient and
+provides the necessary connection information to allow applications to reach each other through
 Kubernetes internal networking.
 
-The steps below illustrate how to make the
+The following sections illustrate how to make the
 [Greeting](https://github.com/spring-cloud-services-samples/greeting) Spring Cloud Services sample
 application run on Tanzu Application Platform.
 
-### <a id="properties-file"></a> Create a properties file in your Configuration Repository
+### <a id="properties-file"></a> Create a properties file in your configuration repository
 
 In a Git repository that will be reachable from your Run cluster, create a `greeter-dev.yaml` file as
 follows:
@@ -46,20 +46,25 @@ spring:
             - uri: http://greeter-messages.my-apps.svc.cluster.local
 ```
 
-The values under `cloud.discovery.client.simple.instances` should list all of the services your
-application requires. The example above illustrates how to connect to another Workload running on
-the same cluster.
+The values under `cloud.discovery.client.simple.instances` list all the services that your application
+requires. The example `greeter-dev.yaml` file illustrates how to connect to another workload running
+on the same cluster.
 
-If the other workload is of type `server`, you can use a bare host name to connect
-to it, provided that it is running in the same Kubernetes Namespace.
+If the other workload is of the `server` type, you can use a bare host name to connect to it if it's
+running in the same Kubernetes namespace.
 
-If it is of type `web` then you will need to provide the fully qualified host name as shown for the greeter-messages service above.
-You may also include external services here, provided that they are reachable from your cluster.
+If it's of the `web` type then you must provide the fully qualified host name as shown for the
+greeter-messages service in the example.
+You can also include external services here if they are reachable from your cluster.
 
 ### <a id="acs-resources"></a> Create Application Configuration Service (ACS) resources
 
-On your Run cluster, create the ConfigurationSource and ConfigurationSlice resources that will tell
+On your Run cluster, create the ConfigurationSource and ConfigurationSlice resources that tell
 ACS how to fetch your configuration.
+
+The following simple example uses a public repository and no encryption. For more information about
+how to connect to private repositories, encrypt configuration, and load properties in other formats,
+see the [ACS documentation](../application-configuration-service/about.hbs.md).
 
 ```yaml
 ---
@@ -86,25 +91,21 @@ spec:
   interval: 10m
 ```
 
-> **Note** Above is a very simple example, using a public repository and no encryption. Refer to the
-> [ACS documentation](../application-configuration-service/about.hbs.md) for more details on how to
-> connect to private repositories, encrypt configuration, or load properties in other formats.
+A Secret is created in the `my-apps` namespace with the name `greeter-config-####`.
 
-You should see that a Secret has been created in the `my-apps` namespace with the name
-`greeter-config-####`.
+### <a id="create-workloads"></a> Create application `Workload` resources
 
-### <a id="create-workloads"></a> Create application Workload resources
-
-The `ConfigurationSlice` object you created in the previous step is a bindable
-[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service), and as a result
-may be used to mount the configuration to your application’s container using a `ResourceClaim` and
+The `ConfigurationSlice` object you created in the previous section is a bindable
+[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service), which means it
+can be used to mount the configuration to your application’s container by using a `ResourceClaim` and
 `serviceClaims` in the `Workload` object.
 
-This configuration should be passed to Spring using either the `SPRING_CONFIG_IMPORT` variable, or
+This configuration is passed to Spring by using either the `SPRING_CONFIG_IMPORT` variable, or
 if that variable is already in use, the `SPRING_CONFIG_ADDITIONAL_LOCATION` variable.
 
-In the example below, we create one workload for the greeter-messages service, and a second workload
-for the greeter application. Both apps bind to the `ConfigurationSlice` to add Spring configuration:
+In the following example, one workload is created for the greeter-messages service, and a second
+workload is created for the greeter application.
+Both apps bind to the `ConfigurationSlice` to add Spring configuration:
 
 ```yaml
 ---
@@ -189,5 +190,5 @@ spec:
     name: greeter-config
 ```
 
-You should see that the "greeter" application builds, starts up and finds the "greeter-messages" URI
-using the Simple Discovery Client.
+The greeter application builds, starts up, and finds the greeter-messages URI using the simple
+discovery client.
