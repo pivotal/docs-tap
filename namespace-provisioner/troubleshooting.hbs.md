@@ -1,7 +1,7 @@
 # Troubleshooting
 
 This topic provides information to help troubleshoot Namespace Provisioner.
-## View Controller logs
+## View controller logs
 
 To get the logs when using the [controller](about.hbs.md#nsp-controller) workflow, run the following kubectl command:
 

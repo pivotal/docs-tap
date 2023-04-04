@@ -1,10 +1,12 @@
-# Installing Tanzu Application Platform via Gitops with SoPS
+# Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)
 
-This topic describes how to install Tanzu Application Platform via Gitops with secrets managed in a git repository.
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
->**Caution** 
+This topic describes how to install Tanzu Application Platform through GitOps with secrets managed in a Git repository.
+
+>**Caution**
 >
-> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster. This topic is the ESO based approach to managing secrets in an external secrets store.
+> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -12,10 +14,10 @@ Before installing Tanzu Application Platform, you need:
 
 <!-- TODO: link to download instructions -->
 
-- SoPS CLI. The SoPS CLI is used to view and edit SoPS encrypted files. To install the SoPS CLI, see [Installation](https://github.com/mozilla/sops/releases).
+- SOPS CLI. The SOPS CLI is used to view and edit SOPS encrypted files. To install the SOPS CLI, see [Installation](https://github.com/mozilla/sops/releases).
 - Age CLI. The Age CLI is used to create an ecryption key used to encrypt and decrypt sensitive data. To install the Age CLI, see [Installation](https://github.com/FiloSottile/age#installation).
-- Completed the [Prerequisites](prerequisites.hbs.md).
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.hbs.md) with any required plug-ins.
+- Completed the [Prerequisites](../prerequisites.hbs.md).
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
@@ -66,7 +68,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
     the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
     For more information about how to generate the JSON key file,
-    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).  
+    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
@@ -86,7 +88,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. In a hosted git service (like GitHub or GitLab), create a new respository.
 
-   >**Note** 
+   >**Note**
    >
    > This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH. Support for authenticating by using HTTP Basic Auth will be added in a later version.
 
@@ -97,7 +99,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ```console
     mkdir -p $HOME/tap-gitops
     cd $HOME/tap-gitops
-    
+
     git init
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
@@ -129,14 +131,14 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id=''></a>Create cluster configuration
 
-1. Seed configuration for a cluster using SoPS:
+1. Seed configuration for a cluster using SOPS:
 
     ```console
     cd $HOME/tap-gitops
 
     ./setup-repo.sh CLUSTER-NAME sops
     ```
-    
+
     Where:
 
     - `CLUSTER-NAME` the name of your cluster.
@@ -182,7 +184,7 @@ The following sections describe how to create these values files.
     cd $HOME/tmp-enc
 
     age-keygen -o key.txt
-    
+
     cat key.txt
     # created: 2023-02-08T10:55:35-07:00
     # public key: age1ql3z7hjy54pw3hyww5ayyfg7zqgvc7w3j2elw8zmrj2kg5sfn9aqmcac8p
@@ -197,7 +199,7 @@ The following sections describe how to create these values files.
       sensitive_values:
     ```
 
-1. Encrypt `tap-sensitive-values.yaml` with Age using SoPS:
+1. Encrypt `tap-sensitive-values.yaml` with Age using SOPS:
 
     ```console
     export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')
@@ -216,12 +218,12 @@ The following sections describe how to create these values files.
     sops --decrypt tap-sensitive-values.sops.yaml
     ```
 
-    (Optional) Verify the encrypted file can be edited directly by using SoPS:
+    (Optional) Verify the encrypted file can be edited directly by using SOPS:
 
     ```console
     sops tap-sensitive-values.sops.yaml
     ```
- 
+
 1. Move the sensitive TAP values into the cluster config:
 
     ```console
@@ -244,7 +246,7 @@ The following sections describe how to create these values files.
 
 ## <a id='prep-non-sensitive-tap-values'></a> Preparing non-sensitive TAP values
 
-Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](install.md#full-profile) as a guide:
+Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](../install.md#full-profile) as a guide:
 
 Example:
 
@@ -262,7 +264,7 @@ tap_install:
 
 After filling in the non-sensitive values, follow these steps to extract the sensitive values into `tap-sensitive-values.sops.yaml` that you prepared earlier:
 
-1. Open an editor through SoPS to edit the encrypted sensitive values file:
+1. Open an editor through SOPS to edit the encrypted sensitive values file:
 
     ```console
     sops <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-sensitive-values.sops.yaml
@@ -322,6 +324,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export GIT_SSH_PRIVATE_KEY=PRIVATE-KEY
     export GIT_KNOWN_HOSTS=KNOWN-HOST-LIST
     export SOPS_AGE_KEY=AGE-KEY
+    export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
     ```
 
     Where:
@@ -331,7 +334,8 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository.
     - `HOST-LIST` is the list of known hosts for Git host service.
-    - `AGE-KEY` is the content of the Age key generated earlier.
+    - `AGE-KEY` is the contents of the Age key generated earlier.
+    - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. If those have been relocated as described above, then this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
     Example of the Git repo hosted on GitHub:
 
@@ -342,11 +346,22 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export GIT_SSH_PRIVATE_KEY=$(cat $HOME/.ssh/my_private_key)
     export GIT_KNOWN_HOSTS=$(ssh-keyscan github.com)
     export SOPS_AGE_KEY=$(cat $HOME/key.txt)
+    export TAP_PKGR_REPO=registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
     ```
 
 1. Generate the TAP Install and Tanzu Sync configuration files:
 
     ```console
+    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+
+    ./tanzu-sync/scripts/configure.sh
+    ```
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops/clusters/full-tap-cluster
+
     ./tanzu-sync/scripts/configure.sh
     ```
 
@@ -375,19 +390,29 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
 
         ```console
         kubectl config get-contexts
-        ``` 
+        ```
 
     1. Set the context to the cluster that you want to deploy:
 
         ```console
         kubectl config use-context CONTEXT-NAME
-        ``` 
+        ```
 
         Where `CONTEXT-NAME` can be retrieved from the outputs of the previous step.
 
 1. Deploy the "Tanzu Sync" component:
 
     ```console
+    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+
+    ./tanzu-sync/scripts/deploy.sh
+    ```
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops/clusters/full-tap-cluster
+
     ./tanzu-sync/scripts/deploy.sh
     ```
 

@@ -1,10 +1,10 @@
-# Working with Private Git Repositories
+# Working with private Git Repositories
 
 This topic describes how to work with private Git repositories.
 
 ## <a id= 'git-private'></a>Git Authentication for using a private Git repository
 
-Namespaces Provisioner enables you to use private Git repositories for storing your Gitops based installation files as well as additional platform operator templated resources that you want to create in your developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources. See [Customize Installation](customize-installation.md) for more details.
+Namespaces Provisioner enables you to use private Git repositories for storing your Gitops based installation files as well as additional platform operator templated resources that you want to create in your developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources. See [Install Namespace Provisioner](customize-installation.md) for more details.
 
 ### Create the Git Authentication secret in tap-namespace-provisioning namespace
 
@@ -104,12 +104,12 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
 
 If you already have a Git secret created in a namespace other than `tap-namespace-provisioning`
 namespace and you want to refer to that, the secretRef section should have the namespace
-mentioned along with the` create_export` flag. The default value for create_export is false
+mentioned along with the ` create_export` flag. The default value for `create_export` is false
 as it assumes the Secret is already exported for tap-namespace-provisioning namespace,
 but allows the user to specify if they want the Namespace Provisioner to create a
 `Carvel SecretExport` for that secret.
 
-Find the below example referring to `git-auth` secret from `tap-install` in the secretRef section.
+The example refers to `git-auth` secret from `tap-install` in the secretRef section.
 
 Using Namespace Provisioner Controller
 : Description
@@ -162,6 +162,7 @@ Using GitOps
   ```
 
 After reconciling, Namespace Provisioner will create:
+
 - [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace (tap-install in the above example) to the Namespace Provisioner namespace.
 - [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in Namespace Provisioning namespace (tap-namespace-provisioning) so Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) can create the required secret for the Provisioner to connect to the Private Git Repository.
 
@@ -172,9 +173,9 @@ you must provide those through a Kubernetes secret object referenced by the inte
 object created for performing the action. The following sections provide details about how to
 appropriately set up Kubernetes secrets for carrying those credentials forward to the proper resources.
 
-This section provides instructions on how to configure the `default` service account to work with private git repositories for workloads and supply chain using Namespace Provisioner.
+This section provides instructions on how to configure the `default` service account to work with private Git repositories for workloads and supply chain using Namespace Provisioner.
 
-To configure the service account to work with private git repositories, follow the steps below:
+To configure the service account to work with private Git repositories, follow the steps below:
 
 1. Create a secret in the `tap-install` namespace or any namespace of your preference,
 that contains the Git credentials in the YAML format.

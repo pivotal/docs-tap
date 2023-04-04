@@ -85,3 +85,21 @@ Delete the launch configuration from your `launch.json` file in your `.vscode` d
 ## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
 
 {{> 'partials/ide-extensions/ki-projects-with-spaces' }}
+
+## <a id="malformed-kubeconfig"></a> Cannot apply workload because of a malformed kubeconfig file
+
+### Symptom
+
+You cannot apply a workload. You see an error message when you attempt to do so.
+
+### Cause
+
+Your kubeconfig file (`~/.kube/config`) is malformed.
+
+### Solution
+
+Fix your kubeconfig file.
+
+## <a id="cnfg-writer-pull-request"></a> `config-writer-pull-requester` is categorized as Unknown
+
+{{> 'partials/ide-extensions/ki-config-writer-pull-requester' }}
