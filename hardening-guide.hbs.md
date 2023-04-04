@@ -136,8 +136,6 @@ For more settings in the Contour component, you can reference the [open source d
 * Cluster Issuers for the certificates (1.4 document) 
     * [Ingress Certificates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/security-and-compliance-ingress-certificates.html)
 * Certificate Authority Management
-    * 
-    * 
 
 
 ### Encryption of Data At Rest
@@ -146,12 +144,6 @@ All data should be encrypted at rest.  The Tanzu Application Platform runs on to
 
 * Persistent Volume claim encryption
 * Data at rest should be encrypted. 
-    * AWS
-        * Enable EBS Encryption at the [account level](https://aws.amazon.com/premiumsupport/knowledge-center/ebs-automatic-encryption/)
-        * Enable Storage Class [encryption](https://prabhatsharma.in/blog/using-encrypted-ebs-volumes-on-kubernetes-with-aws/) 
-    * GCP
-        * 
-    * Azure
 
 
 ### Ports and Protocols
@@ -167,7 +159,7 @@ Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Ta
 * DDoS protection
 * Affinity rules on knative deployed services: [https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity)
 * Shared responsibility with the customer to ensure that customer workloads only expose internal only routes.
-* [https://docs.google.com/document/d/1wYX3QAk6Bw2oRfLrRQT0oGIrtAwD2j_ZSCDtOUGUVks/edit#heading=h.hepm3ot731k5](https://docs.google.com/document/d/1wYX3QAk6Bw2oRfLrRQT0oGIrtAwD2j_ZSCDtOUGUVks/edit#heading=h.hepm3ot731k5)
+
 
 
 
