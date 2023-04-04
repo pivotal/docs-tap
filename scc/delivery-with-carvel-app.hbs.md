@@ -98,111 +98,107 @@ app.default.tap/
 
 ## Create App
 
-You need to give the Build cluster access to the Run clusters. On the Build cluster, for each Run cluster, create a `Secret` containing the Run cluster's kubeconfig:
+1. You need to give the Build cluster access to the Run clusters. On the Build cluster, for each Run cluster, create a `Secret` containing the Run cluster's kubeconfig:
 
-  ```console
-  kubectl create secret generic <run-cluster>-kubeconfig \
-      -n <build-cluster-ns> \
-      --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
-  ```
+   ```console
+   kubectl create secret generic <run-cluster>-kubeconfig \
+       -n <build-cluster-ns> \
+       --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
+   ```
 
-The App custom resource represents an app for the kapp-controller and can be used to fetch and deploy applications to a cluster. The
+2. The App custom resource represents an app for the kapp-controller and can be used to fetch and deploy applications to a cluster. The
 App will be pointed at the git repository branch where kapp-controller resources (e.g. PackageRepository and Packages) will be defined. By default,
 an App custom resource will sync the cluster with its fetch source every 30 seconds to prevent the cluster state from drifting from its source of
 truth, which is a git repository in this case.
 
 An example of an App:
 
-```yaml
----
-apiVersion: kappctrl.k14s.io/v1alpha1
-kind: App
-metadata:
-  name: hello-app-app
-spec:
-  # specifies that app should be deployed authenticated via the
-  # given service account, found in this namespace
-  serviceAccountName: <SERVICE_ACCOUNT>
-  # specifies that app should be deployed to destination cluster;
-  # by default, cluster is same as where this resource resides
-  cluster:
-    # specifies namespace in destination cluster
-    namespace: ns2
-    # specifies secret containing kubeconfig
-    kubeconfigSecretRef:
-      # specifies secret name within app's namespace
-      name: cluster1
-      # specifies key that contains kubeconfig
-      key: value
-  fetch:
-  - git:
-      url: # GitOps repo URL ex: https://github.com/mycompany/my-gitops
-      ref: # GitOps repo branchex: origin/main
-      subPath: <path_for_packages> # ex: hello-app.dev.tap/packages/
-  - git:
-      url: # GitOps repo URL ex: https://github.com/mycompany/my-gitops
-      ref: # GitOps repo branch ex: origin/main
-      subPath: <path_for_package_installs> # ex: hello-app.dev.tap/runcluster1
-  template:
-  - ytt: {}
+   ```yaml
+   ---
+   apiVersion: kappctrl.k14s.io/v1alpha1
+   kind: App
+   metadata:
+     name: hello-app-app
+   spec:
+     # specifies that app should be deployed authenticated via the
+     # given service account, found in this namespace
+     serviceAccountName: <SERVICE_ACCOUNT>
+     # specifies that app should be deployed to destination cluster;
+     # by default, cluster is same as where this resource resides
+     cluster:
+       # specifies namespace in destination cluster
+       namespace: ns2
+       # specifies secret containing kubeconfig
+       kubeconfigSecretRef:
+         # specifies secret name within app's namespace
+         name: cluster1
+         # specifies key that contains kubeconfig
+         key: value
+     fetch:
+     - git:
+         url: # GitOps repo URL ex: https://github.com/mycompany/my-gitops
+         ref: # GitOps repo branchex: origin/main
+         subPath: <path_for_packages> # ex: hello-app.dev.tap/packages/
+     - git:
+         url: # GitOps repo URL ex: https://github.com/mycompany/my-gitops
+         ref: # GitOps repo branch ex: origin/main
+         subPath: <path_for_package_installs> # ex: hello-app.dev.tap/runcluster1
+     template:
+     - ytt: {}
 
-  deploy:
-  - kapp:
-      intoNs: <DESIRED_NAMESPACE>
-      rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
-```
+      deploy:
+     - kapp:
+         intoNs: <DESIRED_NAMESPACE>
+         rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
+   ```
 
 The fetch section can includes entries for all the locations in the gitops repo to be deployed, and be appended with
-other run clusters if needed.
+other run clusters if needed. Each App CR must specify either a service account (via spec.serviceAccountName)
+or, a Secret with kubeconfig contents for some run cluster (via spec.cluster.kubeconfigSecretRef.name)
 
-Note: You will also need to create a serviceaccount with associated RBAC permissions for the App to use. Example of
+3. You will also need to create a serviceaccount with associated RBAC permissions for the App to use. Example of
 the required permissions for the serviceaccount. Make sure to assess appropriate RBAC needed for your specific PackageInstalls.
 
 RBAC:
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: pkg-gitops-pkgi-sa
-  namespace: <DESIRED_NAMESPACE>
-  annotations:
-    kapp.k14s.io/change-group: "packageinstall-setup"
-# secrets can be added if accessing private repositories or repos
----
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: pkg-gitops-pkgi-role
-  namespace: <DESIRED_NAMESPACE>
-  annotations:
-    kapp.k14s.io/change-group: "packageinstall-setup"
-rules:
-- apiGroups: ["*"]
-  resources: ["*"]
-  verbs: ["*"]
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: pkg-gitops-pkgi-role-binding
-  namespace: <DESIRED_NAMESPACE>
-  annotations:
-    kapp.k14s.io/change-group: "packageinstall-setup"
-subjects:
-- kind: ServiceAccount
-  name: pkg-gitops-pkgi-sa
-  namespace: <DESIRED_NAMESPACE>
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: pkg-gitops-pkgi-role
-```
-
-Each App CR must specify either a
-
- - service account (via spec.serviceAccountName)
- - or, Secret with kubeconfig contents for some run cluster (via spec.cluster.kubeconfigSecretRef.name)
+   ```yaml
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     name: pkg-gitops-pkgi-sa
+     namespace: <DESIRED_NAMESPACE>
+     annotations:
+       kapp.k14s.io/change-group: "packageinstall-setup"
+   # secrets can be added if accessing private repositories or repos
+   ---
+   kind: Role
+   apiVersion: rbac.authorization.k8s.io/v1
+   metadata:
+     name: pkg-gitops-pkgi-role
+     namespace: <DESIRED_NAMESPACE>
+     annotations:
+       kapp.k14s.io/change-group: "packageinstall-setup"
+   rules:
+   - apiGroups: ["*"]
+     resources: ["*"]
+     verbs: ["*"]
+   ---
+   kind: RoleBinding
+   apiVersion: rbac.authorization.k8s.io/v1
+   metadata:
+     name: pkg-gitops-pkgi-role-binding
+     namespace: <DESIRED_NAMESPACE>
+     annotations:
+       kapp.k14s.io/change-group: "packageinstall-setup"
+   subjects:
+   - kind: ServiceAccount
+     name: pkg-gitops-pkgi-sa
+     namespace: <DESIRED_NAMESPACE>
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
+     kind: Role
+     name: pkg-gitops-pkgi-role
+   ```
 
 ## Verifying Applications
 
