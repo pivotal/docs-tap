@@ -57,7 +57,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   - Redis
   - RabbitMQ
 
-- For more information, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md).
+- For more information, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-bitnami-services.hbs.md).
 
 #### <a id='1-5-0-crossplane-new-features'></a> Crossplane
 
@@ -66,7 +66,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   - This provides integration for dynamic provisioning in Services Toolkit and can be used for
   integration with cloud services such as AWS, Azure, and GCP.
   For more information, see
-  [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md).
+  [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services.hbs.md).
   - For more information about dynamic provisioning, see
   [Set up dynamic provisioning of service instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
 

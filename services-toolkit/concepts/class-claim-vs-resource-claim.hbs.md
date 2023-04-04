@@ -1,4 +1,4 @@
-# Class Claims compared to Resource Claims
+# Class claims compared to resource claims
 
 There are two types of claim to choose from when working with services on Tanzu Application Platform.
 These are `ClassClaim` and `ResourceClaim`.
@@ -51,7 +51,7 @@ The loose coupling between the `ClassClaim` and the service instances means that
 - You need to inject different service instances into the application workload
 at different points in its advancement from development to production
 environments. For more information, see
-[Abstracting Service Implementations Behind A Class Across Clusters](../tutorials/abstracting-service-implementation-behind-class-across-clusters.hbs.md).
+[Abstracting Service Implementations Behind A Class Across Clusters](../tutorials/abstracting-service-implementation.hbs.md).
 - The `ClassClaim`, and also any workload referencing it, must be
 promoted from one environment to the next without changing their specification.
 
