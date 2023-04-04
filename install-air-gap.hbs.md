@@ -88,7 +88,12 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
-Where MY-REGISTRY is where workload images as well as Tanzu Build Service dependencies will get stored. 
+Where:
+
+- MY-REGISTRY is where workload images as well as Tanzu Build Service dependencies will get stored.
+- MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
+- MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER
+
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
     ```console
