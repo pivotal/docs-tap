@@ -77,6 +77,22 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
+1. Create a internal registry secret by running:
+
+    ```console
+    tanzu secret registry add registry-credentials \
+        --server   $MY-REGISTRY \
+        --username $MY-REGISTRY-USER \
+        --password $MY-REGISTRY-PASSWORD \
+        --namespace tap-install \
+        --export-to-all-namespaces \
+        --yes
+    ```
+Where:
+
+- MY-REGISTRY is where workload images as well as Tanzu Build Service dependencies will get stored.
+- MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
+- MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -224,8 +240,9 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "REGISTRY-USERNAME"
-    password: "REGISTRY-PASSWORD"
+    secret:
+      name: "KP-DEFAULT-REPO-SECRET"
+      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   ca_cert_data: |
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -233,9 +250,10 @@ shared:
 profile: full
 ceip_policy_disclosed: true
 buildservice:
-  kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -327,10 +345,14 @@ Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
-    - Harbor: `harbor.io/my-project/build-service`.
-    - Artifactory: `artifactory.com/my-project/build-service`.
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+    * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    * Please create the secret prior to the installation. For example registry-credentials secret created above could be used here.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where KP-DEFAULT-REPO-SECRET is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
