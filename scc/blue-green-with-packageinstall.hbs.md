@@ -7,7 +7,11 @@ deployment with Packages and PackageInstalls.
 
 ## Prerequisites
 
-Follow the steps in [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
+To use blue-green deployment, you must complete the following prerequisites:
+
+- Complete the prerequesites listed in [Configure and deploy to multiple environments with custom parameters](./config-deploy-multi-env.hbs.md).
+- Configure Carvel for your supply chain. See [Carvel Package Supply Chains (alpha)](./carvel-package-supply-chain.hbs.md).
+- Configure FluxCD for your supply chains. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
 
 ## Changes to your original PackageInstall
 
