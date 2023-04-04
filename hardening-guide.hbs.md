@@ -176,7 +176,6 @@ Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Ta
 
 All TAP components follow [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices. Log aggregation should be implemented following the best practices of the organization log retention process.
 
-* [Logging Arch Note](https://gitlab.eng.vmware.com/tanzu-application-platform/architecture/notes/-/blob/main/006-logging.md)
 * 800-53 Section [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
 
 
@@ -200,9 +199,6 @@ Reference arch: [https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.
         * [https://docs.vmware.com/en/VMware-Tanzu-SQL/index.html](https://docs.vmware.com/en/VMware-Tanzu-SQL/index.html) 
    
 
-Different arch for Run/Build/View
-
-Reference Configuration: [https://gitlab.eng.vmware.com/dpfeffer/tap-lab-gitops](https://gitlab.eng.vmware.com/dpfeffer/tap-lab-gitops) 
 
 
 
