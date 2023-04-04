@@ -425,7 +425,7 @@ docs.vmware.com is built.
       - [Services Toolkit overview](services-toolkit/about.hbs.md)
       - [Install Services Toolkit](services-toolkit/install-services-toolkit.hbs.md)
       - [Concepts](services-toolkit/concepts/index.hbs.md)
-          - [Four levels of service consumption in Tanzu Application Platform](services-toolkit/concepts/four-levels-of-service-consumption.hbs.md)
+          - [The four levels of service consumption](services-toolkit/concepts/service-consumption.hbs.md)
           - [Class claims versus resource claims](services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md)
       - [Tutorials](services-toolkit/tutorials/index.hbs.md)
           - [Set up dynamic provisioning of service instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md)

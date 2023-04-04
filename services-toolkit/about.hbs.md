@@ -8,7 +8,7 @@ and discovery of those services, and finally to the claiming and binding of serv
 application workloads, Services Toolkit has the tools you need to make working with services on
 Tanzu Application Platform simple, easy, and effective.
 
-## <a id="capabilities"></a>Capabilities
+## <a id="capabilities"></a> Capabilities
 
 The main capabilities on offer in Tanzu Application Platform through Services Toolkit are:
 
@@ -22,7 +22,7 @@ instances that adhere to company policy. Apps teams can create instances on-dema
 with minimal configuration overhead: provides a near-limitless range of services to help boost
 developer productivity.
 
-## <a id="getting-started"></a>Getting started
+## <a id="getting-started"></a> Getting started
 
 If this is your first time working with services on Tanzu Application Platform,
 then great places to start are
@@ -50,14 +50,14 @@ The following is a selection of useful topics on offer:
 
 **For apps teams:**
 
-- Tutorial: [Working with Bitnami Services](./tutorials/working-with-the-bitnami-services.hbs.md)
+- Tutorial: [Working with Bitnami Services](tutorials/working-with-the-bitnami-services.hbs.md)
 
 **For ops teams:**
 
-- Tutorial: [Setup Dynamic Provisioning of Service Instances](./tutorials/setup-dynamic-provisioning.hbs.md)
-- Tutorial: [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](./tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md)
-- How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](./how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
+- Tutorial: [Setup Dynamic Provisioning of Service Instances](tutorials/setup-dynamic-provisioning.hbs.md)
+- Tutorial: [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md)
+- How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
 
 **For everyone:**
 
-- Concept: [Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)
+- Concept: [Four Levels of Service Consumption in Tanzu Application Platform](concepts/service-consumption.hbs.md)

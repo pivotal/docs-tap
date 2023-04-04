@@ -2,5 +2,5 @@
 
 In this section:
 
-- [Four Levels of Service Consumption in Tanzu Application Platform](four-levels-of-service-consumption.hbs.md)
-- [Class Claims vs Resource Claims](class-claim-vs-resource-claim.hbs.md)
+- [The four levels of service consumption in Tanzu Application Platform](service-consumption.hbs.md)
+- [Class claims vs resource claims](class-claim-vs-resource-claim.hbs.md)
