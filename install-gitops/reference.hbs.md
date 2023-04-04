@@ -2,15 +2,16 @@
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-## Component Overview
+## <a id="overview"></a>Component Overview
 
 The following diagrams shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
 
-SoPS
-: ![Diagram describing the architecture of GitOps Installer using SoPS.](./images/arch-sops.png)
+SOPS
+: ![Diagram describing the architecture of GitOps Installer using SOPS.](./images/arch-sops.png)
 
 ESO
 : ![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
+
 
 ### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
@@ -205,7 +206,7 @@ These scripts help to setup your Git repository and configure the values as desc
 - `configure.sh`: Generates the values files described in section [Configuration of values without helper scripts](#configure-values).
 - `deploy.sh`: A light wrapper around a simple `kapp deploy` given the data values from above, and sensitive values which should not be stored on disk.
 
-## Troubleshoot Tanzu GitOps RI
+## <a id="troubleshoot"></a>Troubleshoot Tanzu GitOps RI
 
 This section provides information to help troubleshoot Tanzu GitOps RI.
 
