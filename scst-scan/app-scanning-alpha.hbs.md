@@ -1,6 +1,6 @@
 # Supply Chain Security Tools - App Scanning (alpha)
 
->**Important** This component is in Alpha, which means that it is still in active
+>**Important**: This component is in Alpha, which means that it is still in active
 >development by VMware and might be subject to change at any point. Users might
 >encounter unexpected behavior.  This is an opt-in component
 >is not installed by default with any profile.
@@ -22,7 +22,7 @@ During scanning:
   pipeline](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers)
   in github.
 
-The App Scanning component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md)
+The App Scanning component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
 
 A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
@@ -51,11 +51,11 @@ When you install SCST - App Scanning, you can configure the following optional p
 
 | Key | Default | Type | Description |
 | --- | --- | --- | --- |
-| caCertData | "" | string | The custom certificates trusted by the scan's connections |
+| caCertData | "" | string | The custom certificates trusted by the scan's connections. |
 | docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
-| docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
-| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
-| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
+| docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images. |
+| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses. |
+| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns. |
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -78,7 +78,7 @@ To install Supply Chain Security Tools - App Scanning:
 
 1. (Optional) Make changes to the default installation settings:
 
-    Create a `app-scanning-values-file.yaml` file which contains any changes to the default installation settings.
+    Create an `app-scanning-values-file.yaml` file which contains any changes to the default installation settings.
 
     Retrieve the configurable settings and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file:
 
@@ -161,7 +161,7 @@ The following access is required:
 
 2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
-    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install.hbs.md#full-profile).
 
     ```console
     read -s REGISTRY_PASSWORD
@@ -183,7 +183,7 @@ The following access is required:
       -n DEV-NAMESPACE
     ```
 
-4. Create the service account `scanner` which enables the App Scanning component to pull the image to be scanned. Attach the read secret created earlier as `imagePullSecrets` and the write secret as `secrets`.
+4. Create the service account `scanner` which enables the App Scanning component to pull the image to be scanned. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -264,18 +264,13 @@ This section describes optional and required GrypeImageVulnerabilityScan specifi
 
 Required fields:
 
-- image
-  The registry URL and digest of the scanned image.
-  For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`
+- `image` is the registry URL and digest of the scanned image. For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`
 
-- scanResults.location
-  The registry URL where results are uploaded.
-  For example, `my.registry/scan-results`.
+- `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
 
 Optional fields:
 
-- activeKeychains
-  Array of enabled credential helpers to authenticate against registries using workload identity mechanisms. See cloud registry documentation for details.
+- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechanisms. See cloud registry documentation for details.
 
   ```yaml
   activeKeychains:
@@ -285,20 +280,15 @@ Optional fields:
   - name: ghcr # Github Container Registry
   ```
 
-- advanced
-  Adjust the configuration of Grype for your needs. See Grype's [configuration](https://github.com/anchore/grype#configuration) for details.
+- `advanced` is the adjusted configuration of Grype for your needs. See Grype's [configuration](https://github.com/anchore/grype#configuration) for details.
 
-- serviceAccountNames
-  - scanner
-    Set the service account that runs the scan. Must have read access to `image`.
-  - publisher
-    Set the service account that uploads results. Must have write access to `scanResults.location`.
+- `serviceAccountNames` includes:
+  - `scanner` is the service account that runs the scan. Must have read access to `image`.
+  - `publisher` is the service account that uploads results. Must have write access to `scanResults.location`.
 
-- workspace
-  - size
-    Size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
-  - bindings
-    Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the
+- `workspace` includes:
+  - `size` is the size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
+  - `bindings` are additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the
     running scan. The `name` is used as the mount path.
 
     ```yaml
@@ -384,7 +374,7 @@ To create a sample Sample ImageVulnerabilityScan:
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
-    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names arealready used as steps during the scan process.
+    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names are already used as steps during the scan process.
 
 #### Configuration Options
 
@@ -392,18 +382,15 @@ This section lists optional and required ImageVulnerabilityScan specifications f
 
 Required fields:
 
-- image
-  The registry URL and digest of the image to be scanned.
+- `image` is the registry URL and digest of the image to be scanned.
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
-- scanResults.location
-  The registry URL where results are uploaded.
+- `scanResults.location` is the registry URL where results are uploaded.
   For example, `my.registry/scan-results`.
 
 Optional fields:
 
-- activeKeychains
-  Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
+- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
 
   ```yaml
   activeKeychains:
@@ -413,17 +400,13 @@ Optional fields:
   - name: ghcr # Github Container Registry
   ```
 
-- serviceAccountNames
-  - scanner
-    Set the service account that runs the scan. Must have read access to `image`.
-  - publisher
-    Set the service account that uploads results. Must have write access to `scanResults.location`.
+- `serviceAccountNames` includes:
+  - `scanner` is the service account that runs the scan. Must have read access to `image`.
+  - `publisher` is the service account that uploads results. Must have write access to `scanResults.location`.
 
-- workspace
-  - size
-    Size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
-  - bindings
-    Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path.
+- `workspace` includes:
+  - `size` is size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
+  - `bindings` are additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path.
 
     ```yaml
     bindings:
@@ -460,14 +443,14 @@ If undefined by your `step` definition the environment uses the following defaul
 - TMPDIR=/workspace/tmp
 - SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
 
-Specifying Tekton Pipeline Parameters:
+Tekton Pipeline Parameters:
 
 These parameters are populated after creating the GrypeImageVulnerabilityScan. For information about parameters, see the [Tekton documentation](https://tekton.dev/docs/pipelines/pipelines/#specifying-parameters).
 
 | Parameters | Default | Type | Description |
 | --- | --- | --- | --- |
-| image | "" | string | The scanned image |
-| scan-results-path | /workspace/scan-results | string | Location to save scanner output |
+| image | "" | string | The scanned image. |
+| scan-results-path | /workspace/scan-results | string | Location to save scanner output. |
 | trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData`. |
 
 #### Trigger your scan
