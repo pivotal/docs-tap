@@ -106,12 +106,7 @@ app.default.tap/
        --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
    ```
 
-2. The App custom resource represents an app for the kapp-controller and can be used to fetch and deploy applications to a cluster. The
-App will be pointed at the git repository branch where kapp-controller resources (e.g. PackageRepository and Packages) will be defined. By default,
-an App custom resource will sync the cluster with its fetch source every 30 seconds to prevent the cluster state from drifting from its source of
-truth, which is a git repository in this case.
-
-An example of an App:
+2. The Carvel `App` custom resource represents a collection of Kubernetes resources that kapp-controller can fetch and deploy to a cluster. The `App` will be pointed at the git repository branch where kapp-controller resources (e.g. `PackageRepository` and `Packages`) will be defined. By default, an `App` custom resource will sync the cluster with its fetch source every 30 seconds to prevent the cluster state from drifting from its source of truth, which is a git repository in this case. Create the following `App` on your Build cluster:
 
    ```yaml
    ---
@@ -119,6 +114,7 @@ An example of an App:
    kind: App
    metadata:
      name: hello-app-app
+     namespace: <build-cluster-ns>
    spec:
      # specifies that app should be deployed authenticated via the
      # given service account, found in this namespace
@@ -152,14 +148,9 @@ An example of an App:
          rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
    ```
 
-The fetch section can includes entries for all the locations in the gitops repo to be deployed, and be appended with
-other run clusters if needed. Each App CR must specify either a service account (via spec.serviceAccountName)
-or, a Secret with kubeconfig contents for some run cluster (via spec.cluster.kubeconfigSecretRef.name)
+   > **Note:** The fetch section can includes entries for all the locations in the gitops repo to be deployed, and be appended with other run clusters if needed. Each App CR must specify either a service account (via `spec.serviceAccountName`) or, a `Secret` with kubeconfig contents for some Run cluster (via `spec.cluster.kubeconfigSecretRef.name`).
 
-3. You will also need to create a serviceaccount with associated RBAC permissions for the App to use. Example of
-the required permissions for the serviceaccount. Make sure to assess appropriate RBAC needed for your specific PackageInstalls.
-
-RBAC:
+3. You will also need to create a `ServiceAccount` with associated RBAC permissions for the App to use. Example of the required permissions for the `ServiceAccount`. Make sure to assess appropriate RBAC needed for your specific PackageInstalls.
 
    ```yaml
    apiVersion: v1
