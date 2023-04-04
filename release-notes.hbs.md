@@ -194,7 +194,7 @@ integration of External-Secrets with Hashicorp Vault
 
 - [Installing External Secrets Operator in TAP](external-secrets/install-external-secrets-operator.hbs.md)
 - [Installing External Secrets CLI plug-in](prerequisites.hbs.md)
-- [External-Secrets with Hashicorp Vault](external-secrets/vault-example.hbs.md)
+- [External-Secrets with Hashicorp Vault](external-secrets/vault-example.md)
 
 
 #### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
