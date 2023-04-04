@@ -129,6 +129,13 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
   - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [Supply Chain Security Tools - App Scanning](./scst-scan/app-scanning-alpha.hbs.md).
   - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
+- Carbon Black Scanner - **Update carbon black scanner CLI to version 1.9.2**
+  - Add BuildPack cyclonedx support:
+
+    when scanning image that was created by BuildPack add package from the create and build image to scan manifest.
+  - Update scan logic to reduce scan time. 
+  
+    **for the full patch-note and other feature check [CBC Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials).**
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
