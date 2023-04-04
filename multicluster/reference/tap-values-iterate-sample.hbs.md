@@ -24,7 +24,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 # The above shared keys may be overridden in the below section.
 
 buildservice:
-# Takes the value from shared section above by default, but can be overridden by setting a different value.
+# Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_secret:
     name: "KP-DEFAULT-REPO-SECRET"
@@ -70,9 +70,9 @@ Where:
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
     - For Google Cloud Registry, use the contents of the service account JSON file.
 - `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    * Please create the secret prior to the installation. For example registry-credentials secret created above could be used here.
-- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where KP-DEFAULT-REPO-SECRET is created.
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     - Harbor has the form `server: "my-harbor.io"`.
     - Docker Hub has the form `server: "index.docker.io"`.

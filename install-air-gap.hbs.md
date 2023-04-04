@@ -88,11 +88,12 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
-Where:
 
-- MY-REGISTRY is where workload images as well as Tanzu Build Service dependencies will get stored.
-- MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
-- MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER
+    Where:
+
+    - `MY-REGISTRY` is where the workload images and the Tanzu Build Service dependencies are stored.
+    - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -251,7 +252,7 @@ profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_secret: # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
     name: "KP-DEFAULT-REPO-SECRET"
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
@@ -270,8 +271,8 @@ contour:
 
 ootb_supply_chain_basic:
   registry:
-      server: "SERVER-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-      repository: "REPO-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+      server: "SERVER-NAME" # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+      repository: "REPO-NAME" # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
   gitops:
       ssh_secret: "SSH-SECRET"
   maven:
@@ -346,17 +347,17 @@ Where:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
-    * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
-    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+    - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
 - `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    * Please create the secret prior to the installation. For example registry-credentials secret created above could be used here.
-- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where KP-DEFAULT-REPO-SECRET is created.
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`.
-    * Docker Hub has the form `server: "index.docker.io"`.
-    * Google Cloud Registry has the form `server: "gcr.io"`.
+    - Harbor has the form `server: "my-harbor.io"`.
+    - Docker Hub has the form `server: "index.docker.io"`.
+    - Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 - Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
    - Harbor has the form `repository: "my-project/supply-chain"`.
