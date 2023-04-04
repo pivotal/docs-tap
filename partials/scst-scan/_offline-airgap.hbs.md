@@ -209,7 +209,7 @@ As stale databases weaken your security posture, VMware recommends using the new
 
 1. The `built` parameters in the `listing.json` file is incorrectly formatted. The proper format is `yyyy-MM-ddTHH:mm:ssZ`.
 
-1. The `url` which you modified to point at an internal endpoint is not reachable from within the cluster. Verify connectivity by following below [steps](_offline-airgap.hbs.md#debug-grype-database-in-a-cluster)
+1. The `url` which you modified to point at an internal endpoint is not reachable from within the cluster. Verify connectivity by following below [steps](#debug-grype-database-in-a-cluster)
 
 #### Debug Grype database in a cluster
 
