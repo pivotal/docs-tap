@@ -102,6 +102,22 @@ To add the Tanzu Application Platform package repository to your cluster:
       --server ${INSTALL_REGISTRY_HOSTNAME} \
       --export-to-all-namespaces --yes --namespace tap-install
     ```
+1. Create a internal registry secret by running:
+
+    ```console
+    tanzu secret registry add registry-credentials \
+        --server   $MY-REGISTRY \
+        --username $MY-REGISTRY-USER \
+        --password $MY-REGISTRY-PASSWORD \
+        --namespace tap-install \
+        --export-to-all-namespaces \
+        --yes
+    ```
+Where:
+
+- MY-REGISTRY is where workload images as well as Tanzu Build Service dependencies will get stored.
+- MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
+- MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -237,8 +253,9 @@ shared:
 
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "KP-DEFAULT-REPO-USERNAME"
-    password: "KP-DEFAULT-REPO-PASSWORD"
+    secret:
+      name: "REGISTRY-SECRET"
+      namespace: "REGISTRY-SECRET-NAMESPACE"
 
   kubernetes_distribution: "K8S-DISTRO" # Only required if the distribution is OpenShift and must be used with the following kubernetes_version key.
   
@@ -274,8 +291,9 @@ contour:
 buildservice:
   # Takes the value from shared section above by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+    name: "REGISTRY-SECRET"
+    namespace: "REGISTRY-SECRET-NAMESPACE"
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
@@ -312,12 +330,10 @@ service's External IP address. It is not required to know the External IP addres
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use the contents of the service account JSON file.
-    * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
+    * Please create the secret prior to the installation. For example registry-credentials secret created above could be used here.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where KP-DEFAULT-REPO-SECRET is created.
 - `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if the distribution is OpenShift and must be used in coordination with `kubernetes_version`. Supported value: `openshift`.
 - `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
 - `SERVER-NAME` is the host name of the registry server. Examples:
