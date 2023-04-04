@@ -403,7 +403,7 @@ For example:
 ```yaml
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
     name: "KP-DEFAULT-REPO-SECRET"
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true

@@ -78,12 +78,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. Create a registry secret for your writeable image repository
-
-   This is used for Tanzu Build Service Dependencies (and Workloads when using the `shared.image_registry` key)
-
-   > Note: If using the same repo as `tap-registry` you can skip this step and use the `tap-registry` secret
-   > in your `tap-values.yaml` instead of `image-registry-creds`
+1. (Optional) Create a registry secret for your writable image repository:
 
     ```console
     tanzu secret registry add image-registry-creds \
@@ -93,15 +88,23 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       --namespace tap-install
     ```
 
-   Where:
-    - `REGISTRY_HOSTNAME` is the hostname for the registry that will contain your writeable repository.
-      Examples:
+    The registry secret is used for:
+
+    - Tanzu Build Service Dependencies
+    - Workloads when using the `shared.image_registry` key
+
+    > **Note** If using the same repository as `tap-registry`, you can skip this step and use the `tap-registry` secret
+    > in your `tap-values.yaml` instead of `image-registry-creds`.
+
+    Where:
+
+    - `REGISTRY_HOSTNAME` is the host name for the registry that contains your writable repository. Examples:
         - Harbor has the form `--server "my-harbor.io"`.
         - Docker Hub has the form `--server "index.docker.io"`.
         - Google Cloud Registry has the form `--server "gcr.io"`.
-    - `REGISTRY_USERNAME` and `REGISTRY_PASSWORD` are the username
-      and password for the user that can write to the repo used in the following step.
-      For Google Cloud Registry, use `_json_key` as the username and the contents
+    - `REGISTRY_USERNAME` and `REGISTRY_PASSWORD` are the user name
+      and password for the user that can write to the repository used in the following step.
+      For Google Cloud Registry, use `_json_key` as the user name and the contents
       of the service account JSON file for the password.
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -273,7 +276,7 @@ contour:
 
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
     name: image-registry-creds
     namespace: tap-install
 
