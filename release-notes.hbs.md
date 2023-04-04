@@ -73,6 +73,42 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - This release includes two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/), `provider-kubernetes` and `provider-helm`.
 You can add other providers manually as required.
 
+#### <a id="1-5-namespace-provisiones-new-feats"></a> Namespace Provisioner
+
+- New Out-of-the-box GitOps workflow for managing the list of desired namespaces fully declaratively
+  via a Git repo. Specify the location of GitOps repo that has the list of desired namespaces as
+  `ytt data values` to be imported in the namespace provisioner using the `gitops_install` TAP values configuration. 
+  - For more information, refer to the GitOps section in 
+    [Provision Developer Namespace](./namespace-provisioner/provision-developer-ns.md) documentation.
+- Namespace provisioner controller supports adding namespace parameters from labels/annotations on 
+  namespace objects based on accepted prefixes defined in `parameter_prefixes` TAP values configuration.
+  You can use this feature to add custom parameters to a namespace for creating resources conditionally.
+  - For an example use case, refer to the documentation on how to 
+    [Create Tekton pipelines and Scan policies using namespace parameters](./namespace-provisioner/use-case2.md).
+- Add support for importing Kubernetes Secrets that contains a `ytt overlay` definition that can be 
+  applied to the resources created by the Namespace provisioner.
+  - Using the `overlays_secret` configuration in namespace provisioner TAP values, users can provide
+    a list of secrets that contains the overlay definition they want to apply to resources created by provisioner.
+  - For an example use case, refer to the documentation on how to 
+    [Customize OOTB default resources](./namespace-provisioner/use-case4.md) using overlays.
+- Add support for reading sensitive data from a Kubernetes secret in YAML format and populating that
+  information in the resources created by namespace provisioner in runtime and keep it in sync with 
+  the source, thereby removing the need to store any sensitive data in GitOps repository.
+  - Using the `import_data_values_secrets` configuration in namespace provisioner TAP values, you can
+   import sensitive data from a YAML formatted secret and make it available under `data.values.imported` for additional resource templating.
+  - For an example use case, refer to the documentation on how to 
+    [Install multiple scanners in the developer namespace](./namespace-provisioner/use-case5.md).
+- Namespace Provisioner now creates a Kubernetes `LimitRange` object with sensible defaults which sets
+  max limits on how much resource pods in the managed namespace can request.
+  - Run profile: Stamped by default.
+  - Full & Iterate profile: Opt-in using parameters.
+    - Refer to the [Customize OOTB Limit Range default](./namespace-provisioner/use-case4.md#customize-limit-range-defaults) documentation for sample configuration.
+- Namespaces provisioner enabled users to use private git repositories for storing their GitOps based
+  installation files as well as additional platform operator templated resources that they want to create
+  in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning`
+  namespace, or an existing secret in another namespace referred to in the `secretRef` in the additional sources.
+  - For an example use case, refer to the documentation on [Working with private Git Repositories](./namespace-provisioner/use-case3.md)
+
 #### <a id='1-5-0-tap-gui-new-feats'></a> Tanzu Application Platform GUI
 
 - Tanzu Application Platform GUI now supports automatic configuration with
@@ -129,6 +165,15 @@ You can add other providers manually as required.
   -  [CVE Details] Display and navigate to latest source sha and/or image digest in the Workload Builds table
   -  [Package Details] Display and navigate to latest source sha and/or image digest in the Workload Builds table
 
+#### <a id="1-5-apps-plugin-new-feats"></a> Tanzu CLI Apps plug-in
+
+- Added support for `-ojson` and `-oyaml` output flags in `tanzu apps workload create/apply` command.
+  - The CLI does not wait to print workload when using `--output` in workload create/apply unless 
+  `--wait` or `--tail` flags are specified as well.
+- Using the `--no-color` flag in `tanzu apps workload create/apply` commands now hides progress bars
+  in addition to color output and emojis.
+- Added support for unsetting `--git-repo`, `--git-commit`, `--git-tag` and `--git-branch` flags 
+  by setting the value to empty string.
 
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
@@ -267,6 +312,17 @@ The following issues, listed by area and component, are resolved in this release
 - Resolved redirect URI issue with insecure HTTP redirection on Tanzu Kubernetes Grid multicloud
 (TKGm) clusters.
 
+#### <a id="1-5-namespace-provisioner-resolved-issues"></a> Namespace Provisioner
+
+- Updates default resources to avoid ownership conflicts with the `grype` package.
+
+#### <a id="1-5-apps-plugin-resolved-issues"></a> Tanzu CLI Apps plug-in
+
+- Allow users to pass only `--git-commit` for git ref while creating a workload from Git Repository.
+  This update removes the limitation where users had to provide a `--git-tag` or `--git-branch` along with the commit to create a workload.
+- Fixed the behavior where `subpath` was getting removed from the Workload when there are updates 
+  to the git section of the Workload source specification.
+
 ### <a id='1-5-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -274,6 +330,11 @@ This release has the following known issues, listed by area and component.
 #### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
+
+#### <a id="1-5-apps-plugin-known-issues"></a> Tanzu CLI Apps plug-in
+
+- `tanzu apps workload apply` does not wait for the changes to be taken when the workload is updated
+   using `--tail` or `--wait` and instead, fails if the status before the changes is showing error.
 
 #### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
 
@@ -437,5 +498,5 @@ format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
   flag will change from `merge` to `replace` in Tanzu Application Platform
   v1.7.0.
 - The `tanzu apps workload update` command is deprecated and marked for removal
-  in Tanzu Application Platform 1.5.0. Use `tanzu apps workload apply` instead.
+  in Tanzu Application Platform 1.6.0. Use `tanzu apps workload apply` instead.
     <!-- Should this be a breaking change? -->
