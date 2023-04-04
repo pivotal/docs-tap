@@ -353,7 +353,7 @@ docs.vmware.com is built.
     - [Crossplane](crossplane/about.hbs.md)
       - [Overview](crossplane/about.hbs.md)
       - [Install Crossplane](crossplane/install-crossplane.hbs.md)
-      - [Reference](crossplane/reference.hbs.md)
+      - [Reference](crossplane/reference/index.hbs.md)
         - [Package Values](crossplane/reference/package-values.hbs.md)
     - [Developer Conventions](developer-conventions/about.hbs.md)
       - [Developer Conventions overview](developer-conventions/about.hbs.md)

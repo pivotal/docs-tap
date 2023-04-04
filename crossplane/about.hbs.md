@@ -27,4 +27,4 @@ Refer to official Crossplane documentation to learn more about working with Cros
 
 * [Tutorial - Setup Dynamic Provisioning of Service Instances](../services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md)
 
-Alternatively, refer to the [reference material](./reference.hbs.md).
+Alternatively, refer to the [reference material](reference/index.hbs.md).
