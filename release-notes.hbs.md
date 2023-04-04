@@ -83,6 +83,7 @@ You can add other providers manually as required.
 - Tanzu Application Platform GUI includes an optional plug-in that collects telemetry by using the
   Pendo tool. To configure Pendo telemetry and opt in or opt out, see
   [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
+- Upgrades Backstage to 1.10.1
 
   **Disclosure:** This upgrade includes a Java script operated by our service provider Pendo.io.
    The Java script is installed on selected pages of VMware software and collects information about
@@ -92,6 +93,42 @@ You can add other providers manually as required.
    VMware products and services and your experience.
    For more information, see the
    [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
+
+#### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
+
+- **App Accelerator Plug-in:**
+  - Extracted application accelerator Entity Provider and template actions to a backend plugin 
+  - Added id generation for accelerator provenance 
+  - Hide context menu from the app accelerator scaffolder page, the edit template feature shouldn't be visible 
+  - Fixed JSON schema for git repository creation 
+  - Added missing query string parameters to accelerator provenance 
+  - Added fallback to displayName for telemetry call when email isn't present in the logged in user 
+  - Changed label for git repository confirmation checkbox 
+  - Changed app accelerator telemetry call to use username instead of email in the user details
+  
+- **Supply Chain Plug-in:**
+  - Fix CPU stats in App Live View Steeltoe Threads and Memory pages 
+  - Retry logic to fetch a new token and retry the API call again when the alvToken has expired 
+  - Disable actions and display a message to the user when sensitive operations are deactivated for the app 
+  - Fix a bug on the App Live View Details page to show the correct Boot Version instead of UNKNOWN 
+  - Disable download heap dump button when sensitive operations are disabled for the application 
+  - Fix request params for post Api call 
+  - Fixes the UI error in ALV request-mapping page due to unused style. 
+  - Enable Secure Access Communication between App Live View components 
+  - Added API to connect to appliveview-apiserver by reusing tap-gui authentication 
+  - ALV plugin requests a token from appliveview-apiserver and passes it to every call to ALV backend 
+  - Secure sensitive operations (edit env, change log levels, download heap dump) and display a message in the UI 
+  - The k8s-logging-backend plugin is renamed to k8s-custom-apis-backend 
+  - Fetch token for logLevelsPanelToggle component loaded from the workload plugin PodLogs Page 
+  - Fix ALV Request Mappings and Threads Page to support Boot 3 apps
+
+- **Security Analysis GUI Plug-in:**
+  -  [Package Details] Add Impacted Workloads Column to Vulnerabilities table
+  -  [CVE Details] Add Impacted Workloads widget to CVE Details Page
+  -  Add Highest Reach Vulnerabilities widget to Security Analysis Dashboard
+  -  [CVE Details] Display and navigate to latest source sha and/or image digest in the Workload Builds table
+  -  [Package Details] Display and navigate to latest source sha and/or image digest in the Workload Builds table
+
 
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
