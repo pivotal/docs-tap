@@ -6,19 +6,8 @@ required files specified in [Getting started](getting-started.hbs.md).
 The extension requires only one Tiltfile and one `workload.yaml` file per project.
 `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
-## <a id="debugging"></a> Debugging on the cluster
 
-The extension enables you to debug your application on a Kubernetes cluster that has
-Tanzu Application Platform.
-
-Debugging requires a single-document `workload.yaml` file in your project.
-For how to create `workload.yaml`, see
-[Set up Tanzu Developer Tools](getting-started.hbs.md#set-up-tanzu-dev-tools).
-
-The developer sandbox experience enables developers to Live Update their code, and simultaneously
-debug the updated code, without having to deactivate Live Update when debugging.
-
-### <a id="apply-workload"></a> Apply a workload
+## <a id="apply-workload"></a> Apply a workload
 
 The extension enables you to apply workloads on your Kubernetes cluster that has
 Tanzu Application Platform.
@@ -35,7 +24,7 @@ To apply a workload:
 The `Tanzu workload apply` command is triggered in the terminal and the workload is applied.
 A new workload appears on the Tanzu panel.
 
-### <a id="delete-workload"></a> Delete a workload
+## <a id="delete-workload"></a> Delete a workload
 
 The extension enables you to delete workloads on your Kubernetes cluster that has Tanzu Application Platform.
 
@@ -48,6 +37,18 @@ To delete a workload:
 
 A message appears that prompts you to delete the workload and not warn again, delete the workload,
 or cancel. A notification appears showing that the workload was deleted.
+
+## <a id="debugging"></a> Debugging on the cluster
+
+The extension enables you to debug your application on a Kubernetes cluster that has
+Tanzu Application Platform.
+
+Debugging requires a single-document `workload.yaml` file in your project.
+For how to create `workload.yaml`, see
+[Set up Tanzu Developer Tools](getting-started.hbs.md#set-up-tanzu-dev-tools).
+
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
@@ -77,6 +78,8 @@ To start debugging on the cluster:
 Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description.](../images/intellij-stopDebug.png)
+
+## <a id="live-updating"></a> Live Update
 
 ### <a id="start-live-update"></a> Start Live Update
 
