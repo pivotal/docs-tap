@@ -147,6 +147,19 @@ You can add other providers manually as required.
 
 - ClusterImagePolicy resync is triggered every 10 hours to get updated values from KMS.
 
+#### <a id='1-5-0-external-secrets-new-features'></a>External Secrets CLI (Beta)
+The external-secrets plug-in available in the Tanzu CLI interacts with the External Secrets Operator API. Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
+
+Refer to the official [External Secrets Operator](https://external-secrets.io) documentation to learn
+more about managing secrets with External Secrets in general. For installing the External Secrets 
+Operator and the CLI plug-in refer to the following documentation. Additionally, refer to the example
+integration of External-Secrets with Hashicorp Vault
+
+- [Installing External Secrets Operator in TAP](external-secrets/install-external-secrets-operator.hbs.md)
+- [Installing External Secrets CLI plug-in](prerequisites.hbs.md)
+- [External-Secrets with Hashicorp Vault](external-secrets/vault-example.hbs.md)
+
+
 #### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
@@ -293,6 +306,11 @@ This release has the following known issues, listed by area and component.
   belongs to a workload that has only completed one type of vulnerability scan (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
 
+
+#### <a id="1-5-0-external-secrets-known-issue"></a>External Secrets CLI (Beta)
+
+- The external-secrets plug-in creating `ExternalSecret` and `SecretStore` resource via STDIN incorrectly confirms resource creation. Use `-f ` to create resources via file instead of stdin.
+
 ## <a id='1-5-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
@@ -306,7 +324,8 @@ Use `client_secret_post` and `client_secret_basic` instead.
 
 ### <a id='1-5-convention-controller-dp'></a> Convention Controller
 
-- This component is deprecated in this release and is replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions). Cartographer Conventions implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
+- This deprecated component has now been removed in this release and is replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions). Cartographer Conventions implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
+
 <!-- has this been removed already? If yes, should it be a breaking change. If not, when? -->
 
 #### <a id="1-5-app-live-view-deprecations"></a> Application Live View
