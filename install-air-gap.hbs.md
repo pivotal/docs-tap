@@ -77,6 +77,17 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
+1. Create a internal registry secret by running:
+
+    ```console
+    tanzu secret registry add registry-credentials \
+        --server   $IMGPKG_REGISTRY_HOSTNAME_1 \
+        --username $IMGPKG_REGISTRY_USERNAME_1 \
+        --password $IMGPKG_REGISTRY_PASSWORD_1 \
+        --namespace tap-install \
+        --export-to-all-namespaces \
+        --yes
+    ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -224,8 +235,9 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "REGISTRY-USERNAME"
-    password: "REGISTRY-PASSWORD"
+    secret:
+      name: "REGISTRY-SECRET"
+      namespace: "REGISTRY-SECRET-NAMESPACE"
   ca_cert_data: |
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -234,8 +246,9 @@ profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+    name: "REGISTRY-SECRET"
+    namespace: "REGISTRY-SECRET-NAMESPACE"
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -327,7 +340,7 @@ service's External IP address.
 - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
     - Harbor: `harbor.io/my-project/build-service`.
     - Artifactory: `artifactory.com/my-project/build-service`.
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+- `REGISTRY-SECRET` and `REGISTRY-SECRET-NAMESPACE` are the secret containing internal registry credentials and namespace for the secret respectively. Please create the secret prior to the installation.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
