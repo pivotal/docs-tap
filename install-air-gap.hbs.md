@@ -252,7 +252,7 @@ profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_secret: # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
     name: "KP-DEFAULT-REPO-SECRET"
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
@@ -271,8 +271,8 @@ contour:
 
 ootb_supply_chain_basic:
   registry:
-      server: "SERVER-NAME" # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
-      repository: "REPO-NAME" # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+      server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
+      repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
       ssh_secret: "SSH-SECRET"
   maven:

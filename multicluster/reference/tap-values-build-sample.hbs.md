@@ -29,7 +29,7 @@ shared:
 # The above shared keys can be overridden in the below section.
 
 buildservice:
-# Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+# Takes the value from the shared section by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_secret:
     name: "KP-DEFAULT-REPO-SECRET"
