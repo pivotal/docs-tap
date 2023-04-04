@@ -254,8 +254,8 @@ shared:
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
     secret:
-      name: "REGISTRY-SECRET"
-      namespace: "REGISTRY-SECRET-NAMESPACE"
+      name: "KP-DEFAULT-REPO-SECRET"
+      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
   kubernetes_distribution: "K8S-DISTRO" # Only required if the distribution is OpenShift and must be used with the following kubernetes_version key.
   
@@ -292,8 +292,8 @@ buildservice:
   # Takes the value from shared section above by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-    name: "REGISTRY-SECRET"
-    namespace: "REGISTRY-SECRET-NAMESPACE"
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
