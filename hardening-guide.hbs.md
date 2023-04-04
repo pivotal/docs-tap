@@ -28,32 +28,24 @@ In order to provide an audit trail of what a user does in a system, it is import
 2. Tanzu Application Platform GUI Authentication to Remote Clusters
 3. The Kubernetes cluster that the Tanzu Application Platform components are installed on
 
-It is recommended to use the same identity provider for each of these components so that a common identity is shared across the entire Tanzu Application Platform.  To facilitate this, components are able to use common OIDC providers.  Below is the configuration for each component \
+It is recommended to use the same identity provider for each of these components so that a common identity is shared across the entire Tanzu Application Platform.  To facilitate this, components are able to use common OIDC providers.  Below is the configuration for each component:
 
-
-
-###  \
-Tanzu Application Platform GUI 
+### Tanzu Application Platform GUI 
 
 The Tanzu Application Platform GUI is based on the Backstage open source project and has a variety of OIDC providers that you are able to configure as an identity provider.
 
- \
 In order to configure authentication for the Tanzu Application Platform GUI, VMware suggests the following:
-
 
 
 1. Enable user authentication using one of the [supported providers](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/tap-gui-auth.html).  Note that due to the limitations with the backstage authentication implementation, simply having authentication does [not guarantee full end-to-end security](https://backstage.io/docs/auth/#sign-in-configuration) as Backstage doesn’t currently support per-API authentication. VMware recommends implementing additional security either via an inbound proxy or via networking (firewall / VPN).
 2. It is recommended to disable guest access via the tap_gui section in the tap-values.yaml.
 
-    ```
+```
 tap_gui:
   app_config:
     auth:
       allowGuestAccess: false
 ```
-
-
-
 
 ### Tanzu Application Platform GUI to Remote Kubernetes Cluster Authentication
 
@@ -141,7 +133,6 @@ For more settings in the Contour component, you can reference the [open source d
 #### Ingress Certificates
 
 
-
 * Cluster Issuers for the certificates (1.4 document) 
     * [Ingress Certificates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/security-and-compliance-ingress-certificates.html)
 * Certificate Authority Management
@@ -151,10 +142,7 @@ For more settings in the Contour component, you can reference the [open source d
 
 ### Encryption of Data At Rest
 
-
-All data should be encrypted at rest.  The Tanzu Application Platform runs on top of the Kubernetes platform and as such, relies on the Tanzu 
-
-
+All data should be encrypted at rest.  The Tanzu Application Platform runs on top of the Kubernetes platform and as such, TAP will verify the default storage class configured on the Kubernetes cluster. Customers are required to provide a Persistent Volume Provisioner to the Kubernetes infrastructure that supports encryption if the customers desires to have Encrypt of Data at Rest as an outcome.
 
 * Persistent Volume claim encryption
 * Data at rest should be encrypted. 
@@ -165,20 +153,13 @@ All data should be encrypted at rest.  The Tanzu Application Platform runs on to
         * 
     * Azure
 
-Suggestion: TAP will make sure of the default storage class configured on the Kubernetes cluster. Customers are required to provide a Persistent Volume Provisioner to the Kubernetes infrastructure that supports encryption if the customers desires to have Encrypt of Data at Rest as an outcome.
-
 
 ### Ports and Protocols
 
-[https://docs.google.com/document/d/1wYX3QAk6Bw2oRfLrRQT0oGIrtAwD2j_ZSCDtOUGUVks/edit#heading=h.hepm3ot731k5](https://docs.google.com/document/d/1wYX3QAk6Bw2oRfLrRQT0oGIrtAwD2j_ZSCDtOUGUVks/edit#heading=h.hepm3ot731k5)
+Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-dev-components.html)
 
 
 ## Networking
-
-Contacts: 
-
-Need to cover:
-
 
 
 * No NodePort services -> All traffic needs to go through Contour / LoadBalancer
@@ -194,8 +175,6 @@ Need to cover:
 ## Key Management
 
 
-
-
 * TAP stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
 * Encryption of secrets at rest are Kubernetes Distribution Dependent.
 * If customers desire to store secrets in a Secret Management service (e.g. [Hashicorp Vault](https://www.vaultproject.io), [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/)) they can make use of the [External Secrets Operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/external-secrets-about-external-secrets-operator.html) to automate the lifecycle management (ALPHA).
@@ -204,15 +183,12 @@ Need to cover:
 
 ## Logging
 
+All TAP components follow [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices. Log aggregation should be implemented following the best practices of the organization log retention process.
 
-In addition to basic logging recommendations, this section should address logging requirements with 800-53 as a guide, ex. What to capture and log retention (6-12mos).
-
-
-* External Logging
 * [Logging Arch Note](https://gitlab.eng.vmware.com/tanzu-application-platform/architecture/notes/-/blob/main/006-logging.md)
 * 800-53 Section [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
 
-Suggestion: All TAP components follow [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices. Log aggregation should be implemented following the best practices of the organization log retention process.
+
 
 
 ## Deployment Architecture
@@ -231,7 +207,7 @@ Reference arch: [https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.
         * [https://cloud.google.com/sql/postgresql](https://cloud.google.com/sql/postgresql)
     * VMware (self-managed)
         * [https://docs.vmware.com/en/VMware-Tanzu-SQL/index.html](https://docs.vmware.com/en/VMware-Tanzu-SQL/index.html) 
-    * Used by 
+   
 
 Different arch for Run/Build/View
 
