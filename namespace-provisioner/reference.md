@@ -1,14 +1,19 @@
-# Namespace Provisioner Reference
+# Namespace Provisioner reference
 
-## Known Limitation and Issues
+This topic contains know issues and limitations
+## Known limitations and issues
 
-If you are using a GitOps repository to manage the list of namespaces, all the namespaces in the list must exist in the cluster if the you choose not to create them using some other means. The provisioner application fails to reconcile if the namespaces do not exist on the cluster.
-If you are using the Controller workflow, and then switch to the full GitOps (controller: false) managed namespaces list, you must manually remove the finalizer on all the namespaces previously managed by the controller as it will no longer be available to clean the finalizers up.
-To use different private repositories, the secret used for each entry (gitops_install, additional_sources) must be a unique name. Re-using the same secret is currently not supported due to a limitation in kapp-controller.
+If you are using a GitOps repository to manage the list of namespaces, all the namespaces in the list must exist in the cluster. The provisioner application fails to reconcile if the namespaces do not exist on the cluster.
 
-## <a id='default-resources'></a>Default Resources
+If you switch from  controller mode to GitOps mode, you must manually remove the finalizer on all the namespaces previously managed by the controller. For more information on using controller versus GitOps, see [Manage a list of developer namespaces](provision-developer-ns.md).
 
-Namespace Provisioner is installed as part of the standard installation profiles (i.e. Full, Iterate, Build, and Run) and the default set of resources provisioned in a namespace is based on a combination of the installation profile employed and the supply chain that is installed on the cluster. The following table shows the list of resources that are templated in the default-resources Secret for an installation profile and supply chain value combination:
+To use different private repositories, the secret used for each entry (gitops_install, additional_sources) must be a unique name. Re-using the same secret is not supported due to a limitation in kapp-controller.
+
+## <a id='default-resources'></a>Default resources
+
+Namespace Provisioner is installed as part of the standard installation profiles.  and the default set of resources provisioned in a namespace is based on a combination of the installation profile employed and the supply chain that is installed on the cluster. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages)
+
+ The following table shows the list of resources that are templated in the default-resources secret for an installation profile and supply chain value combination:
 
 | Namespace  | Kind | Name | supply_chain | Install Profile | Reconcile |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -21,4 +26,4 @@ Namespace Provisioner is installed as part of the standard installation profiles
 | Developer Namespace  | RoleBinding | default-permit-workload | n/a | full, iterate, build | Yes  |
 | Developer Namespace | LimitRange | {namespace}-lr | n/a | full, iterate, build | Yes |
 
-For installing additional resources for OOTB Supply Chain with Testing and Scanning, see [Testing & Scanning Supply chain guide](https://docs.google.com/document/d/1uZQX6Dtd2QUhSJ-YsVnl8xVMjtDKkX8BoM5D0RdQzr8/edit#heading=h.j7iims6crulh).
+For installing additional resources for OOTB Supply Chain with Testing and Scanning, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md).

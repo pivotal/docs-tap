@@ -1,14 +1,26 @@
 # Opt out of telemetry collection
 
-This topic describes how to opt out of the VMware Customer Experience Improvement Program (CEIP).
-By default, when you install Tanzu Application Platform, you are opted into telemetry collection.
+There are two components for telemetry collection in Tanzu Application Platform under the VMware
+Customer Experience Improvement Program (CEIP):
 
-If you opt out of telemetry collection, VMware cannot offer you proactive support and the other
-benefits that accompany participation in the CEIP.
+1. The standard CEIP telemetry collection
+2. Pendo telemetry from Tanzu Application Platform GUI
 
-## <a id="turn-off"></a> Turn off telemetry collection
+Each telemetry component has its own opt-in and opt-out process.
+The CEIP telemetry opt-out decision can be made at an organizational level, whereas the
+decision regarding the Pendo telemetry is available both on an organizational level and at an
+individual user level.
 
-To turn off telemetry collection, follow the instructions below.
+This topic describes how to opt out of the VMware Customer Experience Improvement Program (CEIP) and
+out of Pendo telemetry on an organizational level.
+When you install Tanzu Application Platform, both standard CEIP and Pendo telemetry are turned on by
+default.
+
+If you opt out of standard CEIP telemetry collection, VMware cannot offer you proactive support and
+the other benefits that accompany participation in the CEIP.
+
+## <a id="turn-off"></a> Turn off standard CEIP telemetry collection
+
 To deactivate Pendo telemetry collection, see
 [Enable or deactivate the Pendo telemetry for the organization](#nbl-or-dsbl-pendo-for-org) later in
 the topic.
@@ -17,11 +29,13 @@ the topic.
 > opt in or opt out. For more information, see
 > [Opt in or opt out of Pendo telemetry for Tanzu Application Platform GUI](tap-portal-telemetry.hbs.md).
 
+To turn off CEIP telemetry collection, follow these instructions:
+
 kubectl
 : To turn off telemetry collection on Tanzu Application Platform by using kubectl:
 
-   1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is
-      installed.
+   1. Ensure that your Kubernetes context is pointing to the cluster where Tanzu Application Platform
+      is installed.
 
    2. Run:
 
@@ -43,15 +57,18 @@ kubectl
         ```
 
    3. If you already have Tanzu Application Platform installed, restart the telemetry collector to
-      pick up the change:
+      apply the change:
 
         ```console
         kubectl delete pods --namespace tap-telemetry --all
         ```
 
+  Your Tanzu Application Platform deployment now no longer emits telemetry, and you have opted out of
+  the CEIP.
+
 Tanzu CLI
-: The Tanzu CLI provides a telemetry plug-in enabled by the Tanzu Framework v0.25.0, which has been
-  included in Tanzu Application Platform since v1.3.
+: The Tanzu CLI provides a telemetry plug-in enabled by the Tanzu Framework v0.25.0, which is
+  included in Tanzu Application Platform v1.3 and later.
 
   To turn off telemetry collection on your Tanzu Application Platform by using the Tanzu CLI, run:
 
@@ -65,20 +82,10 @@ Tanzu CLI
     tanzu telemetry update --help
     ```
 
-At this point, your Tanzu Application Platform deployment no longer emits telemetry, and you have
-opted out of the CEIP.
+  Your Tanzu Application Platform deployment now no longer emits telemetry, and you have opted out of
+  the CEIP.
 
-### <a id="nbl-or-dsbl-pendo-for-org"></a> Enable or deactivate the Pendo telemetry for the organization
-
-To enable Pendo telemetry for the organization, add the following parameters to your `tap-values.yaml`
-file:
-
-```yaml
-tap_gui:
-  app_config:
-    pendoAnalytics:
-      enabled: true
-```
+### <a id="nbl-or-dsbl-pendo-for-org"></a> Turn off Pendo telemetry collection
 
 To deactivate the program for the entire organization, add the following parameters to your
 `tap-values.yaml` file:
@@ -88,4 +95,14 @@ tap_gui:
   app_config:
     pendoAnalytics:
       enabled: false
+```
+
+To enable Pendo telemetry for the organization, add the following parameters to your `tap-values.yaml`
+file:
+
+```yaml
+tap_gui:
+  app_config:
+    pendoAnalytics:
+      enabled: true
 ```

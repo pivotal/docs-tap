@@ -1,4 +1,4 @@
-# Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform
+# Integrating Cloud Services into Tanzu Application Platform
 
 **Target user role**:       Service Operator<br />
 **Complexity**:             Advanced<br />
@@ -10,9 +10,9 @@
 
 There are a countless and ever-growing number of cloud-based services available on the market for consumers today. The three big clouds - AWS, Azure and GCP all provide support for a wide range of fully-managed, performant and on-demand services ranging from databases, to message queues, to storage solutions and beyond. In this tutorial you will learn what it takes to integrate any one of these services into Tanzu Application Platform (referred to as "TAP" from hereon in), so that it can be can offered to and consumed by apps teams in a simple and effective way.
 
-This tutorial is written at a slightly higher level that the other [tutorials](../tutorials.hbs.md) in this documentation. This is because it is simply not feasible to write detailed, step-by-step documentation for integrating each and every cloud-based service into TAP. There are far too many of them, each bringing with them a different set of considerations and concerns. Instead, this tutorial guides you through the general approach to integrating cloud-based services into TAP. While specific configurations will of course change between services, the overall process remains the same through a consistent set of steps. It is these steps that this tutorial focusses on. The aim is to give you just enough understanding so that you are able to go off and to integrate whatever cloud-based service you like into TAP.
+This tutorial is written at a slightly higher level that the other tutorials in this documentation. This is because it is simply not feasible to write detailed, step-by-step documentation for integrating each and every cloud-based service into TAP. There are far too many of them, each bringing with them a different set of considerations and concerns. Instead, this tutorial guides you through the general approach to integrating cloud-based services into TAP. While specific configurations will of course change between services, the overall process remains the same through a consistent set of steps. It is these steps that this tutorial focusses on. The aim is to give you just enough understanding so that you are able to go off and to integrate whatever cloud-based service you like into TAP.
 
-If you are interested in a more specific and low-level walkthrough, then please refer to [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/configure-dynamic-provisioning-rds.hbs.md), which does walk through each step in detail for AWS RDS integration. It may be useful to read through that guide even if you are hoping to integrate with one of the other cloud providers.
+If you are interested in a more specific and low-level walkthrough, then please refer to [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/configure-dynamic-provisioning-rds.hbs.md), which walks through each step in detail for AWS RDS integration. It may be useful to read through that guide even if you are hoping to integrate with one of the other cloud providers.
 
 ## In a nutshell
 
@@ -26,7 +26,7 @@ The rest of this tutorial talks through each step, providing hints, tips and ref
 
 The first step is to install a suitable Crossplane `Provider` for your cloud of choice. Upbound provides support for the 3 main clouds via [provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/latest), [provider-azure](https://marketplace.upbound.io/providers/upbound/provider-azure/latest) and [provider-gcp](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest).
 
-Choose whichever Provider you want, then follow Upbound's official documentation to install the `Provider` and to create a corresponding `ProviderConfig`. 
+Choose whichever Provider you want, then follow Upbound's official documentation to install the `Provider` and to create a corresponding `ProviderConfig`.
 
     > **Note** The official documentation for the Providers include a step to "Install Universal Crossplane",
     > which you can safely skip over as Crossplane is already installed as part of TAP.
@@ -36,7 +36,7 @@ Choose whichever Provider you want, then follow Upbound's official documentation
 
     > **Note** Be aware of the fact that these cloud-based Providers often install many hundreds of additional CRDs into
     > the cluster, which can have a negative impact on cluster performance.
-    > Refer to [Known Limitations](../reference/known-limitations.hbs.md#stk-known-limitation-too-many-crds) for further information.
+    > See [Cluster performance degradation due to large number of CRDs](../how-to-guides/troubleshooting.hbs.md#stk-known-limitation-too-many-crds) for further information.
 
 ## Step 2: Create CompositeResourceDefinition
 
@@ -48,7 +48,7 @@ For help creating the `CompositeResourceDefinition`, refer to [Defining Composit
 
 This step is likely to be the most difficult and time-consuming. The `Composition` is essentially where you define configuration for the resource(s) that will ultimately make up the service instances that will be claimed by apps teams. You will need to configure whatever resources are necessary to result in usable service instances which can be connected to and utilized over the network.
 
-The best way to get started with `Compositions` is to first read through [Configuring Composition](https://docs.crossplane.io/v1.11/concepts/composition/#configuring-composition)  in the Upbound documentation. Then refer to example `Compositions` to get a better feel for what they look like. See [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html#define-composite-resource-types-5) for an example `Composition` for AWS RDS. See [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_azure_database_with_crossplane.html#define-composite-resource-types-7) for an example `Composition` for Azure Flexible Server and see [here](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_crossplane.html#define-composite-resource-types-5) for an example `Composition` for GCP Cloud SQL.
+The best way to get started with `Compositions` is to first read through [Configuring Composition](https://docs.crossplane.io/v1.11/concepts/composition/#configuring-composition) in the Upbound documentation. Then refer to example `Compositions` to get a better feel for what they look like. See an AWS example of [Define composite resource types](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html#define-composite-resource-types-5) for a `Composition` for AWS RDS. See an Azure example of [Define Composite Resource Types](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_azure_database_with_crossplane.html#define-composite-resource-types-7) for a `Composition` for Azure Flexible Server and see a GCP example of [Define Composite Resource Types](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_crossplane.html#define-composite-resource-types-5) for a `Composition` for GCP Cloud SQL.
 
 ## Step 4: Create provisioner-based ClusterInstanceClass
 

@@ -152,3 +152,34 @@ the following steps:
        ```console
        tanzu package installed update tap -f tap-values.yaml -n tap-install
        ```
+
+### Vulnerability database is invalid
+
+```
+scan-pod[scan-plugin]  1 error occurred:
+scan-pod[scan-plugin]	* failed to load vulnerability db: vulnerability database is invalid (run db update to correct): database metadata not found: /.cache/grype/db/5
+```
+
+#### Solution
+
+Here is an example of a proper listing.json format:
+
+```
+{
+  "available": {
+    "5": [
+      {
+        "built": "2023-03-28T01:29:38Z",
+        "version": 5,
+        "url": "https://toolbox-data.anchore.io/grype/databases/vulnerability-db_v5_2023-03-28T01:29:38Z_e49d318c32a6113eed07.tar.gz",
+        "checksum": "sha256:408ce2932f04dee929a5df524e92494f2d635c6b19e30ff9f0a50425b1fc29a1"
+      },
+      .....
+    ]
+  }
+}
+```
+
+Options:
+
+1. Make sure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`. See above []()

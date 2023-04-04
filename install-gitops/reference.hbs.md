@@ -1,10 +1,18 @@
 # Tanzu GitOps RI Reference Documentation
 
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 ## Component Overview
 
-The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
 
-<!-- TODO DIAGRAM -->
+### <a id="arch-sops"></a>SoPS Architecture Diagram
+
+![Diagram describing the architecture of GitOps Installer using SoPS.](./images/arch-sops.png)
+
+### <a id="arch-eso"></a>ESO Architecture Diagram
+
+![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
 
 ### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
@@ -13,8 +21,6 @@ Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest
 1. Fetches a Git repository that contains configuration for Tanzu Application Platform.
 2. Templates with ytt a set of resources and data values.
 3. Deploys with kapp a set of resources to install Tanzu Application Platform, alongside any other user specified confiuration in the Git Repository.
-
-<!-- TODO DIAGRAM -->
 
 ## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
 
@@ -42,7 +48,7 @@ The following table describes a few common use cases and scenarios for SOPS and 
 Tanzu Sync Application fetches our deployable content from a Git repository that must match the following structure:
 
 Git repository for a cluster named `full-tap-cluster`:
-    
+
   ```console
   ├── .catalog
   │   ├── tanzu-sync
@@ -105,7 +111,7 @@ Git repository for a cluster named `full-tap-cluster`:
         ```
 
         Example:
-        
+
         ```yaml
         ---
         git:
@@ -116,7 +122,7 @@ Git repository for a cluster named `full-tap-cluster`:
         tap_package_repository:
           oci_repository: registry.example.com/tanzu-application-platform/tap-packages
         ```
-      
+
 
     - Tanzu Application Platform Install:
 
@@ -153,7 +159,7 @@ Git repository for a cluster named `full-tap-cluster`:
         ---
         tap_install:
           #@schema/nullable
-          #@schema/validation not_null=True 
+          #@schema/validation not_null=True
           #@schema/type any=True
           sensitive_values: {}
         ```
@@ -173,7 +179,7 @@ Git repository for a cluster named `full-tap-cluster`:
 2. The following is used to deploy the application using `kapp`:
 
     ```terminal
-    kapp deploy --app tanzu-sync --file <(ytt \ 
+    kapp deploy --app tanzu-sync --file <(ytt \
         --file tanzu-sync/app/config \
         --file cluster-config/config/tap-install/.tanzu-managed/version.yaml \
         --data-values-file tanzu-sync/app/values/ \
@@ -185,10 +191,10 @@ Git repository for a cluster named `full-tap-cluster`:
         --data-value secrets.sops.git.ssh.known_hosts=$(ssh-keyscan github.com) \
     )
     ```
-    
+
 ## <a id="tanzu-sync-scripts"></a> Tanzu Sync Scripts
 
->**Caution** 
+>**Caution**
 >
 > The provided scripts are intended to help with the setup of your Git repository to work with a GitOps approach, they are subject to change and/or removal between releases.
 
@@ -197,8 +203,8 @@ Provided in `clusters/MY-CLUSTER/tanzu-sync/scripts` are a set of convenience ba
 
 These scripts help to setup your Git repository and configure the values as described in the previous section:
 
-- `setup-repo.sh`: Populates a Git repository with the structure described in section [Git Repository structure](gitops-reference-docs.md#git-repo-structure)
-- `configure.sh`: Generates the values files described in section [Configuration of values without helper scripts](gitops-reference-docs.md#configure-values).
+- `setup-repo.sh`: Populates a Git repository with the structure described in section [Git Repository structure](#git-repo-structure)
+- `configure.sh`: Generates the values files described in section [Configuration of values without helper scripts](#configure-values).
 - `deploy.sh`: A light wrapper around a simple `kapp deploy` given the data values from above, and sensitive values which should not be stored on disk.
 
 ## Troubleshoot Tanzu GitOps RI
@@ -258,7 +264,7 @@ tap-values.yaml:
 
 **Problem:** The values files were not generated according to the expected schema.
 
-**Solution:** Ensure both non-sensitive and sensitive tap values files to adhere to the schema described in [configure values](gitops-reference-docs.md#configure-values).
+**Solution:** Ensure both non-sensitive and sensitive tap values files to adhere to the schema described in [configure values](#configure-values).
 
 Incorrect values example:
 

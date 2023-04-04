@@ -23,7 +23,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Consumers can view detailed API documentation and try out an API to see if it meets their needs.
   API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
-  URLs to to appear in a single instance.
+  URLs to appear in a single instance.
 
 - **[API Scoring and Validation](api-validation-scoring/about.hbs.md)**
 

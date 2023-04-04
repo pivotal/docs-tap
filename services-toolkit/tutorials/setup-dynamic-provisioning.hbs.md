@@ -64,7 +64,7 @@ This results in the availability of a new API Group/Version of `rabbitmq.com/v1b
 
 ## <a id="stk-setup-dynamic-provisioning-create-xrd"></a> Creating a `CompositeResourceDefinition`
 
-TAP's Dynamic Provisioning capability leans on [Crossplane](https://www.crossplane.io/) to do most of the heavy lifting. The specific integration point can be found at `.spec.provisioner.crossplane.compositeResourceDefinition` in TAP's `ClusterInstanceClass` API. As the name suggets, this field is looking for a `CompositeResourceDefinition`, and so that is what you will be creating in this step of the tutorial. The `CompositeResourceDefinition` (or "XRD" in Crossplane parlance) essentially defines the shape of a new, custom API type which can encompass the specific set of requirements laid out by the scenario in this tutorial.
+TAP's Dynamic Provisioning capability leans on [Crossplane](https://www.crossplane.io/) to do most of the heavy lifting. The specific integration point can be found at `.spec.provisioner.crossplane.compositeResourceDefinition` in TAP's `ClusterInstanceClass` API. As the name suggests, this field is looking for a `CompositeResourceDefinition`, and so that is what you will be creating in this step of the tutorial. The `CompositeResourceDefinition` (or "XRD" in Crossplane parlance) essentially defines the shape of a new, custom API type which can encompass the specific set of requirements laid out by the scenario in this tutorial.
 
 Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yml` and copy in the following contents.
 
@@ -132,12 +132,12 @@ Before moving on, let's check on the status of the XRD you just created.
 kubectl get xrds
 ```
 
-You should see `xrabbitmqclusters.messaging.bigcorp.org` listed with `ESTABLISHED=True`. It's quite possible that you will see some other XRDs listed as well - the `*.bitnami.*.tanzu.vmware.com` XRDs. These ship as part of the `bitnami.services.tanzu.vmware.com` Package with TAP and serve as the basis of the out of the box services. These other XRDs can be safely ignored for now, but if you'd like to see how they are used in practice, please refer to the Getting Started Guide "[Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md)".
+You should see `xrabbitmqclusters.messaging.bigcorp.org` listed with `ESTABLISHED=True`. It's quite possible that you will see some other XRDs listed as well - the `*.bitnami.*.tanzu.vmware.com` XRDs. These ship as part of the `bitnami.services.tanzu.vmware.com` Package with TAP and serve as the basis of the out of the box services. These other XRDs can be safely ignored for now, but if you'd like to see how they are used in practice, please refer to the Getting Started Guide's [Claim services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md) and [Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md).
 
 As a result of creating the XRD, a new API Group/Version of `messaging.bigcorp.org/v1alpha1` and Kind named `XRabbitmqCluster` should now be available in the cluster. If you inspect this API further, you will note that the `replicas` and `storageGB` properties we configured in the XRD are present in the spec of `XRabbitmqCluster`.
 
 ```console
-kubectl explain xrabbitmqclusters.messaging.bigcorp.org.spec
+kubectl explain --api-version=messaging.bigcorp.org/v1alpha1 xrabbitmqclusters.spec
 ```
 
 You'll also note that Crossplane has injected some other fields into the spec as well, but you can mostly ignore these for now.
@@ -518,7 +518,7 @@ While not necessary here, a corresponding label `services.tanzu.vmware.com/aggre
 
 The second piece of RBAC determines who is actually authorized to use the new service. This is an important piece of configuration! We are configuring an on-demand service and making it available to application teams. Without any other supporing policy in place, application teams will be able to create as many `RabbitmqClusters` as they like. This is of course the whole point of an on-demand service, however we do need to be concious of resource utilization, and we may not want just anyone who has access to the TAP cluster to be able to create new service instances on demand.
 
-Authorization can be granted using standard Kubernetes RBAC resources. Dynamic provisioning makes use of a customer RBAC verb - `claim` - which can be applied to classes in order to permit claiming from classes.
+Authorization can be granted using standard Kubernetes RBAC resources. Dynamic provisioning makes use of a custom RBAC verb - `claim` - which can be applied to classes in order to permit claiming from classes.
 
 Create a file named `app-operator-claim-class-bigcorp-rabbitmq.rbac.yml` and copy in the following contents.
 
@@ -553,13 +553,14 @@ This `ClusterRole` grants anyone holding the `app-operator` TAP user role the ab
 
 ## <a id="stk-setup-dynamic-provisioning-create-claim"></a> Create claim
 
-All that's left to do now is to actually create a claim for the class and thereby trigger the dynamic provisioning of a new RabbitMQ cluster. Note that this step is typically performed by the Application Operator role, rather than the Service Operator, however it is important for us to check that everything has been setup correctly.
+All that's left to do now is to actually create a claim for the class and thereby trigger the dynamic provisioning of a new RabbitMQ cluster. Note that this step is typically performed by the Application Operator, rather than the Service Operator, however it is important for us to check that everything has been setup correctly.
 
 Create a file named `bigcorp-rmq-1.claim.yml` and copy in the following contents.
 
 ```yaml
 # bigcorp-rmq-1.claim.yml
 
+---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ClassClaim
 metadata:
@@ -578,7 +579,8 @@ Then use `kubectl` to apply the file to the TAP cluster.
 kubectl apply -f bigcorp-rmq-1.claim.yml
 ```
 
-After a moment or two, you should see the claim status report `Ready=True`.
+Once the rabbitmq have been successfully provisioned, you should see the claim
+status report `Ready=True`.
 
 ```console
 kubectl get classclaim bigcorp-rmq-1
