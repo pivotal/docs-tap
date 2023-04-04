@@ -4,4 +4,4 @@ Bitnami Services provides an out of the box set of backing services for Tanzu Ap
 
 ## Where to start
 
-If this is your first time working with Bitnami Services on Tanzu Application Platform, then it is recommended to run through the tutorial [Working with Bitnami Services](../services-toolkit/tutorials/working-with-bitnami-services.hbs.md). Otherwise please feel free to refer to the [tutorials](./tutorials.hbs.md), [how-to guides](./how-to-guides.hbs.md) and [reference material](./reference.hbs.md) to learn more.
+If this is your first time working with Bitnami Services on Tanzu Application Platform, then it is recommended to run through the tutorial [Working with Bitnami Services](../services-toolkit/tutorials/working-with-bitnami-services.hbs.md). Otherwise please feel free to refer to the [how-to guides](how-to-guides/index.hbs.md) and [reference material](reference/index.hbs.md) to learn more.
