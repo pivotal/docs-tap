@@ -108,16 +108,16 @@ Where:
 Your project must contain a file named `Tiltfile`.
 For example, `MyApp\Tiltfile`.
 
-The `Tiltfile` provides the configuration for Tilt to enable your project to [Live Update](glossary.hbs.md#live-update) on the Tanzu Application Platform-enabled Kubernetes
-cluster.
+The `Tiltfile` provides the configuration for Tilt to enable your project to Live Update on the
+Tanzu Application Platform-enabled Kubernetes cluster.
 For more information, see the [Tilt](https://docs.tilt.dev/) documentation.
 
 To create a `Tiltfile` file using Visual Studio:
 
 1. Right-click on the Solution Explorer project.
-1. Select **Add**, then select **New Item...**
-1. From the available list of items, select **Tanzu Tiltfile**, then click **Add**.
-1. Follow the instructions at the top of the created file.
+2. Select **Add**, then select **New Item...**
+3. From the available list of items, select **Tanzu Tiltfile**, then click **Add**.
+4. Follow the instructions at the top of the created file.
 
 
 The following is an example `Tiltfile`:
@@ -152,7 +152,7 @@ allow_k8s_contexts('CONTEXT-NAME')
 
 Where:
 
-- `SOURCE-IMAGE-VALUE` is your [source image](glossary.hbs.md#source-image).
+- `SOURCE-IMAGE-VALUE` is your source image.
 - `APP-NAME` is the name of your application.
 
 If your Tanzu Application Platform-enabled Kubernetes cluster is running on your local machine, you can remove the entire `allow_k8s_contexts` line.

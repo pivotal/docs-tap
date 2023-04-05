@@ -21,7 +21,7 @@ To configure settings:
 1. Right-click on the Solution Explorer project.
 1. Select **Tanzu: Settings**.
 1. Confirm or enter the settings.
-   ![Tanzu settings](../images/vs-settings.png)
+   ![Tanzu settings](../images/vs-setting.png)
 
 ## <a id="apply-workload"/>Apply a workload
 
