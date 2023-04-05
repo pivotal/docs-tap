@@ -114,6 +114,8 @@ It may take a moment or two before the claim reports `Ready: True`, however once
 
 ## Binding
 
-You are now free to bind this claim to one or more* of your application Workloads. This can be done by passing a reference to the claim to the `--service-ref` flag of the `tanzu apps workload create` command. The reference for the claim can be found in the output of the `tanzu service class-claim get psql-1` command under the heading "Claim Reference". The claim reference must be passed with a corresponding name following the format `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1` (note the `db=` prefix to the ref - this is an arbitrary name for the reference).
+You are now free to bind this claim to one or more* of your application Workloads.
 
-\* If binding to more than one application Workload then all application Workloads must exist in the same namespace. This is a [known limitation](../how-to-guides/troubleshooting.hbs.md#stk-known-limitation-multi-workloads) that we hope to remove soon.
+>**Important:** If binding to more than one application Workload then all application Workloads must exist in the same namespace. This is a [known limitation](/docs-tap/services-toolkit/how-to-guides/troubleshooting.hbs.md#stk-known-limitation-multi-workloads) that we hope to remove soon.
+
+This can be done by passing a reference to the claim to the `--service-ref` flag of the `tanzu apps workload create` command. The reference for the claim can be found in the output of the `tanzu service class-claim get psql-1` command under the heading "Claim Reference". The claim reference must be passed with a corresponding name following the format `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1` (note the `db=` prefix to the ref - this is an arbitrary name for the reference).
