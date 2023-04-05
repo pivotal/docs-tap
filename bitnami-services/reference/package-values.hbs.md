@@ -1,12 +1,19 @@
-# Package Values
+# Package values
 
-This document lists the keys and values which can be used to configure the behaviour of the Bitnami Services Package. Configuration can be applied both globally to all services (via the `globals` key) or on a per-service basis (via the `mysql`, `postgresql`, `rabbitmq` and `redis` keys). Note that if you are applying configuration to Tanzu Application Platform through the usage of profiles and `tap-values.yml`, then all configuration will need to exist under the `bitnami_services` top-level key. For example:
+This topic lists the keys and values that you can use to configure the behavior of the Bitnami Services Package.
+You can apply configuration globally to all services using the `globals` key, or on a per-service basis
+using the `mysql`, `postgresql`, `rabbitmq` and `redis` keys.
+
+If you are applying configuration to Tanzu Application Platform through the use of profiles and the `tap-values.yaml`,
+all configuration must exist under the `bitnami_services` top-level key.
+
+For example:
 
 ```yaml
 bitnami_services:
   globals:
     helm_chart:
-      # note: if choosing to use a custom Helm Chart repo, it's possible you'll also need to configure specific versions
+      # If you choose to use a custom Helm Chart repo, it's possible you'll also need to configure specific versions
       # for each Chart as well, see example configuration below for postgresql.
       repo: https://charts.mycompany.example.com
   mysql:
@@ -27,9 +34,9 @@ bitnami_services:
       description: My company redis
 ```
 
-## Globals
+## <a id="globals"></a> Globals
 
-Configuration which applies to all services.
+The following table lists configuration that applies to all services.
 
 |KEY                                                        |DEFAULT                             |TYPE     |DESCRIPTION|
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
@@ -41,9 +48,9 @@ Configuration which applies to all services.
 |globals.helm_chart.repo                                    |https://charts.bitnami.com/bitnami  |string   |Optional: Repository hosting the Helm charts used to provision the instances of all services. Can be overridden by individual |services.|
 |globals.shared_namespace                                   |""                                  |string   |Optional: Name of the namespace that is shared by all provisioned instances of all services. By default, each instance will be |provisioned in its own dedicated namespace. Can be overridden by individual services.|
 
-## MySQL
+## <a id="mysql"></a>MySQL
 
-Configuration which applies to the mysql service.
+The following table lists configuration that applies to the `mysql` service.
 
 |KEY                                                        |DEFAULT                             |TYPE     |DESCRIPTION|
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
@@ -59,9 +66,9 @@ Configuration which applies to the mysql service.
 |mysql.instance_class.name                                  |mysql-unmanaged                     |string   |Optional: Name of the ClusterInstanceClass that is used by Developers to provision and claim MySQL instances|
 |mysql.shared_namespace                                     |""                                  |string   |Optional: Name of the namespace that is shared by all provisioned MySQL instances. By default, each instance will be provisioned in |its own dedicated namespace.|
 
-## PostgreSQL
+## <a id="postgresql"></a> PostgreSQL
 
-Configuration which applies to the postgresql service.
+The following table lists configuration that applies to the `postgresql` service.
 
 |KEY                                                        |DEFAULT                             |TYPE     |DESCRIPTION|
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
@@ -77,9 +84,9 @@ Configuration which applies to the postgresql service.
 |postgresql.shared_namespace                                |""                                  |string   |Optional: Name of the namespace that is shared by all provisioned PostgreSQL instances. By default, each instance will be provisioned |in its own dedicated namespace.|
 |postgresql.defaults.storage_size_gb                        |1                                   |integer  |Optional: The amount of storage to give each PostgreSQL instance by default, in Gigabytes|
 
-## RabbitMQ
+## <a id="rabbitmq"></a> RabbitMQ
 
-Configuration which applies to the rabbitmq service.
+The following table lists configuration that applies to the `rabbitmq` service.
 
 |KEY                                                        |DEFAULT                             |TYPE     |DESCRIPTION|
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
@@ -96,9 +103,9 @@ Configuration which applies to the rabbitmq service.
 |rabbitmq.defaults.replica_count                            |1                                   |integer  |Optional: The number of replicas to create for each RabbitMQ instance by default|
 |rabbitmq.defaults.storage_size_gb                          |1                                   |integer  |Optional: The amount of storage to give each RabbitMQ instance by default, in Gigabytes|
 
-## Redis
+## <a id="redis"></a>Redis
 
-Configuration which applies to the redis service.
+The following table lists configuration that applies to the `redis` service.
 
 |KEY                                                        |DEFAULT                             |TYPE     |DESCRIPTION|
 |-----------------------------------------------------------|------------------------------------|---------|-----------|

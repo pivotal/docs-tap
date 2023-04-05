@@ -16,7 +16,7 @@ crossplane:
 
 ## <a id="tap-specific"></a> Tanzu Application Platform configuration
 
-The following table lists configuration specific to Crossplane in Tanzu Application Platform:
+The following table lists configuration specific to Crossplane in Tanzu Application Platform.
 
 | KEY                                                  |DEFAULT                                     |TYPE    | DESCRIPTION |
 |------------------------------------------------------|--------------------------------------------|--------|------------|
@@ -25,7 +25,7 @@ The following table lists configuration specific to Crossplane in Tanzu Applicat
 
 ## <a id="crossplane"></a> Standard Crossplane configuration
 
-The following table lists configuration for the UXP Helm Chart:
+The following table lists configuration for the UXP Helm Chart.
 
 | KEY                                                  |DEFAULT                                     |TYPE    | DESCRIPTION |
 |------------------------------------------------------|--------------------------------------------|--------|------------|
