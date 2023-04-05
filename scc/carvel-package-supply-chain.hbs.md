@@ -5,13 +5,6 @@ introduces a variation of the OOTB Basic supply chains that outputs Carvel
 Packages. The Carvel Package Supply Chains enable users to deliver applications
 to multiple production environments with configuration for each environment.
 
-This feature is in **alpha** and has the following limits:
-
-1. Only the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package is supported. The Testing and Scanning supply chains are not supported.
-2. Only workloads of type `server` are supported.
-3. Innerloop development is not supported.
-4. Azure GitOps repositories are not supported.
-
 This topic explains what the Carvel Package Supply Chains do, how they work, how
 operators can enable them, and how to create a `Workload` that uses them.
 
@@ -167,6 +160,8 @@ This section describes developer tasks for using the Carvel Package Supply Chain
 
 Your operator must [install the Carvel Package Supply Chains](#carvel-package-operator).
 
+You must create your workload in a developer namespace. See [Developer namespace](../set-up-namespaces.hbs.md).
+
 ### Creating a Workload
 
 To use the Carvel Package Supply Chains, you must add the label `apps.tanzu.vmware.com/carvel-package-workflow=true` to your workload.
@@ -177,6 +172,7 @@ To use the Carvel Package Supply Chains, you must add the label `apps.tanzu.vmwa
 
   ```console
   tanzu apps workload create tanzu-java-web-app \
+    --namespace DEVELOPER_NAMESPACE \
     --app tanzu-java-web-app \
     --type server \
     --label apps.tanzu.vmware.com/carvel-package-workflow=true \
@@ -196,7 +192,7 @@ Expect to see the following output:
       7 + |    apps.tanzu.vmware.com/carvel-package-workflow: "true"
       8 + |    apps.tanzu.vmware.com/workload-type: server
       9 + |  name: tanzu-java-web-app
-     10 + |  namespace: default
+     10 + |  namespace: DEVELOPER_NAMESPACE
      11 + |spec:
      12 + |  image: IMAGE
   ```

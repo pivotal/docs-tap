@@ -11,8 +11,9 @@ shared:
   kubernetes_version: "K8S-VERSION"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads"
-    username: "KP-DEFAULT-REPO-USERNAME"
-    password: "KP-DEFAULT-REPO-PASSWORD"
+    secret:
+      name: "KP-DEFAULT-REPO-SECRET"
+      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   ca_cert_data: | # To be passed if using custom certificates
   -----BEGIN CERTIFICATE-----
   MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -22,10 +23,12 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 
 # The above shared keys may be overridden in the below section.
 
-buildservice: # Optional if the corresponding shared keys are provided.
+buildservice:
+# Takes the value from the shared section by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  kp_default_repository_secret:
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
 supply_chain: basic
 ootb_supply_chain_basic: # Optional if the shared above mentioned shared keys are provided.
@@ -65,10 +68,11 @@ Where:
     - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured by using a Secret reference. For more information, see [Install Tanzu Build Service](../../tanzu-build-service/install-tbs.html#install-secret-refs) for details.
     - For Google Cloud Registry, use the contents of the service account JSON file.
+- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     - Harbor has the form `server: "my-harbor.io"`.
     - Docker Hub has the form `server: "index.docker.io"`.

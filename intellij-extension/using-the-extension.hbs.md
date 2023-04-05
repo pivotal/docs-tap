@@ -47,6 +47,18 @@ To delete a workload:
 A message appears that prompts you to delete the workload and not warn again, delete the workload,
 or cancel. A notification appears showing that the workload was deleted.
 
+## <a id="debugging"></a> Debugging on the cluster
+
+The extension enables you to debug your application on a Kubernetes cluster that has
+Tanzu Application Platform.
+
+Debugging requires a single-document `workload.yaml` file in your project.
+For how to create `workload.yaml`, see
+[Set up Tanzu Developer Tools](getting-started.hbs.md#set-up-tanzu-dev-tools).
+
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
+
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
 To start debugging on the cluster:
@@ -77,6 +89,8 @@ To start debugging on the cluster:
 Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description.](../images/intellij-stopDebug.png)
+
+## <a id="live-updating"></a> Live Update
 
 ### <a id="start-live-update"></a> Start Live Update
 

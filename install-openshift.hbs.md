@@ -78,6 +78,36 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
+1. (Optional) Create a registry secret for your writable image repository used for:
+
+    - Tanzu Build Service Dependencies
+    - Workloads when using the `shared.image_registry` key
+
+    ```console
+    tanzu secret registry add image-registry-creds \
+      --server "${REGISTRY_HOSTNAME}" \
+      --username "${REGISTRY_USERNAME}" \
+      --password "${REGISTRY_PASSWORD}" \
+      --namespace tap-install
+    ```
+
+    Where:
+
+    - `REGISTRY_HOSTNAME` is the host name for the registry that contains your writable repository. 
+        Examples:
+        - Harbor has the form `--server "my-harbor.io"`.
+        - Docker Hub has the form `--server "index.docker.io"`.
+        - Google Cloud Registry has the form `--server "gcr.io"`.
+    - `REGISTRY_USERNAME` and `REGISTRY_PASSWORD` are the user name
+      and password for the user that can write to the repository used in the following step.
+      For Google Cloud Registry, use `_json_key` as the user name and the contents
+      of the service account JSON file for the password.
+
+    > **Note** If using the same repository as `tap-registry`, you can skip this step and use the `tap-registry` secret
+    > in your `tap-values.yaml` instead of `image-registry-creds`.
+
+
+
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
     ```console
@@ -210,8 +240,9 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "KP-DEFAULT-REPO-USERNAME"
-    password: "KP-DEFAULT-REPO-PASSWORD"
+    secret:
+      name: image-registry-creds
+      namespace: tap-install
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
   kubernetes_version: "K8S-VERSION"
   ca_cert_data: | # To be passed if using custom certificates.
@@ -246,8 +277,9 @@ contour:
 
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: image-registry-creds
+    namespace: tap-install
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set earlier, this must be set to ClusterIP.
@@ -279,12 +311,6 @@ service's External IP address.
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use the contents of the service account JSON file.
-    * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
 - `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.24.x` or `1.25.x`, where `x` stands for the patch version. Examples:
     - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`.
     - Red Hat OpenShift Container Platform v4.12 uses the Kubernetes version `1.25.2`.
@@ -347,10 +373,9 @@ For example:
 
 ```yaml
 buildservice:
-  kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  ...
   exclude_dependencies: true
+  ...
 ```
 
 After configuring `full` dependencies, you must install the dependencies after
@@ -446,11 +471,9 @@ To install the `full` dependencies package:
 
     ```yaml
     buildservice:
-      kp_default_repository: "KP-DEFAULT-REPO"
-      kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-      kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+      ...
       exclude_dependencies: true
-    ...
+      ...
     ```
 
 1. Get the latest version of the `buildservice` package by running:

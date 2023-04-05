@@ -229,6 +229,8 @@ To switch the namespace where you created the workload:
 
 {{> 'partials/ide-extensions/workload-panel-intro' }}
 
+![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
+
 To add a namespace:
 
 1. View the current context and namespace by running:
@@ -243,10 +245,15 @@ To add a namespace:
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-3. Add additional namespaces to your Tanzu Workloads panel in **Preferences** > **Extensions** >
-   **Tanzu Developer Tools** > **Tracked Namespaces**.
+3. Use one of these methods to add additional namespaces to your Tanzu Workloads panel:
 
-![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
+   - Go to **Preferences** > **Extensions** > **Tanzu Developer Tools** > **Tracked Namespaces** and
+     then select the namespaces that you want.
+
+   - Go to **Workload Panel** > **Additional Options** > **Select Namespaces** and then select the
+     namespaces that you want.
+
+   ![VS Code Tanzu Workloads Panel additional options menu.](../images/vscode-workload-panel-additional-options.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
@@ -360,5 +367,5 @@ For these projects, make these adjustments:
 ## <a id="log-setting"></a> Changing logging verbosity
 
 The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
-You can change the log verbosity in **Preferences** > **Extensions** > **Tanzu Developer Tools** >
-**Language Server: Log Verbosity**.
+You can change the log verbosity in **Preferences** > **Settings** > **Extensions** >
+**Tanzu Developer Tools** > **Language Server: Log Verbosity**.

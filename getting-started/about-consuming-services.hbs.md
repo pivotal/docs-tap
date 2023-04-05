@@ -130,4 +130,5 @@ each user role.
 
 Apply what you've learned:
 
+- [Claim services on Tanzu Application Platform](claim-services.md)
 - [Consume services on Tanzu Application Platform](consume-services.md)

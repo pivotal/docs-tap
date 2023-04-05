@@ -1,40 +1,63 @@
 # Services Toolkit
 
-Services Toolkit ("STK" for short) is responsible for backing many of the most exciting and powerful services capabilities in Tanzu Application Platform ("TAP" for short). From the integration of an endless list of cloud-based and on-prem services, through to the offering and discovery of those services, and finally to the claiming and binding of service instances to application workloads, services toolkit has the tools you need to make working with services on TAP simple, easy and effective.
+Services Toolkit is responsible for backing many of the most powerful service capabilities in
+Tanzu Application Platform.
 
-## Capabilities
+From the integration of an extensive list of cloud-based and on-prem services, through to the offering
+and discovery of those services, and finally to the claiming and binding of service instances to
+application workloads, Services Toolkit has the tools you need to make working with services on
+Tanzu Application Platform simple, easy, and effective.
 
-The main capabilities on offer in TAP through services toolkit are:
+## <a id="capabilities"></a> Capabilities
 
-1. The classes and claims abstraction - providing a simple, but powerful, user experience to apps teams, while serving to promote a strong separation of concerns between apps teams and ops teams alike
-1. Dynamic provisioning of service instances - providing an ability for apps teams to create service instances that adhere to company policy on-demand and as needed, without incurring any untoward delay
-1. Seamless integration of almost any service, cloud-based or on-prem, into TAP with minimal configuration overhead - providing a near-limitless range of services to help boost developer productivity
+The main capabilities on offer in Tanzu Application Platform through Services Toolkit are:
 
-## Where to start
+1. The classes and claims abstraction: provides a simple, but powerful, user experience to apps teams,
+while promoting a strong separation of concerns between apps teams and ops teams.
 
-If this is your first time working with services on TAP, then a great place to start is the [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md) walkthrough. This walkthrough runs through the basics and should leave you ready and wanting more! After which you can return here to the services toolkit component documentation to continue your services journey on TAP.
+1. Dynamic provisioning of service instances: enables apps teams to create service
+instances that adhere to company policy. Apps teams can create instances on-demand as needed.
 
-## How this documentation is organized
+1. Seamless integration of almost any service, cloud-based or on-prem, into Tanzu Application Platform
+with minimal configuration overhead: provides a near-limitless range of services to help boost
+developer productivity.
 
-The services toolkit component documentation is loosely based around the framework laid out by https://documentation.divio.com/. As such, it primarily consists of [tutorials](tutorials/index.hbs.md), [how-to guides](how-to-guides/index.hbs.md), [concepts](concepts/index.hbs.md) and [reference material](reference/index.hbs.md). Which section to choose from will depend on what you are hoping to achieve.
+## <a id="getting-started"></a> Getting started
 
-* I'm hoping to learn - refer to the [tutorials](tutorials/index.hbs.md) section
-* I'm hoping to gain a deeper understanding of services toolkit - refer to the [concepts](concepts/index.hbs.md) section
-* I'm hoping to find a set of steps to solve a specific problem - refer to the [how-to guides](how-to-guides/index.hbs.md) section
-* I'm hoping to find specific information about something - refer to the [reference material](reference/index.hbs.md) section
+If this is your first time working with services on Tanzu Application Platform,
+then great places to start are
+[Claim services on Tanzu Application Platform](../getting-started/claim-services.hbs.md) and
+[Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md)
+in the getting started guide.
+These guides run through the basics, after which you can return here to the Services Toolkit
+component documentation to continue your services journey on Tanzu Application Platform.
 
-Per the documentation framework, tutorials and explanations are of most relevance when studying, while how-to guides and reference material are of most use while actively working. If you're still not sure, why not choose from this hand-picked selection of the most useful docs on offer.
+## <a id="organization"></a>How this documentation is organized
 
-**For apps teams**
+The Services Toolkit component documentation consists of the following sections that relate to what
+you are want to achieve:
 
-* [Tutorial - Working with Bitnami Services](./tutorials/working-with-the-bitnami-services.hbs.md)
+- [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Services Toolkit.
+- [Tutorials](tutorials/index.hbs.md): To learn through following examples.
+- [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve a specific problem.
+- [Reference material](reference/index.hbs.md): To find specific information such as Services Toolkit's
+APIs, the Tanzu Service CLI plug-in, and troubleshooting information.
 
-**For ops teams**
+Tutorials and concepts are of most relevance when studying, while how-to guides and reference material
+are of most use while working.
 
-* [Tutorial - Setup Dynamic Provisioning of Service Instances](./tutorials/setup-dynamic-provisioning.hbs.md)
-* [Tutorial - Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](./tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md)
-* [How-to guide - Configure Dynamic Provisioning of AWS RDS Service Instances](./how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
+The following is a selection of useful topics on offer:
 
-**For everyone**
+**For apps teams:**
 
-* [Concept - Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)
+- Tutorial: [Working with Bitnami Services](tutorials/working-with-bitnami-services.hbs.md)
+
+**For ops teams:**
+
+- Tutorial: [Setup Dynamic Provisioning of Service Instances](tutorials/setup-dynamic-provisioning.hbs.md)
+- Tutorial: [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](tutorials/integrate-cloud-services.hbs.md)
+- How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
+
+**For everyone:**
+
+- Concept: [Four Levels of Service Consumption in Tanzu Application Platform](concepts/service-consumption.hbs.md)

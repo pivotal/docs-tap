@@ -15,7 +15,7 @@ You work at BigCorp as a Service Operator. BigCorp makes use of 3 separate TAP c
 ## Pre-requisites
 
 * Access to 3 separate TAP clusters (version >= 1.5.0)
-  * This tutorial referrs to them as `iterate`, `run-test` and `run-production`, but yours can be named however you like
+  * This tutorial refers to them as `iterate`, `run-test` and `run-production`, but yours can be named however you like
 
 ## In a nutshell
 
@@ -69,7 +69,7 @@ spec:
       compositeResourceDefinition: xpostgresqlinstances.bitnami.database.tanzu.vmware.com
 ```
 
-This class referrs to the `xpostgresqlinstances.bitnami.database.tanzu.vmware.com` CompositeResourceDefinition. This ships as part of the [Bitnami Services](../../bitnami-services/about.hbs.md) Package and is used to power the out of the box postgres service. We are simply reusing the underlying CompositeResourceDefinition here from a different class using the desired class name.
+This class refers to the `xpostgresqlinstances.bitnami.database.tanzu.vmware.com` CompositeResourceDefinition. This ships as part of the [Bitnami Services](../../bitnami-services/about.hbs.md) Package and is used to power the out of the box postgres service. We are simply reusing the underlying CompositeResourceDefinition here from a different class using the desired class name.
 
 Use `kubectl` to apply the file to the `iterate` cluster.
 
@@ -95,7 +95,7 @@ spec:
       compositeResourceDefinition: xpostgresqlinstances.database.tanzu.example.org
 ```
 
-This class is almost identical to the previous one, however this one referrs instead to the `xpostgresqlinstances.database.tanzu.example.org` CompositeResourceDefinition.
+This class is almost identical to the previous one, however this one refers instead to the `xpostgresqlinstances.database.tanzu.example.org` CompositeResourceDefinition.
 
 Use `kubectl` to apply the file to the `run-test` cluster.
 
@@ -121,7 +121,7 @@ spec:
       compositeResourceDefinition: xpostgresqlinstances.database.rds.example.org
 ```
 
-Again, this class is almost identical to the previous two, but this time referrs to the `xpostgresqlinstances.database.rds.example.org` CompositeResourceDefinition.
+Again, this class is almost identical to the previous two, but this time refers to the `xpostgresqlinstances.database.rds.example.org` CompositeResourceDefinition.
 
 Use `kubectl` to apply the file to the `run-production` cluster.
 

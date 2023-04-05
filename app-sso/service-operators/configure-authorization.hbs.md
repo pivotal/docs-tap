@@ -1,6 +1,6 @@
 # Configure authorization
 
-> **Note** This section is applicable to Internal, OpenID, LDAP, and SAML identity provider
+> **Note** This section is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
 > `AuthServer` configurations. For more information, see [AuthServer](../crds/authserver.hbs.md).
 
 An application or `Workload` can protect certain resources based on user's level of authorization. Within OAuth 2, the application
@@ -35,7 +35,7 @@ upstream identity provider supplies the groups or roles that a user is part of:
 
 - [OpenID - external groups mapping](./identity-providers.md#openid-external-groups-mapping)
 - [LDAP - external groups mapping](./identity-providers.md#ldap-external-groups-mapping)
-- [SAML - external groups mapping](./identity-providers.md#openid-external-groups-mapping)
+- [SAML (experimental) - external groups mapping](./identity-providers.md#openid-external-groups-mapping)
 
 After external groups mapping is complete, and groups or roles are retrievable, you can optionally
 filter the roles that are appended to an identity token. 
