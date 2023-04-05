@@ -1,7 +1,7 @@
 # Deploying Spring Applications
 
-This topic describes steps to migrate Spring applications to Tanzu Application Platform from
-Tanzu Application Service or Azure Spring Apps.
+This topic describes how to migrate Spring applications from Tanzu Application Service or
+Azure Spring Apps to Tanzu Application Platform.
 
 ## <a id="prereqs"></a> Prerequisite
 
@@ -17,10 +17,10 @@ for service registration and discovery.
 For more information, see the
 [Spring Cloud Services documentation](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/index.html).
 
-This service is not available in Tanzu Application Platform. A workaround is to inject
-configuration into your application that deactivates the Spring Cloud DiscoveryClient and
-provides the necessary connection information to allow applications to reach each other through
-Kubernetes internal networking.
+This service is not available on Tanzu Application Platform.
+A workaround is to inject configuration into your application that deactivates the
+Spring Cloud DiscoveryClient and provides the necessary connection information to allow applications
+to reach each other through Kubernetes internal networking.
 
 The following sections illustrate how to make the
 [Greeting](https://github.com/spring-cloud-services-samples/greeting) Spring Cloud Services sample
@@ -50,11 +50,11 @@ The values under `cloud.discovery.client.simple.instances` list all the services
 requires. The example `greeter-dev.yaml` file illustrates how to connect to another workload running
 on the same cluster.
 
-If the other workload is of the `server` type, you can use a bare host name to connect to it if it's
-running in the same Kubernetes namespace.
+If the other workload is of the `server` type, you can use a bare host name to connect to it if the
+workload is running in the same Kubernetes namespace.
 
-If it's of the `web` type then you must provide the fully qualified host name as shown for the
-greeter-messages service in the example.
+If the other workload is of the `web` type then you must provide the fully qualified host name as
+shown for the greeter-messages service in the example.
 You can also include external services here if they are reachable from your cluster.
 
 ### <a id="acs-resources"></a> Create Application Configuration Service (ACS) resources
@@ -62,8 +62,9 @@ You can also include external services here if they are reachable from your clus
 On your Run cluster, create the ConfigurationSource and ConfigurationSlice resources that tell
 ACS how to fetch your configuration.
 
-The following simple example uses a public repository and no encryption. For more information about
-how to connect to private repositories, encrypt configuration, and load properties in other formats,
+The following simple example uses a public repository and no encryption.
+For more information about how to connect to private repositories, encrypt configuration, and load
+properties in other formats,
 see the [ACS documentation](../application-configuration-service/about.hbs.md).
 
 ```yaml
