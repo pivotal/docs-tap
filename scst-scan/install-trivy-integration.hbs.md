@@ -297,13 +297,12 @@ Where:
 ### <a id='no-store'></a> No store integration
 
 If you do not want to enable the SCST - Store integration, deactivate the
-integration by appending the following fields to the `values.yaml` file that is
+integration by appending the following field to the `values.yaml` file that is
 enabled by default:
 
 ```yaml
 # ...
-metadataStore:
-  url: "" # Configuration is moved, so set this string to empty
+metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
 ```
 
 ## <a id='prep-scanpolicy'></a> Prepare the ScanPolicy
