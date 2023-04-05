@@ -14,9 +14,15 @@ In release notes, this condition hides content that describes an unreleased patc
  
 This release has the following security fixes, listed by component and area. 
  
-#### <a id='1-4-3-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
-- Security fix description.
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| buildservice.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
+| eventing.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-24329</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-23919</li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5 </li></ul>|
+| policy.apps.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-24329</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-23919 </li></ul>|
+| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0286</li><li>CVE-2023-23918</li><li>CVE-2023-23919</li><li>CVE-2023-0361</li><li>CVE-2022-4450</li><li>CVE-2023-0215 </li></ul>|
  
 ---
  
