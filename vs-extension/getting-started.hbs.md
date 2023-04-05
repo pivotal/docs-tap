@@ -204,4 +204,4 @@ Clone from GitHub
 
 ## <a id="whats-next"/>Next steps
 
-[Use Tanzu Developer Tools for Visual Studio](use.hbs.md).
+[Use Tanzu Developer Tools for Visual Studio](using-the-extension.hbs.md).

@@ -68,4 +68,4 @@ This file location is temporary and will change in a future version.
 
 > **Caution** If the name of your running app process (the app DLL process), does not match the name of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent may fail to attach.
 
-[Troubleshoot Tanzu Developer Tools for Visual Studio](troubleshoot.hbs.md).
+[Troubleshoot Tanzu Developer Tools for Visual Studio](troubleshooting.hbs.md).
