@@ -174,7 +174,7 @@ To install SCST - Scan (Scan controller):
 
     ```yaml
     ---
-    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
+    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are going to be deployed
     metadataStore:
       url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
       caSecret:

@@ -92,7 +92,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
       # Install Grype Scanner v1.2.0
       grype:
-        namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
+        namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are going to be deployed
         metadataStore:
           url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
           caSecret:
