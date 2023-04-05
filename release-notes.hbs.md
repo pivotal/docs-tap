@@ -78,26 +78,26 @@ You can add other providers manually as required.
 
 - New Out-of-the-box GitOps workflow for managing the list of desired namespaces fully declaratively
   via a Git repo. Specify the location of GitOps repo that has the list of desired namespaces as
-  `ytt data values` to be imported in the namespace provisioner using the `gitops_install` TAP values configuration. 
-  - For more information, refer to the GitOps section in 
+  `ytt data values` to be imported in the namespace provisioner using the `gitops_install` TAP values configuration.
+  - For more information, refer to the GitOps section in
     [Provision Developer Namespace](./namespace-provisioner/provision-developer-ns.md) documentation.
-- Namespace provisioner controller supports adding namespace parameters from labels/annotations on 
+- Namespace provisioner controller supports adding namespace parameters from labels/annotations on
   namespace objects based on accepted prefixes defined in `parameter_prefixes` TAP values configuration.
   You can use this feature to add custom parameters to a namespace for creating resources conditionally.
-  - For an example use case, refer to the documentation on how to 
+  - For an example use case, refer to the documentation on how to
     [Create Tekton pipelines and Scan policies using namespace parameters](./namespace-provisioner/use-case2.md).
-- Add support for importing Kubernetes Secrets that contains a `ytt overlay` definition that can be 
+- Add support for importing Kubernetes Secrets that contains a `ytt overlay` definition that can be
   applied to the resources created by the Namespace provisioner.
   - Using the `overlays_secret` configuration in namespace provisioner TAP values, users can provide
     a list of secrets that contains the overlay definition they want to apply to resources created by provisioner.
-  - For an example use case, refer to the documentation on how to 
+  - For an example use case, refer to the documentation on how to
     [Customize OOTB default resources](./namespace-provisioner/use-case4.md) using overlays.
 - Add support for reading sensitive data from a Kubernetes secret in YAML format and populating that
-  information in the resources created by namespace provisioner in runtime and keep it in sync with 
+  information in the resources created by namespace provisioner in runtime and keep it in sync with
   the source, thereby removing the need to store any sensitive data in GitOps repository.
   - Using the `import_data_values_secrets` configuration in namespace provisioner TAP values, you can
    import sensitive data from a YAML formatted secret and make it available under `data.values.imported` for additional resource templating.
-  - For an example use case, refer to the documentation on how to 
+  - For an example use case, refer to the documentation on how to
     [Install multiple scanners in the developer namespace](./namespace-provisioner/use-case5.md).
 - Namespace Provisioner now creates a Kubernetes `LimitRange` object with sensible defaults which sets
   max limits on how much resource pods in the managed namespace can request.
@@ -131,49 +131,51 @@ You can add other providers manually as required.
    For more information, see the
    [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
 
-#### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
+#### <a id="tap-gui-plug-in-new-feats"></a> Tanzu Application Platform GUI plug-ins
 
 - **App Accelerator Plug-in:**
-  - Extracted application accelerator Entity Provider and template actions to a backend plugin
-  - Added id generation for accelerator provenance
-  - Hide context menu from the app accelerator scaffolder page, the edit template feature shouldn't be visible
-  - Fixed JSON schema for git repository creation
-  - Added missing query string parameters to accelerator provenance
-  - Added fallback to displayName for telemetry call when email isn't present in the logged in user
-  - Changed label for git repository confirmation checkbox
-  - Changed app accelerator telemetry call to use username instead of email in the user details
+  - Extracted Application Accelerator Entity Provider and template actions to a back-end plug-in.
+  - Added ID generation for accelerator provenance.
+  - Hid pop-up menu from the Application Accelerator scaffolder page and, consequently, hid the
+    **Edit template** feature.
+  - Added fallback to `displayName` for a telemetry call when an email address isn't present for the
+    logged-in user.
+  - Changed label for the Git repository confirmation check box.
+  - Changed the app accelerator telemetry call to use the user name instead of an email address in
+    the user details.
 
 - **Supply Chain Plug-in:**
-  - Fix CPU stats in App Live View Steeltoe Threads and Memory pages
-  - Retry logic to fetch a new token and retry the API call again when the alvToken has expired
-  - Disable actions and display a message to the user when sensitive operations are deactivated for the app
-  - Fix a bug on the App Live View Details page to show the correct Boot Version instead of UNKNOWN
-  - Disable download heap dump button when sensitive operations are disabled for the application
-  - Fix request params for post Api call
-  - Fixes the UI error in ALV request-mapping page due to unused style.
-  - Enable Secure Access Communication between App Live View components
-  - Added API to connect to appliveview-apiserver by reusing tap-gui authentication
-  - ALV plugin requests a token from appliveview-apiserver and passes it to every call to ALV backend
-  - Secure sensitive operations (edit env, change log levels, download heap dump) and display a message in the UI
-  - The k8s-logging-backend plugin is renamed to k8s-custom-apis-backend
-  - Fetch token for logLevelsPanelToggle component loaded from the workload plugin PodLogs Page
-  - Fix ALV Request Mappings and Threads Page to support Boot 3 apps
+  - When `alvToken` has expired, the logic to fetch a new token and the API call are both retried.
+  - Actions are deactivated and a message is displayed when sensitive operations are deactivated for
+    the app.
+  - The **Heap Dump** button deactivates when sensitive operations are deactivated for the application.
+  - Enabled Secure Access Communication between App Live View components.
+  - Added an API to connect to `appliveview-apiserver` by reusing `tap-gui` authentication.
+  - The ALV plug-in now requests a token from `appliveview-apiserver` and passes it to every call to
+    the ALV back end.
+  - Secured sensitive operations (edit env, change log levels, download heap dump) and display a
+    message in the UI.
+  - Renamed the `k8s-logging-backend` plug-in as `k8s-custom-apis-backend`.
+  - The fetch token for the `logLevelsPanelToggle` component is now loaded from the workload plug-in
+    PodLogs page.
 
 - **Security Analysis GUI Plug-in:**
-  -  [Package Details] Add Impacted Workloads Column to Vulnerabilities table
-  -  [CVE Details] Add Impacted Workloads widget to CVE Details Page
-  -  Add Highest Reach Vulnerabilities widget to Security Analysis Dashboard
-  -  [CVE Details] Display and navigate to latest source sha and/or image digest in the Workload Builds table
-  -  [Package Details] Display and navigate to latest source sha and/or image digest in the Workload Builds table
+  - **CVE Details:** Added Impacted Workloads widget to the CVE Details page.
+  - **CVE Details:** Display and navigate to latest source SHA or image digest in the Workload Builds
+    table.
+  - **Package Details:** Added Impacted Workloads column to the Vulnerabilities table.
+  - **Package Details:** Display and navigate to latest source SHA or image digest in the Workload
+    Builds table.
+  - **Security Analysis Dashboard:** Added Highest Reach Vulnerabilities widget.
 
 #### <a id="1-5-apps-plugin-new-feats"></a> Tanzu CLI Apps plug-in
 
 - Added support for `-ojson` and `-oyaml` output flags in `tanzu apps workload create/apply` command.
-  - The CLI does not wait to print workload when using `--output` in workload create/apply unless 
+  - The CLI does not wait to print workload when using `--output` in workload create/apply unless
   `--wait` or `--tail` flags are specified as well.
 - Using the `--no-color` flag in `tanzu apps workload create/apply` commands now hides progress bars
   in addition to color output and emojis.
-- Added support for unsetting `--git-repo`, `--git-commit`, `--git-tag` and `--git-branch` flags 
+- Added support for unsetting `--git-repo`, `--git-commit`, `--git-tag` and `--git-branch` flags
   by setting the value to empty string.
 
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
@@ -262,7 +264,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   - Add BuildPack cyclonedx support:
 
     when scanning image that was created by BuildPack add package from the create and build image to scan manifest.
-  - Update scan logic to reduce scan time. 
+  - Update scan logic to reduce scan time.
 
     **for the full patch-note and other feature check [CBC Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials).**
 
@@ -324,11 +326,26 @@ The following issues, listed by area and component, are resolved in this release
 
 - Updates default resources to avoid ownership conflicts with the `grype` package.
 
+#### <a id="tap-gui-plug-in-new-feats"></a>Tanzu Application Platform GUI plug-ins
+
+- **App Accelerator Plug-in:**
+
+  - Fixed JSON schema for Git repository creation.
+  - Added missing query string parameters to accelerator provenance.
+
+- **Supply Chain Plug-in:**
+
+  - Fixed CPU stats in App Live View Steeltoe Threads and Memory pages.
+  - The App Live View Details page now shows the correct boot version instead of **UNKNOWN**.
+  - Fixed request parameters for the post-API call.
+  - Fixed the UI error in the ALV request-mapping page that was caused by an unused style.
+  - Fixed the ALV Request Mappings and Threads page to support Boot 3 apps.
+
 #### <a id="1-5-apps-plugin-resolved-issues"></a> Tanzu CLI Apps plug-in
 
 - Allow users to pass only `--git-commit` for git ref while creating a workload from Git Repository.
   This update removes the limitation where users had to provide a `--git-tag` or `--git-branch` along with the commit to create a workload.
-- Fixed the behavior where `subpath` was getting removed from the Workload when there are updates 
+- Fixed the behavior where `subpath` was getting removed from the Workload when there are updates
   to the git section of the Workload source specification.
 
 ### <a id='1-5-0-known-issues'></a> Known issues
@@ -411,7 +428,7 @@ This release has the following known issues, listed by area and component.
 - The Impacted Workloads table is empty on the **CVE and Package Details** pages if the relevant CVE
   belongs to a workload that has only completed one type of vulnerability scan (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
-  
+
 #### <a id='1-5-0-eventing'></a> Eventing
 
 When using vsphere sources in Eventing, the vsphere-source is currently using a high number of informers to alleviate load on the api server resulting in high memory utilization.
