@@ -300,6 +300,8 @@ Ensure that your workloads can be built and run on Jammy.
   [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and
   [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the
   Tanzu Build Service documentation.
+  
+ - The Tanzu Build Service automatic dependency updater feature has been removed as of Tanzu Application Platform 1.5. This feature has been deprecated since Tanzu Application Platform 1.2
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 
