@@ -8,7 +8,7 @@ The Scan Controller supports policy enforcement by using an Open Policy Agent (O
 
 ## <a id="rego-file-contract"></a>Rego file contract
 
-To define a Rego file for an image scan or source scan, you must comply with the requirements defined for every Rego file for the policy verification to work properly. See [Open Policy Agent documentation](https://www.openpolicyagent.org/docs/latest/policy-language/) on how to write Rego.
+To define a Rego file for an image scan or source scan, you must comply with the requirements defined for every Rego file for the policy verification to work properly. See Open Policy Agent [docs](https://www.openpolicyagent.org/docs/latest/policy-language/) on how to write Rego.
 
 - **Package main:** The Rego file must define a package in its body called `main`, because the system looks for this package to verify the scan results compliance.
 
