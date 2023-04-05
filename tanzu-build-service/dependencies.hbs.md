@@ -204,28 +204,4 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports binary workloads | Yes | Yes |
 | Supports web servers buildpack | Yes | Yes |
 
-## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
 
->**Important** The automatic updates feature is being deprecated.
->The recommended way to patch dependencies is by upgrading Tanzu Application Platform
->to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
-
-You can configure Tanzu Build Service to update dependencies in the background as they are released.
-This enables workloads to keep up to date automatically.
-
-### <a id="descriptors"></a> Descriptors (deprecated)
-
-Tanzu Build Service descriptors are curated sets of dependencies that include stacks and buildpacks.
-Descriptors are only used if Tanzu Build Service is configured for automatic dependency updates.
-Descriptors are imported into Tanzu Build Service to update the entire cluster.
-
-Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/)
-page to provide updated buildpack dependencies and updated stack images.
-This allows the use of dependencies that have patched CVEs.
-For more information about buildpacks and stacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-
-There are two types of descriptor, `lite` and `full`.
-The different descriptors can apply to different use cases and workload types.
-The differences between the `full` and `lite` descriptors are the same as the the differences
-between `full` and `lite` dependencies.
-For a comparison of the `lite` and `full` descriptors, see [About lite and full dependencies](#lite-vs-full).
