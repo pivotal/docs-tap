@@ -6,8 +6,13 @@ required files specified in [Getting started](getting-started.hbs.md).
 The extension requires only one Tiltfile and one `workload.yaml` file per project.
 `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
+## <a id="workload-actions"></a> Workload Actions
 
-## <a id="apply-workload"></a> Apply a workload
+The extension enables you to apply, debug, and live update your application on a Kubernetes cluster that has
+Tanzu Application Platform. The developer sandbox experience enables developers to Live Update their code and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
+
+### <a id="apply-workload"></a> Apply a workload
 
 The extension enables you to apply workloads on your Kubernetes cluster that has
 Tanzu Application Platform.
@@ -16,9 +21,9 @@ To apply a workload:
 
 1. Right-click anywhere in the IntelliJ project explorer or an associated workload in the Workloads panel.
 2. Click **Tanzu** > **Apply Workload**.
-
+   - From the context menu:
    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
-
+   - From the workload panel:
    ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Apply Workload option highlighted.](../images/intellij-workload-panel-apply-action.png)
 
 3. Click **Tanzu > Modify Apply Configuration**.
@@ -26,7 +31,7 @@ To apply a workload:
 The `Tanzu workload apply` command is triggered in the terminal and the workload is applied.
 A new workload appears on the Tanzu panel.
 
-## <a id="delete-workload"></a> Delete a workload
+### <a id="delete-workload"></a> Delete a workload
 
 The extension enables you to delete workloads on your Kubernetes cluster that has Tanzu Application Platform.
 
@@ -34,8 +39,9 @@ To delete a workload:
 
 1. Right-click anywhere in the IntelliJ project explorer or a workload in the Workloads panel.
 2. Click **Tanzu > Delete Workload**.
-
+   - From the context menu:
    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
+   - From the workload panel:
    ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Delete Workload option highlighted.](../images/intellij-workload-panel-delete-action.png)
 
 A message appears that prompts you to delete the workload and not warn again, delete the workload,
@@ -60,8 +66,9 @@ To start debugging on the cluster:
 1. Add a [breakpoint](https://www.jetbrains.com/help/idea/using-breakpoints.html) in your code.
 2. Right-click the `workload.yaml` file in your project or an associated workload in the Workloads panel.
 3. Click **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
-
+   - From the context menu:
     ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
+   - From the workload panel:
     ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Debug Workload option highlighted.](../images/intellij-workload-panel-debug-action.png)
 
 4. Ensure that the configuration parameters are set:
@@ -97,8 +104,9 @@ To start Live Update:
 
 1. Right-click your project’s Tiltfile or an associated workload in the Workloads panel and then click
    **Run 'Tanzu Live Update - ...'**.
-
+   - From the context menu: 
    ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
+   - From the workload panel:
    ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Live Update Workload option highlighted.](../images/intellij-workload-panel-live-update-action.png)
 
 2. Ensure that the configuration parameters are set:
