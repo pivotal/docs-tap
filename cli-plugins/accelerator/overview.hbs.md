@@ -20,6 +20,13 @@ You can either use the proxy that is part of TAP-GUI or you can use the URL for 
 ### <a id="server-api-tap-gui"></a>Using TAP-GUI URL
 
 When using TAP-GUI you should specify `--server-url` as `https://tap-gui.<domain>` where `domain` defaults to the `shared.ingress_domain` value provided in the values file of Tanzu Application Platform.
+Make sure to add the below-mentioned flags to the tap-values.yaml when `shared.ingress_domain` is set.
+
+
+    accelerator:
+      ingress:
+        include: true 
+    
 
 ### <a id="server-api-acc-server"></a>Using Application Accelerator Server URL
 
