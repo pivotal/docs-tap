@@ -12,8 +12,9 @@ To enable Grype in offline air-gapped environments:
 
 1. Create ConfigMap
 2. Create Patch Secret
-3. Configure tap-values.yaml to use `package_overlays`
-4. Update Tanzu Application Platform
+3. [Optional] Update Grype PackageInstall
+4. Configure tap-values.yaml to use `package_overlays`
+5. Update Tanzu Application Platform
 
 ## <a id="use-grype"></a> Using Grype
 
@@ -86,8 +87,24 @@ To use Grype in offline and air-gapped environments:
     ```yaml
     #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
     ```
+3. [Optional] If Grype was installed via a Tanzu Application Platform profile, you can skip to the next step.
 
-3. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
+If Grype was installed manually, you need to update your `PackageInstall` to include the annotation to reference the above overlay `Secret`.
+
+  ```yaml
+  apiVersion: packaging.carvel.dev/v1alpha1
+  kind: PackageInstall
+  metadata:
+  name: grype
+  namespace: tap-install
+  annotations:
+    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: grype-airgap-overlay
+  ...
+  ```
+
+For more information, see [Customize package installation](../../customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed).
+
+4. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
 
   ```yaml
   package_overlays:
@@ -96,9 +113,7 @@ To use Grype in offline and air-gapped environments:
           - name: "grype-airgap-overlay"
   ```
 
-       ```console
-       tanzu package installed update tap -f tap-values.yaml -n tap-install
-       ```
+5. Update Tanzu Application Platform.
 
 ### Vulnerability database is invalid
 
