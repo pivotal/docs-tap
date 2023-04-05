@@ -3,12 +3,29 @@
 This topic describes how to migrate Spring applications from Tanzu Application Service or
 Azure Spring Apps to Tanzu Application Platform.
 
-## <a id="prereqs"></a> Prerequisite
+## <a id="prereqs"></a> Migrating from Spring Cloud Config
 
-If your applications are currently using Spring Cloud Configuration Service or
-Spring Cloud Service Registry,
-[install the Application Configuration Service](../application-configuration-service/install-app-config-service.hbs.md)
+If your applications are currently using
+[Spring Cloud Config](https://spring.io/projects/spring-cloud-config), refer to
+installing Tanzu Application Platform compatible option
+[Application Configuration Service](../application-configuration-service/install-app-config-service.hbs.md)
 optional package.
+
+## <a id="spring-cloud-gateway"></a> Using Spring Cloud Gateway for Kubernetes
+
+Spring Cloud Gateway is a popular project library for creating an API Gateway built on top of the
+Spring ecosystem. The OSS library is a foundational component of our Spring Cloud Gateway for
+Kubernetes and Spring Cloud Gateway for VMware Tanzu Application Service commercial offerings along
+with commercial-only capabilities and platform integrated operator experiences. The OSS and
+commercial offerings can be used as a reverse proxy with additional API Gateway functionality to
+handle request and response to upstream application services.
+
+With Spring Cloud Gateway for Kubernetes now included as part of Tanzu Application Platform
+beginning with version 1.5. This guide will help with migrating upstream applications that expose
+API routes on Spring Cloud Gateway migrate to Tanzu Application Platform from Tanzu Application
+Service and custom OSS implementations.
+
+Learn more about [using Spring Cloud Gateway for Kubernetes on Tanzu Application Platform](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.0/scg-k8s/GUID-guides-tap.html).
 
 ## <a id="service-to-service"></a> Manage Service-to-Service Communication
 
