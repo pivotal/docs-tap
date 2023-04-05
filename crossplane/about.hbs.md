@@ -21,10 +21,10 @@ Refer to official Crossplane documentation to learn more about working with Cros
 
 **For apps teams**
 
-* [Tutorial - Working with Bitnami Services](../services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md)
+* [Tutorial - Working with Bitnami Services](../services-toolkit/tutorials/working-with-bitnami-services.hbs.md)
 
 **For ops teams**
 
 * [Tutorial - Setup Dynamic Provisioning of Service Instances](../services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md)
 
-Alternatively, refer to the [reference material](./reference.hbs.md).
+Alternatively, refer to the [reference material](reference/index.hbs.md).

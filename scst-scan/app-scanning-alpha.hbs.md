@@ -1,13 +1,14 @@
-# Supply Chain Security Tools - App Scanning (alpha)
+# Supply Chain Security Tools - Scan 2.0 (alpha)
 
->**Important**: This component is in Alpha, which means that it is still in active
->development by VMware and might be subject to change at any point. Users might
->encounter unexpected behavior.  This is an opt-in component
->is not installed by default with any profile.
+>**Important**: This component is in Alpha, which means that it is still in
+>active development by VMware and might be subject to change at any point. Users
+>might encounter unexpected behavior due to capability gaps. This is an opt-in
+>component to gather early feedback from Alpha testers and is not installed by
+>default with any profile.
 
 ## <a id="overview"></a>Overview
 
-The App Scanning component within the Supply Chain Security Tools is responsible
+SCST - Scan 2.0 is responsible
 for providing the framework to scan applications for their security posture.
 Scanning container images for known Common Vulnerabilities and Exposures (CVEs)
 implements this framework.
@@ -22,32 +23,32 @@ During scanning:
   pipeline](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers)
   in github.
 
-The App Scanning component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
+SCST - Scan 2.0 is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
 
 A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
 ## <a id="features"></a>Features
 
-SCST - App Scanning includes the following features:
+SCST - Scan 2.0 includes the following features:
 
 - Tekton is used as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.
 - New scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
 - CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
-## Installing App Scanning in a cluster
+## Installing SCST - Scan 2.0 in a cluster
 
-The following sections describe how to install SCST - App Scanning.
+The following sections describe how to install SCST - Scan 2.0.
 
 ### <a id='scst-app-scanning-prereqs'></a> Prerequisites
 
-SCST - App Scanning requires the following prerequisites:
+SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is in the Full and Build profiles of Tanzu Application Platform.
 
 ### <a id='configure-app-scanning'></a> Configure properties
 
-When you install SCST - App Scanning, you can configure the following optional properties:
+When you install SCST - Scan 2.0, you can configure the following optional properties:
 
 | Key | Default | Type | Description |
 | --- | --- | --- | --- |
@@ -59,7 +60,7 @@ When you install SCST - App Scanning, you can configure the following optional p
 
 ### <a id='install-scst-app-scanning'></a> Install
 
-To install Supply Chain Security Tools - App Scanning:
+To install SCST - Scan 2.0:
 
 1. List version information for the package by running:
 
@@ -144,7 +145,7 @@ The following access is required:
   - Read access to the registry containing the image to scan, if scanning a private image
   - Write access to the registry to which results are published
 
-1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the App Scanning component images.
+1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
 
@@ -183,7 +184,7 @@ The following access is required:
       -n DEV-NAMESPACE
     ```
 
-4. Create the service account `scanner` which enables the App Scanning component to pull the image to be scanned. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
+4. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to be scanned. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -198,7 +199,7 @@ The following access is required:
                                   # the image you are scanning is private
     ```
 
-5. Create the service account `publisher` which enables the App Scanning component to push the scan results to a user specified registry.
+5. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
 
     ```yaml
     apiVersion: v1
@@ -214,11 +215,11 @@ The following access is required:
 
 ## Scan an image
 
-The following section describes how to scan an image with SCST - App Scanning.
+The following section describes how to scan an image with SCST - Scan 2.0.
 
 ### Retrieving an image digest
 
-The App Scanning CRs require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
+SCST - Scan 2.0 CRs require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
 Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull and inspect an image digest:
 
@@ -235,7 +236,7 @@ krane digest nginx:latest
 
 ### Using the provided Grype scanner
 
-The following sections describe how to use Grype with SCST - App Scanning.
+The following sections describe how to use Grype with SCST - Scan 2.0.
 
 #### Sample Grype scan
 
@@ -431,7 +432,7 @@ Tekton Workspaces:
 - `/home/app-scanning`: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
 - `/cred-helper`: a memory-backed EmptyDir mount containing:
   - config.json which combines static credentials with workload identity credentials when `activeKeychains` is enabled
-  - trusted-cas.crt when App Scanning is deployed with `caCertData`
+  - trusted-cas.crt when SCST - Scan 2.0 is deployed with `caCertData`
 - `/workspace`: a PersistentVolumeClaim to hold scan artifacts and results
 
 Environment Variables:

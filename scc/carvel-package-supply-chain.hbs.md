@@ -5,13 +5,6 @@ introduces a variation of the OOTB Basic supply chains that outputs Carvel
 Packages. The Carvel Package Supply Chains enable users to deliver applications
 to multiple production environments with configuration for each environment.
 
-This feature is in **alpha** and has the following limits:
-
-1. Only the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package is supported. The Testing and Scanning supply chains are not supported.
-2. Only workloads of type `server` are supported.
-3. Innerloop development is not supported.
-4. Azure GitOps repositories are not supported.
-
 This topic explains what the Carvel Package Supply Chains do, how they work, how
 operators can enable them, and how to create a `Workload` that uses them.
 

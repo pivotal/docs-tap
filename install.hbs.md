@@ -279,8 +279,8 @@ supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
   registry:
-    server: "SERVER-NAME" # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
-    repository: "REPO-NAME" # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+    server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
     ssh_secret: "SSH-SECRET-KEY" # Takes "" as value by default; but can be overridden by setting a different value.
 
@@ -290,7 +290,7 @@ contour:
       type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
 buildservice:
-  # Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+  # Takes the value from the shared section by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
     name: "KP-DEFAULT-REPO-SECRET"
@@ -403,7 +403,7 @@ For example:
 ```yaml
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_secret: # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
     name: "KP-DEFAULT-REPO-SECRET"
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true

@@ -57,7 +57,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   - Redis
   - RabbitMQ
 
-- For more information, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md).
+- For more information, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-bitnami-services.hbs.md).
 
 #### <a id='1-5-0-crossplane-new-features'></a> Crossplane
 
@@ -66,7 +66,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   - This provides integration for dynamic provisioning in Services Toolkit and can be used for
   integration with cloud services such as AWS, Azure, and GCP.
   For more information, see
-  [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md).
+  [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services.hbs.md).
   - For more information about dynamic provisioning, see
   [Set up dynamic provisioning of service instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
 
@@ -97,29 +97,29 @@ You can add other providers manually as required.
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
 - **App Accelerator Plug-in:**
-  - Extracted application accelerator Entity Provider and template actions to a backend plugin 
-  - Added id generation for accelerator provenance 
-  - Hide context menu from the app accelerator scaffolder page, the edit template feature shouldn't be visible 
-  - Fixed JSON schema for git repository creation 
-  - Added missing query string parameters to accelerator provenance 
-  - Added fallback to displayName for telemetry call when email isn't present in the logged in user 
-  - Changed label for git repository confirmation checkbox 
+  - Extracted application accelerator Entity Provider and template actions to a backend plugin
+  - Added id generation for accelerator provenance
+  - Hide context menu from the app accelerator scaffolder page, the edit template feature shouldn't be visible
+  - Fixed JSON schema for git repository creation
+  - Added missing query string parameters to accelerator provenance
+  - Added fallback to displayName for telemetry call when email isn't present in the logged in user
+  - Changed label for git repository confirmation checkbox
   - Changed app accelerator telemetry call to use username instead of email in the user details
-  
+
 - **Supply Chain Plug-in:**
-  - Fix CPU stats in App Live View Steeltoe Threads and Memory pages 
-  - Retry logic to fetch a new token and retry the API call again when the alvToken has expired 
-  - Disable actions and display a message to the user when sensitive operations are deactivated for the app 
-  - Fix a bug on the App Live View Details page to show the correct Boot Version instead of UNKNOWN 
-  - Disable download heap dump button when sensitive operations are disabled for the application 
-  - Fix request params for post Api call 
-  - Fixes the UI error in ALV request-mapping page due to unused style. 
-  - Enable Secure Access Communication between App Live View components 
-  - Added API to connect to appliveview-apiserver by reusing tap-gui authentication 
-  - ALV plugin requests a token from appliveview-apiserver and passes it to every call to ALV backend 
-  - Secure sensitive operations (edit env, change log levels, download heap dump) and display a message in the UI 
-  - The k8s-logging-backend plugin is renamed to k8s-custom-apis-backend 
-  - Fetch token for logLevelsPanelToggle component loaded from the workload plugin PodLogs Page 
+  - Fix CPU stats in App Live View Steeltoe Threads and Memory pages
+  - Retry logic to fetch a new token and retry the API call again when the alvToken has expired
+  - Disable actions and display a message to the user when sensitive operations are deactivated for the app
+  - Fix a bug on the App Live View Details page to show the correct Boot Version instead of UNKNOWN
+  - Disable download heap dump button when sensitive operations are disabled for the application
+  - Fix request params for post Api call
+  - Fixes the UI error in ALV request-mapping page due to unused style.
+  - Enable Secure Access Communication between App Live View components
+  - Added API to connect to appliveview-apiserver by reusing tap-gui authentication
+  - ALV plugin requests a token from appliveview-apiserver and passes it to every call to ALV backend
+  - Secure sensitive operations (edit env, change log levels, download heap dump) and display a message in the UI
+  - The k8s-logging-backend plugin is renamed to k8s-custom-apis-backend
+  - Fetch token for logLevelsPanelToggle component loaded from the workload plugin PodLogs Page
   - Fix ALV Request Mappings and Threads Page to support Boot 3 apps
 
 - **Security Analysis GUI Plug-in:**
@@ -158,7 +158,7 @@ You can add other providers manually as required.
   You can bind this to users for access control of who can create `ClassClaim` resources for
   a specific `ClusterInstanceClass`.
   - A `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
-  - For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) to learn more.
+  - For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md) to learn more.
 
 - `ResourceClaimPolicy` now supports targeting individual resources by name.
   To do so, configure `.spec.subject.resourceNames`.
@@ -188,7 +188,7 @@ You can add other providers manually as required.
 The external-secrets plug-in available in the Tanzu CLI interacts with the External Secrets Operator API. Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
 
 Refer to the official [External Secrets Operator](https://external-secrets.io) documentation to learn
-more about managing secrets with External Secrets in general. For installing the External Secrets 
+more about managing secrets with External Secrets in general. For installing the External Secrets
 Operator and the CLI plug-in refer to the following documentation. Additionally, refer to the example
 integration of External-Secrets with Hashicorp Vault
 
@@ -210,8 +210,15 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
 - SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
   - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
-  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [Supply Chain Security Tools - App Scanning](./scst-scan/app-scanning-alpha.hbs.md).
+  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
   - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
+- Carbon Black Scanner - **Update carbon black scanner CLI to version 1.9.2**
+  - Add BuildPack cyclonedx support:
+
+    when scanning image that was created by BuildPack add package from the create and build image to scan manifest.
+  - Update scan logic to reduce scan time. 
+
+    **for the full patch-note and other feature check [CBC Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials).**
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
@@ -342,15 +349,10 @@ This release has the following known issues, listed by area and component.
 - The Impacted Workloads table is empty on the **CVE and Package Details** pages if the relevant CVE
   belongs to a workload that has only completed one type of vulnerability scan (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
-
-#### <a id='1-5-0-cb-scanner'></a> Supply Chain Security Tools - Scan
-- **Update binary use for scanning to v1.9.2**
-- Add support for BuildPack scan enhancer using cyclonedx.
-- Updated Syft version to 0.74.0
-- Update scan logic to reduce scan time.
-- Malware Detection added, log into the web interface to check for images file reputation. 
   
-  for the full patch-note check [VMware Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html).
+#### <a id='1-5-0-eventing'></a> Eventing
+
+When using vsphere sources in Eventing, the vsphere-source is currently using a high number of informers to alleviate load on the api server resulting in high memory utilization.
 
 #### <a id="1-5-0-external-secrets-known-issue"></a>External Secrets CLI (Beta)
 

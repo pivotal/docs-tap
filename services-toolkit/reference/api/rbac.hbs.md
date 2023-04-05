@@ -78,7 +78,7 @@ rules:
 
 ## The claim verb for ClusterInstanceClass
 
-Services Toolkit supports the usage of a `claim` verb for RBAC rules that apply to `clusterinstanceclasses`. This, along with relevant aggregating labels, `RoleBindings` or `ClusterRoleBindings` can be used as a form of access control to determine who is able to claim from which `ClusterInstanceClass` and from where. See [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) for further information.
+Services Toolkit supports the usage of a `claim` verb for RBAC rules that apply to `clusterinstanceclasses`. This, along with relevant aggregating labels, `RoleBindings` or `ClusterRoleBindings` can be used as a form of access control to determine who is able to claim from which `ClusterInstanceClass` and from where. See [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md) for further information.
 
 For example:
 
