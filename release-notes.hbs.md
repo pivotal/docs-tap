@@ -342,6 +342,10 @@ This release has the following known issues, listed by area and component.
 - The Impacted Workloads table is empty on the **CVE and Package Details** pages if the relevant CVE
   belongs to a workload that has only completed one type of vulnerability scan (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
+  
+#### <a id='1-5-0-eventing'></a> Eventing
+
+When using vsphere sources in Eventing, the vsphere-source is currently using a high number of informers to alleviate load on the api server resulting in high memory utilization.
 
 #### <a id='1-5-0-cb-scanner'></a> Supply Chain Security Tools - Scan
 - **Update binary use for scanning to v1.9.2**
