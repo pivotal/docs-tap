@@ -507,7 +507,6 @@ docs.vmware.com is built.
     - [Supply Chain Security Tools - Policy](scst-policy/overview.hbs.md)
       - [Supply Chain Security Tools - Policy overview](scst-policy/overview.hbs.md)
       - [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md)
-      - [Install Sigstore Stack](scst-policy/install-sigstore-stack.hbs.md)
       - [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.hbs.md)
       - [Configure Supply Chain Security Tools - Policy Controller](scst-policy/configuring.hbs.md)
     - [Supply Chain Security Tools – Scan](scst-scan/overview.hbs.md)

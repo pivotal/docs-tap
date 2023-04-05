@@ -196,7 +196,6 @@ The Sigstore Stack consists of:
 - [The Update Framework (TUF)](https://theupdateframework.io/)
 
 For an air-gapped environment, an internally accessible Sigstore Stack is required for keyless authorities.
-For more information about how to set up the Sigstore Stack, see [Install Sigstore Stack](scst-policy/install-sigstore-stack.html).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
