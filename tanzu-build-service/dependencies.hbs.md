@@ -211,30 +211,3 @@ New versions of dependencies (buildpacks, stacks) are available in new versions 
 Note that when Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
 Updating buildpack and stack dependencies outside of upgrades to Tanzu Application Platform is possible but not recommended, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform. For more information, see [updating a ClusterStack](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) for updating a stack and [updating a ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) for updating a buildpack. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
-
-
-## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
-
->**Important** The automatic updates feature is being deprecated.
->The recommended way to patch dependencies is by upgrading Tanzu Application Platform
->to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
-
-You can configure Tanzu Build Service to update dependencies in the background as they are released.
-This enables workloads to keep up to date automatically.
-
-### <a id="descriptors"></a> Descriptors (deprecated)
-
-Tanzu Build Service descriptors are curated sets of dependencies that include stacks and buildpacks.
-Descriptors are only used if Tanzu Build Service is configured for automatic dependency updates.
-Descriptors are imported into Tanzu Build Service to update the entire cluster.
-
-Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/)
-page to provide updated buildpack dependencies and updated stack images.
-This allows the use of dependencies that have patched CVEs.
-For more information about buildpacks and stacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-
-There are two types of descriptor, `lite` and `full`.
-The different descriptors can apply to different use cases and workload types.
-The differences between the `full` and `lite` descriptors are the same as the the differences
-between `full` and `lite` dependencies.
-For a comparison of the `lite` and `full` descriptors, see [About lite and full dependencies](#lite-vs-full).
