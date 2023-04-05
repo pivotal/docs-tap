@@ -11,13 +11,19 @@ In release notes, this condition hides content that describes an unreleased patc
 **Release Date**: April 11, 2023
 
 ### <a id='1-3-7-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-#### <a id='1-3-7-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
-- Security fix description.
- 
+
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| image-policy-webhook.signing.apps.tanzu.vmware.com | <ul><li> GHSA-8c26-wmh5-6g9v</li><li>GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
+| services-toolkit.tanzu.vmware.com | <ul><li> GHSA-gwc9-m7rh-j2ww </li></ul>|
+| developer-conventions.tanzu.vmware.com | <ul><li> GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-0286</li><li>GHSA-cg3q-j54f-5p7p</li><li>GHSA-ppp9-7jff-5vj2 </li></ul>|
+| eventing.tanzu.vmware.com | <ul><li> GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> GHSA-69ch-w2m2-3vjp</li><li>GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-24329</li><li>GHSA-3vm4-22fp-5rfm</li><li>CVE-2023-23919</li><li>CVE-2022-42919 </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> GHSA-69ch-w2m2-3vjp</li><li>GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-24329</li><li>GHSA-3vm4-22fp-5rfm</li><li>CVE-2023-23919</li><li>CVE-2022-42919 </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
+| policy.apps.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
+| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
+
 ---
  
 ### <a id='1-3-7-resolved-issues'></a> Resolved issues 
