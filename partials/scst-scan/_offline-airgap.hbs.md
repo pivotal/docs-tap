@@ -33,7 +33,7 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ### ERROR failed to fetch latest cli version
 
-**Note**: This message is a warning and the grype scan still runs with this message.
+**Note**: This message is a warning and the Grype scan still runs with this message.
 
 The Grype CLI checks for later versions of the CLI by contacting the anchore endpoint over the Internet.
 
@@ -155,12 +155,13 @@ the following steps:
 
 ### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
 
-If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you will need to add the annotation to reference the overlay `Secret`.
+If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must add the annotation to reference the overlay `Secret`.
 
-Follow the steps below to resolve this issue. See [Customize Namespace Provisioner](../../namespace-provisioner/how-tos.hbs.md) for additional information on advanced use cases.
+For information about advanced use cases, see [Customize Namespace Provisioner](../../namespace-provisioner/how-tos.hbs.md). 
+
 #### Solution
 
-1. Create a file `pkgi.lib.yaml` with the below content and push it to a repository that is accessible from inside the cluster.
+1. Create a file `pkgi.lib.yaml` with the following content and push it to a repository that is accessible from inside the cluster.
 
 ```yaml
 #@ load("@ytt:overlay", "overlay")
@@ -183,11 +184,13 @@ metadata:
     ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: SECRET-NAME
 #@  end
 ```
-Where `SECRET-NAME` is the name of the secret that contains the grype overlay such as `grype-airgap-override-stale-db-overlay`.
 
-For more information on annotations, see [Customize package installation](../../customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed).
+Where `SECRET-NAME` is the name of the secret that contains the Grype overlay such as `grype-airgap-override-stale-db-overlay`.
+
+For information about annotations, see [Customize package installation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/customize-package-installation.html).
 
 1. Update your `tap-values.yaml`.
+
 ```yaml
 namespace_provisioner:
   additional_sources:
@@ -197,7 +200,9 @@ namespace_provisioner:
       url: https://github.com/user/repo-name.git
     path: _ytt_lib/customize # this path must always be exactly "_ytt_lib/customize"
 ```
-1. Update your tap installation.
+
+1. Update your Tanzu Application Platform installation.
+
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file "tap-values.yaml" -n tap-install
 ```
