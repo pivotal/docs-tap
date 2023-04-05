@@ -145,7 +145,7 @@ If you don't want to enable the
   ```yaml
   # ...
   metadataStore:
-    url: "" # Disable Supply Chain Security Tools - Store integration
+    url: "" # Deactivate Supply Chain Security Tools - Store integration
   ```
 
 ## <a id="carbonblack-scan-policy"></a> Sample ScanPolicy in CycloneDX format

@@ -63,31 +63,6 @@ To deactivate Git repository creation, set `app_config.gitProviders.active` to `
          active: false
 ```
 
-### <a id="k8s-secrets"></a> Use Kubernetes secrets
-
-To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
-
-1. Create the Kubernetes secret with the values that you want by running:
-
-   ```console
-   kubectl create secret githubOauthApp \
-   --from-literal=clientSecret=GITHUB-CLIENT-SECRET \
-   --from-literal=clientId=GITHUB-CLIENT-ID
-   ```
-
-2. Edit the `app-config.yaml` by using the environment variables. For example:
-
-   ```yaml
-   app_config:
-      auth:
-         environment: development
-         providers:
-            github:
-               development:
-               clientId: ${clientId}
-               clientSecret: ${clientSecret}
-   ```
-
 ## <a id="creating-project"></a> Create a Project
 
 To create a project:
