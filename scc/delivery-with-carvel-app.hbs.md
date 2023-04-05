@@ -92,6 +92,7 @@ app.default.tap/
    ```
 
    > **Note:** If you want to continously deploy the latest version of your `Package`, you can set `versionSelection.constraints: >=0.0.0`
+
    > **Note:** If you skipped creation of the `Secret`, omit the `values` key.
 
 3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
@@ -106,7 +107,9 @@ app.default.tap/
        --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
    ```
 
-2. The Carvel `App` custom resource represents a collection of Kubernetes resources that kapp-controller can fetch and deploy to a cluster. The `App` will be pointed at the git repository branch where kapp-controller resources (e.g. `PackageRepository` and `Packages`) will be defined. By default, an `App` custom resource will sync the cluster with its fetch source every 30 seconds to prevent the cluster state from drifting from its source of truth, which is a git repository in this case. Create the following `App` on your Build cluster:
+2. Each Carvel `App` CR must specify either a service account (via `spec.serviceAccountName`) within the same namespace where App CR is located on the Build cluster, or a `Secret` with kubeconfig contents for a target destination Run cluster (via `spec.cluster.kubeconfigSecretRef.name`) to explicitly provide the needed privileges for management of app resources. The example here assumes a target Run cluster.
+
+3. The [Carvel App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) custom resource represents a collection of Kubernetes resources that kapp-controller can fetch and deploy to a cluster. The `App` will be pointed at the git repository branch where kapp-controller resources (e.g. `PackageRepository` and `Packages`) will be defined. By default, an `App` custom resource will sync the cluster with its fetch source every 30 seconds to prevent the cluster state from drifting from its source of truth, which is a git repository in this case. Create the following `App` on your Build cluster:
 
    ```yaml
    ---
@@ -116,9 +119,6 @@ app.default.tap/
      name: hello-app-app
      namespace: <build-cluster-ns>
    spec:
-     # specifies that app should be deployed authenticated via the
-     # given service account, found in this namespace
-     serviceAccountName: <SERVICE_ACCOUNT>
      # specifies that app should be deployed to destination cluster;
      # by default, cluster is same as where this resource resides
      cluster:
@@ -148,48 +148,7 @@ app.default.tap/
          rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
    ```
 
-   > **Note:** The fetch section can includes entries for all the locations in the gitops repo to be deployed, and be appended with other run clusters if needed. Each App CR must specify either a service account (via `spec.serviceAccountName`) or, a `Secret` with kubeconfig contents for some Run cluster (via `spec.cluster.kubeconfigSecretRef.name`).
-
-3. You will also need to create a `ServiceAccount` with associated RBAC permissions for the App to use. Example of the required permissions for the `ServiceAccount`. Make sure to assess appropriate RBAC needed for your specific PackageInstalls.
-
-   ```yaml
-   apiVersion: v1
-   kind: ServiceAccount
-   metadata:
-     name: pkg-gitops-pkgi-sa
-     namespace: <DESIRED_NAMESPACE>
-     annotations:
-       kapp.k14s.io/change-group: "packageinstall-setup"
-   # secrets can be added if accessing private repositories or repos
-   ---
-   kind: Role
-   apiVersion: rbac.authorization.k8s.io/v1
-   metadata:
-     name: pkg-gitops-pkgi-role
-     namespace: <DESIRED_NAMESPACE>
-     annotations:
-       kapp.k14s.io/change-group: "packageinstall-setup"
-   rules:
-   - apiGroups: ["*"]
-     resources: ["*"]
-     verbs: ["*"]
-   ---
-   kind: RoleBinding
-   apiVersion: rbac.authorization.k8s.io/v1
-   metadata:
-     name: pkg-gitops-pkgi-role-binding
-     namespace: <DESIRED_NAMESPACE>
-     annotations:
-       kapp.k14s.io/change-group: "packageinstall-setup"
-   subjects:
-   - kind: ServiceAccount
-     name: pkg-gitops-pkgi-sa
-     namespace: <DESIRED_NAMESPACE>
-   roleRef:
-     apiGroup: rbac.authorization.k8s.io
-     kind: Role
-     name: pkg-gitops-pkgi-role
-   ```
+   > **Note:** The fetch section can includes entries for all the locations in the gitops repo to be deployed, and be appended with other run clusters if needed.
 
 ## Verifying Applications
 
