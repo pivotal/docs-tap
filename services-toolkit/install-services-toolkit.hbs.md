@@ -1,6 +1,6 @@
 # Install Services Toolkit
 
-This document describes how to install Services Toolkit from the Tanzu Application Platform package
+This topic describes how to install Services Toolkit from the Tanzu Application Platform package
 repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
@@ -48,7 +48,7 @@ To install Services Toolkit:
     tanzu package installed get services-toolkit -n tap-install
     ```
 
-    and checking that the `STATUS` value is `Reconcile succeeded`
+    In the output, confirm that the `STATUS` value is `Reconcile succeeded`.
 
     For example:
 
