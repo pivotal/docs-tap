@@ -3,7 +3,7 @@
 This topic describes how to migrate Spring applications from Tanzu Application Service or
 Azure Spring Apps to Tanzu Application Platform.
 
-## <a id="prereqs"></a> Migrating from Spring Cloud Config
+## <a id="spring-cloud-config"></a> Migrating from Spring Cloud Config
 
 If your applications are currently using
 [Spring Cloud Config](https://spring.io/projects/spring-cloud-config), refer to
