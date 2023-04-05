@@ -27,6 +27,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   a project was generated with an accelerator.
 - (Optional) Use a system-wide property in the `tap-values.yaml` configuration file to activate or
   deactivate Git repository creation. For more information, see [Deactivate Git repository creation](./tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation).
+- Accelerator Tanzu CLI plugin now supports using the TAP-GUI URL with the --server-url command option. For more information, see [Using TAP-GUI URL](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5/tap/cli-plugins-accelerator-overview.html#server-api-connections-for-operators-and-developers-0)
 
 #### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
 
