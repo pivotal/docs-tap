@@ -1,4 +1,4 @@
-The `grype` CLI attempts to perform two over the Internet calls: 
+The `grype` CLI attempts to perform two over the Internet calls:
 
 - One to verify for later versions of the CLI.
 - One to update the vulnerability database before scanning.
@@ -261,4 +261,4 @@ Where `SCAN-NAME` is the name of the source/image scan that failed.
 
 ### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
 
-If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must follow the [Import overlay secrets](../../namespace-provisioner/customize-installation.md) section for the Namespace Provisioner to import the overlay `Secret`s.
+If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must follow the [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.md) section for the Namespace Provisioner to import the overlay `Secret`s.
