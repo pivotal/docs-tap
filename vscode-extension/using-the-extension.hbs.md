@@ -13,20 +13,19 @@ on a per-project basis by using the drop-down menu in **Settings**.
 
 ![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
-## <a id=workload-commands></a> Workload Commands
+## <a id="workload-commands"></a> Workload Commands
 
 All commands are available by right-clicking anywhere in the VS Code project explorer, on an associated
 workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-- From the context menu:
-![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
+- Screenshot of pop-up menu opened from the project explorer:
+  ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
-- From the workload panel:
-<br>
-![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
+- Screenshot of pop-up menu opened from the workload panel:
+  ![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
-- From the command palette:
-![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+- Screenshot of the command palette:
+  ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
 
 ### <a id="apply-workload"></a> Apply a workload
 
