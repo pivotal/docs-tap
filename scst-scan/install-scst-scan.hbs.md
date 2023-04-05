@@ -114,7 +114,7 @@ To install SCST - Scan (Scan controller):
     ```
 
     If you are using Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
-    following scanning configuration might deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
+    following scanning configuration will deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
 
     ```yaml
     ---
