@@ -56,7 +56,7 @@ The following is a selection of useful topics on offer:
 
 - Tutorial: [Setup Dynamic Provisioning of Service Instances](tutorials/setup-dynamic-provisioning.hbs.md)
 - Tutorial: [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](tutorials/integrate-cloud-services.hbs.md)
-- How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
+- How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](how-to-guides/dynamic-provisioning-rds.hbs.md)
 
 **For everyone:**
 

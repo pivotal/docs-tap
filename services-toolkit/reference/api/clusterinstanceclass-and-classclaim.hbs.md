@@ -2,9 +2,13 @@
 
 Detailed API documentation for `ClusterInstanceClass` and `ClassClaim`.
 
-## ClusterInstanceClass
+## <a id="clusterinstanceclass"></a> ClusterInstanceClass
 
-`ClusterInstanceClasses` can be configured to one of two variants - either pool-based or provisioner-based. Claims for pool-based classes are fulfilled by identifying service instances using configuration in `.spec.pool`. Claims for provisioner-based classes are fulfilled by provisioning new service instances using configuration in `.spec.provisioner`. A class can either be a pool-based class or a provisioner-based class, but never both.
+`ClusterInstanceClasses` can be configured to one of two variants - either pool-based or provisioner-based.
+Claims for pool-based classes are fulfilled by identifying service instances using configuration in `.spec.pool`.
+Claims for provisioner-based classes are fulfilled by provisioning new service instances using
+configuration in `.spec.provisioner`.
+A class can either be a pool-based class or a provisioner-based class, but never both.
 
 ```yaml
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
@@ -113,9 +117,13 @@ status:
   observedGeneration: 1
 ```
 
-## ClassClaim
+## <a id="classclaim"></a> ClassClaim
 
-`ClassClaims` refer to a `ClusterInstanceClass`, from which service instances are then either selected (pool-based classes) or provisioned (provisioner-based classes) in order to fulfill the claim. `ClassClaims` adhere to [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) as defined by the Service Binding Specification for Kubernetes, and as such can be bound to Application Workloads via reference in a given Workload's `.spec.serviceClaims` configuration.
+`ClassClaims` refer to a `ClusterInstanceClass`, from which service instances are then either selected
+(pool-based classes) or provisioned (provisioner-based classes) in order to fulfill the claim.
+`ClassClaims` adhere to [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
+as defined by the Service Binding Specification for Kubernetes, and as such can be bound to
+application workloads via reference in a given workload's `.spec.serviceClaims` configuration.
 
 ```yaml
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1

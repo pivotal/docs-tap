@@ -1,12 +1,15 @@
-# Configure Dynamic Provisioning of VMware Tanzu Postgres Service Instances
+# Configure dynamic provisioning of VMware Tanzu Postgres service instances
 
-## <a id="stk-dynamic-provisioning-tanzu-psql-about"></a> About
+This topic details the steps required to setup dynamic provisioning of VMware Tanzu Postgres service instances.
+If you are not already familiar with dynamic provisioning in Tanzu Application Platform, following
+the tutorial [Setup Dynamic Provisioning of Service Instances](../tutorials/setup-dynamic-provisioning.hbs.md)
+might be beneficial to understanding the steps presented here.
 
-This document details the steps required to setup dynamic provisioning of VMware Tanzu Postgres service instances. If you are not already familiar with dynamic provisioning in Tanzu Application Platform, it is recommended to first run through the tutorial [Setup Dynamic Provisioning of Service Instances](../tutorials/setup-dynamic-provisioning.hbs.md). The learnings from that tutorial will be beneficial to understanding the steps presented here.
+## <a id="prereqs"></a> Prerequisites
 
-## <a id="stk-dynamic-provisioning-tanzu-psql-pre-reqs"></a> Pre-requisites
+Before you configure dynamic provisioning, you must have:
 
-* Access to a TAP cluster (version >= 1.5.0)
+- Access to a Tanzu Application Platform cluster v1.5.0 or later.
 
 ## <a id="stk-dynamic-provisioning-tanzu-psql-step-1"></a> Step 1: Install the Tanzu VMware Postgres Operator
 
