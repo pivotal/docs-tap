@@ -112,24 +112,23 @@ You can add other providers manually as required.
 
 #### <a id='1-5-0-tap-gui-new-feats'></a> Tanzu Application Platform GUI
 
-- Tanzu Application Platform GUI now supports automatic configuration with
-  Supply Chain Security Tools - Store. For more information, see
-  [Automatically connect Tanzu Application Platform GUI to the Metadata Store](tap-gui/plugins/scc-tap-gui.hbs.md#scan-auto).
-- Tanzu Application Platform GUI enables specification of security banners. To use this customization,
-  see [Customize security banners](tap-gui/customize/customize-portal.hbs.md#cust-security-banners).
-- Tanzu Application Platform GUI includes an optional plug-in that collects telemetry by using the
-  Pendo tool. To configure Pendo telemetry and opt in or opt out, see
-  [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
-- Upgrades Backstage to 1.10.1
+- **Disclosure:** This upgrade includes a Java script operated by the service provider Pendo.io.
+  The Java script is installed on selected pages of VMware software and collects information about
+  your use of the software, such as clickstream data and page loads, hashed user ID, and limited
+  browser and device information.
+  This information is used to better understand the way you use the software in order to improve
+  VMware products and services and your experience.
+  For more information, see the
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
 
-  **Disclosure:** This upgrade includes a Java script operated by our service provider Pendo.io.
-   The Java script is installed on selected pages of VMware software and collects information about
-   your use of the software, such as clickstream data and page loads, hashed user ID, and limited
-   browser and device information.
-   This information is used to better understand the way you use the software in order to improve
-   VMware products and services and your experience.
-   For more information, see the
-   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
+- Supports automatic configuration with Supply Chain Security Tools - Store. For more information,
+  see [Automatically connect Tanzu Application Platform GUI to the Metadata Store](tap-gui/plugins/scc-tap-gui.hbs.md#scan-auto).
+- Enables specification of security banners. To use this customization,
+  see [Customize security banners](tap-gui/customize/customize-portal.hbs.md#cust-security-banners).
+- Upgrades Backstage to v1.10.1
+- Includes an optional plug-in that collects telemetry by using the Pendo tool.
+  To configure Pendo telemetry and opt in or opt out, see
+  [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
 
 #### <a id="tap-gui-plug-in-new-feats"></a> Tanzu Application Platform GUI plug-ins
 
