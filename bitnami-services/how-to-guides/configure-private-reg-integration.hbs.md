@@ -9,9 +9,9 @@ You can configure this globally for all services, or on a per-service basis.
 Before you integrate Bitnami Services with a private registry or VAC, you must:
 
 - Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`.
-- Have a suitable set of credentials for access to the private registry.
+- Have the credentials to access the private registry.
 
-For how to obtain both of these for VAC integration, see
+For how to obtain both of these prerequisites for VAC integration, see
 [Obtain credentials for VMware Application Catalog ("VAC") Integration](./obtain-credentials-for-vac-integration.hbs.md).
 
 ## <a id="procedure"></a>Procedure
