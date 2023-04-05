@@ -25,7 +25,7 @@ developer productivity.
 ## <a id="getting-started"></a> Getting started
 
 If this is your first time working with services on Tanzu Application Platform,
-then great places to start are
+you might want to start with
 [Claim services on Tanzu Application Platform](../getting-started/claim-services.hbs.md) and
 [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md)
 in the getting started guide.
