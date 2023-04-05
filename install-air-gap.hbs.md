@@ -77,6 +77,23 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
+1. Create a internal registry secret by running:
+
+    ```console
+    tanzu secret registry add registry-credentials \
+        --server   $MY-REGISTRY \
+        --username $MY-REGISTRY-USER \
+        --password $MY-REGISTRY-PASSWORD \
+        --namespace tap-install \
+        --export-to-all-namespaces \
+        --yes
+    ```
+
+    Where:
+
+    - `MY-REGISTRY` is where the workload images and the Tanzu Build Service dependencies are stored.
+    - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -224,8 +241,9 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "REGISTRY-USERNAME"
-    password: "REGISTRY-PASSWORD"
+    secret:
+      name: "KP-DEFAULT-REPO-SECRET"
+      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   ca_cert_data: |
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -233,9 +251,10 @@ shared:
 profile: full
 ceip_policy_disclosed: true
 buildservice:
-  kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -252,8 +271,8 @@ contour:
 
 ootb_supply_chain_basic:
   registry:
-      server: "SERVER-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-      repository: "REPO-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+      server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
+      repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
       ssh_secret: "SSH-SECRET"
   maven:
@@ -272,14 +291,17 @@ accelerator:
 
 appliveview:
   ingressEnabled: true
-  tls:
-    secretName: "SECRET-NAME"
-    namespace: "APP-LIVE-VIEW-NAMESPACE"
 
 appliveview_connector:
   backend:
     ingressEnabled: true
     sslDeactivated: false
+    host: appliveview.INGRESS-DOMAIN
+    caCertData: |-
+      -----BEGIN CERTIFICATE-----
+      MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+      BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+      -----END CERTIFICATE-----
 
 tap_gui:
   service_type: ClusterIP
@@ -324,14 +346,18 @@ Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
-    - Harbor: `harbor.io/my-project/build-service`.
-    - Artifactory: `artifactory.com/my-project/build-service`.
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+    - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`.
-    * Docker Hub has the form `server: "index.docker.io"`.
-    * Google Cloud Registry has the form `server: "gcr.io"`.
+    - Harbor has the form `server: "my-harbor.io"`.
+    - Docker Hub has the form `server: "index.docker.io"`.
+    - Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 - Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
    - Harbor has the form `repository: "my-project/supply-chain"`.
@@ -348,28 +374,36 @@ service's External IP address.
   >**Note:** To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](namespace-provisioner/about.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
-- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
-- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
 
 >**Note** The `appliveview_connector.backend.sslDisabled` key is deprecated and renamed to `appliveview_connector.backend.sslDeactivated`.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
-Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
+TLS is enabled by default on Application Live View back end using ClusterIssuer. You have to set the `ingressEnabled` key to `true` for TLS to be enabled on Application Live View back end using ClusterIssuer. This key is set to `false` by default.
 
-To create a TLS secret for app-live-view, run:
+The `appliveview-cert` certificate is generated by default and its issuerRef points to the `.ingress_issuer` value. The `ingress_issuer` key consumes the value `shared.ingress_issuer` from `tap-values.yaml` by default if you don't specify the `ingress_issuer` in `tap-values.yaml`.
 
-```console
-kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
-```
+When `ingressEnabled` is `true`, HTTPProxy object is created in the cluster and also `appliveview-cert` certificate is generated by default in the `app_live_view` namespace. Here, the secretName `appliveview-cert` stores this certificate.
 
-To verify the HTTPProxy object with the TLS secret, run:
+To verify the HTTPProxy object with the secret, run:
 
 ```console
 kubectl get httpproxy -A
-NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
-app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
 ```
+
+Expected output:
+
+```console
+NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
+app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 appliveview-cert   valid    Valid HTTPProxy
+```
+
+The `appliveview_connector.backend.host` key is backend host in the view cluster. The `appliveview_connector.backend.caCertData` key is the certificate retrieved from the HTTPProxy secret exposed by the Application Live View Backend in view cluster. You retrieve this certificate by running the command below in the view cluster:
+
+```console
+kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
+```
+
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

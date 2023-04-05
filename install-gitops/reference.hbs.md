@@ -1,12 +1,17 @@
 # Tanzu GitOps RI Reference Documentation
 
->**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-## Component Overview
+## <a id="overview"></a>Component Overview
 
-The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
 
-<!-- TODO DIAGRAM -->
+SOPS
+: ![Diagram describing the architecture of GitOps Installer using SOPS.](./images/arch-sops.png)
+
+ESO
+: ![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
+
 
 ### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
@@ -15,8 +20,6 @@ Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest
 1. Fetches a Git repository that contains configuration for Tanzu Application Platform.
 2. Templates with ytt a set of resources and data values.
 3. Deploys with kapp a set of resources to install Tanzu Application Platform, alongside any other user specified confiuration in the Git Repository.
-
-<!-- TODO DIAGRAM -->
 
 ## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
 
@@ -203,7 +206,7 @@ These scripts help to setup your Git repository and configure the values as desc
 - `configure.sh`: Generates the values files described in section [Configuration of values without helper scripts](#configure-values).
 - `deploy.sh`: A light wrapper around a simple `kapp deploy` given the data values from above, and sensitive values which should not be stored on disk.
 
-## Troubleshoot Tanzu GitOps RI
+## <a id="troubleshoot"></a>Troubleshoot Tanzu GitOps RI
 
 This section provides information to help troubleshoot Tanzu GitOps RI.
 

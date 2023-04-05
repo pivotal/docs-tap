@@ -12,7 +12,7 @@ This document details the steps required to setup dynamic provisioning of AWS RD
 
 ## <a id="stk-dynamic-provisioning-rds-step-1"></a> Step 1: Install the AWS Provider for Crossplane
 
-The first step is to install the AWS `Provider` for Crossplane. There are two variants of the `Provider` - [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/) and [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/). VMware recommends you install the official Upbound variant. Follow the official documentation [here](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart) to install the `Provider` and to create a corresponding `ProviderConfig`. 
+The first step is to install the AWS `Provider` for Crossplane. There are two variants of the `Provider` - [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/) and [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/). VMware recommends you install the official Upbound variant. Follow the official documentation [here](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart) to install the `Provider` and to create a corresponding `ProviderConfig`.
 
     > **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane",
     > which you can safely skip over as Crossplane is already installed as part of TAP.

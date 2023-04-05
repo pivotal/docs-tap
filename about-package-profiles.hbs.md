@@ -338,7 +338,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <tr>
    <td>API portal
    </td>
    <td>&check;
@@ -395,7 +394,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <td>Application Live View GUI Backend
+   <td>Application Live View GUI Backend
    </td>
    <td>&check;
    </td>
@@ -423,7 +422,36 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
-  <td>Cloud Native Runtimes
+  <tr>
+   <td>Bitnami Services
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Cloud Native Runtimes
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Crossplane
    </td>
    <td>&check;
    </td>
@@ -464,7 +492,8 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
-  <td>Eventing
+  <tr>
+   <td>Eventing
    </td>
    <td>&check;
    </td>
@@ -479,7 +508,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Flux Source Controller
-  </td>
+   </td>
    <td>&check;
    </td>
    <td>&check;
@@ -507,7 +536,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Learning Center
-  </td>
+   </td>
    <td>&check;
    </td>
    <td>
@@ -520,9 +549,8 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-    <tr>
    <td>Namespace Provisioner
-  </td>
+   </td>
    <td>&check;
    </td>
    <td>&check;

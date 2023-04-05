@@ -14,15 +14,15 @@ Run this command to output a list of available tags.
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
 ```
 
-Use the latest version returned in place of the sample version in this topic, such as `0.1.5-alpha.13` in the following output.
+Use the latest version returned in place of the sample version in this topic. For example, `0.1.5-alpha.13` in the following output.
 
 ```console
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
-0.1.4-alpha.11	
-0.1.4-alpha.12	
-0.1.4-alpha.15	
-0.1.5-alpha.11	
-0.1.5-alpha.12	
+0.1.4-alpha.11  
+0.1.4-alpha.12  
+0.1.4-alpha.15  
+0.1.5-alpha.11  
+0.1.5-alpha.12  
 0.1.5-alpha.13  
 ```
 
@@ -205,7 +205,7 @@ To create a Prisma secret, use the following instructions.
      Prisma configuration to connect to Prisma. This field is required.
 
 The Prisma integration can work with or without the SCST - Store integration.
-The values.yaml file is slightly different for each configuration.
+The `values.yaml` file is slightly different for each configuration.
 
 #### Access Token Authentication
 
@@ -346,12 +346,11 @@ Where:
 
 ### No Store Integration
 
-If you do not want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
+If you do not want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file that is enabled by default:
 
 ```yaml
 # ...
-metadataStore:
-  url: "" # Configuration is moved, so set this string to empty
+metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
 ```
 
 ## Prepare the ScanPolicy
@@ -508,11 +507,12 @@ shared:
 
 ## Connect to Prisma through a Proxy
 
-In order to connect to Prisma through a proxy you will need to add `environmentVariables` configuration to your `prisma-values.yaml`.
+To connect to Prisma through a proxy, you must add `environmentVariables` configuration to your `prisma-values.yaml`.
 
-**Note** - all valid container `env` configurations are supported
+**Note** All valid container `env` configurations are supported.
 
-Example:
+For example:
+
 ```yaml
  namespace: dev
  targetImagePullSecret: tap-registry

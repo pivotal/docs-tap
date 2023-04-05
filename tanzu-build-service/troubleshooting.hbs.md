@@ -135,8 +135,5 @@ workload), the workload will then recreate it with valid values.
 
 Alternatively, you can re-add the `buildservice.kp_default_repository_*` fields
 in the `tap-values.yaml`. Note that you have to set both the repository and the
-auth fields in order to override the shared values.
-This means that if you are using password auth, you will have to set `kp_default_repository`,
-`kp_default_repository_username`, and `kp_default_repository_password`. If you are using secret
-auth, set `kp_default_repository`, `kp_default_repository_secret.name`, and
-`kp_default_repository_secret.namespace`.
+auth fields in order to override the shared values. (Set `kp_default_repository`, `kp_default_repository_secret.name`, and
+`kp_default_repository_secret.namespace`).

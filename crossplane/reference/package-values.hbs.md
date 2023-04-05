@@ -1,20 +1,31 @@
 # Package Values
 
-This document lists the keys and values which can be used to configure the behaviour of the Crossplane Package. Configuration is split between configuration specific to Crossplane in Tanzu Application Platform as well as configuration of the UXP Helm Chart. Note that if you are applying configuration to Tanzu Application Platform through the usage of profiles and `tap-values.yml`, then all configuration will need to exist under the `crossplane` top-level key. For example:
+This topic lists the keys and values you can use to configure the behavior of the Crossplane Package.
+Configuration is split between configuration specific to Crossplane in Tanzu Application Platform
+and configuration of the Upbound Universal Crossplane (UXP) Helm Chart.
+
+If you are applying configuration to Tanzu Application Platform through the use of profiles and the `tap-values.yaml`,
+all configuration must exist under the `crossplane` top-level key.
+
+For example:
 
 ```yaml
 crossplane:
   replicas: 3
 ```
 
-## Configuration specific to Tanzu Application Platform
+## <a id="tap-specific"></a> Tanzu Application Platform configuration
+
+The following table lists configuration specific to Crossplane in Tanzu Application Platform.
 
 | KEY                                                  |DEFAULT                                     |TYPE    | DESCRIPTION |
 |------------------------------------------------------|--------------------------------------------|--------|------------|
 | kubernetes_version                                   |""                                          |string   Optional: The Kubernetes Version. Valid values are '' or take the form '1.25.0' |
 | kubernetes_distribution                              |""                                          |string   Optional: The Kubernetes Distribution. Valid values are '' or 'openshift' |
 
-## Standard Crossplane Configuration
+## <a id="crossplane"></a> Standard Crossplane configuration
+
+The following table lists configuration for the UXP Helm Chart.
 
 | KEY                                                  |DEFAULT                                     |TYPE    | DESCRIPTION |
 |------------------------------------------------------|--------------------------------------------|--------|------------|
@@ -27,7 +38,7 @@ crossplane:
 | bootstrapper.image.pullPolicy                        |IfNotPresent                                |string |
 | bootstrapper.image.repository                        |xpkg.upbound.io/upbound/uxp-bootstrapper    |string |
 | bootstrapper.image.tag                               |v1.11.0-up.1                                |string |
-| maxReconcileRate                                     |""                                          |string   How frequently Crossplane may reconcile its resources (seconds). Default: 10 |
+| maxReconcileRate                                     |""                                          |string  | How frequently Crossplane may reconcile its resources (seconds). Default: 10 |
 | metrics.enabled                                      |false                                       |boolean |
 | securityContextCrossplane.allowPrivilegeEscalation   |false                                       |boolean |
 | securityContextCrossplane.readOnlyRootFilesystem     |true                                        |boolean |

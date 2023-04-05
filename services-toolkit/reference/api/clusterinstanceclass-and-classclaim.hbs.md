@@ -65,7 +65,7 @@ spec:
     # See https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/.
     # (optional).
     fieldSelector:
-    
+
     # LabelSelector specifies a set of labels that MUST match.
     # See https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors.
     # (optional).
@@ -132,7 +132,7 @@ spec:
   classRef:
     # The name of the class from which to claim a service instance.
     # Note: If referring to a provisioner-based class, then users must have sufficient RBAC permission to claim from
-    # the class. See [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) for further information.
+    # the class. See [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md) for further information.
     name: mysql-unmanaged
 
   # Parameters are key-value pairs that are configuration inputs to the instance obtained from the referenced

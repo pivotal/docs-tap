@@ -1,24 +1,24 @@
-# Installing Tanzu Application Platform via GitOps with External Secrets Operator (ESO)
+# Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)
 
->**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 <!-- TODO: use markdown-generated anchor values to ease navigating within VS Code (and validating links). -->
 
-This topic describes how to install Tanzu Application Platform via GitOps with secrets managed in an external secrets store.
+This topic describes how to install Tanzu Application Platform through GitOps with secrets managed in an external secrets store. 
+To decide which approach to use, see [Choosing SOPS or ESO](reference.hbs.md#choosing-sops-or-eso). 
 
->**Caution**
->
-> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster. This topic is the ESO based approach to managing secrets in an external secrets store. For help in deciding which approach to use, see [Choosing SoPS or ESO](reference.hbs.md#choosing-sops-or-eso).
->
-> The External Secrets Operator integration in this release of Tanzu GitOps RI has been verified to work with an AWS Elastic Kubernetes Service cluster and AWS Secrets Manager. Other combinations of Kubernetes distribution and ESO Providers have yet to be verified.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster. 
+The External Secrets Operator integration in this release of Tanzu GitOps RI 
+is verified to support AWS Elastic Kubernetes Service cluster with AWS Secrets Manager. 
+Other combinations of Kubernetes distribution and ESO providers are not verified.
 
 ## <a id='prerequisites'></a>Prerequisites
 
 Before installing Tanzu Application Platform, ensure you have:
 
-- Completed the [Prerequisites](../prerequisites.html).
+- Completed the [Prerequisites](../prerequisites.hbs.md).
 - Created [AWS Resources](../aws-resources.hbs.md).
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
@@ -62,7 +62,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`.
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
-    - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
+    - `TARGET-REPOSITORY` is your target repository, a folder or repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
     VMware recommends using a JSON key file to authenticate with Google Container Registry.
@@ -87,13 +87,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='create-a-new-git-repository'></a>Create a new git repository
 
-1. In a hosted git service (like GitHub or GitLab), create a new respository.
+1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository via SSH.
+    This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
 
-1. Initialize a new git repository
-
-    Example:
+1. Initialize a new git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -103,11 +101,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-1. Create a read-only "Deploy Key" for this new repo (recommended) or "SSH Key" for an account with read access to this repository.
+1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
 
-    The private portion of this key will be referred below as GIT_SSH_PRIVATE_KEY.
+    The private portion of this key is referred later as `GIT_SSH_PRIVATE_KEY`.
 
-## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps RI
+## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
 
@@ -134,7 +132,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='create-cluster-configuration'></a>Create cluster configuration
 
-1. Seed configuration for a cluster using ESO (e.g. via the convenience script provided):
+1. Seed configuration for a cluster using ESO through the provided convenience script:
 
     ```console
     cd $HOME/tap-gitops
@@ -144,10 +142,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     Where:
 
-    - `CLUSTER-NAME` a name for your cluster. Typically, this is the same as your EKS cluster's name -- the name of the cluster as it appears in `eksctl get clusters`.
+    - `CLUSTER-NAME` is the name for your cluster. Typically, this is the same as your EKS cluster's name, the name of the cluster as it appears in `eksctl get clusters`.
     - `eso` selects the External Secrets Operator-based secrets management variant.
 
-    For example, if the name of your cluster is "iterate-green":
+    For example, if the name of your cluster is `iterate-green`:
 
     ```console
     cd $HOME/tap-gitops
@@ -155,76 +153,81 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ./setup-repo.sh iterate-green eso
     ```
 
-    This script creates the directory `clusters/iterate-green/` and copies in the configuration required to sync this git repository with the cluster as well as installing Tanzu Application Platform.
+    This script creates the directory `clusters/iterate-green/` and copies in the 
+    configuration required to sync this Git repository with the cluster and installing Tanzu Application Platform.
 
 2. Commit and push:
-
-    Saving the base configuration in an initial commit makes it easier to review customizations, later.
 
     ```console
     git add . && git commit -m 'Add "iterate-green" cluster'
     git push
     ```
 
+    Saving the base configuration in an initial commit makes it easier to review customizations in the future.
+
 ## <a id='customize-cluster-configuration'></a>Customize cluster configuration
 
-The remainder of the setup is performed from within the directory that was just created:
+Configuring the Tanzu Application Platform installation involves setting up two components:
 
-```console
-cd clusters/CLUSTER-NAME
-```
+- an installation of Tanzu Application Platform;
+- an instance of Tanzu Sync, the component that implements the GitOps workflow, 
+fetching configuration from Git and applying it to the cluster
 
-For example, if the name of your cluster is "iterate-green":
+Follow these steps to customize your Tanzu Application Platform cluster configuration:
 
-```console
-cd clusters/iterate-green
-```
+1. Navigate to the created directory:
 
-Configuring the install of Tanzu Application Platform involves setting up two components:
+    ```console
+    cd clusters/CLUSTER-NAME
+    ```
 
-- an installation of Tanzu Application Platform
-- an instance of Tanzu Sync -- the component that implements the GitOps workflow, fetching configuration from Git and applying it to the cluster.
+    For example, if the name of your cluster is `iterate-green`:
 
-To ease this setup, define the following environment variables
+    ```console
+    cd clusters/iterate-green
+    ```
 
-```console
-export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
-export AWS_REGION=AWS-REGION
-export EKS_CLUSTER_NAME=EKS-CLUSTER-NAME
-export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
-```
+1. Define the following environment variables:
 
-Where:
+    ```console
+    export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
+    export AWS_REGION=AWS-REGION
+    export EKS_CLUSTER_NAME=EKS-CLUSTER-NAME
+    export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
+    ```
 
-- `MY-AWS-ACCOUNT-ID` is your AWS account ID as it appears in the output of `aws sts get-caller-identity`.
-- `AWS-REGION` is the region where the Secrets Manager is and EKS cluster has been created.
-- `EKS-CLUSTER-NAME` is the name of the target cluster as it appears in the output of `eksctl get clusters`.
-- `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. If those have been relocated as described above, then this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
+    Where:
+
+    - `MY-AWS-ACCOUNT-ID` is your AWS account ID as it appears in the output of `aws sts get-caller-identity`.
+    - `AWS-REGION` is the region where the Secrets Manager is and the EKS cluster was created.
+    - `EKS-CLUSTER-NAME` is the name of the target cluster as it appears in the output of `eksctl get clusters`.
+    - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. 
+    If they are relocated to a different registry as described in [Relocate images to a registry](#relocate-images-to-a-registry), 
+    the value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
 ### <a id='grant-read-access-to-secret-data'></a>Grant read access to secret data
 
 All sensitive configuration is stored in AWS Secrets Manager secrets.
-Both Tanzu Sync and the TAP installation need a means of accessing sensitive data stored in AWS Secrets Manager.
+Both Tanzu Sync and the Tanzu Application Platform installation require access to this sensitive data.
 
-The following implements the [IAM Role for a Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) configuration:
+Follow these step to configure the [IAM Role for a Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html):
 
-1. In AWS Identity and Access Manager, create two IAM Policies: one to read Tanzu Sync secrets and another to read TAP installation secrets.
-
-    This can be done using the supplied script:
+1. In AWS Identity and Access Manager, create two IAM Policies, one to read Tanzu Sync secrets 
+and another to read TAP installation secrets by using the supplied script:
 
     ```console
     tanzu-sync/scripts/aws/create-policies.sh
     ```
 
-2. Create two IAM Role-to-Service Account pairs for your cluster: one for Tanzu Sync and anther for the TAP installation.
-
-    For your convenience, this is also scripted:
+2. Create two IAM Role-to-Service Account pairs for your cluster, one for Tanzu Sync 
+and anther for the Tanzu Application Platform installation by using the supplied script:
 
     ```console
     tanzu-sync/scripts/aws/create-irsa.sh
     ```
 
-    For example, if the name of the EKS cluster is "iterate-green" and using the defaults, there will now be two IAM roles in the AWS account:
+    For example, if the name of the EKS cluster is `iterate-green` using the defaults, 
+    there are two IAM roles in the AWS account:
 
     ```json
     $ aws iam list-roles --query 'Roles[?starts_with(RoleName,`iterate-green`)]'
@@ -242,26 +245,29 @@ The following implements the [IAM Role for a Service Account](https://docs.aws.a
 
 ### <a id='generate-default-configuration'></a>Generate default configuration
 
-To get started quickly, use the following script to generate default configuration for the both Tanzu Sync and Tanzu Application Platform installation:
+You can use the following script to generate default configuration for the both 
+Tanzu Sync and Tanzu Application Platform installation:
 
 ```console
 tanzu-sync/scripts/configure.sh
 ```
 
-The following sections walk through how to adjust those values (if necessary).
+The following sections guide you through the process of editing the configuration 
+values to suit your specific needs.
 
-### <a id='reviewstore-tanzu-sync-config'></a>Review/Store Tanzu Sync config
+### <a id='reviewstore-tanzu-sync-config'></a>Review and store Tanzu Sync config
 
 Configuration for Tanzu is stored in two locations:
 
 - sensitive configuration is stored in AWS Secrets Manager;
-- non-sensitive configuration are stored in YAML files in the git repository.
+- non-sensitive configuration are stored in YAML files in the Git repository.
 
-Create the sensitive configuration and review the non-sensitive configuration as follows:
+Follow these steps to create the sensitive configuration and review the non-sensitive configuration:
 
-1. Save the credentials Tanzu Sync should use to authenticate with the Git repository:
+1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository:
 
-    Create a secret named `dev/EKS-CLUSTER-NAME/tanzu-sync/sync-git-ssh` containing (as plaintext):
+    Create a secret named `dev/EKS-CLUSTER-NAME/tanzu-sync/sync-git-ssh` containing 
+    the following information as plaintext:
 
     ```json
     {
@@ -270,9 +276,10 @@ Create the sensitive configuration and review the non-sensitive configuration as
     }
     ```
 
-    Where `EKS-CLUSTER-NAME` is the name as it appears in `eksctl get clusters`
+    Where `EKS-CLUSTER-NAME` is the name as it appears in `eksctl get clusters`.
 
-    For example, if the git repository is hosted on GitHub, and the private key created in [Create a new git repository](#create-a-new-git-repository), above, is stored in the file `~/.ssh/id_ed25519`:
+    For example, if the Git repository is hosted on GitHub, and the private key 
+    created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
 
     ```console
     aws secretsmanager create-secret \
@@ -288,17 +295,19 @@ Create the sensitive configuration and review the non-sensitive configuration as
 
     Where:
 
-    - the contents of `~/.ssh/id_ed25519` is the private portion of the SSH key.
+    - The content of `~/.ssh/id_ed25519` is the private portion of the SSH key.
     - `ssh-keyscan` obtains the public keys for the SSH host.
-    - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line string with embedded newline chars (`\n`). JSON does not support multiline strings.
+    - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line 
+    string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
     >**Caution**
     >
-    > This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository via SSH. Authenticating via HTTP Basic Authentication is not yet supported.
+    > This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH. 
+    > Authenticating by using HTTP Basic Authentication is not supported.
 
-2. Save credentials used to authenticate with the OCI registry hosting the Tanzu Application Platform images:
-
-    Create a secret named `dev/EKS-CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig` containing (as plaintext):
+2. Save the authentication credentials required for accessing the OCI registry that 
+hosts the Tanzu Application Platform images by creating a secret named `dev/EKS-CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig` 
+containing the following information as plaintext:
 
     ```json
     {
@@ -336,11 +345,9 @@ Create the sensitive configuration and review the non-sensitive configuration as
     )"
     ```
 
-3. Review the hosted git URL and branch Tanzu Sync should use:
+3. Review the hosted Git URL and branch Tanzu Sync should use.
 
-    This configuration was generated by the `configure.sh` script.
-
-    It reported:
+    This configuration was generated by the `configure.sh` script. It reported:
 
     ```console
     ...
@@ -348,8 +355,9 @@ Create the sensitive configuration and review the non-sensitive configuration as
     ...
     ```
 
-    For example, for the "iterate-green" cluster if this git repository is hosted on GitHub at `my-organization/tap-gitops`
-    on the `main` branch, `tanzu-sync.yaml` would contain:
+    For example, for the `iterate-green` cluster, if the Git repository is hosted 
+    on GitHub at `my-organization/tap-gitops` on the `main` branch, `tanzu-sync.yaml` 
+    contains the following information:
 
     ```yaml
     ---
@@ -359,13 +367,11 @@ Create the sensitive configuration and review the non-sensitive configuration as
      sub_path: clusters/iterate-green/cluster-config
     ```
 
-    Review and adjust these values as necessary.
+    You can review and edit these values as needed.
 
 4. Review the integration with External Secrets Operator.
 
-    This configuration was generated by the `configure.sh` script.
-
-    It reported:
+    This configuration was generated by the `configure.sh` script. It reported:
 
     ```console
     ...
@@ -373,7 +379,8 @@ Create the sensitive configuration and review the non-sensitive configuration as
     ...
     ```
 
-    For example, for the "iterate-green" cluster, if the AWS account is 665100000000, then `tanzu-sync-eso.yaml` would contain:
+    For example, for the `iterate-green` cluster, if the AWS account is `665100000000`, 
+    `tanzu-sync-eso.yaml` contains the following information:
 
     ```yaml
     ---
@@ -398,32 +405,39 @@ Create the sensitive configuration and review the non-sensitive configuration as
 
     Where:
 
-    - `role_arn` is the IAM role that grants permission to Tanzu Sync to read secrets specific to Tanzu Sync. This role was created in the [Grant Tanzu Sync and TAP installation read access to secret data](#grant-read-access-to-secret-data) step, above.
-    - `ssh_private_key` is the AWS Secrets Manager secret name (aka "key") and JSON property that contains the private key portion of the SSH authentication to the git repository (created above).
-    - `ssh_known_hosts` is the AWS Secrets Manager secret name (aka "key") and JSON property that contains the known host entries for the SSH authentication to the git repository (created above).
-    - `install_registry_dockerconfig` contains the AWS Secrets Manager secret name that contains the Docker config authentication to the OCI registry hosting the Tanzu Application Platform images (created above).
+    - `role_arn` is the IAM role that grants permission to Tanzu Sync to read secrets specific to Tanzu Sync. 
+    This role was created in the [Grant read access to secret data](#grant-read-access-to-secret-data) section.
+    - `ssh_private_key` is the AWS Secrets Manager secret name, as known as "key", 
+    and JSON property that contains the private key portion of the SSH authentication 
+    to the Git repository created earlier.
+    - `ssh_known_hosts` is the AWS Secrets Manager secret name, as known as "key", 
+    and JSON property that contains the known host entries for the SSH authentication 
+    to the Git repository created earlier.
+    - `install_registry_dockerconfig` contains the AWS Secrets Manager secret name 
+    that contains the Docker config authentication to the OCI registry hosting the 
+    Tanzu Application Platform images created earlier.
 
-    Review and adjust these values as necessary.
+    You can review and edit these values as needed.
 
-5. Commit the Tanzu Sync configuration
+5. Commit the Tanzu Sync configuration.
 
-    For example, for the "iterate-green" cluster:
+    For example, for the "iterate-green" cluster, run:
 
     ```console
     git add tanzu-sync/
     git commit -m 'Configure Tanzu Sync on "iterate-green"'
     ```
 
-### <a id='reviewstore-tap-installation-config'></a>Review/Store TAP installation config
+### <a id='reviewstore-tap-installation-config'></a>Review and store Tanzu Application Platform installation config
 
 Configuration for the Tanzu Application Platform installation are stored in two places:
 
 - sensitive configuration is stored in AWS Secrets Manager;
-- non-sensitive configuration is stored in YAML files in the git repository.
+- non-sensitive configuration is stored in YAML files in the Git repository.
 
-Create the sensitive configuration and review the non-sensitive configuration as follows:
+Follow these steps to create the sensitive configuration and review the non-sensitive configuration:
 
-1. Save the "sensitive values" for the Tanzu Application Platform installation:
+1. Save the sensitive values for the Tanzu Application Platform installation:
 
     Create a secret named `dev/${EKS_CLUSTER_NAME}/tap/sensitive-values.yaml` that will contain the sensitive portion of the "TAP values" configuring the Tanzu Application Platform. These are values that might have gone in the `tap-values.yaml` file but are sensitive data (e.g. username and password, private key, etc.).
 
@@ -477,7 +491,7 @@ Create the sensitive configuration and review the non-sensitive configuration as
 
 3. Commit the Tanzu Application Platform installation configuration.
 
-    For example, for the "iterate-green" cluster:
+    For example, for the "iterate-green" cluster, run:
 
     ```console
     git add cluster-config/

@@ -1,6 +1,6 @@
 # Install Bitnami Services
 
-This document describes how to install Bitnami Services from the Tanzu Application Platform package
+This topic describes how to install Bitnami Services from the Tanzu Application Platform package
 repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
@@ -12,7 +12,7 @@ repository.
 
 Before installing Bitnami Services:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 
 ## <a id='install-bitnami-services'></a> Install Bitnami Services
 
@@ -46,7 +46,7 @@ To install Bitnami Services:
     tanzu package installed get bitnami-services -n tap-install
     ```
 
-    and checking that the `STATUS` value is `Reconcile succeeded`
+    In the output, confirm that the `STATUS` value is `Reconcile succeeded`.
 
     For example:
 

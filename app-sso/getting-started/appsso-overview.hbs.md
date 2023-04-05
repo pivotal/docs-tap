@@ -49,7 +49,7 @@ For more information about mapping for OpenID Connect, LDAP and SAML, see:
 
 - [OpenID external groups mapping](../service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
 - [LDAP external groups mapping](../service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
-- [SAML external groups mapping](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
+- [SAML (experimental) external groups mapping](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
 ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../service-operators/token-signature.md). Client
 applications may verify their validity using the AuthServer's public keys.

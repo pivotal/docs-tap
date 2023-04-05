@@ -1,6 +1,6 @@
 # Install Services Toolkit
 
-This document describes how to install Services Toolkit from the Tanzu Application Platform package
+This topic describes how to install Services Toolkit from the Tanzu Application Platform package
 repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
@@ -12,7 +12,7 @@ repository.
 
 Before installing Services Toolkit:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install cert-manager. For more information, see [Install cert-manager](../cert-manager/install.hbs.md).
 
 ## <a id='install-services-toolkit'></a> Install Services Toolkit
@@ -48,7 +48,7 @@ To install Services Toolkit:
     tanzu package installed get services-toolkit -n tap-install
     ```
 
-    and checking that the `STATUS` value is `Reconcile succeeded`
+    In the output, confirm that the `STATUS` value is `Reconcile succeeded`.
 
     For example:
 
