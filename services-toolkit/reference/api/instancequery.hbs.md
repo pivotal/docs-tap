@@ -2,9 +2,11 @@
 
 Detailed API documentation for `InstanceQuery`.
 
-## InstanceQuery
+## <a id="instancequery"></a> InstanceQuery
 
-`InstanceQuery` is a create-only API that, given a pool-based `ClusterInstanceClass`, returns the intersection of the set of service instances represented by that class and the claimable service instances for the namespace of the `InstanceQuery`.
+`InstanceQuery` is a create-only API that, given a pool-based `ClusterInstanceClass`, returns the
+intersection of the set of service instances represented by that class and the claimable service instances
+for the namespace of the `InstanceQuery`.
 
 ```yaml
 apiVersion: claimable.services.apps.tanzu.vmware.com/v1alpha1

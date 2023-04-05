@@ -20,8 +20,8 @@ The following table lists configuration specific to Crossplane in Tanzu Applicat
 
 | KEY                                                  |DEFAULT                                     |TYPE    | DESCRIPTION |
 |------------------------------------------------------|--------------------------------------------|--------|-------------|
-| kubernetes_version                                   |`""`                                        |string  | Optional: The Kubernetes Version. Valid values are `''` or take the form `'1.25.0'` |
-| kubernetes_distribution                              |`""`                                        |string  | Optional: The Kubernetes Distribution. Valid values are `''` or `'openshift'` |
+| kubernetes_version                                   |`""`                                        |string  | Optional: The Kubernetes version. Valid values are `''` or take the form `'1.25.0'` |
+| kubernetes_distribution                              |`""`                                        |string  | Optional: The Kubernetes distribution. Valid values are `''` or `'openshift'` |
 
 ## <a id="crossplane"></a> Standard Crossplane configuration
 

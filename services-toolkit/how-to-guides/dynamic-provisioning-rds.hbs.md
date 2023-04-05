@@ -1,24 +1,28 @@
-# Configure Dynamic Provisioning of AWS RDS Service Instances
+# Configure dynamic provisioning of AWS RDS service instances
 
-## <a id="stk-dynamic-provisioning-rds-about"></a> About
+This topic details the steps required to setup dynamic provisioning of AWS RDS service instances.
+If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
+following the tutorial
+[Setup Dynamic Provisioning of Service Instances](../tutorials/setup-dynamic-provisioning.hbs.md).
+might be beneficial to understanding the steps presented here.
 
-This document details the steps required to setup dynamic provisioning of AWS RDS service instances. If you are not already familiar with dynamic provisioning in Tanzu Application Platform, it is recommended to first run through the tutorial [Setup Dynamic Provisioning of Service Instances](../tutorials/setup-dynamic-provisioning.hbs.md). The learnings from that tutorial will be beneficial to understanding the steps presented here.
+## <a id="prereqs"></a> Prerequisites
 
-## <a id="stk-dynamic-provisioning-rds-pre-reqs"></a> Pre-requisites
+Before you configure dynamic provisioning, you must have:
 
-* Access to a TAP cluster (version >= 1.5.0)
-* The `tanzu services` CLI plug-in (version >= 0.6.0)
-* Access to AWS
+- Access to a Tanzu Application Platform cluster v1.5.0 or later.
+- The Tanzu services CLI plug-in v0.6.0 or later.
+- Access to AWS.
 
 ## <a id="stk-dynamic-provisioning-rds-step-1"></a> Step 1: Install the AWS Provider for Crossplane
 
 The first step is to install the AWS `Provider` for Crossplane. There are two variants of the `Provider` - [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/) and [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/). VMware recommends you install the official Upbound variant. Follow the official documentation [here](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart) to install the `Provider` and to create a corresponding `ProviderConfig`.
 
-    > **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane",
-    > which you can safely skip over as Crossplane is already installed as part of TAP.
-    > The documentation also assumes Crossplane to be installed in the `upbound-system` namespace,
-    > however when working with Crossplane on TAP it is installed to the `crossplane-system` namespace by default.
-    > Bear this in mind when it comes to creating the `Secret` and the `ProviderConfig` with credentials for the `Provider`.
+> **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane",
+> which you can safely skip over as Crossplane is already installed as part of TAP.
+> The documentation also assumes Crossplane to be installed in the `upbound-system` namespace,
+> however when working with Crossplane on TAP it is installed to the `crossplane-system` namespace by default.
+> Bear this in mind when it comes to creating the `Secret` and the `ProviderConfig` with credentials for the `Provider`.
 
 ## <a id="stk-dynamic-provisioning-rds-step-2"></a> Step 2: Create CompositeResourceDefinition
 
@@ -207,7 +211,7 @@ $ kubectl apply -f app-operator-claim-aws-rds-psql.rbac.yml
 $ tanzu service class-claim create rds-psql-1 --class aws-rds-psql -p storageGB=30
 ```
 
-    > **NOTE** Whether or not it is possible for application Workloads to establish network connectivity to the
-    > resulting RDS database is dependent on a number of factors, including specifics about the environment you're
-    > working in, as well as the configuration used in the `Composition`. At a minimum you will likely need to
-    > configure a `securityGroup` to permit inbound traffic, but there may be other requirements as well.
+> **NOTE** Whether or not it is possible for application Workloads to establish network connectivity to the
+> resulting RDS database is dependent on a number of factors, including specifics about the environment you're
+> working in, as well as the configuration used in the `Composition`. At a minimum you will likely need to
+> configure a `securityGroup` to permit inbound traffic, but there may be other requirements as well.

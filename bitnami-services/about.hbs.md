@@ -1,7 +1,7 @@
 # About Bitnami Services
 
-Bitnami Services provides an pre-installed set of backing services for Tanzu Application Platform.
-The services consist of MySQL, PostgreSQL, RabbitMQ and Redis, all of which are backed by the
+Bitnami Services provides a pre-installed set of backing services for Tanzu Application Platform.
+The services consist of MySQL, PostgreSQL, RabbitMQ, and Redis, all of which are backed by the
 corresponding Bitnami Helm Chart.
 Through integration with [Crossplane](../crossplane/about.hbs.md) and
 [Services Toolkit](../services-toolkit/about.hbs.md), these four services are immediately ready
