@@ -423,7 +423,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Bitnami
+   <td>Bitnami Services
    </td>
    <td>&check;
    </td>
