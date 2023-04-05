@@ -187,7 +187,7 @@ metadata:
 
 Where `SECRET-NAME` is the name of the secret that contains the Grype overlay such as `grype-airgap-override-stale-db-overlay`.
 
-For information about annotations, see [Customize package installation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/customize-package-installation.html).
+For information about annotations, see [Customize package installation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/customize-package-installation.html).
 
 1. Update your `tap-values.yaml`.
 
