@@ -372,6 +372,10 @@ updates. For a workaround, see [Troubleshooting and limitations](services-toolki
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
+#### <a id='1-5-0-scc-ki'></a> Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter `carvel_package.name_suffix`, existing `Workloads` will incorrectly output a Carvel `Package` to the GitOps repository that uses the old value of `carvel_package.name_suffix`. This `Package` can be ignored or deleted.
+
 #### <a id="1-5-apps-plugin-known-issues"></a> Tanzu CLI Apps plug-in
 
 - `tanzu apps workload apply` does not wait for the changes to be taken when the workload is updated
