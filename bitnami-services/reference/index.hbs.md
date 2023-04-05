@@ -1,4 +1,6 @@
 # Reference
 
-* [Dependencies](dependencies.hbs.md)
-* [Package values](package-values.hbs.md)
+In this section:
+
+- [Dependencies](dependencies.hbs.md)
+- [Package values](package-values.hbs.md)
