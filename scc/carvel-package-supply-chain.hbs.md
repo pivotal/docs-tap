@@ -176,7 +176,7 @@ To use the Carvel Package Supply Chains, you must add the label `apps.tanzu.vmwa
     --app tanzu-java-web-app \
     --type server \
     --label apps.tanzu.vmware.com/carvel-package-workflow=true \
-    --image IMAGE
+    --image springcommunity/spring-framework-petclinic
   ```
 
 Expect to see the following output:
@@ -194,7 +194,7 @@ Expect to see the following output:
       9 + |  name: tanzu-java-web-app
      10 + |  namespace: DEVELOPER_NAMESPACE
      11 + |spec:
-     12 + |  image: IMAGE
+     12 + |  image: springcommunity/spring-framework-petclinic
   ```
 
 1. (Optional) You can override parameters set by the operator. Set a GitOps subpath. This verifies the path in your GitOps repository to which Carvel Packages are written. Defaults to `""`. See [Template referemce](ootb-template-reference.hbs.md#carvel).
