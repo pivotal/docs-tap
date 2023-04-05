@@ -322,7 +322,7 @@ docs.vmware.com is built.
       - [How-To Guides](bitnami-services/how-to-guides/index.hbs.md)
         - [Configure private registry and VMware Application catalog integration for Bitnami Services](bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
         - [Obtain credentials for VMware Application Catalog Integration](bitnami-services/how-to-guides/obtain-credentials-for-vac-integration.hbs.md)
-        - [Troubleshooting and known limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md)
+        - [Troubleshooting and known limitations](bitnami-services/how-to-guides/troubleshooting.hbs.md)
       - [Reference](bitnami-services/reference/index.hbs.md)
         - [Dependencies](bitnami-services/reference/dependencies.hbs.md)
         - [Package values](bitnami-services/reference/package-values.hbs.md)
