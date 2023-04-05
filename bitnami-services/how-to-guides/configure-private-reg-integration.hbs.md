@@ -12,7 +12,7 @@ Before you integrate Bitnami Services with a private registry or VAC, you must:
 - Have the credentials to access the private registry.
 
 For how to obtain both of these prerequisites for VAC integration, see
-[Obtain credentials for VMware Application Catalog ("VAC") Integration](./obtain-credentials-for-vac-integration.hbs.md).
+[Obtain credentials for VMware Application Catalog Integration](./obtain-credentials-for-vac-integration.hbs.md).
 
 ## <a id="procedure"></a>Procedure
 

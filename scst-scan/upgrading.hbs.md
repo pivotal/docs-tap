@@ -8,11 +8,11 @@ This topic includes instructions for:
 
 - [Upgrade Supply Chain Security Tools - Scan](#upgrade-supply-chain-security-tools---scan)
   - [ Prerequisites](#-prerequisites)
-  - [ General Upgrades for Supply Chain Security Tools - Scan](#-general-upgrades-for-supply-chain-security-tools---scan)
+  - [ General Upgrades for SCST - Scan](#-general-upgrades-for-scst---scan)
   - [ Upgrading a scanner in all namespaces](#-upgrading-a-scanner-in-all-namespaces)
-    - [ Installation via Namespace Provisioner](#-installation-via-namespace-provisioner)
+    - [ Installation by using Namespace Provisioner](#-installation-by-using-namespace-provisioner)
     - [ Manual installation](#-manual-installation)
-  - [ Upgrading to Version v1.2.0](#-upgrading-to-version-v120)
+  - [ Upgrade to Version v1.2.0](#-upgrade-to-version-v120)
 
 
 ## <a id="prereqs"></a> Prerequisites
@@ -21,7 +21,7 @@ Before you upgrade SCST - Scan:
 
 * Upgrade the Tanzu Application Platform by following the instructions in [Upgrading Tanzu Application Platform](../upgrading.md)
 
-## <a id="general-upgrades"></a> General Upgrades for Supply Chain Security Tools - Scan
+## <a id="general-upgrades"></a> General Upgrades for SCST - Scan
 
 When you're upgrading to any version of SCST - Scan these are some factors to accomplish this task:
 
@@ -36,29 +36,41 @@ When you're upgrading to any version of SCST - Scan these are some factors to ac
    your `tap-values.yaml` for the new version.
 
 ## <a id="upgrade-scanner"></a> Upgrading a scanner in all namespaces
-This section describes how to upgrade a supported scanner in all namespaces depending on the method of installation of the scanner.
-1. Installation via Namespace Provisioner
+This section describes how to upgrade a supported scanner in all namespaces. The procedure is different depending on the installation method:
+
+1. Installation by using Namespace Provisioner
 2. Manual installation
 
-### <a id="upgrade-scanner-nsp"></a> Installation via Namespace Provisioner
-All scanners installed by the Namespace provisioner in all managed namespaces are upgraded automatically. For example, if you upgrade your installation of Tanzu Application Platform and the version of Grype gets updated, all Grype scanners installed by the Namespace provisioner for all managed namespaces will be automatically upgraded.
+### <a id="upgrade-scanner-nsp"></a> Installation by using Namespace Provisioner
+
+All scanners installed by the Namespace Provisioner in all managed namespaces
+are upgraded automatically. For example, if you upgrade your installation of
+Tanzu Application Platform and the version of Grype is updated, all Grype
+scanners installed by the Namespace Provisioner for all managed namespaces are
+automatically upgraded.
 
 ### <a id="upgrade-scanner-manual"></a> Manual installation
-1. If a scanner (e.g. Grype Scanner) was installed as part of Tanzu Application Platform via the [full profile](../install.hbs.md#full-profile), upgrade using the following command:
+
+1. If a scanner, such as Grype Scanner, was installed as part of Tanzu Application Platform by using the [full profile](../install.hbs.md#full-profile), run to upgrade:
+
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yaml -n tap-install
 ```
+
 Where `VERSION` is your Tanzu Application Platform version.
 
-1. If a scanner (e.g. Grype Scanner) was installed via [component installation](../partials/_install-components.hbs.md) you will need to manually using the following command.
+1. If a scanner, such as Grype Scanner, was installed by using [component installation](../partials/_install-components.hbs.md) you must manually run:
+
 ```console
 tanzu package installed update grype -p grype.scanning.apps.tanzu.vmware.com -v GRYPE-VERSION --values-file grype-values.yaml -n NAMESPACE
 ```
+
 Where:
+
 - `GRYPE-VERSION` is the version of Grype that you are upgrading to.
 - `NAMESPACE` is the namespace in which Grype is installed in.
 
-## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
+## <a id="upgrade-to-1-2-0"></a> Upgrade to Version v1.2.0
 
 To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 

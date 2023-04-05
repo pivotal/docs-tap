@@ -1,11 +1,15 @@
 # Troubleshooting and known limitations
 
-This document provides guidance on how to debug issues related to working with services on Tanzu
+This topic provides guidance on how to debug issues related to working with services on Tanzu
 Application Platform and workarounds for known limitations.
 
 ## <a id="stk-debug-dynamic-provisioning"></a> Debug `ClassClaim` and provisioner-based `ClusterInstanceClass`
 
-This section of the document provides guidance on how to debug issues related to usage of `ClassClaim` and provisioner-based `ClusterInstanceClass`. You will require `kubectl` access to the cluster. The general approach detailed here starts by inspecting a `ClassClaim` and tracing the way back through the chain of resources that are created in order to fulfill the `ClassClaim`.
+This section provides guidance on how to debug issues related to usage of `ClassClaim`
+and provisioner-based `ClusterInstanceClass`.
+You will require `kubectl` access to the cluster. The general approach detailed here starts by inspecting
+a `ClassClaim` and tracing the way back through the chain of resources that are created in order to
+fulfill the `ClassClaim`.
 
 ### Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass` and `CompositeResourceDefinition`
 

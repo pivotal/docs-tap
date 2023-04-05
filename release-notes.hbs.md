@@ -259,13 +259,10 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
   - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
   - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
-- Carbon Black Scanner - **Update carbon black scanner CLI to version 1.9.2**
-  - Add BuildPack cyclonedx support:
-
-    when scanning image that was created by BuildPack add package from the create and build image to scan manifest.
-  - Update scan logic to reduce scan time.
-
-    **for the full patch-note and other feature check [CBC Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials).**
+- Carbon Black integration updates:
+  - The scanner integration has been updated to use the Carbon Black scanner CLI version `1.9.2`
+  - Notable optimizations include an improved scan logic that reduces the time it takes for a scan to complete.
+  - Check out the [Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials) for more details or to learn about our other capabilities.
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
@@ -303,10 +300,24 @@ Ensure that your workloads can be built and run on Jammy.
   [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and
   [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the
   Tanzu Build Service documentation.
+  
+ - The Tanzu Build Service automatic dependency updater feature has been removed as of Tanzu Application Platform 1.5. This feature has been deprecated since Tanzu Application Platform 1.2
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
+
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| buildservice.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0179 </li></ul>|
+| eventing.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-24329</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-0286</li><li>CVE-2023-23919</li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5 </li></ul>|
+| policy.apps.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-24329</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-0286</li><li>CVE-2023-23919 </li></ul>|
+| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24827 </li></ul>|
+| grype.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
+| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0286</li><li>CVE-2023-23918</li><li>CVE-2023-23919</li><li>CVE-2023-0361</li><li>CVE-2022-4450</li><li>CVE-2023-0215 </li></ul>|
 
 #### <a id='1-5-0-resolved-issues'></a> Resolved issues
 
@@ -362,6 +373,10 @@ updates. For a workaround, see [Troubleshooting and limitations](services-toolki
 #### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
+
+#### <a id='1-5-0-scc-ki'></a> Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter `carvel_package.name_suffix`, existing `Workloads` will incorrectly output a Carvel `Package` to the GitOps repository that uses the old value of `carvel_package.name_suffix`. This `Package` can be ignored or deleted.
 
 #### <a id="1-5-apps-plugin-known-issues"></a> Tanzu CLI Apps plug-in
 

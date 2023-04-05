@@ -19,8 +19,7 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 
 - If you are installing in an air-gapped environment and require keyless
   authorities, you must deploy a Sigstore Stack on the cluster or be accessible
-  from the air-gapped environment. For information, see [Install Sigstore
-  Stack](./install-sigstore-stack.hbs.md).
+  from the air-gapped environment.
 
 - During configuration, you provide a cosign
 public key to validate signed images. The Policy Controller only supports

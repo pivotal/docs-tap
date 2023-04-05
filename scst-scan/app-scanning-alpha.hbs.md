@@ -1,6 +1,6 @@
 # Supply Chain Security Tools - Scan 2.0 (alpha)
 
->**Important**: This component is in Alpha, which means that it is still in
+>**Important** This component is in Alpha, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
 >might encounter unexpected behavior due to capability gaps. This is an opt-in
 >component to gather early feedback from Alpha testers and is not installed by
