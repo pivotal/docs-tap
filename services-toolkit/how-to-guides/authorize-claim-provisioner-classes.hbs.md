@@ -14,7 +14,7 @@ custom verb `claim`.
 The general approach is to create a rule in a `ClusterRole` which specifies the `claim` verb for one or
 more `clusterinstanceclasses`, then to bind the `ClusterRole` to those you want to authorize to create
 claims for the classes. This approach is particularly effective when paired with
-Tanzu Application Platform's aggregated [user roles](authn-authz/role-descriptions.html).
+Tanzu Application Platform's aggregated [user roles](../../authn-authz/role-descriptions.html).
 
 ## <a id="auth-all-users"></a> Authorize all users with the app-operator user role to claim from any namespace
 
@@ -43,7 +43,7 @@ rules:
 
 This example specifies a `ClusterRole` that permits claiming from a class named `bigcorp-rabbitmq`.
 The example also includes the `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"` label,
-which causes this `ClusterRole` to aggregate to Tanzu Application Platform's [app-operator](authn-authz/role-descriptions.html#app-operator)
+which causes this `ClusterRole` to aggregate to Tanzu Application Platform's [app-operator](../../authn-authz/role-descriptions.html#app-operator)
 user role at the cluster scope.
 The result is that any user who has the `app-operator` role bound is now authorized to create claims
 for the `bigcorp-rabbitmq` class in any namespace on the cluster.
