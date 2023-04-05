@@ -351,6 +351,14 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id='1-5-0-bitnami-services-ki'></a> Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+after having already created a claim for one or more of the Bitnami services using the default
+configuration, the updated private registry configuration does not appear to take effect.
+This is due to caching behavior in the system which is not currently accounted for during configuration
+updates. For a workaround, see [Troubleshooting and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md).
+
 #### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
