@@ -121,30 +121,6 @@ Open IntelliJ from the CLI. Example command:
 open /Applications/IntelliJ\ IDEA.app
 ```
 
-## <a id="describe-action-fail"></a> The Describe action in the Activity panel fails when used on PodIntent resources
-
-### Symptom
-
-The pop-up menu **Describe** action in the Activity panel fails when used on PodIntent resources.
-The error message is similar to the following:
-
-   ```console
-   Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; \
-   use conventions.carto.run/v1alpha1 PodIntent instead
-   Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
-
-   Process finished with exit code 1
-   ```
-
-### Cause
-
-When there are multiple resource types with the same kind, attempting to describe a resource of that
-kind without fully qualifying the API version causes this error.
-
-### Solution
-
-There is no workaround for this issue at present. A fix is planned for this issue in the next version.
-
 ## <a id="tnz-panel-k8s-rsrc-fail"></a> Tanzu panel shows workloads but doesn't show Kubernetes resources
 
 ### Symptom
