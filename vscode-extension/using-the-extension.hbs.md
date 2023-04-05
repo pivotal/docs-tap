@@ -241,13 +241,15 @@ To add a namespace:
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-3. Add additional namespaces to your Tanzu Workloads panel by:
-   - **Workload Panel** > **Additional Options** > **Select Namespaces**
-   ![VS Code Tanzu Workloads Panel additional options menu.](../images/vscode-workload-panel-additional-options.png)
-   ![VS Code Tanzu Workloads Panel select namespaces dialog.](../images/vscode-workload-panel-select-namespaces.png)
+3. Use one of these methods to add additional namespaces to your Tanzu Workloads panel:
 
-   - Or **Preferences** > **Extensions** >
-   **Tanzu Developer Tools** > **Tracked Namespaces**.
+   - Go to **Preferences** > **Extensions** > **Tanzu Developer Tools** > **Tracked Namespaces** and
+     then select the namespaces that you want.
+
+   - Go to **Workload Panel** > **Additional Options** > **Select Namespaces** and then select the
+     namespaces that you want.
+
+   ![VS Code Tanzu Workloads Panel additional options menu.](../images/vscode-workload-panel-additional-options.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 

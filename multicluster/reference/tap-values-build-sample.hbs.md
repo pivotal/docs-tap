@@ -29,7 +29,7 @@ shared:
 # The above shared keys can be overridden in the below section.
 
 buildservice:
-# Takes the value from the shared section earlier by default, but can be overridden by setting a different value.
+# Takes the value from the shared section by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_secret:
     name: "KP-DEFAULT-REPO-SECRET"
@@ -94,8 +94,7 @@ set of dependencies, including buildpacks and stacks, for application builds.
 For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 You can find the buildpack and stack artifacts installed with Tanzu Application Platform 
 on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies). 
-You can update dependencies by [upgrading Tanzu Application Platform](../../upgrading.md) to the latest patch, or 
-by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
+You can update the dependencies by [upgrading Tanzu Application Platform](../../upgrading.md) to the latest patch.
 
 See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
 

@@ -215,8 +215,9 @@ profile: full
 ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 buildservice:
   kp_default_repository: tapbuildservice.azurecr.io/buildservice
-  kp_default_repository_username: tapbuildservice
-  kp_default_repository_password: PASSWORD
+  kp_default_repository_secret:
+    name: registry-credentials
+    namespace: "YOUR_NAMESPACE"
   enable_automatic_dependency_updates: false
 
 supply_chain: testing_scanning
