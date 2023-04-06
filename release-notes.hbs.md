@@ -459,6 +459,11 @@ When using vsphere sources in Eventing, the vsphere-source is currently using a 
 
 - The external-secrets plug-in creating `ExternalSecret` and `SecretStore` resource via STDIN incorrectly confirms resource creation. Use `-f ` to create resources via file instead of stdin.
 
+#### <a id="1-5-0-api-auto-registration-known-issue"></a>API Auto Registration
+
+- Users will not be able to update their APIs through API Auto Registration due to a bug on the ID used to retrieve APIs.
+  This bug will log errors in the API Descriptor CRD with the following mention: "Unable to find API entity's uid within TAP GUI. Retrying the sync".
+
 ## <a id='1-5-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
