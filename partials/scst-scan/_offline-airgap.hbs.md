@@ -103,7 +103,7 @@ If Grype was installed manually, you must update your `PackageInstall` to includ
   ...
   ```
 
-For more information, see [Customize package installation](../../customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed).
+For more information, see [Customize package installation](/docs-tap/customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed).
 
 1. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
 
