@@ -33,16 +33,16 @@ vulnerabilities.
   <td><ul><li> GHSA-fxg5-wq6x-vr4w </li></ul></td>
   </tr>
   <tr>
-  <td>workshops.learningcenter.tanzu.vmware.com</td>
-  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
-  </tr>
-  <tr>
   <td>snyk.scanning.apps.tanzu.vmware.com</td>
   <td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li></ul></td>
   </tr>
   <tr>
   <td>tap-gui.tanzu.vmware.com</td>
   <td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23918">CVE-2023-23918</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0361">CVE-2023-0361</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4450">CVE-2022-4450</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0215">CVE-2023-0215</a></li></ul></td>
+  </tr>
+  <tr>
+  <td>workshops.learningcenter.tanzu.vmware.com</td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
   </tr>
 </table>
 
