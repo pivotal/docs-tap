@@ -2,10 +2,6 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
-{{#unless vars.hide_content}}
-<!-- This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.-->
-
 ## <a id='1-3-7'></a> v1.3.7
 
 **Release Date**: April 11, 2023
@@ -35,8 +31,6 @@ This release has the following known issues, listed by component and area.
 - Relates to CVE exploitation justification for CVE-2022-41723: The CVE impacts HTTP servers and manifests as a denial of service attack.  None of the buildpacks run an HTTP server at any point and therefore are not exploitable.
 
 ---
-
-{{/unless}}
 
 ## <a id='1-3-6'></a> v1.3.6
 
