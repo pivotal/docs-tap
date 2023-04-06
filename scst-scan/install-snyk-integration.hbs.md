@@ -102,7 +102,7 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
         importFromNamespace: "STORE-SECRETS-NAMESPACE"
     ```
 
-**Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file that is enabled by default:
+**Without Supply Chain Security Tools - Store Integration:** The SCST - Store integration is enabled by default. If you don’t want to use this integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file:
 
 ```yaml
 # ...
