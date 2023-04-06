@@ -34,6 +34,13 @@ them to clusters, by using a GitOps repository. For information about this
 delivery method, see [Use Gitops Delivery with FluxCD
 (alpha)](delivery-with-flux.hbs.md).
 
+## <a id="using-app"></a> Using GitOps delivery with Carvel App
+
+Alternatively, you can deliver packages created by the Carvel package supply
+chain, and add them to clusters, by using a GitOps repository. For information
+about this delivery method, see [Use Gitops Delivery with Carvel App
+(alpha)](delivery-with-carvel-app.hbs.md).
+
 ## <a id="config-blue-grn"></a> Configuring blue-green deployment
 
 You can use blue-green deployment to transfer user traffic from one version of
