@@ -5,17 +5,15 @@ This topic describes how to provision developer namespaces.
 ## Prerequisite
 
 - The Namespace Provisioner package is installed and reconciled.
-- The registry-credential secret referenced by the Supply chain components for pulling and pushing
-images is added to tap-install and exported to all namespaces. Example secret creation is exported to all namespaces:
+- The registry-credential secret referenced by the Supply chain components for pulling and pushing images is added to **tap-install** and exported to all namespaces. 
 
-```console
+Example secret creation, exported to all namespaces:
+
+```shell
 tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --export-to-all-namespaces --yes --namespace tap-install
 ```
 
->**Important** Namespace Provisioner creates a secret called registries-credentials in each managed
-namespace which is a placeholder secret filled indirectly by
-[secretgen-controller](https://github.com/carvel-dev/secretgen-controller) with all the registry
-credentials exported for that managed  namespace.
+>**Important** Namespace Provisioner creates a secret called registries-credentials in each managed namespace which is a placeholder secret filled indirectly by [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) with all the registry credentials exported for that managed  namespace.
 
 ## <a id ='manage-list'></a>Manage a list of developer namespaces
 
@@ -26,37 +24,36 @@ Using Namespace Provisioner Controller
 
   Sample TAP values configuration:
 
-  ```console
+  ```yaml
   namespace_provisioner:
-  controller: true
+    controller: true
   ```
 
-  The imperative way is to create the namespace using kubectl or using other means and label it using
-  the default selector.
+  The imperative way is to create the namespace using kubectl or using other means and label it using the default selector.
 
   1. Create a namespace using kubectl or any other means
 
-      ```console
+      ```shell
       kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
       ```
 
   2. Label your new developer namespace with the default namespace_selector `apps.tanzu.vmware.com/tap-ns=""`.
 
-      ```console
+      ```shell
       kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
       ```
 
-    - This label tells the Namespace Provisioner controller to add this namespace to the
-    desired-namespaces ConfigMap.
-    - By default, the label’s value can be anything, including "".
-    - If required, you can change the default label selector, see [Install Namespace Provisioner](customize-installation.md).
-  3. Run the following command to verify the default resources have been created in the namespace:
+      - This label tells the Namespace Provisioner controller to add this namespace to the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
+      - By default, the label’s value can be anything, including "".
+      - If required, you can change the default label selector, see [Customize Installation of Namespace Provisioner](customize-installation.md#con-label-selector).
+  3. Run the following command to verify the [default resources](reference.md#default-resources) have been created in the namespace:
 
-      ```console
+      ```shell
       kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n YOUR-NEW-DEVELOPER-NAMESPACE
-
+      ```
       For example:
 
+      ```console
       NAME                            TYPE                             DATA   AGE
       secret/app-tls-cert             kubernetes.io/tls                3      19s
       secret/registries-credentials   kubernetes.io/dockerconfigjson   1      26s
@@ -75,8 +72,8 @@ Using Namespace Provisioner Controller
 
       NAME                            CREATED AT
       limitrange/dev-lr   2023-03-08T04:18:58Z
-
-  ```
+    
+     ```
 
 Using GitOps
 : The GitOps approach provides a fully declarative way to create developer namespaces managed
@@ -84,10 +81,10 @@ by Namespace Provisioner.
 
   Sample Tanzu Application Platform values configuration:
 
-  ```console
+  ```yaml
   namespace_provisioner:
-  controller: false
-  gitops_install:
+    controller: false
+    gitops_install:
       ref: origin/main
       subPath: ns-provisioner-samples/gitops-install
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
@@ -101,21 +98,19 @@ by Namespace Provisioner.
     1. [desired-namespace.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml) contains the list of developer namespaces in a ytt data.values format.
     2. [namespaces.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/namespaces.yaml) contains a Kubernetes namespace object.
 
-  >**Note** If you have another tool like Tanzu Mission Control or some other process that is
-  taking care of creating namespaces for you, and you don’t want a Namespace Provisioner to create
-  the namespaces, you can delete this file from your GitOps install repository.
+  >**Note** If you have another tool like Tanzu Mission Control or some other process that is taking care of creating namespaces for you, and you don’t want a Namespace Provisioner to create the namespaces, you can delete this file from your GitOps install repository.
 
-  >**Important**  The GitOps sample creates the following two namespaces: `dev` and `qa`. If these
-  namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps
-  repository so they do not conflict with existing resources.
+  >**Important**  The GitOps sample creates the following two namespaces: `dev` and `qa`. If these namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps repository so they do not conflict with existing resources.
 
   Run the following command to verify the [default resources](reference.md#default-resources) are created in the namespace:
 
-  ```console
+  ```shell
   kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n dev
+  ```
 
   For example:
-
+  
+  ```console
   NAME                            TYPE                             DATA   AGE
   secret/app-tls-cert             kubernetes.io/tls                3      52s
   secret/registries-credentials   kubernetes.io/dockerconfigjson   1      59s
@@ -136,4 +131,4 @@ by Namespace Provisioner.
   limitrange/dev-lr   2023-03-08T04:22:20Z
   ```
 
-  For more information, see the GitOps section of [Install Namespace Provisioner](customize-installation.md).
+  For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md).
