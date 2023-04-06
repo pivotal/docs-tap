@@ -68,7 +68,7 @@ docs.vmware.com is built.
       - [Issuer](security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md)
       - [Wildcard certificates](security-and-compliance/tls-and-certificates/ingress/wildcards.hbs.md)
       - [Inventory](security-and-compliance/tls-and-certificates/ingress/inventory.hbs.md)
-  - [Custom CA certificates](security-and-compliance/custom-ca-certificates.hbs.md)
+  - [Custom CA certificates](security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
   - [External Secrets Operator (alpha)](external-secrets/about-external-secrets-operator.hbs.md)
   - [NIST 800-53 Moderate Assessment](security-and-compliance/tap-nist-matrix.hbs.md)
   - [Harden Tanzu Application Platform](security-and-compliance/harden-tap.hbs.md)
