@@ -387,7 +387,7 @@ This release has the following breaking changes, listed by area and component.
 
 ---
 
-#### <a id='1-5-0-security-fixes'></a> Security fixes
+### <a id='1-5-0-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
 
@@ -596,7 +596,7 @@ This release has the following known issues, listed by area and component.
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-#### <a id="1-5-alv-deprecations"></a> Application Live View
+### <a id="1-5-alv-deprecations"></a> Application Live View
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
   Tanzu Application Platform v1.7.0.
@@ -612,14 +612,14 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   For more information about how to migrate to `AuthServer.spec.tls.deactivated`, see
   [Migration guides](app-sso/upgrades/index.md#migration-guides).
 
-#### <a id="1-5-0-stk-deprecations"></a> Services Toolkit
+### <a id="1-5-0-stk-deprecations"></a> Services Toolkit
 
 - The `tanzu services claims` CLI plug-in command is now deprecated. It is
   hidden from help text output, but continues to work until officially removed
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
 
-#### <a id="1-5-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
+### <a id="1-5-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 
 - The `docker` field and related sub-fields used in SCST -
   Scan are deprecated and marked for removal in Tanzu Application Platform
@@ -630,7 +630,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
    For information about the migration path, see
    [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
-#### <a id="1-5-tbs-deprecations"></a> Tanzu Build Service
+### <a id="1-5-tbs-deprecations"></a> Tanzu Build Service
 
 - The Ubuntu Bionic stack is deprecated: Ubuntu Bionic stops receiving support in April 2023.
   VMware recommends you migrate builds to Jammy stacks in advance.
@@ -641,7 +641,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   support in Tanzu Application Platform v1.6.0.
   To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
-#### <a id="1-5-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+### <a id="1-5-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
 - The default value for the
   [--update-strategy](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
