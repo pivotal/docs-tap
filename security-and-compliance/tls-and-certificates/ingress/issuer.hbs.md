@@ -43,7 +43,7 @@ its ingress issuer for all components.
 
 This default ingress issuer is a self-signed `cert-manager.io/v1/ClusterIssuer`
 and is provided by Tanzu Application Platform's [cert-manager
-package](../cert-manager/about.hbs.md). Its default name is
+package](../../../cert-manager/about.hbs.md). Its default name is
 `tap-ingress-selfsigned`.
 
 The default ingress issuer is appropriate for testing and evaluation, but it is
@@ -289,7 +289,7 @@ to be deactivated.
 
 You can override TLS settings for each component. In your TAP values file a
 component's configuration takes precedence over `shared` values. See
-[components](../components.hbs.md) to understand which components have ingress
+[components](../../../components.hbs.md) to understand which components have ingress
 and how to configure them.
 
 >**Note** The approaches can be mixed; use a shared ingress issuer, but

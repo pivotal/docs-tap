@@ -8,4 +8,4 @@ then trusts the CAs contained in the bundle.
 
 You can also configure trust per component by providing a CA bundle in the component's installation
 values. The component then trusts those CAs and the CAs configured in `shared.ca_cert_data`.
-For more information, see [components](../components.hbs.md).
+For more information, see [components](../../components.hbs.md).
