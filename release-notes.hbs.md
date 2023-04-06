@@ -2,53 +2,69 @@
 
 This topic contains release notes for Tanzu Application Platform v1.4.
 
-{{#unless vars.hide_content}}
-<!-- This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.-->
-
 ## <a id='1-4-3'></a> v1.4.3
 
 **Release Date**: April 11, 2023
 
-### <a id='1-4-3-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| buildservice.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
-| eventing.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
-| learningcenter.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-24329</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-23919</li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5 </li></ul>|
-| policy.apps.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w </li></ul>|
-| workshops.learningcenter.tanzu.vmware.com | <ul><li> GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-0461</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li>CVE-2023-24329</li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li>CVE-2023-23919 </li></ul>|
-| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
-| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0286</li><li>CVE-2023-23918</li><li>CVE-2023-23919</li><li>CVE-2023-0361</li><li>CVE-2022-4450</li><li>CVE-2023-0215 </li></ul>|
- 
+### <a id='1-4-3-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by package name and
+vulnerabilities.
+
+<table>
+  <tr>
+  <th>Package Name</th>
+  <th>Vulnerabilities Resolved</th>
+  </tr>
+  <tr>
+  <td>buildservice.tanzu.vmware.com</td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w </li></ul></td>
+  </tr>
+  <tr>
+  <td>eventing.tanzu.vmware.com</td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li>GHSA-69cg-p879-7622</li><li>GHSA-69ch-w2m2-3vjp </li></ul></td>
+  </tr>
+  <tr>
+  <td>learningcenter.tanzu.vmware.com</td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5 </li></ul></td>
+  </tr>
+  <tr>
+  <td>policy.apps.tanzu.vmware.com</td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w </li></ul></td>
+  </tr>
+  <tr>
+  <td>workshops.learningcenter.tanzu.vmware.com</td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
+  </tr>
+  <tr>
+  <td>snyk.scanning.apps.tanzu.vmware.com</td>
+  <td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li></ul></td>
+  </tr>
+  <tr>
+  <td>tap-gui.tanzu.vmware.com</td>
+  <td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23918">CVE-2023-23918</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0361">CVE-2023-0361</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4450">CVE-2022-4450</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0215">CVE-2023-0215</a></li></ul></td>
+  </tr>
+</table>
+
 ---
- 
-### <a id='1-4-3-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
-#### <a id='1-4-3-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
-- Resolved issue description.
- 
+
+### <a id='1-4-3-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-4-3-grype-scanner-ri'></a> Grype Scanner
 
-- **Updated Syft version to fix image scans fails with panic:**
+- **Updated Syft version to fix image scans failing with panic:**
 
-  Syft was updated to fix an issue that causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+   Syft was updated to fix an issue that causes the scanner to fail with an index out of range error.
+   This happened when parsing APK metadata to identify the installed OS packages if a package's list of provided
+   files is empty.
 
 ---
- 
-### <a id='1-4-3-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
-#### <a id='1-4-3-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
-- Known issue description with link to workaround.
+
+### <a id='1-4-3-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
 
 #### <a id='1-4-3-grype-scanner-ki'></a> Grype Scanner
 
@@ -68,10 +84,8 @@ This release has the following known issues, listed by component and area.
   Grype fails to find vulnerabilities during a source scan. The vulnerabilities
   are still found during the image scan after the binaries are built and
   packaged as images.
- 
----
 
-{{/unless}}
+---
 
 ## <a id='1-4-2'></a> v1.4.2
 
