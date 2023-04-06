@@ -66,11 +66,26 @@ This file location is temporary and will change in a future version.
 
 > **Caution** Do not use the red square Stop button in the Visual Studio top toolbar.
 > Doing so causes the Tanzu Application Platform workload to fail or become unresponsive indefinitely.
-> Instead, from the top menu click **Debug** > **Detach All**.
+> Instead, in the top menu click **Debug** > **Detach All**.
 > A fix for this issue is planned for a future release.
 >
 > If the name of your running app process (the app DLL process), does not match the name
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
 > might fail to attach.
 
-[Troubleshoot Tanzu Developer Tools for Visual Studio](troubleshooting.hbs.md).
+## <a id="extension-log"/> Access the extension log
+
+The extension creates log entries in a file named `tanzu-dev-tools.log`.
+This file is in the directory where Visual Studio Installer installed the extension.
+
+To find the log file, run:
+
+```console
+C:> dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\tanzu-dev-tools.log
+
+    Directory: C:\Users\...
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           3/31/2023  1:07 PM           1668 tanzu-dev-tools.log
+```

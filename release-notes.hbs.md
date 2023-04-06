@@ -300,7 +300,7 @@ Ensure that your workloads can be built and run on Jammy.
   [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and
   [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the
   Tanzu Build Service documentation.
-  
+
  - The Tanzu Build Service automatic dependency updater feature has been removed as of Tanzu Application Platform 1.5. This feature has been deprecated since Tanzu Application Platform 1.2
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
@@ -383,7 +383,12 @@ updates. For a workaround, see [Troubleshooting and limitations](services-toolki
 - `tanzu apps workload apply` does not wait for the changes to be taken when the workload is updated
    using `--tail` or `--wait` and instead, fails if the status before the changes is showing error.
 
-#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-5-0-vs-plugin-ki'></a> Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for Visual Studio Code
 
 - If a user restarts their computer while running Live Update, without having terminated the Tilt
   process beforehand, there is a lock that incorrectly shows that Live Update is still running and

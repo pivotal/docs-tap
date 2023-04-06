@@ -198,7 +198,7 @@ To delete a workload:
 1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
    Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-2. Select the `Tanzu: Delete Workload` command..
+2. Select the `Tanzu: Delete Workload` command.
 
 3. If applicable, select the workload to delete.
 

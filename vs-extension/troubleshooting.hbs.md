@@ -1,18 +1,13 @@
 # Troubleshoot Tanzu Developer Tools for Visual Studio
 
-## <a id="extension-log"/> Extension log
+## <a id="stop-button"></a> Stop button causes workload to fail
 
-The extension creates log entries in a file named `tanzu-dev-tools.log`.
-This file is in the directory where Visual Studio Installer installed the extension.
+### Symptom
 
-To find the log file, run:
+Clicking the red square Stop button in the Visual Studio top toolbar causes the
+Tanzu Application Platform workload to fail or become unresponsive indefinitely.
 
-```console
-C:> dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\tanzu-dev-tools.log
+### Solution
 
-    Directory: C:\Users\...
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a---           3/31/2023  1:07 PM           1668 tanzu-dev-tools.log
-```
+Do not click the button. Instead, in the top menu click **Debug** > **Detach All**.
+A fix for this issue is planned for a future release.
