@@ -1,6 +1,6 @@
 # Application Accelerator CLI plug-in overview
 
-The Application Accelerator Tanzun CLI plug-in includes commands for developers and operators to create and use accelerators.
+The Application Accelerator Tanzu CLI plug-in includes commands for developers and operators to create and use accelerators.
 
 ## <a id="server-api-connections"></a>Server API connections for operators and developers
 
@@ -22,11 +22,11 @@ You can either use the proxy that is part of TAP-GUI or you can use the URL for 
 When using TAP-GUI you should specify `--server-url` as `https://tap-gui.<domain>` where `domain` defaults to the `shared.ingress_domain` value provided in the values file of Tanzu Application Platform.
 Make sure to add the below-mentioned flags to the tap-values.yaml when `shared.ingress_domain` is set.
 
-
-    accelerator:
-      ingress:
-        include: true 
-    
+```yaml
+accelerator:
+    ingress:
+    include: true
+```
 
 ### <a id="server-api-acc-server"></a>Using Application Accelerator Server URL
 
