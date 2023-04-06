@@ -38,7 +38,7 @@ The following table lists configuration for the UXP Helm Chart.
 | bootstrapper.image.pullPolicy                        |`IfNotPresent`                                |string | |
 | bootstrapper.image.repository                        |`xpkg.upbound.io/upbound/uxp-bootstrapper`    |string | |
 | bootstrapper.image.tag                               |`v1.11.0-up.1 `                               |string | |
-| maxReconcileRate                                     |`""`                                          |string  | How frequently Crossplane reconciles its resources in seconds. Default: 10 <!-- does not match default column-->|
+| maxReconcileRate                                     |`""`                                          |string  | How frequently Crossplane reconciles its resources in seconds.|
 | metrics.enabled                                      |`false`                                       |boolean | |
 | securityContextCrossplane.allowPrivilegeEscalation   |`false`                                       |boolean | |
 | securityContextCrossplane.readOnlyRootFilesystem     |`true`                                        |boolean | |
