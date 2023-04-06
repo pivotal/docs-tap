@@ -85,13 +85,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
-## <a id='create-a-new-git-repository'></a>Create a new git repository
+## <a id='create-a-new-git-repository'></a>Create a new Git repository
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
     This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
 
-1. Initialize a new git repository:
+1. Initialize a new Git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -103,7 +103,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
 
-    The private portion of this key is referred later as `GIT_SSH_PRIVATE_KEY`.
+    The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
 
 ## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
@@ -171,7 +171,7 @@ Configuring the Tanzu Application Platform installation involves setting up two 
 
 - an installation of Tanzu Application Platform;
 - an instance of Tanzu Sync, the component that implements the GitOps workflow, 
-fetching configuration from Git and applying it to the cluster
+fetching configuration from Git and applying it to the cluster.
 
 Follow these steps to customize your Tanzu Application Platform cluster configuration:
 
@@ -606,7 +606,7 @@ The following deployment process is only required once per cluster:
 
     This step is required to ensure the correct deployment of the `tanzu-sync` App.
 
-1. Ensure the Kubernetes cluster context is set to the EKS cluster:
+1. Ensure the Kubernetes cluster context is set to the EKS cluster.
 
     1. List the existing contexts:
 
@@ -656,14 +656,14 @@ The following deployment process is only required once per cluster:
     tanzu-sync/scripts/deploy.sh
     ```
 
-Depending on the profile and components included, it may take 5-10 minutes for the Tanzu Application Platform to install.
-During this time, `kapp` waits for the deployment of Tanzu Sync to reconcile successfully. This is normal.
+    Depending on the profile and components included, it may take 5-10 minutes for the Tanzu Application Platform to install.
+    During this time, `kapp` waits for the deployment of Tanzu Sync to reconcile successfully. This is normal.
 
-You can track the progress of the installation by watching the installation of those packages in a separate terminal window:
+    You can track the progress of the installation by watching the installation of those packages in a separate terminal window:
 
-```console
-watch kubectl get pkgi -n tap-install
-```
+    ```console
+    watch kubectl get pkgi -n tap-install
+    ```
 
 {{#unless vars.hide_content}}
 

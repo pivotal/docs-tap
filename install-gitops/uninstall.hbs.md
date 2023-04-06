@@ -8,7 +8,7 @@ To uninstall Tanzu Application Platform:
 
 - [Delete Tanzu Sync Application](#del-tanzu-sync)
 - [Delete external resources (ESO installation only)](#del-aws-resources)
-- [Remove Tanzu CLI, plug-ins, and associated files](#remove-tanzu-cli)
+- [Remove the Tanzu CLI, plug-ins, and associated files](#remove-tanzu-cli)
 - [Remove Cluster Essentials](#remove-ce)
 
 ## <a id='del-tap'></a>Delete Tanzu Sync Application
@@ -35,11 +35,10 @@ cd $HOME/REPO-NAME/clusters/CLUSTER-NAME
 ./tanzu-sync/aws/scripts/delete-policies.sh
 ```
 
-## <a id='remove-tanzu-cli'></a> Remove Tanzu CLI, plug-ins, and associated files
+## <a id='remove-tanzu-cli'></a> Remove the Tanzu CLI, plug-ins, and associated files
 
-To completely remove the Tanzu CLI, plug-ins, and associated files, run the script for your OS:
-
-For Linux or MacOS, run:
+To completely remove the Tanzu CLI, plug-ins, and associated files, 
+run the following scrips for Linux or MacOS:
 
 ```console
 #!/bin/zsh
