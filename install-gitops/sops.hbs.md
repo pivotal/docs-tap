@@ -338,7 +338,7 @@ Follow these steps to generate the Tanzu Application Platform installation and T
     - `HOST-LIST` is the list of known hosts for Git host service.
     - `AGE-KEY` is the contents of the Age key generated earlier.
     - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. 
-    If the images are relocated as described in [Relocate images to a registry](relocate-images-to-a-registry), 
+    If the images are relocated as described in [Relocate images to a registry](#relocate-images-to-a-registry), 
     this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
     Example of the Git repo hosted on GitHub:
