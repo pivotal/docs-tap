@@ -1,4 +1,4 @@
-The `grype` CLI attempts to perform two over the Internet calls: 
+The `grype` CLI attempts to perform two over the Internet calls:
 
 - One to verify for later versions of the CLI.
 - One to update the vulnerability database before scanning.
@@ -157,7 +157,7 @@ the following steps:
 
 If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must add the annotation to reference the overlay `Secret`.
 
-For information about advanced use cases, see [Customize Namespace Provisioner](../../namespace-provisioner/how-tos.hbs.md). 
+For information about advanced use cases, see [Customize Namespace Provisioner](/docs-tap/namespace-provisioner/how-tos.hbs.md).
 
 #### Solution
 
