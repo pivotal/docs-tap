@@ -115,6 +115,7 @@ docs.vmware.com is built.
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.hbs.md)
   - [Troubleshoot using](troubleshooting-tap/troubleshoot-using-tap.hbs.md)
   - [Troubleshoot components](troubleshooting-tap/troubleshoot-components.hbs.md)
+  - [Troubleshoot Tanzu GitOps](troubleshooting-tap/troubleshooting-gitops.hbs.md)
 - [Uninstall by Tanzu CLI](uninstall.hbs.md)
 - [Uninstall by GitOps (beta)](install-gitops/uninstall.hbs.md)
 - [Component documentation](components.hbs.md)
