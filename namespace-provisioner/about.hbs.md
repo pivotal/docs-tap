@@ -43,32 +43,30 @@ The following section describes how the list of desired developer namespaces is 
 controller and GitOps modes.
 
 Controller mode
-: 
+: In controller mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in the `desired-namespaces` ConfigMap. This ConfigMap is managed by the [Namespace Provisioner controller](#nsp-controller) and it provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap consists of a list of namespace objects, with a required `name` parameter, and optional additional parameters which are used as `data.values` for customizing defined resources.
 
-In controller mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in the `desired-namespaces` ConfigMap. This ConfigMap is managed by the [Namespace Provisioner controller](#nsp-controller) and it provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap consists of a list of namespace objects, with a required `name` parameter, and optional additional parameters which are used as `data.values` for customizing defined resources.
+    For example,
 
-For example,
-
-```yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-    name: desired-namespaces
-    namespace: tap-namespace-provisioning
-    annotations:
-        kapp.k14s.io/create-strategy: fallback-on-update
-        namespace-provisioner.apps.tanzu.vmware.com/no-overwrite: "" #! This annotation tells the provisioner app to not override this configMap as this is your desired state.
-data:
-    namespaces.yaml: |
-        #@data/values
-        ---
-        namespaces:
-        - name: dev-ns1
-        # additional parameters about dev-ns1 added via label/annotations or GitOps
-        - name: dev-ns2
-        # additional parameters about dev-ns1 added via label/annotations or GitOps
-```
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+        name: desired-namespaces
+        namespace: tap-namespace-provisioning
+        annotations:
+            kapp.k14s.io/create-strategy: fallback-on-update
+            namespace-provisioner.apps.tanzu.vmware.com/no-overwrite: "" #! This annotation tells the provisioner app to not override this configMap as this is your desired state.
+    data:
+        namespaces.yaml: |
+            #@data/values
+            ---
+            namespaces:
+            - name: dev-ns1
+            # additional parameters about dev-ns1 added via label/annotations or GitOps
+            - name: dev-ns2
+            # additional parameters about dev-ns1 added via label/annotations or GitOps
+    ```
 
 GitOps mode
 : Description of GitOps mode
