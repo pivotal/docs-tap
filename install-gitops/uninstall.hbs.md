@@ -16,8 +16,8 @@ To uninstall Tanzu Application Platform:
 >**Caution** 
 
 > - Deleting Tanzu Sync application removes all associated resources of Tanzu Application Platform on the cluster.
-> - You must delete any applications that were installed manually into the `tap-install` namespace. 
-> Anything not managed by the GitOps installer might interfere with the deletion of Tanzu Application Platform.
+> - You must delete any applications that were installed manually into the `tap-install` namespace, 
+> because they might interfere with the deletion of Tanzu Application Platform.
 
 To delete Tanzu Sync Application, run:
 
