@@ -377,7 +377,10 @@ spec:
     import future.keywords.in
     
     deny[msg] {
-      isThereAFailedScan := false in input.bom.metadata.properties.property[_]
+      vulnerabilityAndComplianceScanResults := {e | e := input.bom.metadata.properties.property[_]}
+      some result in vulnerabilityAndComplianceScanResults
+      failedScans:= "false" in result
+      failedScans
       vulnerabilityMessages := { message |
         components := {e | e := input.bom.components.component} | {e | e := input.bom.components.component[_]}
         some component in components
