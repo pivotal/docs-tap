@@ -34,7 +34,7 @@ The first is that the service resource must be bindable and which means it must 
 the provisioned services definition in the service binding specification for Kubernetes.
 For more information, see [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service).
 There are some resources that adhere to this specification, primarily resources
-offered by VMware Tanzu's data services, the overwhelming majority of resources don't.
+offered by VMware Tanzu's data services, but the overwhelming majority of resources don't.
 
 The second limitation is that all resources have to be in the same namespace.
 
