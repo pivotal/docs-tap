@@ -2,7 +2,7 @@
 
 This topic explains how to install VMware Tanzu Developer Tools for Visual Studio.
 
-## <a id="prereqs"/>Prerequisites
+## <a id="prereqs"/> Prerequisites
 
 Before installing the extension, you must have:
 
@@ -10,33 +10,35 @@ Before installing the extension, you must have:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Tilt](https://docs.tilt.dev/install.html) v0.30.12 or later
 - [Tanzu CLI and plug-ins](../install-tanzu-cli.md#cli-and-plugin)
-- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install.md)
+- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install.hbs.md)
 
-> **Note** If you are an app developer, someone else in your organization might have already set up the Tanzu Application Platform environment.
+> **Note** If you are an app developer, someone else in your organization might have already set up
+> the Tanzu Application Platform environment.
 
-## <a id="install"/>Install
+## <a id="install"/> Install
 
 To install Tanzu Developer Tools for Visual Studio:
 
-1. Download VMware Tanzu Developer Tools for Visual Studio from the [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-1. Double-click the `.vsix` install file and click through the prompts.
-1. Open Visual Studio, from top menu select **Extensions**, then select **Manage Extensions**.
-1. Verify that the extension is installed and the version.
-   ![About extension in **Manage Extensions** pane.](../images/vs-about.png)
+1. Download VMware Tanzu Developer Tools for Visual Studio from
+   [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+2. Double-click the `.vsix` install file and click through the prompts.
+3. Open Visual Studio and, from top menu, click **Extensions** > **Manage Extensions**.
+4. Verify that the extension is installed and that it is the version you want.
 
+   ![Screenshot of the Manage Extensions pane.](../images/vs-about.png)
 
-## <a id="update"/>Update
+## <a id="update"/> Update
 
 To update to a later version, repeat the steps in the [Install](#install) section.
 You do not need to uninstall the current version.
 
-## <a id="uninstall"/>Uninstall
+## <a id="uninstall"/> Uninstall
 
 To uninstall:
 
-1. From the top menu select **Extensions** tab, then select **Manage Extensions**.
+1. From the top menu, click the **Extensions** tab and then click **Manage Extensions**.
 1. Click on the **Installed** section and then click the **Uninstall** button for this extension.
 
-## <a id="next-steps"/>Next steps
+## <a id="next-steps"/> Next steps
 
 [Getting Started with Tanzu Developer Tools for Visual Studio](getting-started.hbs.md).

@@ -1,10 +1,12 @@
 # Troubleshoot Tanzu Developer Tools for Visual Studio
 
-## <a id="extension-log"/>Extension log
+## <a id="extension-log"/> Extension log
 
-The extension logs to a file named `tanzu-dev-tools.log` within the directory where the extension was installed by Visual Studio Installer.
+The extension creates log entries in a file named `tanzu-dev-tools.log`.
+This file is in the directory where Visual Studio Installer installed the extension.
 
-To find the log file; run:
+To find the log file, run:
+
 ```console
 C:> dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\tanzu-dev-tools.log
 
