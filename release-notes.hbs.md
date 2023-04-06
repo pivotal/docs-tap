@@ -66,7 +66,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-3-7-tbs-ki'></a> Tanzu Build Service
 
-- Relates to CVE exploitation justification for CVE-2022-41723: The CVE impacts HTTP servers and manifests as a denial of service attack.  None of the buildpacks run an HTTP server at any point and therefore are not exploitable.
+- [CVE-2022-41723](https://nvd.nist.gov/vuln/detail/CVE-2022-41723) might appear in scans, but is not
+  exploitable in buildpacks. The CVE impacts HTTP servers and manifests as a denial of service attack.
+  None of the buildpacks run an HTTP server at any point and therefore are not exploitable.
 
 ---
 
