@@ -11,37 +11,38 @@ Namespace Provisioner creates a set of [default resources](reference.md#default-
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
 Using Tanzu CLI
-: Create workload using tanzu apps CLI command
-  ```shell
-  tanzu apps workload apply tanzu-java-web-app \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --app tanzu-java-web-app \
-  --namespace YOUR-NEW-DEVELOPER-NAMESPACE \
-  --tail \
-  --yes
-  ```
+: Create workload using tanzu apps CLI command:
+    ```shell
+    tanzu apps workload apply tanzu-java-web-app \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --type web \
+    --app tanzu-java-web-app \
+    --namespace YOUR-NEW-DEVELOPER-NAMESPACE \
+    --tail \
+    --yes
+    ```
 
 Using workload yaml
-: Create a workload.yaml file with the details as below.
-  ```yaml
-  ---
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    labels:
-      app.kubernetes.io/part-of: tanzu-java-web-app
-      apps.tanzu.vmware.com/workload-type: web
-    name: tanzu-java-web-app
-    namespace: YOUR-NEW-DEVELOPER-NAMESPACE
-  spec:
-    source:
-      git:
-        ref:
-          branch: main
-        url: https://github.com/sample-accelerators/tanzu-java-web-app
-  ```
+: Create a workload.yaml file with the details as below:
+    ```yaml
+    ---
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: tanzu-java-web-app
+        apps.tanzu.vmware.com/workload-type: web
+      name: tanzu-java-web-app
+      namespace: YOUR-NEW-DEVELOPER-NAMESPACE
+    spec:
+      source:
+        git:
+          ref:
+            branch: main
+          url: https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
+
 ## Testing Supply Chain
 
 The Testing supply chain adds the **source-tester** step in the supply chain which tests the source code pulled by the supply chain. For source code testing to work in the supply chain, a Tekton Pipeline must exist in the same namespace as the Workload so that, at the right moment, the Tekton PipelineRun object that is created to run the tests can reference the developer-provided Pipeline.
