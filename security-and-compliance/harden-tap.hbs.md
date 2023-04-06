@@ -185,9 +185,8 @@ For more settings in the Contour component, you can reference the
 
 #### Ingress Certificates
 
-- Cluster Issuers for the certificates (1.4 document)
-  - [Ingress Certificates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/security-and-compliance-ingress-certificates.html)
-- Certificate Authority Management
+Refer to [ingress certificates](./tls-and-certificates/ingress/about.hbs.md) to
+learn how to configure TLS for a TAP installation's ingress endpoints.
 
 ### Encryption of Data At Rest
 
