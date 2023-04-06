@@ -167,7 +167,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
       --values-file values.yaml
     ```
 
-    Where `VERSION` is your package version number. For example, `1.0.0`.
+**Without SCST - Store Integration:** The SCST - Store integration is enabled by default. If you don’t want to use this integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file:
 
     ```console
     $ tanzu package install snyk-scanner \
