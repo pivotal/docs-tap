@@ -10,7 +10,7 @@ In release notes, this condition hides content that describes an unreleased patc
 
 **Release Date**: April 11, 2023
 
-### <a id='1-3-7-security-fixes'></a> Security fixes 
+### <a id='1-3-7-security-fixes'></a> Security fixes
 
 | Package Name | Vulnerabilities Resolved |
 | ------------ | ------------------------ |
@@ -25,29 +25,15 @@ In release notes, this condition hides content that describes an unreleased patc
 | snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
 
 ---
- 
-### <a id='1-3-7-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
-#### <a id='1-3-7-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
-- Resolved issue description.
- 
----
- 
-### <a id='1-3-7-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
-#### <a id='1-3-7-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
-- Known issue description with link to workaround.
+
+### <a id='1-3-7-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
 
 #### <a id='1-3-7-tbs-ki'></a> Tanzu Build Service
- 
+
 - Relates to CVE exploitation justification for CVE-2022-41723: The CVE impacts HTTP servers and manifests as a denial of service attack.  None of the buildpacks run an HTTP server at any point and therefore are not exploitable.
- 
+
 ---
 
 {{/unless}}
