@@ -78,7 +78,7 @@ as your device's certificate chain.
   kubectl get secret \
     tap-ingress-selfsigned-root-ca \
     --namespace cert-manager \
-    --output go-template='{{ index .data "tls.crt" | base64decode }}'
+    --output go-template='/{{ index .data "tls.crt" | base64decode }}'
   ```
 
 1. Add the certificate to [custom CA
@@ -290,7 +290,7 @@ to be deactivated.
 You can override TLS settings for each component. In your TAP values file a
 component's configuration takes precedence over `shared` values. See
 [components](../components.hbs.md) to understand which components have ingress
-and how to configure them. 
+and how to configure them.
 
 >**Note** The approaches can be mixed; use a shared ingress issuer, but
 >override TLS configuration for select components.
