@@ -78,7 +78,7 @@ as your device's certificate chain.
   kubectl get secret \
     tap-ingress-selfsigned-root-ca \
     --namespace cert-manager \
-    --output go-template='/{{ index .data "tls.crt" | base64decode }}'
+    --output go-template='\{{ index .data "tls.crt" | base64decode }}'
   ```
 
 1. Add the certificate to [custom CA
