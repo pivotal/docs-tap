@@ -41,68 +41,85 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-5-0-app-acc-features'></a> Application Accelerator
 
-- The Application Accelerator plug-in for IntelliJ is now available as a beta release on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-- The [Tanzu Java Restful Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service) and [Tanzu Java Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators have the option to support Spring Boot v3.0.
-- Use the `accelerator-info.yaml` file to review historical information and to see if
+- The Application Accelerator plug-in for IntelliJ is now available as a beta release on
+  [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+
+- Adds the option to support Spring Boot v3.0 for the
+  [Tanzu Java Restful Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
+  and [Tanzu Java Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators.
+
+- You can use the `accelerator-info.yaml` file to review historical information and to see if
   a project was generated with an accelerator.
-- (Optional) Use a system-wide property in the `tap-values.yaml` configuration file to activate or
-  deactivate Git repository creation. For more information, see [Deactivate Git repository creation](./tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation).
-- Accelerator Tanzu CLI plug-in now supports using the Tanzu Application Platform GUI URL with the `--server-url` command option.
-For more information, see [Using Tanzu Application Platform GUI URL](cli-plugins/accelerator/overview.html#server-api-connections-for-operators-and-developers-0)
+
+- Adds the option to use a system-wide property in the `tap-values.yaml` configuration file to activate or
+  deactivate Git repository creation. For more information, see [Deactivate Git repository creation](tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation).
+
+- The Accelerator Tanzu CLI plug-in now supports using the Tanzu Application Platform GUI URL
+  with the `--server-url` command option.
+  For more information, see [Using Tanzu Application Platform GUI URL](cli-plugins/accelerator/overview.html#server-api-connections-for-operators-and-developers-0)
 
 #### <a id='1-5-0-app-sso-features'></a> Application Single Sign-On (AppSSO)
 
 - Introduces `AuthServer` CORS API that enables configuration of allowed HTTP origins.
   This is useful for public clients, such as single-page apps.
-- Introduces an API for filtering external roles, groups, and memberships across OpenID, LDAP, and SAML identity providers
-  in `AuthServer` resource into the `roles` claim of the resulting identity
+
+- Introduces an API for filtering external roles, groups, and memberships across OpenID, LDAP, and SAML
+  identity providers in `AuthServer` resource into the `roles` claim of the resulting identity
   token. For more information, see [Roles claim filtering](app-sso/service-operators/identity-providers.hbs.md#roles-filters).
-- Introduces mapping of users' roles, filtered and propagated in the identity
-  token's `roles` claim, into scopes of the access token. For access tokens that are in the JWT format, the resulting
-  scopes are part of the access token's `scope` claim, if the `ClientRegistration` contains the
-  scopes. For more information, see [Configure authorization](app-sso/service-operators/configure-authorization.hbs.md).
+
+- Introduces mapping of user roles, filtered and propagated in the identity
+  token's `roles` claim, into scopes of the access token.
+  For access tokens that are in the JWT format, the resulting scopes are part of the access token's
+  `scope` claim, if the `ClientRegistration` contains the scopes.
+  For more information, see [Configure authorization](app-sso/service-operators/configure-authorization.hbs.md).
+
 - Introduces default access token scopes for user's authentication by using an identity
   provider. For more information, see [Default authorization scopes](app-sso/service-operators/configure-authorization.hbs.md#default-scopes).
+
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
-#### <a id='1-5-0-bitnami-services-features'></a> Bitnami Services<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-0-bitnami-services-features'></a> Bitnami Services
 
 - The new component [Bitnami Services](bitnami-services/about.hbs.md) is available with
   Tanzu Application Platform.
 
-- This component provides integration for dynamic provisioning of Bitnami Helm Charts included with
+- Provides integration for dynamic provisioning of Bitnami Helm Charts included with
   Tanzu Application Platform for the following backing services:
-  - PostgreSQL
-  - MySQL
-  - Redis
-  - RabbitMQ
+   - PostgreSQL
+   - MySQL
+   - Redis
+   - RabbitMQ
 
-- For more information, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-bitnami-services.hbs.md).
+   For a tutorial to get started with using these services, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-bitnami-services.hbs.md).
+
 
 #### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
-For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager v1.11.0.
+  For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
-#### <a id='1-5-0-crossplane-features'></a> Crossplane<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-0-crossplane-features'></a> Crossplane
 
 - The new component [Crossplane](crossplane/about.hbs.md) is available with Tanzu Application Platform.
-  - It installs [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0`.
-  - This provides integration for dynamic provisioning in Services Toolkit and can be<!--฿ Consider switching to active voice. ฿--> used for
+  It installs [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) v1.11.0.
+
+- Provides integration for dynamic provisioning in Services Toolkit and can be used for
   integration with cloud services such as AWS, Azure, and GCP.
   For more information, see
   [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services.hbs.md).
-  - For more information about dynamic provisioning, see
+
+  For more information about dynamic provisioning, see
   [Set up dynamic provisioning of service instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
 
-- This release includes two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/), `provider-kubernetes` and `provider-helm`.
-You can add other providers manually as required.
+- Includes two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/):
+  `provider-kubernetes` and `provider-helm`.
+  You can add other providers manually as required.
 
 #### <a id='1-5-0-external-secrets-features'></a>External Secrets CLI (Beta)
 
 - The external-secrets plug-in available in the Tanzu CLI interacts with the External Secrets Operator API.
-Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
+  Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
 
    For more information about managing secrets with External Secrets in general, see the official [External Secrets Operator documentation](https://external-secrets.io).
    For installing the External Secrets Operator and the CLI plug-in, see the following documentation.
@@ -113,41 +130,128 @@ Users can use this CLI plug-in to create and view External Secrets Operator reso
 
    Additionally, see the example integration of External-Secrets with Hashicorp Vault
 
-#### <a id="1-5-namespace-provisiones-feats"></a> Namespace Provisioner<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id="1-5-namespace-provisioner-feats"></a> Namespace Provisioner
 
-- New Out-of-the-box<!--฿ Do not use |out-of-the-box| figuratively. Alternatives include |ready-made|, |pre-built|, |standard|, and |default|. ฿--> GitOps workflow for managing the list of desired<!--฿ |that you want| is preferred. ฿--> namespaces fully declaratively
-  via<!--฿ |through|, |using| and |by means of| are preferred. ฿--> a Git repo<!--฿ |repository| is preferred. ฿-->. Specify the location of GitOps repo<!--฿ |repository| is preferred. ฿--> that has the list of desired<!--฿ |that you want| is preferred. ฿--> namespaces as
-  `ytt data values` to be imported in the namespace provisioner using the `gitops_install` TAP<!--฿ |Tanzu Application Platform| is preferred. ฿--> values configuration.
-  - For more information, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the GitOps section in
-    [Provision Developer Namespace](./namespace-provisioner/provision-developer-ns.md) documentation.
-- Namespace provisioner<!--฿ |Namespace Provisioner| is the preferred casing. ฿--> controller supports adding namespace parameters from labels/annotations on
-  namespace objects based on accepted prefixes defined in `parameter_prefixes` TAP<!--฿ |Tanzu Application Platform| is preferred. ฿--> values configuration.
+- Includes a new GitOps workflow for managing a list of namespaces fully declaratively
+  through a Git repository. Specify the location of GitOps repository that has the list of namespaces
+  that you want as `ytt data values` to be imported in the namespace provisioner using the `gitops_install` `tap-values.yaml` configuration.
+
+   For more information, see the GitOps section in
+   [Provision developer namespaces](namespace-provisioner/provision-developer-ns.hbs.md).
+
+- The Namespace Provisioner controller supports adding namespace parameters from labels or annotations
+  on namespace objects based on accepted prefixes defined in the `parameter_prefixes` configuration in the `tap-values.yaml`.
   You can use this feature to add custom parameters to a namespace for creating resources conditionally.
-  - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the documentation on<!--฿ If x-referencing, go with the cleaner |See LINK.| or |For more information about TOPIC, see LINK.| ฿--> how to
-    [Create Tekton pipelines and Scan policies using namespace parameters](./namespace-provisioner/use-case2.md).
-- Add support for importing Kubernetes Secrets that contains a `ytt overlay` definition that can be<!--฿ Consider switching to active voice. ฿-->
-  applied to the resources created by the Namespace provisioner<!--฿ |Namespace Provisioner| is the preferred casing. ฿-->.
-  - Using the `overlays_secret` configuration in namespace provisioner TAP<!--฿ |Tanzu Application Platform| is preferred. ฿--> values, users can provide
-    a list of secrets that contains the overlay definition they want to apply to resources created by provisioner.
-  - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the documentation on<!--฿ If x-referencing, go with the cleaner |See LINK.| or |For more information about TOPIC, see LINK.| ฿--> how to
-    [Customize OOTB default resources](./namespace-provisioner/use-case4.md) using overlays.
-- Add support for reading sensitive data from a Kubernetes secret in YAML format and populating that
+
+   For an example, see
+   [Create Tekton pipelines and Scan policies using namespace parameters](namespace-provisioner/use-case2.hbs.md).
+
+- Adds support for importing Kubernetes secrets that contains a `ytt overlay` definition that you can apply
+  to the resources created by Namespace Provisioner.
+
+   Using the `overlays_secret` configuration in namespace provisioner`tap-values.yaml`,
+   users can provide a list of secrets that contains the overlay definition they want to apply
+   to resources created by provisioner.
+
+   For an example of using overlays, see
+   [Customize OOTB default resources](./namespace-provisioner/use-case4.md).
+
+- Adds support for reading sensitive data from a Kubernetes secret in YAML format and populating that
   information in the resources created by namespace provisioner in runtime and keep it in sync with
   the source, thereby removing the need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> store any sensitive data in GitOps repository.
   - Using the `import_data_values_secrets` configuration in namespace provisioner TAP<!--฿ |Tanzu Application Platform| is preferred. ฿--> values, you can
    import sensitive data from a YAML formatted secret and make it available under `data.values.imported` for additional resource templating.
   - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the documentation on<!--฿ If x-referencing, go with the cleaner |See LINK.| or |For more information about TOPIC, see LINK.| ฿--> how to
     [Install multiple scanners in the developer namespace](./namespace-provisioner/use-case5.md).
+
 - Namespace Provisioner now creates a Kubernetes `LimitRange` object with sensible<!--฿ There is a probably a clearer synonym to use here, such as |expected|, |acceptable|, or |valid|. ฿--> defaults<!--฿ |by default| is usually better. ฿--> which sets
   max<!--฿ |maximum| is preferred. ฿--> limits on how much resource pods in the managed namespace can request.
   - Run profile: Stamped by default.
   - Full &<!--฿ |and| is preferred. ฿--> Iterate profile: Opt-in using parameters.
     - Refer to<!--฿ If telling the reader to read somewhere else, use |See|. ฿--> the [Customize OOTB Limit Range default](./namespace-provisioner/use-case4.md#customize-limit-range-defaults) documentation for sample configuration.
+
 - Namespaces provisioner enabled users to use private git<!--฿ |Git| is the preferred casing. ฿--> repositories for storing their GitOps based
   installation files as well as<!--฿ |and| is preferred. ฿--> additional platform operator templated resources that they want to create
   in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning`
   namespace, or an existing secret in another namespace referred to in the `secretRef` in the additional sources.
   - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the documentation on<!--฿ If x-referencing, go with the cleaner |See LINK.| or |For more information about TOPIC, see LINK.| ฿--> [Working with private Git Repositories](./namespace-provisioner/use-case3.md)
+
+#### <a id='1-5-0-services-toolkit-features'></a> Services Toolkit
+
+- Services Toolkit now supports the dynamic provisioning of services instances.
+  - `ClusterInstanceClass` now supports the new provisioner mode.
+  When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new
+  service instance is created on-demand and claimed. This is powered by [Crossplane](crossplane/about.hbs.md).
+
+- The `tanzu service` CLI plug-in has the following updates:
+   - The command `tanzu service class-claim create`  now allows you to pass parameters to the
+   provisioner-based `ClusterInstanceClass` to support dynamic provisioning.
+   For example,
+   `tanzu service class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
+   - The `tanzu service class-claim get` now outputs parameters passed as part of claim creation.
+
+   For more information about these commands, see [Tanzu Service CLI Plug-In](services-toolkit/reference/tanzu-service-cli.hbs.md#stk-cli-class-claim).
+
+- Integrates with the new component [Bitnami Services](bitnami-services/about.hbs.md),
+  which provides pre-installed dynamic provisioning support for the following Helm charts:
+   - PostgreSQL
+   - MySQL
+   - Redis
+   - RabbitMQ
+
+- Improves the security model to control which users can claim specific service instances.
+   - Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`.
+   You can bind this to users for access control of who can create `ClassClaim` resources for
+   a specific `ClusterInstanceClass`.
+   - A `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
+
+   For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md) to learn more.
+
+- The `ResourceClaimPolicy` now supports targeting individual resources by name.
+  To do so, configure `.spec.subject.resourceNames`.
+
+- The `Where-For-Dinner` sample Application Accelerator now supports dynamic provisioning.
+
+- Changes to the Services Toolkit component documentation.
+   - The [standalone Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)
+   is no longer receiving updates.
+   From now on you can find all Services Toolkit documentation in the Tanzu Application Platform
+   component documentation section for [Services Toolkit](services-toolkit/about.hbs.md).
+   - To learn more about working with services on Tanzu Application Platform, see the new
+   [tutorials](services-toolkit/tutorials/index.hbs.md),
+   [how-to guides](services-toolkit/how-to-guides/index.hbs.md),
+   [concepts](services-toolkit/concepts/index.hbs.md), and
+   [reference material](services-toolkit/reference/index.hbs.md).
+
+#### <a id='1-5-0-scc-features'></a> Supply Chain Choreographer
+
+- Introduces a variation of the Out of the Box Basic supply chains that output Carvel packages.
+  Carvel packages enable configuring for each runtime environment.
+  For more information, see [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md).
+  This feature is experimental.
+
+#### <a id='1-5-0-scst-policy-features'></a> Supply Chain Security Tools (SCST) - Policy Controller
+
+- ClusterImagePolicy resync is triggered every 10 hours to get updated values from the Key Management Service (KMS).
+
+#### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools (SCST) - Scan
+
+- SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
+  - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. One restart in scanner pods is expected<!--฿ Consider replacing with |in most cases| to sound more confident. ฿--> with successful scans. See [Scanner Pod restarts once in SCST - Scan `v1.5.0` or later](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts)<!--฿ Do not use backticks in link names. ฿-->.
+
+- Adds support for rotating certificates and TLS, to conform with NIST 800-53.
+  - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
+
+- SCST<!--฿ Enclose placeholders in code tags. ฿--> - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
+  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
+  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> like to use with Tanzu Application Platform? See [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
+  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
+
+- Carbon Black integration updates:
+  - The scanner integration has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> updated to use the Carbon Black scanner CLI version `1.9.2`
+  - Notable optimizations include an improved scan logic that reduces the time it takes for a scan to complete.
+  - Check<!--฿ |Verify|, |Ensure|, and |Confirm| are all preferred. ฿--> out the [Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials) for more details or to learn about our other capabilities.
 
 #### <a id='1-5-0-tap-gui-features'></a> Tanzu Application Platform GUI
 
@@ -155,16 +259,19 @@ Users can use this CLI plug-in to create and view External Secrets Operator reso
   The Java script is installed on selected pages of VMware software and collects information about
   your use of the software, such as clickstream data and page loads, hashed user ID, and limited
   browser and device information.
-  This information is used to<!--฿ Redundant? ฿--> better understand the way you use the software in order to<!--฿ |to| is preferred. ฿--> improve
+  This information is used to better understand the way you use the software to improve
   VMware products and services and your experience.
   For more information, see the
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
 
-- Supports automatic configuration with Supply Chain Security Tools - Store<!--฿ |Supply Chain Security Tools (SCST) - Store| on first use. |SCST - Store| thereafter. ฿-->. For more information,
+- Supports automatic configuration with SCST - Store. For more information,
   see [Automatically connect Tanzu Application Platform GUI to the Metadata Store](tap-gui/plugins/scc-tap-gui.hbs.md#scan-auto).
+
 - Enables specification of security banners. To use this customization,
   see [Customize security banners](tap-gui/customize/customize-portal.hbs.md#cust-security-banners).
-- Upgrades Backstage to v1.10.1
+
+- Upgrades Backstage to v1.10.1.
+
 - Includes an optional plug-in that collects telemetry by using the Pendo tool.
   To configure Pendo telemetry and opt in or opt out, see
   [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
@@ -189,8 +296,8 @@ Users can use this CLI plug-in to create and view External Secrets Operator reso
   - The **Heap Dump** button deactivates when sensitive operations are deactivated for the application.
   - Enabled Secure Access Communication between App Live View components.
   - Added an API to connect to `appliveview-apiserver` by reusing `tap-gui` authentication.
-  - The ALV plug-in now requests a token from `appliveview-apiserver` and passes it to every call to
-    the ALV back end.
+  - The Application Live View plug-in now requests a token from `appliveview-apiserver` and passes it to every call to
+    the Application Live View back end.
   - Secured sensitive operations (edit env, change log levels, download heap dump) and display a
     message in the UI.
   - Renamed the `k8s-logging-backend` plug-in as `k8s-custom-apis-backend`.
@@ -208,102 +315,38 @@ Users can use this CLI plug-in to create and view External Secrets Operator reso
 
 #### <a id="1-5-apps-plugin-features"></a> Tanzu CLI Apps plug-in
 
-- Added support for `-ojson` and `-oyaml` output flags in `tanzu apps workload create/apply` command.
-  - The CLI does not wait to print workload when using `--output` in workload create/apply unless
+- Adds support for `-ojson` and `-oyaml` output flags in `tanzu apps workload create/apply` command.
+  The CLI does not wait to print workload when using `--output` in workload create/apply unless
   `--wait` or `--tail` flags are specified as well.
+
 - Using the `--no-color` flag in `tanzu apps workload create/apply` commands now hides progress bars
   in addition to color output and emojis.
-- Added support for unsetting `--git-repo`, `--git-commit`, `--git-tag` and `--git-branch` flags
+
+- Adds support for unsetting `--git-repo`, `--git-commit`, `--git-tag` and `--git-branch` flags
   by setting the value to empty string.
-
-#### <a id='1-5-0-services-toolkit-features'></a> Services Toolkit
-
-- Services Toolkit now supports the dynamic provisioning of services instances.
-  - `ClusterInstanceClass` now supports the new provisioner mode.
-  When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new
-  service instance is created on-demand and claimed. This is powered by [Crossplane](crossplane/about.hbs.md).
-
-- The `tanzu service` CLI plug-in has the following updates:
-  - The command `tanzu service class-claim create`  now allows you to pass parameters to the
-  provisioner-based `ClusterInstanceClass` to support dynamic provisioning.
-  For example,
-  `tanzu service class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
-  - The `tanzu service class-claim get` now outputs parameters passed as part of claim creation.
-  - For more information about these commands, see [Tanzu Service CLI Plug-In](services-toolkit/reference/tanzu-service-cli.hbs.md#stk-cli-class-claim).
-
-- Services Toolkit integrates with the new component [Bitnami Services](bitnami-services/about.hbs.md),
-  which provides pre-installed dynamic provisioning support for the following Helm charts:
-  - PostgreSQL
-  - MySQL
-  - Redis
-  - RabbitMQ
-
-- Improved the security model to control which users can claim specific service instances.
-  - Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`.
-  You can bind this to users for access control of who can create `ClassClaim` resources for
-  a specific `ClusterInstanceClass`.
-  - A `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
-  - For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md) to learn more.
-
-- `ResourceClaimPolicy` now supports targeting individual resources by name.
-  To do so, configure `.spec.subject.resourceNames`.
-
-- The `Where-For-Dinner` sample Application Accelerator now supports dynamic provisioning.
-
-- There are large changes to the Services Toolkit component documentation.
-  - The [standalone Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)
-  is no longer receiving updates.
-  From now on you can find all Services Toolkit documentation in the Tanzu Application Platform
-  component documentation section for [Services Toolkit](services-toolkit/about.hbs.md).
-  - See the new [tutorials](services-toolkit/tutorials/index.hbs.md),
-  [how-to guides](services-toolkit/how-to-guides/index.hbs.md),
-  [concepts](services-toolkit/concepts/index.hbs.md), and
-  [reference material](services-toolkit/reference/index.hbs.md) to learn more about working with services
-  on Tanzu Application Platform.
-
-#### <a id='1-5-0-scc-features'></a> Supply Chain Choreographer
-
-- Introduces a variation of the Out of the Box Basic supply chains that output Carvel packages.
-  Carvel packages enable configuring for each runtime environment.
-  For more information, see [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md).
-  This feature is experimental.
-
-#### <a id='1-5-0-scst-policy-features'></a> Supply Chain Security Tools (SCST) - Policy Controller
-
-- ClusterImagePolicy resync is triggered every 10 hours to get updated values from the Key Management Service (KMS).
-
-#### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools (SCST) - Scan
-
-- SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
-  - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
-  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. One restart in scanner pods is expected<!--฿ Consider replacing with |in most cases| to sound more confident. ฿--> with successful scans. See [Scanner Pod restarts once in SCST - Scan `v1.5.0` or later](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts)<!--฿ Do not use backticks in link names. ฿-->.
-- In conformance with NIST 800-53<!--฿ Use &ndash; for a range, not a regular dash. ฿-->, support for rotating certificates and TLS is added.
-  - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
-- SCST<!--฿ Enclose placeholders in code tags. ฿--> - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
-  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
-  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> like to use with Tanzu Application Platform? See [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
-  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
-- Carbon Black integration updates:
-  - The scanner integration has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> updated to use the Carbon Black scanner CLI version `1.9.2`
-  - Notable optimizations include an improved scan logic that reduces the time it takes for a scan to complete.
-  - Check<!--฿ |Verify|, |Ensure|, and |Confirm| are all preferred. ฿--> out the [Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials) for more details or to learn about our other capabilities.
 
 #### <a id='1-5-0-intellij-plugin-features'></a> Tanzu Developer Tools for IntelliJ
 
-- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
+- Updates the Tanzu Workloads panel to show workloads deployed across multiple namespaces.
+
 - Tanzu actions for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now available
   from the Tanzu Workloads panel.
+
 - You can use Tanzu Developer Tools for IntelliJ to iterate on Spring Boot 3 based applications.
 
 #### <a id='1-5-0-vscode-plugin-features'></a> Tanzu Developer Tools for VS Code
 
 - The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
   and running application pods.
-- The tab enables a developer to view and describe logs on each resource associated with a workload
-  from within their IDE. The tab displays detailed error messages for each resource in an error state.
-- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
+
+   The tab enables a developer to view and describe logs on each resource associated with a workload
+   from within their IDE. The tab displays detailed error messages for each resource in an error state.
+
+- Updates the Tanzu Workloads panel to show workloads deployed across multiple namespaces.
+
 - Tanzu commands for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now available
   from the Tanzu Workloads panel.
+
 - You can use Tanzu Developer Tools for VS Code to iterate on Spring Boot 3 based applications.
 
 ---
@@ -321,7 +364,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-5-scst-scan-bc"></a> Supply Chain Security Tools (SCST) - Scan
 
-- Deprecated Grype ScanTemplates included with Tanzu Application Platform v1.2.0 and earlier are removed
+- The deprecated Grype ScanTemplates included with Tanzu Application Platform v1.2.0 and earlier are removed
   and no longer supported. Use Grype ScanTemplates v1.2 and later.
 
 #### <a id='1-5-0-tbs-bc'></a> Tanzu Build Service
