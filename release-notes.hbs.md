@@ -137,14 +137,14 @@ This release includes the following changes, listed by component and area.
   that you want as `ytt data values` to be imported in the namespace provisioner using the `gitops_install` `tap-values.yaml` configuration.
 
    For more information, see the GitOps section in
-   [Provision developer namespaces](namespace-provisioner/provision-developer-ns.hbs.md).
+   [Provision developer namespaces](namespace-provisioner/provision-developer-ns.md).
 
 - The Namespace Provisioner controller supports adding namespace parameters from labels or annotations
   on namespace objects based on accepted prefixes defined in the `parameter_prefixes` configuration in the `tap-values.yaml`.
   You can use this feature to add custom parameters to a namespace for creating resources conditionally.
 
    For an example, see
-   [Create Tekton pipelines and Scan policies using namespace parameters](namespace-provisioner/use-case2.hbs.md).
+   [Create Tekton pipelines and Scan policies using namespace parameters](namespace-provisioner/use-case2.md).
 
 - Adds support for importing Kubernetes secrets that contains a `ytt overlay` definition that you can apply
   to the resources created by Namespace Provisioner.
@@ -154,7 +154,7 @@ This release includes the following changes, listed by component and area.
    to resources created by provisioner.
 
    For an example of using overlays, see
-   [Customize OOTB default resources](./namespace-provisioner/use-case4.md).
+   [Customize OOTB default resources](namespace-provisioner/use-case4.md).
 
 - Adds support for reading sensitive data from a Kubernetes secret in YAML format and populating that
   information in the resources created by namespace provisioner in runtime and keep it in sync with
