@@ -241,6 +241,7 @@ docs.vmware.com is built.
             - [Accelerator custom resource](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
             - [Testing accelerators](application-accelerator/creating-accelerators/testing-accelerators.hbs.md)
         - [VS Code extension](application-accelerator/vscode.hbs.md)
+        - [IntelliJ plugin](application-accelerator/intellij.hbs.md)
         - [Best practices](application-accelerator/best-practices/about-best-practices.hbs.md)
             - [About best practices](application-accelerator/best-practices/about-best-practices.hbs.md)
             - [Accelerators](application-accelerator/best-practices/accelerators.hbs.md)
