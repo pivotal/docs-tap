@@ -334,6 +334,12 @@ This release includes the following changes, listed by component and area.
 
 - You can use Tanzu Developer Tools for IntelliJ to iterate on Spring Boot 3 based applications.
 
+#### <a id='1-5-0-vs-plugin-features'></a> Tanzu Developer Tools for Visual Studio
+
+- Multi-project/multi-microservice support.
+
+- "New Item..." templates for Tanzu configuration files.
+
 #### <a id='1-5-0-vscode-plugin-features'></a> Tanzu Developer Tools for VS Code
 
 - The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
