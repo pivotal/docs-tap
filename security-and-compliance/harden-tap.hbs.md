@@ -201,6 +201,8 @@ an outcome.
 
 ### Ports and Protocols
 
+Ports are used in TCP and UDP protocols for identification of applications. While some applications use well-known port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic ports. Open port refers to a port on which a system is accepting communication. An open port does not immediately mean a security issue, but it's important to understand that it can provide a pathway for attackers to the application listening on that port. To help with understanding the traffic flows in the Tanzu Application Platform, a list of TAP ports and protocols is available to existing and future customers upon request. 
+
 Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html)
 
 ## Networking
@@ -215,6 +217,8 @@ Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Ta
 
 ## Key Management
 
+Key management is the foundation of all data security. Data is encrypted and decrypted via the use of encryption keys or secrets that must be safely stored to prevent the loss or compromise of infrastructure, systems, and applications. TAP values are secrets and must be protected to ensure the security and integrity of the platform.
+
 - TAP stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
 - Encryption of secrets at rest are Kubernetes Distribution Dependent.
 - If customers desire to store secrets in a Secret Management service (e.g. [Hashicorp Vault](https://www.vaultproject.io),
@@ -226,6 +230,8 @@ Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Ta
   related to safeguarding of sensitive information from exploitation (ex. TAP values)
 
 ## Logging
+
+Log files provide an audit trail necessary to monitor activity within infrastructure, identify policy violations, unusual activity, and highlight security incidents. It is vital that logs are captured and retained according to the policies set forth by the organization's security team or governing body. TAP components run as pods on the Kubernetes infrastructure and all components output to standard out, captured as part of the pod logs.
 
 All TAP components follow
 [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
