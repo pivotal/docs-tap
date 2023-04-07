@@ -48,8 +48,7 @@ This release includes the following changes, listed by component and area.
   [Tanzu Java Restful Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
   and [Tanzu Java Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators.
 
-- You can use the `accelerator-info.yaml` file to review historical information and to see if
-  a project was generated with an accelerator.
+- Application Accelerator now generates application bootstrapping provenance when a project is created using an accelerator. For more information, see [Provenance transform](application-accelerator/creating-accelerators/transforms/provenance.hbs.md).
 
 - Adds the option to use a system-wide property in the `tap-values.yaml` configuration file to activate or
   deactivate Git repository creation. For more information, see [Deactivate Git repository creation](tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation).
@@ -277,17 +276,6 @@ This release includes the following changes, listed by component and area.
   [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
 
 #### <a id="tap-gui-plug-in-features"></a> Tanzu Application Platform GUI plug-ins
-
-- **App Accelerator Plug-in:**
-  - Extracted Application Accelerator Entity Provider and template actions to a back-end plug-in.
-  - Added ID generation for accelerator provenance.
-  - Hid pop-up menu from the Application Accelerator scaffolder page and, consequently, hid the
-    **Edit template** feature.
-  - Added fallback to `displayName` for a telemetry call when an email address isn't present for the
-    logged-in user.
-  - Changed label for the Git repository confirmation check box.
-  - Changed the app accelerator telemetry call to use the user name instead of an email address in
-    the user details.
 
 - **Supply Chain Plug-in:**
   - When `alvToken` has expired, the logic to fetch a new token and the API call are both retried.
