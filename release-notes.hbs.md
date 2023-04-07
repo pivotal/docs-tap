@@ -324,9 +324,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-5-0-vs-plugin-features'></a> Tanzu Developer Tools for Visual Studio
 
-- Multi-project/multi-microservice support.
+- Supports iterative development of applications consisting of multiple microservices, allowing developers to debug and live update each microservice independently and simultaneously.
 
-- "New Item..." templates for Tanzu configuration files.
+- Developers can enable pre-existing projects to work  with Tanzu Application Platform Developer Tools easily by generating the necessary configuration files via templates.
 
 #### <a id='1-5-0-vscode-plugin-features'></a> Tanzu Developer Tools for VS Code
 
