@@ -242,15 +242,4 @@ process.
 
 ## Deployment Architecture
 
-Reference arch:
-[https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html)
-
-- Managed Postgres
-  - Azure
-    - [https://azure.microsoft.com/en-us/products/postgresql/#overview](https://azure.microsoft.com/en-us/products/postgresql/#overview)
-  - AWS
-    - [https://aws.amazon.com/rds/postgresql/](https://aws.amazon.com/rds/postgresql/)
-  - GCP
-    - [https://cloud.google.com/sql/postgresql](https://cloud.google.com/sql/postgresql)
-  - VMware (self-managed)
-    - [https://docs.vmware.com/en/VMware-Tanzu-SQL/index.html](https://docs.vmware.com/en/VMware-Tanzu-SQL/index.html)
+The Tanzu Application Platform provides a [reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) which provides separation of components based on function.  This reference architecture recommends multiple Kubernetes clusters that serve the functions of "iterate","build","view", and "run" for users.  This separation is intended to provide separation of concerns for users, as well as protect the availability and performance of the platform from functions such as building and scanning, that could consume extensive resources from the cluster in a bursty nature.
