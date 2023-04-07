@@ -326,7 +326,7 @@ This release includes the following changes, listed by component and area.
 
 - Supports iterative development of applications consisting of multiple microservices, allowing developers to debug and live update each microservice independently and simultaneously.
 
-- Developers can enable pre-existing projects to work  with Tanzu Application Platform Developer Tools easily by generating the necessary configuration files via templates.
+- Enable pre-existing projects to work with Tanzu Application Platform Developer Tools easily by generating the necessary configuration files via templates.
 
 #### <a id='1-5-0-vscode-plugin-features'></a> Tanzu Developer Tools for VS Code
 
