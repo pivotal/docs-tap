@@ -83,7 +83,7 @@ remote cluster.  As best security practice, VMware recommends setting up a remot
 provider for the Kubernetes cluster.
 
 Full documentation for this can be found
-[here](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/tap-gui-auth.html).
+[here]([https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/tap-gui-auth.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/tap-gui-cluster-view-setup.html#update-tap-gui).
 
 As best practice, the users on the Kubernetes clusters that are used for remote authentication
 should be assigned to Kubernetes roles that limit access in a least privilege model.  More
@@ -193,7 +193,7 @@ learn how to configure TLS for a TAP installation's ingress endpoints.
 All data should be encrypted at rest.  The Tanzu Application Platform runs on top of the Kubernetes
 platform and as such, TAP will verify the default storage class configured on the Kubernetes
 cluster. Customers are required to provide a Persistent Volume Provisioner to the Kubernetes
-infrastructure that supports encryption if the customers desires to have Encrypt of Data at Rest as
+infrastructure that supports encryption if the customers desire to have Encryption of Data at Rest as
 an outcome.
 
 - Persistent Volume claim encryption
