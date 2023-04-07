@@ -207,13 +207,8 @@ Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Ta
 
 ## Networking
 
-- No NodePort services -> All traffic needs to go through Contour / LoadBalancer
-- [TAP supported by Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/integrations-tsm-tap-integration.html)
-- DDoS protection
-- Affinity rules on knative deployed services:
-  [https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity)
-- Shared responsibility with the customer to ensure that customer workloads only expose internal
-  only routes.
+TAP networking is a shared responsibility with customers to ensure that customer workloads only expose internal-only routes. All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/). TAP is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/integrations-tsm-tap-integration.html). It is vital that customers configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on knative deployed services. For more information, please refer to instructions for [installing TAP in an air-gapped environment](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/install-air-gap.html?hWord=N4IghgNiBcIC5gHYC8CuACRBTOB3A9gE4DWIAvkA).
+
 
 ## Key Management
 
