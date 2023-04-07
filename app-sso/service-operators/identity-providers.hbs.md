@@ -689,7 +689,7 @@ There are multiple options for generating bcrypt hashes:
 
 ## <a id='roles-filtering'></a> Roles claim filtering
 
-> **Note** This section is applicable to **OpenID**, **LDAP**, and **SAML (experimental)** identity provider configurations
+> **Note** This section is applicable to OpenID, LDAP, and SAML (experimental) identity provider configurations.
 
 Once an external groups mapping has been applied (as described per identity provider above), AppSSO is able to retrieve
 all the groups from an identity provider. An identity provider may have hundreds of groups, and any

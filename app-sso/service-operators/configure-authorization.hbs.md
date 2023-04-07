@@ -33,9 +33,9 @@ authorization scopes at `AuthServer` identity provider and `ClientRegistration` 
 To configure authorization for an identity provider, you must define from which claim or attribute the
 upstream identity provider supplies the groups or roles that a user is part of:
 
-- [OpenID - external groups mapping](./identity-providers.md#openid-external-groups-mapping)
-- [LDAP - external groups mapping](./identity-providers.md#ldap-external-groups-mapping)
-- [SAML (experimental) - external groups mapping](./identity-providers.md#openid-external-groups-mapping)
+- [OpenID external groups mapping](identity-providers.md#openid-external-groups-mapping)
+- [LDAP external groups mapping](identity-providers.md#ldap-external-groups-mapping)
+- [SAML (experimental) external groups mapping](identity-providers.md#openid-external-groups-mapping)
 
 After external groups mapping is complete, and groups or roles are retrievable, you can optionally
 filter the roles that are appended to an identity token. 
