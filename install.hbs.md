@@ -316,6 +316,7 @@ scanning:
 grype:
   namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+  # In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
 
 policy:
   tuf_enabled: false # By default, TUF initialization and keyless verification are deactivated.

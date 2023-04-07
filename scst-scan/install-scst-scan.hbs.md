@@ -184,6 +184,7 @@ To install SCST - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
+    **Note:** In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
     >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 
