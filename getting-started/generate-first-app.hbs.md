@@ -83,31 +83,39 @@ IntelliJ : ## <a id="you-will"></a>What you will do
 
   ## <a id="install-app-accelerator-plugin"></a> Install and configure the Application Accelerator plugin for IntelliJ
 
-  To install and configure the Application Accelerator plug-in for IntelliJ,
-  see Application Accelerator plug-in for
-  IntelliJ.<br>
-
+  To install and configure the Application Accelerator plugin for IntelliJ,
+  see [Application Accelerator plugin for
+  IntelliJ](../application-accelerator/intellij.hbs.md)<br>
 
   ## <a id="generate-intellij-project"></a>Generate a new project using an application accelerator
 
   1. On the IntelliJ "Welcome to IntelliJ IDEA" page, click "New Project".
 
-  2. Select "Tanzu App Accelerator" from the "Generators" panel.
+     ![IntelliJ New Project](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)
+
+  2. Select "Tanzu Application Accelerator" from the left side.
+
+     ![Tanzu Application Accelerator](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)
 
   3. Select an accelerator from the catalog. For this example, `Tanzu Java Web
      App` will be used. Click "Next".
 
-  4. Configure the accelerator as defined by your project's requirements. For
-     this example, the project will be configured to use Spring Boot 3 and Java
-     17.
+  4. Configure the accelerator as defined by your project's requirements. 
+
+     ![Accelerator Options](../images/app-accelerator/intellij/app-accelerators-intellij-options.png)
 
   5. Once configuration is finished, click "Next".
 
   6. In the "Review and Generate" step, verify that all the information provided
      is accurate. Click "Next".
 
+     ![Review](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
+
   7. Once the project is finished generating, click "Create" to open the new
      project in IntelliJ.
+
+     ![Create and Open Project](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)
+     
   8. Once opened, the project is ready for development.
 
 <a id="app-accelerator-tap-gui"></a>Tanzu Application Platform GUI : ## <a
