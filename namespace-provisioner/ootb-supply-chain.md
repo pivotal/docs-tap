@@ -181,6 +181,7 @@ Using workload yaml
           branch: main
         url: https://github.com/sample-accelerators/tanzu-java-web-app
   ```
+
 ## <a id='test-scan'></a>Testing & Scanning Supply Chain
 
 The Testing Scanning supply chain adds the `source-tester`, `source-scanner`, and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain and scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, the following additional resources must exist in the same namespace as the workload.

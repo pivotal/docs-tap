@@ -72,7 +72,7 @@ To configure the service account to work with private Git repositories, follow t
     - `host`, `username` and `password` values for HTTP based Git Authentication.
     - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
-    >**Note**: stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
+    >**Note** stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
 
     ```yaml
     #! Example shows HTTP as well as SSH based authentication

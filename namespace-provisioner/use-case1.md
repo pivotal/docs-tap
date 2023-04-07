@@ -117,4 +117,4 @@ Using workload yaml
         url: https://github.com/sample-accelerators/tanzu-java-web-app
   ```
 
->**Note**: `--param-yaml testing_pipeline_matching_labels` tells the supply chain to use the selector that matches the Java pipeline. To use the Python or Golang pipelines, use the selector that matches the language label in those resources.` --param scanning_source_policy="lax-scan-policy"` tells the supply chain to use the lax ScanPolicy for the workload.
+>**Note** `--param-yaml testing_pipeline_matching_labels` tells the supply chain to use the selector that matches the Java pipeline. To use the Python or Golang pipelines, use the selector that matches the language label in those resources.` --param scanning_source_policy="lax-scan-policy"` tells the supply chain to use the lax ScanPolicy for the workload.
