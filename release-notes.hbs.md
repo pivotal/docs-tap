@@ -476,6 +476,11 @@ The following issues, listed by area and component, are resolved in this release
 - Fixed the behavior where `subpath` was getting removed from the workload when there are updates
   to the Git section of the workload source specification.
 
+#### <a id="1-5-intellij-ext-ri"></a> Tanzu Developer Tools for IntelliJ
+
+- When there are multiple resource types with the same kind, the pop-up menu **Describe** action in
+  the Activity panel no longer fails when used on PodIntent resources.
+
 ---
 
 ### <a id='1-5-0-known-issues'></a> Known issues
