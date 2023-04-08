@@ -46,7 +46,7 @@ Click the stop button in the Debug overlay to stop debugging on the cluster.
 
 ![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and pointer description.](../images/intellij-stopDebug.png)
 
-### <a id="start-live-update"></a> Start Live Update
+## <a id="start-live-update"></a> Start Live Update
 
 1. Stop any running sessions. Only one Live Update session can be active at a time.
 1. Right-click your project’s Tiltfile and select **Run 'Tanzu Live Update - ...'**.
@@ -62,7 +62,7 @@ Click the stop button in the Debug overlay to stop debugging on the cluster.
 > **Important:** You must compile your code before the changes are synchronized to the container.
 > For example, `Build Project`: `⌘`+`F9`.
 
-### <a id="stop-liveupdate"></a> Stop Live Update
+## <a id="stop-liveupdate"></a> Stop Live Update
 
 To stop Live Update, use the native controls to stop the currently running Tanzu Live Update Run
 Configuration.
