@@ -88,6 +88,8 @@ Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ## <a id="live-updating"></a> Live Update
 
+See the following sections for how to use Live Update.
+
 ### <a id="start-live-update"></a> Start Live Update
 
 Before using Live Update, verify that your auto-save setting is either off or on with a delay.
