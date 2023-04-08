@@ -8,7 +8,7 @@ This page is a continuation of [Enforce compliance policy using Open Policy Agen
 
 Using the [Rego Playground](https://play.openpolicyagent.org/), you can evaluate your Rego file against an input (in this case, the output of an image or source scan custom resource).
 
-Below is a modified sample scan custom resource output (in the CycloneDX XML format) that contains CVEs at low, medium, high, and critical severities for you to evaluate your Rego file against. Paste your Rego file and the below sample into the Rego Playground, evaluate, and confirm that the output is as expected. Here is an [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
+Below is a modified sample scan custom resource output (in the form of CycloneDX's XML structure re-encoded as json) that contains CVEs at low, medium, high, and critical severities for you to evaluate your Rego file against. Paste your Rego file and the below sample into the Rego Playground, evaluate, and confirm that the output is as expected. Here is an [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
 
 ```json
 {
