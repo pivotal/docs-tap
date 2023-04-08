@@ -100,7 +100,7 @@ docs.vmware.com is built.
       - [Consume services](getting-started/about-consuming-services.hbs.md)
 - [Integrations](integrations/tsm-tap-integration.hbs.md)
   - [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md)
-  - [Deploying Spring Applications](integrations/spring.hbs.md)
+  - [Deploy Spring Applications](integrations/spring.hbs.md)
 - [Workloads](workloads/workload-types.hbs.md)
   - [Workload types](workloads/workload-types.hbs.md)
   - [Use web workloads](workloads/web.hbs.md)

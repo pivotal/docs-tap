@@ -1,31 +1,35 @@
-# Deploying Spring Applications
+# Deploy Spring Applications
 
 This topic describes how to migrate Spring applications from Tanzu Application Service or
 Azure Spring Apps to Tanzu Application Platform.
 
-## <a id="spring-cloud-config"></a> Migrating from Spring Cloud Config
+## <a id="spring-cloud-config"></a> Migrate from Spring Cloud Config
 
-If your applications are currently using
-[Spring Cloud Config](https://spring.io/projects/spring-cloud-config), refer to
-installing Tanzu Application Platform compatible option
-[Application Configuration Service](../application-configuration-service/install-app-config-service.hbs.md)
-optional package.
+If your applications use
+[Spring Cloud Config](https://spring.io/projects/spring-cloud-config), see
+[Install Application Configuration Service for VMware Tanzu](../application-configuration-service/install-app-config-service.hbs.md)
+to use a migration option that is compatible with Tanzu Application Platform.
 
-## <a id="spring-cloud-gateway"></a> Using Spring Cloud Gateway for Kubernetes
+## <a id="spring-cloud-gateway"></a> Use Spring Cloud Gateway for Kubernetes
 
-Spring Cloud Gateway is a popular project library for creating an API Gateway built on top of the
-Spring ecosystem. The OSS library is a foundational component of our Spring Cloud Gateway for
-Kubernetes and Spring Cloud Gateway for VMware Tanzu Application Service commercial offerings along
-with commercial-only capabilities and platform integrated operator experiences. The OSS and
-commercial offerings can be used as a reverse proxy with additional API Gateway functionality to
-handle request and response to upstream application services.
+Spring Cloud Gateway is a popular project library for creating an API Gateway that is built on top of
+the Spring ecosystem.
 
-With Spring Cloud Gateway for Kubernetes now included as part of Tanzu Application Platform
-beginning with version 1.5. This guide will help with migrating upstream applications that expose
-API routes on Spring Cloud Gateway migrate to Tanzu Application Platform from Tanzu Application
-Service and custom OSS implementations.
+The OSS library is a foundational component of VMware Spring Cloud Gateway for
+Kubernetes and Spring Cloud Gateway for VMware Tanzu Application Service commercial offerings
+with commercial-only capabilities and platform-integrated operator experiences.
 
-Learn more about [using Spring Cloud Gateway for Kubernetes on Tanzu Application Platform](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.0/scg-k8s/GUID-guides-tap.html).
+The OSS and commercial offerings can be used as a reverse proxy with additional API Gateway
+functions to handle request and response to upstream application services.
+
+Spring Cloud Gateway for Kubernetes is included in Tanzu Application Platform
+v1.5 and later.
+
+This topic helps you to migrate upstream applications that expose API routes on Spring Cloud Gateway
+from Tanzu Application Service and custom OSS implementations to Tanzu Application Platform.
+
+For more information, see the
+[VMware Spring Cloud Gateway for Kubernetes documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.0/scg-k8s/GUID-guides-tap.html).
 
 ## <a id="service-to-service"></a> Manage Service-to-Service Communication
 
@@ -39,7 +43,7 @@ A workaround is to inject configuration into your application that deactivates t
 Spring Cloud DiscoveryClient and provides the necessary connection information to allow applications
 to reach each other through Kubernetes internal networking.
 
-The following sections illustrate how to make the
+The following sections show how to make the
 [Greeting](https://github.com/spring-cloud-services-samples/greeting) Spring Cloud Services sample
 application run on Tanzu Application Platform.
 
@@ -64,7 +68,7 @@ spring:
 ```
 
 The values under `cloud.discovery.client.simple.instances` list all the services that your application
-requires. The example `greeter-dev.yaml` file illustrates how to connect to another workload running
+requires. The example `greeter-dev.yaml` file shows how to connect to another workload running
 on the same cluster.
 
 If the other workload is of the `server` type, you can use a bare host name to connect to it if the
@@ -81,8 +85,8 @@ ACS how to fetch your configuration.
 
 The following simple example uses a public repository and no encryption.
 For more information about how to connect to private repositories, encrypt configuration, and load
-properties in other formats,
-see the [ACS documentation](../application-configuration-service/about.hbs.md).
+properties in other formats, see the
+[ACS documentation](../application-configuration-service/about.hbs.md).
 
 ```yaml
 ---
@@ -118,10 +122,10 @@ The `ConfigurationSlice` object you created in the previous section is a bindabl
 can be used to mount the configuration to your application’s container by using a `ResourceClaim` and
 `serviceClaims` in the `Workload` object.
 
-This configuration is passed to Spring by using either the `SPRING_CONFIG_IMPORT` variable, or
+This configuration is passed to Spring by using either the `SPRING_CONFIG_IMPORT` variable or,
 if that variable is already in use, the `SPRING_CONFIG_ADDITIONAL_LOCATION` variable.
 
-In the following example, one workload is created for the greeter-messages service, and a second
+In the following example, one workload is created for the `greeter-messages` service, and a second
 workload is created for the greeter application.
 Both apps bind to the `ConfigurationSlice` to add Spring configuration:
 
@@ -208,5 +212,5 @@ spec:
     name: greeter-config
 ```
 
-The greeter application builds, starts up, and finds the greeter-messages URI using the simple
+The greeter application builds, starts up, and finds the `greeter-messages` URI using the simple
 discovery client.
