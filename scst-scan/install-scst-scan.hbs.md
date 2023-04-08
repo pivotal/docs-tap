@@ -117,7 +117,10 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note:** You must either define both the METADATA-STORE-URL and caSecret, or not define them as they depend on each other.
+    **Note:** In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store. To troubleshoot any issues with scanner to metadata store connection configuration, see [here](./troubleshoot-scan.hbs.md#insight-cli-failed-to-post-scan-results-to-metadata-store-due-to-failed-certificate-verification).
+
+    >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
+    >or not define them as they depend on each other.
 
     Where:
 
