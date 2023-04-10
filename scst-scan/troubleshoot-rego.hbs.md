@@ -8,7 +8,7 @@ This page is a continuation of [Enforce compliance policy using Open Policy Agen
 
 Use the [Rego Playground](https://play.openpolicyagent.org/), to evaluate your Rego file against an input (in this case, the output of an image or source scan custom resource).
 
-### <a id="sample-input-cyclonedx"></a> Sample 1
+### <a id="sample-input-cyclonedx"></a> Sample input of CycloneDX's XML re-encoded as json format
 Below is a modified sample scan custom resource output (in the form of CycloneDX's XML structure re-encoded as json) that contains CVEs at low, medium, high, and critical severities for you to evaluate your Rego file against. Paste your Rego file and the below sample into the Rego Playground, evaluate, and confirm that the output is as expected. Here is an [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
 
 ```json
@@ -170,8 +170,8 @@ Below is a modified sample scan custom resource output (in the form of CycloneDX
 }
 ```
 
-### <a id="sample-input-spdx"></a> Sample 2
-Below is a modified sample scan custom resource output (in the form of CycloneDX's XML structure re-encoded as json) that contains CVEs at low, medium, high, and critical severities for you to evaluate your Rego file against. Paste your Rego file and the below sample into the Rego Playground, evaluate, and confirm that the output is as expected. Here is an [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
+### <a id="sample-input-spdx"></a> Sample input of SPDX JSON format
+Below is a modified sample scan custom resource output (in the form of `.spdx.json`) that contains CVEs at low, medium, high, and critical severities for you to evaluate your Rego file against. Paste your Rego file and the below sample into the Rego Playground, evaluate, and confirm that the output is as expected. Here is an [example](https://play.openpolicyagent.org/p/gp0fUfaxOC).
 
 ```json
 {
