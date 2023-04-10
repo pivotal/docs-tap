@@ -28,7 +28,6 @@ Using workload yaml
 : Create a workload.yaml file with the details as below:
 
     ```yaml
-    ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
     metadata:
@@ -168,7 +167,6 @@ Using workload yaml
 : Create a workload.yaml file with the details as below.
 
     ```yaml
-    ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
     metadata:
@@ -286,7 +284,6 @@ Using workload yaml
 : Create a workload.yaml file with the details as below.
 
     ```yaml
-    ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
     metadata:
