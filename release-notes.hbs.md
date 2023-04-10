@@ -62,9 +62,9 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-4-3-grype-scanner-ri'></a> Source Controller
 
-- **Updated imgpkg API to v0.36.0 to fix Python function's revision:**
+- **Updated imgpkg API to v0.36.0 to fix file permission after extracting source tarball:**
 
-   The Revision was not getting generated for the Python function workload because of ProgressDeadlineExceeded. This led to ksvc revision not being generated and the app is inaccessible. This update fixes that problem.
+   The file permissions was stripped from source files while using IMGPKG version 0.25.0. This issue was fixed in IMGPKG v0.29.0+. As a result, Tanzu Source Controller is now patched with IMGPKG v0.36.0.
 
 ---
 
