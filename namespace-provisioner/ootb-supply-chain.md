@@ -12,6 +12,7 @@ Run the following Tanzu CLI command to create a workload in your developer names
 
 Using Tanzu CLI
 : Create workload using tanzu apps CLI command:
+
     ```shell
     tanzu apps workload apply tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -25,6 +26,7 @@ Using Tanzu CLI
 
 Using workload yaml
 : Create a workload.yaml file with the details as below:
+
     ```yaml
     ---
     apiVersion: carto.run/v1alpha1
@@ -95,6 +97,7 @@ Add the following configuration to your TAP values to add [this sample java pipe
 
 Using Namespace Provisioner Controller
 : Sample TAP values configuration:
+
     ```yaml
     namespace_provisioner:
       controller: true
@@ -108,6 +111,7 @@ Using Namespace Provisioner Controller
 
 Using GitOps
 : Sample TAP values configuration:
+
     ```yaml
     namespace_provisioner:
       controller: false
@@ -146,7 +150,8 @@ kubectl get pipeline.tekton.dev -n YOUR-NEW-DEVELOPER-NAMESPACE
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
 Using Tanzu CLI
-: Create workload using tanzu apps CLI command
+: Create workload using tanzu apps CLI command.
+
     ```shell
     tanzu apps workload apply tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -161,6 +166,7 @@ Using Tanzu CLI
 
 Using workload yaml
 : Create a workload.yaml file with the details as below.
+
     ```yaml
     ---
     apiVersion: carto.run/v1alpha1
@@ -205,6 +211,7 @@ Add the following configuration to your TAP values to add the [sample java pipel
 
 Using Namespace Provisioner Controller
 : Sample TAP values configuration:
+
     ```yaml
     namespace_provisioner:
       controller: true
@@ -218,6 +225,7 @@ Using Namespace Provisioner Controller
 
 Using GitOps
 : Sample TAP values configuration:
+
     ```yaml
     namespace_provisioner:
       controller: false
@@ -260,7 +268,8 @@ kubectl get pipeline.tekton.dev,scanpolicies -n YOUR-NEW-DEVELOPER-NAMESPACE
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
 Using Tanzu CLI
-: Create workload using tanzu apps CLI command
+: Create workload using tanzu apps CLI command.
+
     ```shell
     tanzu apps workload apply tanzu-java-web-app \
     --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
@@ -275,6 +284,7 @@ Using Tanzu CLI
 
 Using workload yaml
 : Create a workload.yaml file with the details as below.
+
     ```yaml
     ---
     apiVersion: carto.run/v1alpha1
