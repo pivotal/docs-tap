@@ -148,7 +148,7 @@ To add the Tanzu Application Platform package repository to your cluster:
     ```
 
     > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
-    > Tanzu Application Platform v1.4.0 or earlier.
+    > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 
