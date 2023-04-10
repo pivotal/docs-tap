@@ -55,6 +55,17 @@ vulnerabilities.
 </table>
 
 ---
+### <a id='1-4-3-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
+#### <a id='1-4-3-grype-scanner-ri'></a> Source Controller
+
+- **Updated imgpkg API to v0.36.0 to fix file permission after extracting source tarball:**
+
+   The file permissions was stripped from source files while using IMGPKG version 0.25.0. This issue was fixed in IMGPKG v0.29.0+. As a result, Tanzu Source Controller is now patched with IMGPKG v0.36.0.
+
+---
 
 ### <a id='1-3-7-known-issues'></a> Known issues
 
