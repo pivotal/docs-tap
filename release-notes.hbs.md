@@ -60,6 +60,12 @@ The following issues, listed by component and area, are resolved in this release
    This happened when parsing APK metadata to identify the installed OS packages if a package's list of provided
    files is empty.
 
+#### <a id='1-4-3-grype-scanner-ri'></a> Source Controller
+
+- **Updated imgpkg API to v0.36.0 to fix Python function's revision:**
+
+   The Revision was not getting generated for the Python function workload because of ProgressDeadlineExceeded. This led to ksvc revision not being generated and the app is inaccessible. This update fixes that problem.
+
 ---
 
 ### <a id='1-4-3-known-issues'></a> Known issues
