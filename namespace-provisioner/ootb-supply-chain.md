@@ -95,35 +95,33 @@ Add the following configuration to your TAP values to add [this sample java pipe
 
 Using Namespace Provisioner Controller
 : Sample TAP values configuration:
-
-  ```yaml
-  namespace_provisioner:
-    controller: true
-    additional_sources:
-    - git:
-        ref: origin/main
-        subPath: ns-provisioner-samples/testing-supplychain
-        url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-      path: _ytt_lib/testing-supplychain-setup
-  ```
+    ```yaml
+    namespace_provisioner:
+      controller: true
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: ns-provisioner-samples/testing-supplychain
+          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        path: _ytt_lib/testing-supplychain-setup
+    ```
 
 Using GitOps
 : Sample TAP values configuration:
-
-  ```yaml
-  namespace_provisioner:
-    controller: false
-    additional_sources:
-    - git:
+    ```yaml
+    namespace_provisioner:
+      controller: false
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: ns-provisioner-samples/testing-supplychain
+          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        path: _ytt_lib/testing-supplychain-setup
+      gitops_install:
         ref: origin/main
-        subPath: ns-provisioner-samples/testing-supplychain
+        subPath: ns-provisioner-samples/gitops-install
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-      path: _ytt_lib/testing-supplychain-setup
-    gitops_install:
-      ref: origin/main
-      subPath: ns-provisioner-samples/gitops-install
-      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-  ```
+    ```
 
 The sample pipeline resource has the following ytt logic which creates this pipeline only if the following conditions are met:
 
@@ -149,38 +147,38 @@ Run the following Tanzu CLI command to create a workload in your developer names
 
 Using Tanzu CLI
 : Create workload using tanzu apps CLI command
-  ```shell
-  tanzu apps workload apply tanzu-java-web-app \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --app tanzu-java-web-app \
-  --label apps.tanzu.vmware.com/has-tests="true" \
-  --namespace YOUR-NEW-DEVELOPER-NAMESPACE \
-  --tail \
-  --yes
-  ```
+    ```shell
+    tanzu apps workload apply tanzu-java-web-app \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --type web \
+    --app tanzu-java-web-app \
+    --label apps.tanzu.vmware.com/has-tests="true" \
+    --namespace YOUR-NEW-DEVELOPER-NAMESPACE \
+    --tail \
+    --yes
+    ```
 
 Using workload yaml
 : Create a workload.yaml file with the details as below.
-  ```yaml
-  ---
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    labels:
-      app.kubernetes.io/part-of: tanzu-java-web-app
-      apps.tanzu.vmware.com/has-tests: "true"
-      apps.tanzu.vmware.com/workload-type: web
-    name: tanzu-java-web-app
-    namespace: YOUR-NEW-DEVELOPER-NAMESPACE
-  spec:
-    source:
-      git:
-        ref:
-          branch: main
-        url: https://github.com/sample-accelerators/tanzu-java-web-app
-  ```
+    ```yaml
+    ---
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: tanzu-java-web-app
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web
+      name: tanzu-java-web-app
+      namespace: YOUR-NEW-DEVELOPER-NAMESPACE
+    spec:
+      source:
+        git:
+          ref:
+            branch: main
+          url: https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
 
 ## <a id='test-scan'></a>Testing & Scanning Supply Chain
 
@@ -207,35 +205,33 @@ Add the following configuration to your TAP values to add the [sample java pipel
 
 Using Namespace Provisioner Controller
 : Sample TAP values configuration:
-
-  ```yaml
-  namespace_provisioner:
-    controller: true
-    additional_sources:
-    - git:
-        ref: origin/main
-        subPath: ns-provisioner-samples/testing-scanning-supplychain
-        url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-      path: _ytt_lib/testing-scanning-supplychain-setup
-  ```
+    ```yaml
+    namespace_provisioner:
+      controller: true
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: ns-provisioner-samples/testing-scanning-supplychain
+          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        path: _ytt_lib/testing-scanning-supplychain-setup
+    ```
 
 Using GitOps
 : Sample TAP values configuration:
-
-  ```yaml
-  namespace_provisioner:
-    controller: false
-    additional_sources:
-    - git:
+    ```yaml
+    namespace_provisioner:
+      controller: false
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: ns-provisioner-samples/testing-scanning-supplychain
+          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+        path: _ytt_lib/testing-scanning-supplychain-setup
+      gitops_install:
         ref: origin/main
-        subPath: ns-provisioner-samples/testing-scanning-supplychain
+        subPath: ns-provisioner-samples/gitops-install
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-      path: _ytt_lib/testing-scanning-supplychain-setup
-    gitops_install:
-      ref: origin/main
-      subPath: ns-provisioner-samples/gitops-install
-      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-  ```
+    ```
 
 The sample Pipeline resource have the following ytt logic which creates this pipeline only if
 
@@ -265,35 +261,35 @@ Run the following Tanzu CLI command to create a workload in your developer names
 
 Using Tanzu CLI
 : Create workload using tanzu apps CLI command
-  ```shell
-  tanzu apps workload apply tanzu-java-web-app \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
-  --git-branch main \
-  --type web \
-  --app tanzu-java-web-app \
-  --label apps.tanzu.vmware.com/has-tests="true" \
-  --namespace YOUR-NEW-DEVELOPER-NAMESPACE \
-  --tail \
-  --yes
-  ```
+    ```shell
+    tanzu apps workload apply tanzu-java-web-app \
+    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-branch main \
+    --type web \
+    --app tanzu-java-web-app \
+    --label apps.tanzu.vmware.com/has-tests="true" \
+    --namespace YOUR-NEW-DEVELOPER-NAMESPACE \
+    --tail \
+    --yes
+    ```
 
 Using workload yaml
 : Create a workload.yaml file with the details as below.
-  ```yaml
-  ---
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    labels:
-      app.kubernetes.io/part-of: tanzu-java-web-app
-      apps.tanzu.vmware.com/has-tests: "true"
-      apps.tanzu.vmware.com/workload-type: web
-    name: tanzu-java-web-app
-    namespace: YOUR-NEW-DEVELOPER-NAMESPACE
-  spec:
-    source:
-      git:
-        ref:
-          branch: main
-        url: https://github.com/sample-accelerators/tanzu-java-web-app
-  ```
+    ```yaml
+    ---
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      labels:
+        app.kubernetes.io/part-of: tanzu-java-web-app
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web
+      name: tanzu-java-web-app
+      namespace: YOUR-NEW-DEVELOPER-NAMESPACE
+    spec:
+      source:
+        git:
+          ref:
+            branch: main
+          url: https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
