@@ -131,13 +131,13 @@
 
 Services Toolkit caters to the following user roles.
 
-It is important to note that these User Roles are not User Personas - it is perfectly possible (and even expected) that one human being could be associated with many User Roles at any given time. The User Roles align to Tanzu Application Platform's [User Roles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-role-descriptions.html), and the Services Toolkit team is primarily responsible for defining the Service Operator role.
+It is important to note that these User Roles are not User Personas - it is perfectly possible (and even expected) that one human being could be associated with many User Roles at any given time. The User Roles align to Tanzu Application Platform's [User Roles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-role-descriptions.html), and the Services Toolkit team is primarily responsible for defining the Service Operator role.
 
-The User Roles listed here consist of a short description as well as the Jobs To Be Done for the role. For detailed information on corresponding RBAC associated with each role, please refer to [Detailed role permissions breakdown](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-permissions-breakdown.html).
+The User Roles listed here consist of a short description as well as the Jobs To Be Done for the role. For detailed information on corresponding RBAC associated with each role, please refer to [Detailed role permissions breakdown](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-permissions-breakdown.html).
 
 ## <a id="ad"></a>Application Developer (AD)
 
-Encompasses both [app-editor](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-role-descriptions.html#appeditor-0) and [app-viewer](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-role-descriptions.html#appviewer-1) roles as defined by Tanzu Application Platform
+Encompasses both [app-editor](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-role-descriptions.html#appeditor-0) and [app-viewer](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-role-descriptions.html#appviewer-1) roles as defined by Tanzu Application Platform
 
 ### Jobs To Be Done
 
@@ -147,7 +147,7 @@ Encompasses both [app-editor](https://docs.vmware.com/en/VMware-Tanzu-Applicatio
 
 ## <a id="ao"></a>Application Operator (AO)
 
-Encompasses the [app-operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-role-descriptions.html#appoperator-2) role as defined by Tanzu Application Platform
+Encompasses the [app-operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-role-descriptions.html#appoperator-2) role as defined by Tanzu Application Platform
 
 ### Jobs To Be Done
 
