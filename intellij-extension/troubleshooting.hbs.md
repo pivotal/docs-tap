@@ -66,6 +66,6 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 
 {{> 'partials/ide-extensions/ki-timeout-err-live-updating' }}
 
-## <a id="live-update-jammy-fail"></a> Live Update does not work with Jammy
+## <a id="live-update-jammy-fail"></a> Live Update does not work with the Jammy `ClusterBuilder`
 
 {{> 'partials/ide-extensions/ki-live-update-jammy' }}
