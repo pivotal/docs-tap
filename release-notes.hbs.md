@@ -313,35 +313,37 @@ This release includes the following changes, listed by component and area.
 - Adds support for unsetting `--git-repo`, `--git-commit`, `--git-tag` and `--git-branch` flags
   by setting the value to empty string.
 
-#### <a id='1-5-0-intellij-plugin-features'></a> Tanzu Developer Tools for IntelliJ
+#### <a id='1-5-0-intellij-feats'></a> Tanzu Developer Tools for IntelliJ
 
 - Updates the Tanzu Workloads panel to show workloads deployed across multiple namespaces.
 
-- Tanzu actions for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now available
-  from the Tanzu Workloads panel.
+- Tanzu actions for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now
+  available from the Tanzu Workloads panel.
 
-- You can use Tanzu Developer Tools for IntelliJ to iterate on Spring Boot 3 based applications.
+- You can use Tanzu Developer Tools for IntelliJ to iterate on Spring Boot 3-based applications.
 
-#### <a id='1-5-0-vs-plugin-features'></a> Tanzu Developer Tools for Visual Studio
+#### <a id='1-5-0-vs-plugin-feats'></a> Tanzu Developer Tools for Visual Studio
 
-- Supports iterative development of applications consisting of multiple microservices, allowing developers to debug and live update each microservice independently and simultaneously.
+- Supports iterative development of applications consisting of multiple microservices, enabling
+  developers to debug and Live Update each microservice independently and simultaneously.
 
-- Enable pre-existing projects to work with Tanzu Application Platform Developer Tools easily by generating the necessary configuration files via templates.
+- Enables existing projects to work with Tanzu Application Platform developer tools easily by
+  using templates to generate the necessary configuration files.
 
-#### <a id='1-5-0-vscode-plugin-features'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-5-0-vscode-plugin-feats'></a> Tanzu Developer Tools for VS Code
 
 - The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
   and running application pods.
 
-   The tab enables a developer to view and describe logs on each resource associated with a workload
-   from within their IDE. The tab displays detailed error messages for each resource in an error state.
+  The tab enables a developer to view and describe logs on each resource associated with a workload
+  from within their IDE. The tab displays detailed error messages for each resource in an error state.
 
 - Updates the Tanzu Workloads panel to show workloads deployed across multiple namespaces.
 
-- Tanzu commands for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now available
-  from the Tanzu Workloads panel.
+- Tanzu commands for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now
+  available from the Tanzu Workloads panel.
 
-- You can use Tanzu Developer Tools for VS Code to iterate on Spring Boot 3 based applications.
+- You can use Tanzu Developer Tools for VS Code to iterate on Spring Boot 3-based applications.
 
 ---
 
