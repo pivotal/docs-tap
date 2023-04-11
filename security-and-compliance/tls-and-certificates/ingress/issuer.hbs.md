@@ -100,9 +100,8 @@ To replace the default ingress issuer:
 https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Using+DocWorks+Markdown#UsingDocWorksMarkdown-UsingTabs
 -->
 
-: Custom CA
-
-  > **Important** You need your own CA's certificate and private key for
+Custom CA
+: > **Important** You need your own CA's certificate and private key for
   > this.
 
   1. Create your `ClusterIssuer`
@@ -146,9 +145,8 @@ https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Usin
       Once the configuration is applied, components eventually obtain certificates
       from the new issuer and will serve them.
 
-: LetsEncrypt production
-
-  > **Important**
+LetsEncrypt production
+: > **Important**
   >
   > - Public CAs, like LetsEncrypt, record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
@@ -199,9 +197,8 @@ https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Usin
       Once the configuration is applied, components eventually obtain certificates
       from the new issuer and will serve them.
 
-: LetsEncrypt staging
-
-  > **Important**
+LetsEncrypt staging
+: > **Important**
   >
   > - Public CAs - like LetsEncrypt - record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
@@ -253,14 +250,12 @@ https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Usin
       Once the configuration is applied, components eventually obtain certificates
       from the new issuer and will serve them.
 
-: Other
-
-  You can use any other cert-manager-supported `ClusterIssuer` as an ingress
+Other
+: You can use any other cert-manager-supported `ClusterIssuer` as an ingress
   issuer for TAP.
 
-  Cert-manager supports a host of in-tree and out-of-tree issuers.
-
-  Refer to cert-manager's [documentaion of
+  Cert-manager supports a host of in-tree and out-of-tree issuers. Refer to
+  cert-manager's [documentation of
   issuers](https://cert-manager.io/docs/configuration/).
 
   1. Set `shared.ingress_issuer` to the name of your issuer
