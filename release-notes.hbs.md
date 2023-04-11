@@ -920,6 +920,8 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types).
 
+- Live Update does not work when using the Jammy `ClusterBuilder`.
+
 #### <a id="contour-known-issues"></a>Contour
 
 - Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`.
