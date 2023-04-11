@@ -833,13 +833,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling \*\*</strong>
+   <td><strong>Tanzu Developer Tooling </strong>
    </td>
    <td><strong>Application Live View</strong>
    </td>
    <td><strong>Functions</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Buildpack SBOM's\*\*\*</strong>
+   <td><strong>Extended Scanning Coverage using Buildpack SBOM's</strong>
    </td>
   </tr>
   <tr>
