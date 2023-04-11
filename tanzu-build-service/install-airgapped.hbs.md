@@ -69,10 +69,11 @@ To install the Tanzu Build Service package on an air-gapped environment:
     Tanzu Build Service dependencies are written to this location. For example:
       - For Harbor: `harbor.io/my-project/build-service`
       - For Artifactory: `artifactory.com/my-project/build-service`
-   - `SECRET_NAME`/`SECRET_NAMESPACE` is the name/namespace of the secret containing credentials that can write to `REPO-NAME`.
+   - `SECRET_NAME` is the name of the secret containing credentials that can write to `REPO-NAME`.
+   - `SECRET_NAMESPACE` is the namespace of the secret containing credentials that can write to `REPO-NAME`.
    - `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry.
 
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
