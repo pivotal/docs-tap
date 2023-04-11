@@ -868,7 +868,7 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
   changed. As a workaround, make the views refresh by clicking somewhere in the
   Resource tree to change the current selection.
 
-- Live Update does not work when using the Jammy `ClusterBuilder`. This is resolved in TAP `1.5.x` and later.
+- Live Update does not work when using the Jammy `ClusterBuilder`.
 
 #### <a id="1-4-0-vs-ki"></a> Tanzu Developer Tools for Visual Studio
 
@@ -888,7 +888,7 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
   information, see
   [Troubleshooting](vscode-extension/troubleshooting.hbs.md#deprecated-task).
 
-- Live Update does not work when using the Jammy `ClusterBuilder`. This is resolved in TAP `1.5.x` and later.
+- Live Update does not work when using the Jammy `ClusterBuilder`.
 
 ---
 
