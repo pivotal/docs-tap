@@ -70,3 +70,7 @@ To do so, run:
 ```console
 kubectl config set-context --current --namespace=NAMESPACE
 ```
+
+## <a id="live-update-jammy-fail"></a> Live Update does not work with Jammy
+
+{{> 'partials/ide-extensions/ki-live-update-jammy' }}

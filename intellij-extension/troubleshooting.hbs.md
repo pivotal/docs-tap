@@ -162,3 +162,7 @@ of the activity pane.
 ### Solution
 
 Restart IntelliJ to properly detect the context change.
+
+## <a id="live-update-jammy-fail"></a> Live Update does not work with Jammy
+
+{{> 'partials/ide-extensions/ki-live-update-jammy' }}
