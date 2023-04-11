@@ -441,6 +441,12 @@ This release has the following security fixes, listed by area and component.
   </tr>
 </table>
 
+>**Note** CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461 are high severity vulnerabilities.
+>At this time, there is no available patch for them upstream for some Tanzu Application Platform components.
+>After there is a patch available, Tanzu Application Platform will release a patched base stack image.
+>These vulnerabilities are kernel exploits that run on your container host VM, not the Tanzu Application Platform container image.
+>Running on an up to date kernel is a mitigation for these vulnerabilities.
+
 ---
 
 ### <a id='1-5-0-resolved-issues'></a> Resolved issues
