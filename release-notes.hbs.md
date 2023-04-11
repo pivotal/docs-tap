@@ -10,13 +10,13 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-5-1-COMPONENT-NAME-fixes'></a> COMPONENT-NAME<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-1-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
 
 - Security fix description.
 
 ---
 
-<!--฿ The first header must be ## -- no smaller, no larger. ฿-->### <a id='1-5-1-resolved-issues'></a> Resolved issues
+### <a id='1-5-1-resolved-issues'></a> Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
@@ -26,7 +26,7 @@ The following issues, listed by component and area, are resolved in this release
 
 ---
 
-<!--฿ The first header must be ## -- no smaller, no larger. ฿-->### <a id='1-5-1-known-issues'></a> Known issues
+### <a id='1-5-1-known-issues'></a> Known issues
 
 This release has the following known issues, listed by component and area.
 
@@ -40,7 +40,7 @@ This release has the following known issues, listed by component and area.
 
 **Release Date**: 11 April 2023
 
-### <a id='1-5-0-whats-new'></a> What's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> new in Tanzu Application Platform
+### <a id='1-5-0-whats-new'></a> What's new in Tanzu Application Platform
 
 This release includes the following platform-wide enhancements.
 
@@ -49,7 +49,7 @@ This release includes the following platform-wide enhancements.
 - [Application Configuration Service](application-configuration-service/about.hbs.md) is a new component
   that provides a Kubernetes-native experience to enable the runtime
   configuration of existing Spring applications that were previously leveraged by using
-  Spring Cloud Config<!--฿ |config| is preferred. ฿--> Server.
+  Spring Cloud Config Server.
 
 - [Crossplane](crossplane/about.hbs.md) is a new component that powers a number of capabilities,
   such as dynamic provisioning of service instances with Services Toolkit and the
@@ -62,7 +62,7 @@ This release includes the following platform-wide enhancements.
 
 - [Spring Cloud Gateway](spring-cloud-gateway/about.hbs.md) is an API gateway solution based on
   the open-source Spring Cloud Gateway project.
-  This new component provides a simple<!--฿ Avoid suggesting an instruction is |simple| or |easy|. ฿--> means to route internal or external API requests
+  This new component provides a simple means to route internal or external API requests
   to application services that expose APIs.
 
 ### <a id='1-5-0-new-features'></a> New features by component and area
@@ -93,10 +93,10 @@ This release includes the following changes, listed by component and area.
   Introduces the `APIServer` component that generates and validates user access to view actuator data for a pod.
   For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md).
 
-- Application Live View now supports secure access to sensitive operations that can be<!--฿ Consider switching to active voice. ฿--> executed on a running application using the actuator endpoints at the cluster level.
+- Application Live View now supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the cluster level.
   For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md)
 
-- The Application Live View plugin<!--฿ |plug-in| is the noun or adjective. |plug in| is the verb. ฿--> now supports CPU stats in the memory and threads pages for Steeltoe Applications.
+- The Application Live View plugin now supports CPU stats in the memory and threads pages for Steeltoe Applications.
   For more information, see
   [Application Live View for Steeltoe Applications in Tanzu Application Platform GUI](tap-gui/plugins/app-live-view-steeltoe.hbs.md).
 
@@ -109,7 +109,7 @@ This release includes the following changes, listed by component and area.
   identity providers in `AuthServer` resource into the `roles` claim of the resulting identity
   token. For more information, see [Roles claim filtering](app-sso/service-operators/identity-providers.hbs.md#roles-filters).
 
-- Introduces mapping of user roles, filtered and propagated<!--฿ Insert the Oxford comma if it is missing here. ฿--> in the identity
+- Introduces mapping of user roles, filtered and propagated in the identity
   token's `roles` claim, into scopes of the access token.
   For access tokens that are in the JWT format, the resulting scopes are part of the access token's
   `scope` claim, if the `ClientRegistration` contains the scopes.
@@ -121,7 +121,7 @@ This release includes the following changes, listed by component and area.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
-#### <a id='1-5-0-bitnami-services-features'></a> Bitnami Services<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-0-bitnami-services-features'></a> Bitnami Services
 
 - The new component [Bitnami Services](bitnami-services/about.hbs.md) is available with
   Tanzu Application Platform.
@@ -136,7 +136,7 @@ This release includes the following changes, listed by component and area.
    For a tutorial to get started with using these services, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-bitnami-services.hbs.md).
 
 
-#### <a id='1-5-0-cert-manager-ncf'></a> cert<!--฿ |certificate| is preferred. ฿--><!--฿ Headers start with an uppercase letter. ฿-->-manager
+#### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager v1.11.0.
   For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
@@ -146,7 +146,7 @@ This release includes the following changes, listed by component and area.
 - The new component [Crossplane](crossplane/about.hbs.md) is available with Tanzu Application Platform.
   It installs [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) v1.11.0.
 
-- Provides integration for dynamic provisioning in Services Toolkit and can be<!--฿ Consider switching to active voice. ฿--> used for
+- Provides integration for dynamic provisioning in Services Toolkit and can be used for
   integration with cloud services such as AWS, Azure, and GCP.
   For more information, see
   [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services.hbs.md).
@@ -158,7 +158,7 @@ This release includes the following changes, listed by component and area.
   `provider-kubernetes` and `provider-helm`.
   You can add other providers manually as required.
 
-#### <a id='1-5-0-external-secrets-features'></a>External Secrets CLI (Beta)<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-0-external-secrets-features'></a>External Secrets CLI (Beta)
 
 - The external-secrets plug-in available in the Tanzu CLI interacts with the External Secrets Operator API.
   Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
@@ -172,7 +172,7 @@ This release includes the following changes, listed by component and area.
 
    Additionally, see the example integration of External-Secrets with Hashicorp Vault
 
-#### <a id="1-5-namespace-provisioner-feats"></a> Namespace Provisioner<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id="1-5-namespace-provisioner-feats"></a> Namespace Provisioner
 
 - Includes a new GitOps workflow for managing a list of namespaces fully declaratively
   through a Git repository. Specify the location of the GitOps repository that has the list of namespaces
@@ -200,10 +200,10 @@ This release includes the following changes, listed by component and area.
 
 - Adds support for reading sensitive data from a Kubernetes secret in YAML format and populating that
   information in the resources that Namespace Provisioner creates during runtime.
-  This is kept in sync with the source. This removes the need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> store any sensitive data in GitOps repository.
+  This is kept in sync with the source. This removes the need to store any sensitive data in GitOps repository.
   - Using the `import_data_values_secrets` configuration in the Namespace Provisioner section of the Tanzu Application Platform values file, you can
    import sensitive data from a YAML formatted secret and make it available under `data.values.imported` for additional resource templating.
-  - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, see
+  - For an example use case, see
     [Install multiple scanners in the developer namespace](./namespace-provisioner/use-case5.md).
 
 - Namespace Provisioner now creates a Kubernetes `LimitRange` object with acceptable default values that set
@@ -218,14 +218,14 @@ This release includes the following changes, listed by component and area.
   in your developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning`
   namespace, or an existing secret in another namespace referred to in the `secretRef` in the additional sources.
 
-   For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, see [Working with private Git Repositories](./namespace-provisioner/use-case3.md)
+   For an example use case, see [Working with private Git Repositories](./namespace-provisioner/use-case3.md)
 
-#### <a id='1-5-0-services-toolkit-features'></a> Services Toolkit<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-0-services-toolkit-features'></a> Services Toolkit
 
 - Services Toolkit now supports the dynamic provisioning of services instances.
   - `ClusterInstanceClass` now supports the new provisioner mode.
   When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new
-  service instance is created on-demand and claimed. This is powered by<!--฿ Active voice is preferred. ฿--> [Crossplane](crossplane/about.hbs.md).
+  service instance is created on-demand and claimed. This is powered by [Crossplane](crossplane/about.hbs.md).
 
 - The `tanzu service` CLI plug-in has the following updates:
    - The command `tanzu service class-claim create`  now allows you to pass parameters to the
@@ -274,22 +274,22 @@ This release includes the following changes, listed by component and area.
   For more information, see [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md).
   This feature is experimental.
 
-#### <a id='1-5-0-scst-policy-features'></a> Supply Chain Security Tools (SCST) - Policy Controller<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-0-scst-policy-features'></a> Supply Chain Security Tools (SCST) - Policy Controller
 
 - ClusterImagePolicy resync is triggered every 10 hours to get updated values from the Key Management Service (KMS).
 
 #### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools (SCST) - Scan
 
-- SCST<!--฿ Enclose placeholders in code tags. ฿--> - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
+- SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
    - Kubernetes jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
    - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. For successful scans, scanner pods restart once. For more information, see [Scanner pod restarts once in SCST - Scan v1.5.0 or later](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts).
 
-- Adds support for rotating certificates and TLS, to conform with NIST 800-53<!--฿ Use &ndash; for a range, not a regular dash. ฿-->. Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy.
+- Adds support for rotating certificates and TLS, to conform with NIST 800-53. Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy.
 For more information, see [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
 
-- SCST<!--฿ Enclose placeholders in code tags. ฿--> - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform v1.5.0, users have early access to:
+- SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform v1.5.0, users have early access to:
    - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security that scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
-   - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that are not included by default. If you have a scanner that you would<!--฿ Re-phrase for present tense if possible. ฿--> like to use with Tanzu Application Platform, see [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
+   - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that are not included by default. If you have a scanner that you would like to use with Tanzu Application Platform, see [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
    - VMware is looking for early adopters to test both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 - Carbon Black integration is updated to use the Carbon Black scanner CLI v1.9.2.
@@ -372,10 +372,10 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
 - Supports iterative development of applications consisting of multiple microservices, enabling
   developers to debug and Live Update each microservice independently and simultaneously.
 
-- Enables existing projects to work with Tanzu Application Platform developer tools easily<!--฿ Avoid when describing an instruction. ฿--> by
+- Enables existing projects to work with Tanzu Application Platform developer tools easily by
   using templates to generate the necessary configuration files.
 
-#### <a id='1-5-0-vscode-plugin-feats'></a> Tanzu Developer Tools for VS<!--฿ The short form is |Tanzu Developer Tools for Visual Studio| or, with well established context, |the extension|. ฿--> Code
+#### <a id='1-5-0-vscode-plugin-feats'></a> Tanzu Developer Tools for VS Code
 
 - The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
   and running application pods.
@@ -388,17 +388,17 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
 - Tanzu commands for `workload apply`, `workload delete`, `debug`, and `Live Update start` are now
   available from the Tanzu Workloads panel.
 
-- You can use Tanzu Developer Tools for VS<!--฿ The short form is |Tanzu Developer Tools for Visual Studio| or, with well established context, |the extension|. ฿--> Code to iterate on Spring Boot 3-based applications.
+- You can use Tanzu Developer Tools for VS Code to iterate on Spring Boot 3-based applications.
 
 ---
 
-<!--฿ The first header must be ## -- no smaller, no larger. ฿-->### <a id='1-5-0-breaking-changes'></a> Breaking changes
+### <a id='1-5-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
 
-#### <a id='1-5-convention-controller-bc'></a> Convention Controller<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id='1-5-convention-controller-bc'></a> Convention Controller
 
-- Convention Controller is removed in this release and is replaced by<!--฿ Active voice is preferred. ฿-->
+- Convention Controller is removed in this release and is replaced by
   [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions).
   Cartographer Conventions implements the `conventions.carto.run` API that includes all the features
   that were available in the Convention Controller component.
@@ -413,7 +413,7 @@ This release has the following breaking changes, listed by area and component.
 - The default `ClusterBuilder` now uses the Ubuntu Jammy v22.04 stack instead of the Ubuntu Bionic
   v18.04 stack. Previously, the default `ClusterBuilder` pointed to the Base builder based on the
   Bionic stack. Now, the default `ClusterBuilder` points to the Base builder based on the Jammy stack.
-  Ensure that your workloads can be<!--฿ Consider switching to active voice. ฿--> built and run on Jammy.
+  Ensure that your workloads can be built and run on Jammy.
 
    For information about how to change the `ClusterBuilder` from the default builder, see the
    [Configure the Cluster Builder](tanzu-build-service/tbs-workload-config.hbs.md#cluster-builder).
@@ -424,11 +424,11 @@ This release has the following breaking changes, listed by area and component.
 
 - The Tanzu Build Service automatic dependency updater feature is removed in
   Tanzu Application Platform v1.5.0.
-  This feature has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> deprecated since<!--฿ Do not use |since| where you can use |because|. ฿--> Tanzu Application Platform v1.2.
+  This feature has been deprecated since Tanzu Application Platform v1.2.
 
 ---
 
-<!--฿ The first header must be ## -- no smaller, no larger. ฿-->### <a id='1-5-0-security-fixes'></a> Security fixes
+### <a id='1-5-0-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
 
@@ -439,7 +439,7 @@ This release has the following security fixes, listed by area and component.
   </tr>
   <tr>
   <td>buildservice.tanzu.vmware.com</td>
-  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0179">CVE-2023-0179</a></li></ul></td>
+  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0179">CVE-2023-0179</a><sup>*</sup></li></ul></td>
   </tr>
   <tr>
   <td>carbonblack.scanning.apps.tanzu.vmware.com</td>
@@ -455,7 +455,7 @@ This release has the following security fixes, listed by area and component.
   </tr>
   <tr>
   <td>learningcenter.tanzu.vmware.com</td>
-  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5</li></ul></td>
+  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a><sup>*</sup></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5</li></ul></td>
   </tr>
   <tr>
   <td>policy.apps.tanzu.vmware.com</td>
@@ -471,32 +471,32 @@ This release has the following security fixes, listed by area and component.
   </tr>
   <tr>
   <td>workshops.learningcenter.tanzu.vmware.com</td>
-  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a><sup>*</sup></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
   </tr>
 </table>
 
->**Note** CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461 are high severity vulnerabilities.
->At this time, there is no available patch for them upstream for some Tanzu Application Platform components.
->After there is a patch available, Tanzu Application Platform will release a patched base stack image.
->These vulnerabilities are kernel exploits that run on your container host VM, not the Tanzu Application Platform container image.
->Running on an up to date kernel is a mitigation for these vulnerabilities.
+<sup>*</sup> CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461 are high severity vulnerabilities.
+At this time, there is no available patch for them upstream for some Tanzu Application Platform components.
+After there is a patch available, Tanzu Application Platform will release a patched base stack image.
+These vulnerabilities are kernel exploits that run on your container host VM, not the Tanzu Application Platform container image.
+Running on an up to date kernel is a mitigation for these vulnerabilities.
 
 ---
 
-<!--฿ The first header must be ## -- no smaller, no larger. ฿-->### <a id='1-5-0-resolved-issues'></a> Resolved issues
+### <a id='1-5-0-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
 
 #### <a id='1-5-0-app-acc-ri'></a> Application Accelerator
 
-- Resolved issue with `custom types` not re-ordering fields<!--฿ If referring to a UI, |text boxes| is preferred. ฿--> correctly in the VS Code extension.
+- Resolved issue with `custom types` not re-ordering fields correctly in the VS Code extension.
 
 #### <a id='1-5-0-app-sso-ri'></a> Application Single Sign-On (AppSSO)
 
-- Resolved redirect URI issue with insecure<!--฿ |not secure| is preferred. ฿--> HTTP redirection on Tanzu Kubernetes Grid multicloud
+- Resolved redirect URI issue with insecure HTTP redirection on Tanzu Kubernetes Grid multicloud
 (TKGm) clusters.
 
-#### <a id="1-5-0-namespace-provisioner-ri"></a> Namespace Provisioner<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+#### <a id="1-5-0-namespace-provisioner-ri"></a> Namespace Provisioner
 
 - Updated default resources to avoid ownership conflicts with the `grype` package.
 
@@ -518,7 +518,7 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-5-apps-plugin-ri"></a> Tanzu CLI Apps plug-in
 
 - Allow users to pass only `--git-commit` as Git the ref while creating a workload from a Git Repository.
-  This update removes the limitation<!--฿ |limitation| is the act of limiting. If talking about a specific measurable limit, such as useable hard disk space, write |limit|. ฿--> where users had to provide a `--git-tag` or `--git-branch` with the commit to create a workload.
+  This update removes the limitation where users had to provide a `--git-tag` or `--git-branch` with the commit to create a workload.
 
 - Fixed the behavior where `subpath` was getting removed from the workload when there are updates
   to the Git section of the workload source specification.
@@ -530,14 +530,14 @@ The following issues, listed by area and component, are resolved in this release
 
 ---
 
-<!--฿ The first header must be ## -- no smaller, no larger. ฿-->### <a id='1-5-0-known-issues'></a> Known issues
+### <a id='1-5-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
 
 #### <a id="1-5-0-api-auto-reg-ki"></a>API Auto Registration
 
 - Users cannot update their APIs through API Auto Registration due to a issue with the ID used to retrieve APIs.
-  This issue causes errors in the API Descriptor CRD similar to the following:<!--฿ To introduce steps just write |To do x:| ฿--> `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
+  This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
 
 #### <a id='1-5-0-bitnami-services-ki'></a> Bitnami Services
 
@@ -555,7 +555,7 @@ This release has the following known issues, listed by area and component.
 #### <a id='1-5-0-eventing-ki'></a> Eventing
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
-  informers to alleviate load on the API server. This causes high memory utilization<!--฿ To |utilize| is to use an item beyond its intended purpose. Otherwise you simply |use| it. ฿-->.
+  informers to alleviate load on the API server. This causes high memory utilization.
 
 #### <a id="1-5-0-external-secrets-ki"></a> External Secrets CLI (beta)
 
@@ -615,7 +615,7 @@ This release has the following known issues, listed by area and component.
   `.idea/workspace.xml` file. The next `apply` action run prompts for new values again.
 
 - If you restart your computer while running Live Update without terminating the Tilt
-  process<!--฿ Avoid nominalization: |while deleting| is better than |during the deletion process|. ฿--> beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
   prevents it from starting again.
   To resolve this, delete the Tilt lock file. The default location for the file is
   `~/.tilt-dev/config.lock`.
@@ -624,7 +624,7 @@ This release has the following known issues, listed by area and component.
   `my-app project`.
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type<!--฿ Use |enter| when the user input appears on the screen. Use |run| when you want users to run commands. ฿--> `Runnable` is incorrectly
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
 #### <a id='1-5-0-vs-plugin-ki'></a> Tanzu Developer Tools for Visual Studio
@@ -632,10 +632,10 @@ This release has the following known issues, listed by area and component.
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
-#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS<!--฿ The short form is |Tanzu Developer Tools for Visual Studio| or, with well established context, |the extension|. ฿--> Code
+#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
 
 - If a user restarts their computer while running Live Update, without terminating the Tilt
-  process<!--฿ Avoid nominalization: |while deleting| is better than |during the deletion process|. ฿--> beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
   prevents it from starting again. Delete the Tilt lock file to resolve this.
   The default file location is `~/.tilt-dev/config.lock`.
 
@@ -646,7 +646,7 @@ This release has the following known issues, listed by area and component.
 - If your kubeconfig file `~/.kube/config` is malformed, you cannot apply a workload.
   You see an error message when you attempt to do so. To resolve this, fix the kubeconfig file.
 
-- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type<!--฿ Use |enter| when the user input appears on the screen. Use |run| when you want users to run commands. ฿--> `Runnable` is incorrectly
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
 ---
@@ -654,17 +654,17 @@ This release has the following known issues, listed by area and component.
 ## <a id='1-5-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
-Deprecated features will<!--฿ Avoid |will|: present tense is preferred. ฿--> remain on this list until they are retired from Tanzu Application Platform.
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
 ### <a id="1-5-alv-deprecations"></a> Application Live View
 
-- `appliveview_connnector.backend.sslDisabled` <!--฿ If this is a placeholder, use dashes for spaces instead of underscores. ฿-->is deprecated and marked for removal in
+- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 
 ### <a id='1-5-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
 
-- `ClientRegistration` resource `clientAuthenticationMethod` field<!--฿ If referring to a UI, |text box| is preferred. ฿--> values `post`<!--฿ Check if a hyphen is missing. ฿--> and `basic` are
+- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are
   deprecated and marked for removal in Tanzu Application Platform v1.7.0.
   Use `client_secret_post` and `client_secret_basic` instead.
 
@@ -679,9 +679,9 @@ Deprecated features will<!--฿ Avoid |will|: present tense is preferred. ฿-->
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
 
-### <a id="1-5-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+### <a id="1-5-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 
-- The `docker` field<!--฿ If referring to a UI, |text box| is preferred. ฿--> and related sub-fields<!--฿ If referring to a UI, |text boxes| is preferred. ฿--> used in SCST -
+- The `docker` field and related sub-fields used in SCST -
   Scan are deprecated and marked for removal in Tanzu Application Platform
   v1.7.0.
 
@@ -701,11 +701,11 @@ Deprecated features will<!--฿ Avoid |will|: present tense is preferred. ฿-->
   support in Tanzu Application Platform v1.6.0.
   To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
-### <a id="1-5-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in<!--฿ Shorten the anchor ID to 25 characters or fewer. Use dashes instead of spaces or periods. ฿-->
+### <a id="1-5-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
 - The default value for the
   [--update-strategy](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
-  flag will<!--฿ Avoid |will|: present tense is preferred. ฿--> change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
+  flag will change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
 
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.6.0. Use the command `tanzu apps workload apply` instead.

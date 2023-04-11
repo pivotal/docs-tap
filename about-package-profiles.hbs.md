@@ -833,13 +833,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling</strong>
+   <td><strong>Tanzu Developer Tooling <sup>*</sup></strong>
    </td>
    <td><strong>Application Live View</strong>
    </td>
    <td><strong>Functions</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Buildpack SBOM's</strong>
+   <td><strong>Extended Scanning Coverage using Buildpack SBOM's <sup>**</sup></strong>
    </td>
   </tr>
   <tr>
@@ -989,10 +989,10 @@ Tanzu Application Platform components.
   </tr>
 </table>
 
-**Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
+<sup>*</sup>**Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
 and Live Update function in the inner loop.
 
-**Extended Scanning Coverage:** When building container images with the Tanzu Build Service, the Cloud Native Build Packs used in the build process for the specified languages produce a Software Bill of Materials (SBOM).  Some scan engines support the enhanced ability to use this SBOM as a source for the scan. Out of the Box Supply Chain - Testing and Scanning leverages Anchore's Grype for the image scan, which suppports this capability.  In addition, users have the ability to leverage Carbon Black Container image scans, which also supports this enhanced scan coverage.
+<sup>**</sup>**Extended Scanning Coverage:** When building container images with the Tanzu Build Service, the Cloud Native Build Packs used in the build process for the specified languages produce a Software Bill of Materials (SBOM).  Some scan engines support the enhanced ability to use this SBOM as a source for the scan. Out of the Box Supply Chain - Testing and Scanning leverages Anchore's Grype for the image scan, which suppports this capability.  In addition, users have the ability to leverage Carbon Black Container image scans, which also supports this enhanced scan coverage.
 
 >**Note:** Different scanners may have different limits. See [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scst-scan/scanner-matrix.hbs.md).
 
