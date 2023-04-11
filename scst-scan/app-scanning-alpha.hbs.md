@@ -12,7 +12,7 @@ SCST - Scan 2.0 is responsible for providing the framework to scan applications 
 
 During scanning:
 - A GrypeImageVulnerabilityScan creates the child resource ImageVulnerabilityScan.
-- The ImageVulnerabilityScan then creates a [Tekton PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) which instantiates a Pipeline. The Pipeline Spec specifies the Tasks `workspace-setup-task`, `scan-task`, and `publish-task` to perform the operations of setting up the workspace and environment configuration, running a scan, and publishing results to a metadata store.
+- The ImageVulnerabilityScan then creates a [Tekton PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) which instantiates a Pipeline. The Pipeline Spec specifies the Tasks `workspace-setup-task`, `scan-task`, and `publish-task` to perform the operations of setting up the workspace and environment configuration, running a scan, and publishing results to an OCI Compliant Registry.
 - Each Task contains Steps which executes commands to achieve the end goal of the Task.
 - The PipelineRun also creates corresponding Taskruns for every Task in the Pipeline and executes them.
 - A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) is used to trigger Tekton's injected sidecar cleanup.
