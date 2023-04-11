@@ -107,7 +107,7 @@ To replace the default ingress issuer:
     > **Important** You need your own CA's certificate and private key for
     > this.
 
-    Create a `Secret+ClusterIssuer` which represent your CA on the platform:
+    Create a `Secret` and `ClusterIssuer` which represent your CA on the platform:
 
     ```yaml
     ---
