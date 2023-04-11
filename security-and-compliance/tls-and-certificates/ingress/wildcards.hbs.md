@@ -1,4 +1,4 @@
-# <a id="wildcards"></a>Wildcard certificates
+# Wildcard certificates
 
 It is possible to use wildcard certificates, but Tanzu Application Platform
 does not offer first-class support.
