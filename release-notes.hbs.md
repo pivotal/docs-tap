@@ -59,8 +59,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-5-0-app-live-view'></a> Application Live View
 
-- Application Live View now supports improved security and access control. Introduces `APIServer` component that generates and validates user access 
-  to view actuator data for a pod. 
+- Application Live View now supports improved security and access control. Introduces `APIServer` component that generates and validates user access
+  to view actuator data for a pod.
   For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md)
 
 - Application Live View now supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the cluster level.
@@ -296,10 +296,10 @@ This release includes the following changes, listed by component and area.
   - The **Heap Dump** button deactivates when sensitive operations are deactivated for the application.
   - Enabled Secure Access Communication between App Live View components.
   - Added an API to connect to `appliveview-apiserver` by reusing `tap-gui` authentication.
-  - The Application Live View plug-in now requests a token from `appliveview-apiserver` and passes it to every call to
-    the Application Live View back end.
-  - Secured sensitive operations (edit env, change log levels, download heap dump) and display a
-    message in the UI.
+  - The Application Live View plug-in now requests a token from `appliveview-apiserver` and passes it
+    to every call to the Application Live View back end.
+  - Provides secured sensitive operations (edit env, change log levels, download heap dump) and
+    displays a message in the UI.
   - Renamed the `k8s-logging-backend` plug-in as `k8s-custom-apis-backend`.
   - The fetch token for the `logLevelsPanelToggle` component is now loaded from the workload plug-in
     PodLogs page.
@@ -465,16 +465,16 @@ The following issues, listed by area and component, are resolved in this release
 
 - **App Accelerator Plug-in:**
 
-   - Fixed JSON schema for Git repository creation.
-   - Added missing query string parameters to accelerator provenance.
+  - Fixed JSON schema for Git repository creation.
+  - Added missing query string parameters to accelerator provenance.
 
 - **Supply Chain Plug-in:**
 
-   - Fixed CPU stats in App Live View Steeltoe Threads and Memory pages.
-   - The App Live View Details page now shows the correct boot version instead of **UNKNOWN**.
-   - Fixed request parameters for the post-API call.
-   - Fixed the UI error in the ALV request-mapping page that was caused by an unused style.
-   - Fixed the ALV Request Mappings and Threads page to support Boot 3 apps.
+  - Fixed CPU stats in App Live View Steeltoe Threads and Memory pages.
+  - The App Live View Details page now shows the correct boot version instead of **UNKNOWN**.
+  - Fixed request parameters for the post-API call.
+  - Fixed the UI error in the ALV request-mapping page that was caused by an unused style.
+  - Fixed the ALV Request Mappings and Threads page to support Boot 3 apps.
 
 #### <a id="1-5-apps-plugin-ri"></a> Tanzu CLI Apps plug-in
 
@@ -547,8 +547,9 @@ This release has the following known issues, listed by area and component.
 
 - The portal might partially overlay text on the Security Banners customization at the bottom.
 
-- The **Impacted Workloads** table is empty on the **CVE and Package Details** pages if the relevant CVE
-  belongs to a workload that has only completed one type of vulnerability scan (either image or source).
+- The **Impacted Workloads** table is empty on the **CVE and Package Details** pages if the relevant
+  CVE belongs to a workload that has only completed one type of vulnerability scan
+  (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
 
 #### <a id="1-5-apps-plugin-ki"></a> Tanzu CLI Apps plug-in
@@ -562,16 +563,18 @@ This release has the following known issues, listed by area and component.
   error logs when attempting to perform a workload action before installing the Tanzu CLI apps
   plug-in.
 
-- The apply action prompts and stores the workload file path when using the action for the first time,
-  but modifying it afterwards is not possible.
-  If the workload file location changes, the user must delete the module's key-value entries
-  prefixed with `com.tanzu` in the `PropertiesComponent` found in the project's `.idea/workspace.xml`
-  file to delete the configuration. The next apply action run prompts for new values again.
+- The `apply` action prompts and stores the workload file path when using the action for the first
+  time, but modifying it afterwards is not possible.
+  If the workload file location changes you must delete the module's key-value entries to delete the
+  configuration.
+  These entries are prefixed with `com.tanzu` in `PropertiesComponent` in the project's
+  `.idea/workspace.xml` file. The next `apply` action run prompts for new values again.
 
 - If you restart your computer while running Live Update without terminating the Tilt
   process beforehand, there is a lock that incorrectly shows that Live Update is still running and
   prevents it from starting again.
-  To resolve this deleting the Tilt lock file. The default location is `~/.tilt-dev/config.lock`.
+  To resolve this, delete the Tilt lock file. The default location for the file is
+  `~/.tilt-dev/config.lock`.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as
   `my-app project`.
