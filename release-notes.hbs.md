@@ -61,15 +61,16 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-5-0-app-live-view'></a> Application Live View
 
-- Application Live View now supports improved security and access control. Introduces `APIServer` component that generates and validates user access
-  to view actuator data for a pod.
-  For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md)
+- Application Live View now supports improved security and access control.
+  Introduces the `APIServer` component that generates and validates user access to view actuator data for a pod.
+  For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md).
 
 - Application Live View now supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the cluster level.
   For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md)
 
-- The Application Live View plugin now supports CPU stats in the memory and threads pages for Steeltoe Applications. For more information, see
-  [Application Live View for Steeltoe Applications in Tanzu Application Platform GUI](tap-gui/plugins/app-live-view-steeltoe.hbs.md)
+- The Application Live View plugin now supports CPU stats in the memory and threads pages for Steeltoe Applications.
+  For more information, see
+  [Application Live View for Steeltoe Applications in Tanzu Application Platform GUI](tap-gui/plugins/app-live-view-steeltoe.hbs.md).
 
 #### <a id='1-5-0-app-sso-features'></a> Application Single Sign-On (AppSSO)
 
@@ -499,6 +500,11 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-5-0-api-auto-reg-ki"></a>API Auto Registration
+
+- Users cannot update their APIs through API Auto Registration due to a issue with the ID used to retrieve APIs.
+  This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
+
 #### <a id='1-5-0-bitnami-services-ki'></a> Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
@@ -610,11 +616,6 @@ This release has the following known issues, listed by area and component.
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
 ---
-
-#### <a id="1-5-0-api-auto-registration-known-issue"></a>API Auto Registration
-
-- Users will not be able to update their APIs through API Auto Registration due to a bug on the ID used to retrieve APIs.
-  This bug will log errors in the API Descriptor CRD with the following mention: "Unable to find API entity's uid within TAP GUI. Retrying the sync".
 
 ## <a id='1-5-deprecations'></a> Deprecations
 
