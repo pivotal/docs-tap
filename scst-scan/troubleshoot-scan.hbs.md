@@ -159,13 +159,14 @@ Perform the following steps to ensure that the `caSecret` from the scanner `DEV-
     * The single cluster secretexport is created by default [here](../scst-store/deployment-details.hbs.md#exporting-certificates)
     * The multi cluster secretexport is created [here](../scst-store/multicluster-setup.hbs.md#exporting-scst---store-secrets-to-a-developer-namespace-in-a-tanzu-application-platform-multicluster-deployment)
 
-6. Check the certs in the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match by base64 decoding both secrets and comparing them:
-   * View certificates to see if there's a difference:
-   ```
-   kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
-   kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
-   ```
-   The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must match in order for the scanner to connect to the metadata-store.
+6. Check that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the secret from the `DEV-NAMESPACE`.
+
+  You can confirm this by base64 decoding both secrets and seeing if there is a match:
+  ```
+  kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
+  kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
+  ```
+  The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must have a match in order for the scanner to connect to the metadata-store.
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
