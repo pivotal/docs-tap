@@ -58,11 +58,15 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-4-3-grype-scanner-ri'></a> Grype Scanner
 
-- **Updated Syft version to fix image scans failing with panic:**
+- Updated Syft version to fix image scans failing with panic. This fixes an issue that caused
+  the scanner to fail with an index out of range error. This happened when parsing APK metadata to
+  identify the installed OS packages if a package's list of provided files is empty.
 
-   Syft was updated to fix an issue that causes the scanner to fail with an index out of range error.
-   This happened when parsing APK metadata to identify the installed OS packages if a package's list of provided
-   files is empty.
+#### <a id='1-4-3-grype-scanner-ri'></a> Source Controller
+
+- Updated imgpkg API to v0.36.0 to fix file permissions after extracting the source tarball.
+  File permissions were stripped from source files while using IMGPKG v0.25.0.
+  This issue is fixed in IMGPKG v0.29.0 and later.
 
 ---
 
