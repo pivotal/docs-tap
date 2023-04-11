@@ -8,24 +8,16 @@
 
 ## <a id="overview"></a>Overview
 
-SCST - Scan 2.0 is responsible
-for providing the framework to scan applications for their security posture.
-Scanning container images for known Common Vulnerabilities and Exposures (CVEs)
-implements this framework.
+SCST - Scan 2.0 is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework. A core tenet of this framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
 During scanning:
+- A GrypeImageVulnerabilityScan creates the child resource ImageVulnerabilityScan.
+- The ImageVulnerabilityScan then creates a [Tekton PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) which instantiates a Pipeline. The Pipeline Spec specifies the Tasks `workspace-setup-task`, `scan-task`, and `publish-task` to perform the operations of setting up the workspace and environment configuration, running a scan, and publishing results to a metadata store.
+- Each Task contains Steps which executes commands to achieve the end goal of the Task.
+- The PipelineRun also creates corresponding Taskruns for every Task in the Pipeline and executes them.
+- A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) to is used to trigger Tekton's injected sidecar cleanup.
 
-- Tekton creates Tekton Steps to perform operations, such as setting up
-  workspace and environment configuration, running scanning, and publishing
-  results to a metadata store.
-- Tekton creates a Tekton Sidecar as a no-op sidecar to trigger Tekton's
-  injected sidecar cleanup. See [Tekton
-  pipeline](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers)
-  in github.
-
-SCST - Scan 2.0 is in alpha and supersedes the [SCST - Scan component](overview.hbs.md).
-
-A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
+>**Note** SCST - Scan 2.0 is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
 
 ## <a id="features"></a>Features
 
@@ -141,7 +133,7 @@ The following sections describe how to configure service accounts and registry c
 
 The following access is required:
 
-  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) or `registry.tanzu.vmware.com`.
+  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from setup step [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) or `registry.tanzu.vmware.com`.
   - Read access to the registry containing the image to scan, if scanning a private image
   - Write access to the registry to which results are published
 
@@ -193,11 +185,13 @@ The following access is required:
       name: scanner
       namespace: DEV-NAMESPACE
     imagePullSecrets:
-    - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from the registry
+    - name: scanning-tap-component-read-creds
     secrets:
-    - name: scan-image-read-creds # Used by the component to pull the image to scan. Needed if
-                                  # the image you are scanning is private
+    - name: scan-image-read-creds
     ```
+    Where:
+    - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry
+    - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is needed if the image you are scanning is private.
 
 5. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
 
@@ -208,10 +202,13 @@ The following access is required:
       name: publisher
       namespace: DEV-NAMESPACE
     imagePullSecrets:
-    - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from the registry
+    - name: scanning-tap-component-read-creds
     secrets:
-    - name: write-creds # Used by the component to publish the scan results
+    - name: write-creds
     ```
+    Where:
+    - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry
+    - `secrets.name` is the name of the secret used by the component to publish the scan results
 
 ## Scan an image
 
@@ -219,7 +216,7 @@ The following section describes how to scan an image with SCST - Scan 2.0.
 
 ### Retrieving an image digest
 
-SCST - Scan 2.0 CRs require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
+SCST - Scan 2.0 custom resources require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
 Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull and inspect an image digest:
 
@@ -320,14 +317,20 @@ To trigger a Grype scan:
 
 1. Child resources are created.
 
-    - view the child ImageVulnerabilityScan by running: `kubectl get imagevulnerabilityscan -n DEV-NAMESPACE`
-    - view the child PipelineRun, TaskRuns, and pods by running: `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE`
+    - view the child ImageVulnerabilityScan by running:
+      ```console
+      kubectl get imagevulnerabilityscan -n DEV-NAMESPACE
+      ```
+    - view the child PipelineRun, TaskRuns, and pods by running:
+      ```console
+      kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE
+      ```
 
 1. When the scanning completes, the status is shown. Specify `-o wide` to see
 the digest of the image scanned and the location of the published results.
 
     ```console
-    $ kubectl get grypeimagevulnerabilityscans grypescan -n DEV-NAMESPACE -o wide
+    kubectl get grypeimagevulnerabilityscans grypescan -n DEV-NAMESPACE -o wide
 
     NAME        SCANRESULT                           SCANNEDIMAGE          SUCCEEDED   REASON
     grypescan   registry/project/scan-results@digest nginx:latest@digest   True        Succeeded
@@ -403,8 +406,7 @@ Optional fields:
 
 - `serviceAccountNames` includes:
   - `scanner` is the service account that runs the scan. It must have read access to `image`.
-  - `publisher` is the service account that uploads results. Must have write access to `scanResults.location`.
-
+  - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
 - `workspace` includes:
   - `size` is size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
   - `bindings` are additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path.
@@ -466,10 +468,12 @@ To trigger your scan:
 
 2. Child resources are created.
 
-    - view the child PipelineRun, TaskRuns, and pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE`
+    - view the child PipelineRun, TaskRuns, and pods
+      ```console
+      kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE
+      ```
 
-3. When the scanning completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
-published results.
+1. When the scanning completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the published results.
 
     ```console
     $ kubectl get imagevulnerabilityscans -n DEV-NAMESPACE -o wide
@@ -479,7 +483,7 @@ published results.
 
     ```
 
-## Retrieving Results
+## Retrieving results
 
 Scan results are uploaded to the container image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.
 To retrieve a vulnerability report:
@@ -498,11 +502,11 @@ To retrieve a vulnerability report:
 
 ## <a id="observability"></a> Observability
 
-To watch the status of the scanning CRDs and child resources:
+To watch the status of the scanning custom resources and child resources:
 
 ```console
 kubectl get grypeimagevulnerabilityscan,imagevulnerabilityscan
-kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod'
+kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod
 ```
 
 View the status, reason, and urls:
@@ -512,7 +516,7 @@ kubectl get grypeimagevulnerabilityscan -o wide
 kubectl get imagevulnerabilityscan -o wide
 ```
 
-View the complete status and events of scanning CRDs:
+View the complete status and events of scanning custom resources:
 
 ```console
 kubectl describe grypeimagevulnerabilityscan
@@ -567,7 +571,7 @@ Where `SCAN-POD-NAME` is the name of the scan pod.
 For information
 about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
 
-A scan run that has an error means that one of the following init containers has a failure:
+A scan run that has an error means that one of the following step containers has a failure:
 
 - `step-write-certs`
 - `step-cred-helper`
@@ -575,15 +579,21 @@ A scan run that has an error means that one of the following init containers has
 - `sidecar-sleep`
 - `working-dir-initializer`
 
-To inspect a specific init container in a pod:
+To determine which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
+```
+kubectl get taskrun TASKRUN-NAME -o json | jq .status
+```
+Where `TASKRUN-NAME` is the name of the TaskRun.
+
+To inspect a specific step container in a pod:
 
 ```console
-kubectl logs scan-pod-name -n DEV-NAMESPACE -c init-container-name
+kubectl logs scan-pod-name -n DEV-NAMESPACE -c step-container-name
 ```
 
 Where `DEV-NAMESPACE` is your developer namespace.
 
-For information about debugging init container, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/).
+For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
 
 ### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
 
@@ -603,4 +613,4 @@ kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-syste
 
 You can use workload commands to tail build and runtime logs, get workload
 status, and get workload details. See [Debugging
-workloads](../cli-plugins/apps/debug-workload.hbs.md). 
+workloads](../cli-plugins/apps/debug-workload.hbs.md).
