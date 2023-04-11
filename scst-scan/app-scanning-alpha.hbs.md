@@ -15,7 +15,7 @@ During scanning:
 - The ImageVulnerabilityScan then creates a [Tekton PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) which instantiates a Pipeline. The Pipeline Spec specifies the Tasks `workspace-setup-task`, `scan-task`, and `publish-task` to perform the operations of setting up the workspace and environment configuration, running a scan, and publishing results to a metadata store.
 - Each Task contains Steps which executes commands to achieve the end goal of the Task.
 - The PipelineRun also creates corresponding Taskruns for every Task in the Pipeline and executes them.
-- A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) to is used to trigger Tekton's injected sidecar cleanup.
+- A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) is used to trigger Tekton's injected sidecar cleanup.
 
 >**Note** SCST - Scan 2.0 is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
 
