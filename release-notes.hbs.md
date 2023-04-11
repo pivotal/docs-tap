@@ -6,34 +6,34 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 **Release Date**: 09 May 2023
 
-### <a id='1-5-1-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+### <a id='1-5-1-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-5-1-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 ---
- 
-### <a id='1-5-1-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-5-1-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-5-1-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-5-1-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-5-1-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-5-1-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.
- 
+
 ---
 
 ## <a id='1-5-0'></a> v1.5.0
@@ -439,7 +439,7 @@ This release has the following security fixes, listed by area and component.
   </tr>
   <tr>
   <td>buildservice.tanzu.vmware.com</td>
-  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0179">CVE-2023-0179</a></li></ul></td>
+  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0179">CVE-2023-0179</a><sup>*</sup></li></ul></td>
   </tr>
   <tr>
   <td>carbonblack.scanning.apps.tanzu.vmware.com</td>
@@ -455,7 +455,7 @@ This release has the following security fixes, listed by area and component.
   </tr>
   <tr>
   <td>learningcenter.tanzu.vmware.com</td>
-  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5</li></ul></td>
+  <td><ul><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a><sup>*</sup></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li><li>GHSA-2hrw-hx67-34x6</li><li>GHSA-x4qr-2fvf-3mr5</li></ul></td>
   </tr>
   <tr>
   <td>policy.apps.tanzu.vmware.com</td>
@@ -471,15 +471,15 @@ This release has the following security fixes, listed by area and component.
   </tr>
   <tr>
   <td>workshops.learningcenter.tanzu.vmware.com</td>
-  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
+  <td><ul><li> GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a><sup>*</sup></li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-69ch-w2m2-3vjp</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li><li>GHSA-83g2-8m93-v3w7</li><li>GHSA-ppp9-7jff-5vj2</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0286">CVE-2023-0286</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
   </tr>
 </table>
 
-Note about CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461: 
-
-CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461 are high severity vulnerabilities. At this time, there is no available patch for them upstream on some of our components. Once there is a patch available, Tanzu Application Platform will release a patched base stack image.
-
-It is important for customers to understand CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461 are kernel exploits, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Running on an up to date kernel is a mitigation for this vulnerability.
+<sup>*</sup> CVE-2023-0179, CVE-2023-1281 and CVE-2023-0461 are high severity vulnerabilities.
+At this time, there is no available patch for them upstream for some Tanzu Application Platform components.
+After there is a patch available, Tanzu Application Platform will release a patched base stack image.
+These vulnerabilities are kernel exploits that run on your container host VM, not the Tanzu Application Platform container image.
+Running on an up to date kernel is a mitigation for these vulnerabilities.
 
 ---
 
