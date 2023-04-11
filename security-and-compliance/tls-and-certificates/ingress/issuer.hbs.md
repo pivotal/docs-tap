@@ -1,4 +1,4 @@
-# <a id="ingress-issuer"></a> Shared ingress issuer
+# Shared ingress issuer
 
 Tanzu Application Platform's shared ingress issuer is an on-platform
 representation of a _certificate authority_. It is an easy way to set up TLS

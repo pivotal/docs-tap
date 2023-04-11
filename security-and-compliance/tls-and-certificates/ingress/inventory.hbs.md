@@ -1,4 +1,4 @@
-# <a id='inventory'></a>Ingress certificates inventory
+# Ingress certificates inventory
 
 The effective number of ingress endpoints can vary widely, depending on the
 installation profile, excluded packages and end-user facing resources (e.g.
