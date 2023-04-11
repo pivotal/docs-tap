@@ -101,24 +101,24 @@ Click **Reset All** to reset all the loggers to the default state.
 
 ## <a id="threads-page"></a> Threads page
 
-To access the **Threads** page, select the **Threads** option from the
-**Information Category** drop-down menu.
+To access the **Threads** page, select the **Threads** option from the **Information Category**
+drop-down menu.
 
 This page displays all details related to CLR threads and running processes of the application.
-This tracks worker threads and completion port threads real-time.
+This tracks worker threads and completion port threads in real time.
 Navigating to a thread state displays all the information about a particular thread and its stack
 trace.
 
 - The refresh icon refreshes to the latest state of the threads.
 - To view more thread details, click the thread ID.
-- The page also has a feature to download the thread dump for analysis.
-- The page also has a feature to view the CPU stats for a Steeltoe application
+- The page has a feature to download the thread dump for analysis.
+- The page has a feature to view the CPU stats for a Steeltoe application.
 
 ![Threads Page in the UI showing Worker and IO Completion Port charts.](images/threads-page-steeltoe-1.png)
 
 ![Threads Page in the UI showing Thread Details, such as Thread ID and Thread Name.](images/threads-page-steeltoe-2.png)
 
-![Threads Page in the UI showing CPU stats.](images/threads-cpu-stats-steeltoe.png)
+![Threads Page in the UI showing CPU stats. A Thread Dump button is at the right.](images/threads-cpu-stats-steeltoe.png)
 
 ## <a id="memory-page"></a> Memory page
 
