@@ -6,7 +6,7 @@ to deploy workloads to multiple environments. By using a continuous delivery
 the VMware recommended CD tool. You can configure different parameters for each
 environment, such as replicas or host names. When you edit package parameters
 and commit them to a Git repository, FluxCD watches the Git repository and
-applies the package to your runtimes.
+applies the package to your runtime environments.
 
 ## <a id="prerecs"></a> Feature limits 
 
@@ -37,9 +37,8 @@ delivery method, see [Use Gitops Delivery with FluxCD
 ## <a id="using-app"></a> Using GitOps delivery with Carvel App
 
 Alternatively, you can deliver packages created by the Carvel package supply
-chain, and add them to clusters, by using a GitOps repository. For information
-about this delivery method, see [Use Gitops Delivery with Carvel App
-(alpha)](delivery-with-carvel-app.hbs.md).
+chain, and add them to clusters by using a GitOps repository. For information
+about this delivery method, see [Use Gitops Delivery with Carvel App](delivery-with-carvel-app.hbs.md)
 
 ## <a id="config-blue-grn"></a> Configuring blue-green deployment
 
