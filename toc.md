@@ -495,6 +495,7 @@ docs.vmware.com is built.
             - [Tanzu Build Service integration](scc/tbs.hbs.md)
             - [Configure and deploy to multiple environments with custom parameters](scc/config-deploy-multi-env.hbs.md)
               -  [Carvel Package Supply Chains (alpha)](scc/carvel-package-supply-chain.hbs.md)
+              -  [Use Gitops Delivery with a Carvel App (alpha)](scc/delivery-with-carvel-app.hbs.md)
               - [Deploy Package and PackageInstall using FluxCD Kustomization (alpha)](scc/delivery-with-flux.hbs.md)
               - [Use Blue-green deployment with Contour and PackageInstall (alpha)](scc/blue-green-with-packageinstall.hbs.md)
           - [Use an existing image in Your Supply Chain](scc/pre-built-image.hbs.md)
