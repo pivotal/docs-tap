@@ -222,7 +222,7 @@ Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull 
 
 ```console
 docker pull nginx:latest
-docker inspect --format='\{{index .RepoDigests 0}}' nginx:latest
+docker inspect --format='{{index .RepoDigests 0}}' nginx:latest
 ```
 
 Alternatively, you can install [krane](https://github.com/google/go-containerregistry/tree/main/cmd/krane) to retrieve the digest without pulling the image:
