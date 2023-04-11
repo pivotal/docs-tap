@@ -155,17 +155,18 @@ To replace the default ingress issuer:
     ```
 
     > **Important**
-    > * Public CAs - like LetsEncrypt - record signed certificates in
+    >
+    > - Public CAs, like LetsEncrypt, record signed certificates in
     >   publicly-available certificate logs for the purpose of [certificate
     >   transparency](https://certificate.transparency.dev/). Make sure you are
     >   okay with this before using LetsEncrypt!
-    > * LetsEncrypt's production API has [rate
+    > - LetsEncrypt's production API has [rate
     >   limits](https://letsencrypt.org/docs/rate-limits/).
-    > * LetsEncrypt requires your `shared.ingress_domain` to be accessible from
+    > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
     >   the internet.
-    > * Depending on your setup you will need to adjust
+    > - Depending on your setup you will need to adjust
     >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
-    > * Replace `.spec.acme.email` with the email which should receive notices
+    > - Replace `.spec.acme.email` with the email which should receive notices
     >   for certificates from LetsEncrypt.
 
   : LetsEncrypt staging
@@ -192,18 +193,19 @@ To replace the default ingress issuer:
     ```
 
     > **Important**
-    > * Public CAs - like LetsEncrypt - record signed certificates in
+    >
+    > - Public CAs - like LetsEncrypt - record signed certificates in
     >   publicly-available certificate logs for the purpose of [certificate
     >   transparency](https://certificate.transparency.dev/). Make sure you are
     >   okay with this before using LetsEncrypt!
-    > * LetsEncrypt's staging API is not a publicly-trusted CA. You will have
+    > - LetsEncrypt's staging API is not a publicly-trusted CA. You will have
     >   to add its certificate to your devices trust chain and [TAP's custom CA
     >   certificates](../custom-ca-certificates.hbs.md).
-    > * LetsEncrypt requires your `shared.ingress_domain` to be accessible from
+    > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
     >   the internet.
-    > * Depending on your setup you will need to adjust
+    > - Depending on your setup you will need to adjust
     >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
-    > * Replace `.spec.acme.email` with the email which should receive notices
+    > - Replace `.spec.acme.email` with the email which should receive notices
     >   for certificates from LetsEncrypt.
 
   : Other
