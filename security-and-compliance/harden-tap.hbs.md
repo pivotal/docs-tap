@@ -135,7 +135,7 @@ components. For more information, please see the [guide](https://docs.vmware.com
 2. Kubernetes can be configured to encrypt all communication with a Container Networking Interface (CNI) that supports traffic encryption, like [Antrea](https://github.com/antrea-io/antrea/blob/main/docs/traffic-encryption.md).
 3. The underlying network infrastructure running Kubernetes offers encryption on all network traffic.
 
-#### External Comminication of Data in Transit Configuration
+#### External Communication of Data in Transit Configuration
 
 Based upon OSS doc:
 [https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration)
