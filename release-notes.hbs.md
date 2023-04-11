@@ -10,12 +10,6 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 This release includes the following platform-wide enhancements.
 
-<!--
-#### <a id='1-5-0-new-platform-features'></a> New platform-wide features
-
--
--->
-
 #### <a id='1-5-0-new-components'></a> New components
 
 - [Application Configuration Service](application-configuration-service/about.hbs.md) is a new component
