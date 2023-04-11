@@ -608,9 +608,3 @@ To tail scan-controller manager logs:
 ```console
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
 ```
-
-### <a id="debug-scanning-in-supplychain"></a> Debugging scanning within a SupplyChain
-
-You can use workload commands to tail build and runtime logs, get workload
-status, and get workload details. See [Debugging
-workloads](../cli-plugins/apps/debug-workload.hbs.md).
