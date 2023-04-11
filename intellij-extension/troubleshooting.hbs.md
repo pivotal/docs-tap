@@ -65,3 +65,7 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
 {{> 'partials/ide-extensions/ki-timeout-err-live-updating' }}
+
+## <a id="live-update-jammy-fail"></a> Live Update does not work with Jammy
+
+{{> 'partials/ide-extensions/ki-live-update-jammy' }}
