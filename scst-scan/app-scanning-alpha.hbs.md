@@ -24,7 +24,7 @@ During scanning:
 SCST - Scan 2.0 includes the following features:
 
 - Tekton is used as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.
-- New scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
+- New scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan). Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
 - CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## Installing SCST - Scan 2.0 in a cluster
