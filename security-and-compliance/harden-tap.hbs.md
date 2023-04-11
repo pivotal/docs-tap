@@ -121,21 +121,21 @@ Platform, this protection focuses on the two primary states of data that should 
 
 ### Encryption of Data in Transit
 
-#### Internal TLS Configuration
+#### Internal Communication of Data in Transit Configuration
 
 Communication between services that originates and terminates within the cluster is referred to as
 internal communication. The Tanzu Application Platform is in the process of enabling TLS on
 internal communication for components.
 
-For those users who have a requirement to have all internal communication encrypted, the Tanzu
-Application Platform supports enabling the Tanzu Service Mesh, which will provide mutual TLS between
-components.
+For those users who have a requirement to have all internal communication encrypted, there are three
+remediating options:
 
-For more information, please see the
-[guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html)
-for setting up Tanzu Service Mesh with the Tanzu Application Platform.
+1. Tanzu Application Platform supports enabling the Tanzu Service Mesh, which will provide mutual TLS between
+components. For more information, please see the [guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html) for setting up Tanzu Service Mesh with the Tanzu Application Platform.
+2. Kubernetes can be configured to encrypt all communication with a Container Networking Interface (CNI) that supports traffic encryption, like [Antrea](https://github.com/antrea-io/antrea/blob/main/docs/traffic-encryption.md).
+3. The underlying network infrastructure running Kubernetes offers encryption on all network traffic.
 
-#### External TLS Configuration
+#### External Comminication of Data in Transit Configuration
 
 Based upon OSS doc:
 [https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration)
@@ -201,7 +201,7 @@ an outcome.
 
 ### Ports and Protocols
 
-Ports are used in TCP and UDP protocols for identification of applications. While some applications use well-known port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic ports. Open port refers to a port on which a system is accepting communication. An open port does not immediately mean a security issue, but it's important to understand that it can provide a pathway for attackers to the application listening on that port. To help with understanding the traffic flows in the Tanzu Application Platform, a list of TAP ports and protocols is available to existing and future customers upon request. 
+Ports are used in TCP and UDP protocols for identification of applications. While some applications use well-known port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic ports. Open port refers to a port on which a system is accepting communication. An open port does not immediately mean a security issue, but it's important to understand that it can provide a pathway for attackers to the application listening on that port. To help with understanding the traffic flows in the Tanzu Application Platform, a list of TAP ports and protocols is available to existing and future customers upon request.
 
 Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html)
 
