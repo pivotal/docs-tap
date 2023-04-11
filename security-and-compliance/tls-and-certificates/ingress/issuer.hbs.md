@@ -96,174 +96,187 @@ other [cert-manager-compliant
 
 To replace the default ingress issuer:
 
-1. Create your `ClusterIssuer`
+<!-- These are tabs. See:
+https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Using+DocWorks+Markdown#UsingDocWorksMarkdown-UsingTabs
+-->
 
-  <!-- These are tabs. See:
-  https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Using+DocWorks+Markdown#UsingDocWorksMarkdown-UsingTabs
-  -->
+: Custom CA
 
-  : Custom CA
+  > **Important** You need your own CA's certificate and private key for
+  > this.
 
-    > **Important** You need your own CA's certificate and private key for
-    > this.
+  1. Create your `ClusterIssuer`
 
-    Create a `Secret` and `ClusterIssuer` which represent your CA on the platform:
+      Create a `Secret` and `ClusterIssuer` which represent your CA on the platform:
 
-    ```yaml
-    ---
-    apiVersion: v1
-    kind: Secret
-    type: kubernetes.io/tls
-    metadata:
-      name: my-company-ca
-      namespace: cert-manager
-    stringData:
-      tls.crt: #! your CA's PEM-encoded certificate
-      tls.key: #! your CA's PEM-encoded private key
+      ```yaml
+      ---
+      apiVersion: v1
+      kind: Secret
+      type: kubernetes.io/tls
+      metadata:
+        name: my-company-ca
+        namespace: cert-manager
+      stringData:
+        tls.crt: #! your CA's PEM-encoded certificate
+        tls.key: #! your CA's PEM-encoded private key
 
-    ---
-    apiVersion: cert-manager.io/v1
-    kind: ClusterIssuer
-    metadata:
-      name: my-company
-    spec:
-      ca:
-        secretName: my-company-ca
-    ```
+      ---
+      apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      metadata:
+        name: my-company
+      spec:
+        ca:
+          secretName: my-company-ca
+      ```
 
-  : LetsEncrypt production
+  1. Set `shared.ingress_issuer` to the name of your issuer
 
-    Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
-    production API:
+      ```yaml
+      #! my-tap-values.yaml
+      #! ...
+      shared:
+        ingress_issuer: my-company-ca
+      #! ...
+      ```
 
-    ```yaml
-    ---
-    apiVersion: cert-manager.io/v1
-    kind: ClusterIssuer
-    metadata:
-      name: letsencrypt-production
-    spec:
-      acme:
-        email: certificate-notices@my-company.com
-        privateKeySecretRef:
-          name: letsencrypt-production
-        server: https://acme-v02.api.letsencrypt.org/directory
-        solvers:
-          - http01:
-              ingress:
-                class: contour
-    ```
+  1. Apply TAP's installation values
 
-    > **Important**
-    >
-    > - Public CAs, like LetsEncrypt, record signed certificates in
-    >   publicly-available certificate logs for the purpose of [certificate
-    >   transparency](https://certificate.transparency.dev/). Make sure you are
-    >   okay with this before using LetsEncrypt!
-    > - LetsEncrypt's production API has [rate
-    >   limits](https://letsencrypt.org/docs/rate-limits/).
-    > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
-    >   the internet.
-    > - Depending on your setup you will need to adjust
-    >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
-    > - Replace `.spec.acme.email` with the email which should receive notices
-    >   for certificates from LetsEncrypt.
+      Once the configuration is applied, components eventually obtain certificates
+      from the new issuer and will serve them.
 
-  : LetsEncrypt staging
+: LetsEncrypt production
 
-    Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
-    staging API:
+  > **Important**
+  >
+  > - Public CAs, like LetsEncrypt, record signed certificates in
+  >   publicly-available certificate logs for the purpose of [certificate
+  >   transparency](https://certificate.transparency.dev/). Make sure you are
+  >   okay with this before using LetsEncrypt!
+  > - LetsEncrypt's production API has [rate
+  >   limits](https://letsencrypt.org/docs/rate-limits/).
+  > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
+  >   the internet.
+  > - Depending on your setup you will need to adjust
+  >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
+  > - Replace `.spec.acme.email` with the email which should receive notices
+  >   for certificates from LetsEncrypt.
 
-    ```yaml
-    ---
-    apiVersion: cert-manager.io/v1
-    kind: ClusterIssuer
-    metadata:
-      name: letsencrypt-staging
-    spec:
-      acme:
-        email: certificate-notices@my-company.com
-        privateKeySecretRef:
-          name: letsencrypt-production
-        server: https://acme-staging-v02.api.letsencrypt.org/directory
-        solvers:
-          - http01:
-              ingress:
-                class: contour
-    ```
+  1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
+     production API:
 
-    > **Important**
-    >
-    > - Public CAs - like LetsEncrypt - record signed certificates in
-    >   publicly-available certificate logs for the purpose of [certificate
-    >   transparency](https://certificate.transparency.dev/). Make sure you are
-    >   okay with this before using LetsEncrypt!
-    > - LetsEncrypt's staging API is not a publicly-trusted CA. You will have
-    >   to add its certificate to your devices trust chain and [TAP's custom CA
-    >   certificates](../custom-ca-certificates.hbs.md).
-    > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
-    >   the internet.
-    > - Depending on your setup you will need to adjust
-    >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
-    > - Replace `.spec.acme.email` with the email which should receive notices
-    >   for certificates from LetsEncrypt.
+      ```yaml
+      ---
+      apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      metadata:
+        name: letsencrypt-production
+      spec:
+        acme:
+          email: certificate-notices@my-company.com
+          privateKeySecretRef:
+            name: letsencrypt-production
+          server: https://acme-v02.api.letsencrypt.org/directory
+          solvers:
+            - http01:
+                ingress:
+                  class: contour
+      ```
 
-  : Other
+  1. Set `shared.ingress_issuer` to the name of your issuer
 
-    You can use any other cert-manager-supported `ClusterIssuer` as an ingress
-    issuer for TAP.
+      ```yaml
+      #! my-tap-values.yaml
+      #! ...
+      shared:
+        ingress_issuer: letsencrypt-production
+      #! ...
+      ```
 
-    Cert-manager supports a host of in-tree and out-of-tree issuers.
+  1. Apply TAP's installation values
 
-    Refer to cert-manager's [documentaion of
-    issuers](https://cert-manager.io/docs/configuration/).
+      Once the configuration is applied, components eventually obtain certificates
+      from the new issuer and will serve them.
 
-1. Set `shared.ingress_issuer` to the name of your issuer
+: LetsEncrypt staging
 
-  : Custom CA
+  > **Important**
+  >
+  > - Public CAs - like LetsEncrypt - record signed certificates in
+  >   publicly-available certificate logs for the purpose of [certificate
+  >   transparency](https://certificate.transparency.dev/). Make sure you are
+  >   okay with this before using LetsEncrypt!
+  > - LetsEncrypt's staging API is not a publicly-trusted CA. You will have
+  >   to add its certificate to your devices trust chain and [TAP's custom CA
+  >   certificates](../custom-ca-certificates.hbs.md).
+  > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
+  >   the internet.
+  > - Depending on your setup you will need to adjust
+  >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
+  > - Replace `.spec.acme.email` with the email which should receive notices
+  >   for certificates from LetsEncrypt.
 
-    ```yaml
-    #! my-tap-values.yaml
-    #! ...
-    shared:
-      ingress_issuer: my-company-ca
-    #! ...
-    ```
+  1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
+     staging API:
 
-  : LetsEncrypt production
+      ```yaml
+      ---
+      apiVersion: cert-manager.io/v1
+      kind: ClusterIssuer
+      metadata:
+        name: letsencrypt-staging
+      spec:
+        acme:
+          email: certificate-notices@my-company.com
+          privateKeySecretRef:
+            name: letsencrypt-production
+          server: https://acme-staging-v02.api.letsencrypt.org/directory
+          solvers:
+            - http01:
+                ingress:
+                  class: contour
+      ```
 
-    ```yaml
-    #! my-tap-values.yaml
-    #! ...
-    shared:
-      ingress_issuer: letsencrypt-production
-    #! ...
-    ```
+  1. Set `shared.ingress_issuer` to the name of your issuer
 
-  : LetsEncrypt staging
+      ```yaml
+      #! my-tap-values.yaml
+      #! ...
+      shared:
+        ingress_issuer: letsencrypt-staging
+      #! ...
+      ```
 
-    ```yaml
-    #! my-tap-values.yaml
-    #! ...
-    shared:
-      ingress_issuer: letsencrypt-staging
-    #! ...
-    ```
+  1. Apply TAP's installation values
 
-  : Other
+      Once the configuration is applied, components eventually obtain certificates
+      from the new issuer and will serve them.
 
-    ```yaml
-    #! my-tap-values.yaml
-    #! ...
-    shared:
-      ingress_issuer: my-company-ca
-    #! ...
-    ```
+: Other
 
-1. Apply TAP's installation values
+  You can use any other cert-manager-supported `ClusterIssuer` as an ingress
+  issuer for TAP.
 
-Once the configuration is applied, components eventually obtain certificates
-from the new issuer and will serve them.
+  Cert-manager supports a host of in-tree and out-of-tree issuers.
+
+  Refer to cert-manager's [documentaion of
+  issuers](https://cert-manager.io/docs/configuration/).
+
+  1. Set `shared.ingress_issuer` to the name of your issuer
+
+      ```yaml
+      #! my-tap-values.yaml
+      #! ...
+      shared:
+        ingress_issuer: my-company-ca
+      #! ...
+      ```
+
+  1. Apply TAP's installation values
+
+      Once the configuration is applied, components eventually obtain certificates
+      from the new issuer and will serve them.
 
 >**Note** There are many ways and tools to assert that new certificates are
 >issued and served. It is best to connect to one of the ingress endpoints and
