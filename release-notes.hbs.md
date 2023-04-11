@@ -10,9 +10,11 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 This release includes the following platform-wide enhancements.
 
+<!--
 #### <a id='1-5-0-new-platform-features'></a> New platform-wide features
 
 -
+-->
 
 #### <a id='1-5-0-new-components'></a> New components
 
@@ -55,7 +57,7 @@ This release includes the following changes, listed by component and area.
 
 - The Accelerator Tanzu CLI plug-in now supports using the Tanzu Application Platform GUI URL
   with the `--server-url` command option.
-  For more information, see [Using Tanzu Application Platform GUI URL](cli-plugins/accelerator/overview.html#server-api-connections-for-operators-and-developers-0)
+  For more information, see [Using Tanzu Application Platform GUI URL](cli-plugins/accelerator/overview.html#server-api-tap-gui)
 
 #### <a id='1-5-0-app-live-view'></a> Application Live View
 
@@ -133,7 +135,7 @@ This release includes the following changes, listed by component and area.
   Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
 
    For more information about managing secrets with External Secrets in general, see the official [External Secrets Operator documentation](https://external-secrets.io).
-   For installing the External Secrets Operator and the CLI plug-in, see the following documentation.
+   For installing the External Secrets Operator and the CLI plug-in, see the following documentation:
 
    - [Installing External Secrets Operator in TAP](external-secrets/install-external-secrets-operator.hbs.md)
    - [Installing External Secrets CLI plug-in](prerequisites.hbs.md)
@@ -144,8 +146,8 @@ This release includes the following changes, listed by component and area.
 #### <a id="1-5-namespace-provisioner-feats"></a> Namespace Provisioner
 
 - Includes a new GitOps workflow for managing a list of namespaces fully declaratively
-  through a Git repository. Specify the location of GitOps repository that has the list of namespaces
-  that you want as `ytt data values` to be imported in the namespace provisioner using the `gitops_install` `tap-values.yaml` configuration.
+  through a Git repository. Specify the location of the GitOps repository that has the list of namespaces
+  that you want as ytt data values to be imported in the namespace provisioner using the `gitops_install` `tap-values.yaml` configuration.
 
    For more information, see the GitOps section in
    [Provision developer namespaces](namespace-provisioner/provision-developer-ns.md).
@@ -157,35 +159,37 @@ This release includes the following changes, listed by component and area.
    For an example, see
    [Create Tekton pipelines and Scan policies using namespace parameters](namespace-provisioner/use-case2.md).
 
-- Adds support for importing Kubernetes secrets that contains a `ytt overlay` definition that you can apply
-  to the resources created by Namespace Provisioner.
+- Adds support for importing Kubernetes secrets that contain a ytt overlay definition that you can apply
+  to the resources that Namespace Provisioner creates.
 
-   Using the `overlays_secret` configuration in namespace provisioner`tap-values.yaml`,
-   users can provide a list of secrets that contains the overlay definition they want to apply
+   Using the `overlays_secret` configuration in namespace provisioner `tap-values.yaml`,
+   you can provide a list of secrets that contain the overlay definition to apply
    to resources created by provisioner.
 
    For an example of using overlays, see
    [Customize OOTB default resources](namespace-provisioner/use-case4.md).
 
 - Adds support for reading sensitive data from a Kubernetes secret in YAML format and populating that
-  information in the resources created by namespace provisioner in runtime and keep it in sync with
-  the source, thereby removing the need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> store any sensitive data in GitOps repository.
-  - Using the `import_data_values_secrets` configuration in namespace provisioner TAP<!--฿ |Tanzu Application Platform| is preferred. ฿--> values, you can
+  information in the resources that Namespace Provisioner creates during runtime.
+  This is kept in sync with the source. This removes the need to store any sensitive data in GitOps repository.
+  - Using the `import_data_values_secrets` configuration in the Namespace Provisioner section of the Tanzu Application Platform values file, you can
    import sensitive data from a YAML formatted secret and make it available under `data.values.imported` for additional resource templating.
-  - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the documentation on<!--฿ If x-referencing, go with the cleaner |See LINK.| or |For more information about TOPIC, see LINK.| ฿--> how to
+  - For an example use case, see
     [Install multiple scanners in the developer namespace](./namespace-provisioner/use-case5.md).
 
-- Namespace Provisioner now creates a Kubernetes `LimitRange` object with sensible<!--฿ There is a probably a clearer synonym to use here, such as |expected|, |acceptable|, or |valid|. ฿--> defaults<!--฿ |by default| is usually better. ฿--> which sets
-  max<!--฿ |maximum| is preferred. ฿--> limits on how much resource pods in the managed namespace can request.
-  - Run profile: Stamped by default.
-  - Full &<!--฿ |and| is preferred. ฿--> Iterate profile: Opt-in using parameters.
-    - Refer to<!--฿ If telling the reader to read somewhere else, use |See|. ฿--> the [Customize OOTB Limit Range default](./namespace-provisioner/use-case4.md#customize-limit-range-defaults) documentation for sample configuration.
+- Namespace Provisioner now creates a Kubernetes `LimitRange` object with acceptable default values that set
+  maximum limits on many resources that pods in the managed namespace can request.
+   - Run profile: Stamped by default.
+   - Full and iterate profile: Opt-in using parameters.
 
-- Namespaces provisioner enabled users to use private git<!--฿ |Git| is the preferred casing. ฿--> repositories for storing their GitOps based
-  installation files as well as<!--฿ |and| is preferred. ฿--> additional platform operator templated resources that they want to create
-  in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning`
+   For a sample configuration, see [Customize OOTB Limit Range default](./namespace-provisioner/use-case4.md#customize-limit-range-defaults).
+
+- Namespaces Provisioner enables you to use private Git repositories for storing their GitOps based
+  installation files and additional platform operator templated resources that you want to create
+  in your developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning`
   namespace, or an existing secret in another namespace referred to in the `secretRef` in the additional sources.
-  - For an example use case<!--฿ Just |use| is probably better here; avoid the nounification of verbs. ฿-->, refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the documentation on<!--฿ If x-referencing, go with the cleaner |See LINK.| or |For more information about TOPIC, see LINK.| ฿--> [Working with private Git Repositories](./namespace-provisioner/use-case3.md)
+
+   For an example use case, see [Working with private Git Repositories](./namespace-provisioner/use-case3.md)
 
 #### <a id='1-5-0-services-toolkit-features'></a> Services Toolkit
 
@@ -248,21 +252,21 @@ This release includes the following changes, listed by component and area.
 #### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools (SCST) - Scan
 
 - SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
-  - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
-  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. One restart in scanner pods is expected<!--฿ Consider replacing with |in most cases| to sound more confident. ฿--> with successful scans. See [Scanner Pod restarts once in SCST - Scan `v1.5.0` or later](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts)<!--฿ Do not use backticks in link names. ฿-->.
+   - Kubernetes jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
+   - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. For successful scans, scanner pods restart once. For more information, see [Scanner pod restarts once in SCST - Scan v1.5.0 or later](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts).
 
-- Adds support for rotating certificates and TLS, to conform with NIST 800-53.
-  - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
+- Adds support for rotating certificates and TLS, to conform with NIST 800-53. Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy.
+For more information, see [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
 
-- SCST<!--฿ Enclose placeholders in code tags. ฿--> - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
-  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
-  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> like to use with Tanzu Application Platform? See [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
-  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
+- SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform v1.5.0, users have early access to:
+   - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security that scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
+   - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that are not included by default. If you have a scanner that you would like to use with Tanzu Application Platform, see [SCST - Scan 2.0 (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
+   - VMware is looking for early adopters to test both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
-- Carbon Black integration updates:
-  - The scanner integration has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> updated to use the Carbon Black scanner CLI version `1.9.2`
-  - Notable optimizations include an improved scan logic that reduces the time it takes for a scan to complete.
-  - Check<!--฿ |Verify|, |Ensure|, and |Confirm| are all preferred. ฿--> out the [Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials) for more details or to learn about our other capabilities.
+- Carbon Black integration is updated to use the Carbon Black scanner CLI v1.9.2.
+  Notable optimizations include improved scan logic that reduces the time it takes for a scan to complete.
+
+   For more information, see the [Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html#What's%20New%20-%2012%20January%202023-Container%20Essentials).
 
 #### <a id='1-5-0-tap-gui-features'></a> Tanzu Application Platform GUI
 
@@ -270,8 +274,8 @@ This release includes the following changes, listed by component and area.
   The Java script is installed on selected pages of VMware software and collects information about
   your use of the software, such as clickstream data and page loads, hashed user ID, and limited
   browser and device information.
-  This information is used to better understand the way you use the software to improve
-  VMware products and services and your experience.
+  VMware uses this information to better understand the way you use the software to improve
+  your experience with VMware products and services.
   For more information, see the
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
 
@@ -391,7 +395,7 @@ This release has the following breaking changes, listed by area and component.
 
 - The Tanzu Build Service automatic dependency updater feature is removed in
   Tanzu Application Platform v1.5.0.
-  This feature has been  deprecated since Tanzu Application Platform v1.2.
+  This feature has been deprecated since Tanzu Application Platform v1.2.
 
 ---
 
@@ -479,7 +483,7 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-5-apps-plugin-ri"></a> Tanzu CLI Apps plug-in
 
 - Allow users to pass only `--git-commit` as Git the ref while creating a workload from a Git Repository.
-  This update removes the limitation where users had to provide a `--git-tag` or `--git-branch` along with the commit to create a workload.
+  This update removes the limitation where users had to provide a `--git-tag` or `--git-branch` with the commit to create a workload.
 
 - Fixed the behavior where `subpath` was getting removed from the workload when there are updates
   to the Git section of the workload source specification.
@@ -510,7 +514,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id='1-5-0-eventing-ki'></a> Eventing
 
-- When using vSphere sources in Eventing, the vsphere-source is currently using a high number of
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory utilization.
 
 #### <a id="1-5-0-external-secrets-ki"></a> External Secrets CLI (beta)
@@ -588,7 +592,7 @@ This release has the following known issues, listed by area and component.
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
-#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for Visual Studio Code
+#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
 
 - If a user restarts their computer while running Live Update, without terminating the Tilt
   process beforehand, there is a lock that incorrectly shows that Live Update is still running and
@@ -644,7 +648,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - The `docker` field and related sub-fields used in SCST -
   Scan are deprecated and marked for removal in Tanzu Application Platform
-  1.7.0.
+  v1.7.0.
 
    The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
    Carbon Black Scanner is not impacted.
