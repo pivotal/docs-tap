@@ -32,8 +32,11 @@ Application Live View includes the following components as shown in the architec
 
 - **Application Live View APIServer**
 
-  Application Live View APIServer generates a unique token upon access validation of a user to a pod. The Application Live View Connector component verifies the token against the Application Live View APIServer before proxying the actuator data from the application. This ensures that the actuator data is secured and only the user who has valid access to view the live information for the pod can retrieve the data.
-
+  Application Live View APIServer generates a unique token when a user receives access validation to a pod.
+  The Application Live View Connector component verifies the token against the Application Live View
+  APIServer before proxying the actuator data from the application.
+  This ensures that the actuator data is secured and only the user who has valid access to view the
+  live information for the pod can retrieve the data.
 
 ## <a id="design-flow"></a> Design flow
 
