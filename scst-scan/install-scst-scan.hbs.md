@@ -74,9 +74,9 @@ There are two options for installing Supply Chain Security Tools – Scan
 
 ### <a id='install-scst-scan-namespace-provisioner'></a> Option 1: Install to multiple namespaces with the Namespace Provisioner
 
-The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Tutorial: Provisioning new developer namespaces](../namespace-provisioner/tutorials.hbs.md).
+The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
 
-The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Add the resources required by the Out of the Box Testing and Scanning Supply Chain](../namespace-provisioner/how-tos.hbs.md#add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain) for configuration steps.
+The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Customize installation](../namespace-provisioner/customize-installation.md) in the Namespace Provisioner documentation for configuration steps.
 
 ### <a id='install-scst-scan-manually'></a> Option 2: Install manually to each individual namespace
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
@@ -106,8 +106,15 @@ To install SCST - Scan (Scan controller):
 
 2. (Optional) Make changes to the default installation settings:
 
-    If you're using the Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
-    following scanning configuration might deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
+    If you are using Grype Scanner `v1.5.0 and later` or other supported scanners included with Tanzu Application Platform `v1.5 and later` and do not want to use the default SCST - Store integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file:
+
+    ```yaml
+    ---
+    metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+    ```
+
+    If you are using Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
+    following scanning configuration will deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
 
     ```yaml
     ---
@@ -167,7 +174,7 @@ To install SCST - Scan (Scan controller):
 
     ```yaml
     ---
-    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
+    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are going to be deployed
     metadataStore:
       url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
       caSecret:
@@ -177,6 +184,8 @@ To install SCST - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
+    **Note:** In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store. To troubleshoot any issues with scanner to metadata store connection configuration, see [here](./troubleshoot-scan.hbs.md#insight-cli-failed-to-post-scan-results-to-metadata-store-due-to-failed-certificate-verification).
+
     >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 

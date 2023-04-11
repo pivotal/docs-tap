@@ -6,14 +6,13 @@ server backed by Redis over mutual TLS if no storage is defined.
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
 
-To allow `ClientRegistrations` from all or a restricted set of Namespaces, the
-annotation `sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
-allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients from all namespaces. If
-the annotation is missing, no clients are allowed.
+To allow `ClientRegistrations` only from a restricted set of `Namespaces`, the annotation 
+`sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
+allowed `Namespaces`, e.g. `"app-team-red,app-team-green"`. If the annotation is missing, the default value is `*`, 
+denoting that all client namespaces are allowed.
 
 The issuer URI, which is the point of entry for clients and end-users, is constructed through the package's `domain_template`.
-You can view the issuer URI by running
-`kubectl get authserver -n authservers`.
+You can view the issuer URI by running `kubectl get authserver -n authservers`.
 
 See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
 
@@ -59,7 +58,7 @@ metadata:
   namespace: ""
   labels: { } # required, must uniquely identify this AuthServer
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # required, must be "*" or a comma-separated list of allowed client namespaces
+    sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # optional, a comma-separated list of allowed client namespaces
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-cors: "" # optional
@@ -406,7 +405,6 @@ metadata:
     identifier: authserver-identifier
     sample: "true"
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
     sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""
 spec:

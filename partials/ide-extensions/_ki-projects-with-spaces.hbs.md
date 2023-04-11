@@ -14,7 +14,8 @@ On Windows, workload actions do not work when in a project with spaces in the na
 ### Solution
 
 1. Close the code editor.
-1. Move the project files to a new location on the disk.
-1. Delete the project settings folder from the project to start with a clean slate.
+2. Move or rename your project folder on the disk, ensuring that no part of its path contains any
+   spaces.
+3. Delete the project settings folder from the project to start with a clean slate.
    The folder is `.idea` if using IntelliJ and `.vscode` if using VS Code.
-1. Open the code editor and then open the project in its new location.
+4. Open the code editor and then open the project in its new location.

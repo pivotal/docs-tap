@@ -51,7 +51,7 @@ Where:
 To create an EKS cluster in the specified region, run:
 
 ```console
-eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.xlarge --version 1.23 --with-oidc -N 5
+eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.xlarge --version 1.24 --with-oidc -N 5
 ```
 
 Creating the control plane and node group can take anywhere from 30-60 minutes.

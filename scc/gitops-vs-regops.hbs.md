@@ -293,6 +293,7 @@ You can use this strategy with the following Git providers:
 
 - GitHub
 - GitLab
+- [Azure DevOps](azure.hbs.md)
 
 #### <a id="auth"></a> Authentication
 

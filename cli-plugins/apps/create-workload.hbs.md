@@ -34,7 +34,7 @@ application.
 To create a named workload and specify a Git source code location, run:
 
  ```console
-tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.4.0 --type web
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web
 ```
 
 Respond `Y` to prompts to complete process.
@@ -47,6 +47,15 @@ Where:
 - `--git-tag` (optional) specifies which tag in the repository to pull the code from.
 - `--git-branch` (optional) specifies which branch in the repository to pull the code from.
 - `--type` distinguishes the workload type.
+
+This process can also be done with non-publicly accessible repositories. These require authentication
+using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials.
+
+Further information on how to set it up in 
+[Out of the Box Supply Chain with private Git repos](../../scc/building-from-source.hbs.md#private-gitrepository),
+how the supply chain manages git repositories in [How it works](../../scc/building-from-source.hbs.md#how-it-works) section
+and how to override parameters to customize the behavior to manage them in 
+[Workload parameters](../../scc/building-from-source.hbs.md#workload-parameters) section.
 
 View the full list of supported workload configuration options
 by running `tanzu apps workload apply --help`.
@@ -70,6 +79,12 @@ Where:
 - `pet-clinic` is the name of the workload.
 - `--local-path` points to the directory where the source code is located.
 - `--source-image` is the registry path where the local source code is uploaded as an image.
+
+The cluster needs the correct credentials and access rights in order to push the source code to the image registry.
+More information on authentication to publish local source in supply chain 
+[local source authentication](../../scc/building-from-source.hbs.md#auth) and a deeper explanation
+on how the supply chain manages this authentication in the local source 
+[how it works](../../scc/building-from-source.hbs.md#how-it-works-1) section.
 
 #### Exclude Files
 
@@ -101,6 +116,11 @@ Respond `Y` to prompts to complete process.
 - `petclinic-image` is the name of the workload.
 - `--image` is an existing image, pulled from a registry, that contains the source that the workload
   is going to use to create the application.
+
+Check the requirements to use a pre-built image in supply chain
+[pre-built images requirements](../../scc/pre-built-image.hbs.md#requirements-for-prebuilt-images)
+and how to [configure the workload](../../scc/pre-built-image.hbs.md#configure-your-workload-to-use-a-prebuilt-image)
+in order to use it.
 
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
@@ -139,6 +159,10 @@ tanzu apps workload create petclinic-image --param-yaml maven=$"artifactId:hello
 # JSON
 tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
+
+To configure the credentials that the MavenArtifact expects for authentication, 
+check the [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-repository-secret) 
+section in supply chain guide.
 
 ## <a id='yaml-files'></a> Working with YAML files
 

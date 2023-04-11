@@ -16,8 +16,7 @@
 
 ## <a id="ide-set-up-for-authoring"></a>Set up Visual Studio Code
 
-1. To simplify accelerator authoring, code assist capabilities are available through the [YAML
-   plug-in](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). To install the
+1. To simplify accelerator authoring, code assist capabilities are available. To install the
    extension, navigate to the [Marketplace page for the YAML
    plug-in](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and click
    **Install**.
@@ -160,7 +159,8 @@ that the resulting project is generated as expected.
     parameters passed in through the `--options` field, and outputs the project to a specified
     directory.
 
-    >**Important** This step requires that the `accelerator` endpoint is exposed and accessible.
+    >**Important** This step requires that the `TANZU-APPLICATION-ACCELERATOR-URL` endpoint is exposed
+    > and accessible. For more information, see [Server API connections for operators and developers](../cli-plugins/accelerator/overview.hbs.md#server-api-connections).
 
     ```bash
     tanzu accelerator generate-from-local \

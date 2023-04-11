@@ -66,19 +66,23 @@ it to divide plug-ins based on different PostgreSQL schemas and use a single spe
 See the following example of extra configuration parameters:
 
 ```yaml
-backend:
-  # ... other backend details
-  database:
-    client: pg
+# ... existing tap-values.yaml above
+tap_gui:
+  # ... existing tap_gui values
+  app_config:
+    backend:
+      # ... other backend details
+      database:
+        client: pg
 
-    # This parameter tells Tanzu Application Platform GUI to put plug-ins in their own schema instead
-    # of their own database.
-    # default: database
-    pluginDivisionMode: schema
+        # This parameter tells Tanzu Application Platform GUI to put plug-ins in their own schema instead
+        # of their own database.
+        # default: database
+        pluginDivisionMode: schema
 
-    connection:
-      # ... other connection details
-      database: PG-SQL-DATABASE
+        connection:
+          # ... other connection details
+          database: PG-SQL-DATABASE
 ```
 
 Where `PG-SQL-DATABASE` is the database name for Tanzu Application Platform GUI to use

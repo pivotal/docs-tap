@@ -57,7 +57,7 @@ user's Tekton Pipeline.
 For information about the runnable created in the OOTB Testing and OOTB Testing
 and Scanning, see [testing-pipeline](#testing-pipeline).
 
-For information about the Tekton Pipeline that the user must create, see [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.hbs.md#tekton-pipeline).
+For information about the Tekton Pipeline that the user must create, see [Tekton/Pipeline](ootb-supply-chain-testing.hbs.md#tekton-pipeline).
 
 ## <a id='taskrun'></a> tekton-taskrun
 
@@ -67,7 +67,7 @@ Generic template for creating a Tekton TaskRun.
 
 ### <a id='taskrun-used'></a> Used by
 
-- [config-writer-template](ootb-template-reference.hbs.md#config-writer-template)
+- [config-writer-template](ootb-template-reference.hbs.md#config-writer)
 
 ### <a id='taskrun-creates'></a>Creates
 
@@ -128,7 +128,7 @@ Commit configuration to a Git repository and open a pull request for review.
 
 ### <a id='commit-pr-used'></a> Used by
 
-- [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
+- [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-pr)
 
 ### <a id='commit-pr-creates'></a> Creates
 
@@ -288,6 +288,6 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
 ### <a id='commit-pr-more-info'></a> More information
 
 For information about the template creating the related runnable,
-see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template).
+see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-pr).
 
 For information about gitops, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).

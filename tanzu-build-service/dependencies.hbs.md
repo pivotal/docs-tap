@@ -26,9 +26,6 @@ To ensure dependency compatibility, Tanzu Build Service only releases patches fo
 dependencies in patch versions of Tanzu Application Platform.
 For upgrade instructions, see [Upgrade the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
-To upgrade Tanzu Build Service dependencies outside of Tanzu Application Platform releases, use the
-`kpack` CLI. This enables you to consume new versions of buildpacks and stacks and remediate
-vulnerabilities more quickly. For more information, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#bulk-update).
 
 By default, Tanzu Build Service is installed with the `lite` set of dependencies,
 which are smaller-footprint and contain a subset of the buildpacks and stacks in
@@ -46,6 +43,7 @@ kubectl get clusterbuilder -o yaml
 ```
 
 Cluster builders contain stack and buildpack metadata.
+
 
 ## <a id="bionic-vs-jammy"></a> Bionic and Jammy stacks
 
@@ -204,28 +202,12 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports binary workloads | Yes | Yes |
 | Supports web servers buildpack | Yes | Yes |
 
-## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
+## <a id="update"></a> Updating dependencies 
 
->**Important** The automatic updates feature is being deprecated.
->The recommended way to patch dependencies is by upgrading Tanzu Application Platform
->to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
+New versions of dependencies (buildpacks, stacks) are available in new versions of Tanzu Application Platform. If you are seeking to update your dependencies, we encourage you to update to the latest patch version of Tanzu Application Platform. 
+* If you are using `lite` dependencies, simply upgrade to the latest patch version of Tanzu Application Platform to update your dependencies. 
+* If you are using `full` dependencies, you will need to complete a few extra steps to update your dependencies after you upgrade to the latest patch version of Tanzu Application Platform. In this case, please see instructions on [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
-You can configure Tanzu Build Service to update dependencies in the background as they are released.
-This enables workloads to keep up to date automatically.
+Note that when Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-### <a id="descriptors"></a> Descriptors (deprecated)
-
-Tanzu Build Service descriptors are curated sets of dependencies that include stacks and buildpacks.
-Descriptors are only used if Tanzu Build Service is configured for automatic dependency updates.
-Descriptors are imported into Tanzu Build Service to update the entire cluster.
-
-Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/)
-page to provide updated buildpack dependencies and updated stack images.
-This allows the use of dependencies that have patched CVEs.
-For more information about buildpacks and stacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-
-There are two types of descriptor, `lite` and `full`.
-The different descriptors can apply to different use cases and workload types.
-The differences between the `full` and `lite` descriptors are the same as the the differences
-between `full` and `lite` dependencies.
-For a comparison of the `lite` and `full` descriptors, see [About lite and full dependencies](#lite-vs-full).
+Updating buildpack and stack dependencies outside of upgrades to Tanzu Application Platform is possible but not recommended, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform. For more information, see [updating a ClusterStack](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) for updating a stack and [updating a ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) for updating a buildpack. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
