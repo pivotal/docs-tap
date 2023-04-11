@@ -45,7 +45,6 @@ part of Tanzu Application Platform GUI.
 >Tanzu Application Platform components and
 >profiles](../about-package-profiles.hbs.md).
 
-
 ## <a id='prereqs'></a>Prerequisites
 
 Before installing Application Live View, complete all prerequisites to install
@@ -244,9 +243,11 @@ To install Application Live View back end:
        app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 appliveview-cert   valid    Valid HTTPProxy
        ```
 
-       To verify the App Live View pages in a multi-cluster setup, set the appropriate connector configuration in your run cluster as listed in the `Install Application Live View connector` section below.
+       To verify the App Live View pages in a multi-cluster setup, set the appropriate connector
+       configuration in your run cluster as listed in
+       [Install Application Live View connector](#install-alv-connector).
 
-2. Install the Application Live View back-end package by running:
+1. Install the Application Live View back-end package by running:
 
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
@@ -273,7 +274,7 @@ To install Application Live View back end:
     The Application Live View back-end component is deployed in `app-live-view`
     namespace by default.
 
-3. Verify the Application Live View back-end package installation by running:
+1. Verify the Application Live View back-end package installation by running:
 
     ```console
     tanzu package installed get appliveview -n tap-install
@@ -352,101 +353,98 @@ To install Application Live View connector:
     For more information about values schema options, see the properties listed
     earlier.
 
-2. Create `app-live-view-connector-values.yaml` with the following details:
+1. Create `app-live-view-connector-values.yaml` using the following details:
 
-    For SINGLE-CLUSTER environment, the Application Live View connector connects
-    to the `cluster-local` Application Live View back end to register the
-    applications.
+   - For a single-cluster environment, the Application Live View connector connects
+   to the `cluster-local` Application Live View back end to register the
+   applications.
 
-    By default, ingress is disabled for connector.
+      By default, ingress is disabled for connector.
 
+   - For a multicluster environment, set the flag `ingressEnabled` to `true` for
+   the Application Live View connector to connect to the Application Live View
+   back end by using the ingress domain.
 
-
-    For a multicluster environment, set the flag `ingressEnabled` to true for
-    the Application Live View connector to connect to the Application Live View
-    back end by using the ingress domain.
-
-     ```yaml
-    backend:
+      ```yaml
+      backend:
         ingressEnabled: true
-    ```
+      ```
 
-    If it is a Tanzu Application Platform profile installation and top-level key
-    `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live
-    View connector and Application Live View back end are configured to
-    communicate through ingress. Then the Application Live View connector uses
+   - If you are using a Tanzu Application Platform profile installation and the
+    top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the
+    Application Live View connector and Application Live View back end are configured to
+    communicate through ingress. The Application Live View connector then uses
     the `shared.ingress_domain` to reach the back end.
 
+       To override the shared ingress for Application Live View in a multicluster environment,
+      use the following values:
 
-    If you want to override the shared ingress for Application Live View in a
-    multicluster environment, use the following values:
+       ```yaml
+       backend:
+         host: appliveview.INGRESS-DOMAIN
+       ```
 
-    ```yaml
-    backend:
-        host: appliveview.INGRESS-DOMAIN
-    ```
+       Where `INGRESS-DOMAIN` is the top-level domain the Application Live View
+       back end exposes by using `tanzu-shared-ingress` for the connectors in other
+       clusters to reach the Application Live View back end. Prepend the
+       `appliveview` subdomain to the provided value.
 
-    Where `INGRESS-DOMAIN` is the top level domain the Application Live View
-    back end exposes by using `tanzu-shared-ingress` for the connectors in other
-    clusters to reach the Application Live View back end. Prepend the
-    `appliveview` subdomain to the provided value.
+   - The `backend.sslDeactivated` is set to `false` by default. You can set the CA certificate for
+   the ingress domain in the `backend.caCertData` key for SSL validation. For example:
 
-    The `backend.sslDeactivated` is set to `false` by default. The CA Cert for
-    the ingress domain can be set in the `backend.caCertData` key for ssl
-    validation. Below is a sample yaml:
+       ```yaml
+       backend:
+       caCertData: |-
+         -----BEGIN CERTIFICATE-----
+         MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+         BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+         -----END CERTIFICATE-----
+       ```
 
-    ```yaml
-    backend:
-      caCertData: |-
-        -----BEGIN CERTIFICATE-----
-        MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
-        BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-        -----END CERTIFICATE-----
-    ```
+   - To enable TLS using ClusterIssuer, set the following connector configuration in the run cluster:
 
-    If enabling TLS using ClusterIssuer, set the below connector config in the run cluster:
+       ```yaml
+       backend:
+       ingressEnabled: true
+       sslDeactivated: false
+       host: appliveview.INGRESS-DOMAIN
+       caCertData: |-
+         -----BEGIN CERTIFICATE-----
+         MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+         BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+         -----END CERTIFICATE-----
+       ```
 
-    ```yaml
-    backend:
-      ingressEnabled: true
-      sslDeactivated: false
-      host: appliveview.INGRESS-DOMAIN
-      caCertData: |-
-        -----BEGIN CERTIFICATE-----
-        MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
-        BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-        -----END CERTIFICATE-----
-    ```
+       Where `caCertData` is the certificate retrieved from the HTTPProxy secret exposed by the
+       Application Live View Backend in view cluster.
+       The `host` is the backend host in the view cluster.
 
-    Where `caCertData` is the certificate retrieved from the HTTPProxy secret exposed by the Application Live View Backend in view cluster. 
-    The `host` is the backend host in the view cluster.
+       To retrieve the certificate from the HTTPProxy secret, run the following command in the view cluster:
 
-    To retrieve the certificate from the HTTPProxy secret, run the command below in the view cluster:
-    ```console
-    kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
-    ```
+       ```console
+       kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
+       ```
 
-    If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View
-    back end, set the `backend.sslDeactivated` to `true`.
+   - If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View
+   back end, set the `backend.sslDeactivated` to `true`.
 
-     ```yaml
-    backend:
-        sslDeactivated: true
-    ```
+       ```yaml
+       backend:
+         sslDeactivated: true
+       ```
 
-    >**Note** The `sslDisabled` key is deprecated and has been renamed to
-    >`sslDeactivated`.
+       >**Note** The `sslDisabled` key is deprecated and has been renamed to
+       >`sslDeactivated`.
 
-    You can edit the values to suit your project needs or leave the default
-    values as is.
+       You can edit the values to suit your project needs or leave the default
+       values as is.
 
-    Using the HTTP proxy either on 80 or 443 based on SSL config exposes the
-    back-end service running on port 7000. The connector connects to the back
-    end on port 80/443 by default. Therefore, you are not required to explicitly
-    configure the `port` field.
+       Using the HTTP proxy either on 80 or 443 based on SSL config exposes the
+       back-end service running on port 7000. The connector connects to the back
+       end on port 80/443 by default. Therefore, you are not required to explicitly
+       configure the `port` field.
 
-
-3. Install the Application Live View connector package by running:
+1. Install the Application Live View connector package by running:
 
     ```console
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
@@ -476,7 +474,7 @@ To install Application Live View connector:
     Application Live View connector component is deployed in
     `app-live-view-connector` namespace by default.
 
-4. Verify the `Application Live View connector` package installation by running:
+1. Verify the `Application Live View connector` package installation by running:
 
     ```console
     tanzu package installed get appliveview-connector -n tap-install
@@ -537,7 +535,7 @@ To install Application Live View Conventions:
     For more information about values schema options, see the properties listed
     earlier.
 
-2. Install the Application Live View Conventions package by running:
+1. Install the Application Live View Conventions package by running:
 
     ```console
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -562,7 +560,7 @@ To install Application Live View Conventions:
     Added installed package 'appliveview-conventions' in namespace 'tap-install'
     ```
 
-3. Verify the package install for Application Live View Conventions package by
+1. Verify the package install for Application Live View Conventions package by
    running:
 
     ```console
@@ -625,7 +623,7 @@ To install Application Live View Apiserver:
     For more information about values schema options, see the properties listed
     earlier.
 
-2. Install the Application Live View Apiserver package by running:
+1. Install the Application Live View Apiserver package by running:
 
     ```console
     tanzu package install appliveview-apiserver -p apiserver.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -647,7 +645,7 @@ To install Application Live View Apiserver:
     Added installed package 'appliveview-apiserver' in namespace 'tap-install'
     ```
 
-3. Verify the package install for Application Live View Apiserver package by
+1. Verify the package install for Application Live View Apiserver package by
    running:
 
     ```console
@@ -669,11 +667,9 @@ To install Application Live View Apiserver:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI, see [Application Live View in Tanzu
 Application Platform GUI](../tap-gui/plugins/app-live-view.md).
-
 
 ## <a id='sslDisabled'></a> Deprecate the sslDisabled key
 
