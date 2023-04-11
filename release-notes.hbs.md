@@ -57,6 +57,18 @@ This release includes the following changes, listed by component and area.
   with the `--server-url` command option.
   For more information, see [Using Tanzu Application Platform GUI URL](cli-plugins/accelerator/overview.html#server-api-connections-for-operators-and-developers-0)
 
+#### <a id='1-5-0-app-live-view'></a> Application Live View
+
+- Application Live View now supports improved security and access control. Introduces `APIServer` component that generates and validates user access 
+  to view actuator data for a pod. 
+  For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md)
+
+- Application Live View now supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the cluster level.
+  For more information, see [Improved security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md)
+
+- The Application Live View plugin now supports CPU stats in the memory and threads pages for Steeltoe Applications. For more information, see
+  [Application Live View for Steeltoe Applications in Tanzu Application Platform GUI](tap-gui/plugins/app-live-view-steeltoe.hbs.md)
+
 #### <a id='1-5-0-app-sso-features'></a> Application Single Sign-On (AppSSO)
 
 - Introduces `AuthServer` CORS API that enables configuration of allowed HTTP origins.
