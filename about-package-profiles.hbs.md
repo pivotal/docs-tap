@@ -687,13 +687,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling \*\*</strong>
+   <td><strong>Tanzu Developer Tooling</strong>
    </td>
    <td><strong>Application Live View for VMware Tanzu</strong>
    </td>
    <td><strong>Functions (beta)</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Anchore Grype \*\*\*</strong>
+   <td><strong>Extended Scanning Coverage using Anchore Grype</strong>
    </td>
    <td><strong>Application Accelerators for VMware Tanzu</strong>
    </td>
@@ -845,7 +845,7 @@ Tanzu Application Platform components.
   <tr>
    <td>Ruby
    </td>
-   <td><sup>\*\*\*\*</sup>
+   <td>
    </td>
    <td>
    </td>
@@ -872,8 +872,8 @@ However, if you use Tanzu Build Service to build application images using a buil
 that produces a Bill of Materials in the Syft format,
 Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
 
-<sup>\****</sup> Users can leverage the open source Paketo Ruby buildpack for building
-Ruby applications with Tanzu Build Service.
+>**Note:** Users can leverage the open source Paketo Ruby buildpack for building
+>Ruby applications with Tanzu Build Service.
 
 ## <a id='install'></a> Installing Tanzu Application Platform
 
