@@ -25,7 +25,7 @@ This release includes the following platform-wide enhancements.
  
 #### <a id='1-6-0-new-components'></a> New components
  
-- [COMPONENT NAME](LINK-TO-COMPONENT-DOCS): Component description.
+- [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
  
 ---
  
