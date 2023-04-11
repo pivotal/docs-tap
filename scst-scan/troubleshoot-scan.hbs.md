@@ -169,19 +169,14 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
     kubectl get secretimports.secretgen.carvel.dev -n `DEV-NAMESPACE`
     ```
 
-    - SCST - Store creates the single cluster secretexport by default. See [Deployment details and configuration](../scst-store/deployment-details.hbs.md#exporting-certificates).
-    - For information about creating the multicluster secretexport, see [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
-
-6. Verify that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the `DEV-NAMESPACE` secret.
+6. Check that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the secret from the `DEV-NAMESPACE`.
 
   You can confirm this by base64 decoding both secrets and seeing if there is a match:
-  
-  ```console
+  ```
   kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
   kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
   ```
-  
-  The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must have a match for the scanner to connect to the metadata-store.
+  The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must have a match in order for the scanner to connect to the metadata-store.
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
