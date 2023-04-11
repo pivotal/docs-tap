@@ -872,7 +872,7 @@ However, if you use Tanzu Build Service to build application images using a buil
 that produces a Bill of Materials in the Syft format,
 Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
 
->**Note:** Users can leverage the open source Paketo Ruby buildpack for building
+>**Note** Users can leverage the open source Paketo Ruby buildpack for building
 >Ruby applications with Tanzu Build Service.
 
 ## <a id='install'></a> Installing Tanzu Application Platform
