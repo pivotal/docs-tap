@@ -45,7 +45,6 @@ For developers:
 - [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
 - [Deploy an app on Tanzu Application Platform](getting-started/deploy-first-app.md)
 
-
 For operators:
 
 - [Add testing and scanning to your application](getting-started/add-test-and-security.hbs.md)
