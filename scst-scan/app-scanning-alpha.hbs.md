@@ -8,7 +8,7 @@
 
 ## <a id="overview"></a>Overview
 
-SCST - Scan 2.0 is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework. A core tenet of this framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
+SCST - Scan 2.0 is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework. A core tenet of this latest framework is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
 During scanning:
 - A GrypeImageVulnerabilityScan creates the child resource ImageVulnerabilityScan.
