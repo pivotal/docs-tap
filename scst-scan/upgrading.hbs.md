@@ -4,17 +4,6 @@ This topic describes how to upgrade Supply Chain Security Tools - Scan from the 
 
 You can perform a fresh install of SCST - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
 
-This topic includes instructions for:
-
-- [Upgrade Supply Chain Security Tools - Scan](#upgrade-supply-chain-security-tools---scan)
-  - [ Prerequisites](#-prerequisites)
-  - [ General Upgrades for SCST - Scan](#-general-upgrades-for-scst---scan)
-  - [ Upgrading a scanner in all namespaces](#-upgrading-a-scanner-in-all-namespaces)
-    - [ Installation by using Namespace Provisioner](#-installation-by-using-namespace-provisioner)
-    - [ Manual installation](#-manual-installation)
-  - [ Upgrade to Version v1.2.0](#-upgrade-to-version-v120)
-
-
 ## <a id="prereqs"></a> Prerequisites
 
 Before you upgrade SCST - Scan:
