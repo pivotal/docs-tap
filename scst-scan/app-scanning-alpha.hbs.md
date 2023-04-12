@@ -436,6 +436,7 @@ Tekton Workspaces:
   - config.json which combines static credentials with workload identity credentials when `activeKeychains` is enabled
   - trusted-cas.crt when SCST - Scan 2.0 is deployed with `caCertData`
 - `/workspace`: a PersistentVolumeClaim to hold scan artifacts and results
+  - The working directory for all Steps is by default located at `/workspace/scan-results`
 
 Environment Variables:
 If undefined by your `step` definition the environment uses the following default variables:
