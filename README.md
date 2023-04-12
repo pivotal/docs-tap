@@ -6,15 +6,10 @@ This repo contains the content for Tanzu Application Platform docs.
 
 ## Branches
 
-Content for v1.3.7 and v1.4.3 is stored in the `1-3-6` and `1-4-2`
-branches and hidden within Handlebars conditions (`\{{#unless vars.hide_content}}`).
-The quantities of content are much too small to warrant separate branches and all the complexity
-that accompanies managing extra branches.
-
 | Branch | Staging | Production |
 |--------|---------|------------|
 | main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) (Pre-release v1.6 docs) | n/a |
-| 1-5-1   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.1/tap/overview.html) (Pre-release v1.5.1 docs) | n/a |
+| 1-5-1  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.1/tap/overview.html) (Pre-release v1.5.1 docs) | n/a |
 | 1-5-0  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) |
 | 1-4-3  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
 | 1-4-2  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
