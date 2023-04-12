@@ -1,6 +1,6 @@
 # Opt in or opt out of Pendo telemetry for Tanzu Application Platform GUI
 
-<!-- This topic must be accessible from https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-portal-telemetry.html -->
+<!-- This topic must be accessible from https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars. url_version }}/tap/tap-portal-telemetry.html. And possibly all the content needs to be in one place, exactly as below, because it's a legal disclosure about data collection. Be careful wrt to content strategy, in other words. -->
 
 Tanzu Application Platform GUI uses Pendo.io to better understand the way users interact with it in
 order to provide a better user experience for our customers and to improve VMware products and services.
