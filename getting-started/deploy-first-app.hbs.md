@@ -209,4 +209,6 @@ Before you start, you must have:
 
 ## <a id="next-steps"></a>Next steps
 
-- [Iterate on your new app](iterate-new-app.md)
+- Now that you have your application deployed on your TAP Cluster the next step is to iterate on your application. 
+If you are an IntelliJ user, use the [Iterate on your new app using IntelliJ](iterate-new-app-intellij.hbs.md) guide. 
+If you are a VS Code user, use the [Iterate on your new app using VS Code](iterate-new-app-vscode.hbs.md) guide.
