@@ -196,6 +196,7 @@ using the selected interface.
      preferred procedure for uploading the generated project files to a Git
      repository for your new project.
 
+<br><br>
 ## <a id="next-steps"></a>Next Steps
 
 Now that you have generated a project that is ready for Tanzu Application Platform, learn
