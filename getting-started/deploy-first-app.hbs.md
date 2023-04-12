@@ -11,7 +11,8 @@ This guide is a continuation from the previous step,
 Before you start, you must have:
 
 - Completed all [Getting Started prerequisites](../getting-started.md#get-started-prereqs).
-- Created a project by following the steps in [Generate an application with Application Accelerator](./generate-first-app.hbs.md).
+- Created a project. To do so, you can follow the steps in
+  [Generate an application with Application Accelerator](./generate-first-app.hbs.md).
 - Created a Git repository during the project creation stage. If the project does not have an
   associated Git repository, create a repository and update the `workload.yaml` the repository URL and branch.
 
@@ -205,6 +206,6 @@ Before you start, you must have:
 >**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md)
 >database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
-## Next steps
+## <a id="next-steps"></a>Next steps
 
 - [Iterate on your new app](iterate-new-app.md)
