@@ -2,15 +2,11 @@
 
 This topic contains release notes for Tanzu Application Platform v1.4.
 
-{{#unless vars.hide_content}}
-<!-- This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.-->
+## <a id='1-4-4'></a> v1.4.4
 
-## <a id='1-4-3'></a> v1.4.3
+**Release Date**: April 12, 2023
 
-**Release Date**: April 11, 2023
-
-### <a id='1-4-3-security-fixes'></a> Security fixes
+### <a id='1-4-4-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by package name and
 vulnerabilities.
@@ -52,17 +48,17 @@ vulnerabilities.
 
 ---
 
-### <a id='1-4-3-resolved-issues'></a> Resolved issues
+### <a id='1-4-4-resolved-issues'></a> Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-4-3-grype-scanner-ri'></a> Grype Scanner
+#### <a id='1-4-4-grype-scanner-ri'></a> Grype Scanner
 
 - Updated Syft version to fix image scans failing with panic. This fixes an issue that caused
   the scanner to fail with an index out of range error. This happened when parsing APK metadata to
   identify the installed OS packages if a package's list of provided files is empty.
 
-#### <a id='1-4-3-grype-scanner-ri'></a> Source Controller
+#### <a id='1-4-4-grype-scanner-ri'></a> Source Controller
 
 - Updated imgpkg API to v0.36.0 to fix file permissions after extracting the source tarball.
   File permissions were stripped from source files while using IMGPKG v0.25.0.
@@ -70,11 +66,11 @@ The following issues, listed by component and area, are resolved in this release
 
 ---
 
-### <a id='1-4-3-known-issues'></a> Known issues
+### <a id='1-4-4-known-issues'></a> Known issues
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-4-3-grype-scanner-ki'></a> Grype Scanner
+#### <a id='1-4-4-grype-scanner-ki'></a> Grype Scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
   vulnerabilities:**
@@ -94,8 +90,6 @@ This release has the following known issues, listed by component and area.
   packaged as images.
 
 ---
-
-{{/unless}}
 
 ## <a id='1-4-2'></a> v1.4.2
 
