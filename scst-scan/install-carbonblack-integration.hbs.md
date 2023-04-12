@@ -72,7 +72,7 @@ Create a `values.yaml` file by using the following configuration:
     The Carbon Black Scanner integration can work with or without the SCST - Store integration.
     The `values.yaml` file is slightly different for each configuration.
 
-## <a id="store-integration"></a> Supply Chain Security Tools - Store integration
+## <a id="store-integration"></a> SCST - Store integration
 
 To Integrate:
 
@@ -83,7 +83,7 @@ To Integrate:
 
 2. Apply the YAML.
 
-### <a id="with-store"></a> Using Supply Chain Security Tools - Store Integration
+### <a id="with-store"></a> Using SCST - Store Integration
 
 To persist the results found by the Carbon Black Scanner,
   you can enable the SCST - Store integration
@@ -136,7 +136,7 @@ To persist the results found by the Carbon Black Scanner,
            importFromNamespace: "STORE-SECRETS-NAMESPACE"
        ```
 
-### <a id="without-store"></a> Without Supply Chain Security Tools - Store Integration
+### <a id="without-store"></a> Without SCST - Store Integration
 
 The SCST - Store integration is enabled by default. If you don’t want to use this integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file:
 
