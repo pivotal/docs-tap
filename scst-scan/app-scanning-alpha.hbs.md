@@ -3,7 +3,7 @@
 >**Important** This component is in Alpha, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
 >might encounter unexpected behavior due to capability gaps. This is an opt-in
->component to gather early feedback from Alpha testers and is not installed by
+>component to gather early feedback from alpha testers and is not installed by
 >default with any profile.
 
 ## <a id="overview"></a>Overview
@@ -23,7 +23,7 @@ During scanning:
   pipeline](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers)
   in github.
 
-SCST - Scan 2.0 is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
+SCST - Scan 2.0 is in alpha and supersedes the [SCST - Scan component](overview.hbs.md).
 
 A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
@@ -52,11 +52,11 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 
 | Key | Default | Type | Description |
 | --- | --- | --- | --- |
-| caCertData | "" | string | The custom certificates trusted by the scan's connections. |
+| caCertData | "" | string | The custom certificates trusted by the scan's connections |
 | docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
-| docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images. |
-| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses. |
-| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns. |
+| docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
+| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
+| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -147,7 +147,7 @@ The following access is required:
 
 1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images.
 
-    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), skip this step and use the `tap-registry` secret with your service account.
 
     ```console
     read -s TAP_REGISTRY_PASSWORD
@@ -184,7 +184,7 @@ The following access is required:
       -n DEV-NAMESPACE
     ```
 
-4. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to be scanned. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
+4. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to scan. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -265,13 +265,13 @@ This section describes optional and required GrypeImageVulnerabilityScan specifi
 
 Required fields:
 
-- `image` is the registry URL and digest of the scanned image. For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`
+- `image` is the registry URL and digest of the scanned image. For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
 - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
 
 Optional fields:
 
-- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechanisms. See cloud registry documentation for details.
+- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechanisms. For more information, see the documentation for your cloud registry.
 
   ```yaml
   activeKeychains:
@@ -281,11 +281,11 @@ Optional fields:
   - name: ghcr # Github Container Registry
   ```
 
-- `advanced` is the adjusted configuration of Grype for your needs. See Grype's [configuration](https://github.com/anchore/grype#configuration) for details.
+- `advanced` is the adjusted configuration of Grype for your needs. See the [Grype documentation](https://github.com/anchore/grype#configuration).
 
 - `serviceAccountNames` includes:
-  - `scanner` is the service account that runs the scan. Must have read access to `image`.
-  - `publisher` is the service account that uploads results. Must have write access to `scanResults.location`.
+  - `scanner` is the service account that runs the scan. It must have read access to `image`.
+  - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
 
 - `workspace` includes:
   - `size` is the size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
@@ -375,7 +375,7 @@ To create a sample Sample ImageVulnerabilityScan:
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
-    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names are already used as steps during the scan process.
+    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names are already used in steps during the scan process.
 
 #### Configuration Options
 
@@ -383,7 +383,7 @@ This section lists optional and required ImageVulnerabilityScan specifications f
 
 Required fields:
 
-- `image` is the registry URL and digest of the image to be scanned.
+- `image` is the registry URL and digest of the image to scan.
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
 - `scanResults.location` is the registry URL where results are uploaded.
@@ -402,7 +402,7 @@ Optional fields:
   ```
 
 - `serviceAccountNames` includes:
-  - `scanner` is the service account that runs the scan. Must have read access to `image`.
+  - `scanner` is the service account that runs the scan. It must have read access to `image`.
   - `publisher` is the service account that uploads results. Must have write access to `scanResults.location`.
 
 - `workspace` includes:
@@ -444,15 +444,15 @@ If undefined by your `step` definition the environment uses the following defaul
 - TMPDIR=/workspace/tmp
 - SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
 
-Tekton Pipeline Parameters:
+Tekton Pipelines Parameters:
 
 These parameters are populated after creating the GrypeImageVulnerabilityScan. For information about parameters, see the [Tekton documentation](https://tekton.dev/docs/pipelines/pipelines/#specifying-parameters).
 
 | Parameters | Default | Type | Description |
 | --- | --- | --- | --- |
-| image | "" | string | The scanned image. |
-| scan-results-path | /workspace/scan-results | string | Location to save scanner output. |
-| trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData`. |
+| image | "" | string | The scanned image |
+| scan-results-path | /workspace/scan-results | string | Location to save scanner output |
+| trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData` |
 
 #### Trigger your scan
 
@@ -580,6 +580,8 @@ To inspect a specific init container in a pod:
 ```console
 kubectl logs scan-pod-name -n DEV-NAMESPACE -c init-container-name
 ```
+
+Where `DEV-NAMESPACE` is your developer namespace.
 
 For information about debugging init container, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/).
 
