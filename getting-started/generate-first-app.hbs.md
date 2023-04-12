@@ -29,7 +29,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
     repository.
   - Generate a project using an Application Accelerator.
 
-  ### <a id="install-app-acc-extension"></a> Install and configure the Application Accelerator extension for VS Code
+  ### <a id="install-app-acc-extension"></a> Install the Application Accelerator extension for VS Code
 
   To install and configure the Application Accelerator extension for VS Code,
   see [Application Accelerator Visual Studio
@@ -39,18 +39,18 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
 
   1. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
 
-    ![Selecting Tanzu Java Web App](../images/app-accelerator/generate-first-app/vscode-1-1.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+    ![Selecting Tanzu Java Web App](../images/app-accelerator/generate-first-app/vscode-1-1.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿-->
 
   1. Configure the accelerator as defined by your project's requirements.
      This example configures the project to use Spring Boot v3.0 and Java v17.
 
-    ![Configuration with Spring Boot 3 enabled](../images/app-accelerator/generate-first-app/vscode-1-2.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+    ![Configuration with Spring Boot 3 enabled](../images/app-accelerator/generate-first-app/vscode-1-2.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
   1. Click **Next Step**.
 
   1. If your organization's Tanzu Application Platform is configured for
-     optional Git repository creation, use the following sub-steps.
-     Otherwise, proceed to step 5.
+     optional Git repository creation, continue with the following sub-steps.
+     Otherwise, skip to step 5.
 
     >**Note** For information about configuring optional Git repository creation
     >and supported repositories, see
@@ -58,7 +58,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
 
       1. Select your Git provider. For example, `github.com`.
 
-         ![Selecting git repository provider](../images/app-accelerator/generate-first-app/vscode-1-3.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+         ![Selecting git repository provider](../images/app-accelerator/generate-first-app/vscode-1-3.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
       1. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
         Populate the text box with your provider's API token and press **Enter**.
@@ -68,7 +68,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
          [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic)
          in the GitHub documentation.
 
-         ![Adding GitHub Access Token](../images/app-accelerator/generate-first-app/vscode-1-4.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+         ![Adding GitHub Access Token](../images/app-accelerator/generate-first-app/vscode-1-4.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
       1. In the **Owner** text box, enter the name of either the GitHub organization or user name to
          create the repository under.
@@ -83,13 +83,13 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
   1. In the **Review and Generate** step, verify that all the information provided
      is accurate, then click **Generate Project**.
 
-    ![Image of review and generate step](../images/app-accelerator/generate-first-app/vscode-1-5.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+    ![Image of review and generate step](../images/app-accelerator/generate-first-app/vscode-1-5.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
   1. A dialog box appears for you to choose a location for the project to be stored on the local file system.
      Choose a directory or create a new one.
 
   1. After the project has generated, a second dialog box appears for you to open the new project
-     in a new window. Select **Yes**.
+     in a new window. Click **Yes**.
 
   1. When opened, the project is ready for development.
 
@@ -99,42 +99,39 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
   - Install the Application Accelerator plug-in for IntelliJ.
   - Generate a project using an Application Accelerator.
 
-  ### <a id="install-app-acc-plugin"></a> Install and configure the Application Accelerator plug-in for IntelliJ
+  ### <a id="install-app-acc-plugin"></a> Install the Application Accelerator plug-in for IntelliJ
 
   To install and configure the Application Accelerator plug-in for IntelliJ, see
-  [Application Accelerator plugin for IntelliJ](../application-accelerator/intellij.hbs.md)
+  [Application Accelerator plugin for IntelliJ](../application-accelerator/intellij.hbs.md).
+  <br><br>
 
   ### <a id="generate-intellij-project"></a>Generate a new project using an Application Accelerator
 
-  1. On the IntelliJ Welcome to IntelliJ IDEA page, click **New Project**.
+  1. On the Welcome to IntelliJ IDEA page, click **New Project**.
 
-     ![IntelliJ New Project](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+     ![IntelliJ New Project](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  2. Select **Tanzu Application Accelerator** from the left side.
+  1. Select **Tanzu Application Accelerator** from the left side.
 
-     ![Tanzu Application Accelerator](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+     ![Tanzu Application Accelerator](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  3. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
+  1. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
 
-  4. Click **Next**.
+  1. Click **Next**.
 
-  5. Configure the accelerator as defined by your project's requirements.
+  1. Configure the accelerator as defined by your project's requirements.
 
-     ![Accelerator Options](../images/app-accelerator/intellij/app-accelerators-intellij-options.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+     ![Accelerator Options](../images/app-accelerator/intellij/app-accelerators-intellij-options.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  6. After the configuration has finished, click **Next**.
+  1. Click **Next**.
 
-  7. In the "Review and Generate" step, verify that all the information provided
-     is accurate. Click "Next".
+  1. In the Review and Generate step, verify that all the information provided is accurate then click **Next**.
 
-     ![Review](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+      ![Review](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  8. After the project has generated, click **Create** to open the new
-     project in IntelliJ.
+  1. After the project has generated, click **Create** to open the new project in IntelliJ.
 
-     ![Create and Open Project](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
-
-  9.  When opened, the project is ready for development.
+  1. When opened, the project is ready for development.
 
 <a id="app-accelerator-tap-gui"></a>Tanzu Application Platform GUI
 : ### <a id="tap-gui"></a>What you will do
@@ -159,37 +156,41 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
 
   1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
 
-  2. In the **Generate Accelerators** dialog box, replace the default value
+  1. In the **Generate Accelerators** dialog box, replace the default value
   `dev.local` in the **prefix for container image registry** text box with the
   registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME`
   must match what was specified for `registry` as part of the installation
   values for `ootb_supply_chain_basic`. See the Full Profile section on
   [Installing   Tanzu Application Platform package and
-  profiles](../install.hbs.md#full-profile). Click **NEXT**.
+  profiles](../install.hbs.md#full-profile).
 
       ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu
       Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
 
+  1. Click **NEXT**.
+
   1. If your instance has optional Git repository support enabled, continue with
-     the following sub-steps. If your instance _does not_ support this, skip to
-     step 5, "Verify the provided information."
+     the following sub-steps. If your instance does not support this, skip to step 5.
 
-    > **Note** For information about configuring optional Git repository creation and supported repositories, see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+      >**Note** For information about configuring optional Git repository creation and supported repositories,
+      >see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
-      1. Select `Create Git repo?`
-      2. Select the `Host` Git repository provider from the drop-down menu. In this example, select `github.com`.
-      3. Populate the `Owner` and `Repository` properties.
+      1. Select the **Create Git repo?** check box.
+      1. Select the host Git repository provider from the **Host** drop-down menu. For example, `github.com`.
+      1. Populate the **Owner** and **Repository** text boxes.
 
           ![Screenshot of the git repository creation form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-2.png)
 
-      4. As you are populating the form, a dialog box appears asking for permission to provision Git repositories. Follow the prompts and continue.
-      5. Click **NEXT**.
+      1. While you are populating the form, a dialog box will appear asking for permission to provision
+         Git repositories. Follow the prompts and continue.
 
-  2. Verify the provided information, and click **GENERATE ACCELERATOR**.
+      1. Click **NEXT**.
 
-  3. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+  1. Verify the provided information, and click **GENERATE ACCELERATOR**.
 
-  4. After downloading the ZIP file, expand it in a workspace directory. If you
+  1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+
+  1. After downloading the ZIP file, expand it in a workspace directory. If you
      did not create a Git repository in the preceding steps, follow your
      preferred procedure for uploading the generated project files to a Git
      repository for your new project.
