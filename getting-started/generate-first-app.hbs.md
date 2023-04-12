@@ -2,8 +2,8 @@
 
 This topic guides through how to generate a new project using Application Accelerators
 and how to deploy the project onto a Tanzu Application Platform cluster.
-For background information on Application Accelerators, see
-[Application Accelerator] (about-application-accelerator.md).
+For background information about Application Accelerators, see
+[Application Accelerator](about-application-accelerator.md).
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -11,29 +11,34 @@ Before you start, complete all [Getting Started prerequisites](../getting-starte
 
 ## <a id="interface-options"></a> Choose a project generation interface
 
-There are multiple interfaces that you can use to generate a project. Choose one
-of the following tabs for instructions about how to generate and deploy applications
+There are multiple interfaces that you can use to generate a project. The options are:
+
+- Application Accelerator extension for VS Code
+- Application Accelerator plug-in for IntelliJ
+- Tanzu Application Platform GUI
+
+Choose one of the following tabs for instructions about how to generate and deploy applications
 using the selected interface.
 
 >**Note** If you have already generated a project and want to skip this step,
 >you can go to [Deploying your application with Tanzu Application
 >Platform](deploy-first-app.hbs.md).
 
-<a id="app-acc-extension-vscode"></a>Application Accelerator extension for VS Code
-: ## <a id="vscode"></a> What you will do
+<a id="app-acc-extension-vscode"></a>VS Code
+: ### <a id="vscode"></a> What you will do
 
   - Install the Application Accelerator extension for VS Code.
   - (Optional) Provision a new GitHub repository and upload the project to the
     repository.
   - Generate a project using an Application Accelerator.
 
-  ## <a id="install-app-acc-extension"></a> Install and configure the Application Accelerator extension for VS Code
+  ### <a id="install-app-acc-extension"></a> Install and configure the Application Accelerator extension for VS Code
 
   To install and configure the Application Accelerator extension for VS Code,
   see [Application Accelerator Visual Studio
   Code extension](../application-accelerator/vscode.hbs.md).<br>
 
-  ## <a id="generate-project-vscode"></a>Generate a new project using an Application Accelerator
+  ### <a id="generate-project-vscode"></a>Generate a new project using an Application Accelerator
 
   1. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
 
@@ -90,18 +95,18 @@ using the selected interface.
 
   8. When opened, the project is ready for development.
 
-<a id="app-acc-plugin-intellij"></a>Application Accelerator plug-in for IntelliJ
-: ## <a id="itellij"></a>What you will do
+<a id="app-acc-plugin-intellij"></a>IntelliJ
+: ### <a id="itellij"></a>What you will do
 
   - Install the Application Accelerator plug-in for IntelliJ.
   - Generate a project using an Application Accelerator.
 
-  ## <a id="install-app-acc-plugin"></a> Install and configure the Application Accelerator plug-in for IntelliJ
+  ### <a id="install-app-acc-plugin"></a> Install and configure the Application Accelerator plug-in for IntelliJ
 
   To install and configure the Application Accelerator plug-in for IntelliJ, see
   [Application Accelerator plugin for IntelliJ](../application-accelerator/intellij.hbs.md)
 
-  ## <a id="generate-intellij-project"></a>Generate a new project using an Application Accelerator
+  ### <a id="generate-intellij-project"></a>Generate a new project using an Application Accelerator
 
   1. On the IntelliJ Welcome to IntelliJ IDEA page, click **New Project**.
 
@@ -134,13 +139,13 @@ using the selected interface.
   9.  When opened, the project is ready for development.
 
 <a id="app-accelerator-tap-gui"></a>Tanzu Application Platform GUI
-: ## <a id="tap-gui"></a>What you will do
+: ### <a id="tap-gui"></a>What you will do
 
   - Generate a project from an Application Accelerator.
   - (Optional) Provision a new Git repository for the project.
   - Upload it to your Git repository of choice.
 
-  ## <a id="generate-project-tap-gui"></a>Generate a new project using an Application Accelerator
+  ### <a id="generate-project-tap-gui"></a>Generate a new project using an Application Accelerator
 
   In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
   Tanzu Application Platform GUI. For information about connecting to Tanzu
