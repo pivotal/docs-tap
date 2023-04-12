@@ -64,9 +64,9 @@ Before you start, you must have:
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
     >**Note** To watch updates in real time, prepend `watch -n1` to the `tanzu apps workload get` command
-    >to see the updated result every second.
+    >to see the result update every second.
 
-    An example of the output from early-stage deployment looks like the following:
+    An example of the output from an early-stage deployment looks like the following:
 
     ```console
     Overview
@@ -204,7 +204,8 @@ Before you start, you must have:
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
 >**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md)
->database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
+>database configured, you must re-register the `catalog-info.yaml` location after the instance is
+>restarted or upgraded.
 
 ## <a id="next-steps"></a>Next steps
 
