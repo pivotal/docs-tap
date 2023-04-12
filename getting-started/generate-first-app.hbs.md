@@ -18,11 +18,8 @@ There are multiple interfaces that you can use to generate a project. The option
 - Tanzu Application Platform GUI
 
 Choose one of the following tabs for instructions about how to generate and deploy applications
-using the selected interface.
-
->**Note** If you have already generated a project and want to skip this step,
->you can go to [Deploying your application with Tanzu Application
->Platform](deploy-first-app.hbs.md).
+using the selected interface. If you have already generated a project and want to skip this step,
+you can go to [Deploying your application with Tanzu Application Platform](deploy-first-app.hbs.md).
 
 <a id="app-acc-extension-vscode"></a>VS Code
 : ### <a id="vscode"></a> What you will do
@@ -36,7 +33,7 @@ using the selected interface.
 
   To install and configure the Application Accelerator extension for VS Code,
   see [Application Accelerator Visual Studio
-  Code extension](../application-accelerator/vscode.hbs.md).<br>
+  Code extension](../application-accelerator/vscode.hbs.md).<br><br>
 
   ### <a id="generate-project-vscode"></a>Generate a new project using an Application Accelerator
 
@@ -44,14 +41,14 @@ using the selected interface.
 
     ![Selecting Tanzu Java Web App](../images/app-accelerator/generate-first-app/vscode-1-1.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  2. Configure the accelerator as defined by your project's requirements.
-     For this example, configure the project to use Spring Boot 3 and Java 17.
+  1. Configure the accelerator as defined by your project's requirements.
+     This example configures the project to use Spring Boot v3.0 and Java v17.
 
     ![Configuration with Spring Boot 3 enabled](../images/app-accelerator/generate-first-app/vscode-1-2.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  3. After the configuration has finished, click **Next Step**.
+  1. Click **Next Step**.
 
-  4. If your organization's Tanzu Application Platform is configured for
+  1. If your organization's Tanzu Application Platform is configured for
      optional Git repository creation, use the following sub-steps.
      Otherwise, proceed to step 5.
 
@@ -59,41 +56,42 @@ using the selected interface.
     >and supported repositories, see
     >[Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
-      1. Select your Git provider. For this example, select `github.com`.
+      1. Select your Git provider. For example, `github.com`.
 
-        ![Selecting git repository provider](../images/app-accelerator/generate-first-app/vscode-1-3.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+         ![Selecting git repository provider](../images/app-accelerator/generate-first-app/vscode-1-3.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-      2. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
-       Populate the text box with your provider's API token and press the "Enter" key.
-       </br></br>
-       This API key must be able to create new repositories for an organization or user.
-       For information about how to create an API token for Git repository creation, see
-       [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic)
-       in the GitHub documentation.
+      1. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
+        Populate the text box with your provider's API token and press **Enter**.
 
-        ![Adding GitHub Access Token](../images/app-accelerator/generate-first-app/vscode-1-4.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+         This API key must be able to create new repositories for an organization or user.
+         For information about how to create an API token for Git repository creation, see
+         [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic)
+         in the GitHub documentation.
 
-      3. In the **Owner** text box, enter the name of either the GitHub organization or user name to
+         ![Adding GitHub Access Token](../images/app-accelerator/generate-first-app/vscode-1-4.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
+
+      1. In the **Owner** text box, enter the name of either the GitHub organization or user name to
          create the repository under.
 
-      4. In the **Repository Name** text box, enter the name you want for the project repository.
+      1. In the **Repository Name** text box, enter the name of the project repository.
 
-      5. In the **Repository Branch** text box, enter the default branch name that you want for the project repository.
-       Typically, this is set to `main`.
-      6. Click **Next Step** to proceed to the next section.
+      1. In the **Repository Branch** text box, enter the name of the default branch for the
+         project repository. Typically, this is set to `main`.
 
-  5. In the **Review and Generate** step, verify that all the information provided
+      1. Click **Next Step** to proceed to the next section.
+
+  1. In the **Review and Generate** step, verify that all the information provided
      is accurate, then click **Generate Project**.
 
     ![Image of review and generate step](../images/app-accelerator/generate-first-app/vscode-1-5.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿--><!--฿ In alt text, write a coherent sentence that ends with a period. ฿--><!--฿ Alt text must describe the image in detail. ฿-->
 
-  6. A dialog box appears for you to choose a location for the project to be stored on the local file system.
+  1. A dialog box appears for you to choose a location for the project to be stored on the local file system.
      Choose a directory or create a new one.
 
-  7. After the project has generated, a second dialog box appears for you to open the new project
-     in a new window. For now, select **Yes**. This opens in a new window.
+  1. After the project has generated, a second dialog box appears for you to open the new project
+     in a new window. Select **Yes**.
 
-  8. When opened, the project is ready for development.
+  1. When opened, the project is ready for development.
 
 <a id="app-acc-plugin-intellij"></a>IntelliJ
 : ### <a id="itellij"></a>What you will do
@@ -196,7 +194,7 @@ using the selected interface.
      preferred procedure for uploading the generated project files to a Git
      repository for your new project.
 
-<br><br>
+<br>
 ## <a id="next-steps"></a>Next Steps
 
 Now that you have generated a project that is ready for Tanzu Application Platform, learn
