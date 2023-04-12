@@ -1,4 +1,4 @@
-# Generate an application with Tanzu Application Accelerator
+# Generate an application with Application Accelerator
 
 This guide will step through how to generate a new project using application
 accelerators and how to deploy the project onto a Tanzu Application Platform
