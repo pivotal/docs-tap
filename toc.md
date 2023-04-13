@@ -542,6 +542,7 @@ docs.vmware.com is built.
         - [Triage and remediate CVEs](scst-scan/triaging-and-remediating-cves.hbs.md)
         - [Observe](scst-scan/observing.hbs.md)
         - [Troubleshoot](scst-scan/troubleshoot-scan.hbs.md)
+        - [Troubleshoot Rego files with a scan policy](scst-scan/troubleshoot-rego.hbs.md)
         - [Additional scan resources](scst-scan/scan-crs.hbs.md)
             - [Configure code repositories and image artifacts](scst-scan/scan-crs.hbs.md)
             - [Enforce compliance policy using Open Policy Agent](scst-scan/policies.hbs.md)
