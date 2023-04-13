@@ -49,7 +49,7 @@ Apply your application to the cluster to get your application running.
 
     2. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default. The Local Path value tells the Tanzu Developer Tools extension which directory on your local file system to bring into the source image container image.
     For example, `.` uses the working directory, or you can specify a full file path.
-    3. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
+    3. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
     1. Click the **OK** button.
 
 The Apply Workload command will run, which opens a terminal and shows you the output of the Workload Apply. You can also monitor your application as it's being deployed to the cluster on the `Tanzu Panel`. The `Tanzu Panel` shows the workloads in the namespace associated with your current Kubernetes context on the left side, and the details of the Kubernetes resources for the workloads running in the namespace associated with your current Kubernetes context in the center. The Apply Workload command can take a few minutes to deploy your application onto the cluster.
@@ -121,26 +121,26 @@ Use the following steps to debug the cluster:
 
    >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
 
-   8. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
-   9. Click the **Apply** button, then click the **OK** button.
+   2. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
+   3. Click the **Apply** button, then click the **OK** button.
 
-1. [Apply your application to the cluster.](#apply-your-app)
-1. Obtain your workload's URL.
+2. [Apply your application to the cluster.](#apply-your-app)
+3. Obtain your workload's URL.
 
     1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app`.
-    1. Right-click on the `Service/tanzu-java-web-app` entry and select `Describe`.
+    2. Right-click on the `Service/tanzu-java-web-app` entry and select `Describe`.
     ![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
-    1. In resulting output highlight the content after `Status` > `URL:`, it should begin with `https://tanzu-java-web-app...`. Copy this value. Ensure you have copied the value from `Status` > `URL:` and *not* the value under `Status` > `Address` > `URL`.
+    3. In resulting output highlight the content after `Status` > `URL:`, it should begin with `https://tanzu-java-web-app...`. Copy this value. Ensure you have copied the value from `Status` > `URL:` and *not* the value under `Status` > `Address` > `URL`.
     ![IntelliJ terminal showing the pod url.](../images/getting-started-iterate-intellij-service-url.png)
-    1. Open your web browser and paste the URL you copied to access your workload.
+    4. Open your web browser and paste the URL you copied to access your workload.
 
-1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
+4. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
 
     1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
-    
-1. The Debug tab will open and display a message that it has **Connected**.
-1. In your web browser, reload your workload. IntelliJ will open to show your breakpoint.
-1. You can now use the resume program action, or stop debugging, in the `Debug` tab.
+
+5. The Debug tab will open and display a message that it has **Connected**.
+6. In your web browser, reload your workload. IntelliJ will open to show your breakpoint.
+7. You can now use the resume program action, or stop debugging, in the `Debug` tab.
 
 ## <a id="delete-your-app"></a>Delete your application from the cluster
 
