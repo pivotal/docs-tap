@@ -12,7 +12,7 @@ profiles:
   in `app-live-view` namespace.
 
 - For the `run` profile, Application Live View installs Application Live View
-  Apiserver package (`apiserver.appliveview.tanzu.vmware.com`) in
+  APIServer package (`apiserver.appliveview.tanzu.vmware.com`) in
   `appliveview-tokens-system` namespace, and it installs Application Live View
   connector package (`connector.appliveview.tanzu.vmware.com`) as DaemonSet in
   `app-live-view-connector` namespace.
@@ -23,20 +23,20 @@ profiles:
   `app-live-view-conventions` namespace.
 
 - For the `iterate` profile, Application Live View installs Application Live
-  View connector package, Application Live View Apiserver package, and
+  View connector package, Application Live View APIServer package, and
   Application Live View Conventions package.
 
 - For the `full` profile, Application Live View installs the Application Live
   View back-end package, Application Live View connector package, Application
-  Live View Apiserver package, and Application Live View Conventions package.
+  Live View APIServer package, and Application Live View Conventions package.
 
 The Application Live View back end (`backend.appliveview.tanzu.vmware.com`)
-provides a REST API that is used to fetch the actuator data for the
-applications. The Application Live View UI plug-in as part of Tanzu Application
-Platform GUI queries this back-end REST API to get live actuator information for
-the pod. The Application Live View connector
-(`connector.appliveview.tanzu.vmware.com`) retrieves the actuator data from all
-the connected applications and returns it to the Application Live View back end.
+provides a REST API that fetches the actuator data for the applications.
+The Application Live View UI plug-in as part of Tanzu Application Platform GUI
+queries this back-end REST API to get live actuator information for the pod.
+
+The Application Live View connector (`connector.appliveview.tanzu.vmware.com`) retrieves the actuator
+data from all the connected applications and returns it to the Application Live View back end.
 The actuator data is then displayed in the Application Live View UI plug-in as
 part of Tanzu Application Platform GUI.
 
@@ -583,9 +583,9 @@ To install Application Live View Conventions:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-## <a id='install-alv-apiserver'></a> Install Application Live View Apiserver
+## <a id='install-alv-apiserver'></a> Install Application Live View APIServer
 
-To install Application Live View Apiserver:
+To install Application Live View APIServer:
 
 1. List version information for the package by running:
 
@@ -623,7 +623,7 @@ To install Application Live View Apiserver:
     For more information about values schema options, see the properties listed
     earlier.
 
-1. Install the Application Live View Apiserver package by running:
+1. Install the Application Live View APIServer package by running:
 
     ```console
     tanzu package install appliveview-apiserver -p apiserver.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -645,7 +645,7 @@ To install Application Live View Apiserver:
     Added installed package 'appliveview-apiserver' in namespace 'tap-install'
     ```
 
-1. Verify the package install for Application Live View Apiserver package by
+1. Verify the package install for Application Live View APIServer package by
    running:
 
     ```console
