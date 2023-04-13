@@ -124,6 +124,6 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    Look for a secret named `registry-secret` created by the referenced `ExternalSecret`. For example:
 
    ```console
-   kubectl get secrets registry-secret -o="jsonpath=\{.data.\.dockerconfigjson}" | base64 -D
-   \{"auths":\{"my-registry.example:8200":\{"username":"foo","password":"bar4","email":"foo@bar.example","auth":"Zm9vOmJhcjQ="}}}
+   kubectl get secrets registry-secret -o="jsonpath={.data.\.dockerconfigjson}" | base64 -D
+   {"auths":{"my-registry.example:8200":{"username":"foo","password":"bar4","email":"foo@bar.example","auth":"Zm9vOmJhcjQ="}}}
    ```
