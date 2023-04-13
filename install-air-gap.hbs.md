@@ -12,26 +12,15 @@ Before installing the packages, ensure that you have completed the following tas
 
 To relocate images from the VMware Tanzu Network registry to your air-gapped registry:
 
-1. Log in to your image registry by running:
-
-    ```console
-    docker login MY-REGISTRY
-    ```
-
-    Where `MY-REGISTRY` is your own container registry.
-
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
-
-    ```console
-    docker login registry.tanzu.vmware.com
-    ```
-
 1. Set up environment variables for installation use by running:
 
     ```console
-    export IMGPKG_REGISTRY_HOSTNAME=MY-REGISTRY
-    export IMGPKG_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export IMGPKG_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
     export REGISTRY_CA_PATH=PATH-TO-CA
     ```
@@ -41,7 +30,9 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     - `MY-REGISTRY` is your air-gapped container registry.
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 1. Copy the images into a `.tar` file from the VMware Tanzu Network onto an external storage device with the Carvel tool imgpkg by running:
 
@@ -63,7 +54,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
       --to-repo $IMGPKG_REGISTRY_HOSTNAME/tap-packages \
-      --include-non-distributable-layers
+      --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
 
@@ -86,6 +77,23 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
+1. Create a internal registry secret by running:
+
+    ```console
+    tanzu secret registry add registry-credentials \
+        --server   $MY_REGISTRY \
+        --username $MY_REGISTRY_USER \
+        --password $MY_REGISTRY_PASSWORD \
+        --namespace tap-install \
+        --export-to-all-namespaces \
+        --yes
+    ```
+
+    Where:
+
+    - `MY_REGISTRY` is where the workload images and the Tanzu Build Service dependencies are stored.
+    - `MY_REGISTRY_USER` is the user with write access to `MY_REGISTRY`.
+    - `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USER`.
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -107,7 +115,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     ```
 
     > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
-    > Tanzu Application Platform v1.4.0 or earlier.
+    > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 
@@ -121,54 +129,54 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
-      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.          
-      api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface for API discovery and exploration at scale.          
-      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    A TAP component to automatically register API exposing workloads as API entities          
-                                                                                                                                     in TAP GUI.                                                                                       
-      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps         
-      buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized         
-                                                                                                                                     software workflows securely and at scale.                                                         
-      carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan                Default scan templates using VMware Carbon Black   
-      cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.           
-      cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative           
-      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps          
-      controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime           
-                                                                                                                                     configurations to fleets of workloads.                                                            
-      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.          
-      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server          
-      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions           
-      eventing.tanzu.vmware.com                            Eventing                                                                  Eventing is an event-driven architecture platform based on Knative Eventing           
-      external-secrets.apps.tanzu.vmware.com               External Secrets Operator                                                 External Secrets Operator is a Kubernetes operator that integrates external    
-                                                                                                                                     secret management systems.                                                                        
+      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
+      api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface for API discovery and exploration at scale.
+      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    A TAP component to automatically register API exposing workloads as API entities
+                                                                                                                                     in TAP GUI.
+      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
+      buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized
+                                                                                                                                     software workflows securely and at scale.
+      carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan                Default scan templates using VMware Carbon Black
+      cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
+      cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
+      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
+      controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime
+                                                                                                                                     configurations to fleets of workloads.
+      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server
+      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
+      eventing.tanzu.vmware.com                            Eventing                                                                  Eventing is an event-driven architecture platform based on Knative Eventing
+      external-secrets.apps.tanzu.vmware.com               External Secrets Operator                                                 External Secrets Operator is a Kubernetes operator that integrates external
+                                                                                                                                     secret management systems.
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
-                                                                                                                                     acquisition from external sources such as Git, Helm repositories and S3 buckets.                  
-      grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype           
-      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops           
-      metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.          
-      namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     Automatic Provisioning of Developer Namespaces.           
-      ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.          
-      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      Out of The Box Supply Chain Basic.          
-      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  Out of The Box Supply Chain with Testing and Scanning.         
-      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               Out of The Box Supply Chain with Testing.         
-      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               Out of The Box Templates.          
-      policy.apps.tanzu.vmware.com                         Supply Chain Security Tools - Policy Controller                           Policy Controller enables defining of a policy to restrict unsigned container           
-                                                                                                                                     images.                                                                                           
-      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        Scan for vulnerabilities and enforce policies directly within Kubernetes native          
-                                                                                                                                     Supply Chains.                                                                                    
-      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.          
-      services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and          
-                                                                                                                                     connectivity of Service Resources (databases, message queues, DNS records,                        
-                                                                                                                                     etc.).                                                                                            
-      snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               Default scan templates using Snyk   
-      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.          
-      sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu          
-      tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform         
-      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform          
-      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry  
-      tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use    
-                                                                                                                                     case.                                                                                             
-      tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.    
-      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial      
+                                                                                                                                     acquisition from external sources such as Git, Helm repositories and S3 buckets.
+      grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
+      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
+      metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
+      namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     Automatic Provisioning of Developer Namespaces.
+      ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
+      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      Out of The Box Supply Chain Basic.
+      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  Out of The Box Supply Chain with Testing and Scanning.
+      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               Out of The Box Supply Chain with Testing.
+      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               Out of The Box Templates.
+      policy.apps.tanzu.vmware.com                         Supply Chain Security Tools - Policy Controller                           Policy Controller enables defining of a policy to restrict unsigned container
+                                                                                                                                     images.
+      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        Scan for vulnerabilities and enforce policies directly within Kubernetes native
+                                                                                                                                     Supply Chains.
+      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
+      services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and
+                                                                                                                                     connectivity of Service Resources (databases, message queues, DNS records,
+                                                                                                                                     etc.).
+      snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               Default scan templates using Snyk
+      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.
+      sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu
+      tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform
+      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
+      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry
+      tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
+                                                                                                                                     case.
+      tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
+      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
 ## <a id='air-gap-policy'></a> Prepare Sigstore Stack for air-gapped policy controller
@@ -188,7 +196,6 @@ The Sigstore Stack consists of:
 - [The Update Framework (TUF)](https://theupdateframework.io/)
 
 For an air-gapped environment, an internally accessible Sigstore Stack is required for keyless authorities.
-For more information about how to set up the Sigstore Stack, see [Install Sigstore Stack](scst-policy/install-sigstore-stack.html).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
@@ -224,29 +231,29 @@ and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
 
->**Important** Tanzu Build Service is installed by default with `lite` depndencies. 
-When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because they require Internet access. 
-You must install the `full` dependencies by setting `exclude_dependencies` to `true`. 
+>**Important** Tanzu Build Service is installed by default with `lite` depndencies.
+When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because they require Internet access.
+You must install the `full` dependencies by setting `exclude_dependencies` to `true`.
 
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "REGISTRY-USERNAME"
-    password: "REGISTRY-PASSWORD"
-    ca_cert_data: |
-      -----BEGIN CERTIFICATE-----
-      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-      -----END CERTIFICATE-----
+    secret:
+      name: "KP-DEFAULT-REPO-SECRET"
+      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
+  ca_cert_data: |
+    -----BEGIN CERTIFICATE-----
+    MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+    -----END CERTIFICATE-----
 profile: full
-excluded_packages:
-- policy.apps.tanzu.vmware.com
 ceip_policy_disclosed: true
 buildservice:
-  kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -263,8 +270,8 @@ contour:
 
 ootb_supply_chain_basic:
   registry:
-      server: "SERVER-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
-      repository: "REPO-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+      server: "SERVER-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
+      repository: "REPO-NAME" # Takes the value from the shared section by default, but can be overridden by setting a different value.
   gitops:
       ssh_secret: "SSH-SECRET"
   maven:
@@ -283,14 +290,17 @@ accelerator:
 
 appliveview:
   ingressEnabled: true
-  tls:
-    secretName: "SECRET-NAME"
-    namespace: "APP-LIVE-VIEW-NAMESPACE"
 
 appliveview_connector:
   backend:
     ingressEnabled: true
     sslDeactivated: false
+    host: appliveview.INGRESS-DOMAIN
+    caCertData: |-
+      -----BEGIN CERTIFICATE-----
+      MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+      BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+      -----END CERTIFICATE-----
 
 tap_gui:
   service_type: ClusterIP
@@ -335,14 +345,18 @@ Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
-    - Harbor: `harbor.io/my-project/build-service`.
-    - Artifactory: `artifactory.com/my-project/build-service`.
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+    - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`.
-    * Docker Hub has the form `server: "index.docker.io"`.
-    * Google Cloud Registry has the form `server: "gcr.io"`.
+    - Harbor has the form `server: "my-harbor.io"`.
+    - Docker Hub has the form `server: "index.docker.io"`.
+    - Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 - Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
    - Harbor has the form `repository: "my-project/supply-chain"`.
@@ -355,30 +369,46 @@ service's External IP address.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.
 - `GITLAB-TOKEN` is the API token for your GitLab instance.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](namespace-provisioner/about.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
-- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
-- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
 
 >**Note** The `appliveview_connector.backend.sslDisabled` key is deprecated and renamed to `appliveview_connector.backend.sslDeactivated`.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
-Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
+TLS is enabled by default on Application Live View back end using ClusterIssuer.
+Set the `ingressEnabled` key to `true` for TLS to be enabled on Application Live View back end using ClusterIssuer.
+This key is set to `false` by default.
 
-To create a TLS secret for app-live-view, run:
+The `appliveview-cert` certificate is generated by default and its issuerRef points to the `.ingress_issuer` value.
+The `ingress_issuer` key consumes the value `shared.ingress_issuer` from `tap-values.yaml` by default
+when you don't specify the `ingress_issuer` in `tap-values.yaml`.
 
-```console
-kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
-```
+When `ingressEnabled` is `true`, an HTTPProxy object is created in the cluster and
+`appliveview-cert` certificate is generated by default in the `app_live_view` namespace.
+The secretName `appliveview-cert` stores this certificate.
 
-To verify the HTTPProxy object with the TLS secret, run:
+To verify the HTTPProxy object with the secret, run:
 
 ```console
 kubectl get httpproxy -A
+```
+
+Expected output:
+
+```console
 NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
-app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
+app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 appliveview-cert   valid    Valid HTTPProxy
+```
+
+The `appliveview_connector.backend.host` key is the back end host in the view cluster.
+The `appliveview_connector.backend.caCertData` key is the certificate retrieved from the HTTPProxy
+secret exposed by Application Live View back end in the view cluster.
+To retrieve this certificate, run the following command in the view cluster:
+
+```console
+kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
 ```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package

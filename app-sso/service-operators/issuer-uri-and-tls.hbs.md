@@ -46,7 +46,7 @@ There are many use-cases that pertain to TLS use. To find out which scenario app
 [TLS scenario guides](tls-scenario-guides.hbs.md).
 
 If your `AuthServer` obtains a certificate from a custom CA, you can enable App Operators to trust it. 
-See [Allow `Workloads` to trust a custom CA `AuthServer`](#trust-custom-ca) for more information.
+See [Allow Workloads to trust a custom CA AuthServer](#trust-custom-ca) for more information.
 
 ## Configure TLS by using a (Cluster)Issuer
 
@@ -201,7 +201,7 @@ spec:
 
 >**Caution** Deactivating TLS is unsafe and not recommended for production.
 
-## <a id="trust-custom-ca"></a>Allow `Workloads` to trust a custom CA `AuthServer`
+## <a id="trust-custom-ca"></a> Allow `Workloads` to trust a custom CA `AuthServer`
 
 If your `AuthServer` obtains a certificate from a custom CA, its consumers do not trust it by default. You can
 enable App Operators' `Workloads` to trust your `AuthServer` by exporting a `ca-certificates` service
@@ -241,7 +241,7 @@ spec:
 ```
 
 This templates a `ca-certificates` service binding `Secret` which `Workload` can claim to trust the custom CA. It does
-not contain the CA's private and is generally safe to share.
+not contain the CA's private key and is generally safe to share.
 
 However, be careful, this example exports to all namespace on the cluster. If this does not comply with your policies,
 then adjust the target namespaces if required.

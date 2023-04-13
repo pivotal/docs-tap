@@ -52,20 +52,18 @@ To install a Tanzu CLI plug-in that was not automatically downloaded when runnin
 
    ```
    tanzu plugin list
-    NAME                DESCRIPTION                                                                                        SCOPE       DISCOVERY  VERSION         STATUS
-    login               Login to the platform                                                                              Standalone  default    v0.11.6         not installed
-    management-cluster  Kubernetes management-cluster operations                                                           Standalone  default    v0.11.6         not installed
-    package             Tanzu package management                                                                           Standalone  default    v0.11.6         installed
-    pinniped-auth       Pinniped authentication operations (usually not directly invoked)                                  Standalone  default    v0.11.6         not installed
-    secret              Tanzu secret management                                                                            Standalone  default    v0.11.6         installed
-    insight             post & query image, package, source, and vulnerability data                                        Standalone             v1.2.1          installed
-    test                Test the CLI                                                                                       Standalone             v0.22.0         installed
-    accelerator         Manage accelerators in a Kubernetes cluster                                                        Standalone             v1.2.0-build.1  installed
-    apps                Applications on Kubernetes                                                                         Standalone             v0.0.0-dev      installed
-    builder             Build Tanzu components                                                                             Standalone             v0.22.0         installed
-    codegen             Tanzu code generation tool                                                                         Standalone             v0.22.0         installed
-    services            Explore Service Instance Classes, discover claimable Service Instances and manage Resource Claims  Standalone             v0.3.0-rc.2     installed
 
+  NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
+  login               Login to the platform                                              Standalone  default    v0.25.4  not installed
+  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
+  package             Tanzu package management                                           Standalone  default    v0.25.4  installed
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
+  secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
+  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
+  services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
+  accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
+  apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
+  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
    ```
 
 ## <a id="install-local"></a> Install Local Plugins
@@ -88,13 +86,16 @@ For example, the `tar -xvf` command.
 
    ```
    tanzu plugin list
-    NAME                DESCRIPTION                                                                                        SCOPE       DISCOVERY  VERSION         STATUS
-    login               Login to the platform                                                                              Standalone  default    v0.11.6         not installed
-    package             Tanzu package management                                                                           Standalone  default    v0.11.6         installed
-    secret              Tanzu secret management                                                                            Standalone  default    v0.11.6         installed
-    insight             post & query image, package, source, and vulnerability data                                        Standalone             v1.2.2          installed
-    accelerator         Manage accelerators in a Kubernetes cluster                                                        Standalone             v1.2.0          installed
-    apps                Applications on Kubernetes                                                                         Standalone             v0.7.0          installed
-    services            Explore Service Instance Classes, discover claimable Service Instances and manage Resource Claims  Standalone             v0.3.0          installed
-
+    NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
+  login               Login to the platform                                              Standalone  default    v0.25.4  not installed
+  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
+  package             Tanzu package management                                           Standalone  default    v0.25.4  installed
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
+  secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
+  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
+  services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
+  accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
+  apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
+  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
+   ```
    ```

@@ -4,12 +4,12 @@
 
 Generally, `AuthServer.status` is designed to provide you with helpful feedback to debug a faulty `AuthServer`.
 
-## Find all AuthServer-related Kubernetes resources
+## Find all `AuthServer`-related Kubernetes resources
 
 Identify all `AuthServer` components with Kubernetes common labels. For more information,
 see [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels).
 
-Query all related `AuthServer` subresources by using `app.kubernetes.io/part-of` label. For example:
+Query all related `AuthServer` sub-resources by using `app.kubernetes.io/part-of` label. For example:
 
 ```yaml
 kubectl get all,ingress,service -A -l app.kubernetes.io/part-of=<authserver-name>
@@ -29,15 +29,6 @@ stern --all-namespaces --selector=app.kubernetes.io/managed-by=sso.apps.tanzu.vm
 When applying changes to an `AuthServer`, keep in mind that changes to issuer URI, IDP, server and logging configuration
 take a moment to be effective as the operator will roll out the authorization server `Deployment`.
 
-## My Service is not selecting the authorization server's Deployment
-
-If you are deploying your `Service` with [kapp](https://carvel.dev/kapp/docs/latest/) make sure to set the
-annotation `kapp.k14s.io/disable-default-label-scoping-rules: ""` to avoid that kapp amends `Service.spec.selector`.
-
-## Redirect URIs are redirecting to http instead of https with a non-internal identity provider
-
-Follow [this workaround](known-issues/index.md#cidr-ranges), adding IP ranges for the `AuthServer` to trust.
-
 ## Misconfigured `clientSecret`
 
 ### Problem:
@@ -47,51 +38,7 @@ client secret of an identity provider is misconfigured.
 
 ### Solution:
 
-Validate the `spec.OpenId.clientSecretRef`.
-
-## <a id='issue-workload-trust-authserver'> `Workload` does not trust `AuthServer`
-
-If your `ClientRegistration` selects an `AuthServer` which serves a certificate from a custom CA, then your `Workload`
-will not trust it by default.
-
-A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. 
-Your Service Operator can export this resource for you. 
-For more information, see [Allow `Workloads` to trust a custom CA `AuthServer`](service-operators/issuer-uri-and-tls.md#trust-custom-ca).
-
-Once they have exported a `ca-certificates` service binding `Secret`, we can import it and add another service claim to
-the `Workload` to configure trust:
-
-```yaml
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretImport
-metadata:
-  name: custom-ca-cert
-  namespace: my-workloads
-spec:
-  fromNamespace: "<?>" # Your service operator can tell you which namespace to import from
-
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-# ...
-spec:
-  serviceClaims:
-    - name: authservers-ca-cert
-      ref:
-        apiVersion: v1
-        kind: Secret
-        name: custom-ca-cert
-    # ...
-```
-
-You can also provide the workload with a `--service-ref` parameter:
-
-```shell
---service-ref "authservers-ca-cert=v1:Secret:custom-ca-cert"
-```
-
-For more information about secretgen-controller and its APIs, see [secretgen-controller documentation](https://github.com/vmware-tanzu/carvel-secretgen-controller) in GitHub.
+Validate the `AuthServer.spec.openid.clientSecretRef`.
 
 ## Misconfigured redirect URI
 
@@ -101,15 +48,15 @@ You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signin
 
 ### Solution:
 
-The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
-It does not refer to the URI of the AuthServer.
+The `redirectURIs` of a `ClientRegistration` must refer to the URI(s) of the registered `Workload`.
+It does not refer to the URI of the AuthServer. Read more [here](app-operators/workloads-and-appsso.hbs.md#redirect-uris).
 
 ## Unsupported `id_token_signed_response_alg` with openid `identityProviders`
 
 ### Problem:
 
 When trying to log in with an OpenID Connect `identityProvider`, you are unable to sign in
-and you see the following error in the logs: 
+and observe the following error in the logs: 
 
 ```console
 [invalid_id_token] An error occurred while attempting to decode the Jwt: Signed JWT rejected: Another algorithm expected, or no matching key(s) found.
@@ -117,11 +64,14 @@ and you see the following error in the logs:
 
 ### Solution:
 
-Verify the `identityProvider`'s discovery endpoint at `ISSUER-URI/.well-known/openid-configuration` where `ISSUER-URI` is the value set at `spec.identityProviders.openid.issuerURI`.
+Verify the `identityProvider`'s discovery endpoint at `ISSUER-URI/.well-known/openid-configuration` where `ISSUER-URI` 
+is the value set at `spec.identityProviders.openid.issuerURI`.
 
-The value of `id_token_signing_alg_values_supported` must include `RS256`. If it is not in the list, your identity configuration might not support AppSSO.
+The value of `id_token_signing_alg_values_supported` must include `RS256`. If it is not in the list, your identity 
+configuration might not support AppSSO.
 
-If `RS256` is present, expect to see a `jwks_uri` key in the discovery endpoint. If you visit the URL stored in this key, it must return at least one RSA key. Otherwise, your identity provider might be misconfigured.
+If `RS256` is present, expect to see a `jwks_uri` key in the discovery endpoint. If you visit the URL stored in this 
+key, it must return at least one RSA key. Otherwise, your identity provider might be misconfigured.
 
 Refer to your identity provider's documentation to enable `RS256` token signing.
 
@@ -129,15 +79,14 @@ Refer to your identity provider's documentation to enable `RS256` token signing.
 
 ### Problem:
 
-- When attempting to sign in, you see `client.samples.localhost.identity.team redirected you too many times.` It might
+- When attempting to sign in, you see `<WORKLOAD_URL> redirected you too many times.` It might
   be because the client secret of an identity provider is misconfigured.
 - If you have access to the authserver logs, verify if there is an entry with the text
   `"error":"[invalid_client] Client authentication failed: client_secret"`.
 
 ### Solution:
 
-- Validate the secret referenced by the `clientSecretRef` for this particular identity provider in
-  your `authserver.spec`.
+Validate the secret referenced by the `clientSecretRef` for this particular identity provider in your `authserver.spec`.
 
 ## Missing scopes
 
@@ -163,5 +112,5 @@ applications.
 
 ### Solution:
 
-If your client application stores `sub` claims,
-you must update the `sub` claims to match the new pattern `<providerId>_<userId>`.
+If your client application stores `sub` claims, you must update the `sub` claims to match the new pattern 
+`<providerId>_<userId>`.

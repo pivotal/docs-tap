@@ -1,12 +1,12 @@
 # ClientRegistration
 
-`ClientRegistration` is the request for client credentials for an [`AuthServer`](./authserver.md).
+`ClientRegistration` is the request for client credentials for an [AuthServer](./authserver.md).
 
-It implements the [Service Bindings'](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
+It implements the [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
 are returned as a [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `Secret`.
 
 A `ClientRegistration` needs to uniquely identify an `AuthServer` via `spec.authServerSelector`. If it matches none,
-too many or a disallowed `AuthServer` it won't get credentials. The other fields are for the configuration of the
+too many or a disallowed `AuthServer` it will not get credentials. The other fields are for the configuration of the
 client on the `AuthServer`.
 
 ## Spec
@@ -29,7 +29,7 @@ spec:
     - client_credentials
     - authorization_code
     - refresh_token
-  clientAuthenticationMethod: basic # or "post", optional
+  clientAuthenticationMethod: "" # optional, values accepted are described in Client authentication methods section 
   requireUserConsent: false # optional
 status:
   authServerRef:
@@ -56,6 +56,20 @@ Alternatively, you can interactively discover the spec with:
 ```shell
 kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 ```
+
+## <a id='client-auth-methods'></a> Client authentication methods
+
+Client authentication methods supported by `ClientRegistration` resource are:
+
+- `client_secret_basic`: HTTP header based client authentication (default).
+- `client_secret_post`: HTTP POST body based client authentication.
+- `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
+- `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
+- `none`: No client authentication. Required for public clients. 
+For more information, see [Public clients and CORS](../service-operators/cors.md).
+
+> **Caution** When running Workloads using Spring Boot 3, you must use `client_secret_basic` or `client_secret_post`.
+> For more information, see [Spring Boot 3 based Workloads and ClientRegistration resources](../known-issues/index.md#boot3-clientreg).
 
 ## Status & conditions
 
@@ -142,7 +156,7 @@ spec:
     - "https://127.0.0.1:8080/authorized"
     - "https://my-application.com/authorized"
   requireUserConsent: false
-  clientAuthenticationMethod: basic
+  clientAuthenticationMethod: client_secret_basic
   authorizationGrantTypes:
     - "client_credentials"
     - "refresh_token"
@@ -175,26 +189,3 @@ data: # fields below are base64-decoded for display purposes only
   scope: openid,email,profile
   authorization-grant-types: client_credentials,refresh_token
 ```
-
-## <a id="public-clients"></a>Configuring public clients
-
->**Note** A public client is a client application that does not require credentials to obtain tokens, such as single-page
-> apps (SPAs). Public clients rely on Proof Key for Code Exchange (PKCE) Authorization Code flow extension.
-
-When configuring a `ClientRegistration` for a public client, you must set your Client Authentication Method to
-`none` and ensure that your public client supports Authorization Code with PKCE. With PKCE,
-the client does not authenticate, but presents a code challenge and
-subsequent code verifier to establish trust with the authorization server.
-
-To set Client Authentication Method to `none`, ensure your `ClientRegistration` resource defines the following:
-
-```yaml
-.spec.clientAuthenticationMethod: none
-```
-
-Public clients that support Authorization Code with PKCE flow ensure that:
-
-- On every OAuth `authorize` request, parameters `code_challenge` and `code_challenge_method` (default: `S256`) are
-  provided.
-- On every OAuth `token` request, parameter `code_verifier` is provided. Public clients do not provide a Client Secret
-  because they are not tailored to retain any secrets in public view.

@@ -1,16 +1,17 @@
 # Dependencies
 
-> **Important** Ubuntu Bionic will stop receiving support in April 2023.
-> The Bionic stack for Tanzu Build Service is deprecated and will be removed in a future release.
+> **Important** Ubuntu Bionic will stop receiving support in April 2023. The
+> Bionic stack is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
-> For how to migrate builds, see [Use Jammy stacks for a workload](#using-jammy).
+>For Tanzu Application Platform v1.5 and later, the default stack for Tanzu
+> Build Service is Jammy.
 
 This topic describes how Tanzu Build Service uses and installs dependencies.
 
-Tanzu Build Service requires dependencies in the form of Cloud Native
-[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and
-[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
-to build OCI images.
+To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
+[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
+[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
 
 ## <a id="install"></a> How dependencies are installed
 
@@ -23,11 +24,8 @@ When Tanzu Application Platform is upgraded, new dependencies are installed whic
 workload images to rebuild.
 To ensure dependency compatibility, Tanzu Build Service only releases patches for
 dependencies in patch versions of Tanzu Application Platform.
-For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
+For upgrade instructions, see [Upgrade the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
-To upgrade Tanzu Build Service dependencies outside of Tanzu Application Platform releases, use the
-`kpack` CLI. This enables you to consume new versions of buildpacks and stacks and remediate
-vulnerabilities more quickly. For more information, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/updating-deps.html#bulk-update).
 
 By default, Tanzu Build Service is installed with the `lite` set of dependencies,
 which are smaller-footprint and contain a subset of the buildpacks and stacks in
@@ -46,35 +44,22 @@ kubectl get clusterbuilder -o yaml
 
 Cluster builders contain stack and buildpack metadata.
 
+
 ## <a id="bionic-vs-jammy"></a> Bionic and Jammy stacks
 
-Tanzu Application Platform v1.3 and later supports Ubuntu v22.04 (Jammy) based builds.
-Ubuntu Bionic will stop receiving support in April 2023.
-VMware recommends that you migrate builds to Jammy.
+Tanzu Application Platform v1.3 and later supports Ubuntu v22.04 (Jammy) based
+builds and will default to it from Tanzu Application Platform v1.5 and later.
+
+Ubuntu Bionic will stop receiving support in April 2023. VMware recommends that
+you migrate builds to Jammy.
 
 For more information about support for Jammy stacks, see
 [About lite and full dependencies](#lite-vs-full) later in this topic.
-
-### <a id="using-jammy"></a> Use Jammy stacks for a workload
-
-To use the Jammy stacks or migrate an existing workload, configure the workload with a Jammy
-builder by using the `param` flag, for example, `--param clusterBuilder=base-jammy`.
-For further instructions, see [Configure the cluster builder](tbs-workload-config.md#cluster-builder).
 
 > **Note** While upgrading apps to a newer stack, you might encounter the build platform
 > erroneously reusing the old build cache. If you encounter this issue, delete
 > and recreate the workload in Tanzu Application Platform, or delete and
 > recreate the image in Tanzu Build Service.
-
-### <a id="defaulting-to-jammy"></a> Default all workloads to Jammy stacks
-
-By default, Tanzu Application Platform is installed with Bionic as the default stack.
-
-To default all workloads to the Jammy stack, include the `stack_configuration: jammy-only` field under the `buildservice:` section in `tap-values.yaml`.
-This installs Tanzu Application Platform and Tanzu Build Service with no Bionic-based builders,
-and all workloads will be built with Jammy.
-
-> **Important** Only use this configuration if you are sure all workloads can be safely built with Jammy.
 
 ## <a id="lite-vs-full"></a> About lite and full dependencies
 
@@ -105,30 +90,36 @@ cannot be used to build PHP workloads.
 
 The `lite` dependencies contain the following stacks:
 
-- `base` (ubuntu Bionic)
-- `default` (identical to `base`)
-- `base-jammy` (ubuntu Jammy)
+- `base` (Ubuntu Bionic)
+- `base-jammy` (Ubuntu Jammy)
+- `default` (identical to `base-jammy`)
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="lite-buildpacks"></a> Lite dependencies: buildpacks
 
-The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.3:
+The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.5:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu (Lite) | 8.0.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu (Lite) | 6.39.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu (Lite) | 1.19.2 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu (Lite) | 1.17.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu (Lite) | 2.3.1 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu (Lite) | 2.0.4 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu (Lite) | 0.4.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu (Lite) | 1.5.0 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu (Lite) | 8.8.0 | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu (Lite) | 6.42.3 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu (Lite) | 2.3.0 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu (Lite) | 2.3.3 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu (Lite) | 2.0.8 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu (Lite) | 0.8.0 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
 | Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.34 | Bionic |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.16 | Jammy |
+
+And the following components:
+
+| Component | Version | Supported Stacks |
+|-----------|---------|------------------|
+| CNB Lifecycle | 0.16.0 | Bionic, Jammy |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -147,39 +138,45 @@ For instructions for installing `full` dependencies, see [Install Tanzu Build Se
 
 The `full` dependencies contain the following stacks, which support different use cases:
 
-- `base` (ubuntu Bionic)
-- `default` (identical to `base`)
-- `full` (ubuntu Bionic)
-- `tiny` (ubuntu Bionic)
-- `base-jammy` (ubuntu Jammy)
-- `full-jammy` (ubuntu Jammy)
-- `tiny-jammy` (ubuntu Jammy)
+- `base` (Ubuntu Bionic)
+- `full` (Ubuntu Bionic)
+- `tiny` (Ubuntu Bionic)
+- `base-jammy` (Ubuntu Jammy)
+- `full-jammy` (Ubuntu Jammy)
+- `tiny-jammy` (Ubuntu Jammy)
+- `default` (identical to `base-jammy`)
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="full-buildpacks"></a> Full dependencies: buildpacks
 
-The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.3:
+The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.5:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu | 8.0.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu | 6.39.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu | 1.19.2 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu | 1.17.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu | 2.3.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu | 1.5.0 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu | 2.0.4 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu | 8.8.0 | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu | 6.42.3 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu | 2.3.0 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu | 2.1.0 | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu | 2.3.3 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu | 2.1.0 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu | 2.0.8 | Bionic, Jammy |
 | PHP Buildpack for VMware Tanzu | 2.0.0 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu | 0.4.1 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu | 0.8.0 | Bionic, Jammy |
 | Procfile Buildpack for VMware Tanzu | 5.4.0 | Bionic, Jammy |
-| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.88 | Bionic |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.34 | Bionic |
-| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.121 | Bionic |
-| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.17 | Jammy |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.16 | Jammy |
-| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.38 | Jammy |
+
+And the following components:
+
+| Component | Version | Supported Stacks |
+|-----------|---------|------------------|
+| CNB Lifecycle | 0.16.0 | Bionic, Jammy |
+| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.99 | Bionic |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
+| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.141 | Bionic |
+| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.26 | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
+| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.54 | Jammy |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 
@@ -205,28 +202,12 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports binary workloads | Yes | Yes |
 | Supports web servers buildpack | Yes | Yes |
 
-## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
+## <a id="update"></a> Updating dependencies 
 
->**Important** The automatic updates feature is being deprecated.
->The recommended way to patch dependencies is by upgrading Tanzu Application Platform
->to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
+New versions of dependencies (buildpacks, stacks) are available in new versions of Tanzu Application Platform. If you are seeking to update your dependencies, we encourage you to update to the latest patch version of Tanzu Application Platform. 
+* If you are using `lite` dependencies, simply upgrade to the latest patch version of Tanzu Application Platform to update your dependencies. 
+* If you are using `full` dependencies, you will need to complete a few extra steps to update your dependencies after you upgrade to the latest patch version of Tanzu Application Platform. In this case, please see instructions on [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
-You can configure Tanzu Build Service to update dependencies in the background as they are released.
-This enables workloads to keep up to date automatically.
+Note that when Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-### <a id="descriptors"></a> Descriptors (deprecated)
-
-Tanzu Build Service descriptors are curated sets of dependencies that include stacks and buildpacks.
-Descriptors are only used if Tanzu Build Service is configured for automatic dependency updates.
-Descriptors are imported into Tanzu Build Service to update the entire cluster.
-
-Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/)
-page to provide updated buildpack dependencies and updated stack images.
-This allows the use of dependencies that have patched CVEs.
-For more information about buildpacks and stacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-
-There are two types of descriptor, `lite` and `full`.
-The different descriptors can apply to different use cases and workload types.
-The differences between the `full` and `lite` descriptors are the same as the the differences
-between `full` and `lite` dependencies.
-For a comparison of the `lite` and `full` descriptors, see [About lite and full dependencies](#lite-vs-full).
+Updating buildpack and stack dependencies outside of upgrades to Tanzu Application Platform is possible but not recommended, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform. For more information, see [updating a ClusterStack](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) for updating a stack and [updating a ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) for updating a buildpack. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).

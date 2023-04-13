@@ -8,7 +8,7 @@ Follow the instructions in this topic to install a scanner other than the out of
 
 Before installing a new scanner, install [Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
->**Note:** Different scanners may have different limitation. Please see [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scanner-matrix.hbs.md)
+>**Note:** Different scanners may have different limits. See [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scanner-matrix.hbs.md).
 
 ## <a id="installation"></a> Install
 
@@ -297,6 +297,12 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     ```
 
     Where `PATH-TO-SCAN-YAML` is the path to the YAML file created earlier.
+
+
+## <a id="install-to-multiple-namespaces"></a> Install scanner to multiple namespaces
+
+To install a Scanner to multiple namespaces, VMware recommends using a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md)
+
 
 ## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
 

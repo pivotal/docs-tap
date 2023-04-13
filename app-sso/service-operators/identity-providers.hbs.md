@@ -2,25 +2,28 @@
 
 An `AuthServer` does not manage users internally. Instead, users log in through external identity providers (IdPs).
 Currently, `AuthServer` supports OpenID Connect providers, LDAP providers and a list of static hard-coded
-users for development purposes only. `AuthServer` also has limited beta support for SAML providers.
+users for development purposes only. `AuthServer` also has limited experimental support for SAML providers.
 
 Identity providers are configured under `spec.identityProviders`, learn more
 from [the API reference](../crds/authserver.md).
 
->**Caution** Changes to `spec.identityProviders` does not take effect immediately because the operator will roll out a new deployment
+>**Caution** Changes to `spec.identityProviders` do not take effect immediately because the operator will roll out a new deployment
 of the authorization server.
 
 End-users will be able to log in with these providers when they go to `{spec.issuerURI}` in their browser.
 
 Learn how to configure identity providers for an `AuthServer`:
 
-- [OpenID Connect providers](#openid-connect-providers)
+- [OpenID](#openid)
 - [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
 - [Internal, static user](#internal-users)
+- [Roles claim filtering](#roles-filtering)
+- [Roles claim mapping and filtering explained](#roles-claim-mapping-and-filtering-explained)
+- [Configure authorization](./configure-authorization.md)
 - [Restrictions](#restrictions)
 
-## OpenID Connect providers
+## <a id='openid'></a> OpenID Connect providers
 
 To set up an OpenID Connect provider, provide the following information for your `AuthServer`:
 
@@ -43,8 +46,9 @@ spec:
         authorizationUri: https://example.com/oauth2/authorize
         tokenUri: https://example.com/oauth2/token
         jwksUri: https://example.com/oauth2/jwks
-        claimMappings:
-          roles: my-oidc-provider-groups
+        roles:
+          fromUpstream:
+            claim: "my-oidc-provider-groups"
   # ...
 ---
 apiVersion: v1
@@ -69,13 +73,59 @@ You can also run `curl -s "https://openid.example.com/.well-known/openid-configu
 - The value of `clientSecretRef` must be a `Secret` with the entry `clientSecret`.
 - `authorizationUri` (optional) is the URI for performing an authorization request and obtaining an `authorization_code`.
 - `tokenUri` (optional) is the URI for performing a token request and obtaining a token.
-- `jwksUri` (optional) is the JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures.
-- `claimMappings` (optional) selects which claim in the `id_token` contains the `roles` of the user. 
-`roles` is a non-standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope, 
-it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`.
-- `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in tokens issued by AppSSO.
+- `jwksUri` (optional) is the JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token
+  signatures.
+- `roles.fromUpstream.claim` (optional) selects which claim in the `id_token` contains the `roles` of
+  the user. `roles` is a non-standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope,
+  it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`. 
+  For more information, see [OpenID external groups mapping](#openid-external-groups-mapping).
+  - `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in id tokens issued by AppSSO.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and select `my-oidc-provider`.
+
+### <a id='openid-external-groups-mapping'></a> OpenID external groups mapping
+
+Service operators may map the identity provider's "groups" (or equivalent) claim to the `roles` claim within
+an `AuthServer`'s identity token.
+
+> **Note** [Read more about roles claim mapping and filtering here](#roles-claim-mapping-filtering-explained)
+
+App Operators may configure their ClientRegistration to have the `roles` claim included in the `id_token`.
+
+Configure `AuthServer` with OpenID Connect groups mapping:
+
+```yaml
+spec:
+  identityProviders:
+    - name: "openid-idp"
+      openid:
+        scopes:
+          - upstream-identity-providers-groups-claim # Optional based on the identity provider.
+        roles:
+          fromUpstream:
+            claim: "upstream-identity-providers-groups-claim"
+```
+
+> **Caution** Some OpenID providers, such as Okta OpenID, might require requesting the roles or groups scope from the
+> identity provider, as a result, you must include it in the `.openid.scopes` list.
+
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+token will be populated with the `roles` claim:
+
+```yaml
+kind: ClientRegistration
+metadata:
+  name: my-client-registration
+spec:
+  scopes:
+    - name: openid
+    - name: roles
+  # ...
+```
+
+When groups are mapped (as described above), all the groups provided by the identity provider are
+retrieved, and the relevant groups that the logged-in user is part of are appended to the `roles` claim of
+an `id_token`. To filter the available roles within an `id_token`, see [Roles claim filtering section](#roles-filtering).
 
 ### Note for registering a client with the identity provider
 
@@ -121,13 +171,24 @@ spec:
         user:
           searchBase: ou=Users,dc=example,dc=com
           searchFilter: cn={0}
-        group:
+        roles:
+          fromUpstream:
+            attribute: cn
+            search:
+              filter: member={0}
+              base: ou=Users,dc=example,dc=com
+              searchSubTree: true
+              depth: 10
+          filterBy:
+            - exactMatch: "users"
+            - regex: "^admin"
+        group: # DEPRECATED, use 'roles' instead
           search:
             filter: member={0}
             base: ou=Users,dc=example,dc=com
             searchSubTree: true
             depth: 10
-          roleAttribute: description
+          roleAttribute: cn
   # ...
 ---
 apiVersion: v1
@@ -148,18 +209,65 @@ Where:
 - `user.seachFilter` is the filter for LDAP search. It must contain the string `{0}`, which is replaced
   by the `dn` of the user when performing a search. For example, when logging in with the username `marie`, the filter for LDAP
   search is `cn=marie`.
-- `group` (optional) defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims.
+- `roles` (optional) defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims.
   If not set, the user has no roles.
-  - `group.roleAttriubte` selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
+    - `fromUpstream.attribute` selects which attribute of the group entry are mapped to a user role. If an attribute has
+      multiple
+      values, the first value is selected.
+    - `fromUpstream.search`  (optional) toggles "OpenLDAP"-style group search, optionally uses recursive search to find
+      groups for a given user.
+    - `filterBy` (optional) - applied roles claim filters. See [Roles claim filtering section](#roles-filtering) for
+      more details.
+- `group` (DEPRECATED, , use `role` instead, optional) defaults to unset. It configures how LDAP groups are mapped to user roles in
+  the `id_token` claims. If not set, the user has no roles.
+  - `group.roleAttribute` selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
     values, the first value is selected.
   - `group.search` (optional) toggles "Active Directory" search and uses recursive search to find groups for a given user.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and log in with the username and password from LDAP.
 
+### <a id='ldap-external-groups-mapping'></a> LDAP external groups mapping
+
+Service operators may map the identity provider's "groups" (or equivalent) attribute to the `roles` claim within
+an `AuthServer`'s identity token.
+
+> **Note** [Read more about roles claim mapping and filtering here](#roles-claim-mapping-filtering-explained)
+
+Configure `AuthServer` with LDAP groups attribute mapping:
+
+```yaml
+spec:
+  identityProviders:
+    - name: "ldap-idp"
+      ldap:
+        roles:
+          fromUpstream:
+            attribute: "upstream-identity-providers-groups-attribute" # e.g. "cn" or "dn"
+```
+
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+token will be populated with the `roles` claim:
+
+```yaml
+kind: ClientRegistration
+metadata:
+  name: my-client-registration
+spec:
+  scopes:
+    - name: openid
+    - name: roles
+  # ...
+```
+
+When groups are mapped (as described above), all the groups provided by the identity provider are
+retrieved, and the relevant groups that the logged-in user is part of are appended to the `roles` claim of
+an `id_token`. To filter the available roles within an `id_token`, see [Roles claim filtering section](#roles-filtering).
+
 ### ActiveDirectory group search
 
 In ActiveDirectory groups, user entries have a multi-value `memberOf` attribute, which contains the DNs pointing to the
-groups of a particular user. To enable this search mode, make sure `group.roleAttribute` is set and `group.search` is not set.
+groups of a particular user. To enable this search mode, make sure `roles.fromUpstream.attribute` is set and
+`roles.fromUpstream.search` is not set.
 
 For example:
 
@@ -176,8 +284,9 @@ spec:
         user:
           searchBase: OU=Cloud,DC=ad,DC=example,DC=com
           searchFilter: cn={0}
-        group:
-          roleAttribute: sAMAccountName
+        roles:
+          fromUpstream:
+            attribute: sAMAccountName
 ```
 
 The LDIF definition is as follows:
@@ -221,7 +330,6 @@ The user `appsso-user` has two values for `memberOf`, pointing to two groups. Gi
 `sAMAccountName` is used for the role, so the user has `SSO Group` and `Developers` as roles. 
 The group is not required to have `member` attribute point to the user for the role to be mapped.
 
-
 ### "Classic" group search
 
 In non-ActiveDirectory LDAP, users generally do not have a `memberOf` attribute. Group search is performed by looking
@@ -246,13 +354,14 @@ spec:
     - name: ldap
       ldap:
         # ...
-        group:
-          search:
-            base: ou=Users,dc=example,dc=com
-            filter: member={0}
-            depth: 10
-            searchSubTree: true
-          roleAttribute: description
+        roles:
+          fromUpstream:
+            attribute: description
+            search:
+              base: ou=Users,dc=example,dc=com
+              filter: member={0}
+              depth: 10
+              searchSubTree: true
   # ...
 ```
 
@@ -283,11 +392,12 @@ spec:
         user:
           searchBase: ou=Users,dc=example,dc=com
           searchFilter: uid={0}
-        group:
-          search:
-            base: ou=Users,dc=example,dc=com
-            filter: member={0}
-          roleAttribute: description
+        roles:
+          fromUpstream:
+            attribute: description
+            search:
+              base: ou=Users,dc=example,dc=com
+              filter: member={0}
   # ...
 ```
 
@@ -321,7 +431,7 @@ User `marie` has roles `Nobel Prizes`.
 #### Groups in sub-trees
 
 AppSSO can perform group search in sub-trees of the base for group search. This is enabled when
-`group.search.searchSubTree` is explicitly set to `true`. For example:
+`roles.fromUpstream.search.searchSubTree` is explicitly set to `true`. For example:
 
 ```yaml
 ---
@@ -334,12 +444,13 @@ spec:
     - name: ldap
       ldap:
         # ...
-        group:
-          search:
-            base: ou=Users,dc=example,dc=com
-            filter: member={0}
-            searchSubTree: true
-          roleAttribute: description
+        roles:
+          fromUpstream:
+            attribute: description
+            search:
+              base: ou=Users,dc=example,dc=com
+              filter: member={0}
+              searchSubTree: true
   # ...
 ```
 
@@ -380,8 +491,10 @@ a subtree of the search base.
 #### Nested group search
 
 AppSSO can perform nested group search by going up a chain where a user is a member of a group, which is itself a member
-of a group, and so on. This is enabled by setting `group.search.depth` to greater than `1`. `group.search.depth` controls 
-the number of "levels" that AppSSO fetches to get the groups of a user. For example:
+of a group, and so on. This is enabled by setting `roles.fromUpstream.search.depth` to greater than `1`. 
+`roles.fromUpstream.search.depth` controls the number of "levels" that AppSSO fetches to get the groups of a user. 
+
+For example:
 
 ```yaml
 ---
@@ -397,12 +510,13 @@ spec:
         user:
           searchBase: ou=Users,dc=example,dc=com
           searchFilter: uid={0}
-        group:
-          search:
-            base: ou=Users,dc=example,dc=com
-            filter: member={0}
-            depth: 2
-          roleAttribute: description
+        roles:
+          fromUpstream:
+            attribute: description
+            search:
+              base: ou=Users,dc=example,dc=com
+              filter: member={0}
+              depth: 2
   # ...
 ```
 
@@ -449,8 +563,7 @@ member: cn=corazon,ou=Users,dc=example,dc=com
 User `corazon` has roles `Presidents` and `Politicians`. However, the search stops at depth 2, so they
 do not have the role `Citizens`, which requires a depth greater or equal to 3.
 
-
-## SAML (experimental)
+## <a id='saml-experimental'></a> SAML (experimental)
 
 >**Caution** Support for SAML providers is experimental.
 
@@ -469,14 +582,47 @@ spec:
       claimMappings: # optional
         # Map SAML attributes into claims in id_tokens issued by AppSSO. The key
         # on the left represents the claim, the value on the right the attribute.
-        # For example:
-        # The "saml-groups" attribute from the assertion issued by "my-saml-provider"
-        # will be mapped into the "roles" claim in id_tokens issued by AppSSO
-        roles: saml-groups
         givenName: FirstName
         familyName: LastName
         emailAddress: email
 ```
+
+### <a id='saml-external-groups-mapping'></a> SAML external groups mapping
+
+Service operators may map the identity provider's "groups" (or equivalent) attribute to the `roles` claim within
+an `AuthServer`'s identity token.
+
+> **Note** [Read more about roles claim mapping and filtering here](#roles-claim-mapping-filtering-explained)
+
+Configure `AuthServer` with SAML role attribute:
+
+```yaml
+spec:
+  identityProviders:
+    - name: "saml-idp"
+      saml:
+        roles:
+          fromUpstream:
+            attribute: "saml-group-attribute"
+```
+
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+token will be populated with the `roles` claim:
+
+```yaml
+kind: ClientRegistration
+metadata:
+  name: my-client-registration
+spec:
+  scopes:
+    - name: openid
+    - name: roles
+  # ...
+```
+
+When groups are mapped (as described above), all the groups provided by the identity provider are
+retrieved, and the relevant groups that the logged-in user is part of are appended to the `roles` claim of
+an `id_token`. To filter the available roles within an `id_token`, see [Roles claim filtering section](#roles-filtering).
 
 ### Note for registering a client with the identity provider
 
@@ -488,7 +634,7 @@ accessible issuer URI for an `AuthServer`, including scheme and port. If the `Au
 `https://appsso.company.example.com:1234/`, the SSO URL registered with the identity
 provider should be `https://appsso.company.example.com:1234/login/saml2/sso/my-provider`.
 
-## Internal users
+## <a id='internal-users'></a> Internal users
 
 >**Caution** `InternalUnsafe` is unsafe and not recommended for production.
 
@@ -541,7 +687,142 @@ There are multiple options for generating bcrypt hashes:
   htpasswd -bnBC 12 "" your-password-here | tr -d ':\n'
   ```
 
-## Restrictions
+## <a id='roles-filtering'></a> Roles claim filtering
+
+> **Note** This section is applicable to OpenID, LDAP, and SAML (experimental) identity provider configurations.
+
+Once an external groups mapping has been applied (as described per identity provider above), AppSSO is able to retrieve
+all the groups from an identity provider. An identity provider may have hundreds of groups, and any
+particular user may be part of a large subset of those groups. When a user logs in, those groups will be appended to
+their `id_token`'s `roles` claim. This section describes how to filter the `roles` claim.
+
+To filter groups, for a supported identity provider, apply:
+
+```yaml
+spec:
+  identityProviders:
+    - name: my-provider
+      <idp>:
+        roles:
+          filterBy:
+            - exactMatch: ""
+            - regex: ""
+```
+
+where `<idp>` may be `openid`, `ldap`, or `saml`.
+
+Filters are disjunctive ("OR" operator), so each filter is applied to the entire set of groups, and merged into a set of
+unique filtered groups values. See [filter examples](#roles-filter-examples) for more information.
+
+### <a id='roles-filters'></a> Roles claim filters
+
+Available filters are:
+
+- `exactMatch` - match the groups exactly. This filter is **case-sensitive**. e.g. `exactMatch: "developer"` will match
+  only the group named "developer" and no other.
+- `regex` - match groups according to the defined regular expression pattern. , and 
+  This filter is **case-insensitive**. e.g. `regex: ^admin` will match groups starting with the word "admin".
+  - The regular expression pattern syntax used is [RE2](https://golang.org/s/re2syntax)
+  - Expressions should not be surrounded by forward slashes (`/`) and should only contain the pattern (e.g. `.*`, `^dev`, `\\w+`).
+
+### <a id='roles-filter-examples'></a> Roles claim filter examples
+
+Given an example set of groups retrieved from a hypothetical identity provider:
+
+```
+it-admin
+it-developer
+devops-user
+devops-admin
+devops-developer
+product-user
+product-developer
+org-user
+hr-user
+hr-admin
+```
+
+**Basic exact match filters**
+
+```yaml
+- exactMatch: "product-user"
+- exactMatch: "org-user"
+```
+
+returns:
+
+```
+product-user
+org-user
+```
+
+**Basic regular expression (RegEx) filters**
+
+```yaml
+- regex: ".*-developer"
+```
+
+returns:
+
+```
+it-developer
+devops-developer
+product-developer
+```
+
+**Multiple regular expression (RegEx) filters**
+
+```yaml
+- regex: ".*-developer"
+- regex: "^it"    # starts with "it"
+- regex: "admin$" # ends with "admin"
+- regex: "\w+"    # at least one word or more
+```
+
+returns:
+
+```
+it-admin
+it-developer
+devops-admin
+devops-developer
+product-developer
+hr-admin
+```
+
+> **Note** filters are disjunctive and so multiple filters can filter down the same values, but the resulting set will
+> always have unique values.
+
+**Exact match and regular expression (RegEx) filters**
+
+```yaml
+- exact-match: "hr-admin"
+- exact-match: "org-user"
+- regex: "developer$"    # ends with "developer"
+```
+
+returns:
+
+```
+it-developer
+devops-developer
+product-developer
+org-user
+hr-admin
+```
+
+## <a id="roles-claim-mapping-filtering-explained"></a> Roles claim mapping and filtering explained
+
+When issuing an `id_token`, OpenID providers may include a (non-standard) claim describing the "groups" the user belongs
+to, the "roles" of the user, or something similar. This claim is identity provider specific. For example, Azure AD uses
+the "group" claim by default, and allows administrators to select the name of the claim.
+
+Service Operators may choose to make these "groups", "roles", or equivalent, available in the id_token issued by an AppSSO
+`AuthServer`, in the `roles` claim, with [filtering rules](#roles-filtering) applied.
+
+![identity provider roles claim filtering and mapping diagram](../../images/app-sso/idp-roles-mapping-filtering.png)
+
+## <a id='restrictions'></a> Restrictions
 
 Each identity provider has a declared `name`. The following conditions apply:
 

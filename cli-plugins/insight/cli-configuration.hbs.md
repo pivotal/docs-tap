@@ -4,10 +4,9 @@ This topic explains how to configure the Tanzu Insight plug-in.
 
 ## <a id='set-tar-cert'></a>Set the target and certificate authority (CA) certificate
 
-**Note** These instructions are for the recommended configuration where ingress is enabled. For
-instructions on non-ingress setups,
-see [Configure target endpoint and certificate](../../scst-store/using-encrypted-connection.hbs.md#additional-resources)
-for more details.
+These instructions are for the recommended configuration where Ingress is enabled. For
+instructions on non Ingress setups,
+see [Configure target endpoint and certificate](../../scst-store/using-encrypted-connection.hbs.md#additional-resources).
 
 {{> 'partials/insight-ingress-configuration' }}
 

@@ -27,7 +27,7 @@ There are multiple sections in the workload get command output. The following da
 
 At the very end of the command output, a hint to follow up commands is also displayed.
 
-**Note** the `Supply Chain` and `Delivery` sections are included in the command output depending on
+>**Note** the `Supply Chain` and `Delivery` sections are included in the command output depending on
 >whether those resources are present on the target cluster (e.g. If the target includes only build
 >components, there would be no `Delivery` resources available and therefore the `Delivery` section
 >would not be included in the command output.).

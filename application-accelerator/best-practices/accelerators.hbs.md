@@ -66,4 +66,4 @@ Tests you could use for the application skeleton:
 data layer. These tests can be unit tests that leverage stubbing or mocking frameworks.
 - An integration test per layer of the application, especially the presentation
    and data layer. For example, you can provide an integration test with some database interaction
-by using [`test containers`](https://www.testcontainers.org/).
+by using [test containers](https://www.testcontainers.org/).

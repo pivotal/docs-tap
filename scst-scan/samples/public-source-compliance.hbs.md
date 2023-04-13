@@ -13,9 +13,9 @@ The example policy is set to only consider `Critical` severity CVEs as violation
 
 For this example, the scan (at the time of writing):
 
-* Finds all 192 of the CVEs.
-* Ignores any CVEs that have severities that are not critical.
-* Indicates in the `Status.Conditions` that 7 CVEs have violated policy compliance.
+- Finds all 192 of the CVEs.
+- Ignores any CVEs that have severities that are not critical.
+- Indicates in the `Status.Conditions` that 7 CVEs have violated policy compliance.
 
 ### <a id="public-source-scan-proc"></a> Run an example public source scan
 
@@ -81,30 +81,34 @@ SourceScan:
       scanPolicy: sample-scan-policy
     ```
 
-1. (Optional) Before deploying, set up a watch in another terminal to view processing by running:
+1. (Optional) Before deploying the resources to a user specified namespace, set up a watch in another terminal to view the progression:
 
     ```console
-    watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+    watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
     ```
 
-    For more information, refer to [Observing and Troubleshooting](../observing.md).
+    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
+
+    For more information, see [Observing and Troubleshooting](../observing.md).
 
 1. Deploy the resources by running:
 
     ```console
-    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
+    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml -n DEV-NAMESPACE
     ```
+
+    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 1. When the scan completes, view the results by running:
 
     ```console
-    kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    kubectl describe sourcescan sample-public-source-scan-with-compliance-check -n DEV-NAMESPACE
     ```
 
     The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 7 CVEs`.
     For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
-1. <a id="modify-scan-policy"></a>If the failing CVEs are acceptable or the build needs to be deployed regardless of these CVEs,
+1. <a id="modify-scan-policy"></a>If the failing CVEs are acceptable or the build must be deployed regardless of these CVEs,
 the app is patched to remove the vulnerabilities. Update the `ignoreCVEs` array in the ScanPolicy to
 include the CVEs to ignore:
 
@@ -126,19 +130,19 @@ include the CVEs to ignore:
 1. The changes applied to the new ScanPolicy trigger the scan to run again. Reapply the resources by running:
 
     ```console
-    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
+    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml -n DEV-NAMESPACE
     ```
 
 1. Re-describe the SourceScan CR by running:
 
     ```console
-kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    kubectl describe sourcescan sample-public-source-scan-with-compliance-check -n DEV-NAMESPACE
     ```
 
-1. Check that `Status.Conditions` now includes a `Reason: EvaluationPassed` and
+1. Ensure that `Status.Conditions` now includes a `Reason: EvaluationPassed` and
 `No CVEs were found that violated the policy`.
-You can update the `violatingSeverities` array in the ScanPolicy if desired. For reference, the
-Grype scan returns the following Severity spread of vulnerabilities (currently):
+You can update the `violatingSeverities` array in the ScanPolicy if you want. For reference, the
+Grype scan returns the following Severity spread of vulnerabilities:
 
     * Critical: 7
     * High: 88
@@ -150,5 +154,5 @@ Grype scan returns the following Severity spread of vulnerabilities (currently):
 1.  Clean up by running:
 
     ```console
-    kubectl delete -f sample-public-source-scan-with-compliance-check.yaml
+    kubectl delete -f sample-public-source-scan-with-compliance-check.yaml -n DEV-NAMESPACE
     ```

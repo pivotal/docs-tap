@@ -6,13 +6,33 @@ For help on migrating your resources in between versions, see the [migration gui
 
 If you installed the `AppSSO` package on its own, and not as part of `TAP`, you can upgrade it individually by running:
 
-```
-tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v 3.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
+```console
+tanzu package installed update PACKAGE-INSTALLATION-NAME -p sso.apps.tanzu.vmware.com -v {{ vars.app-sso.version }} --values-file PATH-TO-YOUR-VALUES-YAML -n YOUR-INSTALL-NAMESPACE
 ```
 
 >**Note** You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
 
 ## <a id="migration-guides"></a>Migration guides
+
+### <a id="v3-to-v3_1">`v3.0.0` to `v3.1.0`
+
+VMware recommends that you recreate your `AuthServers` after upgrading your AppSSO to `v3.1.0` 
+with the following changes:
+
+- Migrate field `.spec.identityProviders[*].openid.claimMappings["roles"]` to 
+`.spec.identityProviders[*].openid.roles.fromUpstream.claim`.
+- Migrate field `.spec.identityProviders[*].ldap.group.roleAttribute` to 
+`.spec.identityProviders[*].ldap.roles.fromUpstream.attribute`.
+- Migrate field `.spec.identityProviders[*].ldap.group.search` to 
+`.spec.identityProviders[*].ldap.roles.fromUpstream.search`.
+- Migrate field `.spec.identityProviders[*].saml.claimMappings["roles"]` to 
+`.spec.identityProviders[*].saml.roles.fromUpstream.attribute`.
+
+(Optional) If you plan to run Spring Boot 3 based `Workload`s, you must perform 
+the following migration tasks in your existing `ClientRegistration` resources:
+
+- Migrate `.spec.clientAuthenticationMethod` values. 
+- Migrate existing value `post` to `client_secret_post` or migrate existing value `basic` to `client_secret_basic`. 
 
 ### <a id="v2-to-v3">`v2.0.0` to `v3.0.0`
 
@@ -31,7 +51,7 @@ with the following changes:
     >**Note** AppSSO templates your issuer URI and enables TLS. When using the newer `.spec.tls`,
     a custom `Service` and an ingress resource are no longer required.
 
-    >**Note** It is not recommented to continue using `.spec.issuerURI` in AppSSO v2.0.0. 
+    >**Note** It is not recommended to continue using `.spec.issuerURI` in AppSSO v2.0.0. 
     To use `.spec.issuerURI` in AppSSO v2.0.0, you must provide a `Service` and an ingress resource as in AppSSO v1.0.0.
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.

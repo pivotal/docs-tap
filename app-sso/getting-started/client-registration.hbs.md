@@ -33,7 +33,7 @@ spec:
    redirectURIs:
       - "http://test-app.example.com/oauth2/callback"
    requireUserConsent: false
-   clientAuthenticationMethod: basic
+   clientAuthenticationMethod: client_secret_basic
    authorizationGrantTypes:
       - "client_credentials"
       - "authorization_code"
@@ -66,7 +66,7 @@ registration. The type of the secret is `servicebinding.io/oauth2`. You can obta
 kubectl get secret my-client-registration -n default  -o json | jq ".data | map_values(@base64d)"
 # {
 #   "authorization-grant-types": "client_credentials,authorization_code",
-#   "client-authentication-method": "basic",
+#   "client-authentication-method": "client_secret_basic",
 #   "client-id": "default_my-client-registration",
 #   "client-secret": "PLACEHOLDER",
 #   "issuer-uri": "http://authserver.example.com",

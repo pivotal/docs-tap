@@ -1,149 +1,78 @@
-# Troubleshoot Namespace Provisioner
+# Troubleshooting
 
-## <a id="controller-logs"></a>Controller logs
+This topic provides information to help troubleshoot Namespace Provisioner.
+## View controller logs
 
-To get the logs when using the [controller](about.hbs.md#nsp-controller) to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+To get the logs when using the [controller](about.hbs.md#nsp-controller) workflow, run the following kubectl command:
 
-```terminal
+```shell
 kubectl -n tap-namespace-provisioning logs deployments/controller-manager
 ```
 
-Use `-f` to follow the log output
+Use `-f` to follow the log output.
 
+## Provisioner application error
 
-## <a id="carvel-kapp-application-error"></a>Provisioner application error
+After the Namespace Provisioner is installed in the Tanzu Application Platform cluster, the main resource to check is the [provisioner](about.hbs.md#carvel-app) Carvel Application in the `tap-namespace-provisioning` namespace. To check for the status of the Application, run the following kubectl command:
 
-After the Namespace Provisioner is installed in the Tanzu Application Platform cluster, the main
-resource to check is the [provisioner application](about.hbs.md#nsp-component-carvel-app) in the
-`tap-namespace-provisioning` namespace.
-
-```terminal
+```shell
 kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
-For information about why certain resources are not reconciled automatically,
-and as a result might need some manual configuration, see [Control the Namespace Provisioner reconcile behavior for specific resources](how-tos.hbs.md#control-reconcile-behavior).
+## Common errors
 
-**Note:** Any error with the [provisioner application](about.hbs.md#nsp-component-carvel-app) is
-reported in the Carvel Package Install as a high level message.
+You might encounter one of the following errors:
 
-```terminal
-kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provisioner --template=\{{.status.usefulErrorMessage}}
-```
+### Namespace selector malformed
 
-## <a id="common-errors"></a>Common errors
+When using the [controller](about.hbs.md#nsp-controller) and customizing the `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors). If it is not compliant, the Namespace Provisioner controller fails and log an error message in the controller logs.
 
-### <a id="namespace-selector-malformed"></a>Namespace selector malformed
-
-When using the [controller](about.hbs.md#nsp-controller) to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and customizing the
-`namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
-If it is not compliant when labeling a namespace, the Namespace Provisioner won't create any object
-in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and the controller outputs a [log](#controller-logs) message.
-
-For example, if the configured `namespace_selector` is
+For example, if the configured `namespace_selector` is as follows:
 
 ```yaml
 namespace_provisioner:
+  controller: true
   namespace_selector:
     matchExpressions:
     - key: apps.tanzu.vmware.com/tap-ns
       operator: exists
 ```
 
-This is not compliant as the operator must be `Exist` instead of `exists`, then when labeling the
-namespace `ns2` with `apps.tanzu.vmware.com/tap-ns`, the [controller](about.hbs.md#nsp-controller)
-produces an error message similar to the following, (followed by some reconciliation messages)
+This is not compliant as the operator must be `Exist` instead of `exists`. When labeling the namespace `dev` with `apps.tanzu.vmware.com/tap-ns`, the [controller](about.hbs.md#nsp-controller) produces an error message similar to the following, (followed by some reconciliation messages)
 
-```json
-{"level":"error","ts":"2022-12-14T15:41:44.639402794Z","logger":".0.1.NamespaceSelectorReconciler","msg":"unable to sync","controller":"namespace","controllerGroup":"","controllerKind":"Namespace","Namespace":{"name":"ns2"},"namespace":"","name":"ns2","reconcileID":"26395d34-418b-446d-9b5e-a4a73cc657ed","resourceType":"/v1, Kind=Namespace","error":"\"exists\" is not a valid pod selector operator","stacktrace":"..."}
+```console
+{"level":"error","ts":"2022-12-14T15:41:44.639402794Z","logger":".0.1.NamespaceSelectorReconciler","msg":"unable to sync","controller":"namespace","controllerGroup":"","controllerKind":"Namespace","Namespace":{"name":"dev"},"namespace":"","name":"dev","reconcileID":"26395d34-418b-446d-9b5e-a4a73cc657ed","resourceType":"/v1, Kind=Namespace","error":"\"exists\" is not a valid pod selector operator","stacktrace":"..."}
 ```
 
->**Note:** The [provisioner application](about.hbs.md#nsp-component-carvel-app) won’t show an error
-as the controller was not able to update the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap).
+### Debugging ytt templating errors in additional sources
 
+When working with ytt, templating errors in the additional sources in your GitOps repository can cause the Provisioner Carvel application to go into `Reconcile Failed` state. To debug the Application, run the following command:
 
-### <a id="carvel-ytt-error-additional-sources"></a>Carvel-YTT error in additional_sources
-
-When working with ytt, it is easy to miswrite the template, as a result, the Namespace Provisioner
-fails when the `additional_sources` is provided with errors. To check the problem in the
-[provisioner application](about.hbs.md#nsp-component-carvel-app), see [Provisioner application error](#carvel-kapp-application-error).
-
-For example, let's assume that the following file is used as `additional_sources`
-
-```yaml
-#@ load("@ytt:data", "data")
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: gitlab-workload-token
-  annotations:
-    tekton.dev/git-0: https://git.company.com
-type: kubernetes.io/basic-auth
-stringData:
-  #! data.values does not have any key of gl-secret-user nor gl-secret-pass
-  username: #@ data.values.gl-secret-user
-  password: #@ data.values.gl-secret-pass
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: github-workload-token
-  annotations:
-    tekton.dev/git-0: https://github.aetna.com
-type: kubernetes.io/basic-auth
-stringData:
-  #! data.values does not have any key of gh-secret-user nor gh-secret-pass
-  username: #@ data.values.gh-secret-user
-  password: #@ data.values.gh-secret-pass
----
+```shell
+kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
-Where the used `data.values` does not exist, and after adding it as an `additional_source` in the
-`witherror` library, the [provisioner application](about.hbs.md#nsp-component-carvel-app) shows an error as follows:
+Sample Error message from Application when there is a ytt templating error:
 
-```terminal
-$ kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
-
+```console
 ytt: Error:
 - library.eval: Evaluating library 'witherror':
     in <toplevel>
       template.yaml:155 | #@          instances = overlay.apply(instance.eval(), customize())
-
     reason:
      - struct has no .gl_secret_user field or method
          in <toplevel>
            _ytt_lib/witherror/secrets.yaml:12 |   username: #@ data.values.gl_secret_user
 ```
 
-This will show any error coming from the Carvel-YTT template resolution.
+### Unable to delete namespace
 
-Another common error is defining resources several times (like adding a resource that is created by
-default instead of overlaying it), this is reported in the [provisioner application](about.hbs.md#nsp-component-carvel-app) also.
+When a user tries to delete a namespace that was managed by Namespace Provisioner, it gets stucks in the `Terminating` status.
 
-### <a id="unable-to-delete-namespace"></a>Unable to delete namespace
+**Possible Cause 1:** When a provisioned namespace that has a Cartographer Workload in it is deleted, the namespace will likely remain in the Terminating state because some resources can not be deleted. One of the causes of this behavior is that the Cartographer Workload using the Out of the Box supply chains and delivery creates a Carvel Kapp App for the workload that references the ServiceAccount in the namespace. Deleting the namespace deletes the Service Account that Kapp relies on before the App itself is deleted. As a result, the Carvel App blocks the namespace termination while waiting for the ServiceAccount to exist with a `finalizer` (`finalizers.kapp-ctrl.k14s.io/delete`) message.
 
-When a namespaces is provisioned and listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) (with [controller](about.hbs.md#nsp-controller) or GitOps), then it can be deleted in a common way by `kubectl` command:
+**Solution:** Remove the Kapp App finalizer in the Kapp App
 
-```bash
-kubectl delete namespace {namespace-name}
-```
+**Possible Cause 2**: When a user tries to delete a namespace that was previously managed by the Namespace Provisioner controller, and the namespace was not cleaned up before disabling the controller, it gets stuck in the `Terminating` state. This happens because the Namespace Provisioner controller adds a `finalizer` to the namespaces (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`) it manages, and is no longer there to clean up that finalizer as it was disabled by the user.
 
-but it needs to be *cleared* of workload before being deleted.
-
-When the provisioned namespace is deleted and there is a workload already created in there, the
-*`namespace`* will likely remain in the `Terminating` state because some resources can
-not be deleted.
-
-One of the causes of this behavior is that the workload creates a Carvel Kapp App that references
-the ServiceAccount in the namespace. Kubectl does not adhere to Carvel kapp-controller delete order
-and the ServiceAccount is deleted before the workload Carvel App. As a result, the Carvel App will
-block the namespace termination while waiting for the ServiceAccount to exist with a
-*`finalizer`* (`finalizers.kapp-ctrl.k14s.io/delete`) message.
-
-**Solution:** Remove the Kapp App *`finalizer`* in the Kapp App
-
-- Another possible cause is when the [controller](about.hbs.md#nsp-controller) is used to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
-and it fails to remove the custom *`finalizer`* added to the namespace (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`)
-
-**Solution:** Remove the *`finalizer`* in the *`namespace`*
+**Solution:** Remove manually the finalizer in the namespace

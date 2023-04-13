@@ -8,7 +8,7 @@ Currently, only CycloneDX XML and JSON files are accepted.
 
 Source commits and image files have been tested. Additional file types might work, but are not fully supported (for example, JAR files).
 
->**Note** If you are not using a source commit or image file, you must ensure the `component.version` field in the CycloneDX file is non-null.
+ If you are not using a source commit or image file, you must ensure the `component.version` field in the CycloneDX file is non-null.
 
 ## <a id='gen-cyclone'></a>Generate a CycloneDX file
 
@@ -51,7 +51,7 @@ Use the following commands to add data:
 - `image add`
 - `source add`
 
->**Note** If you are not using a source commit or image file, you can select either option.
+If you are not using a source commit or image file, you can select either option.
 
 ## <a id='example1'></a>Example #1: Add an image report
 

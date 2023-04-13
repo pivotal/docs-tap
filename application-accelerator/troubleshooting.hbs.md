@@ -136,6 +136,17 @@ Expression evaluation errors include:
 
 ## <a id="ops-issues"></a> Operations issues
 
+### <a id="clean-up-accelerators"></a>Accelerator persists in Tanzu Application Platform GUI after deletion
+If an accelerator still shows up within the Tanzu Application Platform GUI after the accelerator has been deleted via `tanzu accelerator delete`, run through the following steps:
+
+1. Navigate to your instance of the Tanzu Application Platform GUI
+
+2. Using the Search tool on the left-hand navigation panel, search for the accelerator which should be deleted and select it.
+
+3. On the top right of the window, click on the three dots, and click on "Unregister Template".
+
+The accelerator will no longer show up in the Tanzu Application Platform GUI Accelerator Catalog.
+
 ### <a id="check-status"></a>Check status of accelerator resources
 
 Verify the status of accelerator resources by using kubectl or the Tanzu CLI:

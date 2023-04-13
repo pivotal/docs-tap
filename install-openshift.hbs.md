@@ -26,27 +26,17 @@ See the following documentation for a registry to learn how to set it up:
 
 To relocate images from the VMware Tanzu Network registry to your registry:
 
-1. Install Docker if it is not already installed.
-
-1. Log in to your image registry by running:
-
-    ```console
-    docker login MY-REGISTRY
-    ```
-
-    Where `MY-REGISTRY` is your own container registry.
-
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
-
-    ```console
-    docker login registry.tanzu.vmware.com
-    ```
-
 1. Set up environment variables for installation use by running:
 
     ```console
-    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_USERNAME="${IMGPKG_REGISTRY_USERNAME_1}"
+    export INSTALL_REGISTRY_PASSWORD="${IMGPKG_REGISTRY_PASSWORD_1}"
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
     export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=TARGET-REPOSITORY
@@ -57,11 +47,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own container registry.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
 1. Relocate the images with the `imgpkg` CLI by running:
 
@@ -85,6 +77,36 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       --server ${INSTALL_REGISTRY_HOSTNAME} \
       --export-to-all-namespaces --yes --namespace tap-install
     ```
+
+1. (Optional) Create a registry secret for your writable image repository used for:
+
+    - Tanzu Build Service Dependencies
+    - Workloads when using the `shared.image_registry` key
+
+    ```console
+    tanzu secret registry add image-registry-creds \
+      --server "${REGISTRY_HOSTNAME}" \
+      --username "${REGISTRY_USERNAME}" \
+      --password "${REGISTRY_PASSWORD}" \
+      --namespace tap-install
+    ```
+
+    Where:
+
+    - `REGISTRY_HOSTNAME` is the host name for the registry that contains your writable repository. 
+        Examples:
+        - Harbor has the form `--server "my-harbor.io"`.
+        - Docker Hub has the form `--server "index.docker.io"`.
+        - Google Cloud Registry has the form `--server "gcr.io"`.
+    - `REGISTRY_USERNAME` and `REGISTRY_PASSWORD` are the user name
+      and password for the user that can write to the repository used in the following step.
+      For Google Cloud Registry, use `_json_key` as the user name and the contents
+      of the service account JSON file for the password.
+
+    > **Note** If using the same repository as `tap-registry`, you can skip this step and use the `tap-registry` secret
+    > in your `tap-values.yaml` instead of `image-registry-creds`.
+
+
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
@@ -114,7 +136,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ```
 
     > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
-    > Tanzu Application Platform v1.4.0 or earlier.
+    > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 
@@ -218,8 +240,9 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
-    username: "KP-DEFAULT-REPO-USERNAME"
-    password: "KP-DEFAULT-REPO-PASSWORD"
+    secret:
+      name: image-registry-creds
+      namespace: tap-install
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
   kubernetes_version: "K8S-VERSION"
   ca_cert_data: | # To be passed if using custom certificates.
@@ -254,8 +277,9 @@ contour:
 
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: image-registry-creds
+    namespace: tap-install
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set earlier, this must be set to ClusterIP.
@@ -287,15 +311,9 @@ service's External IP address.
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use the contents of the service account JSON file.
-    * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.23.x` or `1.24.x`, where `x` stands for the patch version. Examples:
-    - Red Hat OpenShift Container Platform v4.10 uses the Kubernetes version `1.23.3`.
+- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.24.x` or `1.25.x`, where `x` stands for the patch version. Examples:
     - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`.
+    - Red Hat OpenShift Container Platform v4.12 uses the Kubernetes version `1.25.2`.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
@@ -355,10 +373,9 @@ For example:
 
 ```yaml
 buildservice:
-  kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  ...
   exclude_dependencies: true
+  ...
 ```
 
 After configuring `full` dependencies, you must install the dependencies after
@@ -367,11 +384,13 @@ See [Install the full dependencies package](#tap-install-full-deps) for more inf
 
 #### <a id='jammy-only'></a> (Optional) Configure your profile with the Jammy stack only
 
-Tanzu Application Platform v1.3.0 supports building applications with the [Ubuntu 22.04 (Jammy) stack](tanzu-build-service/dependencies.html#bionic-vs-jammy).
-By default, workloads are built with Ubuntu 18.04 (Bionic) stack. However, if you do not need access to the Bionic stack,
-you can install Tanzu Application Platform without the Bionic stack and all workloads are built with the Jammy stack by default.
+Tanzu Application Platform v1.5.0 supports building applications with both the
+Ubuntu v22.04 (Jammy) and v18.04 (Bionic) stack. For more information, see
+[Bionic and Jammy stacks](tanzu-build-service/dependencies.html#bionic-vs-jammy).
 
-To install Tanzu Application Platform with Jammy as the only available stack, include the `stack_configuration: jammy-only` field under the `buildservice:` section in `tap-values.yaml`.
+To install Tanzu Application Platform with Jammy as the only available stack,
+include the `stack_configuration: jammy-only` field under the `buildservice:`
+section in `tap-values.yaml`.
 
 ### <a id='custom-scc'></a> Security Context Constraints
 
@@ -452,11 +471,9 @@ To install the `full` dependencies package:
 
     ```yaml
     buildservice:
-      kp_default_repository: "KP-DEFAULT-REPO"
-      kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-      kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+      ...
       exclude_dependencies: true
-    ...
+      ...
     ```
 
 1. Get the latest version of the `buildservice` package by running:

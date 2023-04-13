@@ -54,7 +54,7 @@ spec:
     # appropriate labels for your `AuthServer`
   authorizationGrantTypes:
     - client_credentials
-  clientAuthenticationMethod: basic
+  clientAuthenticationMethod: client_secret_basic
 ```
 
 See the [ClientRegistration API reference](../crds/clientregistration.md) for more field definitions.

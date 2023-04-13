@@ -4,3 +4,5 @@ _md-cli/*
 _md-cli/
 
 .idea/
+.vscode/*
+.DS_Store

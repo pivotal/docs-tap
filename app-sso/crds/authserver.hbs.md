@@ -6,21 +6,21 @@ server backed by Redis over mutual TLS if no storage is defined.
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
 
-To allow `ClientRegistrations` from all or a restricted set of Namespaces, the
-annotation `sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
-allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients from all namespaces. If
-the annotation is missing, no clients are allowed.
+To allow `ClientRegistrations` only from a restricted set of `Namespaces`, the annotation 
+`sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
+allowed `Namespaces`, e.g. `"app-team-red,app-team-green"`. If the annotation is missing, the default value is `*`, 
+denoting that all client namespaces are allowed.
 
 The issuer URI, which is the point of entry for clients and end-users, is constructed through the package's `domain_template`.
-You can view the issuer URI by running
-`kubectl get authserver -n authservers`.
+You can view the issuer URI by running `kubectl get authserver -n authservers`.
 
 See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
 
 Token signature keys are configured by using `spec.tokenSignature`. This is a required field. See
 [Token signatures](../service-operators/token-signature.md) for more context.
 
-Identity providers are configured under `spec.identityProviders`. If there are none, end-users won't be able to log in.
+You can configure identity providers under `spec.identityProviders`. If there is none, end-users can not log in. 
+For more information about configuring identity providers, see [Identity providers](../service-operators/identity-providers.hbs.md).
 
 The deployment can be further customized by configuring replicas, resources, http server and logging properties.
 
@@ -58,9 +58,10 @@ metadata:
   namespace: ""
   labels: { } # required, must uniquely identify this AuthServer
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # required, must be "*" or a comma-separated list of allowed client namespaces
+    sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # optional, a comma-separated list of allowed client namespaces
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # optional
+    sso.apps.tanzu.vmware.com/allow-unsafe-cors: "" # optional
 spec:
   # .tls is optional if a default issuer is set
   tls:
@@ -74,7 +75,13 @@ spec:
     secretRef:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
-    disabled: false # Deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+    disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+  cors:
+    allowOrigins: # optional, cannot be combined with 'allowAllOrigins'.
+      - ""
+    allowAllOrigins: false # optional
+                           # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
+                           # Cannot be combined with 'allowOrigins'.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -102,6 +109,14 @@ spec:
             emailVerified: false
             roles:
               - ""
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
     - name: "" # must be unique
       ldap:
         server:
@@ -116,12 +131,32 @@ spec:
         user:
           searchFilter: ""
           searchBase: ""
-        group:
-          searchFilter: ""
-          searchBase: ""
-          searchSubTree: false
-          searchDepth: 0
-          roleAttribute: ""
+        roles: # optional
+          fromUpstream:
+            attribute: "" # required
+            search:
+              filter: ""
+              base: ""
+              subTree: false
+              depth: 0
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
+          accessToken: # optional
+            scope:
+              defaults: # optional
+              - ""
+              rolesToScopes: # optional
+                - fromRole: ""
+                  toScopes:
+                  - ""
+        group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
+          search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
+            filter: ""
+            base: ""
+            subTree: false
+            depth: 0
+          roleAttribute: "" # deprecated, use 'ldap.roles.fromUpstream.attribute' instead.
     - name: "" # must be unique
       openID:
         issuerURI: ""
@@ -130,10 +165,40 @@ spec:
           name: ""
         scopes:
           - ""
+        claimMappings: # deprecated, use 'openID.roles.fromUpstream.claim' instead.
+          roles: ""
+        roles: # optional
+          fromUpstream:
+            claim: "" # required
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                - ""
     - name: "" # must be unique
       saml:
         metadataURI: ""
         claimMappings: { }
+        roles: # optional
+          fromUpstream:
+            attribute: "" # required
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expressions
+        accessToken: # optional
+          scope:
+            defaults: # optional
+              - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
   replicas: 1 # optional, default 2
   logging: "" # optional, must be valid YAML
   server: "" # optional, must be valid YAML
@@ -340,8 +405,8 @@ metadata:
     identifier: authserver-identifier
     sample: "true"
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
+    sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""
 spec:
   replicas: 1
   tls:
@@ -353,6 +418,8 @@ spec:
       name: sample-token-signing-key
     extraVerifyKeyRefs:
       - name: sample-token-verification-key
+  cors:
+    allowAllOrigins: true
   identityProviders:
     - name: internal
       internalUnsafe:
@@ -372,8 +439,19 @@ spec:
         jwksUri: https://dev-xxxxxx.okta.com/oauth2/v1/keys
         scopes:
           - openid
-        claimMappings:
-          roles: my_custom_okta_roles_claim
+        roles:
+          fromUpstream:
+            claim: my_custom_okta_roles_claim
+        accessToken:
+          scope:
+            defaults:
+              - "developer.read"
+              - "developer.write"
+            rolesToScopes:
+              - fromRole: "finance"
+                toScopes:
+                  - "finance.read"
+                  - "finance.write"
 
 ---
 apiVersion: secretgen.k14s.io/v1alpha1

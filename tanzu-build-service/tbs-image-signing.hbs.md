@@ -1,7 +1,7 @@
 # Create a signed container image with Tanzu Build Service
 
 This topic describes how to create a Tanzu Build Service
-[image](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-images.html)
+[image](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-images.html)
 resource that builds a container image from source code signed with
 [Cosign](https://github.com/sigstore/cosign).
 
@@ -18,10 +18,10 @@ see [Installing Tanzu Build Service](install-tbs.md).
 
 - Install Cosign. For instructions, see the [Cosign documentation](https://docs.sigstore.dev/cosign/installation/).
 
-- Have a [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-builders.html)
+- Have a [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-builders.html)
 resource configured.
 
-- Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-images.html)
+- Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-images.html)
 resource configured.
 
 ## <a id="sign-image-builds"></a> Configure Tanzu Build Service to sign your image builds
@@ -78,7 +78,7 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
     ```
 
     For more information about configuring Cosign key pairs, see the
-    [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-images.html#image-signing-with-cosign).
+    [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-images.html#image-signing-with-cosign).
 
 1. To enable Cosign signing, create or edit the service account resource that is
 referenced in the image resource so that it includes the Cosign keypair secret created earlier. The

@@ -1,7 +1,5 @@
 # Known Issues
 
-# Known Limitations
-
 As of {{ vars.app-sso.version}}, the following are known product limitations to be aware of.
 
 ## Limited number of `ClientRegistrations` per `AuthServer`
@@ -32,3 +30,15 @@ domain_template: "{{.Name}}.{{.Domain}}"
 
 > **Caution** By leaving out the namespace in your domain template, application routes might conflict if there
 > are multiple `AuthServer`s with the same name but in different namespaces.
+
+## <a id='boot3-clientreg'></a> Spring Boot 3 based `Workload`s and `ClientRegistration` resources
+
+If you run a `Workload` based on Spring Boot 3 or use Spring Security OAuth2 Client 3 library in conjunction with 
+`ResourceClaim`s, you must configure your `ClientRegistration` resource to use either of the following client 
+authentication methods: 
+
+- `client_secret_basic` (default)
+- `client_secret_post`
+
+The existing `post` and `basic` values do not work with Spring Boot 3 based `Workloads` with Spring Cloud Bindings and 
+are deprecated.

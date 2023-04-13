@@ -27,18 +27,29 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 
 ```json
 {
-  "iss": "https://appsso.example.com",
-  "sub": "213435498y",
-  "aud": "my-client",
-  "nonce": "fkg0-90_mg",
-  "exp": 1656929172,
-  "iat": 1656928872,
-  "name": "Jane Doe",
-  "given_name": "Jane",
-  "family_name": "Doe",
-  "email": "jane.doe@example.com"
+	"iss": "https://appsso.example.com",
+	"sub": "213435498y",
+	"aud": "my-client",
+	"nonce": "fkg0-90_mg",
+	"exp": 1656929172,
+	"iat": 1656928872,
+	"name": "Jane Doe",
+	"given_name": "Jane",
+	"family_name": "Doe",
+	"email": "jane.doe@example.com",
+	"roles": [
+		"developer",
+		"org-user"
+	]
 }
 ```
+
+`roles` claim can only be part of an `id_token` when user roles are mapped and 'roles' scope is requested. 
+For more information about mapping for OpenID Connect, LDAP and SAML, see:
+
+- [OpenID external groups mapping](../service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
+- [LDAP external groups mapping](../service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
+- [SAML (experimental) external groups mapping](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
 ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../service-operators/token-signature.md). Client
 applications may verify their validity using the AuthServer's public keys.
@@ -55,7 +66,7 @@ In this section, you will:
 1. [Deploy an application](application.md) that uses the provisioned ClientRegistration to enable SSO
 
 After completing these steps, you can proceed with 
-[securing a Workload](../app-operators/tutorials/securing-first-workload.md).
+[securing a Workload](../app-operators/secure-spring-boot-workload.md).
 
 ## <a id='next-steps'></a>Next steps
 

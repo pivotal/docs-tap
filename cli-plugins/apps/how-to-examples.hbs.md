@@ -9,14 +9,14 @@ through flags.
 
 To pass the certificate through flags, specify:
 
-- `--registry-ca-cert`, the path of the self-signed certificate needed for the
+- `--registry-ca-cert`: This is the path of the self-signed certificate needed for the
   custom or private registry. This is also populated with a default value through the environment
   variable `TANZU_APPS_REGISTRY_CA_CERT`.
-- `--registry-password` use when the registry requires credentials to push. The value of
+- `--registry-password`: Use this when the registry requires credentials to push. The value of
   this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
-- `--registry-username` used with `--registry-password` to set the registry credentials. It
+- `--registry-username`: Use with `--registry-password` to set the registry credentials. It
   can also be provided as the environment variable `TANZU_APPS_REGISTRY_USERNAME`.
-- `--registry-token`, set when the registry authentication is done through a token. The value
+- `--registry-token`: Set when the registry authentication is done through a token. The value
   of this flag can also be taken from `TANZU_APPS_REGISTRY_TOKEN` environment variable.
 
 For example:
@@ -33,6 +33,7 @@ export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
 
 tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE
 ```
+
 ## <a id='live-updated-debug'> --live-update and --debug
 
 Use the `--live-update` flag to ensure that local source code changes are reflected quickly
@@ -135,7 +136,7 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
 ## <a id='export-usage'> --export
 
 Use this flag to retrieve the workload definition with all the
-extraneous, cluster-specific, properties/values removed. For example, the status and metadata text
+extraneous, cluster-specific, properties, and values removed. For example, the status and metadata text
 boxes like `creationTimestamp`. This allows you to apply the workload definition to a different
 environment without having to make significant edits.
 
@@ -386,7 +387,7 @@ status:
 
 Use this flag to support use cases where more than one application is in a single project or repository.
 
-Use `--sub-path` when creating a workload from a Git repository
+Use `--sub-path` when creating a workload from a Git repository.
 
     ```console
     tanzu apps workload apply subpathtester --git-repo https://github.com/PATH-TO-REPO --git-branch main --type web --sub-path SUBPATH
@@ -523,7 +524,7 @@ With the default `merge`:
 
 If the `--file workload.yaml` deletes an existing on-cluster property or value, that property is not
 removed from the on-cluster definition.
-If the `--file workload.yaml` includes a new property/value - it is added to the on-cluster workload
+If the `--file workload.yaml` includes a new property or value, it is added to the on-cluster workload
 properties/values.
 If the `--file workload.yaml` updates an existing value for a property, that property's value
 on-cluster is updated.
@@ -535,7 +536,7 @@ The on-cluster workload is updated to exactly what is specified in the `--file w
 The intent of the current default merge strategy is to prevent unintentional deletions of critical
 properties from existing workloads.
 
-**Note** The default value for the `--update-strategy flag` will change from merge to replace
+>**Note** The default value for the `--update-strategy flag` will change from merge to replace
 in Tanzu Application Platform v1.7.0.
 
 Examples of the outcomes of both `merge` and `replace` update strategies are provided in the
@@ -578,7 +579,9 @@ tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy merge # i
 This produces the following output:
 
 ```console
-❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
+❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files
+will replace rather than merge existing configuration. The change will take place in the January 2024
+Tanzu Application Platform release (use "--update-strategy" to control strategy explicitly).
 
 Workload is unchanged, skipping update
 ```
@@ -592,7 +595,9 @@ tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 This produces the following output:
 
 ```console
-❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
+❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files
+will replace rather than merge existing configuration. The change will take place in the January 2024
+Tanzu Application Platform release (use "--update-strategy" to control strategy explicitly).
 
 🔎 Update workload:
 ...
@@ -615,3 +620,500 @@ The lines that were deleted in the YAML file are deleted as well in the workload
 cluster. The only text boxes that remain exactly as they were created are the system populated
 metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`,
 `deletionTimestamp`).
+
+## <a id='apply-output-usage'> Output workload after create/apply
+
+`tanzu apps workload create/apply` commands can be used with `--output` flag which prints the
+workload once the process of its creation or update happens.
+
+Since the usage of this flag is mainly for scripting processes, all the prompts can be skipped with
+the usage of `--yes` flag as follows:
+
+```bash
+tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml --yes
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  creationTimestamp: "2023-04-04T16:15:41Z"
+  generation: 1
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+  resourceVersion: "184277312"
+  uid: faf6e581-a2a3-47ab-b2d3-4160513c72df
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/jhvhs/rabbitmq-sample
+status:
+  supplyChainRef: {}
+```
+
+If it is not used with `--yes` flag, all the prompts will be printed and the workload definition will be shown at the end.
+
+```bash
+tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml
+🔎 Create workload:
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/workload-type: web
+      7 + |  name: rmq-sample-app
+      8 + |  namespace: default
+      9 + |spec:
+     10 + |  serviceClaims:
+     11 + |  - name: rmq
+     12 + |    ref:
+     13 + |      apiVersion: rabbitmq.com/v1beta1
+     14 + |      kind: RabbitmqCluster
+     15 + |      name: example-rabbitmq-cluster-1
+     16 + |  source:
+     17 + |    git:
+     18 + |      ref:
+     19 + |        branch: main
+     20 + |      url: https://github.com/jhvhs/rabbitmq-sample
+❓ Do you want to create this workload? [yN]: y
+👍 Created workload "rmq-sample-app"
+
+To see logs:   "tanzu apps workload tail rmq-sample-app --timestamp --since 1h"
+To get status: "tanzu apps workload get rmq-sample-app"
+
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  creationTimestamp: "2023-04-04T15:18:13Z"
+  generation: 1
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+  resourceVersion: "184169566"
+  uid: 6588d398-b803-47e3-b31a-23d9a1a633a9
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/jhvhs/rabbitmq-sample
+status:
+  supplyChainRef: {}
+```
+
+This flag can also be used with `--wait` or `--tail` if the intention is to retrieve the workload 
+with everything and its status.
+The behavior is the same regarding the prompts: if `--yes` flag is not used, then the workload
+definition and the surveys are displayed and it remains waiting until the workload is in status `ready`.
+Otherwise, it does not show anything until the workload is ready in the cluster.
+
+It should be made clear that, if `--tail` is used, its logs are not going to be suppressed despite the usage of `--yes` flag.
+
+```bash
+tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml --yes --wait
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  creationTimestamp: "2023-04-04T16:22:29Z"
+  generation: 1
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+  resourceVersion: "184296857"
+  uid: 7fa58a71-0b41-4975-b816-781b87d02cde
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/jhvhs/rabbitmq-sample
+status:
+  conditions:
+  ...
+  - lastTransitionTime: "2023-04-04T16:26:03Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: Ready
+  observedGeneration: 1
+  resources:
+  - conditions:
+    - lastTransitionTime: "2023-04-04T16:22:36Z"
+      message: ""
+      reason: ResourceSubmissionComplete
+      status: "True"
+      type: ResourceSubmitted
+      ...
+    name: source-provider
+    outputs:
+    - digest: sha256:1982253401b1be2236786e3da433216d36d289d0b158fbc9ca6477ac94879e60
+      lastTransitionTime: "2023-04-04T16:22:36Z"
+      name: url
+      preview: |
+        http://fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/default/rmq-sample-app/103fde37882b5510e9b3974e5fe209161b54f675.tar.gz
+    ...
+    stampedRef:
+      apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: GitRepository
+      name: rmq-sample-app
+      namespace: default
+      resource: gitrepositories.source.toolkit.fluxcd.io
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterSourceTemplate
+      name: source-template
+  - conditions:
+    ...
+    - lastTransitionTime: "2023-04-04T16:25:45Z"
+      message: ""
+      reason: Ready
+      status: "True"
+      type: Ready
+    inputs:
+    - name: source-provider
+    ...
+  - conditions:
+    ...
+    - lastTransitionTime: "2023-04-04T16:25:52Z"
+      message: ""
+      reason: Ready
+      status: "True"
+      type: Ready
+    inputs:
+    - name: image-provider
+    name: config-provider
+    outputs:
+    - digest: sha256:0549f3f3fe5ef817af62ae6357465e6df1a6c901e5a7abc17468ee3f3e16c1a1
+      lastTransitionTime: "2023-04-04T16:25:52Z"
+      name: config
+      preview: |-
+        metadata:
+            annotations:
+                boot.spring.io/version: 2.4.9
+                conventions.carto.run/applied-conventions: |-
+                    spring-boot-convention/auto-configure-actuators-check
+                    ...
+                developer.conventions/target-containers: workload
+                services.conventions.carto.run/rabbitmq: amqp-client/5.10.0
+            labels:
+                app.kubernetes.io/component: run
+                apps.tanzu.vmware.com/auto-configure-actuators: "false"
+                apps.tanzu.vmware.com/workload-type: web
+                car
+    ...
+  supplyChainRef:
+    kind: ClusterSupplyChain
+    name: source-to-url
+```
+
+And with `tail`:
+
+```bash
+tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml --yes --tail
++ rmq-sample-app-build-1-build-pod › prepare
+rmq-sample-app-build-1-build-pod[prepare] Build reason(s): CONFIG
+rmq-sample-app-build-1-build-pod[prepare] CONFIG:
+rmq-sample-app-build-1-build-pod[prepare] 	+ env:
+rmq-sample-app-build-1-build-pod[prepare] 	+ - name: BP_OCI_SOURCE
+rmq-sample-app-build-1-build-pod[prepare] 	+   value: main/103fde37882b5510e9b3974e5fe209161b54f675
+rmq-sample-app-build-1-build-pod[prepare] 	resources: {}
+rmq-sample-app-build-1-build-pod[prepare] 	- source: {}
+rmq-sample-app-build-1-build-pod[prepare] 	+ source:
+rmq-sample-app-build-1-build-pod[prepare] 	+   blob:
+rmq-sample-app-build-1-build-pod[prepare] 	+     url: http://fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/default/rmq-sample-app/103fde37882b5510e9b3974e5fe209161b54f675.tar.gz
+rmq-sample-app-build-1-build-pod[prepare] Loading secret for "gcr.io" from secret "registry-credentials" at location "/var/build-secrets/registry-credentials"
+rmq-sample-app-build-1-build-pod[prepare] Loading secret for "registry.tanzu.vmware.com" from secret "registry-credentials" at location "/var/build-secrets/registry-credentials"
+rmq-sample-app-build-1-build-pod[prepare] Loading cluster credential helpers
+rmq-sample-app-build-1-build-pod[prepare] Downloading fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/default/rmq-sample-app/103fde37882b5510e9b3974e5fe209161b54f675.tar.gz...
+...
+...
+...
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  creationTimestamp: "2023-04-04T16:22:29Z"
+  generation: 1
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+  resourceVersion: "184296857"
+  uid: 7fa58a71-0b41-4975-b816-781b87d02cde
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+  source:
+    git:
+      ref:
+        branch: main
+      url: https://github.com/jhvhs/rabbitmq-sample
+status:
+  conditions:
+  ...
+  - lastTransitionTime: "2023-04-04T16:26:03Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: Ready
+  observedGeneration: 1
+  resources:
+  - conditions:
+    - lastTransitionTime: "2023-04-04T16:22:36Z"
+      message: ""
+      reason: ResourceSubmissionComplete
+      status: "True"
+      type: ResourceSubmitted
+      ...
+    name: source-provider
+    outputs:
+    - digest: sha256:1982253401b1be2236786e3da433216d36d289d0b158fbc9ca6477ac94879e60
+      lastTransitionTime: "2023-04-04T16:22:36Z"
+      name: url
+      preview: |
+        http://fluxcd-source-controller.flux-system.svc.cluster.local./gitrepository/default/rmq-sample-app/103fde37882b5510e9b3974e5fe209161b54f675.tar.gz
+    ...
+    stampedRef:
+      apiVersion: source.toolkit.fluxcd.io/v1beta1
+      kind: GitRepository
+      name: rmq-sample-app
+      namespace: default
+      resource: gitrepositories.source.toolkit.fluxcd.io
+    templateRef:
+      apiVersion: carto.run/v1alpha1
+      kind: ClusterSourceTemplate
+      name: source-template
+  - conditions:
+    ...
+    - lastTransitionTime: "2023-04-04T16:25:45Z"
+      message: ""
+      reason: Ready
+      status: "True"
+      type: Ready
+    inputs:
+    - name: source-provider
+    ...
+  - conditions:
+    ...
+    - lastTransitionTime: "2023-04-04T16:25:52Z"
+      message: ""
+      reason: Ready
+      status: "True"
+      type: Ready
+    inputs:
+    - name: image-provider
+    name: config-provider
+    outputs:
+    - digest: sha256:0549f3f3fe5ef817af62ae6357465e6df1a6c901e5a7abc17468ee3f3e16c1a1
+      lastTransitionTime: "2023-04-04T16:25:52Z"
+      name: config
+      preview: |-
+        metadata:
+            annotations:
+                boot.spring.io/version: 2.4.9
+                conventions.carto.run/applied-conventions: |-
+                    spring-boot-convention/auto-configure-actuators-check
+                    ...
+                developer.conventions/target-containers: workload
+                services.conventions.carto.run/rabbitmq: amqp-client/5.10.0
+            labels:
+                app.kubernetes.io/component: run
+                apps.tanzu.vmware.com/auto-configure-actuators: "false"
+                apps.tanzu.vmware.com/workload-type: web
+                car
+    ...
+  supplyChainRef:
+    kind: ClusterSupplyChain
+    name: source-to-url
+```
+
+## <a id='unsetting-git-fields'> Un-setting Git fields
+
+There are various ways to update a workload. It can be by changing its fields through flags or create
+a `yaml` file with the changes and run `tanzu apps workload apply` command with the `--update-strategy`
+set as `replace` (check [`--update-strategy`](./how-to-examples.hbs.md#update-strategy) for a better usage explanation).
+
+However, for fields deletion, there is an easier way supported for the `--git-*` flags in which,
+through setting them as empty string in the command, the `workload.spec.source.git` fields get removed.
+
+For example, if there is a workload that specifies `--git-tag`, `--git-commit` and `--git-branch`,
+to remove any of these the only thing that needs to be done is use empty string right after setting them.
+
+```bash
+## Existing workload definition
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+  source:
+    git:
+      ref:
+        branch: main
+        commit: dec60a68190a4a8ebd3644806962002983ded69e
+        tag: v0.1.0
+      url: https://github.com/jhvhs/rabbitmq-sample
+
+## Update the workload to remove one of its git fields
+
+tanzu apps workload apply rmq-sample-app --git-tag ""
+🔎 Update workload:
+...
+ 17, 17   |    git:
+ 18, 18   |      ref:
+ 19, 19   |        branch: main
+ 20, 20   |        commit: dec60a68190a4a8ebd3644806962002983ded69e
+ 21     - |        tag: v0.1.0
+ 22, 21   |      url: https://github.com/jhvhs/rabbitmq-sample
+❓ Really update the workload "rmq-sample-app"? [yN]: y
+👍 Updated workload "rmq-sample-app"
+
+To see logs:   "tanzu apps workload tail rmq-sample-app --timestamp --since 1h"
+To get status: "tanzu apps workload get rmq-sample-app"
+
+## Export the workload to see that `spec.source.git.ref.tag` is not part of the definition
+
+tanzu apps workload get rmq-sample-app --export
+
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+  source:
+    git:
+      ref:
+        branch: main
+        commit: dec60a68190a4a8ebd3644806962002983ded69e
+      url: https://github.com/jhvhs/rabbitmq-sample
+```
+
+**NOTE**: If `--git-repo` is set to empty, then the whole git section is going to be removed from 
+the workload definition.
+
+```bash
+tanzu apps workload apply rmq-sample-app --git-repo ""
+🔎 Update workload:
+...
+ 12, 12   |    ref:
+ 13, 13   |      apiVersion: rabbitmq.com/v1beta1
+ 14, 14   |      kind: RabbitmqCluster
+ 15, 15   |      name: example-rabbitmq-cluster-1
+ 16     - |  source:
+ 17     - |    git:
+ 18     - |      ref:
+ 19     - |        branch: main
+ 20     - |        commit: dec60a68190a4a8ebd3644806962002983ded69e
+ 21     - |      url: https://github.com/jhvhs/rabbitmq-sample
+❗ NOTICE: no source code or image has been specified for this workload.
+❓ Really update the workload "rmq-sample-app"? [yN]: y
+👍 Updated workload "rmq-sample-app"
+
+To see logs:   "tanzu apps workload tail rmq-sample-app --timestamp --since 1h"
+To get status: "tanzu apps workload get rmq-sample-app"
+
+## Export the workload and check that the git source section does not exist
+
+tanzu apps workload get rmq-sample-app --export
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+  name: rmq-sample-app
+  namespace: default
+spec:
+  serviceClaims:
+  - name: rmq
+    ref:
+      apiVersion: rabbitmq.com/v1beta1
+      kind: RabbitmqCluster
+      name: example-rabbitmq-cluster-1
+```
+
+## <a id='no-color-usage'> Remove color from output
+
+Most of Tanzu Apps Plug-in commands have emojis and colored output with the intention to be more user-friendly.
+
+However, sometimes color, emojis and other characters are not needed (e.g. scripting) or even well 
+interpreted in certain terminals and the best way to suppress them is using the `--no-color` flag.
+
+So, for example, in a workload that is created through local path, which usually shows emojis and a
+progress bar, these special characters would be avoid by using `--no-color`.
+
+```bash
+tanzu apps workload apply my-workload --local-path path/to/my/source -s my-registry.ext/my-project/my-workload --type web --no-color
+The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
+Publishing source in "path/to/my/source" to "my-registry.ext/my-project/my-workload"...
+Published source
+
+Create workload:
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/workload-type: web
+      7 + |  name: my-workload
+      8 + |  namespace: default
+      9 + |spec:
+     10 + |  source:
+     11 + |    image: my-registry.ext/my-project/my-workload:latest@sha256:724bcd14c3a84fc7a918cd8ee7a6a987de1699617a17c5af166e8c689a2becf7
+? Do you want to create this workload? [yN]:
+```
+
+To avoid having color in general for Tanzu Apps Plug-in, the best way is setting the `NO_COLOR` environment variable. This will suppress color, emojis and progress bar for all the Plug-in related commands.
+
+```bash
+export NO_COLOR=true
+```

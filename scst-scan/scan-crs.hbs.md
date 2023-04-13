@@ -6,7 +6,7 @@ Both the source and image scans require a `ScanTemplate` to be defined. Run `kub
 
 ## <a id="deploy-scan-cr"></a>Deploy scan custom resources
 
-The scan controller defines two custom resources to create scanning jobs:
+The scan controller defines two custom resources to create scans:
 
 * SourceScan
 * ImageScan

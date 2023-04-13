@@ -1,6 +1,4 @@
-# APIs
+# Custom resource definitions (CRDs)
 
-Custom Resource Definitions (CRDs) maintained by AppSSO
-
-* [`AuthServer`](./authserver.md)
-* [`ClientRegistration`](./clientregistration.md)
+- [AuthServer](./authserver.md)
+- [ClientRegistration](./clientregistration.md)

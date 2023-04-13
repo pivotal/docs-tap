@@ -31,7 +31,7 @@ Before installing Tanzu Application Platform on AWS, you need:
 
 Variables are used throughout this guide. To simplify the process and minimize the opportunity for errors, export these variables:
 
-```
+```console
 export AWS_ACCOUNT_ID=012345678901
 export AWS_REGION=us-west-2
 export EKS_CLUSTER_NAME=tap-on-aws
@@ -50,8 +50,8 @@ Where:
 
 To create an EKS cluster in the specified region, run:
 
-```
-eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.large --version 1.23 --with-oidc -N 5
+```console
+eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.xlarge --version 1.24 --with-oidc -N 5
 ```
 
 Creating the control plane and node group can take anywhere from 30-60 minutes.
@@ -71,7 +71,7 @@ ECR requires that the container repositories are already created. For Tanzu Appl
 
 To create these repositories, run:
 
-```
+```console
 aws ecr create-repository --repository-name tap-images --region $AWS_REGION
 aws ecr create-repository --repository-name tap-build-service --region $AWS_REGION
 ```

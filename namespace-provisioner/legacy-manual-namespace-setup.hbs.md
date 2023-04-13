@@ -11,7 +11,7 @@ To provision namespaces manually, complete the following steps:
 
 ## <a id='single-user-access'></a>Enable single user access
 
-1. To add read/write registry credentials to the developer namespace, run the following command [1]:
+1. To add read/write registry credentials to the developer namespace, run the following command:
 
     ```console
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
@@ -30,7 +30,7 @@ To provision namespaces manually, complete the following steps:
     - `REGISTRY-PASSWORD` is the password of the registry.
       - For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key. For example: `"$(cat ~/gcp-key.json)"`
 
-    If you observe the following issue when you run the command above:
+    If you observe the following issue:
 
     ```console
     panic: runtime error: invalid memory address or nil pointer dereference
@@ -103,7 +103,7 @@ To provision namespaces manually, complete the following steps:
     you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your
     service account entry then looks like the following:
 
-    ```
+    ```console
     apiVersion: v1
     kind: ServiceAccount
     metadata:
@@ -134,13 +134,11 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
         Where:
 
-        - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
-        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that
+        - `YOUR-NAMESPACE` is the name you give to the developer namespace.
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that
           requires access to `app-viewer` resources on the current namespace and cluster.
-        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
-
-        </br>
 
         For more information about `tanzu rbac`, see
         [Bind a user or group to a default role](../authn-authz/binding.hbs.md)
@@ -150,7 +148,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
-        For an example of how to set up Azure Active Directory (AD) with your cluster, see
+        For an example of how to set up Azure Active Directory (Azure AD) with your cluster, see
         [Integrate Azure Active Directory](../authn-authz/azure-ad.hbs.md).
 
     - **Option 2:** Use the native Kubernetes YAML.
@@ -215,13 +213,11 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
         Where:
 
-        - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
-        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that
+        - `YOUR-NAMESPACE` is the name you give to the developer namespace.
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that
           requires access to `app-viewer` resources on the current namespace and cluster.
-        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
-
-        </br>
 
         VMware recommends creating a user group in your identity provider's grouping system for
         each developer namespace and then adding the users accordingly.
@@ -235,7 +231,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
         [Integrate Azure Active Directory](../authn-authz/azure-ad.hbs.md).
 
-1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the
+3. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the
    role bindings are applied.
 
 ## Additional configuration for testing and scanning

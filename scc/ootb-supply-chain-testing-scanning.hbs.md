@@ -92,11 +92,11 @@ And the new objects, that you create here:
 - **scan policy**: Defines what to do with the results taken from scanning the source code and
 image produced. For more information, see [ScanPolicy section](#scan-policy).
 
-- **source scan template**: A template of how jobs are created for scanning the source
-code. For more information, see [ScanTemplate section](#scan-template).
+- **source scan template**: A template of how TaskRuns are created for scanning the source
+code. See [ScanTemplate section](#scan-template).
 
-- **image scan template**: A template of how jobs are created for scanning the image
-produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
+- **image scan template**: A template of how TaskRuns are created for scanning the image
+produced by the supply chain. See [ScanTemplate section](#scan-template).
 
 The following section includes details about the new objects, compared to Out of the Box
 Supply Chain With Testing.
@@ -201,7 +201,7 @@ See [Writing Policy Templates](../scst-scan/policies.md).
 
 #### <a id="scan-template"></a> ScanTemplate
 
-A ScanTemplate defines the PodTemplateSpec used by a Job to run a
+A ScanTemplate defines the PodTemplateSpec used by a TaskRun to run a
 particular scan (image or source). When the supply chain initiates an ImageScan or SourceScan, they reference these templates which must
 live in the same namespace as the workload with the names matching the following:
 

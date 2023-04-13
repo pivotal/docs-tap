@@ -1,9 +1,12 @@
 # Supported Scanner Matrix for Supply Chain Security Tools - Scan
 
-This page contains limitations observed with scanners which are provided with TAP Supply Chain Security Tools. There could be more limitations which are not mentioned in the table below.
+This topic contains limits observed with scanners which are provided with Tanzu
+Application Platform Supply Chain Security Tools. There might be more limits
+which are not mentioned in the following table.
 
+**Grype**
 
-|  | Grype |
-|--------|-----------|
-|  .Net |  Grype uses .deps.json for finding dependencies. This file is created after compilation of a .Net project making source scanning unable to find dependencies. However the vulnerabilities are still found during the image scan after the compilation, when the application is packaged as images. |
-| Java | No network calls are performed to fetch dependencies. For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as .jar or .war files. Because VMware discourages committing binaries to source code repositories, Grype fails to find vulnerabilities during a source scan. The vulnerabilities are still found during the image scan after the binaries are built and packaged as images. |
+| Workload Type | Impact | Potential Workarounds |
+|--------|-----------|---|
+|  .Net | Observation: Source Scans for .Net workloads do not show any results in Tanzu Application Platform GUI or the CLI.  You san a mono repository that includes additional types of packages, such as a front-end JavaScript package, source scan can report vulnerabilities. Reason: Grype requires a `.deps.json` file for identifying the dependencies for scanning. Given that this file is created after the .Net project is compiled (which happens after the source scan step), doing Grype  source scans on .Net workloads might not report any vulnerabilities. Review the upstream issue [here](https://github.com/anchore/syft/issues/1522). | Grype image scans for .Net workloads work as expected. If using an out-of-the-box Supply Chain with scanning, users select one of the following options: Do nothing. If you do nothing, source scan might not report any vulnerabilities but image scan can. Or you can edit the Supply Chain to use an [alternative scanner](./install-scanners.hbs.md). |
+| Java | Observation: Source Scans for Java workloads do not show any results in the Tanzu Application Platform GUI or the CLI. Reason: For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as `.jar` or `.war` files. Grype fails to find vulnerabilities during a source scan because VMware discourages committing binaries to source code repositories. Review the upstream issue [here](https://github.com/anchore/syft/issues/690). | Grype image scans for Java workloads work as expected. If using an out-of-the-box Supply Chain with scanning, users select between one of the following options: Do nothing. If you do nothing, source scan might not report any vulnerabilities but image scan can. Or you can edit the Supply Chain to use an alternative scanner that supports Java for source scans. |

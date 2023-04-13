@@ -60,7 +60,7 @@ The following changes affect the upgrade procedures:
 
 - **Keyless support deactivated by default**
 
-    In Tanzu Application Platform v1.4.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md).
+    In Tanzu Application Platform v1.5.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md).
 
     To support the keyless authorities in `ClusterImagePolicy`, Policy Controller no longer initializes TUF by default. To continue using keyless authorities, you must set the `policy.tuf_enabled` field to `true` in the `tap-values.yaml` file during the upgrade process.
 
@@ -68,12 +68,12 @@ The following changes affect the upgrade procedures:
 
 - **Image Policy Webhook no longer in use**
 
-    Tanzu Application Platform v1.4.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
+    Tanzu Application Platform v1.5.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
     from Image Policy Webhook to Policy Controller. For more information, see [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.hbs.md).
 
 - **CVE results require a read-write service account**
 
-    Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+    Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0 and later, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
 If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
@@ -86,6 +86,41 @@ This error does not persist and any subsequent builds resolve this error.
 You can wait for the next build of the workloads that new source code changes trigger.
 If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
+
+### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
+
+If you installed the [full dependencies package](install.md#tap-install-full-deps), 
+you can upgrade the package by following these steps:
+
+1. After upgrading Tanzu Application Platform, retrieve the latest version of the
+   Tanzu Build Service package by running:
+
+    ```console
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    ```
+
+1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+    --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+    ```
+
+    Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+
+1. Update the Tanzu Build Service  `full` dependencies package repository by running:
+
+    ```console
+    tanzu package repository add tbs-full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+      --namespace tap-install
+    ```
+
+1. Update the `full` dependencies package by running:
+
+    ```console
+    tanzu package installed update full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    ```
 
 ### <a id="upgrade-order"></a> Multicluster upgrade order
 

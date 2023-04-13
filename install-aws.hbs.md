@@ -6,11 +6,9 @@ from the Tanzu Application Platform package repository on to AWS.
 Before installing the packages, ensure you have:
 
 - Completed the [Prerequisites](prerequisites.hbs.md).
-- Created [AWS Resources](aws-resources.hbs.md)
+- Created [AWS Resources](aws-resources.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.hbs.md) with any required plug-ins.
-- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)*
-
->**Important** Installing Tanzu Application Platform v1.4 on AWS using ECR as your container image registry currently requires Cluster Essentials v1.3 due to an issue with support for credential helpers in Cluster Essentials v1.4.
+- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
@@ -24,23 +22,17 @@ See [Creating AWS Resources](aws-resources.hbs.md) for more information.
 
 To relocate images from the VMware Tanzu Network registry to the ECR registry:
 
-1. Install Docker if it is not already installed.
-
-1. Log in to your ECR image registry by following the [AWS documentation](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html).
-
-    >**Note** This is a one time copy of images from the VMware Tanzu Network to ECR, so the ECR token expiring in 12 hours is not a concern.
-
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
-
-    ```console
-    docker login registry.tanzu.vmware.com
-    ```
-
 1. Set up environment variables for installation use by running:
 
     ```console
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     export AWS_REGION=TARGET-AWS-REGION
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+    export IMGPKG_REGISTRY_USERNAME_1=AWS
+    export IMGPKG_REGISTRY_PASSWORD_1=`aws ecr get-login-password --region $AWS_REGION`
     export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REGISTRY_HOSTNAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
     export INSTALL_REPO=tap-images
@@ -49,10 +41,12 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     Where:
 
     - `MY-AWS-ACCOUNT-ID` is the account ID you depoloy Tanzu Application Platform in. No dashes and must be in the format `012345678901`.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `TARGET-AWS-REGION` is the region you deploy the Tanzu Application Platform to.
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
-1. [Install the Carvel tool `imgpk` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
 1. Relocate the images with the `imgpkg` CLI by running:
 
@@ -96,7 +90,7 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     ```
 
     > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
-    > Tanzu Application Platform v1.4.0 or earlier.
+    > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
 

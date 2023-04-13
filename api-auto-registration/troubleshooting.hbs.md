@@ -1,8 +1,10 @@
 # Troubleshoot API Auto Registration
 
+This topic contains troubleshooting information for API Auto Registration. 
+
 ## Debug API Auto Registration
 
-This topic includes commands for debugging or troubleshooting the APIDescriptor CR.
+This section includes commands for debugging or troubleshooting the APIDescriptor CR.
 
 1. Get the details of APIDescriptor CR.
 
@@ -33,17 +35,10 @@ This topic includes commands for debugging or troubleshooting the APIDescriptor 
 
     >**Note** If you manually remove the finalizers from the APIDescriptor resources, you can have stale API entities within Tanzu Application Platform GUI that you must manually deregister.
 
-5. If using OpenAPI v2 specifications with `schema.$ref`, the specifications fail validation due to a known issue.
-To pass the validation, you can convert the specifications to OpenAPI v3 by pasting your specifications into https://editor.swagger.io/ and selecting "Edit > Convert to OpenAPI 3".
-
-## APIDescriptor CRD issues
-
-This topic includes issues users might find and how to solve them.
-
 ### APIDescriptor CRD shows message of `connection refused` but service is up and running
 
-In Tanzu Application Platform v1.4.x, if your workloads use ClusterIssues for the TLS configuration and you access `https://spring-petclinic.example.com/v3/api-docs`,
-you might encounter the following message. API Auto Registration does not support using ClusterIssues for TLS configuration.
+In Tanzu Application Platform v1.4 and later, if your workloads use ClusterIssuer for the TLS configuration or your API specifications location URL is secured using a custom CA,
+you might encounter the following message.
 
 Your APIDescription CRD shows a status and message similar to:
 
@@ -55,92 +50,40 @@ Your APIDescription CRD shows a status and message similar to:
     Last Transition Time:  2022-11-28T09:59:13Z
 ```
 
-To solve this issue, either:
+This might be due to your workloads using a custom Ingress issuer. To solve this issue, either:
 
-- Deactivate TLS by setting `shared.ingress_issuer: ""`.
-- Configure `shared.ca_cert_data` key as mentioned in [Install Tanzu Application Platform](../install.hbs.md).
+- Configure `ca_cert_data` following the instructions in [Configure CA Cert Data](#set-ca-crt).
+- Deactivate TLS by setting `shared.ingress_issuer: ""`. VMware discourages this method.
 
-#### <a id="obtain-pem"></a> Obtain PEM encoded crt
+#### <a id="set-ca-crt"></a> Configure CA Cert Data
 
-You can obtain the PEM Encoded crt file using the following steps:
-
-1. Create a Certificate object where the issuerRef refers to the ClusterIssuer referenced
-in the `shared.ingress_issuer` field.
-
-    ```console
-    # create the cert
-    cat <<EOF | kubectl apply -f -
-    apiVersion: cert-manager.io/v1
-    kind: Certificate
-    metadata:
-      name: ca-extractor
-      namespace: default
-    spec:
-      dnsNames:
-      - tap.example.com
-      issuerRef:
-        group: cert-manager.io
-        kind: ClusterIssuer
-        name: tap-ingress-selfsigned
-      secretName: ca-extractor
-    EOF
-    ```
-
-1. Extract the CA certificate data from the secret that is generated in the
-previous command. The name of the secret is found in the `secretName:
-ca-extractor` field. The following command extracts a PEM encoded CA certificate
-and stores it in the file `ca.crt`.
-
-  ```console
-  kubectl get secret -n default ca-extractor -ojsonpath="{.data.ca\.crt}" | base64 -d > ca.crt
-  ```
-
-1. After you have the certificate data, you can delete both the certificate and
-   the secret that you generated in Step 1.
-
-  ```console
-  kubectl delete certificate -n default ca-extractor
-  kubectl delete secret -n default ca-extractor
-  ```
-
-4. Get the PEM encoded certificate that was stored in a file:
-
-  ```console
-  cat ca.crt
-  ```
-
-After you obtain the certificate you must update the `api-auto-registration` installation to use it:
+1. Obtain the PEM Encoded crt file for your ClusterIssuer or TLS setup . You use this to update the `api-auto-registration` package.
  
-1. Place the PEM encoded certificate into the `ca_cert_data` key of a values file. See [Install API Auto Registration](installation.hbs.md).
+2. If you installed the API Auto Registration package through predefined profiles, you must update the `tap-values.yaml` and update the Tanzu Application Platform installation.
+   Place the PEM encoded certificate into the `shared.ca_cert_data` key of the values file. See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
+   Run the following command to update the package.
 
-2. Pause the meta package's reconciliation. This prevents Tanzu Application Platform from reverting to the original values. 
+   ```console
+   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+   ```
 
-  ```console
-  kctrl package installed pause --yes --namespace tap-install --package-install tap
-  ```
+    Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
-1. Update the `api-auto-registration` installation to use the values file from the first step.
+3. If you installed the API Auto Registration package as standalone, you must update the `api-auto-registration-values.yaml` and then update the package.
+   Place the PEM encoded certificate into the `ca_cert_data` key of the values file. See [Install API Auto Registration](installation.hbs.md).
+   Run the following command to update the package.
 
-  ```console
-  tanzu package installed update api-auto-registration --version <VERSION> --namespace tap-install --values-file <VALUES-FILE>
-  ```
+   ```console
+   tanzu package installed update api-auto-registration --version API-AUTO-REGISTRATION-VERSION --namespace tap-install --values-file api-auto-registration-values.yaml
+   ```
 
-  Where:
-
-  - `VALUES-FILE` is name of values file
-  - `VERSION` is the api-auto-registration version. For example, `0.2.1`.
-
-You can find the available api-auto-registration volumes by running:
-
-  ```console
-  tanzu package available list -n tap-install | grep 'API Auto Registration'
-  ```
-
-1. Unpause the meta package's reconciliation
-
-  ```console
-  ctrl package installed kick --yes --namespace tap-install --package-install tap
-  ```
+    Where `API-AUTO-REGISTRATION-VERSION` is the version of API Auto Registration installed.
+    
+   You can find the available api-auto-registration versions by running:
+   
+   ```console
+   tanzu package available list -n tap-install | grep 'API Auto Registration'
+   ```
 
 ### APIDescriptor CRD shows message of `x509: certificate signed by unknown authority` but service is running
 

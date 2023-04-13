@@ -1,15 +1,14 @@
 # Overview of Tanzu Developer Tools for IntelliJ
 
-Tanzu Developer Tools for IntelliJ is VMware Tanzu's official IDE extension for IntelliJ IDEA to help
-you develop with the Tanzu Application Platform.
-This extension enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
-have Tanzu Application Platform installed.
+Tanzu Developer Tools for IntelliJ is VMware Tanzu's official IDE extension for IntelliJ IDEA.
+The extension helps you develop with Tanzu Application Platform and enables you to rapidly iterate
+on your workloads on supported Kubernetes clusters that have Tanzu Application Platform installed.
 
 Tanzu Developer Tools for IntelliJ currently supports Java applications on macOS and Windows.
 
 ## <a id="extension-features"></a> Extension features
 
-This extension gives the following features.
+This extension gives the following features:
 
 - **Deploy applications directly from IntelliJ**
   Rapidly iterate on your applications on Tanzu Application Platform and deploy them as workloads
@@ -26,18 +25,20 @@ This extension gives the following features.
   variables.
 
 - **See workloads running on the cluster**
-  From the workload panel you can see any workload found within the cluster and namespace specified
+  From the Workloads panel you can see any workload found within the cluster and namespace specified
   in the current kubectl context.
 
 - **Work with microservices in a Java monorepo**
   Tanzu Developer Tools for IntelliJ v1.3 and later supports working with a monorepo containing
   multiple modules that represent different microservices.
-  This makes it possible to deploy, debug, and live update multiple workloads simultaneously from
+  This makes it possible to deploy, debug, and Live Update multiple workloads simultaneously from
   the same IntelliJ multimodule project. For more information about projects with multiple modules,
   see the
   [IntelliJ documentation](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java).
   For more information about a typical monorepo setup, see
   [Working with microservices in a monorepo](using-the-extension.hbs.md#mono-repo).
+
+{{> 'partials/ide-extensions/no-ootb-basic-variation' }}
 
 ## <a id="next-steps"></a> Next steps
 
