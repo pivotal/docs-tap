@@ -553,6 +553,7 @@ docs.vmware.com is built.
             - [Enforce compliance policy using Open Policy Agent](scst-scan/policies.hbs.md)
             - [Create a ScanTemplate](scst-scan/create-scan-template.hbs.md)
             - [View scan status conditions](scst-scan/results.hbs.md)
+            - [Troubleshooting Rego Files](scst-scan/troubleshoot-rego.hbs.md)
         - [Supply Chain Security Tools - Scan 2.0 (alpha)](scst-scan/app-scanning-alpha.hbs.md)
     - [Supply Chain Security Tools - Sign](scst-sign/overview.hbs.md)
     - [Supply Chain Security Tools – Store](scst-store/overview.hbs.md)
