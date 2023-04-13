@@ -127,6 +127,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
+<br>
 The sample pipeline resource has the following ytt logic which creates this pipeline only if the following conditions are met:
 
 - `supply_chain` in your TAP values is either `testing` or `testing_scanning`
