@@ -72,7 +72,7 @@ docs.vmware.com is built.
   - [External Secrets Operator (beta)](external-secrets/about-external-secrets-operator.hbs.md)
       - [Overview](external-secrets/about-external-secrets-operator.hbs.md)
       - [Install Secrets Operator](external-secrets/install-external-secrets-operator.hbs.md)
-      - [Example integration with HashiCorp Vault](external-secrets/vault-example.hbs.md)
+      - [Example integration with HashiCorp Vault](external-secrets/vault-example.md)
   - [NIST 800-53 Moderate Assessment](security-and-compliance/tap-nist-matrix.hbs.md)
   - [Harden Tanzu Application Platform](security-and-compliance/harden-tap.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
