@@ -1,10 +1,10 @@
-# Troubleshooting Rego Files with a Scan Policy
+# Troubleshooting Rego files with a scan policy
 
 This topic describes how to use an example output to troubleshoot your Rego file. You use a Rego file in Scan Policy custom resource. See [Enforce compliance policy using Open Policy Agent](./policies.hbs.md).
 
 For information about how to write Rego, see [Open Policy Agent documentation](https://www.openpolicyagent.org/docs/latest/policy-language/).
 
-## <a id="rego-playground"></a> Using the Rego Playground
+## <a id="rego-playground"></a> Using the Rego playground
 
 Use the [Rego Playground](https://play.openpolicyagent.org/), to evaluate your Rego file against an input. In this example, use the example output of an image or source scan custom resource.
 
