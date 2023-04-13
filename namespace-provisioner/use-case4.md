@@ -61,7 +61,7 @@ Using GitOps
         subPath: ns-provisioner-samples/gitops-install
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
-
+<br>
 ## Customize service accounts
 
 This section provides instructions on how to configure the `default` service account to work with private Git repositories for workloads and supply chain using Namespace Provisioner.

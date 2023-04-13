@@ -31,6 +31,7 @@ GitOps mode
     - Namespace Provisioner creates [default resources](reference.md#default-resources) that are shipped Out of the Box in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.md).
 
+<br>
 ## <a id='carvel-app'></a>Provisioner Carvel application
 
 ![Diagram of .](../images/namespace-provisioner-2.png)
@@ -71,6 +72,7 @@ Controller mode
 GitOps mode
 : In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the `Options if using GitOps` section in [Customize Install](customize-installation.md).
 
+<br>
 ## <a id ='nsp-controller'></a>Namespace Provisioner controller
 
 The Namespace Provisioner controller (controller) is installed by default and manages the content contained in

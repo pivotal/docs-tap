@@ -99,7 +99,7 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
           secretRef:
             name: git-auth-install
       ```
-
+<br>
 ### Import from another namespace
 
 If you already have a Git secret created in a namespace other than `tap-namespace-provisioning`
