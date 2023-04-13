@@ -1,8 +1,9 @@
 # External Secrets Operator example integration with HashiCorp Vault
 
 This topic describes how External Secrets Operator integrates with HashiCorp Vault, an external
-Secret Management System. The operator synchronizes secret data from external APIs to a
-[Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret) resource.
+secret Management System. The operator synchronizes secret data from external APIs to a Kubernetes
+secret resource. For more information about Kubernetes secret resources, see the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret).
 
 > **Important** This example integration is deliberately constructed to showcase the features
 > available and must not be considered in a production environment.
@@ -17,8 +18,8 @@ Before proceeding with this example, you must:
 - Install the Tanzu CLI. The Tanzu CLI includes the plug-in `external-secrets`.
   For Tanzu CLI installation, see [Tanzu CLI](../install-tanzu-cli.hbs.md).
 
-- Have a running instance of HashiCorp Vault. In this instance, there will be a secret defined with
-  a key `eso-demo/reg-cred`.
+- Have a running instance of HashiCorp Vault. In this instance, there is a secret defined with
+  the key `eso-demo/reg-cred`.
 
 ## <a id='eso-vault-setup'></a> Set up the integration
 
@@ -26,7 +27,7 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
 
 1. Create a `Secret` with the vault token. For example:
 
-   ```sh
+   ```console
    VAULT_TOKEN="vault-token-value"
 
    cat <<EOF | kubectl apply -f -
@@ -41,7 +42,7 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
 
 1. Create a `SecretStore` resource referencing the `vault-token` secret. For example:
 
-   ```sh
+   ```console
    VAULT_SERVER="http://my.vault.server:8200"
    VAULT_PATH="eso-demo"
 
@@ -64,15 +65,15 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    EOF
    ```
 
-1. Check the status of the `SecretStore` resource is `Valid` by running:
+1. Verify that the status of the `SecretStore` resource is `Valid` by running:
 
-   ```sh
+   ```console
    tanzu external-secrets store list
    ```
 
    Example output:
 
-   ```sh
+   ```console
    NAMESPACE  NAME                PROVIDER         STATUS
    default    vault-secret-store  Hashicorp Vault  Valid
    ```
@@ -96,7 +97,7 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
        template:
          type: kubernetes.io/dockerconfigjson
          data:
-           .dockerconfigjson: "{{ .registryCred | toString }}"
+           .dockerconfigjson: "\{{ .registryCred | toString }}"
        creationPolicy: Owner
      data:
      - secretKey: registryCred
@@ -106,23 +107,23 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    EOF
    ```
 
-1. Check the status of the `ExternalSecret` resource is `Valid` by running:
+1. Verify that the status of the `ExternalSecret` resource is `Valid` by running:
 
-   ```sh
+   ```console
    tanzu external-secrets secret list
    ```
 
    Example output:
 
-   ```sh
+   ```console
    NAMESPACE  NAME                  SECRET NAME      STORE               REFRESH INTERVAL  STATUS             LAST UPDATED  LAST REFRESH
    default    vault-secret-example  registry-secret  vault-secret-store  15m               SecretSynced  21s           10m
    ```
 
 1. After the resource has reconciled, a Kubernetes `secret` resource is created.
-   Check for a secret named `registry-secret` created by the referenced `ExternalSecret`. For example:
+   Look for a secret named `registry-secret` created by the referenced `ExternalSecret`. For example:
 
-   ```sh
-   kubectl get secrets registry-secret -o="jsonpath={.data.\.dockerconfigjson}" | base64 -D
-   {"auths":{"my-registry.example:8200":{"username":"foo","password":"bar4","email":"foo@bar.example","auth":"Zm9vOmJhcjQ="}}}
+   ```console
+   kubectl get secrets registry-secret -o="jsonpath=\{.data.\.dockerconfigjson}" | base64 -D
+   \{"auths":\{"my-registry.example:8200":\{"username":"foo","password":"bar4","email":"foo@bar.example","auth":"Zm9vOmJhcjQ="}}}
    ```
