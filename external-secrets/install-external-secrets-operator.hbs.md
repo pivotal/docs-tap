@@ -19,31 +19,31 @@ To install External Secrets Operator:
 
 1. List version information for the package by running:
 
-   ```sh
+   ```console
    tanzu package available list external-secrets.apps.tanzu.vmware.com -n tap-install
    ```
 
    For example:
 
-   ```sh
+   ```console
    NAME                                    VERSION      RELEASED-AT
    external-secrets.apps.tanzu.vmware.com  0.6.1+tap.6  2023-03-08 14:00:00 -0500 EST
    ```
 
 2. Install the package:
 
-   ```sh
+   ```console
    tanzu package install external-secrets \
      --package-name external-secrets.apps.tanzu.vmware.com \
      --version VERSION-NUMBER \
      --namespace tap-install
    ```
 
-   Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
+   Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
    For example:
 
-   ```sh
+   ```console
    tanzu package install external-secrets \
    --package-name external-secrets.apps.tanzu.vmware.com
    --version 0.6.1+tap.6
@@ -67,14 +67,14 @@ To install External Secrets Operator:
 
 3. Verify the package installation by running:
 
-   ```sh
+   ```console
    tanzu package installed get external-secrets \
    --namespace tap-install
    ```
 
    For example:
 
-   ```sh
+   ```console
    tanzu package installed get external-secrets -n tap-install
 
    NAME:                    external-secrets
