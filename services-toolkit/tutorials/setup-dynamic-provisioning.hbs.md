@@ -50,9 +50,9 @@ Feel free to refer back to the diagram as/when needed as you continue through th
 
 The first step when it comes to adding any new service into TAP is to ensure there are a suitable set of APIs available in the cluster from which to construct desired service instances. Usually this involves installing one or more Kubernetes Operators into the cluster. Given the aim of this tutorial is to setup a new RabbitMQ service, we'll begin by installing the RabbitMQ Cluster Operator for Kubernetes.
 
-    > **Note** The steps below use the open source version of the operator.
-    > For most real-world deployments, VMware recommends using the official, supported version provided by VMware.
-    > For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
+> **Note** The steps below use the open source version of the operator.
+> For most real-world deployments, VMware recommends using the official, supported version provided by VMware.
+> For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
 Use `kapp` to install the operator by running:
 

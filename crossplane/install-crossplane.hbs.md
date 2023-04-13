@@ -1,6 +1,6 @@
 # Install Crossplane
 
-This document describes how to install Crossplane from the Tanzu Application Platform package
+This topic describes how to install Crossplane from the Tanzu Application Platform package
 repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
@@ -46,7 +46,7 @@ To install Crossplane:
     tanzu package installed get crossplane -n tap-install
     ```
 
-    and checking that the `STATUS` value is `Reconcile succeeded`
+    In the output, confirm that the `STATUS` value is `Reconcile succeeded`.
 
     For example:
 

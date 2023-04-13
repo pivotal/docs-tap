@@ -5,61 +5,53 @@ in the Tanzu Application Platform. Improved security and access control in
 Application Live View secures the REST API exposed by the Application Live View
 back end.
 
-For more information about Application Live View packages, see [Install
-Application Live View](./install.hbs.md).
+For more information about Application Live View packages, see
+[Install Application Live View](./install.hbs.md).
 
 ## <a id='sec-ac-overview'></a>Security and access control overview
 
-There is one instance of Application Live View back end installed per `view`
-profile. Multiple users access this back-end API to fetch actuator data for
-different applications. All the REST API calls to the back end are secured. A
-token must be passed to the Application Live View back end on each call to REST
-API to fetch actuator data. This token is obtained from Application Live View
-Apiserver.
+There is one instance of Application Live View back end installed per `view` profile.
+Multiple users access this back-end API to fetch actuator data for different applications.
+All the REST API calls to the back end are secured.
+A token must be passed to the Application Live View back end on each call to the REST API to fetch
+actuator data. This token is obtained from Application Live View APIServer.
 
-The Application Live View Apiserver generates a unique token upon access
-validation of a user to a pod. The Application Live View back end passes this
-token to the Application Live View connector when requesting the actuator data.
-The Application Live View connector verifies this token by calling the
-Application Live View Apiserver and proxies the actuator data only if the token
-is valid.
+The Application Live View APIServer generates a unique token upon access validation of a user to a pod.
+The Application Live View back end passes this token to the Application Live View connector when
+requesting the actuator data.
+The Application Live View connector verifies this token by calling the Application Live View APIServer
+and proxies the actuator data only if the token is valid.
 
-The Application Live View UI plug-in part of The Tanzu Application Platform GUI
-uses the preceding approach to securely query for the actuator data for a pod.
-It requests a token from Application Live View Apiserver and passes it in the
-subsequent calls to the back end. This ensures that actuator data from the
-running application is fetched only if the user is authorized to see the live
-information for the pod.
+The Application Live View UI plug-in part of The Tanzu Application Platform GUI uses the preceding
+approach to securely query for the actuator data for a pod.
+It requests a token from Application Live View APIServer and passes it in the subsequent calls to the
+back end. This ensures that actuator data from the running application is fetched only if the user is
+authorized to see the live information for the pod.
 
-The Application Live View UI plug-in relies on Tanzu Application Platform GUI
-authentication and authorization to access the Application Live View Apiserver
-and fetch the application live view tokens.
+The Application Live View UI plug-in relies on Tanzu Application Platform GUI authentication and
+authorization to access the Application Live View APIServer and fetch the Application Live View tokens.
 
-The Tanzu Application Platform GUI controls the access to Kubernetes resources
-based on user roles and permissions for each of the remote clusters. For more
-information, see [View runtime resources on authorization-enabled
-clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
+The Tanzu Application Platform GUI controls the access to Kubernetes resources based on user roles
+and permissions for each of the remote clusters.
+For more information, see
+[View runtime resources on authorization-enabled clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
 
-For more information about how to set up unrestricted remote cluster visibility,
-see [Viewing resources on multiple clusters in Tanzu Application Platform
-GUI](../tap-gui/cluster-view-setup.hbs.md).
-
+For more information about how to set up unrestricted remote cluster visibility, see
+[Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
-1. You install the Application Live View Apiserver package
-(`apiserver.appliveview.tanzu.vmware.com`) in Tanzu Application Platform. For
-more information, see [Install Application Live View
-Apiserver](./install.hbs.md).
+1. You install the Application Live View APIServer package (`apiserver.appliveview.tanzu.vmware.com`)
+   in Tanzu Application Platform.
+   For more information, see [Install Application Live View APIServer](./install.hbs.md#install-alv-apiserver).
 
-1. Assign users necessary roles and permissions for the Kubernetes
-   clusters. For more information about managing role-based access control, see
-   [Assign roles and permissions on Kubernetes
-   clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
+1. Assign users necessary roles and permissions for the Kubernetes clusters.
+   For more information about managing role-based access control, see
+   [Assign roles and permissions on Kubernetes clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
 
 For example: If you are using Service Account to view resources on a cluster in
 Tanzu Application Platform GUI, verify that the `ClusterRole` has rules to
-access and request tokens from the Application Live View Apiserver.
+access and request tokens from the Application Live View APIServer.
 
 ```yaml
 - apiGroups: ['appliveview.apps.tanzu.vmware.com']

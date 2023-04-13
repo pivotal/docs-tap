@@ -1,11 +1,15 @@
 # Troubleshooting and known limitations
 
-This document provides guidance on how to debug issues related to working with services on Tanzu
+This topic provides guidance on how to debug issues related to working with services on Tanzu
 Application Platform and workarounds for known limitations.
 
 ## <a id="stk-debug-dynamic-provisioning"></a> Debug `ClassClaim` and provisioner-based `ClusterInstanceClass`
 
-This section of the document provides guidance on how to debug issues related to usage of `ClassClaim` and provisioner-based `ClusterInstanceClass`. You will require `kubectl` access to the cluster. The general approach detailed here starts by inspecting a `ClassClaim` and tracing the way back through the chain of resources that are created in order to fulfill the `ClassClaim`.
+This section provides guidance on how to debug issues related to usage of `ClassClaim`
+and provisioner-based `ClusterInstanceClass`.
+You will require `kubectl` access to the cluster. The general approach detailed here starts by inspecting
+a `ClassClaim` and tracing the way back through the chain of resources that are created in order to
+fulfill the `ClassClaim`.
 
 ### Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass` and `CompositeResourceDefinition`
 
@@ -107,12 +111,18 @@ Rather than setting `additionalProperties: true`, you can set `additionalPropert
 
 While not strictly a limitation with Services Toolkit per se, care should be taken before choosing to install additional Crossplane `Providers` into Tanzu Application Platform. Some of these `Providers` install multiple hundreds of additional CRDs into the cluster. This is particularly true of the `Providers` for the three big clouds - AWS, Azure and GCP. At the time of writing `provider-aws` installs [894](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/crds), `provider-azure` installs [705 CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/crds) and `provider-gcp` installs [329 CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/crds). You must ensure your cluster has sufficient resource to support this number of additional CRDs if choosing to install them.
 
-### Private registry / Vmware Application Catalog (VAC) configuration does not seem to take effect
+### Private registry or VMware Application Catalog (VAC) configuration does not seem to take effect
 
 **Description**
 
-As of TAP 1.5.0 there is a known issue that occurrs if you try to [configure private registry integration for the Bitnami services](../../bitnami-services/how-to-guides/configure-private-reg-integration-bitnami-services.hbs.md) after having already created a claim for one or more of the Bitnami services using the default configuration. The issue is that the updated private registry configuration does not appear to take effect. This is due to caching behaviour in the system which is not currently accounted for during configuration updates.
+As of Tanzu Application Platform v1.5.0 there is a known issue that occurs if you try to
+[configure private registry integration for the Bitnami services](../../bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
+after having already created a claim for one or more of the Bitnami services using the default configuration.
+The issue is that the updated private registry configuration does not appear to take effect.
+This is due to caching behavior in the system which is not currently accounted for during configuration
+updates.
 
 **Workaround**
 
-There is a temporary workaround to this issue, which is to simply delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come back online after having applied updated registry configuration.
+Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
+back online after having applied the updated registry configuration.

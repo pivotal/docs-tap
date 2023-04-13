@@ -30,6 +30,13 @@ Application Live View includes the following components as shown in the architec
 
   This component provides a webhook handler for the Tanzu convention controller. The webhook handler is registered with Tanzu convention controller. The webhook handler detects supply-chain workloads running a Spring Boot. Such workloads are annotated automatically to enable Application Live View to monitor them. Download and install the Application Live View Convention Webhook component with [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
+- **Application Live View APIServer**
+
+  Application Live View APIServer generates a unique token when a user receives access validation to a pod.
+  The Application Live View Connector component verifies the token against the Application Live View
+  APIServer before proxying the actuator data from the application.
+  This ensures that the actuator data is secured and only the user who has valid access to view the
+  live information for the pod can retrieve the data.
 
 ## <a id="design-flow"></a> Design flow
 

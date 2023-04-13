@@ -1,40 +1,41 @@
-# Obtain credentials for VMware Application Catalog ("VAC") Integration
+# Obtain credentials for VMware Application Catalog Integration
 
-This document describes how to obtain credentials for VMware Application Catalog ("VAC"), which can then be used in [Configure Private Registry and VMware Application Catalog ("VAC") Integration for Bitnami Services](./configure-private-reg-integration-bitnami-services.hbs.md).
+This topic describes how to obtain credentials for VMware Application Catalog (VAC) to use
+when following the procedure in [Configure private registry and VMware Application Catalog integration for Bitnami Services](./configure-private-reg-integration.hbs.md).
 
-    > **Note** This guide assumes that your VAC instance provides the capability to create access tokens from
-    > within the VAC UI.
+## <a id='prereqs'></a> Prerequisites
 
-## Steps to obtain Helm Chart repository for VMware Application Catalog
+Before obtaining credentials, you must have a VAC instance that can create access tokens from
+within the VAC UI.
 
-In VMware Application Catalog, navigate to the “Applications” tap on the left:
+## <a id='repo'></a> Obtain the Helm chart repository for VMware Application Catalog
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-1.png)
+1. In VMware Application Catalog, navigate to the **Applications** side tab:
 
-Search for Helm Charts in your catalog, for example “MySQL” and click on “Details” for one of the charts you found:
+2. Search for Helm Charts in your catalog, for example, `MySQL`, and click **Details** for one of the charts you found:
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-2.png)
+   ![The applications tab in the VAC UI. The catalog is filtered with the search term MySQL and by type Helm chart.](../../images/vac-creds-2.png)
 
-Take note of the repository shown under “For Helm CLI >= 3.7.0”. It is important to include the `oci://` prefix as shown on the page:
+3. Take note of the repository shown under **For Helm CLI >= 3.7.0**. You must include the `oci://` prefix as shown on the page:
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-3.png)
+   ![A MySQL Helm chart page in the VAC UI. The name of the repository is highlighted in the list of commands required to consume the Helm chart.](../../images/vac-creds-3.png)
 
-## Steps to obtain pull credentials for VMware Application Catalog
+## <a id='creds'></a> Obtain pull credentials for VMware Application Catalog
 
-In VMware Application Catalog, navigate to the “Registries” tap on the left:
+1. In VMware Application Catalog, navigate to the **Registries** side tab:
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-4.png)
+2. Click on the registry that contains your Helm Charts and container images and record the **Registry URL**.
 
-Click on the registry that contains your Helm charts and container images. Take note of the “Registry URL”:
+3. Click the **Registry Credentials** tab.
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-5.png)
+4. Click **Generate New Credentials**.
 
-Click on the “Registry Credentials” rider:
+   ![The registry credentials tab in the VAC UI.](../../images/vac-creds-6.png)
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-6.png)
+5. Record the user name and token you are presented with.
 
-Click on “Generate New Credentials”:
+   ![Generate new credentials dialog box showing a name and token.](../../images/vac-creds-7.png)
 
-![Image shows how to obtain credentials from VAC](../../images/vac-creds-7.png)
-
-Take note of the username and token you’re presented with. You can now take the repository, username and token and use it to configure VAC integration with the Bitnami services by following the steps in [Configure Private Registry and VMware Application Catalog ("VAC") Integration for Bitnami Services](./configure-private-reg-integration-bitnami-services.hbs.md).
+You can now take the repository, user name, and token and use it to configure VAC integration with
+the Bitnami services by following the steps in
+[Configure Private Registry and VMware Application Catalog Integration for Bitnami Services](./configure-private-reg-integration.hbs.md).

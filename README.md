@@ -8,11 +8,16 @@ This repo contains the content for Tanzu Application Platform docs.
 
 | Branch | Staging | Production |
 |--------|---------|------------|
-| main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) (Pre-release v1.5 docs) | n/a |
-| 1-4-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) (Pre-release v1.6 docs) | n/a |
+| 1-5-1  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.1/tap/overview.html) (Pre-release v1.5.1 docs) | n/a |
+| 1-5-0  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) |
+| 1-4-4  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| 1-4-3  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-4-2  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-4-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-4-0  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-3-6  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-7  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-6  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-3-5  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-3-4  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-3-3  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |

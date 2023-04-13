@@ -2,6 +2,6 @@
 
 In this section:
 
-- [API documentation](api-documentation.hbs.md)
+- [API documentation](api/index.hbs.md)
 - [Tanzu Service CLI Plug-In](tanzu-service-cli.hbs.md)
-- [Services Toolkit Terminology and User roles](terminology_and_user_roles.hbs.md)
+- [Services Toolkit terminology and user roles](terminology-and-user-roles.hbs.md)

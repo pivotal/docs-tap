@@ -4,21 +4,13 @@ This topic describes how to upgrade Supply Chain Security Tools - Scan from the 
 
 You can perform a fresh install of SCST - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
 
-This topic includes instructions for:
-
-- [Upgrade Supply Chain Security Tools - Scan](#upgrade-supply-chain-security-tools---scan)
-  - [ Prerequisites](#-prerequisites)
-  - [ General Upgrades for Supply Chain Security Tools - Scan](#-general-upgrades-for-supply-chain-security-tools---scan)
-  - [ Upgrading to Version v1.2.0](#-upgrading-to-version-v120)
-
-
 ## <a id="prereqs"></a> Prerequisites
 
 Before you upgrade SCST - Scan:
 
 * Upgrade the Tanzu Application Platform by following the instructions in [Upgrading Tanzu Application Platform](../upgrading.md)
 
-## <a id="general-upgrades"></a> General Upgrades for Supply Chain Security Tools - Scan
+## <a id="general-upgrades"></a> General Upgrades for SCST - Scan
 
 When you're upgrading to any version of SCST - Scan these are some factors to accomplish this task:
 
@@ -32,7 +24,42 @@ When you're upgrading to any version of SCST - Scan these are some factors to ac
    Where `$VERSION` is the new version. This gives you insights on the values you can configure in
    your `tap-values.yaml` for the new version.
 
-## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
+## <a id="upgrade-scanner"></a> Upgrading a scanner in all namespaces
+This section describes how to upgrade a supported scanner in all namespaces. The procedure is different depending on the installation method:
+
+1. Installation by using Namespace Provisioner
+2. Manual installation
+
+### <a id="upgrade-scanner-nsp"></a> Installation by using Namespace Provisioner
+
+All scanners installed by the Namespace Provisioner in all managed namespaces
+are upgraded automatically. For example, if you upgrade your installation of
+Tanzu Application Platform and the version of Grype is updated, all Grype
+scanners installed by the Namespace Provisioner for all managed namespaces are
+automatically upgraded.
+
+### <a id="upgrade-scanner-manual"></a> Manual installation
+
+1. If a scanner, such as Grype Scanner, was installed as part of Tanzu Application Platform by using the [full profile](../install.hbs.md#full-profile), run to upgrade:
+
+```console
+tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yaml -n tap-install
+```
+
+Where `VERSION` is your Tanzu Application Platform version.
+
+1. If a scanner, such as Grype Scanner, was installed by using [component installation](../partials/_install-components.hbs.md) you must manually run:
+
+```console
+tanzu package installed update grype -p grype.scanning.apps.tanzu.vmware.com -v GRYPE-VERSION --values-file grype-values.yaml -n NAMESPACE
+```
+
+Where:
+
+- `GRYPE-VERSION` is the version of Grype that you are upgrading to.
+- `NAMESPACE` is the namespace in which Grype is installed in.
+
+## <a id="upgrade-to-1-2-0"></a> Upgrade to Version v1.2.0
 
 To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
@@ -92,7 +119,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
       # Install Grype Scanner v1.2.0
       grype:
-        namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
+        namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are going to be deployed
         metadataStore:
           url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
           caSecret:

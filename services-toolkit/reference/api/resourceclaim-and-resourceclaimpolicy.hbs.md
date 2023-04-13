@@ -2,9 +2,14 @@
 
 Detailed API documentation for `ResourceClaim` and `ResourceClaimPolicy`.
 
-## ResourceClaim
+## <a id="resourceclaim"></a> ResourceClaim
 
-`ResourceClaims` are used to claim one, specific Kubernetes resource via reference. They adhere to [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) as defined by the Service Binding Specification for Kubernetes, and as such can be bound to Application Workloads via reference in a given Workload's `.spec.serviceClaims` configuration. Note that `ResourceClaims` are exclusive by nature, meaning that once a given `ResourceClaim` has successfully claimed a resource, no other `ResourceClaim` will be able to claim that same resource.
+`ResourceClaims` are used to claim one, specific Kubernetes resource via reference.
+They adhere to [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
+as defined by the Service Binding Specification for Kubernetes, and as such can be bound to
+application workloads via reference in a given Workload's `.spec.serviceClaims` configuration.
+Note that `ResourceClaims` are exclusive by nature, meaning that once a given `ResourceClaim` has
+successfully claimed a resource, no other `ResourceClaim` will be able to claim that same resource.
 
 ```yaml
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
@@ -49,7 +54,7 @@ status:
       # 'UpdatedResourceReference' or 'ClaimMarkedForDeletion'.
       # Not set if status: "True".
       reason:
-  
+
   # binding holds a reference to a Secret in the same namespace which contains credentials for accessing the claimed
   # service instance.
   binding:
@@ -73,7 +78,7 @@ status:
   observedGeneration: 1
 ```
 
-## ResourceClaimPolicy
+## <a id="resourceclaimpolicy"></a> ResourceClaimPolicy
 
 `ResourceClaimPolicy` provides a mechanism to either permit or deny the claiming of resources across namespaces.
 

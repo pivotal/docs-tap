@@ -68,7 +68,7 @@ Firefox
 
 ### Cause
 
-As of Tanzu Application Platform v1.4, Tanzu Application Platform GUI provides TLS connections by
+As of Tanzu Application Platform v1.5, Tanzu Application Platform GUI provides TLS connections by
 default. Because of this, if you visit a Tanzu Application Platform GUI site your connection is
 automatically upgraded to https.
 

@@ -1,22 +1,29 @@
 # Tanzu GitOps RI Reference Documentation
 
->**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and 
+> is intended for evaluation and test purposes only. Do not use in a production environment.
 
-## Component Overview
+## <a id="overview"></a>Component Overview
 
-The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows the components that are installed as part of Tanzu GitOps Reference Implememtation (RI) 
+and how they work together to automate the installation of Tanzu Application Platform:
 
-<!-- TODO DIAGRAM -->
+SOPS
+: ![Diagram describing the architecture of GitOps Installer using SOPS.](./images/arch-sops.png)
+
+ESO
+: ![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
+
 
 ### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
-Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/) application named `sync` that is installed in the `tanzu-sync` namespace. The sync application:
+Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/) 
+application named `sync` that is installed in the `tanzu-sync` namespace. The sync application:
 
 1. Fetches a Git repository that contains configuration for Tanzu Application Platform.
-2. Templates with ytt a set of resources and data values.
-3. Deploys with kapp a set of resources to install Tanzu Application Platform, alongside any other user specified confiuration in the Git Repository.
-
-<!-- TODO DIAGRAM -->
+2. Templates with `ytt` a set of resources and data values.
+3. Deploys with `kapp` a set of resources to install Tanzu Application Platform, 
+with any other user specified confiuration in the Git Repository.
 
 ## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
 
@@ -41,7 +48,8 @@ The following table describes a few common use cases and scenarios for SOPS and 
 
 ## <a id="git-repo-structure"></a>Git Repository structure
 
-Tanzu Sync Application fetches our deployable content from a Git repository that must match the following structure:
+Tanzu Sync Application fetches our deployable content from a Git repository that 
+must match the following structure:
 
 Git repository for a cluster named `full-tap-cluster`:
 
@@ -77,13 +85,13 @@ Git repository for a cluster named `full-tap-cluster`:
     - `tap-install`: Contains the configuration to install Tanzu Application Platform.
   - `clusters/full-tap-cluster`
     - `cluster-config`
-      - `config`: Contains the Tanzu Application Platform installation configuration. This directory can be extended to include any resources we want managed via GitOps to our cluster.
-        - `.tanzu-managed`: Contains VMware managed kubernetes resource files to install Tanzu Application Platform. This should not be altered by users!
+      - `config`: Contains the Tanzu Application Platform installation configuration. This directory can be extended to include any desired resources managed through GitOps to your cluster.
+        - `.tanzu-managed`: Contains VMware managed Kubernetes resource files to install Tanzu Application Platform. Do not alter this value.
       - `values`: Contains the plain YAML data files which configure the application.
     - `tanzu-sync`
-      - `app`: Contains the main Carvel Packaging App that runs on cluster. It will fetch, template and deploy our TAP installation from `clusters/full-tap-cluster/cluster-config`.
+      - `app`: Contains the main Carvel Packaging App that runs on the cluster. It fetches, templates and deploys your Tanzu Application Platform installation from `clusters/full-tap-cluster/cluster-config`.
       - `boostrap`: Contains secret provider specific bootstrapping if required.
-      - `scripts`: Contains [useful helper scripts](#tanzu-sync-scripts) which can be run to aid in the configuration and deployment of Tanzu GitOps RI.
+      - `scripts`: Contains helper scripts to assist with the configuration and deployment of Tanzu GitOps RI.
 
 ## <a id="configure-values"></a>Configuration of Tanzu Sync without helper scripts
 
@@ -118,7 +126,6 @@ Git repository for a cluster named `full-tap-cluster`:
         tap_package_repository:
           oci_repository: registry.example.com/tanzu-application-platform/tap-packages
         ```
-
 
     - Tanzu Application Platform Install:
 
@@ -172,7 +179,7 @@ Git repository for a cluster named `full-tap-cluster`:
                 password: my-password
         ```
 
-2. The following is used to deploy the application using `kapp`:
+1. The following is used to deploy the application by using `kapp`:
 
     ```terminal
     kapp deploy --app tanzu-sync --file <(ytt \
@@ -192,87 +199,16 @@ Git repository for a cluster named `full-tap-cluster`:
 
 >**Caution**
 >
-> The provided scripts are intended to help with the setup of your Git repository to work with a GitOps approach, they are subject to change and/or removal between releases.
+> The provided scripts are intended to help set up your Git repository to work with a GitOps approach, 
+> they are subject to change or removal between releases.
 
 
-Provided in `clusters/MY-CLUSTER/tanzu-sync/scripts` are a set of convenience bash scripts.
+VMware provides a set of convenience bash scripts in `clusters/MY-CLUSTER/tanzu-sync/scripts` 
+to help you set up your Git repository and configure the values as described in the previous section:
 
-These scripts help to setup your Git repository and configure the values as described in the previous section:
-
-- `setup-repo.sh`: Populates a Git repository with the structure described in section [Git Repository structure](#git-repo-structure)
-- `configure.sh`: Generates the values files described in section [Configuration of values without helper scripts](#configure-values).
-- `deploy.sh`: A light wrapper around a simple `kapp deploy` given the data values from above, and sensitive values which should not be stored on disk.
-
-## Troubleshoot Tanzu GitOps RI
-
-This section provides information to help troubleshoot Tanzu GitOps RI.
-
-## <a id="tanzu-sync-app-error"></a>Tanzu Sync application error
-
-After the Tanzu Sync application is installed in the cluster, the main
-resource to check is the [sync app]() in the `tanzu-sync` namespace.
-
-```terminal
-kubectl -n tanzu-sync get app/sync --template='\{{.status.usefulErrorMessage}}'
-```
-
-Example error:
-
-```terminal
-kapp: Error: waiting on reconcile packageinstall/tap (packaging.carvel.dev/v1alpha1) namespace: tap-install:
-  Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details)))
-```
-
-This indicates that the resource `packageinstall/tap` in namespace `tap-install` has failed. Please see below for details on how to fix this issue.
-
-## <a id="tanzu-sync-app-error"></a>Tanzu Application Platform install error
-
-After the Tanzu Sync application is installed in the cluster, the tap installation commences. The
-resource to check is the [tap package install]() in the `tap-install` namespace.
-
-```terminal
-kubectl -n tap-install get packageinstall/tap --template='\{{.status.usefulErrorMessage}}'
-```
-
-
-## <a id="common-errors"></a>Common errors
-
-You might encounter one of the following errors:
-
-### <a id="data-value-not-declared"></a>Given data value is not declared in schema
-
-**Error:** Reconciliation fails with `Given data value is not declared in schema`:
-
-```terminal
-^ Reconcile failed:  (message: ytt: Error: Overlaying data values (in following order: tap-install/.tanzu-managed/version.yaml, additional data values):
-One or more data values were invalid
-====================================
-
-Given data value is not declared in schema
-tap-values.yaml:
-    |
-  1 | shared:
-    |
-
-    = found: shared
-    = expected: a map item with the key named "tap_install" (from tap-install/.tanzu-managed/schema--tap-sensitive-values.yaml:3)
-```
-
-**Problem:** The values files were not generated according to the expected schema.
-
-**Solution:** Ensure both non-sensitive and sensitive tap values files to adhere to the schema described in [configure values](#configure-values).
-
-Incorrect values example:
-
-```yaml
-shared:
-  ingress_domain: example.vmware.com
-```
-
-Correct values example:
-
-```yaml
-tap_install:
-  values:
-    ingress_domain: example.vmware.com
-```
+- `setup-repo.sh`: Populates a Git repository with the structure described in the 
+[Git Repository structure](#git-repo-structure) section.
+- `configure.sh`: Generates the values files described in the 
+[Configuration of values without helper scripts](#configure-values) section.
+- `deploy.sh`: A light wrapper around a simple `kapp deploy` given the data values 
+from the previous section and sensitive values which must not be stored on disk.

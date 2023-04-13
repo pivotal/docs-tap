@@ -155,18 +155,17 @@ The class and claims abstractions enable that separation of concerns.
 Application operators create claims and service operators help to fulfil them.
 
 Now that you have a claim for a RabbitMQ service instance, you can now follow
-instructions to [Consume services on Tanzu Application
-Platform](./consume-services.hbs.md).
+instructions to [Consume services on Tanzu Application Platform](./consume-services.hbs.md).
 
 ## <a id="stk-use-cases"></a> Learn more
 
 To learn more about working with services on Tanzu Application Platform, see the
 [Services Toolkit component documentation](../services-toolkit/about.hbs.md):
 
-- [Tutorials](../services-toolkit/tutorials.hbs.md)
-- [How-to guides](../services-toolkit/how-to-guides.hbs.md)
-- [Explanations](../services-toolkit/explanation.hbs.md)
-- [Reference material](../services-toolkit/reference.hbs.md)
+- [Tutorials](../services-toolkit/tutorials/index.hbs.md)
+- [How-to guides](../services-toolkit/how-to-guides/index.hbs.md)
+- [Explanations](../services-toolkit/concepts/index.hbs.md)
+- [Reference material](../services-toolkit/reference/index.hbs.md)
 
 ## Next steps
 

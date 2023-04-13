@@ -4,31 +4,30 @@ This topic describes how to use Azure DevOps as a Git provider with your supply 
 
 There are two uses for Git in a supply chain:
 
-- As a source of code for applications to be built and deployed
-- As a repository of configuration created by the build cluster which is
-  deployed on a run or production cluster
+- As a source of code to build and deploy applications
+- As a repository of configuration created by the build cluster which is deployed on a run or production cluster
 
 Azure DevOps differs from other Git providers in the following ways:
 
 - Azure DevOps requires Git clients to support multi-ack.
 - Azure DevOps repository paths differ from other Git providers.
 
-These require special configuration by the operator to integrate Azure DevOps
-repositories into a supply chain.
+For information about how Azure DevOps is different from other Git providers, see [Gitops write path templates](#gitops-write-temp).
 
-## Using Azure DevOps as a repository for committed code
+The operator requires special configuration to integrate Azure DevOps repositories into a supply chain.
+
+## <a id="repo-committed"></a> Using Azure DevOps as a repository for committed code
 
 Developers can use Azure DevOps to commit source code to a repository that the
-supply chain pulls, such as testing, building, scanning and deploying the
-application.
+supply chain pulls.
 
-### Azure DevOps example
+### <a id="devops-example"></a> Azure DevOps example
 
 The following example uses the Azure DevOps source repository:
 
 `https://dev.azure.com/my-company/app/_git/app`
 
-You can configure the supply chain through `tap-values`:
+You can configure the supply chain by using `tap-values`:
 
 ```yaml
 ootb_supply_chain_testing_scanning:
@@ -48,7 +47,7 @@ spec:
       value: libgit2
 ```
 
-### Configuring your Git implementation for Azure DevOps
+### <a id="config-git"></a> Configuring your Git implementation for Azure DevOps
 
 The default configuration of the source controller does not use a Git
 implementation compatible with Azure DevOps.
@@ -63,7 +62,7 @@ To resolve this, you must configure the [source-template's](ootb-template-refere
 
 If both methods are set and do not match, the workload's parameter is respected.
 
-## Using Azure DevOps as a GitOps repository
+## <a id="using-gitops"></a> Using Azure DevOps as a GitOps repository
 
 The supply chain commits Kubernetes configuration to a Git repository.
 This configuration is then applied to another cluster. This is the GitOps
@@ -71,7 +70,7 @@ promotion pattern.
 
 You must construct a path and configure your Git implementation to read and write to an Azure DevOps repository.
 
-### GitOps write path example
+### <a id="gitops-write-ex"></a> GitOps write path example
 
 The following example uses the Azure DevOps Git repository:
 
@@ -109,7 +108,7 @@ spec:
     ...
 ```
 
-### Gitops write path templates
+### <a id="gitops-write-temp"></a> Gitops write path templates
 
 Azure DevOps and Git use different URL structures. 
 
@@ -132,7 +131,7 @@ accept three parameters to build the path of the repository. For Azure DevOps, c
 - gitops_repository_owner: `<org_name>/<project_name>`
 - gitops_repository_name: `<repository_name>`
 
-Configure these template parameters as follows:
+Configure the template parameters as follows:
 
 - `gitops.server_address` tap-value during the Out of the Box Supply Chains package installation
   or `gitops_server_address` configured as a workload parameter.
@@ -141,11 +140,11 @@ Configure these template parameters as follows:
 - `gitops.repository_name` tap-value during the Out of the Box Supply Chains package installation
   or `gitops_repository_name` configured as a workload parameter.
 
-For the write path to be properly constructed, the template parameter `gitops_server_kind` must be configured
-as `azure`. This is done by:
+To properly contruct the write path, the template parameter `gitops_server_kind` must be configured
+as `azure`. Configure `gitops_server_kind`:
 
-- `gitops.pull-request.server-kind` is the tap-value during the Out of the Box Supply Chains package installation
-  or `gitops_server_kind` configured as a workload parameter.
+- Use the `gitops.pull-request.server-kind` tap-value during the Out of the Box Supply Chains package installation
+- or configure`gitops_server_kind` as a workload parameter
 
 > **Note** Even if the commit strategy is not pull-request, such as direct commits, to use an 
 Azure DevOps repository either the tap value `gitops.pull-request.server-kind` or the workload parameter
@@ -154,7 +153,7 @@ Azure DevOps repository either the tap value `gitops.pull-request.server-kind` o
 For information about configuring the GitOps write operations, see
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
 
-### Gitops read example
+### <a id="gitops-read-ex"></a> Gitops read example
 
 The following example uses the Azure DevOps GitOps repository:
 
@@ -180,7 +179,7 @@ spec:
       value: libgit2
 ```
 
-### Gitops read implementation templates
+### <a id="gitops-read-temp"></a> Gitops read implementation templates
 
 Similar to [reading an Azure DevOps source repo](#using-azure-devops-as-a-repository-for-committed-code), when reading
 an AzureDevOps GitOps repository, you must configure the Git implementation for the
@@ -188,8 +187,9 @@ an AzureDevOps GitOps repository, you must configure the Git implementation for 
 comes from the [delivery](ootb-delivery-reference.hbs.md) or the
 [deliverable](ootb-template-reference.hbs.md#deliverable-template).
 
-You can configure the delivery through by using tap-values.
+You can configure the delivery by using tap-values.
 
-The supply chain creates the definition of a deliverable. TAP users are responsible for applying this definition to
-the run cluster. When undertaking this copy-paste, users can choose to add the `gitImplementation` parameter to the
-deliverable.
+The supply chain creates the definition of a deliverable. Tanzu Application
+Platform users are responsible for applying this definition to the run cluster.
+Users can choose to add the
+`gitImplementation` parameter to the deliverable.

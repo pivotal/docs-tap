@@ -2,7 +2,7 @@
 
 An `AuthServer` does not manage users internally. Instead, users log in through external identity providers (IdPs).
 Currently, `AuthServer` supports OpenID Connect providers, LDAP providers and a list of static hard-coded
-users for development purposes only. `AuthServer` also has limited beta support for SAML providers.
+users for development purposes only. `AuthServer` also has limited experimental support for SAML providers.
 
 Identity providers are configured under `spec.identityProviders`, learn more
 from [the API reference](../crds/authserver.md).
@@ -689,7 +689,7 @@ There are multiple options for generating bcrypt hashes:
 
 ## <a id='roles-filtering'></a> Roles claim filtering
 
-> **Note** This section is applicable to **OpenID**, **LDAP**, and **SAML** identity provider configurations
+> **Note** This section is applicable to OpenID, LDAP, and SAML (experimental) identity provider configurations.
 
 Once an external groups mapping has been applied (as described per identity provider above), AppSSO is able to retrieve
 all the groups from an identity provider. An identity provider may have hundreds of groups, and any

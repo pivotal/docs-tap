@@ -59,7 +59,7 @@ resource to a build cluster.
 At this time, Tanzu Service Mesh and Tanzu Application Platform cannot use the Knative resources that
 are the default runtime target when using the `web` resource type.
 
-In Tanzu Application Platform v1.4, two workload types support a Tanzu Service Mesh and
+In Tanzu Application Platform v1.4 and later, two workload types support a Tanzu Service Mesh and
 Tanzu Application Platform integration: **server** and **worker**.
 
 To work with Tanzu Service Mesh, web workloads must be converted to the `server` or `worker` workload
