@@ -44,6 +44,7 @@ For developers:
 
 - [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
 - [Deploy an app on Tanzu Application Platform](getting-started/deploy-first-app.md)
+- [Deploy Spring Cloud Applications to Tanzu Application Platform](getting-started/deploy-spring-cloud-apps.hbs.md)
 
 For operators:
 
