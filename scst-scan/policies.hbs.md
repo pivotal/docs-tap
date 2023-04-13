@@ -277,7 +277,7 @@ spec:
     ...
 ```
 
->**Note** The value for the label can be anything. The Tanzu Application
+>**Note** Anything van be a value for the label. The Tanzu Application
 >Platform GUI is looking for the existence of the `part-of` prefix string and
 >doesn't match for anything else specific.
 
