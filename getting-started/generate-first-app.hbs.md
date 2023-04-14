@@ -59,7 +59,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
       1. Using the **Providers** drop-down menu, select your Git provider. For example, `github.com`.
 
       1. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
-        Populate the text box with your provider's API token and press **Enter**.
+        Populate the text box with your provider's API token and press Enter.
 
          This API key must be able to create new repositories for an organization or user.
          For information about how to create an API token for Git repository creation, see
@@ -109,7 +109,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
 
      ![The IntelliJ UI with the New Project button highlighted.](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)
 
-  1. Select **Tanzu Application Accelerator** from the left side.
+  1. Click **Tanzu Application Accelerator** in the left side panel.
 
      ![The IntelliJ UI with Tanzu Application Accelerator selected in the Generators list in the left panel.](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)
 
@@ -179,16 +179,16 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
 
           ![Screenshot of the git repository creation form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-2.png)
 
-      1. While you are populating the form, a dialog box will appear asking for permission to provision
+      2. While you are populating the form, a dialog box appears asking for permission to provision
          Git repositories. Follow the prompts and continue.
 
-      1. Click **NEXT**.
+      3. Click **NEXT**.
 
-  1. Verify the provided information, and click **GENERATE ACCELERATOR**.
+  2. Verify the provided information, and click **GENERATE ACCELERATOR**.
 
-  1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+  3. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
-  1. After downloading the ZIP file, expand it in a workspace directory. If you
+  4. After downloading the ZIP file, expand it in a workspace directory. If you
      did not create a Git repository in the preceding steps, follow your
      preferred procedure for uploading the generated project files to a Git
      repository for your new project.
