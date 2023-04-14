@@ -99,7 +99,9 @@ https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Usin
 -->
 
 Custom CA
-: **Prerequisites**
+: Complete the following steps
+
+  **Prerequisites**
 
   You need your own CA certificates and private key for this.
 
@@ -145,7 +147,9 @@ Custom CA
       from the new issuer and serve them.
 
 LetsEncrypt production
-: > **Prerequisites**
+: Complete the following steps
+
+  **Prerequisites**
 
   > - Public CAs, like LetsEncrypt, record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
@@ -197,7 +201,9 @@ LetsEncrypt production
       from the new issuer and serve them.
 
 LetsEncrypt staging
-: > **Prerequisites**
+: Complete the following steps
+
+  **Prerequisites**
 
   > - Public CAs - like LetsEncrypt - record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
@@ -250,7 +256,9 @@ LetsEncrypt staging
       from the new issuer and serve them.
 
 Other
-: You can use any other cert-manager-supported `ClusterIssuer` as an ingress
+: Complete the following steps
+
+  You can use any other cert-manager-supported `ClusterIssuer` as an ingress
   issuer for Tanzu Application Platform.
 
   cert-manager supports a host of in-tree and out-of-tree issuers. See
