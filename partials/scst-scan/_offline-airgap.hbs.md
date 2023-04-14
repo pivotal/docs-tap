@@ -21,7 +21,7 @@ For information about setting up an offline vulnerability database, see the [Anc
         dbUpdateUrl: INTERNAL-VULN-DB-URL
     ```
 
-    - `INTERNAL-VULN-DB-URL`: URL that points to the internal file server.
+    Where `INTERNAL-VULN-DB-URL` is the URL that points to the internal file server.
 
 2. Update Tanzu Application Platform:
 
@@ -33,7 +33,7 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ### ERROR failed to fetch latest cli version
 
-**Note**: This message is a warning and the Grype scan still runs with this message.
+> **Note**: This message is a warning and the Grype scan still runs with this message.
 
 The Grype CLI checks for later versions of the CLI by contacting the anchore endpoint over the Internet.
 
@@ -106,52 +106,52 @@ Two options to resolve this:
 `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` and is addressed using a package overlay with
 the following steps:
 
-   1. Create a secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
+    1. Create a secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: grype-airgap-override-stale-db-overlay
-      namespace: tap-install #! namespace where tap is installed
-    stringData:
-      patch.yaml: |
-        #@ load("@ytt:overlay", "overlay")
+        ```yaml
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: grype-airgap-override-stale-db-overlay
+          namespace: tap-install #! namespace where tap is installed
+        stringData:
+          patch.yaml: |
+            #@ load("@ytt:overlay", "overlay")
 
-        #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
-        ---
-        spec:
-          template:
-            initContainers:
-              #@overlay/match by=overlay.subset({"name": "scan-plugin"}), expects="1+"
-              - name: scan-plugin
-                #@overlay/match missing_ok=True
-                env:
-                  #@overlay/append
-                  - name: GRYPE_DB_MAX_ALLOWED_BUILT_AGE #! see note on best practices
-                    value: "120h"
-    ```
+            #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
+            ---
+            spec:
+              template:
+                initContainers:
+                  #@overlay/match by=overlay.subset({"name": "scan-plugin"}), expects="1+"
+                  - name: scan-plugin
+                    #@overlay/match missing_ok=True
+                    env:
+                      #@overlay/append
+                      - name: GRYPE_DB_MAX_ALLOWED_BUILT_AGE #! see note on best practices
+                        value: "120h"
+        ```
 
-    > **Note** The default maximum allowed built age of Grype's vulnerability
-    > database is 5 days. This means that scanning with a 6 day old database
-    > causes the scan to fail. You can use the
-    > `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in
-    > accordance with your security posture.
+        > **Note** The default maximum allowed built age of Grype's vulnerability
+        > database is 5 days. This means that scanning with a 6 day old database
+        > causes the scan to fail. You can use the
+        > `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in
+        > accordance with your security posture.
 
-   2. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
+    1. Configure tap-values.yaml to use `package_overlays`. Add the following to your `tap-values.yaml` file:
 
-       ```yaml
-       package_overlays:
-         - name: "grype"
-           secrets:
-               - name: "grype-airgap-override-stale-db-overlay"
-       ```
+        ```yaml
+        package_overlays:
+          - name: "grype"
+            secrets:
+                - name: "grype-airgap-override-stale-db-overlay"
+        ```
 
-   3. Update Tanzu Application Platform:
+    1. Update Tanzu Application Platform:
 
-       ```console
-       tanzu package installed update tap -f tap-values.yaml -n tap-install
-       ```
+        ```console
+        tanzu package installed update tap -f tap-values.yaml -n tap-install
+        ```
 
 ### Vulnerability database is invalid
 
