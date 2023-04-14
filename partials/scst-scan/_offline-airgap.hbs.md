@@ -13,7 +13,7 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ## <a id="enable-grype-airgap"></a> To enable Grype in offline air-gapped environments
 
-1. Add the following to your tap-values.yaml:
+1. Add the following to your `tap-values.yaml` file:
 
     ```yaml
     grype:
@@ -71,7 +71,7 @@ To deactivate this check, set the environment variable `GRYPE_CHECK_FOR_APP_UPDA
                     value: "false"
     ```
 
-2. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
+2. Configure `tap-values.yaml` to use `package_overlays`. Add the following to your `tap-values.yaml` file:
 
     ```yaml
     package_overlays:
@@ -138,7 +138,7 @@ the following steps:
         > `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in
         > accordance with your security posture.
 
-    1. Configure tap-values.yaml to use `package_overlays`. Add the following to your `tap-values.yaml` file:
+    1. Configure `tap-values.yaml` to use `package_overlays`. Add the following to your `tap-values.yaml` file:
 
         ```yaml
         package_overlays:
