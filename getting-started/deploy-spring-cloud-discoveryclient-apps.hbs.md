@@ -1,26 +1,54 @@
 # Deploy Spring Cloud DiscoveryClient Applications
 
-This topic describes how to run Spring applications that use the Spring Cloud
-DiscoveryClient as workloads on Tanzu Application Platform.
+This topic describes how to run Spring applications that use the Spring Cloud DiscoveryClient
+as workloads on Tanzu Application Platform.
 
 ## <a id="background"></a> Recognizing Spring Cloud DiscoveryClient applications
 
-The Spring Cloud DiscoveryClient abstraction underlies several common libraries and services for Spring applications to register themselves as services for other applications and to look up connection details of registered applications. These services include the following:
+The Spring Cloud DiscoveryClient abstraction underlies several common libraries and services for
+Spring applications to register themselves as services for other applications and to look up
+connection details of registered applications. These services include the following:
 
-- The [Service Registry](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/3.1/spring-cloud-services/GUID-service-registry-index.html) in [Spring Cloud Services for VMware Tanzu](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/3.1/spring-cloud-services/GUID-index.html), a managed service tile for [VMware Tanzu Application Service for VMs](https://network.tanzu.vmware.com/products/elastic-runtime/).
-- The [Tanzu Service Registry](https://learn.microsoft.com/en-us/azure/spring-apps/how-to-enterprise-service-registry) in [Azure Spring Apps](https://azure.microsoft.com/en-us/products/spring-apps/).
-- The [Spring Cloud Netflix](https://spring.io/projects/spring-cloud-netflix) project, which includes the Eureka client library and the Eureka server.
+- The [Service Registry](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/3.1/spring-cloud-services/GUID-service-registry-index.html)
+  in the managed service tile Spring Cloud Services for VMware Tanzu supported by
+  VMware Tanzu Application Service for VMs.
 
-Spring applications that use these discovery services include a client dependency that implements the Spring Cloud DiscoveryClient:
+- The [Tanzu Service Registry](https://learn.microsoft.com/en-us/azure/spring-apps/how-to-enterprise-service-registry) in Azure Spring Apps.
+  For more information about Azure Spring Apps, see the
+  [Microsoft Azure documentation](https://azure.microsoft.com/en-us/products/spring-apps/).
 
-- Applications that use the Spring Cloud Services Service Registry on Tanzu Application Service typically include the `spring-cloud-services-starter-service-registry` dependency from the `io.pivotal.spring.cloud` group. See the [Service Registry](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/3.1/spring-cloud-services/GUID-client-dependencies.html#service-registry) section of the _Client Dependencies_ topic in the Spring Cloud Services documentation for more information.
-- Applications that use the Tanzu Service Registry in Azure Spring Apps or that use the Spring Cloud Netflix libraries typically include the `spring-cloud-starter-netflix-eureka-client` dependency from the `org.springframework.cloud` group. See the [Use Tanzu Service Registry](https://learn.microsoft.com/en-us/azure/spring-apps/how-to-enterprise-service-registry) topic in Azure Spring Apps documentation or [How to Include Eureka Client](https://docs.spring.io/spring-cloud-netflix/docs/current/reference/html/#netflix-eureka-client-starter) in the Spring Cloud Netflix documentation for more information.
+- The [Spring Cloud Netflix](https://spring.io/projects/spring-cloud-netflix) project, which includes
+  the Eureka client library and the Eureka server.
 
-Each of these client dependencies includes the [Spring Cloud SimpleDiscoveryClient](https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#simplediscoveryclient) from the Spring Cloud Commons project as a base dependency. The approach below uses this common dependency to configure service resolution for client applications.
+Spring applications that use these discovery services include a client dependency that implements the
+Spring Cloud DiscoveryClient:
+
+- Applications that use the Spring Cloud Services Service Registry on Tanzu Application Service typically
+  include the `spring-cloud-services-starter-service-registry` dependency from the
+  `io.pivotal.spring.cloud` group.
+  For more information, see [Service Registry](https://docs.vmware.com/en/Spring-Cloud-Services-for-VMware-Tanzu/3.1/spring-cloud-services/GUID-client-dependencies.html#service-registry)
+  in the Spring Cloud Services documentation.
+
+- Applications that use the Tanzu Service Registry in Azure Spring Apps or that use the
+  Spring Cloud Netflix libraries typically include the `spring-cloud-starter-netflix-eureka-client`
+  dependency from the `org.springframework.cloud` group.
+  For more information about how to use the Tanzu Service Registry, see the
+  [Microsoft Azure documentation](https://learn.microsoft.com/en-us/azure/spring-apps/how-to-enterprise-service-registry).
+  For more information about how to include Eureka Client, see the
+  [Spring documentation](https://docs.spring.io/spring-cloud-netflix/docs/current/reference/html/#netflix-eureka-client-starter).
+
+Each of these client dependencies includes the
+[Spring Cloud SimpleDiscoveryClient](https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#simplediscoveryclient)
+from the Spring Cloud Commons project as a base dependency.
+The approach in this topic uses this common dependency to configure service resolution for client applications.
 
 ## <a id="prerequisites"></a> Prerequisites
 
-The example below uses the [Application Configuration Service for VMware Tanzu](https://docs.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.0/acs/GUID-overview.html) to distribute service discovery information to client applications as Spring properties. See [Install Application Configuration Service for VMware Tanzu](../application-configuration-service/install-app-config-service.hbs.md) for more information on installing this optional component of Tanzu Application Platform.
+Before you can continue with the example in this topic, you must
+[Install Application Configuration Service for VMware Tanzu](../application-configuration-service/install-app-config-service.hbs.md).
+
+In this example, the Application Configuration Service for VMware Tanzu component in
+Tanzu Application Platform distributes service discovery information to client applications as Spring properties.
 
 ## <a id="example-greeting-app"></a> Example: The Greeting application
 
@@ -30,7 +58,7 @@ from the Spring Cloud Services sample applications as a pair of workloads on Tan
 
 ### <a id="properties-file"></a> Create a properties file in your configuration repository
 
-In a Git repository that will be reachable from your Run cluster, create a `greeter-dev.yaml` file as
+In a Git repository that is reachable from your Run cluster, create a `greeter-dev.yaml` file as
 follows:
 
 ```yaml
@@ -52,18 +80,19 @@ The values under `cloud.discovery.client.simple.instances` list all the services
 requires. The example `greeter-dev.yaml` file shows how to connect to another workload running
 on the same cluster.
 
-In this case, we will run the `greeter-messages` microservice as a workload of type `web`, so the
+In this case, run the `greeter-messages` microservice as a workload of type  `web`, so the
 discovery client configuration must use the fully qualified domain name for the service within the
-Kubernetes cluster. If we instead chose to run the `greeter-messages` microservice as a workload of
-type `server`, this address would work, but it would also be possible for the `greeter` microservice to
-connect to it with the shorter URI `http://greeter-messages`.
+Kubernetes cluster. If you instead choose to run the `greeter-messages` microservice as a workload of
+type `server`, this address still works, but it would also be possible for the `greeter` microservice
+to connect to it with the shorter URI `http://greeter-messages`.
 
 ### <a id="acs-resources"></a> Create Application Configuration Service resources
 
 On your Run cluster, create the `ConfigurationSource` and `ConfigurationSlice` resources that tell
-Application Configuration Service (ACS) how to fetch the discovery configuration from the Git repo above.
+Application Configuration Service (ACS) how to fetch the discovery configuration from the
+Git repository you are using.
 
-The following simple example uses a public repository and no encryption.
+The following example uses a public repository and no encryption.
 For more information about how to connect to private repositories, encrypt configuration, and load
 properties in other formats, see the
 [ACS documentation](../application-configuration-service/about.hbs.md).
@@ -93,15 +122,19 @@ spec:
   interval: 10m
 ```
 
-A Kubernetes `Secret` is created in the `my-apps` namespace with a name starting with `greeter-config-`.
+A Kubernetes secret is created in the `my-apps` namespace with a name starting with `greeter-config-`.
 
 ### <a id="create-workloads"></a> Create application `Workload` resources
 
 The `ConfigurationSlice` object you created in the previous section is a
-[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service), so you can use a `ResourceClaim` to claim it within the `my-apps` namespace. You then supply the resource claim in the
-`serviceClaims` list in the `Workload` object to provide the configuration inside the workload's runtime environment.
+[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service).
+You can use a `ResourceClaim` to claim it within the `my-apps` namespace.
+You then supply the resource claim in the `serviceClaims` list in the `Workload` object to provide
+the configuration inside the workload's runtime environment.
 
-The `SPRING_CONFIG_IMPORT` variable passes this configuration to Spring. If your application already uses that variable to apply other Spring configuration, use the `SPRING_CONFIG_ADDITIONAL_LOCATION` variable instead.
+The `SPRING_CONFIG_IMPORT` variable passes this configuration to Spring.
+If your application already uses that variable to apply other Spring configuration, use the
+`SPRING_CONFIG_ADDITIONAL_LOCATION` variable instead.
 
 In the following example, one workload is created for the `greeter-messages` microservice, and a second
 workload is created for the greeter microservice.
