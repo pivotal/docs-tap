@@ -100,6 +100,7 @@ https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Usin
 
 Custom CA
 : **Prerequisites**
+
   You need your own CA certificates and private key for this.
 
   1. Create your `ClusterIssuer`
@@ -145,7 +146,7 @@ Custom CA
 
 LetsEncrypt production
 : > **Prerequisites**
-  
+
   > - Public CAs, like LetsEncrypt, record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
   >   transparency](https://certificate.transparency.dev/). Ensure that you are
@@ -197,7 +198,7 @@ LetsEncrypt production
 
 LetsEncrypt staging
 : > **Prerequisites**
-  >
+
   > - Public CAs - like LetsEncrypt - record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
   >   transparency](https://certificate.transparency.dev/). Ensure that you are
