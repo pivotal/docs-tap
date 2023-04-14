@@ -32,7 +32,7 @@ interacts with the Spring Cloud Config Server:
 ## <a id="prerequisites"></a> Prerequisites
 
 Before you can deploy Spring Cloud Config applications, you must
-[Install Application Configuration Service for VMware Tanzu](../application-configuration-service/install-app-config-service.hbs.md).
+[Install Application Configuration Service for VMware Tanzu](../../application-configuration-service/install-app-config-service.hbs.md).
 
 The Application Configuration Service for VMware Tanzu component in Tanzu Application Platform distributes
 configuration information to applications through Kubernetes Secrets that contain Spring properties.
