@@ -26,7 +26,6 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 ## <a id='deprecated-features'></a> Deprecated Features
 
-- **Automatic dependency updates:** For more information, see [Configure automatic dependency updates](#auto-updates-config).
 - **The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see [Deactivate the CNB BOM format](#deactivate-cnb-bom).
 
 ## <a id='tbs-tcli-install'></a> Install the Tanzu Build Service package
