@@ -272,6 +272,7 @@ Other
       Once the configuration is applied, components obtain certificates
       from the new issuer and serve them.
 
+<br>
 >**Note** There are many ways and tools to assert that new certificates are
 >issued and served. It is best to connect to one of the ingress endpoints and
 >inspect the certificate it serves.
