@@ -45,7 +45,7 @@ The approach in this topic uses this common dependency to configure service reso
 ## <a id="prerequisites"></a> Prerequisites
 
 Before you can continue with the example in this topic, you must
-[Install Application Configuration Service for VMware Tanzu](../application-configuration-service/install-app-config-service.hbs.md).
+[Install Application Configuration Service for VMware Tanzu](../../application-configuration-service/install-app-config-service.hbs.md).
 
 In this example, the Application Configuration Service for VMware Tanzu component in
 Tanzu Application Platform distributes service discovery information to client applications as Spring properties.
@@ -95,7 +95,7 @@ Git repository you are using.
 The following example uses a public repository and no encryption.
 For more information about how to connect to private repositories, encrypt configuration, and load
 properties in other formats, see the
-[ACS documentation](../application-configuration-service/about.hbs.md).
+[ACS documentation](../../application-configuration-service/about.hbs.md).
 
 ```yaml
 ---
