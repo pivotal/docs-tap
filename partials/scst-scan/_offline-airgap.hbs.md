@@ -200,14 +200,14 @@ Verify these possible reasons why the vulnerability database is not valid:
 
     ```json
     {
-     "available": {
-       "1": [{
+      "available": {
+        "1": [{
                "built": "2023-02-08T08_17_20Z",
                "version": 5,
                "url": "https://INTERNAL-ENDPOINT/releases/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
                "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
-       }]
-     }
+        }]
+      }
     }
     ```
 
