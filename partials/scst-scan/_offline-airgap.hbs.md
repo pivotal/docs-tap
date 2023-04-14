@@ -190,6 +190,7 @@ metadata:
 ```
 
 Where:
+
 - `5` refers to the Grype's vulnerability database schema.
 - `built` is the build timestamp in the format `yyyy-MM-ddTHH:mm:ssZ`.
 - `url` is the download URL for the tarball containing the database. This points at your internal endpoint. The tarball contains the following files:
@@ -204,26 +205,26 @@ Verify these possible reasons why the vulnerability database is not valid:
    matches the nested `version`. For example, the top level version `1` in the
    following snippet does not match the nested `version: 5`.
 
-  ```json
-  {
-    "available": {
-      "1": [{
-              "built": "2023-02-08T08_17_20Z",
-              "version": 5,
-              "url": "https://INTERNAL-ENDPOINT/releases/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
-              "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
-      }]
+    ```json
+    {
+      "available": {
+        "1": [{
+                "built": "2023-02-08T08_17_20Z",
+                "version": 5,
+                "url": "https://INTERNAL-ENDPOINT/releases/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
+                "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
+        }]
+      }
     }
-  }
-  ```
+    ```
 
-  As stale databases weaken your security posture, VMware recommends using the
-  newest entry of the relevant schema version in the `listing.json` file. See
-  Anchore’s [grype-db](https://github.com/anchore/grype-db) in GitHub.
+    As stale databases weaken your security posture, VMware recommends using the
+    newest entry of the relevant schema version in the `listing.json` file. See
+    Anchore’s [grype-db](https://github.com/anchore/grype-db) in GitHub.
 
-1. The `built` parameters in the `listing.json` file are incorrectly formatted. The proper format is `yyyy-MM-ddTHH:mm:ssZ`.
+2. The `built` parameters in the `listing.json` file are incorrectly formatted. The proper format is `yyyy-MM-ddTHH:mm:ssZ`.
 
-1. The `url` that you modified to point at an internal endpoint is not reachable
+3. The `url` that you modified to point at an internal endpoint is not reachable
    from within the cluster. For information about verifying connectivity, see
    [Debug Grype database in a cluster](#debug-grype-database-in-a-cluster).
 
