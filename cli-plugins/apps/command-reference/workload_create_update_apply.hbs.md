@@ -107,7 +107,8 @@ This is the application the workload is part of. This is part of the workload me
 
 ```console
 tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --app tanzu-java-web-app
-🔎 Create workload:
+
+   Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
     3 + |kind: Workload
@@ -124,12 +125,11 @@ tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/a
    14 + |        tag: tap-1.5.0
    15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    16 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
-👍 Created workload "tanzu-app"
+  Do you want to create this workload? [yN]:
+  Created workload "tanzu-app"
 
 To see logs:   "tanzu apps workload tail tanzu-app --timestamp --since 1h"
 To get status: "tanzu apps workload get tanzu-app"
-
 ```
 
 </details>
