@@ -93,9 +93,7 @@ To install the API Auto Registration package:
     auto_generate_cert: false
     ca_cert_data:  |
         -----BEGIN CERTIFICATE-----
-        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
-        ...
-        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+        MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
         -----END CERTIFICATE-----
     sync_period: 2m
     ```

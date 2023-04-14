@@ -19,7 +19,9 @@ chain automation, with other GitOps processes, or by directly applying an
 
 For information about the architecture of API Auto Registration, or the APIDescriptor CR and API entities in Tanzu Application Platform GUI, see [Key Concepts section](key-concepts.md).
 
-For information about the iterate, run, and full Tanzu Application Platform cluster profiles, see [Usage section](usage.md).
+For information about configuring iterate, run, and full Tanzu Application Platform cluster profiles, see [Configure API Auto Registration](configuration.hbs.md).
+
+For information about generating API specs and registering them with the TAP GUI catalog, see [Use API Auto Registration](usage.hbs.md).
 
 For information about other profiles, install the `api-auto-registration` package. See [Install API Auto Registration](installation.md).
 
