@@ -80,7 +80,7 @@ The values under `cloud.discovery.client.simple.instances` list all the services
 requires. The example `greeter-dev.yaml` file shows how to connect to another workload running
 on the same cluster.
 
-In this case, run the `greeter-messages` microservice as a workload of type  `web`, so the
+In this example, the `greeter-messages` microservice is deployed as a workload of type `web`, so the
 discovery client configuration must use the fully qualified domain name for the service within the
 Kubernetes cluster. If you instead choose to run the `greeter-messages` microservice as a workload of
 type `server`, this address still works, but it would also be possible for the `greeter` microservice
@@ -118,7 +118,7 @@ spec:
   configurationSource: greeter-config-source
   content:
   - greeter/dev
-  configMapStrategy: applicationProperties
+  secretStrategy: applicationProperties
   interval: 10m
 ```
 
