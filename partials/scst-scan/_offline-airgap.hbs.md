@@ -34,7 +34,7 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ### ERROR failed to fetch latest cli version
 
-> **Note**: This message is a warning and the Grype scan still runs with this message.
+> **Note** This message is a warning and the Grype scan still runs with this message.
 
 The Grype CLI checks for later versions of the CLI by contacting the anchore endpoint over the Internet.
 
