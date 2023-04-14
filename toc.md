@@ -101,7 +101,7 @@ docs.vmware.com is built.
           - [Overview](getting-started/spring-apps/deploy-spring-cloud-apps.hbs.md)
           - [Deploy Spring Cloud Config Server applications](getting-started/spring-apps/deploy-spring-cloud-config-apps.hbs.md)
           - [Deploy Spring Cloud DiscoveryClient applications](getting-started/spring-apps/deploy-spring-cloud-discoveryclient-apps.hbs.md)
-          - [Use Spring Cloud Gateway for Kubernetes](getting-started/srping-apps/use-spring-cloud-gateway-kubernetes.hbs.md)
+          - [Use Spring Cloud Gateway for Kubernetes](getting-started/spring-apps/use-spring-cloud-gateway-kubernetes.hbs.md)
   - [Learn more](getting-started/concepts.hbs.md)
       - [Application Accelerator](getting-started/about-application-accelerator.hbs.md)
       - [Supply chains](getting-started/about-supply-chains.hbs.md)
