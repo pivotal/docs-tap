@@ -195,7 +195,7 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports Node.js workloads | Yes | Yes |
 | Supports Go workloads | Yes | Yes |
 | Supports Python workloads | Yes | Yes |
-| Supports Ruby workloads | No | Yes |
+| Supports Ruby workloads | Yes | Yes |
 | Supports .NET Core workloads | Yes | Yes |
 | Supports PHP workloads | No | Yes |
 | Supports static workloads | Yes | Yes |
