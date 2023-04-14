@@ -28,6 +28,7 @@ For information about setting up an offline vulnerability database, see the [Anc
     ```console
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
+
 **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must follow the [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.md) section for the Namespace Provisioner to import the overlay `Secret`s.
 
 ## <a id="troubleshooting"></a> Troubleshooting
@@ -224,15 +225,23 @@ Verify these possible reasons why the vulnerability database is not valid:
 
 #### Debug Grype database in a cluster
 
-1. Describe the failed source/image scan to verify the name of the ScanTemplate being used:
+1. Describe the failed source scan or image scan to verify the name of the ScanTemplate being used.
 
-```console
-kubectl describe sourcescan/imagescan SCAN-NAME -n DEV-NAMESPACE
-```
+    - For `sourcescan`, run:
 
-Where `SCAN-NAME` is the name of the source/image scan that failed.
+        ```console
+        kubectl describe sourcescan SCAN-NAME -n DEV-NAMESPACE
+        ```
 
-1. Edit the ScanTemplate's `scan-plugin` container to include a "sleep" entrypoint which allows you to troubleshoot inside the container:
+    - For `imagescan`, run:
+
+        ```console
+        kubectl describe imagescan SCAN-NAME -n DEV-NAMESPACE
+        ```
+
+    Where `SCAN-NAME` is the name of the source or image scan that failed.
+
+2. Edit the ScanTemplate's `scan-plugin` container to include a "sleep" entrypoint which allows you to troubleshoot inside the container:
 
     ```yaml
     - name: scan-plugin
@@ -247,15 +256,15 @@ Where `SCAN-NAME` is the name of the source/image scan that failed.
       - "sleep 1800" # insert 30 min sleep here
     ```
 
-2. Re-run the scan.
+3. Re-run the scan.
 
-3. Get the name of the `scan-plugin` pod.
+4. Get the name of the `scan-plugin` pod.
 
     ```console
     kubectl get pods -n DEV-NAMESPACE
     ```
 
-4. Get a shell to the container. See the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/):
+5. Get a shell to the container. See the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/):
 
     ```console
     kubectl exec --stdin --tty SCAN-PLUGIN-POD -c step-scan-plugin -- /bin/bash
@@ -263,7 +272,9 @@ Where `SCAN-NAME` is the name of the source/image scan that failed.
 
     Where `SCAN-PLUGIN-POD` is the name of the `scan-plugin` pod.
 
-5. Inside the container, run Grype CLI commands to report database status and verify connectivity from cluster to mirror. See the [Grype documentation](https://github.com/anchore/grype#cli-commands-for-database-management) in GitHub.
+6. Inside the container, run Grype CLI commands to report database status and verify connectivity
+   from cluster to mirror.
+   See the [Grype documentation](https://github.com/anchore/grype#cli-commands-for-database-management) in GitHub.
 
    - Report current status of Grype's database (location, build date, and checksum):
 
@@ -271,7 +282,7 @@ Where `SCAN-NAME` is the name of the source/image scan that failed.
       grype db status
       ```
 
-6. Ensure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
+7. Ensure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
 
 ### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
 
