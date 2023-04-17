@@ -32,8 +32,11 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
 1. Open the Tanzu Java Web App as a project within your VS Code IDE by clicking **File** > **Open Folder**,
    select the Tanzu Java Web App folder and click **Open**.
+
    If you don't have the Tanzu Java Web App you can obtain it by following the instructions in
-   [Generate a new project using an Application Accelerator](generate-first-app.html), or from the [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples) GitHub page.
+   [Generate a new project using an Application Accelerator](generate-first-app.html), or from the
+   [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples)
+   GitHub page.
 
 1. To ensure that your extension assists you with iterating on the correct project, configure its
    settings as follows:
@@ -65,11 +68,11 @@ For information about installing the prerequisites and the Tanzu Developer Tools
       > For troubleshooting failed registry authentication, see
       > [Troubleshoot using Tanzu Application Platform](../troubleshooting-tap/troubleshoot-using-tap.md)
 
-1. Confirm that your current Kubernetes context has a namespace associated with it. The **TANZU WORKLOADS**
-   panel, on the left side of the VS Code Explorer tab, uses the namespace associated with your current
-   Kubernetes context to populate the workloads from the cluster.
+1. Confirm that your current Kubernetes context has a namespace associated with it.
+   The **TANZU WORKLOADS** section of the **Explorer** view in the left Side Bar uses the namespace
+   associated with your current Kubernetes context to populate the workloads from the cluster.
 
-   1. Open the Terminal. Use the keyboard shortcut (⌃⇧`), or go to **View** > **Terminal**. <!-- confirm this is a keyboard short cut -->
+   1. Open the Terminal by clicking **View** > **Terminal**.
 
    1. Ensure your current context has a default namespace by running:
 
@@ -94,24 +97,26 @@ You are now ready to iterate on your application.
 
 ## <a id="apply-your-app"></a>Apply your application to the cluster
 
-Apply the workload to see your application running on the cluster:
+Apply the workload to see your application running on the cluster by doing one of the following:
 
-1. In the **Explorer** tab of VS Code, right-click any file under the application name
-   `tanzu-java-web-app` and click **Tanzu: Apply Workload** to begin applying the workload to the cluster.
+- In the **Explorer** view in the left Side Bar, right-click any file under the application name
+  `tanzu-java-web-app` and click **Tanzu: Apply Workload** to begin applying the workload to the cluster.
 
-1. Alternatively, use the Command Palette, ⇧⌘P on Mac and Ctrl+Shift+P on Windows or
-   **View** > **Command Palette**, to run the `Tanzu: Apply Workload` command.
+- Alternatively, use the Command Palette, ⇧⌘P on Mac and Ctrl+Shift+P on Windows or
+  **View** > **Command Palette**, to run the `Tanzu: Apply Workload` command.
 
 The `apply workload` command runs, which opens a terminal and shows you the output of the workload apply.
 
-You can also monitor your application as it's being deployed to the cluster on the **Tanzu Activity** panel.
-The **Tanzu Activity** panel shows the details of the Kubernetes resources for the workloads running
+You can also monitor your application as it's being deployed to the cluster using the **TANZU ACTIVITY**
+tab in the Panel at the bottom of VS Code.
+The **TANZU ACTIVITY** tab shows the details of the Kubernetes resources for the workloads running
 in the namespace associated with your current Kubernetes context.
 
-To view the **Tanzu Activity** panel, open the Terminal (⌃⇧`) and then click the **Tanzu Activity** tab.
+To view the **TANZU ACTIVITY** tab, open the Panel at the bottom of VS Code
+(**View** > **Appearance** > **Panel**) and then click the **TANZU ACTIVITY** tab.
 The apply workload command can take a few minutes to deploy your application onto the cluster.
-After complete, you can see the workload running in the **TANZU WORKLOADS** panel on the left side
-of the VS Code **Explorer** tab.
+After complete, you can see the workload running in the **TANZU WORKLOADS** section of the **Explorer**
+view in the left Side Bar.
 
 ## <a id="live-update-your-app"></a>Enable Live Update for your application
 
@@ -120,20 +125,23 @@ in the workload running on the cluster.
 
 The following steps enable Live Update for your application:
 
-1. On the left side of the **Explorer** tab in VS Code, right-click any file under the application name
-   `tanzu-java-web-app` and select `Tanzu: Live Update Start` to begin Live Updating the workload on
-   the cluster.
+1. To begin Live Updating the workload on the cluster, do one of the following:
 
-1. Alternatively, from the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows) type in and select
-   `Tanzu: Live Update Start`, or right-click the `tanzu-java-web-app` in the **TANZU WORKLOADS** panel
-   and select `Tanzu: Live Update Start`.
+   - In the **Explorer** view in the left Side Bar, right-click any file under the application name
+     `tanzu-java-web-app` and click `Tanzu: Live Update Start`.
+
+   - Right-click the `tanzu-java-web-app` in the **TANZU WORKLOADS** section of the **Explorer** view
+     and click `Tanzu: Live Update Start`.
+
+   - From the Command Palette, ⇧⌘P on Mac and Ctrl+Shift+P on Windows, type in and select
+     `Tanzu: Live Update Start`.
 
    You can view output from Tanzu Application Platform indicating that the container is being built
    and deployed.
-   - The status of Live Update is reflected in the **TANZU WORKLOADS** panel under the
-     `tanzu-java-web-app` workload entry.
-   - You can also see `Live Update starting...` in the status bar at the bottom right.
-   - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+
+   The status of Live Update is reflected in the **TANZU WORKLOADS** view under the `tanzu-java-web-app`
+   workload entry. You can also see `Live Update starting...` in the status bar at the bottom right.
+   Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >
@@ -144,7 +152,7 @@ The following steps enable Live Update for your application:
    >
    >Follow the instructions and add the line, `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
 
-1. When the Live Update status in the **TANZU WORKLOADS** panel changes from `Live Update Stopped` to
+1. When the Live Update status in the **TANZU WORKLOADS** view changes from `Live Update Stopped` to
    `Live Update Running`, navigate to `http://localhost:8080` in your browser to view your running application.
 
 1. In the IDE, make a change to the source code. For example, in `HelloController.java`,
@@ -155,9 +163,9 @@ The following steps enable Live Update for your application:
 1. View the changes to the workload running on the cluster.
 
 1. Either continue making changes, or stop the Live Update process when finished.
-   To stop Live Update, open the Terminal (⌃⇧`), or by navigating to **View** > **Terminal**, and
-   click the trash can icon that appears when you place your hover over the **tilt: up - tanzu-java-web-app** process,
-   or select the process and use hot key ⌘+Backspace.
+   To stop Live Update, open the Terminal by navigating to **View** > **Terminal**, and
+   click the trash can icon that appears when you place your hover over the
+   **tilt: up - tanzu-java-web-app** process, or select the process and use hot key ⌘+Backspace.
 
 ## <a id="debug-your-app"></a>Debug your application
 
@@ -170,9 +178,11 @@ To debug the cluster:
 
 1. [Apply your application to the cluster.](#apply-your-app)
 
-1. In the panel (**View** > **Appearance** > **Panel**) open the **Tanzu Activity** tab.
+1. Open the Panel at the bottom of VS Code by clicking **View** > **Appearance** > **Panel**.
 
-1. Go to **Workload/tanzu-java-web-app** > **Running Application** > **Service/tanzu-java-web-app**.
+1. In the Panel, click the **TANZU ACTIVITY** tab.
+
+1. In the **TANZU ACTIVITY** tab, go to **Workload/tanzu-java-web-app** > **Running Application** > **Service/tanzu-java-web-app**.
 
 1. Right-click the **Pod...** entry and select **Describe**.
 
@@ -186,16 +196,19 @@ To debug the cluster:
 
 1. Open your web browser and paste the URL you copied to access your workload.
 
-1. In the **Explorer** tab in VS Code, right-click any file under the application name `tanzu-java-web-app`
-   and click **Tanzu: Java Debug Start** to begin debugging the workload on the cluster.
+1. Begin debugging the workload on the cluster by doing one of the following:
 
-1. Alternatively, right-click the `tanzu-java-web-app` in the **TANZU WORKLOADS** panel and
-   click **Tanzu: Java Debug Start**.
+   - In the **Explorer** view in the left Side Bar, right-click any file under the application name
+     `tanzu-java-web-app` and click **Tanzu: Java Debug Start**.
 
-1. In a few moments, debugging is enabled on the workload. The **Deploy and Connect** task completes and
-   the debug actions are made available to you in the debug overlay, indicating that the debugger has attached.
+   - Alternatively, right-click the `tanzu-java-web-app` in the **TANZU WORKLOADS** view and
+     click **Tanzu: Java Debug Start**.
 
-   The **TANZU WORKLOADS** panel shows **Debug Running** under the `tanzu-java-web-app` workload.
+1. In a few moments, debugging is enabled on the workload. The **Deploy and Connect** task completes
+   and the debug actions are made available to you in the debug overlay, indicating that the debugger
+   has attached.
+
+   The **TANZU WORKLOADS** view shows **Debug Running** under the `tanzu-java-web-app` workload.
 
 1. In your web browser, reload your workload. VS Code opens to show your breakpoint.
 
@@ -226,13 +239,13 @@ Use the following steps to diagnose Spring Boot-based applications by using Appl
 
 ## <a id="delete-your-app"></a>Delete your application from the cluster
 
-You can use the delete action to remove your application from the cluster as follows:
+You can use the delete action to remove your application from the cluster by doing one of the following:
 
-1. In the **Explorer** tab in VS Code, right-click any file under the application name
-   `tanzu-java-web-app` and click **Tanzu: Delete Workload** to delete the workload from the cluster.
+- In the **Explorer** view in the left Side Bar, right-click any file under the application name
+  `tanzu-java-web-app` and click **Tanzu: Delete Workload** to delete the workload from the cluster.
 
-1. Alternatively, right-click the `tanzu-java-web-app` in the **TANZU WORKLOADS** panel and click
-   **Tanzu: Delete Workload**.
+- Alternatively, right-click the `tanzu-java-web-app` in the **TANZU WORKLOADS** view and click
+  **Tanzu: Delete Workload**.
 
 ## <a id="next-steps"></a>Next steps
 
