@@ -44,3 +44,18 @@ updates.
 
 Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
 back online after having applied the updated registry configuration.
+
+## Default cluster-admin IAM roles on GKE do not allow claiming of Bitnami Services
+
+**Description**
+
+For Tanzu Application Platform installations on GKE clusters, users with cluster-admin RBAC permissions are not able to create class claims for any of the Bitnami Services. The following error is observed:
+
+```
+Error: admission webhook "vclassclaim.validation.resourceclaims.services.apps.tanzu.vmware.com" denied the request: user 'user@example.com' cannot 'claim' from clusterinstanceclass 'mysql-unmanaged'
+Error: exit status 1
+```
+
+**Workaround**
+
+The workaround is to explicitly create a ClusterRoleBinding for your user/group to the corresponding `app-operator-claim-class-<SERVICE>` ClusterRole, where `<SERVICE>` is one of `mysql`, `postgresql`, `rabbitmq` or `redis`. We are planning to fix this issue in an upcoming release of Services Toolkit.
