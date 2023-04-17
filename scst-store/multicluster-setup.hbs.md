@@ -159,7 +159,7 @@ After you finish the entire Tanzu Application Platform installation process, you
 are ready to configure developer namespaces. To prepare developer namespaces,
 you must export the secrets you created earlier to those namespaces.
 
-### Exporting SCST - Store secrets to a developer namespace in a Tanzu Application Platform multicluster deployment
+### <a id="export-multicluster"></a> Exporting SCST - Store secrets to a developer namespace in a Tanzu Application Platform multicluster deployment
 
 Export secrets to a developer namespace by creating `SecretExport` resources on
 the developer namespace. Run the following command to create the `SecretExport`
