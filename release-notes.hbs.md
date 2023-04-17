@@ -70,6 +70,11 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
+#### <a id='1-4-4-api-auto-reg-ki'></a>API Auto Registration
+
+- Users cannot update their APIs through API Auto Registration due to a issue with the ID used to retrieve APIs.
+  This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
+
 #### <a id='1-4-4-grype-scanner-ki'></a> Grype Scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
