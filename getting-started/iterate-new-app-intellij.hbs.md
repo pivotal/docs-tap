@@ -28,21 +28,21 @@ see [Install Tanzu Developer Tools for IntelliJ](../intellij-extension/install.h
 
 > **Important** Use Tilt v0.30.12 or later for the sample application.
 
-1. Open the Tanzu Java Web App as a project within your IntelliJ IDE by selecting `File` > `Open`,
+1. Open the Tanzu Java Web App as a project within your IntelliJ IDE by selecting **File** > **Open**,
    then selecting the Tanzu Java Web App folder and clicking **Open**.
    If you don't have the Tanzu Java Web App you can obtain it by following the instructions in
    [Generate a new project using an Application Accelerator](generate-first-app.html), or from the
    [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples)
    GitHub page.
 
-1. Confirm that your current Kubernetes context contains a default namespace.
+2. Confirm that your current Kubernetes context contains a default namespace.
    The Tanzu Panel, found by clicking **Tanzu Panel** at the bottom-left of the IntelliJ window, uses
    the default namespace associated with your current Kubernetes context to populate the workloads
    from the cluster.
 
-   1. Open the Terminal. Use the keyboard shortcut (⌃\`), or go to **View** > **Terminal**. <!-- confirm this is a keyboard short cut -->
+   1. Open the Terminal by clicking **View** > **Terminal**.
 
-   1. Ensure that your current context has a default namespace by running:
+   2. Ensure that your current context has a default namespace by running:
 
       ```console
       kubectl config get-contexts
@@ -52,7 +52,7 @@ see [Install Tanzu Developer Tools for IntelliJ](../intellij-extension/install.h
       of your current context.
       Verify that your current context has a namespace in the namespace column.
 
-   1. If your current context does not have a namespace in the namespace column, run:
+   3. If your current context does not have a namespace in the namespace column, run:
 
       ```console
       kubectl config set-context --current --namespace=YOUR-DEVELOPER-NAMESPACE
@@ -67,8 +67,8 @@ You are now ready to iterate on your application.
 
 Apply the workload to see your application running on the cluster:
 
-1. In the **Project** tab of IntelliJ, right-click any file under the application name
-   `tanzu-java-web-app` and select **Tanzu** > **Apply Workload**.
+1. In the **Project** tab in IntelliJ, right-click any file under the application name
+   `tanzu-java-web-app` and click **Tanzu** > **Apply Workload**.
 
 1. In the dialog box enter your **Source Image**, **Local Path**, and optionally a **Namespace**.
 
@@ -125,7 +125,7 @@ The following steps enable Live Update for your application:
    1. In the **Tiltfile Path** text box, provide the path to the `Tiltfile` in the Tanzu Java Web App
       project directory.
    1. Select the folder icon on the right-side of the text box, go to the `Tanzu Java Web App` directory,
-      select the `Tiltfile`, and click the `Open` button. The `Tiltfile` facilitates Live Update using Tilt.
+      select the `Tiltfile`, and click **Open**. The `Tiltfile` facilitates Live Update using Tilt.
    1. In the **Local Path** text box, provide the path to the directory containing the Tanzu Java Web App.
 
       The local path value tells the Tanzu Developer Tools for IntelliJ extension which directory on
@@ -149,20 +149,21 @@ The following steps enable Live Update for your application:
 
    1. Click **Apply**, and then click the **OK** button.
 
-1. In the Project tab of IntelliJ, right-click the `Tiltfile` file under the application name
-   `tanzu-java-web-app` and click **Run \'Tanzu Live Update - tanzu-java-web-app\'** to begin Live Updating
-   the application on the cluster.
+1. Begin Live Updating the application on the cluster by doing one of the following:
 
-1. Alternatively, click the **Edit Run/Debug configurations** drop-down menu in the top-right corner,
+   - In the Project tab of IntelliJ, right-click the `Tiltfile` file under the application name
+   `tanzu-java-web-app` and click **Run \'Tanzu Live Update - tanzu-java-web-app\'**.
+
+   - Alternatively, click the **Edit Run/Debug configurations** drop-down menu in the top-right corner,
    select **Tanzu Live Update - tanzu-java-web-app**, and then click the green play button to the right
    of the **Edit Run/Debug configurations** drop-down menu.
 
    The **Run** tab opens and displays the output from Tanzu Application Platform and from Tilt indicating
    that the container is being built and deployed.
 
-   - On the **Tanzu Panel** tab, the status of Live Update is reflected under the
-     `tanzu-java-web-app` workload entry.
-   - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+   On the **Tanzu Panel** tab, the status of Live Update is reflected under the
+   `tanzu-java-web-app` workload entry.
+   Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >
@@ -187,7 +188,7 @@ The following steps enable Live Update for your application:
 
 1. View the changes to your workload running on the cluster.
 
-1.  Either continue making changes, or stop the Live Update process when finished.
+1. Either continue making changes, or stop the Live Update process when finished.
    To stop Live Update navigate to the **Run** tab at the bottom left of the IntelliJ window and click
    the red stop icon on the left side of the screen.
 
