@@ -1,4 +1,4 @@
-# Troubleshooting Supply Chain Security Tools - Scan
+# Troubleshoot Supply Chain Security Tools - Scan
 
 ## <a id="debugging-commands"></a> Debugging commands
 
@@ -93,23 +93,26 @@ If you encounter an issue with the scan-link controller not starting, run the fo
 kubectl rollout restart deployment scan-link-controller-manager -n scan-link-system
 ```
 
-## <a id="troubleshooting-scanner-to-metadata-store-configuration"></a> Troubleshooting Scanner to MetadataStore Configuration
+## <a id="troubleshooting-scanner-to-metadata-store-configuration"></a> Troubleshooting scanner to MetadataStore configuration
 
 ### Insight CLI failed to post scan results to metadata store due to failed certificate verification
 
 If you encounter this issue:
+
 ```
 ✖  Error: Post "https://metadata-store.tap.tanzu.example.com/api/sourceReport?": tls: failed to verify certificate: x509: certificate signed by unknown authority
 ```
-Perform the following steps to ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSecret` from the `METADATASTORE-NAMESPACE` namespace:
 
-1. In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store. If you've provided an ingress connection to the store, delete it.
+To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSecret` from the `METADATASTORE-NAMESPACE` namespace:
+
+1. In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured. You do not need to provide an ingress connection to the store. If you provided an ingress connection to the store, delete it.
 
 2. Get the `caSecret.name` depending if your setup is single or multicluster.
 
-    a. If you are using a single cluster setup, the default value for `grype.metadataStore.caSecret.name` is `app-tls-cert` as defined [here](./install-scst-scan.hbs.md#configure-properties).
+    1. If you are using a single cluster setup, the default value for `grype.metadataStore.caSecret.name` is `app-tls-cert`. See [Install Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md#configure-properties).
 
-    b. If you are using a multi-cluster setup, retrieve `grype.metadataStore.caSecret.name` from grype config:
+    2. If you are using a multicluster setup, retrieve `grype.metadataStore.caSecret.name` from the Grype config:
+
       ```
       grype:
         metadataStore:
@@ -117,38 +120,48 @@ Perform the following steps to ensure that the `caSecret` from the scanner `DEV-
             name: store-ca-cert
             importFromNamespace: metadata-store-secrets
       ```
-      **Note:** `caSecret.name` is set to `store-ca-cert` as defined [here](../scst-store/multicluster-setup.hbs.md#exporting-scst---store-secrets-to-a-developer-namespace-in-a-tanzu-application-platform-multicluster-deployment).
 
-3. Validate the secret `CA-SECRET` (found in step above) exists in the `DEV-NAMESPACE`.
+      **Note** `caSecret.name` is set to `store-ca-cert`. See [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
+
+3. Verify that the `CA-SECRET` secret exists in the `DEV-NAMESPACE`.
+
     ```
     kubectl get secret CA-SECRET -n DEV-NAMESPACE
     ```
 
-4. If the secret `CA-SECRET` doesn't exist in our `DEV-NAMESPACE` then check if the `CA-SECRET` exists in the `METADATASTORE-NAMESPACE` namespace:
+4. If the secret `CA-SECRET` doesn't exist in your `DEV-NAMESPACE`, verify that the `CA-SECRET` exists in the `METADATASTORE-NAMESPACE` namespace:
+    
     ```
     kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE
     ```
-    Where:
 
-    `METADATASTORE-NAMESPACE` is the namespace that contains the secret `CA-SECRET`. If single cluster, it would be set to `metadata-store` namespace. If multicluster, it would be set to `metadata-store-secrets`.
+    Where `METADATASTORE-NAMESPACE` is the namespace that contains the secret
+    `CA-SECRET`. If you are using a single cluster, it is configured using the
+    `metadata-store` namespace. If multicluster, it is configured using the
+    `metadata-store-secrets`.
 
-    * If `CA-SECRET` doesn't exist in the metadata store namespace, see [here](../scst-store/custom-cert.hbs.md) for how to configure the cert.
+    - If `CA-SECRET` doesn't exist in the metadata store namespace, configure the certificate. See [Custom certificate configuration](../scst-store/custom-cert.hbs.md).
 
 5. Check if the secretexport and secretimport exist and are reconciling successfully:
+    
     ```
     kubectl get secretexports.secretgen.carvel.dev -n `METADATASTORE-NAMESPACE`
     kubectl get secretimports.secretgen.carvel.dev -n `DEV-NAMESPACE`
     ```
-    * The single cluster secretexport is created by default [here](../scst-store/deployment-details.hbs.md#exporting-certificates)
-    * The multi cluster secretexport is created [here](../scst-store/multicluster-setup.hbs.md#exporting-scst---store-secrets-to-a-developer-namespace-in-a-tanzu-application-platform-multicluster-deployment)
 
-6. Check the certs in the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match by base64 decoding both secrets and comparing them:
-   * View certificates to see if there's a difference:
-   ```
-   kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
-   kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
-   ```
-   The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must match in order for the scanner to connect to the metadata-store.
+    - SCST - Store creates the single cluster secretexport by default. See [Deployment details and configuration](../scst-store/deployment-details.hbs.md#exporting-certificates).
+    - For information about creating the multicluster secretexport, see [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
+
+6. Verify that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the `DEV-NAMESPACE` secret.
+
+  You can confirm this by base64 decoding both secrets and seeing if there is a match:
+  
+  ```console
+  kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
+  kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
+  ```
+  
+  The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must have a match for the scanner to connect to the metadata-store.
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
