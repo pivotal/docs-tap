@@ -30,6 +30,8 @@ For information about setting up an offline vulnerability database, see the [Anc
     ```
 **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must follow the [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.md) section for the Namespace Provisioner to import the overlay `Secret`s.
 
+> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.md).
+
 ## <a id="troubleshooting"></a> Troubleshooting
 
 ### ERROR failed to fetch latest cli version
