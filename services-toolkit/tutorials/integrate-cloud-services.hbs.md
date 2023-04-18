@@ -10,7 +10,7 @@
 
 There are a countless and ever-growing number of cloud-based services available on the market for consumers today. The three big clouds - AWS, Azure and GCP all provide support for a wide range of fully-managed, performant and on-demand services ranging from databases, to message queues, to storage solutions and beyond. In this tutorial you will learn what it takes to integrate any one of these services into Tanzu Application Platform (referred to as "TAP" from hereon in), so that it can be can offered to and consumed by apps teams in a simple and effective way.
 
-This tutorial is written at a slightly higher level that the other tutorials in this documentation. This is because it is simply not feasible to write detailed, step-by-step documentation for integrating each and every cloud-based service into TAP. There are far too many of them, each bringing with them a different set of considerations and concerns. Instead, this tutorial guides you through the general approach to integrating cloud-based services into TAP. While specific configurations will of course change between services, the overall process remains the same through a consistent set of steps. It is these steps that this tutorial focusses on. The aim is to give you just enough understanding so that you are able to go off and to integrate whatever cloud-based service you like into TAP.
+This tutorial is written at a slightly higher level than the other tutorials in this documentation. This is because it is simply not feasible to write detailed, step-by-step documentation for integrating each and every cloud-based service into TAP. There are far too many of them, each bringing with them a different set of considerations and concerns. Instead, this tutorial guides you through the general approach to integrating cloud-based services into TAP. While specific configurations will of course change between services, the overall process remains the same through a consistent set of steps. It is these steps that this tutorial focusses on. The aim is to give you just enough understanding so that you are able to go off and to integrate whatever cloud-based service you like into TAP.
 
 If you are interested in a more specific and low-level walkthrough, then please refer to [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/dynamic-provisioning-rds.hbs.md), which walks through each step in detail for AWS RDS integration. It may be useful to read through that guide even if you are hoping to integrate with one of the other cloud providers.
 
@@ -42,7 +42,7 @@ Choose whichever Provider you want, then follow Upbound's official documentation
 
 The next step is to create a `CompositeResourceDefinition`, which defines the shape of a new API type which will be used to create the cloud-based resource(s).
 
-For help creating the `CompositeResourceDefinition`, refer to [Defining Composite Resources](https://docs.crossplane.io/latest/concepts/composition/#defining-composite-resources) in the Upbound documentation, or refer to [Step 2: Create CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-rds.hbs.md#stk-dynamic-provisioning-rds-step-2) in the how-to guide [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/dynamic-provisioning-rds.hbs.md) in the services toolkit documentation.
+For help creating the `CompositeResourceDefinition`, refer to [Defining Composite Resources](https://docs.crossplane.io/latest/concepts/composition/#defining-composite-resources) in the Upbound documentation, or refer to [Step 2: Create CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-rds.hbs.md#compositeresourcedef) in the how-to guide [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/dynamic-provisioning-rds.hbs.md) in the services toolkit documentation.
 
 ## Step 3: Create Composition
 
@@ -68,7 +68,7 @@ spec:
       compositeResourceDefinition: <NAME OF THE COMPOSITE RESOURCE DEFINITION>
 ```
 
-See [Step 4: Make the service discoverable to application teams](../how-to-guides/dynamic-provisioning-rds.hbs.md#stk-dynamic-provisioning-rds-step-4) for a real-world example.
+See [Step 4: Make the service discoverable to application teams](../how-to-guides/dynamic-provisioning-rds.hbs.md#make-discoverable) for a real-world example.
 
 ## Step 5: Create RBAC
 
@@ -92,7 +92,7 @@ rules:
   - claim
 ```
 
-See [Step 5: Authorize users with the app-operator role to claim from the class](../how-to-guides/dynamic-provisioning-rds.hbs.md#stk-dynamic-provisioning-rds-step-5) for a real-world example.
+See [Step 5: Configure RBAC](../how-to-guides/dynamic-provisioning-rds.hbs.md#configure-rbac) for a real-world example.
 
 ## Step 6: Create ClassClaim
 
