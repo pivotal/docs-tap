@@ -1,6 +1,6 @@
-# Troubleshooting Rego files with a scan policy
+# Troubleshoot Rego files with a scan policy
 
-This topic describes how to use an example output to troubleshoot your Rego file. You use a Rego file in Scan Policy custom resource. See [Enforce compliance policy using Open Policy Agent](./policies.hbs.md).
+This topic describes how to use an example output to troubleshoot your Rego file. You use a Rego file in a scan policy custom resource. See [Enforce compliance policy using Open Policy Agent](./policies.hbs.md).
 
 For information about how to write Rego, see [Open Policy Agent documentation](https://www.openpolicyagent.org/docs/latest/policy-language/).
 
@@ -14,7 +14,7 @@ The following is an example scan custom resource output in CycloneDX's XML struc
 
 To troubleshoot using this example output:
 
-1. Paste your Rego file and the example output in to [Rego Playground](https://play.openpolicyagent.org/).
+1. Paste your Rego file and the example output into the [Rego Playground](https://play.openpolicyagent.org/).
 2. Evaluate your Rego file against the example output and verify that your Rego file detects the intended CVEs. For example, see [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
 
 ```json
@@ -182,7 +182,7 @@ The example in this section is a modified scan custom resource input, in  `.spdx
 
 To troubleshoot using this example output:
 
-1. Paste your Rego file and the example input in to [Rego Playground](https://play.openpolicyagent.org/).
+1. Paste your Rego file and the example input into the [Rego Playground](https://play.openpolicyagent.org/).
 2. Evaluate your Rego file against the output and verify that your Rego file detects the intended CVEs. For example, see [example](https://play.openpolicyagent.org/p/gp0fUfaxOC). 
 
 ```json
