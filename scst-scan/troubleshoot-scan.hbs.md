@@ -113,7 +113,7 @@ the deployment to see if it's reproducible or flaking upon starting:
 kubectl rollout restart deployment scan-link-controller-manager -n scan-link-system
 ```
 
-## <a id="troubleshooting-scanner-to-metadata-store-configuration"></a> Troubleshooting scanner to MetadataStore configuration
+## <a id="troubleshoot-scanner-metadata-config"></a> Troubleshooting scanner to MetadataStore configuration
 
 ### Insight CLI failed to post scan results to metadata store due to failed certificate verification
 
@@ -174,7 +174,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 
 6. Verify that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the `DEV-NAMESPACE` secret.
 
-  You can confirm this by base64 decoding both secrets and seeing if there is a match:
+  Confirm this by base64 decoding both secrets and verifying that there is a match:
   
   ```console
   kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
@@ -185,7 +185,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
-### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in air gap Environments
+### <a id="troubleshoot-grype-airgap"></a> Troubleshooting Grype in air gap Environments
 
 For information about issues with Grype in air gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
 
@@ -381,7 +381,7 @@ This is because the `grype.metadataStore.url` value in the Tanzu Application
 Platform profile `values.yaml` was not configured with the correct prefix.
 Verify that the URL starts with either `http://` or `https://`.
 
-### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
+### <a id="deprecated-templates"></a> Deprecated pre-v1.2 templates
 
 If the scan phase is in `Error` and the status condition message is:
 
@@ -412,7 +412,7 @@ To resolve this issue, ensure that `shared.ca_cert_data` contains the required c
 
 For information about `shared.ca_cert_data`, see [View possible configuration settings for your package](../view-package-config.hbs.md).
 
-### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
+### <a id="unable-pull-scanner-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
 The `docker` field and related sub-fields by SCST - Scan Controller, Grype
 Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0.
