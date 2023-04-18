@@ -1,7 +1,8 @@
 # Known Limitations
 
-This topic provides details of known issues and workarounds related to working with services on Tanzu Application
-Platform.
+This topic provides details of known issues and workarounds related to working with services on
+Tanzu Application Platform. For other troubleshooting guidance, see
+[Troubleshooting Services Toolkit](../how-to-guides/troubleshooting.hbs.md).
 
 ## <a id="stk-known-limitation-multi-workloads"></a> Cannot claim and bind to the same service instance from across multiple namespaces
 

@@ -27,12 +27,12 @@ To configure dynamic provisioning for VMware Tanzu Postgres services instances, 
 5. [Make the service discoverable](#make-discoverable)
 6. [Configure RBAC](#configure-rbac)
 
-## <a id="install-postgres-operator"></a> Install the Tanzu VMware Postgres Operator
+### <a id="install-postgres-operator"></a> Install the Tanzu VMware Postgres Operator
 
 Install the Tanzu VMware Postgres Operator by following the steps in
 [Installing a VMware Postgres Operator](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/2.0/vmware-postgres-k8s/GUID-install-operator.html).
 
-## <a id="set-up-namespace"></a> Set up the namespace
+### <a id="set-up-namespace"></a> Set up the namespace
 
 This topic configures dynamic provisioning to provision all Tanzu Postgres service instances into the
 same namespace. This namespace is named `tanzu-psql-service-instances`.
@@ -64,7 +64,7 @@ To set up the namespace:
    > **Note** You must update the `--docker-server` value if you reloacted images as part of the installation
    > of the operator.
 
-## <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
+### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
 To create the CompositeResourceDefinition:
 
@@ -119,7 +119,7 @@ To create the CompositeResourceDefinition:
    kubectl apply -f xpostgresqlinstances.database.tanzu.example.org.xrd.yaml
    ```
 
-## <a id="create-composition"></a> Create a Composition
+### <a id="create-composition"></a> Create a Composition
 
 To create the Composition:
 
@@ -304,7 +304,7 @@ To create the Composition:
    kubectl apply -f xpostgresqlinstances.database.tanzu.example.org.composition.yaml
    ```
 
-## <a id="make-discoverable"></a> Make the service discoverable
+### <a id="make-discoverable"></a> Make the service discoverable
 
 To make the service discoverable to application teams:
 
@@ -332,7 +332,7 @@ To make the service discoverable to application teams:
    kubectl apply -f tanzu-psql.class.yaml
    ```
 
-## <a id="configure-rbac"></a> Configure RBAC
+### <a id="configure-rbac"></a> Configure RBAC
 
 To configure access control with RBAC:
 
