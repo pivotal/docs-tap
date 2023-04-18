@@ -1,10 +1,12 @@
 # Application Accelerator CLI plug-in overview
 
-The Application Accelerator Tanzun CLI plug-in includes commands for developers and operators to create and use accelerators.
+The Application Accelerator Tanzu CLI plug-in includes commands for developers and operators to
+create and use accelerators.
 
 ## <a id="server-api-connections"></a>Server API connections for operators and developers
 
-The Application Accelerator CLI must connect to a server for all provided commands except for the `help` and `version` commands.
+The Application Accelerator CLI must connect to a server for all provided commands except for the
+`help` and `version` commands.
 
 Operators typically use **create**, **update**, and **delete** commands for managing accelerators in a Kubernetes context.
 They also use the **fragment** commands to manage accelerator fragments.
@@ -15,11 +17,27 @@ For any of these commands, the operator can specify the `--context` flag to acce
 Developers use the **list**, **get**, and **generate** commands for using accelerators
 available in an Application Accelerator server.
 Developers use the `--server-url` to point to the Application Accelerator server they want to use.
-You can either use the proxy that is part of TAP-GUI or you can use the URL for the Application Accelerator server, if that is configured to be exposed. We recommend to use the TAP-GUI address.
+
+You can either use the proxy that is part of TAP-GUI or you can use the URL for the Application
+Accelerator server, if that is configured to be exposed. VMware recommends using the TAP-GUI address.
 
 ### <a id="server-api-tap-gui"></a>Using TAP-GUI URL
 
-When using TAP-GUI you should specify `--server-url` as `https://tap-gui.<domain>` where `domain` defaults to the `shared.ingress_domain` value provided in the values file of Tanzu Application Platform.
+1. Specify `--server-url` as:
+
+    ```console
+    https://tap-gui.DOMAIN
+    ```
+
+    Where `DOMAIN` defaults to the `shared.ingress_domain` value provided in the values file of Tanzu Application Platform.
+
+2. Add the following flags to the `tap-values.yaml` file when `shared.ingress_domain` is set.
+
+    ```yaml
+    accelerator:
+        ingress:
+        include: true
+    ```
 
 ### <a id="server-api-acc-server"></a>Using Application Accelerator Server URL
 

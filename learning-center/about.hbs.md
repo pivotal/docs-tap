@@ -85,7 +85,7 @@ redirected to that workshop session instance.
 ![Screenshot of Learning Center architecture, showing relationships between the Learning Center operator, training portal, and user workshop sessions.](../learning-center/about-learning-center/images/architectural-overview.png)
 
 You can associate each workshop session with one or more Kubernetes namespaces specifically for use during that session.
-Role based access control (RBAC) applied to the unique Kubernetes service account for that session ensures that the
+Role-Based Access Control (RBAC) applied to the unique Kubernetes service account for that session ensures that the
 user can only access the namespaces and other resources that they are allowed to for that workshop.
 
 In this scenario, the custom resource types that come into play are:

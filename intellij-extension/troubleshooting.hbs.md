@@ -37,7 +37,7 @@ Select debug configuration from the right-click pop-up menu.
 
 ## <a id="cannot-view-workloads"></a> Unable to view workloads on the panel when connected to GKE cluster
 
-{{> 'partials/ide-extensions/cannot-view-workloads' }}
+{{> 'partials/ide-extensions/ki-cannot-view-workloads' }}
 
 ## <a id="dsbl-lnch-ctrl"></a> Deactivated launch controls after running a launch configuration
 
@@ -93,7 +93,7 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
-{{> 'partials/ide-extensions/timeout-err-live-updating' }}
+{{> 'partials/ide-extensions/ki-timeout-err-live-updating' }}
 
 ## <a id="panel-empty-gke"></a> Tanzu Panel empty when using a GKE cluster on macOS
 
@@ -121,30 +121,6 @@ Open IntelliJ from the CLI. Example command:
 open /Applications/IntelliJ\ IDEA.app
 ```
 
-## <a id="describe-action-fail"></a> The Describe action in the Activity panel fails when used on PodIntent resources
-
-### Symptom
-
-The pop-up menu **Describe** action in the Activity panel fails when used on PodIntent resources.
-The error message is similar to the following:
-
-   ```console
-   Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; \
-   use conventions.carto.run/v1alpha1 PodIntent instead
-   Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
-
-   Process finished with exit code 1
-   ```
-
-### Cause
-
-When there are multiple resource types with the same kind, attempting to describe a resource of that
-kind without fully qualifying the API version causes this error.
-
-### Solution
-
-There is no workaround for this issue at present. A fix is planned for this issue in the next version.
-
 ## <a id="tnz-panel-k8s-rsrc-fail"></a> Tanzu panel shows workloads but doesn't show Kubernetes resources
 
 ### Symptom
@@ -165,8 +141,12 @@ Restart IntelliJ to properly detect the context change.
 
 ## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only have describe and delete action
 
-{{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}
+{{> 'partials/ide-extensions/ki-tnz-panel-actions-unavail' }}
 
 ## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
 
 {{> 'partials/ide-extensions/ki-projects-with-spaces' }}
+
+## <a id="cnfg-writer-pull-request"></a> `config-writer-pull-requester` is categorized as Unknown
+
+{{> 'partials/ide-extensions/ki-config-writer-pull-requester' }}

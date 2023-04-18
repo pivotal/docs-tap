@@ -3,7 +3,7 @@
 This topic describes how to install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Security Tools - Scan. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install SCST - Scan. For information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
@@ -43,11 +43,11 @@ When you install the SCST - Scan (Scan controller), you can configure the follow
 | metadataStore.authSecret.importFromNamespace | _n/a_ | string | Namespace from which to import the Insight Metadata Store auth_token | earlier than v1.2.0 |
 | metadataStore.authSecret.name | _n/a_ | string | Name of deployed secret with key auth_token | earlier than v1.2.0 |
 | retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | v1.3.1 and later |
-| caCertData | "" | string | The custom certificates trusted by the scans' connections. | v1.4.0 and later |
-| certIssuer | "" | string | The common certificate issuer for the cluster. | v1.5.0 and later |
+| caCertData | "" | string | The custom certificates trusted by the scans' connections | v1.4.0 and later |
+| certIssuer | "" | string | The common certificate issuer for the cluster | v1.5.0 and later |
 | controller.pullSecret | "controller-secret-ref" | string | Reference to the secret used for pulling the controller image from private registry. Set to empty if deploying from a public registry. | v1.5.0 and later |
-| docker.import | true | boolean | Import `controller.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret will already be present. | v1.5.0 and later |
-| kubeRbacProxy.certRef | "" | string | Reference to the secret which holds certificate for kube-rbac-proxy. The Certificate is used to enable secure connection to the metric proxy. | v1.5.0 and later |
+| docker.import | true | Boolean | Import `controller.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is present. | v1.5.0 and later |
+| kubeRbacProxy.certRef | "" | string | Reference to the secret which holds certificate for kube-rbac-proxy. The Certificate enables secure connection to the metric proxy. | v1.5.0 and later |
 | kubeRbacProxy.tls.minVersion | "" | string | Minimum TLS version supported by kube-rbac-proxy. Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants. | v1.5.0 and later |
 | kubeRbacProxy.tls.ciphers | empty array | array of strings | Comma-separated list of cipher suites for the server supported by kube-rbac-proxy. Values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants). | v1.5.0 and later |
 
@@ -74,9 +74,9 @@ There are two options for installing Supply Chain Security Tools – Scan
 
 ### <a id='install-scst-scan-namespace-provisioner'></a> Option 1: Install to multiple namespaces with the Namespace Provisioner
 
-The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Tutorial: Provisioning new developer namespaces](../namespace-provisioner/tutorials.hbs.md).
+The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
 
-The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Add the resources required by the Out of the Box Testing and Scanning Supply Chain](../namespace-provisioner/how-tos.hbs.md#add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain) for configuration steps.
+The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Customize installation](../namespace-provisioner/customize-installation.md) in the Namespace Provisioner documentation for configuration steps.
 
 ### <a id='install-scst-scan-manually'></a> Option 2: Install manually to each individual namespace
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
@@ -106,8 +106,15 @@ To install SCST - Scan (Scan controller):
 
 2. (Optional) Make changes to the default installation settings:
 
-    If you're using the Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
-    following scanning configuration might deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
+    If you are using Grype Scanner `v1.5.0 and later` or other supported scanners included with Tanzu Application Platform `v1.5 and later` and do not want to use the default SCST - Store integration, deactivate the integration by appending the following field to the `values.yaml` file:
+
+    ```yaml
+    ---
+    metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+    ```
+
+    If you are using Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
+    following scanning configuration deactivates the embedded SCST - Store integration with a `scan-values.yaml` file.
 
     ```yaml
     ---
@@ -115,13 +122,10 @@ To install SCST - Scan (Scan controller):
       url: ""
     ```
 
-    If you're using the Grype Scanner `earlier than 1.2.0`, the scanning configuration must
-    configure the store parameters. See the [v1.1
-    docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html)
-    for reference.
+    If your Grype Scanner version is earlier than v1.2.0, the scanning configuration must
+    configure the store parameters. See [v1.1 Install Supply Chain Security Tools - Scan](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html).
 
-    You can retrieve any other configurable setting using the following command,
-    and appending the key-value pair to the previous `scan-values.yaml` file:
+    Run to retrieve other configurable settings and append the key-value pair to the previous `scan-values.yaml` file:
 
     ```console
     tanzu package available get scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -143,7 +147,7 @@ To install SCST - Scan (Scan controller):
 
 <a id="install-grype"></a> To install SCST - Scan (Grype scanner):
 
->**Note:** To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+>**Note** To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 
 1. List version information for the package by running:
 
@@ -167,7 +171,7 @@ To install SCST - Scan (Scan controller):
 
     ```yaml
     ---
-    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
+    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are going to be deployed
     metadataStore:
       url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
       caSecret:
@@ -177,6 +181,14 @@ To install SCST - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
+
+    **Note** In a single cluster, the connection between the scanning pod and
+    the metadata store happens inside the cluster and does not pass through
+    ingress. This is automatically configured. You do not need to provide an
+    ingress connection to the store. For information about troubleshooting
+    issues with scanner to metadata store connection configuration, see
+    [Troubleshooting Scanner to MetadataStore Configuration](./troubleshoot-scan.hbs.md#insight-cli-failed-to-post-scan-results-to-metadata-store-due-to-failed-certificate-verification).
+
     >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 
@@ -200,8 +212,7 @@ To install SCST - Scan (Scan controller):
     Application Platform package
     repository](../install.html#add-tap-package-repo) as described earlier.
 
-    You can retrieve any other configurable setting using the following command,
-    and appending the key-value pair to the previous `grype-values.yaml` file:
+    Run to retrieve other configurable settings and append the key-value pair to the previous `grype-values.yaml` file:
 
     ```console
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install

@@ -6,6 +6,44 @@ required files specified in [Getting started](getting-started.hbs.md).
 The extension requires only one Tiltfile and one `workload.yaml` file per project.
 `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
+## <a id="workload-actions"></a> Workload Actions
+
+The extension enables you to apply, debug, and Live Update your application on a Kubernetes cluster
+that has Tanzu Application Platform.
+The developer sandbox experience enables developers to Live Update their code and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
+
+### <a id="apply-workload"></a> Apply a workload
+
+The extension enables you to apply workloads on your Kubernetes cluster that has
+Tanzu Application Platform.
+
+To apply a workload:
+
+1. Right-click anywhere in the IntelliJ project explorer and click **Tanzu** > **Apply Workload** or
+   right-click on an associated workload in the Workloads panel and click **Apply Workload**.
+
+   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
+
+2. Click **Tanzu > Modify Apply Configuration**.
+
+The `Tanzu workload apply` command is triggered in the terminal and the workload is applied.
+A new workload appears on the Tanzu panel.
+
+### <a id="delete-workload"></a> Delete a workload
+
+The extension enables you to delete workloads on your Kubernetes cluster that has
+Tanzu Application Platform.
+
+To delete a workload right-click anywhere in the IntelliJ project explorer and click
+**Tanzu** > **Delete Workload** or right-click on an associated workload in the Workloads panel and
+click **Delete Workload**.
+
+![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
+
+A message appears that prompts you to delete the workload and not warn again, delete the workload,
+or cancel. A notification appears showing that the workload was deleted.
+
 ## <a id="debugging"></a> Debugging on the cluster
 
 The extension enables you to debug your application on a Kubernetes cluster that has
@@ -18,52 +56,18 @@ For how to create `workload.yaml`, see
 The developer sandbox experience enables developers to Live Update their code, and simultaneously
 debug the updated code, without having to deactivate Live Update when debugging.
 
-### <a id="apply-workload"></a> Apply a workload
-
-The extension enables you to apply workloads on your Kubernetes cluster that has
-Tanzu Application Platform.
-
-To apply a workload:
-
-1. Right-click anywhere in the IntelliJ project explorer or an associated workload in the Workloads panel.
-2. Click **Tanzu** > **Apply Workload**.
-
-   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
-
-   ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Apply Workload option highlighted.](../images/intellij-workload-panel-apply-action.png)
-
-3. Click **Tanzu > Modify Apply Configuration**.
-
-The `Tanzu workload apply` command is triggered in the terminal and the workload is applied.
-A new workload appears on the Tanzu panel.
-
-### <a id="delete-workload"></a> Delete a workload
-
-The extension enables you to delete workloads on your Kubernetes cluster that has Tanzu Application Platform.
-
-To delete a workload:
-
-1. Right-click anywhere in the IntelliJ project explorer or a workload in the Workloads panel.
-2. Click **Tanzu > Delete Workload**.
-
-   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
-   ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Delete Workload option highlighted.](../images/intellij-workload-panel-delete-action.png)
-
-A message appears that prompts you to delete the workload and not warn again, delete the workload,
-or cancel. A notification appears showing that the workload was deleted.
-
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
 To start debugging on the cluster:
 
 1. Add a [breakpoint](https://www.jetbrains.com/help/idea/using-breakpoints.html) in your code.
-2. Right-click the `workload.yaml` file in your project or an associated workload in the Workloads panel.
-3. Click **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
+2. Right-click the `workload.yaml` file in your project and click **Debug 'Tanzu Debug Workload...'**
+   in the pop-up menu or right-click on an associated workload in the Workloads panel and click
+   **Debug Workload**.
 
-    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
-    ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Debug Workload option highlighted.](../images/intellij-workload-panel-debug-action.png)
+   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
 
-4. Ensure that the configuration parameters are set:
+3. Ensure that the configuration parameters are set:
 
    - **Source Image:** This is the registry location for publishing local source code.
      For example, `registry.io/yourapp-source`.
@@ -82,6 +86,10 @@ Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description.](../images/intellij-stopDebug.png)
 
+## <a id="live-updating"></a> Live Update
+
+See the following sections for how to use Live Update.
+
 ### <a id="start-live-update"></a> Start Live Update
 
 Before using Live Update, verify that your auto-save setting is either off or on with a delay.
@@ -92,20 +100,20 @@ This auto-save setting is in
 
 To start Live Update:
 
-1. Right-click your project’s Tiltfile or an associated workload in the Workloads panel and then click
-   **Run 'Tanzu Live Update - ...'**.
+1. Right-click your project’s Tiltfile and then click
+   **Run 'Tanzu Live Update - ...'** or right-click on an associated workload in the Workloads panel
+   and then click **Live Update Workload**.
 
    ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
-   ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Live Update Workload option highlighted.](../images/intellij-workload-panel-live-update-action.png)
 
 2. Ensure that the configuration parameters are set:
 
-    - **Source Image:** This is the registry location for publishing local source code.
-      For example, `registry.io/yourapp-source`. It must include both a registry and a project name.
-    - **Local Path:** This is the path on the local file system to a directory of source code to build.
-    - **Namespace:** This is the namespace that workloads are deployed into.
+   - **Source Image:** This is the registry location for publishing local source code.
+     For example, `registry.io/yourapp-source`. It must include both a registry and a project name.
+   - **Local Path:** This is the path on the local file system to a directory of source code to build.
+   - **Namespace:** This is the namespace that workloads are deployed into.
 
-    ![Edit Run Configuration window showing the Live Update configuration parameter text boxes.](../images/intellij-liveupdate-config.png)
+   ![Edit Run Configuration window showing the Live Update configuration parameter text boxes.](../images/intellij-liveupdate-config.png)
 
 > **Note** You must compile your code before the changes are synchronized to the container.
 > For example, `Build Project`: `⌘`+`F9`.

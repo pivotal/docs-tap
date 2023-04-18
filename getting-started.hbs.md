@@ -42,8 +42,11 @@ When you have completed these prerequisites, you are ready to get started.
 
 For developers:
 
+- [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
 - [Deploy an app on Tanzu Application Platform](getting-started/deploy-first-app.md)
+- [Deploy Spring Cloud Applications to Tanzu Application Platform](getting-started/spring-apps/deploy-spring-cloud-apps.hbs.md)
 
 For operators:
 
-- [Create an application accelerator](getting-started/create-app-accelerator.md)
+- [Add testing and scanning to your application](getting-started/add-test-and-security.hbs.md)
+- [Configure image signing](getting-started/config-supply-chain.hbs.md)

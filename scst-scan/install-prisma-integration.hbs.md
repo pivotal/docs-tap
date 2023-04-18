@@ -14,15 +14,16 @@ Run this command to output a list of available tags.
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
 ```
 
-Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.12` in the following output.
+Use the latest version returned in place of the sample version in this topic. For example, `0.1.5-alpha.13` in the following output.
 
 ```console
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
-
-0.1.4-alpha.1  
-0.1.4-alpha.6  
-0.1.4-alpha.11
+0.1.4-alpha.11  
 0.1.4-alpha.12  
+0.1.4-alpha.15  
+0.1.5-alpha.11  
+0.1.5-alpha.12  
+0.1.5-alpha.13  
 ```
 
 ## Relocate images to a registry
@@ -204,7 +205,7 @@ To create a Prisma secret, use the following instructions.
      Prisma configuration to connect to Prisma. This field is required.
 
 The Prisma integration can work with or without the SCST - Store integration.
-The values.yaml file is slightly different for each configuration.
+The `values.yaml` file is slightly different for each configuration.
 
 #### Access Token Authentication
 
@@ -345,12 +346,12 @@ Where:
 
 ### No Store Integration
 
-If you do not want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
+If you do not want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file that is enabled by default:
 
 ```yaml
 # ...
 metadataStore:
-  url: "" # Configuration is moved, so set this string to empty
+  url: "" # Deactivate Supply Chain Security Tools - Store integration
 ```
 
 ## Prepare the ScanPolicy
@@ -375,15 +376,12 @@ spec:
     package main
     
     import future.keywords.in
-    import future.keywords.if
     
-    failedPrismaComplianceOrVulnerabilityChecks(metadata) {
-      x := false in cast_set(metadata.properties.property)
-      x
-    }
-
     deny[msg] {
-      failedPrismaComplianceOrVulnerabilityChecks(input.bom.metadata)
+      vulnerabilityAndComplianceScanResults := {e | e := input.bom.metadata.properties.property[_]}
+      some result in vulnerabilityAndComplianceScanResults
+      failedScans:= "false" in result
+      failedScans
       vulnerabilityMessages := { message |
         components := {e | e := input.bom.components.component} | {e | e := input.bom.components.component[_]}
         some component in components
@@ -510,6 +508,26 @@ shared:
    targetImagePullSecret: tap-registry
    caCertSecret: prisma-registry-cert
    ```
+
+## Connect to Prisma through a Proxy
+
+To connect to Prisma through a proxy, you must add `environmentVariables` configuration to your `prisma-values.yaml`.
+
+**Note** All valid container `env` configurations are supported.
+
+For example:
+
+```yaml
+ namespace: dev
+ targetImagePullSecret: tap-registry
+ environmentVariables:
+ - name: HTTP_PROXY
+   value: "test.proxy.com"
+ - name: HTTPS_PROXY
+   value: "test.proxy.com"
+ - name: NO_PROXY
+   value: "127.0.0.1,.svc,.svc.cluster.local,demo.app"
+```
 
 ## Known Limits
 

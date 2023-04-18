@@ -61,13 +61,13 @@ Parameters:
     <td><code>gitImplementation</code></td>
     <td>
       VMware recommends that you use the underlying library for fetching the source code.
-      Either <code>libggit2</code>, required for Azure DevOps, or
+      Either <code>libgit2</code>, required for Azure DevOps, or
       <code>go-git</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       </pre>
     </td>
   </tr>
@@ -906,13 +906,13 @@ Parameters:
     <td><code>gitImplementation</code></td>
     <td>
       VMware recommends that you use the underlying library for fetching the
-      source code.  Either <code>libggit2</code>, required for Azure DevOps, or
+      source code.  Either <code>libgit2</code>, required for Azure DevOps, or
       <code>go-git</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       </pre>
     </td>
   </tr>

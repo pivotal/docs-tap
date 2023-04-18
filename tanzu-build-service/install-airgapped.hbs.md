@@ -56,8 +56,9 @@ To install the Tanzu Build Service package on an air-gapped environment:
     ```yaml
     ---
     kp_default_repository: REPO-NAME
-    kp_default_repository_username: REGISTRY-USERNAME
-    kp_default_repository_password: REGISTRY-PASSWORD
+    kp_default_repository_secret:
+      name: "SECRET_NAME"
+      namespace: "SECRET_NAMESPACE"
     ca_cert_data: CA-CERT-CONTENTS
     exclude_dependencies: true
     ```
@@ -68,17 +69,11 @@ To install the Tanzu Build Service package on an air-gapped environment:
     Tanzu Build Service dependencies are written to this location. For example:
       - For Harbor: `harbor.io/my-project/build-service`
       - For Artifactory: `artifactory.com/my-project/build-service`
+   - `SECRET_NAME` is the name of the secret containing credentials that can write to `REPO-NAME`.
+   - `SECRET_NAMESPACE` is the namespace of the secret containing credentials that can write to `REPO-NAME`.
+   - `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry.
 
-    - `REPO-USERNAME` and `REPO-PASSWORD` are the user name and password for the user that can
-    write to `REPO-NAME`.
-
-        >**Note** If you do not want to use plaintext for these credentials, you can
-        >instead configure these credentials by using a Secret reference.
-        >For more information, see [Use Secret references for registry credentials](#install-secret-refs).
-
-    - `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry.
-
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml

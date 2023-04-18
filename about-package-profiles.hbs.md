@@ -23,7 +23,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Consumers can view detailed API documentation and try out an API to see if it meets their needs.
   API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
-  URLs to to appear in a single instance.
+  URLs to appear in a single instance.
 
 - **[API Scoring and Validation](api-validation-scoring/about.hbs.md)**
 
@@ -45,6 +45,16 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Application operators can create custom accelerators that reflect their desired architectures and
   configurations and enable fleets of developers to use them. This helps ease operator concerns about
   whether developers are implementing their best practices.
+
+- **[Application Configuration Service](application-configuration-service/about.hbs.md)**
+
+  Application Configuration Service provides a Kubernetes-native experience to enable the runtime
+  configuration of existing Spring applications that were previously leveraged by using
+  Spring Cloud Config Server.
+
+  Application Configuration Service is compatible with the existing Git repository configuration
+  management approach.
+  It filters runtime configuration for any application by using slices that produce secrets.
 
 - **[Application Live View](app-live-view/about-app-live-view.md)**
 
@@ -139,7 +149,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
-  Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision
+  Namespace Provisioner provides an easy, secure, automated way for Platform Operators to provision
   namespaces with the resources and proper namespace-level privileges needed for developer workloads
   to function as intended.
 
@@ -150,9 +160,12 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
 - **[Services Toolkit](services-toolkit/about.hbs.md)**
 
-  Services Toolkit comprises a number of Kubernetes-native components that support the management,
-  life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
-  DNS records, and so on) on Kubernetes.
+  Services Toolkit is responsible for backing many of the most exciting and powerful
+  capabilities for services in Tanzu Application Platform. From the integration of an
+  extensive list of cloud-based and on-prem services, through to the offering and discovery of those
+  services, and finally to the claiming and binding of service instances to application workloads,
+  Services Toolkit has the tools you need to make working with services on Tanzu Application Platform
+  simple, easy, and effective.
 
 - **[Spring Boot conventions](spring-boot-conventions/about.hbs.md)**
 
@@ -325,7 +338,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <tr>
    <td>API portal
    </td>
    <td>&check;
@@ -382,7 +394,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <td>Application Live View GUI Backend
+   <td>Application Live View GUI Backend
    </td>
    <td>&check;
    </td>
@@ -410,7 +422,36 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
-  <td>Cloud Native Runtimes
+  <tr>
+   <td>Bitnami Services
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Cloud Native Runtimes
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Crossplane
    </td>
    <td>&check;
    </td>
@@ -451,7 +492,8 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
-  <td>Eventing
+  <tr>
+   <td>Eventing
    </td>
    <td>&check;
    </td>
@@ -466,7 +508,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Flux Source Controller
-  </td>
+   </td>
    <td>&check;
    </td>
    <td>&check;
@@ -494,7 +536,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
    <td>Learning Center
-  </td>
+   </td>
    <td>&check;
    </td>
    <td>
@@ -507,9 +549,8 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-    <tr>
    <td>Namespace Provisioner
-  </td>
+   </td>
    <td>&check;
    </td>
    <td>&check;
@@ -792,13 +833,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling \*\*</strong>
+   <td><strong>Tanzu Developer Tooling </strong>
    </td>
    <td><strong>Application Live View</strong>
    </td>
    <td><strong>Functions</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Buildpack SBOM's\*\*\*</strong>
+   <td><strong>Extended Scanning Coverage using Buildpack SBOM's</strong>
    </td>
   </tr>
   <tr>
@@ -841,9 +882,8 @@ Tanzu Application Platform components.
    <td>
    </td>
    <td>&check;
-   <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -853,12 +893,12 @@ Tanzu Application Platform components.
   <tr>
    <td>Steeltoe
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>&check;
    </td>

@@ -18,8 +18,8 @@ Amazon Elastic Kubernetes Service (EKS) cluster to Kubernetes v1.23, build pods 
 ### Cause
 
 This is due to the CSIMigrationAWS in this Kubernetes version, which requires users
-to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
-to use AWS Elastic Block Store (EBS) volumes.
+to install the Amazon EBS CSI driver
+to use AWS Elastic Block Store (EBS) volumes. See the [Amazon documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html).
 For more information about EKS support for Kubernetes v1.23, see the
 [Amazon blog post](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/).
 
@@ -28,7 +28,7 @@ Tanzu Application Platform uses the default storage class which uses EBS volumes
 ### Solution
 
 Follow the AWS documentation to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
-before installing Tanzu Application Platform, or before upgrading to Kubernetes v1.23.
+before installing Tanzu Application Platform, or before upgrading to Kubernetes v1.23. See
 
 ---
 
@@ -57,7 +57,7 @@ $ kubectl get events -A | grep "max depth exceeded"
 ### Solution
 
 To work around this issue, configure your cluster to use containerd or CRI-O as its default container runtime.
-For instructions, refer to the following documentation for your Kubernetes cluster provider.
+For instructions, see the following documentation for your Kubernetes cluster provider.
 
 For AWS, see:
 
@@ -106,9 +106,34 @@ default to Docker as the runtime.
 
 ### Symptom
 
-While upgrading apps to a newer stack, you might encounter the build platform
+While upgrading apps to a later stack, you might encounter the build platform
 erroneously reusing the old build cache.
 
 ### Solution
 
-If you encounter this issue, delete and recreate the workload in Tanzu Application Platform, or delete and recreate the image in Tanzu Build Service.
+If you encounter this issue, delete, and recreate the workload in Tanzu Application Platform, or delete and recreate the image in Tanzu Build Service.
+
+## <a id="shared-image-registry"></a> Switching from `buildservice.kp_default_repository` to `shared.image_registry`
+
+### Symptom
+
+After switching to using the `shared.image_registry` fields in `tap-values.yaml`, all your workloads
+might start failing with `TemplateRejectedByAPIServer` with the error message `admission webhook
+"validation.webhook.kpack.io" denied the request: validation failed: Immutable field changed:
+spec.tag`.
+
+### Cause
+
+Tanzu Application Platform automatically appends `/buildservice` to the end of the repository
+specified in `shared.image_registry.project_path`. This causes all the existing workloads' image
+tags to be updated, which is not allowed by Tanzu Build Service.
+
+### Solution
+
+You can delete the `images.kpack.io` (it will have the same name as the
+workload), the workload recreates it with valid values.
+
+Alternatively, you can re-add the `buildservice.kp_default_repository_*` fields
+in the `tap-values.yaml`. You must set both the repository and the
+authentication fields to override the shared values. Set `kp_default_repository`, `kp_default_repository_secret.name`, and
+`kp_default_repository_secret.namespace`.

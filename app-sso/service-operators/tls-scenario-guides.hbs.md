@@ -65,7 +65,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/documentation: Uses the default issuer for TLS
 spec:
   identityProviders:
@@ -136,7 +135,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -204,7 +202,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -280,7 +277,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -372,7 +368,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -453,7 +448,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -550,7 +544,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -644,7 +637,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:
@@ -741,7 +733,6 @@ metadata:
   namespace: login
   annotations:
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 spec:
   #! --- TLS ---
   tls:

@@ -1,10 +1,10 @@
 publication:
     RootMapFile: toc.md
     OutputFileName: tap
-    PublicationName: Tanzu Application Platform v1.4
+    PublicationName: Tanzu Application Platform v1.5
     ProductName: Tanzu Application Platform
-    ProductVersion: 1.4
-    PublicationVersion: 1.4
+    ProductVersion: 1.5
+    PublicationVersion: 1.5
     PublicationVersionComments:
     Language: en
     PublicationGuid: tap
