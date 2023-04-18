@@ -36,7 +36,7 @@ Choose whichever Provider you want, then follow Upbound's official documentation
 
     > **Note** Be aware of the fact that these cloud-based Providers often install many hundreds of additional CRDs into
     > the cluster, which can have a negative impact on cluster performance.
-    > See [Cluster performance degradation due to large number of CRDs](../how-to-guides/troubleshooting.hbs.md#stk-known-limitation-too-many-crds) for further information.
+    > See [Cluster performance degradation due to large number of CRDs](../reference/known-limitations.hbs.md#stk-known-limitation-too-many-crds) for further information.
 
 ## Step 2: Create CompositeResourceDefinition
 
