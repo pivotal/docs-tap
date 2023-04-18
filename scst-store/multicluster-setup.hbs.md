@@ -129,12 +129,12 @@ grype:
   namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   metadataStore:
-    url: METADATA-STORE-URL-ON-VIEW-CLUSTER
+    url: METADATA-STORE-URL-ON-VIEW-CLUSTER # Url with http / https
     caSecret:
         name: store-ca-cert
-        importFromNamespace: metadata-store-secrets
+        importFromNamespace: metadata-store-secrets # Must match with `ingress-cert.data."ca.crt"` of store on view cluster
     authSecret:
-        name: store-auth-token
+        name: store-auth-token # Must match with valid store token of metadata-store on view cluster
         importFromNamespace: metadata-store-secrets
 ...
 ```
@@ -185,6 +185,8 @@ EOF
 ```
 
 Where `[DEV-NAMESPACES]` is an array of developer namespaces where the secrets are exported.
+
+More detailed description of `metadata` configuration can be found at [Cluster Specific Store Configuration](cluser-specific-scanner-configurations.hbs.md)
 
 ## Additional resources
 

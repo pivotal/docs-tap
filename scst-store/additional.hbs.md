@@ -33,6 +33,7 @@ This section includes the following topics:
 - [Custom certificate configuration](custom-cert.hbs.md)
 - [TLS configuration](tls-configuration.hbs.md)
 - [Certificate rotation](cert-rotation.hbs.md)
+- [Scanners Cluster Specific Configurations](cluser-specific-scanner-configurations.hbs.md)
 
 ### Database
 
