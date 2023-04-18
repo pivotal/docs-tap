@@ -886,7 +886,7 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   This behavior arises from the API at the Backstage level. There are currently no known workarounds.
   There are plans for upstream commits to Backstage to resolve this issue.
 
-#### <a id="vscode-ext-known-issues"></a>VS Code Extension
+#### <a id="vscode-ext-known-issues"></a> Tanzu Developer Tools for VS Code
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
 
@@ -908,7 +908,9 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   For more information, see
   [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types).
 
-#### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
+- Live Update does not work when using the Jammy `ClusterBuilder`.
+
+#### <a id="intelj-ext-known-issues"></a> Tanzu Developer Tools for IntelliJ
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
 

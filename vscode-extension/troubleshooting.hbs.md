@@ -68,3 +68,7 @@ For example, Java 11 in `tanzu-java-web-app`.
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
 {{> 'partials/ide-extensions/ki-timeout-err-live-updating' }}
+
+## <a id="live-update-jammy-fail"></a> Live Update does not work with the Jammy `ClusterBuilder`
+
+{{> 'partials/ide-extensions/ki-live-update-jammy' }}
