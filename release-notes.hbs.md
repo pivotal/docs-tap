@@ -629,7 +629,6 @@ specify `policy.tuf_mirror` and `policy.tuf_root`.
 - **Communication with Supply Chain Security Tools - Store:** In previous
   versions of Tanzu Application Platform, you configured Tanzu Application
   Platform GUI to use the read-only access token to communicate with Supply
-  Chain Security Tools - Store.
 
   In v1.4, you must use the read-write access token to use new features in the
   Security Analysis GUI plug-in. If upgrading from v1.3, update your Tanzu
@@ -889,6 +888,8 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
   not found. For more information, see
   [Troubleshooting](vs-extension/troubleshooting.hbs.md#lv-update-path-not-found).
 
+- Live Update does not work when using the Jammy `ClusterBuilder`.
+
 #### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
 
 - `Could not find the task 'tanzuManagement: Kill Port Forward
@@ -896,8 +897,6 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
   with a previous version of the Visual Studio Code extension. For more
   information, see
   [Troubleshooting](vscode-extension/troubleshooting.hbs.md#deprecated-task).
-
-- Live Update does not work when using the Jammy `ClusterBuilder`.
 
 ---
 
