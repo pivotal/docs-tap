@@ -593,10 +593,14 @@ This release has the following known issues, listed by area and component.
 - In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
+- Live Update does not work when using the Jammy `ClusterBuilder`.
+
 #### <a id='1-5-0-vs-plugin-ki'></a> Tanzu Developer Tools for Visual Studio
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+- Live Update does not work when using the Jammy `ClusterBuilder`.
 
 #### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
 

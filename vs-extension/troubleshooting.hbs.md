@@ -11,3 +11,7 @@ Tanzu Application Platform workload to fail or become unresponsive indefinitely.
 
 Do not click the button. Instead, in the top menu click **Debug** > **Detach All**.
 A fix for this issue is planned for a future release.
+
+## <a id="live-update-jammy-fail"></a> Live Update does not work with the Jammy `ClusterBuilder`
+
+{{> 'partials/ide-extensions/ki-live-update-jammy' }}

@@ -150,3 +150,7 @@ Restart IntelliJ to properly detect the context change.
 ## <a id="cnfg-writer-pull-request"></a> `config-writer-pull-requester` is categorized as Unknown
 
 {{> 'partials/ide-extensions/ki-config-writer-pull-requester' }}
+
+## <a id="live-update-jammy-fail"></a> Live Update does not work with the Jammy `ClusterBuilder`
+
+{{> 'partials/ide-extensions/ki-live-update-jammy' }}
