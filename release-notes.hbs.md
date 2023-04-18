@@ -24,7 +24,7 @@ The following issues, listed by component and area, are resolved in this release
 
 - Live Update now works when using the Jammy `ClusterBuilder`.
 
-#### <a id='1-5-1-vscode-ext-ri'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-5-1-vs-ext-ri'></a> Tanzu Developer Tools for Visual Studio
 
 - Live Update now works when using the Jammy `ClusterBuilder`.
 
