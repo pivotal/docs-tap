@@ -4,7 +4,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ## <a id='1-5-1'></a> v1.5.1
 
-**Release Date**: 09 May 2023
+**Release Date**: 9 May 2023
 
 ### <a id='1-5-1-security-fixes'></a> Security fixes
 
@@ -20,9 +20,13 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-5-1-COMPONENT-NAME-ri'></a> COMPONENT-NAME
+#### <a id='1-5-1-intellij-ext-ri'></a> Tanzu Developer Tools for IntelliJ
 
-- Resolved issue description.
+- Live Update now works when using the Jammy `ClusterBuilder`.
+
+#### <a id='1-5-1-vscode-ext-ri'></a> Tanzu Developer Tools for VS Code
+
+- Live Update now works when using the Jammy `ClusterBuilder`.
 
 ---
 
