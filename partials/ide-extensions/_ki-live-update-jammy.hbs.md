@@ -2,6 +2,6 @@
 
 Live Update does not work when using the Jammy `ClusterBuilder`.
 
-### No solution currently
+### Solution
 
-There is currently no solution for this issue. A fix is planned for a future release.
+Upgrade to Tanzu Application Platform v1.5.1 or later.
