@@ -350,7 +350,8 @@ If you do not want to enable the SCST - Store integration, explicitly deactivate
 
 ```yaml
 # ...
-metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+metadataStore:
+  url: "" # Deactivate Supply Chain Security Tools - Store integration
 ```
 
 ## Prepare the ScanPolicy
