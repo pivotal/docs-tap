@@ -32,26 +32,27 @@ The first step is to install the AWS `Provider` for Crossplane.
 
 There are two variants of the `Provider`:
 
-- [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/) and
-- [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/).
+- [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/)
+- [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/)
 
 VMware recommends that you install the official Upbound variant.
 To install the `Provider` and to create a corresponding `ProviderConfig`, see the
-[Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart) .
+[Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart).
 
-> **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane",
-> which you can safely skip over as Crossplane is already installed as part of Tanzu Application Platform.
-> The documentation also assumes Crossplane to be installed in the `upbound-system` namespace,
-> however when working with Crossplane on Tanzu Application Platform it is installed to the
+> **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane".
+> You can skip this step because Crossplane is already installed as part of Tanzu Application Platform.
+> The documentation also assumes Crossplane is installed in the `upbound-system` namespace.
+> However, when working with Crossplane on Tanzu Application Platform, it is installed to the
 > `crossplane-system` namespace by default.
-> Bear this in mind when it comes to creating the `Secret` and the `ProviderConfig` with credentials for the `Provider`.
+> Bear this in mind when it comes to creating the `Secret` and the `ProviderConfig` with credentials
+> for the `Provider`.
 
 ### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
-To create the CompositeResourceDefinition:
+To create the CompositeResourceDefinition (XRD):
 
 1. Create a file named `xpostgresqlinstances.database.rds.example.org.xrd.yaml` and copy in the
-   following contents.
+   following contents:
 
    ```yaml
    # xpostgresqlinstances.database.rds.example.org.xrd.yaml
@@ -93,11 +94,11 @@ To create the CompositeResourceDefinition:
       served: true
    ```
 
-   This ... (XRD) configures the parameter `storageGB`. This gives application teams the option to choose
+   This XRD configures the parameter `storageGB`. This gives application teams the option to choose
    a suitable amount of storage for the AWS RDS service instance when they create a claim.
    You can choose to expose as many or as few parameters to application teams as you like.
 
-1. Apply the file to the Tanzu Application Platform cluster by running:
+2. Apply the file to the Tanzu Application Platform cluster by running:
 
    ```console
    kubectl apply -f xpostgresqlinstances.database.rds.example.org.xrd.yaml
@@ -108,7 +109,7 @@ To create the CompositeResourceDefinition:
 To create the composition:
 
 1. Create a file named `xpostgresqlinstances.database.rds.example.org.composition.yaml` and copy in the
-   following contents.
+   following contents:
 
    ```yaml
    # xpostgresqlinstances.database.rds.example.org.composition.yaml
@@ -192,7 +193,7 @@ To create the composition:
 
 To make the service discoverable to application teams:
 
-1. Create a file named `rds.class.yaml` and copy in the following contents.
+1. Create a file named `rds.class.yaml` and copy in the following contents:
 
    ```yaml
    # rds.class.yaml
@@ -218,9 +219,10 @@ To make the service discoverable to application teams:
 
 ### <a id="configure-rbac"></a> Configure RBAC
 
-To authorize users with the app-operator role to claim from the class using Role-Based Access Control (RBAC):
+To configure Role-Based Access Control (RBAC) to authorize users with the app-operator role to claim
+from the class:
 
-1. Create a file named `app-operator-claim-aws-rds-psql.rbac.yaml` and copy in the following contents.
+1. Create a file named `app-operator-claim-aws-rds-psql.rbac.yaml` and copy in the following contents:
 
    ```yaml
    # app-operator-claim-aws-rds-psql.rbac.yaml
@@ -259,6 +261,6 @@ tanzu service class-claim create rds-psql-1 --class aws-rds-psql -p storageGB=30
 ```
 
 > **Note** Whether application workloads can establish network connectivity to the
-> resulting RDS database is depends on a number of factors, including specifics about the environment you're
-> working in and the configuration used in the `Composition`. At a minimum, you can
+> resulting RDS database depends on a number of factors. This includes specifics about the environment you're
+> working in and the configuration in the `Composition` file. At a minimum, you can
 > configure a `securityGroup` to permit inbound traffic. There might be other requirements as well.
