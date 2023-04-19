@@ -244,7 +244,7 @@ docs.vmware.com is built.
                 - [UseEncoding](application-accelerator/creating-accelerators/transforms/use-encoding.hbs.md)
                 - [UniquePath](application-accelerator/creating-accelerators/transforms/unique-path.hbs.md)
                 - [Conflict resolution](application-accelerator/creating-accelerators/transforms/conflict-resolution.hbs.md)
-                - [Provenance](application-accelerator/creating-accelerators/transforms/provenance.hbs.md)
+                - [Provenance transform](application-accelerator/creating-accelerators/transforms/provenance.hbs.md)
             - [Introduction to SpEL expressions](application-accelerator/creating-accelerators/spel-samples.hbs.md)
             - [Accelerator custom resource](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
             - [Testing accelerators](application-accelerator/creating-accelerators/testing-accelerators.hbs.md)
