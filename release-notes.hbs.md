@@ -322,7 +322,7 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
 
 - Includes an optional plug-in that collects telemetry by using the Pendo tool.
   To configure Pendo telemetry and opt in or opt out, see
-  [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
+  [Opt out of telemetry collection](opting-out-telemetry.hbs.md).
 
 #### <a id="tap-gui-plug-in-features"></a> Tanzu Application Platform GUI plug-ins
 
