@@ -562,7 +562,14 @@ This release has the following known issues, listed by area and component.
   (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
 
-- Ad-blocking browser extensions and/or standalone ad-blocking software may interfere with telemetry collection within VMware's [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html) and restrict access to all or parts of Tanzu Application Platform GUI. To avoid such behavior, it is recommended to add the Tanzu Application Platform GUI to the allow-list. Alternatively, either ad-blocking software or Pendo.io telemetry should be disabled. Disabling Pendo.io telemetry collection requires completing the steps described [here](//opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Application Platform GUI.
+
+  To prevent these issues, add Tanzu Application Platform GUI to your ad-blocking allowlist.
+  Alternatively, deactivate the ad-blocking software or
+  [turn off Pendo telemetry collection](opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
 #### <a id="1-5-apps-plugin-ki"></a> Tanzu CLI Apps plug-in
 
