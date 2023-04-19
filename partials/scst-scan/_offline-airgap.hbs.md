@@ -29,7 +29,7 @@ For information about setting up an offline vulnerability database, see the [Anc
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
-**Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must follow additional configuration steps. See [Grype package overlays are not applied to scantemplates created by Namespace Provisioner](./_offline-airgap.hbs.md#grype-overlay-ns-provisioner).
+> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must complete additional configuration steps. See [Grype package overlays are not applied to scantemplates created by Namespace Provisioner](#grype-overlay-ns-provisioner).
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
