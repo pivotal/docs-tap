@@ -284,7 +284,7 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
 
 - Includes an optional plug-in that collects telemetry by using the Pendo tool.
   To configure Pendo telemetry and opt in or opt out, see
-  [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
+  [Opt out of telemetry collection](opting-out-telemetry.hbs.md).
 
 #### <a id="tap-gui-plug-in-features"></a> Tanzu Application Platform GUI plug-ins
 
@@ -561,7 +561,7 @@ This release has the following known issues, listed by area and component.
   CVE belongs to a workload that has only completed one type of vulnerability scan
   (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
-  
+
 - Ad-blocking browser extensions and/or standalone ad-blocking software may interfere with telemetry collection within VMware's [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html) and restrict access to all or parts of Tanzu Application Platform GUI. To avoid such behavior, it is recommended to add the Tanzu Application Platform GUI to the allow-list. Alternatively, either ad-blocking software or Pendo.io telemetry should be disabled. Disabling Pendo.io telemetry collection requires completing the steps described [here](//opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
 #### <a id="1-5-apps-plugin-ki"></a> Tanzu CLI Apps plug-in
