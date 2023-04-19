@@ -29,7 +29,7 @@ For information about setting up an offline vulnerability database, see the [Anc
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
-**Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must complete additional configuration steps. See [Grype package overlays are not applied to scantemplates created by Namespace Provisioner](./_offline-airgap.hbs.md#grype-overlay-ns-provisioner).
+**Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must follow additional configuration steps. See [Grype package overlays are not applied to scantemplates created by Namespace Provisioner](./_offline-airgap.hbs.md#grype-overlay-ns-provisioner).
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
@@ -140,7 +140,7 @@ the following steps:
         > `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in
         > accordance with your security posture.
 
-    1. Configure `tap-values.yaml` to use `package_overlays`. Add the following to your `tap-values.yaml` file:
+    2. Configure `tap-values.yaml` to use `package_overlays`. Add the following to your `tap-values.yaml` file:
 
         ```yaml
         package_overlays:
@@ -149,13 +149,17 @@ the following steps:
                 - name: "grype-airgap-override-stale-db-overlay"
         ```
 
-    1. Update Tanzu Application Platform:
+    3. Update Tanzu Application Platform:
 
         ```console
         tanzu package installed update tap -f tap-values.yaml -n tap-install
         ```
 
 ### <a id="grype-overlay-ns-provisioner"></a> Grype package overlays are not applied to scantemplates created by Namespace Provisioner
+
+If you used the Namespace Provisioner to provision a new developer namespace and
+want to apply a package overlay for Grype, see [Import overlay
+secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/namespace-provisioner-customize-installation.html).
 
 ```console
 scan-pod[scan-plugin]  1 error occurred:
@@ -289,9 +293,3 @@ Verify these possible reasons why the vulnerability database is not valid:
       ```
 
 7. Ensure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
-
-### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
-
-If you used the Namespace Provisioner to provision a new developer namespace and
-want to apply a package overlay for Grype, see [Import overlay
-secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/namespace-provisioner-customize-installation.html).
