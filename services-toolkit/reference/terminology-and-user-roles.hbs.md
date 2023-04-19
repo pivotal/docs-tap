@@ -188,7 +188,7 @@ For more information about the user roles, see
 
 The user roles listed in this section consist of a short description and the tasks required.
 For detailed information about the corresponding Role-Based Access Control (RBAC) associated with each role,
-see [Detailed role permissions breakdown](../../authn-authz-permissions-breakdown.html).
+see [Detailed role permissions breakdown](../../authn-authz/permissions-breakdown.hbs.md).
 
 ### <a id="ad"></a>Application developer (AD)
 
