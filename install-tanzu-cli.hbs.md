@@ -1,18 +1,8 @@
 # Accept Tanzu Application Platform EULAs and installing Tanzu CLI
 
-This topic describes how to:
+This topic describes how to install Tanzu CLI and plugins.
 
-- [Accept Tanzu Application Platform EULAs and installing Tanzu CLI](#accept-tanzu-application-platform-eulas)
-  - [ Accept the End User License Agreements](#accept-tanzu-application-platform-eulas)
-    - [ Example of accepting the Tanzu Application Platform EULA](#example-of-accepting-the-tanzu-application-platform-eula)
-  - [ Set the Kubernetes cluster context](#set-the-kubernetes-cluster-context)
-  - [ Install or update the Tanzu CLI and plug-ins](#install-or-update-the-tanzu-cli-and-plug-ins)
-    - [ Install Tanzu CLI: Linux or macOS](#install-tanzu-cli-linux-or-macos)
-    - [ Install Tanzu CLI: Windows](#install-tanzu-cli-windows)
-  - [ Install/Update Tanzu CLI plug-ins](#installupdate-tanzu-cli-plug-ins)
-  - [Next steps](#next-steps)
-
-## <a id='accept-tanzu-application-platform-eulas'></a> Accept the End User License Agreements
+## <a id='accept-eulas'></a> Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the
 End User License Agreements (EULAs) as follows:
@@ -24,7 +14,7 @@ End User License Agreements (EULAs) as follows:
     - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/)
 
-### <a id='example-of-accepting-the-tanzu-application-platform-eula'></a> Example of accepting the Tanzu Application Platform EULA
+### <a id='accept-tap-eula-example'></a> Example of accepting the Tanzu Application Platform EULA
 
 To accept the Tanzu Application Platform EULA:
 
@@ -39,7 +29,7 @@ To accept the Tanzu Application Platform EULA:
 
     ![Screenshot of a dialog box inviting the reader to accept the EULA. The Agree button is framed.](images/install-tanzu-cli-eulas2.png)
 
-## <a id='set-the-kubernetes-cluster-context'></a> Set the Kubernetes cluster context
+## <a id='cluster-context'></a> Set the Kubernetes cluster context
 
 For information about the supported Kubernetes cluster providers and versions, see
 [Kubernetes cluster requirements](prerequisites.hbs.md#k8s-cluster-reqs).
@@ -77,7 +67,7 @@ To set the Kubernetes cluster context:
     Switched to context "aks-tap-cluster".
     ```
 
-## <a id='install-or-update-the-tanzu-cli-and-plug-ins'></a> Install or update the Tanzu CLI and plug-ins
+## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
 You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
 and features.
@@ -99,7 +89,7 @@ To install the Tanzu CLI and plug-ins:
 
 For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows-tanzu-cli).
 
-### <a id='install-tanzu-cli-linux-or-macos'></a> Install Tanzu CLI: Linux or macOS
+### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
 1. Create a `$HOME/tanzu` directory on your local machine.
 2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
@@ -167,7 +157,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
 
 Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
 
-### <a id='install-tanzu-cli-windows'></a> Install Tanzu CLI: Windows
+### <a id='windows-tanzu-cli'></a> Install Tanzu CLI: Windows
 
 1. Open the Windows file browser.
 
@@ -223,7 +213,7 @@ Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
 
 13. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
-## <a id='installupdate-tanzu-cli-plug-ins'></a> Install/Update Tanzu CLI plug-ins
+## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
 
 To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
