@@ -1,15 +1,25 @@
 # RBAC
 
-Detailed API documentation for RBAC relating to Services Toolkit's APIs.
+This topic provides API documentation for Role-Based Access Control (RBAC) relating
+to Services Toolkit's APIs.
 
-## <a id="aggregation-labels"></a> Aggregation Labels
+## <a id="aggregation-labels"></a> Aggregation labels
+
+This section describes the following Aggregation labels:
+
+- [servicebinding.io/controller: "true"](#controller)
+- [services.tanzu.vmware.com/aggregate-to-provider-kubernetes: "true"](#aggregate-to-provider-kubernetes)
+- [services.tanzu.vmware.com/aggregate-to-provider-helm: "true"](#aggregate-to-provider-helm)
 
 ### <a id="controller"></a> servicebinding.io/controller: "true"
 
-Use this label to grant the services toolkit and service bindings controllers permission to get,
-list and watch resources that will be claimed and bound to in the cluster.
+Use this label to grant the Services Toolkit and service bindings controllers permission to get,
+list, and watch resources to be claimed and bound in the cluster.
 
-For example, the following `ClusterRole` grants the controllers permission to get, list and watch `RabbitmqCluster` resources.
+For example, the following `ClusterRole` grants the controllers permission to get, list, and watch
+`RabbitmqCluster` resources.
+You cannot create `ClassClaims` or `ResourceClaims` unless the controllers have at least these
+permissions for each resource type being claimed.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -29,19 +39,18 @@ rules:
   - watch
 ```
 
-It will not be possible to successfully create `ClassClaims` or `ResourceClaims` unless the controllers
-have at least these permissions for each resource type being claimed.
-
 ### <a id="aggregate-to-provider-kubernetes"></a> services.tanzu.vmware.com/aggregate-to-provider-kubernetes: "true"
 
-Use this label to aggregate RBAC rules to `provider-kubernetes` - a Crossplane `Provider` installed by
-default as part of the [Crossplane](../../../crossplane/about.hbs.md) Package in Tanzu Application Platform.
-Relevant RBAC permissions must be granted for each API Group/Kind used during the creation of
-`Compositions` as part of setting up Dynamic Provisioning.
+Use this label to aggregate RBAC rules to `provider-kubernetes`, which is a Crossplane `Provider`
+installed by default as part of the [Crossplane](../../../crossplane/about.hbs.md) package in
+Tanzu Application Platform.
+You must grant relevant RBAC permissions for each API Group/Kind used during the creation of
+`Compositions` as part of setting up dynamic provisioning.
 
 For example, the following `ClusterRole` grants `provider-kubernetes` full control over
-`rabbitmqclusters` on the `rabbitmq.com` API Group. This allows you to compose `rabbitmqclusters` in `Compositions`.
-See [Setup Dynamic Provisioning of Service Instances](../../tutorials/setup-dynamic-provisioning.hbs.md) for a full example and walkthrough.
+`rabbitmqclusters` on the `rabbitmq.com` API Group.
+This allows you to compose `rabbitmqclusters` in `Compositions`.
+For a full example, see [Setup Dynamic Provisioning of Service Instances](../../tutorials/setup-dynamic-provisioning.hbs.md).
 
 ```yaml
 ---
@@ -62,14 +71,16 @@ rules:
 
 ### <a id="aggregate-to-provider-helm"></a> services.tanzu.vmware.com/aggregate-to-provider-helm: "true"
 
-Use this label to aggregate RBAC rules to `provider-helm` - a Crossplane `Provider` installed by default
-as part of the [Crossplane](../../../crossplane/about.hbs.md) package in Tanzu Application Platform.
-Relevant RBAC permissions must be granted for each API Group/Kind used during the creation of Helm
+Use this label to aggregate RBAC rules to `provider-helm`, which is a Crossplane `Provider`
+installed by default as part of the [Crossplane](../../../crossplane/about.hbs.md) package in
+Tanzu Application Platform.
+You must grant relevant RBAC permissions for each API Group/Kind used during the creation of Helm
 releases when using the `Release` Managed Resource as part of `Compositions`.
 
 For example, the following `ClusterRole` grants `provider-helm` full control over `rabbitmqclusters`
 on the `rabbitmq.com` API Group.
-This allows you to compose Helm `Releases` which themselves eventually deploy `rabbitmqclusters` in your `Compositions`.
+This allows you to compose Helm `Releases` which themselves eventually deploy `rabbitmqclusters`
+in your `Compositions`.
 
 ```yaml
 ---
@@ -90,10 +101,11 @@ rules:
 
 ## <a id="claim-verb"></a> The claim verb for ClusterInstanceClass
 
-Services Toolkit supports the usage of a `claim` verb for RBAC rules that apply to `clusterinstanceclasses`.
-This, along with relevant aggregating labels, `RoleBindings` or `ClusterRoleBindings` can be used
-as a form of access control to determine who is able to claim from which `ClusterInstanceClass` and from where.
-See [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md) for further information.
+Services Toolkit supports using the `claim` verb for RBAC rules that apply to `clusterinstanceclasses`.
+You can use this with relevant aggregating labels, `RoleBindings`, or `ClusterRoleBindings`
+as a form of access control to specify who can claim from which `ClusterInstanceClass`
+and from where.
+For more information, see [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md).
 
 For example:
 
@@ -104,12 +116,12 @@ kind: ClusterRole
 metadata:
   name: app-operator-claim-class-bigcorp-rabbitmq
   labels:
-    # aggregate this ClusterRole to TAP's app-operator user role at the cluster scope
-    # you could choose to aggregate this to any of the other standard user roles as well
-    # (optional)
+    # (Optional) Aggregates this ClusterRole to Tanzu Application Platform's
+    # app-operator user role at the cluster scope. You can choose to aggregate
+    # this to any of the other standard user roles as well.
     apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"
 rules:
-# permit claiming from the 'bigcorp-rabbitmq' class
+# Permits claiming from the 'bigcorp-rabbitmq' class
 - apiGroups:
   - services.apps.tanzu.vmware.com
   resources:

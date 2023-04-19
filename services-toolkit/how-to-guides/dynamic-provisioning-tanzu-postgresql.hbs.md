@@ -39,7 +39,7 @@ same namespace. This namespace is named `tanzu-psql-service-instances`.
 
 To set up the namespace:
 
-1. Ensure that the namespace exists by running the following.
+1. Ensure that the namespace exists by running the following:
 
    ```console
    kubectl create namespace tanzu-psql-service-instances
@@ -61,12 +61,12 @@ To set up the namespace:
    - `USERNAME` is your registry user name.
    - `PASSWORD` is your registry password.
 
-   > **Note** You must update the `--docker-server` value if you reloacted images as part of the installation
+   > **Note** You must update the `--docker-server` value if you relocated images as part of the installation
    > of the operator.
 
 ### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
-To create the CompositeResourceDefinition:
+To create the CompositeResourceDefinition (XRD):
 
 1. Create a file named `xpostgresqlinstances.database.tanzu.example.org.xrd.yaml` and copy in the
    following contents:
@@ -109,7 +109,7 @@ To create the CompositeResourceDefinition:
        served: true
    ```
 
-   This ... (XRD) configures the parameter `storageGB`. This gives application teams the option to choose
+   This XRD configures the parameter `storageGB`. This gives application teams the option to choose
    a suitable amount of storage for the Tanzu Postgres service instance when they create a claim.
    You can choose to expose as many or as few parameters to application teams as you like.
 
