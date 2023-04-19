@@ -29,7 +29,8 @@ Accelerator server, if that is configured to be exposed. VMware recommends using
     https://tap-gui.DOMAIN
     ```
 
-    Where `DOMAIN` defaults to the `shared.ingress_domain` value provided in the values file of Tanzu Application Platform.
+    Where `DOMAIN` defaults to the `shared.ingress_domain` value provided in the Tanzu Application
+    Platform values file.
 
 2. Add the following flags to the `tap-values.yaml` file when `shared.ingress_domain` is set.
 
