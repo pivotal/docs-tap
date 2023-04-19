@@ -9,19 +9,21 @@ This is because creating claims for provisioner-based classes creates new servic
 all of which consume resources and might incur monetary cost.
 As such, you might want to configure some form of access control.
 
-> **Note** There is one exception to this rule, which is that by default, users with the `app-operator`
-> user role are authorized to create claims for the provisioner-based classes which are part of the
-> pre-installed [Bitnami Services](../../bitnami-services/about.hbs.md) package.
-> For how-to deactivate this default behavior, see
-> [Revoke default authorization for claiming from the pre-installed Bitnami services classes](#bitnami-services)
-> later in this topic.
+There is one exception to this rule, which is that by default, users with the `app-operator`
+user role are authorized to create claims for the provisioner-based classes that are part of the
+pre-installed [Bitnami Services](../../bitnami-services/about.hbs.md) package.
+For how-to deactivate this default behavior, see
+[Revoke default authorization for claiming from the pre-installed Bitnami services classes](#bitnami-services)
+later in this topic.
 
-This access control is implemented through standard Kubernetes Role-Based Access Control (RBAC) with
+Access control is implemented through standard Kubernetes Role-Based Access Control (RBAC) with
 the use of the custom verb `claim`.
 You must create a rule in a `ClusterRole` which specifies the `claim` verb for one or
-more `clusterinstanceclasses`, and then to bind the `ClusterRole` to the roles that you want to
+more `clusterinstanceclasses`, and then bind the `ClusterRole` to the roles that you want to
 authorize to create claims for the classes.
-This approach is particularly effective when paired with Tanzu Application Platform's aggregated [user roles](../../authn-authz/role-descriptions.html).
+This approach is particularly effective when paired with Tanzu Application Platform's aggregated user roles.
+For more information about user roles in Tanzu Application Platform, see
+[Role descriptions](../../authn-authz/role-descriptions.html).
 
 ## <a id="auth-all-users"></a> Authorize all users with the app-operator user role to claim from any namespace
 
@@ -54,7 +56,7 @@ The example also includes the `apps.tanzu.vmware.com/aggregate-to-app-operator-c
 which causes this `ClusterRole` to aggregate to Tanzu Application Platform's [app-operator](../../authn-authz/role-descriptions.html#app-operator)
 user role at the cluster scope.
 
-The result is that any user who has the `app-operator` role bound is now authorized to create claims
+The result is that any user who has the `app-operator` role is now authorized to create claims
 for the `bigcorp-rabbitmq` class in any namespace on the cluster.
 
 ## <a id="auth-one-user"></a> Authorize one specific user to claim from one specific namespace
@@ -96,9 +98,9 @@ subjects:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-This example specifies a `ClusterRole` which permits claiming from a class named `bigcorp-rabbitmq`.
-The YAML also creates a `RoleBinding` in the `dev-team-1` namespace which binds the
-`alice@example.com` user to the `ClusterRole`.
+This example specifies a `ClusterRole` that permits claiming from a class named `bigcorp-rabbitmq`.
+The YAML also creates a `RoleBinding` in the `dev-team-1` namespace that binds the user
+`alice@example.com` to the `ClusterRole`.
 
 The result is that `alice@example.com` is now authorized to create claims for the
 `bigcorp-rabbitmq` class in the `dev-team-1` namespace on the cluster.
@@ -110,7 +112,7 @@ provisioner-based classes which are part of the pre-installed [Bitnami Services]
 
 To revoke this authorization:
 
-1. add the following to your `tap-values.yaml` file:
+1. Add the following to your `tap-values.yaml` file:
 
    ```yaml
    bitnami_services:
