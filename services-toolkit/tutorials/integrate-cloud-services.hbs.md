@@ -36,7 +36,7 @@ Choose whichever Provider you want, then follow Upbound's official documentation
 
     > **Note** Be aware of the fact that these cloud-based Providers often install many hundreds of additional CRDs into
     > the cluster, which can have a negative impact on cluster performance.
-    > See [Cluster performance degradation due to large number of CRDs](../reference/known-limitations.hbs.md#stk-known-limitation-too-many-crds) for further information.
+    > See [Cluster performance degradation due to large number of CRDs](../reference/known-limitations.hbs.md#too-many-crds) for further information.
 
 ## Step 2: Create CompositeResourceDefinition
 
@@ -92,7 +92,7 @@ rules:
   - claim
 ```
 
-See [Step 5: Configure RBAC](../how-to-guides/dynamic-provisioning-rds.hbs.md#configure-rbac) for a real-world example.
+See [Step 5: Authorize users with the app-operator role to claim from the class](../how-to-guides/dynamic-provisioning-rds.hbs.md#configure-rbac) for a real-world example.
 
 ## Step 6: Create ClassClaim
 

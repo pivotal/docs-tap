@@ -13,7 +13,7 @@ condition: <SpEL expression>
 The `Provenance` transform is added as a child to the top-most
 transform, which is usually a `Merge` or a `Chain`, using a `Combo`.
 
-## <a id="behavior"></a>behavior
+## <a id="behavior"></a>Behavior
 
 The `Provenance` transform ignores its input and outputs
 a single resource named `accelerator-info.yaml`. For example:

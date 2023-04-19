@@ -5,15 +5,14 @@ Application Platform. For workarounds for known limitations, see [Known limitati
 
 ## <a id="prereq"></a> Prerequisites
 
-To follow the steps in this topic, you require kubectl access to the cluster.
+To follow the steps in this topic, you must have kubectl access to the cluster.
 
 ## <a id="debug-dynamic-provisioning"></a> Debug `ClassClaim` and provisioner-based `ClusterInstanceClass`
 
 This section provides guidance on how to debug issues related to using `ClassClaim`
 and provisioner-based `ClusterInstanceClass`.
-The general approach detailed in this topic starts by inspecting
-a `ClassClaim` and tracing back through the chain of resources that are created when
-fulfilling the `ClassClaim`.
+The approach starts by inspecting a `ClassClaim` and tracing back through the chain of
+resources that are created when fulfilling the `ClassClaim`.
 
 ### <a id="inspect-class-claim"></a> Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass` and `CompositeResourceDefinition`
 
@@ -27,10 +26,10 @@ fulfilling the `ClassClaim`.
 
    From the output, check the following:
 
-   - Check the status conditions for any useful information that can lead you to the cause of the issue.
+   - Check the status conditions for information that can lead you to the cause of the issue.
    - Check `.spec.classRef.name` and record the value.
 
-1. Inspect the status of the `ClusterInstanceClass` by running:
+2. Inspect the status of the `ClusterInstanceClass` by running:
 
    ```console
    kubectl describe clusterinstanceclass CLASS-NAME
@@ -40,11 +39,11 @@ fulfilling the `ClassClaim`.
 
    From the output, check the following:
 
-   - Check the status conditions for any useful information that can lead you to the cause of the issue.
+   - Check the status conditions for information that can lead you to the cause of the issue.
    - Check that the `Ready` condition has status `"True"`.
    - Check `.spec.provisioner.crossplane` and record the value.
 
-1. Inspect the status of the `CompositeResourceDefinition`, as follows:
+3. Inspect the status of the `CompositeResourceDefinition` by running:
 
    ```console
    kubectl describe xrd XRD-NAME
@@ -54,7 +53,7 @@ fulfilling the `ClassClaim`.
 
    From the output, check the following:
 
-   - Check the status conditions for any useful information that can lead you to the cause of the issue.
+   - Check the status conditions for information that can lead you to the cause of the issue.
    - Check that the `Established` condition has status `"True"`.
    - Check events for any errors or warnings that can lead you to the cause of the issue.
    - If both the `ClusterInstanceClass` reports `Ready="True"` and the `CompositeResourceDefinition`
@@ -88,12 +87,12 @@ fulfilling the `ClassClaim`.
 
    From the output, check the following:
 
-   - Check the status conditions for any useful information that can lead you to the cause of the issue.
-   - Check that the `Synced` condition has status `"True"`, if it doesn't then there was an issue creating
+   - Check the status conditions for information that can lead you to the cause of the issue.
+   - Check that the `Synced` condition has status `"True"`. If it doesn't then there was an issue creating
    the Managed Resources from which this Composite Resource is composed. Refer to `.spec.resourceRefs`
    in the output and for each:
-     - Use the values of `kind`, `apiVersion` and `name` to inspect the status of the Managed Resource.
-     - Check the status conditions for any useful information which can lead you to the cause of the issue.
+     - Use the values of `kind`, `apiVersion`, and `name` to inspect the status of the Managed Resource.
+     - Check the status conditions for information that can lead you to the cause of the issue.
    - Check events for any errors or warnings that can lead you to the cause of the issue.
    - If all Managed Resources appear healthy, move on to the next section.
 
