@@ -34,9 +34,16 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-5-1-COMPONENT-NAME-ki'></a> COMPONENT-NAME
+#### <a id='1-5-1-tap-gui-ki'></a> Tanzu Application Platform GUI
 
-- Known issue description with link to workaround.
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Application Platform GUI.
+
+  To prevent these issues, add Tanzu Application Platform GUI to your ad-blocking allowlist.
+  Alternatively, deactivate the ad-blocking software or
+  [turn off Pendo telemetry collection](opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
 ---
 
