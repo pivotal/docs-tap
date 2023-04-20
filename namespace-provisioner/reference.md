@@ -24,6 +24,6 @@ Namespace Provisioner is installed as part of the standard installation profiles
 | Developer Namespace  | ServiceAccount | From: ootb_delivery_basic.service_account (default: "default") | n/a| full, iterate, run | No  |
 | Developer Namespace  | RoleBinding | default-permit-deliverable | n/a | full, iterate, run | Yes  |
 | Developer Namespace  | RoleBinding | default-permit-workload | n/a | full, iterate, build | Yes  |
-| Developer Namespace | LimitRange | {namespace}-lr | n/a | full, iterate, build | Yes |
+| Developer Namespace | LimitRange | {namespace}-lr | n/a | run | Yes |
 
 For installing additional resources for OOTB Supply Chain with Testing and Scanning, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md).

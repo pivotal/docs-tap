@@ -3,7 +3,7 @@
 This topic describes how to run Spring applications that use the Spring Cloud DiscoveryClient
 as workloads on Tanzu Application Platform.
 
-## <a id="background"></a> Recognizing Spring Cloud DiscoveryClient applications
+## <a id="background"></a> Identify Spring Cloud DiscoveryClient applications
 
 The Spring Cloud DiscoveryClient abstraction underlies several common libraries and services for
 Spring applications to register themselves as services for other applications and to look up
@@ -53,8 +53,8 @@ Tanzu Application Platform distributes service discovery information to client a
 ## <a id="example-greeting-app"></a> Example: The Greeting application
 
 The following sections show how to run the
-[Greeting](https://github.com/spring-cloud-services-samples/greeting) application
-from the Spring Cloud Services sample applications as a pair of workloads on Tanzu Application Platform.
+[Greeting](https://github.com/spring-cloud-services-samples/greeting) sample application
+as a pair of workloads on Tanzu Application Platform.
 
 ### <a id="properties-file"></a> Create a properties file in your configuration repository
 
@@ -83,8 +83,8 @@ on the same cluster.
 In the [example below](#create-workloads), the `greeter-messages` microservice is deployed as a workload of type  `web`, so the
 discovery client configuration must use the fully qualified domain name for the service within the
 Kubernetes cluster. If you instead choose to run the `greeter-messages` microservice as a workload of
-type `server`, this address still works, but it would also be possible for the `greeter` microservice
-to connect to it with the shorter URI `http://greeter-messages`.
+type `server`, this address still works, but the `greeter` microservice can also connect
+using the shorter URI `http://greeter-messages`.
 
 ### <a id="acs-resources"></a> Create Application Configuration Service resources
 
@@ -118,7 +118,7 @@ spec:
   configurationSource: greeter-config-source
   content:
   - greeter/dev
-  configMapStrategy: applicationProperties
+  secretStrategy: applicationProperties
   interval: 10m
 ```
 

@@ -24,11 +24,28 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
+Shared Keys define values that configure multiple packages. 
+These keys are defined under the `shared` Top-level Key, as summarized in the following table:
+
+|Shared Key|Description|Optional|
+|----|----|----|
+|`ca_cert_data`|PEM-encoded certificate data to trust TLS connections with a private CA. This shared key is used by `convention_controller`, `scanning` and `source_controller`|Yes|
+|`ingress_domain`|Domain name to be used in service routes and host names for instances of Tanzu Application Platform components.|Yes|
+|`ingress_issuer`|A `cert-manager.io/v1/ClusterIssuer` for issuing TLS certificates to Tanzu Application Platform components. Default value: `tap-ingress-selfsigned`|Yes|
+|`kubernetes_distribution`|Type of Kubernetes infrastructure being used. You can use this shared key in coordination with the `kubernetes_version` key. Supported value: `openshift`.|Yes|
+|`kubernetes_version`|Kubernetes version. You can use this shared key independently or in coordination with the `kubernetes_distribution` key. Supported value: `1.24.x`, where `x` stands for the Kubernetes patch version.|Yes|
+|`image_registry.project_path`|Project path in the container image registry server used for builder and application images.|Yes|
+|`image_registry.username`|User name for the container image registry. Mutually exclusive with `shared.image_registry.secret.name/namespace`|Yes|
+|`image_registry.password`|Password for the container image registry. Mutually exclusive with `shared.image_registry.secret.name/namespace`|Yes|
+|`secret.name`|Secret name for the container image registry credentials of type `kubernetes.io/dockerconfigjson`. Mutually exclusive with `shared.image_registry.username/password`|Yes|
+|`secret.namespace`|Secret namespace for the container image registry credentials. Mutually exclusive with `shared.image_registry.username/password`|Yes|
+|`activateAppLiveViewSecureAccessControl`|Enable secure access connection between App Live View components.|Yes|
+
 The following table summarizes the top-level keys used for package-specific configuration within your `tap-values.yaml`.
 
 |Package|Top-level Key|
 |----|----|
-|_see table below_|`shared`|
+|See table above.|`shared`|
 |API Auto Registration|`api_auto_registration`|
 |API portal|`api_portal`|
 |Application Accelerator|`accelerator`|
@@ -48,9 +65,3 @@ The following table summarizes the top-level keys used for package-specific conf
 |Build Service|`buildservice`|
 |Tanzu Application Platform GUI|`tap_gui`|
 |Learning Center|`learningcenter`|
-
-Shared Keys define values that configure multiple packages. These keys are defined under the `shared` Top-level Key, as summarized in the following table:
-
-|Shared Key|Used By|Description|
-|----|----|----|
-|`ca_cert_data`|`convention_controller`, `scanning`, `source_controller`|Optional: PEM-encoded certificate data to trust TLS connections with a private CA|

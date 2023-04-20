@@ -1,82 +1,85 @@
-# Release notes 
- 
-This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}. 
- 
-{{#unless vars.hide_content}} 
- 
-This Handlebars condition is used to hide content. 
- 
-In release notes, this condition hides content that describes an unreleased patch for a released minor. 
- 
-{{/unless}} 
- 
- 
-## <a id='1-6-0'></a> v1.6.0 
- 
-**Release Date**: 11 July 2023 
- 
+# Release notes
+
+This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
+
+{{#unless vars.hide_content}}
+
+This Handlebars condition is used to hide content.
+
+In release notes, this condition hides content that describes an unreleased patch for a released minor.
+
+{{/unless}}
+
+## <a id='1-6-0'></a> v1.6.0
+
+**Release Date**: 11 July 2023
+
 ### <a id='1-6-0-whats-new'></a> What's new in Tanzu Application Platform
- 
+
 This release includes the following platform-wide enhancements.
- 
+
 #### <a id='1-6-0-new-platform-features'></a> New platform-wide features
- 
+
 - Feature Description.
- 
+
 #### <a id='1-6-0-new-components'></a> New components
- 
+
 - [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
- 
+
 ---
- 
+
 ### <a id='1-6-0-new-features'></a> New features by component and area
- 
-This release includes the following changes, listed by component and area. 
- 
+
+This release includes the following changes, listed by component and area.
+
 #### <a id='1-6-0-COMPONENT-NAME'></a> COMPONENT-NAME
- 
+
 - Feature description.
- 
+
 ---
- 
-### <a id='1-6-0-breaking-changes'></a> Breaking changes 
- 
-This release includes the following changes, listed by component and area. 
- 
+
+### <a id='1-6-0-breaking-changes'></a> Breaking changes
+
+This release includes the following changes, listed by component and area.
+
 #### <a id='1-6-0-COMPONENT-NAME-bc'></a> COMPONENT-NAME
- 
+
 - Breaking change description.
- 
+
 ---
- 
-### <a id='1-6-0-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+
+### <a id='1-6-0-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-0-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 ---
- 
-### <a id='1-6-0-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-0-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-0-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-6-0-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
-#### <a id='1-6-0-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
-- Known issue description with link to workaround.
- 
+
+### <a id='1-6-0-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Application Platform GUI
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Application Platform GUI.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
 ---
 
 ## <a id='1-6-deprecations'></a> Deprecations

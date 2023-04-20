@@ -237,4 +237,7 @@ process.
 
 ## Deployment Architecture
 
-The Tanzu Application Platform provides a [reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) which provides separation of components based on function.  This reference architecture recommends multiple Kubernetes clusters that serve the functions of "iterate","build","view", and "run" for users.  This separation is intended to provide separation of concerns for users, as well as protect the availability and performance of the platform from functions such as building and scanning, that could consume extensive resources from the cluster in a bursty nature.
+The Tanzu Application Platform [reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) illustrates components based on function.
+The architecture recommends individual Kubernetes clusters for the iterate, build, view, and run
+functions. This separation protects the availability and performance of the platform from functions
+such as build and scan, that can consume extensive resources at peak times.

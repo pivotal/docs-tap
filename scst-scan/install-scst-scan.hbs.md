@@ -106,7 +106,7 @@ To install SCST - Scan (Scan controller):
 
 2. (Optional) Make changes to the default installation settings:
 
-    If you are using Grype Scanner `v1.5.0 and later` or other supported scanners included with Tanzu Application Platform `v1.5 and later` and do not want to use the default SCST - Store integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file:
+    If you are using Grype Scanner `v1.5.0 and later` or other supported scanners included with Tanzu Application Platform `v1.5 and later` and do not want to use the default SCST - Store integration, deactivate the integration by appending the following field to the `values.yaml` file:
 
     ```yaml
     ---
@@ -182,7 +182,12 @@ To install SCST - Scan (Scan controller):
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
 
-    **Note** In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store. To troubleshoot any issues with scanner to metadata store connection configuration, see [here](./troubleshoot-scan.hbs.md#insight-cli-failed-to-post-scan-results-to-metadata-store-due-to-failed-certificate-verification).
+    **Note** In a single cluster, the connection between the scanning pod and
+    the metadata store happens inside the cluster and does not pass through
+    ingress. This is automatically configured. You do not need to provide an
+    ingress connection to the store. For information about troubleshooting
+    issues with scanner to metadata store connection configuration, see
+    [Troubleshooting Scanner to MetadataStore Configuration](./troubleshoot-scan.hbs.md#insight-cli-failed-to-post-scan-results-to-metadata-store-due-to-failed-certificate-verification).
 
     >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.

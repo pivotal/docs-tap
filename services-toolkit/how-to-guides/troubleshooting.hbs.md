@@ -1,128 +1,142 @@
-# Troubleshooting and known limitations
+# Troubleshoot Services Toolkit
 
-This topic provides guidance on how to debug issues related to working with services on Tanzu
-Application Platform and workarounds for known limitations.
+This topic provides guidance on how to troubleshoot issues related to working with services on Tanzu
+Application Platform. For workarounds for known limitations, see [Known limitations](../reference/known-limitations.hbs.md).
 
-## <a id="stk-debug-dynamic-provisioning"></a> Debug `ClassClaim` and provisioner-based `ClusterInstanceClass`
+## <a id="prereq"></a> Prerequisites
 
-This section provides guidance on how to debug issues related to usage of `ClassClaim`
+To follow the steps in this topic, you must have kubectl access to the cluster.
+
+## <a id="debug-dynamic-provisioning"></a> Debug `ClassClaim` and provisioner-based `ClusterInstanceClass`
+
+This section provides guidance on how to debug issues related to using `ClassClaim`
 and provisioner-based `ClusterInstanceClass`.
-You will require `kubectl` access to the cluster. The general approach detailed here starts by inspecting
-a `ClassClaim` and tracing the way back through the chain of resources that are created in order to
-fulfill the `ClassClaim`.
+The approach starts by inspecting a `ClassClaim` and tracing back through the chain of
+resources that are created when fulfilling the `ClassClaim`.
 
-### Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass` and `CompositeResourceDefinition`
+### <a id="inspect-class-claim"></a> Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass`, and `CompositeResourceDefinition`
+
+1. Inspect the status of `ClassClaim` by running:
+
+   ```console
+   kubectl describe classclaim claim-name -n NAMESPACE
+   ```
+
+   Where `NAMESPACE` is your namespace.
+
+   From the output, check the following:
+
+   - Check the status conditions for information that can lead you to the cause of the issue.
+   - Check `.spec.classRef.name` and record the value.
+
+2. Inspect the status of the `ClusterInstanceClass` by running:
+
+   ```console
+   kubectl describe clusterinstanceclass CLASS-NAME
+   ```
+
+   Where `CLASS-NAME` is the value of `.spec.classRef.name` you retrieved in the previous step.
+
+   From the output, check the following:
+
+   - Check the status conditions for information that can lead you to the cause of the issue.
+   - Check that the `Ready` condition has status `"True"`.
+   - Check `.spec.provisioner.crossplane` and record the value.
+
+3. Inspect the status of the `CompositeResourceDefinition` by running:
+
+   ```console
+   kubectl describe xrd XRD-NAME
+   ```
+
+   Where `XRD-NAME` is the value of `.spec.provisioner.crossplane` you retrieved in the previous step.
+
+   From the output, check the following:
+
+   - Check the status conditions for information that can lead you to the cause of the issue.
+   - Check that the `Established` condition has status `"True"`.
+   - Check events for any errors or warnings that can lead you to the cause of the issue.
+   - If both the `ClusterInstanceClass` reports `Ready="True"` and the `CompositeResourceDefinition`
+     reports `Established="True"`, move on to the next section.
+
+### <a id="inspect-comp-resource"></a> Step 2: Inspect the Composite Resource, the Managed Resources and the underlying resources
+
+1. Check `.status.provisionedResourceRef` by running:
+
+   ```console
+   kubectl describe classclaim claim-name -n NAMESPACE
+   ```
+
+   Where `NAMESPACE` is your namespace.
+
+   From the output, check the following:
+
+   - Check `.status.provisionedResourceRef`, and record the values of `kind`, `apiVersion`, and `name`.
+
+1. Inspect the status of the Composite Resource by running:
+
+   ```console
+   kubectl describe KIND.API-GROUP NAME
+   ```
+
+   Where:
+
+   - `KIND` is the value of `kind` you retrieved in the previous step.
+   - `API-GROUP` is the value of `apiVersion` you retrieved in the previous step without the `/<version>` part.
+   - `NAME` is the value of `name` you retrieved in the previous step.
+
+   From the output, check the following:
+
+   - Check the status conditions for information that can lead you to the cause of the issue.
+   - Check that the `Synced` condition has status `"True"`. If it doesn't then there was an issue creating
+   the Managed Resources from which this Composite Resource is composed. Refer to `.spec.resourceRefs`
+   in the output and for each:
+     - Use the values of `kind`, `apiVersion`, and `name` to inspect the status of the Managed Resource.
+     - Check the status conditions for information that can lead you to the cause of the issue.
+   - Check events for any errors or warnings that can lead you to the cause of the issue.
+   - If all Managed Resources appear healthy, move on to the next section.
+
+### <a id="inspect-log"></a> Step 3: Inspect the events log
+
+Inspect the events log by running:
 
 ```console
-$ kubectl describe classclaim claim-name -n namespace
+kubectl get events -A
 ```
 
-* Check the status conditions for any useful information which can lead you to the cause of the issue
-* Check `.spec.classRef.name`, and use the value to inspect the status of the `ClusterInstanceClass`, as follows:
+From the output, check the following:
 
-```console
-$ kubectl describe clusterinstanceclass class-name
-```
+- Check for any errors or warnings that can lead you to the cause of the issue.
+- If there are no errors or warnings, move on to the next section.
 
-* Check the status conditions for any useful information which can lead you to the cause of the issue
-* Check that the `Ready` condition has status `"True"`
-* Check `.spec.provisioner.crossplane`, and use the values to inspect the status of the `CompositeResourceDefinition`, as follows:
+### <a id="inspect-secret"></a> Step 4: Inspect the secret
 
-```console
-$ kubectl describe xrd xrd-name
-```
+1. Check `.status.resourceRef` by running:
 
-* Check the status conditions for any useful information which can lead you to the cause of the issue
-* Check that the `Established` condition has status `"True"`
-* Check events for any errors or warnings which can lead you to the cause of the issue
-* If both the `ClusterInstanceClass` reports `Ready="True"` and the `CompositeResourceDefinition` reports `Established="True"`, then move on to the next step.
+   ```console
+   kubectl get classclaim claim-name -n NAMESPACE -o yaml
+   ```
 
-### Step 2: Inspect the Composite Resource, the Managed Resources and the underlying resources
+   Where `NAMESPACE` is your namespace.
 
-```console
-$ kubectl describe classclaim claim-name -n namespace
-```
+   From the output, check the following:
 
-* Check `.status.provisionedResourceRef`, and use the values (`kind`, `apiVersion` and `name`) to inspect the status of the Composite Resource, as follows:
+   - Check `.status.resourceRef` and record the values `kind`, `apiVersion`, `name`, and `namespace`
 
-```console
-$ kubectl describe <kind>.<api group> <name> # <api group> = apiVersion minus the `/<version>` part
-```
+1. Inspect the claimed resource, which is likely a secret, by running:
 
-* Check the status conditions for any useful information which can lead you to the cause of the issue
-* Check that the `Synced` condition has status `"True"`, if it doesn't then there has been an issue creating the Managed Resources from which this Composite Resource is composed, in which case refer to `.spec.resourceRefs` in the output of the above command and for each:
-  * Use the values (`kind`, `apiVersion` and `name`) to inspect the status of the Managed Resource
-    * Check the status conditions for any useful information which can lead you to the cause of the issue
-* Check events for any errors or warnings which can lead you to the cause of the issue
-* If all Managed Resources appear healthy, move on to the next step.
+   ```console
+   kubectl get secret NAME -n NAMESPACE -o yaml
+   ```
 
-### Step 3: Inspect the events log
+   Where:
 
-```console
-$ kubectl get events -A
-```
+   - `NAME` is the `name` you retrieved in the previous step.
+   - `NAMESPACE` is the `namespace` you retrieved in the previous step.
 
-* Check for any errors or warnings which can lead you to the cause of the issue
-* If there are no errors or warnings printed, move on to the next step.
+   If the secret is there and has data, then something else must be causing the issue.
 
-### Step 4: Inspect the `Secret`
+### <a id="contact-support"></a> Step 5: Contact support
 
-```console
-$ kubectl get classclaim claim-name -n namespace -o yaml
-```
-
-* Check `.status.resourceRef`, and use the values (`kind`, `apiVersion`, `name` and `namespace`) to inspect the claimed resource (likely a `Secret`), as follows:
-
-```console
-$ kubectl get secret <name> -n <namespace> -o yaml
-```
-
-* If the `Secret` is there and has data, then something else must be causing the issue.
-
-### Step 5: Contact support
-
-If you have run through the steps here and are still unable to determine the cause of the issue, then please reach out to VMware Support for further guidance and help to resolve the issue.
-
-## Troubleshooting known limitations
-
-### <a id="stk-known-limitation-multi-workloads"></a> Cannot claim and bind to the same service instance from across multiple namespaces
-
-**Description**
-
-It is not currently possible for two or more workloads residing in two or more distinct namespaces to claim and bind to the same service instance. This is due to the mutually exclusive nature of claims - once a claim has successfully claimed a service instance, no other claim can then claim that same service instance. This limitation does not exist for two or more workloads residing in the same namespace, as in this case the workloads can all still all bind to the one claim. This is not currently possible across the namespace divide. We are planning to remove this limitation in the future.
-
-### Unexpected error if `"additionalProperties": true` is set in a CompositeResourceDefinition
-
-**Description**
-
-When creating a `CompositeResourceDefinition`, if you set `additionalProperties: true` in the `openAPIV3Schema` section, then an error will be encountered during the validation step of the creation of any `ClassClaim` which referrs to a class which referrs to the `CompositeResourceDefinitions`.
-
-**Error**
-
-`json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalProperties of type apiextensions.JSONSchemaPropsOrBool`
-
-**Workaround**
-
-Rather than setting `additionalProperties: true`, you can set `additionalProperties: {}` instead, which will have the same effect but will not result in unexpected errors.
-
-### <a id="stk-known-limitation-too-many-crds"></a> Cluster performance degradation due to large number of CRDs
-
-**Description**
-
-While not strictly a limitation with Services Toolkit per se, care should be taken before choosing to install additional Crossplane `Providers` into Tanzu Application Platform. Some of these `Providers` install multiple hundreds of additional CRDs into the cluster. This is particularly true of the `Providers` for the three big clouds - AWS, Azure and GCP. At the time of writing `provider-aws` installs [894](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/crds), `provider-azure` installs [705 CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/crds) and `provider-gcp` installs [329 CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/crds). You must ensure your cluster has sufficient resource to support this number of additional CRDs if choosing to install them.
-
-### Private registry or VMware Application Catalog (VAC) configuration does not seem to take effect
-
-**Description**
-
-As of Tanzu Application Platform v1.5.0 there is a known issue that occurs if you try to
-[configure private registry integration for the Bitnami services](../../bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
-after having already created a claim for one or more of the Bitnami services using the default configuration.
-The issue is that the updated private registry configuration does not appear to take effect.
-This is due to caching behavior in the system which is not currently accounted for during configuration
-updates.
-
-**Workaround**
-
-Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
-back online after having applied the updated registry configuration.
+If you have followed the steps in this topic and are still unable to discover the cause of the issue,
+contact VMware Support for further guidance and help to resolve the issue.
