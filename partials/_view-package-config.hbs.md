@@ -35,7 +35,7 @@ These keys are defined under the `shared` Top-level Key, as summarized in the fo
 |`kubernetes_distribution`|Type of Kubernetes infrastructure being used. You can use this shared key in coordination with the `kubernetes_version` key. Supported value: `openshift`.|Yes|
 |`kubernetes_version`|Kubernetes version. You can use this shared key independently or in coordination with the `kubernetes_distribution` key. Supported value: `1.24.x`, where `x` stands for the Kubernetes patch version.|Yes|
 |`image_registry.project_path`|Project path in the container image registry server used for builder and application images.|Yes|
-|`image_registry.username`|Username for the container image registry. Mutually exclusive with `shared.image_registry.secret.name/namespace`|Yes|
+|`image_registry.username`|User name for the container image registry. Mutually exclusive with `shared.image_registry.secret.name/namespace`|Yes|
 |`image_registry.password`|Password for the container image registry. Mutually exclusive with `shared.image_registry.secret.name/namespace`|Yes|
 |`secret.name`|Secret name for the container image registry credentials of type `kubernetes.io/dockerconfigjson`. Mutually exclusive with `shared.image_registry.username/password`|Yes|
 |`secret.namespace`|Secret namespace for the container image registry credentials. Mutually exclusive with `shared.image_registry.username/password`|Yes|
