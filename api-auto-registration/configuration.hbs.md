@@ -1,14 +1,16 @@
 # Configure API Auto Registration
 
-This topic describes configuration options available for API Auto Registration.
+This topic describes configuration options for API Auto Registration.
 
 ## <a id='update-values'></a>Update install values for api-auto-registration package
 
-You can view the values available for the package by first finding the available version of the package and then finding the schema for it.
-Once you have selected the values that you would like to update, you can update them either by updating the `tap` package if installed as a whole
-or by updating the `api-auto-registration` package if installed standalone.
+You can view the values available for the package by finding the available
+package version and finding the corresponding schema. After you select the
+values that you want to update, update them either by updating the `tap` package
+or by updating the `api-auto-registration` package if you installed it on it's
+own.
 
-1. Find the version of the available package
+1. Find the version of the available package:
 
     ```console
     tanzu package available list apis.apps.tanzu.vmware.com -n tap-install
@@ -18,7 +20,8 @@ or by updating the `api-auto-registration` package if installed standalone.
     apis.apps.tanzu.vmware.com  0.2.6    2023-03-21 13:47:14 -0400 EDT
     ```
 
-2. Explore the values available
+2. Explore the values available:
+
     ```console
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
@@ -47,9 +50,9 @@ or by updating the `api-auto-registration` package if installed standalone.
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
-3. Create `api-auto-registration-values.yaml` if you installed API Auto Registration package on its own or update the tap-values.yaml.
+3. Create `api-auto-registration-values.yaml` if you installed API Auto Registration package on its own, or update the tap-values.yaml if you used a package to install.
 
-    A `api-auto-registration-values.yaml` file may contain the following:
+    A `api-auto-registration-values.yaml` file might contain the following:
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
@@ -59,7 +62,9 @@ or by updating the `api-auto-registration` package if installed standalone.
         MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
         -----END CERTIFICATE-----
     ```
-    A `tap-values.yaml` file may contain the following along with other values (see the [Full Profile sample](#full-profile)):
+
+    A `tap-values.yaml` file might contain the following, in addition to other values.  See the [Full Profile sample](#full-profile).
+
     ```yaml
     shared:
         ingress_domain: "INGRESS-DOMAIN"

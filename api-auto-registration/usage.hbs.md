@@ -76,12 +76,12 @@ scaffold it according to your needs.
 
 ### <a id='existing-spring-project'></a>Using an existing Spring Boot project using springdoc
 
-If you have an existing Spring Boot app that exposes an API, you can generate OpenAPI spec using springdoc. See the ["Getting Started" guide from springdoc](https://springdoc.org/#getting-started)
+If you have an existing Spring Boot app that exposes an API, you can generate OpenAPI specifications using springdoc. See the [springdoc documentation](https://springdoc.org/#getting-started)
 
-Once you have springdoc configured and an OpenAPI automatically generated, you can choose one of the three methods of creating the APIDescriptor custom resource.
-We recommend having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box (OOTB) supply chain. See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
-Alternatively, if you would like to use custom supply chains, see the [Using Custom Supply Chains](#using-custom-supply-chain) section.
-Lastly, if you would like to use a different Gitops process or manage the APIDescriptor CR manually, see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
+After you have springdoc configured and an OpenAPI automatically generated, you can choose one of the three methods of creating the APIDescriptor custom resource.
+VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box (OOTB) supply chain. See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
+Alternatively, if you want to use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
+Lastly, if you want to use a different Gitops process or manage the APIDescriptor CR manually, see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
 
 ## <a id='create-api-descriptor'></a>Create APIDescriptor Custom Resource
 
@@ -182,7 +182,7 @@ For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
 ### <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
 
 Using your GitOps process, or manually, you must stamp out an APIDescriptor CR and apply it in the
-cluster you choose. Ensure to specify all the required fields for an APIDescriptor CR to reconcile successfully.
+cluster you choose. Be sure specify all the required fields for an APIDescriptor CR to reconcile.
 
 For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
 
