@@ -17,7 +17,7 @@ This limitation does not exist for two or more workloads located in the same nam
 In this case, the workloads can all still all bind to one claim.
 This is not possible across the namespace divide.
 
-## <a id="compositeresourcedef"></a> Unexpected error if `"additionalProperties": true` is set in a CompositeResourceDefinition
+## <a id="compositeresourcedef"></a> Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition
 
 **Description:**
 
@@ -27,7 +27,9 @@ When creating a `CompositeResourceDefinition`, if you set `additionalProperties:
 
 **Error:**
 
-`json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalProperties of type apiextensions.JSONSchemaPropsOrBool`
+```console
+json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalProperties of type apiextensions.JSONSchemaPropsOrBool
+```
 
 **Workaround:**
 
@@ -41,19 +43,22 @@ This has the same effect but does not cause unexpected errors.
 While not strictly a limitation with Services Toolkit, take care before choosing to
 install additional Crossplane `Providers` into Tanzu Application Platform.
 Some of these `Providers` install hundreds of additional CRDs into the cluster.
-This is particularly true of the `Providers` for AWS, Azure, and GCP.
 
-Currently, `provider-aws` installs [894 CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/crds),
-`provider-azure` installs [705 CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/crds) and
-`provider-gcp` installs [329 CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/crds).
+This is particularly true of the `Providers` for AWS, Azure, and GCP.
+For the number of CRDs installed with these `Providers`, see:
+
+- [provider-aws CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/crds)
+- [provider-azure CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/crds)
+- [provider-gcp CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/crds)
+
 You must ensure that your cluster has sufficient resource to support this number of additional CRDs
 if you choose to install them.
 
-## <a id="private-reg"></a> Private registry or VMware Application Catalog (VAC) configuration does not seem to take effect
+## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
 
 **Description:**
 
-As of Tanzu Application Platform v1.5.0 there is a known issue that occurs if you try to
+As of Tanzu Application Platform v1.5.0, there is a known issue that occurs if you try to
 [configure private registry integration for the Bitnami services](../../bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
 after having already created a claim for one or more of the Bitnami services using the default configuration.
 

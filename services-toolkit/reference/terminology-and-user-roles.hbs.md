@@ -24,16 +24,16 @@ For example:
 
 ### <a id="service-resource"></a> Service resource
 
-A service resource is a Kubernetes resource that provides partial functionality<!--฿ |function|, |features|, or |capability| is preferred. ฿--> related to a Service.
+A service resource is a Kubernetes resource that provides some of the functions related to a Service.
 
 For example:
 
 - A Kubernetes resource with API Kind `PostgreSQL`
 - A Kubernetes resource with API Kind `FirewallRule`
 - A Kubernetes resource with API Kind `RabbitmqUser`
-- A Kubernetes resource with API Kind `ClientRegistration` providing access to an App SSO service
+- A Kubernetes resource with API Kind `ClientRegistration` that provides access to an App SSO service
 - A Kubernetes resource with API Kind `Secret` containing credentials and connectivity information
-  for a Service (which may or may not be running on the cluster itself)
+  for a Service that may or may not be running on the cluster itself.
 
 ### <a id="provisioned-service"></a>Provisioned Service
 
@@ -46,7 +46,7 @@ For the full definition, see
 
 ### <a id="service-binding"></a>Service Binding
 
-A service binding is a mechanism in which service instance credentials<!--฿ |binding credentials| is preferred. ฿--> and other related connectivity
+A service binding is a mechanism in which service instance credentials and other related connectivity
 information are automatically communicated to application workloads.
 
 For example:

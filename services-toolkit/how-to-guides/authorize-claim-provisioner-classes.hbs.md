@@ -59,7 +59,7 @@ user role at the cluster scope.
 The result is that any user who has the `app-operator` role is now authorized to create claims
 for the `bigcorp-rabbitmq` class in any namespace on the cluster.
 
-## <a id="auth-one-user"></a> Authorize one specific user to claim from one specific namespace
+## <a id="auth-one-user"></a> Authorize a user to claim from a specific namespace
 
 Create a `ClusterRole` with a rule that specifies the `claim` verb for one or more `ClusterInstanceClass`
 resource and a corresponding `RoleBinding` to bind it to a user.

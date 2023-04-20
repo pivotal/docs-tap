@@ -392,7 +392,7 @@ To configure access control with RBAC:
    kubectl apply -f app-operator-claim-tanzu-psql.rbac.yaml
    ```
 
-## <a id="use-dynamic-provisioning"></a> Use dynamic provisioning
+## <a id="create-claim"></a> Create a claim
 
 To use dynamic provisioning to create a Tanzu Postgres service instance, run:
 

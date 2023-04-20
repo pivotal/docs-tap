@@ -149,7 +149,6 @@ spec:
     # The name of the class from which to claim a service instance.
     # For information about the permissions users must have to claim from the class,
     # see the note below this snippet.
-
     name: mysql-unmanaged
 
   # (Optional) parameters are key-value pairs that are configuration inputs to the
@@ -209,6 +208,6 @@ status:
   observedGeneration: 1
 ```
 
-> **Note:** If referring to a provisioner-based class in `classref`, users must have sufficient RBAC
-> permission to claim from the class. For more information, see
+> **Note** If you refer to a provisioner-based class in `spec.classref.name`, you must have
+> sufficient RBAC permission to claim from the class. For more information, see
 > [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md).
