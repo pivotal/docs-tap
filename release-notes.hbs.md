@@ -566,10 +566,7 @@ This release has the following known issues, listed by area and component.
   collection within the VMware
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Application Platform GUI.
-
-  To prevent these issues, add Tanzu Application Platform GUI to your ad-blocking allowlist.
-  Alternatively, deactivate the ad-blocking software or
-  [turn off Pendo telemetry collection](opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
 #### <a id="1-5-apps-plugin-ki"></a> Tanzu CLI Apps plug-in
 
