@@ -14,7 +14,7 @@ and provisioner-based `ClusterInstanceClass`.
 The approach starts by inspecting a `ClassClaim` and tracing back through the chain of
 resources that are created when fulfilling the `ClassClaim`.
 
-### <a id="inspect-class-claim"></a> Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass` and `CompositeResourceDefinition`
+### <a id="inspect-class-claim"></a> Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass`, and `CompositeResourceDefinition`
 
 1. Inspect the status of `ClassClaim` by running:
 

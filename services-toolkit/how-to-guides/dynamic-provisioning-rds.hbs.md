@@ -24,7 +24,7 @@ To configure dynamic provisioning for AWS RDS service instances, you must:
 2. [Create a CompositeResourceDefinition](#compositeresourcedef)
 3. [Create a Composition](#create-composition)
 4. [Make the service discoverable](#make-discoverable)
-5. [Authorize users with the app-operator role to claim from the class](#configure-rbac)
+5. [Configure RBAC](#configure-rbac)
 
 ### <a id="install-aws-provider"></a> Install the AWS Provider for Crossplane
 
@@ -250,7 +250,7 @@ from the class:
    kubectl apply -f app-operator-claim-aws-rds-psql.rbac.yaml
    ```
 
-## <a id="use-dynamic-provisioning"></a> Use dynamic provisioning
+## <a id="create-claim"></a> Create a claim
 
 To use dynamic provisioning to create an AWS RDS service instance, run:
 
