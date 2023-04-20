@@ -144,11 +144,10 @@ Global Flags:
 This command deletes a class claim.
 
 You will be prompted to confirm the deletion unless you pass the `--yes` flag.
-
 Before you delete a claim, you must be aware of the consequences of doing so.
+
 When you create a claim, it signals a that you want a service instance.
 You usually create a service instance to bind it to one or more application workload.
-
 If you delete a claim, it signals that you no longer need the claimed service instance.
 At this point, other claims created by other users can claim the service instance you previously claimed.
 
@@ -217,7 +216,7 @@ they are easier to create and are more portable across multiple clusters.
 
 This command creates a claim for a specific resource.
 
-It is common to create claims for resources which you can bind to application workloads using the claim.
+It is common to create claims for resources that you can bind to application workloads using the claim.
 
 This approach to creating claims differs to that of class claims, in which the system ultimately
 finds and supplies a claimable resource for you.
@@ -285,11 +284,10 @@ Global Flags:
 This command deletes a resource claim.
 
 You will be prompted to confirm the deletion unless you pass the `--yes` flag.
-
 Before you delete a claim, you must be aware of the consequences of doing so.
+
 When you create a claim, it signals a that you want a resource.
 You usually create a resource to bind it to one or more application workload.
-
 If you delete a claim, it signals that you no longer need the claimed resource.
 At this point, other claims created by other users can claim the resource you previously claimed.
 
