@@ -29,7 +29,9 @@ Follow these steps to fetch the single-page Angular app source code:
         ```shell
         kubectl get authserver -A
         ```
-        Generate the accelerator using the `tanzu accelerator` CLI
+
+        Generate the accelerator by using the `tanzu accelerator` CLI:
+
         ```shell
         tanzu accelerator generate angular-frontend \
           --server-url <TAP_GUI_SERVER_URL> \
@@ -66,13 +68,13 @@ kubectl label namespaces my-apps apps.tanzu.vmware.com/tap-ns=""
 ```
 
 For more information about provisioning namespaces for running `Workloads`, 
-see [Set up developer namespaces](../../set-up-namespaces.hbs.md)
+see [Set up developer namespaces](../../set-up-namespaces.hbs.md).
 
 ## <a id='clientregistration'></a> Create a `ClientRegistration`
 
 You must create a `ClientRegistration` to register the frontend application with the `AuthServer`.
 
-Example: A `ClientRegistration` named `angular-frontend` in the `my-apps` namespace.
+**Example:** A `ClientRegistration` named `angular-frontend` in the `my-apps` namespace.
 `angular-frontend` is attached to an existing `AuthServer` with labels `my-sso=true` and an 
 allowance of client registrations from the `my-apps` namespace.
 
