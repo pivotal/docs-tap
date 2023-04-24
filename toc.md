@@ -295,7 +295,7 @@ docs.vmware.com is built.
             - [Issuer URI and TLS](app-sso/service-operators/issuer-uri-and-tls.hbs.md)
             - [TLS scenario guides](app-sso/service-operators/tls-scenario-guides.hbs.md)
             - [CA certificates](app-sso/service-operators/ca-certs.hbs.md)
-            - [Configure Workloads to trust a custom CA](app-sso/service-operators/workload-trust-custom-ca.hbs.md)
+            - [Configure workloads to trust a custom CA](app-sso/service-operators/workload-trust-custom-ca.hbs.md)
             - [Identity providers](app-sso/service-operators/identity-providers.hbs.md)
             - [Configure authorization](app-sso/service-operators/configure-authorization.hbs.md)
             - [Public clients and CORS](app-sso/service-operators/cors.md)
