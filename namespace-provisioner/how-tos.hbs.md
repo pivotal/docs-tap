@@ -153,7 +153,7 @@ using GitOps with some specific characteristics:
 - Use the [ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) feature for
   GitOps customization, set in the `tap-values.yaml` under [additional_sources](install.hbs.md#customized-installation).
 - Mount additional Git resource in the path `_ytt_lib/customize`, otherwise
-  the customization is not applied.
+  the customization is not applied. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template.
 - The GitOps repository directory must have a file with an extension [lib.yaml](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported.
 - The library file in the GitOps repository directory must have a function called `customize` with the
 overlays to be applied to the resources, it can contain one or more overlays.
