@@ -83,7 +83,7 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
 1. To enable Cosign signing, create or edit the service account resource that is
 referenced in the image resource so that it includes the Cosign keypair secret created earlier. The
 service account is in the same namespace as the image resource and is directly referenced by the
-image or default if there isn't one.
+image or default if there isn't one. The default is the default service account in the workload namespace.
 
     ```yaml
     apiVersion: v1
