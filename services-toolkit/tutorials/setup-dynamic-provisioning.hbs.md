@@ -2,8 +2,8 @@
 
 In this tutorial you will learn how to set up a new, self-serve and "customized-to-your-needs"
 service for Tanzu Application Platform.
-
-The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any other service.
+The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any
+other service.
 
 ## <a id="about"></a> About this tutorial
 
@@ -23,11 +23,22 @@ The example uses Tanzu RabbitMQ the service, but the steps and learnings can app
 
 The tutorial is centered around the following hypothetical, but somewhat realistic, real-world scenario.
 
-You work at BigCorp and have been<!--฿ Consider replacing with |were| or shifting to present tense. ฿--> tasked to provide an on-demand, self-serve RabbitMQ service for BigCorp's development teams who are working with Tanzu Application Platform. You have already reviewed the out of the box<!--฿ Do not use |out of the box| figuratively. ฿--> offering<!--฿ Redundant word? ฿--> for RabbitMQ, but have determined<!--฿ |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. ฿--> that while it is an excellent service for kicking the tyres and for quickly getting started, it is not quite suitable for BigCorp's stringent and specifc needs. You are particularly concerned about BigCorp's auditing and logging policy, and wish<!--฿ |want| is preferred. ฿--> to enforce that every RabbitMQ cluster in use on the platform adheres to that policy. At the same time, you don't want to be a blocker for the application teams and wish<!--฿ |want| is preferred. ฿--> to offer them self-serve access to RabbitMQ whenever they need it, without incurring any untoward delays. You have heard great things about Tanzu Application Platform's Dynamic Provisioning capability, and are now looking to make use of it to help you complete your task.
+You work at BigCorp and are tasked to provide an on-demand, self-serve RabbitMQ service for BigCorp's
+development teams who are working with Tanzu Application Platform.
+You have already reviewed the pre-installed offering for RabbitMQ, but have discovered
+that while it is an excellent service for testing and for quickly getting started,
+it is not quite suitable for BigCorp's stringent and specific needs.
 
-By the end of this tutorial you will<!--฿ Avoid |will|: present tense is preferred. ฿--> have learned how to:
+In particular, you must comply with BigCorp's auditing and logging policy, and want to enforce that
+every RabbitMQ cluster in use on the platform adheres to that policy.
+At the same time, you don't want to be a blocker for the application teams and want to offer
+them self-serve access to RabbitMQ whenever they need it, without incurring any untoward delays.
+You have heard great things about Tanzu Application Platform's dynamic provisioning capability, and
+are now looking to make use of it to help you complete your task.
 
-- Install the RabbitMQ Cluster Operator<!--฿ |RabbitMQ Cluster Kubernetes operator| or, after first use and where not ambiguous, |cluster operator|. ฿-->
+In this tutorial you will learn how to:
+
+- Install the RabbitMQ Cluster Kubernetes operator
 - Create a `CompositeResourceDefinition`
 - Create a `Composition`
 - Create a provisioner-based class
@@ -38,31 +49,44 @@ By the end of this tutorial you will<!--฿ Avoid |will|: present tense is prefe
 
 ## <a id="concepts"></a> Concepts
 
-Let's<!--฿ Re-word: too colloquial. ฿--> begin with a bird's-eye overview of the pieces that make up dynamic provisioning and see how they all fit together.
+The following diagram provides an overview of the elements of dynamic provisioning and how they fit together.
 
-![Diagram shows a high-level overview of dynamic provisioning](../../images/stk-dynamic-provisioning-overview.png)<!--฿ In alt text, write a coherent sentence that ends with a period. ฿-->
+![Diagram shows a high-level overview of dynamic provisioning.](../../images/stk-dynamic-provisioning-overview.png)
 
 There's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> quite a lot to digest there, but don't worry! We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿-->'ll be covering everything in more detail later on. For now, here is a very high-level overview of how the system works.
 
-1. Service Operator creates a `CompositeResourceDefinition` and a `Composition`, which together define the configuration of the service instances that will<!--฿ Avoid |will|: present tense is preferred. ฿--> be dynamically provisioned
-1. Service Operator creates a class pointing to the `CompositeResourceDefinition`, this advertises<!--฿ |informs| or similar is likely better. ฿--> the availability of the service to application development teams
-1. Service Operator applies necessary RBAC to permit the system to create necessary resources, as well as<!--฿ |and| is preferred. ฿--> to authorize application development teams to create claims for the class
-
-1. Application Developer creates a claim referring to the class, optionally<!--฿ Our style is (Optional) INSTRUCTION -- as a procedure header or a step. ฿--> passing through parameters to override any default configuration (where permissible)
-1. The system creates a `CompositeResource`, merging info<!--฿ |information| is preferred. ฿--> provided in the claim with default configuration specified by the system as well as<!--฿ |and| is preferred. ฿--> configuration defined in the `Composition`
-1. Crossplane reconciles the `CompositeResource` into a service instance and writes credentials for the instance into a `Secret`
-1. The `Secret` is written back to the application developer<!--฿ |app developer| is preferred. ฿-->'s namespace, so that it can then be utilized by<!--฿ Active voice is preferred. ฿--> application workloads
-
-Feel free to refer back to the diagram as/when needed as you continue through the rest of the tutorial.
+1. The service operator creates a `CompositeResourceDefinition` and a `Composition`, which together
+   define the configuration of the service instances that will be dynamically provisioned.
+2. The service operator creates a class pointing to the `CompositeResourceDefinition`.
+   This informs application development teams that the service is available.
+3. The service operator applies necessary Role-Based Access Control (RBAC) to permit the system to
+   create the necessary resources, and to authorize application development teams to create claims
+   for the class.
+4. The application developer creates a claim referring to the class, optionally passing through
+   parameters to override any default configuration where permissible.
+5. The system creates a `CompositeResource`, merging information provided in the claim with default
+   configuration specified by the system and configuration defined in the `Composition`.
+6. Crossplane reconciles the `CompositeResource` into a service instance and writes credentials for
+   the instance into a `Secret`.
+7. The `Secret` is written back to the application developer's namespace, so that application workloads
+   can use it.
 
 ## <a id="procedure"></a> Procedure
 
+The following steps show how to configure dynamic provisioning for a service.
+
 ### <a id="install-operator"></a> Step 1: Install the operator
 
-The first step when it comes to adding any new service into Tanzu Application Platform is to ensure<!--฿ Remember to include |that| if introducing a restrictive clause. In prerequisites, use |verify that| instead of |ensure that|. Where possible just re-phrase: |Do x| is better than |Ensure that you do x|. ฿--> there are a suitable set of APIs available in the cluster from which to construct desired<!--฿ |that you want| is preferred. ฿--> service instances. Usually this involves installing one or more Kubernetes Operators into the cluster. Given the aim of this tutorial is to setup<!--฿ |set up| is the action. |setup| is a noun. ฿--> a new RabbitMQ service, we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ll begin by installing the RabbitMQ Cluster Operator<!--฿ |RabbitMQ Cluster Kubernetes operator| or, after first use and where not ambiguous, |cluster operator|. ฿--> for Kubernetes.
+When adding any new service to Tanzu Application Platform, ensure that there are a suitable set of
+APIs available in the cluster from which to construct the service instances.
+Usually, this involves installing one or more Kubernetes Operators into the cluster.
 
-> **Note** The steps below<!--฿ If referring to a page location, use |following| or |later| or, better, just use an anchor. If referring to product versions, use |earlier|. ฿--> use the open source version of the operator.
-> For most real-world deployments, VMware recommends using the official, supported version provided by VMware.
+Given the aim of this tutorial is to set up a new RabbitMQ service, install the RabbitMQ Cluster
+Operator for Kubernetes.
+
+> **Note** The steps in this tutorial use the open source version of the operator.
+> For most real-world deployments, VMware recommends using the official, supported version provided
+> by VMware.
 > For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
 Use `kapp` to install the operator by running:
@@ -70,12 +94,22 @@ Use `kapp` to install the operator by running:
 ```console
 kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
-This results in<!--฿ Consider replacing with |causes|. ฿--> the availability of a new API Group/Version of `rabbitmq.com/v1beta1` and Kind named `RabbitmqCluster` in the cluster. We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> can now use this API to create RabbitMQ cluster instances as part of our dynamic provisioning setup.
+
+This causes a new API Group/Version of `rabbitmq.com/v1beta1` and Kind named `RabbitmqCluster` to
+become available in the cluster.
+You can now use this API to create RabbitMQ cluster instances as part of the dynamic provisioning setup.
 
 ### <a id="create-xrd"></a> Step 2: Creating a `CompositeResourceDefinition`
 
-Tanzu Application Platform's Dynamic Provisioning capability leans on [Crossplane](https://www.crossplane.io/) to do most of the heavy lifting. The specific integration point can be<!--฿ Consider switching to active voice. ฿--> found at `.spec.provisioner.crossplane.compositeResourceDefinition` in Tanzu Application Platform's `ClusterInstanceClass` API. As the name suggests, this field<!--฿ If referring to a UI, |text box| is preferred. ฿--> is looking for a `CompositeResourceDefinition`, and so that is what you will<!--฿ Avoid |will|: present tense is preferred. ฿--> be creating in this step of the tutorial. The `CompositeResourceDefinition` (or "XRD" in Crossplane parlance) essentially defines the shape of a new, custom API type which can encompass the specific set of requirements laid out by the scenario in this tutorial.
+Tanzu Application Platform's dynamic provisioning capability relies on
+[Crossplane](https://www.crossplane.io/).
+You can find the specific integration point at `.spec.provisioner.crossplane.compositeResourceDefinition`
+in Tanzu Application Platform's `ClusterInstanceClass` API.
+
+As the name suggests, this field is looking for a `CompositeResourceDefinition`, which you create
+in this step of the procedure.
+The `CompositeResourceDefinition` (XRD) defines the shape of a new, custom API type that encompasses
+the specific set of requirements laid out by the scenario in this tutorial.
 
 Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml` and copy in the following contents.
 
@@ -119,41 +153,82 @@ spec:
     served: true
 ```
 
-Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
+Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
-For a full and detailed explanation of `CompositeResourceDefinition` it is best to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> Crossplane's official documentation. What follows here is a condensed explanation of the most relevant pieces of the above<!--฿ If referring to a page location, use |earlier| or, better, just use an anchor. If referring to product versions, use |later|. ฿--> config as it relates to Dynamic Provisioning in Tanzu Application Platform.
 
-First and foremost note that<!--฿ If this is really a note, use note formatting. ฿--> we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> have **not** specified `.spec.claimNames` in the XRD. Tanzu Application Platform's dynamic provisioning capability makes use of Crossplane's cluster-scoped Composite Resources, rather than the namespace-scoped Claims ("Claims" here not to be confused with Tanzu Application Platform's own concept of claims!). As such, this configuration is not required, although it will<!--฿ Avoid |will|: present tense is preferred. ฿--> not cause any adverse effects if you choose to<!--฿ Consider if |choose| is redundant. ฿--> add it.
+For a full and detailed explanation of `CompositeResourceDefinition` see, the
+[Crossplane documentation](https://docs.crossplane.io/v1.10/concepts/composition/#defining-composite-resources).
 
-Next refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> `.spec.connectionKeys`. This field<!--฿ If referring to a UI, |text box| is preferred. ฿--> determines<!--฿ |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. To avoid anthropomorphism, use |detect|. ฿--> the keys that will<!--฿ Avoid |will|: present tense is preferred. ฿--> exist in the `Secret` resulting from the dynamic provisioning request. You will<!--฿ Avoid |will|: present tense is preferred. ฿--> most likely want this `Secret` to be conformant<!--฿ Obsolete -- |conforming| is preferred. ฿--> with the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec), as this, in part*, is what allows for automatic configuration of the service instance by Tanzu Application Platform's application workloads. Specific key name requirements vary by service type, however all should<!--฿ Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|. If |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. ฿--> provide the `type` key.
+The following is a condensed explanation of the most relevant pieces of the `CompositeResourceDefinition`
+configuration, provided in this section, as it relates to dynamic provisioning in Tanzu Application Platform.
 
-\* _Assuming the application is using a binding-aware<!--฿ To avoid anthropomorphism, use |detects|. ฿--> library such as [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings)._
+The example in this tutorial does **not** specify `.spec.claimNames` in the XRD.
+Tanzu Application Platform's dynamic provisioning capability makes use of Crossplane's cluster-scoped
+Composite Resources, rather than the namespace-scoped Claims ("Claims" here not to be confused with Tanzu Application Platform's own concept of claims).
+As such, this configuration is not required, although it does not cause any adverse effects if you add it.
 
-Finally, take a look at the `.spec.properties` section in the schema for `v1alpha1`. This is where you, as the Service Operator, can choose which<!--฿ |decide| is preferred. ฿--> configuration options you want to expose to application development teams. In the example above<!--฿ If referring to a page location, use |earlier| or, better, just use an anchor. If referring to product versions, use |later|. ฿--> there are two configuration options - `replicas` and `storageGB`. By adding these properties to the spec<!--฿ |specifications| is preferred. ฿--> you are handing over control of these specific configuration options to the development teams. Taking `storageGB` as an example,<!--฿ |for example,| might be better here. ฿--> the development teams probably have a better sense of how much storage their apps will<!--฿ Avoid |will|: present tense is preferred. ฿--> require than you do, so why not allow them to decide for themselves how much storage they require.
+Next, see the `.spec.connectionKeys` field. This field detects the keys that will exist in the `Secret`
+resulting from the dynamic provisioning request.
+You likely want this `Secret` to conform with the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec),
+as this, in part, is what allows for automatic configuration of the service instance by
+Tanzu Application Platform's application workloads.
+This is assuming that the application is using a binding-aware library such as [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings).
+Specific key name requirements vary by service type, however all must provide the `type` key.
 
-You can choose to add as many or as few configuration options here as you like. You can also optionally<!--฿ Our style is (Optional) INSTRUCTION -- as a procedure header or a step. ฿--> choose to set default values. In highly regulated environments, you may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> not want to allow for any configuration by developers at all, and that's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> totally fine! Recall back to the hypothetical scenario at the beginning of this tutorial. It says, "You are particularly concerned about BigCorp's auditing and logging policy". Note that<!--฿ If this is really a note, use note formatting. ฿--> we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> are not specifying any configuration related to auditing or logging in the XRD here. This is intentional as in this scenario we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> have strict auditing and logging requirements and don't want to permit developers to override those. In the next step you'll<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> learn how to ensure<!--฿ Remember to include |that| if introducing a restrictive clause. In prerequisites, use |verify that| instead of |ensure that|. Where possible just re-phrase: |Do x| is better than |Ensure that you do x|. ฿--> those requirements actually<!--฿ Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. ฿--> do get enforced on the resulting RabbitMQ clusters.
+Finally, see the `.spec.properties` section in the schema for `v1alpha1`.
+This is where you, as the service operator, can set which configuration options you want to expose
+to application development teams.
+In the example in this section, there are two configuration options: `replicas` and `storageGB`.
+By adding these properties to the specification, you are handing over control of these specific
+configuration options to the development teams.
+For example, you might want to add `storageGB` if the development teams have more knowledge about
+how much storage their apps require than you do. By adding `storageGB` you can allow them to decide
+for themselves how much storage they require.
 
-Before moving on, let's<!--฿ Re-word: too colloquial. ฿--> check <!--฿ |verify|, |ensure|, and |confirm| are all preferred. ฿-->on the status of the XRD you just<!--฿ Avoid uses that suggest a task is simple. ฿--> created.
+You can choose to add as many or as few configuration options here as you like.
+You can also choose to set default values. In highly regulated environments, you might not want to
+allow for any configuration by developers at all.
+
+In the scenario at the beginning of this tutorial, it says that you must comply with the auditing
+and logging policy.
+You do not specify any configuration related to auditing or logging in the XRD in this step.
+This is intentional as in this scenario there are strict auditing and logging requirements and cannot
+permit developers to override those.
+In the next step you learn how to ensure that those requirements get enforced on the resulting
+RabbitMQ clusters.
+
+To verify the status of the XRD you created, run:
 
 ```console
 kubectl get xrds
 ```
 
-You should<!--฿ Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|. If |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. ฿--> see `xrabbitmqclusters.messaging.bigcorp.org` listed with `ESTABLISHED=True`. It's quite possible that you will<!--฿ Avoid |will|: present tense is preferred. ฿--> see some other XRDs listed as well - the `*.bitnami.*.tanzu.vmware.com` XRDs. These ship as part of the `bitnami.services.tanzu.vmware.com` Package with Tanzu Application Platform and serve as the basis of the out of the box<!--฿ Do not use |out of the box| figuratively. ฿--> services. These other XRDs can be<!--฿ Consider switching to active voice. ฿--> safely ignored for now, but if you'd<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> like to see how they are used in practice, please<!--฿ Do not use unless asking the reader to do you a favor, such as giving feedback. ฿--> refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the Getting Started Guide's [Claim services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md) and [Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md).
+If successful, the `xrabbitmqclusters.messaging.bigcorp.org` is listed with `ESTABLISHED=True`.
 
-As a result of creating the XRD, a new API Group/Version of `messaging.bigcorp.org/v1alpha1` and Kind named `XRabbitmqCluster` should<!--฿ Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|. If |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. ฿--> now be available in the cluster. If you inspect this API further, you will<!--฿ Avoid |will|: present tense is preferred. ฿--> note that<!--฿ If this is really a note, use note formatting. ฿--> the `replicas` and `storageGB` properties we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> configured in the XRD are present in the spec<!--฿ |specifications| is preferred. ฿--> of `XRabbitmqCluster`.
+You might see some other XRDs listed as well. These are the `*.bitnami.*.tanzu.vmware.com` XRDs.
+These are part of the `bitnami.services.tanzu.vmware.com` package with Tanzu Application Platform and
+serve as the basis of the pre-installed services.
+You can ignore these other XRDs for now, but if you want to see how they are used in practice, see
+[Claim services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md) and
+[Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md)
+in the Tanzu Application Platform getting started guide.
+
+As a result of creating the XRD, a new API Group/Version of `messaging.bigcorp.org/v1alpha1` and Kind
+named `XRabbitmqCluster` become available in the cluster.
+If you inspect this API further, notice that the `replicas` and `storageGB` properties configured in
+the XRD are present in the specification of `XRabbitmqCluster`.
 
 ```console
 kubectl explain --api-version=messaging.bigcorp.org/v1alpha1 xrabbitmqclusters.spec
 ```
 
-You'll<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> also note that<!--฿ If this is really a note, use note formatting. ฿--> Crossplane has injected some other fields<!--฿ If referring to a UI, |text boxes| is preferred. ฿--> into the spec<!--฿ |specifications| is preferred. ฿--> as well, but you can mostly ignore these for now.
+You will also notice that Crossplane has injected some other fields into the specification as well,
+but you can mostly ignore these for now.
 
-## <a id="create-composition"></a> Step 3: Creating a crossplane `Composition`
+### <a id="create-composition"></a> Step 3: Creating a Crossplane `Composition`
 
 This step is the big one. Most of the time and effort involved in configuring dynamic provisioning will<!--฿ Avoid |will|: present tense is preferred. ฿--> likely be spent in creating Crossplane's `Compositions`. They can look quite intimidating at first, but fear not! This tutorial is here to guide you through all the most important steps. Like before, it is recommended<!--฿ Rewrite as an imperative if it is best practice. If you must recommend, specify the party recommending (VMware, Cloud Foundry, etc), give a reason, and do not recommend third-party software. ฿--> to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> Crossplane's official documentation for a full and detailed explanation of `Composition`s, what follows here are the basics you need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> know to be able to<!--฿ |can| is preferred. ฿--> start creating `Compositions` for use in Tanzu Application Platform.
 
@@ -320,13 +395,13 @@ spec:
         fieldPath: status.atProvider.manifest.status.conditions[1].status # ClusterAvailable
         matchString: "True"
 ```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
-Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
+
+Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
+
 And now let's<!--฿ Re-word: too colloquial. ฿--> chat through the `Composition` step-by-step. The first thing to note is `.spec.compositeTypeRef`, which we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ve configured to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> `XRabbitmqCluster` on the `messaging.bigcorp.org/v1alpha1` API group/version.
 
 ```yaml
@@ -462,9 +537,12 @@ kubectl create namespace rmq-clusters
 
 This configuration says that _all_ dynamically provisioned `RabbitmqCluster` resources will<!--฿ Avoid |will|: present tense is preferred. ฿--> be placed in the _same_ `rmq-clusters` namespace. You could<!--฿ |can| or |might| whenever possible is preferred. When providing examples, use simple present tense verbs instead of postulating what someone or something could or would do. ฿--> of course wish<!--฿ |want| is preferred. ฿--> to place each new cluster into a separate namespace. In order to do that, you'd<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> create an additional `Object` managed resource to wrap the creation of a `Namespace` and to apply patches to the resources accordingly. For now we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ll keep things simple<!--฿ Avoid suggesting an instruction is |simple| or |easy|. ฿--> with only 1 namespace.
 
-## <a id="create-class"></a> Step 4: Creating a provisioner-based class
+### <a id="create-class"></a> Step 4: Creating a provisioner-based class
 
-The creation of the XRD and the Composition brings to an end the Crossplane-centric part of this tutorial. What remains is to integrate all that we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ve just<!--฿ Avoid uses that suggest a task is simple. ฿--> configured into Tanzu Application Platform's classes and claims model so that application teams can more easily<!--฿ Avoid when describing an instruction. ฿--> make use of it. The first step here is to create a provisioner-based class and to point it at the XRD we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> have created.
+The creation of the XRD and the Composition brings to an end the Crossplane-centric part of this tutorial.
+What remains is to integrate all that you configured into Tanzu Application Platform's classes and
+claims model so that application teams can more easily make use of it.
+The first step here is to create a provisioner-based class and to point it at the XRD you created.
 
 Create a file named `bigcorp-rabbitmq.class.yaml` and copy in the following contents.
 
@@ -484,21 +562,32 @@ spec:
       compositeResourceDefinition: xrabbitmqclusters.messaging.bigcorp.org
 ```
 
-Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
+Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f bigcorp-rabbitmq.class.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
-We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> this as a provisioner-based class due to the configuration of `.spec.provisioner`. See [ClusterInstanceClass](../reference/api/clusterinstanceclass-and-classclaim.hbs.md) for more information.<!--฿ The xref style is |See LINK.| or |For more information about TOPIC, see LINK.| ฿-->
 
-By creating this class we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> are now essentially advertising<!--฿ |informing| or similar is likely better. ฿--> the availability of the service to application teams. Application teams will<!--฿ Avoid |will|: present tense is preferred. ฿--> discover it via<!--฿ |through|, |using| and |by means of| are preferred. ฿--> the `tanzu service class list` command. They can also use `tanzu service class get bigcorp-rabbitmq`, which will<!--฿ Avoid |will|: present tense is preferred. ฿--> provide detailed information about the class, including details of the `replicas` and `storageGB` parameters we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> configured earlier.
+This is referred to as a provisioner-based class due to the configuration of `.spec.provisioner`.
+For more information, see [ClusterInstanceClass](../reference/api/clusterinstanceclass-and-classclaim.hbs.md).
 
-## <a id="create-rbac"></a> Step 5: Configure supporting RBAC
+By creating this class you are informing application teams that the service is available.
+Application teams can discover it by using the `tanzu service class list` command.
+They can also use `tanzu service class get bigcorp-rabbitmq`, which provides detailed information
+about the class, including details of the `replicas` and `storageGB` parameters that you configured earlier.
 
-There are two pieces of RBAC to consider whenever setting up a new service for dynamic provisioning in Tanzu Application Platform. The first relates to granting permissions to the providers used in the compositions. The `Composition` created earlier uses `Object` managed resources ultimately to create `RabbitmqCluster` resources. Thus<!--฿ Re-write the sentence to drop |Thus| or, if that is not possible, replace with |therefore|. ฿--> we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> must grant `provider-kubernetes` permission to create `RabbitmqCluster` resources. This can be<!--฿ Consider switching to active voice. ฿--> done using an aggregating `ClusterRole`, as follows:
+### <a id="create-rbac"></a> Step 5: Configure supporting RBAC
 
-Create a file named `provider-kubernetes-rmqcluster-read-writer.rbac.yaml` and copy in the following contents.
+There are two parts of RBAC to consider when you set up a new service for dynamic provisioning in
+Tanzu Application Platform.
+The first relates to granting permissions to the providers used in the compositions.
+The `Composition` created earlier uses `Object` managed resources ultimately to create
+`RabbitmqCluster` resources.
+Therefore, you must grant `provider-kubernetes` permission to create `RabbitmqCluster` resources.
+You can do this by using an aggregating `ClusterRole` as follows.
+
+Create a file named `provider-kubernetes-rmqcluster-read-writer.rbac.yaml` and copy in the
+following contents.
 
 ```yaml
 # provider-kubernetes-rmqcluster-read-writer.rbac.yaml
@@ -519,17 +608,25 @@ rules:
   - "*"
 ```
 
-Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
+Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f provider-kubernetes-rmqcluster-read-writer.rbac.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
-While not necessary here, a corresponding label `services.tanzu.vmware.com/aggregate-to-provider-helm: "true"` exists for aggregating RBAC permissions to `provider-helm` as well.
 
-The second piece of RBAC determines<!--฿ |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. To avoid anthropomorphism, use |detect|. ฿--> who is actually<!--฿ Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. ฿--> authorized to use the new service. This is an important piece of configuration! We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> are configuring an on-demand service and making it available to application teams. Without any other supporing policy in place, application teams will<!--฿ Avoid |will|: present tense is preferred. ฿--> be able to<!--฿ |can| is preferred. ฿--> create as many `RabbitmqClusters` as they like. This is of course the whole point of an on-demand service, however we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> do need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> be concious of resource utilization<!--฿ To |utilize| is to use an item beyond its intended purpose. Otherwise you simply |use| it. ฿-->, and we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> not want just<!--฿ Avoid uses that suggest a task is simple. ฿--> anyone who has access to the Tanzu Application Platform cluster to be able to<!--฿ |can| is preferred. ฿--> create new service instances on demand.
+While not necessary here, a corresponding label `services.tanzu.vmware.com/aggregate-to-provider-helm: "true"`
+exists for aggregating RBAC permissions to `provider-helm` as well.
 
-Authorization can be<!--฿ Consider switching to active voice. ฿--> granted using standard Kubernetes RBAC resources. Dynamic provisioning makes use of a custom RBAC verb - `claim` - which can be<!--฿ Consider switching to active voice. ฿--> applied to classes in order to<!--฿ |to| is preferred. ฿--> permit claiming from classes.
+The second element of RBAC detects who is authorized to use the new service.
+This is an important piece of configuration.
+You are configuring an on-demand service and making it available to application teams.
+Without any other supporting policy in place, application teams can create as many `RabbitmqClusters`
+as they like. This is of course the whole point of an on-demand service, but you must be conscious of
+resource use, and might want to control who can create new service instances on-demand.
+
+You can grant authorization by using standard Kubernetes RBAC resources.
+Dynamic provisioning uses a custom RBAC verb, `claim`, which you can apply to classes to
+permit claiming from classes.
 
 Create a file named `app-operator-claim-class-bigcorp-rabbitmq.rbac.yaml` and copy in the following contents.
 
@@ -554,17 +651,21 @@ rules:
   - claim
 ```
 
-Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
+Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f app-operator-claim-class-bigcorp-rabbitmq.rbac.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
-This `ClusterRole` grants anyone holding the `app-operator` Tanzu Application Platform user role the ability to<!--฿ |can| is shorter. ฿--> claim from the `bigcorp-rabbitmq` class.
 
-## <a id="verify"></a> Step 6: Verify your configuration
+This `ClusterRole` grants anyone holding the `app-operator` Tanzu Application Platform user role the
+ability to claim from the `bigcorp-rabbitmq` class.
 
-All that's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> left to do now is to actually<!--฿ Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. ฿--> create a claim for the class and thereby trigger the dynamic provisioning of a new RabbitMQ cluster. Note that<!--฿ If this is really a note, use note formatting. ฿--> this step is typically performed by the Application Operator, rather than the Service Operator, however it is important for us<!--฿ Specify the party (VMware, Cloud Foundry, etc). ฿--> to check <!--฿ |verify|, |ensure|, and |confirm| are all preferred. ฿-->that everything has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> setup correctly.
+### <a id="verify"></a> Step 6: Verify your configuration
+
+To test your configuration, create a claim for the class and thereby trigger the dynamic provisioning
+of a new RabbitMQ cluster.
+This step is typically performed by the application operator, rather than the service operator, but
+it is important that you to confirm that everything is configured correctly.
 
 Create a file named `bigcorp-rmq-1.claim.yaml` and copy in the following contents.
 
@@ -584,14 +685,13 @@ spec:
     replicas: 3
 ```
 
-Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
+Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f bigcorp-rmq-1.claim.yaml
 ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
-Once<!--฿ Only use |once| when you mean |one time|, not when you mean |after|. ฿--> the rabbitmq have been<!--฿ Consider replacing with |were| or shifting to present tense. ฿--> successfully<!--฿ Redundant word? ฿--> provisioned, you should<!--฿ Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|. If |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. ฿--> see the claim
-status report `Ready=True`.
+
+After the RabbitMQ service is provisioned, the claim status reports `Ready=True`.
 
 ```console
 kubectl get classclaim bigcorp-rmq-1
