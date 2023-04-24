@@ -23,8 +23,8 @@ Using a service binding you can bind that service resource with the Knative serv
 This injects the credentials for the service resource into the Knative service, so that the
 application workload can consume it.
 
-In this relatively straightforward scenario, there are only a few resources involved and
-there is no unnecessary indirection. <!-- what does this mean? -->
+In this relatively straightforward scenario, there are only a few resources involved and they
+directly reference each other.
 In fact, users are not even directly exposed to the service binding.
 The service binding is created automatically as part of the Out of the Box Supply Chains whenever an
 application workload is configured to refer to a service.

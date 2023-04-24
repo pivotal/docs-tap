@@ -15,8 +15,8 @@ kind: InstanceQuery
 metadata:
   # An arbitrary name for the query.
   name: test
-  # The namespace from which query. The resulting list of instances is specific
-  # to the namespace of the query itself.
+  # The namespace from which to run the query. The resulting list of instances is
+  # specific to the namespace of the query itself.
   namespace: my-apps
 
 spec:
