@@ -1,4 +1,4 @@
-# Secure a Spring Boot Workload
+# Secure a Spring Boot workload
 
 This topic describes the procedure to secure a sample Spring Boot `Workload` with AppSSO, which runs on Tanzu Application Platform (TAP). 
 
@@ -198,4 +198,3 @@ You can delete the running application by running the following commands:
     ```shell
     kubectl delete clientregistration appsso-starter-java --namespace my-apps
     ```
-
