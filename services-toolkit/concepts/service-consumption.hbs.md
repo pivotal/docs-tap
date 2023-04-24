@@ -70,7 +70,7 @@ The service resource still must be bindable, and apps teams still must know the 
 namespace, and API group, version, and kind of the service resource.
 In addition, ops teams must ensure that the service resources exist.
 These resources must be manually provisioned and permitted to be claimed through policy, otherwise
-resource claims created by the apps teams will remain in a pending state indefinitely.
+resource claims created by the apps teams remain in a pending state indefinitely.
 
 ## <a id="pool-based-classes"></a> Level 3 - class claims and pool-based classes
 
@@ -142,7 +142,7 @@ All levels are also valid use cases in their own right.
 
 ![Diagram shows a summary of the levels of service consumption in Tanzu Application Platform.](../../images/stk-4-levels-summary.png)
 
-Tanzu Application Platform users can choose which level to operate at.
+Tanzu Application Platform users can decide which level to operate at.
 Finding the level that is right for your situation depends on a number of factors, such as, the size
 of the organization you work for and the layout of apps teams and ops teams within the org.
 
