@@ -12,17 +12,17 @@ tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --
 ```yaml
 profile: full
 
-# Shared configuration goes under the shared key
+# Shared configurations go under the shared key.
 shared:
   ingress_domain: tap.example.com
 
 # ...
 
-# For example, CNRs specific values go under its name
+# For example, CNRs specific values go under its name.
 cnrs:
   provider: local
 
-# For example, App Accelerator specific values go under its name
+# For example, App Accelerator specific values go under its name.
 accelerator:
   server:
     service_type: "ClusterIP"
