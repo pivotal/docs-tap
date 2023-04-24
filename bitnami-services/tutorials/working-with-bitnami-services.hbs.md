@@ -162,13 +162,20 @@ After creating the claim, you can bind it to one or more of your application wor
 > exist in the same namespace. This is a known limitation. For more information, see
 > [Cannot claim and bind to the same service instance from across multiple namespaces](../../services-toolkit/reference/known-limitations.hbs.md#multi-workloads).
 
-To bind the claim to a workload, pass a reference to the claim to the `--service-ref` flag of the
-`tanzu apps workload create` command.
+1. Find the reference for the claim by running the following command. The reference is in the output
+under the heading "Claim Reference.
 
-<!-- can we have an example command here -->
+   ```console
+   tanzu service class-claim get psql-1
+   ```
 
-You can find the reference for the claim in the output of the `tanzu service class-claim get psql-1`
-command under the heading "Claim Reference".
-You must pass the claim reference with a corresponding name that follows the format
-`--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1`.
-The `db=` prefix to this example reference is an arbitrary name for the reference.
+1. Bind the claim to a workload of your choice by pass a reference to the claim to the `--service-ref`
+   flag of the `tanzu apps workload create` command. For example:
+
+   ```console
+   tanzu apps workload create my-workload --image my-registry/my-app-image --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1
+   ```
+
+   You must pass the claim reference with a corresponding name that follows the format
+   `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1`.
+   The `db=` prefix to this example reference is an arbitrary name for the reference.

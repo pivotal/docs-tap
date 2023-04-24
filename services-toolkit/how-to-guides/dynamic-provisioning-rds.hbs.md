@@ -1,7 +1,8 @@
 # Configure dynamic provisioning of AWS RDS service instances
 
-This topic describes how to set up dynamic provisioning to enable the creation of self-serve AWS RDS
-service instances that are customized to your needs. <!-- is this correct? which role does the set up and which role creates the services instance? -->
+This topic describes how [service operators](../reference/terminology-and-user-roles.hbs.md#so) can
+set up dynamic provisioning to enable app development teams to create self-serve AWS RDS service
+instances that are customized as required.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
@@ -25,6 +26,7 @@ To configure dynamic provisioning for AWS RDS service instances, you must:
 3. [Create a Composition](#create-composition)
 4. [Make the service discoverable](#make-discoverable)
 5. [Configure RBAC](#configure-rbac)
+6. [Verify your configuration](#verify)
 
 ### <a id="install-aws-provider"></a> Install the AWS Provider for Crossplane
 
@@ -39,13 +41,14 @@ VMware recommends that you install the official Upbound variant.
 To install the `Provider` and to create a corresponding `ProviderConfig`, see the
 [Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart).
 
-> **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane".
+> **Important** The official documentation for the `Provider` includes a step to "Install Universal Crossplane".
 > You can skip this step because Crossplane is already installed as part of Tanzu Application Platform.
+>
 > The documentation also assumes Crossplane is installed in the `upbound-system` namespace.
 > However, when working with Crossplane on Tanzu Application Platform, it is installed to the
 > `crossplane-system` namespace by default.
-> Bear this in mind when it comes to creating the `Secret` and the `ProviderConfig` with credentials
-> for the `Provider`.
+> Ensure that you use the correct namespace when you create the `Secret` and the `ProviderConfig`
+> with credentials for the `Provider`.
 
 ### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
@@ -250,11 +253,9 @@ from the class:
    kubectl apply -f app-operator-claim-aws-rds-psql.rbac.yaml
    ```
 
-## <a id="create-claim"></a> Create a claim
+### <a id="verify"></a> Verify your configuration
 
-To use dynamic provisioning to create an AWS RDS service instance, run:
-
-<!-- is this correct? which role creates the services instance? could this be moved to a page specifically for this role? -->
+To verify your configuration, create a claim for an AWS RDS service instance by running:
 
 ```console
 tanzu service class-claim create rds-psql-1 --class aws-rds-psql -p storageGB=30

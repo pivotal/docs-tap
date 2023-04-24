@@ -1,6 +1,6 @@
 # Set up dynamic provisioning of service instances
 
-In this tutorial you will<!--฿ Avoid |will|: present tense is preferred. ฿--> learn how to set up a new, self-serve and "customized-to-your-needs"
+In this tutorial you will learn how to set up a new, self-serve and "customized-to-your-needs"
 service for Tanzu Application Platform.
 
 The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any other service.
@@ -68,7 +68,7 @@ The first step when it comes to adding any new service into Tanzu Application Pl
 Use `kapp` to install the operator by running:
 
 ```console
-kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 This results in<!--฿ Consider replacing with |causes|. ฿--> the availability of a new API Group/Version of `rabbitmq.com/v1beta1` and Kind named `RabbitmqCluster` in the cluster. We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> can now use this API to create RabbitMQ cluster instances as part of our dynamic provisioning setup.
@@ -77,10 +77,10 @@ This results in<!--฿ Consider replacing with |causes|. ฿--> the availability
 
 Tanzu Application Platform's Dynamic Provisioning capability leans on [Crossplane](https://www.crossplane.io/) to do most of the heavy lifting. The specific integration point can be<!--฿ Consider switching to active voice. ฿--> found at `.spec.provisioner.crossplane.compositeResourceDefinition` in Tanzu Application Platform's `ClusterInstanceClass` API. As the name suggests, this field<!--฿ If referring to a UI, |text box| is preferred. ฿--> is looking for a `CompositeResourceDefinition`, and so that is what you will<!--฿ Avoid |will|: present tense is preferred. ฿--> be creating in this step of the tutorial. The `CompositeResourceDefinition` (or "XRD" in Crossplane parlance) essentially defines the shape of a new, custom API type which can encompass the specific set of requirements laid out by the scenario in this tutorial.
 
-Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` and copy in the following contents.
+Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml` and copy in the following contents.
 
 ```yaml
-# xrabbitmqclusters.messaging.bigcorp.org.xrd.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+# xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
 
 ---
 apiVersion: apiextensions.crossplane.io/v1
@@ -122,7 +122,7 @@ spec:
 Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
 
 ```console
-kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 For a full and detailed explanation of `CompositeResourceDefinition` it is best to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> Crossplane's official documentation. What follows here is a condensed explanation of the most relevant pieces of the above<!--฿ If referring to a page location, use |earlier| or, better, just use an anchor. If referring to product versions, use |later|. ฿--> config as it relates to Dynamic Provisioning in Tanzu Application Platform.
@@ -157,10 +157,10 @@ You'll<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommon
 
 This step is the big one. Most of the time and effort involved in configuring dynamic provisioning will<!--฿ Avoid |will|: present tense is preferred. ฿--> likely be spent in creating Crossplane's `Compositions`. They can look quite intimidating at first, but fear not! This tutorial is here to guide you through all the most important steps. Like before, it is recommended<!--฿ Rewrite as an imperative if it is best practice. If you must recommend, specify the party recommending (VMware, Cloud Foundry, etc), give a reason, and do not recommend third-party software. ฿--> to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> Crossplane's official documentation for a full and detailed explanation of `Composition`s, what follows here are the basics you need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> know to be able to<!--฿ |can| is preferred. ฿--> start creating `Compositions` for use in Tanzu Application Platform.
 
-Start by creating a file named `xrabbitmqclusters.messaging.bigcorp.org.composition.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` and copying in the following contents.
+Start by creating a file named `xrabbitmqclusters.messaging.bigcorp.org.composition.yaml` and copying in the following contents.
 
 ```yaml
-# xrabbitmqclusters.messaging.bigcorp.org.composition.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+# xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
 
 ---
 apiVersion: apiextensions.crossplane.io/v1
@@ -324,7 +324,7 @@ spec:
 Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
 
 ```console
-kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 And now let's<!--฿ Re-word: too colloquial. ฿--> chat through the `Composition` step-by-step. The first thing to note is `.spec.compositeTypeRef`, which we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ve configured to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> `XRabbitmqCluster` on the `messaging.bigcorp.org/v1alpha1` API group/version.
@@ -466,10 +466,10 @@ This configuration says that _all_ dynamically provisioned `RabbitmqCluster` res
 
 The creation of the XRD and the Composition brings to an end the Crossplane-centric part of this tutorial. What remains is to integrate all that we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ve just<!--฿ Avoid uses that suggest a task is simple. ฿--> configured into Tanzu Application Platform's classes and claims model so that application teams can more easily<!--฿ Avoid when describing an instruction. ฿--> make use of it. The first step here is to create a provisioner-based class and to point it at the XRD we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> have created.
 
-Create a file named `bigcorp-rabbitmq.class.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` and copy in the following contents.
+Create a file named `bigcorp-rabbitmq.class.yaml` and copy in the following contents.
 
 ```yaml
-# bigcorp-rabbitmq.class.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+# bigcorp-rabbitmq.class.yaml
 
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
@@ -487,7 +487,7 @@ spec:
 Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
 
 ```console
-kubectl apply -f bigcorp-rabbitmq.class.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kubectl apply -f bigcorp-rabbitmq.class.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> this as a provisioner-based class due to the configuration of `.spec.provisioner`. See [ClusterInstanceClass](../reference/api/clusterinstanceclass-and-classclaim.hbs.md) for more information.<!--฿ The xref style is |See LINK.| or |For more information about TOPIC, see LINK.| ฿-->
@@ -498,10 +498,10 @@ By creating this class we<!--฿ |VMware|, the product name, or another term is 
 
 There are two pieces of RBAC to consider whenever setting up a new service for dynamic provisioning in Tanzu Application Platform. The first relates to granting permissions to the providers used in the compositions. The `Composition` created earlier uses `Object` managed resources ultimately to create `RabbitmqCluster` resources. Thus<!--฿ Re-write the sentence to drop |Thus| or, if that is not possible, replace with |therefore|. ฿--> we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> must grant `provider-kubernetes` permission to create `RabbitmqCluster` resources. This can be<!--฿ Consider switching to active voice. ฿--> done using an aggregating `ClusterRole`, as follows:
 
-Create a file named `provider-kubernetes-rmqcluster-read-writer.rbac.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` and copy in the following contents.
+Create a file named `provider-kubernetes-rmqcluster-read-writer.rbac.yaml` and copy in the following contents.
 
 ```yaml
-# provider-kubernetes-rmqcluster-read-writer.rbac.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+# provider-kubernetes-rmqcluster-read-writer.rbac.yaml
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -522,7 +522,7 @@ rules:
 Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
 
 ```console
-kubectl apply -f provider-kubernetes-rmqcluster-read-writer.rbac.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kubectl apply -f provider-kubernetes-rmqcluster-read-writer.rbac.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 While not necessary here, a corresponding label `services.tanzu.vmware.com/aggregate-to-provider-helm: "true"` exists for aggregating RBAC permissions to `provider-helm` as well.
@@ -531,10 +531,10 @@ The second piece of RBAC determines<!--฿ |determine| has two meanings. Conside
 
 Authorization can be<!--฿ Consider switching to active voice. ฿--> granted using standard Kubernetes RBAC resources. Dynamic provisioning makes use of a custom RBAC verb - `claim` - which can be<!--฿ Consider switching to active voice. ฿--> applied to classes in order to<!--฿ |to| is preferred. ฿--> permit claiming from classes.
 
-Create a file named `app-operator-claim-class-bigcorp-rabbitmq.rbac.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` and copy in the following contents.
+Create a file named `app-operator-claim-class-bigcorp-rabbitmq.rbac.yaml` and copy in the following contents.
 
 ```yaml
-# app-operator-claim-class-bigcorp-rabbitmq.rbac.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+# app-operator-claim-class-bigcorp-rabbitmq.rbac.yaml
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -557,19 +557,19 @@ rules:
 Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
 
 ```console
-kubectl apply -f app-operator-claim-class-bigcorp-rabbitmq.rbac.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kubectl apply -f app-operator-claim-class-bigcorp-rabbitmq.rbac.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 This `ClusterRole` grants anyone holding the `app-operator` Tanzu Application Platform user role the ability to<!--฿ |can| is shorter. ฿--> claim from the `bigcorp-rabbitmq` class.
 
-## <a id="create-claim"></a> Step 6: Create a claim
+## <a id="verify"></a> Step 6: Verify your configuration
 
 All that's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> left to do now is to actually<!--฿ Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. ฿--> create a claim for the class and thereby trigger the dynamic provisioning of a new RabbitMQ cluster. Note that<!--฿ If this is really a note, use note formatting. ฿--> this step is typically performed by the Application Operator, rather than the Service Operator, however it is important for us<!--฿ Specify the party (VMware, Cloud Foundry, etc). ฿--> to check <!--฿ |verify|, |ensure|, and |confirm| are all preferred. ฿-->that everything has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> setup correctly.
 
-Create a file named `bigcorp-rmq-1.claim.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` and copy in the following contents.
+Create a file named `bigcorp-rmq-1.claim.yaml` and copy in the following contents.
 
 ```yaml
-# bigcorp-rmq-1.claim.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+# bigcorp-rmq-1.claim.yaml
 
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
@@ -587,7 +587,7 @@ spec:
 Then use `kubectl` <!--฿ Do not format |kubectl| as code. ฿-->to apply the file to the Tanzu Application Platform cluster.
 
 ```console
-kubectl apply -f bigcorp-rmq-1.claim.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->
+kubectl apply -f bigcorp-rmq-1.claim.yaml
 ```
 <!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
 Once<!--฿ Only use |once| when you mean |one time|, not when you mean |after|. ฿--> the rabbitmq have been<!--฿ Consider replacing with |were| or shifting to present tense. ฿--> successfully<!--฿ Redundant word? ฿--> provisioned, you should<!--฿ Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|. If |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. ฿--> see the claim

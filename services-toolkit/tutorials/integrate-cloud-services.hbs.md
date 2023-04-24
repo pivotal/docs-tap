@@ -45,7 +45,7 @@ Tanzu Application Platform.
 This tutorial provides the steps required to integrate cloud services, and includes tips and references
 to example configurations where appropriate.
 
-### <a id="install-provider"></a> Step 1: Installing a Provider
+### <a id="install-provider"></a> Step 1: Install a Provider
 
 Install a suitable Crossplane `Provider` for your cloud of choice. Upbound provides support for the
 three main cloud providers:
@@ -54,22 +54,23 @@ three main cloud providers:
 - [provider-azure](https://marketplace.upbound.io/providers/upbound/provider-azure/latest)
 - [provider-gcp](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest)
 
-> **Note:** These cloud-based Providers often install many hundreds of additional CRDs onto the cluster,
+> **Note** These cloud-based Providers often install many hundreds of additional CRDs onto the cluster,
 > which can have a negative impact on cluster performance.
 > For more information, see [Cluster performance degradation due to large number of CRDs](../reference/known-limitations.hbs.md#too-many-crds).
 
 Choose the Provider you want, and then follow Upbound's official documentation to install the
 `Provider` and to create a corresponding `ProviderConfig`.
 
-> **Note** The official documentation for the `Provider` includes a step to "Install Universal Crossplane".
+> **Important** The official documentation for the `Provider` includes a step to "Install Universal Crossplane".
 > You can skip this step because Crossplane is already installed as part of Tanzu Application Platform.
+>
 > The documentation also assumes Crossplane is installed in the `upbound-system` namespace.
 > However, when working with Crossplane on Tanzu Application Platform, it is installed to the
 > `crossplane-system` namespace by default.
-> Bear this in mind when it comes to creating the `Secret` and the `ProviderConfig` with credentials
-> for the `Provider`.
+> Ensure that you use the correct namespace when you create the `Secret` and the `ProviderConfig`
+> with credentials for the `Provider`.
 
-### <a id="procedure"></a> Step 2: Create CompositeResourceDefinition
+### <a id="procedure"></a> Step 2: Create a CompositeResourceDefinition
 
 Create a `CompositeResourceDefinition`, which defines the shape of a new API type which is used to
 create the cloud-based resources.
@@ -78,7 +79,7 @@ For help creating the `CompositeResourceDefinition`, see the [Crossplane documen
 or see [Create a CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-rds.hbs.md#compositeresourcedef)
 in _Configure dynamic provisioning of AWS RDS service instances_.
 
-### <a id="create-composition"></a> Step 3: Create Composition
+### <a id="create-composition"></a> Step 3: Create a Composition
 
 This step is likely to be the most time-consuming.
 The `Composition` is where you define the configuration for the resources that make up the service
@@ -86,24 +87,23 @@ instances for app teams to claim.
 Configure the necessary resources for usable service instances that users can connect to and use
 over the network.
 
-To get started with `Compositions`, first read through Configuring Composition in the
+To get started with creating a `Composition`, first read through Configuring Composition in the
 [Upbound documentation](https://docs.crossplane.io/v1.11/concepts/composition/#configuring-composition).
-Then see the example `Compositions` to get a better feel for what they look like.
 
-You can also see the following examples:
+You can also see the following `Composition` examples:
 
-- For a `Composition` for AWS RDS, see
+- For AWS RDS, see
   [Define composite resource types (AWS)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html#def-comp-rsrc-types).
 
-- For a `Composition` for Azure Flexible Server, see
+- For Azure Flexible Server, see
   [Define Composite Resource Types (Azure)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_azure_database_with_crossplane.html#define-composite-resource-types-7).
 
-- For a `Composition` for GCP Cloud SQL, see
+- For GCP Cloud SQL, see
   [Define Composite Resource Types (GCP)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_crossplane.html#define-composite-resource-types-5).
 
-<!-- above examples could be moved to the TAP docs so we don't link to the old version of the STK docs -->
+<!-- Maybe the above examples could be moved to the TAP docs so we don't link to the old version of the STK docs -->
 
-### <a id="clusterinstanceclass"></a> Step 4: Create provisioner-based ClusterInstanceClass
+### <a id="clusterinstanceclass"></a> Step 4: Create a provisioner-based ClusterInstanceClass
 
 Create a provisioner-based `ClusterInstanceClass` which is configured to refer to the
 `CompositeResourceDefinition` created earlier. For example:
@@ -151,7 +151,7 @@ rules:
 For a real-world example, see [Configure RBAC](../how-to-guides/dynamic-provisioning-rds.hbs.md#configure-rbac)
 in _Configure dynamic provisioning of AWS RDS service instances_.
 
-### <a id="create-claim"></a> Step 6: Create ClassClaim
+### <a id="verify"></a> Step 6: Verify your integration
 
 To test your integration, create a `ClassClaim` that points to the `ClusterInstanceClass` you created.
 For example:
@@ -170,5 +170,5 @@ spec:
 ```
 
 Verify that the `ClassClaim` eventually transitions into a `READY=True` state.
-If it doesn't, debug what has gone wrong, using kubectl.
+If it doesn't, debug the `ClassClaim` using kubectl.
 For how to do this, see [Troubleshoot Services Toolkit](../how-to-guides/troubleshooting.hbs.md#debug-dynamic-provisioning).
