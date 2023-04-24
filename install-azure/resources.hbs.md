@@ -77,7 +77,7 @@ For more information, see [Why are two resource groups created with AKS?](https:
 ## <a id='connect-aks-cluster'></a>Connect to the AKS cluster
 
 To manage a Kubernetes cluster, use the Kubernetes command-line client, 
-[kubectl](https://kubernetes.io/docs/user-guide/kubectl/). 
+[kubectl](https://kubernetes.io/docs/reference/kubectl/). 
 `kubectl` is already installed if you use Azure Cloud Shell.
 
 1. Install `kubectl` locally by using the 
