@@ -69,7 +69,7 @@ In this diagram:
 - The app operator creates a `ClassClaim`. This is applied with a consuming workload.
   - When it is applied in `iterate` it resolves to a Helm chart instance.
   - When it is promoted to `run-test` it resolves to a VMware Tanzu Postgres instance.
-  - When it is promoted in `run-production` it resolves to an Amazon AWS RDS instance.
+  - When it is promoted to `run-production` it resolves to an Amazon AWS RDS instance.
 - The definition of the `ClassClaim` remains identical across the clusters, which is easier for
   the application development team.
 
@@ -96,13 +96,13 @@ differing implementations of PostgreSQL depending on the cluster it is in.
 Configure the `run-test` cluster for dynamic provisioning of VMware Tanzu Postgres
 service instances. To do that, see
 [Configure dynamic provisioning of VMware Tanzu Postgres service instances](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md)
-and complete the following sections only:
+and complete the steps in the following sections only:
 
-- [Install the Tanzu VMware Postgres Operator](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#install-postgres-operator)
-- [Set up the namespace](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#set-up-namespace)
-- [Create a CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#compositeresourcedef)
-- [Create a Composition](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#create-composition)
-- [Configure RBAC](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#configure-rbac)
+1. [Install the Tanzu VMware Postgres Operator](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#install-postgres-operator)
+1. [Set up the namespace](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#set-up-namespace)
+1. [Create a CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#compositeresourcedef)
+1. [Create a Composition](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#create-composition)
+1. [Configure RBAC](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#configure-rbac)
 
 You do not have to do any other sections in that topic.
 
@@ -112,12 +112,12 @@ Configure the `run-production` cluster for dynamic provisioning of AWS RDS Postg
 service instances.
 To do that, see
 [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/dynamic-provisioning-rds.hbs.md)
-and complete the following sections only:
+and complete the steps in the following sections only:
 
-- [Install the AWS Provider for Crossplane](../how-to-guides/dynamic-provisioning-rds.hbs.md#install-aws-provider)
-- [Create a CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-rds.hbs.md#compositeresourcedef)
-- [Create a Composition](../how-to-guides/dynamic-provisioning-rds.hbs.md#create-composition)
-- [Configure RBAC](../how-to-guides/dynamic-provisioning-rds.hbs.md#configure-rbac)
+1. [Install the AWS Provider for Crossplane](../how-to-guides/dynamic-provisioning-rds.hbs.md#install-aws-provider)
+1. [Create a CompositeResourceDefinition](../how-to-guides/dynamic-provisioning-rds.hbs.md#compositeresourcedef)
+1. [Create a Composition](../how-to-guides/dynamic-provisioning-rds.hbs.md#create-composition)
+1. [Configure RBAC](../how-to-guides/dynamic-provisioning-rds.hbs.md#configure-rbac)
 
 You do not have to do any other sections in that topic.
 
