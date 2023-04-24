@@ -78,8 +78,8 @@ spec:
 
 > **Note** You can choose `redirectURIs` that use http or https based on your need.
 > The prefix of the `redirectURIs` denotes the name and namespace of the `Workload`.
-> In this case, it is`appsso-starter-java` and `my-apps`. 
-> Keep the suffix formatted as `/login/oauth2/code/{ClientRegistration.metadata.name}`
+> In this case, it is `appsso-starter-java` and `my-apps`. 
+> Keep the suffix formatted as `/login/oauth2/code/{ClientRegistration.metadata.name}`.
 > For more information about the redirect URI format of Spring Security OAuth 2 Client library, 
 > see [Workloads and AppSSO](./workloads-and-appsso.hbs.md#redirect-uris).
 
