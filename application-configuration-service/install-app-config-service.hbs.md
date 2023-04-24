@@ -1,7 +1,7 @@
 # Install Application Configuration Service for VMware Tanzu
 
-This topic describes how to install Application Configuration Service for VMware Tanzu from the
-Tanzu Application Platform package repository.
+This topic tells you how to install Application Configuration Service for VMware Tanzu
+(commonly known as App Config Service) from the Tanzu Application Platform package repository.
 
 ## <a id='prereqs'></a>Prerequisites
 
