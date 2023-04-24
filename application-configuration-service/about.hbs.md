@@ -1,8 +1,8 @@
 # Overview of Application Configuration Service for VMware Tanzu
 
-Application Configuration Service provides a Kubernetes-native experience to enable the runtime
-configuration of existing Spring applications that were previously leveraged by using
-Spring Cloud Config Server.
+Application Configuration Service (commonly known as App Config Service) provides a
+Kubernetes-native experience to enable the runtime configuration of existing Spring
+applications that were previously leveraged by using Spring Cloud Config Server.
 
 Spring Cloud Config Server was an essential component in microservices architectures for providing
 runtime configuration to Spring Boot applications.
