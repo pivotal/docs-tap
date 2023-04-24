@@ -1,7 +1,8 @@
 # Configure dynamic provisioning of VMware Tanzu Postgres service instances
 
-This topic describes how to set up dynamic provisioning to enable the creation of self-serve
-VMware Tanzu Postgres service instances that are customized to your needs. <!-- is this correct? which role does the set up and which role creates the services instance? -->
+This topic describes how [service operators](../reference/terminology-and-user-roles.hbs.md#so) can
+set up dynamic provisioning to enable app development teams to create self-serve VMware Tanzu Postgres
+service instances that are customized as required.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
@@ -13,8 +14,7 @@ might be help you understand the steps presented in this topic.
 Before you configure dynamic provisioning, you must have:
 
 - Access to a Tanzu Application Platform cluster v1.5.0 or later.
-
-<!-- - The Tanzu services CLI plug-in v0.6.0 or later? -->
+- The Tanzu services CLI plug-in v0.6.0 or later.
 
 ## <a id="config-dynamic-provisioning"></a> Configure dynamic provisioning
 
@@ -26,6 +26,7 @@ To configure dynamic provisioning for VMware Tanzu Postgres services instances, 
 4. [Create a Composition](#create-composition)
 5. [Make the service discoverable](#make-discoverable)
 6. [Configure RBAC](#configure-rbac)
+7. [Verify your configuration](#verify)
 
 ### <a id="install-postgres-operator"></a> Install the Tanzu VMware Postgres Operator
 
@@ -392,9 +393,9 @@ To configure access control with RBAC:
    kubectl apply -f app-operator-claim-tanzu-psql.rbac.yaml
    ```
 
-## <a id="create-claim"></a> Create a claim
+### <a id="verify"></a> Verify your configuration
 
-To use dynamic provisioning to create a Tanzu Postgres service instance, run:
+To verify your configuration, create a claim for a Tanzu Postgres service instance by running:
 
 ```console
 tanzu service class-claim create tanzu-psql-1 --class tanzu-psql -p storageGB=5
