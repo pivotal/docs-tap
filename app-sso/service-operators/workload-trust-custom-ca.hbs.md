@@ -1,4 +1,4 @@
-# Configure Workloads to trust a custom Certificate Authority (CA)
+# Configure workloads to trust a custom Certificate Authority (CA)
 
 If your `ClientRegistration` selects an `AuthServer` that serves a certificate from a custom CA, your `Workload`
 does not trust it by default. This is because the certificate is not issued by a trusted certificate authority from the `Workload`'s 
