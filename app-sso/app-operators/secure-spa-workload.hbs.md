@@ -182,8 +182,7 @@ Follow these steps to deploy the `Workload`:
     > **Note** As an alternative approach to creating the workload, you can declaratively 
     > define a `Workload` resource by using `config/workload.yaml` within the source repository.
 
-    It might take a few minutes for the workload to to be accessible through a URL 
-    that can be accessed from a web browser.
+    It might take a few minutes for the workload to become available through a browser-accessible URL.
 
 1. Query the latest status of the workload by running:
 
