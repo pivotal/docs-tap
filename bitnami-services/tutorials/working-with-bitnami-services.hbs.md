@@ -23,7 +23,7 @@ To follow this tutorial, you must have:
 
 ## <a id="concepts"></a> Concepts
 
-This section provides an overview of the elements you will use during this tutorial and
+The following diagram provides an overview of the elements you will use during this tutorial and
 how they all fit together.
 
 ![Diagram shows a high-level overview of the pre-installed Bitnami Services.](../../images/stk-dynamic-provisioning-bitnami-services.png)
