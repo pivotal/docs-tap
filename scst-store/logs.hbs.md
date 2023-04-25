@@ -85,11 +85,12 @@ I1206 18:34:17.784900       1 main.go:180] Valid token audiences:
 {"level":"info","ts":"2022-05-27T13:47:52.541133699Z","logger":"MetadataStore","msg":"Server Settings","hostname":"metadata-store-app-5c9d6bccdb-kcrt2","bindingaddress":"localhost:9443"}
 {"level":"info","ts":"2022-05-27T13:47:52.541150096Z","logger":"MetadataStore","msg":"Database Settings","hostname":"metadata-store-app-5c9d6bccdb-kcrt2","maxopenconnection":10,"maxidleconnection":100,"connectionmaxlifetime":60}
 ```
-> **Note** The `kube-rbac-proxy` container uses a different log format than the Store. For information about the proxy's container log format, see [Logging Formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-formats) in Github.
 
-##  <a id='api-endptlog-out'></a> API endpoint log output
+> **Note** The `kube-rbac-proxy` container uses a different log format than the Store. For information about the proxy's container log format, see [Logging Formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-formats) in GithHub.
 
-When an API endpoint handles a request, the Store generates two and five log lines. They are:
+## <a id='api-endptlog-out'></a> API endpoint log output
+
+When an API endpoint handles a request, the Store generates two and five log entries. They are:
 
 1. When the endpoint receives a request, it outputs a `Processing request` line. This logline is
 shown at the `default` verbosity level.
@@ -114,77 +115,79 @@ format:
 {"level":"info","ts":"2022-05-27T15:41:36.051991749Z","logger":"MetadataStore","msg":"Processing request","hostname":"metadata-store-app-c7c8648f7-8dmdl","method":"GET","endpoint":"/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6"}
 ```
 
-####  <a id='key-val'></a> Key-value pairs
+#### <a id='key-val'></a> Key-value pairs
 
-Since JSON output format uses Key-value pairs, the tables in the following sections list each key and the meaning of their values.
+Because JSON output format uses Key-value pairs, the tables in the following sections list each key and the meaning of their values.
 
-#####  <a id='common-all'></a> Common to all logs
+##### <a id='common-all'></a> Common to all logs
 
 The following key-value pairs are common for all logs.
 
 | Key      | Type    | Verbosity Level | Description                                                                                                                                                                              |
 |----------|---------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- | level    | string  | all             | The log level of the message. This is either 'error' for error messages, or 'info' for all other messages.                                                                               |
-| ts       | string  | all             | The timestamp when the log message was generated. It uses RFC 3339 format with nanosecond precision and 00:00 offset from  UTC, meaning Zulu time.                                           |
+ | level    | string  | all             | The log level of the message. This is either `error` for error messages, or `info` for all other messages. |
+| ts       | string  | all             | The timestamp when the log entry was generated. It uses RFC 3339 format with nanosecond precision and 00:00 offset from  UTC, meaning Zulu time. |
 | logger   | string  | all             | Used to identify what produced the log entry. For Store, the name always starts with `MetadataStore`. For log entries that display the raw SQL queries, the name is `MetadataStore.gorm` |
-| msg      | string  | all             | A short description of the logged event.                                                                                                                                                 |
-| hostname | string  | all             | The Kubernetes hostname of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster.                         |
-| error    | string  | all             | The error message which is only available in error log entries.                                                                                                                          |
-| endpoint | string  | default         | The API endpoint the Metadata Store attempts to handle the request. This also includes any query and path parameters passed in.                                                          |
-| method   | string  | default         | The HTTP verb to access the endpoint. For example, 'GET' or 'POST'.                                                                                                                      |
-| code     | integer | default         | The HTTP response code.                                                                                                                                                                  |
-| response | string  | default         | The HTTP response in human-readable format. For example, 'OK', 'Bad Request', or 'Internal Server Error'.                                                                                |
-| function | string  | debug           | The function name that handles the request.                                                                                                                                              |
+| msg      | string  | all             | A short description of the logged event |
+| hostname | string  | all             | The Kubernetes host name of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster. |
+| error    | string  | all             | The error message which is only available in error log entries |
+| endpoint | string  | default         | The API endpoint the Metadata Store attempts to handle the request. This also includes any query and path parameters passed in. |
+| method   | string  | default         | The HTTP verb to access the endpoint. For example, `GET` or `POST`. |
+| code     | integer | default         | The HTTP response code |
+| response | string  | default         | The HTTP response in human-readable format. For example, `OK`, `Bad Request`, or `Internal Server Error`. |
+| function | string  | debug           | The function name that handles the request. |
 
-#####  <a id='log-query'></a> Logging query and path parameter values
+##### <a id='log-query'></a> Logging query and path parameter values
 
-Those endpoints that use query or path parameters are logged on the `Request parameters` logline as
-key-value pairs. Afterward, they are appended to all other log lines of the same request as
+Those endpoints that use query or path parameters are logged on the `Request parameters` log entry as
+key-value pairs. Afterward, they are appended to all other log entries of the same request as
 key-value pairs.
 
 The key names are the query or path parameter's name, while the value is set to the value of those
 parameters in string format.
 
-For example, the following log line contains the `digest` and `id` key, which represents the
-respective `digest` and `id` query parameters, as well as their values:
+For example, the following log entry contains the `digest` and `id` key, which represents the
+respective `digest` and `id` query parameters, and their values:
 
 ```console
 {"level":"info","ts":"2022-05-27T15:41:36.052063176Z","logger":"MetadataStore","msg":"Request parameters","hostname":"metadata-store-app-c7c8648f7-8dmdl","method":"GET","endpoint":"/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6","id":0,"digest":"sha256:20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6","name":""}
 ```
 
-These key/value pairs show up in all subsequent log lines of the same call. For example:
+These key-value pairs show up in all subsequent log entries of the same call. For example:
 
 ```console
 {"level":"info","ts":"2022-05-27T15:41:36.057393519Z","logger":"MetadataStore","msg":"Request response","hostname":"metadata-store-app-c7c8648f7-8dmdl","method":"GET","endpoint":"/api/images?digest=sha256%3A20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6","id":0,"digest":"sha256:20521f76ff3d27f436e03dc666cc97a511bbe71e8e8495f851d0f4bf57b0bab6","name":"","code":200,"response":"OK"}
 ```
 
-This is done to ensure:
+This is done to:
 
-* The application interprets the values of the query or path parameters correctly.
-* Help figure out which log lines are associated with a particular API request.
-Since there can be several simultaneous endpoint calls, this is a first attempt at grouping
+- Ensure that the application interprets the values of the query or path parameters correctly.
+- Figure out which log entries are associated with a particular API request.
+Because there might be several simultaneous endpoint calls, this is a first attempt at grouping
 logs by specific calls.
 
-#####  <a id='api-payload-out'></a> API payload log output
+##### <a id='api-payload-out'></a> API payload log output
 
 As mentioned at the start of this section, by setting the verbosity level to `debug`, the Store logs the
 body payload data for both the request and response of an API call.
 
-The `debug` verbosity level, instead of the `default`, is used to display this information instead of `default`
+The `debug` verbosity level, instead of the `default`, displays this information instead of `default`
 because:
 
-* Body payloads can be huge, containing full CycloneDX and SBOM information.
+- Body payloads can contain full CycloneDX and SBOM information.
 Moving the payload information at this level helps keep the production log output to a reasonable size.
-* Some information in these payloads may be sensitive, and the user may not want them exposed in
+- Some information in these payloads might be sensitive, and the user might not want them exposed in
 production environment logs.
 
-##  <a id='graphql-endptlog-out'></a> GraphQL endpoint log output (Only applicable to Artifactory Metadata Repository logs)
+## <a id='graphql-endptlog-out'></a> GraphQL endpoint log output
+
+>**Note** This section is only applicable to Artifactory Metadata Repository logs.
 
 When an GraphQL endpoint handles a request, the AMR generates following types of logs. They are:
 
-1. Every request received will produce a `Processing request` log, which includes the name of the operation called and the fields that are being requested
-1. Every response will produce a log containing the actual query and the return status
-1. If the endpoint returns a response body, it outputs a second `Request response` line with an extra
+1. Every request received produces a `Processing request` log, which includes the name of the operation called and the fields that are requested.
+2. Every response will produces a log containing the actual query and the return status
+3. If the endpoint returns a response body, it outputs a second `Request response` line with an extra
 key `payload`, and its value is set to the entire response body. This line is shown at the `debug`
    verbosity level
 
@@ -200,52 +203,52 @@ format:
 {"level":"info","ts":"2023-03-23T13:11:31.172953-06:00","logger":"Artifact Metadata Repository","msg":"Request response","hostname":"xyzp2DMD6R.vmware.com","getAllApps":"query getAllApps {\n  apps(latest:true) {\n    \n    timestamp\n    location {\n      alias\n    }\n  }\n}","code":200,"response":"OK"}
 ```
 
-####  <a id='graphql_key-val'></a> Key-value pairs
+#### <a id='graphql_key-val'></a> Key-value pairs
 
 The following tables list the meaning of each key found in the logs.
 
-#####  <a id='graphql_common-all'></a> Common to all logs
+##### <a id='graphql_common-all'></a> Common to all logs
 
 The following key-value pairs are common for all logs.
 
 | Key      | Type    | Verbosity Level | Description                                                                                                                                                                                  |
 |----------|---------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    |
- | level    | string  | all             | The log level of the message. This is either 'error' for error messages, or 'info' for all other messages.                                                                                  |
-| ts       | string  | all             | The timestamp when the log message was generated. It uses RFC 3339 format with nanosecond precision and 00:00 offset from  UTC, meaning Zulu time.                                           |
-| logger   | string  | all             | Used to identify what produced the log entry. For Store, the name always starts with `MetadataStore`. For log entries that display the raw SQL queries, the name is `MetadataStore.gorm`     |
-| msg      | string  | all             | A short description of the logged event.                                                                                                                                                     |
-| hostname | string  | all             | The Kubernetes hostname of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster.                             |
-| error    | string  | all             | The error message which is only available in error log entries.                                                                                                                              |
-| code     | integer | default         | The HTTP response code.                                                                                                                                                                      |
-| response | string  | default         | The HTTP response in human-readable format. For example, 'OK', 'Bad Request', or 'Internal Server Error'.                                                                                    |
-| query    | string  | debug           | The operation name will be key and value field will have the fields requested                                                                                                                                                                                                                             |
+ | level    | string  | all             | The log level of the message. This is either `error` for error messages, or `info` for all other messages. |
+| ts       | string  | all             | The timestamp when the log entry was generated. It uses RFC 3339 format with nanosecond precision and 00:00 offset from  UTC, meaning Zulu time. |
+| logger   | string  | all             | Used to identify what produced the log entry. For Store, the name always starts with `MetadataStore`. For log entries that display the raw SQL queries, the name is `MetadataStore.gorm`. |
+| msg      | string  | all             | A short description of the logged event |
+| hostname | string  | all             | The Kubernetes host name of the pod handling the request. This helps identify the specific instance of the Store when you deploy multiple instances on a cluster. |
+| error    | string  | all             | The error message which is only available in error log entries |
+| code     | integer | default         | The HTTP response code |
+| response | string  | default         | The HTTP response in human-readable format. For example, `OK`, `Bad Request`, or `Internal Server Error`. |
+| query    | string  | debug           | The operation name is the key and value fields that the fields requested. |
 
-#####  <a id='graphql-payload-out'></a> API payload log output
+##### <a id='graphql-payload-out'></a> API payload log output
 
 As mentioned at the start of this section, by setting the verbosity level to `debug`, the AMR logs the
 body payload data for both the request and response of an API call.
 
-The `debug` verbosity level, instead of the `default`, is used to display this information instead of `default`
+The `debug` verbosity level, instead of the `default`, displays this information instead of `default`
 because:
 
-* Body payloads can be huge and some information in these payloads may be sensitive, and the user may not want them exposed in
+- Body payloads can be large and some information in these payloads might be sensitive, and the user might not want them exposed in
 production environment logs.
 
-Logs containing payload information may be in below mentioned format:
+Logs containing payload information might be in the following format:
 
 ```console
 {"level":"info","ts":"2023-03-23T13:11:31.172966-06:00","logger":"Artifact Metadata Repository","msg":"Request response","hostname":"xyzp2DMD6R.vmware.com","getAllApps":"query getAllApps {\n  apps(latest:true) {\n    \n    timestamp\n    location {\n      alias\n    }\n  }\n}","payload":{"apps":[{"timestamp":"2023-03-22T15:09:38.867371-06:00","location":{"alias":"1-Alias"}}]}}
 ```
 
-##  <a id='slow_sql_query-out'></a> Slow SQL Query log output
-When verbosity level is set to `trace` you will see log messages containing slow sql queries.
+## <a id='slow_sql_query-out'></a> Slow SQL Query log output
+When verbosity level is set to `trace` you see log entries containing slow SQL queries.
 
 >**Note** Some information in these SQL Query `trace` logs might be sensitive, and the user might not
 want them exposed in production environment logs.
 
-###  <a id='slow_sql_query-out-format'></a> SQL Query log output
+### <a id='slow_sql_query-out-format'></a> SQL Query log output
 
-Slow SQL query logs will be displayed in the following format when verbosity level is set to `trace`:
+Slow SQL query logs are displayed in the following format when verbosity level is set to `trace`:
 
 ```console
 {"level":"info","ts":"2023-03-23T12:48:12.337749-06:00","logger":"Artifact Metadata Repository.gorm","msg":"slow sql >= 200ms","hostname":"xyzp2DMD6R.vmware.com","rows":50000,"sql":"SELECT \"artifact_apps\".\"id\",\"artifact_apps\".\"created_at\",\"artifact_apps\".\"updated_at\",\"artifact_apps\".\"deleted_at\",\"artifact_apps\".\"location_id\",\"artifact_apps\".\"correlation_id\",\"artifact_apps\".\"image_url\",\"artifact_apps\".\"image_digest\",\"artifact_apps\".\"namespace\",\"artifact_apps\".\"name\",\"artifact_apps\".\"instances\",\"artifact_apps\".\"status\",\"artifact_apps\".\"timestamp\" FROM \"artifact_apps\" INNER JOIN (select max(timestamp) as timestamp, name, namespace, location_id from artifact_apps group by location_id, name, namespace) as argo on argo.timestamp = artifact_apps.timestamp and argo.name = artifact_apps.name and argo.location_id = artifact_apps.location_id and argo.namespace = artifact_apps.namespace WHERE \"artifact_apps\".\"deleted_at\" IS NULL"}
@@ -256,12 +259,11 @@ following key-value pairs:
 
 | Key   | Type    | Log Level | Description                                                                                                                                                                                 |
 |-------|---------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| rows  | integer | trace     | Indicates the number of rows affected by the SQL query.                                                                                                                                     |
-| sql   | string  | trace     | Displays the raw SQL query for the database.                                                                                                                                                |
+| rows  | integer | trace     | Indicates the number of rows affected by the SQL query |
+| sql   | string  | trace     | Displays the raw SQL query for the database |
 | data# | string  | all       | Used in error log entries. You can replace `#` with an integer because multiples of these keys can appear in the same log entry. These keys contain extra information related to the error. |
 
-
-##  <a id='sql_query-out'></a> SQL Query log output
+## <a id='sql_query-out'></a> SQL Query log output
 
 Some Store logs display the executed SQL query commands when you set the verbosity level to `trace` or a
 failed SQL call occurs.
@@ -269,7 +271,7 @@ failed SQL call occurs.
 >**Note** Some information in these SQL Query trace logs might be sensitive, and the user might not
 want them exposed in production environment logs.
 
-###  <a id='sql_query-out-format'></a> Format
+### <a id='sql_query-out-format'></a> Format
 
 When the Store display SQL query logs, it uses the following format:
 
@@ -282,6 +284,6 @@ following key-value pairs:
 
 | Key   | Type    | Log Level | Description                                                                                                                                                                                 |
 |-------|---------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| rows  | integer | trace     | Indicates the number of rows affected by the SQL query.                                                                                                                                     |
-| sql   | string  | trace     | Displays the raw SQL query for the database.                                                                                                                                                |
+| rows  | integer | trace     | Indicates the number of rows affected by the SQL query |
+| sql   | string  | trace     | Displays the raw SQL query for the database |
 | data# | string  | all       | Used in error log entries. You can replace `#` with an integer because multiples of these keys can appear in the same log entry. These keys contain extra information related to the error. |
