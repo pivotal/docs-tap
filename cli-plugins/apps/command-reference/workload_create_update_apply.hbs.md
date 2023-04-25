@@ -8,7 +8,8 @@ In the output of the `tanzu apps workload apply` command, the specification for 
 
 <details><summary>Example</summary>
 
-```console
+<code>
+
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web
   Create workload:
       1 + |---
@@ -31,9 +32,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 To see logs:   "tanzu apps workload tail tanzu-java-web-app --timestamp --since 1h"
 To get status: "tanzu apps workload get tanzu-java-web-app"
-
-```
-
+</code>
 </details>
 
 In the first section, the definition of workload is displayed. It's followed by a dialog box asking
@@ -94,7 +93,7 @@ tanzu apps workload apply tanzu-java-web-app --annotation tag-
 17, 16   |      ref:
 18, 17   |        tag: tap-1.5.0
 ...
-❓ Really update the workload "tanzu-java-web-app"? [yN]:
+  Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
 </details>
@@ -107,7 +106,7 @@ This is the application the workload is part of. This is part of the workload me
 
 ```console
 tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --app tanzu-java-web-app
-🔎 Create workload:
+  Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
     3 + |kind: Workload
@@ -124,8 +123,8 @@ tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/a
    14 + |        tag: tap-1.5.0
    15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    16 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
-👍 Created workload "tanzu-app"
+  Do you want to create this workload? [yN]:
+  Created workload "tanzu-app"
 
 To see logs:   "tanzu apps workload tail tanzu-app --timestamp --since 1h"
 To get status: "tanzu apps workload get tanzu-app"
@@ -163,7 +162,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
      17 + |        tag: tap-1.5.0
      18 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      19 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -189,7 +188,7 @@ tanzu apps workload apply tanzu-java-web-app --build-env JAVA_VERSION-
   16, 12   |      ref:
   17, 13   |        tag: tap-1.5.0
 ...
-❓ Really update the workload "tanzu-java-web-app"? [yN]:
+  Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
 </details>
@@ -202,7 +201,7 @@ Sets the parameter variable debug to true in the workload.
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --debug
-🔎 Create workload:
+  Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
       3 + |kind: Workload
@@ -221,7 +220,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
      16 + |        branch: main
      17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      18 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -294,7 +293,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
      16 + |        tag: tap-1.5.0
      17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      18 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 To unset an environment variable, use `-` after its name.
@@ -315,7 +314,7 @@ tanzu apps workload apply tanzu-java-web-app --env NAME-
   15, 12   |      ref:
   16, 13   |        tag: tap-1.5.0
 ...
-❓ Really update the workload "tanzu-java-web-app"? [yN]:
+  Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
 </details>
@@ -356,7 +355,7 @@ tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-y
       22 + |        tag: tap-1.5.0
       23 + |      url: url: https://github.com/vmware-tanzu/application-accelerator-samples
       24 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -380,7 +379,7 @@ It can be unset by defining it as empty string when applying a workload (`--git-
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
-🔎 Create workload:
+  Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
     3 + |kind: Workload
@@ -396,7 +395,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
    13 + |        branch: main
    14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    15 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -432,7 +431,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
    13 + |        commit: 1c4cf82e499f7e46da182922d4097908d4817320
    14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    15 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -445,7 +444,7 @@ Sets the OSI image to be used as the workload application source instead of a Gi
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --image private.repo.domain.com/tanzu-java-web-app --type web
-🔎 Create workload:
+  Create workload:
        1 + |---
        2 + |apiVersion: carto.run/v1alpha1
        3 + |kind: Workload
@@ -470,7 +469,7 @@ tanzu apps workload apply tanzu-java-web-app --image private.repo.domain.com/tan
       22 + |        tag: tap-1.5.0
       23 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
       24 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -484,7 +483,7 @@ times.
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label stage=production
-🔎 Create workload:
+  Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
       3 + |kind: Workload
@@ -501,7 +500,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
      14 + |        branch: main
      15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      16 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -524,7 +523,7 @@ tanzu apps workload apply tanzu-java-web-app --label stage-
   10,  9   |spec:
   11, 10   |  source:
 ...
-❓ Really update the workload "tanzu-java-web-app"? [yN]:
+  Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
 </details>
@@ -537,7 +536,7 @@ The maximum CPU the workload pods are allowed to use.
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-cpu .2
-🔎 Create workload:
+  Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
     3 + |kind: Workload
@@ -556,7 +555,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
    16 + |        branch: main
    17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    18 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
@@ -569,7 +568,7 @@ The maximum memory the workload pods are allowed to use.
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-memory 200Mi
-🔎 Create workload:
+  Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
     3 + |kind: Workload
@@ -588,7 +587,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
    16 + |        branch: main
    17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    18 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
+  Do you want to create this workload? [yN]:
 ```
 
 </details>
