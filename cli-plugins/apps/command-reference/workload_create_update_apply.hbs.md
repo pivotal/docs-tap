@@ -6,9 +6,9 @@
 
 In the output of the `tanzu apps workload apply` command, the specification for the workload is shown in YAML file format.
 
-<details><summary>Example</summary>
+Example
 
-```
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web
   Create workload:
       1 + |---
@@ -33,8 +33,6 @@ To see logs:   "tanzu apps workload tail tanzu-java-web-app --timestamp --since 
 To get status: "tanzu apps workload get tanzu-java-web-app"
 
 ```
-
-</details>
 
 In the first section, the definition of workload is displayed. It's followed by a dialog box asking
 `whether the workload should be created or updated`. In the last section, if a workload is created or
