@@ -10,7 +10,7 @@ In the output of the `tanzu apps workload apply` command, the specification for 
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web
-🔎 Create workload:
+  Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
       3 + |kind: Workload
@@ -26,8 +26,8 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
      13 + |        tag: tap-1.5.0
      14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      15 + |    subPath: tanzu-java-web-app
-❓ Do you want to create this workload? [yN]:
-👍 Created workload "tanzu-java-web-app"
+  Do you want to create this workload? [yN]:
+  Created workload "tanzu-java-web-app"
 
 To see logs:   "tanzu apps workload tail tanzu-java-web-app --timestamp --since 1h"
 To get status: "tanzu apps workload get tanzu-java-web-app"
@@ -51,7 +51,7 @@ multiple times. These annotations are passed as parameters to be processed in th
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --annotation tag=tap-1.5.0 --annotation name="Tanzu Java Web"
-🔎 Create workload:
+  Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
     3 + |kind: Workload
