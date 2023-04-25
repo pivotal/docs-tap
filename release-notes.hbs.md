@@ -523,6 +523,10 @@ The following issues, listed by area and component, are resolved in this release
   - Fixed the UI error in the ALV request-mapping page that was caused by an unused style.
   - Fixed the ALV Request Mappings and Threads page to support Boot 3 apps.
 
+#### <a id='1-5-0-tbs-ri'></a> Tanzu Build Service
+
+- Builds no longer fails for upgrades on openshift version 4.11
+
 #### <a id="1-5-apps-plugin-ri"></a> Tanzu CLI Apps plug-in
 
 - Allow users to pass only `--git-commit` as Git the ref while creating a workload from a Git Repository.
