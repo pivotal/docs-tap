@@ -18,10 +18,10 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
   Kubernetes clusters, but they must have kapp-controller and Contour installed.
   See the [Carvel documentation](https://carvel.dev/kapp-controller/) and the
   [Contour documentation](https://projectcontour.io/).
-- If you plan to use a build cluster to control the deployment on all the Run clusters,
-  then you must create a Build cluster that has network access to your Run clusters. However,
-  if you intend to directly deploy on the run cluster without the involvement of a build
-  cluster, then the use of a build cluster is only necessary for building the package.
+- If you plan to use a build cluster to control the deployment on all of the run
+  clusters, you must create a Build cluster that has network access to your run
+  clusters. If you intend to deploy directly on the run cluster without using a
+  build cluster, a build cluster is only necessary for building the package.
 
 ## Set up Run cluster namespaces
 
