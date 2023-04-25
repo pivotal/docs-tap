@@ -45,7 +45,7 @@ updated, some hints are displayed about the next steps.
 Sets the annotations to be applied to the workload. To specify more than one annotation set the flag
 multiple times. These annotations are passed as parameters to be processed in the supply chain.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --annotation tag=tap-1.5.0 --annotation name="Tanzu Java Web"
@@ -72,11 +72,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
    20 + |    subPath: tanzu-java-web-app
 ```
 
-</details>
-
 To delete an annotation, use `-` after its name.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --annotation tag-
@@ -95,13 +93,11 @@ tanzu apps workload apply tanzu-java-web-app --annotation tag-
   Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-app"></a> `--app` / `-a`
 
 This is the application the workload is part of. This is part of the workload metadata section.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --app tanzu-java-web-app
@@ -130,14 +126,12 @@ To get status: "tanzu apps workload get tanzu-app"
 
 ```
 
-</details>
-
 ### <a id="apply-build-env"></a> `--build-env`
 
 Sets environment variables to use in the build phase by the build resources in the supply
 chain.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --build-env JAVA_VERSION=1.8
@@ -164,11 +158,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 To delete a build environment variable, use `-` after its name.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --build-env JAVA_VERSION-
@@ -190,13 +182,11 @@ tanzu apps workload apply tanzu-java-web-app --build-env JAVA_VERSION-
   Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-debug"></a> `--debug`
 
 Sets the parameter variable debug to true in the workload.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --debug
@@ -222,14 +212,12 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-dry-run"></a> `--dry-run`
 
 Prepares all the steps to submit the workload to the cluster and stops before sending it, showing
 an output of the final structure of the workload.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --build-env JAVA_VERSION=1.8 --param-yaml server=$'port: 8080\nmanagement-port: 8181' --dry-run
@@ -262,14 +250,12 @@ status:
   supplyChainRef: {}
 ```
 
-</details>
-
 ### <a id="apply-env"></a> `--env` / `-e`
 
  Sets the environment variables to the workload so the supply chain resources can use it to deploy
  the workload application.
 
- <details><summary>Example</summary>
+ Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --env NAME="Tanzu Java App"
@@ -316,8 +302,6 @@ tanzu apps workload apply tanzu-java-web-app --env NAME-
   Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-file"></a> `--file`, `-f`
 
 Sets the workload specification file to create the workload. This comes from any other workload
@@ -325,7 +309,7 @@ specification passed by flags to the command set or overrides what is in the fil
 use this flag is by using `-` in the command to receive workload definition through stdin.
 See [Working with YAML Files](../create-workload.hbs.md#yaml-files) for an example.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-yaml server=$'port: 9090\nmanagement-port: 9190'
@@ -357,8 +341,6 @@ tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-y
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-git-repo"></a> `--git-repo`
 
 The Git repository from which the workload is created. With this, either `--git-tag`, `--git-commit`,
@@ -374,7 +356,7 @@ The branch in a Git repository from where the workload is created. Commit and ta
 specified alongside this flag. 
 It can be unset by defining it as empty string when applying a workload (`--git-branch ""`).
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
@@ -397,8 +379,6 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-git-tag"></a> `--git-tag`
 
 The tag in a Git repository from which the workload is created. Can be unset by defining it as empty
@@ -410,7 +390,7 @@ Commit in Git repository from where the workload is resolved. Either `--git-bran
 can be specified with it too.
 It can be unset by defining it as empty string when applying a workload (`--git-commit ""`).
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-commit 1c4cf82e499f7e46da182922d4097908d4817320 --type web
@@ -433,13 +413,11 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-image"></a> `--image` / `-i`
 
 Sets the OSI image to be used as the workload application source instead of a Git repository
 
- <details><summary>Example</summary>
+ Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --image private.repo.domain.com/tanzu-java-web-app --type web
@@ -471,14 +449,12 @@ tanzu apps workload apply tanzu-java-web-app --image private.repo.domain.com/tan
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-label"></a> `--label` / `-l`
 
 Sets the label to be applied to the workload. To specify more than one label, set the flag multiple
 times.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label stage=production
@@ -502,11 +478,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 To unset labels, use `-` after their name.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --label stage-
@@ -525,13 +499,11 @@ tanzu apps workload apply tanzu-java-web-app --label stage-
   Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-limit-cpu"></a> `--limit-cpu`
 
 The maximum CPU the workload pods are allowed to use.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-cpu .2
@@ -557,13 +529,11 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-limit-memory"></a> `--limit-memory`
 
 The maximum memory the workload pods are allowed to use.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-memory 200Mi
@@ -589,14 +559,12 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
   Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-live-update"></a> `--live-update`
 
 Enable this to deploy the workload once, save changes to the code, and see those changes reflected
 in the workload running on the cluster.
 
-<details><summary>Example</summary>
+Example
 
 An example with a Spring Boot application:
 
@@ -687,8 +655,6 @@ An example with a Spring Boot application:
     ...
     ```
 
-</details>
-
 ### <a id="apply-local-path"></a> `--local-path`
 
 Sets the path to a source in the local machine from where the workload creates an image to use as an
@@ -710,7 +676,7 @@ that are not in the source code, they are ignored. Lines starting with a `#` has
 This artifact is an output of a Maven project build. This flag must be used with `--maven-version`
 and `--maven-group`.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply petc-mvn --maven-artifact petc --maven-version 2.6.1 --maven-group demo.com
@@ -731,8 +697,6 @@ tanzu apps workload apply petc-mvn --maven-artifact petc --maven-version 2.6.1 -
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-maven-group"></a> `--maven-group`
 
 This group identifies the project across all other Maven projects.
@@ -750,7 +714,7 @@ Definition of the current version of the Maven project.
 
 Registry path where the local source code is uploaded as an image.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply spring-pet-clinic --local-path /home/user/workspace/spring-pet-clinic --source-image gcr.io/spring-community/spring-pet-clinic --type web
@@ -774,13 +738,11 @@ Publishing source in "/home/user/workspace/spring-pet-clinic" to "gcr.io/spring-
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-namespace"></a> `--namespace`, `-n`
 
 Specifies the namespace in which the workload is created or updated in.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --namespace my-namespace
@@ -803,15 +765,13 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-output"></a> `--output`, `-o`
 
 This flag can be used to retrieve a workload right after it's applied in the specified format (`yaml`, `yml`, `json`).
 If used with `--yes` flag, all prompts are skipped and it only returns the workload definition.
 It can also be used with `--wait` or `--tail` flags in order to return the workload with its status.
 
-<details><summary>Example</summary>
+Example
 
 ```bash
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml
@@ -870,14 +830,12 @@ status:
   supplyChainRef: {}
 ```
 
-</details>
-
 ### <a id="apply-param"></a> `--param` / `-p`
 
 Additional parameters to be sent to the supply chain, the value is sent as a string. For complex YAML
 and JSON objects use `--param-yaml`.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --param port=9090 --param management-port=9190
@@ -905,11 +863,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 To unset parameters, use `-` after their name.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --param port-
@@ -929,13 +885,11 @@ tanzu apps workload apply tanzu-java-web-app --param port-
 ❓ Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-param-yaml"></a> `--param-yaml`
 
 Additional parameters to be sent to the supply chain, the value is sent as a complex object.
 
- <details><summary>Example</summary>
+ Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --param-yaml server=$'port: 9090\nmanagement-port: 9190'
@@ -963,11 +917,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 To unset parameters, use `-` after their name.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --param-yaml server-
@@ -990,8 +942,6 @@ tanzu apps workload apply tanzu-java-web-app --param-yaml server-
 ❓ Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-registry-ca-cert"></a> `--registry-ca-cert`
 
 Refers to the path of the self-signed certificate needed for the custom/private registry.
@@ -1001,7 +951,7 @@ variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in t
 See [Custom registry credentials](../how-to-examples.hbs.md#custom-registry) for the
 supported environment variables.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply my-workload --local-path . -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
@@ -1024,8 +974,6 @@ Publishing source in "." to "registry.url.nip.io/my-package/my-image"...
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-registry-password"></a> `--registry-password`
 
 If credentials are needed, the user name and password values are set through the `--registry-password`
@@ -1045,7 +993,7 @@ Often used with `--registry-password` to set private registry credentials. Can b
 
 Refers to the minimum CPU the workload pods request to use.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --request-cpu .3
@@ -1071,13 +1019,11 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-request-memory"></a> `--request-memory`
 
 Refers to the minimum memory the workload pods are requesting to use.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --request-memory 300Mi
@@ -1103,14 +1049,12 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-service-account"></a> `--service-account`
 
 Refers to the service account to associate with the workload. A service account provides an
 identity for a workload object.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --service-account petc-serviceaccount
@@ -1134,11 +1078,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 To unset a service account, pass empty string.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --service-account ""
@@ -1157,15 +1099,13 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 ❓ Really update the workload "tanzu-java-web-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-service-ref"></a> `--service-ref`
 
 Binds a service to a workload to provide the information from a service resource to an application.
 
 For more information, see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-getting-started-consume-services.html#stk-bind).
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1"
@@ -1191,11 +1131,9 @@ tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rab
 ❓ Do you want to create this workload? [yN]:
 ```
 
-</details>
-
 To delete service binding, use the service name followed by `-`.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply rmq-sample-app --service-ref rmq-
@@ -1219,13 +1157,11 @@ tanzu apps workload apply rmq-sample-app --service-ref rmq-
 ❓ Really update the workload "rmq-sample-app"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-subpath"></a> `--sub-path`
 
 Defines which path is used as the root path to create and update the workload.
 
-<details><summary>Example</summary>
+Example
 
 - Git repository
 
@@ -1274,13 +1210,11 @@ Defines which path is used as the root path to create and update the workload.
 
       ```
 
-</details>
-
 ### <a id="apply-tail"></a> `--tail`
 
 Prints the logs of the workload creation in every step.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --tail
@@ -1323,13 +1257,11 @@ tanzu-java-web-app-build-1-build-pod[prepare]   +     url: http://source-control
 ...
 ```
 
-</details>
-
 ### <a id="apply-tail-timestamp"></a> `--tail-timestamp`
 
 Prints the logs of the workload creation in every step adding the time in which the log is occurring.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --tail-timestamp
@@ -1372,14 +1304,12 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:0
 ...
 ```
 
-</details>
-
 ### <a id="apply-type"></a> `--type` / `-t`
 
 Sets the type of workload by adding the label `apps.tanzu.vmware.com/workload-type`, which is used
 as a matcher by supply chains. Use the `TANZU_APPS_TYPE` environment variable to have a default value for this flag.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
@@ -1401,15 +1331,14 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
      15 + |    subPath: tanzu-java-web-app
 ```
 
-</details>
-
 ### <a id="update-strategy-type"></a> `--update-strategy`
 
 Specifies whether the update from file should replace or merge the current workload. The default is merge.
 
-<details><summary>Example</summary>
+Example
 
 For example, there is a workload created from a file, which has in its `spec` the following:
+
 ```yaml
 ...
 spec:
@@ -1458,13 +1387,11 @@ tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 ❓ Really update the workload "spring-petclinic"? [yN]:
 ```
 
-</details>
-
 ### <a id="apply-wait"></a> `--wait`
 
 Holds the command until the workload is ready.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web --wait
@@ -1487,13 +1414,11 @@ Waiting for workload "tanzu-java-web-app" to become ready...
 Workload "tanzu-java-web-app" is ready
 ```
 
-</details>
-
 ### <a id="apply-wait-timeout"></a> `--wait-timeout`
 
 Sets a timeout to wait for the workload to become ready.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0-take1 --type web --wait --wait-timeout 1m
@@ -1517,13 +1442,11 @@ Waiting for workload "tanzu-java-web-app" to become ready...
 Workload "tanzu-java-web-app" is ready
 ```
 
-</details>
-
 ### <a id="apply-yes"></a> `--yes`, `-y`
 
 Assumes `--yes` on all the survey prompts.
 
-<details><summary>Example</summary>
+Example
 
 ```console
 tanzu apps workload apply spring-pet-clinic --local-path/home/user/workspace/spring-pet-clinic --source-image gcr.io/spring-community/spring-pet-clinic --type web -y
@@ -1549,5 +1472,3 @@ To see logs:   "tanzu apps workload tail spring-pet-clinic --timestamp --since 1
 To get status: "tanzu apps workload get spring-pet-clinic"
 
 ```
-
-</details>
