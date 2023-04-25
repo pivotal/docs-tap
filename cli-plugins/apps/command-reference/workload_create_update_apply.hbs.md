@@ -8,8 +8,7 @@ In the output of the `tanzu apps workload apply` command, the specification for 
 
 <details><summary>Example</summary>
 
-<code>
-
+```
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.5.0 --type web
   Create workload:
       1 + |---
@@ -32,7 +31,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 To see logs:   "tanzu apps workload tail tanzu-java-web-app --timestamp --since 1h"
 To get status: "tanzu apps workload get tanzu-java-web-app"
-</code>
+
+```
+
 </details>
 
 In the first section, the definition of workload is displayed. It's followed by a dialog box asking
