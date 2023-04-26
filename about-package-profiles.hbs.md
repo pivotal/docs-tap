@@ -48,8 +48,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on
   Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are
-  in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
+  [Knative documentation](https://knative.dev/docs/).
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
