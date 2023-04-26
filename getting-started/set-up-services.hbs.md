@@ -23,10 +23,11 @@ Bear the following observations in mind as you work through this guide:
 
 1. There is a clear separation of concerns across the various user roles.
 
-    * The life cycle of workloads is determined by application developers.
-    * The life cycle of resource claims is determined by application operators.
-    * The life cycle of service instances is determined by service operators.
-    * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
+   - The life cycle of workloads is determined by application developers.
+   - The life cycle of resource claims is determined by application operators.
+   - The life cycle of service instances is determined by service operators.
+   - The life cycle of service bindings is implicitly tied to the life cycle of workloads.
+
 1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
 1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 1. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
@@ -37,10 +38,20 @@ Before following this walkthrough, you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
-1. Ensure that your Tanzu Application Platform cluster can pull the container images required by the Kubernetes operator providing the service. For more information, see:
-   * [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
-   * [VMware SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/index.html).
-   * [VMware SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/index.html).
+1. Ensure that your Tanzu Application Platform cluster can pull the container images required by
+   the Kubernetes operator providing the service.
+   For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
+
+Although the examples in this walkthrough use the RabbitMQ Cluster Kubernetes operator, the setup
+steps remain largely the same for any compatible operator.
+
+This walkthrough uses the open source RabbitMQ Cluster operator for Kubernetes.
+For most real-world deployments, VMware recommends that you use the official, supported version
+provided by VMware. For more information, see the following VMware provided services:
+
+- [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
+- [VMware SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/index.html).
+- [VMware SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/index.html).
 
 ## <a id="stk-set-up"></a> Set up a service
 
@@ -51,8 +62,6 @@ This section covers the following:
 * Creating the additional supporting resources to aid with discovery of services.
 
 For this part of the walkthrough, you assume the role of the **service operator**.
-
->**Note:** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain largely the same for any compatible operator. Also, this walkthrough uses the open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware recommends using the official, supported version provided by VMware. For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
 To set up a service:
 
