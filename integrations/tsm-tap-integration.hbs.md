@@ -1,7 +1,7 @@
 # Set up Tanzu Service Mesh
 
-This topic describes how to set up a Tanzu Application Platform application deployed on Kubernetes
-with Tanzu Service Mesh.
+This topic tells you how to set up a Tanzu Application Platform application deployed on Kubernetes
+with Tanzu Service Mesh (commonly called TSM).
 
 Sample applications are used to demonstrate how a global namespace can provide a network for Kubernetes
 workloads that are connected and secured within and across clusters, and across clouds.
