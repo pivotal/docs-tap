@@ -24,7 +24,7 @@ For example:
 ```console
 tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE --type web --registry-ca-cert PATH-TO-CA-CERT.nip.io.crt --registry-username USERNAME --registry-password PASSWORD
 
-Alternatively, the same command can be run as:
+Alternatively, run the same command as:
 
 ```console
 export TANZU_APPS_REGISTRY_CA_CERT=PATH-TO-CA-CERT.nip.io.crt
@@ -623,13 +623,11 @@ metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp
 
 ## <a id='apply-output-usage'> Output workload after create/apply
 
-`tanzu apps workload create/apply` commands can be used with `--output` flag which prints the
-workload once the process of its creation or update happens.
+Use the `tanzu apps workload create/apply` command with the `--output` flag to print the
+workload output when it is created or updated. As this flag is mainly for
+scripting processes, skip all prompts with the `--yes` flag as follows.
 
-Since the usage of this flag is mainly for scripting processes, all the prompts can be skipped with
-the usage of `--yes` flag as follows:
-
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml --yes
 ---
 apiVersion: carto.run/v1alpha1
@@ -659,9 +657,10 @@ status:
   supplyChainRef: {}
 ```
 
-If it is not used with `--yes` flag, all the prompts will be printed and the workload definition will be shown at the end.
+Without the `--yes` flag, all the prompts are printed and the workload definition is shown at the
+end as follows.
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml
 🔎 Create workload:
       1 + |---
@@ -718,15 +717,15 @@ status:
   supplyChainRef: {}
 ```
 
-This flag can also be used with `--wait` or `--tail` if the intention is to retrieve the workload 
-with everything and its status.
-The behavior is the same regarding the prompts: if `--yes` flag is not used, then the workload
-definition and the surveys are displayed and it remains waiting until the workload is in status `ready`.
+Use this flag with `--wait` or `--tail` to retrieve the workload with everything including status.
+If the `--yes` flag is not used, the workload definition and the surveys are displayed and it
+remains waiting until the workload is in status `ready`.
 Otherwise, it does not show anything until the workload is ready in the cluster.
 
-It should be made clear that, if `--tail` is used, its logs are not going to be suppressed despite the usage of `--yes` flag.
+> **Note** If the `--tail` flag is used, the logs are not suppressed, even if the `--yes` flag is
+also used.
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml --yes --wait
 ---
 apiVersion: carto.run/v1alpha1
@@ -833,7 +832,7 @@ status:
 
 And with `tail`:
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml --yes --tail
 + rmq-sample-app-build-1-build-pod › prepare
 rmq-sample-app-build-1-build-pod[prepare] Build reason(s): CONFIG
@@ -958,17 +957,14 @@ status:
 
 ## <a id='unsetting-git-fields'> Un-setting Git fields
 
-There are various ways to update a workload. It can be by changing its fields through flags or create
-a `yaml` file with the changes and run `tanzu apps workload apply` command with the `--update-strategy`
-set as `replace` (check [`--update-strategy`](./how-to-examples.hbs.md#update-strategy) for a better usage explanation).
+There are various ways to update a workload. For example, use flags to change fields, or create
+a `yaml` file with the changes and run the `tanzu apps workload apply` command with the `--update-strategy` set as `replace`. For more information, see [--update-strategy](#update-strategy).
 
-However, for fields deletion, there is an easier way supported for the `--git-*` flags in which,
-through setting them as empty string in the command, the `workload.spec.source.git` fields get removed.
-
+To delete `workload.spec.source.git` fields, set `--git-*` flags as empty string in the command.
 For example, if there is a workload that specifies `--git-tag`, `--git-commit` and `--git-branch`,
-to remove any of these the only thing that needs to be done is use empty string right after setting them.
+to remove any of these, use an empty string. For example
 
-```bash
+```console
 ## Existing workload definition
 ---
 apiVersion: carto.run/v1alpha1
@@ -993,7 +989,7 @@ spec:
         tag: v0.1.0
       url: https://github.com/jhvhs/rabbitmq-sample
 
-## Update the workload to remove one of its git fields
+## Update the workload to remove one of its Git fields
 
 tanzu apps workload apply rmq-sample-app --git-tag ""
 🔎 Update workload:
@@ -1037,10 +1033,10 @@ spec:
       url: https://github.com/jhvhs/rabbitmq-sample
 ```
 
-**NOTE**: If `--git-repo` is set to empty, then the whole git section is going to be removed from 
+**NOTE** If `--git-repo` is set to empty, then the whole Git section is removed from
 the workload definition.
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo ""
 🔎 Update workload:
 ...
@@ -1083,15 +1079,14 @@ spec:
 
 ## <a id='no-color-usage'> Remove color from output
 
-Most of Tanzu Apps Plug-in commands have emojis and colored output with the intention to be more user-friendly.
+Most of Tanzu Apps Plug-in commands have user-friendly emojis, characters and colored output. In
+some cases, these are not needed, for example, scripting. Also, they might not be interpreted
+correctly in some terminals. Suppress them using the `--no-color` flag.
 
-However, sometimes color, emojis and other characters are not needed (e.g. scripting) or even well 
-interpreted in certain terminals and the best way to suppress them is using the `--no-color` flag.
+For example, in a workload that is created through local path, which usually shows emojis and a
+progress bar, suppress special characters using `--no-color`. For example,
 
-So, for example, in a workload that is created through local path, which usually shows emojis and a
-progress bar, these special characters would be avoid by using `--no-color`.
-
-```bash
+```console
 tanzu apps workload apply my-workload --local-path path/to/my/source -s my-registry.ext/my-project/my-workload --type web --no-color
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
 Publishing source in "path/to/my/source" to "my-registry.ext/my-project/my-workload"...
@@ -1112,8 +1107,11 @@ Create workload:
 ? Do you want to create this workload? [yN]:
 ```
 
-To avoid having color in general for Tanzu Apps Plug-in, the best way is setting the `NO_COLOR` environment variable. This will suppress color, emojis and progress bar for all the Plug-in related commands.
+To avoid having color globally for the Tanzu Apps plug-in, set the `NO_COLOR` environment variable.
+This will suppress color, emojis and progress bar for all the plug-in related commands.
 
-```bash
+Run
+
+```console
 export NO_COLOR=true
 ```
