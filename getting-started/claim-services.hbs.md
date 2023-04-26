@@ -94,8 +94,8 @@ information about the classes of services.
 
 ## <a id="stk-create-claim"></a> Create a claim for a service instance
 
-This section covers using `tanzu service class-claim create` to create a claim for an instance of a class and
-using `tanzu service class-claim get` to get detailed information about the status of the claim.
+This section covers using `tanzu service class-claim create` to create a claim for an instance of a
+class and using `tanzu service class-claim get` to get detailed information about the status of the claim.
 
 - To create a claim for an instance of a class, run the `tanzu service class-claim create` command:
 
