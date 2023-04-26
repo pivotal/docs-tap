@@ -114,7 +114,7 @@ the workload must be updated to point at your Tekton pipeline.
 1. Update the workload by running the following with the Tanzu CLI:
 
     ```console
-    tanzu apps workload create tanzu-java-web-app \
+    tanzu apps workload apply tanzu-java-web-app \
       --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
       --git-branch main \
       --type web \
@@ -122,27 +122,7 @@ the workload must be updated to point at your Tekton pipeline.
       --yes
     ```
 
-    ```console
-    Create workload:
-        1 + |---
-        2 + |apiVersion: carto.run/v1alpha1
-        3 + |kind: Workload
-        4 + |metadata:
-        5 + |  labels:
-        6 + |    apps.tanzu.vmware.com/has-tests: "true"
-        7 + |    apps.tanzu.vmware.com/workload-type: web
-        8 + |  name: tanzu-java-web-app
-        9 + |  namespace: default
-       10 + |spec:
-       11 + |  source:
-       12 + |    git:
-       13 + |      ref:
-       14 + |        branch: main
-       15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-
-    ? Do you want to create this workload? Yes
-    Created workload "tanzu-java-web-app"
-    ```
+    <!-- add expected output -->
 
 2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
@@ -290,7 +270,7 @@ pipeline:
 1. Update the workload by running the following using the Tanzu CLI:
 
     ```console
-    tanzu apps workload create tanzu-java-web-app \
+    tanzu apps workload apply tanzu-java-web-app \
       --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
       --git-branch main \
       --type web \
@@ -298,29 +278,7 @@ pipeline:
       --yes
     ```
 
-    Example output:
-
-    ```console
-    Create workload:
-          1 + |---
-          2 + |apiVersion: carto.run/v1alpha1
-          3 + |kind: Workload
-          4 + |metadata:
-          5 + |  labels:
-          6 + |    apps.tanzu.vmware.com/has-tests: "true"
-          7 + |    apps.tanzu.vmware.com/workload-type: web
-          8 + |  name: tanzu-java-web-app
-          9 + |  namespace: default
-        10 + |spec:
-        11 + |  source:
-        12 + |    git:
-        13 + |      ref:
-        14 + |        branch: main
-        15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
-
-    ? Do you want to create this workload? Yes
-    Created workload "tanzu-java-web-app"
-    ```
+    <!-- add expected output -->
 
 1. After accepting the workload creation, view the new resources that the workload created by running:
 
