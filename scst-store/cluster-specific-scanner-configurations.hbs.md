@@ -26,7 +26,7 @@ scanner, such as Grype, and SCST - Store. Scanners use `app-tls-cert` by default
 from SCST-Store. You do not need to make changes to the `grype` section of the
 `tap-values.yaml` provided in the the full profile installation. See [Install Tanzu Application Platform package and profiles](../install.hbs.md#install-profile).
 
-**Note** To view the default values, see [Install Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.hbs.md#-configure-properties).
+To view the default values, see [Install Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.hbs.md#-configure-properties).
 
 ### Multicluster configuration
 
