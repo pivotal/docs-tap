@@ -46,7 +46,7 @@ To set up the namespace:
    kubectl create namespace tanzu-psql-service-instances
    ```
 
-2. The Tanzu Postgres Operator also requires that a secret holding registry credentials exists in the
+1. The Tanzu Postgres Operator also requires that a secret holding registry credentials exists in the
    same namespace that the service instances will be created in.
    Ensure that the secret exists in the namespace by running:
 
@@ -114,7 +114,7 @@ To create the CompositeResourceDefinition (XRD):
    a suitable amount of storage for the Tanzu Postgres service instance when they create a claim.
    You can choose to expose as many or as few parameters to application teams as you like.
 
-2. Apply the file to the Tanzu Application Platform cluster by running:
+1. Apply the file to the Tanzu Application Platform cluster by running:
 
    ```console
    kubectl apply -f xpostgresqlinstances.database.tanzu.example.org.xrd.yaml
@@ -297,9 +297,9 @@ To create the Composition:
            matchString: "Running"
    ```
 
-2. Configure the Composition you just copied to your specific requirements.
+1. Configure the Composition you just copied to your specific requirements.
 
-3. Apply the file to the Tanzu Application Platform cluster by running:
+1. Apply the file to the Tanzu Application Platform cluster by running:
 
    ```console
    kubectl apply -f xpostgresqlinstances.database.tanzu.example.org.composition.yaml
