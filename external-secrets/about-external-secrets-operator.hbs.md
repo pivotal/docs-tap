@@ -101,8 +101,6 @@ that uses this service account to connect to your Secret Manager.
                 name: #@ data.values.secret_name
                 namespace: external-secrets
           projectID: #@ data.values.google_project_id
-    You will need to create a service account with the right access permissions to your Secrets Manager and associated key to
-    create a secret that holds your service account to allow you to connect to your Google Secret Manager instance.
     ```
 
 3. To verify that you have correctly authenticated to the Secret Manager, run:
