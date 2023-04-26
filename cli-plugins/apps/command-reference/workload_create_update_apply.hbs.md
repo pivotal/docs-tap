@@ -344,8 +344,8 @@ tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-y
 ### <a id="apply-git-repo"></a> `--git-repo`
 
 The Git repository from which the workload is created. Specify one or more of the following:
-`--git-tag`, `--git-commit`, `--git-branch`. For Git source, if you specify all three flags
-, the revision the workload checkouts to depends on the source controller.
+`--git-tag`, `--git-commit`, `--git-branch`. For Git source, if you specify all three flags,
+the revision the workload checkouts to depends on the source controller.
 
 If you set this flag to an empty string value, the full `spec.source.git` section is removed from
 the workload definition.

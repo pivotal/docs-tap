@@ -23,6 +23,7 @@ For example:
 
 ```console
 tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE --type web --registry-ca-cert PATH-TO-CA-CERT.nip.io.crt --registry-username USERNAME --registry-password PASSWORD
+```
 
 Alternatively, run the same command as:
 
@@ -1079,7 +1080,7 @@ spec:
 
 ## <a id='no-color-usage'> Remove color from output
 
-Most of Tanzu Apps Plug-in commands have user-friendly emojis, characters and colored output. In
+Most Tanzu Apps Plug-in commands have user-friendly emojis, characters and colored output. In
 some cases, these are not needed, for example, scripting. Also, they might not be interpreted
 correctly in some terminals. Suppress them using the `--no-color` flag.
 
