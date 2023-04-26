@@ -1,6 +1,6 @@
 # Troubleshooting Tanzu Developer Tools for IntelliJ
 
-This topic describes what to do when encountering issues with Tanzu Developer Tools for IntelliJ.
+This topic helps you troubleshoot issues with Tanzu Developer Tools for IntelliJ.
 
 ## <a id="debug-ends-early"></a> First debugging session ends prematurely
 

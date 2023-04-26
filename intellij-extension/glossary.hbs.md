@@ -1,37 +1,36 @@
 # Glossary of terms
 
-This page lists some common terms that are used throughout the Tanzu Developer Tools on IntelliJ
+This topic gives you explanations of common terms used throughout the Tanzu Developer Tools for IntelliJ
 documentation, and within the extension itself.
-Some of these terms are unique to the Tanzu Application Platform, while others might
-have a different meaning outside of the Tanzu Application Platform and are
-included here for clarification.
+Some of these terms are unique to Tanzu Application Platform, while others might have a different
+meaning outside of Tanzu Application Platform and are included here for clarification.
 
 ## <a id="live-update"></a> Live Update
 
-Live Update, facilitated by [Tilt](https://docs.tilt.dev/), enables you to deploy
-your workload once, save changes to the code, and see those changes
-reflected in the workload running on the cluster within seconds.
-In their own words:
+Live Update, facilitated by [Tilt](https://docs.tilt.dev/), enables you to deploy your workload
+once, save changes to the code, and see those changes reflected in the workload running on the
+cluster within seconds. In their own words:
 
 _“Tilt automates all the steps from a code change to a new process: watching files,
 building container images, and bringing your environment up-to-date.”_
 
-This means that while using Live Update, all you have to do is save your code changes
-to see them reflected in your application running on your cluster.
-No redeploy is necessary.
+This means that while using Live Update, all you have to do is save your code changes to see them
+reflected in your application running on your cluster. No redeploy is necessary.
 
 ## <a id="tiltfile"></a> Tiltfile
 
 The Tiltfile is a file with no extension that is required for Tilt to enable the
 Live Update feature.
-For more information about the Tiltfile, see the [Tilt documentation](https://docs.tilt.dev/tiltfile_concepts.html).
+For more information about the Tiltfile, see the
+[Tilt documentation](https://docs.tilt.dev/tiltfile_concepts.html).
 
 ## <a id="debug"></a> Debugging on the cluster
 
 The Tanzu Developer Tools on IntelliJ extension enables you to debug your application in an environment
 similar to production by debugging on your Tanzu Application Platform enabled Kubernetes cluster.
 
-An environment’s similarity to production relies on keeping dependencies updated, among other variables.
+> **Note** An environment’s similarity to production relies on keeping dependencies updated, among
+> other variables.
 
 ## <a id="yaml-file-format"></a> YAML file format
 
@@ -41,15 +40,13 @@ For more information see the [YAML Wikipedia entry](https://en.wikipedia.org/wik
 
 ## <a id="workload-yaml"></a> workload.yaml file
 
-The workload YAML file is a required configuration file used by the
-Tanzu Application Platform to specify the details of an application including its name,
-type, and source code URL.
+The workload YAML file is a required configuration file used by the Tanzu Application Platform to
+specify the details of an application including its name, type, and source code URL.
 
 ## <a id="catalog-info-yaml"></a> catalog-info.yaml file
 
-The catalog-info YAML file enables the workloads created with the
-Tanzu Developer Tools for IntelliJ extension to be visible in the
-[Tanzu Application Platform GUI](../tap-gui/about.md).
+The catalog-info YAML file enables the workloads created with the Tanzu Developer Tools for IntelliJ
+extension to be visible in the [Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
 
 ## <a id="code-snippet"></a> Code snippet
 
@@ -60,7 +57,8 @@ with the required information.
 
 ## <a id="source-image"></a> Source image
 
-The source image is the registry location to publish local source code, for example, `registry.io/yourapp-source`.
+The source image is the registry location to publish local source code, for example,
+`registry.io/yourapp-source`.
 This must include both a registry and a project name.
 
 ## <a id="local-path"></a> Local path
