@@ -101,7 +101,7 @@ To create the CompositeResourceDefinition (XRD):
    a suitable amount of storage for the AWS RDS service instance when they create a claim.
    You can choose to expose as many or as few parameters to application teams as you like.
 
-2. Apply the file to the Tanzu Application Platform cluster by running:
+1. Apply the file to the Tanzu Application Platform cluster by running:
 
    ```console
    kubectl apply -f xpostgresqlinstances.database.rds.example.org.xrd.yaml
@@ -214,7 +214,7 @@ To make the service discoverable to application teams:
          compositeResourceDefinition: xpostgresqlinstances.database.rds.example.org
    ```
 
-2. Apply the file to the Tanzu Application Platform cluster by running:
+1. Apply the file to the Tanzu Application Platform cluster by running:
 
    ```console
    kubectl apply -f rds.class.yaml
