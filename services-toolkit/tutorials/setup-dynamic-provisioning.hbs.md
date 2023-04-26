@@ -10,13 +10,15 @@ other service.
 **Target user role**:       Service Operator<br />
 **Complexity**:             Advanced<br />
 **Estimated time**:         60 minutes<br />
-**Topics covered**:         Dynamic Provisioning, Crossplane, Tanzu RabbitMQ Cluster Kubernetes operator<br />
-**Learning outcomes**:      Ability to offer new, on-demand, and customized services in your Tanzu Application Platform clusters<br />
+**Topics covered**:         Dynamic Provisioning, Crossplane, Tanzu RabbitMQ Cluster Kubernetes
+operator<br />
+**Learning outcomes**:      Ability to offer new, on-demand, and customized services in your
+Tanzu Application Platform clusters<br />
 
 ## <a id="prereqs"></a> Prerequisites
 
 - Access to a Tanzu Application Platform cluster v1.5.0 or later.
-- Surface level familiarity with Crossplane, particularly the concepts of
+- Basic familiarity with Crossplane, particularly the concepts of
   [Composition and CompositeResourceDefinitions](https://docs.crossplane.io/v1.11/concepts/composition/).
 
 ## <a id="scenario"></a> Scenario
@@ -53,7 +55,7 @@ The following diagram provides an overview of the elements of dynamic provisioni
 
 ![Diagram shows a high-level overview of dynamic provisioning.](../../images/stk-dynamic-provisioning-overview.png)
 
-There's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> quite a lot to digest there, but don't worry! We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿-->'ll be covering everything in more detail later on. For now, here is a very high-level overview of how the system works.
+The following is a high-level overview of how the system works:
 
 1. The service operator creates a `CompositeResourceDefinition` and a `Composition`, which together
    define the configuration of the service instances that will be dynamically provisioned.
@@ -70,6 +72,8 @@ There's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommo
    the instance into a `Secret`.
 7. The `Secret` is written back to the application developer's namespace, so that application workloads
    can use it.
+
+As you follow this tutorial, it will address the parts of this diagram in more detail.
 
 ## <a id="procedure"></a> Procedure
 
@@ -159,7 +163,7 @@ Then use kubectl to apply the file to the Tanzu Application Platform cluster.
 kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
 ```
 
-For a full and detailed explanation of `CompositeResourceDefinition` see, the
+For a detailed explanation of `CompositeResourceDefinition` see, the
 [Crossplane documentation](https://docs.crossplane.io/v1.10/concepts/composition/#defining-composite-resources).
 
 The following is a condensed explanation of the most relevant pieces of the `CompositeResourceDefinition`
@@ -230,9 +234,16 @@ but you can mostly ignore these for now.
 
 ### <a id="create-composition"></a> Step 3: Creating a Crossplane `Composition`
 
-This step is the big one. Most of the time and effort involved in configuring dynamic provisioning will<!--฿ Avoid |will|: present tense is preferred. ฿--> likely be spent in creating Crossplane's `Compositions`. They can look quite intimidating at first, but fear not! This tutorial is here to guide you through all the most important steps. Like before, it is recommended<!--฿ Rewrite as an imperative if it is best practice. If you must recommend, specify the party recommending (VMware, Cloud Foundry, etc), give a reason, and do not recommend third-party software. ฿--> to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> Crossplane's official documentation for a full and detailed explanation of `Composition`s, what follows here are the basics you need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> know to be able to<!--฿ |can| is preferred. ฿--> start creating `Compositions` for use in Tanzu Application Platform.
+You do most of the configuration for dynamic provisioning during the creation of the `Composition`.
 
-Start by creating a file named `xrabbitmqclusters.messaging.bigcorp.org.composition.yaml` and copying in the following contents.
+For a more detailed explanation about the `Composition`, see the
+[Crossplane documentation](https://docs.crossplane.io/v1.10/concepts/composition/).
+
+The following are the basics you must know to start to create a `Composition` for use in
+Tanzu Application Platform.
+
+Create a file named `xrabbitmqclusters.messaging.bigcorp.org.composition.yaml` and copy
+in the following contents.
 
 ```yaml
 # xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
@@ -396,30 +407,65 @@ spec:
         matchString: "True"
 ```
 
-Then use kubectl to apply the file to the Tanzu Application Platform cluster.
+Use kubectl to apply the file to the Tanzu Application Platform cluster.
 
 ```console
 kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yaml
 ```
 
-And now let's<!--฿ Re-word: too colloquial. ฿--> chat through the `Composition` step-by-step. The first thing to note is `.spec.compositeTypeRef`, which we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ve configured to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> `XRabbitmqCluster` on the `messaging.bigcorp.org/v1alpha1` API group/version.
+#### About `.spec.compositeTypeRef`
+
+The `.spec.compositeTypeRef` is configured to refer to `XRabbitmqCluster` on the
+`messaging.bigcorp.org/v1alpha1` API group and version.
 
 ```yaml
+...
 spec:
   compositeTypeRef:
     apiVersion: messaging.bigcorp.org/v1alpha1
     kind: XRabbitmqCluster
+...
 ```
 
-This is the API that was created in the previous step<!--฿ Write |earlier in this procedure| or, if referring to a separate procedure, link to it. ฿--> when you applied the XRD. By configuring `.spec.compositeTypeRef` to refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> it, you are essentially instructing Crossplane to use the configuration contained within this `Composition` to compose subsequent Managed Resources (more on those in a minute) whenever it observes that a new `XRabbitmqCluster` resource has been<!--฿ Consider changing to |is| or |has| or rewrite for active voice. ฿--> created in the cluster. `XRabbitmqCluster` resources are what will<!--฿ Avoid |will|: present tense is preferred. ฿--> be created automatically by Tanzu Application Platform's dynamic provisioning system.
+This is the API that was created when you applied the XRD in
+[Step 2: Creating a `CompositeResourceDefinition`](#create-xrd).
+By configuring `.spec.compositeTypeRef` to refer to this API, you are instructing Crossplane
+to use the configuration contained within this `Composition` to compose subsequent managed resources
+whenever it observes that a new `XRabbitmqCluster` resource is created in the cluster.
+Tanzu Application Platform's dynamic provisioning system creates the `XRabbitmqCluster` resources automatically.
+To visualize how these pieces fit together, see the diagram in the [Concepts](#concepts) section.
 
-Side note: If you're feeling lost, it may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> help to refer back to the diagram to visualize how these pieces fit together.
+#### About `.spec.resources`
 
-Next up is the `.spec.resources` section, here is where you specify the Managed Resources you want to be created. Managed Resources are tied to Crossplane's `Providers`, with each `Provider` defining a set of Managed Resources which can then be used here in compositions. Tanzu Application Platform ships with<!--฿ |includes| is preferred. ฿--> two `Providers` out of the box<!--฿ Do not use |out of the box| figuratively. ฿--> - [provider-helm](https://github.com/crossplane-contrib/provider-helm) and [provider-kubernetes](https://github.com/crossplane-contrib/provider-kubernetes). This results in<!--฿ Consider replacing with |causes|. ฿--> the availability of a `Release` managed resource, used to manage helm <!--฿ |Helm| is preferred. ฿-->releases, and an `Object` managed resource, used to manage arbitrary Kubernetes resources. Of course you are free to install and use any other `Provider` that you like. You can refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the [Upbound Marketplace](https://marketplace.upbound.io/providers) to find the latest and greatest providers. The more providers you install, the more managed resources you will<!--฿ Avoid |will|: present tense is preferred. ฿--> have to choose from in your compositions.
+The `.spec.resources` section is where you specify the managed resources to be created.
+Managed resources are tied to Crossplane's `Providers`, with each `Provider` defining a set of managed
+resources which can then be used in compositions.
+Tanzu Application Platform includes two pre-installed `Providers`:
+[provider-helm](https://github.com/crossplane-contrib/provider-helm) and
+[provider-kubernetes](https://github.com/crossplane-contrib/provider-kubernetes).
+This makes a `Release` managed resource available, which is used to manage Helm
+releases, and makes an `Object` managed resource available, which used to manage arbitrary
+Kubernetes resources.
+You can install and use any other `Provider`.
+To find the latest providers, see the [Upbound Marketplace](https://marketplace.upbound.io/providers).
+The more providers you install, the more managed resources you can choose from in your compositions.
 
-The overarching goal here is to compose whatever resources are necessary to result in<!--฿ Consider replacing with |cause|. ฿--> functioning, usable service instances and to surface the credentials and connectivity information required to connect to those instances in a known and repetable way. In this tutorial we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> plan to use the `RabbitmqCluster` resource, which, fortunately for us<!--฿ Specify the party (VMware, Cloud Foundry, etc). ฿-->, presents one single API we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> can use to create fully functioning RabbitMQ clusters, credentials for which get stored in `Secrets` in the cluster. However unfortunately<!--฿ Remove. ฿--> for us<!--฿ Specify the party (VMware, Cloud Foundry, etc). ฿-->, `RabbitmqCluster` is not a Crossplane Managed Resource so we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> cannot refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> these directly under `.spec.resources`. This is where `provider-kubernetes` and its corresponding `Object` managed resource come into play. `Object` allows you to wrap any arbitrary Kubernetes resource (such as `RabbitmqCluster`) into a Crossplane managed resource and to then use them like any other managed resource inside `Compositions`.
+##### The `Object` managed resource
+
+The overarching goal is to compose whatever resources are necessary to create functioning, usable
+service instances and to surface the credentials and connectivity information required to connect to
+those instances in a known and repeatable way.
+This tutorial uses the `RabbitmqCluster` resource, which presents one single API to use to create
+fully functioning RabbitMQ clusters, credentials for which get stored in `Secrets` in the cluster.
+
+However, `RabbitmqCluster` is not a Crossplane managed resource so you cannot refer to this resource
+directly under `.spec.resources`.
+To work around this, use `provider-kubernetes` and its corresponding `Object` managed resource.
+`Object` enables you to wrap any arbitrary Kubernetes resource, such as `RabbitmqCluster`, into a
+Crossplane managed resource and to then use them like any other managed resource inside `Compositions`.
 
 ```yaml
+...
 spec:
   resources:
   - base:
@@ -454,23 +500,50 @@ spec:
                   log.console.formatter.json.field_map = verbosity:v time msg domain file line pid level:-
                   log.console.formatter.json.verbosity_map = debug:7 info:6 notice:5 warning:4 error:3 critical:2 alert:1 emergency:0
                   log.console.formatter.time_format = epoch_usecs
+...
 ```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
-We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> are making use of an `Object` managed resource in order to<!--฿ |to| is preferred. ฿--> configure `RabbitmqCluster` resources. This is the place in which you, the Service Operator, can now really fine-tune the configuration of the RabbitMQ Clusters to your needs. Recall from the hypothetical scenario that you are particularly concerned about your company's logging policy. Here you can see that we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> are translating that hypothetical policy into default configuration on the `RabbitmqCluster` resource by specifying configuration in `.spec.rabbitmq.additionalConfig` for the resource. This particular<!--฿ Redundant word? ฿--> configuration was taken from [one of the examples](https://github.com/rabbitmq/cluster-operator/blob/main/docs/examples/json-log/rabbitmq.yaml) on the RabbitMQ Cluster Operator<!--฿ |RabbitMQ Cluster Kubernetes operator| or, after first use and where not ambiguous, |cluster operator|. ฿--> GitHub repository, however you could<!--฿ |can| or |might| whenever possible is preferred. When providing examples, use simple present tense verbs instead of postulating what someone or something could or would do. ฿--> choose to configure the resource however you want and to whatever requirements may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> be necessary.
 
-You'll<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> also note we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> are setting default values for the number of replicas and the amount of persistent storage for new `RabbitmqClusters` - 1 replica and 1Gi. However you may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> recall that when creating the XRD in the previous step<!--฿ Write |earlier in this procedure| or, if referring to a separate procedure, link to it. ฿-->, we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> decided that we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> wanted to allow these two values to be configurable by the application development teams. The way that can be<!--฿ Consider switching to active voice. ฿--> configured is via<!--฿ |through|, |using| and |by means of| are preferred. ฿--> the use of patches. Let's<!--฿ Re-word: too colloquial. ฿--> chat through the patches section in more detail.
+The `Object` managed resource is where you configure `RabbitmqCluster` resources.
+This is the place in which you can now fine-tune the configuration of  the RabbitMQ Clusters to
+your needs.
+
+Recall from the hypothetical scenario that you are particularly concerned about your company's
+logging policy.
+The configuration in the `Object` translates that hypothetical policy into default configuration on
+the `RabbitmqCluster` resource by specifying `.spec.rabbitmq.additionalConfig` for the resource.
+This was taken from [one of the examples](https://github.com/rabbitmq/cluster-operator/blob/main/docs/examples/json-log/rabbitmq.yaml)
+in the RabbitMQ Cluster Operator GitHub repository.
+You can configure the resource however you want and to whatever requirements necessary.
+
+##### The `patches` section
+
+The `Object` also sets default values for the number of replicas and the amount of persistent storage
+for new `RabbitmqClusters` to one replica and 1&nbsp;Gi.
+However, you want to allow these two values to be configurable by the application development teams
+as specified in [Step 2: Creating a `CompositeResourceDefinition`](#create-xrd).
+You can configure this using patches.
 
 ```yaml
+...
 patches:
   - fromFieldPath: metadata.name
     toFieldPath: spec.forProvider.manifest.metadata.name
     type: FromCompositeFieldPath
+...
 ```
 
-The first thing to note is that all the patches are of type<!--฿ Use |enter| when the user input appears on the screen. Use |run| when you want users to run commands. ฿--> `FromCompositeFieldPath`, which essentially allows us<!--฿ Specify the party (VMware, Cloud Foundry, etc). ฿--> to take values defined on the composite resource (`XRabbitmqCluster` in this case) and to pass them through to the underlying managed resource (an `Object` wrapping `RabbitmqCluster` in this case). The first patch sets the name of the `RabbitmqCluster` to the same name as the name of the composite resource `XRabbitmqCluster`, which will<!--฿ Avoid |will|: present tense is preferred. ฿--> have been<!--฿ Consider replacing with |were| or shifting to present tense. ฿--> created using `generateName`, thereby ensuring a unique name for each dynamically provisioned `RabbitmqCluster` instance.
+The first thing to note is that all the patches are of type `FromCompositeFieldPath`,
+which allows you to take values
+defined on the composite resource (`XRabbitmqCluster` in this case) and to pass them through to the
+underlying managed resource (an `Object` wrapping `RabbitmqCluster` in this case).
+The first patch sets the name of the `RabbitmqCluster` to the same name as the name of the composite
+resource `XRabbitmqCluster`, which were created using `generateName`,
+thereby ensuring a unique name for each dynamically provisioned `RabbitmqCluster` instance.
 
 ```yaml
+...
 patches:
+...
   - fromFieldPath: spec.replicas
     toFieldPath: spec.forProvider.manifest.spec.replicas
     type: FromCompositeFieldPath
@@ -482,13 +555,17 @@ patches:
         type: Format
       type: string
     type: FromCompositeFieldPath
+...
 ```
 
-The second and third patches are where we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> pass through configuration for the number of replicas and amount of persistent storage, thus<!--฿ Re-write the sentence to drop |thus| or, if that is not possible, replace with |therefore|. ฿--> essentially overriding the default values already configured.
+The second and third patches pass through configuration for the number of replicas
+and amount of persistent storage, which overrides the default values already configured.
 
-The remaining patches all essentially do the same thing, which is to patch in the name of the `Secret` for the fields<!--฿ If referring to a UI, |text boxes| is preferred. ฿--> in the `connectionDetails` section.
+The remaining patches all do the same thing, which is to patch in the name of the `Secret`
+for the fields in the `connectionDetails` section.
 
 ```yaml
+...
 - fromFieldPath: metadata.name
   toFieldPath: spec.connectionDetails[0].name
   transforms:
@@ -497,24 +574,45 @@ The remaining patches all essentially do the same thing, which is to patch in th
       type: Format
     type: string
   type: FromCompositeFieldPath
+...
 ```
 
-When creating a `RabbitmqCluster` resource using the RabbitMQ Cluster Operator<!--฿ |RabbitMQ Cluster Kubernetes operator| or, after first use and where not ambiguous, |cluster operator|. ฿-->, the operator creates a `Secret` containing credentials and connectivity information used to connect to the cluster. That `Secret` is named `x-default-user`, where `x` is the name of the `RabbitmqCluster` resource. Therefore because the name of the `RabbitmqCluster` cannot be known upfront, we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> have to use patches to ensure<!--฿ Remember to include |that| if introducing a restrictive clause. In prerequisites, use |verify that| instead of |ensure that|. Where possible just re-phrase: |Do x| is better than |Ensure that you do x|. ฿--> the `connectionDetails` section will<!--฿ Avoid |will|: present tense is preferred. ฿--> refer to<!--฿ If telling the reader to read something else, use |see|. ฿--> the correctly-named `Secret`. The `connectionDetails` sections themselves are where we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> configure which keys and values to expose in the resulting `Secret`. Note that<!--฿ If this is really a note, use note formatting. ฿--> we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> specify the same set of keys as defined in the original XRD.
+When creating a `RabbitmqCluster` resource using the RabbitMQ Cluster Kubernetes operator,
+the operator creates a `Secret` containing credentials and connectivity information used to connect
+to the cluster.
+That `Secret` is named `x-default-user`, where `x` is the name of the `RabbitmqCluster` resource.
+Because the name of the `RabbitmqCluster` cannot be known upfront, you must use
+patches to ensure that the `connectionDetails` section refers to the correctly-named `Secret`.
 
-Next we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> arrive at the `readinessChecks` section.
+The `connectionDetails` sections are where you configure which keys and values to expose in the
+resulting `Secret`.
+You must specify the same set of keys as defined in the original XRD.
+
+##### The `readinessChecks` section
+
+Configuring readiness checks helps to keep consumers of dynamic provisioning, that is,
+the application teams, informed about when the resulting service instances are ready for application
+workloads to use.
 
 ```yaml
+...
 readinessChecks:
   - type: MatchString
     fieldPath: status.atProvider.manifest.status.conditions[1].status # ClusterAvailable
     matchString: "True"
 ```
 
-Configuring readiness checks helps to keep consumers of dynamic provisioning (i.e. application teams) informed about when the resulting service instances are actually<!--฿ Delete unless referring to a situation that is actual instead of virtual. Most uses are extraneous. ฿--> up and ready to be used by<!--฿ Active voice is preferred. ฿--> application workloads. Where possible it is simplest to use the `Ready` condition to determine<!--฿ |determine| has two meanings. Consider if the univocal |discover| or |verify| would be better. ฿--> readiness. However the `RabbitmqCluster` API doesn't expose a simple<!--฿ Avoid suggesting an instruction is |simple| or |easy|. ฿--> `Ready` condition, thus<!--฿ Re-write the sentence to drop |thus| or, if that is not possible, replace with |therefore|. ฿--> we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿--> instead configure the ready check <!--฿ |verify|, |ensure|, and |confirm| are all preferred. ฿-->on `ClusterAvailable` instead.
+Where possible it is simplest to use the `Ready` condition to verify readiness.
+However, the `RabbitmqCluster` API doesn't expose a simple `Ready` condition, so you must configure the
+ready check on `ClusterAvailable` instead.
 
-One final important decision to discuss before moving on is the name of the namespace in which to create the dynamically provisioned `RabbitmqCluster` resources. We<!--฿ |VMware|, the product name, or another term is preferred. Define who |We| is for the reader is preferred. ฿--> have chosen the `rmq-clusters` namespace.
+#### Check the namespace
+
+One final important decision is the name of the namespace in which to create the dynamically
+provisioned `RabbitmqCluster` resources. This tutorial uses the `rmq-clusters` namespace.
 
 ```yaml
+...
 spec:
   resources:
   - base:
@@ -527,15 +625,21 @@ spec:
             kind: RabbitmqCluster
             metadata:
               namespace: rmq-clusters
+...
 ```
 
-You'll<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> make sure<!--฿ Redundant? |Make sure that you do X.| is weaker than |Do x.| ฿--> that this namespace exists.
+To make sure that the `rmq-clusters` namespace exists.
 
 ```console
 kubectl create namespace rmq-clusters
 ```
 
-This configuration says that _all_ dynamically provisioned `RabbitmqCluster` resources will<!--฿ Avoid |will|: present tense is preferred. ฿--> be placed in the _same_ `rmq-clusters` namespace. You could<!--฿ |can| or |might| whenever possible is preferred. When providing examples, use simple present tense verbs instead of postulating what someone or something could or would do. ฿--> of course wish<!--฿ |want| is preferred. ฿--> to place each new cluster into a separate namespace. In order to do that, you'd<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> create an additional `Object` managed resource to wrap the creation of a `Namespace` and to apply patches to the resources accordingly. For now we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->'ll keep things simple<!--฿ Avoid suggesting an instruction is |simple| or |easy|. ฿--> with only 1 namespace.
+This configuration says that all dynamically provisioned `RabbitmqCluster` resources must be placed
+in the same `rmq-clusters` namespace.
+If you want to place each new cluster into a separate namespace, you must create an additional
+`Object` managed resource to wrap the creation of a `Namespace` and to apply patches to the
+resources accordingly.
+For this tutorial you only require one namespace.
 
 ### <a id="create-class"></a> Step 4: Creating a provisioner-based class
 
