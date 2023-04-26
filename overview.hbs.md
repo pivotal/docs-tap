@@ -48,20 +48,22 @@ Supply chains provide a way of codifying all of the steps of your path to produc
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
-In order to address the developer experience gap, the path to production allows users to create a
+To address the developer experience gap, the path to production allows users to create a
 unified access point for all of the tools required for their applications to reach a customer-facing
 environment.
 
-Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction. Where tools typically can't integrate with
+Instead of having separate tools that are loosely coupled to each other for testing and building,
+security, deploying, and running apps, a path to production defines all four tools in a single,
+unified layer of abstraction. Where tools typically can't integrate with
 one another and additional scripting or webhooks are necessary, a unified automation tool codifies
 all interactions between each of the tools.
 
 Tanzu Application Platform provides a default set of components that automates pushing an app to
 staging and production on Kubernetes. This removes the pain points for both inner and outer loops.
-It also allows operators to customize the platform by replacing Tanzu Application Platform components with other products.
+It also allows operators to customize the platform by replacing Tanzu Application Platform components
+with other products.
 
-![Diagram depicting the layered structure of TAP](images/tap-layered-capabilities.png)
+![Diagram depicting the layered structure of Tanzu Application Platform.](images/tap-layered-capabilities.png)
 
 For more information about Tanzu Application Platform components, see [Components and installation profiles](about-package-profiles.md).
 
