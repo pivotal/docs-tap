@@ -111,10 +111,11 @@ the workload must be updated to point at your Tekton pipeline.
 
 1. Update the workload by running the following with the Tanzu CLI:
 
-    ```bash
-    tanzu apps workload create tanzu-java-web-app \
-      --git-repo ${GIT_PROJECT_URL} \
-      --git-branch ${GIT_BRANCH} \
+    ```console
+    tanzu apps workload apply tanzu-java-web-app \
+      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+      --sub-path tanzu-java-web-app \
+      --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
       --label app.kubernetes.io/part-of=tanzu-java-web-app \
@@ -122,29 +123,7 @@ the workload must be updated to point at your Tekton pipeline.
       --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-    Example output:
-
-    ```console
-    Create workload:
-        1 + |---
-        2 + |apiVersion: carto.run/v1alpha1
-        3 + |kind: Workload
-        4 + |metadata:
-        5 + |  labels:
-        6 + |    apps.tanzu.vmware.com/has-tests: "true"
-        7 + |    apps.tanzu.vmware.com/workload-type: web
-        8 + |  name: tanzu-java-web-app
-        9 + |  namespace: default
-       10 + |spec:
-       11 + |  source:
-       12 + |    git:
-       13 + |      ref:
-       14 + |        branch: main
-       15 + |      url: https://github.com/my/tanzu-project.git
-
-    ? Do you want to create this workload? Yes
-    Created workload "tanzu-java-web-app"
-    ```
+    <!-- add example output -->
 
 2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
@@ -294,10 +273,11 @@ pipeline:
 
 1. Update the workload by running the following using the Tanzu CLI:
 
-    ```bash
-    tanzu apps workload create tanzu-java-web-app \
-      --git-repo ${GIT_PROJECT_URL} \
-      --git-branch ${GIT_BRANCH} \
+    ```console
+    tanzu apps workload apply tanzu-java-web-app \
+      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+      --sub-path tanzu-java-web-app \
+      --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
       --label app.kubernetes.io/part-of=tanzu-java-web-app \
@@ -305,29 +285,7 @@ pipeline:
       --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-    Example output:
-
-    ```console 
-    Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/has-tests: "true"
-      7 + |    apps.tanzu.vmware.com/workload-type: web
-      8 + |  name: tanzu-java-web-app
-      9 + |  namespace: default
-      10 + |spec:
-      11 + |  source:
-      12 + |    git:
-      13 + |      ref:
-      14 + |        branch: main
-      15 + |      url: https://github.com/my/tanzu-project.git
-
-    ? Do you want to create this workload? Yes
-    Created workload "tanzu-java-web-app"
-    ```
+    <!-- add example output -->
 
 1. After accepting the workload creation, view the new resources that the workload created by running:
 
