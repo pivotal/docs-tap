@@ -159,7 +159,6 @@ the workload must be updated to point at your Tekton pipeline.
 
 ### <a id="prereqs-install-OOTB-test-scan"></a>Prerequisites
 
-- Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
 - Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
 
   > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
