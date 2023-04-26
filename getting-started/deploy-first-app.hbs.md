@@ -53,7 +53,7 @@ Before you start, you must have:
       This depends on your organization's Tanzu Application Platform configuration.
       For more information, consult with your Tanzu Application Platform administrators.
 
-    For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md). <!-- is this the correct link? -->
+    For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
 1. View the build and runtime logs for your app by running the `get` command:
 
