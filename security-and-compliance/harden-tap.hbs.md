@@ -185,8 +185,8 @@ For more settings in the Contour component, you can reference the
 
 #### Ingress Certificates
 
-Refer to [ingress certificates](./tls-and-certificates/ingress/about.hbs.md) to
-learn how to configure TLS for a TAP installation's ingress endpoints.
+For information about to configure TLS for a Tanzu Application Platform installation's ingress
+endpoints, see [Ingress certificates](./tls-and-certificates/ingress/about.hbs.md).
 
 ### Encryption of Data At Rest
 

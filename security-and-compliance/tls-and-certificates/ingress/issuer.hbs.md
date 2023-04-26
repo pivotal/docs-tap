@@ -1,20 +1,20 @@
 # Shared ingress issuer
 
-Tanzu Application Platform's shared ingress issuer is an on-platform
-representation of a _certificate authority_. It is an easy way to set up TLS
-for the entire platform. All participating components will get their ingress
+The Tanzu Application Platform shared ingress issuer is an on-platform
+representation of a _certificate authority_. It is a way to set up TLS
+for the entire platform. All participating components get their ingress
 certificates issued by it.
 
 This is the recommended best practice for issuing ingress certificates on Tanzu
-Application Platform. Learn about its [prerequisites](#prerequisites).
+Application Platform.
 
-The ingress issuer is designated by the single TAP configuration value
+The ingress issuer is designated by the single Tanzu Application Platform configuration value
 `shared.ingress_issuer`. It refers to a `cert-manager.io/v1/ClusterIssuer`.
 
 By default, a self-signed issuer is used. It's called `tap-ingress-selfsigned`
 and has [limitations](#limitations-self-signed).
 
-It is recommended to [replace](#replace) the default with your own issuer.
+VMware recommends you [replace](#replace) the default with your own issuer.
 
 [Component-level configuration of TLS](#override) takes precedence and can be
 mixed with the ingress issuer.
@@ -23,17 +23,17 @@ It is possible to [deactivate](#deactivate) the ingress issuer.
 
 ## <a id="prerequisites"></a>Prerequisites
 
-To be able to use TAP's ingress issuer your _certificate authority_ needs to be
-representable by a cert-manager `ClusterIssuer`. In particular you need one of
+To use Tanzu Applicatin Platforms's ingress issuer your _certificate authority_ must be
+representable by a cert-manager `ClusterIssuer`. You need **one** of
 the following:
 
-* You have your own CA certificate **or**
-* Your CA is an ACME, Venafi, or Vault-based issuer like _LetsEncrypt_ **or**
+- Your own CA certificate
+* Your CA is an ACME, Venafi, or Vault-based issuer, for example, _LetsEncrypt_ 
 * Your CA can be represented by an
   [external](https://cert-manager.io/docs/configuration/external/) cert-manager
   `ClusterIssuer`.
 
-If none of the above are given, then you cannot use the issuer ingress, but you can
+Without one of the above, you cannot use the issuer ingress, but you can
 still [configure TLS for components](./inventory.hbs.md).
 
 ## <a id="prerequisites"></a>Default
@@ -46,29 +46,29 @@ and is provided by Tanzu Application Platform's [cert-manager
 package](../../../cert-manager/about.hbs.md). Its default name is
 `tap-ingress-selfsigned`.
 
-The default ingress issuer is appropriate for testing and evaluation, but it is
-strongly recommended to replace it with your own issuer.
+The default ingress issuer is appropriate for testing and evaluation, but VMware recommends
+you replace it with your own issuer.
 
 >**Important** If `cert-manager.tanzu.vmware.com` is excluded from the
->installation, then `tap-ingress-selfsigned` will not be installed either. In
->this case make sure to bring your own ingress issuer.
+>installation, then `tap-ingress-selfsigned` is not installed either. In
+>this case bring your own ingress issuer.
 
 ### <a id="limitations-self-signed"></a>Limitations of the default, self-signed issuer
 
 The default ingress issuer represents a self-signed _certificate authority_.
-This is unproblematic as fas as security is concerned. However, such an issuer
+This is not problematic as far as security is concerned, however, it 
 is not included in any trust chain configured.
 
-That means that nothing trusts the default ingress issuer implicitly, not even
-TAP's components. While the issued certificates are valid in principal, they
-will be rejected by, say, your browser. Furthermore, some interactions between
-TAP components are not functional out-of-the-box.
+As a result, nothing trusts the default ingress issuer implicitly, not even
+Tanzu Application Platform components. While the issued certificates are valid in principal, they
+are be rejected by, for example, your browser. Furthermore, some interactions between
+Tanzu Applicaiton Platform components are not functional out-of-the-box.
 
 ### <a id="trust-self-signed"></a>Trusting the default, self-signed issuer
 
 You can trust the default ingress issuer by including
-`tap-ingress-selfsigned`'s certificate in TAP's trusted CA certificates as well
-as your device's certificate chain.
+`tap-ingress-selfsigned`'s certificate in Tanzu Application Platforms's trusted CA certificates and
+your device's certificate chain.
 
 > **Caution** This approach is discouraged! Instead, replace the default ingress issuer.
 
@@ -83,7 +83,7 @@ as your device's certificate chain.
 
 1. Add the certificate to [custom CA
    certificates](../custom-ca-certificates.hbs.md) by appending it to
-   `shared.ca_cert_data` and applying TAP's installation values
+   `shared.ca_cert_data` and applying Tanzu Application Platforms's installation values.
 
 1. Add the certificate to your device's trust chain _(this depends on your
    operating system and privileges)_
@@ -92,16 +92,12 @@ as your device's certificate chain.
 
 Tanzu Application Platform's default ingress issuer can be replaced by any
 other [cert-manager-compliant
-`ClusterIssuer`](https://cert-manager.io/docs/configuration/).
+ClusterIssuer](https://cert-manager.io/docs/configuration/).
 
 To replace the default ingress issuer:
 
-<!-- These are tabs. See:
-https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Using+DocWorks+Markdown#UsingDocWorksMarkdown-UsingTabs
--->
-
 Custom CA
-: > **Important** You need your own CA's certificate and private key for
+: > **Important** You need your own CAs certificate and private key for
   > this.
 
   1. Create your `ClusterIssuer`
@@ -130,7 +126,7 @@ Custom CA
           secretName: my-company-ca
       ```
 
-  1. Set `shared.ingress_issuer` to the name of your issuer
+  2. Set `shared.ingress_issuer` to the name of your issuer
 
       ```yaml
       #! my-tap-values.yaml
@@ -140,9 +136,9 @@ Custom CA
       #! ...
       ```
 
-  1. Apply TAP's installation values
+  3. Apply TAP's installation values
 
-      Once the configuration is applied, components eventually obtain certificates
+      After the configuration is applied, components eventually obtain certificates
       from the new issuer and will serve them.
 
 LetsEncrypt production
@@ -151,12 +147,12 @@ LetsEncrypt production
   > - Public CAs, like LetsEncrypt, record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
   >   transparency](https://certificate.transparency.dev/). Make sure you are
-  >   okay with this before using LetsEncrypt!
+  >   OK with this before using LetsEncrypt!
   > - LetsEncrypt's production API has [rate
   >   limits](https://letsencrypt.org/docs/rate-limits/).
   > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
   >   the internet.
-  > - Depending on your setup you will need to adjust
+  > - Depending on your setup, you will need to adjust
   >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
   > - Replace `.spec.acme.email` with the email which should receive notices
   >   for certificates from LetsEncrypt.
@@ -208,7 +204,7 @@ LetsEncrypt staging
   >   to add its certificate to your devices trust chain and [TAP's custom CA
   >   certificates](../custom-ca-certificates.hbs.md).
   > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
-  >   the internet.
+  >   the Internet.
   > - Depending on your setup you will need to adjust
   >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
   > - Replace `.spec.acme.email` with the email which should receive notices
@@ -298,10 +294,7 @@ to be deactivated.
 ## <a id="override"></a>Overriding TLS for components
 
 You can override TLS settings for each component. In your TAP values file a
-component's configuration takes precedence over `shared` values. See
-[components](../../../components.hbs.md) to understand which components have ingress
-and how to configure them.
+component's configuration takes precedence over `shared` values. For more information about which components have ingress and how to configure them, see [components](../../../components.hbs.md).
 
 >**Note** The approaches can be mixed; use a shared ingress issuer, but
 >override TLS configuration for select components.
-
