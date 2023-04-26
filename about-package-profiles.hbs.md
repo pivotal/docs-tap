@@ -86,7 +86,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   It also helps you to obtain, renew, and use those certificates. For more information about
    cert-manager, see the [cert-manager documentation](https://cert-manager.io/docs).
 
-- **[Cloud Native Runtimes](cloud-native-runtimes/about.hbs.md)**
+- **[Cloud Native Runtimes](../docs-tap/cloud-native-runtimes/about.hbs.md)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on
   Knative and runs on a single Kubernetes cluster. For information about Knative, see the

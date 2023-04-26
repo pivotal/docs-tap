@@ -48,7 +48,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
     replace `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages`
     with the new target repository.
 
-4. Configure and apply a `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a ClusterImagePolicy resource](../scst-policy/configuring.md#create-cip-resource).
+4. Configure and apply at e `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a ClusterImagePolicy resource](../scst-policy/configuring.md#create-cip-resource).
 
     For example:
 
