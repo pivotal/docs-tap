@@ -10,8 +10,8 @@ Before installing the extension, you must have:
 - [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Tilt](https://docs.tilt.dev/install.html) v0.30.12 or later
-- [Tanzu CLI and plug-ins](../install-tanzu-cli.md#cli-and-plugin)
-- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install.md)
+- [Tanzu CLI and plug-ins](../install-tanzu-cli.hbs.md#cli-and-plugin)
+- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install.hbs.md)
 
 > **Note** If you are an app developer, someone else in your organization might have already set up
 > the Tanzu Application Platform environment.
@@ -42,4 +42,4 @@ To uninstall the VMware Tanzu Developer Tools for IntelliJ:
 
 ## <a id="next-steps"></a> Next steps
 
-Proceed to [Getting started](getting-started.md).
+Proceed to [Getting started](getting-started.hbs.md).

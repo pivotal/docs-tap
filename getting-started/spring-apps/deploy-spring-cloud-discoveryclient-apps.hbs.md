@@ -76,11 +76,11 @@ spring:
             - uri: http://greeter-messages.my-apps.svc.cluster.local
 ```
 
-The values under `cloud.discovery.client.simple.instances` list all the services that your application
+The values under `spring.cloud.discovery.client.simple.instances` list all the services that your application
 requires. The example `greeter-dev.yaml` file shows how to connect to another workload running
 on the same cluster.
 
-In this example, the `greeter-messages` microservice is deployed as a workload of type `web`, so the
+In the example in [Create application workload resources](#create-workloads), the `greeter-messages` microservice is deployed as a workload of type  `web`, so the
 discovery client configuration must use the fully qualified domain name for the service within the
 Kubernetes cluster. If you instead choose to run the `greeter-messages` microservice as a workload of
 type `server`, this address still works, but the `greeter` microservice can also connect
@@ -124,7 +124,7 @@ spec:
 
 A Kubernetes secret is created in the `my-apps` namespace with a name starting with `greeter-config-`.
 
-### <a id="create-workloads"></a> Create application `Workload` resources
+### <a id="create-workloads"></a> Create application workload resources
 
 The `ConfigurationSlice` object you created in the previous section is a
 [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service).
