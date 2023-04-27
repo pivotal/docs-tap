@@ -40,7 +40,7 @@ To install Application Configuration Service on a compliant Kubernetes cluster:
 
    ```console
    tanzu package install application-configuration-service \
-   --package-name application-configuration-service.tanzu.vmware.com \
+   --package application-configuration-service.tanzu.vmware.com \
    --version VERSION -n tap-install \
    --values-file values.yaml
    ```
@@ -52,7 +52,7 @@ To install Application Configuration Service on a compliant Kubernetes cluster:
 
    ```console
    $ tanzu package install application-configuration-service \
-   --package-name application-configuration-service.tanzu.vmware.com \
+   --package application-configuration-service.tanzu.vmware.com \
    --version 2.0.0 -n tap-install
 
    Installing package 'application-configuration-service.tanzu.vmware.com'
