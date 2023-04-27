@@ -1,6 +1,6 @@
 # Spring Boot conventions
 
-This topic tells you about Spring Boot convention server.
+This topic tells you about the Spring Boot convention server.
 
 ## <a id="overview"></a>Overview
 
