@@ -1,7 +1,9 @@
-# Conventions
+# List of Spring Boot conventions
+
+This topic tells you about what the conventions do and how to apply them.
 
 When submitting the following pod `Pod Intent` on each convention, the output can change depending on
- the applied convention.
+the applied convention.
 
 Before any spring boot conventions are applied, the pod intent looks similar to this YAML:
 
