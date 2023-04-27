@@ -14,13 +14,13 @@ The ingress issuer is designated by the single Tanzu Application Platform config
 By default, a self-signed issuer is used. It's called `tap-ingress-selfsigned`
 and has limitations. For more information, see [Limitations of the default, self-signed issuer](#limitations-self-signed).
 
-VMware recommends you replace the default self-signed issuer with your own issuer.
+VMware recommends that you replace the default self-signed issuer with your own issuer.
 For more information, see [Replacing the default ingress issuer](#replace).
 
 Component-level configuration of TLS takes precedence and can be
 mixed with the ingress issuer. For more information, see [Overriding TLS for components](#override).
 
-It is possible to deactivate the ingress issuer. For more information, see
+You can deactivate the ingress issuer. For more information, see
 [Deactivating TLS for ingress](#deactivate).
 
 ## <a id="prerequisites"></a>Prerequisites
@@ -29,8 +29,8 @@ To use the Tanzu Application Platform ingress issuer, your _certificate authorit
 representable by a cert-manager `ClusterIssuer`. In particular, you need one of
 the following:
 
-- You have your own CA certificate
-- Your CA is an ACME, Venafi, or Vault-based issuer, for example like _LetsEncrypt_
+- Your own CA certificate
+- Your CA is an ACME, Venafi, or Vault-based issuer, for example, _LetsEncrypt_
 - Your CA can be represented by an
   [external](https://cert-manager.io/docs/configuration/external/) cert-manager
   `ClusterIssuer`.
@@ -49,7 +49,7 @@ and is provided by Tanzu Application Platform's [cert-manager
 package](../../../cert-manager/about.hbs.md). Its default name is
 `tap-ingress-selfsigned`.
 
-The default ingress issuer is appropriate for testing and evaluation, but VMware recommends you
+The default ingress issuer is appropriate for testing and evaluation, but VMware recommends that you
 replace it with your own issuer.
 
 >**Important** If `cert-manager.tanzu.vmware.com` is excluded from the
@@ -64,7 +64,8 @@ is not included in any trust chain configured.
 
 As a result, nothing trusts the default ingress issuer implicitly, not even
 Tanzu Application Platform components. While the issued certificates are valid in principal, they
-are rejected, for example, by your browser. Furthermore, some interactions between components are not functional out of the box.
+are rejected, for example, by your browser. Furthermore, some interactions between components are
+not functional out of the box.
 
 ### <a id="trust-self-signed"></a>Trusting the default, self-signed issuer
 
