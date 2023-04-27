@@ -2,17 +2,17 @@
 
 Tanzu Application Platform exposes ingress endpoints so that:
 
-- Platform operators and application developers can interact with the platform
-- End users can interact with applications running on the platform
+- Platform operators and application developers can interact with the platform.
+- End users can interact with applications running on the platform.
 
 For information about ingress endpoints, see [Ingress certificates inventory](./inventory.hbs.md).
 
 To secure these endpoints with TLS, for example, `https://`, Tanzu Application Platform
-has two primary ways of configuring ingress certificates:
+has two ways of configuring ingress certificates:
 
 ## A shared ingress issuer
 
-This is the recommended best practice for issuing ingress certificates on
+VMware recommends a shared ingress issuer as the best practice for issuing ingress certificates on
 Tanzu Application Platform.
 
 The ingress issuer is an on-platform representation of a _certificate
@@ -28,7 +28,7 @@ For more information about prerequisites, defaults, and how to bring your own is
 
 ## Component-level configuration
 
-In some situations depending on [prerequisites](./issuer.hbs.md#prerequisites), the shared ingress
+In some situations, depending on [prerequisites](./issuer.hbs.md#prerequisites), the shared ingress
 issuer is not the right choice. You can override
 configuration of TLS and certificates per component. A component's
 ingress/TLS configuration takes precedence over the shared ingress issuer.
@@ -37,5 +37,5 @@ For a list of components with ingress and how to customize them, see [Inventory]
 
 Tanzu Application Platform also has limited support for [wildcard certificates](./wildcards.hbs.md).
 
->**Note** The approaches can be mixed, for example,  use a shared ingress issuer, but
+>**Note** The approaches can be mixed, for example, use a shared ingress issuer, but
 override TLS configuration for select components.

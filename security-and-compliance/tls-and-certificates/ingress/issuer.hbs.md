@@ -12,14 +12,15 @@ The ingress issuer is designated by the single Tanzu Application Platform config
 `shared.ingress_issuer`. It refers to a `cert-manager.io/v1/ClusterIssuer`.
 
 By default, a self-signed issuer is used. It's called `tap-ingress-selfsigned`
-and has [limitations](#limitations-self-signed).
+and has limitations. For more information, see [Limitations of the default, self-signed issuer](#limitations-self-signed).
 
-VMware recommends you [replace](#replace) the default with your own issuer.
+VMware recommends you replace the default self-signed issuer with your own issuer. For more
+infromation, see [Replacing the default ingress issuer](#replace).
 
-[Component-level configuration of TLS](#override) takes precedence and can be
-mixed with the ingress issuer.
+Component-level configuration of TLS takes precedence and can be
+mixed with the ingress issuer. For more information, see [Overriding TLS for components](#override).
 
-It is possible to [deactivate](#deactivate) the ingress issuer.
+You can deactivate the ingress issuer. For more information, see [Deactivating TLS for ingress](#deactivate).
 
 ## <a id="prerequisites"></a>Prerequisites
 
@@ -34,7 +35,8 @@ the following:
   `ClusterIssuer`.
 
 Without one of the above, you cannot use the issuer ingress, but you can
-still [configure TLS for components](./inventory.hbs.md).
+still configure TLS for components.
+For more information, see [Ingress certificates inventory](./inventory.hbs.md)
 
 ## <a id="prerequisites"></a>Default
 
@@ -56,13 +58,13 @@ you replace it with your own issuer.
 ### <a id="limitations-self-signed"></a>Limitations of the default, self-signed issuer
 
 The default ingress issuer represents a self-signed _certificate authority_.
-This is not problematic as far as security is concerned, however, it 
+This is not problematic as far as security is concerned, however, it
 is not included in any trust chain configured.
 
 As a result, nothing trusts the default ingress issuer implicitly, not even
 Tanzu Application Platform components. While the issued certificates are valid in principal, they
 are be rejected by, for example, your browser. Furthermore, some interactions between
-Tanzu Applicaiton Platform components are not functional out-of-the-box.
+Tanzu Application Platform components are not functional out-of-the-box.
 
 ### <a id="trust-self-signed"></a>Trusting the default, self-signed issuer
 
@@ -70,7 +72,7 @@ You can trust the default ingress issuer by including
 `tap-ingress-selfsigned`'s certificate in Tanzu Application Platforms's trusted CA certificates and
 your device's certificate chain.
 
-> **Caution** This approach is discouraged! Instead, replace the default ingress issuer.
+> **Caution** This approach is discouraged. Instead, replace the default ingress issuer.
 
 1. Obtain `tap-ingress-selfsigned`'s PEM-encoded certificate
 
@@ -188,7 +190,7 @@ LetsEncrypt production
       #! ...
       ```
 
-  1. Apply TAP's installation values
+  1. Apply Tanzu Application Platform installation values file.
 
       Once the configuration is applied, components eventually obtain certificates
       from the new issuer and will serve them.
@@ -231,7 +233,7 @@ LetsEncrypt staging
                   class: contour
       ```
 
-  1. Set `shared.ingress_issuer` to the name of your issuer
+  1. Set `shared.ingress_issuer` to the name of your issuer:
 
       ```yaml
       #! my-tap-values.yaml
@@ -241,10 +243,10 @@ LetsEncrypt staging
       #! ...
       ```
 
-  1. Apply TAP's installation values
+  1. Apply Tanzu Application Platform installation values file.
 
-      Once the configuration is applied, components eventually obtain certificates
-      from the new issuer and will serve them.
+      When the configuration is applied, components obtain certificates
+      from the new issuer and serve them.
 
 Other
 : You can use any other cert-manager-supported `ClusterIssuer` as an ingress
@@ -264,16 +266,16 @@ Other
       #! ...
       ```
 
-  1. Apply TAP's installation values
+  1. Apply the Tanzu Application Platform installation values file.
 
-      Once the configuration is applied, components eventually obtain certificates
-      from the new issuer and will serve them.
+      Once the configuration is applied, components obtain certificates
+      from the new issuer and serve them.
 
 >**Note** There are many ways and tools to assert that new certificates are
 >issued and served. It is best to connect to one of the ingress endpoints and
 >inspect the certificate it serves.
 >
->The `openssl` command-line utility is readily available on virtually every
+>The `openssl` command-line utility is readily available on most
 >operating system. The following command retrieves the certificate from an
 >ingress endpoint and shows its text representation:
 >
@@ -287,13 +289,13 @@ Other
 
 ## <a id="deactivate"></a>Deactivating TLS for ingress
 
-Even though it is discouraged, you can deactivate the ingress issuer by setting
+While VMware does not recommend it, you can deactivate the ingress issuer by setting
 `shared.ingress_issuer: ""`. As a result, components consider TLS for ingress
 to be deactivated.
 
 ## <a id="override"></a>Overriding TLS for components
 
-You can override TLS settings for each component. In your TAP values file a
+You can override TLS settings for each component. In your Tanzu Application Platform values file a
 component's configuration takes precedence over `shared` values. For more information about which components have ingress and how to configure them, see [components](../../../components.hbs.md).
 
 >**Note** The approaches can be mixed; use a shared ingress issuer, but
