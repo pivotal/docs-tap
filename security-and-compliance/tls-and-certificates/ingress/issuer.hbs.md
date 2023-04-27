@@ -302,5 +302,5 @@ While VMware does not recommend it, you can deactivate the ingress issuer by set
 You can override TLS settings for each component. In your Tanzu Application Platform values file a
 component's configuration takes precedence over `shared` values. For more information about which components have ingress and how to configure them, see [components](../../../components.hbs.md).
 
->**Note** The approaches can be mixed; use a shared ingress issuer, but
+>**Note** The approaches can be mixed. Use a shared ingress issuer, but
 >override TLS configuration for select components.
