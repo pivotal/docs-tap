@@ -99,8 +99,9 @@ ClusterIssuer](https://cert-manager.io/docs/configuration/).
 To replace the default ingress issuer:
 
 Custom CA
-: > **Important** You need your own CAs certificate and private key for
-  > this.
+: **Prerequisites**
+
+  You need your own CAs certificate and private key for this.
 
   1. Create your `ClusterIssuer`
 
@@ -138,23 +139,25 @@ Custom CA
       #! ...
       ```
 
-  3. Apply TAP's installation values
+  3. Apply the Tanzu Application Platform installation values file
 
       After the configuration is applied, components eventually obtain certificates
       from the new issuer and will serve them.
 
 LetsEncrypt production
-: > **Important**
-  >
+: > Complete the following steps
+
+  **Prerequisites**
+
   > - Public CAs, like LetsEncrypt, record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
-  >   transparency](https://certificate.transparency.dev/). Make sure you are
+  >   transparency](https://certificate.transparency.dev/). Ensure you are
   >   OK with this before using LetsEncrypt!
   > - LetsEncrypt's production API has [rate
   >   limits](https://letsencrypt.org/docs/rate-limits/).
   > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
-  >   the internet.
-  > - Depending on your setup, you will need to adjust
+  >   the Internet.
+  > - Depending on your setup, you might need to adjust
   >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
   > - Replace `.spec.acme.email` with the email which should receive notices
   >   for certificates from LetsEncrypt.
@@ -196,12 +199,12 @@ LetsEncrypt production
       from the new issuer and will serve them.
 
 LetsEncrypt staging
-: > **Important**
+: > **Prerequisites**
   >
   > - Public CAs - like LetsEncrypt - record signed certificates in
   >   publicly-available certificate logs for the purpose of [certificate
-  >   transparency](https://certificate.transparency.dev/). Make sure you are
-  >   okay with this before using LetsEncrypt!
+  >   transparency](https://certificate.transparency.dev/). Ensure you are
+  >   OK with this before using LetsEncrypt!
   > - LetsEncrypt's staging API is not a publicly-trusted CA. You will have
   >   to add its certificate to your devices trust chain and [TAP's custom CA
   >   certificates](../custom-ca-certificates.hbs.md).
@@ -249,8 +252,10 @@ LetsEncrypt staging
       from the new issuer and serve them.
 
 Other
-: You can use any other cert-manager-supported `ClusterIssuer` as an ingress
-  issuer for TAP.
+: Complete the following steps:
+
+  You can use any other cert-manager-supported `ClusterIssuer` as an ingress
+  issuer for Tanzu Application Platform.
 
   Cert-manager supports a host of in-tree and out-of-tree issuers. Refer to
   cert-manager's [documentation of
@@ -268,19 +273,19 @@ Other
 
   1. Apply the Tanzu Application Platform installation values file.
 
-      Once the configuration is applied, components obtain certificates
+      When the configuration is applied, components obtain certificates
       from the new issuer and serve them.
 
 There are many ways and tools to assert that new certificates are
 issued and served. It is best to connect to one of the ingress endpoints and
 inspect the certificate it serves.
 
-The `openssl` command-line utility is readily available on most
+The `openssl` command-line utility is available on most
 operating system. The following command retrieves the certificate from an
 ingress endpoint and shows its text representation:
 
 ```shell
-# replace tap.example.com with your TAP installation's ingress domain
+# replace tap.example.com with your Tanzu Application Platform installation's ingress domain
 openssl s_client -showcerts -servername tap-gui.tap.example.com -connect tap-gui.tap.example.com:443 <<< Q | openssl x509 -text -noout
 ```
 
