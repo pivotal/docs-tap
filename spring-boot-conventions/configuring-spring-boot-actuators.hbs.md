@@ -1,7 +1,7 @@
 # Configure and access Spring Boot actuators in Tanzu Application Platform
 
-This topic describes how Spring Boot actuators are automatically configured by the Spring Boot
-conventions in Tanzu Application Platform. With this feature, users can activate or deactivate the
+This topic tells you how the Spring Boot conventions in Tanzu Application Platform configure
+Spring Boot actuators automatically. With this feature, users can activate or deactivate the
 automatic configuration of actuators on Tanzu Application Platform and on individual workloads.
 
 ## <a id='workload-config'></a>Workload-level configuration
@@ -25,7 +25,7 @@ steps:
     - The `JAVA_TOOL_OPTIONS` property is set as `-Dmanagement.endpoints.web.base-path="/actuator"`.
     - Annotation on the PodIntent is set as `boot.spring.io/actuator: http://:8081/actuator`.
 
-    In addition to the these settings, Application Live View is activated with the following actuator
+    In addition to these settings, Application Live View is activated with the following actuator
     configuration:
 
     - Label on the PodIntent is set as `tanzu.app.live.view.application.actuator: actuator`.
