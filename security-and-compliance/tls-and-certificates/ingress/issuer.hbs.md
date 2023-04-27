@@ -103,6 +103,8 @@ Custom CA
 
   You need your own CAs certificate and private key for this.
 
+  Complete the following steps:
+
   1. Create your `ClusterIssuer`
 
       Create a `Secret` and `ClusterIssuer` which represent your CA on the platform:
@@ -289,7 +291,7 @@ ingress endpoint and shows its text representation:
 openssl s_client -showcerts -servername tap-gui.tap.example.com -connect tap-gui.tap.example.com:443 <<< Q | openssl x509 -text -noout
 ```
 
-Alternatively, use a browser, navigate to the ingress endpoint and click the
+Alternatively, use a browser to navigate to the ingress endpoint, and click the
 lock icon in the navigation bar to inspect the certificate.
 
 ## <a id="deactivate"></a>Deactivating TLS for ingress
