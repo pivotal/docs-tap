@@ -1,6 +1,6 @@
 # Install Spring Boot conventions
 
-This topic describes how to install Spring Boot conventions from the Tanzu Application Platform
+This topic tells you how to install Spring Boot conventions from the Tanzu Application Platform
 package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
