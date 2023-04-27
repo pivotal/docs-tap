@@ -13,77 +13,57 @@ To use blue-green deployment, you must complete the following prerequisites:
 - Configure Carvel for your supply chain. See [Carvel Package Supply Chains (alpha)](./carvel-package-supply-chain.hbs.md).
 - Configure FluxCD for your supply chains. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
 
-## Changes to your original PackageInstall
+## Add HTTPProxy to the Blue Deployment
 
-You must make the following changes to the PackageInstall to enable blue-green deployment for an application. For example, to deploy an application called `hello-app` to production:
+With the assumption that there is an application called `hello-app` deployed to production using Carvel Package and PackageInstall,
 
-1. Create a secret.yaml file with a secret that contains your ytt overlay. For example:
+1. Create a [Contour HTTPProxy](https://projectcontour.io/docs/main/config/fundamentals/) resource to route traffic to the `hello-app` service from the URL www.hello-app.mycompany.com.
+for example:
 
-  ```yaml
-  apiVersion: v1
-  kind: Secret
+```yaml
+  apiVersion: projectcontour.io/v1
+  kind: HTTPProxy
   metadata:
-    name: overlay-secret
+    name: www
     namespace: prod
-  stringData:
-    custom-package-overlay.yaml: |
-      #@ load("@ytt:overlay", "overlay")
-
-      ---
-      apiVersion: projectcontour.io/v1
-      kind: HTTPProxy
-      metadata:
-        name: www
-        namespace: prod
-      spec:
-        virtualhost:
-          fqdn: www.hello-app.mycompany.com
-        routes:
-        - conditions:
-          - prefix: /
-          services:
-          - name: hello-app
-            port: 8080
-  ```
-
-1. Apply the secret to your cluster:
-
-  ```console
-  kubectl apply -f secret.yaml
-  ```
-
-1. Update your PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret. For example:
-
-  ```yaml
-  ---
-  apiVersion: packaging.carvel.dev/v1alpha1
-  kind: PackageInstall
-  metadata:
-    name: hello-app.dev.tap
-    namespace: prod
-    annotations:
-      # secret that contains the overlay to be applied on the package install
-      ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: overlay-secret
   spec:
-    serviceAccountName: default
-    packageRef:
-      refName: hello-app.dev.tap
-      versionSelection:
-        constraints: "1.0.0"
-    values:
-    - secretRef:
-        name: hello-app-values
-  ```
+    virtualhost:
+      fqdn: www.hello-app.mycompany.com
+    routes:
+    - conditions:
+      - prefix: /
+      services:
+      - name: hello-app
+        port: 8080
+```
+ >**Note** The services names used in HTTPProxy has to match the names of exisitng serviecs. In this case, the name
+ `hello-app` matches the service installed by the PackageInstall
 
-  >**Note** There is an overlay in this PackageInstall to add a [Contour HTTPProxy](https://projectcontour.io/docs/main/config/fundamentals/) resource to route traffic to the `hello-app` service from the URL www.hello-app.mycompany.com.
+2. Apply the HTTPProxy to your cluster:
 
-## Changes to the green PackageInstall
+```console
+  kubectl apply -f httpproxy.yaml
+```
+
+3. Verify the HTTPProxy is created and the rotue is serving traffic to your app
+
+```console
+  kubectl get HTTPProxy --namespace=prod
+```
+  This displays a list of all the HTTPproxy in the current namespace with their current names. For example:
+
+```console
+NAMESPACE        NAME                     FQDN                                  TLS SECRET            STATUS    STATUS DESCRIPTION
+prod             www                      www.hello-app.mycompany.com          hello-app-cert        valid     Valid HTTPProxy
+```
+
+## Create the Green Deployment
 
 After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to enable the blue-green deployment:
 
 1. Create a green-secret.yaml file with a secret that contains your ytt overlay. For example:
 
-  ```yaml
+```yaml
   ---
   apiVersion: v1
   kind: Secret
@@ -116,42 +96,20 @@ After a new version of the package is added to the GitOps repository, create a n
       metadata:
         #@overlay/replace
         name: hello-app-green
+```
 
-      ---
-      apiVersion: projectcontour.io/v1
-      kind: HTTPProxy
-      metadata:
-        name: www
-        namespace: prod
-      spec:
-        virtualhost:
-          fqdn: www.hello-app.mycompany.com
-        routes:
-        - conditions:
-          - prefix: /
-          services:
-          - name: hello-app-green
-            port: 8080
-            weight: 20
-          - name: hello-app
-            port: 8080
-            weight: 80
-  ```
-
-  This secret:
-    - Changes the names of the service and deployment in the carvel package to
+  This secret changes the names of the service and deployment in the carvel package to
     allow you to install another version of the app in the same namespace.
-    - Updates the HTTPProxy to add weighted traffic to each version of the app.
 
-1. Apply the secret to your cluster by running:
+2. Apply the secret to your cluster by running:
 
-  ```console
+```console
   kubectl apply -f green-secret.yaml
-  ```
+```
 
-1. Create a parameter secret for the new PackageInstall:
+3. Create a parameter secret for the new PackageInstall:
 
-  ```yaml
+```yaml
   ---
   apiVersion: v1
   kind: Secret
@@ -163,17 +121,17 @@ After a new version of the package is added to the GitOps repository, create a n
       ---
       replicas: 2
       hostname: hello-app-green.mycompany.com
-  ```
+```
 
-1. Apply the parameter secret to your cluster by running:
+4. Apply the parameter secret to your cluster by running:
 
-  ```console
+```console
   kubectl apply -f green-dev-values.yaml
-  ```
+```
 
-1. Update your PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret. For example:
+5. Create a PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret. For example:
 
-  ```yaml
+```yaml
   ---
   apiVersion: packaging.carvel.dev/v1alpha1
   kind: PackageInstall
@@ -191,18 +149,48 @@ After a new version of the package is added to the GitOps repository, create a n
     values:
     - secretRef:
         name: green-dev-values
-  ```
+```
 
-  You can update the weights in the HTTPProxy by editing the HTTPProxy, as traffic is tested in the new version of the app.
+## Practicing Blue-Green Deployment
 
-## Delete the original app version
+1. Update the HTTPproxy created with the blue deployment to route traffic to both the blue and green deployments.
+The names of the services must match the names of the already created services.
 
-After the new app is ready to handle the complete load and the `-green` version is not required, use the following steps to remove the old version and rename the new version.
+```yaml
+  ---
+  apiVersion: projectcontour.io/v1
+  kind: HTTPProxy
+  metadata:
+    name: www
+    namespace: prod
+  spec:
+    virtualhost:
+      fqdn: www.hello-app.mycompany.com
+    routes:
+    - conditions:
+      - prefix: /
+      services:
+      - name: hello-app-green
+        port: 8080
+        weight: 20
+      - name: hello-app
+        port: 8080
+        weight: 80
+```
 
-1. Ensure that all the traffic is using the correct version of the app. For example, the HTTPProxy
-looks similar to the following:
+2. You can update the weights of traffic for each service by editing the HTTPProxy
 
-  ```yaml
+3. Access the service several times and confirm both versions are serving traffic in the same percentage as expected.
+
+```console
+  curl -k https://www.hello-app.mycompany.com
+```
+
+4. After the new (green) app is ready to handle the complete load and the `-green` version is not required, use the following steps to remove the old version and rename the new version.
+
+5. Ensure that all the traffic is using the correct version of the app. For example, the HTTPProxy looks similar to the following:
+
+```yaml
   apiVersion: projectcontour.io/v1
   kind: HTTPProxy
   metadata:
@@ -218,33 +206,33 @@ looks similar to the following:
           - name: hello-app-green
             port: 8080
             weight: 100 # all traffic routed to the green app
-  ```
+```
 
-1. Identify the name of the deployment and service that are part of the PackageInstall you no longer need:
+6. Identify the name of the deployment and service that are part of the PackageInstall you no longer need:
 
-  ```console
+```console
   kubectl get PackageInstall --namespace=prod
-  ```
+```
 
   This displays a list of all the deployments and services in the current
   Kubernetes namespace, with their current names. For example:
 
-  ```console
+```console
   NAME                     PACKAGE NAME       PACKAGE VERSION      DESCRIPTION
   green.hello-app.dev.tap   hello-app.dev.tap   1.0.1            Reconcile succeeded
   hello-app.dev.tap         hello-app.dev.tap   1.0.0            Reconcile succeeded
 
-  ```
+```
 
-1. Delete the PackageInstall:
+7. Delete the PackageInstall:
 
-  ```console
+```console
   kubectl delete PackageInstall hello-app.dev.tap --namespace=prod
-  ```
+```
 
-1. Rename the service and deployments without the green prefix. For example, update the overlay secret:
+8. Rename the service and deployments without the green prefix. For example, update the overlay secret:
 
-  ```yaml
+```yaml
   ---
   apiVersion: v1
   kind: Secret
@@ -278,30 +266,13 @@ looks similar to the following:
       metadata:
         #@overlay/replace
         name: hello-app
+```
 
-      ---
-      apiVersion: projectcontour.io/v1
-      kind: HTTPProxy
-      metadata:
-        name: www
-        namespace: prod
-      spec:
-        virtualhost:
-          fqdn: www.hello-app.mycompany.com
-        routes:
-        - conditions:
-          - prefix: /
-          services:
-          - name: hello-app
-            port: 8080
-            weight: 100
-  ```
-
-1. Update your PackageInstall to include the
+9. Update your PackageInstall to include the
    `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to
    reference your new overlay secret. For example:
 
-  ```yaml
+```yaml
   ---
   apiVersion: packaging.carvel.dev/v1alpha1
   kind: PackageInstall
@@ -319,7 +290,7 @@ looks similar to the following:
     values:
     - secretRef:
         name: hello-app-values
-  ```
+```
 
 ## Verify application
 
@@ -327,16 +298,16 @@ To verify the name of the deployment and service that are part of the PackageIns
 
 1. Verify your application by running:
 
-  ```console
+```console
   kubectl get PackageInstall --namespace=prod
-  ```
+```
 
   This displays a list of all the deployments and services in the current
   Kubernetes namespace with their current names. For example:
 
-  ```console
+```console
   NAME                     PACKAGE NAME       PACKAGE VERSION      DESCRIPTION
   hello-app.dev.tap       hello-app.dev.tap     1.0.1            Reconcile succeeded
-  ```
+```
 
   The name is back to the original name and the version is `1.0.1`.
