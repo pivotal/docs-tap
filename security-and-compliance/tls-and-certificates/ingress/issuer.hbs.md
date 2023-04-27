@@ -1,7 +1,7 @@
 # Shared ingress issuer
 
 The Tanzu Application Platform shared ingress issuer is an on-platform
-representation of a _certificate authority_. It is an easy way to set up TLS
+representation of a _certificate authority_. It provides a method to set up TLS
 for the entire platform. All participating components get their ingress
 certificates issued by it.
 
@@ -14,7 +14,8 @@ The ingress issuer is designated by the single Tanzu Application Platform config
 By default, a self-signed issuer is used. It's called `tap-ingress-selfsigned`
 and has limitations. For more information, see [Limitations of the default, self-signed issuer](#limitations-self-signed).
 
-It is recommended to [replace](#replace) the default with your own issuer.
+VMware recommends you replace the default self-signed issuer with your own issuer.
+For more information, see [Replacing the default ingress issuer](#replace).
 
 Component-level configuration of TLS takes precedence and can be
 mixed with the ingress issuer. For more information, see [Overriding TLS for components](#override).
@@ -24,7 +25,7 @@ It is possible to deactivate the ingress issuer. For more information, see
 
 ## <a id="prerequisites"></a>Prerequisites
 
-To use Tanzu Application Platform's ingress issuer, your _certificate authority_ must be
+To use the Tanzu Application Platform ingress issuer, your _certificate authority_ must be
 representable by a cert-manager `ClusterIssuer`. In particular, you need one of
 the following:
 
@@ -97,7 +98,7 @@ ClusterIssuer](https://cert-manager.io/docs/configuration/).
 To replace the default ingress issuer:
 
 Custom CA
-: Complete the following steps
+: Complete the following steps:
 
   **Prerequisites**
 
@@ -129,7 +130,7 @@ Custom CA
           secretName: my-company-ca
       ```
 
-  1. Set `shared.ingress_issuer` to the name of your issuer
+  1. Set `shared.ingress_issuer` to the name of your issuer:
 
       ```yaml
       #! my-tap-values.yaml
@@ -139,7 +140,7 @@ Custom CA
       #! ...
       ```
 
-  1. Apply Tanzu Application Platform's installation values
+  1. Apply the Tanzu Application Platform installation values file.
 
       When the configuration is applied, components obtain certificates
       from the new issuer and serve them.
@@ -157,7 +158,7 @@ LetsEncrypt production
   >   limits](https://letsencrypt.org/docs/rate-limits/).
   > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
   >   the Internet.
-  > - Depending on your setup you might need to adjust
+  > - Depending on your setup, you might need to adjust
   >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
   > - Replace `.spec.acme.email` with the email which should receive notices
   >   for certificates from LetsEncrypt.
@@ -279,7 +280,7 @@ Other
       from the new issuer and serve them.
 
 <br>
->**Note** There are many ways and tools to assert that new certificates are
+There are many ways and tools to assert that new certificates are
 >issued and served. It is best to connect to one of the ingress endpoints and
 >inspect the certificate it serves.
 >
@@ -302,10 +303,7 @@ While VMware does not recommend it, you can deactivate the ingress issuer by set
 
 ## <a id="override"></a>Overriding TLS for components
 
-You can override TLS settings for each component. In your Tanzu Application Platform values file a
-component's configuration takes precedence over `shared` values. See
-[components](../../../components.hbs.md) to understand which components have ingress
-and how to configure them.
+You can override TLS settings for each component. In your Tanzu Application Platform values file a component's configuration takes precedence over `shared` values. For more information about which components have ingress and how to configure them, see [components](../../../components.hbs.md)
 
 >**Note** The approaches can be mixed. Use a shared ingress issuer, but
 >override TLS configuration for select components.
