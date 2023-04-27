@@ -1,6 +1,6 @@
 # Shared ingress issuer
 
-Tanzu Application Platform's shared ingress issuer is an on-platform
+The Tanzu Application Platform shared ingress issuer is an on-platform
 representation of a _certificate authority_. It is an easy way to set up TLS
 for the entire platform. All participating components get their ingress
 certificates issued by it.
@@ -12,14 +12,15 @@ The ingress issuer is designated by the single Tanzu Application Platform config
 `shared.ingress_issuer`. It refers to a `cert-manager.io/v1/ClusterIssuer`.
 
 By default, a self-signed issuer is used. It's called `tap-ingress-selfsigned`
-and has [limitations](#limitations-self-signed).
+and has limitations. For more information, see [Limitations of the default, self-signed issuer](#limitations-self-signed).
 
 It is recommended to [replace](#replace) the default with your own issuer.
 
-[Component-level configuration of TLS](#override) takes precedence and can be
-mixed with the ingress issuer.
+Component-level configuration of TLS takes precedence and can be
+mixed with the ingress issuer. For more information, see [Overriding TLS for components](#override).
 
-It is possible to [deactivate](#deactivate) the ingress issuer.
+It is possible to deactivate the ingress issuer. For more information, see
+[Deactivating TLS for ingress](#deactivate).
 
 ## <a id="prerequisites"></a>Prerequisites
 
@@ -27,14 +28,15 @@ To use Tanzu Application Platform's ingress issuer, your _certificate authority_
 representable by a cert-manager `ClusterIssuer`. In particular, you need one of
 the following:
 
-* You have your own CA certificate **or**
-* Your CA is an ACME, Venafi, or Vault-based issuer like _LetsEncrypt_ **or**
-* Your CA can be represented by an
+- You have your own CA certificate
+- Your CA is an ACME, Venafi, or Vault-based issuer, for example like _LetsEncrypt_
+- Your CA can be represented by an
   [external](https://cert-manager.io/docs/configuration/external/) cert-manager
   `ClusterIssuer`.
 
-If none of the above are given, then you cannot use the issuer ingress, but you can
-still [configure TLS for components](./inventory.hbs.md).
+Without one of the above, you cannot use the issuer ingress, but you can
+still configure TLS for components. For more information, see
+[Ingress certificates inventory](./inventory.hbs.md).
 
 ## <a id="prerequisites"></a>Default
 
@@ -46,8 +48,8 @@ and is provided by Tanzu Application Platform's [cert-manager
 package](../../../cert-manager/about.hbs.md). Its default name is
 `tap-ingress-selfsigned`.
 
-The default ingress issuer is appropriate for testing and evaluation, but it is
-recommended to replace it with your own issuer.
+The default ingress issuer is appropriate for testing and evaluation, but VMware recommends you
+replace it with your own issuer.
 
 >**Important** If `cert-manager.tanzu.vmware.com` is excluded from the
 >installation, then `tap-ingress-selfsigned` is not installed either. In
@@ -56,11 +58,11 @@ recommended to replace it with your own issuer.
 ### <a id="limitations-self-signed"></a>Limitations of the default, self-signed issuer
 
 The default ingress issuer represents a self-signed _certificate authority_.
-This is unproblematic as far as security is concerned. However, such an issuer
+This is not problematic as far as security is concerned, however, it
 is not included in any trust chain configured.
 
-That means that nothing trusts the default ingress issuer implicitly, not even
-Tanzu Application Platform components. While the issued certificates are valid in principle, they
+As a result, nothing trusts the default ingress issuer implicitly, not even
+Tanzu Application Platform components. While the issued certificates are valid in principal, they
 are rejected, for example, by your browser. Furthermore, some interactions between components are not functional out of the box.
 
 ### <a id="trust-self-signed"></a>Trusting the default, self-signed issuer
@@ -93,10 +95,6 @@ other [cert-manager-compliant
 ClusterIssuer](https://cert-manager.io/docs/configuration/).
 
 To replace the default ingress issuer:
-
-<!-- These are tabs. See:
-https://confluence.eng.vmware.com/pages/viewpage.action?spaceKey=CSOT&title=Using+DocWorks+Markdown#UsingDocWorksMarkdown-UsingTabs
--->
 
 Custom CA
 : Complete the following steps
@@ -294,14 +292,13 @@ Other
 >openssl s_client -showcerts -servername tap-gui.tap.example.com -connect tap-gui.tap.example.com:443 <<< Q | openssl x509 -text -noout
 >```
 >
->Alternatively, use a browser, navigate to the ingress endpoint and click the
+>Alternatively, use a browser to navigate to the ingress endpoint and click the
 >lock icon in the navigation bar to inspect the certificate.
 
 ## <a id="deactivate"></a>Deactivating TLS for ingress
 
-Even though it is discouraged, you can deactivate the ingress issuer by setting
-`shared.ingress_issuer: ""`. As a result, components consider TLS for ingress
-to be deactivated.
+While VMware does not recommend it, you can deactivate the ingress issuer by setting
+`shared.ingress_issuer: ""`.
 
 ## <a id="override"></a>Overriding TLS for components
 
@@ -310,5 +307,5 @@ component's configuration takes precedence over `shared` values. See
 [components](../../../components.hbs.md) to understand which components have ingress
 and how to configure them.
 
->**Note** The approaches can be mixed; use a shared ingress issuer, but
+>**Note** The approaches can be mixed. Use a shared ingress issuer, but
 >override TLS configuration for select components.
