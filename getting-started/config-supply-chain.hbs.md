@@ -26,7 +26,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
       name: image-policy-exceptions
     spec:
       images:
-      - glob: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages*
+      - glob: registry.example.org/myproject/*
       - glob: REPO-NAME*
       authorities:
       - static:
@@ -41,12 +41,14 @@ This how-to guide walks you through configuring your supply chain to sign and ve
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-    Add any unsigned image that must run in your namespace to the previous policy.
-    For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
-    to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` in the preceding code. If you relocated
-    the Tanzu Application Platform images to your own registry,
-    replace `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages`
-    with the new target repository.
+    - Add any unsigned image that must run in your namespace to the previous policy.
+      For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
+      to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` in the preceding code.
+
+    - Replace `registry.example.org/myproject/*` with your target registry for your
+      Tanzu Application Platform images. If you did not relocate the Tanzu Application Platform images
+      to your own registry during installation, use
+      `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages`.
 
 4. Configure and apply a `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a ClusterImagePolicy resource](../scst-policy/configuring.md#create-cip-resource).
 
@@ -82,8 +84,20 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
     Where `YOUR-NAMESPACE` is the name of your secure namespace.
 
->**Note** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
-that have chosen to opt in.
+   >**Note** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
+   >that have chosen to opt in.
+
+6. To verify your configuration, view the logs by running:
+
+   ```console
+   kubectl logs -n cosign-system deployment/webhook -f
+   ```
+
+   Example output:
+
+   ```console
+   Validated 1 policies for image gcr.io/projectsigstore/cosign@sha256:68801416e6ae0a48820baa3f071146d18846d8cd26ca8ec3a1e87fca8a735498
+   ```
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `spec.images.glob[]` you define in the configuration. For more information about configuring an image policy, see [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md).
 
