@@ -36,7 +36,7 @@ for example:
       - name: hello-app
         port: 8080
 ```
- >**Note** The services names used in HTTPProxy has to match the names of exisitng serviecs. In this case, the name
+ >**Note** The services names used in HTTPProxy has to match the names of existing services. In this case, the name
  `hello-app` matches the service installed by the PackageInstall
 
 2. Apply the HTTPProxy to your cluster:
@@ -45,7 +45,7 @@ for example:
   kubectl apply -f httpproxy.yaml
 ```
 
-3. Verify the HTTPProxy is created and the rotue is serving traffic to your app
+3. Verify the HTTPProxy is created and the route is serving traffic to your app
 
 ```console
   kubectl get HTTPProxy --namespace=prod
@@ -59,9 +59,9 @@ prod             www                      www.hello-app.mycompany.com          h
 
 ## Create the Green Deployment
 
-After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to enable the blue-green deployment:
+After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to create the green deployment:
 
-1. Create a green-secret.yaml file with a secret that contains your ytt overlay. For example:
+1. Create a green-secret.yaml file with a secret that contains the following ytt overlay. For example:
 
 ```yaml
   ---
@@ -151,7 +151,7 @@ After a new version of the package is added to the GitOps repository, create a n
         name: green-dev-values
 ```
 
-## Practicing Blue-Green Deployment
+## Divide traffic between the Blue and Green Deployments
 
 1. Update the HTTPproxy created with the blue deployment to route traffic to both the blue and green deployments.
 The names of the services must match the names of the already created services.
@@ -266,6 +266,23 @@ The names of the services must match the names of the already created services.
       metadata:
         #@overlay/replace
         name: hello-app
+
+      ---
+      apiVersion: projectcontour.io/v1
+      kind: HTTPProxy
+      metadata:
+        name: www
+        namespace: prod
+      spec:
+        virtualhost:
+          fqdn: www.hello-app.mycompany.com
+        routes:
+          - conditions:
+            - prefix: /
+            services:
+              - name: hello-app # note the name is changed back
+                port: 8080
+                weight: 100
 ```
 
 9. Update your PackageInstall to include the
