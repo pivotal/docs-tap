@@ -136,5 +136,6 @@ by Namespace Provisioner.
 Namespace Provisioner does not yet support enabling additional users with Kubernetes RBAC (support will be provided in an upcoming release).
 Until Namespace Provisioner support is provided, please follow the instructions [here](legacy-manual-namespace-setup.hbs.md#additional-user-access).
 
+----
   
 For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md).
