@@ -17,7 +17,7 @@ This topic includes commands for debugging or troubleshooting the APIDescriptor 
 3. Read logs from the `api-auto-registration` controller.
    
     ```console
-    kubectl -n api-auo-registration logs deployment.apps/api-auto-registration-controller
+    kubectl -n api-auto-registration logs deployment.apps/api-auto-registration-controller
     ```
 
 4. Patch an APIDescriptor that is stuck in Deleting mode.
