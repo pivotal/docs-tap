@@ -4,8 +4,8 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 ## <a id="you-will"></a>What you will do
 
-  - Configure your supply chain to sign your image builds.
-  - Configure an admission control policy to verify image signatures before admitting pods to the cluster.
+- Configure your supply chain to sign your image builds.
+- Configure an admission control policy to verify image signatures before admitting pods to the cluster.
 
 ## <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign and verify your image builds
 
@@ -48,7 +48,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
     - Replace `registry.example.org/myproject/*` with your target registry for your
       Tanzu Application Platform images. If you did not relocate the Tanzu Application Platform images
       to your own registry during installation, use
-      `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages`.
+      `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages*`.
 
 4. Configure and apply a `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a ClusterImagePolicy resource](../scst-policy/configuring.md#create-cip-resource).
 
@@ -86,18 +86,6 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
    >**Note** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
    >that have chosen to opt in.
-
-6. To verify your configuration, view the logs by running:
-
-   ```console
-   kubectl logs -n cosign-system deployment/webhook -f
-   ```
-
-   Example output:
-
-   ```console
-   Validated 1 policies for image gcr.io/projectsigstore/cosign@sha256:68801416e6ae0a48820baa3f071146d18846d8cd26ca8ec3a1e87fca8a735498
-   ```
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `spec.images.glob[]` you define in the configuration. For more information about configuring an image policy, see [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md).
 
