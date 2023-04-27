@@ -256,7 +256,7 @@ Other
   cert-manager's [documentation of
   issuers](https://cert-manager.io/docs/configuration/).
 
-  1. Set `shared.ingress_issuer` to the name of your issuer
+  1. Set `shared.ingress_issuer` to the name of your issuer:
 
       ```yaml
       #! my-tap-values.yaml
@@ -271,27 +271,26 @@ Other
       Once the configuration is applied, components obtain certificates
       from the new issuer and serve them.
 
->**Note** There are many ways and tools to assert that new certificates are
->issued and served. It is best to connect to one of the ingress endpoints and
->inspect the certificate it serves.
->
->The `openssl` command-line utility is readily available on most
->operating system. The following command retrieves the certificate from an
->ingress endpoint and shows its text representation:
->
->```shell
-># replace tap.example.com with your TAP installation's ingress domain
->openssl s_client -showcerts -servername tap-gui.tap.example.com -connect tap-gui.tap.example.com:443 <<< Q | openssl x509 -text -noout
->```
->
->Alternatively, use a browser, navigate to the ingress endpoint and click the
->lock icon in the navigation bar to inspect the certificate.
+There are many ways and tools to assert that new certificates are
+issued and served. It is best to connect to one of the ingress endpoints and
+inspect the certificate it serves.
+
+The `openssl` command-line utility is readily available on most
+operating system. The following command retrieves the certificate from an
+ingress endpoint and shows its text representation:
+
+```shell
+# replace tap.example.com with your TAP installation's ingress domain
+openssl s_client -showcerts -servername tap-gui.tap.example.com -connect tap-gui.tap.example.com:443 <<< Q | openssl x509 -text -noout
+```
+
+Alternatively, use a browser, navigate to the ingress endpoint and click the
+lock icon in the navigation bar to inspect the certificate.
 
 ## <a id="deactivate"></a>Deactivating TLS for ingress
 
 While VMware does not recommend it, you can deactivate the ingress issuer by setting
-`shared.ingress_issuer: ""`. As a result, components consider TLS for ingress
-to be deactivated.
+`shared.ingress_issuer: ""`.
 
 ## <a id="override"></a>Overriding TLS for components
 
