@@ -130,12 +130,10 @@ by Namespace Provisioner.
   NAME                CREATED AT
   limitrange/dev-lr   2023-03-08T04:22:20Z
   ```
+  
+  For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md).
 
 ## <a id ='additional-users-k8s-rbac'></a>Enable additional users with Kubernetes RBAC
   
 Namespace Provisioner does not yet support enabling additional users with Kubernetes RBAC (support will be provided in an upcoming release).
 Until Namespace Provisioner support is provided, please follow the instructions [here](legacy-manual-namespace-setup.hbs.md#additional-user-access).
-
-----
-  
-For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md).
