@@ -8,8 +8,8 @@ Follow these steps to deploy a sample single-page app `Workload`:
 1. [Get the sample application](#sample-app).
 1. [Create a namespace for workloads](#create-namespace).
 1. [Apply a client registration](#clientregistration).
-1. [Verify application auth settings](#auth-settings).
-1. [Launch a sample backend](#backend).
+1. [Verify application authentication settings](#auth-settings).
+1. [Start a sample back end](#backend).
 1. [Deploy the Workload](#deploy-workload).
 
 ## <a id='sample-app'></a> Get the sample application
