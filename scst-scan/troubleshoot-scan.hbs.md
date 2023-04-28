@@ -332,7 +332,7 @@ Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 ### <a id="supply-chain-stops"></a> Resolving failing scans that block a Supply Chain
 
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see
-the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md.
+the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
 ### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
