@@ -1,4 +1,4 @@
-# Tekton
+# Tekton overview
 
 Tekton is a cloud-native, open-source framework for creating CI/CD systems.
 It allows developers to build, test, and deploy across cloud providers and on-premise systems.
