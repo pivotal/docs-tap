@@ -1,4 +1,4 @@
-This topic explains how to install VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
+This topic tells you how to install VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
 
 ## <a id="prereqs"></a> Prerequisites
 
