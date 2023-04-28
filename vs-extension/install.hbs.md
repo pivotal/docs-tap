@@ -1,6 +1,6 @@
 # Install Tanzu Developer Tools for Visual Studio
 
-This topic explains how to install VMware Tanzu Developer Tools for Visual Studio.
+This topic tells you how to install VMware Tanzu Developer Tools for Visual Studio.
 
 ## <a id="prereqs"/> Prerequisites
 
