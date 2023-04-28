@@ -1,6 +1,6 @@
 # Get Started with Tanzu Developer Tools for Visual Studio
 
-This topic guides you through getting started with Tanzu Developer Tools for Visual Studio.
+This topic guides you through getting started with VMware Tanzu Developer Tools for Visual Studio.
 
 ## <a id="prereqs"/> Prerequisite
 
