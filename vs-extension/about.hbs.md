@@ -1,7 +1,9 @@
 # Overview of Tanzu Developer Tools for Visual Studio
 
-Tanzu Developer Tools for Visual Studio is an official VMware Tanzu IDE extension for Visual Studio
-to help you develop with Tanzu Application Platform.
+VMware Tanzu Developer Tools for Visual Studio is the official VMware Tanzu IDE extension for
+Visual Studio 2022.
+The extension helps you develop with Tanzu Application Platform and enables you to rapidly iterate
+on your workloads on supported Kubernetes clusters that have Tanzu Application Platform installed.
 
 This plug-in extends Microsoft Visual Studio 2022 only. It is incompatible with Visual Studio Code
 and Visual Studio for Mac.

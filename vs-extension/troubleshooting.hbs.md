@@ -1,6 +1,7 @@
 # Troubleshoot Tanzu Developer Tools for Visual Studio
 
-This topic describes what to do when encountering issues with Tanzu Developer Tools for Visual Studio.
+This topic tells you how to troubleshoot issues you encounter with
+VMware Tanzu Developer Tools for Visual Studio.
 
 ## <a id='del-wrkld-not-running'></a> Erroneous `WorkloadNotRunningState` error message
 

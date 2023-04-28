@@ -1,8 +1,8 @@
 # Use Tanzu Developer Tools for Visual Studio
 
-> **Note** This extension is in the beta stage of development.
+This topic tells you how to use VMware Tanzu Developer Tools for Visual Studio.
 
-This topic describes how to use Tanzu Developer Tools for Visual Studio.
+> **Note** This extension is in the beta stage of development.
 
 ## <a id="apply-workload"></a> Apply a workload
 
