@@ -1,7 +1,9 @@
 # Using Tanzu Developer Tools for VS Code
 
+This topic tells you how to use VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
+
 Ensure that the project you want to use the extension with has the required files specified in
-[Getting started with Tanzu Developer Tools for Visual Studio Code](../vscode-extension/getting-started.hbs.md).
+[Get started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md).
 
 The extension requires only one Tiltfile and one `workload.yaml` per project.
 The `workload.yaml` must be a single-document YAML file, not a multidocument YAML file.

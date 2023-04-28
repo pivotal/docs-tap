@@ -1,6 +1,7 @@
 # Troubleshooting Tanzu Developer Tools for VS Code
 
-This topic describes what to do when encountering issues with Tanzu Developer Tools for VS Code.
+This topic tells you what to do when you encounter issues with
+VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
 
 ## <a id='cannot-view-workloads'></a> Unable to view workloads on the panel when connected to GKE cluster
 
