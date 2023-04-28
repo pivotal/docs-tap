@@ -309,6 +309,8 @@ The names of the services must match the names of the already created services.
         name: hello-app-values
 ```
 
+10. When you're happy with the deployment after this procedure, it is safe to delete the secrets with the overlays.
+
 ## Verify application
 
 To verify the name of the deployment and service that are part of the PackageInstall:
