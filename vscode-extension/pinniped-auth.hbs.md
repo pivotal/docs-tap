@@ -1,11 +1,11 @@
 # Pinniped compatibility
 
-This topic covers the compatibility details of [Pinniped](https://github.com/vmware-tanzu/pinniped)
+This topic tells you the compatibility details of [Pinniped](https://github.com/vmware-tanzu/pinniped)
 in GitHub.
 
-## <a id="oauth"></a> Oauth
+## <a id="oauth"></a> OAuth
 
-Oauth login is compatible only when both `--skip-browser` and `--skip-listen` flags are not set.
+OAuth login is compatible only when both `--skip-browser` and `--skip-listen` flags are not set.
 
 ## <a id="ldap"></a> LDAP
 

@@ -1,6 +1,7 @@
 # Troubleshooting Tanzu Developer Tools for VS Code
 
-This topic describes what to do when encountering issues with Tanzu Developer Tools for VS Code.
+This topic tells you what to do when you encounter issues with
+VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
 
 ## <a id="debug-ends-early"></a> First debugging session ends prematurely
 
