@@ -14,7 +14,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and
   plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
 - Install the Apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
-- [Set up developer namespaces to use installed packages](../../set-up-namespaces.hbs.md).
+- [Set up developer namespaces to use installed packages](../../install-online/set-up-namespaces.hbs.md).
 - For more information about the values you can provide when creating and managing the life cycle of
   workloads, see [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/)
   in the Cartographer documentation. Alternatively, run `kubectl explain workload.spec` for the Kubernetes
@@ -51,10 +51,10 @@ Where:
 This process can also be done with non-publicly accessible repositories. These require authentication
 using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials.
 
-Further information on how to set it up in 
+Further information on how to set it up in
 [Out of the Box Supply Chain with private Git repos](../../scc/building-from-source.hbs.md#private-gitrepository),
 how the supply chain manages git repositories in [How it works](../../scc/building-from-source.hbs.md#how-it-works) section
-and how to override parameters to customize the behavior to manage them in 
+and how to override parameters to customize the behavior to manage them in
 [Workload parameters](../../scc/building-from-source.hbs.md#workload-parameters) section.
 
 View the full list of supported workload configuration options
@@ -81,9 +81,9 @@ Where:
 - `--source-image` is the registry path where the local source code is uploaded as an image.
 
 The cluster needs the correct credentials and access rights in order to push the source code to the image registry.
-More information on authentication to publish local source in supply chain 
+More information on authentication to publish local source in supply chain
 [local source authentication](../../scc/building-from-source.hbs.md#auth) and a deeper explanation
-on how the supply chain manages this authentication in the local source 
+on how the supply chain manages this authentication in the local source
 [how it works](../../scc/building-from-source.hbs.md#how-it-works-1) section.
 
 #### Exclude Files
@@ -160,8 +160,8 @@ tanzu apps workload create petclinic-image --param-yaml maven=$"artifactId:hello
 tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
 
-To configure the credentials that the MavenArtifact expects for authentication, 
-check the [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-repository-secret) 
+To configure the credentials that the MavenArtifact expects for authentication,
+check the [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-repository-secret)
 section in supply chain guide.
 
 ## <a id='yaml-files'></a> Working with YAML files

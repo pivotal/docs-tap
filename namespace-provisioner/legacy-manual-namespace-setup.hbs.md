@@ -23,7 +23,7 @@ To provision namespaces manually, complete the following steps:
      `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. You can use the same registry server as in
      `ootb_supply_chain_basic` - `registry` - `server`. For more information, see
-     [Install Tanzu Application Platform package and profiles](../install.hbs.md).
+     [Install Tanzu Application Platform package and profiles](../install-online/profile.hbs.md).
       - For Docker Hub, the value is `https://index.docker.io/v1/`. It must have the leading
       `https://`, the `v1` path, and the trailing `/`.
       - For Google Container Registry (GCR), the value is `gcr.io`.
