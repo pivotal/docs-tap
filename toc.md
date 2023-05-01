@@ -22,7 +22,7 @@ docs.vmware.com is built.
       - [Install packages and profiles](install-offline/profile.hbs.md)
       - [Install the Tanzu Build Service dependencies](install-offline/tbs-offline-install-deps.hbs.md)
       - [Configure custom CAs for Tanzu Application Platform GUI](install-offline/tap-gui-non-standard-certs-offline.hbs.md)
-      - [Configure Application Accelerator](application-accelerator-configuration-offline.hbs.md)
+      - [Configure Application Accelerator](install-offline/application-accelerator-configuration.hbs.md)
       - [Use Grype](install-offline/grype-offline-airgap.hbs.md)
       - [Set up namespaces](install-offline/set-up-namespaces.hbs.md)
   - [Install on AWS Cloud](aws-install-intro.hbs.md)
