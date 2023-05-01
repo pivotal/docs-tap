@@ -4,8 +4,8 @@ This topic describes how to install Tanzu Application Platform on your Kubernete
 
 Before installing the packages, ensure that you have completed the following tasks:
 
-- Review the [Prerequisites](prerequisites.html) to ensure that you have set up everything required before beginning the installation.
-- [Accept Tanzu Application Platform EULA and install Tanzu CLI](install-tanzu-cli.html).
+- Review the [Prerequisites](../prerequisites.html) to ensure that you have set up everything required before beginning the installation.
+- [Accept Tanzu Application Platform EULA and install Tanzu CLI](../install-tanzu-cli.html).
 - [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html). This step is optional if you are using VMware Tanzu Kubernetes Grid cluster.
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
@@ -202,7 +202,7 @@ For an air-gapped environment, an internally accessible Sigstore Stack is requir
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [Components and installation profiles](about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -362,14 +362,14 @@ service's External IP address.
    - Harbor has the form `repository: "my-project/supply-chain"`.
    - Docker Hub has the form `repository: "my-dockerhub-user"`.
    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](scc/git-auth.hbs.md) for more information.
-- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
+- `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](../scc/git-auth.hbs.md) for more information.
+- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](../scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.
 - `GITLAB-TOKEN` is the API token for your GitLab instance.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](namespace-provisioner/about.hbs.md).
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
@@ -440,4 +440,4 @@ Follow these steps to install the Tanzu Application Platform package:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install the Tanzu Build Service dependencies](tbs-offline-install-deps.html)
+- [Install the Tanzu Build Service dependencies](tbs-offline-install-deps.hbs.md)

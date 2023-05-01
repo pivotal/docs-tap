@@ -201,13 +201,13 @@ an outcome.
 
 ### Ports and Protocols
 
-Ports are used in TCP and UDP protocols for identification of applications. While some applications use well-known port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic ports. Open port refers to a port on which a system is accepting communication. An open port does not immediately mean a security issue, but it's important to understand that it can provide a pathway for attackers to the application listening on that port. To help with understanding the traffic flows in the Tanzu Application Platform, a list of TAP ports and protocols is available to existing and future customers upon request. 
+Ports are used in TCP and UDP protocols for identification of applications. While some applications use well-known port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic ports. Open port refers to a port on which a system is accepting communication. An open port does not immediately mean a security issue, but it's important to understand that it can provide a pathway for attackers to the application listening on that port. To help with understanding the traffic flows in the Tanzu Application Platform, a list of TAP ports and protocols is available to existing and future customers upon request.
 
 Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html)
 
 ## Networking
 
-TAP networking is a shared responsibility with customers to ensure that customer workloads only expose internal-only routes. All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/). TAP is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html). It is vital that customers configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on knative deployed services. For more information, please refer to instructions for [installing TAP in an air-gapped environment](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-air-gap.html?hWord=N4IghgNiBcIC5gHYC8CuACRBTOB3A9gE4DWIAvkA).
+TAP networking is a shared responsibility with customers to ensure that customer workloads only expose internal-only routes. All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/). TAP is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html). It is vital that customers configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on knative deployed services. For more information, please refer to instructions for [installing TAP in an air-gapped environment](../install-offline/profile.hbs.md).
 
 
 ## Key Management
