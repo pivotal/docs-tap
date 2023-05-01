@@ -90,4 +90,4 @@ Deactivate all SSL verification
 
 ## <a id='next-steps'></a>Next steps
 
-- [Configure Application Accelerator](../application-accelerator-configuration-offline.hbs.md)
+- [Configure Application Accelerator](./application-accelerator-configuration.hbs.md)
