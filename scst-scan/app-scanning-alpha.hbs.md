@@ -198,6 +198,7 @@ The following access is required:
     ```
 
     Where:
+    
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is required if the image you are scanning is private.
 
