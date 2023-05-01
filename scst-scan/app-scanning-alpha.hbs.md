@@ -140,7 +140,7 @@ The following sections describe how to configure service accounts and registry c
 
 The following access is required:
 
-  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
+  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
   - Read access to the registry containing the image to scan, if scanning a private image
   - Write access to the registry to which results are published
 
@@ -161,7 +161,7 @@ The following access is required:
 
 2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
-    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install.hbs.md#full-profile).
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install-online/profile.hbs.md#full-profile).
 
     ```console
     read -s REGISTRY_PASSWORD

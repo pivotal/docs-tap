@@ -1,6 +1,6 @@
 # Secure a single-page app workload
 
-This topic describes the procedure to secure a sample single-page Angular app `Workload` with AppSSO, which runs on 
+This topic describes the procedure to secure a sample single-page Angular app `Workload` with AppSSO, which runs on
 Tanzu Application Platform (commonly known as TAP).
 
 Follow these steps to deploy a sample single-page app `Workload`:
@@ -25,7 +25,7 @@ Follow these steps to fetch the single-page Angular app source code:
     - Option 2: Use the Tanzu Accelerator CLI.
 
         Download the zip file of the accelerator source code and identify your `AuthServer` Issuer URI by running:
-        
+
         ```shell
         kubectl get authserver -A
         ```
@@ -59,7 +59,7 @@ Follow these steps to fetch the single-page Angular app source code:
 
 ## <a id='create-namespace'></a> Create a namespace for workloads
 
-You must create a namespace for your workloads for the `Workload` resources to function properly. 
+You must create a namespace for your workloads for the `Workload` resources to function properly.
 If you have a workloads namespace already, you can skip this step.
 
 ```shell
@@ -67,15 +67,15 @@ kubectl create namespace my-apps
 kubectl label namespaces my-apps apps.tanzu.vmware.com/tap-ns=""
 ```
 
-For more information about provisioning namespaces for running `Workloads`, 
-see [Set up developer namespaces](../../set-up-namespaces.hbs.md).
+For more information about provisioning namespaces for running `Workloads`,
+see [Set up developer namespaces](../../install-online/set-up-namespaces.hbs.md).
 
 ## <a id='clientregistration'></a> Create a `ClientRegistration`
 
 You must create a `ClientRegistration` to register the frontend application with the `AuthServer`.
 
 **Example:** A `ClientRegistration` named `angular-frontend` in the `my-apps` namespace.
-`angular-frontend` is attached to an existing `AuthServer` with labels `my-sso=true` and an 
+`angular-frontend` is attached to an existing `AuthServer` with labels `my-sso=true` and an
 allowance of client registrations from the `my-apps` namespace.
 
 ```yaml
@@ -119,7 +119,7 @@ kubectl get clientregistration angular-frontend --namespace my-apps
 ## <a id="auth-settings"></a> Verify application authentication settings
 
 Within the single-page Angular app accelerator, authentication configuration settings are located in `src/assets/auth.conf.json`.
-After generating the accelerator, expect to observe the populated settings. 
+After generating the accelerator, expect to observe the populated settings.
 
 Open the file and verify that it adheres to the following structure:
 
@@ -150,8 +150,8 @@ The `angular-frontend` sample application requires a back end application to sta
     kubectl expose pod sample-backend --port 80 -n my-apps
     ```
 
-1. In the `angular-frontend` source code, edit the `.server.location[/api/].proxy_pass` 
-field in the `nginx.conf` file at the root of the source directory. 
+1. In the `angular-frontend` source code, edit the `.server.location[/api/].proxy_pass`
+field in the `nginx.conf` file at the root of the source directory.
 
 1. After updating the value, commit the changes to the Git remote repository:
 
@@ -182,7 +182,7 @@ Follow these steps to deploy the `Workload`:
         --git-branch main
     ```
 
-    > **Note** As an alternative approach to creating the workload, you can declaratively 
+    > **Note** As an alternative approach to creating the workload, you can declaratively
     > define a `Workload` resource by using `config/workload.yaml` within the source repository.
 
     It might take a few minutes for the workload to become available through a browser-accessible URL.
@@ -199,7 +199,7 @@ Follow these steps to deploy the `Workload`:
     tanzu apps workload tail angular-frontend --namespace my-apps
     ```
 
-    After the status of the workload reaches the `Ready` state, 
+    After the status of the workload reaches the `Ready` state,
     you can navigate to the provided URL, which looks similar to:
 
     ```text
@@ -208,7 +208,7 @@ Follow these steps to deploy the `Workload`:
 
 1. Open your preferred web browser and navigate to the URL.
 
-    Expect to be prompted to sign in by using AppSSO. After successfully signing in, 
+    Expect to be prompted to sign in by using AppSSO. After successfully signing in,
     the profile page displays your identifying information.
 
 ## <a id="clean-up"></a> Clean up

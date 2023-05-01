@@ -159,7 +159,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
   registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME`
   must match what was specified for `registry` as part of the installation
   values for `ootb_supply_chain_basic`. See the Full Profile section on
-  [Installing   Tanzu Application Platform package and
+  [Installing   Tanzu Application Platform package and../install-online/install.hbs.md
   profiles](../install.hbs.md#full-profile).
 
       ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu
