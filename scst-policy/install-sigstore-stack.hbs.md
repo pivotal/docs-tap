@@ -12,7 +12,7 @@ The Sigstore Stack consists of:
 - [TheUpdateFramework (TUF)](https://theupdateframework.io/)
 
 For information about air-gapped installation, see [Install Tanzu Application
-Platform in an air-gapped environment](../install-air-gap.hbs.md)\.
+Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
 If a Sigstore Stack TUF is already deployed and accessible in the air-gapped
 environment, proceed to [Update Policy Controller with TUF Mirror and
