@@ -160,7 +160,7 @@ you can go to [Deploying your application with Tanzu Application Platform](deplo
   must match what was specified for `registry` as part of the installation
   values for `ootb_supply_chain_basic`. See the Full Profile section on
   [Installing   Tanzu Application Platform package and../install-online/install.hbs.md
-  profiles](../install.hbs.md#full-profile).
+  profiles](../install-online/profile.hbs.md#full-profile).
 
       ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu
       Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)

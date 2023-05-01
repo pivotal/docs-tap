@@ -51,7 +51,7 @@ For REST API:
 Before using function workloads, follow all instructions to install Tanzu Application Platform
 for your environment:
 
-- [Installing Tanzu Application Platform online](../online-install-intro.md)
+- [Installing Tanzu Application Platform online](../install-online/intro.hbs.md)
 - [Installing Tanzu Application Platform in an air-gapped environment](../offline-install-intro.md#install-air-gap)
 
 ## <a id="create-function-proj-acc"></a> Create a function project from an accelerator

@@ -131,7 +131,7 @@ For more information, see [Kubernetes documentation](https://kubernetes.io/docs/
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
 
-- For the [full profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
+- For the [full profile](install-online/profile.hbs.md#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
     - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-custom-stacks.html).

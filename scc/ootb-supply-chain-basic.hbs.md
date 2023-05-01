@@ -88,7 +88,7 @@ run pods using images from the installation of Tanzu Application Platform.
       `https://index.docker.io/v1/`. Specifically, it must have the leading
       `https://`, the `v1` path, and the trailing `/`. For GCR, this is
       `gcr.io`.  Based on the information used in [Installing the Tanzu
-      Application Platform package and profiles](../install.md), you can use the
+      Application Platform package and profiles](../install-online/profile.hbs.md), you can use the
       same registry server as in `ootb_supply_chain_basic` - `registry` -
       `server`.
 

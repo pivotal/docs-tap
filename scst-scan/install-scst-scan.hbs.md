@@ -210,7 +210,7 @@ To install SCST - Scan (Scan controller):
     images are pushed to the same registry as the Tanzu Application Platform
     images, this can reuse the `tap-registry` secret created in [Add the Tanzu
     Application Platform package
-    repository](../install.html#add-tap-package-repo) as described earlier.
+    repository](../install-online/profile.hbs.md#add-tap-package-repo) as described earlier.
 
     Run to retrieve other configurable settings and append the key-value pair to the previous `grype-values.yaml` file:
 
