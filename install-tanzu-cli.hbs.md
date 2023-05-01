@@ -265,7 +265,7 @@ For online installation:
 For air-gapped installation:
 
 - [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
-- [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
+- [Install Tanzu Application Platform in an air-gapped environment](install-offline/profile.hbs.md)
 
 For GitOps (beta) installation:
 

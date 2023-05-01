@@ -59,7 +59,7 @@ Deactivate all SSL verification
   When the value equals `0`, certificate validation is deactivated for TLS connections.
 
   To do this, use the `package_overlays` key in the Tanzu Application Platform values file.
-  For instructions, see [Customize Package Installation](customize-package-installation.hbs.md).
+  For instructions, see [Customize Package Installation](../customize-package-installation.hbs.md).
 
   The following YAML is an example `Secret` containing an overlay to deactivate TLS:
 
@@ -90,4 +90,4 @@ Deactivate all SSL verification
 
 ## <a id='next-steps'></a>Next steps
 
-- [Configure Application Accelerator](application-accelerator-configuration-offline.hbs.md)
+- [Configure Application Accelerator](../application-accelerator-configuration-offline.hbs.md)
