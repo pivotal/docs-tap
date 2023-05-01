@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)
 
->**Caution** 
+>**Caution**
 >
 > - Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 > - Tanzu GitOps Reference Implementation (RI) does not support changing the secrets management strategy for a cluster.
@@ -13,9 +13,9 @@ Before installing Tanzu Application Platform, you need:
 
 <!-- TODO: link to download instructions -->
 
-- **SOPS CLI** to view and edit SOPS encrypted files. 
+- **SOPS CLI** to view and edit SOPS encrypted files.
 To install the SOPS CLI, see [SOPS documentation](https://github.com/mozilla/sops/releases) in GitHub.
-- **Age CLI** to create an ecryption key used to encrypt and decrypt sensitive data. 
+- **Age CLI** to create an ecryption key used to encrypt and decrypt sensitive data.
 To install the Age CLI, see [age documentation](https://github.com/FiloSottile/age#installation) in GitHub.
 - Completed the [Prerequisites](../prerequisites.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
@@ -151,7 +151,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ...
     ```
 
-    This script creates the directory `clusters/full-tap-cluster/` and copies in the 
+    This script creates the directory `clusters/full-tap-cluster/` and copies in the
     configuration required to sync this Git repository with the cluster and installing Tanzu Application Platform.
 
 1. Commit and push:
@@ -189,7 +189,7 @@ The following sections describe how to create these values files.
     AGE-SECRET-KEY-my-secret-key
     ```
 
-1. Create a plain YAML file `tap-sensitive-values.yaml` that contains a placeholder 
+1. Create a plain YAML file `tap-sensitive-values.yaml` that contains a placeholder
 for the sensitive portion of Tanzu Application Platform values:
 
     ```yaml
@@ -235,7 +235,7 @@ for the sensitive portion of Tanzu Application Platform values:
     mv tap-sensitive-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/cluster-config/values/
     ```
 
-1. (Optional) Retain the Age identity key file in a safe and secure place such as a password manager, 
+1. (Optional) Retain the Age identity key file in a safe and secure place such as a password manager,
 and purge the scratch space:
 
     ```console
@@ -246,8 +246,8 @@ and purge the scratch space:
 
 ## <a id='prep-non-sensitive-tap-values'></a> Preparing non-sensitive Tanzu Application Platform values
 
-Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` 
-by using the [Full Profile sample](../install.md#full-profile) as a guide:
+Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml`
+by using the [Full Profile sample](../install-online/profile.hbs.md#full-profile) as a guide:
 
 Example:
 
@@ -263,7 +263,7 @@ tap_install:
 
 ## <a id='update-sensitive-tap-values'></a> Updating sensitive Tanzu Application Platform values
 
-After filling in the non-sensitive values, follow these steps to extract the sensitive values 
+After filling in the non-sensitive values, follow these steps to extract the sensitive values
 into `tap-sensitive-values.sops.yaml` that you prepared earlier:
 
 1. Open an editor through SOPS to edit the encrypted sensitive values file:
@@ -337,8 +337,8 @@ Follow these steps to generate the Tanzu Application Platform installation and T
     - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository.
     - `HOST-LIST` is the list of known hosts for Git host service.
     - `AGE-KEY` is the contents of the Age key generated earlier.
-    - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. 
-    If the images are relocated as described in [Relocate images to a registry](#relocate-images-to-a-registry), 
+    - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images.
+    If the images are relocated as described in [Relocate images to a registry](#relocate-images-to-a-registry),
     this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
     Example of the Git repo hosted on GitHub:

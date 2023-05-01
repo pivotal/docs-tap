@@ -16,4 +16,4 @@ excluded_packages:
 ```
 
 For more information, navigate
-to [Exclude packages from a Tanzu Application Platform profile](../../install.md#exclude-packages).
+to [Exclude packages from a Tanzu Application Platform profile](../../install-online/profile.hbs.md#exclude-packages).
