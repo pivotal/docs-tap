@@ -40,7 +40,7 @@ automatically upgraded.
 
 ### <a id="upgrade-scanner-manual"></a> Manual installation
 
-1. If a scanner, such as Grype Scanner, was installed as part of Tanzu Application Platform by using the [full profile](../install.hbs.md#full-profile), run to upgrade:
+1. If a scanner, such as Grype Scanner, was installed as part of Tanzu Application Platform by using the [full profile](../install-online/profile.hbs.md#full-profile), run to upgrade:
 
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yaml -n tap-install

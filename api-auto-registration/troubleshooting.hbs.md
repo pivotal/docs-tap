@@ -17,7 +17,7 @@ This topic includes commands for debugging or troubleshooting the APIDescriptor 
     ```
 
 3. Read logs from the `api-auto-registration` controller.
-   
+
     ```console
     kubectl -n api-auto-registration logs deployment.apps/api-auto-registration-controller
     ```
@@ -56,9 +56,9 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
 #### <a id="set-ca-crt"></a> Configure CA Cert Data
 
 1. Obtain the PEM Encoded crt file for your ClusterIssuer or TLS setup . You use this to update the `api-auto-registration` package.
- 
+
 2. If you installed the API Auto Registration package through predefined profiles, you must update the `tap-values.yaml` and update the Tanzu Application Platform installation.
-   Place the PEM encoded certificate into the `shared.ca_cert_data` key of the values file. See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
+   Place the PEM encoded certificate into the `shared.ca_cert_data` key of the values file. See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
    Run the following command to update the package.
 
    ```console
@@ -74,7 +74,7 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
    ```
 
    You can find the available api-auto-registration versions by running:
-   
+
    ```console
    tanzu package available list -n tap-install | grep 'API Auto Registration'
    ```
