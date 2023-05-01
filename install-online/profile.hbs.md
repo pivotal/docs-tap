@@ -239,7 +239,7 @@ Refer to [Install multicluster Tanzu Application Platform profiles](../multiclus
 >**Important** While installing Tanzu Application Platform v1.3 and later,
 exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
 Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
-controller known issues](scst-policy/known-issues.hbs.md).
+controller known issues](../scst-policy/known-issues.hbs.md).
 
 ```yaml
 shared:
