@@ -1,10 +1,10 @@
-# Author supply chains
+# Author your supply chains
 
-The Out of the Box Supply Chain, Delivery Basic, and Templates packages provide
-a set of Kubernetes objects aiming at covering a reference path to production
-prescribed by VMware. Because VMware recognizes that each organization has their
-own needs, all of these objects are customizable, whether individual
-templates for each resource, whole supply chains, or delivery objects.
+The Out of the Box Supply Chain, Delivery Basic, and Templates Supply Chain
+Choreographer packages give you Kubernetes objects that cover a reference path
+to production. Because VMware recognizes that you have your own needs, these
+objects are customizable, including individual templates for each resource,
+whole supply chains, or delivery objects.
 
 Depending on how you installed Tanzu Application Platform, there are different ways to
 customize the Out of the Box Supply Chains. The following sections describe the ways
