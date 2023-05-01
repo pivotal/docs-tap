@@ -1,6 +1,6 @@
-# Using Azure DevOps as a Git provider
+# Using Azure DevOps as a Git provider with your supply chains
 
-This topic describes how to use Azure DevOps as a Git provider with your supply chains.
+This topic describes how to use Azure DevOps as a Git provider with your Supply Chain Choreographer supply chains.
 
 There are two uses for Git in a supply chain:
 
