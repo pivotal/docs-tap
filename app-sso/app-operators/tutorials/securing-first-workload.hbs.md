@@ -104,7 +104,7 @@ provide the capability to apply `Workload` resources out of the box within the p
 the [prerequisites](#prerequisites) section.
 
 To deploy a workload, it is best to work in a separate workload-specific namespace. Once created, there
-are [required TAP configurations that need to be applied](../../../set-up-namespaces.md)
+are [required TAP configurations that need to be applied](../../../install-online/set-up-namespaces.hbs.md)
 before a `Workload` in a specific namespace can be deployed properly.
 
 ## <a id="deploy-as-workload"></a>Deploying the sample application as a Workload
@@ -121,7 +121,7 @@ kubectl create namespace workloads
 
 ### Apply required TAP workload configurations
 
-Within the `workloads` namespace, apply [TAP required developer namespaces](../../../set-up-namespaces.md)
+Within the `workloads` namespace, apply [TAP required developer namespaces](../../../install-online/set-up-namespaces.hbs.md)
 as described.
 
 ### Apply the `ClientRegistration`

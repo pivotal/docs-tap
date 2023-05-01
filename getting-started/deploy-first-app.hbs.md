@@ -30,7 +30,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
 3. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** text box
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
-   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.hbs.md#full-profile). Click **NEXT**.
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install-online/profile.hbs.md#full-profile). Click **NEXT**.
 
     ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
 

@@ -127,6 +127,6 @@ To update the installation values for the `api-portal` package:
 See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
 
 3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the TAP installation.
-   See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
+   See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
 
 >**Note** You can update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
