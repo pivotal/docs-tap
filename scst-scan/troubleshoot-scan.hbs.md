@@ -131,7 +131,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
     ```
 
 4. If the secret `CA-SECRET` doesn't exist in your `DEV-NAMESPACE`, verify that the `CA-SECRET` exists in the `METADATASTORE-NAMESPACE` namespace:
-    
+
     ```
     kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE
     ```
@@ -144,7 +144,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
     - If `CA-SECRET` doesn't exist in the metadata store namespace, configure the certificate. See [Custom certificate configuration](../scst-store/custom-cert.hbs.md).
 
 5. Check if the secretexport and secretimport exist and are reconciling successfully:
-    
+
     ```
     kubectl get secretexports.secretgen.carvel.dev -n `METADATASTORE-NAMESPACE`
     kubectl get secretimports.secretgen.carvel.dev -n `DEV-NAMESPACE`
@@ -388,7 +388,7 @@ UNAUTHORIZED: unauthorized to access repository
 The recommended migration path for users who are setting up their namespaces
 manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
-[instructions](../set-up-namespaces.hbs.md).
+[instructions](../install-online/set-up-namespaces.hbs.md).
 
 >**Important** This step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform

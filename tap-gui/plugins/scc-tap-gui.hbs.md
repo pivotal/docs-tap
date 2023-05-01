@@ -14,12 +14,12 @@ Tanzu Application Platform, see [Supply Chain Choreographer for Tanzu](../../scc
 To use Supply Chain Choreographer in Tanzu Application Platform GUI you must have:
 
 - One of the following installed on your cluster:
-  - [Tanzu Application Platform Full profile](../../install.hbs.md#install-profile)
-  - [Tanzu Application Platform View profile](../../install.hbs.md#install-profile)
+  - [Tanzu Application Platform Full profile](../../install-online/profile.hbs.md#install-profile)
+  - [Tanzu Application Platform View profile](../../install-online/profile.hbs.md#install-profile)
   - [Tanzu Application Platform GUI package](../install-tap-gui.hbs.md) and a metadata store package
 - One of the following installed on the target cluster where you want to deploy your workload:
-  - [Tanzu Application Platform Run profile](../../install.hbs.md#install-profile)
-  - [Tanzu Application Platform Full profile](../../install.hbs.md#install-profile)
+  - [Tanzu Application Platform Run profile](../../install-online/profile.hbs.md#install-profile)
+  - [Tanzu Application Platform Full profile](../../install-online/profile.hbs.md#install-profile)
 
 For more information, see [Overview of multicluster Tanzu Application Platform](../../multicluster/about.hbs.md)
 

@@ -158,7 +158,7 @@ SecurityContextConstraints (SCC), VMware recommends:
     ```
 
 3. Binding the role to an actor, ServiceAccount, as instructed in [Set up
-   developer namespaces to use installed packages ](../set-up-namespaces.hbs.md):
+   developer namespaces to use installed packages ](../install-online/set-up-namespaces.hbs.md):
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
