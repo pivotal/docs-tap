@@ -1,6 +1,6 @@
 # Supply Chain Choreographer for Tanzu
 
-This topic introduces Supply Chain Choreographer.
+This topic introduces you to Supply Chain Choreographer.
 
 ## <a id="overview"></a> Overview
 
