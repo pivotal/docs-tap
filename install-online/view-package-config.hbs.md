@@ -58,4 +58,4 @@ Shared Keys define values that configure multiple packages. These keys are defin
 |----|----|----|
 |`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
 
-For information about package-specific configuration, see [Installing individual packages](install-components.md).
+For information about package-specific configuration, see [Installing individual packages](components.hbs.md).

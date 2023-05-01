@@ -138,7 +138,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     - `TOKEN-SECRET-NAME` is the name of the secret containing the authentication token to connect to the SCST - Store deployment when installed in a different cluster, if you are using multicluster.
     If built images are pushed to the same registry as the Tanzu Application Platform images,
     this can reuse the `tap-registry` secret created in
-    [Add the Tanzu Application Platform package repository](../install.html#add-tap-package-repo) as described earlier.
+    [Add the Tanzu Application Platform package repository](../install-online/profile.hbs.md#add-tap-package-repo) as described earlier.
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
 

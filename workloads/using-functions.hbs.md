@@ -26,13 +26,13 @@ This means that you can update the webserver and application boilerplate without
 
 Before using function workloads on Tanzu Application Platform, complete the following prerequisites:
 
-* Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
+* Follow all instructions in [Installing Tanzu Application Platform](../install-online/intro.hbs.md).
 
 * Download and install the kp CLI for your operating system from the
 [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network.
 For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
 
-* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+* Follow all instructions in [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
 
 ## <a id="add-buildpacks"></a> Adding function buildpacks
 
@@ -48,7 +48,7 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
 
 1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-builders.html).
 Run one of the following commands depending on the dependencies
-you used in the `buildservice` section of your [`tap-values.yaml` file](../install.md#full-profile):
+you used in the `buildservice` section of your [`tap-values.yaml` file](../install-online/profile.hbs.md#full-profile):
 
     - For the **full dependencies**, run:
 
