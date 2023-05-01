@@ -255,6 +255,6 @@ For online installation:
 For air-gapped installation:
 
 - [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)*
-- [Install Tanzu Application Platform in an air-gapped environment (beta)](install-air-gap.html)
+- [Install Tanzu Application Platform in an air-gapped environment (beta)](install-offline/profile.hbs.md)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
