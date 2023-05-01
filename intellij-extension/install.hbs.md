@@ -12,7 +12,7 @@ Before installing the extension, you must have:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later
 - [Tanzu CLI and plug-ins](../install-tanzu-cli.hbs.md#cli-and-plugin)
-- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install.hbs.md)
+- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install-online/profile.hbs.md)
 
 If you are an app developer, someone else in your organization might have already set up the
 Tanzu Application Platform environment.

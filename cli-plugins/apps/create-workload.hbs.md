@@ -11,7 +11,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Set your kubeconfig context to the prepared cluster `kubectl config use-context CONTEXT_NAME`.
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and plug-ins](../../install-tanzu-cli.md#cli-and-plugin).
 - Install the apps plug-in. See the [Install Apps plug-in](install-apps-cli.md).
-- [Set up developer namespaces to use installed packages](../../set-up-namespaces.md).
+- [Set up developer namespaces to use installed packages](../../install-online/set-up-namespaces.hbs.md).
 
 ## <a id="example"></a> Get started with an example workload
 

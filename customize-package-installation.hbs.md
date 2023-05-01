@@ -77,4 +77,4 @@ To add an overlay to a package that was installed by using a Tanzu Application P
     ```
 
 For information about Tanzu Application Platform profiles, see
-[Installing Tanzu Application Platform package and profiles](install.hbs.md).
+[Installing Tanzu Application Platform package and profiles](install-online/profile.hbs.md).
