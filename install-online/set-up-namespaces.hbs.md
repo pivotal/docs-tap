@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install Tanzu Developer Tools for VS Code](vscode-install-online.hbs.md)
+- [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)
