@@ -168,13 +168,13 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
-Scanning source code from a private source repository requires an SSH secret present in the namespace and referenced as `grype.targetSourceSshSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+Scanning source code from a private source repository requires an SSH secret present in the namespace and referenced as `grype.targetSourceSshSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md).
 
 If a private source scan is triggered and the secret cannot be found, the scan pod includes a `FailedMount` warning in Events with the message `MountVolume.SetUp failed for volume "ssh-secret" : secret "secret-ssh-auth" not found`, where `secret-ssh-auth` is the value specified in `grype.targetSourceSshSecret`.
 
 ### <a id="miss-img-ps"></a> Missing target image pull secret
 
-Scanning an image from a private registry requires an image pull secret to exist in the Scan CRs namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+Scanning an image from a private registry requires an image pull secret to exist in the Scan CRs namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md).
 
 If a private image scan is triggered and the secret is not configured, the scan job fails with the error as follows:
 
