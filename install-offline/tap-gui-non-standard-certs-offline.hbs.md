@@ -79,7 +79,7 @@ Add a custom CA
 
   1. To set the environment variable `NODE_EXTRA_CA_CERTS`, use the `package_overlays` key in the
      Tanzu Application Platform values file.
-     For instructions, see [Customizing Package Installation](customize-package-installation.hbs.md).
+     For instructions, see [Customizing Package Installation](../customize-package-installation.hbs.md).
 
      The following is an example overlay to add a custom CA.
      It assumes that your Tanzu Application Platform GUI instance is deployed in the namespace `tap-gui`.
