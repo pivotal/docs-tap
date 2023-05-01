@@ -29,7 +29,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 1. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
-   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.md#full-profile).
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install-online/profile.hbs.md#full-profile).
    Click **NEXT**, verify the provided information, and click **GENERATE ACCELERATOR**.
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.

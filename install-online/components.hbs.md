@@ -1,40 +1,40 @@
 # Installing individual packages
 
-You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 Installing individual Tanzu Application Platform packages
 is useful if you do not want to use a profile to install packages
 or if you want to install additional packages after installing a profile.
 Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
-For more information, see [Prerequisites](prerequisites.md).
+For more information, see [Prerequisites](../prerequisites.hbs.md).
 
 
 ## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
-- [Install API portal](api-portal/install-api-portal.md)
-- [Install Application Accelerator](application-accelerator/install-app-acc.md)
-- [Install Application Live View](app-live-view/install.md)
-- [Install Application Single Sign-On](app-sso/install-appsso.md)
-- [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
-- [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
-- [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
-- [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
-- [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
-- [Install Out of the Box Templates](scc/install-ootb-templates.md)
-- [Install Out of the Box Supply Chain with Testing](scc/install-ootb-sc-wtest.md)
-- [Install Out of the Box Supply Chain with Testing and Scanning](scc/install-ootb-sc-wtest-scan.md)
-- [Install Service Bindings](service-bindings/install-service-bindings.md)
-- [Install Services Toolkit](services-toolkit/install-services-toolkit.md)
-- [Install Source Controller](source-controller/install-source-controller.md)
-- [Install Spring Boot Conventions](spring-boot-conventions/install-spring-boot-conventions.md)
-- [Install Supply Chain Choreographer](scc/install-scc.md)
-- [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.md)
-- [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.md)
-- [Install Supply Chain Security Tools - Scan](scst-scan/install-scst-scan.md)
-- [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
-- [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
-- [Install Tekton](tekton/install-tekton.md)
+- [Install API portal](../api-portal/install-api-portal.hbs.md)
+- [Install Application Accelerator](../application-accelerator/install-app-acc.hbs.md)
+- [Install Application Live View](../app-live-view/install.hbs.md)
+- [Install Application Single Sign-On](../app-sso/install-appsso.hbs.md)
+- [Install cert-manager, Contour, and FluxCD](../cert-mgr-contour-fcd/install-cert-mgr.hbs.md)
+- [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md)
+- [Install default roles for Tanzu Application Platform](../authn-authz/install.hbs.md)  
+- [Install Developer Conventions](../developer-conventions/install-dev-conventions.hbs.md)
+- [Install Learning Center for Tanzu Application Platform](../learning-center/install-learning-center.hbs.md)
+- [Install Out of the Box Templates](../scc/install-ootb-templates.hbs.md)
+- [Install Out of the Box Supply Chain with Testing](../scc/install-ootb-sc-wtest.hbs.md)
+- [Install Out of the Box Supply Chain with Testing and Scanning](../scc/install-ootb-sc-wtest-scan.hbs.md)
+- [Install Service Bindings](../service-bindings/install-service-bindings.hbs.md)
+- [Install Services Toolkit](../services-toolkit/install-services-toolkit.hbs.md)
+- [Install Source Controller](../source-controller/install-source-controller.hbs.md)
+- [Install Spring Boot Conventions](../spring-boot-conventions/install-spring-boot-conventions.hbs.md)
+- [Install Supply Chain Choreographer](../scc/install-scc.hbs.md)
+- [Install Supply Chain Security Tools - Store](../scst-store/install-scst-store.hbs.md)
+- [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.hbs.md)
+- [Install Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.hbs.md)
+- [Install Tanzu Application Platform GUI](../tap-gui/install-tap-gui.hbs.md)
+- [Install Tanzu Build Service](../tanzu-build-service/install-tbs.hbs.md)
+- [Install Tekton](../tekton/install-tekton.hbs.md)
 
 
 ## <a id='verify'></a> Verify the installed packages

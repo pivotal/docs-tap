@@ -38,7 +38,7 @@ YAML workload description to support this deployment type.
 Before using `queue` workloads on Tanzu Application Platform, you must:
 
 * Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
-* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+* Follow all instructions in [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
 
 ## <a id="create-queue"></a> Create a `queue` SupplyChain
 

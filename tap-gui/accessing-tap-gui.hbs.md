@@ -94,7 +94,7 @@ name. For example:
     ```
 
     This snippet is from a values file in the
-    [Configure Tanzu Application Platform GUI section](../install.html#configure-tap-gui) of the
+    [Configure Tanzu Application Platform GUI section](../install-online/profile.hbs.md#configure-tap-gui) of the
     Profiles installation topic. The new host names are populated based on the example host name
     `tap-gui.example.com`.
 

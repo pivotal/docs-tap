@@ -367,7 +367,7 @@ This indicates that the self-signed certificate might be incorrectly configured.
 
 The `shared.ca_cert_data` installation value can contain a PEM-encoded CA bundle.
 The scanning component trusts the CAs contained in the bundle.
-You configure the self-signed certificate by [using the shared top-level key](../view-package-config.hbs.md).
+You configure the self-signed certificate by [using the shared top-level key](../install-online/view-package-config.hbs.md).
 
 ### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
