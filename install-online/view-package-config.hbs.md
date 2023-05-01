@@ -4,4 +4,4 @@
 
 {{> 'partials/view-package-config' }}
 
-For information about package-specific configuration, see [Install individual packages](/docs-tap/install-components.hbs.md).
+For information about package-specific configuration, see [Install individual packages](/docs-tap/install-online/components.hbs.md).

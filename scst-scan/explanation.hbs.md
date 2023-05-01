@@ -1,7 +1,7 @@
 # Spec reference
 
 With the Scan Controller and Grype Scanner installed (see Install Supply Chain Security Tools - Scan
-from [Installing Individual Packages](../install-components.html#install-scst-scan),
+from [Installing Individual Packages](../install-online/components.hbs.md#install-scst-scan),
 the following Custom Resource Definitions (CRDs) are now available:
 
 ```console

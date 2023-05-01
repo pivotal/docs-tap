@@ -187,7 +187,7 @@ Before you start, you must have:
     Alternatively, you can add a link for the `catalog-info.yaml` to the `tap-values.yaml` configuration
     file in the `tap_gui.app_config.catalog.locations` section.
     For more information, see
-    [Installing the Tanzu Application Platform Package and Profiles](../install.md#full-profile).
+    [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md#full-profile).
 
 1. **Register an existing component** prompts you to type a repository URL.
    Type the link to the `catalog-info.yaml` file of the `tanzu-java-web-app` in the Git repository text box.

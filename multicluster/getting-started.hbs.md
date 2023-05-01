@@ -12,9 +12,9 @@ Before implementing a multicluster topology, complete the following:
 
 1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Get Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [application-accelerator-samples GitHub repository](https://github.com/vmware-tanzu/application-accelerator-samples).
 
-1. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../set-up-namespaces.md). This guide assumes that you use the `default` namespace.
+2. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../install-online/set-up-namespaces.hbs.md). This guide assumes that you use the `default` namespace.
 
-1. To set the value of `DEVELOPER_NAMESPACE` to the namespace you setup in the previous step, run:
+3. To set the value of `DEVELOPER_NAMESPACE` to the namespace you setup in the previous step, run:
 
     ```bash
     export DEVELOPER_NAMESPACE=YOUR-DEVELOPER-NAMESPACE
@@ -22,7 +22,7 @@ Before implementing a multicluster topology, complete the following:
 
     Where:
 
-    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../set-up-namespaces.md). `default` is used in this example.
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md). `default` is used in this example.
 
 
 ## <a id='build-cluster'></a> Start the workload on the Build profile cluster

@@ -10,27 +10,27 @@ Verify you have successfully:
 See [Installing Tanzu Application Platform](install-intro.md).
 
 - **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
-See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install.md).
+See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md).
 
 - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
 See [Changing clusters](cli-plugins/apps/tutorials.hbs.md#changing-clusters).
 
 - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
 See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
-If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md), you have already installed the Out of The Box (OOTB) Supply Chain Basic.
+If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md), you have already installed the Out of The Box (OOTB) Supply Chain Basic.
 
 - **Installed Tekton Pipelines**<br>
   See [Install Tekton Pipelines](tekton/install-tekton.md).
   If you used the default profiles provided in
-  [Installing the Tanzu Application Platform Package and Profiles](install.md),
+  [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md),
   you have already installed Tekton Pipelines.
 
 - **Set up a developer namespace to accommodate the developer workload**<br>
-See [Set up developer namespaces to use installed packages](set-up-namespaces.md).
+See [Set up developer namespaces to use installed packages](install-online/set-up-namespaces.hbs.md).
 
 - **Installed Tanzu Application Platform GUI**<br>
 See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
-If you used the Full or View profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
+If you used the Full or View profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md),
 you have already installed Tanzu Application Platform GUI.
 
 - **Installed the VS Code Tanzu Extension**<br>
