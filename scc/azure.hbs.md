@@ -84,8 +84,8 @@ ootb_supply_chain_testing_scanning:
     server_address: https://dev.azure.com
     repository_owner: vmware-tanzu/tap
     repository_name: tap
-    pull-request:
-      server-kind: azure
+    pull_request:
+      server_kind: azure
 ```
 
 or the workload parameters:
@@ -143,11 +143,11 @@ Configure the template parameters as follows:
 To properly contruct the write path, the template parameter `gitops_server_kind` must be configured
 as `azure`. Configure `gitops_server_kind`:
 
-- Use the `gitops.pull-request.server-kind` tap-value during the Out of the Box Supply Chains package installation
+- Use the `gitops.pull_request.server_kind` tap-value during the Out of the Box Supply Chains package installation
 - or configure`gitops_server_kind` as a workload parameter
 
 > **Note** Even if the commit strategy is not pull-request, such as direct commits, to use an 
-Azure DevOps repository either the tap value `gitops.pull-request.server-kind` or the workload parameter
+Azure DevOps repository either the tap value `gitops.pull_request.server_kind` or the workload parameter
 `gitops_server_kind` must be configured to `azure`.
 
 For information about configuring the GitOps write operations, see
