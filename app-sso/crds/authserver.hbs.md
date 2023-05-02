@@ -141,14 +141,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
-          accessToken: # optional
-            scope:
-              defaults: # optional
-              - ""
-              rolesToScopes: # optional
-                - fromRole: ""
-                  toScopes:
-                  - ""
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                - ""
         group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
           search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
             filter: ""
