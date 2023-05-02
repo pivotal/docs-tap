@@ -106,7 +106,7 @@ To install SCST - Scan (Scan controller):
 
 2. (Optional) Make changes to the default installation settings:
 
-    If you are using Grype Scanner `v1.5.1 and later` or other supported scanners included with Tanzu Application Platform `v1.5.0 and later` and do not want to use the default SCST - Store integration, deactivate the integration by appending the following field to the `values.yaml` file:
+    If you are using Grype Scanner `v1.5.1 and later` or other supported scanners included with Tanzu Application Platform `v1.5.1 and later` and do not want to use the default SCST - Store integration, deactivate the integration by appending the following field to the `values.yaml` file:
 
     ```yaml
     ---
