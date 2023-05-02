@@ -68,11 +68,10 @@ To install Tanzu Build Service by using the Tanzu CLI:
       For Google Cloud Registry, use `_json_key` as the username and the contents
       of the service account JSON file for the password.
 
-1. Create a `tbs-values.yaml` file using the following template:
-    > **Note** If `shared.image_registry.project_path` and `shared.image_registry.secret` are configured in the 
-    > `tap-values.yaml` file, Tanzu Build Service inherits all 3 values in that section.
-    >
-    > This can be disabled by setting any of the following 3 values.
+1. Create a `tbs-values.yaml` file using the following template.
+   If `shared.image_registry.project_path` and `shared.image_registry.secret` are configured in the
+   `tap-values.yaml` file, Tanzu Build Service inherits all three values in that section.
+   This can be disabled by setting any of the following three values.
 
     ```yaml
     ---
