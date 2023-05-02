@@ -106,7 +106,7 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
 
 ```yaml
 # ...
-metadataStore: {}
+metadataStore:
    url: "" # Configuration is moved, so set this string to empty.
 ```
 
