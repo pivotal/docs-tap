@@ -111,29 +111,30 @@ erroneously reusing the old build cache.
 
 ### Solution
 
-If you encounter this issue, delete, and recreate the workload in Tanzu Application Platform, or delete and recreate the image in Tanzu Build Service.
+If you encounter this issue, delete, and recreate the workload in Tanzu Application Platform,
+or delete and recreate the image in Tanzu Build Service.
 
 ## <a id="shared-image-registry"></a> Switching from `buildservice.kp_default_repository` to `shared.image_registry`
 
 ### Symptom
 
-After switching to using the `shared.image_registry` fields in `tap-values.yaml`, all your workloads
-might start failing with `TemplateRejectedByAPIServer` with the error message `admission webhook
-"validation.webhook.kpack.io" denied the request: validation failed: Immutable field changed:
-spec.tag`.
+After switching to using the `shared.image_registry` fields in `tap-values.yaml`, your workloads
+might start failing with a `TemplateRejectedByAPIServer` error, with the error message:
+`admission webhook "validation.webhook.kpack.io" denied the request: validation
+failed: Immutable field changed: spec.tag`.
 
 ### Cause
 
 Tanzu Application Platform automatically appends `/buildservice` to the end of the repository
-specified in `shared.image_registry.project_path`. This causes all the existing workloads' image
-tags to be updated, which is not allowed by Tanzu Build Service.
+specified in `shared.image_registry.project_path`. This updates the existing workload image
+tags, which is not allowed by Tanzu Build Service.
 
 ### Solution
 
-You can delete the `images.kpack.io` (it will have the same name as the
-workload), the workload recreates it with valid values.
+Delete the `images.kpack.io`, it has the same name as the
+workload. The workload then recreates it with valid values.
 
-Alternatively, you can re-add the `buildservice.kp_default_repository_*` fields
+Alternatively, re-add the `buildservice.kp_default_repository_*` fields
 in the `tap-values.yaml`. You must set both the repository and the
 authentication fields to override the shared values. Set `kp_default_repository`, `kp_default_repository_secret.name`, and
 `kp_default_repository_secret.namespace`.
