@@ -78,10 +78,33 @@ The following example uses the Azure DevOps Git repository:
 
 Set the `gitops_server_kind` workload params to `azure`.
 
-  ```yaml
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
+```yaml
+ootb_supply_chain_testing_scanning:
+  gitops:
+    server_address: https://dev.azure.com
+    repository_owner: vmware-tanzu/tap
+    repository_name: tap
+    pull_request:
+      server_kind: azure
+```
+
+or the workload parameters:
+
+```yaml
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  ...
+spec:
+  params:
+    - name: gitops_server_address
+      value: https://dev.azure.com
+    - name: gitops_repository_owner
+      value: vmware-tanzu/tap
+    - name: gitops_repository_name
+      value: tap
+    - name: gitops_server_kind
+      value: azure
     ...
   spec:
     params:
@@ -157,7 +180,12 @@ Configure the template parameters as follows:
 To properly contruct the write path, the template parameter `gitops_server_kind` must be configured
 as `azure`.
 
-Configure`gitops_server_kind` as a workload parameter.
+- Use the `gitops.pull_request.server_kind` tap-value during the Out of the Box Supply Chains package installation
+- or configure`gitops_server_kind` as a workload parameter
+
+> **Note** Even if the commit strategy is not pull-request, such as direct commits, to use an 
+Azure DevOps repository either the tap value `gitops.pull_request.server_kind` or the workload parameter
+`gitops_server_kind` must be configured to `azure`.
 
 For information about configuring the GitOps write operations, see
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
