@@ -435,4 +435,4 @@ To exclude packages from a Tanzu Application Platform profile:
 ## <a id='next-steps'></a>Next steps
 
 - (Optional) [Install Individual Packages](../install-online/components.hbs.md)
-- [Set up developer namespaces to use installed packages](../set-up-namespaces-aws.html)
+- [Set up developer namespaces to use installed packages](../install-aws/set-up-namespaces.hbs.md)
