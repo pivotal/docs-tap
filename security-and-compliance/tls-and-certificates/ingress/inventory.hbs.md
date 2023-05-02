@@ -1,20 +1,20 @@
 # Ingress certificates inventory
 
 The effective number of ingress endpoints can vary widely, depending on the
-installation profile, excluded packages and end-user facing resources (e.g.
-`Workload`, `AuthServer`). As a result, the number of TLS certificates is not
+installation profile, excluded packages and end-user facing resources, for example,
+`Workload`, and `AuthServer`. As a result, the number of TLS certificates is not
 fixed but a function of the platform's configuration and tenancy.
 
-TAP's components can be categorized into those which don't have ingress
+Tanzu Application Platform's components can be categorized into those which don't have ingress
 endpoints and those which do. The latter further break down into those which
 have a fixed number of ingress endpoints and those which offer Kubernetes APIs
 with ingress.
 
 >**Note** The lowercase "ingress" refers to any resource which facilitates
->ingress, e.g. core `Ingress` and Contour's `HTTPProxy`.
+>ingress, for example, core `Ingress` and Contour's `HTTPProxy`.
 
-To help with planning and accounting of TLS certificates, here's an inventory
-of TAP's components respective ingress:
+Use the following table component's respective ingress
+to help with planning and accounting of TLS certificates:
 
 Package name | Profiles | Has ingress | Ingress purpose | Supports ingress issuer | Supports wildcards | # of ingress | SANs | TLS Documentation
 ---|---|---|---|---|---|---|---|---|
