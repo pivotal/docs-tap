@@ -5,9 +5,9 @@ from the Tanzu Application Platform package repository.
 
 Before installing the packages, ensure you have:
 
-- Completed the [Prerequisites](prerequisites.html).
+- Completed the [Prerequisites](../prerequisites.html).
 - Configured and verified the cluster.
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.html) with any required plug-ins.
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
@@ -217,7 +217,7 @@ To add the Tanzu Application Platform package repository to your cluster:
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [Components and installation profiles](about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -245,7 +245,7 @@ The sample values file contains the necessary defaults for:
 ### <a id='full-profile'></a> Full profile
 
 The following is the YAML file sample for the full-profile. The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
-Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
+Refer to [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.html) for more information.
 
 ```yaml
 shared:
@@ -348,9 +348,9 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Docker Hub has the form `repository: "my-dockerhub-user"`.
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](scc/git-auth.hbs.md) for more information.
+This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. For more information, see [Namespace Provisioner](namespace-provisioner/about.hbs.md).
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. For more information, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 - `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See  [Locating the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565) for more information about identifying the Entitlement Account Number.
@@ -374,7 +374,7 @@ contour:
 
 Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed.
 
-See [Opt out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
+See [Opt out of telemetry collection](../opting-out-telemetry.hbs.md) for more information.
 
 ### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
 
@@ -394,7 +394,7 @@ required for application builds.
 The `lite` set of dependencies do not contain all buildpacks and stacks.
 To use all buildpacks and stacks, you must install the `full` dependencies.
 For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
 To configure `full` dependencies, add the key-value pair
 `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
@@ -417,7 +417,7 @@ See [Install the full dependencies package](#tap-install-full-deps) for more inf
 
 Tanzu Application Platform v1.5.0 supports building applications with both the
 Ubuntu v22.04 (Jammy) and v18.04 (Bionic) stack. For more information, see
-[Bionic and Jammy stacks](tanzu-build-service/dependencies.html#bionic-vs-jammy).
+[Bionic and Jammy stacks](../tanzu-build-service/dependencies.html#bionic-vs-jammy).
 
 To install Tanzu Application Platform with Jammy as the only available stack,
 include the `stack_configuration: jammy-only` field under the `buildservice:`
@@ -467,7 +467,7 @@ If you configured `full` dependencies in your `tap-values.yaml` file in
 you must install the `full` dependencies package.
 
 For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
 To install the `full` dependencies package:
 
@@ -516,11 +516,11 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
-Proceed to the [Getting Started](getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
+Proceed to the [Getting Started](../getting-started.md) topic or the
+[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 
@@ -545,6 +545,6 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Install individual packages](install-components.html)
-- [Set up developer namespaces to use installed packages](set-up-namespaces.html)
-- [Replace the default ingress issuer](security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md#replace)
+- (Optional) [Install individual packages](components.hbs.md)
+- [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)
+- [Replace the default ingress issuer](../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md#replace)

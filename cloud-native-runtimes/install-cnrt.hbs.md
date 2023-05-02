@@ -132,7 +132,7 @@ To install Cloud Native Runtimes:
    >**Important** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
-   >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
+   >[Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
    >Otherwise, you must follow these steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
@@ -140,7 +140,7 @@ To install Cloud Native Runtimes:
    Without these credentials, attempts to start a service fail with a timeout and the pods report that they are unable to pull the `queue-proxy` image.
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
-    secret mentioned in [Add the Tanzu Application Platform package repository](../install.hbs.md#add-tap-package-repo).
+    secret mentioned in [Add the Tanzu Application Platform package repository](../install-online/profile.hbs.md#add-tap-package-repo).
        Run these commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 

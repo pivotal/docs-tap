@@ -17,15 +17,15 @@ tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER"
 ```
 
-You must repeat the process for each Tanzu Application Platform Cluster included in the telemetry report. 
-For more information, see [Full profile](../install.hbs.md#full-profile).
+You must repeat the process for each Tanzu Application Platform Cluster included in the telemetry report.
+For more information, see [Full profile](../install-online/profile.hbs.md#full-profile).
 
-After enrollment, alert your VMware account team that you have configured the EAN field and want telemetry reports. 
-This allows VMware to identify who the newly added EAN belongs to. 
+After enrollment, alert your VMware account team that you have configured the EAN field and want telemetry reports.
+This allows VMware to identify who the newly added EAN belongs to.
 
->**Note** Usage report is only supported for non-airgapped deployments of Tanzu Application Platform 
-and the Cluster must participate in Tanzu Application Platform telemetry. 
-You are enrolled in telemetry by default. You can opt out of telemetry collection 
+>**Note** Usage report is only supported for non-airgapped deployments of Tanzu Application Platform
+and the Cluster must participate in Tanzu Application Platform telemetry.
+You are enrolled in telemetry by default. You can opt out of telemetry collection
 by following the instructions in [Opt out of telemetry collection](../opting-out-telemetry.hbs.md).
 
 The following screenshots show the sample telemetry reports.

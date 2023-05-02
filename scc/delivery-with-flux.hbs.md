@@ -28,7 +28,7 @@ To use Gitops Delivery with FluxCD, you must complete the following prerequisite
 
 Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
-If your run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
+If your run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
 
 If your run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
 
@@ -140,7 +140,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      ref:
        branch: # GitOps repo branch
      timeout: 60s
- 
+
      # only required if GitOps repo is private (recommended)
      secretRef:
        name: <package-name>-gitops-auth
@@ -208,7 +208,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      timeout: 5m
      prune: true
      wait: true
-   
+
      # where to deploy
      kubeConfig:
        secretRef:

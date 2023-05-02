@@ -10,7 +10,7 @@ produced by the Out of the Box Supply Chains, including [Basic](ootb-supply-chai
 
 To make use of this package you must have installed:
 
-- [Supply Chain Cartographer](../install-components.html#install-scc)
+- [Supply Chain Cartographer](../install-online/components.hbs.md#install-scc)
 - [Out of the Box Templates](ootb-templates.html)
 
 ## <a id="prerequisites"></a> Using Out of the Box Delivery Basic

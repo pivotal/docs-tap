@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Deploy an air-gapped workload](getting-started/air-gap-workload.hbs.md)
+- [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)

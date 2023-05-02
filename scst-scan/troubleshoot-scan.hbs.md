@@ -14,7 +14,7 @@ To retrieve TaskRun events:
 kubectl describe taskrun TASKRUN-NAME -n DEV-NAMESPACE
 ```
 
-Where: 
+Where:
 
 - `TASKRUN-NAME` is the name of the TaskRun.
 - `DEV-NAMESPACE` is the name of the developer namespace you want to use.
@@ -150,7 +150,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
     ```
 
 4. If the secret `CA-SECRET` doesn't exist in your `DEV-NAMESPACE`, verify that the `CA-SECRET` exists in the `METADATASTORE-NAMESPACE` namespace:
-    
+
     ```
     kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE
     ```
@@ -163,7 +163,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
     - If `CA-SECRET` doesn't exist in the metadata store namespace, configure the certificate. See [Custom certificate configuration](../scst-store/custom-cert.hbs.md).
 
 5. Check if the secretexport and secretimport exist and are reconciling successfully:
-    
+
     ```
     kubectl get secretexports.secretgen.carvel.dev -n `METADATASTORE-NAMESPACE`
     kubectl get secretimports.secretgen.carvel.dev -n `DEV-NAMESPACE`
@@ -175,12 +175,12 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 6. Verify that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the `DEV-NAMESPACE` secret.
 
   Confirm this by base64 decoding both secrets and verifying that there is a match:
-  
+
   ```console
   kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
   kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
   ```
-  
+
   The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must have a match for the scanner to connect to the metadata-store.
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
@@ -193,7 +193,7 @@ For information about issues with Grype in air gap environments, see [Using Gryp
 
 Scanning source code from a private source repository requires an SSH secret present in the
 namespace and referenced as `grype.targetSourceSshSecret` in `tap-values.yaml`. See [Installing the
-Tanzu Application Platform Package and Profiles](../install.md).
+Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md).
 
 If a private source scan is triggered and the secret cannot be found, the scan pod includes a
 `FailedMount` warning in Events with the message `MountVolume.SetUp failed for volume "ssh-secret" :
@@ -204,7 +204,7 @@ secret "secret-ssh-auth" not found`, where `secret-ssh-auth` is the value specif
 
 Scanning an image from a private registry requires an image pull secret to exist in the Scan CRs
 namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing
-the Tanzu Application Platform Package and Profiles](../install.md).
+the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md).
 
 If a private image scan is triggered and the secret is not configured, the scan TaskRun's pod's `step-scan-plugin` container fails with the following error:
 
@@ -332,7 +332,7 @@ Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 ### <a id="supply-chain-stops"></a> Resolving failing scans that block a Supply Chain
 
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see
-the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md.
+the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
 ### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
@@ -410,7 +410,7 @@ x509: certificate signed by unknown authority
 
 To resolve this issue, ensure that `shared.ca_cert_data` contains the required certificate. For an example of setting up the shared self-signed certificate, see [Build profile](../multicluster/reference/tap-values-build-sample.hbs.md).
 
-For information about `shared.ca_cert_data`, see [View possible configuration settings for your package](../view-package-config.hbs.md).
+For information about `shared.ca_cert_data`, see [View possible configuration settings for your package](../install-online/view-package-config.hbs.md).
 
 ### <a id="unable-pull-scanner-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
@@ -426,7 +426,7 @@ UNAUTHORIZED: unauthorized to access repository
 The recommended migration path for users setting up their namespaces
 manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
-[instructions](../set-up-namespaces.hbs.md).
+[instructions](../install-online/set-up-namespaces.hbs.md).
 
 >**Important** This step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
