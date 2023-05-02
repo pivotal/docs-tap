@@ -36,7 +36,9 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
     Where:
 
-    - `REPO-NAME` is the repository in your registry where Tanzu Build Service dependencies are stored. This is the exact same value conigured in the `kp_default_repository` inside your `tap-values.yaml` or `tbs-values.yaml` files. Examples:
+    - `REPO-NAME` is the repository in your registry where Tanzu Build Service dependencies are stored.
+      This is the exact same value configured in the `kp_default_repository` inside your `tap-values.yaml`
+      or `tbs-values.yaml` files. Examples:
       - Harbor has the form `"my-harbor.io/my-project/build-service"`.
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
