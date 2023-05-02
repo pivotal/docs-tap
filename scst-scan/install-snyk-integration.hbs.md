@@ -106,7 +106,8 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
 
 ```yaml
 # ...
-metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+metadataStore:
+  url: "" # Configuration is moved, so set this string to empty.
 ```
 
 ## <a id="snyk-scan-policy"></a> Sample ScanPolicy for Snyk in SPDX JSON format
