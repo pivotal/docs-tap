@@ -1,6 +1,6 @@
-# Building Container Images
+# Building container images with Supply Chain Choreographer
 
-This topic describes the available methods for building container images for Supply Chain Choreographer for Tanzu.
+This topic describes the methods you can use to build container images for Supply Chain Choreographer for Tanzu.
 
 ## <a id='cont-img'></a> Methods for building container images
 
