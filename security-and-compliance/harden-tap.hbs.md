@@ -82,7 +82,7 @@ remote cluster.  As best security practice, VMware recommends setting up a remot
 provider for the Kubernetes cluster.
 
 For more information, see
-[Update Tanzu Application Platform GUI to view resources on multiple clusters](/tap-gui/cluster-view-setup.hbs.md#update-tap-gui).
+[Update Tanzu Application Platform GUI to view resources on multiple clusters](../tap-gui/cluster-view-setup.hbs.md#update-tap-gui).
 
 As best practice, the users on the Kubernetes clusters that are used for remote authentication
 should be assigned to Kubernetes roles that limit access in a least privilege model.  More
