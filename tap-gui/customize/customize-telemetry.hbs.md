@@ -15,7 +15,8 @@ To make these customizations:
     ```yaml
     tap_gui:
       app_config:
-        pendo_org_id: 'ORGANIZATION-NAME'
+        pendoAnalytics:
+          organizationId: 'ORGANIZATION-NAME`
     ```
 
     Where:
