@@ -21,7 +21,7 @@ Choose one of the following tabs for how to generate and deploy applications usi
 If you have already generated a project and want to skip this step, you can go to
 [Deploying your application with Tanzu Application Platform](deploy-first-app.hbs.md).
 
-Use VS Code
+VS Code
 : **What you will do:**
 
   - Install the Application Accelerator extension for VS Code.
@@ -88,7 +88,7 @@ Use VS Code
 
   1. When opened, the project is ready for development.
 
-Use IntelliJ
+IntelliJ
 : **What you will do:**
 
   - Install the Application Accelerator plug-in for IntelliJ.
@@ -126,7 +126,7 @@ Use IntelliJ
 
   1. When opened, the project is ready for development.
 
-Use Tanzu Application Platform GUI
+Tanzu Application Platform GUI
 : In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
   Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI,
   see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
