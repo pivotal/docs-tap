@@ -204,8 +204,14 @@ See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Appl
 
 ## Networking
 
-Tanzu Application Platform networking is a shared responsibility with customers to ensure that customer workloads only expose internal-only routes. All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/). Tanzu Application Platform is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html). It is vital that customers configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on knative deployed services. For more information, please refer to instructions for [installing TAP in an air-gapped environment](../install-offline/profile.hbs.md).
+Ensure that workloads only expose internal-only routes.
 
+All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/).
+
+Tanzu Application Platform is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html).
+
+You must configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on Knative deployed services.
+For more information, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
 ## Key Management
 
