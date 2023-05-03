@@ -81,8 +81,8 @@ will use to authenticate to remote clusters, and by setting up an authentication
 remote cluster.  As best security practice, VMware recommends setting up a remote authentication
 provider for the Kubernetes cluster.
 
-Full documentation for this can be found
-[here]([https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-gui-auth.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-gui-cluster-view-setup.html#update-tap-gui).
+For more information, see
+[Update Tanzu Application Platform GUI to view resources on multiple clusters](/tap-gui/cluster-view-setup.hbs.md#update-tap-gui).
 
 As best practice, the users on the Kubernetes clusters that are used for remote authentication
 should be assigned to Kubernetes roles that limit access in a least privilege model.  More
@@ -189,11 +189,9 @@ endpoints, see [Ingress certificates](./tls-and-certificates/ingress/about.hbs.m
 
 ### Encryption of Data At Rest
 
-All data should be encrypted at rest.  The Tanzu Application Platform runs on top of the Kubernetes
-platform and as such, Tanzu Application Platform will verify the default storage class configured on the Kubernetes
-cluster. Customers are required to provide a Persistent Volume Provisioner to the Kubernetes
-infrastructure that supports encryption if the customers desire to have Encryption of Data at Rest as
-an outcome.
+All data should be encrypted at rest. The Tanzu Application Platform runs on Kubernetes
+and verifies the default storage class configured on the Kubernetes
+cluster. If you require Encryption of Data at Rest (DARE), you must provide a Persistent Volume Provisioner that supports encryption to the Kubernetes infrastructure.
 
 - Persistent Volume claim encryption
 - Data at rest should be encrypted.
