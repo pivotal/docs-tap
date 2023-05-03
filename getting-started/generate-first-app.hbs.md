@@ -22,7 +22,8 @@ using the selected interface. If you have already generated a project and want t
 you can go to [Deploying your application with Tanzu Application Platform](deploy-first-app.hbs.md).
 
 VS Code
-: What you will do
+: What you will do:
+
   - Install the Application Accelerator extension for VS Code.
   - (Optional) Provision a new GitHub repository and upload the project to the
     repository.
@@ -87,7 +88,8 @@ VS Code
 
   1. When opened, the project is ready for development.
 
-: What you will do
+: What you will do:
+
   - Install the Application Accelerator plug-in for IntelliJ.
   - Generate a project using an Application Accelerator.
 
@@ -124,7 +126,8 @@ VS Code
   1. When opened, the project is ready for development.
 
 Tanzu Application Platform GUI
-: What you will do
+: What you will do:
+
   - Generate a project from an Application Accelerator.
   - (Optional) Provision a new Git repository for the project.
   - Upload it to your Git repository of choice.
