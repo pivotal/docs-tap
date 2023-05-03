@@ -196,7 +196,13 @@ Using GitOps
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource OOTB in Run cluster in all namespaces managed by provisioner, see [Default Resources](reference.md#default-resources). Users can opt-in to have LimitRange resource created on Full and iterate clusters, see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific). However, Namespace Provisioner does not create LimitRange resource in build and view clusters. Default values in LimitRange resource are as follows:  
+Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all namespaces managed by Namespace Provisioner. For more information, see [Default Resources](reference.md#default-resources).
+
+You can opt-in to have LimitRange resource created on Full and Iterate clusters. For more information,see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific).
+
+Namespace Provisioner does not create LimitRange resource in Build and View clusters.
+
+Default values in LimitRange resource are as follows:
 
 ```yaml
 limits:
