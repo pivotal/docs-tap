@@ -20,6 +20,7 @@ Before installing Tanzu Application Platform, ensure you have:
 - Created [AWS Resources](../install-aws/resources.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
+- Installed [eksctl CLI](https://github.com/weaveworks/eksctl#installation).
 
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
 
