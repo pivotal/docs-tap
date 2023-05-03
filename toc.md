@@ -300,6 +300,7 @@ docs.vmware.com is built.
             - [Identity providers](app-sso/service-operators/identity-providers.hbs.md)
             - [Configure authorization](app-sso/service-operators/configure-authorization.hbs.md)
             - [Public clients and CORS](app-sso/service-operators/cors.md)
+            - [Token settings](app-sso/service-operators/token-settings.hbs.md)
             - [Token signatures](app-sso/service-operators/token-signature.hbs.md)
             - [Storage](app-sso/service-operators/storage.hbs.md)
             - [AuthServer readiness](app-sso/service-operators/readiness.hbs.md)

@@ -36,6 +36,11 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
+
+- Introduces token expiry settings per `AuthServer` resource. Service operators may customize access, refresh, and/or
+  identity token expiry. For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings)
+ 
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes

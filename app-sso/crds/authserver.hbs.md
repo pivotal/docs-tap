@@ -81,6 +81,13 @@ spec:
     allowAllOrigins: false # optional
                            # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
                            # Cannot be combined with 'allowOrigins'.
+  token:             # optional
+    accessToken:     # optional
+      expiry: "12h"  # optional, default expiry is 12 hours
+    refreshToken:    # optional
+      expiry: "720h" # optional, default expiry is 720 hours (30 days)
+    idToken:         # optional
+      expiry: "12h"  # optional, default expiry is 12 hours
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -225,7 +232,7 @@ status:
       configHash: ""
       image: ""
       replicas: 0
-    redis: # leave empty if storage is configured by the service operator
+    redis: # left empty if storage is configured by the service operator
       image: ""
   storage:
     redis:
