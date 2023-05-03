@@ -20,7 +20,7 @@ To make these customizations:
     ```
 
     Where:
-    - `ORGANIZATION-NAME` is the name of your organization or the name of the Tanzu Application Platform GUI instance of your choice.
+    - 'ORGANIZATION-NAME' is the name of your organization or the name of the Tanzu Application Platform GUI instance of your choice.
 
 2. Reinstall your Tanzu Application Platform GUI package by following steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
