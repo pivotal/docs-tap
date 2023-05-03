@@ -1,6 +1,6 @@
 # Generate an application with Application Accelerator
 
-This topic guides through how to generate a new project using Application Accelerators
+This topic guides you through how to generate a new project using Application Accelerators
 and how to deploy the project onto a Tanzu Application Platform cluster.
 For background information about Application Accelerators, see
 [Application Accelerator](about-application-accelerator.md).
@@ -9,27 +9,27 @@ For background information about Application Accelerators, see
 
 Before you start, complete all [Getting Started prerequisites](../getting-started.md#get-started-prereqs).
 
-## <a id="interface-options"></a> Generate a new project
+## <a id="interface-options"></a> Generate a project using an Application Accelerator
 
-There are multiple interfaces that you can use to generate a project. The options are:
+There are multiple interfaces that you can use to generate a new project. The options are:
 
 - Application Accelerator extension for VS Code
 - Application Accelerator plug-in for IntelliJ
 - Tanzu Application Platform GUI
 
-Choose one of the following tabs for instructions about how to generate and deploy applications
-using the selected interface. If you have already generated a project and want to skip this step,
-you can go to [Deploying your application with Tanzu Application Platform](deploy-first-app.hbs.md).
+Choose one of the following tabs for how to generate and deploy applications using your selected interface.
+If you have already generated a project and want to skip this step, you can go to
+[Deploying your application with Tanzu Application Platform](deploy-first-app.hbs.md).
 
 VS Code
-: What you will do:
+: **What you will do:**
 
   - Install the Application Accelerator extension for VS Code.
   - (Optional) Provision a new GitHub repository and upload the project to the
     repository.
   - Generate a project using an Application Accelerator.
 
-  To generate a new project using an Application Accelerator:
+  **To generate a new project using an Application Accelerator:**
 
   1. Install and configure the Application Accelerator extension for VS Code, see
      [Application Accelerator Visual Studio Code extension](../application-accelerator/vscode.hbs.md).
@@ -89,12 +89,12 @@ VS Code
   1. When opened, the project is ready for development.
 
 IntelliJ
-: What you will do:
+: **What you will do:**
 
   - Install the Application Accelerator plug-in for IntelliJ.
   - Generate a project using an Application Accelerator.
 
-  To generate a new project using an Application Accelerator:
+  **To generate a new project using an Application Accelerator:**
 
   1. Install and configure the Application Accelerator plug-in for IntelliJ, see
      [Application Accelerator plugin for IntelliJ](../application-accelerator/intellij.hbs.md).
@@ -127,17 +127,17 @@ IntelliJ
   1. When opened, the project is ready for development.
 
 Tanzu Application Platform GUI
-: What you will do:
+: In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
+  Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI,
+  see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+
+  **What you will do:**
 
   - Generate a project from an Application Accelerator.
   - (Optional) Provision a new Git repository for the project.
   - Upload it to your Git repository of choice.
 
-  In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
-  Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI,
-  see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
-
-  To generate a new project using an Application Accelerator:
+  **To generate a new project using an Application Accelerator:**
 
   1. From Tanzu Application Platform GUI portal, click **Create** located on the
      left side of the navigation pane to see the list of available accelerators.
@@ -189,12 +189,6 @@ Tanzu Application Platform GUI
 
 <br>
 
-## <a id="next-steps"></a>Next Steps
-
-Now that you have generated a project that is ready for Tanzu Application Platform, learn
-how to quickly deploy the application on a Tanzu Application Platform cluster in
-[Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
-
 ## <a id="learn-more"></a>Learn more about Application Accelerator
 
 - For information about how to configure optional Git repository creation, see
@@ -209,3 +203,9 @@ how to quickly deploy the application on a Tanzu Application Platform cluster in
 
 - For general accelerator troubleshooting, see
   [Troubleshooting Application Accelerator for VMware Tanzu](../application-accelerator/troubleshooting.hbs.md).
+
+## <a id="next-steps"></a>Next Steps
+
+Now that you have generated a project that is ready for Tanzu Application Platform, learn
+how to quickly deploy the application on a Tanzu Application Platform cluster in
+[Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
