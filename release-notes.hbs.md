@@ -53,7 +53,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
-- Removes the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
+- Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
 
 ---
 
