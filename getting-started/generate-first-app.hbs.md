@@ -88,6 +88,7 @@ VS Code
 
   1. When opened, the project is ready for development.
 
+IntelliJ
 : What you will do:
 
   - Install the Application Accelerator plug-in for IntelliJ.
