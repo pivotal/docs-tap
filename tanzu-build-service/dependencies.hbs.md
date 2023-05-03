@@ -206,6 +206,7 @@ The following table compares the contents of the `lite` and `full` dependencies.
 
 New versions of dependencies such as buildpacks, and stacks are available in new versions of Tanzu Application Platform. To update dependencies, VMware recommends that you update to the latest patch
 version of Tanzu Application Platform.
+
 - If you are using `lite` or `full` dependencies, upgrade to the latest patch version of Tanzu Application Platform to update your dependencies.
 - If you are using `full` dependencies, you must complete some extra steps after you upgrade to the latest patch. For more information, see [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
