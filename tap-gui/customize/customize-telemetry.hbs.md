@@ -16,7 +16,7 @@ To make these customizations:
     tap_gui:
       app_config:
         pendoAnalytics:
-          organizationId: 'ORGANIZATION-NAME`
+          organizationId: 'ORGANIZATION-NAME'
     ```
 
     Where:
