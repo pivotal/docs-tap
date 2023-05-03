@@ -82,11 +82,13 @@ To install Tanzu Build Service by using the Tanzu CLI:
     ```
 
     Where:
-    - `REPO-NAME` is a writable repository in your registry.
-    Tanzu Build Service dependencies are written to this location. Examples:
-      - Harbor has the form `"my-harbor.io/my-project/build-service"`.
-      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
-      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
+
+    `REPO-NAME` is a writable repository in your registry. Tanzu Build Service dependencies are
+    written to this location. Examples:
+
+    - Harbor has the form `"my-harbor.io/my-project/build-service"`.
+    - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
+    - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
 1. If you are running on Openshift, add `kubernetes_distribution: openshift` to your `tbs-values.yaml` file.
 
