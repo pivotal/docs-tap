@@ -375,12 +375,16 @@ credentials to pull an image from the registry for scanning.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
-Set the `ingressEnabled` key to `true` for the Application Live View back end to be exposed on the ingress domain. This will create a HTTPProxy object in the cluster. This key is set to `false` by default.
+The `ingressEnabled` key is set to `false` by default. 
+Set this key to `true` for the Application Live View back end to be exposed on the ingress domain. 
+This creates a HTTPProxy object in the cluster.
 
-The app-live-view namespace and the TLS secret `appliveview-cert` for the domain should be created before installing the Tanzu Application Platform packages in the cluster so that the HTTPProxy is updated with the TLS secret. To create a TLS secret, run:
+You must create the app-live-view namespace and the TLS secret `appliveview-cert` 
+for the domain before installing the Tanzu Application Platform packages on the cluster 
+so that the HTTPProxy is updated with the TLS secret. To create a TLS secret, run:
 
 ```console
-kubectl create -n app-live-view secret tls appliveview-cert --cert=<.crt file> --key=<.key file>
+kubectl create -n app-live-view secret tls appliveview-cert --cert=CRT-FILE --key=KEY-FILE
 ```
 
 To verify the HTTPProxy object with the secret, run:
