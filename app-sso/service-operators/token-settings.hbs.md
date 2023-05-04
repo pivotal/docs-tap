@@ -8,9 +8,9 @@ The default token expiry settings are as follows:
 
 | Token type     | Lifetime                |
 |----------------|-------------------------|
-| Access token   | **12 hours**            |
-| Identity token | **12 hours**            |
-| Refresh token  | **720 hours (30 days)** |
+| Access token   | 12 hours                |
+| Identity token | 12 hours                |
+| Refresh token  | 720 hours or 30 days    |
 
 VMware recommends setting a shorter lifetime for access tokens, typically measured in hours, 
 and a longer lifetime for refresh tokens, typically measured in days. 
@@ -33,11 +33,11 @@ spec:
 
 `expiry` field examples:
 
-| Type    | Example            |
-|---------|--------------------|
-| Seconds | `10s` = 10 seconds |
-| Minutes | `10m` = 10 minutes |
-| Hours   | `10h` = 10 hours   |
+| Type    | Example | Definition |
+|---------|---------|------------|
+| Seconds | `10s`   | 10 seconds |
+| Minutes | `10m`   | 10 minutes |
+| Hours   | `10h`   | 10 hours   |
 
 > **Note** `expiry` field adheres to the duration constraints of the Go standard time library 
 > and does not support durations in units beyond hours, such as days or weeks.
