@@ -544,6 +544,11 @@ The following issues, listed by area and component, are resolved in this release
 - When there are multiple resource types with the same kind, the pop-up menu **Describe** action in
   the Activity panel no longer fails when used on PodIntent resources.
 
+#### <a id="1-5-1-external-secrets-ki"></a> External Secrets CLI (beta)
+
+- Fixed: The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
+  incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
+
 ---
 
 ### <a id='1-5-0-known-issues'></a> Known issues
@@ -572,11 +577,6 @@ This release has the following known issues, listed by area and component.
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory utilization.
-
-#### <a id="1-5-0-external-secrets-ki"></a> External Secrets CLI (beta)
-
-- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
-  incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
 #### <a id="1-5-0-grype-scan-ki"></a> Grype scanner
 
