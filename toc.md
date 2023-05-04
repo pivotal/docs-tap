@@ -595,6 +595,7 @@ docs.vmware.com is built.
       - [Customize Tanzu Application Platform GUI](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the portal](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the support menu](tap-gui/customize/support-menu.hbs.md)
+          - [Customize telemetry collection](tap-gui/customize/customize-telemetry.hbs.md)
       - [Access Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.hbs.md)
       - [Catalog operations](tap-gui/catalog/catalog-operations.hbs.md)
       - [View resources on multiple clusters](tap-gui/cluster-view-setup.hbs.md)
