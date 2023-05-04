@@ -44,6 +44,7 @@ Using workload yaml
           url: https://github.com/sample-accelerators/tanzu-java-web-app
     ```
 
+<br>
 ## Testing Supply Chain
 
 The Testing supply chain adds the **source-tester** step in the supply chain which tests the source code pulled by the supply chain. For source code testing to work in the supply chain, a Tekton Pipeline must exist in the same namespace as the Workload so that, at the right moment, the Tekton PipelineRun object that is created to run the tests can reference the developer-provided Pipeline.
@@ -126,6 +127,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
+<br>
 The sample pipeline resource has the following ytt logic which creates this pipeline only if the following conditions are met:
 
 - `supply_chain` in your TAP values is either `testing` or `testing_scanning`
@@ -184,6 +186,7 @@ Using workload yaml
           url: https://github.com/sample-accelerators/tanzu-java-web-app
     ```
 
+<br>
 ## <a id='test-scan'></a>Testing & Scanning Supply Chain
 
 The Testing Scanning supply chain adds the `source-tester`, `source-scanner`, and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain and scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, the following additional resources must exist in the same namespace as the workload.

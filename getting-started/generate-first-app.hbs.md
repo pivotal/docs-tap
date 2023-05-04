@@ -1,195 +1,211 @@
-# Generate an application with Tanzu Application Accelerator
+# Generate an application with Application Accelerator
 
-This guide will step through how to generate a new project using application
-accelerators and how to deploy the project onto a Tanzu Application Platform
-cluster.
+This topic guides you through how to generate a new project using Application Accelerators
+and how to deploy the project onto a Tanzu Application Platform cluster.
+For background information about Application Accelerators, see
+[Application Accelerator](about-application-accelerator.md).
 
->**Important** Before you start, complete all [Getting Started
->prerequisites](../getting-started.md#get-started-prereqs).
+## <a id="prereqs"></a> Prerequisites
 
-## <a id="interface-options"></a>Choose a project generation interface
-There are multiple interfaces that can be used to generate a project. Choose one
-of the tabs below for instructions on how to generate and deploy applications
-using the selected interface.
+Before you start, complete all [Getting Started prerequisites](../getting-started.md#get-started-prereqs).
 
-> **Note** If you have already generated a project and wish to skip this step,
-> feel free to jump to [Deploying your application with Tanzu Application
-> Platform](deploy-first-app.hbs.md).
+## <a id="interface-options"></a> Generate a project using an Application Accelerator
 
-<a id="app-accelerator-extension-vscode"></a>Application Accelerator extension
-for VS Code : ## <a id="you-will"></a>What you will do
+There are multiple interfaces that you can use to generate a new project. The options are:
+
+- Application Accelerator extension for VS Code
+- Application Accelerator plug-in for IntelliJ
+- Tanzu Application Platform GUI
+
+Choose one of the following tabs for how to generate and deploy applications using your selected interface.
+If you have already generated a project and want to skip this step, you can go to
+[Deploying your application with Tanzu Application Platform](deploy-first-app.hbs.md).
+
+VS Code
+: **What you will do:**
 
   - Install the Application Accelerator extension for VS Code.
   - (Optional) Provision a new GitHub repository and upload the project to the
     repository.
-  - Generate a project using an application accelerator.
+  - Generate a project using an Application Accelerator.
 
-  ## <a id="install-app-accelerator-extension"></a> Install and configure the Application Accelerator extension for VS Code
+  **To generate a new project using an Application Accelerator:**
 
-  To install and configure the Application Accelerator extension for VS Code,
-  see [Application Accelerator Visual Studio
-  Code extension](../application-accelerator/vscode.hbs.md).<br>
+  1. Install and configure the Application Accelerator extension for VS Code, see
+     [Application Accelerator Visual Studio Code extension](../application-accelerator/vscode.hbs.md).
 
-  ## <a id="generate-project"></a>Generate a new project using an application accelerator
+  1. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
 
-  1. Select an accelerator from the catalog. For this example, `Tanzu Java Web
-     App` will be used.
+     ![Selecting Tanzu Java Web App in the Visual Studio Code UI.](../images/app-accelerator/generate-first-app/vscode-1-1.png)
 
-    ![Selecting Tanzu Java Web App](../images/app-accelerator/generate-first-app/vscode-1-1.png)
+  1. In **Configure Accelerator**, configure the accelerator as defined by your project's requirements.
+     This example configures the project to use Spring Boot v3.0 and Java v17.
 
-  2. Configure the accelerator as defined by your project's requirements. For
-     this example, the project will be configured to use Spring Boot 3 and Java
-     17.
+     ![The Configure Accelerator step in the Visual Studio Code UI. The check box for Spring Boot 3.0 is selected.](../images/app-accelerator/generate-first-app/vscode-1-2.png)
 
-    ![Configuration with Spring Boot 3 enabled](../images/app-accelerator/generate-first-app/vscode-1-2.png)
+  1. Click **Next Step**.
 
-  3. Once configuration is finished, click "Next Step".
+  1. If your organization's Tanzu Application Platform is configured for Git repository creation,
+     configure the **Setup Repository** step using the following sub-steps.
+     If not, click **Skip** and go to step 5.
 
-  4. If your organization's Tanzu Application Platform is configured for
-     optional Git repository creation, follow the sub-instructions below.
-     Otherwise, proceed to step 5.
+    >**Note** For information about configuring optional Git repository creation
+    >and supported repositories, see
+    >[Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
-    > **Note** For information on configuring optional Git repository creation and supported repositories, see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+      1. Using the **Providers** drop-down menu, select your Git provider. For example, `github.com`.
 
-      1. Select your git provider. In this example, `github.com` will be selected.
+      1. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
+        Populate the text box with your provider's API token and press Enter.
 
-        ![Selecting git repository provider](../images/app-accelerator/generate-first-app/vscode-1-3.png)
+         This API key must be able to create new repositories for an organization or user.
+         For information about how to create an API token for Git repository creation, see
+         [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic)
+         in the GitHub documentation.
 
-      2. Once the provider is selected, a prompt will appear to enter in an API token for your git provider. Populate the text box with your provider's API token and press the "Enter" key. </br></br> This API key requires the ability to create new repositories for an organization or user. For information on how to create an API token for git repository creation, see [GitHub's "Creating a personal access token"](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic) documentation.
+         ![The Setup Repository step in the Visual Studio UI showing the dialog box to enter the personal access token for your provider.](../images/app-accelerator/generate-first-app/vscode-1-4.png)
 
-        ![Adding GitHub Access Token](../images/app-accelerator/generate-first-app/vscode-1-4.png)
+      1. In the **Owner** text box, enter the name of either the GitHub organization or user name to
+         create the repository under.
 
-      3. In the "Owner" field, enter in the name of either the GitHub organization or username to create the repository under.
-      4. In the "Repository Name" field, enter in the desired name for the project repository.
-      5. In the "Repository Branch" field, enter in the desired default branch name for the project repository. Typically, this would be set to `main`.
-      6. Proceed to the next section by clicking "Next Step"
-  5. In the "Review and Generate" step, verify that all the information provided
-     is accurate. Click "Generate Project".
+      1. In the **Repository Name** text box, enter the name of the project repository.
 
-    ![Image of review and generate step](../images/app-accelerator/generate-first-app/vscode-1-5.png)
+      1. In the **Repository Branch** text box, enter the name of the default branch for the
+         project repository. Typically, this is set to `main`.
 
-  6. A prompt will appear to choose a location for the project to be stored on
-     the local file system. Choose a desired directory or create a new folder.
-  7. Once the project is finished generating, a second prompt will appear to
-     either open the new project in a new window. For now, select "Yes". This
-     will open in a new window.
-  8. Once opened, the project is ready for development.
+      1. Click **Next Step**.
 
-<a id="app-accelerator-plugin-intellij"></a>Application Accelerator plugin for
-IntelliJ : ## <a id="you-will"></a>What you will do
+  1. In the **Review and Generate** step, verify that all the information you provided
+     is accurate, then click **Generate Project**.
 
-  - Install the Application Accelerator plugin for IntelliJ.
-  - Generate a project using an application accelerator.
+     ![The Review and Generate step in the Visual Studio Code UI.](../images/app-accelerator/generate-first-app/vscode-1-5.png)
 
-  ## <a id="install-app-accelerator-plugin"></a> Install and configure the Application Accelerator plugin for IntelliJ
+  1. A dialog box appears for you to choose a location for the project to be stored on the local file system.
+     Choose a directory or create a new one.
 
-  To install and configure the Application Accelerator plug-in for IntelliJ,
-  see Application Accelerator plug-in for
-  IntelliJ.<br>
+  1. After the project has generated, a second dialog box appears for you to open the new project
+     in a new window. Click **Yes**.
 
+  1. When opened, the project is ready for development.
 
-  ## <a id="generate-intellij-project"></a>Generate a new project using an application accelerator
+IntelliJ
+: **What you will do:**
 
-  1. On the IntelliJ "Welcome to IntelliJ IDEA" page, click "New Project".
+  - Install the Application Accelerator plug-in for IntelliJ.
+  - Generate a project using an Application Accelerator.
 
-  2. Select "Tanzu App Accelerator" from the "Generators" panel.
+  **To generate a new project using an Application Accelerator:**
 
-  3. Select an accelerator from the catalog. For this example, `Tanzu Java Web
-     App` will be used. Click "Next".
+  1. Install and configure the Application Accelerator plug-in for IntelliJ, see
+     [Application Accelerator plugin for IntelliJ](../application-accelerator/intellij.hbs.md).
 
-  4. Configure the accelerator as defined by your project's requirements. For
-     this example, the project will be configured to use Spring Boot 3 and Java
-     17.
+  1. On the Welcome to IntelliJ IDEA page, click **New Project**.
 
-  5. Once configuration is finished, click "Next".
+     ![The IntelliJ UI with the New Project button highlighted.](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)
 
-  6. In the "Review and Generate" step, verify that all the information provided
-     is accurate. Click "Next".
+  1. Click **Tanzu Application Accelerator** in the left side panel.
 
-  7. Once the project is finished generating, click "Create" to open the new
-     project in IntelliJ.
-  8. Once opened, the project is ready for development.
+     ![The IntelliJ UI with Tanzu Application Accelerator selected in the Generators list in the left panel.](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)
 
-<a id="app-accelerator-tap-gui"></a>Tanzu Application Platform GUI : ## <a
-id="you-will"></a>What you will do
+  1. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
 
-  - Generate a project from an application accelerator.
+  1. Click **Next**.
+
+  1. In the **Configure Options** step, configure the accelerator as defined by your project's requirements.
+
+     ![The IntelliJ UI showing the Configure Options pane for the Tanzu Java Web App accelerator with the fields filled in.](../images/app-accelerator/intellij/app-accelerators-intellij-options.png)
+
+  1. Click **Next**.
+
+  1. In the **Review and Generate** step, verify that all the information provided is accurate then
+     click **Next**.
+
+      ![The Review and Generate pane for the accelerator showing the information configured in the previous steps.](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
+
+  1. After the project has generated, click **Create** to open the new project in IntelliJ.
+
+  1. When opened, the project is ready for development.
+
+Tanzu Application Platform GUI
+: In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
+  Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI,
+  see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+
+  **What you will do:**
+
+  - Generate a project from an Application Accelerator.
   - (Optional) Provision a new Git repository for the project.
   - Upload it to your Git repository of choice.
 
-  Before you start, complete all [Getting started
-  prerequisites](../getting-started.md#get-started-prereqs). For background on
-  application accelerators, see [Application Accelerator]
-  (about-application-accelerator.md).<br>
-
-  ## <a id="generate-project"></a>Generate a new project using an application accelerator
-
-  In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
-  Tanzu Application Platform GUI. For information about connecting to Tanzu
-  Application Platform GUI, see [Access Tanzu Application Platform
-  GUI](../tap-gui/accessing-tap-gui.md).
+  **To generate a new project using an Application Accelerator:**
 
   1. From Tanzu Application Platform GUI portal, click **Create** located on the
-  left side of the navigation pane to see the list of available accelerators.
+     left side of the navigation pane to see the list of available accelerators.
 
       ![Screenshot of the Accelerators page showing list of available
       accelerators in Tanzu Application Platform
       GUI.](../images/getting-started-tap-gui-1.png)
 
-  2. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
+  1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
 
-  3. In the **Generate Accelerators** dialog box, replace the default value
+  1. In the **Generate Accelerators** dialog box, replace the default value
   `dev.local` in the **prefix for container image registry** text box with the
   registry in the form of `SERVER-NAME/REPO-NAME`. The `SERVER-NAME/REPO-NAME`
   must match what was specified for `registry` as part of the installation
   values for `ootb_supply_chain_basic`. See the Full Profile section on
-  [Installing   Tanzu Application Platform package and
-  profiles](../install.hbs.md#full-profile). Click **NEXT**.
+  [Installing   Tanzu Application Platform package and../install-online/install.hbs.md
+  profiles](../install-online/profile.hbs.md#full-profile).
 
       ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu
       Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
 
-  4. If your instance has optional Git repository support enabled, continue with
-     the following sub-steps. If your instance _does not_ support this, skip to
-     step 5, "Verify the provided information."
+  1. Click **NEXT**.
 
-    > **Note** For information on configuring optional git repository creation and supported repositories, see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+  1. If your instance has optional Git repository support enabled, continue with
+     the following sub-steps. If your instance does not support this, skip to step 5.
 
-      1. Select `Create Git repo?`
-      2. Select the `Host` Git repository provider from the drop-down menu. In this example, select `github.com`.
-      3. Populate the `Owner` and `Repository` properties.
+      >**Note** For information about configuring optional Git repository creation and supported repositories,
+      >see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+
+      1. Select the **Create Git repo?** check box.
+      1. Select the host Git repository provider from the **Host** drop-down menu. For example, `github.com`.
+      1. Populate the **Owner** and **Repository** text boxes.
 
           ![Screenshot of the git repository creation form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-2.png)
 
-      4. As you are populating the form, a dialog box appears asking for permission to provision Git repositories. Follow the prompts and continue.
-      5. Click **NEXT**.
+      1. While you are populating the form, a dialog box appears asking for permission to provision
+         Git repositories. Follow the prompts and continue.
 
-  5. Verify the provided information, and click **GENERATE ACCELERATOR**.
+      1. Click **NEXT**.
 
-  6. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+  1. Verify the provided information, and click **GENERATE ACCELERATOR**.
 
-  7. After downloading the ZIP file, expand it in a workspace directory. If you
+  1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+
+  1. After downloading the ZIP file, expand it in a workspace directory. If you
      did not create a Git repository in the preceding steps, follow your
      preferred procedure for uploading the generated project files to a Git
      repository for your new project.
 
-## Next Steps
-Now that a Tanzu Application Platform-ready project has been generated, [learn
-how to quickly deploy the application](deploy-first-app.hbs.md) on a Tanzu
-Application Platform cluster.
+<br>
 
-## Learn more about Application Accelerator
+## <a id="learn-more"></a>Learn more about Application Accelerator
 
-* For information on how to configure optional git repository creation, see the
-  [Configuration
-  section](../tap-gui/plugins/application-accelerator-git-repo.hbs.md#configuration)
-  of the git repository configuration doc.
-* For information on Application Accelerator configurations, see the [Configure
-  Application Accelerator
-  documentation](../application-accelerator/configuration.hbs.md).
-* For information on installing the Application Accelerator extension for Visual
-  Studio Code, see the [Application Accelerator Visual Studio Code extension
-  documentation](../application-accelerator/vscode.hbs.md).
-* For general accelerator troubleshooting, see [Troubleshooting Application
-  Accelerator for VMware
-  Tanzu](../application-accelerator/troubleshooting.hbs.md).
+- For information about how to configure optional Git repository creation, see
+  [Configure](../tap-gui/plugins/application-accelerator-git-repo.hbs.md#configuration)
+  in _Create an Application Accelerator Git repository during project creation_.
+
+- For information about Application Accelerator configurations, see
+  [Configure Application Accelerator](../application-accelerator/configuration.hbs.md).
+
+- For information about installing the Application Accelerator extension for Visual Studio Code, see
+  [Application Accelerator Visual Studio Code extension](../application-accelerator/vscode.hbs.md).
+
+- For general accelerator troubleshooting, see
+  [Troubleshooting Application Accelerator for VMware Tanzu](../application-accelerator/troubleshooting.hbs.md).
+
+## <a id="next-steps"></a>Next Steps
+
+Now that you have generated a project that is ready for Tanzu Application Platform, learn
+how to quickly deploy the application on a Tanzu Application Platform cluster in
+[Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).

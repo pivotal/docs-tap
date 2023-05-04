@@ -51,7 +51,7 @@ with the following changes:
     >**Note** AppSSO templates your issuer URI and enables TLS. When using the newer `.spec.tls`,
     a custom `Service` and an ingress resource are no longer required.
 
-    >**Note** It is not recommended to continue using `.spec.issuerURI` in AppSSO v2.0.0. 
+    >**Note** It is not recommended to continue using `.spec.issuerURI` in AppSSO v2.0.0.
     To use `.spec.issuerURI` in AppSSO v2.0.0, you must provide a `Service` and an ingress resource as in AppSSO v1.0.0.
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.

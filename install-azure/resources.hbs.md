@@ -65,8 +65,10 @@ The following example creates a cluster named `tap-on-azure` with one node and
 enables a system-assigned managed identity:
 
 ```console
-az aks create -g myTAPResourceGroup -n tap-on-azure --enable-managed-identity --node-count 6 --enable-addons monitoring --enable-msi-auth-for-monitoring --generate-ssh-keys --node-vm-size Standard_D4ds_v4 --kubernetes-version KUBERNETES_VERSION
+az aks create -g myTAPResourceGroup -n tap-on-azure --enable-managed-identity --node-count 6 --enable-addons monitoring --enable-msi-auth-for-monitoring --generate-ssh-keys --node-vm-size Standard_D4ds_v4 --kubernetes-version K8S-VERSION
 ```
+
+Where `K8S-VERSION` is the compatible Kubernetes version that can be retrieved by running `az aks get-versions`.
 
 After a few minutes, the command completes and returns JSON-formatted information about the cluster.
 
@@ -77,7 +79,7 @@ For more information, see [Why are two resource groups created with AKS?](https:
 ## <a id='connect-aks-cluster'></a>Connect to the AKS cluster
 
 To manage a Kubernetes cluster, use the Kubernetes command-line client, 
-[kubectl](https://kubernetes.io/docs/user-guide/kubectl/). 
+[kubectl](https://kubernetes.io/docs/reference/kubectl/). 
 `kubectl` is already installed if you use Azure Cloud Shell.
 
 1. Install `kubectl` locally by using the 

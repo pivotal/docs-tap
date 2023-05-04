@@ -1,7 +1,7 @@
-# Use blue-green deployment with Contour and PackageInstall (alpha)
+# Use blue-green deployment with Contour and PackageInstall for Supply Chain Choreographer (alpha)
 
-Blue-green deployment is an application delivery model that gradually transfers
-user traffic from one version of an app to a later version while both are
+Blue-green deployment is an application delivery model that lets you gradually transfer
+user traffic from one version of your app to a later version while both are
 running in production. This guide outlines how to use blue-green
 deployment with Packages and PackageInstalls.
 

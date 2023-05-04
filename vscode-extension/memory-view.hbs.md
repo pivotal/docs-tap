@@ -1,6 +1,6 @@
 # Use Memory View in Spring Boot Dashboard
 
-This topic describes how to view memory use by using Spring Boot Dashboard.
+This topic tells you how to use Spring Boot Dashboard to view memory use.
 
 For more information about Spring Boot Dashboard, see
 [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard).

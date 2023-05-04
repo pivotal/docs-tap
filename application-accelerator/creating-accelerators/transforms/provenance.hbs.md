@@ -10,15 +10,15 @@ type: Provenance
 condition: <SpEL expression>
 ```
 
-The `Provenance` transform should typically be added as a child to the top-most
-transform (which is typically a `Merge` or a `Chain`, maybe via `Combo`).
- 
-## <a id="behavior"></a>Behavior
-The `Provenance` transform is special in that it ignores its input and always outputs
-a single resource named `accelerator-info.yaml` whose contents looks like this
-(depending on invocation scenario, some pieces of data may not be present):
+The `Provenance` transform is added as a child to the top-most
+transform, which is usually a `Merge` or a `Chain`, using a `Combo`.
 
-```
+## <a id="behavior"></a>Behavior
+
+The `Provenance` transform ignores its input and outputs
+a single resource named `accelerator-info.yaml`. For example:
+
+``` console
 id: <unique GUID of invocation>
 timestamp: <timestamp in RFC3339 format>
 username: <captured username of user triggering the run>
@@ -52,9 +52,12 @@ fragments:
         commit: <specific requested commit>
       subPath: <optional subpath inside the repo>
       commit: <actual SHA the branch or tag pointed to>
-  - ...    
+  - ...
 options:
   - name: <option name>
     value: <option value>
   - name: <option name>
     value: <option value>
+```
+
+> **Note** Depending on the invocation scenario, some pieces of data might not be present.

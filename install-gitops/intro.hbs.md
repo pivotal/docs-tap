@@ -2,8 +2,8 @@
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-GitOps is an operational framework that uses Git repositories as a single source of truth. 
-Under GitOps, you describe the desired state of a Tanzu Application Platform configuration 
+GitOps is an operational framework that uses Git repositories as a single source of truth.
+Under GitOps, you describe the desired state of a Tanzu Application Platform configuration
 by using a declarative specification and place it in a Git repository.
 
 {{#unless vars.hide_content}}
@@ -31,7 +31,7 @@ GitOps with Secrets OPerationS (SOPS)
     |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
 
 GitOps with External Secrets Operator (ESO)
-: Applies to the scenario when you want to store sensitive data in external store:  
+: Applies to the scenario when you want to store sensitive data in external store:
 
     <!-- ... "Supported on AWS Secrets Manager" ... -->
 
@@ -39,7 +39,7 @@ GitOps with External Secrets Operator (ESO)
     |----|----|----|
     |1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](../prerequisites.hbs.md)|
     |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accept Tanzu Application Platform EULAs and installing the Tanzu CLI](../install-tanzu-cli.hbs.md)|
-    |3.| Create AWS Resources (EKS Cluster, roles, etc)|[Create AWS Resources](../aws-resources.hbs.md)|
+    |3.| Create AWS Resources (EKS Cluster, roles, etc)|[Create AWS Resources](../install-aws/resources.hbs.md)|
     |4.| Install Cluster Essentials for Tanzu*. |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)|
     |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](eso.hbs.md)|
     |6.| (Optional) Install any additional packages that were not in the profile. |[Install individual packages](components.hbs.md)|

@@ -102,8 +102,8 @@ providers:
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
 - vSphere with Tanzu v7.0 U3f or later.<br>
-For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
-For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
+For vSphere with Tanzu, you must configure pod security policies so Tanzu Application Platform controller pods can run as root.
+For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
     To set the pod security policies, run:
 
@@ -112,7 +112,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
     ```
 
     For more information about pod security policies on Tanzu for vSphere, see
-    [Using Pod Security Policies with Tanzu Kubernetes Clusters in VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
+    [VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
 
 ## <a id="resource-requirements"></a>Resource requirements
 
@@ -131,7 +131,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
 
-- For the [full profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
+- For the [full profile](install-online/profile.hbs.md#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
     - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-custom-stacks.html).

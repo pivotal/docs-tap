@@ -53,9 +53,9 @@ This topic describes the prerequisites for installing Supply Chain Security Tool
 
     The Snyk Scanner integration can work with or without the SCST - Store integration. The `values.yaml` file is slightly different for each configuration.
 
-## <a id="store-integration"></a> Supply Chain Security Tools - Store integration
+## <a id="store-integration"></a> SCST - Store integration
 
-**Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Snyk Scanner, you can enable the SCST - Store integration by appending the fields to the `values.yaml` file.
+**Using SCST - Store Integration:** To persist the results found by the Snyk Scanner, you can enable the SCST - Store integration by appending the fields to the `values.yaml` file.
 
 The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform is installed using the Full Profile, the Grype Scanner Integration is installed, unless it is explicitly excluded.
 
@@ -102,7 +102,7 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
         importFromNamespace: "STORE-SECRETS-NAMESPACE"
     ```
 
-**Without Supply Chain Security Tools - Store Integration:** The SCST - Store integration is enabled by default. If you don’t want to use this integration, explicitly deactivate the integration by appending the following field to the `values.yaml` file:
+**Without SCST - Store Integration:** The SCST - Store integration is enabled by default. If you don’t want to use this integration, deactivate the integration by appending the following field to the `values.yaml` file:
 
 ```yaml
 # ...

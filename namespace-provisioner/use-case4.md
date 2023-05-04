@@ -61,7 +61,7 @@ Using GitOps
         subPath: ns-provisioner-samples/gitops-install
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
-
+<br>
 ## Customize service accounts
 
 This section provides instructions on how to configure the `default` service account to work with private Git repositories for workloads and supply chain using Namespace Provisioner.
@@ -196,7 +196,13 @@ Using GitOps
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource, see [Default Resources](reference.md#default-resources) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  
+Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all namespaces managed by Namespace Provisioner. For more information, see [Default Resources](reference.md#default-resources).
+
+You can opt-in to have LimitRange resource created on Full and Iterate clusters. For more information,see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific).
+
+Namespace Provisioner does not create LimitRange resource in Build and View clusters.
+
+Default values in LimitRange resource are as follows:
 
 ```yaml
 limits:
@@ -208,14 +214,15 @@ limits:
     memory : 1Gi
 ```
 
-### Update LimitRange defaults for all namespaces
+### <a id='update-lr'></a>Set/Update LimitRange defaults for all namespaces
 
 Namespace Provisioner provides options for updating the values in LimitRange for all namespaces managed by the provisioner by specifying the `default_parameters` configuration in Namespace Provisioner TAP values as follows:
 
 ```yaml
 namespace_provisioner:
   default_parameters:
-    # overwrite default limits set by the OOTB LimitRange for all namespaces
+    # overwrite default limits set by the OOTB LimitRange (in Run Cluster) for all namespaces
+    # set default limits for Full and Iterate Cluster in all namespaces
     limits:
       default:
         cpu: 1000m
@@ -225,7 +232,7 @@ namespace_provisioner:
         memory: 500Mi
 ```
 
-### Update LimitRange defaults for a specific namespace
+### <a id='update-lr-specific'></a>Set/Update LimitRange defaults for a specific namespace
 
 If you wish to override the LimitRange for specific namespaces, you can do that via namespace parameters that can be applied as follows.
 

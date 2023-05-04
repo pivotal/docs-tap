@@ -4,7 +4,7 @@
 
 Generally, `AuthServer.status` is designed to provide you with helpful feedback to debug a faulty `AuthServer`.
 
-## Find all `AuthServer`-related Kubernetes resources
+## <a id="find-k8s-resources"></a> Find all `AuthServer` related Kubernetes resources
 
 Identify all `AuthServer` components with Kubernetes common labels. For more information,
 see [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels).
@@ -48,8 +48,8 @@ You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signin
 
 ### Solution:
 
-The `redirectURIs` of a `ClientRegistration` must refer to the URI(s) of the registered `Workload`.
-It does not refer to the URI of the AuthServer. Read more [here](app-operators/workloads-and-appsso.hbs.md#redirect-uris).
+The `redirectURIs` of a `ClientRegistration` must refer to the URI (one or more) of the registered `Workload`.
+It does not refer to the URI of the AuthServer. For more information, see [Redirect URIs](app-operators/workloads-and-appsso.hbs.md#redirect-uris).
 
 ## Unsupported `id_token_signed_response_alg` with openid `identityProviders`
 

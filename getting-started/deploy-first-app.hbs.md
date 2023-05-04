@@ -1,8 +1,20 @@
 # Deploy an app on Tanzu Application Platform
 
-> **Note** This guide is a continuation from the previous step, ["Generate an application with Tanzu Application Accelerator"](./generate-first-app.hbs.md). If a project has not been created yet, step through that guide first.
+This topic guides you through deploying your first application on Tanzu Application Platform by using the
+Tanzu CLI, and optionally adding your application to the Tanzu Application Platform GUI software catalog.
 
->**Note** Before you start, complete all [Getting Started prerequisites](../getting-started.md#get-started-prereqs).
+This guide is a continuation from the previous step,
+[Generate an application with Application Accelerator](./generate-first-app.hbs.md).
+
+## <a id="prereqs"></a>Prerequisites
+
+Before you start, you must have:
+
+- Completed all [Getting Started prerequisites](../getting-started.md#get-started-prereqs).
+- Created a project. To do so, you can follow the steps in
+  [Generate an application with Application Accelerator](./generate-first-app.hbs.md).
+- Created a Git repository during the project creation stage. If the project does not have an
+  associated Git repository, create a repository and update the `workload.yaml` the repository URL and branch.
 
 ## <a id="you-will"></a>What you will do
 
@@ -13,15 +25,15 @@
 
 ## <a id="deploy-your-app"></a>Deploy your application using the Tanzu CLI
 
-1. Deploy the Tanzu Java Web App project that was generated in the [previous guide](generate-first-app.hbs.md) by running the `tanzu apps workload create` command:
-
-    >**Note** This assumes that you created a git repository during the project creation stage. If the project does not have an associated git repo, one will need to be created and the `workload.yaml` will need to be updated with the repository URL and branch.
+1. Deploy the Tanzu Java Web App project that you generated in
+   [Generate an application with Application Accelerator](generate-first-app.hbs.md)
+   by running the `tanzu apps workload create` command:
 
     ```console
     tanzu apps workload create --file config/workload.yaml --namespace YOUR-NAMESPACE
     ```
 
-    Alternatively, a workload can be created entirely using the command line:
+    Alternatively, you can create a workload entirely using the command line:
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
@@ -33,13 +45,17 @@
     --yes \
     --namespace YOUR-NAMESPACE
     ```
-    
-    * `GIT-REPO-URL` is the git repository URL for where your project is stored. For example, `https://github.com/vmware-tanzu/my-tanzu-java-web-app-project`.
-    * `YOUR-NAMESPACE` is the namespace for where workloads should be deployed. This will depend on your organization's Tanzu Application Platform configuration. Consult with your Tanzu Application Platform administrators for more information. For example, `my-app-dev-namespace`.
+
+    Where:
+
+    - `GIT-REPO-URL` is the Git repository URL for where your project is stored. For example, `https://github.com/vmware-tanzu/my-tanzu-java-web-app-project`.
+    - `YOUR-NAMESPACE` is the namespace where workloads are deployed. For example, `my-app-dev-namespace`.
+      This depends on your organization's Tanzu Application Platform configuration.
+      For more information, consult with your Tanzu Application Platform administrators.
 
     For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
-2. View the build and runtime logs for your app by running the `get` command:
+1. View the build and runtime logs for your app by running the `get` command:
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
@@ -47,9 +63,10 @@
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-    > **Note** To watch updates in real-time, prepend `watch -n1` to the `tanzu apps workload get` command to see the updated result every second.
+    >**Note** To watch updates in real time, prepend `watch -n1` to the `tanzu apps workload get` command
+    >to see the result update every second.
 
-    An example of the output from early-stage deployment will look like the following:
+    An example of the output from an early-stage deployment looks like the following:
 
     ```console
     Overview
@@ -91,8 +108,8 @@
         tanzu-java-web-app-build-1-build-pod   0/1     Init:0/6   0          5s
     ```
 
-    Once the workload is successfully deployed, text similar to the following will be displayed:
-    
+    After the workload is deployed, text similar to the following is displayed:
+
     ```console
     Overview
         name:        tanzu-java-web-app
@@ -134,9 +151,11 @@
     Knative Services
         NAME                 READY   URL
         tanzu-java-web-app   Ready   https://tanzu-java-web-app.dev-namespace.apps.my-organization.com
-    ```    
+    ```
 
-3. After the workload is built and is successfully deployed, fetch the URL of the deployed app. The URL of the web app can be found in the `Knative Services` section at the bottom of the output of the `tanzu apps workload get` command:
+1. After the workload is built and deployed, fetch the URL of the deployed app.
+   The URL of the web app is in the `Knative Services` section at the bottom of the output of
+   the `tanzu apps workload get` command:
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
@@ -144,43 +163,54 @@
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-    The section will look similar to the following:
-    
+    The output looks similar to the following:
+
     ```console
     Knative Services
         NAME                 READY   URL
         tanzu-java-web-app   Ready   https://tanzu-java-web-app.dev-namespace.apps.my-organization.com
     ```
 
-4. View the web app in your browser.
+1. View the web app in your browser.
 
     ![Screenshot of the Tanzu Java Web App default screen in a browser.](../images/getting-started-tap-gui-8.png)
 
-
 ## <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI software catalog
 
-1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left navigation pane. Click **REGISTER ENTITY**.
+1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**,
+   located on the left navigation pane.
+
+1. Click **REGISTER ENTITY**.
 
     ![Screenshot of Tanzu Application Platform GUI Home page, with REGISTER Entity button highlighted.](../images/getting-started-tap-gui-5.png)
 
-    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](../install.md#full-profile).
+    Alternatively, you can add a link for the `catalog-info.yaml` to the `tap-values.yaml` configuration
+    file in the `tap_gui.app_config.catalog.locations` section.
+    For more information, see
+    [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md#full-profile).
 
-2. **Register an existing component** prompts you to type a repository URL.
-Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository text box. For example,
-`https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
+1. **Register an existing component** prompts you to type a repository URL.
+   Type the link to the `catalog-info.yaml` file of the `tanzu-java-web-app` in the Git repository text box.
+   For example, `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
-3. Click **ANALYZE**.
+1. Click **ANALYZE**.
 
     ![Screenshot of the page to register an existing component, showing Repository URL text box and Analyze button.](../images/getting-started-tap-gui-6.png)
 
-4. Review the catalog entities to be added and click **IMPORT**.
+1. Review the catalog entities to be added and click **IMPORT**.
 
     ![Screenshot of page for reviewing catalog entities to be added, showing entity details and Import button.](../images/getting-started-tap-gui-7.png)
 
-5. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
->**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
+>**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md)
+>database configured, you must re-register the `catalog-info.yaml` location after the instance is
+>restarted or upgraded.
 
-## Next steps
+## <a id="next-steps"></a>Next steps
 
-- [Iterate on your new app](iterate-new-app.md)
+Now that you have your application deployed on your Tanzu Application Platform cluster,
+the next step is to iterate on your application.
+
+- If you are an IntelliJ user, see the [Iterate on your new app using IntelliJ](iterate-new-app-intellij.hbs.md) guide.
+- If you are a VS Code user, see the [Iterate on your new app using VS Code](iterate-new-app-vscode.hbs.md) guide.

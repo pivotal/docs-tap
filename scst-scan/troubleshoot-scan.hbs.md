@@ -1,4 +1,4 @@
-# Troubleshooting Supply Chain Security Tools - Scan
+# Troubleshoot Supply Chain Security Tools - Scan
 
 ## <a id="debugging-commands"></a> Debugging commands
 
@@ -14,7 +14,10 @@ To retrieve TaskRun events:
 kubectl describe taskrun TASKRUN-NAME -n DEV-NAMESPACE
 ```
 
-WHERE `TASKRUN-NAME` is the name of the TaskRun.
+Where:
+
+- `TASKRUN-NAME` is the name of the TaskRun.
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
 
 ### <a id="debugging-scan-pods"></a> Debugging Scan pods
 
@@ -110,23 +113,26 @@ the deployment to see if it's reproducible or flaking upon starting:
 kubectl rollout restart deployment scan-link-controller-manager -n scan-link-system
 ```
 
-## <a id="troubleshooting-scanner-to-metadata-store-configuration"></a> Troubleshooting Scanner to MetadataStore Configuration
+## <a id="troubleshoot-scanner-metadata-config"></a> Troubleshooting scanner to MetadataStore configuration
 
 ### Insight CLI failed to post scan results to metadata store due to failed certificate verification
 
 If you encounter this issue:
+
 ```
 ✖  Error: Post "https://metadata-store.tap.tanzu.example.com/api/sourceReport?": tls: failed to verify certificate: x509: certificate signed by unknown authority
 ```
-Perform the following steps to ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSecret` from the `METADATASTORE-NAMESPACE` namespace:
 
-1. In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store. If you've provided an ingress connection to the store, delete it.
+To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSecret` from the `METADATASTORE-NAMESPACE` namespace:
+
+1. In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured. You do not need to provide an ingress connection to the store. If you provided an ingress connection to the store, delete it.
 
 2. Get the `caSecret.name` depending if your setup is single or multicluster.
 
-    a. If you are using a single cluster setup, the default value for `grype.metadataStore.caSecret.name` is `app-tls-cert` as defined [here](./install-scst-scan.hbs.md#configure-properties).
+    1. If you are using a single cluster setup, the default value for `grype.metadataStore.caSecret.name` is `app-tls-cert`. See [Install Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md#configure-properties).
 
-    b. If you are using a multi-cluster setup, retrieve `grype.metadataStore.caSecret.name` from grype config:
+    2. If you are using a multicluster setup, retrieve `grype.metadataStore.caSecret.name` from the Grype config:
+
       ```
       grype:
         metadataStore:
@@ -134,50 +140,60 @@ Perform the following steps to ensure that the `caSecret` from the scanner `DEV-
             name: store-ca-cert
             importFromNamespace: metadata-store-secrets
       ```
-      **Note:** `caSecret.name` is set to `store-ca-cert` as defined [here](../scst-store/multicluster-setup.hbs.md#exporting-scst---store-secrets-to-a-developer-namespace-in-a-tanzu-application-platform-multicluster-deployment).
 
-3. Validate the secret `CA-SECRET` (found in step above) exists in the `DEV-NAMESPACE`.
+      **Note** `caSecret.name` is set to `store-ca-cert`. See [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
+
+3. Verify that the `CA-SECRET` secret exists in the `DEV-NAMESPACE`.
+
     ```
     kubectl get secret CA-SECRET -n DEV-NAMESPACE
     ```
 
-4. If the secret `CA-SECRET` doesn't exist in our `DEV-NAMESPACE` then check if the `CA-SECRET` exists in the `METADATASTORE-NAMESPACE` namespace:
+4. If the secret `CA-SECRET` doesn't exist in your `DEV-NAMESPACE`, verify that the `CA-SECRET` exists in the `METADATASTORE-NAMESPACE` namespace:
+
     ```
     kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE
     ```
-    Where:
 
-    `METADATASTORE-NAMESPACE` is the namespace that contains the secret `CA-SECRET`. If single cluster, it would be set to `metadata-store` namespace. If multicluster, it would be set to `metadata-store-secrets`.
+    Where `METADATASTORE-NAMESPACE` is the namespace that contains the secret
+    `CA-SECRET`. If you are using a single cluster, it is configured using the
+    `metadata-store` namespace. If multicluster, it is configured using the
+    `metadata-store-secrets`.
 
-    * If `CA-SECRET` doesn't exist in the metadata store namespace, see [here](../scst-store/custom-cert.hbs.md) for how to configure the cert.
+    - If `CA-SECRET` doesn't exist in the metadata store namespace, configure the certificate. See [Custom certificate configuration](../scst-store/custom-cert.hbs.md).
 
 5. Check if the secretexport and secretimport exist and are reconciling successfully:
+
     ```
     kubectl get secretexports.secretgen.carvel.dev -n `METADATASTORE-NAMESPACE`
     kubectl get secretimports.secretgen.carvel.dev -n `DEV-NAMESPACE`
     ```
-    * The single cluster secretexport is created by default [here](../scst-store/deployment-details.hbs.md#exporting-certificates)
-    * The multi cluster secretexport is created [here](../scst-store/multicluster-setup.hbs.md#exporting-scst---store-secrets-to-a-developer-namespace-in-a-tanzu-application-platform-multicluster-deployment)
 
-6. Check the certs in the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match by base64 decoding both secrets and comparing them:
-   * View certificates to see if there's a difference:
-   ```
-   kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
-   kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
-   ```
-   The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must match in order for the scanner to connect to the metadata-store.
+    - SCST - Store creates the single cluster secretexport by default. See [Deployment details and configuration](../scst-store/deployment-details.hbs.md#exporting-certificates).
+    - For information about creating the multicluster secretexport, see [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
+
+6. Verify that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the `DEV-NAMESPACE` secret.
+
+  Confirm this by base64 decoding both secrets and verifying that there is a match:
+
+  ```console
+  kubectl get secret CA-SECRET -n DEV-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
+  kubectl get secret CA-SECRET -n METADATASTORE-NAMESPACE -o json | jq -r '.data."ca.crt"' | base64 -d
+  ```
+
+  The certificates in the `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` must have a match for the scanner to connect to the metadata-store.
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
-### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in Airgap Environments
+### <a id="troubleshoot-grype-airgap"></a> Troubleshooting Grype in air gap Environments
 
-For information about issues with Grype in air-gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
+For information about issues with Grype in air gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
 
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
 Scanning source code from a private source repository requires an SSH secret present in the
 namespace and referenced as `grype.targetSourceSshSecret` in `tap-values.yaml`. See [Installing the
-Tanzu Application Platform Package and Profiles](../install.md).
+Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md).
 
 If a private source scan is triggered and the secret cannot be found, the scan pod includes a
 `FailedMount` warning in Events with the message `MountVolume.SetUp failed for volume "ssh-secret" :
@@ -188,7 +204,7 @@ secret "secret-ssh-auth" not found`, where `secret-ssh-auth` is the value specif
 
 Scanning an image from a private registry requires an image pull secret to exist in the Scan CRs
 namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing
-the Tanzu Application Platform Package and Profiles](../install.md).
+the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md).
 
 If a private image scan is triggered and the secret is not configured, the scan TaskRun's pod's `step-scan-plugin` container fails with the following error:
 
@@ -316,7 +332,7 @@ Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 ### <a id="supply-chain-stops"></a> Resolving failing scans that block a Supply Chain
 
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see
-the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md.
+the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
 ### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
@@ -365,7 +381,7 @@ This is because the `grype.metadataStore.url` value in the Tanzu Application
 Platform profile `values.yaml` was not configured with the correct prefix.
 Verify that the URL starts with either `http://` or `https://`.
 
-### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
+### <a id="deprecated-templates"></a> Deprecated pre-v1.2 templates
 
 If the scan phase is in `Error` and the status condition message is:
 
@@ -394,9 +410,9 @@ x509: certificate signed by unknown authority
 
 To resolve this issue, ensure that `shared.ca_cert_data` contains the required certificate. For an example of setting up the shared self-signed certificate, see [Build profile](../multicluster/reference/tap-values-build-sample.hbs.md).
 
-For information about `shared.ca_cert_data`, see [View possible configuration settings for your package](../view-package-config.hbs.md).
+For information about `shared.ca_cert_data`, see [View possible configuration settings for your package](../install-online/view-package-config.hbs.md).
 
-### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
+### <a id="unable-pull-scanner-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
 The `docker` field and related sub-fields by SCST - Scan Controller, Grype
 Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0.
@@ -410,14 +426,14 @@ UNAUTHORIZED: unauthorized to access repository
 The recommended migration path for users setting up their namespaces
 manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
-[instructions](../set-up-namespaces.hbs.md).
+[instructions](../install-online/set-up-namespaces.hbs.md).
 
 >**Important** This step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
 package repository.
 ### <a id="grype-db-not-available"></a> Grype database not available
 
-Prior to running a scan, the Grype scanner downloads a copy of its database. If the database fails to download, the following log message might appear.
+Before running a scan, the Grype scanner downloads a copy of its database. If the database fails to download, the following log entry might appear.
 
 ```console
 Vulnerability DB [no update available] New version of grype is available: 0.50.2 [0000] WARN unable to check for vulnerability database update 1 error occurred: * failed to load vulnerability db: vulnerability database is corrupt (run db update to correct): database metadata not found: ~/Library/Caches/grype/db/3
@@ -442,4 +458,4 @@ Pods
    my-scan-45smk-pod                     0/9     Completed   1          14m
 ```
 
-One restart in scanner pods is expected with successful scans. To support Tanzu Service Mesh (TSM) integration, jobs were replaced with TaskRuns. This restart is an artifact of how Tekton cleans up sidecar containers by patching the container spec.
+One restart in scanner pods is expected with successful scans. To support Tanzu Service Mesh (TSM) integration, jobs were replaced with TaskRuns. This restart is an artifact of how Tekton cleans up sidecar containers by patching the container specifications.

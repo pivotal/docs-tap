@@ -302,7 +302,8 @@ enabled by default:
 
 ```yaml
 # ...
-metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+metadataStore:
+  url: "" # Deactivate Supply Chain Security Tools - Store integration
 ```
 
 ## <a id='prep-scanpolicy'></a> Prepare the ScanPolicy

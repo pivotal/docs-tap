@@ -195,19 +195,22 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports Node.js workloads | Yes | Yes |
 | Supports Go workloads | Yes | Yes |
 | Supports Python workloads | Yes | Yes |
-| Supports Ruby workloads | No | Yes |
+| Supports Ruby workloads | Yes | Yes |
 | Supports .NET Core workloads | Yes | Yes |
 | Supports PHP workloads | No | Yes |
 | Supports static workloads | Yes | Yes |
 | Supports binary workloads | Yes | Yes |
 | Supports web servers buildpack | Yes | Yes |
 
-## <a id="update"></a> Updating dependencies 
+## <a id="update"></a> Updating dependencies
 
-New versions of dependencies (buildpacks, stacks) are available in new versions of Tanzu Application Platform. If you are seeking to update your dependencies, we encourage you to update to the latest patch version of Tanzu Application Platform. 
-* If you are using `lite` dependencies, simply upgrade to the latest patch version of Tanzu Application Platform to update your dependencies. 
-* If you are using `full` dependencies, you will need to complete a few extra steps to update your dependencies after you upgrade to the latest patch version of Tanzu Application Platform. In this case, please see instructions on [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
+New versions of dependencies such as buildpacks, and stacks are available in new versions of Tanzu Application Platform. To update dependencies, VMware recommends that you update to the latest patch
+version of Tanzu Application Platform.
 
-Note that when Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
+- If you are using `lite` or `full` dependencies, upgrade to the latest patch version of Tanzu Application Platform to update your dependencies.
+- If you are using `full` dependencies, you must complete some extra steps after you upgrade to the latest patch. For more information, see [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
-Updating buildpack and stack dependencies outside of upgrades to Tanzu Application Platform is possible but not recommended, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform. For more information, see [updating a ClusterStack](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) for updating a stack and [updating a ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) for updating a buildpack. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
+> **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
+
+Updating buildpack, and stack dependencies outside of upgrades to Tanzu Application Platform is possible but VMware does not recommend it, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform.
+For more information about updating a stack and a buildpack, see [Cluster stacks update](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) and [Cluster store update](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) in the Tanzu Build Service documentation. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).

@@ -1,9 +1,10 @@
 # Install External Secrets Operator
 
-This topic describes how to install the External Secrets Operator 
+This topic describes how to install the External Secrets Operator
 from the Tanzu Application Platform package repository.
 
-> **Important** External Secrets Operator is not included or installed with any TAP profile.
+> **Important** External Secrets Operator is not included or installed with any
+> Tanzu Application Platform profile.
 
 ## <a id='eso-prereqs'></a> Prerequisites
 
@@ -18,38 +19,36 @@ To install External Secrets Operator:
 
 1. List version information for the package by running:
 
-   ```sh
+   ```console
    tanzu package available list external-secrets.apps.tanzu.vmware.com -n tap-install
    ```
 
    For example:
 
-   ```sh
-   NAME                                    VERSION      RELEASED-AT                    
-   external-secrets.apps.tanzu.vmware.com  0.6.1+tap.6  2023-03-08 14:00:00 -0500 EST 
+   ```console
+   NAME                                    VERSION      RELEASED-AT
+   external-secrets.apps.tanzu.vmware.com  0.6.1+tap.6  2023-03-08 14:00:00 -0500 EST
    ```
 
 2. Install the package:
 
-   ```sh
+   ```console
    tanzu package install external-secrets \
      --package-name external-secrets.apps.tanzu.vmware.com \
      --version VERSION-NUMBER \
      --namespace tap-install
    ```
 
-   Where:
-
-     - `VERSION-NUMBER` is the version of the package listed in step 1 above.
+   Where `VERSION-NUMBER` is the version of the package listed in step 1.
 
    For example:
 
-   ```sh
+   ```console
    tanzu package install external-secrets \
-   --package-name external-secrets.apps.tanzu.vmware.com 
-   --version 0.6.1+tap.6 
+   --package-name external-secrets.apps.tanzu.vmware.com
+   --version 0.6.1+tap.6
    --namespace tap-install
-   
+
    \ Installing package 'external-secrets.apps.tanzu.vmware.com'
    | Getting package metadata for 'external-secrets.apps.tanzu.vmware.com'
    | Creating service account 'external-secrets-tap-install-sa'
@@ -62,20 +61,20 @@ To install External Secrets Operator:
    Waiting for 'PackageInstall' reconciliation for 'external-secrets'
    'PackageInstall' resource install status: Reconciling
    'PackageInstall' resource install status: ReconcileSucceeded
-  
+
    Added installed package 'external-secrets'
    ```
 
 3. Verify the package installation by running:
 
-   ```sh
+   ```console
    tanzu package installed get external-secrets \
    --namespace tap-install
    ```
-   
+
    For example:
-   
-   ```sh
+
+   ```console
    tanzu package installed get external-secrets -n tap-install
 
    NAME:                    external-secrets

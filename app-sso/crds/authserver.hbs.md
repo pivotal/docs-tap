@@ -6,10 +6,10 @@ server backed by Redis over mutual TLS if no storage is defined.
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
 
-To allow `ClientRegistrations` from all or a restricted set of Namespaces, the
-annotation `sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
-allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients from all namespaces. If
-the annotation is missing, no clients are allowed.
+To allow `ClientRegistrations` only from a restricted set of `Namespaces`, the annotation 
+`sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
+allowed `Namespaces`, e.g. `"app-team-red,app-team-green"`. If the annotation is missing, the default value is `*`, 
+denoting that all client namespaces are allowed.
 
 The issuer URI, which is the point of entry for clients and end-users, is constructed through the package's `domain_template`.
 You can view the issuer URI by running `kubectl get authserver -n authservers`.
@@ -58,7 +58,7 @@ metadata:
   namespace: ""
   labels: { } # required, must uniquely identify this AuthServer
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # required, must be "*" or a comma-separated list of allowed client namespaces
+    sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # optional, a comma-separated list of allowed client namespaces
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-cors: "" # optional
@@ -75,13 +75,19 @@ spec:
     secretRef:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
-    disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
   cors:
     allowOrigins: # optional, cannot be combined with 'allowAllOrigins'.
       - ""
     allowAllOrigins: false # optional
                            # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
                            # Cannot be combined with 'allowOrigins'.
+  token:             # optional
+    accessToken:     # optional
+      expiry: "12h"  # optional, default expiry is 12 hours
+    refreshToken:    # optional
+      expiry: "720h" # optional, default expiry is 720 hours (30 days)
+    idToken:         # optional
+      expiry: "12h"  # optional, default expiry is 12 hours
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -142,14 +148,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
-          accessToken: # optional
-            scope:
-              defaults: # optional
-              - ""
-              rolesToScopes: # optional
-                - fromRole: ""
-                  toScopes:
-                  - ""
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                - ""
         group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
           search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
             filter: ""
@@ -226,7 +232,7 @@ status:
       configHash: ""
       image: ""
       replicas: 0
-    redis: # leave empty if storage is configured by the service operator
+    redis: # left empty if storage is configured by the service operator
       image: ""
   storage:
     redis:
@@ -405,7 +411,6 @@ metadata:
     identifier: authserver-identifier
     sample: "true"
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
     sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""
 spec:

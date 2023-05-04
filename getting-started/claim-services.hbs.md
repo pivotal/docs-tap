@@ -42,7 +42,7 @@ Before following this tutorial, an application operator must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have the Tanzu CLI and the corresponding plug-ins.
 1. Have access to the `default` namespace which has been set up to use installed packages.
-For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+For more information, see [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
 
 ## <a id="stk-discover"></a> Discover available services
 
@@ -94,8 +94,8 @@ information about the classes of services.
 
 ## <a id="stk-create-claim"></a> Create a claim for a service instance
 
-This section covers using `tanzu service class-claim create` to create a claim for an instance of a class and
-using `tanzu service class-claim get` to get detailed information about the status of the claim.
+This section covers using `tanzu service class-claim create` to create a claim for an instance of a
+class and using `tanzu service class-claim get` to get detailed information about the status of the claim.
 
 - To create a claim for an instance of a class, run the `tanzu service class-claim create` command:
 

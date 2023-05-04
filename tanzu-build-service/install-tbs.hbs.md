@@ -45,34 +45,33 @@ To install Tanzu Build Service by using the Tanzu CLI:
     tanzu package available get buildservice.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+    Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier in this procedure.
 
-1. Create the secret for the `kp-default-repository` credentials using the `tanzu` cli:
+2. Create the secret for the `kp-default-repository` credentials using the `tanzu` cli:
 
     ```
     tanzu secret registry add kp-default-repository-creds \
-      --server "${REGISTRY_HOSTNAME}" \
-      --username "${REGISTRY_USERNAME}" \
-      --password "${REGISTRY_PASSWORD}" \
+      --server "${REGISTRY-HOSTNAME}" \
+      --username "${REGISTRY-USERNAME}" \
+      --password "${REGISTRY-PASSWORD}" \
       --namespace tap-install
     ```
    
     Where:
-    - `REGISTRY_HOST` is the hostname for the registry that will contain your `kp_default_repository`. 
-       Examples:
+    - `REGISTRY-HOST` is the host name for the registry that contains your `kp_default_repository`. 
+       For example:
         - Harbor has the form `server: "my-harbor.io"`.
         - Docker Hub has the form `server: "index.docker.io"`.
         - Google Cloud Registry has the form `server: "gcr.io"`.
-    - `REGISTRY_USERNAME` and `REGISTRY_PASSWORD` are the username
-      and password for the user that can write to the repo used in the following step.
-      For Google Cloud Registry, use `_json_key` as the username and the contents
+    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name
+      and password for the user that can write to the repository used in the following step.
+      For Google Cloud Registry, use `_json_key` as the user name and the contents
       of the service account JSON file for the password.
 
-1. Create a `tbs-values.yaml` file using the following template:
-    > **Note** If `shared.image_registry.project_path` and `shared.image_registry.secret` are configured in the 
-    > `tap-values.yaml` file, Tanzu Build Service inherits all 3 values in that section.
-    >
-    > This can be disabled by setting any of the following 3 values.
+1. Create a `tbs-values.yaml` file using the following template.
+   If `shared.image_registry.project_path` and `shared.image_registry.secret` are configured in the
+   `tap-values.yaml` file, Tanzu Build Service inherits all three values in that section.
+   This can be disabled by setting any of the following three values.
 
     ```yaml
     ---
@@ -89,9 +88,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-1. If you are running on Openshift, add `kubernetes_distribution: openshift` to your `tbs-values.yaml` file.
+4. If you are running on OpenShift, add `kubernetes_distribution: openshift` to your `tbs-values.yaml` file.
 
-1. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
+5. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
 provide a PEM-encoded CA certificate for Tanzu Build Service.
 This certificate is used for accessing the container image registry and is also provided to the build process.
 
@@ -158,13 +157,13 @@ to your `tbs-values.yaml` file. This is to exclude the default `lite` dependenci
      Added installed package 'tbs' in namespace 'tap-install'
     ```
 
-1. (Optional) Verify the cluster builders that the Tanzu Build Service installation created by running:
+2. (Optional) Verify the cluster builders that the Tanzu Build Service installation created by running:
 
     ```console
     tanzu package installed get tbs -n tap-install
     ```
 
-1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+3. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
 ### <a id='tbs-tcli-install-ecr'></a> Use AWS IAM authentication for registry credentials
@@ -192,7 +191,7 @@ registry used when installing Tanzu Application Platform.
 
     - `REPO-NAME` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location.
-    - `IAM-ROLE-ARN` is the AWS IAM role Amazon Resource Name (ARN) for the role configured in the previous step.
+    - `IAM-ROLE-ARN` is the AWS IAM role Amazon Resource Name (ARN) for the role configured earlier in this procedure.
     For example, `arn:aws:iam::xyz:role/my-install-role`.
 
 1. The developer namespace requires configuration for Tanzu Application Platform
@@ -255,11 +254,11 @@ To install `full` Tanzu Build Service dependencies:
 
     Where:
 
-    - `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+    - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier in this procedure.
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Add the Tanzu Build Service  `full` dependencies package repository by running:
+2. Add the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
@@ -273,7 +272,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Install the `full` dependencies package by running:
+3. Install the `full` dependencies package by running:
 
     ```console
     tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install

@@ -1,7 +1,7 @@
 # Install Application Configuration Service for VMware Tanzu
 
-This topic describes how to install Application Configuration Service for VMware Tanzu from the
-Tanzu Application Platform package repository.
+This topic tells you how to install Application Configuration Service for VMware Tanzu
+(commonly known as App Config Service) from the Tanzu Application Platform package repository.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -40,7 +40,7 @@ To install Application Configuration Service on a compliant Kubernetes cluster:
 
    ```console
    tanzu package install application-configuration-service \
-   --package-name application-configuration-service.tanzu.vmware.com \
+   --package application-configuration-service.tanzu.vmware.com \
    --version VERSION -n tap-install \
    --values-file values.yaml
    ```
@@ -52,7 +52,7 @@ To install Application Configuration Service on a compliant Kubernetes cluster:
 
    ```console
    $ tanzu package install application-configuration-service \
-   --package-name application-configuration-service.tanzu.vmware.com \
+   --package application-configuration-service.tanzu.vmware.com \
    --version 2.0.0 -n tap-install
 
    Installing package 'application-configuration-service.tanzu.vmware.com'

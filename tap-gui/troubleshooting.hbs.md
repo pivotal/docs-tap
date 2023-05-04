@@ -230,6 +230,27 @@ Get timestamped logs from the running pod and review the logs:
 
 2. Review the logs.
 
+## <a id='ad-block-interference'></a> Ad-blocking software interference
+
+### Symptom
+
+One or both of the following is true:
+
+- You cannot access some, or all, of Tanzu Application Platform GUI.
+- Telemetry collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  is failing.
+
+### Cause
+
+Your ad-blocking browser extension or standalone ad-blocking software is causing interference.
+
+### Solution
+
+Add Tanzu Application Platform GUI to your ad-blocking allowlist.
+Alternatively, deactivate the ad-blocking software or
+[turn off Pendo telemetry collection](../opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
+
 ## <a id='runtime-resource-visibility'></a> Runtime Resources tab
 
 Here are some common troubleshooting steps for errors presented in the **Runtime Resources** tab.

@@ -18,6 +18,7 @@ The following sections outline the essential steps to configure a fully operatio
 - [Identity providers](./identity-providers.md)
 - [Configure authorization](./configure-authorization.md)
 - [Public clients and CORS](./cors.md)
+- [Token settings](./token-settings.hbs.md)
 - [Token signatures](./token-signature.md)
 - [Storage](./storage.hbs.md)
 - [AuthServer readiness](./readiness.md)

@@ -86,12 +86,11 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   It also helps you to obtain, renew, and use those certificates. For more information about
    cert-manager, see the [cert-manager documentation](https://cert-manager.io/docs).
 
-- **[Cloud Native Runtimes](../docs-tap/cloud-native-runtimes/about.hbs.md)**
+- **[Cloud Native Runtimes](cloud-native-runtimes/about.hbs.md)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on
   Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are
-  in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
+  [Knative documentation](https://knative.dev/docs/).
 
 - **[Contour](contour/about.hbs.md)**
 
@@ -833,13 +832,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling \*\*</strong>
+   <td><strong>Tanzu Developer Tooling </strong>
    </td>
    <td><strong>Application Live View</strong>
    </td>
    <td><strong>Functions</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Buildpack SBOM's\*\*\*</strong>
+   <td><strong>Extended Scanning Coverage using Buildpack SBOM's</strong>
    </td>
   </tr>
   <tr>
