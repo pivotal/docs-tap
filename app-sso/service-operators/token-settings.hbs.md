@@ -12,11 +12,11 @@ The default token expiry settings are as follows:
 | Identity token | **12 hours**            |
 | Refresh token  | **720 hours (30 days)** |
 
-VMware recommends configuring a **shorter lifetime for an access token** (on the scale of hours), and a **longer lifetime for
-refresh tokens** (on the scale of multiple days). Refresh tokens are used to acquire new access tokens, hence the reason
-for their recommended longevity.
+VMware recommends setting a shorter lifetime for access tokens, typically measured in hours, 
+and a longer lifetime for refresh tokens, typically measured in days. 
+Refresh tokens acquire new access tokens, so they have a longer lifespan.
 
-To override any of the above token expiries, configure the following in your `AuthServer` resource:
+To override the token expiries, configure the following in your `AuthServer` resource:
 
 ```yaml
 kind: AuthServer
@@ -39,12 +39,13 @@ spec:
 | Minutes | `10m` = 10 minutes |
 | Hours   | `10h` = 10 hours   |
 
-> **Note** `expiry` field follows [Go standard 'time' library duration](https://pkg.go.dev/time#Duration) constraints
-> and does not support durations such as 'days', 'weeks', or any duration units above 'hours'.
+> **Note** `expiry` field adheres to the duration constraints of the Go standard time library 
+> and does not support durations in units beyond hours, such as days or weeks.
+> For more information, see [Go documentation](https://pkg.go.dev/time#Duration).
 
 ### <a id='token-expiry-settings-constraints'></a> Constraints
 
-The following are token expiry constraints:
+The token expiry constraints are as follows:
 
-- Expiry may not be a negative or zero value time duration.
-- Refresh token expiry must not be the same or shorter time duration than an access token.
+- The duration of the expiry cannot be negative or zero.
+- The refresh token's expiration time cannot be the same as or shorter than that of the access token.
