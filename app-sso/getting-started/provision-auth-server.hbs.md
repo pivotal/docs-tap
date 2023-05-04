@@ -136,7 +136,7 @@ The `metadata.labels` uniquely identify the AuthServer. They are used as selecto
 from which authorization server a specific client obtains tokens from.
 
 The `sso.apps.tanzu.vmware.com/allow-client-namespaces` annotation restricts the namespaces in which you can create
-`ClientRegistrations` targeting this authorization server. In this case, the authorization server will only pick up
+`ClientRegistrations` targeting this authorization server. In this case, the authorization server only picks up
 client registrations in the `default` namespace.
 
 The `sso.apps.tanzu.vmware.com/allow-unsafe-...` annotations enable "development mode" features, useful for testing.

@@ -33,7 +33,8 @@ metadata:
 
 ## Allowing client namespaces
 
-`AuthServer` optionally controls from which namespace(s) it allows `ClientRegistrations` with the annotation:
+`AuthServer` optionally controls from which namespace (one of more) it allows 
+`ClientRegistrations` with the annotation:
 
 ```yaml
 ---
@@ -44,17 +45,21 @@ metadata:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "my-apps"
 ```
 
-To allow `ClientRegistrations` only from a restricted set of namespaces this annotation must be set. Its value is a
-comma-separated list of allowed `Namespaces`, e.g. `"app-team-red,app-team-green"`.
+To allow `ClientRegistrations` only from a restricted set of namespaces, 
+you must set this annotation. 
+Its value is a comma-separated list of allowed `Namespaces`, 
+for example, `"app-team-red,app-team-green"`. 
+If the annotation is missing, the default value is `*`, 
+denoting that all client namespaces are allowed.
 
->**Caution** If the annotation is missing, the default value is `*`, denoting that all client namespaces are allowed.
-
-VMware recommends explicitly restricting to only workload-related namespaces to narrow the scope of AuthServer operation.
+VMware recommends explicitly restricting to only workload-related namespaces to 
+narrow the scope of the `AuthServer` operation.
 
 ## Unsafe configuration
 
-`AuthServer` is designed to enforce secure and production-ready configuration. However, sometimes it is necessary
-to opt-out of those constraints, e.g. when deploying `AuthServer` on an _iterate_ cluster.
+`AuthServer` enforces secure and production-ready configuration. 
+However, sometimes it is required to opt-out those constraints, 
+for example, when deploying `AuthServer` on an iterate cluster.
 
 >**Caution** Allowing **unsafe** is not recommended for production.
 

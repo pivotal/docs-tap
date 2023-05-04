@@ -6,9 +6,9 @@ server backed by Redis over mutual TLS if no storage is defined.
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
 
-To allow `ClientRegistrations` only from a restricted set of `Namespaces`, the annotation 
-`sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its value is a comma-separated list of
-allowed `Namespaces`, e.g. `"app-team-red,app-team-green"`. If the annotation is missing, the default value is `*`, 
+To allow `ClientRegistrations` only from a restricted set of `Namespaces`, you must set the annotation 
+`sso.apps.tanzu.vmware.com/allow-client-namespaces`. Its value is a comma-separated list of
+allowed `Namespaces`, for example, `"app-team-red,app-team-green"`. If the annotation is missing, the default value is `*`, 
 denoting that all client namespaces are allowed.
 
 The issuer URI, which is the point of entry for clients and end-users, is constructed through the package's `domain_template`.
