@@ -113,7 +113,7 @@ spec:
       ...
   ```
 
-  You can set other gitops values in either tap-values or in the workload params.
+Set other gitops values in either tap-values or in the workload params.
 
   - By using tap-values:
 
@@ -140,8 +140,6 @@ spec:
           value: vmware-tanzu/tap
         - name: gitops_repository_name
           value: tap
-        - name: gitops_server_kind
-          value: azure
         ...
     ```
 
@@ -186,6 +184,9 @@ as `azure`.
 > **Note** Even if the commit strategy is not pull-request, such as direct commits, to use an 
 Azure DevOps repository either the tap value `gitops.pull_request.server_kind` or the workload parameter
 `gitops_server_kind` must be configured to `azure`.
+
+>**Note** When using [the pull-request flow](gitops-vs-regops.hbs.md#a-idprsa-pull-requests), the server kind can be
+set with the tap-value `gitops.pull_request.server_kind`
 
 For information about configuring the GitOps write operations, see
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
