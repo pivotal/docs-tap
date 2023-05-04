@@ -529,7 +529,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id='1-5-0-tbs-ri'></a> Tanzu Build Service
 
-- Builds no longer fails for upgrades on openshift version 4.11
+- Builds no longer fail for upgrades on OpenShift v4.11.
 
 #### <a id="1-5-apps-plugin-ri"></a> Tanzu CLI Apps plug-in
 
