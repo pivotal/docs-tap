@@ -248,7 +248,6 @@ docs.vmware.com is built.
             - [Introduction to SpEL expressions](application-accelerator/creating-accelerators/spel-samples.hbs.md)
             - [Accelerator custom resource](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
             - [Testing accelerators](application-accelerator/creating-accelerators/testing-accelerators.hbs.md)
-        - [Enable Application Bootstrapping Provenance](application-accelerator/provenance.hbs.md)
         - [VS Code extension](application-accelerator/vscode.hbs.md)
         - [IntelliJ plugin](application-accelerator/intellij.hbs.md)
         - [Best practices](application-accelerator/best-practices/about-best-practices.hbs.md)
