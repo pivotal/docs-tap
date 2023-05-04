@@ -142,7 +142,8 @@ The SCST - Store integration is enabled by default. If you don’t want to use t
 
   ```yaml
   # ...
-  metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+  metadataStore:
+    url: "" # Disable Supply Chain Security Tools - Store integration
   ```
 
 ## <a id="carbonblack-scan-policy"></a> Sample ScanPolicy in CycloneDX format

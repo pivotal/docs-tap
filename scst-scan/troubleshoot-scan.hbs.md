@@ -219,7 +219,8 @@ you must edit the configurations to deactivate the Store:
 
   ```yaml
   ---
-  metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+  metadataStore:
+    url: ""
   ```
 
   Install the package with the edited configurations by running:

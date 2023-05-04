@@ -53,7 +53,8 @@ grype:
         name: store-auth-token
         importFromNamespace: metadata-store-secrets
 scanning:
-  metadataStore: {} # Deactivate the Supply Chain Security Tools - Store integration.
+  metadataStore:
+    url: "" # Configuration is moved, so set this string to empty.
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 ```
