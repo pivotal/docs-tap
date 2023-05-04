@@ -1,7 +1,14 @@
 # Provenance transform
 
-The `Provenance` transform is a special transform used to generate a manifest
-detailing the run of the accelerator engine, for later bookkeeping purposes.
+The `Provenance` transform is a special transform used to generate a file that
+provides details of the accelerator engine transform.
+
+The `Provenance` transform provides traceability and visibility into the generation of an application from an accelerator. The following information is embedded into a file that is part of the generated project:
+
+- Which accelerator was used to bootstrap the project
+- Which version of the accelerator was used
+- When the application was bootstrapped
+- Who bootstrapped the application
 
 ## <a id="syntax-reference"></a>Syntax reference
 
