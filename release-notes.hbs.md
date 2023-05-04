@@ -568,6 +568,9 @@ This release has the following known issues, listed by area and component.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- The Content Security Policy may prevent TechDocs from loading content.
+  For a workaround, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#techdocs-content-does-not-load).
+
 #### <a id="1-5-apps-plugin-ki"></a> Tanzu CLI Apps plug-in
 
 - `tanzu apps workload apply` does not wait for the changes to be taken when the workload is updated
