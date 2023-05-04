@@ -28,9 +28,9 @@ The following issues, listed by component and area, are resolved in this release
 
 - Live Update now works when using the Jammy `ClusterBuilder`.
 
-#### <a id='1-5-1-app-acce-intellij-ext-ri'></a> Application Accelerator IntelliJ Plugin
+#### <a id='1-5-1-app-acc-ri'></a> Application Accelerator
 
-- IntelliJ plugin can now be installed in IntelliJ 2023.1
+- The IntelliJ plug-in can now be installed in IntelliJ 2023.1
 
 ---
 
