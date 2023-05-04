@@ -14,20 +14,20 @@ and Visual Studio for Mac.
 
 The extension has the following features:
 
-- **See code updates running on-cluster in seconds**
+- **See code updates running on-cluster in seconds:**
 
   With the use of Live Update facilitated by Tilt, deploy your workload once, save changes to the code
   and then, seconds later, see those changes reflected in the workload running on the cluster.
   All Live Update output is filtered to its own output pane window within Visual Studio.
 
-- **Debug workloads directly on the cluster**
+- **Debug workloads directly on the cluster:**
 
   Debug your application in a production-like environment by debugging on a Kubernetes cluster of
   yours that has Tanzu Application Platform.
   The similarity of an environment to production relies on keeping dependencies updated, among other
   variables.
 
-- **Deploy a workload to a Kubernetes cluster**
+- **Deploy a workload to a Kubernetes cluster:**
 
   Deploy your workload straight to your Kubernetes cluster and, after you're finished using it, you
   can delete it. All the output for deleting a workload is filtered to its own output pane window
