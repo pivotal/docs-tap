@@ -32,5 +32,3 @@ The extension has the following features:
 
   From the Tanzu Workloads panel you can see any workload found within the cluster and namespace
   specified in the current kubectl context.
-
-{{> 'partials/ide-extensions/no-ootb-basic-variation' }}
