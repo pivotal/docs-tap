@@ -90,7 +90,7 @@ Set the `gitops_server_kind` workload params to `azure`.
       ...
   ```
 
-  You can set other gitops values in either tap-values or in the workload params.
+Set other gitops values in either tap-values or in the workload params.
 
   - By using tap-values:
 
@@ -117,8 +117,6 @@ Set the `gitops_server_kind` workload params to `azure`.
           value: vmware-tanzu/tap
         - name: gitops_repository_name
           value: tap
-        - name: gitops_server_kind
-          value: azure
         ...
     ```
 
@@ -158,6 +156,9 @@ To properly contruct the write path, the template parameter `gitops_server_kind`
 as `azure`.
 
 Configure`gitops_server_kind` as a workload parameter.
+
+>**Note** When using [the pull-request flow](gitops-vs-regops.hbs.md#a-idprsa-pull-requests), the server kind can be
+set with the tap-value `gitops.pull_request.server_kind`
 
 For information about configuring the GitOps write operations, see
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
