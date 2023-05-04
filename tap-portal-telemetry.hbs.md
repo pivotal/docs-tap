@@ -8,7 +8,7 @@ order to provide a better user experience for our customers and to improve VMwar
 Pendo.io collects data based on your interaction with the software, such as clickstream data and page
 loads, hashed user ID, and limited browser and device information.
 
-By default, each instance of Tanzu Application Platform GUI is assigned to a random organization ID to ensure that your sensitive information is not revealed. However, you may choose to customize your organization ID and self-identify. That would allow VMware to observe account-level telemetry: frequency of portal usage, most popular functionality, etc. To do that, please follow the steps specified in [Customize the Tanzu Application Platform GUI telemetry collection](//tap-gui/customize/customize-telemetry.hbs.md).
+By default, each instance of Tanzu Application Platform GUI is assigned to a random organization ID to ensure that your sensitive information is not revealed. However, you may choose to customize your organization ID and self-identify. That would allow VMware to observe account-level telemetry: frequency of portal usage, most popular functionality, etc. To do that, please follow the steps specified in [Customize the Tanzu Application Platform GUI telemetry collection](tap-gui/customize/customize-telemetry.hbs.md).
 
 To enable or deactivate Pendo telemetry for the organization, see
 [Enable or deactivate the Pendo telemetry for the organization](opting-out-telemetry.hbs.md#nbl-or-dsbl-pendo-for-org).
