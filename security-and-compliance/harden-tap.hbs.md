@@ -123,16 +123,17 @@ Platform, this protection focuses on the two primary states of data that should 
 #### Internal TLS Configuration
 
 Communication between services that originates and terminates within the cluster is referred to as
-internal communication. The Tanzu Application Platform is in the process of enabling TLS on
+internal communication. Tanzu Application Platform is in the process of enabling TLS on
 internal communication for components.
 
-For those users who have a requirement to have all internal communication encrypted, the Tanzu
-Application Platform supports enabling the Tanzu Service Mesh, which will provide mutual TLS between
-components.
+If you require encrypted internal communication, there are three
+remediating options:
 
-For more information, please see the
-[guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html)
-for setting up Tanzu Service Mesh with the Tanzu Application Platform.
+1. Enable Tanzu Service Mesh, which provides mutual TLS between
+components. For more information, see [Set up Tanzu Service Mesh](../integrations/tsm-tap-integration.hbs.md) for setting up Tanzu Service Mesh with the Tanzu Application Platform.
+2. Configure Kubernetes to encrypt all communication with a Container Networking Interface (CNI)
+that supports traffic encryption, for example, [Antrea](https://github.com/antrea-io/antrea/blob/main/docs/traffic-encryption.md).
+3. Use the underlying network infrastructure running Kubernetes which has encryption on all network traffic.
 
 #### External TLS Configuration
 
@@ -240,4 +241,8 @@ process.
 
 ## Deployment Architecture
 
-The Tanzu Application Platform provides a [reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) which provides separation of components based on function.  This reference architecture recommends multiple Kubernetes clusters that serve the functions of "iterate","build","view", and "run" for users.  This separation is intended to provide separation of concerns for users, as well as protect the availability and performance of the platform from functions such as building and scanning, that could consume extensive resources from the cluster in a bursty nature.
+Tanzu Application Platform provides a
+[reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function. VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run
+functions. This separation enables Kubernetes administrators to manage each function independently
+and therefore, protect the availability and performance of the platform during high usage periods,
+for example, building or scanning.
