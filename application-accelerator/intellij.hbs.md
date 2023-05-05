@@ -1,42 +1,35 @@
-# Application Accelerator IntelliJ Plugin
+# Application Accelerator IntelliJ Plug-in
 
-The Application Accelerator IntelliJ plugin lets you explore and generate projects
+Use the Application Accelerator IntelliJ plug-in to explore and generate projects
 from the defined accelerators in Tanzu Application Platform using IntelliJ.
 
 ## <a id="dependencies"></a> Dependencies
 
-- To use the plugin, the plugin must access the Tanzu Application Platform GUI URL.
+The plug-in must have access to the Tanzu Application Platform GUI URL.
 For information about how to retrieve the Tanzu Application Platform GUI URL, see
 [Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url).
 
-## <a id="intellij-app-accel-install"></a> Installation
+## <a id="intellij-install"></a> Installation
 
-Use the following steps to install the Application Accelerator IntelliJ plugin:
+Use the following steps to install the Application Accelerator IntelliJ plug-in:
 
-1. Sign in to VMware Tanzu Network and download the "Tanzu App Accelerator Extension for Intellij" zip file from the product page for [VMware Tanzu Application
-   Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+1. Sign in to VMware Tanzu Network and download the [Tanzu App Accelerator Extension for Intellij](https://network.tanzu.vmware.com/products/tanzu-application-platform) file.
 
 2. Open IntelliJ
 
-    1. Go to `Plugins` section on the left.
+    1. From the `Plugins` section, select the Gear button and select `Install Plugin from Disk...`
 
-    2. Select the Gear button on the top right and select `Install Plugin from Disk...`
+        ![Install Plugin from Disk menu action.](../images/app-accelerator/intellij/app-accelerators-intellij-install-from-disk.png)
 
-        ![Install Plugin from Disk menu action](../images/app-accelerator/intellij/app-accelerators-intellij-install-from-disk.png)
+    2. Select the plug-in zip file and restart IntelliJ.
 
-    3. Select the plugin zip file.
+## <a id="intellij-conf-plugin"></a> Configure the plug-in
 
-    4. Restart IntelliJ
-   
-## <a id="intellij-configure-the-plugin"></a> Configure the plugin
+Before using the plug-in, you must enter the Tanzu Application Platform GUI URL in the IntelliJ Preferences:
 
-Before using the plugin, you need to enter the Tanzu Application Platform GUI URL in the IntelliJ Preferences:
+1. Go to the IntelliJ menu, select **IntelliJ IDEA > Preferences** > **Tools** > **Tanzu Application Accelerator**.
 
-1. Go to the IntelliJ menu **IntelliJ IDEA > Preferences**.
-
-2. Under `Tools` on the left side, select `Tanzu Application Accelerator`.
-
-3. On the right side, add the `Tanzu Application Platform GUI` URL.
+2. Add the Tanzu Application Platform GUI URL.
 
    ![Tanzu Application Accelerator preferences.](../images/app-accelerator/intellij/app-accelerators-intellij-preferences.png)
 
@@ -47,53 +40,60 @@ Before using the plugin, you need to enter the Tanzu Application Platform GUI UR
     ```console
     kubectl get httpproxy tap-gui -n tap-gui
     ```
-4. Click `Apply` and `OK`.
+3. Click **Apply** and **OK**.
 
-## <a id="intellij-using-the-plugin"></a> Using the plugin
+## <a id="intellij-using-the-plugin"></a> Using the plug-in
 
-After adding the `Tanzu Application Platorm GUI URL` you can explore the defined accelerators
-by selecting `New Project`.
+After adding the Tanzu Application Platform GUI URL, you can explore the defined accelerators
+by selecting `New Project`:
 
-![Select New Project.](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)
+1. Select New Project, then select **Tanzu Application Accelerator**.
 
-Then select `Tanzu Application Accelerator` on the left side.
+    ![Select New Project.](../images/app-accelerator/intellij/app-accelerators-intellij-new-project.png)
 
-![Tanzu Application Accelerator New Project wizard is open.](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)
+    ![Tanzu Application Accelerator New Project wizard is open.](../images/app-accelerator/intellij/app-accelerators-intellij-accelerator-list.png)
 
-Choose any of the defined accelerators, fill the options on the next page.
+2. Choose one of the defined accelerators and configure the options.
 
-![Options page is open](../images/app-accelerator/intellij/app-accelerators-intellij-options.png)
+    ![Options page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-options.png)
 
-Click `Next` to review the options.
+3. Click `Next` to review the options.
 
-![Review page is open](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
+    ![Review page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
 
-Click `Next` again to download the project. If the project is downloaded successfully, the `Create` button is enabled and you can now create and open the project.
+4. Click `Next` to download the project. If the project is downloaded successfully, the
+`Create` button is enabled and you can now create and open the project.
 
-![Download page is open](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)
+![Download page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)
 
 ## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Application Platform GUI
 
 If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application
-Platform GUI, you can run the following command to determine the fully-qualified domain name:
+Platform GUI, run the following command to determine the fully-qualified domain name:
 
 ```console
 kubectl get httpproxy tap-gui -n tap-gui
 ```
 
-With an expected response of something similar to:
+With a response similar to:
 
 ```console
 NAME      FQDN                                      TLS SECRET     STATUS   STATUS DESCRIPTION
 tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
 ```
 
-## <a id="download-install-self-signed-certs">Download and Install Self-Signed Certificates from the Tanzu Application Platform GUI
-For the Application Accelerator plugin to communicate with a Tanzu Application Platform GUI instance that is secured using TLS, downloading and installing the certificates locally is required.
+## <a id="dl-ins-ss-certs">Download and Install Self-Signed Certificates from the Tanzu Application Platform GUI
 
-1. Find the name of the Tanzu Application Platform GUI certificate. Note that the name of the certificate may look different.
+To enable communication between the Application Accelerator plug-in and  a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
+
+### Prerequisites
+
+[yq](https://github.com/mikefarah/yq) is required to process the YAML output.
+
+1. Find the name of the Tanzu Application Platform GUI certificate. The name of the certificate might look different to the following example.
+
     ```console
-    $ kubectl get secret -n cert-manager
+    kubectl get secret -n cert-manager
     ```
 
     ```console
@@ -104,26 +104,31 @@ For the Application Accelerator plugin to communicate with a Tanzu Application P
     tanzu-sql-with-mysql-operator-ca-certificate   kubernetes.io/tls                3      18d
     tap-ingress-selfsigned-root-ca                 kubernetes.io/tls                3      18d <------- This is the certificate that is needed
     ```
-2. Download the certificate by running the following command.
-    >**Note** The following script depends on [`yq`](https://github.com/mikefarah/yq) to process the YAML output.
+
+2. Download the certificate:
 
     ```console
     $ kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
     ```
 
-3. Install the certificate on your local system
-    * Installing the certificate on Mac
-    ```console
-    $ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
-    ```
-    * [Link on how to install certificates on Ubuntu](https://ubuntu.com/server/docs/security-trust-store)
-    * Installing the certificate on Windows
-        1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and double click on the certificate.
-        2. In the Certificate window, click "Install Certificate...".
-        3. Change the "Store Location" from "Current User" to "Local Machine". Click Next.
-        4. Select "Place all certificates in the following store", click "Browse", and select "Trusted Root Certification Authorities"
-        5. Click Finish.
-        6. If successfully imported, a popup window stating "The import was successful." will appear.
+3. Install the certificate on your local system and fully restart any applications that leverage
+the certificate. After restarting, the application uses the certificate
+to communicate with the endpoints using TLS.
 
-4. Fully restart any applications that will be leveraging the certificate.
-5. Once restarted, the application will be able to leverage the newly installed certificate to communicate with the endpoints using TLS.
+Mac
+: Run:
+
+  ```console
+  sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
+  ```
+
+  For more information, see [Installing a root CA certificate in the trust store](https://ubuntu.com/server/docs/security-trust-store) in the Ubuntu documentation.
+
+Windows
+: Complete the following steps:
+        1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and double-click on the certificate.
+        2. In the Certificate window, click **Install Certificate...**.
+        3. Change the **Store Location** from **Current User** to **Local Machine**. Click **Next**.
+        4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**
+        5. Click **Finish**.
+        6. A pop-up window stating **The import was successful.** is displayed.
