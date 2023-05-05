@@ -6,9 +6,6 @@ This repo contains the content for Tanzu Application Platform docs.
 
 ## Branches
 
->**Note:** Content for v1.3.8 and v1.4.5 is stored in the `1-3-7` and `1-4-4`
-branches and hidden within Handlebars conditions (`\{{#unless vars.hide_content}}`).
-
 | Branch | Staging | Production |
 |--------|---------|------------|
 | main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) (Pre-release v1.6 docs) | n/a |
