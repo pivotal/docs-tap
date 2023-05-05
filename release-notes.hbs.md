@@ -32,6 +32,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - The IntelliJ plug-in can now be installed in IntelliJ 2023.1
 
+#### <a id="1-5-1-external-secrets-ri"></a> External Secrets CLI (beta)
+
+- Fixed: The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
+
 ---
 
 ### <a id='1-5-1-known-issues'></a> Known issues
@@ -46,8 +50,12 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-- The Content Security Policy might prevent TechDocs from loading content.
-  For a workaround, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#tchdcs-content-load-fail).
+#### <a id='1-5-1-tanzu-source-controller-ki'></a> Tanzu Source Controller 
+- **Issue:**
+On Version v0.7.0, when pulling image from ECR (Elastic Container Registry) Tanzu Source Controller keyless access to ECR  via AWS IAM role binding fails to authenticate (error code: 401).
+**Workaround:**
+Setup standard K8s secret with user-id and password to authenticate to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
+
 
 ---
 
@@ -547,11 +555,6 @@ The following issues, listed by area and component, are resolved in this release
 - When there are multiple resource types with the same kind, the pop-up menu **Describe** action in
   the Activity panel no longer fails when used on PodIntent resources.
 
-#### <a id="1-5-1-external-secrets-ki"></a> External Secrets CLI (beta)
-
-- Fixed: The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
-  incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
-
 ---
 
 ### <a id='1-5-0-known-issues'></a> Known issues
@@ -615,9 +618,6 @@ This release has the following known issues, listed by area and component.
   (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
 
-- The Content Security Policy might prevent TechDocs from loading content.
-  For a workaround, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#tchdcs-content-load-fail).
-
 #### <a id="1-5-apps-plugin-ki"></a> Tanzu CLI Apps plug-in
 
 - `tanzu apps workload apply` does not wait for the changes to be taken when the workload is updated
@@ -670,6 +670,16 @@ This release has the following known issues, listed by area and component.
 
 - In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
+
+#### <a id="1-5-0-external-secrets-ki"></a> External Secrets CLI (beta)
+
+- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
+
+#### <a id='1-5-10-tanzu-source-controller-ki'></a> Tanzu Source Controller 
+- **Issue:**
+On Version v0.7.0, when pulling image from ECR (Elastic Container Registry) Tanzu Source Controller keyless access to ECR  via AWS IAM role binding fails to authenticate (error code: 401).
+**Workaround:**
+Setup standard K8s secret with user-id and password to authenticate to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
 
 ---
 
