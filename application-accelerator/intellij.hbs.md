@@ -71,7 +71,7 @@ Platform GUI, run the following command to determine the fully-qualified domain 
 kubectl get httpproxy tap-gui -n tap-gui
 ```
 
-With a response similar to:
+The result is similar to:
 
 ```console
 NAME      FQDN                                      TLS SECRET     STATUS   STATUS DESCRIPTION
