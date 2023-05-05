@@ -251,13 +251,14 @@ Add Tanzu Application Platform GUI to your ad-blocking allowlist.
 Alternatively, deactivate the ad-blocking software or
 [turn off Pendo telemetry collection](../opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
-## <a id='techdocs-content-does-not-load'></a> TechDocs content does not load
+## <a id='tchdcs-content-load-fail'></a> TechDocs content does not load
 
 ### Symptom
 
-You navigate to the `Docs` page, click a document and the content does not load. The loading bar does not disappear. Viewing the browser's console shows an error:
+You navigate to the **Docs** page, click a document, and the content does not load.
+The loading bar does not disappear. The browser console shows the error message:
 
-```
+```console
 Refused to load the stylesheet 'https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback' because it violates the following Content Security Policy directive...
 ```
 
@@ -267,7 +268,7 @@ The Content Security Policy used by Tanzu Application Platform GUI is blocking `
 
 ### Solution
 
-Edit your `tap-values.yaml` file to include the CSP configuration in the following example:
+Edit your `tap-values.yaml` file to include the CSP configuration, as in this example:
 
 ```yaml
 tap_gui:
