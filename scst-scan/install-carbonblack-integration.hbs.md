@@ -203,4 +203,4 @@ The SCST - Store integration is enabled by default. If you don’t want to use t
 
 >**Note** The Carbon Black Scanner integration is only available for an image scan, not a source scan.
 
-After all prerequisites are completed, follow the steps in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Carbon Black Scanner.
+After you complete all prerequisites, install the Carbon Black Scanner. See [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
