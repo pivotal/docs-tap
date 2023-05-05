@@ -14,6 +14,7 @@ This section includes the following topics:
 
 - [Troubleshooting upgrading](upgrading.hbs.md)
 - [Log configuration and usage](logs.hbs.md)
+- [Connecting to the Postgres Database](connect-to-database.hbs.md)
 
 ## Configuration
 
