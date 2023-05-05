@@ -32,8 +32,8 @@ status:
   # ...
 ```
 
-This `AuthServer` will be reachable at its templated issuer URI `https://login.services.example.com` and serve a TLS
-certificate obtained from _my-default-issuer_.
+This `AuthServer` is reachable at its templated issuer URI `https://login.services.example.com` 
+and serves a TLS certificate obtained from `my-default-issuer`.
 
 Learn how to configure TLS for your `AuthServer`:
 
@@ -51,10 +51,10 @@ See [Allow Workloads to trust a custom CA AuthServer](#trust-custom-ca) for more
 ## Configure TLS by using a (Cluster)Issuer
 
 You can obtain a TLS certificate for your `AuthServer` by referencing a `cert-manager.io/v1/Issuer`
-or `cert-manager.io/v1/ClusterIssuer`. The AppSSO will then get a `cert-manager.io/v1/Certificate` from that issuer and
-configure `Ingress` with it.
+or `cert-manager.io/v1/ClusterIssuer`. This enables AppSSO to retrieve a `cert-manager.io/v1/Certificate` 
+from the issuer and apply it to the `Ingress` configuration.
 
-The composition of an `AuthServer` and a _self-signed_ `Issuer` looks as follows:
+The composition of an `AuthServer` and a self-signed `Issuer` looks as follows:
 
 ```yaml
 ---
