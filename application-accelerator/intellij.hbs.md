@@ -78,7 +78,7 @@ NAME      FQDN                                      TLS SECRET     STATUS   STAT
 tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
 ```
 
-## <a id="dl-ins-ss-certs">Download and Install Self-Signed Certificates
+## <a id="dl-ins-ss-certs"></a>Download and Install Self-Signed Certificates
 
 To enable communication between the Application Accelerator plug-in and  a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
 
@@ -104,14 +104,14 @@ To enable communication between the Application Accelerator plug-in and  a Tanzu
 2. Download the certificate:
 
     ```console
-    $ kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
+    kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
     ```
 
 3. Install the certificate on your local system and fully restart any applications that leverage
 the certificate. After restarting, the application uses the certificate
 to communicate with the endpoints using TLS.
 
-    Mac
+    MacOS
     : Run:
 
       ```console
