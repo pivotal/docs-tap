@@ -112,6 +112,8 @@ auth:
   allowGuestAccess: true
 ```
 
+**Note** Guests cannot view catalog entities if you have permission plugin enabled.
+
 ## <a id='customize-login'></a> (Optional) Customize the login page
 
 Change the card's title or description for a specific provider with the following configuration:
@@ -129,3 +131,85 @@ auth:
 
 For a provider to appear on the login page, ensure that it is properly configured under the
 `auth.providers` section of your values file.
+
+## <a id='enable-permission'></a> (Optional) Enable permission
+
+Enable permission plugin to limit catalog access to only owners, allowlisted users/groups, and
+catalog admins:
+
+```yaml
+permission:
+  enabled: true
+  adminRefs:
+    # - <user|group>:<namespace>/<name>
+    - user:default/admin
+    - group:test-namespace/operators
+```
+
+To allowlist a user/group, annotate the entity as follows:
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    backstage.tanzu.vmware.com/<group|user>.<namespace>.<name>: 'catalog.entity.read, catalog.entity.delete'
+```
+
+The value of this annotation is a comma delimited list of permissions for the specified user/group.
+Here is a list of valid catalog entity permissions:
+
+- catalog.entity.create
+- catalog.entity.read
+- catalog.entity.update
+- catalog.entity.delete
+
+**Note** If a group is granted ownership/access to an entity, all users within that group will
+automatically inherit the same access. But it does not work for nested group ownerships.
+
+**Disclaimer** When permission plugin is turned on with the default permission policy, API Auto
+Registration will no longer work due to lack of user identities. Requests against the Catalog API
+will no longer work as before.
+
+### <a id='use-custom-permission-policy'></a> (Optional) Use custom permission policy
+
+If you'd like to incorporate your own permission policy into your TAP Portal, you may follow the
+ instruction outlined in [this section](somewhere in TPB docs???).
+
+<!-- The following section can go into the TPB docs -->
+
+#### Create custom policy
+
+In your custom TPB plugin, create a [custom permission policy](https://backstage.io/docs/permissions/writing-a-policy).
+For example:
+
+```typescript
+export class CustomPermissionPolicy implements PermissionPolicy {
+  async handle(request: PolicyQuery): Promise<PolicyDecision> {
+    if (request.permission.name === 'catalog.entity.delete') {
+      return {
+        result: AuthorizeResult.DENY,
+      };
+    }
+    return { result: AuthorizeResult.ALLOW };
+  }
+}
+```
+
+This example permission policy would allow access to view all catalog entities, but will deny all
+delete requests.
+
+#### Set custom policy on the permission policy surface
+
+Once you have your custom permission policy created, you may set it on the `PermissionPolicySurface`.
+Please note that there can only be one permission policy applied, otherwise you will see an error at
+build time.
+
+```typescript
+export const CustomPermissionPolicyPlugin: BackendPluginInterface =
+  () => surfaces => {
+    surfaces.applyTo(PermissionPolicySurface, surface => {
+      surface.set(new CustomPermissionPolicy());
+    });
+  };
+```
