@@ -251,6 +251,35 @@ Add Tanzu Application Platform GUI to your ad-blocking allowlist.
 Alternatively, deactivate the ad-blocking software or
 [turn off Pendo telemetry collection](../opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
+## <a id='techdocs-content-does-not-load'></a> TechDocs content does not load
+
+### Symptom
+
+You navigate to the `Docs` page, click a document and the content does not load. The loading bar does not disappear. Viewing the browser's console shows an error:
+
+```
+Refused to load the stylesheet 'https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback' because it violates the following Content Security Policy directive...
+```
+
+### Cause
+
+The Content Security Policy used by Tanzu Application Platform GUI is blocking `fonts.googleapis.com`.
+
+### Solution
+
+Edit your `tap-values.yaml` file to include the CSP configuration in the following example:
+
+```yaml
+tap_gui:
+  app_config:
+    backend:
+      csp:
+        connect-src: ["'self'", 'http:', 'https:']
+        img-src: ["'self'", 'https:', 'data:']
+        style-src: ["'self'", "https:", "'unsafe-inline'"]
+        upgrade-insecure-requests: false
+```
+
 ## <a id='runtime-resource-visibility'></a> Runtime Resources tab
 
 Here are some common troubleshooting steps for errors presented in the **Runtime Resources** tab.
