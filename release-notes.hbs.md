@@ -2,10 +2,6 @@
 
 This topic contains release notes for Tanzu Application Platform v1.4.
 
-{{#unless vars.hide_content}}
-<!-- This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.-->
-
 ## <a id='1-4-5'></a> v1.4.5
 
 **Release Date**: May 9, 2023
@@ -39,8 +35,6 @@ This release has the following known issues, listed by component and area.
 - Known issue description with link to workaround.
 
 ---
-
-{{/unless}}
 
 ## <a id='1-4-4'></a> v1.4.4
 
