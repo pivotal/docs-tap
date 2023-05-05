@@ -122,7 +122,7 @@ Platform, this protection focuses on the two primary states of data that should 
 
 #### Internal Communication of Data in Transit Configuration
 
-Communication between services that originates and terminates within the cluster is referred to as
+Communication between services that originate and terminate within the cluster is referred to as
 internal communication. Tanzu Application Platform is in the process of enabling TLS on
 internal communication for components.
 
@@ -130,7 +130,7 @@ If you require encrypted internal communication, there are three
 remediating options:
 
 1. Enable Tanzu Service Mesh, which provides mutual TLS between
-components. For more information, see [Set up Tanzu Service Mesh](../integrations/tsm-tap-integration.hbs.md) for setting up Tanzu Service Mesh with the Tanzu Application Platform.
+components. For more information, see [Set up Tanzu Service Mesh](../integrations/tsm-tap-integration.hbs.md).
 2. Configure Kubernetes to encrypt all communication with a Container Networking Interface (CNI)
 that supports traffic encryption, for example, [Antrea](https://github.com/antrea-io/antrea/blob/main/docs/traffic-encryption.md).
 3. Use the underlying network infrastructure running Kubernetes which has encryption on all network traffic.
