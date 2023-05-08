@@ -1,4 +1,6 @@
-# Events reference
+# Events reference for Supply Chain Choreographer
+
+This topic describes each event you can view with Supply Chain Choreographer.
 
 Events are emitted when choreography edits resources or notices a change in
 their output or healthy state. Don't treat events like logs, however they can
