@@ -10,9 +10,14 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release has the following security fixes, listed by component and area. 
 
-#### <a id='1-4-5-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-21930 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-21930</li><li>GHSA-493p-pfq6-5258</li><li>CVE-2023-20860 </li></ul>|
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-21930 </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-0461</li><li>CVE-2023-0179</li><li>CVE-2023-0468 </li></ul>|
+| ootb-templates.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
 
-- Security fix description.
 
 ---
 
