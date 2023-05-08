@@ -5,8 +5,9 @@
 
 ## <a id="overview"></a>Component Overview
 
-The following diagrams shows the components that are installed as part of Tanzu GitOps Reference Implememtation (RI) 
-and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows you the components that are installed as part of 
+Tanzu GitOps Reference Implememtation (RI) and how they work together to automate 
+the installation of Tanzu Application Platform (commonly known as TAP):
 
 SOPS
 : ![Diagram describing the architecture of GitOps Installer using SOPS.](./images/arch-sops.png)

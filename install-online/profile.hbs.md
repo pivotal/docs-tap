@@ -1,7 +1,7 @@
 # Install Tanzu Application Platform package and profiles
 
-This topic describes how to install Tanzu Application Platform packages
-from the Tanzu Application Platform package repository.
+This topic tells you how to install Tanzu Application Platform 
+(commonly known as TAP) packages from your Tanzu Application Platform package repository.
 
 Before installing the packages, ensure you have:
 
@@ -452,7 +452,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 >**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise,
 creating a workload, a Knative service or other Tanzu Application Platform packages fails.
-For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
+For more information, see [Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md).
 
 You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -546,5 +546,5 @@ To exclude packages from a Tanzu Application Platform profile:
 ## <a id='next-steps'></a>Next steps
 
 - (Optional) [Install individual packages](components.hbs.md)
-- [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)
+- [Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)
 - [Replace the default ingress issuer](../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md#replace)

@@ -1,6 +1,6 @@
-# Customize package installation
+# Customize your package installation
 
-You can customize a package configuration that is not exposed through data values by using
+You can customize your package configuration that is not exposed through data values by using
 annotations and ytt overlays.
 
 You can customize a package that was [installed manually](#manual-package) or that was

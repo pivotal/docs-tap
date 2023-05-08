@@ -1,7 +1,7 @@
 # Create Azure Resources for Tanzu Application Platform
 
-To install Tanzu Application Platform within Azure ecosystem, you must create several Azure resources. 
-This topic walks you through creating:
+To install Tanzu Application Platform (commonly known as TAP) within the Azure ecosystem, 
+you must create several Azure resources. Use this topic to learn how to create:
 
 - An Azure Kubernetes Service (AKS) cluster to install Tanzu Application Platform.
 - Identity and Access Management (IAM) roles to allow authentication and
