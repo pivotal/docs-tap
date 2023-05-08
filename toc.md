@@ -463,6 +463,7 @@ docs.vmware.com is built.
           - [Overview](scst-store/additional.hbs.md)
           - [API details](scst-store/api.hbs.md)
           - [API walkthrough](scst-store/api-walkthrough.hbs.md)
+          - [Connect to the Postgres Database](scst-store/connect-to-database.hbs.md)
           - [Deployment details and configuration](scst-store/deployment-details.hbs.md)
           - [AWS RDS postgres configuration](scst-store/use-aws-rds.hbs.md)
           - [Use external postgres database](scst-store/use-external-database.hbs.md)
