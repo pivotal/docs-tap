@@ -103,7 +103,8 @@ contains the Git credentials in the YAML format.
     EOF
     ```
 
-2. Create a scaffolding of a Git secret, this must be added to the service account in your developer namespace in your GitOps repository. See the [sample secret here.](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/credentials/git.yaml).
+2. Create a scaffolding of a Git secret, this must be added to the service account in your developer namespace in your GitOps repository. A [sample secret](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/credentials/git.yaml) is available
+in the vmware-tanzu/application-accelerator-samples Git repo.
 Instead of putting the user name and password in the secret in your Git repository, use the `data.values.imported` keys to put the reference to the values in the git-auth secret created in step 1. For example:
 
     ```yaml
