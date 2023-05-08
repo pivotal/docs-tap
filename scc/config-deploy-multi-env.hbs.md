@@ -1,12 +1,13 @@
 # Configure and deploy to multiple environments with custom parameters
 
-This topic describes  how to  use carvel packages, Git repositories, and FluxCD
-to deploy workloads to multiple environments. By using a continuous delivery
-(CD) tool, you can apply Carvel packages to a runtime. This topic uses FluxCD
-the VMware recommended CD tool. You can configure different parameters for each
-environment, such as replicas or host names. When you edit package parameters
-and commit them to a Git repository, FluxCD watches the Git repository and
-applies the package to your runtime environments.
+This topic describes how to  use carvel packages, Git repositories, and FluxCD
+to deploy workloads to multiple environments with Supply Chain Choreographer. By using a continuous delivery
+(CD) tool, you can apply Carvel packages to a runtime. 
+
+FluxCD is the VMware recommended CD tool. You can configure different parameters
+for each environment, such as replicas or host names. When you edit package
+parameters and commit them to a Git repository, FluxCD watches the Git
+repository and applies the package to your runtime environments.
 
 ## <a id="prerecs"></a> Feature limits 
 
