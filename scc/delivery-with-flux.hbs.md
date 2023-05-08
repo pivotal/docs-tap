@@ -28,7 +28,7 @@ To use Gitops Delivery with FluxCD, you must complete the following prerequisite
 
 Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
-If your run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
+If your run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
 If your run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
 

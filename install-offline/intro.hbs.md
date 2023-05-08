@@ -1,6 +1,7 @@
 # Install Tanzu Application Platform (offline)
 
-To install Tanzu Application Platform on your Kubernetes clusters in an air-gapped environment:
+To install Tanzu Application Platform (commonly known as TAP) on your Kubernetes 
+clusters in an air-gapped environment:
 
 |Step|Task|Link|
 |----|----|----|
@@ -12,7 +13,7 @@ To install Tanzu Application Platform on your Kubernetes clusters in an air-gapp
 |6.| Configure custom certificate authorities for Tanzu Application Platform GUI. |[Configure custom certificate authorities for Tanzu Application Platform GUI](tap-gui-non-standard-certs-offline.hbs.md) |
 |7.| Add the certificate for the private Git repository in the Accelerator system namespace. |[Configure Application Accelerator](./application-accelerator-configuration.hbs.md)|
 |8.| Apply patch to Grype. |[Use Grype in offline and air-gapped environments](grype-offline-airgap.hbs.md)|
-|9.| Set up developer namespaces to use installed packages. |[Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)|
+|9.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 

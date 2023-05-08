@@ -14,7 +14,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and
   plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
 - Install the Apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
-- [Set up developer namespaces to use installed packages](../../install-online/set-up-namespaces.hbs.md).
+- [Set up developer namespaces to use your installed packages](../../install-online/set-up-namespaces.hbs.md).
 - For more information about the values you can provide when creating and managing the life cycle of
   workloads, see [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/)
   in the Cartographer documentation. Alternatively, run `kubectl explain workload.spec` for the Kubernetes

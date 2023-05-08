@@ -4,7 +4,8 @@
 
 <!-- TODO: use markdown-generated anchor values to ease navigating within VS Code (and validating links). -->
 
-This topic describes how to install Tanzu Application Platform through GitOps with secrets managed in an external secrets store.
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+through GitOps with secrets managed in an external secrets store. 
 To decide which approach to use, see [Choosing SOPS or ESO](reference.hbs.md#choosing-sops-or-eso).
 
 Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.

@@ -1,7 +1,7 @@
 # Install Tanzu Application Platform package and profiles on Azure
 
-This topic describes how to install Tanzu Application Platform packages
-from the Tanzu Application Platform package repository on to Azure.
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+packages from your Tanzu Application Platform package repository on to Azure.
 
 Before installing the packages, ensure you have:
 
@@ -318,7 +318,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For more information, see [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md).
+For more information, see [Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md).
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
@@ -388,4 +388,4 @@ Proceed to the [Getting Started](../getting-started.md) topic or the
 ## <a id='next-steps'></a>Next steps
 
 - (Optional) [Install Individual Packages](components.hbs.md)
-- [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)
+- [Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)

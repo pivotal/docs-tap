@@ -1,9 +1,10 @@
 # Configure custom certificate authorities for Tanzu Application Platform GUI
 
-This topic describes how to configure Tanzu Application Platform GUI to trust unusual certificate
-authorities (CA) when making outbound connections.
-Tanzu Application Platform GUI might require custom certificates when connecting to persistent
-databases or custom catalog locations that require SSL.
+This topic tells you how to configure your Tanzu Application Platform GUI (commonly known as TAP GUI) 
+to trust unusual certificate authorities (CA) when making outbound connections.
+
+Tanzu Application Platform GUI might require custom certificates when connecting 
+to persistent databases or custom catalog locations that require SSL.
 You use overlays with PackageInstalls to make this possible. There are two ways to implement this
 workaround: you can add a custom CA or you can deactivate all SSL verification.
 

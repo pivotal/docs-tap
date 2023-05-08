@@ -1,7 +1,7 @@
 # Opt out of telemetry collection
 
-There are two components for telemetry collection in Tanzu Application Platform under the VMware
-Customer Experience Improvement Program (CEIP):
+There are two components for telemetry collection in Tanzu Application Platform 
+(commonly known as TAP) under the VMware Customer Experience Improvement Program (CEIP):
 
 1. The standard CEIP telemetry collection
 2. Pendo telemetry from Tanzu Application Platform GUI

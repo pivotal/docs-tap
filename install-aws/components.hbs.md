@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Set up developer namespaces to use installed packages](../install-aws/set-up-namespaces.hbs.md)
+- [Set up developer namespaces to use your installed packages](../install-aws/set-up-namespaces.hbs.md)

@@ -104,7 +104,7 @@ SecurityContextConstraints (SCC), Tanzu Application Platform installs:
   that cluster role.
 
 Each developer namespace needs a role binding that binds the role to an actor: `ServiceAccount`.
-For more information, see [Set up developer namespaces to use installed packages ](../install-online/set-up-namespaces.hbs.md).
+For more information, see [Set up developer namespaces to use your installed packages ](../install-online/set-up-namespaces.hbs.md).
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
