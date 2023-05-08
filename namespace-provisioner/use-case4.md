@@ -1,10 +1,12 @@
 # Customize OOTB default resources
 
-This topic describes how to disable Grype and how to configure the `default` service account to work with private Git repositories.
+This topic describes how to disable Grype and how to configure the `default` service account to
+work with private Git repositories.
 
 ## Disable Grype install
 
-Namespace Provisioner creates Grype scanner install as one of the [default resources](reference.md#default-resources). If you choose to use another scanner for namespaces instead of Grype, you can disable the installation of the Out-of-the-box Grype scanner as follows:
+Namespace Provisioner creates Grype scanner install as one of the [default resources](reference.md#default-resources). If you want to use another scanner for namespaces instead of Grype, disable
+Grype scanner as follows:
 
 1. Create an overlay secret as follows which removes the Grype scanner and the secret that is automatically created by Namespace Provisioner.
 
@@ -32,7 +34,8 @@ Namespace Provisioner creates Grype scanner install as one of the [default resou
     EOF
     ```
 
-2. Import this overlay secret onto Namespace Provisioner configuration so it gets applied to the resources created by Namespace Provisioner for all managed namespaces.
+2. Import this overlay secret onto Namespace Provisioner configuration so it is applied to the
+resources created by Namespace Provisioner for all managed namespaces.
 
 Using Namespace Provisioner Controller
 : Add the following configuration to your TAP values
@@ -64,12 +67,14 @@ Using GitOps
 <br>
 ## Customize service accounts
 
-This section provides instructions on how to configure the `default` service account to work with private Git repositories for workloads and supply chain using Namespace Provisioner.
+This section provides instructions on how to configure the `default` service account to work with
+private Git repositories for workloads and supply chain using Namespace Provisioner.
 
 To configure the service account to work with private Git repositories, follow the steps below:
 
-1.  Create a secret in the `tap-install` namespace (or any namespace of your preference) that contains the Git credentials in the YAML format.
-    - `host`, `username` and `password` values for HTTP based Git Authentication.
+1.  Create a secret in the `tap-install` namespace (or any namespace of your preference) that
+contains the Git credentials in the YAML format.
+    - `host`, `username`, and `password` values for HTTP based Git Authentication.
     - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
     >**Note** stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
@@ -98,7 +103,8 @@ To configure the service account to work with private Git repositories, follow t
     EOF
     ```
 
-2. Create a scaffolding of a Git secret that needs to be added to the service account in your developer namespace in your GitOps repository. See the [sample secret here.](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/credentials/git.yaml) An example secret would look like the following. Instead of putting the actual username and password in the secret in your Git repository, put the reference to the values in the git-auth secret created in Step 1 by using the `data.values.imported` keys.
+2. Create a scaffolding of a Git secret, this must be added to the service account in your developer namespace in your GitOps repository. See the [sample secret here.](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/credentials/git.yaml).
+Instead of putting the user name and password in the secret in your Git repository, use the `data.values.imported` keys to put the reference to the values in the git-auth secret created in step 1. For example:
 
     ```yaml
     #@ load("@ytt:data", "data")
@@ -188,17 +194,23 @@ Using GitOps
         create_export: true
     ```
 
-- First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
-- Second additional source points to the overlay file which will add the git secret onto the default service account
-- Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
+- First additional source points to the location where the templated Git secret resides which is
+created in all developer namespaces.
+- Second additional source points to the overlay file which adds the Git secret onto the default
+service account.
+- Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
->**Note** `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git ** in all provisioned namespaces and also added to the default service account of those namespaces.
+>**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a
+SecretExport is created for the `workload-git-auth` secret in the `tap-install` namespace
+automatically by Namespace Provisioner. After the changes are reconciled, the secret named **git**
+is in all provisioned namespaces and is also added to the default service account of those namespaces.
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all namespaces managed by Namespace Provisioner. For more information, see [Default Resources](reference.md#default-resources).
+Namespace Provisioner creates the [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all Namespace Provisioner managed namespaces. For more information, see [Default Resources](reference.md#default-resources).
 
-You can opt-in to have LimitRange resource created on Full and Iterate clusters. For more information,see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific).
+You can opt-in to have the LimitRange resource created on Full and Iterate clusters. For more
+information, see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific).
 
 Namespace Provisioner does not create LimitRange resource in Build and View clusters.
 
@@ -214,9 +226,9 @@ limits:
     memory : 1Gi
 ```
 
-### <a id='update-lr'></a>Set/Update LimitRange defaults for all namespaces
+### <a id='update-lr'></a>Set or Update LimitRange defaults for all namespaces
 
-Namespace Provisioner provides options for updating the values in LimitRange for all namespaces managed by the provisioner by specifying the `default_parameters` configuration in Namespace Provisioner TAP values as follows:
+To update the values in LimitRange for all Namespace Provisioner managed namespaces, specify  the `default_parameters` configuration in Namespace Provisioner TAP values as follows:
 
 ```yaml
 namespace_provisioner:
@@ -232,12 +244,13 @@ namespace_provisioner:
         memory: 500Mi
 ```
 
-### <a id='update-lr-specific'></a>Set/Update LimitRange defaults for a specific namespace
+### <a id='update-lr-specific'></a>Set or Update LimitRange defaults for a specific namespace
 
-If you wish to override the LimitRange for specific namespaces, you can do that via namespace parameters that can be applied as follows.
+Override the LimitRange for specific namespaces follows:
 
 Using Namespace Provisioner Controller
-: User can annotate/label namespace using the default _parameter_prefix_ `param.nsp.tap/` followed by the YAML path to cpu or memory limits as follows:
+: Annotate or label a namespace using the default _parameter_prefix_ `param.nsp.tap/` followed by the
+YAML path to CPU or memory limits as follows:
 
     ```shell
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/limits.default.cpu=1100m
@@ -249,8 +262,8 @@ Using Namespace Provisioner Controller
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/limits.defaultRequest.memory=1Gi
     ```
 
-    * Controller will look at all the annotations/labels with prefix `param.nsp.tap/` and add the keys and its values in the desired-namespace configmaps as parameters for that namespace.
-    * Users can provide a custom prefix for the controller to look at if they do not want to use the default `param.nsp.tap` using parameter_prefixes configuration in Namespace Provisioner TAP values. See [Controller Customization](customize-installation.md) for more information on setting parameter_prefixes.
+    * The controller detects the annotations and labels with the `param.nsp.tap/` prefix, and adds the keys and values in the desired-namespace ConfigMaps as parameters for that namespace.
+    * If you want the controller to search for a custom prefix, instead of  the default `param.nsp.tap`, prefix, use the `parameter_prefixes` configuration option in the Namespace Provisioner TAP values values. For more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.md#con-custom-label).
 
     >**Note** Labels take precedence over annotations if the same key is provided in both.
 
@@ -266,7 +279,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-    >**Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md) guide for more information.
+    This adds `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. For more information, see the GitOps tab in [Customize Installation of Namespace Provisioner](customize-installation.md).
 
     Sample of `gitops_install` files:
 
@@ -298,4 +311,5 @@ Using GitOps
     #@ end
     ```
 
-    The Namespace Provisioner will create a LimitRange with default values for `qa` namespace and with the given values for `dev` namespace.
+    The Namespace Provisioner creates a LimitRange with default values for `qa` namespace and with
+    the given values for `dev` namespace.
