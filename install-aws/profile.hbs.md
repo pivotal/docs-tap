@@ -1,7 +1,7 @@
 # Install Tanzu Application Platform package and profiles on AWS
 
-This topic describes how to install Tanzu Application Platform packages
-from the Tanzu Application Platform package repository on to AWS.
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+packages from your Tanzu Application Platform package repository on to AWS.
 
 Before installing the packages, ensure you have:
 
@@ -335,7 +335,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Install Tanzu Developer Tools for VS Code](../vscode-extension/install.md).
+For instructions, see [Install Tanzu Developer Tools for your VS Code](../vscode-extension/install.md).
 
 >**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -435,4 +435,4 @@ To exclude packages from a Tanzu Application Platform profile:
 ## <a id='next-steps'></a>Next steps
 
 - (Optional) [Install Individual Packages](../install-online/components.hbs.md)
-- [Set up developer namespaces to use installed packages](../install-aws/set-up-namespaces.hbs.md)
+- [Set up developer namespaces to use your installed packages](../install-aws/set-up-namespaces.hbs.md)

@@ -26,7 +26,7 @@ Before implementing a multicluster topology, complete the following:
 
     - `GIT-URL-TO-PROJECT-REPO` is the git URL of the repository you uploaded your source code to. For example, `https://github.com/my-org/repository.git`.
     - `GIT-PROJECT-BRANCH` is the git branch of the project. For example, `main`.
-    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md). `default` is used in this example.
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md). `default` is used in this example.
 
 
 ## <a id='build-cluster'></a> Start the workload on the Build profile cluster

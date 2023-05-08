@@ -1,4 +1,4 @@
-# Set up developer namespaces to use installed packages
+# Set up developer namespaces to use your installed packages
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)
+- [Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)

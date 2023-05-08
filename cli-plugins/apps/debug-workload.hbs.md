@@ -110,7 +110,7 @@ Cause: This error happens when the service account in the workload object does n
 to create objects that are stamped out by the supply chain.
 
 Resolution: Set up the
-[Set up developer namespaces to use installed packages](../../scst-store/developer-namespace-setup.hbs.md)
+[Set up developer namespaces to use your installed packages](../../scst-store/developer-namespace-setup.hbs.md)
 with the required service account and permissions.
 
 ## <a id="steps-failure"></a> Review supply chain steps

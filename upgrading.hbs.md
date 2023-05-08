@@ -1,6 +1,6 @@
-# Upgrade Tanzu Application Platform
+# Upgrade your Tanzu Application Platform
 
-This document describes how to upgrade Tanzu Application Platform.
+This document tells you how to upgrade your Tanzu Application Platform (commonly known as TAP).
 
 You can perform a fresh install of Tanzu Application Platform by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
 

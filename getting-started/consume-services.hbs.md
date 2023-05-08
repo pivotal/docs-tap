@@ -41,7 +41,7 @@ Before following this walkthrough, as app developer you must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
 1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
-For more information, see [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
+For more information, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 1. Ensure that your Tanzu Application Platform cluster can pull source code from GitHub.
 2. Ensure that the service operator and application operator have completed:
 
