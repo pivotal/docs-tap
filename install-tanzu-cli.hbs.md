@@ -87,7 +87,7 @@ To install the Tanzu CLI and plug-ins:
    Tanzu CLI and associated plug-ins and files.
    For more information, see [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli).
 
-For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows-tanzu-cli).
+For Windows installation instructions, see [Install Tanzu CLI: Windows](#install-tanzu-cli-windows).
 
 ### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
