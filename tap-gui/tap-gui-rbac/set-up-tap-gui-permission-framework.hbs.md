@@ -59,11 +59,11 @@ Where:
 - `<namespace>` is the namespace that the Group or User is attributed to. If this value is not specified, it equals to `default`
 - `<name>` is the name of the User or Group
 - `COMMA-SEPARATED-PERMISSIONS` is the list of comma delimited permissions for the specified User or Group. Here is a list of valid catalog entity permissions:
-  - catalog.entity.create
   - catalog.entity.read
   - catalog.entity.update
   - catalog.entity.delete
-
+**Note** There is another permission that is valid for permission framework - `catalog.entity.create` - yet it is not meaningful for the Software Catalog entities that have already been created.
+**Note** You can add several Groups or Users by adding new annotations with their respective comma delimited permissions
 
 For example, this annotation would let users that are part of `group-a` to read and/or delete `component-a`: 
 ```yaml
