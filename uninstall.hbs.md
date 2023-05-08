@@ -1,7 +1,7 @@
 # Uninstall Tanzu Application Platform
 
-This document describes how to uninstall Tanzu Application Platform packages from the
-Tanzu Application Platform package repository.
+This document tells you how to uninstall Tanzu Application Platform (commonly known as TAP) 
+packages from your Tanzu Application Platform package repository.
 
 To uninstall Tanzu Application Platform:
 
