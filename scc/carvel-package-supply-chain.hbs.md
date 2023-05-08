@@ -1,12 +1,14 @@
 # Carvel Package Supply Chains (alpha)
 
+This topic explains what Carvel Package Supply Chains do, how they work, how
+operators can enable them, and how to create a `Workload` that uses them. You
+can use the Carvel Package Supply Chains with Supply Chain Choreographer to
+deliver applications to multiple production environments with configuration for
+each environment.
+
 The [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package
 introduces a variation of the OOTB Basic supply chains that outputs Carvel
-Packages. The Carvel Package Supply Chains enable users to deliver applications
-to multiple production environments with configuration for each environment.
-
-This topic explains what the Carvel Package Supply Chains do, how they work, how
-operators can enable them, and how to create a `Workload` that uses them.
+Packages. 
 
 ## Overview of the Carvel Package Supply Chains
 
