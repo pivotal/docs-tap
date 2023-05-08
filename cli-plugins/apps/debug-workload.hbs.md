@@ -94,6 +94,6 @@ There are known errors that makes the workload enter an error or unknown status.
     "source.apps.tanzu.vmware.com" in the namespace "ns"
   - *Cause*: This error happens when the service account in the workload object does not have
     permissions to create objects that are stamped out by the supply chain.
-    - *Resolution*: This is fixed by setting up the [Set up developer namespaces to use installed
+    - *Resolution*: This is fixed by setting up the [Set up developer namespaces to use your installed
       packages](../../install-online/set-up-namespaces.hbs.md)
       with the required service account and permissions.

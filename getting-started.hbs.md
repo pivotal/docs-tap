@@ -26,7 +26,7 @@ If you used the default profiles provided in [Installing the Tanzu Application P
   you have already installed Tekton Pipelines.
 
 - **Set up a developer namespace to accommodate the developer workload**<br>
-See [Set up developer namespaces to use installed packages](install-online/set-up-namespaces.hbs.md).
+See [Set up developer namespaces to use your installed packages](install-online/set-up-namespaces.hbs.md).
 
 - **Installed Tanzu Application Platform GUI**<br>
 See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).

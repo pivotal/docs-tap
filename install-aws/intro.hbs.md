@@ -1,7 +1,10 @@
 # Install Tanzu Application Platform (AWS)
 
-You can install Tanzu Application Platform on [Amazon Elastic Kubernetes Services (EKS)](https://aws.amazon.com/eks/) by using [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/).
-The outcome of this deployment is similar to the outcome of [Deploying Tanzu Application Platform through AWS Quick Start on Amazon EKS](https://aws.amazon.com/quickstart/architecture/vmware-tanzu-application-platform/), but it provides added flexibility to customize the deployment.
+You can install Tanzu Application Platform (commonly known as TAP) on 
+[Amazon Elastic Kubernetes Services (EKS)](https://aws.amazon.com/eks/) by using 
+[Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/).
+The outcome of this deployment is similar to the outcome of [Deploying Tanzu Application Platform through AWS Quick Start on Amazon EKS](https://aws.amazon.com/quickstart/architecture/vmware-tanzu-application-platform/), 
+but it provides added flexibility to customize your deployment.
 
 To install, take the following steps.
 
@@ -13,8 +16,8 @@ To install, take the following steps.
 |4.| Install Cluster Essentials for Tanzu |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html)|
 |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Install the Tanzu Application Platform package and profiles](profile.hbs.md)|
 |6.| (Optional) Install any additional packages that were not in the profile |[Install individual packages](components.hbs.md)|
-|7.| Set up developer namespaces to use installed packages |[Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)|
-|8.| Install developer tools into your integrated development environment (IDE) |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
+|7.| Set up developer namespaces to use your installed packages |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
+|8.| Install developer tools into your integrated development environment (IDE) |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
 
 After installing Tanzu Application Platform on your Kubernetes clusters,
 [get started with Tanzu Application Platform](../getting-started.hbs.md) and create your ECR repositories

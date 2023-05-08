@@ -1,6 +1,7 @@
 # Troubleshoot Tanzu Application Platform
 
-These topics provide troubleshooting information to help resolve issues with Tanzu Application Platform:
+These topics provide you with troubleshooting information to help resolve issues 
+with your Tanzu Application Platform (commonly known as TAP):
 
 - [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md)
 - [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md)

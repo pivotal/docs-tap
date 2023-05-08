@@ -1,3 +1,3 @@
-<!-- The below partial is in the docs-tap/partials directory -->
+# Install Tanzu Developer Tools for your VS Code
 
 {{> 'partials/vscode-extension/install' }}

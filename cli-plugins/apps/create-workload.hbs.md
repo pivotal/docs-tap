@@ -15,7 +15,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and
   plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
 - Install the apps plug-in. See the [Install Apps plug-in](install-apps-cli.md).
-- [Set up developer namespaces to use installed packages](../../install-online/set-up-namespaces.hbs.md).
+- [Set up developer namespaces to use your installed packages](../../install-online/set-up-namespaces.hbs.md).
 - As you familiarize yourself with creating and managing the life cycle of workloads on the
   platform, you might want to review the full `Cartographer Workload spec` to learn more about the
   values that may be provided.
