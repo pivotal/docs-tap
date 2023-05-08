@@ -1,4 +1,4 @@
-# Set up developer namespaces to use installed packages
+# Set up developer namespaces to use your installed packages
 
 <!-- The below partial is in the docs-tap/partials directory -->
 

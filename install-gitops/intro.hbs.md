@@ -3,8 +3,8 @@
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 GitOps is an operational framework that uses Git repositories as a single source of truth.
-Under GitOps, you describe the desired state of a Tanzu Application Platform configuration
-by using a declarative specification and place it in a Git repository.
+Under GitOps, you describe the desired state of a Tanzu Application Platform (commonly known as TAP) 
+configuration by using a declarative specification and place it in your Git repository.
 
 {{#unless vars.hide_content}}
 <!-- TODO: this release is ready for production use in a specific set of conditions, review these conditions to see if your situation qualifies
@@ -27,8 +27,8 @@ GitOps with Secrets OPerationS (SOPS)
     |3.| Install Cluster Essentials for Tanzu*. |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)|
     |4.| Install Tanzu Application Platform. |[Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](sops.hbs.md)
     |5.| (Optional) Install any additional packages that were not in the profile. |[Install individual packages](components.hbs.md)|
-    |6.| Set up developer namespaces to use installed packages. |[Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)|
-    |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
+    |6.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
+    |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
 
 GitOps with External Secrets Operator (ESO)
 : Applies to the scenario when you want to store sensitive data in external store:
@@ -43,8 +43,8 @@ GitOps with External Secrets Operator (ESO)
     |4.| Install Cluster Essentials for Tanzu*. |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)|
     |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](eso.hbs.md)|
     |6.| (Optional) Install any additional packages that were not in the profile. |[Install individual packages](components.hbs.md)|
-    |7.| Set up developer namespaces to use installed packages. |[Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)|
-    |8.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
+    |7.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
+    |8.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 

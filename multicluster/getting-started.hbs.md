@@ -22,7 +22,7 @@ Before implementing a multicluster topology, complete the following:
 
     Where:
 
-    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md). `default` is used in this example.
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md). `default` is used in this example.
 
 
 ## <a id='build-cluster'></a> Start the workload on the Build profile cluster

@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform (Azure)
 
-To install Tanzu Application Platform on Azure:
+To install Tanzu Application Platform (commonly known as TAP) on Azure:
 
 |Step|Task|Link|
 |----|----|----|
@@ -10,7 +10,7 @@ To install Tanzu Application Platform on Azure:
 |4.| Install Cluster Essentials for Tanzu |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)|
 |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Install the Tanzu Application Platform package and profiles](profile.hbs.md)|
 |6.| (Optional) Install any additional packages that were not in the profile |[Install individual packages](components.hbs.md)|
-|7.| Set up developer namespaces to use installed packages |[Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)|
-|8.| Install developer tools into your integrated development environment (IDE) |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
+|7.| Set up developer namespaces to use your installed packages |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
+|8.| Install developer tools into your integrated development environment (IDE) |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
 
 After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Get started with Tanzu Application Platform](../getting-started.hbs.md).
