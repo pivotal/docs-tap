@@ -157,7 +157,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
 
 Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
 
-### <a id='windows-tanzu-cli'></a> Install Tanzu CLI: Windows
+### <a id='install-tanzu-cli-windows'></a> Install Tanzu CLI: Windows
 
 1. Open the Windows file browser.
 
