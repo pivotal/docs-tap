@@ -1,10 +1,12 @@
-# Building from source
+# Building from source with Supply Chain Choreographer
 
-Regardless of the out of the box Supply Chain Package you've installed, you can provide source code for the workload from one of three places:
+You can build from source by providing source code for the workload with any Supply Chain package.
+
+You can provide source code for the workload from one of three places:
 
 1. A Git repository.
-1. A directory in your local computer's file system.
-1. A Maven repository.
+2. A directory in your local computer's file system.
+3. A Maven repository.
 
   ```console
   Supply Chain
