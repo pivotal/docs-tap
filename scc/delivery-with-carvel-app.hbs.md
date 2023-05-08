@@ -1,8 +1,8 @@
 # Use Gitops Delivery with a Carvel App (alpha)
 
-This topic explains how to deliver Carvel `Packages`, created by the Carvel
+This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
-using Carvel App.
+using Carvel App. You can use Carvel Package Supply Chains with Supply Chain Choreographer. 
 
 ## Prerequisites
 
