@@ -10,9 +10,26 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-5-1-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
-
-- Security fix description.
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-493p-pfq6-5258 </li></ul>|
+| application-configuration-service.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
+| backend.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>CVE-2022-41881</li><li>GHSA-mjmj-j48q-9wg2</li><li>GHSA-36p3-wjmg-h94x </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-vvpx-j8f3-3w6h</li><li>CVE-2023-0461 </li></ul>|
+| connector.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>CVE-2022-41881</li><li>GHSA-mjmj-j48q-9wg2</li><li>GHSA-36p3-wjmg-h94x </li></ul>|
+| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-493p-pfq6-5258 </li></ul>|
+| apiserver.appliveview.tanzu.vmware.com | <ul><li> GHSA-r48q-9g5r-8q2h</li><li>GHSA-vvpx-j8f3-3w6h </li></ul>|
+| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-8c26-wmh5-6g9v</li><li>GHSA-gwc9-m7rh-j2ww</li><li>GHSA-69cg-p879-7622</li><li>GHSA-fxg5-wq6x-vr4w</li><li>GHSA-vpvm-3wq2-2wvm</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
+| metadata-store.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+| ootb-templates.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+| scanning.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+| app-scanning.apps.tanzu.vmware.com | <ul><li> GHSA-3vm4-22fp-5rfm</li><li>GHSA-8c26-wmh5-6g9v</li><li>GHSA-gwc9-m7rh-j2ww</li><li>GHSA-69cg-p879-7622</li><li>GHSA-fxg5-wq6x-vr4w </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> CVE-2023-26114</li><li>GHSA-frjg-g767-7363</li><li>GHSA-hc6q-2mpp-qw7j </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2023-26114</li><li>GHSA-frjg-g767-7363 </li></ul>|
+| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-23918</li><li>GHSA-rc47-6667-2j5j</li><li>CVE-2023-23919 </li></ul>|
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-0466</li><li>CVE-2022-4899 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-0466</li><li>CVE-2022-4899 </li></ul>|
 
 ---
 
