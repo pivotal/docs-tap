@@ -118,7 +118,8 @@ To provision namespaces manually, complete the following steps:
 
 Follow these steps to enable additional users in your namespace by using Kubernetes RBAC:
 
-1. Before you begin, ensure that you have [enabled single user access](#single-user-access).
+1. (Optional) Before you begin, ensure that you have [enabled single user access](#single-user-access). If you've set up your developer namespace using [Namespace Provisioner](provision-developer-ns.md),
+you can skip this step.
 2. Choose either of the following options to give developers namespace-level access and view access
    to the appropriate cluster-level resources:
 
