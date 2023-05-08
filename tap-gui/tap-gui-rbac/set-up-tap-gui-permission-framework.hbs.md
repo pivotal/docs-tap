@@ -63,7 +63,13 @@ Where:
   - catalog.entity.update
   - catalog.entity.delete
 **Note** There is another permission that is valid for permission framework - `catalog.entity.create` - yet it is not meaningful for the Software Catalog entities that have already been created.
-**Note** You can add several Groups or Users by adding new annotations with their respective comma delimited permissions
+**Note** You can add several Groups or Users by adding new annotations with their respective comma delimited permissions, for example:
+```yaml
+metadata:
+  annotations:
+    backstage.tanzu.vmware.com/user.default.user-a: 'catalog.entities.read'
+    backstage.tanzu.vmware.com/user.default.user-b: 'catalog.entities.read,catalog.entities.update'
+```
 
 For example, this annotation would let users that are part of `group-a` to read and/or delete `component-a`: 
 ```yaml
