@@ -1,12 +1,17 @@
 # Create AWS Resources for Tanzu Application Platform
 
-To install Tanzu Application Platform within the Amazon Web Services (AWS) Ecosystem, you must create several AWS resources. This guide walks you through creating:
+To install Tanzu Application Platform (commonly known as TAP) within the Amazon 
+Web Services (AWS) Ecosystem, you must create several AWS resources. 
+Use this topic to learn how to create:
 
 - An Amazon Elastic Kubernetes Service (EKS) cluster to install Tanzu Application Platform.
 - Identity and Access Management (IAM) roles to allow authentication and authorization to read and write from Amazon Elastic Container Registry (ECR).
 - ECR Repositories for the Tanzu Application Platform container images.
 
-Creating these resources enables Tanzu Application Platform to use an IAM role bound to a Kubernetes service account for authentication, rather than the typical username and password stored in a Kubernetes secret strategy. For more information, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
+Creating these resources enables Tanzu Application Platform to use an IAM role 
+bound to a Kubernetes service account for authentication, rather than the typical 
+username and password stored in a Kubernetes secret strategy. 
+For more information, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 
 This is important when using ECR because authenticating to ECR is a two-step process:
 

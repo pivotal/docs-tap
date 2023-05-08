@@ -27,7 +27,7 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
 
 Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
-To set up a developer namespace if your Run cluster is also a Tanzu Application Platform cluster, see [Set up developer namespaces to use installed packages](../install-online/set-up-namespaces.hbs.md).
+To set up a developer namespace if your Run cluster is also a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
 If your Run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
 

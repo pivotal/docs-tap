@@ -2,9 +2,9 @@
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-This document describes how to uninstall Tanzu Application Platform when installed by using GitOps.
+This document tells you how to uninstall Tanzu Application Platform (commonly known as TAP) when installed by using GitOps.
 
-To uninstall Tanzu Application Platform:
+To uninstall your Tanzu Application Platform:
 
 - [Delete Tanzu Sync Application](#del-tanzu-sync)
 - [Delete external resources (ESO installation only)](#del-aws-resources)

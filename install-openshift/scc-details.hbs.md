@@ -1,6 +1,7 @@
 # Custom Security Context Constraint details
 
-Custom Security Context Constraint (SCC) details for Tanzu Application Platform components are as follows:
+Custom Security Context Constraint (commonly known as SCC) details for 
+Tanzu Application Platform (commonly known as TAP) components are as follows:
 
 - [Application Accelerator on OpenShift cluster](#acc-scc)
 - [Application Live View on OpenShift](#alv-scc)

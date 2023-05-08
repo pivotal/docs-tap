@@ -1,4 +1,4 @@
-# Set up developer namespaces to use installed packages
+# Set up developer namespaces to use your installed packages
 
 You can choose either one of the following two approaches to create a `Workload`
 for your application by using the registry credentials specified,
@@ -217,4 +217,4 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)
+- [Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)
