@@ -1,10 +1,12 @@
-# Dockerfile-based builds
+# Use Dockerfile-based builds with Supply Chain Choreographer
 
-For any source-based supply chains, that is supply chains that are not taking a
-pre-built image, when you specify the new `dockerfile` parameter in a Workload
-the builds switch from using Kpack to using Kaniko. Kaniko is an open-source tool
-for building container images from a Dockerfile even without privileged root
-access.
+This topic explains how you can use Dockerfile-based builds with Supply Chain Choreographer.
+
+For any source-based supply chains, when you specify the new `dockerfile`
+parameter in a workload, the builds switch from using Kpack to using Kaniko.
+Source-based supply chains are supply chains that don't take a pre-built image.
+Kaniko is an open-source tool for building container images from a Dockerfile
+without running Docker inside a container.
 
 <table>
   <tr>
