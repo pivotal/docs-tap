@@ -47,7 +47,7 @@ After the updated values configuration file is applied in Tanzu Application Plat
 
 ## <a id='enable-visibility'></a> Enable catalog entity visibility
 
-With the permission framework enabled, it is required to annotate entities in your Software Catalog to give visibility to the required Users or Groups. To do that, you will need to add annotations to the `metadata.annotations` stanza of the entity's definition file.
+With the permission framework enabled, it is required to annotate entities in your Software Catalog to give visibility to the desired Users or Groups who are not owner of the entity. To do that, you will need to add annotations to the `metadata.annotations` stanza of the entity's definition file.
 
 ```yaml
 metadata:
