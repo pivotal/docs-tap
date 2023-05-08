@@ -185,8 +185,7 @@ as `azure`.
 Azure DevOps repository either the tap value `gitops.pull_request.server_kind` or the workload parameter
 `gitops_server_kind` must be configured to `azure`.
 
->**Note** When using [the pull-request flow](gitops-vs-regops.hbs.md#a-idprsa-pull-requests), the server kind can be
-set with the tap-value `gitops.pull_request.server_kind`
+>**Note** When you use pull requests with GitOps, you can set the type of server with the tap-value `gitops.pull_request.server_kind`. See [GitOps versus RegistryOps](gitops-vs-regops.hbs.md#a-idprsa-pull-requests).
 
 For information about configuring the GitOps write operations, see
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
