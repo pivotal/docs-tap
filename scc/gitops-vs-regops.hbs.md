@@ -1,4 +1,6 @@
-# GitOps versus RegistryOps
+# Use GitOps or RegistryOps with Supply Chain Choreographer
+
+You can use GitOps or RegistryOps to manage your Kubernetes configuration with Supply Chain Choreographer.
 
 Regardless of the supply chain that a workload goes through, in the end,
 some Kubernetes configuration is pushed to an external entity, either to a Git
