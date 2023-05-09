@@ -18,27 +18,6 @@ This release has the following security fixes, listed by component and area.
 | buildservice.tanzu.vmware.com | <ul><li> CVE-2023-0461</li><li>CVE-2023-0179</li><li>CVE-2023-0468 </li></ul>|
 | ootb-templates.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
 
-
----
-
-### <a id='1-4-5-resolved-issues'></a> Resolved issues 
-
-The following issues, listed by component and area, are resolved in this release. 
-
-#### <a id='1-4-5-COMPONENT-NAME-ri'></a> COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
-### <a id='1-4-5-known-issues'></a> Known issues 
-
-This release has the following known issues, listed by component and area. 
-
-#### <a id='1-4-5-COMPONENT-NAME-ki'></a> COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
 ---
 
 ## <a id='1-4-4'></a> v1.4.4
