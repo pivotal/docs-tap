@@ -1,23 +1,19 @@
 # Install Tanzu Portal Builder
 
-<!-- This section has been created for the new component - Tanzu Portal Builder. It is expected to be refined and updated before the TAP 1.6.0 release -->
+This topic tells you how to install Tanzu Portal Builder from the Tanzu Application Platform package
+repository.
 
-This topic describes how to install Tanzu Portal Builder from the Tanzu Application Platform package repository.
-
-> **Note** Follow the steps in this topic if you do not want to use a profile to install
-> Tanzu Portal Builder.
-> For more information about profiles, see
-> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+Follow the steps in this topic if you do not want to use a profile to install Tanzu Portal Builder.
+For more information about profiles, see
+[Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
-Before installing Tanzu Portal Builder:
+Before installing Tanzu Portal Builder, complete all prerequisites to install
+Tanzu Application Platform. For more information, see the Tanzu Application Platform
+[prerequisites](../prerequisites.hbs.md).
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see the
-Tanzu Application Platform [Prerequisites](../prerequisites.html).
-
-
-### <a id='tanzu-portal-builder-install-proc'></a> Procedure
+## <a id='install'></a> Install Tanzu Portal Builder
 
 To install Tanzu Portal Builder on a compliant Kubernetes cluster:
 
@@ -39,18 +35,17 @@ To install Tanzu Portal Builder on a compliant Kubernetes cluster:
 1. (Optional) Make changes to the default installation settings by running:
 
     ```console
-    tanzu package available get tanzu-portal-builder.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get tanzu-portal-builder.tanzu.vmware.com/VERSION-NUMBER --values-schema \
+    --namespace tap-install
     ```
 
     Where `VERSION-NUMBER` is the number you discovered previously. For example, `1.0.1`.
-
     For more information about values schema options, see the individual product documentation.
 
 1. Create `tanzu-portal-builder-values.yaml` and paste in the following code:
 
     ```yaml
     (code section to be added)
-    
     ```
 
     Where:
@@ -66,7 +61,7 @@ To install Tanzu Portal Builder on a compliant Kubernetes cluster:
      -f tanzu-portal-builder-values.yaml
     ```
 
-    Where `VERSION` is the desired version. For example, `1.0.1`.
+    Where `VERSION` is the version that you want. For example, `1.0.1`.
 
     For example:
 
@@ -101,4 +96,7 @@ To install Tanzu Portal Builder on a compliant Kubernetes cluster:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-1. To start using the Tanzu Portal Builder, please follow the instruction to [Create your customized portal](//tanzu-portal-builder/create-customized-developer-portal.hbs.md).
+## <a id="next-steps"></a> Next steps
+
+To start using Tanzu Portal Builder, proceed to
+[Create your customized portal](create-custom-dev-portal.hbs.md).
