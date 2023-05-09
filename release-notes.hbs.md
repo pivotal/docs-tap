@@ -26,26 +26,6 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-3-8-resolved-issues'></a> Resolved issues 
-
-The following issues, listed by component and area, are resolved in this release. 
-
-#### <a id='1-3-8-COMPONENT-NAME-ri'></a> COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
-### <a id='1-3-8-known-issues'></a> Known issues 
-
-This release has the following known issues, listed by component and area. 
-
-#### <a id='1-3-8-COMPONENT-NAME-ki'></a> COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
----
-
 ## <a id='1-3-7'></a> v1.3.7
 
 **Release Date**: April 11, 2023
