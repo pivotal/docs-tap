@@ -1,7 +1,9 @@
-# Git authentication
+# Use Git authentication with Supply Chain Choreographer
 
-To either fetch or push source code from or to a repository that requires
-credentials, you must provide those through a Kubernetes secret object 
+This topic describes how you can use Git authentication with Supply Chain Choreographer.
+
+You can either fetch or push source code from or to a repository that requires
+credentials. You must provide credentials through a Kubernetes secret object
 referenced by the intended Kubernetes object created for performing the action.
 
 The following sections provide details about how to appropriately set up 
