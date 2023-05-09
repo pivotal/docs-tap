@@ -78,6 +78,12 @@ This release has the following known issues, listed by component and area.
   The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
   to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
 
+#### <a id='1-5-1-scst-store'></a> SCST - Store
+
+- In TAP 1.5.1, attempting to deploy the Store with AMR does not work. When installing TAP, under `amr` in 
+  the `metadata_store` section, specifying `deploy: true` is supposed to deploy AMR along with the Store. 
+  However, this is not the case with TAP 1.5.1. This is a known bug and will be fixed in future releases.
+
 ---
 
 ## <a id='1-5-0'></a> v1.5.0
