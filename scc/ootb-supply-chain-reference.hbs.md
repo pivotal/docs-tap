@@ -1,4 +1,6 @@
-# Supply chains
+# Supply chains for Supply Chain Choreographer
+
+This topic describes the parameters for supply chains that you can use with Supply Chain Choreographer.
 
 Tanzu Application Platform includes a number of supply chains packages,
 each of which installs two
