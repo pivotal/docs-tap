@@ -1,4 +1,6 @@
-# Git
+# Use Git with Supply Chain Choreographer
+
+This topic explains how you can use Git with Supply Chain Choreographer.
 
 The out of the box supply chains and delivery use Git in three ways:
 
