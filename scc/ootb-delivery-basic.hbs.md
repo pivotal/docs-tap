@@ -1,4 +1,6 @@
-# Out of the Box Delivery Basic
+# Out of the Box Delivery Basic for Supply Chain Choreographer
+
+This topic is an overview of the Out of the Box Delivery Basic package for Supply Chain Choreographer.
 
 This package provides a reusable ClusterDelivery object that is responsible for
 delivering to an environment the Kubernetes configuration that has been
