@@ -3,9 +3,10 @@
 This topic tells you how to install Tanzu Portal Builder from the Tanzu Application Platform package
 repository.
 
-Follow the steps in this topic if you do not want to use a profile to install Tanzu Portal Builder.
-For more information about profiles, see
-[Components and installation profiles](../about-package-profiles.hbs.md).
+> **Important** Follow the steps in this topic if you do not want to use a profile to install
+> Tanzu Portal Builder.
+> For more information about profiles, see
+> [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
