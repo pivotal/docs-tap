@@ -643,7 +643,7 @@ docs.vmware.com is built.
       - [Tanzu Portal Builder overview](tanzu-portal-builder/about.hbs.md)
       - [Install Tanzu Portal Builder](tanzu-portal-builder/install.hbs.md)
       - [Create your customized developer portal](tanzu-portal-builder/create-custom-dev-portal.hbs.md)
-      - [Troubleshoot Tanzu Portal Builder](tanzu-portal-builder/troubleshooting.hbs.md)
+      - [Troubleshoot Tanzu Portal Builder](tanzu-portal-builder/troubleshoot.hbs.md)
       - [Upgrade Tanzu Portal Builder](tanzu-portal-builder/upgrade.hbs.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.hbs.md)
       - [Tanzu Build Service overview](tanzu-build-service/tbs-about.hbs.md)
