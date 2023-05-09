@@ -51,7 +51,8 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id="1-5-1-external-secrets-ri"></a> External Secrets CLI (beta)
 
-- Fixed: The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
+- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
+  now correctly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
 ---
 
@@ -67,12 +68,12 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-5-1-tanzu-source-controller-ki'></a> Tanzu Source Controller 
-- **Issue:**
-On Version v0.7.0, when pulling image from ECR (Elastic Container Registry) Tanzu Source Controller keyless access to ECR  via AWS IAM role binding fails to authenticate (error code: 401).
-**Workaround:**
-Setup standard K8s secret with user-id and password to authenticate to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
+#### <a id='1-5-1-tnz-src-cntrllr-ki'></a> Tanzu Source Controller
 
+- In v0.7.0, when pulling images from Elastic Container Registry (ECR), Tanzu Source Controller
+  keyless access to ECR through AWS IAM role binding fails to authenticate (error code: 401).
+  The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
+  to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
 
 ---
 
@@ -692,7 +693,7 @@ This release has the following known issues, listed by area and component.
 
 - The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
-#### <a id='1-5-10-tanzu-source-controller-ki'></a> Tanzu Source Controller 
+#### <a id='1-5-10-tanzu-source-controller-ki'></a> Tanzu Source Controller
 - **Issue:**
 On Version v0.7.0, when pulling image from ECR (Elastic Container Registry) Tanzu Source Controller keyless access to ECR  via AWS IAM role binding fails to authenticate (error code: 401).
 **Workaround:**
