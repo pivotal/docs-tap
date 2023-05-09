@@ -641,7 +641,7 @@ docs.vmware.com is built.
       - [Deployment details and configurations](telemetry/deployment-details.hbs.md)
     - [Tanzu Portal Builder](tanzu-portal-builder/about.hbs.md)
       - [Tanzu Portal Builder overview](tanzu-portal-builder/about.hbs.md)
-      - [Install Tanzu Portal Builder](tanzu-portal-builder/install-tanzu-portal-builder.hbs.md)
+      - [Install Tanzu Portal Builder](tanzu-portal-builder/install.hbs.md)
       - [Create your customized developer portal](tanzu-portal-builder/create-custom-dev-portal.hbs.md)
       - [Troubleshoot Tanzu Portal Builder](tanzu-portal-builder/troubleshooting.hbs.md)
       - [Upgrade Tanzu Portal Builder](tanzu-portal-builder/upgrade.hbs.md)
