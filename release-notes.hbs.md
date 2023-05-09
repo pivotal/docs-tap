@@ -356,6 +356,13 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
 
 - You can use Tanzu Developer Tools for VS Code to iterate on Spring Boot 3-based applications.
 
+#### <a id='1-5-0-tnz-src-cntrllr-ki'></a> Tanzu Source Controller
+
+- In v0.7.0, when pulling images from Elastic Container Registry (ECR), Tanzu Source Controller
+  keyless access to ECR through AWS IAM role binding fails to authenticate (error code: 401).
+  The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
+  to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
+
 ---
 
 ### <a id='1-5-0-breaking-changes'></a> Breaking changes
