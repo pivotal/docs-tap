@@ -1,4 +1,6 @@
-# Out of the Box Supply Chain with testing on Jenkins
+# Out of the Box Supply Chain with testing on Jenkins for Supply Chain Choreographer
+
+This topic provides an overview of Out of the Box Supply Chain with testing on Jenkins for Supply Chain Choreographer.
 
 The Out of the Box templates package now includes a Tekton `ClusterTask`
 resource, which triggers a build for a specified Jenkins job.
