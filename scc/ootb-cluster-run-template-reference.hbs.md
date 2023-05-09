@@ -1,5 +1,6 @@
-# ClusterRunTemplate reference
+# ClusterRunTemplate reference for Supply Chain Choreographer
 
+This topic lists the objects you can use with Supply Chain Choreographer.
 All the objects referenced in this topic are [Cartographer
 ClusterRunTemplates](https://cartographer.sh/docs/v0.6.0/reference/runnable/#clusterruntemplate)
 packaged in [Out of the Box Templates](ootb-templates.hbs.md). This topic
