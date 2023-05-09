@@ -1,4 +1,6 @@
-# Out of the Box Supply Chain with Testing and Scanning
+# Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer
+
+This topic provides an overview of Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer.
 
 This package contains Cartographer Supply Chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code

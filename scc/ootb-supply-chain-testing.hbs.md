@@ -1,4 +1,7 @@
-# Out of the Box Supply Chain with Testing
+# Out of the Box Supply Chain with Testing for Supply Chain Choreographer
+
+This topic provides an overview of Out of the Box Supply Chain with Testing for Supply
+Chain Choreographer.
 
 This package contains Cartographer Supply Chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code
@@ -28,7 +31,7 @@ performs the following:
 
 ## <a id="prerequisite"></a> Prerequisites
 
-To make use this supply chain, ensure:
+To use this supply chain, ensure:
 
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is installed**.
