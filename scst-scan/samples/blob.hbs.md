@@ -1,6 +1,6 @@
-# Sample public source scan of a blob
+# Sample public source scan of a blob for Supply Chain Security Tools - Scan
 
-This example performs a scan against source code in a `.tar.gz` file. This is helpful in a Supply Chain, where there is a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
+You can do a public source scan of a blob for SCST - Scan. This example performs a scan against source code in a `.tar.gz` file. This is helpful in a Supply Chain, where there is a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
 
 ## <a id="define-resources"></a>Define the resources
 

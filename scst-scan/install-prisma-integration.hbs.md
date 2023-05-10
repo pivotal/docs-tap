@@ -1,6 +1,6 @@
-# Prerequisites for Prisma Scanner (Alpha)
+# Prerequisites for Prisma Scanner for Supply Chain Security Tools - Scan (Alpha)
 
-This topic describes prerequisites for installing SCST - Scan (Prisma) from the VMware package repository.
+This topic describes prerequisites you must complete to install SCST - Scan (Prisma) from the VMware package repository.
 
 >**Important** This integration is in Alpha, which means that it is still in active
 >development by the Tanzu Practices Global Tech Team and might be subject to
