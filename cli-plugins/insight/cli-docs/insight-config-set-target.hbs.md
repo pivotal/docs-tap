@@ -19,7 +19,7 @@ tanzu insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --a
 ### <a id='options'></a>Options
 
 ```console
-      --access-token string   Kubernetes access token. It is recommended to use the Environment Variable METADATA_STORE_ACCESS_TOKEN during the API calls, this will override access token flag. Note: using the the access-token flag stores the token on disk, the Environment Variable is retrieved at the time of the API call
+      --access-token string   Kubernetes access token. It is recommended to use the Environment Variable METADATA_STORE_ACCESS_TOKEN during the API calls, this will override access token flag. Note: using the access-token flag stores the token on disk, the Environment Variable is retrieved at the time of the API call
       --ca-cert string        trusted ca certificate
   -h, --help                  help for set-target
 ```
