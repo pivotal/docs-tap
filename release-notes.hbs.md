@@ -38,25 +38,83 @@ This release has the following known issues, listed by component and area.
 
 ## <a id='1-3-8'></a> v1.3.8
 
-**Release Date**: May 9, 2023
+**Release Date**: 09 May 2023
 
-### <a id='1-3-8-security-fixes'></a> Security fixes 
+### <a id='1-3-8-security-fixes'></a> Security fixes
 
-This release has the following security fixes, listed by component and area. 
+This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> GHSA-69cg-p879-7622</li><li>GHSA-vvpx-j8f3-3w6h</li><li>GHSA-69ch-w2m2-3vjp</li><li>GHSA-fxg5-wq6x-vr4w</li><li>CVE-2023-24827</li><li>GHSA-crp2-qrr5-8pq7</li><li>GHSA-c3xm-pvg7-gh7r</li><li>GHSA-f524-rf33-2jjr</li><li>GHSA-r48q-9g5r-8q2h </li></ul>|
-| image-policy-webhook.signing.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h</li><li>GHSA-fxg5-wq6x-vr4w </li></ul>|
-| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-493p-pfq6-5258 </li></ul>|
-| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>CVE-2023-0461</li><li>CVE-2023-0179 </li></ul>|
-| grype.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-24329 </li></ul>|
-| learningcenter.tanzu.vmware.com | <ul><li> CVE-2023-26114</li><li>GHSA-frjg-g767-7363</li><li>CVE-2021-27478</li><li>CVE-2021-27482</li><li>CVE-2021-27498</li><li>CVE-2021-27500</li><li>CVE-2022-43604</li><li>CVE-2022-43605</li><li>CVE-2022-43606</li><li>GHSA-hc6q-2mpp-qw7j </li></ul>|
-| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2023-26114</li><li>GHSA-frjg-g767-7363</li><li>CVE-2021-27478</li><li>CVE-2021-27482</li><li>CVE-2021-27498</li><li>CVE-2021-27500</li><li>CVE-2022-43604</li><li>CVE-2022-43605</li><li>CVE-2022-43606 </li></ul>|
-| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-23918</li><li>CVE-2023-23919 </li></ul>|
-| ootb-templates.tanzu.vmware.com | <ul><li> GHSA-vpvm-3wq2-2wvm </li></ul>|
-| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-0466</li><li>CVE-2022-4899 </li></ul>|
-| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-0466</li><li>CVE-2022-4899 </li></ul>|
+<table>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+<tr>
+<td>carbonblack.scanning.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-69cg-p879-7622</li><li>GHSA-vvpx-j8f3-3w6h</li><li>GHSA-69ch-w2m2-3vjp</li><li>GHSA-fxg5-wq6x-vr4w</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24827">CVE-2023-24827</a></li><li>GHSA-crp2-qrr5-8pq7</li><li>GHSA-c3xm-pvg7-gh7r</li><li>GHSA-f524-rf33-2jjr</li><li>GHSA-r48q-9g5r-8q2h</li></ul></td>
+</tr>
+<tr>
+<td>image-policy-webhook.signing.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li><li>GHSA-fxg5-wq6x-vr4w</li></ul></td>
+</tr>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li>GHSA-493p-pfq6-5258</li></ul></td>
+</tr>
+<tr>
+<td>buildservice.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0179">CVE-2023-0179</a></li></ul></td>
+</tr>
+<tr>
+<td>grype.scanning.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24329">CVE-2023-24329</a></li></ul></td>
+</tr>
+<tr>
+<td>learningcenter.tanzu.vmware.com</td>
+<td><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26114">CVE-2023-26114</a></li>
+<li>GHSA-frjg-g767-7363</li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27478">CVE-2021-27478</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27482">CVE-2021-27482</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27498">CVE-2021-27498</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27500">CVE-2021-27500</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43604">CVE-2022-43604</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43605">CVE-2022-43605</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43606">CVE-2022-43606</a></li>
+<li>GHSA-hc6q-2mpp-qw7j</li></ul>
+</td>
+</tr>
+<tr>
+<td>workshops.learningcenter.tanzu.vmware.com</td>
+<td><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26114">CVE-2023-26114</a></li>
+<li>GHSA-frjg-g767-7363</li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27478">CVE-2021-27478</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27482">CVE-2021-27482</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27498">CVE-2021-27498</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27500">CVE-2021-27500</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43604">CVE-2022-43604</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43605">CVE-2022-43605</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-43606">CVE-2022-43606</a></li></ul>
+</td>
+</tr>
+<tr>
+<td>snyk.scanning.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23918">CVE-2023-23918</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
+</tr>
+<tr>
+<td>ootb-templates.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vpvm-3wq2-2wvm</li></ul></td>
+</tr>
+<tr>
+<td>sso.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0466">CVE-2023-0466</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4899">CVE-2022-4899</a></li></ul></td>
+</tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0466">CVE-2023-0466</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4899">CVE-2022-4899</a></li></ul></td>
+</tr>
+</table>
 
 ---
 
