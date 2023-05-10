@@ -1,5 +1,7 @@
 # Install multicluster Tanzu Application Platform profiles
 
+This topic tells you how to install a multicluster topology for your Tanzu Application Platform (commonly known as TAP).
+
 ## <a id='prerequisites'></a> Prerequisites
 
 Before installing multicluster Tanzu Application Platform profiles, you must meet the following prerequisites:
