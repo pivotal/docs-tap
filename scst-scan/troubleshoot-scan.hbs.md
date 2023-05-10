@@ -1,5 +1,7 @@
 # Troubleshoot Supply Chain Security Tools - Scan
 
+This topic describes troubleshooting methods you can use with SCST - Scan.
+
 ## <a id="debugging-commands"></a> Debugging commands
 
 Run these commands to get more logs and details about the errors around scanning. The Jobs and pods persist for a predefined amount of seconds before getting deleted. (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)

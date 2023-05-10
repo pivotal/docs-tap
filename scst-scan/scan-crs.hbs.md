@@ -1,4 +1,6 @@
-# Configure code repositories and image artifacts to be scanned
+# Configure code repositories and image artifacts for Supply Chain Security Tools - Scan
+
+This topic describes how you can configure code repositories and image artifacts for SCST - Scan.
 
 ## <a id="prerequisite"></a>Prerequisite
 

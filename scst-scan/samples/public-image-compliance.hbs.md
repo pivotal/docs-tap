@@ -1,4 +1,6 @@
-# Sample public image scan with compliance check
+# Sample public image scan with compliance check for Supply Chain Security Tools - Scan
+
+This topic includes an example public image scan with compliance check for SCST - Scan.
 
 ## <a id="public-image-scan"></a> Public image scan
 

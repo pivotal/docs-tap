@@ -1,17 +1,15 @@
 # Upgrading Supply Chain Security Tools - Scan
 
-This document describes how to upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
+This topic describes how you can upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
 You can perform a fresh install of Supply Chain Security Tools - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
 
 This topic includes instructions for:
 
-1. [Prerequisites](#prereqs)
-
-2. [General Upgrades for Supply Chain Security Tools - Scan](#general-upgrades)
-
-3. Upgrading to:
-   - [Version v1.2.0](#upgrade-to-1-2-0)
+- [Upgrading Supply Chain Security Tools - Scan](#upgrading-supply-chain-security-tools---scan)
+  - [ Prerequisites](#-prerequisites)
+  - [ General Upgrades for Supply Chain Security Tools - Scan](#-general-upgrades-for-supply-chain-security-tools---scan)
+  - [ Upgrading to Version v1.2.0](#-upgrading-to-version-v120)
 
 
 ## <a id="prereqs"></a> Prerequisites
