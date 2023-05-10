@@ -1,7 +1,7 @@
 # Migration From Supply Chain Security Tools - Sign
 
-This section explains how to migrate the `ClusterImagePolicy` resource
-from Image Policy Webhook to Policy Controller. For more information about
+This topic explains how you can migrate from Supply Chain Security Tools - Sign
+to Supply Chain Security Tools - Policy. For more information about
 additional features introduced in Policy Controller, see
 [Configuring Supply Chain Security Tools - Policy](configuring.md).
 
