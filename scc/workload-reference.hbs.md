@@ -1,4 +1,6 @@
-# Workload Reference
+# Workload Reference for Supply Chain Choreographer
+
+This topic describes the fields you can use for Supply Chain Choreographer workloads.
 
 This topic describes available fields for Supply Chain Choreographer workloads.
 
