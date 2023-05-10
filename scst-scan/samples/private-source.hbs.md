@@ -1,4 +1,6 @@
-# Sample private source scan
+# Sample private source scan for Supply Chain Security Tools - Scan
+
+This example shows how you can perform a private source scan for SCST - Scan.
 
 ## <a id="define-resources"></a>Define the resources
 

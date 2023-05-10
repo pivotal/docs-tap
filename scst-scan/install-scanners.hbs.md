@@ -1,8 +1,8 @@
 # Install another scanner for Supply Chain Security Tools - Scan
 
-This topic describes how to install scanners to work with Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
+This topic describes how you can install scanners to work with Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
-Follow the below instructions to install a scanner other than the out of the box Grype Scanner.
+Follow the instructions in this topic to install a scanner other than the out of the box Grype Scanner with SCST - Scan.
 
 ## <a id="prerecs"></a> Prerequisites
 

@@ -1,4 +1,6 @@
-# View scan status conditions
+# View scan status conditions for Supply Chain Security Tools - Scan
+
+This topic explains how you can view scan status conditions for Supply Chain Security Tools - Scan. 
 
 ## <a id='view-scan-stat'></a>Viewing scan status
 You can view the scan status by using `kubectl describe` on a `SourceScan` or `ImageScan`. You can see information about the scan status under the Status field for each scan CR.
