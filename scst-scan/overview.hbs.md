@@ -1,5 +1,7 @@
 # Supply Chain Security Tools - Scan
 
+This topic describes overview information, such as, use cases, features, and CVEs for Supply Chain Security Tools - Scan.
+
 ## <a id="overview"></a>Overview
 
 With Supply Chain Security Tools - Scan, you can build and deploy 

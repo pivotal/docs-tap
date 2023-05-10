@@ -1,6 +1,6 @@
-# Sample private image scan
+# Sample private image scan for Supply Chain Security Tools - Scan
 
-This example performs a scan against an image located in a private registry.
+This example describes how you can perform a scan against an image located in a private registry for SCST - Scan.
 
 ## <a id="define-resources"></a>Define the resources
 
