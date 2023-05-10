@@ -144,3 +144,26 @@ When you provide the self-signed certificate authority (CA) for a registry throu
 ### Solution
 
 Define the CA by using the available `.shared.ca_cert_data` top-level key to supply the CA to the Convention Service.
+
+## <a id="no-pull-secrets-configured"></a> No imagePullSecrets configured
+
+### Symptoms
+-  When a PodIntent is submitted, no convention is applied.
+- Presence of an `unauthorized to access repository` or `fetching metadata for Images failed` error when inspecting the workload.
+
+### Cause
+If a `workload` is created in a developer namespace where `imagePullSecrets` have not been defined on the `default` serviceAccount or on the preferred serviceAccount.
+
+### Solution 
+
+Define an `imagePullSecret` on the default serviceAccount or on the  preferred serviceAccount in use by referencing the correct `imagePullSecret` as shown below.
+```yaml
+kind: ServiceAccount
+metadata:
+  name: default
+  namespace: my-workload-namespace
+imagePullSecrets:
+  - name: registry-credentials # ensure this secret is defined
+secrets:
+- name: registry-credentials
+``` 
