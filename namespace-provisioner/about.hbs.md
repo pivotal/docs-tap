@@ -16,25 +16,25 @@ Use Namespace Provisioner with one of the following modes:
 Controller mode
 : Controller mode has the following characteristics:
 
-    ![Diagram of .](../images/namespace-provisioner-controller.png)
+    ![Diagram of Namespace Provisioner controller.](../images/namespace-provisioner-controller.png)
 
     - The list of developer namespaces is managed by the Namespace Provisioner controller using a label selector `apps.tanzu.vmware.com/tap-ns=""`
-    - Namespace Provisioner creates [default resources](reference.md#default-resources) that are shipped Out of the Box in all managed namespaces.
+    - Namespace Provisioner creates [default resources](reference.md#default-resources) in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under the `additional_sources` section in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.md).
 
 GitOps mode
 : Gitops mode has the following characteristics
 
-    ![Diagram of .](../images/namespace-provisioner-1.png)
+    ![Diagram of Namespace Provisioner.](../images/namespace-provisioner-1.png)
 
     - The list of developer namespaces is managed in a Git repository that is specified in the `gitops_install` section of the Namespace Provisioner configuration.
     - Namespace Provisioner creates [default resources](reference.md#default-resources) that are shipped Out of the Box in all managed namespaces.
-    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.md).
+    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repositories specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.md).
 
 <br>
 ## <a id='carvel-app'></a>Provisioner Carvel application
 
-![Diagram of .](../images/namespace-provisioner-2.png)
+![Diagram of Provisioner Carvel application.](../images/namespace-provisioner-2.png)
 
 Namespace Provisioner consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/) application called `provisioner` that facilitates the creation of resources in the managed developer namespaces. The `provisioner` application uses ytt to templatize a set of resources into installations in multiple namespaces.
 
