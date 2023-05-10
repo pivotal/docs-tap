@@ -1,8 +1,17 @@
 # Getting started with multicluster Tanzu Application Platform
 
-In this topic, you will validate the implementation of a multicluster topology by taking a sample workload and passing it through the supply chains on the Build and Run clusters. You can take various approaches to configuring the supply chain in this topology, but the following procedures validate the most basic capabilities.
+This topic tells you how to validate the implementation of a multicluster topology 
+by taking a sample workload and passing it by using the supply chains on the Build 
+and Run clusters. 
 
-By following the steps in this topic, you will build an application on the Build profile clusters and run the application on the Run profile clusters. You will be able to view the workload and associated objects from Tanzu Application Platform GUI interface on the View profile cluster.
+Use this topic to build an application on the Build profile clusters and run the 
+application on the Run profile clusters. 
+
+You can view the workload and associated objects from Tanzu Application Platform GUI 
+(commonly known as TAP GUI) interface on the View profile cluster.
+
+You can take various approaches to configuring the supply chain in this topology, 
+but the following procedures validate the most basic capabilities.
 
 ## <a id='prerequisites'></a> Prerequisites
 
