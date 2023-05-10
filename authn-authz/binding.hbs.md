@@ -2,7 +2,7 @@
 
 You can choose one of the following two approaches to bind a user or group to a default role:
 
-- Use the Tanzu Application Platform RBAC CLI plug-in, which only supports binding Tanzu Application Platform default roles.
+- Use the Tanzu Application Platform RBAC CLI plug-in, which only supports binding Tanzu Application Platform (commonly known as TAP) default roles.
 - Use Kubernetes role-based access control (RBAC) role binding.
 
 VMware recommends that you use the Tanzu Application Platform RBAC CLI plug-in.
