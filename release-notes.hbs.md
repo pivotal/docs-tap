@@ -2,43 +2,43 @@
 
 This topic contains release notes for Tanzu Application Platform v1.4.
 
-## <a id='1-4-6'></a> v1.4.6 
- 
-**Release Date**: 13 June 2023 
- 
-### <a id='1-4-6-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-4-6'></a> v1.4.6
+
+**Release Date**: 13 June 2023
+
+### <a id='1-4-6-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-4-6-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 ---
- 
-### <a id='1-4-6-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-4-6-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-4-6-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-4-6-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-4-6-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-4-6-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.
 
 ---
 
 ## <a id='1-4-5'></a> v1.4.5
 
-**Release Date**: May 9, 2023
+**Release Date**: 09 May 2023
 
 ### <a id='1-4-5-security-fixes'></a> Security fixes
 
@@ -75,7 +75,7 @@ This release has the following security fixes, listed by component and area.
 
 ## <a id='1-4-4'></a> v1.4.4
 
-**Release Date**: April 12, 2023
+**Release Date**: 12 April 2023
 
 ### <a id='1-4-4-security-fixes'></a> Security fixes
 
@@ -169,7 +169,7 @@ This release has the following known issues, listed by component and area.
 
 ## <a id='1-4-2'></a> v1.4.2
 
-**Release Date**: March 6, 2023
+**Release Date**: 06 March 2023
 
 ### <a id='1-4-2-security-fixes'></a> Security fixes
 
@@ -261,7 +261,7 @@ This release has the following known issues, listed by area and component.
 
 ## <a id='1-4-1'></a> v1.4.1
 
-**Release Date**: February 16, 2023
+**Release Date**: 16 February 2023
 
 ### <a id='1-4-1-security-fixes'></a> Security fixes
 
@@ -387,7 +387,7 @@ This release has the following known issues, listed by area and component.
 
 ## <a id='1-4-0'></a> v1.4.0
 
-**Release Date**: January 10, 2023
+**Release Date**: 10 January 2023
 
 ### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform new features
 
