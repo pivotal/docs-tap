@@ -1,6 +1,9 @@
 # Role descriptions
 
-This topic is a high level overview of each default role. For more information about the specific permissions of each role for every component, see [Detailed Role Permissions Breakdown](permissions-breakdown.md).
+This topic is a high level overview of each default role. 
+For more information about the specific permissions of each role for every 
+Tanzu Application Platform (commonly known as TAP) component, 
+see [Detailed role permissions for Tanzu Application Platform component](permissions-breakdown.md).
 
 ## <a id="app-editor"></a>app-editor
 

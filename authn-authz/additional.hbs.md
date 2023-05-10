@@ -1,6 +1,9 @@
-# Additional resources
+# Additional resources about Tanzu Application Platform authentication and authorization
 
-This topic includes additional information about Authentication and Authorization for Tanzu Application Platform. Read the [Overview](overview.md) page first to get started.
+Use this topic to learn additional information about authentication and authorization 
+for Tanzu Application Platform (commonly known as TAP). 
+
+See [Tanzu Application Platform authentication and authorization overview](overview.md) to get started.
 
 ## <a id='install'></a>Install
 

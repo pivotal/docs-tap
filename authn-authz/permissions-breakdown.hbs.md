@@ -1,4 +1,7 @@
-# Detailed role permissions breakdown
+# Detailed role permissions for Tanzu Application Platform component
+
+This topic tells you the specific permissions of each role for every 
+Tanzu Application Platform (commonly known as TAP) component.
 
 ## Native Kubernetes Resources
 
