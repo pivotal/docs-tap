@@ -38,38 +38,105 @@ This release has the following known issues, listed by component and area.
 
 ## <a id='1-5-1'></a> v1.5.1
 
-**Release Date**: 9 May 2023
+**Release Date**: 09 May 2023
 
 ### <a id='1-5-1-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
-| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-493p-pfq6-5258 </li></ul>|
-| application-configuration-service.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
-| backend.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>CVE-2022-41881</li><li>GHSA-mjmj-j48q-9wg2</li><li>GHSA-36p3-wjmg-h94x </li></ul>|
-| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-vvpx-j8f3-3w6h</li><li>CVE-2023-0461 </li></ul>|
-| connector.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>CVE-2022-41881</li><li>GHSA-mjmj-j48q-9wg2</li><li>GHSA-36p3-wjmg-h94x </li></ul>|
-| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2023-20860</li><li>GHSA-493p-pfq6-5258 </li></ul>|
-| apiserver.appliveview.tanzu.vmware.com | <ul><li> GHSA-r48q-9g5r-8q2h</li><li>GHSA-vvpx-j8f3-3w6h </li></ul>|
-| carbonblack.scanning.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-8c26-wmh5-6g9v</li><li>GHSA-gwc9-m7rh-j2ww</li><li>GHSA-69cg-p879-7622</li><li>GHSA-fxg5-wq6x-vr4w</li><li>GHSA-vpvm-3wq2-2wvm</li><li>GHSA-69ch-w2m2-3vjp </li></ul>|
-| metadata-store.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
-| ootb-templates.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
-| scanning.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
-| app-scanning.apps.tanzu.vmware.com | <ul><li> GHSA-3vm4-22fp-5rfm</li><li>GHSA-8c26-wmh5-6g9v</li><li>GHSA-gwc9-m7rh-j2ww</li><li>GHSA-69cg-p879-7622</li><li>GHSA-fxg5-wq6x-vr4w </li></ul>|
-| learningcenter.tanzu.vmware.com | <ul><li> CVE-2023-26114</li><li>GHSA-frjg-g767-7363</li><li>GHSA-hc6q-2mpp-qw7j </li></ul>|
-| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2023-26114</li><li>GHSA-frjg-g767-7363 </li></ul>|
-| snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-23918</li><li>GHSA-rc47-6667-2j5j</li><li>CVE-2023-23919 </li></ul>|
-| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-0466</li><li>CVE-2022-4899 </li></ul>|
-| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-0465</li><li>CVE-2023-0466</li><li>CVE-2022-4899 </li></ul>|
+<table>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+<tr>
+<td>accelerator.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li></ul></td>
+</tr>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li>GHSA-493p-pfq6-5258 </li></ul></td>
+</tr>
+<tr>
+<td>application-configuration-service.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li></ul></td>
+</tr>
+<tr>
+<td>backend.appliveview.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41881">CVE-2022-41881</a></li><li>GHSA-mjmj-j48q-9wg2</li><li>GHSA-36p3-wjmg-h94x </li></ul></td>
+</tr>
+<tr>
+<td>buildservice.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li>GHSA-vvpx-j8f3-3w6h</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li></ul></td>
+</tr>
+<tr>
+<td>connector.appliveview.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41881">CVE-2022-41881</a></li><li>GHSA-mjmj-j48q-9wg2</li><li>GHSA-36p3-wjmg-h94x</li></ul></td>
+</tr>
+<tr>
+<td>spring-cloud-gateway.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li><li>GHSA-493p-pfq6-5258</li></ul></td>
+</tr>
+<tr>
+<td>apiserver.appliveview.tanzu.vmware.com</td>
+<td><ul><li>GHSA-r48q-9g5r-8q2h</li><li>GHSA-vvpx-j8f3-3w6h</li></ul></td>
+</tr>
+<tr>
+<td>carbonblack.scanning.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-8c26-wmh5-6g9v</li><li>GHSA-gwc9-m7rh-j2ww</li><li>GHSA-69cg-p879-7622</li><li>GHSA-fxg5-wq6x-vr4w</li><li>GHSA-vpvm-3wq2-2wvm</li><li>GHSA-69ch-w2m2-3vjp</li></ul></td>
+</tr>
+<tr>
+<td>metadata-store.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li></ul></td>
+</tr>
+<tr>
+<td>ootb-templates.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li></ul></td>
+</tr>
+<tr>
+<td>scanning.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li></ul></td>
+</tr>
+<tr>
+<td>app-scanning.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-3vm4-22fp-5rfm</li><li>GHSA-8c26-wmh5-6g9v</li><li>GHSA-gwc9-m7rh-j2ww</li><li>GHSA-69cg-p879-7622</li><li>GHSA-fxg5-wq6x-vr4w</li></ul></td>
+</tr>
+<tr>
+<td>learningcenter.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26114">CVE-2023-26114</a></li><li>GHSA-frjg-g767-7363</li><li>GHSA-hc6q-2mpp-qw7j</li></ul></td>
+</tr>
+<tr>
+<td>workshops.learningcenter.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26114">CVE-2023-26114</a></li><li>GHSA-frjg-g767-7363</li></ul></td>
+</tr>
+<tr>
+<td>snyk.scanning.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23918">CVE-2023-23918</a></li><li>GHSA-rc47-6667-2j5j</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li></ul></td>
+</tr>
+<tr>
+<td>sso.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0466">CVE-2023-0466</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4899">CVE-2022-4899</a></li></ul></td>
+</tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0466">CVE-2023-0466</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4899">CVE-2022-4899</a></li></ul></td>
+</tr>
+</table>
 
 ---
 
 ### <a id='1-5-1-resolved-issues'></a> Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
+
+#### <a id='1-5-1-app-acc-ri'></a> Application Accelerator
+
+- The IntelliJ plug-in can now be installed in IntelliJ v2023.1.
+
+#### <a id="1-5-1-external-secrets-ri"></a> External Secrets CLI (beta)
+
+- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
+  now correctly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
 #### <a id='1-5-1-intellij-ext-ri'></a> Tanzu Developer Tools for IntelliJ
 
@@ -78,15 +145,6 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-5-1-vs-ext-ri'></a> Tanzu Developer Tools for Visual Studio
 
 - Live Update now works when using the Jammy `ClusterBuilder`.
-
-#### <a id='1-5-1-app-acc-ri'></a> Application Accelerator
-
-- The IntelliJ plug-in can now be installed in IntelliJ 2023.1
-
-#### <a id="1-5-1-external-secrets-ri"></a> External Secrets CLI (beta)
-
-- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
-  now correctly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
 ---
 
@@ -635,6 +693,11 @@ This release has the following known issues, listed by area and component.
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory utilization.
+
+#### <a id="1-5-0-external-secrets-ki"></a> External Secrets CLI (beta)
+
+- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin
+  incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
 #### <a id="1-5-0-grype-scan-ki"></a> Grype scanner
 
