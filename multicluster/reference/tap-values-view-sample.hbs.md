@@ -1,4 +1,6 @@
-# View profile
+# Tanzu Application Platform View profile
+
+This topic tells you how to install View profile cluster by using a reduced values file.
 
 The following is the YAML file sample for the view-profile:
 

@@ -1,4 +1,6 @@
-# Run profile
+# Tanzu Application Platform Run profile
+
+This topic tells you how to install Run profile cluster by using a reduced values file.
 
 The following is the YAML file sample for the run-profile:
 
