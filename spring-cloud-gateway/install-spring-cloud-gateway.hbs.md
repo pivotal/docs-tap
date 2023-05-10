@@ -71,7 +71,7 @@ Default values
     $ tanzu package install spring-cloud-gateway \
         --package-name spring-cloud-gateway.tanzu.vmware.com \
         --version 2.0.0 \
-        --namespace spring-cloud-gateway
+        --namespace tap-install
 
     Installing package 'spring-cloud-gateway.tanzu.vmware.com'
     Getting package metadata for 'spring-cloud-gateway.tanzu.vmware.com'
