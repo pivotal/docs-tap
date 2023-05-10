@@ -1,14 +1,14 @@
 # Install Pinniped on Tanzu Application Platform
 
-[Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
-This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
+[Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to install Pinniped on a single cluster of Tanzu Application Platform.
 
 >**Note** This topic only provides an example of one possible installation method for Pinniped on Tanzu
 > Application Platform by using the default Contour ingress controler included in the platform. 
 > See [Pinniped documentation](https://pinniped.dev/docs/howto/) for more information about the 
 > specific installation method that suits your environment.
 
-You will deploy two Pinniped components into the cluster:
+Use this topic to learn how to deploy two Pinniped components into the cluster:
 
 - **Pinniped Supervisor:** An OIDC server which allows users to authenticate with an external
 identity provider (IDP). It hosts an API for the concierge component to fulfill authentication requests.
