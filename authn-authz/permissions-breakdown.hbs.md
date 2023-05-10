@@ -1,4 +1,4 @@
-# Detailed role permissions for Tanzu Application Platform component
+# Detailed role permissions for Tanzu Application Platform
 
 This topic tells you the specific permissions of each role for every 
 Tanzu Application Platform (commonly known as TAP) component.
