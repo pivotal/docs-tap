@@ -40,17 +40,36 @@ This release has the following known issues, listed by component and area.
 
 **Release Date**: May 9, 2023
 
-### <a id='1-4-5-security-fixes'></a> Security fixes 
+### <a id='1-4-5-security-fixes'></a> Security fixes
 
-This release has the following security fixes, listed by component and area. 
+This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-21930 </li></ul>|
-| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-21930</li><li>GHSA-493p-pfq6-5258</li><li>CVE-2023-20860 </li></ul>|
-| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-21930 </li></ul>|
-| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-0461</li><li>CVE-2023-0179</li><li>CVE-2023-0468 </li></ul>|
-| ootb-templates.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+<table>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+<tr>
+<td>accelerator.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21930">CVE-2023-21930</a></li></ul></td>
+</tr>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21930">CVE-2023-21930</a></li><li>GHSA-493p-pfq6-5258</li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li></ul></td>
+</tr>
+<tr>
+<td>sso.apps.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21930">CVE-2023-21930</a></li></ul></td>
+</tr>
+<tr>
+<td>buildservice.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0179">CVE-2023-0179</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0468">CVE-2023-0468</a></li></ul></td>
+</tr>
+<tr>
+<td>ootb-templates.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li></ul></td>
+</tr>
+</table>
 
 ---
 
