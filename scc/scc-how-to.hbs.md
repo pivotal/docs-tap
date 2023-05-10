@@ -1,6 +1,6 @@
 # How-to guides for Supply Chain Choreographer for Tanzu
 
-This topic describes the how-to guides available for Supply Chain Choreographer for Tanzu.
+This topic describes the how-to guides you can use for Supply Chain Choreographer for Tanzu.
 
 ## <a id='how-to'></a> How-to guides
 

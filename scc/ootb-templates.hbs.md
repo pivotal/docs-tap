@@ -1,4 +1,6 @@
-# Out of the Box Templates
+# Out of the Box Templates for Supply Chain Choreographer
+
+This topic describes the templates you can use with Supply Chain Choreographer.
 
 Templates define Kubernetes objects based on configuration in the workload,
 supply chain Tanzu Application Platform values, and results output from other
