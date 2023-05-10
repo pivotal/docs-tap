@@ -1,4 +1,6 @@
-# Tanzu Build Service (TBS) Integration
+# Tanzu Build Service integration for Supply Chain Choreographer
+
+This topic describes how you can configure and use the Tanzu Build Service integration for Supply Chain Choreographer.
 
 By default, the Out of the Box supply chains (`ootb-supply-chain-*`) in Tanzu Application Platform
 make use of Tanzu Build Service (TBS) for building container images out of

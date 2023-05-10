@@ -1,4 +1,6 @@
-# Out of the Box Templates
+# Out of the Box Templates for Supply Chain Choreographer
+
+This topic describes the templates you can use with Supply Chain Choreographer.
 
 In Cartographer, a supply chain is defined as a directed acyclic graph of
 resources choreographed by the Cartographer controllers, with the
