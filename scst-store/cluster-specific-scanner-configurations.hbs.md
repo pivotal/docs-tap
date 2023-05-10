@@ -24,7 +24,7 @@ ingress connection to the store is not needed.
 The default values automatically configure the connection between a supported
 scanner, such as Grype, and SCST - Store. Scanners use `app-tls-cert` by default
 from SCST-Store. You do not need to make changes to the `grype` section of the
-`tap-values.yaml` provided in the the full profile installation. See [Install Tanzu Application Platform package and profiles](../install-online/profile.hbs.md#install-profile).
+`tap-values.yaml` provided in the full profile installation. See [Install Tanzu Application Platform package and profiles](../install-online/profile.hbs.md#install-profile).
 
 To view the default values, see [Install Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.hbs.md#-configure-properties).
 
