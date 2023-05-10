@@ -1,4 +1,6 @@
-# Template reference
+# Template reference for Supply Chain Choreographer
+
+This topic describes the objects from templates that you can use with Supply Chain Choreographer.
 
 All the objects referenced in this topic are [Cartographer Templates](https://cartographer.sh/docs/v0.6.0/reference/template/)
 packaged in [Out of the Box Templates](ootb-templates.hbs.md).
