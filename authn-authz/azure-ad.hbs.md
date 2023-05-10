@@ -1,12 +1,10 @@
-# Integrate Azure Active Directory
+# Integrate your Azure Active Directory
 
-This topic describes how to integrate the Azure Active Directory (AD).
-
+This topic tells you how to integrate your Azure Active Directory (commonly known as AD).
 
 ## <a id="azure-without-pinniped"></a> Integrate Azure AD with a new or existing AKS without Pinniped
 
 Perform the following procedures to integrate Azure AD with a new or existing AKS without Pinniped.
-
 
 ### <a id="azure-prereqs"></a> Prerequisites
 
@@ -15,7 +13,6 @@ Meet these prerequisites:
 * Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 * Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
 * Download and install the [Tanzu CLI RBAC plug-in](binding.html)
-
 
 ### <a id="set-up-azure-platform"></a> Set up a platform operator
 
