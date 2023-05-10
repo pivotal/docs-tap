@@ -1,6 +1,8 @@
 # Supply Chain Security Tools - Scan 2.0 (alpha)
 
->**Important** This component is in Alpha, which means that it is still in
+This topic describes how you can install and configure Supply Chain Security Tools - Scan 2.0. 
+
+>**Important** SCST - Scan 2.0 is in Alpha, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
 >might encounter unexpected behavior due to capability gaps. This is an opt-in
 >component to gather early feedback from alpha testers and is not installed by

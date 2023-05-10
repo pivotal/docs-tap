@@ -1,6 +1,6 @@
-# Install Trivy (alpha)
+# Install Trivy for Supply Chain Security Tools - Scan (alpha)
 
-This topic describes how to install SCST - Scan (Trivy) from the VMware package repository.
+This topic describes how you can install SCST - Scan (Trivy) from the VMware package repository.
 
 >**Important** This integration is in Alpha, which means that it is still in active
 >development by the Tanzu Practice Global Tech Team and might be subject to

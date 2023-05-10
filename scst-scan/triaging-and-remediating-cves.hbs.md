@@ -1,6 +1,6 @@
-# Triage and Remediate CVEs
+# Triage and Remediate CVEs for Supply Chain Security Tools - Scan
 
-This topic explains how to triage and remediate CVEs related to the Supply Chain.
+This topic explains how you can triage and remediate CVEs related to SCST - Scan.
 
 ## <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
