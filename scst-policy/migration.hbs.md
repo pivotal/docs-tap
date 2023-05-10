@@ -1,11 +1,14 @@
 # Migration From Supply Chain Security Tools - Sign
 
+This topic explains how you can migrate from Supply Chain Security Tools - Sign
+to Supply Chain Security Tools - Policy.
+
 In Tanzu Application Platform v1.4, the Image Policy Webhook is removed. If the
-Image Policy Webhook was used with the previous Tanzu Application Platform versions in your
-cluster, you must follow this topic which explains how to migrate the
-`ClusterImagePolicy` resource from Image Policy Webhook to Policy Controller.
-For information about additional features introduced in Policy Controller,
-see [Configuring Supply Chain Security Tools - Policy](configuring.md).
+Image Policy Webhook was used with the previous Tanzu Application Platform
+versions in your cluster, you must migrate the `ClusterImagePolicy` resource
+from Image Policy Webhook to Policy Controller. For information about additional
+features introduced in SCST - Policy, see [Configuring Supply Chain Security
+Tools - Policy](configuring.md).
 
 ## <a id="enable-controller"></a> Enable Policy Controller on Namespaces
 

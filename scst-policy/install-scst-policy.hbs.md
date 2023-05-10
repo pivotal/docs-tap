@@ -1,7 +1,8 @@
 # Install Supply Chain Security Tools - Policy Controller
 
-Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application
-Platform's Full, Iterate, and Run profiles. Use the instructions in this topic to manually install this component.
+You install Supply Chain Security Tools - Policy Controller as part of Tanzu
+Application Platform's Full, Iterate, and Run profiles. You can use the
+instructions in this topic to manually install SCST - Policy Controller.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Security Tools - Policy Controller. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 

@@ -1,7 +1,8 @@
 # Configuring Supply Chain Security Tools - Policy
 
-This component requires extra configuration steps to verify your
-container images.
+This topic describes how you can configure Supply Chain Security Tools - Policy.
+SCST - Policy requires extra configuration steps to verify your container
+images.
 
 ## <a id="admission-of-images"></a> Admission of Images
 
