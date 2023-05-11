@@ -1,4 +1,8 @@
-# Developer namespace setup
+# Developer namespace setup for Supply Chain Security Tools - Store
+
+This topic describes how you can set up your developer namespace for Supply Chain Security Tools (SCST) - Store.
+
+## Overview
 
 After you finish the entire Tanzu Application Platform installation process, you are ready to
 configure the developer namespace.
