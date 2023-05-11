@@ -61,7 +61,7 @@ To verify the annotation:
 shows the newly added annotation has propagated through the Supply Chain:
 
     ```console
-    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml  
+    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml
 
     status:
       conditions:
