@@ -148,15 +148,20 @@ Define the CA by using the available `.shared.ca_cert_data` top-level key to sup
 ## <a id="no-pull-secrets-configured"></a> No imagePullSecrets configured
 
 ### Symptoms
--  When a PodIntent is submitted, no convention is applied.
-- Presence of an `unauthorized to access repository` or `fetching metadata for Images failed` error when inspecting the workload.
+
+When a PodIntent is submitted:
+
+- No convention is applied.
+- You see an `unauthorized to access repository` or `fetching metadata for Images failed` error when you inspect the workload.
 
 ### Cause
-If a `workload` is created in a developer namespace where `imagePullSecrets` have not been defined on the `default` serviceAccount or on the preferred serviceAccount.
+
+The errors are seen when a `workload` is created in a developer namespace where `imagePullSecrets` are not defined on the `default` serviceAccount or on the preferred serviceAccount.
 
 ### Solution 
 
-Define an `imagePullSecret` on the default serviceAccount or on the  preferred serviceAccount in use by referencing the correct `imagePullSecret` as shown below.
+Add the `imagePullSecrets` name to the default serviceAccount or the preferred serviceAccount.
+
 ```yaml
 kind: ServiceAccount
 metadata:
