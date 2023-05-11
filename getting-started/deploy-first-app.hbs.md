@@ -29,6 +29,8 @@ Complete the following steps to deploy your application using the Tanzu CLI.
 
 ### Prerequisites
 
+Ensure that you meet the following prerequisites:
+
 - Before you deploy your application using the Tanzu CLI, ensure that you have created a Git
 repository during the project creation stage.
 - If the project does not have an associated Git repository, you must create one,

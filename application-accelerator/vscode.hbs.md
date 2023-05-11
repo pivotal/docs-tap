@@ -86,13 +86,13 @@ NAME      FQDN                                      TLS SECRET     STATUS   STAT
 tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
 ```
 
-## <a id="download-install-self-signed-certs"></a>Download and Install Self-Signed Certificates from the Tanzu Application Platform GUI
+## <a id="dl-inst-ss-certs"></a>Download and Install Self-Signed Certificates from the Tanzu Application Platform GUI
 
 To enable the Application Accelerator extension for VS Code to communicate with a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
 
 ### Prerequisites
 
-[`yq`](https://github.com/mikefarah/yq) is required to process the YAML output.
+[yq](https://github.com/mikefarah/yq) is required to process the YAML output.
 
 ### Procedure
 
@@ -118,11 +118,11 @@ might look different to the following example.
     kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
     ```
 
-3. Install the certificate on your local system and fully restart any applications that leverage
+3. Install the certificate on your local system and fully restart any applications that uses
 the certificate. After restarting, the application uses the certificate to communicate with the
 endpoints using TLS. For more information, see [Installing a root CA certificate in the trust store](https://ubuntu.com/server/docs/security-trust-store) in the Ubuntu documentation.
 
-    MacOS
+    macOS
     : Run:
 
     ```console
@@ -132,7 +132,7 @@ endpoints using TLS. For more information, see [Installing a root CA certificate
     Windows
     : Complete the following steps:
 
-      1. Use Windows Explorer to navigate to the directory where the certificate was downloaded and double-click on the certificate.
+      1. Use Windows Explorer to navigate to the directory where the certificate was downloaded and click on the certificate.
       2. In the Certificate window, click **Install Certificate...**.
       3. Change the **Store Location** from **Current User** to **Local Machine**. Click **Next**.
       4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**

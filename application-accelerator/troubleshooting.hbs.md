@@ -136,7 +136,8 @@ Expression evaluation errors include:
 ## <a id="ops-issues"></a> Operations issues
 
 ### <a id="clean-up-accelerators"></a>Accelerator persists in Tanzu Application Platform GUI after deletion
-If an accelerator still displays in the Tanzu Application Platform GUI after it is deleted using the `tanzu accelerator delete` command, complete the following steps to troubleshoot:
+
+If an accelerator still displays in the Tanzu Application Platform GUI after it is deleted using the `tanzu accelerator delete` command, complete the following steps to delete:
 
 1. Navigate to your instance of the Tanzu Application Platform GUI
 
