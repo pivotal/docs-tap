@@ -1,6 +1,6 @@
 # Install Application Live View
 
-This topic describes how to install Application Live View from the Tanzu
+This topic tells you how to install Application Live View from the Tanzu
 Application Platform package repository.
 
 Application Live View installs four packages for `view`, `run`, and `build`
@@ -75,7 +75,7 @@ environment:
 
 The improved security and access control secures the
 communication between the Application Live View components. For more
-information, see [Improved Security And Access Control in Application Live
+information, see [Configure security and access control in Application Live
 View](./improved-security-and-access-control.hbs.md).
 
 ## <a id='install-app-live-view-back-end'></a> Install Application Live View back end
