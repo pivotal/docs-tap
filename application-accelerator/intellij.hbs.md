@@ -123,7 +123,7 @@ to communicate with the endpoints using TLS.
     Windows
     : Complete the following steps:
 
-      1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and click on the certificate.
+      1. Use Windows Explorer to navigate to the directory where the certificate was downloaded and click on the certificate.
       2. In the Certificate window, click **Install Certificate...**.
       3. Change the **Store Location** from **Current User** to **Local Machine**. Click **Next**.
       4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**
