@@ -140,38 +140,6 @@ To stop Live Update, click the trash can button in the terminal pane to stop the
 
 ![The VS Code interface showing the terminal window with the pointer on the trash can button.](../images/vscode-stopliveupdate.png)
 
-#### <a id="disable-live-update"></a> Deactivate Live Update
-
-You can remove the Live Update capability from your application entirely.
-You might find this option useful in a troubleshooting scenario.
-Deactivating Live Update redeploys your workload to the cluster and removes the Live Update capability.
-
-To deactivate Live Update:
-
-1. Press ⇧⌘P (Ctrl+Shift+P on Windows) to open the Command Palette.
-2. Run `Tanzu: Live Update Disable`.
-
-   ![Command palette open showing text Tanzu: Live Update Disable.](../images/vscode-liveupdatedisable.png)
-
-3. Type the name of the workload for which you want to deactivate Live Update.
-
-#### <a id="live-update-status"></a> Live Update status
-
-The current status of Live Update is visible on the right side of the status bar at the bottom of
-the VS Code window.
-
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar. The pop-up menu is open.](../images/vscode-liveupdatestatus1.png)
-
-The Live Update status bar entry shows the following states:
-
-- Live Update Stopped
-- Live Update Starting…
-- Live Update Running
-
-To hide the Live Update status bar entry, right-click it and then click
-**Hide 'Tanzu Developer Tools (Extension)'**.
-
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the Hide Tanzu Developer Tools (Extension) option highlighted.](../images/vscode-liveupdatestatus2.png)
 
 #### <a id="microservices-live-update"></a> Live Update apps in a microservices repository
 
