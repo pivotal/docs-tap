@@ -1,9 +1,16 @@
 # Tanzu Application Platform Telemetry
 
-Tanzu Application Platform Telemetry is a set of objects that collect data about the usage of Tanzu Application Platform and send it back to VMware for product improvements. A benefit of remaining enrolled in telemetry and identifying your company during Tanzu Application Platform installation is that VMware can provide your
-organization with usage reports about Tanzu Application Platform. See [Tanzu Application Platform usage reports](#usage-reports) for more information about enrolling in telemetry reports.
+Tanzu Application Platform Telemetry (commonly known as TAP Telemetry) is a set of 
+objects that collect data about the usage of Tanzu Application Platform (commonly known as TAP) 
+and send it back to VMware for product improvements. 
 
-For more information on how to install the telemetry component, see [Install Tanzu Application Platform Telemetry](install-telemetry.hbs.md).
+A benefit of remaining enrolled in telemetry and identifying your company during 
+Tanzu Application Platform installation is that VMware can provide your
+organization with usage reports about Tanzu Application Platform. 
+
+For more information about enrolling in telemetry reports, see [Tanzu Application Platform usage reports](#usage-reports).
+
+For more information about how to install the telemetry component, see [Install Tanzu Application Platform Telemetry](install-telemetry.hbs.md).
 
 ## <a id='usage-reports'></a>Tanzu Application Platform usage reports
 
