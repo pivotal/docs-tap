@@ -1,6 +1,6 @@
 # Troubleshoot Tanzu GitOps Reference Implementation (RI)
 
-This topic provides information to help troubleshoot Tanzu GitOps Reference Implementation (RI).
+This topic tells you how to troubleshoot Tanzu GitOps Reference Implementation (commonly known as RI).
 
 ## <a id="tanzu-sync-app-error"></a>Tanzu Sync application error
 
