@@ -1,6 +1,7 @@
-# Convention server
+# Application Live View Convention server
 
-The Application Live View Convention provides a Webhook handler for
+This topic provides information about Application Live View Convention, which provides a
+Webhook handler for
 [Convention Service for VMware Tanzu](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-convention-service-about.html).
 
 ## <a id="role"></a> Role of Application Live View Convention
@@ -136,7 +137,7 @@ and `management.endpoint.health.show-details` in `application.properties` or `ap
 in the Spring Boot or Spring Cloud Gateway Application. Properties defined in this way have lower priority and will be overridden
 by the Application Live View Convention default values.
 
-# <a id="verify"></a> Verify the applied labels and annotations
+## <a id="verify"></a> Verify the applied labels and annotations
 
 You can verify the applied labels and annotations by running:
 

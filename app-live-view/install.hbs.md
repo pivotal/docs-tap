@@ -1,6 +1,7 @@
 # Install Application Live View
 
-This topic describes how to install Application Live View from the Tanzu Application Platform package repository.
+This topic tells you how to install Application Live View from the Tanzu
+Application Platform package repository.
 
 Application Live View installs three packages for `full`, `light`, and `iterate` profiles:
 
