@@ -139,7 +139,7 @@ Expression evaluation errors include:
 
 If an accelerator still displays in the Tanzu Application Platform GUI after it is deleted using the `tanzu accelerator delete` command, complete the following steps to delete:
 
-1. Navigate to your instance of the Tanzu Application Platform GUI
+1. Navigate to your instance of the Tanzu Application Platform GUI.
 
 2. Search for the accelerator which should be deleted and select it.
 
