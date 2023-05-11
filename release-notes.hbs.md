@@ -665,6 +665,11 @@ The following issues, listed by area and component, are resolved in this release
 - When there are multiple resource types with the same kind, the pop-up menu **Describe** action in
   the Activity panel no longer fails when used on PodIntent resources.
 
+#### <a id='1-5-0-cnrs-ri'></a> Cloud Native Runtimes
+
+- Resolved issue with DomainMapping names longer than 63 characters when auto-tls is enabled (which is on by default).
+- Resolved issue with certain app name, namespace, and domain combinations producing invalid HTTPProxy resources.
+
 ---
 
 ### <a id='1-5-0-known-issues'></a> Known issues
@@ -683,11 +688,6 @@ This release has the following known issues, listed by area and component.
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshooting and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md).
-
-#### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
-
-- When using auto-tls, which is on by default, DomainMapping resources must have names that are less than 63
-  characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
 #### <a id='1-5-0-eventing-ki'></a> Eventing
 
