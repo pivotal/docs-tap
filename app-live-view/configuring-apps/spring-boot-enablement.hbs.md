@@ -1,6 +1,10 @@
 # Enabling Spring Boot apps for Application Live View
 
+<<<<<<< HEAD
 This topic describes how developers configure a Spring Boot app to be observed by
+=======
+This topic tells you how developers can configure a Spring Boot app for observation by
+>>>>>>> 048816139 ([TAAP-1322] Add ALV product name and edit short desc for SEO)
 Application Live View within Tanzu Application Platform.
 
 ## Enable Spring Boot apps
