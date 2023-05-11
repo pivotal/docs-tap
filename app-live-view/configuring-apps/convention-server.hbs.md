@@ -1,6 +1,7 @@
-# Convention server
+# Application Live View Convention server
 
-The Application Live View Convention provides a Webhook handler for
+This topic provides information about Application Live View Convention, which provides a
+Webhook handler for
 [Convention Service for VMware Tanzu](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-convention-service-about.html).
 
 ## <a id="role"></a> Role of Application Live View Convention
@@ -36,8 +37,7 @@ you can override the labels listed in the following table using the `Workload` Y
 | `tanzu.app.live.view.application.name` | `steeltoe-app` | Label | When deploying a workload in Tanzu Application Platform, this label is set to `steeltoe-app` if the container image metadata does not contain the app name. Otherwise, the label is set to the app name from container image metadata. |
 | `tanzu.app.live.view.application.flavours` | `steeltoe` | Label | When deploying a Spring Boot workload in Tanzu Application Platform, this label is set to `steeltoe` as default across the supply chain.
 
-
-# <a id="verify"></a> Verify the applied labels and annotations
+## <a id="verify"></a> Verify the applied labels and annotations
 
 You can verify the applied labels and annotations by running:
 
