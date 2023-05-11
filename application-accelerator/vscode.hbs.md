@@ -125,9 +125,9 @@ endpoints using TLS. For more information, see [Installing a root CA certificate
     macOS
     : Run:
 
-    ```console
-    sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
-    ```
+      ```console
+      sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
+      ```
 
     Windows
     : Complete the following steps:
