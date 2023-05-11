@@ -115,17 +115,17 @@ To revoke this authorization:
 
 1. Add the following to your `tap-values.yaml` file:
 
-   ```yaml
-   bitnami_services:
-     globals:
-       create_clusterroles: false
-   ```
+    ```yaml
+    bitnami_services:
+      globals:
+        create_clusterroles: false
+    ```
 
 1. Update Tanzu Application Platform by running:
 
-   ```console
-   tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
-   ```
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
+    ```
 
 The result is that any user who has the `app-operator` role is now not authorized to create claims
 for any of the pre-installed Bitnami services in any namespace on the cluster.
