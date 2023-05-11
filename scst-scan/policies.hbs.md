@@ -1,5 +1,7 @@
 # Enforce compliance policy using Open Policy Agent
 
+This topic describes how you can use Open Policy Agent to enforce compliance policy for Supply Chain Security Tools - Scan.
+
 ## <a id="writing-pol-temp"></a>Writing a policy template
 
 The Scan Policy custom resource (CR) allows you to define a Rego file for policy

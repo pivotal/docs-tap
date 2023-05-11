@@ -1,4 +1,8 @@
-# Create a ScanTemplate
+# Create a ScanTemplate with Supply Chain Security Tools - Scan
+
+This topic describes how to create a ScanTemplate with Supply Chain Security Tools - Scan.
+
+## Overview
 
 The `ScanTemplate` custom resource (CR) defines how the scan Pod fulfills the task of vulnerability scanning. There are default `ScanTemplates` provided out of the box using the Tanzu Application Platform default scanner, `Anchore Grype`. One or more `initContainers` run to complete the scan and must save results to a shared `volume`. After the `initContainers` completes, a single container on the scan Pod called `summary` combines the result of the initContainers so that the `Scan CR` status is updated.
 

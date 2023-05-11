@@ -1,7 +1,6 @@
 # Supported Scanner Matrix for Supply Chain Security Tools - Scan
 
-This topic contains limits observed with scanners which are provided with Tanzu
-Application Platform Supply Chain Security Tools. There might be more limits
+This topic contains limits you observe with scanners which are provided for SCST - Scan. There might be more limits
 which are not mentioned in the following table.
 
 **Grype**

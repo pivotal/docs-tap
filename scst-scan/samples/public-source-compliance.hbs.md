@@ -1,4 +1,6 @@
-# Sample public source code scan with compliance check
+# Sample public source code scan with compliance check for Supply Chain Security Tools - Scan
+
+This topic includes an example public source code scan with compliance check for SCST - Scan.
 
 ## <a id="public-source-scan"></a> Public source scan
 

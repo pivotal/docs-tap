@@ -1,6 +1,6 @@
-# Overview
+# Tanzu Application Platform authentication and authorization overview
 
-Tanzu Application Platform v{{ vars.url_version }} includes:
+Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }} includes:
 
 - Six default roles to help you set up permissions for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
 - A Tanzu CLI RBAC (role-based access control) plug-in for role binding. For more information, see [Bind a user or group to a default role](binding.md).
