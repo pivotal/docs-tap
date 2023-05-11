@@ -1,4 +1,8 @@
-# Retrieve access tokens
+# Retrieve access tokens for Supply Chain Security Tools - Store
+
+This topic describes how you can retrieve access tokens for Supply Chain Security Tools (SCST) - Store.
+
+## Overview
 
 When you install Tanzu Application Platform, the Supply Chain Security
 Tools (SCST) - Store deployment automatically includes a read-write service
