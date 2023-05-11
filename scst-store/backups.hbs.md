@@ -1,4 +1,6 @@
-# Database backup recommendations
+# Database backup recommendations for Supply Chain Security Tools - Store
+
+This topic describes database backup recommendations for Supply Chain Security Tools - Store.
 
 By default, the metadata store uses a `PersistentVolume` mounted on a Postgres instance, making it a stateful component of Tanzu Application Platform. VMware recommends implementing a regular backup strategy as part of your disaster recovery plan when using the provided Postgres instance.
 

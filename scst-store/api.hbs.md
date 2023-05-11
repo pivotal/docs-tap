@@ -1,6 +1,7 @@
-# API details
+# API reference for Supply Chain Security Tools - Store
 
-See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
+This topic contains API reference information for Supply Chain Security Tools - Store.
+See [API walkthrough](api-walkthrough.md) for an SCST - Store example.
 
 ## <a id='info'></a>Information
 
