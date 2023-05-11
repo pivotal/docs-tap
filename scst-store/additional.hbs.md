@@ -1,6 +1,6 @@
-# Additional documentation
+# Additional documentation for Supply Chain Security Tools - Store
 
-This section includes the following topics:
+This topic describes additional documentation you can use with Supply Chain Security Tools - Store.
 
 ## Use and operate
 

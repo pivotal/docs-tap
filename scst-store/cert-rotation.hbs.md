@@ -1,6 +1,6 @@
-# Certificate rotation
+# Certificate rotation for Supply Chain Security Tools - Store
 
-This topic describes TLS certificate rotation for Supply Chain Security Tools (SCST) - Store.
+This topic describes how you can rotate TLS certificates for Supply Chain Security Tools (SCST) - Store.
 
 ## Certificates
 

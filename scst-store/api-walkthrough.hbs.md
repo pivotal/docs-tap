@@ -1,6 +1,6 @@
-# API walkthrough
+# API walkthrough for Supply Chain Security Tools - Store
 
-This topic includes an example API call. For information about using the Supply Chain Security Tools - Store API, see [full API documentation](api.md).
+This topic includes an example API call that you can use with Supply Chain Security Tools - Store. For information about using the SCST - Store API, see [full API documentation](api.md).
 
 ## <a id='curltopost'></a>Using CURL to POST an image report
 
