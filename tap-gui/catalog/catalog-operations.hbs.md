@@ -158,24 +158,24 @@ To add or change organization catalog locations:
    - Update components by changing the catalog location in either the `app_config` section of
    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
-     ```yaml
-     catalog:
-     locations:
-       - type: url
-         target: UPDATED-CATALOG-LOCATION
-     ```
+        ```yaml
+        catalog:
+          locations:
+            - type: url
+              target: UPDATED-CATALOG-LOCATION
+        ```
 
    - Register components by adding the new catalog location in either the `app_config` section of
    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
-     ```yaml
-     catalog:
-     locations:
-       - type: url
-         target: EXISTING-CATALOG-LOCATION
-       - type: url
-         target: EXTRA-CATALOG-LOCATION
-     ```
+        ```yaml
+        catalog:
+          locations:
+            - type: url
+              target: EXISTING-CATALOG-LOCATION
+            - type: url
+              target: EXTRA-CATALOG-LOCATION
+        ```
 
    When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
    navigate to the file in the browser. The catalog processor cannot set up the files properly if
