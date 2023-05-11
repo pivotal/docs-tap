@@ -1,6 +1,10 @@
-# Configure Contour to best suit your cluster
+# Configure Contour
 
-By default, Contour installs with the Controllers as a `Deployment` and the Envoys as a `DaemonSet`. In most cases, this is sufficient. However, VMware recommends running Envoy as a `Deployment` in the following scenarios:
+This topic tells you how to configure Contour to best suit your cluster.
+
+By default, Contour installs with the Controllers as a `Deployment` and the Envoys 
+as a `DaemonSet`. In most cases, this is sufficient. However, VMware recommends 
+running Envoy as a `Deployment` in the following scenarios:
 
 - [Smaller Clusters](#small-clusters)
 - [Larger Clusters](#large-clusters)
