@@ -1,6 +1,6 @@
-# Setting up custom TLS configuration
+# TLS configuration for Supply Chain Security Tools - Store
 
-Supply Chain Security Tools - Store supports only TLS 1.2.
+This topic describes how you can configure TLS for Supply Chain Security Tools (SCST) - Store.
 
 > **Important** SCST - Store only supports TLS v1.2.
 

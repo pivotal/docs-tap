@@ -1,6 +1,6 @@
-# Troubleshooting upgrading
+# Troubleshoot upgrading Supply Chain Security Tools - Store
 
-This topic describes upgrading issues and resolutions.
+This topic describes how you can troubleshoot upgrading issues Supply Chain Security Tools (SCST) - Store.
 
 ## <a id="deploy-does-not-exist"></a> Database deployment does not exist
 
