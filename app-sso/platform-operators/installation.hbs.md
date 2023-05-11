@@ -2,8 +2,13 @@
 
 The AppSSO package is currently published as part of the Tanzu Application Platform package repository.
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On. 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../../about-package-profiles.hbs.md).
+<<<<<<< HEAD
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
+For more information about profiles, see [Components and installation profiles](../../about-package-profiles.hbs.md).
+=======
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
+For more information about profiles, see [Components and installation profiles](../../about-package-profiles.hbs.md).
+>>>>>>> ec3cb7538 ([TAAP-1322] update topic name)
 
 ## What's inside
 
