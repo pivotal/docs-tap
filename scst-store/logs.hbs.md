@@ -1,7 +1,6 @@
-# Log configuration and usage
+# Log configuration and usage for Supply Chain Security Tools - Store
 
-This topic covers configuring the Supply Chain Security Tools - Store to output detailed log
-information and interpret them. re-boot
+This topic describes how you can configure Supply Chain Security Tools (SCST) - Store to output and interpret detailed log information.
 
 ## <a id='log-lev'></a> Verbosity levels
 
