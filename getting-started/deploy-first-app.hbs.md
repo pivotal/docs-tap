@@ -25,6 +25,15 @@ Before you start, you must have:
 
 ## <a id="deploy-your-app"></a>Deploy your application using the Tanzu CLI
 
+Complete the following steps to deploy your application using the Tanzu CLI.
+
+### Prerequisites
+
+- Before you deploy your application using the Tanzu CLI ensure that you have created a Git
+repository during the project creation stage.
+- If the project does not have an associated Git repository, you must create one,
+and then update the `workload.yaml` with the repository URL and branch.
+
 1. Deploy the Tanzu Java Web App project that you generated in
    [Generate an application with Application Accelerator](generate-first-app.hbs.md)
    by running the `tanzu apps workload create` command:
@@ -33,7 +42,7 @@ Before you start, you must have:
     tanzu apps workload create --file config/workload.yaml --namespace YOUR-NAMESPACE
     ```
 
-    Alternatively, you can create a workload entirely using the command line:
+    Alternatively, you can create a workload using the command line:
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
@@ -55,7 +64,7 @@ Before you start, you must have:
 
     For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
-1. View the build and runtime logs for your app by running the `get` command:
+2. View the build and runtime logs for your app by running the `get` command:
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
@@ -153,7 +162,7 @@ Before you start, you must have:
         tanzu-java-web-app   Ready   https://tanzu-java-web-app.dev-namespace.apps.my-organization.com
     ```
 
-1. After the workload is built and deployed, fetch the URL of the deployed app.
+3. After the workload is built and deployed, fetch the URL of the deployed app.
    The URL of the web app is in the `Knative Services` section at the bottom of the output of
    the `tanzu apps workload get` command:
 
@@ -171,7 +180,7 @@ Before you start, you must have:
         tanzu-java-web-app   Ready   https://tanzu-java-web-app.dev-namespace.apps.my-organization.com
     ```
 
-1. View the web app in your browser.
+4. View the web app in your browser.
 
     ![Screenshot of the Tanzu Java Web App default screen in a browser.](../images/getting-started-tap-gui-8.png)
 

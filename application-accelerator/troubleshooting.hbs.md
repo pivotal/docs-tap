@@ -133,19 +133,18 @@ Expression evaluation errors include:
     In most cases, an error in a transform expression causes this error.
     Review the error message and, for more information, see [SpEL samples](creating-accelerators/spel-samples.md).
 
-
 ## <a id="ops-issues"></a> Operations issues
 
 ### <a id="clean-up-accelerators"></a>Accelerator persists in Tanzu Application Platform GUI after deletion
-If an accelerator still shows up within the Tanzu Application Platform GUI after the accelerator has been deleted via `tanzu accelerator delete`, run through the following steps:
+If an accelerator still displays in the Tanzu Application Platform GUI after it is deleted using the `tanzu accelerator delete` command, complete the following steps to troubleshoot:
 
 1. Navigate to your instance of the Tanzu Application Platform GUI
 
-2. Using the Search tool on the left-hand navigation panel, search for the accelerator which should be deleted and select it.
+2. Search for the accelerator which should be deleted and select it.
 
-3. On the top right of the window, click on the three dots, and click on "Unregister Template".
+3. On the top right of the window, click the three dots, and select **Unregister Template**.
 
-The accelerator will no longer show up in the Tanzu Application Platform GUI Accelerator Catalog.
+The accelerator is not longer displayed in the Tanzu Application Platform GUI Accelerator Catalog.
 
 ### <a id="check-status"></a>Check status of accelerator resources
 
