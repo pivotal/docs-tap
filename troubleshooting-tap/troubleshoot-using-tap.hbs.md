@@ -1,6 +1,6 @@
 # Troubleshoot using Tanzu Application Platform
 
-In this topic, you'll find troubleshooting information to help resolve issues using Tanzu Application Platform.
+This topic tells you how to troubleshoot using Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='missing-build-logs'></a> Missing build logs after creating a workload
 
