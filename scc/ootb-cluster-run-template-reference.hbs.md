@@ -36,7 +36,7 @@ the user's specified Tekton Pipeline.
       Set of parameters to pass to the Tekton Pipeline.
     </td>
     <td>
-      `
+      <pre>
       - name: source-url
         value: https://github.com/vmware-tanzu/cartographer.git
       - name: source-revision
@@ -45,7 +45,7 @@ the user's specified Tekton Pipeline.
         value: true
       - name: foo
         value: bar
-      `
+      </pre>
     </td>
   </tr>
 
@@ -87,8 +87,7 @@ A Tekton TaskRun.
       Service Account with permissions necessary for the Tekton Task
     </td>
     <td>
-        `default`
-      </pre>
+      </pre>default</pre>
     </td>
   </tr>
 
@@ -98,8 +97,10 @@ A Tekton TaskRun.
       Reference to the Tekton Task to which the TaskRun provides parameters
     </td>
     <td>
-        `kind: ClusterTask
-        name: git-writer`
+        <pre>
+        kind: ClusterTask
+        name: git-writer
+        </pre>
       </pre>
     </td>
   </tr>
@@ -110,10 +111,12 @@ A Tekton TaskRun.
       Parameters which are provided to the Tekton Task
     </td>
     <td>
-        `- name: git_branch
+        <pre>
+        - name: git_branch
           value: main
         - name: git_user_name
-          value: "Some Name" `
+          value: "Some Name"
+        </pre>
     </td>
   </tr>
 
@@ -148,7 +151,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Service Account with credentials for the Git repository.
     </td>
     <td>
-        `default`
+        <pre>default</pre>
     </td>
   </tr>
 
@@ -158,7 +161,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Type of Git provider
     </td>
     <td>
-        `github`
+        <pre>github</pre>
     </td>
   </tr>
 
@@ -168,7 +171,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Server URL
     </td>
     <td>
-        `https://github.com`
+        <pre>https://github.com</pre>
     </td>
   </tr>
 
@@ -178,7 +181,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Owner/Organization in which the repository resides
     </td>
     <td>
-        `vmware-tanzu`
+        <pre>vmware-tanzu</pre>
     </td>
   </tr>
 
@@ -188,7 +191,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Name of the repository
     </td>
     <td>
-        `cartographer`
+        <pre>cartographer</pre>
     </td>
   </tr>
 
@@ -198,7 +201,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Name of the commit branch. Recommended value is an empty string.
     </td>
     <td>
-       ` "" `
+       <pre>""</pre>
     </td>
   </tr>
 
@@ -208,7 +211,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Title of the PR to be opened
     </td>
     <td>
-        ` "Update" `
+        <pre> "Update" </pre>
     </td>
   </tr>
 
@@ -218,7 +221,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Body of the PR to be opened
     </td>
     <td>
-        ` "Ready for review" `
+        <pre> "Ready for review" </pre>
     </td>
   </tr>
 
@@ -228,7 +231,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Branch into which the PR is merged
     </td>
     <td>
-        `main`
+        <pre>main</pre>
     </td>
   </tr>
 
@@ -238,7 +241,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       User name associated with the commit
     </td>
     <td>
-        `Waciuma Rasheed`
+        <pre>Waciuma Rasheed</pre>
     </td>
   </tr>
 
@@ -248,7 +251,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       User email associated with the commit
     </td>
     <td>
-        `Sam@todd.com`
+        <pre>Sam@todd.com</pre>
     </td>
   </tr>
 
@@ -258,7 +261,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Message on commit
     </td>
     <td>
-        ` "App update" `
+        <pre> "App update" </pre>
     </td>
   </tr>
 
@@ -268,7 +271,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Base64 encoded JSON file with where keys equal the filename and the value is the file contents.
     </td>
     <td>
-        ` "eyJkZWxpdmVyeS55bWwiOiJhcGlWZXJzaW9uOiBzZXJ2aW5nLmtuYXRpdmUuZGV2L3YxXG5raW5kOiBTZXJ2aWNlXG4ifQ==" `
+        <pre> "eyJkZWxpdmVyeS55bWwiOiJhcGlWZXJzaW9uOiBzZXJ2aW5nLmtuYXRpdmUuZGV2L3YxXG5raW5kOiBTZXJ2aWNlXG4ifQ==" </pre>
     </td>
   </tr>
 
@@ -277,7 +280,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
     <td>repository in which to write the files
     </td>
     <td>
-        ` "." `
+        <pre> "." </pre>
     </td>
   </tr>
 
