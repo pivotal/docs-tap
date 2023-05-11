@@ -3,7 +3,7 @@
 This topic describes how you can install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install SCST - Scan. For information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install SCST - Scan. For information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
@@ -116,7 +116,7 @@ To install SCST - Scan (Scan controller):
     metadataStore:
       url: "" # Deactivate Supply Chain Security Tools - Store integration
     ```
-    
+
     If you are using Grype Scanner `v1.5.0` or other supported scanners included
     with Tanzu Application Platform `v1.5.0`, and do not want to use the default
     SCST - Store integration, deactivate the integration by appending the
