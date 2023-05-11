@@ -1,4 +1,4 @@
-# Release notes
+# Tanzu Application Platform release notes
 
 This topic contains release notes for Tanzu Application Platform v1.2.
 
