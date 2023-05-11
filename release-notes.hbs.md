@@ -1,37 +1,37 @@
-# Release notes
+# Tanzu Application Platform release notes
 
 This topic contains release notes for Tanzu Application Platform v1.5.
 
-## <a id='1-5-2'></a> v1.5.2 
- 
-**Release Date**: 13 June 2023 
- 
-### <a id='1-5-2-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-5-2'></a> v1.5.2
+
+**Release Date**: 13 June 2023
+
+### <a id='1-5-2-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-5-2-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 ---
- 
-### <a id='1-5-2-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-5-2-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-5-2-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-5-2-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-5-2-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-5-2-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.
 
 ---
