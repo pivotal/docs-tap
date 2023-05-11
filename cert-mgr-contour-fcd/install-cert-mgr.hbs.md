@@ -1,7 +1,7 @@
 # Install cert-manager, Contour
 
-This document describes how to install cert-manager, Contour, and FluxCD Source Controller
-from the Tanzu Application Platform package repository.
+This document tells you how to install cert-manager, Contour, and FluxCD Source Controller
+from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install cert-manager, contour, and FluxCD Source Controller.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
