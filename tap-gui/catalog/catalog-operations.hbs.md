@@ -162,9 +162,9 @@ Use static configuration
 
         ```yaml
         catalog:
-        locations:
-          - type: url
-            target: UPDATED-CATALOG-LOCATION
+          locations:
+            - type: url
+              target: UPDATED-CATALOG-LOCATION
         ```
 
    2. Register components by adding the new catalog location in either the `app_config` section of
@@ -172,11 +172,11 @@ Use static configuration
 
         ```yaml
         catalog:
-        locations:
-          - type: url
-            target: EXISTING-CATALOG-LOCATION
-          - type: url
-            target: EXTRA-CATALOG-LOCATION
+          locations:
+            - type: url
+              target: EXISTING-CATALOG-LOCATION
+            - type: url
+              target: EXTRA-CATALOG-LOCATION
         ```
 
       When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
