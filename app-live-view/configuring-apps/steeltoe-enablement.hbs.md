@@ -13,7 +13,7 @@ To enable the Actuators on a .NET Core App:
 
 1. Add a PackageReference to your `.csproj` file:
 
-    ```
+    ```xml
     <PackageReference Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
     ```
 
@@ -21,7 +21,7 @@ To enable the Actuators on a .NET Core App:
 
 2. Call the extension `AddAllActuators` in your `Program.cs` file:
 
-    ```
+    ```csharp
     builder.WebHost.AddAllActuators();
     ```
 
