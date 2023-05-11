@@ -1,6 +1,6 @@
 # Troubleshoot installing Tanzu Application Platform
 
-In this topic, you'll find troubleshooting information to help resolve issues installing Tanzu Application Platform.
+This topic tells you how to troubleshoot installing Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='macos-unverified-developer'></a> Developer cannot be verified when installing Tanzu CLI on macOS
 
