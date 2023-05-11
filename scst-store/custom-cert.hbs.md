@@ -1,6 +1,6 @@
-# Custom certificate configuration
+# Custom certificate configuration for Supply Chain Security Tools - Store
 
-This topic describes the following certificates for Supply Chain Security Tools (SCST) - Store:
+This topic describes how you can configure the following certificates for Supply Chain Security Tools (SCST) - Store:
 
 1. Default configuration
 1. Custom certificate
