@@ -80,7 +80,7 @@ tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Vali
 
 ## <a id="dl-ins-ss-certs"></a>Download and Install Self-Signed Certificates
 
-To enable communication between the Application Accelerator plug-in and  a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
+To enable communication between the Application Accelerator plug-in and a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
 
 ### Prerequisites
 
@@ -107,11 +107,11 @@ To enable communication between the Application Accelerator plug-in and  a Tanzu
     kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
     ```
 
-3. Install the certificate on your local system and fully restart any applications that leverage
+3. Install the certificate on your local system and fully restart any applications that use
 the certificate. After restarting, the application uses the certificate
 to communicate with the endpoints using TLS.
 
-    MacOS
+    macOS
     : Run:
 
       ```console
@@ -123,7 +123,7 @@ to communicate with the endpoints using TLS.
     Windows
     : Complete the following steps:
 
-      1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and double-click on the certificate.
+      1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and click on the certificate.
       2. In the Certificate window, click **Install Certificate...**.
       3. Change the **Store Location** from **Current User** to **Local Machine**. Click **Next**.
       4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**
