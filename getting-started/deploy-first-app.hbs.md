@@ -29,10 +29,12 @@ Complete the following steps to deploy your application using the Tanzu CLI.
 
 ### Prerequisites
 
-- Before you deploy your application using the Tanzu CLI ensure that you have created a Git
+- Before you deploy your application using the Tanzu CLI, ensure that you have created a Git
 repository during the project creation stage.
 - If the project does not have an associated Git repository, you must create one,
 and then update the `workload.yaml` with the repository URL and branch.
+
+### Procedure
 
 1. Deploy the Tanzu Java Web App project that you generated in
    [Generate an application with Application Accelerator](generate-first-app.hbs.md)
