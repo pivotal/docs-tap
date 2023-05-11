@@ -57,15 +57,15 @@ To create the CompositeResourceDefinition (XRD):
 1. Create a file named `xpostgresqlinstances.database.rds.example.org.xrd.yaml` and copy in the
    following contents:
 
-   ```yaml
-   # xpostgresqlinstances.database.rds.example.org.xrd.yaml
+    ```yaml
+    # xpostgresqlinstances.database.rds.example.org.xrd.yaml
 
-   ---
-   apiVersion: apiextensions.crossplane.io/v1
-   kind: CompositeResourceDefinition
-   metadata:
+    ---
+    apiVersion: apiextensions.crossplane.io/v1
+    kind: CompositeResourceDefinition
+    metadata:
     name: xpostgresqlinstances.database.rds.example.org
-   spec:
+    spec:
     claimNames:
       kind: PostgreSQLInstance
       plural: postgresqlinstances
@@ -88,24 +88,24 @@ To create the CompositeResourceDefinition (XRD):
         openAPIV3Schema:
           properties:
             spec:
-             properties:
-               storageGB:
-                 type: integer
-                 default: 20
-             type: object
+              properties:
+                storageGB:
+                  type: integer
+                  default: 20
+              type: object
           type: object
       served: true
-   ```
+    ```
 
-   This XRD configures the parameter `storageGB`. This gives application teams the option to choose
-   a suitable amount of storage for the AWS RDS service instance when they create a claim.
-   You can choose to expose as many or as few parameters to application teams as you like.
+    This XRD configures the parameter `storageGB`. This gives application teams the option to choose
+    a suitable amount of storage for the AWS RDS service instance when they create a claim.
+    You can choose to expose as many or as few parameters to application teams as you like.
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 
-   ```console
-   kubectl apply -f xpostgresqlinstances.database.rds.example.org.xrd.yaml
-   ```
+    ```console
+    kubectl apply -f xpostgresqlinstances.database.rds.example.org.xrd.yaml
+    ```
 
 ### <a id="create-composition"></a> Create a Composition
 
@@ -114,18 +114,18 @@ To create the composition:
 1. Create a file named `xpostgresqlinstances.database.rds.example.org.composition.yaml` and copy in the
    following contents:
 
-   ```yaml
-   # xpostgresqlinstances.database.rds.example.org.composition.yaml
+    ```yaml
+    # xpostgresqlinstances.database.rds.example.org.composition.yaml
 
-   ---
-   apiVersion: apiextensions.crossplane.io/v1
-   kind: Composition
-   metadata:
+    ---
+    apiVersion: apiextensions.crossplane.io/v1
+    kind: Composition
+    metadata:
     labels:
       provider: "aws"
       vpc: "default"
     name: xpostgresqlinstances.database.rds.example.org
-   spec:
+    spec:
     compositeTypeRef:
       apiVersion: database.rds.example.org/v1alpha1
       kind: XPostgreSQLInstance
@@ -173,24 +173,24 @@ To create the composition:
       - fromFieldPath: spec.storageGB
         toFieldPath: spec.forProvider.allocatedStorage
         type: FromCompositeFieldPath
-   ```
+    ```
 
 1. Configure the Composition you just copied to your specific requirements.
 
-   In particular, you can deactivate the `publiclyAccessible: true` setting.
-   When set to `true`, this setting opens up public access to all dynamically provisioned RDS databases.
-   When set to `false`, only internal connectivity is allowed.
+    In particular, you can deactivate the `publiclyAccessible: true` setting.
+    When set to `true`, this setting opens up public access to all dynamically provisioned RDS databases.
+    When set to `false`, only internal connectivity is allowed.
 
-   To help you configure the Composition, see this example in the
-   [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/latest/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
-   The example defines a composition that creates a separate VPC for each RDS PostgreSQL instance and
-   automatically configures inbound rules.
+    To help you configure the Composition, see this example in the
+    [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/latest/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
+    The example defines a composition that creates a separate VPC for each RDS PostgreSQL instance and
+    automatically configures inbound rules.
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 
-   ```console
-   kubectl apply -f xpostgresqlinstances.database.rds.example.org.composition.yaml
-   ```
+    ```console
+    kubectl apply -f xpostgresqlinstances.database.rds.example.org.composition.yaml
+    ```
 
 ### <a id="make-discoverable"></a> Make the service discoverable
 
@@ -198,27 +198,27 @@ To make the service discoverable to application teams:
 
 1. Create a file named `rds.class.yaml` and copy in the following contents:
 
-   ```yaml
-   # rds.class.yaml
+    ```yaml
+    # rds.class.yaml
 
-   ---
-   apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-   kind: ClusterInstanceClass
-   metadata:
-     name: aws-rds-psql
-   spec:
-     description:
-       short: Amazon AWS RDS PostgreSQL
-     provisioner:
-       crossplane:
-         compositeResourceDefinition: xpostgresqlinstances.database.rds.example.org
-   ```
+    ---
+    apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+    kind: ClusterInstanceClass
+    metadata:
+      name: aws-rds-psql
+    spec:
+      description:
+        short: Amazon AWS RDS PostgreSQL
+      provisioner:
+        crossplane:
+          compositeResourceDefinition: xpostgresqlinstances.database.rds.example.org
+    ```
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 
-   ```console
-   kubectl apply -f rds.class.yaml
-   ```
+    ```console
+    kubectl apply -f rds.class.yaml
+    ```
 
 ### <a id="configure-rbac"></a> Configure RBAC
 
@@ -227,31 +227,31 @@ from the class:
 
 1. Create a file named `app-operator-claim-aws-rds-psql.rbac.yaml` and copy in the following contents:
 
-   ```yaml
-   # app-operator-claim-aws-rds-psql.rbac.yaml
+    ```yaml
+    # app-operator-claim-aws-rds-psql.rbac.yaml
 
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: ClusterRole
-   metadata:
-     name: app-operator-claim-aws-rds-psql
-     labels:
-       apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"
-   rules:
-   - apiGroups:
-     - "services.apps.tanzu.vmware.com"
-     resources:
-     - clusterinstanceclasses
-     resourceNames:
-     - aws-rds-psql
-     verbs:
-     - claim
-   ```
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: app-operator-claim-aws-rds-psql
+      labels:
+        apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"
+    rules:
+    - apiGroups:
+      - "services.apps.tanzu.vmware.com"
+      resources:
+      - clusterinstanceclasses
+      resourceNames:
+      - aws-rds-psql
+      verbs:
+      - claim
+    ```
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 
-   ```console
-   kubectl apply -f app-operator-claim-aws-rds-psql.rbac.yaml
-   ```
+    ```console
+    kubectl apply -f app-operator-claim-aws-rds-psql.rbac.yaml
+    ```
 
 ### <a id="verify"></a> Verify your configuration
 
