@@ -1,8 +1,8 @@
 # cert-manager
 
-cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters. It also helps you to
-obtain, renew, and use those certificates. For more information about cert-manager, see
-the [cert-manager documentation](https://cert-manager.io/docs).
+cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters. 
+It also helps you to obtain, renew, and use those certificates. 
+For more information about cert-manager, see [cert-manager documentation](https://cert-manager.io/docs).
 
 The cert-manager package allows you to, optionally, configure a number of `ClusterIssuer`.
 When you install Tanzu Application Platform by using profiles,
@@ -22,4 +22,3 @@ kubectl get package -n tap-install cert-manager.tanzu.vmware.com.2.0.0 -ojsonpat
  }
 ]
 ```
-

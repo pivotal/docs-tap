@@ -1,5 +1,7 @@
 # Install cert-manager
 
+This topic tells you how to install cert-manager from the Tanzu Application Platform (commonly known as TAP) package repository.
+
 >**Note** Follow the steps in this topic if you do not want to use a profile to install cert-manager. 
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
