@@ -1,6 +1,6 @@
-# Troubleshooting
+# Troubleshooting Supply Chain Security Tools - Store
 
-This topic contains troubleshooting and known issues for Supply Chain Security Tools - Store.
+This topic contains ways you can troubleshoot known issues for Supply Chain Security Tools (SCST) - Store.
 
 ## Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
 
