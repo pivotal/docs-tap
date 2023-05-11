@@ -1,6 +1,9 @@
-# Retrieve and create service accounts
+# Retrieve and create service accounts for Supply Chain Security Tools - Store
 
-This topic explains how to create service accounts.
+This topic explains how you can create service accounts for Supply Chain Security Tools (SCST) - Store.
+
+## Overview
+
 When you install Tanzu Application Platform, the Supply Chain Security
 Tools (SCST) - Store deployment automatically includes a read-write service
 account.

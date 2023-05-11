@@ -1,4 +1,6 @@
-# Deployment details and configuration
+# Deployment details and configuration for Supply Chain Security Tools - Store
+
+This topic describes how you can deploy and configure your Kubernetes cluster for Supply Chain Security Tools (SCST) - Store.
 
 ## <a id='what-deploy'></a>What is deployed
 
