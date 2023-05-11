@@ -30,7 +30,6 @@ If a workload resource explicitly defines a label under `metadata.labels` in the
 When deploying a workload using Tanzu Application Platform,
 you can override the labels listed in the following table using the `Workload` YAML.
 
-
 | Metadata | Default | Type | Description |
 | --- | --- | --- | --- |
 | `tanzu.app.live.view` | `true` | Label | When deploying a workload in Tanzu Application Platform, this label is set to `true` as default across the supply chain. |

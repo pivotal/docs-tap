@@ -62,7 +62,6 @@ To deploy the workload, run:
 kapp -y deploy -n default -a workloads -f workloads.yaml
 ```
 
-
 ## <a id="verify-propagation"></a> Verify the label has propagated through the Supply Chain
 
 To verify the label:
