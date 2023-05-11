@@ -163,6 +163,8 @@ The errors are seen when a `workload` is created in a developer namespace where 
 
 Add the `imagePullSecrets` name to the default serviceAccount or the preferred serviceAccount.
 
+For example:
+
 ```yaml
 kind: ServiceAccount
 metadata:
