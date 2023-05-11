@@ -1,6 +1,6 @@
 # Install API Validation and Scoring
 
-This topic describes how to install API Validation and Scoring from the Tanzu Application Platform package repository.
+This topic tells you how to install API Validation and Scoring from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 ## <a id='prerequisites'></a>Prerequisites
 
