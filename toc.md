@@ -239,7 +239,7 @@ docs.vmware.com is built.
             - [Custom config for application actuator endpoints](app-live-view/configuring-apps/configuring-actuator.md)
             - [Scale Knative apps](app-live-view/configuring-apps/scaling-applications.md)
             - [Application Live View on OpenShift](app-live-view/configuring-apps/openshift.md)
-        - [Support polyglot apps](app-live-view/polyglot.md)
+        - [Support for polyglot apps](app-live-view/polyglot.md)
         - [Internal architecture](app-live-view/architecture.md)
         - [Troubleshoot](app-live-view/troubleshooting.md)
         - [Uninstall Application Live View](app-live-view/uninstalling.md)

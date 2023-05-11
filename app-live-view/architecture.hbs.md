@@ -1,6 +1,6 @@
-# Internal architecture
+# Application Live View internal architecture
 
-This topic describes the architectural view of Application Live View and its components.
+This topic describes the architecture of Application Live View and its components.
 You can deploy this system on a Kubernetes stack and use it to monitor containerized
 apps on hosted cloud platforms or on-premises.
 
