@@ -603,6 +603,7 @@ docs.vmware.com is built.
       - [View resources on multiple clusters](tap-gui/cluster-view-setup.hbs.md)
       - [Set up an authentication provider](tap-gui/auth.hbs.md)
       - [Manage role-based access control](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac.hbs.md)
+          - [Set up permission framework for your Tanzu Application Platform GUI](tap-gui/tap-gui-rbac/set-up-tap-gui-prmssn-frmwrk.hbs.md)
           - [Enable authorization on remote clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac.hbs.md)
           - [Enable authorization on remote EKS clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-eks.hbs.md)
           - [Enable authorization on remote GKE clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-gke.hbs.md)
