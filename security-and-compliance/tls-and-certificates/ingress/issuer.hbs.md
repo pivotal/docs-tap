@@ -164,6 +164,9 @@ LetsEncrypt production
   > - Replace `.spec.acme.email` with the email which should receive notices
   >   for certificates from LetsEncrypt.
 
+  > **Caution** _ACME HTTP01_ challenges can fail under certain conditions. See
+  > the [ACME challenges](./acme-challenges.hbs.md) brief for details.
+
   1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
      production API:
 
@@ -218,6 +221,9 @@ LetsEncrypt staging
   >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
   > - Replace `.spec.acme.email` with the email which should receive notices
   >   for certificates from LetsEncrypt.
+
+  > **Caution** _ACME HTTP01_ challenges can fail under certain conditions. See
+  > the [ACME challenges](./acme-challenges.hbs.md) brief for details.
 
   1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
      staging API:
