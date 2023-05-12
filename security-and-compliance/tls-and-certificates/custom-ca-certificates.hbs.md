@@ -9,3 +9,21 @@ then trusts the CAs contained in the bundle.
 You can also configure trust per component by providing a CA bundle in the component's installation
 values. The component then trusts those CAs and the CAs configured in `shared.ca_cert_data`.
 For more information, see [components](../../components.hbs.md).
+
+For example:
+
+```yaml
+#! my-tap-values.yaml
+
+shared:
+  ca_cert_data: |
+    Corporate CA 1
+    -----BEGIN CERTIFICATE-----
+    MIIFmDCCA4....
+    -----END CERTIFICATE-----
+    Corporate CA 2
+    -----BEGIN CERTIFICATE-----
+    MIIFkzCCA3....
+    -----END CERTIFICATE-----
+
+```
