@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform package and profiles
 
-This topic tells you how to install Tanzu Application Platform 
+This topic tells you how to install Tanzu Application Platform
 (commonly known as TAP) packages from your Tanzu Application Platform package repository.
 
 Before installing the packages, ensure you have:
@@ -61,11 +61,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-    VMware recommends using a JSON key file to authenticate with Google Container Registry. 
-    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and 
+    VMware recommends using a JSON key file to authenticate with Google Container Registry.
+    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
     the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
-    For more information about how to generate the JSON key file, 
-    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).  
+    For more information about how to generate the JSON key file,
+    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
 1. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
@@ -285,7 +285,7 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
 tap_gui:
-  service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
+  metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
   app_config:
     catalog:
       locations:
@@ -441,8 +441,8 @@ Follow these steps to install the Tanzu Application Platform package:
 3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
->**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise, 
-creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
+>**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise,
+creating a workload, a Knative service or other Tanzu Application Platform packages fails.
 For more information, see [Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md).
 
 You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:

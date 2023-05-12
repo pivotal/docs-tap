@@ -54,10 +54,9 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
 
     For more information about values schema options, see the individual product documentation.
 
-1. Create `tap-gui-values.yaml` and paste in the following code:
+1. Create `tap-gui-values.yaml` and paste in the following YAML:
 
     ```yaml
-    service_type: ClusterIP
     ingressEnabled: true
     ingressDomain: "INGRESS-DOMAIN"
     app_config:

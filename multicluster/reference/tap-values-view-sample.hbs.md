@@ -22,7 +22,6 @@ contour:
       type: LoadBalancer # NodePort can be used if your Kubernetes cluster doesn't support LoadBalancing.
 
 tap_gui:
-  service_type: ClusterIP
   app_config:
     app:
       baseUrl: http://tap-gui.INGRESS-DOMAIN

@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform in your air-gapped environment
 
-This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP)
 on your Kubernetes cluster and registry that are air-gapped from external traffic.
 
 Before installing the packages, ensure that you have completed the following tasks:
@@ -304,7 +304,6 @@ appliveview_connector:
       -----END CERTIFICATE-----
 
 tap_gui:
-  service_type: ClusterIP
   app_config:
     kubernetes:
       serviceLocatorMethod:
