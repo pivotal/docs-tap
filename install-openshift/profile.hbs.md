@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform on your OpenShift clusters
 
-This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP)
 packages on your OpenShift clusters.
 
 Before installing the packages, ensure you have:
@@ -258,7 +258,6 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
 tap_gui:
-  service_type: ClusterIP # If the shared.ingress_domain is set earlier, this must be set to ClusterIP.
   app_config:
     catalog:
       locations:
