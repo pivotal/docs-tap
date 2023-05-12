@@ -220,7 +220,9 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
    Expected outcome:
 
- NAME                DESCRIPTION                                                        TARGET      DISCOVERY  VERSION        STATUS
+   ```console
+
+   NAME                DESCRIPTION                                                        TARGET      DISCOVERY  VERSION        STATUS
    accelerator         Manage accelerators in a Kubernetes cluster                                               v1.5.0         installed
    apps                Applications on Kubernetes                                                                v0.11.1        installed
    builder             Build Tanzu components                                                                    v0.25.0        installed
@@ -259,3 +261,4 @@ For GitOps (beta) installation:
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
 Essentials because the contents of Cluster Essentials are already installed on your cluster._
+
