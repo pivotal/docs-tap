@@ -1,8 +1,5 @@
 # External Secrets Operator (alpha)
 
->**Caution** External Secrets Operator is in alpha and is intended for
->evaluation and test purposes only. Do not use in a production environment.
-
 The [External Secrets Operator](https://external-secrets.io) is a Kubernetes
 operator that integrates with external secret management systems, for example,
 Google Secrets Manager and Hashicorp Vault. It reads information from external
@@ -10,9 +7,11 @@ APIs and automatically injects the values into a Kubernetes secret. Starting
 with v1.4.0, Tanzu Application Platform repackages the External Secrets Operator
 v0.6.1 into a Carvel bundle.
 
-Tanzu Application Platform's External Secrets package is alpha software and does
-not constitute an entire solution. VMware expects later Tanzu Application
-Platform releases to have a more comprehensive secret management solution.
+>**Caution** External Secrets Operator is in alpha and is intended for
+>evaluation and test purposes only. Do not use in a production environment.
+>this package does not constitute an entire solution.
+>VMware expects later Tanzu Application Platform releases to have a more comprehensive
+>secret management solution.
 
 ## Installing the External Secrets Operator
 
