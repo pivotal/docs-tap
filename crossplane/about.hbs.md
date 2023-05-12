@@ -1,7 +1,6 @@
 # Crossplane
 
-Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
-foundation of Kubernetes.
+Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the foundation of Kubernetes.
 Tanzu Application Platform uses Crossplane to power a number of capabilities, such as dynamic
 provisioning of services instances with [Services Toolkit](../services-toolkit/about.hbs.md) and
 the pre-installed [Bitnami Services](../bitnami-services/about.hbs.md).

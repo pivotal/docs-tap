@@ -24,17 +24,17 @@ To create a workload from Git through https, follow these steps:
 2. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA) certificate, create a file called `git-credentials.yaml`. For example:
 
    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: git-ca
-      # namespace: default
-    type: Opaque
-    data:
-      username: USERNAME-BASE64
-      password: PASSWORD-BASE64
-      caFile: |
-        CADATA-BASE64
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: git-ca
+     # namespace: default
+   type: Opaque
+   data:
+     username: USERNAME-BASE64
+     password: PASSWORD-BASE64
+     caFile: |
+       CADATA-BASE64
    ```
 
    Where:
