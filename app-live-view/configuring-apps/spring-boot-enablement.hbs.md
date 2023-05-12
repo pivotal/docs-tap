@@ -1,6 +1,6 @@
 # Enabling Spring Boot apps for Application Live View
 
-This topic describes how developers configure a Spring Boot app for observation by
+This topic tells you how developers can configure a Spring Boot app for observation by
 Application Live View within Tanzu Application Platform.
 
 ## Enable Spring Boot apps

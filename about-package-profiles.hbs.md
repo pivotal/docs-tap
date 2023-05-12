@@ -1,6 +1,8 @@
-# Components and installation profiles
+# Components and installation profiles for Tanzu Application Platform
 
-Tanzu Application Platform is a modular, composable platform that comprises the following components.
+This topic lists the components you can install with Tanzu Application Platform.
+You can install components as individual packages or you can install them using a profile containing
+a predefined group of packages.
 
 ## <a id='TAP-packages'></a> Tanzu Application Platform components
 
@@ -280,7 +282,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v{{ vars.url_version }}
 
 You can deploy Tanzu Application Platform through predefined profiles, each containing various packages,
-or you can install  the packages individually. The profiles allow Tanzu Application Platform to scale
+or you can install the packages individually. The profiles allow Tanzu Application Platform to scale
 across an organization's multicluster, multi-cloud, or hybrid cloud infrastructure.
 These profiles are not meant to cover all use cases, but serve as a starting point to allow
 for further customization.

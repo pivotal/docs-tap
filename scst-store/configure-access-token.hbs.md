@@ -1,4 +1,6 @@
-# Configure access tokens
+# Configure your access tokens for Supply Chain Security Tools - Store
+
+This topic describes how to configure your access tokens for Supply Chain Security Tools - Store.
 
 The access token is a `Bearer` token used in the http request header
 `Authorization`. For example, `Authorization: Bearer

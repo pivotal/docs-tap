@@ -1,7 +1,7 @@
-# Improved security and access control in Application Live View
+# Configure security and access control in Application Live View
 
-You can now enable improved security and access control in Application Live View
-in the Tanzu Application Platform. Improved security and access control in
+This topic tells you how to enable improved security and access control in Application Live View
+in Tanzu Application Platform. Improved security and access control in
 Application Live View secures the REST API exposed by the Application Live View
 back end.
 
@@ -67,7 +67,6 @@ cluster](../tap-gui/cluster-view-setup.hbs.md).
 >every user with the Service Account Token with access to view the pods is able
 >to see the live information in Application Live View.
 
-
 ## <a id='improved-security'></a> Configure improved security
 
 The improved security feature is enabled by default for Application Live View.
@@ -128,8 +127,7 @@ following steps.
     For more information about values schema options, see the properties listed
     earlier.
 
-
-2. Create `app-live-view-connector-values.yaml` with the following details:
+1. Create `app-live-view-connector-values.yaml` with the following details:
 
     To override the default security settings for connector, use the following
     values:
@@ -152,7 +150,7 @@ following steps.
     activateSensitiveOperations: true
     ```
 
-3. Install the Application Live View connector package by running:
+1. Install the Application Live View connector package by running:
 
     ```console
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
@@ -177,7 +175,7 @@ following steps.
     Added installed package 'appliveview-connector' in namespace 'tap-install'
     ```
 
-4. Verify the `Application Live View connector` package installation by running:
+1. Verify the `Application Live View connector` package installation by running:
 
     ```console
     tanzu package installed get appliveview-connector -n tap-install
@@ -242,7 +240,7 @@ plug-in, take the following steps.
       the Git infrastructure specified in [Add Tanzu Application Platform GUI
       integrations](../tap-gui/integrations.hbs.md).
 
-2. Install the package by running:
+1. Install the package by running:
 
     ```console
     tanzu package install tap-gui \
@@ -269,7 +267,7 @@ plug-in, take the following steps.
      Added installed package 'tap-gui' in namespace 'tap-install'
     ```
 
-3. Verify that the package installed by running:
+1. Verify that the package installed by running:
 
     ```console
     tanzu package installed get tap-gui -n tap-install
@@ -290,5 +288,5 @@ plug-in, take the following steps.
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-4. To access Tanzu Application Platform GUI, use the service you exposed in the
+1. To access Tanzu Application Platform GUI, use the service you exposed in the
 `service_type` field in the values file.

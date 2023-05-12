@@ -1,4 +1,6 @@
-# Security details
+# Security details for Supply Chain Security Tools - Store
+
+This topic describes the security details for Supply Chain Security Tools (SCST) - Store.
 
 ## <a id='app-sec'></a>Application security
 

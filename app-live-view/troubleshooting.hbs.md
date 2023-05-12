@@ -18,9 +18,9 @@ To troubleshoot, confirm the following:
 
 1. Confirm that an instance of a connector is located in the same namespace as your app.
 
-   ```console
-   kubectl get pods -n NAMESPACE | grep connector
-   ```
+    ```console
+    kubectl get pods -n NAMESPACE | grep connector
+    ```
 
    Where `NAMESPACE` is the name of the namespace that your app is located in.
 
@@ -32,12 +32,12 @@ To troubleshoot, confirm the following:
 
 1. Confirm that you have included the following labels within your app deployment YAML file:
 
-   ```yaml
-   tanzu.app.live.view="true"
-   tanzu.app.live.view.application.name="APP-NAME"
-   ```
+    ```yaml
+    tanzu.app.live.view="true"
+    tanzu.app.live.view.application.name="APP-NAME"
+    ```
 
-   Where `APP-NAME` is the name of your app.
+    Where `APP-NAME` is the name of your app.
 
 1. Confirm that the Convention Service workload YAML file does not contain property `management.endpoints.web.exposure.include` overrides.
 

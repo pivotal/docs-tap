@@ -1,4 +1,4 @@
-# Release notes
+# Tanzu Application Platform release notes
 
 This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
 
@@ -38,11 +38,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
-- Introduce token expiry settings per `AuthServer` resource. 
+- Introduce token expiry settings per `AuthServer` resource.
   Service operators can customize the expiry settings of access, refresh, or
-  identity token. 
+  identity token.
   For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings).
- 
+
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
