@@ -1,4 +1,6 @@
-# Reference
+# Crossplane reference
+
+This section provides reference information for Crossplane.
 
 In this section:
 
