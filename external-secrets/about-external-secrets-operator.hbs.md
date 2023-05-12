@@ -8,6 +8,7 @@ with external secret management systems, for example, Google Secrets Manager and
 It reads information from external APIs and automatically injects the values into a Kubernetes secret.
 Tanzu Application Platform uses the [External Secrets Operator](https://external-secrets.io)
 to simplify Kubernetes secret life cycle management.
+
 External Secrets Operator is available in Tanzu Application Platform packages with a Carvel Package
 named `external-secrets.apps.tanzu.vmware.com`. It is *not* part of any install profile.
 
