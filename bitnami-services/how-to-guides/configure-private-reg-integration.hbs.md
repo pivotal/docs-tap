@@ -1,6 +1,6 @@
 # Configure private registry and VMware Application Catalog integration for Bitnami Services
 
-This topic describes how to integrate [Bitnami Services](../about.hbs.md) with private registries
+This topic tells you how to integrate Bitnami Services with private registries
 or with VMware Application Catalog (VAC).
 You can configure this globally for all services, or on a per-service basis.
 

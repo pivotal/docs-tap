@@ -1,4 +1,4 @@
-# Package values
+# Package values for Bitnami Services
 
 This topic lists the keys and values that you can use to configure the behavior of the Bitnami Services package.
 You can apply configuration globally to all services using the `globals` key, or on a per-service basis
