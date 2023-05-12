@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform package and profiles on AWS
 
-This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP)
 packages from your Tanzu Application Platform package repository on to AWS.
 
 Before installing the packages, ensure you have:
@@ -237,7 +237,6 @@ ootb_templates:
   iaas_auth: true
 
 tap_gui:
-  service_type: ClusterIP # If shared.ingress_domain is set earlier, this must be set to ClusterIP.
   app_config:
     catalog:
       locations:
