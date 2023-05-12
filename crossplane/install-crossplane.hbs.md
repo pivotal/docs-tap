@@ -1,6 +1,6 @@
 # Install Crossplane
 
-This topic describes how to install Crossplane from the Tanzu Application Platform package
+This topic tells you how to install Crossplane from the Tanzu Application Platform package
 repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
