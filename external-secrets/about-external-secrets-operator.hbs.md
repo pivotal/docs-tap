@@ -1,8 +1,5 @@
 # External Secrets Operator (beta)
 
->**Caution** The External Secrets plug-in, which is available in the Tanzu CLI list of plug-ins, is in
-beta and is intended for evaluation and test purposes only. Do not use it in a production environment.
-
 The [External Secrets Operator](https://external-secrets.io) is a Kubernetes operator that integrates
 with external secret management systems, for example, Google Secrets Manager and Hashicorp Vault.
 It reads information from external APIs and automatically injects the values into a Kubernetes secret.
@@ -15,6 +12,9 @@ named `external-secrets.apps.tanzu.vmware.com`. It is *not* part of any install 
 The `external-secrets` plug-in available in the Tanzu CLI interacts with the
 [External Secrets Operator](https://external-secrets.io) API. Users can use this CLI plug-in to
 create and view External Secrets Operator resources on a Kubernetes cluster.
+
+>**Caution** The External Secrets plug-in, which is available in the Tanzu CLI list of plug-ins, is in
+beta and is intended for evaluation and test purposes only. Do not use it in a production environment.
 
 ## <a id='abouteso'></a>Where to start
 
