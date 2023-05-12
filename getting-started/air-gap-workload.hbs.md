@@ -27,14 +27,14 @@ To create a workload from Git through https, follow these steps:
    apiVersion: v1
    kind: Secret
    metadata:
-   name: git-ca
-   # namespace: default
+     name: git-ca
+     # namespace: default
    type: Opaque
    data:
-   username: USERNAME-BASE64
-   password: PASSWORD-BASE64
-   caFile: |
-     CADATA-BASE64
+     username: USERNAME-BASE64
+     password: PASSWORD-BASE64
+     caFile: |
+       CADATA-BASE64
    ```
 
    Where:
