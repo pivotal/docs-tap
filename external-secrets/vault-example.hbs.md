@@ -1,11 +1,11 @@
 # External Secrets Operator example integration with HashiCorp Vault
 
-This topic describes how External Secrets Operator integrates with HashiCorp Vault, an external
+This topic shows you how External Secrets Operator can integrate with HashiCorp Vault, which is an external
 secret Management System. The operator synchronizes secret data from external APIs to a Kubernetes
 secret resource. For more information about Kubernetes secret resources, see the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret).
 
-> **Important** This example integration is deliberately constructed to showcase the features
+> **Important** This example integration is constructed to showcase the features
 > available and must not be considered in a production environment.
 
 ## <a id='eso-vault-prereqs'></a> Prerequisites
