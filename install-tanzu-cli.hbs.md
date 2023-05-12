@@ -72,10 +72,6 @@ To set the Kubernetes cluster context:
 You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
 and features.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install
-> the Tanzu CLI and plug-ins. For more information about profiles, see [About Tanzu Application Platform
-> components and profiles](about-package-profiles.hbs.md).
-
 To install the Tanzu CLI and plug-ins:
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
@@ -107,7 +103,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#install
      ```
 
 3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
-   versions of the CLI core and plug-ins are installed by running:
+   versions of the CLI core and plug-ins are installed:
 
     ```console
     export TANZU_CLI_NO_INIT=true
@@ -115,25 +111,18 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#install
 
 4. Install or update the CLI core by running:
 
-    >**Note** Replace v0.25.4 with the version you downloaded, which is found by inspecting the
-    >directory name under `$HOME/tanzu/cli/core/`.</br>
-    For example, if the directory name under `$HOME/tanzu/cli/core/` is v0.26.0, set the following
-    `VERSION` to `v0.26.0`.
-
    - **For Linux:**
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.25.4
-     sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+     sudo install cli/core/v{{ vars.tanzu-cli.version }}/tanzu-core-linux_amd64 /usr/local/bin/tanzu
      ```
 
    - **For macOS:**
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.25.4
-     install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+     install cli/core/v{{ vars.tanzu-cli.version }}/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
 5. Confirm the installation by running:
@@ -145,7 +134,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#install
     The outcome is similar to:
 
     ```console
-    version: v0.25.4
+    version: v{{ vars.tanzu-cli.version }}
     ...
     ```
 
@@ -170,7 +159,7 @@ Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
 4. From the `Program Files\tanzu` directory, move and rename the executable file from:
 
     ```console
-    Program Files\tanzu\cli\core\v0.25.4\tanzu-core-windows_amd64.exe
+    Program Files\tanzu\cli\core\v{{ vars.tanzu-cli.version }}\tanzu-core-windows_amd64.exe
     ```
 
     to
@@ -206,7 +195,7 @@ Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
     Expected outcome:
 
     ```console
-    version: v0.25.4
+    version: v{{ vars.tanzu-cli.version }}
     ...
     ```
 
@@ -231,19 +220,23 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
    Expected outcome:
 
-   ```console
-  NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
-  login               Login to the platform                                              Standalone  default    v0.25.4  not installed
-  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
-  package             Tanzu package management                                           Standalone  default    v0.25.4  installed
-  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
-  secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
-  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
-  services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
-  accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
-  apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
-  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
-  ```
+ NAME                DESCRIPTION                                                        TARGET      DISCOVERY  VERSION        STATUS
+   accelerator         Manage accelerators in a Kubernetes cluster                                               v1.5.0         installed
+   apps                Applications on Kubernetes                                                                v0.11.1        installed
+   builder             Build Tanzu components                                                                    v0.25.0        installed
+   codegen             Tanzu code generation tool                                                                v0.25.0        installed
+   external-secrets    interacts with external-secrets.io resources                                              v0.1.0-beta.4  installed
+   insight             post & query image, package, source, and vulnerability data                               v1.5.0         installed
+   isolated-cluster    isolated-cluster operations                                                    default    v0.28.1        not installed
+   login               Login to the platform                                                          default    v0.26.0-dev    update available
+   pinniped-auth       Pinniped authentication operations (usually not directly invoked)              default    v0.26.0-dev    update available
+   services            Commands for working with service instances, classes and claims                           v0.6.0         installed
+   test                Test the CLI                                                                              v0.25.0        installed
+   management-cluster  Kubernetes management-cluster operations                           kubernetes  default    v0.26.0-dev    installed
+   package             Tanzu package management                                           kubernetes  default    v0.28.1        installed
+   secret              Tanzu secret management                                            kubernetes  default    v0.28.1        installed
+   telemetry           Configure cluster-wide telemetry settings                          kubernetes  default    v0.26.0-dev    installed
+   ```
 
 ## <a id='next-steps'></a>Next steps
 
@@ -254,12 +247,12 @@ For online installation:
 
 For air-gapped installation:
 
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform in an air-gapped environment](install-offline/profile.hbs.md)
 
 For GitOps (beta) installation:
 
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 
 - [Install Tanzu Application Platform through GitOps with ESO](install-gitops/eso.hbs.md)
 - [Install Tanzu Application Platform through Gitops with SOPS](install-gitops/sops.hbs.md)

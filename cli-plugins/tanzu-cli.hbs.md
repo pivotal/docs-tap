@@ -10,7 +10,6 @@ The Tanzu CLI is a command-line interface that connects you to Tanzu. For exampl
 - Install and manage packages
 - Create and manage application workloads
 
-
 ## <a id="itanzu-cli-architecture"></a>Tanzu CLI Architecture
 
 The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here are the CLI plug-ins that can be installed with Tanzu Application Platform.
@@ -21,7 +20,6 @@ The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here 
 - Package: package management
 - Secret: secret management
 - Services: discover service types, service instances, and manage resource claims
-
 
 You can also develop your own plug-ins to add custom commands to the Tanzu CLI. For more information about plug-ins, see the [Sync New Plugins](#plugin-sync), [Install New Plugins](#install-new), [Install Local Plugins](#install-local) following sections.
 
@@ -44,22 +42,22 @@ To install a Tanzu CLI plug-in that was not automatically downloaded when runnin
 
 1. In a terminal, run:
 
-   ```
+   ```console
    tanzu plugin install PLUGIN-NAME
    ```
 
 2. Verify that you installed the plugin successfully by running:
 
-   ```
+   ```console
    tanzu plugin list
 
   NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
-  login               Login to the platform                                              Standalone  default    v0.25.4  not installed
-  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
-  package             Tanzu package management                                           Standalone  default    v0.25.4  installed
-  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
-  secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
-  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
+  login               Login to the platform                                              Standalone  default    v0.28.1  not installed
+  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.28.1  not installed
+  package             Tanzu package management                                           Standalone  default    v0.28.1  installed
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.28.1  not installed
+  secret              Tanzu secret management                                            Standalone  default    v0.28.1  installed
+  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.28.1  not installed
   services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
   apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
@@ -76,26 +74,25 @@ the Tanzu CLI plug-in binaries before installing, follow these steps:
 2. Extract the `tar.gz` to a location on your local machine using the extraction tool of your choice.
 For example, the `tar -xvf` command.
 
-2. From that location, run:
+3. From that location, run:
 
-   ```
+   ```console
    tanzu plugin install all --local /PATH/TO/FILE/
    ```
 
-3. Verify that you installed the plug-ins successfully by running:
+4. Verify that you installed the plug-ins successfully by running:
 
-   ```
+   ```console
    tanzu plugin list
     NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
-  login               Login to the platform                                              Standalone  default    v0.25.4  not installed
-  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
-  package             Tanzu package management                                           Standalone  default    v0.25.4  installed
-  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
-  secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
-  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
+  login               Login to the platform                                              Standalone  default    v0.28.1  not installed
+  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.28.1  not installed
+  package             Tanzu package management                                           Standalone  default    v0.28.1  installed
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.28.1  not installed
+  secret              Tanzu secret management                                            Standalone  default    v0.28.1  installed
+  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.28.1  not installed
   services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
   apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
   insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
-   ```
    ```
