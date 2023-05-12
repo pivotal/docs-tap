@@ -1,6 +1,6 @@
-# Package Values
+# Package values for Crossplane
 
-This topic lists the keys and values you can use to configure the behavior of the Crossplane Package.
+This topic lists the keys and values you can use to configure the behavior of the Crossplane package.
 Configuration is split between configuration specific to Crossplane in Tanzu Application Platform
 and configuration of the Upbound Universal Crossplane (UXP) Helm Chart.
 
