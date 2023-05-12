@@ -359,6 +359,7 @@ docs.vmware.com is built.
     - [cert-manager](cert-manager/about.hbs.md)
       - [cert-manager overview](cert-manager/about.hbs.md)
       - [Install cert-manager](cert-manager/install.hbs.md)
+      - [ACME challenges](cert-manager/acme-challenges.hbs.md)
     - [Cloud Native Runtimes](cloud-native-runtimes/about.hbs.md)
       - [Cloud Native Runtimes overview](cloud-native-runtimes/about.hbs.md)
       - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.hbs.md)
