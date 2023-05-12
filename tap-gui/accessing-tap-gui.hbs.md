@@ -61,9 +61,6 @@ Retrieve this IP address by running:
     ```yaml
     shared:
       ingress_domain: "example.com"
-
-    tap_gui:
-      service_type: ClusterIP
     ```
 
 1. Update your other host names in the `tap_gui` section of your `tap-values.yaml` with the new host
@@ -74,7 +71,6 @@ name. For example:
       ingress_domain: "example.com"
 
     tap_gui:
-      service_type: ClusterIP
     # Existing tap-values.yaml above
       app_config:
         app:
