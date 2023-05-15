@@ -1,6 +1,6 @@
 # Source Controller reference
 
-The following reference documentation exists.
+This topic provides reference documentation for Source Controller.
 
 ## <a id="image-repository"></a> ImageRepository
 
