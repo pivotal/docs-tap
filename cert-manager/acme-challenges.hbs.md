@@ -1,4 +1,4 @@
-# ACME Challenges
+# ACME challenges
 
 cert-manager.io provides APIs for managing certificates on Kubernetes. It is
 one of the most popular extensions for Kubernetes and has found ubiquitous
