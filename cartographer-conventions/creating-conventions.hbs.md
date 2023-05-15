@@ -1,6 +1,6 @@
-# Creating conventions
+# Create conventions with Cartographer Conventions
 
-This topic describes how to create and deploy custom conventions to the Tanzu Application Platform.
+This topic describes how you can create and deploy custom conventions to the Tanzu Application Platform by using Cartographer Conventions.
 
 ## <a id='intro'></a>Introduction
 
