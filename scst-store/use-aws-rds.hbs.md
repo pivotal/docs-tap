@@ -1,4 +1,6 @@
-# AWS RDS Postgres configuration
+# Configure Your AWS RDS postgres configuration
+
+This topic describes how you can Configure Your AWS RDS postgres configuration for Supply Chain Security Tools (SCST) - Store.
 
 ## <a id='prereq'></a>Prerequisites
 
