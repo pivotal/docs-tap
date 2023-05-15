@@ -1,7 +1,8 @@
 # Troubleshoot Services Toolkit
 
-This topic provides guidance on how to troubleshoot issues related to working with services on Tanzu
-Application Platform. For workarounds for known limitations, see [Known limitations](../reference/known-limitations.hbs.md).
+This topic gives you guidance about how to troubleshoot issues related to working with services on
+Tanzu Application Platform.
+For workarounds for known limitations, see [Known limitations](../reference/known-limitations.hbs.md).
 
 ## <a id="prereq"></a> Prerequisites
 
