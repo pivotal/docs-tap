@@ -1,4 +1,8 @@
-# Troubleshooting
+# Troubleshoot API Auto Registration
+
+This topic contains ways that you can troubleshoot API Auto Registration.
+
+## Debug API Auto Registration
 
 This topic includes commands for debugging or troubleshooting the APIDescriptor CR.
 

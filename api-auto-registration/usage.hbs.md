@@ -1,6 +1,6 @@
 # Use API Auto Registration
 
-This topic describes how to use API Auto Registration.
+This topic describes how you can use API Auto Registration.
 
 >**Note** The run profile requires you to [update the install values](#update-values) before
 >proceeding. For iterate and full profiles, the default values work but you

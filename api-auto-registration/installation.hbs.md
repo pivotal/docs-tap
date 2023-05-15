@@ -1,6 +1,6 @@
 # Install API Auto Registration
 
-This topic describes how to install API Auto Registration from the Tanzu Application Platform package repository.
+This topic describes how you can install API Auto Registration from the Tanzu Application Platform package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install API Auto Registration. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
