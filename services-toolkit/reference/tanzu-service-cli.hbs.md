@@ -1,9 +1,10 @@
 # Tanzu Service CLI plug-in
 
-This topic provides reference information about the `tanzu service` CLI plug-in.
-This plug-in is primarily intended for use by application operators and
-application developers.
-It aims to offer a service experience that is consistent with the other Tanzu CLI commands.
+This topic provides reference information about the `tanzu service` CLI plug-in for Services Toolkit.
+This plug-in is primarily intended for use by
+[application operators](../reference/terminology-and-user-roles.hbs.md#ao) and
+[application developers](../reference/terminology-and-user-roles.hbs.md#ad).
+It aims to offer you a service experience that is consistent with the other Tanzu CLI commands.
 Its main use is for creating claims.
 
 The reference material in this topic is split by sub-command.
