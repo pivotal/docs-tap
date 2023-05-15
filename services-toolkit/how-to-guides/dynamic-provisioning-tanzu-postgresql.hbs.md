@@ -101,11 +101,11 @@ To create the CompositeResourceDefinition (XRD):
           openAPIV3Schema:
             properties:
               spec:
-              properties:
-                storageGB:
-                  type: integer
-                  default: 20
-              type: object
+                properties:
+                  storageGB:
+                    type: integer
+                    default: 20
+                type: object
             type: object
         served: true
     ```
