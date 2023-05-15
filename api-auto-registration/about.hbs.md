@@ -1,5 +1,9 @@
 # API Auto Registration
 
+This topic provides an overview of API Auto Registration for Tanzu Application Platform.
+
+## Overview
+
 API Auto Registration automates the registration of API specification defined in
 a workload's configuration. The registered API specification is accessible in
 Tanzu Application Platform GUI without any additional steps. An automated

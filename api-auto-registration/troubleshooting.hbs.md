@@ -1,6 +1,6 @@
 # Troubleshoot API Auto Registration
 
-This topic contains troubleshooting information for API Auto Registration.
+This topic contains ways that you can troubleshoot API Auto Registration.
 
 ## Debug API Auto Registration
 
