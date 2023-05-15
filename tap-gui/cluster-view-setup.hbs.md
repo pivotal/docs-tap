@@ -1,7 +1,8 @@
 # Viewing resources on multiple clusters in Tanzu Application Platform GUI
 
-You can configure Tanzu Application Platform GUI to retrieve Kubernetes object details from multiple
-clusters and then surface those details in the various Tanzu Application Platform GUI plug-ins.
+You can configure Tanzu Application Platform GUI (commonly called TAP GUI) to retrieve Kubernetes
+object details from multiple clusters and then surface those details in the various Tanzu
+Application Platform GUI plug-ins.
 
 > **Important** In this topic the terms `Build`, `Run`, and `View` describe the cluster's roles and
 > distinguish which steps to apply to which cluster.
