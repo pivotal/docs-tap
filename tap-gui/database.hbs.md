@@ -1,8 +1,10 @@
 # Configure the Tanzu Application Platform GUI database
 
-The Tanzu Application Platform GUI catalog allows for two approaches for storing catalog information:
+The Tanzu Application Platform GUI (commonly called TAP GUI) catalog gives you two approaches for
+storing catalog information:
 
 - **In-memory database:**
+
   The default option uses an in-memory database and is suitable for test and development scenarios only.
   The in-memory database reads the catalog data from Git URLs that you write in `tap-values.yaml`.
 
@@ -15,6 +17,7 @@ The Tanzu Application Platform GUI catalog allows for two approaches for storing
   the Tanzu Application Platform GUI server pod is re-created.
 
 - **PostgreSQL database:**
+
   For production use-cases, use a PostgreSQL database that exists outside the
   Tanzu Application Platform packaging.
   The PostgreSQL database stores all the catalog data persistently both from the Git locations and

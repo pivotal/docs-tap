@@ -1,7 +1,7 @@
 # Install Tanzu Application Platform GUI
 
-This topic describes how to install Tanzu Application Platform GUI from the Tanzu Application Platform
-package repository.
+This topic tells you how to install Tanzu Application Platform GUI (commonly called TAP GUI) from
+the Tanzu Application Platform package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > Tanzu Application Platform GUI.
@@ -13,17 +13,18 @@ package repository.
 Before installing Tanzu Application Platform GUI:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see the
-Tanzu Application Platform [Prerequisites](../prerequisites.html).
-- Create a Git repository for Tanzu Application Platform GUI software catalogs, with a token allowing read access.
-Supported Git infrastructure includes:
+  Tanzu Application Platform [Prerequisites](../prerequisites.hbs.md).
+- Create a Git repository for Tanzu Application Platform GUI software catalogs, with a token allowing
+  read access. Supported Git infrastructure includes:
   - GitHub
   - GitLab
   - Azure DevOps
 - Install Tanzu Application Platform GUI Blank Catalog
   1. Go to the [Tanzu Application Platform section of VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-  1. Under the list of available files to download, open the **tap-gui-catalogs-latest** folder.
-  1. Extract Tanzu Application Platform GUI Blank Catalog to your Git repository. This serves as the configuration location for your organization's Catalog inside Tanzu Application Platform GUI.
-
+  2. Under the list of available files to download, open the **tap-gui-catalogs-latest** folder.
+  3. Extract Tanzu Application Platform GUI Blank Catalog to your Git repository.
+     This serves as the configuration location for your organization's Catalog inside
+     Tanzu Application Platform GUI.
 
 ### <a id='tap-gui-install-proc'></a> Procedure
 
@@ -47,7 +48,8 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
 1. (Optional) Make changes to the default installation settings by running:
 
     ```console
-    tanzu package available get tap-gui.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get tap-gui.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace \
+    tap-install
     ```
 
     Where `VERSION-NUMBER` is the number you discovered previously. For example, `1.0.1`.
@@ -68,8 +70,13 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
 
     Where:
 
-    - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress` service's External IP address.
-    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file from either the included Blank catalog (provided as an additional download named "Blank Tanzu Application Platform GUI Catalog") or a Backstage-compliant catalog that you've already built and posted on the Git infrastructure specified in [Adding Tanzu Application Platform GUI integrations](integrations.html).
+    - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+      service's External IP address.
+    - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file.
+      It is from either the included Blank catalog (provided as an additional download named
+      **Blank Tanzu Application Platform GUI Catalog**) or a Backstage-compliant catalog that you've
+      already built and posted on the Git infrastructure specified in
+      [Adding Tanzu Application Platform GUI integrations](integrations.hbs.md).
 
 1. Install the package by running:
 
@@ -80,12 +87,13 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
      -f tap-gui-values.yaml
     ```
 
-    Where `VERSION` is the desired version. For example, `1.0.1`.
+    Where `VERSION` is the version that you want. For example, `1.0.1`.
 
     For example:
 
     ```console
-    $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-gui-values.yaml
+    $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 1.0.1 -n \
+    tap-install -f tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
     | Creating service account 'tap-gui-default-sa'
@@ -119,5 +127,5 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-1. To access Tanzu Application Platform GUI, use the service you exposed in the `service_type`
-field in the values file.
+1. To access Tanzu Application Platform GUI, use the service you exposed in the `service_type` field
+   in the values file.
