@@ -1,4 +1,8 @@
-# Configure target endpoint and certificate
+# Configure your target endpoint and certificate for Supply Chain Security Tools - Store
+
+This topic describes how you can configure your target endpoint and certificate for Supply Chain Security Tools (SCST) - Store.
+
+## Overview
 
 The connection to Supply Chain Security Tools - Store requires TLS
 encryption, and the configuration depends on the kind of installation.
