@@ -629,6 +629,13 @@ The following issues, listed by area and component, are resolved in this release
 - Resolved redirect URI issue with insecure HTTP redirection on Tanzu Kubernetes Grid multicloud
 (TKGm) clusters.
 
+#### <a id='1-5-0-cnrs-ri'></a> Cloud Native Runtimes
+
+- Resolved issue with DomainMapping names longer than 63 characters when auto-tls is enabled,
+which is on by default.
+- Resolved issue with certain app name, namespace, and domain combinations producing invalid
+HTTPProxy resources.
+
 #### <a id="1-5-0-namespace-provisioner-ri"></a> Namespace Provisioner
 
 - Updated default resources to avoid ownership conflicts with the `grype` package.
@@ -664,11 +671,6 @@ The following issues, listed by area and component, are resolved in this release
 
 - When there are multiple resource types with the same kind, the pop-up menu **Describe** action in
   the Activity panel no longer fails when used on PodIntent resources.
-
-#### <a id='1-5-0-cnrs-ri'></a> Cloud Native Runtimes
-
-- Resolved issue with DomainMapping names longer than 63 characters when auto-tls is enabled (which is on by default).
-- Resolved issue with certain app name, namespace, and domain combinations producing invalid HTTPProxy resources.
 
 ---
 
