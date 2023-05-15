@@ -1,7 +1,7 @@
 # Troubleshoot Tanzu Application Platform GUI
 
-This topic describes troubleshooting information for problems with installing
-Tanzu Application Platform GUI.
+This topic tells you how to troubleshoot issues encountered when installing
+Tanzu Application Platform GUI (commonly called TAP GUI).
 
 ## <a id='port-range-invalid'></a> Tanzu Application Platform GUI reports that the port range is not valid
 
