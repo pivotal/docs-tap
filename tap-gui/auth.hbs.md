@@ -1,8 +1,8 @@
 # Setting up a Tanzu Application Platform GUI authentication provider
 
-Tanzu Application Platform GUI extends the current Backstage's authentication plug-in so that you
-can see a login page based on the authentication providers configured at installation.
-This feature is a work in progress.
+Tanzu Application Platform GUI (commonly called TAP GUI) extends the current Backstage
+authentication plug-in so that you can see a login page based on the authentication providers
+configured at installation. This feature is a work in progress.
 
 Tanzu Application Platform GUI currently supports the following authentication providers:
 
