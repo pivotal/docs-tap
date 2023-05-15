@@ -1,4 +1,8 @@
-# Using NodePort
+# Use Your NodePort with Supply Chain Security Tools - Store
+
+This topic describes how you can use your NodePort with Supply Chain Security Tools (SCST) - Store.
+
+## Overview
 
 >**Note** The recommended service type is [Ingress](ingress.hbs.md).
 >NodePort is only recommended when the cluster does not support
