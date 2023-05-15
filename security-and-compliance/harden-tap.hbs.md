@@ -201,11 +201,10 @@ cluster. If you require Encryption of Data at Rest (DARE), you must provide a Pe
 
 Ports are used in TCP and UDP protocols for identification of applications. While some applications
 use common port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic
-ports. Open port refers to a port on which a system is accepting communication. An open port does
-not immediately mean a security issue, but it's important to understand that it can provide a pathway
-for attackers to the application listening on that port. To help with understanding the traffic flows
-in Tanzu Application Platform, a list of Tanzu Application Platform ports and protocols is
-available to existing and future customers upon request.
+ports. An *open port* refers to a port on which a system is accepting communication. An open port does
+not always mean that there is a security issue, but it can provide a pathway
+for attackers listening on that port. To help understand the traffic flows
+in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and protocols on request.
 
 See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
 
@@ -236,7 +235,7 @@ Key management is the foundation of all data security. Data is encrypted and dec
 
 ## Logging
 
-Log files provide an audit trail necessary to monitor activity within infrastructure. Use log files to identify policy violations, unusual activity, and security incidents. It is vital that logs are captured and retained according to the policies set forth by the organization's security team or governing body. Tanzu Application Platform components run as pods on the Kubernetes infrastructure and all components output to standard out, captured as part of the pod logs.
+Log files provide an audit trail to monitor activity within infrastructure. Use log files to identify policy violations, unusual activity, and security incidents. It is vital that logs are captured and retained according to the policies set forth by your organization's security team or governing body. Tanzu Application Platform components run as pods on the Kubernetes infrastructure and all components output is captured as part of the pod logs.
 
 All Tanzu Application Platform components follow
 [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
