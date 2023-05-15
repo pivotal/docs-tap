@@ -1,8 +1,8 @@
 # Abstracting service implementations behind a class across clusters
 
-This tutorial shows you how to configure a class that allows for claims to resolve to different
-backing implementations of a service, such as PostgreSQL, depending on which cluster the class is
-claimed in.
+In this Services Toolkit tutorial you learn how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
+can configure a class that allows for claims to resolve to different backing implementations of a service,
+such as PostgreSQL, depending on which cluster the class is claimed in.
 
 This sort of setup allows the configurations of workloads and class claims to remain unchanged as
 they are promoted through environments, whilst also enabling service operators to change

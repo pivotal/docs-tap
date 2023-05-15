@@ -1,4 +1,6 @@
-# How-to guides
+# Services Toolkit how-to guides
+
+This section contains how-to guides for Services Toolkit.
 
 In this section:
 

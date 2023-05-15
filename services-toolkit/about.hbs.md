@@ -1,9 +1,5 @@
 # Services Toolkit
 
->**Note** These docs apply to Services Toolkit v0.10 and later.
->To view the Services Toolkit documentation for v0.9 and earlier, see the previous
->[Services Toolkit site](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html).
-
 Services Toolkit is responsible for backing many of the most powerful service capabilities in
 Tanzu Application Platform.
 
@@ -11,6 +7,10 @@ From the integration of an extensive list of cloud-based and on-prem services, t
 and discovery of those services, and finally to the claiming and binding of service instances to
 application workloads, Services Toolkit has the tools you need to make working with services on
 Tanzu Application Platform simple, easy, and effective.
+
+>**Note** These docs apply to Services Toolkit v0.10 and later.
+>To view the Services Toolkit documentation for v0.9 and earlier, see the previous
+>[Services Toolkit site](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html).
 
 ## <a id="capabilities"></a> Capabilities
 

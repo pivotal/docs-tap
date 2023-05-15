@@ -1,7 +1,7 @@
 # Working with Bitnami Services
 
-In this tutorial, you adopt the role of application operator and learn how to discover, claim, and
-bind services to your application workloads.
+In this tutorial you learn how [application operators](../reference/terminology-and-user-roles.hbs.md#ao)
+can discover, claim, and bind services to application workloads.
 
 Tanzu Application Platform has four pre-installed services, which are MySQL, PostgreSQL, RabbitMQ, and Redis.
 The corresponding Bitnami Helm Chart backs each of these services.

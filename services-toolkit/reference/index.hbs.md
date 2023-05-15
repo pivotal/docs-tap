@@ -1,4 +1,6 @@
-# Reference
+# Services Toolkit reference
+
+This section provides reference documentation for Services Toolkit.
 
 In this section:
 

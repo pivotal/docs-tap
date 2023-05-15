@@ -1,6 +1,6 @@
 # ResourceClaim and ResourceClaimPolicy
 
-This topic provides API documentation for `ResourceClaim` and `ResourceClaimPolicy`.
+This topic provides Services Toolkit API documentation for `ResourceClaim` and `ResourceClaimPolicy`.
 
 ## <a id="resourceclaim"></a> ResourceClaim
 

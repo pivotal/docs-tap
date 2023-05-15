@@ -1,7 +1,9 @@
-# Direct secret references
+# Using direct secret references
 
-This tutorial leverages direct references to Kubernetes `Secret` resources to enable developers to
-connect their application workloads to almost any backing service, including backing services that:
+In this Services Toolkit tutorial you learn how developers can use direct references to Kubernetes `Secret`
+resources to connect their application workloads to almost any backing service.
+
+This includes backing services that:
 
 - Run external to Tanzu Application Platform
 - Do not adhere to [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service)
