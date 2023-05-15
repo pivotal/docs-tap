@@ -1,4 +1,4 @@
-# Tanzu Application Platform View profile
+# Install Tanzu Application Platform View profile
 
 This topic tells you how to install View profile cluster by using a reduced values file.
 

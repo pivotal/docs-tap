@@ -1,4 +1,4 @@
-# Tanzu Application Platform Run profile
+# Install Tanzu Application Platform Run profile
 
 This topic tells you how to install Run profile cluster by using a reduced values file.
 

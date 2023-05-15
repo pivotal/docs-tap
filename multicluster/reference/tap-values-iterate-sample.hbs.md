@@ -1,4 +1,4 @@
-# Tanzu Application Platform Iterate profile
+# Install Tanzu Application Platform Iterate profile
 
 This topic tells you how to install Iterate profile cluster by using a reduced values file.
 
