@@ -1,4 +1,4 @@
-# Tanzu Application Platform Build profile
+# Install Tanzu Application Platform Build profile
 
 This topic tells you how to install Build profile cluster by using a reduced values file.
 
