@@ -217,7 +217,6 @@ plug-in, take the following steps.
 1. Create `tap-gui-values.yaml` and paste in the following code:
 
     ```yaml
-    service_type: ClusterIP
     ingressEnabled: true
     ingressDomain: "INGRESS-DOMAIN"
     app_config:
