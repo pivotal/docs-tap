@@ -1,8 +1,8 @@
-# Convention Resources
+# Convention Service Resources for Cartographer Conventions
 
-The convention controller is open to extension. These resources are typically consumed by platform developers and operators rather than by application developers.
+This reference topic describes the convention service resources you can use with Cartographer Conventions.
 
-## <a id="conv-service-resources"></a>Convention Service Resources
+## Overview
 
 There are several [resources](convention-resources.md) involved in the application of conventions to workloads.
 
