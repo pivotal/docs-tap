@@ -25,5 +25,5 @@ kubectl get package -n tap-install cert-manager.tanzu.vmware.com.2.0.0 -ojsonpat
 ]
 ```
 
-> **Caution** _ACME HTTP01_ challenges can fail under certain conditions. See
-> the [ACME challenges](./acme-challenges.hbs.md) brief for details.
+> **Caution** ACME HTTP01 challenges can fail under certain conditions. 
+> For more information, see [ACME challenges](acme-challenges.hbs.md).
