@@ -1,4 +1,8 @@
-# Use LoadBalancer
+# Use Your LoadBalancer with Supply Chain Security Tools - Store
+
+This topic describes how to use your LoadBalancer with Supply Chain Security Tools (SCST) - Store. 
+
+## Overview
 
 >**Note** `LoadBalancer` is not the recommended service type.
 >Consider the recommended configuration of enabling
