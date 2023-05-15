@@ -1,13 +1,15 @@
 # Source Controller
 
-Tanzu Source Controller provides a standard interface for artifact acquisition and extends the functionality of [FluxCD Source Controller](../fluxcd-source-controller/about.hbs.md).
+Tanzu Source Controller provides a standard interface for artifact acquisition and extends the
+function of [FluxCD Source Controller](../fluxcd-source-controller/about.hbs.md).
 
 Tanzu Source Controller supports the following two resource types:
 
 - ImageRepository
 - MavenArtifact
 
-An `ImageRepository` resource can resolve the source from the contents of an image in an image registry. This enables app developers to create and update workloads from local source code or a code repository.
+An `ImageRepository` resource can resolve the source from the contents of an image in an image registry.
+This enables app developers to create and update workloads from local source code or a code repository.
 
 A `MavenArtifact` resource can resolve a binary artifact from a Maven repository. This functionality enables the supply chain to support artifacts produced externally.
 
