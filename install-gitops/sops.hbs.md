@@ -1,12 +1,12 @@
 # Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)
 
+This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
+through GitOps with secrets managed in a Git repository.
+
 >**Caution**
 >
 > - Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 > - Tanzu GitOps Reference Implementation (RI) does not support changing the secrets management strategy for a cluster.
-
-This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
-through GitOps with secrets managed in a Git repository.
 
 ## <a id='prereqs'></a>Prerequisites
 

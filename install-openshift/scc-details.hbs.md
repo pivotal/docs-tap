@@ -1,4 +1,4 @@
-# Custom Security Context Constraint details
+# Custom Security Context Constraint details for Tanzu Application Platform
 
 Custom Security Context Constraint (commonly known as SCC) details for 
 Tanzu Application Platform (commonly known as TAP) components are as follows:
