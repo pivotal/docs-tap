@@ -2,6 +2,11 @@
 
 `tanzu apps workload apply` is a command used to create and update workloads that are deployed in a cluster through a supply chain.
 
+The `tanzu apps workload apply` and `tanzu apps workload create` have the same behavior and flags with the following exceptions:
+
+- The `tanzu apps workload create` command fails if a workload with the same name preexists on the target cluster.
+- the `update-strategy` flag is only applicable to the `tanzu apps workload apply` command. The `update-strategy` flag is not applicable to the `tanzu apps workload create` command.
+
 ## Default view
 
 In the output of the `tanzu apps workload apply` command, the specification for the workload is shown in YAML file format.
@@ -1409,7 +1414,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 Specifies whether the update from file should replace or merge the current workload. The default is merge.
 
-<details><summary>Example</summary>
+>**Note** This flag is only applicable to the `tanzu apps workload apply` command. It is not applicable to the `tanzu apps workload create`.
+
+Example
 
 For example, there is a workload created from a file, which has in its `spec` the following:
 ```yaml
