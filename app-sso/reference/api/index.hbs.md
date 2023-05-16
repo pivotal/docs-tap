@@ -1,6 +1,6 @@
-# API Documentation
+# AppSSO API
 
-This section of the documentation provides detailed information about AppSSO's APIs.
+This topic provides you with detailed information about the following AppSSO's APIs:
 
 - [AuthServer](./authserver.md)
 - [ClientRegistration](./clientregistration.md)

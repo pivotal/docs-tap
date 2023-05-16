@@ -7,11 +7,11 @@ For more information about profiles, see [Components and installation profiles](
 
 ## What's inside
 
-The AppSSO package will install the following resources:
+The AppSSO package installs the following resources:
 
-* The `appsso` Namespace with a Deployment of the AppSSO controller and services for webhooks
-* [RBAC](../reference/rbac.md)
-* [APIs](../reference/api/index.md)
+- The `appsso` namespace with a deployment of the AppSSO controller and services for webhooks.
+- [RBAC](../reference/rbac.hbs.md)
+- [APIs](../reference/api/index.hbs.md)
 
 ## Prerequisites
 
