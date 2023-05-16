@@ -2,7 +2,7 @@
 
 This topic gives you guidance about how to troubleshoot issues related to working with services on
 Tanzu Application Platform.
-For workarounds for known limitations, see [Known limitations](../reference/known-limitations.hbs.md).
+For known limitations and the corresponding workarounds, see [Known limitations for Services Toolkit](../reference/known-limitations.hbs.md).
 
 ## <a id="prereq"></a> Prerequisites
 

@@ -1,6 +1,6 @@
 # InstanceQuery
 
-This topic provides API documentation for `InstanceQuery`.
+This topic provides Services Toolkit API documentation for `InstanceQuery`.
 
 ## <a id="instancequery"></a> InstanceQuery
 

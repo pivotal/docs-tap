@@ -452,7 +452,7 @@ docs.vmware.com is built.
           - [Working with Bitnami Services](services-toolkit/tutorials/working-with-bitnami-services.hbs.md)
           - [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services.hbs.md)
           - [Abstracting service implementations behind a class across clusters](services-toolkit/tutorials/abstracting-service-implementation.hbs.md)
-          - [Direct secret references](services-toolkit/tutorials/direct-secret-references.hbs.md)
+          - [Using direct secret references](services-toolkit/tutorials/direct-secret-references.hbs.md)
       - [How-to guides](services-toolkit/how-to-guides/index.hbs.md)
           - [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md)
           - [Configure dynamic provisioning of AWS RDS service instances](services-toolkit/how-to-guides/dynamic-provisioning-rds.hbs.md)

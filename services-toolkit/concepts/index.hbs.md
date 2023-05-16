@@ -1,4 +1,6 @@
-# Concepts
+# Services Toolkit concepts
+
+This section introduces you to Services Toolkit concepts.
 
 In this section:
 

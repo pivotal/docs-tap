@@ -1,7 +1,7 @@
 # Set up dynamic provisioning of service instances
 
-In this tutorial you will learn how to set up a new, self-serve and "customized-to-your-needs"
-service for Tanzu Application Platform.
+In this Services Toolkit tutorial you learn how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
+can set up a new, self-serve, and customized service for Tanzu Application Platform.
 The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any
 other service.
 

@@ -151,21 +151,21 @@ LetsEncrypt production
 
   **Prerequisites**
 
-  > - Public CAs, like LetsEncrypt, record signed certificates in
-  >   publicly-available certificate logs for the purpose of [certificate
-  >   transparency](https://certificate.transparency.dev/). Ensure that you are
-  >   OK with this before using LetsEncrypt.
-  > - LetsEncrypt's production API has [rate
-  >   limits](https://letsencrypt.org/docs/rate-limits/).
-  > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
-  >   the Internet.
-  > - Depending on your setup, you might need to adjust
-  >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
-  > - Replace `.spec.acme.email` with the email which should receive notices
-  >   for certificates from LetsEncrypt.
+  - Public CAs, like LetsEncrypt, record signed certificates in
+   publicly-available certificate logs for the purpose of [certificate
+   transparency](https://certificate.transparency.dev/). Ensure that you are
+   OK with this before using LetsEncrypt.
+  - LetsEncrypt's production API has [rate
+   limits](https://letsencrypt.org/docs/rate-limits/).
+  - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
+   the Internet.
+  - Depending on your setup, you might need to adjust
+   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges)
+  - Replace `.spec.acme.email` with the email which should receive notices
+   for certificates from LetsEncrypt.
 
-  > **Caution** _ACME HTTP01_ challenges can fail under certain conditions. See
-  > the [ACME challenges](../../../cert-manager/acme-challenges.hbs.md) brief for details.
+  > **Caution** ACME HTTP01 challenges can fail under certain conditions. 
+  > For more information, see [ACME challenges](../../../cert-manager/acme-challenges.hbs.md).
 
   1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
      production API:
@@ -208,22 +208,22 @@ LetsEncrypt staging
 
   **Prerequisites**
 
-  > - Public CAs - like LetsEncrypt - record signed certificates in
-  >   publicly-available certificate logs for the purpose of [certificate
-  >   transparency](https://certificate.transparency.dev/). Ensure that you are
-  >   OK with this before using LetsEncrypt.
-  > - LetsEncrypt's staging API is not a publicly-trusted CA. You have
-  >   to add its certificate to your devices trust chain and [Tanzu Application Platform's custom CA
-  >   certificates](../custom-ca-certificates.hbs.md).
-  > - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
-  >   the Internet.
-  > - Depending on your setup you might need to adjust
-  >   [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
-  > - Replace `.spec.acme.email` with the email which should receive notices
-  >   for certificates from LetsEncrypt.
+  - Public CAs - like LetsEncrypt - record signed certificates in
+    publicly-available certificate logs for the purpose of [certificate
+    transparency](https://certificate.transparency.dev/). Ensure that you are
+    OK with this before using LetsEncrypt.
+  - LetsEncrypt's staging API is not a publicly-trusted CA. You have
+    to add its certificate to your devices trust chain and [Tanzu Application Platform's custom CA
+    certificates](../custom-ca-certificates.hbs.md).
+  - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
+    the Internet.
+  - Depending on your setup you might need to adjust
+    [.spec.acme.solvers](https://cert-manager.io/docs/configuration/acme/#solving-challenges).
+  - Replace `.spec.acme.email` with the email which should receive notices
+    for certificates from LetsEncrypt.
 
-  > **Caution** _ACME HTTP01_ challenges can fail under certain conditions. See
-  > the [ACME challenges](../../../cert-manager/acme-challenges.hbs.md) brief for details.
+  > **Caution** ACME HTTP01 challenges can fail under certain conditions. 
+  > For more information, see [ACME challenges](../../../cert-manager/acme-challenges.hbs.md).
 
   1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
      staging API:

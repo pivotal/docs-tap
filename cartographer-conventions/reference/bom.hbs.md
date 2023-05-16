@@ -1,6 +1,12 @@
-# BOM
+# BOM for Cartographer Conventions
+
+This reference topic describes the `BOM` structure you can use with Cartographer Conventions.
+
+## Overview
 
 The `BOM` is a type/structure wrapping a Software Bill of Materials (SBOM) describing the software components and their dependencies.
+
+## Structure
 
 The structure of the `BOM` is defined as follows:
 

@@ -1,4 +1,4 @@
-## Use API Validation and Scoring to score an auto-registered API
+## Use API Validation and Scoring to score your auto-registered API
 
 This topic tells you how an [Auto Registered API](../api-auto-registration/about.hbs.md) is scored:
 
