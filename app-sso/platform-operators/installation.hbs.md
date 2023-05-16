@@ -9,9 +9,9 @@ For more information about profiles, see [Components and installation profiles](
 
 The AppSSO package will install the following resources:
 
-* The `appsso` Namespace with a Deployment of the AppSSO controller and Services for Webhooks
-* A `ServiceAccount` with RBAC outlined in detail [here](./rbac.md)
-* [AuthServer and ClientRegistration CRDs](../crds/index.md)
+* The `appsso` Namespace with a Deployment of the AppSSO controller and services for webhooks
+* [RBAC](../reference/rbac.md)
+* [APIs](../reference/api/index.md)
 
 ## Prerequisites
 

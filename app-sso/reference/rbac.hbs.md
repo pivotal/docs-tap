@@ -50,7 +50,7 @@ The AppSSO package aggregates the following permissions into TAP's well-known ro
       - "*"
   ```
 
-To manage the life cycle of AppSSO's [APIs](../crds/index.md), the AppSSO controller's `ServiceAccount`
+To manage the life cycle of AppSSO's [APIs](../api/index.md), the AppSSO controller's `ServiceAccount`
 has a `ClusterRole` with the following permissions:
 
 ```yaml
