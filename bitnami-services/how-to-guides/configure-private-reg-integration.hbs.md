@@ -19,66 +19,66 @@ For how to obtain both of these prerequisites for VAC integration, see
 1. Create two Kubernetes `Secrets`, one with credentials to pull Helm charts and the other with credentials to pull images.
 The following examples put these in the `default` namespace, but you can choose to place them in any namespace you prefer.
 
-   ```console
-   $ kubectl create secret generic vac-chart-pull \
-     -n default \
-     --from-literal=username='USERNAME' \
-     --from-literal=password='TOKEN'
-   ```
+    ```console
+    $ kubectl create secret generic vac-chart-pull \
+      -n default \
+      --from-literal=username='USERNAME' \
+      --from-literal=password='TOKEN'
+    ```
 
-   ```console
-   $ kubectl create secret docker-registry vac-container-pull \
-     -n default \
-     --docker-server='REGISTRY-HOSTNAME' \
-     --docker-username='USERNAME' --docker-password='TOKEN'
-   ```
+    ```console
+    $ kubectl create secret docker-registry vac-container-pull \
+      -n default \
+      --docker-server='REGISTRY-HOSTNAME' \
+      --docker-username='USERNAME' --docker-password='TOKEN'
+    ```
 
 1. Apply the configuration either to all Bitnami services or to one specific service.
-   - **Apply configuration to all Bitnami services:**
+    - **Apply configuration to all Bitnami services:**
 
-      1. Add the following to your `tap-values.yaml` file:
+        1. Add the following to your `tap-values.yaml` file:
 
-         ```yaml
-         bitnami_services:
-           globals:
-             helm_chart:
-               repo: oci://REPOSITORY-NAME/charts # update this
-               chart_pull_secret_ref:
-                 name: vac-chart-pull
-                 namespace: default
-               container_pull_secret_ref:
-                 name: vac-container-pull
-                 namespace: default
-         ```
+            ```yaml
+            bitnami_services:
+              globals:
+                helm_chart:
+                  repo: oci://REPOSITORY-NAME/charts # update this
+                  chart_pull_secret_ref:
+                    name: vac-chart-pull
+                    namespace: default
+                  container_pull_secret_ref:
+                    name: vac-container-pull
+                    namespace: default
+            ```
 
-      2. Update Tanzu Application Platform by running:
+        2. Update Tanzu Application Platform by running:
 
-         ```console
-         tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
-         ```
+            ```console
+            tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
+            ```
 
-   - **Apply configuration to one specific Bitnami service:**
+    - **Apply configuration to one specific Bitnami service:**
 
-      1. Add the following to your `tap-values.yaml` file:
+        1. Add the following to your `tap-values.yaml` file:
 
-         ```yaml
-         bitnami_services:
-           mysql: # choose from 'mysql', 'postgresql', 'rabbitmq' and 'redis'
-             helm_chart:
-               repo: oci://REPOSITORY-NAME/charts # update this
-               chart_pull_secret_ref:
-                 name: vac-chart-pull
-                 namespace: default
-               container_pull_secret_ref:
-                 name: vac-container-pull
-                 namespace: default
-         ```
+            ```yaml
+            bitnami_services:
+              mysql: # choose from 'mysql', 'postgresql', 'rabbitmq' and 'redis'
+                helm_chart:
+                  repo: oci://REPOSITORY-NAME/charts # update this
+                  chart_pull_secret_ref:
+                    name: vac-chart-pull
+                    namespace: default
+                  container_pull_secret_ref:
+                    name: vac-container-pull
+                    namespace: default
+            ```
 
-      2. Update Tanzu Application Platform by running:
+        2. Update Tanzu Application Platform by running:
 
-         ```console
-         tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
-         ```
+            ```console
+            tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
+            ```
 
 ## Known issue
 
