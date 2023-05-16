@@ -69,7 +69,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 For more information, see [Public clients and CORS](../../service-operators/cors.md).
 
 > **Caution** When running Workloads using Spring Boot 3, you must use `client_secret_basic` or `client_secret_post`.
-> For more information, see [Spring Boot 3 based Workloads and ClientRegistration resources](../known-issues/index.md#boot3-clientreg).
+> For more information, see [Spring Boot 3 based Workloads and ClientRegistration resources](../../known-issues/index.hbs.md#boot3-clientreg).
 
 ## Status & conditions
 

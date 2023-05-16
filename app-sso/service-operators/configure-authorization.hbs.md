@@ -1,7 +1,7 @@
 # Configure authorization
 
 > **Note** This section is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
-> `AuthServer` configurations. For more information, see [AuthServer](../crds/authserver.hbs.md).
+> `AuthServer` configurations. For more information, see [AuthServer](../reference/api/authserver.hbs.md).
 
 An application or `Workload` can protect certain resources based on user's level of authorization. Within OAuth 2, the application
 with protected resources, the Resource Server, verifies if the access token provided contains the scopes to perform
