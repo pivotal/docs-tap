@@ -10,4 +10,4 @@ kubectl scale authserver authserver-sample --replicas=3
 ```
 
 The resource of the authorization server and Redis `Deployments` can be configured under `spec.resources`
-and `spec.redisResources` respectively. See the [API reference](../crds/authserver.md) for details.
+and `spec.redisResources` respectively. See the [API reference](../reference/api/authserver.hbs.md) for details.

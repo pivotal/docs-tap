@@ -60,7 +60,7 @@ by a `Workload`, which provides the necessary credentials to your application.
 For more information, see [Claim a ClientRegistration](#claim).
 
 For more information about the schema and specification of the resource, 
-see [ClientRegistration](../crds/clientregistration.md).
+see [ClientRegistration](../reference/api/clientregistration.hbs.md).
 
 ### <a id='redirect-uris'></a> Redirect URIs
 
@@ -118,7 +118,7 @@ Spring Boot or .NET Core apps (confidential clients).
 
 For browser-based single-page apps, client authentication method must be set to `none`.
 For more information, see [Configure authorization](../service-operators/configure-authorization.hbs.md) 
-and [Client authentication methods](../crds/clientregistration.hbs.md#client-auth-methods).
+and [Client authentication methods](../reference/api/clientregistration.hbs.md#client-auth-methods).
 
 ### <a id='scopes'></a> Scopes
 

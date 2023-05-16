@@ -66,7 +66,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 - `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
 - `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
 - `none`: No client authentication. Required for public clients. 
-For more information, see [Public clients and CORS](../service-operators/cors.md).
+For more information, see [Public clients and CORS](../../service-operators/cors.md).
 
 > **Caution** When running Workloads using Spring Boot 3, you must use `client_secret_basic` or `client_secret_post`.
 > For more information, see [Spring Boot 3 based Workloads and ClientRegistration resources](../known-issues/index.md#boot3-clientreg).

@@ -50,7 +50,7 @@ The AppSSO package aggregates the following permissions into TAP's well-known ro
       - "*"
   ```
 
-To manage the life cycle of AppSSO's [APIs](../api/index.md), the AppSSO controller's `ServiceAccount`
+To manage the life cycle of AppSSO's [APIs](index.hbs.md), the AppSSO controller's `ServiceAccount`
 has a `ClusterRole` with the following permissions:
 
 ```yaml
@@ -157,4 +157,4 @@ has a `ClusterRole` with the following permissions:
     - update
 ```
 
-AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
+AppSSO installs [_OpenShift_-specific RBAC and resources](../platform-operators/openshift.hbs.md).
