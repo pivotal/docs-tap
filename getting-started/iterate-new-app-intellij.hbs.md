@@ -1,32 +1,102 @@
 # Iterate on your new app using Tanzu Developer Tools for IntelliJ
 
 This how-to topic guides you through starting to iterate on your first application on
-Tanzu Application Platform.
-You deployed the app in the previous how-to [Deploy your first application](deploy-first-app.md).
+Tanzu Application Platform. You deployed the app in the previous how-to [Deploy your first application](deploy-first-app.md).
 
 ## <a id="you-will"></a>What you will do
 
-- Prepare your IDE to iterate on your application.
+- Prepare to iterate on your application. 
+   - Prepare your project to support Live Update.
+   - Prepare your IDE to iterate on your application.
 - Live update your application to view code changes updating live on the cluster.
 - Debug your application.
 - Monitor your running application on the Application Live View UI.
 
-## <a id="prepare-to-iterate"></a>Prepare your IDE to iterate on your application
-
-In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.hbs.md),
-you deployed your first application on Tanzu Application Platform.
-Now that you have a skeleton workload developed, you are ready to begin to iterate on your new
-application and test code changes on the cluster.
+## <a id="prepare-to-iterate"></a>Prepare your to iterate on your application
 
 Tanzu Developer Tools for IntelliJ is VMware Tanzu’s official IDE extension for IntelliJ.
 It helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
 
 The IntelliJ extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
+
 For information about installing the prerequisites and the Tanzu Developer Tools for IntelliJ extension,
 see [Install Tanzu Developer Tools for IntelliJ](../intellij-extension/install.hbs.md).
 
 > **Important** Use Tilt v0.30.12 or later for the sample application.
+
+### Prepare your project to support Live Update
+
+Tanzu Live update uses [Tilt](https://tilt.dev/). This requires a suitable 
+`Tiltfile` to exist at the root of your project. Both Gradle and Maven projects are
+supported but each requires a `Tiltfile` specific to that type of project. 
+
+The "Tanzu Java Web App" accelerator provides an option for you to choose between 
+Maven and Gradle and will include a suitable `Tiltfile`. If you used the accelerator 
+then your project should already be setup correctly. However, let's double-check and 
+review the requirements depending on your chosen build system.
+
+#### Maven Spring Boot project requirements
+
+If you are using Maven you should have a `Tiltfile` like this one:
+
+```
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='your-registry.io/project/tanzu-java-web-app-source')
+LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
+NAMESPACE = os.getenv("NAMESPACE", default='default')
+
+k8s_custom_deploy(
+    'tanzu-java-web-app',
+    apply_cmd="tanzu apps workload apply -f config/workload.yaml --update-strategy replace --debug --live-update" +
+               " --local-path " + LOCAL_PATH +
+               " --source-image " + SOURCE_IMAGE +
+               " --namespace " + NAMESPACE +
+               " --yes --output yaml",
+    delete_cmd="tanzu apps workload delete -f config/workload.yaml --namespace " + NAMESPACE + " --yes",
+    container_selector='workload',
+    deps=['pom.xml', './target/classes'],
+    live_update=[
+      sync('./target/classes', '/workspace/BOOT-INF/classes')
+    ]
+)
+
+k8s_resource('tanzu-java-web-app', port_forwards=["8080:8080"],
+            extra_pod_selectors=[{'carto.run/workload-name': 'tanzu-java-web-app', 'app.kubernetes.io/component': 'run'}])
+```
+
+#### Gradle Spring Boot Project Requirements
+
+If you are using Gradle there are some key differences in the `deps=` and `live-update=` 
+sections of the `Tiltfile`:
+
+```
+    ...
+    deps=['build.gradle.kts', './build/classes/java/main', './build/resources/main'],
+    live_update=[
+       sync('./build/classes/java/main', '/workspace/BOOT-INF/classes'),
+       sync('./build/resources/main', '/workspace/BOOT-INF/classes')
+    ]
+    ...
+```
+
+Other parts of the `Tiltfile` look identical to a Maven `Tiltfile`.
+
+> **Important:** Additionally, for Gradle, you need to make sure that the project
+is built as an 'exploded jar'. This is not the default behavior for a Gradle-based build.
+For a typical Spring Boot Gradle project we need to disable the `jar` 
+task in the `build.gradle.kts` file as follows:
+
+```
+...
+tasks.named<Jar>("jar") {
+    enabled = false
+}
+``` 
+
+### Setting up the IDE
+
+If you have ensured your project has the required `Tiltfile` and Maven or Gradle build 
+support, then you are ready to setup your development environment.
 
 1. Open the Tanzu Java Web App as a project within your IntelliJ IDE by selecting **File** > **Open**,
    then selecting the Tanzu Java Web App folder and clicking **Open**.
