@@ -12,7 +12,7 @@ Tanzu Application Platform. You deployed the app in the previous how-to [Deploy 
 - Debug your application.
 - Monitor your running application on the Application Live View UI.
 
-## <a id="prepare-to-iterate"></a>Prepare your to iterate on your application
+## <a id="prepare-to-iterate"></a>Prepare to iterate on your application
 
 In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.md),
 you deployed your first application on Tanzu Application Platform.
