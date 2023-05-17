@@ -1,12 +1,15 @@
 # RBAC for Application Single Sign-On
 
-TODO(mbrauer)
+<!--- TODO(mbrauer) --->
 
-The AppSSO package aggregates the following permissions into [TAP's well-known roles](../../authn-authz/role-descriptions.hbs.md).
+The Application Single Sign-On (commonly called AppSSO) package aggregates the 
+following permissions into Tanzu Application Platform's well-known roles. 
+For more information, see 
+[Role descriptions for Tanzu Application Platform](../../authn-authz/role-descriptions.hbs.md).
 
-## User aggregated rules
+## <a id="rules"></a> User aggregated rules
 
-### app-operator
+### <a id="app-operator"></a> app-operator
 
 <!---
 Generated with:
@@ -25,7 +28,7 @@ verbs:
   - '*'
 ```
 
-### app-editor
+### <a id="app-editor"></a> app-editor
 
 <!---
 Generated with:
@@ -46,7 +49,7 @@ verbs:
   - watch
 ```
 
-### app-viewer
+### <a id="app-viewer"></a> app-viewer
 
 <!---
 Generated with:
@@ -67,7 +70,7 @@ verbs:
   - watch
 ```
 
-### service-operator
+### <a id="service-operator"></a> service-operator
 
 <!---
 Generated with:
@@ -87,10 +90,10 @@ verbs:
   - '*'
 ```
 
-## Controller
+## <a id="controller"></a> Controller
 
-To manage the life cycle of AppSSO's [APIs](index.hbs.md), the AppSSO controller's `ServiceAccount`
-has a `ClusterRole` with the following permissions:
+To manage the life cycle of AppSSO's [APIs](index.hbs.md), the AppSSO controller's 
+`ServiceAccount` has a `ClusterRole` with the following permissions:
 
 <!---
 Generated with:
@@ -216,4 +219,5 @@ kubectl get clusterrolebinding -A -oyaml | yq '.items[] | select(.subjects[] | c
     - '*'
 ```
 
-AppSSO installs [OpenShift specific RBAC and resources](../platform-operators/openshift.hbs.md).
+AppSSO also installs OpenShift specific RBAC and resources. For more information, 
+see [Application Single Sign-On for OpenShift clusters](../platform-operators/openshift.hbs.md).
