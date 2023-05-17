@@ -5,7 +5,8 @@ Tanzu Application Platform exposes ingress endpoints so that:
 - Platform operators and application developers can interact with the platform.
 - End users can interact with applications running on the platform.
 
-For information about ingress endpoints, see [Ingress certificates inventory](./inventory.hbs.md).
+For information about ingress endpoints and their certificates, see [Ingress
+certificates inventory](./inventory.hbs.md).
 
 To secure these endpoints with TLS, for example, `https://`, Tanzu Application Platform
 has two ways of configuring ingress certificates:
