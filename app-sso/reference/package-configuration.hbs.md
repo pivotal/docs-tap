@@ -45,7 +45,7 @@ kubernetes_version: ""
 domain_name: "example.com"
 
 #@schema/desc "Optional: Golang template/text string for constructing AuthServer FQDNs"
-domain_template: "{{.Name}}.{{.Namespace}}.{{.Domain}}"
+domain_template: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"
 
 #@schema/desc "Optional: A cert-manager.io/v1/ClusterIssuer for defaulting AuthServer TLS"
 default_authserver_clusterissuer: ""
@@ -54,7 +54,7 @@ default_authserver_clusterissuer: ""
 workload_domain_name: ""
 
 #@schema/desc "Optional: Golang template/text string for defaulting Workload FQDNs templating"
-default_workload_domain_template: "{{.Name}}.{{.Namespace}}.{{.Domain}}"
+default_workload_domain_template: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"
 
 #@schema/desc "The namespace which children of cluster-scoped resources are located in"
 cluster_resource_namespace: "appsso"
