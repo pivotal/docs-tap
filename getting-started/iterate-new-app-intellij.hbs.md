@@ -14,6 +14,11 @@ Tanzu Application Platform. You deployed the app in the previous how-to [Deploy 
 
 ## <a id="prepare-to-iterate"></a>Prepare your to iterate on your application
 
+In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.md),
+you deployed your first application on Tanzu Application Platform.
+Now that you have a skeleton workload developed, you are ready to begin to iterate on your new
+application and test code changes on the cluster.
+
 Tanzu Developer Tools for IntelliJ is VMware Tanzu’s official IDE extension for IntelliJ.
 It helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
 
