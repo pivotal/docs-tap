@@ -21,14 +21,14 @@ workload's specific FQDN. As a result it is portable across environments.
 value can be set with the [package
 configuration](../package-configuration.hbs.md) value
 `default_workload_domain_template`. The default value for this setting is
-`{{.Name}}.{{.Namespace}}.{{.Domain}}`.
+`\{{.Name}}.\{{.Namespace}}.\{{.Domain}}`.
 
-The values for `{{.Name}}` and `{{.Namespace}}` are taken from
+The values for `\{{.Name}}` and `\{{.Namespace}}` are taken from
 `spec.workloadRef`. The field `spec.workloadRef` is not resolved to an actual
 _workload_ running on the cluster. Rather it is a holder for template values
 which are identifying a workload.
 
-The value for `{{.Domain}}` is defined by the [package
+The value for `\{{.Domain}}` is defined by the [package
 configuration](../package-configuration.hbs.md) value `workload_domain_name`.
 
 Just like `ClientRegistration`, this API is bindable. It implements the
@@ -145,7 +145,7 @@ metadata:
   annotations:
     sso.apps.tanzu.vmware.com/template-unsafe-redirect-uris: ""
 spec:
-  workloadDomainTemplate: "hi-i-live-in-{{.Namespace}}-and-my-name-is-{{.Name}}.sample.{{.Domain}}"
+  workloadDomainTemplate: "hi-i-live-in-\{{.Namespace}}-and-my-name-is-\{{.Name}}.sample.\{{.Domain}}"
   workloadRef:
     name: test-workload-name
     namespace: test-workload-namespace
@@ -182,9 +182,9 @@ Redirect URIs are templated as follows:
    `spec.workloadDomainTemplate` or default it to
    `default_workload_domain_template` if omitted.
 
-1. Resolve the values for `{{.Name}}` and `{{.Namespace}}` from `spec.workloadRef`.
+1. Resolve the values for `\{{.Name}}` and `\{{.Namespace}}` from `spec.workloadRef`.
 
-1. Resolve the value for `{{.Domain}}` from `workload_domain_name`.
+1. Resolve the value for `\{{.Domain}}` from `workload_domain_name`.
 
 1. For each entry in `spec.redirectPaths`, template a full redirect URI by
    joining the path with the rendered workload domain template. Use `https` as
@@ -219,6 +219,6 @@ status:
     - http://my-workload.my-ns.tap.example.com/login/success
     - https://my-workload.my-ns.tap.example.com/login/error
     - http://my-workload.my-ns.tap.example.com/login/error
-  workloadDomainTemplate: '{{.Name}}.{{.Namespace}}.{{.Domain}}'
+  workloadDomainTemplate: '\{{.Name}}.\{{.Namespace}}.\{{.Domain}}'
   #! ...
 ```
