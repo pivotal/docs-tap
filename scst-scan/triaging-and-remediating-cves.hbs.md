@@ -2,7 +2,7 @@
 
 This topic explains how you can triage and remediate CVEs related to SCST - Scan.
 
-## <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
+## <a id="sc-stop"></a>Confirming Supply Chain stopped due to failed policy enforcement
 
 To confirm that Supply Chain failure is related to policy enforcement:
 
