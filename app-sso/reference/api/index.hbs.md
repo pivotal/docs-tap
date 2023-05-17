@@ -7,3 +7,4 @@ This topic provides you with detailed information about the following AppSSO's A
 - [ClusterUnsafeTestLogin](./clusterunsafetestlogin.hbs.md)
 - [ClusterWorkloadRegistrationClass](./clusterworkloadregistrationclass.hbs.md)
 - [WorkloadRegistration](./workloadregistration.hbs.md)
+- [XWorkloadRegistration](./xworkloadregistration.hbs.md)
