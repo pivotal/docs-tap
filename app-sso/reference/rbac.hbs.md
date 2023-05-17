@@ -216,4 +216,4 @@ kubectl get clusterrolebinding -A -oyaml | yq '.items[] | select(.subjects[] | c
     - '*'
 ```
 
-Furthmore, AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
+AppSSO installs [OpenShift specific RBAC and resources](../platform-operators/openshift.hbs.md).
