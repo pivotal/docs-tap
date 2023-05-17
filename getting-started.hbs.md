@@ -1,15 +1,16 @@
 # Getting started with the Tanzu Application Platform
 
-Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to help get developers and operators started on Tanzu Application Platform. Before you start, be sure to complete all of the prerequisites in the following section.
+Welcome to Tanzu Application Platform. The guides in this section offer hands-on instruction to
+help get developers and operators started on Tanzu Application Platform.
 
-## <a id="get-started-prereqs"></a>Getting started prerequisites
+## <a id="get-started-prereqs"></a>Prerequisites
 
-Verify you have successfully:
+Before you start, verify you have successfully:
 
-- **Installed the Tanzu Application Platform**<br>
+- **Installed Tanzu Application Platform**<br>
 See [Installing Tanzu Application Platform](install-intro.md).
 
-- **Installed the Tanzu Application Platform on the target Kubernetes cluster**<br>
+- **Installed Tanzu Application Platform on the target Kubernetes cluster**<br>
 See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md).
 
 - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
