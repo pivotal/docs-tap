@@ -169,7 +169,7 @@ spec:
       annotations:
         sso.apps.tanzu.vmware.com/template-unsafe-redirect-uris: ""
     spec:
-      workloadDomainTemplate: "{{.Namespace}}-{{.Name}}.apps.{{.Domain}}"
+      workloadDomainTemplate: "\{{.Namespace}}-\{{.Name}}.apps.\{{.Domain}}"
       authServerSelector:
         matchLabels:
           sso.apps.tanzu.vmware.com/env: staging
