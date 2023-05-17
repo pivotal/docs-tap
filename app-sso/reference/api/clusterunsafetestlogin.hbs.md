@@ -1,22 +1,19 @@
 # ClusterUnsafeTestLogin
 
-> **Caution** This API is not safe for production!
-
 `ClusterUnsafeTestLogin` is the recommended way to get started with AppSSO in
-non-production environments.
+non-production environments and it is not safe for production.
 
 `ClusterUnsafeTestLogin` represents the request for an unsafe, ready-to-claim
 AppSSO service offering. It reconciles into an unsafe `AuthServer`, a token
 signing key `Secret` and a `ClusterWorkloadRegistrationClass`. It is
-cluster-scoped. It has no spec. Its short name is `cutl`.
+cluster-scoped. It has no specifications. Its short name is `cutl`.
 
-Its `AuthServer` is `http` only, allows all CORS origins, runs a single
-replica, and has a single `user:password` login. Its name will be prefixed with
-`unsafe-`. Its issuer URI will typically look like
-`http://unsafe-demo.appsso.example.com`.
+Its `AuthServer` is `http` only, which allows all CORS origins, runs a single
+replica, and has a single `user:password` login. Its name is prefixed with
+`unsafe-`. Its issuer URI resembles `http://unsafe-demo.appsso.example.com`.
 
 Its `ClusterWorkloadRegistrationClass` templates `WorkloadRegistration` with
-safe _and_ unsafe redirect URIs. That means a redirect paths will be templated with
+safe and unsafe redirect URIs. That means a redirect path is templated with
 both `https` and `http` as the scheme.
 
 Its namespace-scoped resources are placed in the cluster resource namespace.
@@ -24,15 +21,15 @@ The cluster resource namespace is
 [configurable](../package-configuration.hbs.md). The default cluster resource
 namespace is `appsso`.
 
-Once created the offering can be discovered with the `tanzu` CLI:
+Once created, you can discover it with the `tanzu` CLI:
 
-```
+```console
 ❯ tanzu services classes list
   NAME      DESCRIPTION
   <name>    Single sign-on for testing - user:password - UNSAFE FOR PRODUCTION!
 ```
 
-## Spec
+## <a id="spec"></a> Specification
 
 ```yaml
 ---
@@ -70,9 +67,10 @@ status:
       pem: ""
 ```
 
-## Examples
+## <a id="example"></a> Example
 
-Since this is a zero-config API, there's only one possible example:
+Due to the zero-configuration nature of the `ClusterUnsafeTestLogin` API, 
+there exists only a single feasible example:
 
 ```yaml
 ---
@@ -81,4 +79,3 @@ kind: ClusterUnsafeTestLogin
 metadata:
   name: demo
 ```
-
