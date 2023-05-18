@@ -1,6 +1,7 @@
 # Security Analysis in Tanzu Application Platform GUI
 
-This topic describes the Security Analysis plug-in.
+This topic tells you about the Security Analysis plug-in in Tanzu Application Platform GUI
+(commonly called TAP GUI).
 
 ## <a id="overview"></a> Overview
 
