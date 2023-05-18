@@ -1,4 +1,4 @@
-# TechDocs
+# Generate and publish TechDocs
 
 This topic tells you how to generate and publish TechDocs for catalogs as part of
 Tanzu Application Platform GUI (commonly called TAP GUI).

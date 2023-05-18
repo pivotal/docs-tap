@@ -489,7 +489,7 @@ docs.vmware.com is built.
           - [Assign roles and permissions on Kubernetes clusters](tap-gui/tap-gui-rbac/assigning-kubernetes-roles.md)
       - [Add integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
-      - [TechDocs](tap-gui/techdocs/usage.md)
+      - [Generate and publish TechDocs](tap-gui/techdocs/usage.md)
       - [Tanzu Application Platform GUI plug-ins](tap-gui/plugins/about.md)
          - [Tanzu Application Platform GUI plug-ins overview](tap-gui/plugins/about.md)
          - [Runtime resources visibility](tap-gui/plugins/runtime-resource-visibility.md)
