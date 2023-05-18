@@ -6,7 +6,7 @@ the engine must decide which [encoding](https://en.wikipedia.org/wiki/Character_
 By default, `UTF-8` is assumed. If any files must be handled differently,
 use the `UseEncoding` transform to annotate them with an explicit encoding.
 
->**Note** `UseEncoding` returns an error if you apply encoding to files that have already been explicitly configured with a particular encoding.
+`UseEncoding` returns an error if you apply encoding to files that have already been explicitly configured with a particular encoding.
 
 ## <a id="syntax-ref"></a>Syntax reference
 

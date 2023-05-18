@@ -68,9 +68,9 @@ by using `anchor: somedir`, then all files coming from the current accelerator
 are exposed as if their `path` had the `somedir/` prefix removed. When it comes
 to gathering the result of the invocation though, all resulting files are re-introduced
 with a prefix prepended to their `path` (this applies to **all** files produced by
-the fragment, not just the ones originating from the accelerator).
+the fragment, not just the ones originating from the accelerator). 
 
-**Note** the value of the `anchor` property must not start nor end with a slash (`/`) character.
+The value of the `anchor` property must not start nor end with a slash (`/`) character.
 
 ## <a id="examples"></a>Examples
 
