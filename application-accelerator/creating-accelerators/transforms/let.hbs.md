@@ -6,7 +6,7 @@ that extends the existing scope.
 SpEL expressions inside the `Let` can access variables
 from both the existing scope and the new scope.
 
->**Note:** Variables defined by the `Let` should not shadow existing variables. If they do,
+Variables defined by the `Let` should not shadow existing variables. If they do,
 those existing variables won't be accessible.
 
 ## <a id="syntax-reference"></a>Syntax reference

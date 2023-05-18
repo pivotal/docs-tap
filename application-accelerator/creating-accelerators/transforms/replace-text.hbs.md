@@ -29,7 +29,7 @@ condition: SPEL-EXPRESSION
 
 Syntax reference for defining the replacement behavior using a _single_ regular expression: 
 
-  >**Note:** Regex is used to match the entire document. To match on a per line basis, enable multiline mode by including `(?m)` in the regex.
+Regex is used to match the entire document. To match on a per line basis, enable multiline mode by including `(?m)` in the regex.
 
 ```yaml
 type: ReplaceText

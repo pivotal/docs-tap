@@ -51,11 +51,9 @@ Use the following procedure to create an accelerator based on this Git repositor
     - `YOUR-GIT-REPOSITORY-URL` is the URL for your Git repository.
     - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
-2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
+2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator. It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
 
     ![Screenshot showing the new Simple Accelerator included in Tanzu Application Platform GUI.](../images/new-accelerator-deployed-v1-1.png)
-
-    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
 
 An alternative to using the Tanzu CLI is to create a separate manifest file and apply it to the cluster:
 
@@ -166,7 +164,7 @@ To create the fragment (we can save the above manifest in a `java-version.yaml` 
 tanzu accelerator apply -f ./java-version.yaml
 ```
 
->**Note:** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
+The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
 
 To avoid having to create a separate manifest file, you can use the following command instead:
 

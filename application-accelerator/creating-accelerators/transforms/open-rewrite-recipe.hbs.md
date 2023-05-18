@@ -3,7 +3,7 @@
 The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https://docs.openrewrite.org/)
 **Recipe** to a set of files and gather the results.
 
->**Note:** Currently, only [Java-related recipes](https://docs.openrewrite.org/reference/dependency-version-selectors/java/)
+Currently, only [Java-related recipes](https://docs.openrewrite.org/reference/dependency-version-selectors/java/)
 are supported. The engine leverages version `7.21.3` of Open Rewrite and parses
 Java files using the grammar for Java 11.
 

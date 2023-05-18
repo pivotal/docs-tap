@@ -139,11 +139,12 @@ accelerator:
 engine:
   ...
 ```
+
 As shown earlier, the `imports` section calls a list of fragments to import and by default
 all of their options become options of the accelerator. Those options appear _after_
 the options defined by the accelerator, in the order the fragments are imported in.
 
-**Note:** It is even possible for a fragment to import another fragment, the semantics
+It is even possible for a fragment to import another fragment, the semantics
 being the same as when an accelerator imports a fragment. This is a way to
 break apart a fragment even further if needed.
 
