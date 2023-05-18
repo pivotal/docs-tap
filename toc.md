@@ -427,7 +427,7 @@ docs.vmware.com is built.
              - [Install Application Accelerator](application-accelerator/install-app-acc.md)
          - [API documentation](tap-gui/plugins/api-docs.md)
              - [Overview of API documentation](tap-gui/plugins/api-docs.md)
-             - [Getting started with API documentation plug-in](tap-gui/plugins/api-docs-getting-started.md)
+             - [Get started](tap-gui/plugins/api-docs-getting-started.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
