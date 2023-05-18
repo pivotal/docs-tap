@@ -1,24 +1,24 @@
 # XWorkloadRegistration
 
-> **Note** This API is not expected to be used directly. It is supported, but
-> when you find yourself using it directly, consider `ClassClaim`,
-> `WorkloadRegistration` or `ClientRegistration` instead.
+`XWorkloadRegistration` is a cluster-scoped Crossplane XRD. It serves as an integration 
+API between Services Toolkit, Crossplane and AppSSO.
 
-`XWorkloadRegistration` is a _Crossplane_ XRD. It is cluster-scoped. It serves
-as an integration API between _Services Toolkit_, _Crossplane_ and _AppSSO_.
+> **Note** This API is not intended for direct usage. Although it is supported, 
+> VMware recommend using `ClassClaim`, `WorkloadRegistration`, or `ClientRegistration` 
+> instead when you need direct access to this API.
 
-Typically, when creating a `ClassClaim` for an AppSSO service offering, e.g.
-[ClusterWorkloadRegistrationClass](./clusterworkloadregistrationclass.hbs.md),
-_Services Toolkit_ creates an `XWorkloadRegistration`. By way of a
-`Composition` the `XWorkloadRegistration` is reconciled into a
-`WorkloadRegistration` with _Crossplane_'s _provider-kubernete_'s `Object` as
+In most cases, when creating a `ClassClaim` for an AppSSO service offering, 
+for example, [ClusterWorkloadRegistrationClass](clusterworkloadregistrationclass.hbs.md), 
+Services Toolkit creates an `XWorkloadRegistration`. By using a`Composition`, 
+the `XWorkloadRegistration` is reconciled into a
+`WorkloadRegistration` with Crossplane's `provider-kubernete`'s `Object` as
 an intermediary.
 
-The spec of `XWorkloadRegistration` is almost the same as
-[WorkloadRegistration](./workloadregistration.hbs.md) but without
+The specification of `XWorkloadRegistration` is identical to
+[WorkloadRegistration](workloadregistration.hbs.md) but without 
 `spec.workloadRef.namespace` and `spec.authServerSelector`.
 
-## Spec
+## <a id="spec"></a> Specification
 
 ```yaml
 ---
@@ -52,12 +52,13 @@ status:
     name: ""
 ```
 
-> **Note** Crossplane's standard Crossplane Resource Model (XRM) fields are omitted
+> **Note** Crossplane's standard Crossplane Resource Model (commonly called XRM) 
+> fields are omitted.
 
-# Examples
+# <a id="example"></a> Examples
 
-Assuming that a `Composition` for `XWorkloadRegistration` exist, e.g. by way of
-a `ClusterWorkloadRegistrationClass`, this is a minimal example:
+If a `Composition` for `XWorkloadRegistration` exists, for example, 
+by using a `ClusterWorkloadRegistrationClass`, this is a minimal example:
 
 ```yaml
 ---
@@ -98,4 +99,3 @@ spec:
   clientAuthenticationMethod: client_secret_basic
   requireUserConsent: true
 ```
-
