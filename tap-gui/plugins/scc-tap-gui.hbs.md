@@ -1,6 +1,7 @@
 # Supply Chain Choreographer in Tanzu Application Platform GUI
 
-This topic describes Supply Chain Choreographer in Tanzu Application Platform GUI.
+This topic tells you about Supply Chain Choreographer in Tanzu Application Platform GUI
+(commonly called TAP GUI).
 
 ## <a id="overview"></a> Overview
 
