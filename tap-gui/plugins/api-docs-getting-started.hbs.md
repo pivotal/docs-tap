@@ -1,6 +1,7 @@
-# Getting started with API documentation plug-in
+# Get started with the API documentation plug-in
 
-This topic describes how to get started with the API documentation plug-in.
+This topic tells you how to get started with the API documentation plug-in in
+Tanzu Application Platform GUI (commonly called TAP GUI).
 
 ## <a id="dev-first-app"></a> Add your API entry to the Tanzu Application Platform GUI software catalog
 

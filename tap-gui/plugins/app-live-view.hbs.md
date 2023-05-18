@@ -1,7 +1,7 @@
 # Application Live View in Tanzu Application Platform GUI
 
-This topic describes Application Live View in Tanzu Application Platform GUI.
-
+This topic tells you about Application Live View in Tanzu Application Platform GUI
+(commonly called TAP GUI).
 
 ## <a id="overview"></a> Overview
 
@@ -25,7 +25,6 @@ It does not store any of that data for further analysis or historical views.
 This easy-to-use interface provides ways to troubleshoot, learn, and maintain an overview of certain aspects of the running processes.
 It gives a level of control to the users to change some parameters, such as environment properties,
 without a restart (where the Spring Boot application, for example, supports that).
-
 
 ## <a id="plug-in-entry-point"></a> Entry point to Application Live View plug-in
 

@@ -1,6 +1,7 @@
 # Application Live View for Spring Boot Applications in Tanzu Application Platform GUI
 
-This topic describes Application Live View pages for Spring Boot Applications in Tanzu Application Platform GUI.
+This topic tells you about the Application Live View pages for Spring Boot Applications in
+Tanzu Application Platform GUI (commonly called TAP GUI).
 
 ## <a id="details-page"></a> Details page
 
