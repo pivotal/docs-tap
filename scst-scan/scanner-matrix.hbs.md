@@ -3,7 +3,7 @@
 This topic contains limits you observe with scanners which are provided for SCST - Scan. There might be more limits
 which are not mentioned in the following table.
 
-**Grype**
+## Grype
 
 <table>
     <tr>

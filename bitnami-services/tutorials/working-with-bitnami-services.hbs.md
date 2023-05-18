@@ -1,6 +1,6 @@
 # Working with Bitnami Services
 
-In this tutorial you learn how [application operators](../../reference/terminology-and-user-roles.hbs.md#ao)
+In this tutorial you learn how [application operators](../../services-toolkit/reference/terminology-and-user-roles.hbs.md#ao)
 can discover, claim, and bind services to application workloads.
 
 Tanzu Application Platform has four pre-installed services, which are MySQL, PostgreSQL, RabbitMQ, and Redis.
@@ -165,17 +165,17 @@ After creating the claim, you can bind it to one or more of your application wor
 1. Find the reference for the claim by running the following command. The reference is in the output
 under the heading "Claim Reference.
 
-   ```console
-   tanzu service class-claim get psql-1
-   ```
+    ```console
+    tanzu service class-claim get psql-1
+    ```
 
 1. Bind the claim to a workload of your choice by pass a reference to the claim to the `--service-ref`
    flag of the `tanzu apps workload create` command. For example:
 
-   ```console
-   tanzu apps workload create my-workload --image my-registry/my-app-image --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1
-   ```
+    ```console
+    tanzu apps workload create my-workload --image my-registry/my-app-image --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1
+    ```
 
-   You must pass the claim reference with a corresponding name that follows the format
-   `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1`.
-   The `db=` prefix to this example reference is an arbitrary name for the reference.
+    You must pass the claim reference with a corresponding name that follows the format
+    `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1`.
+    The `db=` prefix to this example reference is an arbitrary name for the reference.
