@@ -1,8 +1,8 @@
 # API documentation plug-in in Tanzu Application Platform GUI
 
-This topic gives an overview of the API documentation plug-in of Tanzu Application Platform GUI.
-For more information, see
-[Getting started with API documentation plug-in](api-docs-getting-started.hbs.md).
+This topic gives you an overview of the API documentation plug-in of Tanzu Application Platform GUI
+(commonly called TAP GUI). For more information, see
+[Get started with the API documentation plug-in](api-docs-getting-started.hbs.md).
 
 ## <a id="overview"></a> Overview
 
