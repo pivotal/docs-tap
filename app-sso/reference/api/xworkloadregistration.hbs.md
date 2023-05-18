@@ -9,7 +9,7 @@ API between Services Toolkit, Crossplane and AppSSO.
 
 In most cases, when creating a `ClassClaim` for an AppSSO service offering, 
 for example, [ClusterWorkloadRegistrationClass](clusterworkloadregistrationclass.hbs.md), 
-Services Toolkit creates an `XWorkloadRegistration`. By using a`Composition`, 
+Services Toolkit creates an `XWorkloadRegistration`. By using a `Composition`, 
 the `XWorkloadRegistration` is reconciled into a
 `WorkloadRegistration` with Crossplane's `provider-kubernete`'s `Object` as
 an intermediary.
