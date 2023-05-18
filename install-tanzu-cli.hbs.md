@@ -145,8 +145,6 @@ Linux or macOS
       tanzu completion --help
       ```
 
-   Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
-
 Windows
 : Complete the following steps:
 
@@ -200,8 +198,6 @@ Windows
        version: v{{ vars.tanzu-cli.version }}
        ...
        ```
-
-   13. Proceed to [Install/Update Tanzu CLI plug-ins](#tanzu-cli-plug-ins).
 
 ## <a id='cli-plugin-install'></a>Install or Update Tanzu CLI plug-ins
 
