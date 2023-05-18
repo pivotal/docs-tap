@@ -1,51 +1,51 @@
 # ClusterWorkloadRegistrationClass
 
 `ClusterWorkloadRegistrationClass` represents the request to expose an
-`AuthServer` as a claimable service offering. It is cluster-scoped. Its short
-name is `cwrc`.
+`AuthServer` as a claimable service offering. It is cluster-scoped and is 
+identified by its short name `cwrc`.
 
-It receives a free-form description which explains the offering to those which
-discover it with the `tanzu` CLI. It also receives a "base"
-`WorkloadRegistration` stanza.
+`ClusterWorkloadRegistrationClass` receives a free-form description which explains 
+the offering to those which discover it with the `tanzu` CLI. It also receives a 
+base `WorkloadRegistration` section.
 
-It reconciles into a _Crossplane_ `Composition` and a _Services Toolkit_
-`ClusterInstanceClass`.
+`ClusterWorkloadRegistrationClass` reconciles into a Crossplane `Composition` and 
+a Services Toolkit `ClusterInstanceClass`.
 
 The `Composition` defines how to create a `WorkloadRegistration` for an
 `AuthServer`. The `Composition` is for the composite resource
-`XWorkloadRegistration`. It relies on Crossplane's _provider-kubernetes_.
+`XWorkloadRegistration`. It relies on Crossplane's provider-kubernetes.
 
 The `ClusterInstanceClass` is applied with its description and a selector for
-the `Composition`. Instances of this class are claimed via _Services Toolkit_'s
-`ClassClaim`. See [claims](#claims).
+the `Composition`. Instances of this class are claimed by using Services Toolkit's
+`ClassClaim`. For more information, see [claims](#claims).
 
 The available parameters of the `ClusterInstanceClass` are those of
-`XWorkloadRegistration`. Refer to the [XWorkloadRegistration's API
-reference](./xworkloadregistration.hbs.md) for details on its fields.
+`XWorkloadRegistration`. For more information about the fields, see 
+[XWorkloadRegistration](xworkloadregistration.hbs.md).
 
-The base `WorkloadRegistration` stanza is the blueprint for claims to this
-class. It is the base `Object` for the `Composition`. This base gets patched
-with the parameters from claims. Setting fields on the base will set the fields
+The base `WorkloadRegistration` section is the blueprint for claims to this
+class. It is the base `Object` for the `Composition`. This base is patched
+with the parameters from claims. Setting fields on the base sets the fields
 on all claimed `WorkloadRegistration`. This is how they can match a certain
 `AuthServer`, or have labels and annotations.
 
-The base is a partial projection of `WorkloadRegistration`'s spec. It is
+The base is a partial projection of `WorkloadRegistration`'s specification. It is
 limited to the fields `metadata.labels`, `metadata.annotations`,
-`spec.workloadDomainTemplate` and `spec.authServerSelector`. Refer to the
-[WorkloadRegistration's API reference](./workloadregistration.hbs.md) for
-details on its fields.
+`spec.workloadDomainTemplate` and `spec.authServerSelector`. 
+For more information about the fields, see 
+[WorkloadRegistration](workloadregistration.hbs.md).
 
-Once created the offering can be discovered with the `tanzu` CLI:
+After the offering is created, you can discover it with the `tanzu` CLI:
 
-```
+```concole
 ❯ tanzu services classes list
   NAME     DESCRIPTION
   <name>   <description>
 ```
 
-The service's parameters can also be discovered with the `tanzu` CLI:
+You can also discover the service's parameters with the `tanzu` CLI:
 
-```
+```concole
 ❯ tanzu services classes get <name>
 NAME:           <name>
 DESCRIPTION:    <description>
@@ -61,15 +61,14 @@ PARAMETERS:
   workloadRef.name            [...]        string   <nil>                 true
 ```
 
-`ClusterWorkloadRegistrationClass` aggregates the readiness of its children.
-
-It will not become ready until its base's `authServerSelector` uniquely selects
-an `AuthServer`. When an `AuthServer` is matched its reference is written to
+`ClusterWorkloadRegistrationClass` aggregates the readiness of its children. 
+It is not ready until its base's `authServerSelector` uniquely selects
+an `AuthServer`. When an `AuthServer` is matched, its reference is written to
 the status.
 
 The `Composition` label selector is written to the status.
 
-## Spec
+## <a id="spec"></a> Specification
 
 ```yaml
 ---
@@ -127,9 +126,9 @@ Alternatively, you can interactively discover the API with:
 kubectl explain cwrc
 ```
 
-## Examples
+## <a id="examples"></a> Examples
 
-This is a minimal example which selects an `AuthServer` which is uniquely
+This is a minimal example which selects an `AuthServer` that is uniquely
 identified by the label `sso.apps.tanzu.vmware.com/env=dev`:
 
 ```yaml
@@ -148,10 +147,10 @@ spec:
           sso.apps.tanzu.vmware.com/env: dev
 ```
 
-This is full example which selects an `AuthServer` which is uniquely identified
-by label `sso.apps.tanzu.vmware.com/env=dev`. It sets a custom
-`workloadDomainTemplate` on the base, as well as a label and an annotation. The
-annotation will result in safe and unsafe redirect URI templating.
+This is a full example which selects an `AuthServer` that is uniquely identified
+by the label `sso.apps.tanzu.vmware.com/env=dev`. It sets a custom
+`workloadDomainTemplate` on the base, a label and an annotation. 
+The annotation causes in safe and unsafe redirect URI templating.
 
 ```yaml
 ---
@@ -175,23 +174,22 @@ spec:
           sso.apps.tanzu.vmware.com/env: staging
 ```
 
-## Claims
+## <a id="claims"></a> Claims
 
-Instances of this class are claimed via _Services Toolkit_'s `ClassClaim`.
+Instances of this class are claimed by using Services Toolkit's `ClassClaim`.
 
-The class is identified by name and the client registration's configuration is
-set as its parameters. The "spec" of parameters is the spec of
-[XWorkloadRegistration](./xworkloadregistration.hbs.md).
+The class is identified by its name and the client registration's configuration 
+is set as its parameters. The `spec` of parameters is the specification of
+[XWorkloadRegistration](xworkloadregistration.hbs.md).
 
-For details on the `ClassClaim` API see [its
-reference](../../../services-toolkit/reference/api/clusterinstanceclass-and-classclaim.hbs.md).
+For more information about the `ClassClaim` API, see [ClusterInstanceClass and ClassClaim](../../../services-toolkit/reference/api/clusterinstanceclass-and-classclaim.hbs.md).
 
-> **Note** The propagation time of client credentials to the `ClassClaim` can be up to `120s`.
+You can set the propagation time of client credentials to the `ClassClaim` up to `120s`.
 
-### Spec
+### <a id="claims-spec"></a> Claims specification
 
-This is the spec of a `ClassClaim` for a `ClusterWorkloadRegistrationClass`. It
-is not the spec of the `ClassClaim` API as such.
+This is the specification of a `ClassClaim` for a `ClusterWorkloadRegistrationClass`, 
+not the specification of the `ClassClaim` API.
 
 ```yaml
 ---
@@ -217,11 +215,11 @@ spec:
     requireUserConsent: false #! optional
 ```
 
-### Examples
+### <a id="claims-examples"></a> Claims examples
 
-Assuming there is a claimable AppSSO service offering, say:
+If a claimable AppSSO service offering exists as follows:
 
-```
+```console
 ❯ tanzu services classes list
   NAME               DESCRIPTION
   demo               Single Sign-On Demo
@@ -246,8 +244,7 @@ spec:
       - /redirect/uri/2
 ```
 
-This is a fully-configured example claim for the AppSSO service offering
-`demo`:
+This is a fully-configured example claim for the AppSSO service offering `demo`:
 
 ```yaml
 ---
@@ -279,14 +276,14 @@ spec:
     requireUserConsent: false
 ```
 
-### Updates
+### <a id="claims-updates"></a> Claims updates
 
-`ClassClaim` performs a point-in-time look-up (see
-[here](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md)).
-Therefore, updates to an existing `ClassClaim.spec.parameters` have no effect.
+`ClassClaim` performs a point-in-time look-up, so updates to an existing 
+`ClassClaim.spec.parameters` have no effect. For more information, see 
+[Class claims compared to resource claims](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md).
 
-If you are creating your `ClassClaim` with _kapp_, you can configure it to
-replace the resource instead of updating it when it changed:
+When creating your `ClassClaim` with kapp, you can configure it to replace the 
+resource instead of updating it when it changes:
 
 ```yaml
 ---
