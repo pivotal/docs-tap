@@ -62,16 +62,16 @@ Use the following procedure to create an accelerator based on this Git repositor
     - `GIT-REPOSITORY-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
 2. Refresh Tanzu Application Platform GUI or the Application Accelerator extension in VS Code to
-   reveal the newly published accelerator.
+   reveal the newly published accelerator. It might take a few seconds to refresh the catalog and
+   add an entry for your new accelerator.
 
     ![Screenshot showing the new Simple Accelerator included in Tanzu Application Platform GUI.](../images/new-accelerator-deployed-v1-1.png)
 
-    >**Note** It might take a few seconds to refresh the catalog and add an entry for your new accelerator.
-
-An alternative is to use the Tanzu CLI to create a separate manifest file and apply it to the cluster:
+Alternatively, use the Tanzu CLI to create a separate manifest file and apply it to
+the cluster.
 
 1. Create a `simple-manifest.yaml` file and add the following content, filling in with your Git
-   repository and branch values.
+repository and branch values.
 
     ```yaml
     apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
@@ -89,7 +89,7 @@ An alternative is to use the Tanzu CLI to create a separate manifest file and ap
 2. To apply the `simple-manifest.yaml`, run this command in your terminal in the directory where you
    created this file:
 
-    ```Console
+    ```console
     tanzu accelerator apply -f simple-manifest.yaml
     ```
 
@@ -97,9 +97,7 @@ An alternative is to use the Tanzu CLI to create a separate manifest file and ap
 
 You can publish an accelerator directly from a local directory on your system. This helps when
 authoring accelerators and allows you to avoid having to commit every small change to a remote Git
-repository.
-
->**Note** You can also specify `--interval` so the accelerator is reconciled quicker when VMware
+repository. You can also specify `--interval` so the accelerator is reconciled quicker when VMware
 >push new changes.
 
 ```console
@@ -219,7 +217,7 @@ spec:
 Where `GIT-TAG-VERSION` is the Git tag of the `java-version` fragment. For example, `tap-1.4.0` is a
 valid Git tag for the `java-version` fragment.
 
-To create the fragment (we can save the above manifest in a `java-version.yaml` file) and use:
+To create the fragment, save the above manifest in a `java-version.yaml` file) and run:
 
 ```console
 tanzu accelerator apply -f ./java-version.yaml
