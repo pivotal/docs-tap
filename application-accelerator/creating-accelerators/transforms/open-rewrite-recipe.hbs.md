@@ -3,7 +3,7 @@
 The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https://docs.openrewrite.org/)
 **Recipe** to a set of files and gather the results.
 
->**Note** The following Open Rewrite Recipes are supported:
+The following Open Rewrite Recipes are supported:
 >
 >- [Java recipes](https://docs.openrewrite.org/reference/recipes/java)
 >- [Maven recipes](https://docs.openrewrite.org/reference/recipes/maven)

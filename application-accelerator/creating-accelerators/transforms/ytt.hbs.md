@@ -64,7 +64,7 @@ engine:
   type: YTT
 ```
 
->**Note** To do anything beyond calling YTT, compose YTT into your accelerator flow using merge or chain combinators.
+To do anything beyond calling YTT, compose YTT into your accelerator flow using merge or chain combinators.
 This is exactly the same as composing any other type of transform.
 
 For example, when you want to define some derived symbols as well as merge the results from YTT with results from other parts of your accelerator transform, you can reference this example:
@@ -99,6 +99,6 @@ engine:
   extraArgs: ["'--file-mark'",  "'foo/demo.yml:path=bar/demo.yml'"]
 ```
 
->**Note** The `extraArgs` attribute expects SPEL expressions. Take
+The `extraArgs` attribute expects SPEL expressions. Take
 care to use proper escaping of literal strings using double and single quotes
 (that is, `"'LITERAL-STRING'").
