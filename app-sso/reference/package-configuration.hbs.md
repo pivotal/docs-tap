@@ -1,8 +1,10 @@
 # Package configuration
 
-Most commonly, the AppSSO package installation is configured through TAP's meta
-package installation. The TAP package has a `shared` top-level configuration
-key for sharing common configuration between the packages it installs.
+Most commonly, the Application Single Sign-on (commonly called AppSSO) package 
+installation is configured by using the meta package installation of Tanzu 
+Application Platform (commonly called TAP). 
+The Tanzu Application Platform package has a `shared` top-level configuration key 
+for sharing common configuration between the packages it installs.
 
 AppSSO inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data,
 kubernetes_distribution}` configuration values from Tanzu Application Platform.
