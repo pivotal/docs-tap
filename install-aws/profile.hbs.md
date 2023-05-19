@@ -197,7 +197,7 @@ ceip_policy_disclosed: true
 
 #The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
 
-#Below are the keys which may have default values set, but can be overridden.
+# Below are the keys which may have default values set, but can be overridden.
 
 profile: full # Can take iterate, build, run, view.
 
@@ -240,7 +240,7 @@ tap_gui:
           target: https://GIT-CATALOG-URL/catalog-info.yaml
 
 metadata_store:
-  ns_for_export_app_cert: "MY-DEV-NAMESPACE"
+  ns_for_export_app_cert: "MY-DEV-NAMESPACE" # Verify this namespace is available within your cluster before initiating the Tanzu Application Platform installation.
   app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
 
 scanning:
