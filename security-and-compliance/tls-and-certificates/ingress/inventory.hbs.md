@@ -16,8 +16,8 @@ with ingress.
 Use the following table component's respective ingress
 to help with planning and accounting of TLS certificates:
 
-Package name | Profiles | Has ingress | Ingress purpose | Supports ingress issuer | Supports wildcards | # of ingress | SANs | TLS Documentation
----|---|---|---|---|---|---|---|---|
+Package name | Profiles | Ingress purpose | Supports ingress issuer | Supports wildcards | # of ingress | SANs | TLS Documentation
+---|---|---|---|---|---|---|---|
 
 api-portal.tanzu.vmware.com | full, view | Serves the API portal | |  | `1` | `api-portal.<ingress-domain>` (configurable) | [docs](../../../api-portal/about.hbs.md)
 cnrs.tanzu.vmware.com | full, light, iterate, run | Instances of Knative's `Service` have ingress | ✅ | ✅ | `# of Services` | SANs depend on the component's `domain_template` (configurable) | [docs](../../../cloud-native-runtimes/about.hbs.md)
