@@ -1,14 +1,7 @@
 # View resources on remote EKS clusters
 
-To add access-controlled visibility for a remote EKS cluster:
-
-1. Set up the OIDC provider
-2. Configure the EKS cluster with the OIDC provider
-3. Configure the Tanzu Application Platform GUI to view the remote EKS cluster
-4. Upgrade the Tanzu Application Platform GUI package
-
-After these steps are complete, you can view your runtime resources on a remote EKS cluster in
-Tanzu Application Platform GUI. For more information, see
+This topic tells you how to view your runtime resources on a remote EKS cluster in
+Tanzu Application Platform GUI (commonly called TAP GUI). For more information, see
 [View runtime resources on remote clusters](view-resources-rbac.md).
 
 ## <a id="set-up-oidc-provider"></a> Set up the OIDC provider
