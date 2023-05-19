@@ -1,8 +1,8 @@
 # View runtime resources on authorization-enabled clusters
 
-To visualize runtime resources on authorization-enabled clusters in Tanzu Application Platform GUI,
-proceed to the software catalog **Component** of choice and click the **Runtime Resources** tab
-at the top of the ribbon.
+To visualize runtime resources on authorization-enabled clusters in Tanzu Application Platform GUI
+(commonly called TAP GUI), proceed to the software catalog **Component** of choice and click the
+**Runtime Resources** tab at the top of the ribbon.
 
 ![Screenshot of Runtime Resources.](../images/tap-gui-multiple-clusters.png)
 

@@ -1,7 +1,7 @@
 # View resources on remote GKE clusters
 
-This section describes how to use Google Auth to add access-controlled visibility for a remote
-GKE cluster.
+This topic tells you how to use Google Auth to add access-controlled visibility for a remote GKE
+cluster.
 
 After the authorization is enabled, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI. For more information, see
