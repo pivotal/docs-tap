@@ -1,6 +1,7 @@
 # View resources on remote GKE clusters
 
-This section describes two supported options to add access-controlled visibility for a remote GKE cluster:
+This topic tells you about two supported options to add access-controlled visibility for a remote GKE
+cluster:
 
 - [Leverage an external OIDC provider](#external-oidc-provider)
 - [Leveraging Google's OIDC provider](#google-oidc-provider)
