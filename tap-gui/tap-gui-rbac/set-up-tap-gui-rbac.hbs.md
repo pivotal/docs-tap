@@ -1,9 +1,9 @@
 # View resources on remote clusters
 
-You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
-on user roles and permissions for each of the visible remote clusters.
-Role-based Access Control (RBAC) is currently supported for the following Kubernetes cluster
-providers:
+You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI
+(commonly called TAP GUI) based on user roles and permissions for each of the visible remote clusters.
+
+RBAC is currently supported for the following Kubernetes cluster providers:
 
 - [EKS](set-up-tap-gui-rbac-eks.html) (Elastic Kubernetes Service) on AWS
 - [GKE](set-up-tap-gui-rbac-gke.html) (Google Kubernetes Engine) on GCP

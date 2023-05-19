@@ -1,6 +1,6 @@
 # Assigning roles and permissions on Kubernetes clusters
 
-This topic gives an overview of creating roles and permissions on Kubernetes clusters
+This topic gives you an overview of creating roles and permissions on Kubernetes clusters
 and assigning these roles to users. For more information, see
 [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) in the
 Kubernetes documentation.
