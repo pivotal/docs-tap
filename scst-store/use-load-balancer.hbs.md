@@ -2,7 +2,7 @@
 
 This topic describes how to use your LoadBalancer with Supply Chain Security Tools (SCST) - Store. 
 
-## Overview
+## Configure LoadBalancer
 
 >**Note** `LoadBalancer` is not the recommended service type.
 >Consider the recommended configuration of enabling
@@ -25,8 +25,7 @@ echo "$METADATA_STORE_IP $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev
 >**Note** On EKS, you must get the IP address for the LoadBalancer. Find the IP
 >address by running something similar to the following: `dig
 >RANDOM-SHA.us-east-2.elb.amazonaws.com`
-
-Where `RANDOM-SHA` is the EXTERNAL-IP received for the LoadBalancer. 
+>Where `RANDOM-SHA` is the EXTERNAL-IP received for the LoadBalancer. 
 
 Select one of the IP addresses returned from the `dig` command and write it to the
 `/etc/hosts` file.
