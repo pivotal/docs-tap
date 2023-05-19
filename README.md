@@ -56,7 +56,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | Tanzu Application Platform GUI | Not Tanzu Application Platform Graphical User Interface, nor TAP GUI, nor TAP UI, etc. Also not "the Tanzu Application Platform GUI" because Tanzu Application Platform GUI is considered a product name. |
 | Tanzu Kubernetes Grid | Never use TKGm or TKG in customer facing documentation. |
 | TAP repo bundle | Decided on lowercase and not "TAP Repo Bundle".|
-| TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
+| TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) Changed from TAP to Tanzu Application Platform, Sept 24, 2021.|
 | .yaml and YAML file | Standardize on using the "a", not `.yml` |
 
