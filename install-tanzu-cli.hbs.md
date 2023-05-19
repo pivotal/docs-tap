@@ -83,123 +83,119 @@ To install the Tanzu CLI and plug-ins:
    Tanzu CLI and associated plug-ins and files.
    For more information, see [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli).
 
-For Windows installation instructions, see [Install Tanzu CLI: Windows](#install-tanzu-cli-windows).
+Linux or macOS
+: Complete the following steps:
 
-### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
+   1. Create a `$HOME/tanzu` directory on your local machine.
+   2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
 
-1. Create a `$HOME/tanzu` directory on your local machine.
-2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
+      - **For Linux:**
 
-   - **For Linux:**
+        ```console
+        tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
+        ```
 
-     ```console
-     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
-     ```
+      - **For macOS:**
 
-   - **For macOS:**
+        ```console
+        tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
+        ```
 
-     ```console
-     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
-     ```
+   3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
+      versions of the CLI core and plug-ins are installed:
 
-3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
-   versions of the CLI core and plug-ins are installed:
+       ```console
+       export TANZU_CLI_NO_INIT=true
+       ```
 
-    ```console
-    export TANZU_CLI_NO_INIT=true
-    ```
+   4. Install or update the CLI core by running:
 
-4. Install or update the CLI core by running:
+      - **For Linux:**
 
-   - **For Linux:**
+        ```console
+        cd $HOME/tanzu
+        sudo install cli/core/v{{ vars.tanzu-cli.version }}/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+        ```
 
-     ```console
-     cd $HOME/tanzu
-     sudo install cli/core/v{{ vars.tanzu-cli.version }}/tanzu-core-linux_amd64 /usr/local/bin/tanzu
-     ```
+      - **For macOS:**
 
-   - **For macOS:**
+        ```console
+        cd $HOME/tanzu
+        install cli/core/v{{ vars.tanzu-cli.version }}/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+        ```
 
-     ```console
-     cd $HOME/tanzu
-     install cli/core/v{{ vars.tanzu-cli.version }}/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
-     ```
+   5. Confirm the installation by running:
 
-5. Confirm the installation by running:
+       ```console
+       tanzu version
+       ```
 
-    ```console
-    tanzu version
-    ```
+       The outcome is similar to:
 
-    The outcome is similar to:
+       ```console
+       version: v{{ vars.tanzu-cli.version }}
+       ...
+       ```
 
-    ```console
-    version: v{{ vars.tanzu-cli.version }}
-    ...
-    ```
+   6. (Optional) Enable tab completion. Follow the shell-specific instructions from completion help:
 
-6. (Optional) Enable tab completion. Follow the shell-specific instructions from completion help:
+      ```console
+      tanzu completion --help
+      ```
 
-   ```console
-   tanzu completion --help
-   ```
+Windows
+: Complete the following steps:
 
-Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
+   1. Open the Windows file browser.
 
-### <a id='install-tanzu-cli-windows'></a> Install Tanzu CLI: Windows
+   2. Create a `Program Files\tanzu` directory on your local machine.
 
-1. Open the Windows file browser.
+   3. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select
+      the **Extract All...** menu item, enter `C:\Program files\tanzu` in the
+      **Files are extracted to this directory:** text box, and click the **Extract**.
 
-2. Create a `Program Files\tanzu` directory on your local machine.
+   4. From the `Program Files\tanzu` directory, move and rename the executable file from:
 
-3. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select
-   the **Extract All...** menu item, enter `C:\Program files\tanzu` in the
-   **Files are extracted to this directory:** text box, and click the **Extract**.
+       ```console
+       Program Files\tanzu\cli\core\v{{ vars.tanzu-cli.version }}\tanzu-core-windows_amd64.exe
+       ```
 
-4. From the `Program Files\tanzu` directory, move and rename the executable file from:
+       to
 
-    ```console
-    Program Files\tanzu\cli\core\v{{ vars.tanzu-cli.version }}\tanzu-core-windows_amd64.exe
-    ```
+       ```console
+       Program Files\tanzu\tanzu.exe
+       ```
 
-    to
+   5. From the `Program Files` directory, right-click the `tanzu` directory and select **Properties > Security**.
 
-    ```console
-    Program Files\tanzu\tanzu.exe
-    ```
+   6. Ensure that your user account has the **Full Control** permission.
 
-5. From the `Program Files` directory, right-click the `tanzu` directory and select **Properties > Security**.
+   7. Use Windows Search to search for `env`, select **Edit the system environment variables**, click
+      **Environment Variables** on the bottom right of the dialog box.
 
-6. Ensure that your user account has the **Full Control** permission.
+   8. Find and select the **Path** row under **System variables**, click **Edit**.
 
-7. Use Windows Search to search for `env`, select **Edit the system environment variables**, click
-   **Environment Variables** on the bottom right of the dialog box.
+   9. Click **New**, enter the path value, click **OK**.
 
-8. Find and select the **Path** row under **System variables**, click **Edit**.
+       >**Note:** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
 
-9. Click **New**, enter the path value, click **OK**.
+   10. Click **New** following the **System Variables** section, add a new environmental variable named
+       `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
 
-    >**Note:** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
+   11. Use Windows Search to search for `cmd`, select **Command Prompt** to open the command line terminal.
 
-10. Click **New** following the **System Variables** section, add a new environmental variable named
-    `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
+   12. Verify the Tanzu CLI installation by running:
 
-11. Use Windows Search to search for `cmd`, select **Command Prompt** to open the command line terminal.
+       ```console
+       tanzu version
+       ```
 
-12. Verify the Tanzu CLI installation by running:
+       Expected outcome:
 
-    ```console
-    tanzu version
-    ```
-
-    Expected outcome:
-
-    ```console
-    version: v{{ vars.tanzu-cli.version }}
-    ...
-    ```
-
-13. Proceed to [Install/Update Tanzu CLI plug-ins](#tanzu-cli-plug-ins)
+       ```console
+       version: v{{ vars.tanzu-cli.version }}
+       ...
+       ```
 
 ## <a id='cli-plugin-install'></a>Install or Update Tanzu CLI plug-ins
 
