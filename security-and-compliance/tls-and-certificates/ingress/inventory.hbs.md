@@ -18,7 +18,6 @@ to help with planning and accounting of TLS certificates:
 
 Package name | Profiles | Ingress purpose | Supports ingress issuer | Supports wildcards | # of ingress | SANs | TLS Documentation
 ---|---|---|---|---|---|---|---|
-
 api-portal.tanzu.vmware.com | full, view | Serves the API portal | |  | `1` | `api-portal.<ingress-domain>` (configurable) | [docs](../../../api-portal/about.hbs.md)
 cnrs.tanzu.vmware.com | full, light, iterate, run | Instances of Knative's `Service` have ingress | ✅ | ✅ | `# of Services` | SANs depend on the component's `domain_template` (configurable) | [docs](../../../cloud-native-runtimes/about.hbs.md)
 learningcenter.tanzu.vmware.com | full, view | Instances [TrainingPortal](../../../learning-center/runtime-environment/training-portal.hbs.md) have ingress **only** supports wildcards| | `# of TrainingPortal` | `<training-portal>.learningcenter.<ingress-domain>` (configurable) | [docs](../../../learning-center/install-learning-center.hbs.md) |
@@ -26,6 +25,7 @@ metadata-store.apps.tanzu.vmware.com | full, view | Serves the Supply Chain Secu
 spring-cloud-gateway.tanzu.vmware.com | Instances of [SpringCloudGateway](../../../spring-cloud-gateway/about.hbs.md) have ingress | | ✅ | `# of SpringCloudGateway` | configurable | [docs](../../../spring-cloud-gateway/about.hbs.md) |
 sso.apps.tanzu.vmware.com | iterate, run, full | Instances of [AuthServer](../../../app-sso/service-operators/index.hbs.md) have ingress | ✅ | ✅ | `# of AuthServer` | SANs depend on the component's `domain_template` | [docs](../../../app-sso/service-operators/issuer-uri-and-tls.hbs.md)
 tap-gui.tanzu.vmware.com | full, light, view | Serves the platform-internal developer and service portal | ✅ | ✅ | `1` | `tap-gui.<ingress-domain>` (configurable) | [docs](../../../tap-gui/tls/overview.hbs.md)
+
 
 <br>
 
