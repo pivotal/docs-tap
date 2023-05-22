@@ -3,7 +3,7 @@
 This is the table of contents from which the Tanzu Application Platform Documentation site on
 docs.vmware.com is built.
 
-- [Tanzu Application Platform v1.6](overview.hbs.md)
+- [Tanzu Application Platform v{{ vars.url_version }}](overview.hbs.md)
 - [Release notes](release-notes.hbs.md)
 - [Components and installation profiles](about-package-profiles.hbs.md)
 - [Installation](install-intro.hbs.md)
