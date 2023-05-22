@@ -25,7 +25,7 @@ For example, you may forgo the namespace in the Issuer URI like so:
 {{{{raw}}}}
 
 ```yaml
-domain_template: "{{.Name}}.{{.Domain}}"
+domain_template: "\{{.Name}}.\{{.Domain}}"
 ```
 
 {{{{/raw}}}}

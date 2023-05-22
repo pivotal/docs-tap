@@ -20,5 +20,5 @@ It's easy to get started with AppSSO, deploy an authorization server with static
 multiple authorization servers of production-grade scale with token key rotation, multiple upstream identity providers,
 and client restrictions.
 
-AppSSO's authorization server is based off of Spring Authorization Server project. 
+AppSSO's authorization server is based off of Spring Authorization Server project.
 For more information, see [Spring documentation](https://spring.io/projects/spring-authorization-server).
