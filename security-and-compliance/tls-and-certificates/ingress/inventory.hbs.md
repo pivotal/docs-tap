@@ -1,19 +1,19 @@
 # Ingress certificates inventory
 
 The effective number of ingress endpoints can vary widely, depending on the
-installation profile, excluded packages and end-user facing resources, for example,
+installation profile, excluded packages, and end-user-facing resources, for example,
 `Workload`, and `AuthServer`. As a result, the number of TLS certificates is not
-fixed but a function of the platform's configuration and tenancy.
+fixed but is a function of the platform's configuration and tenancy.
 
-Tanzu Application Platform's components can be categorized into those which don't have ingress
-endpoints and those which do. The latter further break down into those which
+Components are categorized into those which don't have ingress
+endpoints and those which do. The latter further breaks down into those which
 have a fixed number of ingress endpoints and those which offer Kubernetes APIs
 with ingress.
 
 >**Note** The lowercase "ingress" refers to any resource which facilitates
 >ingress, for example, core `Ingress` and Contour's `HTTPProxy`.
 
-Use the following table to help with planning and accounting of TLS certificates. For a full list of
+Use the following table to help with the planning and accounting of TLS certificates. For a full list of
 components and the profiles supported for each component, see
 [About Tanzu Application Platform components and profiles](../../../about-package-profiles.hbs.md#profiles-and-packages).
 
@@ -29,7 +29,7 @@ Package name | Ingress purpose | Supports ingress issuer | Supports wildcards | 
 
 *The SANs is configurable for components in the following two ways:
 
-- components which install a single ingress resource in the form of <component>.<domain_name>, for example, TAP GUI
-- components which install an ingress resource per API instance which gets templated from a `domain_template` feeding <domain_name>, for example `cnrs.tanzu.vmware.com` and `sso.apps.tanzu.vmware.com`
+- components that install a single ingress resource in the form of <component>.<domain_name>, for example, TAP GUI
+- components that install an ingress resource per API instance that gets templated from a `domain_template` feeding <domain_name>, for example, `cnrs.tanzu.vmware.com` and `sso.apps.tanzu.vmware.com`
 
 ** Only supports wildcards
