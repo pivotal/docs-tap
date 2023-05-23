@@ -34,47 +34,55 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-flux-sc'></a> FluxCD Source Controller
 
-Flux Source Controller *v0.36.1-build.2* release brings several API changes we want to highlight here.
+Flux Source Controller v0.36.1-build.2 release includes the following API changes:
 
 - `GitRepository` API
 
-  - Field `spec.ref.name` is the reference value for git check out. It takes precedence over Branch,
-  Tag and SemVer. It must be a valid 
-  [Git reference](https://git-scm.com/docs/git-check-ref-format#_description). 
-  Examples: 
-    - "refs/heads/main" 
-    - "refs/tags/v0.1.0"
-    - "refs/pull/420/head"
-    - "refs/merge-requests/1/head".
-  - Field `status.artifact.digest` represents the value of the file in the form of `<algorithm>:<checksum>`.
-  - Field `status.observedIgnore` represents the latest `spec.ignore` value. It indicates the ignore
-  rules used in building the current artifact in storage.
-  - Field `status.observedRecurseSubmodules` represents the latest `spec.recurseSubmodules` value 
-  during the latest reconciliation.
-  - Field `status.observedInclude` represent the list of `GitRepository` resources used to produce
-  the current artifact.
+    - `spec.ref.name` is the reference value for Git checkout. It takes precedence over Branch,
+    Tag and SemVer, It must be a valid 
+    [Git reference](https://git-scm.com/docs/git-check-ref-format#_description).
+
+        Examples:
+
+        - `"refs/heads/main"`
+        - `"refs/tags/v0.1.0"`
+        - `"refs/pull/420/head"`
+        - `"refs/merge-requests/1/head"`
+
+    - `status.artifact.digest` represents the value of the file in the form of `ALGORITHM:CHECKSUM`.
+    - `status.observedIgnore` represents the latest `spec.ignore` value. It indicates the ignore
+    rules for building the current artifact in storage.
+    - `status.observedRecurseSubmodules` represents the latest `spec.recurseSubmodules` value 
+    during the latest reconciliation.
+    - `status.observedInclude` represents the list of `GitRepository` resources that produces
+    the current artifact.
 
 - `OCIRepository` API
-  - Field `spec.layerSelector` specifies which layer should be extracted from an OCI Artifact.
-  This field is optional and defaults to extracting the first layer in the artifact.
-  - Field `spec.verify` contains the secret name containing the trusted public keys used to verify
-  the signature and specifies which provider to use to check whether OCI image is authentic.
-  - Field `spec.insecure` allows connecting to a non-TLS HTTP container registry.
+
+    - `spec.layerSelector` specifies which layer is extracted from an OCI Artifact.
+    This field is optional and set to extracting the first layer in the artifact by default.
+    - `spec.verify` includes the secret name that holds the trusted public keys for signature verification.
+    It also indicates the provider responsible for validating the authenticity of the OCI image.
+    - `spec.insecure` enables connections to a non-TLS HTTP container image registry.
 
 - `HelmChart` API
-  - Added new field `spec.verify`. It contains the secret name containing the trusted public keys
-  used to verify the signature and specifies which provider to use to check whether OCI image is
-  authentic. This field is only supported when using HelmRepository source with `spec.type` *oci*.
-  Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.
+
+    - Add the new field `spec.verify`, which includes the secret name that holds 
+    the trusted public keys for signature verification. 
+    It also indicates the provider responsible for validating the authenticity of the OCI image. 
+    This field is only supported when using the HelmRepository source with the `spec.type` OCI.
+    Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.
 
 - `HelmRepository` API
-  - Added new field `spec.provider`. It is used for authentication purposes. Supported values are 
-  `aws, azure, gcp or generic`.
-  Default is `generic`. This field is only taken into account if the `.spec.type` field is set to *oci*
+
+    - Add the new field `spec.provider` for authentication purposes. Supported values are 
+    `aws`, `azure`, `gcp` or `generic`.
+    `generic` is its default value. This field is only required when the `.spec.type` field is set to `oci`
 
 - `Bucket` API
-  - Added new field `status.observedIgnore`. It represents the latest `spec.ignore` value.
-  It indicates the ignore rules used in building the current artifact in storage.
+
+    - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
+    It indicates the ignore rules for building the current artifact in storage.
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
@@ -99,9 +107,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
 
-- `GitRepository` resource status field `status.artifact.revision` value format changed
-from `<branch>/<checksum>` to `<branch>@sha1:<checksum>`. 
-  - Example `main/6db88c7a7e7dec1843809b058195b68480c4c12a` to `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
+- The format of the `status.artifact.revision` value in the `GitRepository` resource's 
+  status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
+    - Example: `main/6db88c7a7e7dec1843809b058195b68480c4c12a` to `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
 
 ---
 
@@ -202,20 +210,19 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - `GitRepository` API
 
-  - Field `spec.gitImplementation` is deprecated.
-  GitImplementation specifies which Git client library implementation to use.
-  `go-git` is the default and only supported implementation, `libgit2`
-  is no longer supported.
-  - Field `spec.accessFrom` is deprecated. AccessFrom specifies an Access Control List for allowing
-  cross-namespace references to this object. It was never implemented.
-  - Field `status.contentConfigChecksum` is deprecated in favor of explicit fields defined in the 
-  observed artifact content config in the status.
-  - Field `status.artifact.checksum` is deprecated in favor of the `status.artifact.digest`.
-  - Field `status.url` is deprecated in favor of the `status.artifact.url`.
+    - `spec.gitImplementation` is deprecated.
+    `GitImplementation` defines the Git client library implementation.
+    `go-git` is the default and only supported implementation. `libgit2`
+    is no longer supported.
+    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access 
+    Control List for enabling cross-namespace references to this object, was never 
+    implemented.
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
+    defined in the observed artifact content config within the status.
+    - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
+    - `status.url` is deprecated in favor of `status.artifact.url`.
 
 - `OCIRepository` API
 
-  - Field `status.contentConfigChecksum` is deprecated in favor of explicit fields defined in the
-  observed artifact content config in the status.
-
-
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
+    defined in the observed artifact content config within the status.
