@@ -26,7 +26,7 @@ external IP address of the `metadata-store-app` service.
 
     >**Note** On EKS, you must get the IP address for the LoadBalancer. Find the IP
     >address by running something similar to the following: `dig
-    >RANDOM-SHA.us-east-2.elb.amazonaws.com`
+    >RANDOM-SHA.us-east-2.elb.amazonaws.com`.
     >Where `RANDOM-SHA` is the EXTERNAL-IP received for the LoadBalancer. 
 
 1. Select one of the IP addresses returned from the `dig` command and write it to the
