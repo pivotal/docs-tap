@@ -179,7 +179,7 @@ To configure the service account to work with private Git repositories, follow t
 
 1. Create a secret in the `tap-install` namespace or any namespace of your preference, that contains the Git credentials in the YAML format.
 
-   - `host`, `username` and `password` values for HTTP based Git Authentication.
+   - `host`, `username` and `token` values for HTTP based Git Authentication.
    - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
     >**Note** stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
@@ -222,7 +222,7 @@ To configure the service account to work with private Git repositories, follow t
             #! For SSH Auth
             ssh_privatekey: SSH-PRIVATE-KEY
             identity: SSH-PRIVATE-KEY
-            dentity_pub: SSH-PUBLIC-KEY
+            identity_pub: SSH-PUBLIC-KEY
             known_hosts: GIT-SERVER-PUBLIC-KEYS
       EOF
       ```
