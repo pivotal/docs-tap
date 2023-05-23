@@ -24,6 +24,11 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-5-2-scst-scan-ri'></a> Supply Chain Security Tools (SCST) - Scan
+
+- Old `TaskRuns` associated with scans are now being deleted to reduce memory consumption.
+- Added support for `ConfigMaps` in custom `ScanTemplates`.
+
 ---
 
 ### <a id='1-5-2-known-issues'></a> Known issues
@@ -166,6 +171,14 @@ This release has the following known issues, listed by component and area.
   keyless access to ECR through AWS IAM role binding fails to authenticate (error code: 401).
   The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
   to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
+
+#### <a id='1-5-1-scst-scan-ki'></a> Supply Chain Security Tools (SCST) - Scan
+
+- `TaskRuns` associated with scans are kept during the lifetime of the owner scan. This can lead to Out of Memory restart problems in the SCST - Scan controller.
+- `ConfigMaps` used in `ScanTemplates` are not supported, wether introduced by overlays or in a custom `ScanTemplate`. This is the error message you will see:
+    ```
+    The scan job could not be created. admission webhook "validation.webhook.pipeline.tekton.dev" denied the request: validation failed: expected exactly one, got neither: spec.workspaces[5].configmap, spec.workspaces[5].emptydir, spec.workspaces[5].persistentvolumeclaim, spec.workspaces[5].secret, spec.workspaces[5].volumeclaimtemplate
+    ```
 
 ---
 
