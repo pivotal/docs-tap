@@ -86,16 +86,15 @@ If you are using Gradle, review the following requirements:
 
     ```starlark
         ...
-        deps=['build.gradle.kts', './build/classes/java/main', './build/resources/main'],
+        deps=['build.gradle.kts', './bin/main'],
         live_update=[
-           sync('./build/classes/java/main', '/workspace/BOOT-INF/classes'),
-           sync('./build/resources/main', '/workspace/BOOT-INF/classes')
+            sync('./bin/main', '/workspace/BOOT-INF/classes')
         ]
         ...
     ```
 
 - The project must be built as an exploded JAR. This is not the default behavior for a Gradle-based build.
-  For a typical Spring Boot Gradle project you must deactivate the `jar` task in the `build.gradle.kts`
+  For a typical Spring Boot Gradle project, you must deactivate the `jar` task in the `build.gradle.kts`
   file as follows:
 
     ```kotlin
