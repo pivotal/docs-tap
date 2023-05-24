@@ -65,37 +65,37 @@ To create the CompositeResourceDefinition (XRD):
     apiVersion: apiextensions.crossplane.io/v1
     kind: CompositeResourceDefinition
     metadata:
-    name: xpostgresqlinstances.database.rds.example.org
+      name: xpostgresqlinstances.database.rds.example.org
     spec:
-    claimNames:
-      kind: PostgreSQLInstance
-      plural: postgresqlinstances
-    connectionSecretKeys:
-    - type
-    - provider
-    - host
-    - port
-    - database
-    - username
-    - password
-    group: database.rds.example.org
-    names:
-      kind: XPostgreSQLInstance
-      plural: xpostgresqlinstances
-    versions:
-    - name: v1alpha1
-      referenceable: true
-      schema:
-        openAPIV3Schema:
-          properties:
-            spec:
-              properties:
-                storageGB:
-                  type: integer
-                  default: 20
-              type: object
-          type: object
-      served: true
+      claimNames:
+        kind: PostgreSQLInstance
+        plural: postgresqlinstances
+      connectionSecretKeys:
+      - type
+      - provider
+      - host
+      - port
+      - database
+      - username
+      - password
+      group: database.rds.example.org
+      names:
+        kind: XPostgreSQLInstance
+        plural: xpostgresqlinstances
+      versions:
+      - name: v1alpha1
+        referenceable: true
+        schema:
+          openAPIV3Schema:
+            properties:
+              spec:
+                properties:
+                  storageGB:
+                    type: integer
+                    default: 20
+                type: object
+            type: object
+        served: true
     ```
 
     This XRD configures the parameter `storageGB`. This gives application teams the option to choose
@@ -122,58 +122,58 @@ To create the composition:
     apiVersion: apiextensions.crossplane.io/v1
     kind: Composition
     metadata:
-    labels:
-      provider: "aws"
-      vpc: "default"
-    name: xpostgresqlinstances.database.rds.example.org
+      labels:
+        provider: "aws"
+        vpc: "default"
+      name: xpostgresqlinstances.database.rds.example.org
     spec:
-    compositeTypeRef:
-      apiVersion: database.rds.example.org/v1alpha1
-      kind: XPostgreSQLInstance
-    publishConnectionDetailsWithStoreConfigRef:
-      name: default
-    resources:
-    - base:
-        apiVersion: database.aws.crossplane.io/v1beta1
-        kind: RDSInstance
-        spec:
-          forProvider:
-            # NOTE: configure this section to your specific requirements
-            dbInstanceClass: db.t2.micro
-            engine: postgres
-            dbName: postgres
-            engineVersion: "12"
-            masterUsername: masteruser
-            publiclyAccessible: true                # <---- DANGER
-            region: us-east-1
-            skipFinalSnapshotBeforeDeletion: true
-          writeConnectionSecretToRef:
-            namespace: crossplane-system
-      connectionDetails:
-      - name: type
-        value: postgresql
-      - name: provider
-        value: aws
-      - name: database
-        value: postgres
-      - fromConnectionSecretKey: username
-      - fromConnectionSecretKey: password
-      - name: host
-        fromConnectionSecretKey: endpoint
-      - fromConnectionSecretKey: port
-      name: rdsinstance
-      patches:
-      - fromFieldPath: metadata.uid
-        toFieldPath: spec.writeConnectionSecretToRef.name
-        transforms:
-        - string:
-            fmt: '%s-postgresql'
-            type: Format
-          type: string
-        type: FromCompositeFieldPath
-      - fromFieldPath: spec.storageGB
-        toFieldPath: spec.forProvider.allocatedStorage
-        type: FromCompositeFieldPath
+      compositeTypeRef:
+        apiVersion: database.rds.example.org/v1alpha1
+        kind: XPostgreSQLInstance
+      publishConnectionDetailsWithStoreConfigRef:
+        name: default
+      resources:
+      - base:
+          apiVersion: database.aws.crossplane.io/v1beta1
+          kind: RDSInstance
+          spec:
+            forProvider:
+              # NOTE: configure this section to your specific requirements
+              dbInstanceClass: db.t2.micro
+              engine: postgres
+              dbName: postgres
+              engineVersion: "12"
+              masterUsername: masteruser
+              publiclyAccessible: true                # <---- DANGER
+              region: us-east-1
+              skipFinalSnapshotBeforeDeletion: true
+            writeConnectionSecretToRef:
+              namespace: crossplane-system
+        connectionDetails:
+        - name: type
+          value: postgresql
+        - name: provider
+          value: aws
+        - name: database
+          value: postgres
+        - fromConnectionSecretKey: username
+        - fromConnectionSecretKey: password
+        - name: host
+          fromConnectionSecretKey: endpoint
+        - fromConnectionSecretKey: port
+        name: rdsinstance
+        patches:
+        - fromFieldPath: metadata.uid
+          toFieldPath: spec.writeConnectionSecretToRef.name
+          transforms:
+          - string:
+              fmt: '%s-postgresql'
+              type: Format
+            type: string
+          type: FromCompositeFieldPath
+        - fromFieldPath: spec.storageGB
+          toFieldPath: spec.forProvider.allocatedStorage
+          type: FromCompositeFieldPath
     ```
 
 1. Configure the Composition you just copied to your specific requirements.
