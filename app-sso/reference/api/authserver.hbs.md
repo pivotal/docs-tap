@@ -113,6 +113,9 @@ spec:
             familyName: ""
             email: ""
             emailVerified: false
+            claims: # optional
+              custom_claim: ""
+              another_custom_claim: ""
             roles:
               - ""
         accessToken: # optional
@@ -148,6 +151,10 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
+        idToken: # optional
+          claims:
+            - fromUpstream: ""
+              toClaim: ""
         accessToken: # optional
           scope:
             defaults: # optional
@@ -171,14 +178,16 @@ spec:
           name: ""
         scopes:
           - ""
-        claimMappings: # deprecated, use 'openID.roles.fromUpstream.claim' instead.
-          roles: ""
         roles: # optional
           fromUpstream:
             claim: "" # required
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
+        idToken: # optional
+          claims:
+            - fromUpstream: ""
+              toClaim: ""
         accessToken: # optional
           scope:
             defaults: # optional
@@ -190,13 +199,16 @@ spec:
     - name: "" # must be unique
       saml:
         metadataURI: ""
-        claimMappings: { }
         roles: # optional
           fromUpstream:
             attribute: "" # required
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expressions
+        idToken: # optional
+          claims:
+            - fromUpstream: ""
+              toClaim: ""
         accessToken: # optional
           scope:
             defaults: # optional
@@ -432,6 +444,8 @@ spec:
         users:
           - username: user
             password: password
+            claims:
+              alt_address: "123 Alternate Street"
             roles:
               - message.write
     - name: okta
@@ -448,6 +462,10 @@ spec:
         roles:
           fromUpstream:
             claim: my_custom_okta_roles_claim
+        idToken:
+          claims:
+            - fromUpstream: "alternate_address"
+              toClaim: "alt_address"
         accessToken:
           scope:
             defaults:

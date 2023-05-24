@@ -60,10 +60,10 @@ spec:
         accessToken:
           scope:
             rolesToScopes:
-              - fromRole: "hr"           # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
-                toScopes:                #    Only users with "hr" role can be issued access token with these scopes.
-                  - "hr.read"            # ^^
-                  - "hr.write"           # ^^
+              - fromRole: "hr" # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
+                toScopes:      #    Only users with "hr" role can be issued access token with these scopes.
+                  - "hr.read"  # ^^
+                  - "hr.write" # ^^
 ```
 
 For example, given that a `ClientRegistration` is applied to include `hr.read` or `hr.write`:

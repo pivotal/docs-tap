@@ -1,17 +1,15 @@
 # Identity providers
 
-Users can log in by using external identity providers (IdPs). 
-OpenID Connect and LDAP providers are supported. 
-SAML providers have limited experimental support. 
-An `AuthServer` does not manage users internally.
-Developers can get started quickly without needing to connect to an IdP by using 
-static hard-coded users, which is for development purposes only. 
+Users can log in by using external identity providers (IdPs). OpenID Connect and LDAP providers are supported. SAML 
+providers have limited experimental support. An `AuthServer` does not manage users internally. Developers can get 
+started quickly without needing to connect to an IdP by using static hard-coded users, which is for development purposes 
+only. 
 
 Identity providers are configured under `spec.identityProviders`, learn more
 from [the API reference](../reference/api/authserver.hbs.md).
 
->**Caution** Changes to `spec.identityProviders` do not take effect immediately because the operator will roll out a new deployment
-of the authorization server.
+> **Caution** Changes to `spec.identityProviders` do not take effect immediately because the operator will roll out a new deployment
+> of the authorization server.
 
 End-users will be able to log in with these providers when they go to `{spec.issuerURI}` in their browser.
 
@@ -20,7 +18,11 @@ Learn how to configure identity providers for an `AuthServer`:
 - [OpenID](#openid)
 - [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
-- [Internal, static user](#internal-users)
+- [Internal (unsafe)](#internal-unsafe)
+
+Further identity provider configuration
+
+- [Identity token claims mapping](#id-token-claims-mapping)
 - [Roles claim filtering](#roles-filtering)
 - [Roles claim mapping and filtering explained](#roles-claim-mapping-and-filtering-explained)
 - [Configure authorization](./configure-authorization.md)
@@ -52,6 +54,10 @@ spec:
         roles:
           fromUpstream:
             claim: "my-oidc-provider-groups"
+        idToken:
+          claims:
+            - fromUpstream: ""
+              toClaim: ""
   # ...
 ---
 apiVersion: v1
@@ -65,24 +71,28 @@ stringData:
 
 Where:
 
-- `openID` is the issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, 
-the value of `openID` is used to auto-configure the provider by using information from `https://openid.example.com/.well-known/openid-configuration`.
-- The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match 
-the value of the `issuer` field. See OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration` for more information.
-    >**Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI. 
-- `scopes` is used in the authorization request. Its value must contain `"openid"`. 
-Other common `OpenID` values include `"profile"` and `"email"`.
-You can also run `curl -s "https://openid.example.com/.well-known/openid-configuration" | jq -r ".issuer"` to retrieve the correct `issuerURI` value.
-- The value of `clientSecretRef` must be a `Secret` with the entry `clientSecret`.
-- `authorizationUri` (optional) is the URI for performing an authorization request and obtaining an `authorization_code`.
-- `tokenUri` (optional) is the URI for performing a token request and obtaining a token.
-- `jwksUri` (optional) is the JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token
-  signatures.
-- `roles.fromUpstream.claim` (optional) selects which claim in the `id_token` contains the `roles` of
-  the user. `roles` is a non-standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope,
-  it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`. 
+- `.openID` -- the issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, the value of `openID` is used to auto-configure the provider by using information from `https://openid.example.com/.well-known/openid-configuration`.
+- `.openID.issuerURI` -- the issuer URI. The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match the value of the `issuer` field. See OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration` for more information.
+
+  > **Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI.
+
+  You can also run the following to retrieve the correct `issuerURI` value from the upstream identity provider: 
+
+  ```shell
+  curl -s "https://openid.example.com/.well-known/openid-configuration" | jq -r ".issuer"
+  ```
+
+- `.openID.scopes` -- scopes requested to the issuer. Used in the authorization request. Its value must contain `"openid"`. Other common `openID.scopes` values include `"profile"` and `"email"`.
+- `.openID.clientSecretRef` -- the issuer's client secret; the value of `clientSecretRef` must be a `Secret` with the entry `clientSecret`.
+- `.openID.authorizationUri` (optional) -- the URI for performing an authorization request and obtaining an `authorization_code`.
+- `.openID.tokenUri` (optional) -- the URI for performing a token request and obtaining a token.
+- `.openID.jwksUri` (optional) -- the JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures.
+- `.openID.roles.fromUpstream.claim` (optional) -- selects which claim in the `id_token` contains the `roles` of
+  the user. `roles` is **not** a standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope, it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`. 
   For more information, see [OpenID external groups mapping](#openid-external-groups-mapping).
   - `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in id tokens issued by AppSSO.
+- `.openID.idToken.claims` -- allows for mapping a claim from an upstream identity provider to the current
+  authorization server. See [identity token claims mapping section](#id-token-claims-mapping) for more details.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and select `my-oidc-provider`.
 
@@ -112,8 +122,7 @@ spec:
 > **Caution** Some OpenID providers, such as Okta OpenID, might require requesting the roles or groups scope from the
 > identity provider, as a result, you must include it in the `.openid.scopes` list.
 
-For every [ClientRegistration](../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity
-token will be populated with the `roles` claim:
+For every [ClientRegistration](../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity token will be populated with the `roles` claim:
 
 ```yaml
 kind: ClientRegistration
@@ -185,6 +194,10 @@ spec:
           filterBy:
             - exactMatch: "users"
             - regex: "^admin"
+        idToken:
+          claims:
+            - fromUpstream: ""
+              toClaim: ""
         group: # DEPRECATED, use 'roles' instead
           search:
             filter: member={0}
@@ -205,34 +218,39 @@ stringData:
 
 Where:
 
-- `url` is the URL of the LDAP server. It must be `ldaps` and must contain a port.
-- `bind.dn` is the DN to perform the bind.
-- `bind.passwordRef` must be a secret with the entry `password`. That entry is the password to perform the bind.
-- `user.searchBase` is the branch of tree where the users are located at. Search is performed in nested entries.
-- `user.seachFilter` is the filter for LDAP search. It must contain the string `{0}`, which is replaced
-  by the `dn` of the user when performing a search. For example, when logging in with the username `marie`, the filter for LDAP
-  search is `cn=marie`.
-- `roles` (optional) defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims.
-  If not set, the user has no roles.
-    - `fromUpstream.attribute` selects which attribute of the group entry are mapped to a user role. If an attribute has
-      multiple
-      values, the first value is selected.
-    - `fromUpstream.search`  (optional) toggles "OpenLDAP"-style group search, optionally uses recursive search to find
-      groups for a given user.
-    - `filterBy` (optional) - applied roles claim filters. See [Roles claim filtering section](#roles-filtering) for
-      more details.
-- `group` (DEPRECATED, , use `role` instead, optional) defaults to unset. It configures how LDAP groups are mapped to user roles in
-  the `id_token` claims. If not set, the user has no roles.
-  - `group.roleAttribute` selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
-    values, the first value is selected.
-  - `group.search` (optional) toggles "Active Directory" search and uses recursive search to find groups for a given user.
+- `.ldap.url` -- the URL of the LDAP server. It must be `ldaps` and must contain a port.
+- `.ldap.bind.dn` -- the DN to perform the bind.
+- `.ldap.bind.passwordRef` -- must be a secret with the entry `password`. That entry is the password to perform the bind.
+- `.ldap.user.searchBase` -- the branch of tree where the users are located at. Search is performed in nested entries.
+- `.ldap.user.seachFilter` -- the filter for LDAP search. It must contain the string `{0}`, which is replaced by the `dn` of the user when performing a search. For example, when logging in with the username `marie`, the filter for LDAP search is `cn=marie`.
+- `.ldap.roles` (optional) -- defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims. If not set, the user has no roles.
+- `.ldap.roles.fromUpstream.attribute` -- selects which attribute of the group entry are mapped to a user role. If an attribute has multiple values, the first value is selected.
+- `.ldap.roles.fromUpstream.search` (optional) -- toggles "OpenLDAP"-style group search, optionally uses recursive search to find
+  groups for a given user.
+- `.ldap.roles.filterBy` (optional) -- applies roles claim filters. See [Roles claim filtering section](#roles-filtering) for more details.
+- `.ldap.idToken.claims` -- allows for mapping a claim from an upstream identity provider to the current
+  authorization server. See [identity token claims mapping section](#id-token-claims-mapping) for more details.
+
+  LDAP providers have the following claims mapped by default:
+  
+  | LDAP attribute  | Id token claim |
+  |-----------------|----------------|
+  | givenname       | given_name     |
+  | sn              | family_name    |
+  | cn              | name           |
+  | mail            | email          |
+  | telephonenumber | phone_number   |
+
+- **DEPRECATED** `.ldap.group` (use `.ldap.roles` instead, optional) -- configures how LDAP groups are mapped to user roles in the `id_token` claims. If not set, the user has no roles.
+- **DEPRECATED** `.ldap.group.roleAttribute` -- selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
+  values, the first value is selected.
+- **DEPRECATED** `.ldap.group.search` (optional) -- toggles "Active Directory" search and uses recursive search to find groups for a given user.  
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and log in with the username and password from LDAP.
 
 ### <a id='ldap-external-groups-mapping'></a> LDAP external groups mapping
 
-Service operators may map the identity provider's "groups" (or equivalent) attribute to the `roles` claim within
-an `AuthServer`'s identity token.
+Service operators may map the identity provider's "groups" (or equivalent) attribute to the `roles` claim within an `AuthServer`'s identity token.
 
 > **Note** [Read more about roles claim mapping and filtering here](#roles-claim-mapping-filtering-explained)
 
@@ -579,16 +597,18 @@ kind: AuthServer
 metadata:
 # ...
 spec:
+  identityProviders:
   - name: my-saml-provider
     saml:
       metadataURI: https://saml.example.com/sso/saml/metadata # required
-      claimMappings: # optional
-        # Map SAML attributes into claims in id_tokens issued by AppSSO. The key
-        # on the left represents the claim, the value on the right the attribute.
-        givenName: FirstName
-        familyName: LastName
-        emailAddress: email
+      idToken: # optional
+        claims:
+          - fromUpstream: "" # SAML attribute
+            toClaim: ""      # claim that will be part of an AppSSO id_token
 ```
+
+`.saml.idToken.claims` field allows for mapping a SAML attribute from an upstream SAML identity provider to the current
+authorization server. See [identity token claims mapping section](#id-token-claims-mapping) for more details.
 
 ### <a id='saml-external-groups-mapping'></a> SAML external groups mapping
 
@@ -637,12 +657,16 @@ accessible issuer URI for an `AuthServer`, including scheme and port. If the `Au
 `https://appsso.company.example.com:1234/`, the SSO URL registered with the identity
 provider should be `https://appsso.company.example.com:1234/login/saml2/sso/my-provider`.
 
-## <a id='internal-users'></a> Internal users
+## <a id='internal-unsafe'></a> Internal (unsafe)
 
->**Caution** `InternalUnsafe` is unsafe and not recommended for production.
+>**Caution**  Internal provider is **unsafe** and **must not** be used in production environments.
 
-During development, static users can be useful for testing purposes. 
-You can not configure more than one `internalUnsafe` identity provider.
+`InternalUnsafe` needs to be explicitly allowed by setting the
+annotation `sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""`.
+
+During development, static users can be useful for testing purposes.
+
+You cannot configure more than one `internalUnsafe` identity provider.
 
 For example:
 
@@ -651,7 +675,7 @@ apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
 kind: AuthServer
 metadata:
   annotations:
-    sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
+    sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # required annotation when using internal unsafe provider
   # ...
 spec:
   identityProviders:
@@ -662,21 +686,30 @@ spec:
             password: "password" # plain text
             roles:
               - "silly"
+            claims: # custom identity token claims
+              given_name: "Bert"
+              family_name: "Muppet"
+              middle_initial: "H"
+              email: "bert@muppets.example.com"
+              alt_address: "123 Sesame Street"
           - username: bert
             password: "{bcrypt}$2a$10$201z9o/tHlocFsHFTo0plukh03ApBYe4dRiXcqeyRQH6CNNtS8jWK" # bcrypt-hashed "password"
             roles:
               - "grumpy"
+            claims: # custom identity token claims
+              alt_address: "456 Fake Street"
+              middle_initial: "T"
   # ...
 ```
 
-`InternalUnsafe` needs to be explicitly allowed by setting the
-annotation `sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""`.
+The passwords can be plain text or bcrypt-hashed. When bcrypt-hashing passwords they have to be prefixed with `{bcrypt}`. Learn how to bcrypt-hash string below.
 
-The passwords can be plain text or bcrypt-hashed. When bcrypt-hashing passwords they have to be prefixed with `{bcrypt}`
-. Learn how to bcrypt-hash string below.
+Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and logging in as `ernie/password` or `bert/password`.
 
-Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and logging in as `ernie/password`
-or `bert/password`.
+**Identity token claims**
+
+To be able to use custom claims defined within `.internalUnsafe.users[*].claims`, you must include the `profile` scope 
+within your `ClientRegistration` resource.
 
 ### Generating a bcrypt hash from a plain-text password
 
@@ -689,6 +722,83 @@ There are multiple options for generating bcrypt hashes:
   ```shell
   htpasswd -bnBC 12 "" your-password-here | tr -d ':\n'
   ```
+
+## <a id="id-token-claims-mapping"></a> Identity token claims mapping
+
+> **Note** This section is applicable to OpenID, LDAP, and SAML (experimental) identity provider configurations.
+
+Service Operators can control which claims appear in an `AuthServer`-issued `id_token`, and how to obtain this value
+from an upstream identity provider.
+
+For example, consider the following configuration:
+
+```yaml
+spec:
+  identityProviders:
+  - name: my-identity-provider
+    openid:
+      idToken:
+        claims:
+          - fromUpstream: "title"
+            toClaim: "job_title"
+```
+
+With this, if the upstream OpenID identity provider makes a "title" claim available with value "developer", then the
+corresponding AuthServer-issued id_token will contain a claim "job_title": "developer".
+
+
+This field also allows for mapping [standard OpenID claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims) (such as `given_name`, `family_name`, etc.) as well as non-standard claim (such as the job_title claim in the example above). When mapping standard claims, the field types will be preserved as per original OpenID
+specification. For example, the `given_name` claim is defined as a string in the OpenID specification, and so if a
+custom claim is mapped into this field, the value of the custom claim will be coerced into a string type -- if the 
+custom claim is an array type, the first value of the array will be used.
+
+> **Important** For custom claims defined `.spec.identityProviders[*].{openid,ldap,saml}.idToken.claims` to be
+> available in `AuthServer`-issued `id_token`s, App Operators **must** include the `profile` scope within their
+> `ClientRegistration` resource.
+
+```yaml
+---
+apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
+kind: AuthServer
+metadata:
+# ...
+spec:
+  identityProviders:
+  - name: my-identity-provider
+    {openid,ldap,saml}:
+      idToken: # optional
+        claims:
+          - fromUpstream: "" # identity provider claim name
+            toClaim: ""      # claim that will be part of an AppSSO id_token
+```
+
+### Constraints
+
+The following are identity token mapping constraints that must be followed:
+
+- Multiple upstream identity provider claims cannot be mapped to a single `AuthServer` identity token claim.
+- The value of `claims.fromUpstream` is case-insensitive in the case of LDAP identity providers, and is case-sensitive
+  for OpenID and SAML identity providers.
+- `idToken.claims.toClaim` is case-sensitive.
+- Reserved claims may not be mapped to. Reserved claims are listed below.
+
+| Reserved Claim Names |
+|----------------------|
+| `roles`              |
+| `acr`                |
+| `amr`                |
+| `at_hash`            |
+| `auth_time`          |
+| `azp`                |
+| `c_hash`             |
+| `nonce`              |
+| `aud`                |
+| `exp`                |
+| `iat`                |
+| `iss`                |
+| `jti`                |
+| `nbf`                |
+| `sub`                |
 
 ## <a id='roles-filtering'></a> Roles claim filtering
 

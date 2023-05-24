@@ -57,6 +57,18 @@ Alternatively, you can interactively discover the spec with:
 kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 ```
 
+## <a id='scopes'></a> Scopes
+
+**Identity token**
+
+- **`openid`** scope must be included for identity tokens to be issued.
+- **`profile`** scope must be included for custom-mapped claims to be included in an issued identity token. e.g. `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. See [identity token claims mapping docs](../../service-operators/identity-providers.hbs.md#id-token-claims-mapping)
+- **`email`** scope must be included to retain `email` and `email_verified` claims.
+- **`address`** scope must be included to retain `address` claim.
+- **`phone`** scope must be included to retain `phone_number` and `phone_number_verified` claims.
+- **`roles`** scope must be included to be able to retrieve user role information from an upstream identity provider.
+  See [configure authorization](../../service-operators/configure-authorization.hbs.md)
+
 ## <a id='client-auth-methods'></a> Client authentication methods
 
 Client authentication methods supported by `ClientRegistration` resource are:
