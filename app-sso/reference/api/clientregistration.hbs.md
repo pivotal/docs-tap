@@ -20,7 +20,7 @@ metadata:
 spec:
   authServerSelector: # required
     matchLabels: { }
-  redirectURIs: # required
+  redirectURIs: # optional
     - ""
   scopes: # optional
     - name: ""
