@@ -1,6 +1,8 @@
 # Secure a Spring Boot workload
 
-This topic describes the procedure to secure a sample Spring Boot `Workload` with AppSSO, which runs on Tanzu Application Platform (TAP).
+This topic tells you how to secure a sample Spring Boot `Workload` with 
+Application Single Sign-On (commonly called AppSSO), 
+which runs on Tanzu Application Platform (commonly called TAP).
 
 Follow these steps to deploy a sample Spring Boot `Workload`:
 
@@ -81,7 +83,7 @@ spec:
 > In this case, it is `appsso-starter-java` and `my-apps`.
 > Keep the suffix formatted as `/login/oauth2/code/{ClientRegistration.metadata.name}`.
 > For more information about the redirect URI format of Spring Security OAuth 2 Client library,
-> see [Workloads and AppSSO](./workloads-and-appsso.hbs.md#redirect-uris).
+> see [Configure AppSSO for workloads ](./workloads-and-appsso.hbs.md#redirect-uris).
 
 The accelerator is pre-packaged with a ytt-templated `ClientRegistration` that is located in `client.yaml`.
 You can generate the same `ClientRegistration` as earlier with your specific values by running:

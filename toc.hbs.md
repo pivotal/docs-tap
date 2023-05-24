@@ -307,7 +307,7 @@ docs.vmware.com is built.
             - [AuthServer audit logs](app-sso/service-operators/audit-logs.hbs.md)
         - [AppSSO for app operators](app-sso/app-operators/index.hbs.md)
             - [AppSSO for app operators overview](app-sso/app-operators/index.hbs.md)
-            - [Workloads and AppSSO](app-sso/app-operators/workloads-and-appsso.hbs.md)
+            - [Configure AppSSO for workloads](app-sso/app-operators/workloads-and-appsso.hbs.md)
             - [Secure a Spring Boot workload](app-sso/app-operators/secure-spring-boot-workload.hbs.md)
             - [Secure a single-page app workload](app-sso/app-operators/secure-spa-workload.hbs.md)
         - [Reference](app-sso/reference/index.hbs.md)

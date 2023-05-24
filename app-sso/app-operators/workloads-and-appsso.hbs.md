@@ -1,7 +1,10 @@
-# Workloads and AppSSO
+# Configure AppSSO for workloads 
 
-This topic walks you through how to navigate AppSSO configuration when defining workloads. For specific 
-stack implementations such as Spring Boot, see [Application Single Sign-On for App Operators](index.hbs.md).
+This topic tells you how to configure Application Single Sign-On (commonly called AppSSO) 
+when defining workloads. 
+
+For specific stack implementations such as Spring Boot, 
+see [Application Single Sign-On for App Operators](index.hbs.md).
 
 An AppSSO `AuthServer` and your `Workload` must be able to detect each other and can communicate bidirectionally:
 
