@@ -79,7 +79,7 @@ k8s_resource('tanzu-java-web-app', port_forwards=["8080:8080"],
 
 If you are using Gradle, review the following requirements:
 
-- The `Tiltfile` looks identical to a Maven `Tiltfile` except for some key differences in the `deps=`
+- The `Tiltfile` looks like a [Maven Tiltfile](#maven) except for some key differences in the `deps=`
   and `live-update=` sections:
 
     ```starlark
