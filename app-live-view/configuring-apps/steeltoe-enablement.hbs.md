@@ -1,6 +1,6 @@
 # Enable Steeltoe apps for Application Live View
 
-This topic describes how developers can extend .NET Core Apps to Steeltoe apps and enable
+This topic tells you how developers can extend .NET Core Apps to Steeltoe apps and enable
 Application Live View on Steeltoe workloads within Tanzu Application Platform.
 
 Application Live View supports Steeltoe .NET apps with .NET core runtime version `v6.0.8`.
@@ -13,7 +13,7 @@ To enable the Actuators on a .NET Core App:
 
 1. Add a PackageReference to your `.csproj` file:
 
-    ```
+    ```xml
     <PackageReference Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
     ```
 
@@ -21,7 +21,7 @@ To enable the Actuators on a .NET Core App:
 
 2. Call the extension `AddAllActuators` in your `Program.cs` file:
 
-    ```
+    ```csharp
     builder.WebHost.AddAllActuators();
     ```
 

@@ -1,87 +1,71 @@
-# Use blue-green deployment with Contour and PackageInstall (alpha)
+# Use blue-green deployment with Contour and PackageInstall for Supply Chain Choreographer (alpha)
 
-Blue-green deployment is an application delivery model that gradually transfers
-user traffic from one version of an app to a later version while both are
-running in production. This guide outlines how to use blue-green
+Blue-green deployment is an application delivery model that lets you gradually transfer
+user traffic from one version of your app to a later version while both are
+running in production. This topic outlines how to use blue-green
 deployment with Packages and PackageInstalls.
 
 ## Prerequisites
 
 To use blue-green deployment, you must complete the following prerequisites:
 
-- Complete the prerequesites listed in [Configure and deploy to multiple environments with custom parameters](./config-deploy-multi-env.hbs.md).
+- Complete the prerequisites in [Configure and deploy to multiple environments with custom parameters](./config-deploy-multi-env.hbs.md).
 - Configure Carvel for your supply chain. See [Carvel Package Supply Chains (alpha)](./carvel-package-supply-chain.hbs.md).
-- Configure FluxCD for your supply chains. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
+- Configure FluxCD for your supply chain. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
 
-## Changes to your original PackageInstall
+## Add HTTPProxy to the blue deployment
 
-You must make the following changes to the PackageInstall to enable blue-green deployment for an application. For example, to deploy an application called `hello-app` to production:
+The following example deploys
+a sample application, `hello-app`, to production using a Carvel Package and PackageInstall.
 
-1. Create a secret.yaml file with a secret that contains your ytt overlay. For example:
+1. Create a [Contour HTTPProxy](https://projectcontour.io/docs/main/config/fundamentals/) resource to route traffic to the `hello-app` service from the URL `www.hello-app.mycompany.com`.
 
   ```yaml
-  apiVersion: v1
-  kind: Secret
+  apiVersion: projectcontour.io/v1
+  kind: HTTPProxy
   metadata:
-    name: overlay-secret
+    name: www
     namespace: prod
-  stringData:
-    custom-package-overlay.yaml: |
-      #@ load("@ytt:overlay", "overlay")
-
-      ---
-      apiVersion: projectcontour.io/v1
-      kind: HTTPProxy
-      metadata:
-        name: www
-        namespace: prod
-      spec:
-        virtualhost:
-          fqdn: www.hello-app.mycompany.com
-        routes:
-        - conditions:
-          - prefix: /
-          services:
-          - name: hello-app
-            port: 8080
+  spec:
+    virtualhost:
+      fqdn: www.hello-app.mycompany.com
+    routes:
+    - conditions:
+      - prefix: /
+      services:
+      - name: hello-app
+        port: 8080
   ```
 
-1. Apply the secret to your cluster:
+  >**Note** The services names used in HTTPProxy has to match the names of
+  existing services. In this case, the name `hello-app` matches the service
+  installed by the PackageInstall.
+
+1. Apply the HTTPProxy to your cluster:
 
   ```console
-  kubectl apply -f secret.yaml
+  kubectl apply -f httpproxy.yaml
   ```
 
-1. Update your PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret. For example:
+1. Verify that the HTTPProxy is present and the route serves traffic to your app.
 
-  ```yaml
-  ---
-  apiVersion: packaging.carvel.dev/v1alpha1
-  kind: PackageInstall
-  metadata:
-    name: hello-app.dev.tap
-    namespace: prod
-    annotations:
-      # secret that contains the overlay to be applied on the package install
-      ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: overlay-secret
-  spec:
-    serviceAccountName: default
-    packageRef:
-      refName: hello-app.dev.tap
-      versionSelection:
-        constraints: "1.0.0"
-    values:
-    - secretRef:
-        name: hello-app-values
+  ```console
+  kubectl get HTTPProxy --namespace=prod
   ```
 
-  >**Note** There is an overlay in this PackageInstall to add a [Contour HTTPProxy](https://projectcontour.io/docs/main/config/fundamentals/) resource to route traffic to the `hello-app` service from the URL www.hello-app.mycompany.com.
+  This displays a list of all the HTTPproxies in the current namespace with their current names.
 
-## Changes to the green PackageInstall
+  ```console
+  kubectl get HTTPProxy --namespace=prod
+  NAMESPACE        NAME                     FQDN                                  TLS SECRET            STATUS    STATUS DESCRIPTION
+  prod             www                      www.hello-app.mycompany.com          hello-app-cert        valid     Valid HTTPProxy
+  ```
 
-After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to enable the blue-green deployment:
+## Create the green deployment
 
-1. Create a green-secret.yaml file with a secret that contains your ytt overlay. For example:
+After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to create the green deployment.
+
+1. Create a `green-secret.yaml` file with a secret that contains the following ytt overlay. 
 
   ```yaml
   ---
@@ -116,32 +100,11 @@ After a new version of the package is added to the GitOps repository, create a n
       metadata:
         #@overlay/replace
         name: hello-app-green
-
-      ---
-      apiVersion: projectcontour.io/v1
-      kind: HTTPProxy
-      metadata:
-        name: www
-        namespace: prod
-      spec:
-        virtualhost:
-          fqdn: www.hello-app.mycompany.com
-        routes:
-        - conditions:
-          - prefix: /
-          services:
-          - name: hello-app-green
-            port: 8080
-            weight: 20
-          - name: hello-app
-            port: 8080
-            weight: 80
   ```
 
-  This secret:
-    - Changes the names of the service and deployment in the carvel package to
-    allow you to install another version of the app in the same namespace.
-    - Updates the HTTPProxy to add weighted traffic to each version of the app.
+  This secret changes the names of the service and deployment in the Carvel
+  Package to allow you to install another version of the app in the same
+  namespace.
 
 1. Apply the secret to your cluster by running:
 
@@ -171,7 +134,7 @@ After a new version of the package is added to the GitOps repository, create a n
   kubectl apply -f green-dev-values.yaml
   ```
 
-1. Update your PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret. For example:
+1. Create a PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret.
 
   ```yaml
   ---
@@ -193,14 +156,47 @@ After a new version of the package is added to the GitOps repository, create a n
         name: green-dev-values
   ```
 
-  You can update the weights in the HTTPProxy by editing the HTTPProxy, as traffic is tested in the new version of the app.
+## Divide traffic between the blue and green deployments
 
-## Delete the original app version
+Use the following procedure to divide traffic between your blue and green deployments.
 
-After the new app is ready to handle the complete load and the `-green` version is not required, use the following steps to remove the old version and rename the new version.
+1. Update the HTTPproxy created with the blue deployment to route traffic to
+both the blue and green deployments. The names of the services must match the
+names of the already created services.
 
-1. Ensure that all the traffic is using the correct version of the app. For example, the HTTPProxy
-looks similar to the following:
+  ```yaml
+  ---
+  apiVersion: projectcontour.io/v1
+  kind: HTTPProxy
+  metadata:
+    name: www
+    namespace: prod
+  spec:
+    virtualhost:
+      fqdn: www.hello-app.mycompany.com
+    routes:
+    - conditions:
+      - prefix: /
+      services:
+      - name: hello-app-green
+        port: 8080
+        weight: 20
+      - name: hello-app
+        port: 8080
+        weight: 80
+  ```
+
+1. Update the weights of traffic for each service by editing the HTTPProxy.
+
+1. Access the service several times and confirm both versions are serving traffic in the same percentage.
+
+  ```console
+  curl -k https://www.hello-app.mycompany.com
+  ```
+
+After the new green app is ready to handle the complete load and the `-green` version is not required, use the following steps to remove the old version and rename the new version:
+
+1. Ensure that all the traffic is using the correct version of the app. For example:
 
   ```yaml
   apiVersion: projectcontour.io/v1
@@ -289,12 +285,12 @@ looks similar to the following:
         virtualhost:
           fqdn: www.hello-app.mycompany.com
         routes:
-        - conditions:
-          - prefix: /
-          services:
-          - name: hello-app
-            port: 8080
-            weight: 100
+          - conditions:
+            - prefix: /
+            services:
+              - name: hello-app # note the name is changed back
+                port: 8080
+                weight: 100
   ```
 
 1. Update your PackageInstall to include the
@@ -320,6 +316,8 @@ looks similar to the following:
     - secretRef:
         name: hello-app-values
   ```
+
+1. After the deployment is complete, you can delete the secrets with the overlays.
 
 ## Verify application
 

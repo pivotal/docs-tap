@@ -25,6 +25,19 @@ Before you start, you must have:
 
 ## <a id="deploy-your-app"></a>Deploy your application using the Tanzu CLI
 
+Complete the following steps to deploy your application using the Tanzu CLI.
+
+### Prerequisites
+
+Ensure that you meet the following prerequisites:
+
+- Before you deploy your application using the Tanzu CLI, ensure that you have created a Git
+repository during the project creation stage.
+- If the project does not have an associated Git repository, you must create one,
+and then update the `workload.yaml` with the repository URL and branch.
+
+### Procedure
+
 1. Deploy the Tanzu Java Web App project that you generated in
    [Generate an application with Application Accelerator](generate-first-app.hbs.md)
    by running the `tanzu apps workload create` command:
@@ -33,7 +46,7 @@ Before you start, you must have:
     tanzu apps workload create --file config/workload.yaml --namespace YOUR-NAMESPACE
     ```
 
-    Alternatively, you can create a workload entirely using the command line:
+    Alternatively, you can create a workload using the command line:
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
@@ -53,9 +66,9 @@ Before you start, you must have:
       This depends on your organization's Tanzu Application Platform configuration.
       For more information, consult with your Tanzu Application Platform administrators.
 
-    For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md). <!-- is this the correct link? -->
+    For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
-1. View the build and runtime logs for your app by running the `get` command:
+2. View the build and runtime logs for your app by running the `get` command:
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
@@ -153,7 +166,7 @@ Before you start, you must have:
         tanzu-java-web-app   Ready   https://tanzu-java-web-app.dev-namespace.apps.my-organization.com
     ```
 
-1. After the workload is built and deployed, fetch the URL of the deployed app.
+3. After the workload is built and deployed, fetch the URL of the deployed app.
    The URL of the web app is in the `Knative Services` section at the bottom of the output of
    the `tanzu apps workload get` command:
 
@@ -171,7 +184,7 @@ Before you start, you must have:
         tanzu-java-web-app   Ready   https://tanzu-java-web-app.dev-namespace.apps.my-organization.com
     ```
 
-1. View the web app in your browser.
+4. View the web app in your browser.
 
     ![Screenshot of the Tanzu Java Web App default screen in a browser.](../images/getting-started-tap-gui-8.png)
 
@@ -187,7 +200,7 @@ Before you start, you must have:
     Alternatively, you can add a link for the `catalog-info.yaml` to the `tap-values.yaml` configuration
     file in the `tap_gui.app_config.catalog.locations` section.
     For more information, see
-    [Installing the Tanzu Application Platform Package and Profiles](../install.md#full-profile).
+    [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md#full-profile).
 
 1. **Register an existing component** prompts you to type a repository URL.
    Type the link to the `catalog-info.yaml` file of the `tanzu-java-web-app` in the Git repository text box.

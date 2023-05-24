@@ -6,7 +6,7 @@ server backed by Redis over mutual TLS if no [external storage](storage.hbs.md) 
 You can configure the labels with which clients can select an `AuthServer`, the namespaces it allows clients from,
 its issuer URI, its token signature keys, identity providers and further details for its deployment.
 
-For the full available configuration, `spec` and `status` see [the API reference](../crds/authserver.md).
+For the full available configuration, `spec` and `status` see [the API reference](../reference/api/authserver.hbs.md).
 
 The following sections outline the essential steps to configure a fully operational authorization server.
 
@@ -18,6 +18,7 @@ The following sections outline the essential steps to configure a fully operatio
 - [Identity providers](./identity-providers.md)
 - [Configure authorization](./configure-authorization.md)
 - [Public clients and CORS](./cors.md)
+- [Token settings](./token-settings.hbs.md)
 - [Token signatures](./token-signature.md)
 - [Storage](./storage.hbs.md)
 - [AuthServer readiness](./readiness.md)

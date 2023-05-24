@@ -1,4 +1,6 @@
-# Build profile
+# Install Tanzu Application Platform Build profile
+
+This topic tells you how to install Build profile cluster by using a reduced values file.
 
 ## Prerequisites
 
@@ -53,7 +55,8 @@ grype:
         name: store-auth-token
         importFromNamespace: metadata-store-secrets
 scanning:
-  metadataStore: {} # Deactivate the Supply Chain Security Tools - Store integration.
+  metadataStore:
+    url: "" # Configuration is moved, so set this string to empty.
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 ```
@@ -68,7 +71,7 @@ Where:
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
     - For Google Cloud Registry, use the contents of the service account JSON file.
-- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+- `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
     - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
 - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
@@ -82,7 +85,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Docker Hub has the form `repository: "my-dockerhub-user"`.
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to. See [Git authentication](../../scc/git-auth.hbs.md) for more information.
-- `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. For example, `https://metadata-store.example.com`. You can refer [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) to get information about `caSecret` and `store-auth-token`
+- `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. For example, `https://metadata-store.example.com`. For information about `caSecret` and `store-auth-token`, see [Multicluster setup](../../scst-store/multicluster-setup.hbs.md).
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.

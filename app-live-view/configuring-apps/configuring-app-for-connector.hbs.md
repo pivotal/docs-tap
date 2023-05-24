@@ -1,6 +1,6 @@
 # Custom configuration for the connector
 
-This topic describes how developers custom configure an app or workload for Application Live View.
+This topic tells you how developers can custom configure an app or workload for Application Live View.
 
 The connector component is responsible for discovering the app and registering
 it with Application Live View.
@@ -61,7 +61,6 @@ To deploy the workload, run:
 ```console
 kapp -y deploy -n default -a workloads -f workloads.yaml
 ```
-
 
 ## <a id="verify-propagation"></a> Verify the label has propagated through the Supply Chain
 

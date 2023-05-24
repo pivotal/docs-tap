@@ -2,7 +2,7 @@
 
 This how-to guide walks developers through deploying your first workload on Tanzu Application Platform in an air-gapped environment.
 
-For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment](../install-air-gap.md).
+For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 
@@ -17,32 +17,32 @@ To create a workload from Git through https, follow these steps:
 
 1. Create a secret in your developer namespace with the caFile that matches the `gitops_ssh_secret` name in tap_values:
 
-    ```console
-    kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
-    ```
+   ```console
+   kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
+   ```
 
 2. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA) certificate, create a file called `git-credentials.yaml`. For example:
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: git-ca
-      # namespace: default
-    type: Opaque
-    data:
-      username: USERNAME-BASE64
-      password: PASSWORD-BASE64
-      caFile: |
-        CADATA-BASE64
-    ```
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: git-ca
+     # namespace: default
+   type: Opaque
+   data:
+     username: USERNAME-BASE64
+     password: PASSWORD-BASE64
+     caFile: |
+       CADATA-BASE64
+   ```
 
-    Where:
+   Where:
 
-    - `USERNAME-BASE64` is the base64 encoded user name.
-    - `PASSWORD-BASE64` is the base64 encoded password.
-    - `CADATA-BASE64` is the base64 encoded CA certificate for the
-    Git repository.
+   - `USERNAME-BASE64` is the base64 encoded user name.
+   - `PASSWORD-BASE64` is the base64 encoded password.
+   - `CADATA-BASE64` is the base64 encoded CA certificate for the
+   Git repository.
 
 3. To pass in a custom settings.xml for Java, create a file called `settings-xml.yaml`. For example:
 

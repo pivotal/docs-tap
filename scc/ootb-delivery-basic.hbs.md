@@ -1,4 +1,6 @@
-# Out of the Box Delivery Basic
+# Out of the Box Delivery Basic for Supply Chain Choreographer
+
+This topic is an overview of the Out of the Box Delivery Basic package for Supply Chain Choreographer.
 
 This package provides a reusable ClusterDelivery object that is responsible for
 delivering to an environment the Kubernetes configuration that is
@@ -10,7 +12,7 @@ produced by the Out of the Box Supply Chains, including [Basic](ootb-supply-chai
 
 To make use of this package you must have installed:
 
-- [Supply Chain Cartographer](../install-components.html#install-scc)
+- [Supply Chain Cartographer](../install-online/components.hbs.md#install-scc)
 - [Out of the Box Templates](ootb-templates.html)
 
 ## <a id="prerequisites"></a> Using Out of the Box Delivery Basic

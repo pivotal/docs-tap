@@ -1,6 +1,6 @@
 # Troubleshoot using Tanzu Application Platform
 
-In this topic there is troubleshooting information to help resolve issues using Tanzu Application Platform.
+This topic tells you how to troubleshoot using Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='use-events'></a> Use events to find possible causes
 

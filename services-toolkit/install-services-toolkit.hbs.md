@@ -1,12 +1,12 @@
 # Install Services Toolkit
 
-This topic describes how to install Services Toolkit from the Tanzu Application Platform package
+This topic tells you how to install Services Toolkit from the Tanzu Application Platform package
 repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > Services Toolkit.
 > For more information about profiles, see
-> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 

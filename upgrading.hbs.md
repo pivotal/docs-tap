@@ -1,6 +1,6 @@
-# Upgrade Tanzu Application Platform
+# Upgrade your Tanzu Application Platform
 
-This document describes how to upgrade Tanzu Application Platform.
+This document tells you how to upgrade your Tanzu Application Platform (commonly known as TAP).
 
 You can perform a fresh install of Tanzu Application Platform by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
 
@@ -9,7 +9,7 @@ You can perform a fresh install of Tanzu Application Platform by following the i
 Before you upgrade Tanzu Application Platform:
 
 - Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
-- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile).
+- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install-online/profile.hbs.md#install-profile).
 - Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.hbs.md#cli-and-plugin).
 - For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
@@ -19,7 +19,7 @@ Before you upgrade Tanzu Application Platform:
 
 Follow these steps to update the new package repository:
 
-1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 6 in [Relocate images to a registry](install.html#add-tap-package-repo).
+1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 6 in [Relocate images to a registry](install-online/profile.hbs.md#add-tap-package-repo).
 
     >**Important** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
 
@@ -89,7 +89,7 @@ If you do not want to wait for subsequent builds to run automatically, follow th
 
 ### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
-If you installed the [full dependencies package](install.md#tap-install-full-deps), 
+If you installed the [full dependencies package](install-online/profile.hbs.md#tap-install-full-deps),
 you can upgrade the package by following these steps:
 
 1. After upgrading Tanzu Application Platform, retrieve the latest version of the
@@ -126,7 +126,7 @@ you can upgrade the package by following these steps:
 
 Upgrading a [multicluster deployment](multicluster/installing-multicluster.hbs.md) requires updating multiple clusters with different profiles.
 If upgrades are not performed at the exact same time, different clusters have different versions of profiles installed temporarily.
-This might cause a temporary API mismatch that leads to errors. 
+This might cause a temporary API mismatch that leads to errors.
 Those errors eventually disappear when the versions are consistent across all clusters.
 
 To reduce the likelihood of temporary failures, follow these steps to upgrade your multicluster deployment:

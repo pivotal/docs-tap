@@ -1,4 +1,8 @@
-# Ingress support
+# Ingress support for Supply Chain Security Tools - Store
+
+This topic describes how to configure ingress for Supply Chain Security Tools (SCST) - Store.
+
+## Ingress configuration
 
 Supply Chain Security Tools (SCST) - Store has ingress support by using
 Contour's HTTPProxy resources. To enable ingress support, a Contour installation

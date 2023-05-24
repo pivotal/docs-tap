@@ -1,7 +1,9 @@
 # Use Tanzu Developer Tools for VS Code
 
+This topic tells you how to use VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
+
 Ensure that the project you want to use the extension with has the required files specified in
-[Get started with Tanzu Developer Tools for Visual Studio Code](../vscode-extension/getting-started.hbs.md).
+[Get started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md).
 
 The extension requires only one Tiltfile and one `workload.yaml` per project.
 The `workload.yaml` must be a single-document YAML file, not a multidocument YAML file.
@@ -11,7 +13,7 @@ The `workload.yaml` must be a single-document YAML file, not a multidocument YAM
 When working with multiple projects in a single workspace, you can configure the extension settings
 on a per-project basis by using the drop-down menu in **Settings**.
 
-![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
+![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu shows both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="workload-commands"></a> Workload Commands
 
@@ -19,12 +21,15 @@ All commands are available by right-clicking anywhere in the VS Code project exp
 workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 - Screenshot of pop-up menu opened from the project explorer:
+
   ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
 - Screenshot of pop-up menu opened from the workload panel:
+
   ![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
 - Screenshot of the command palette:
+
   ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
 
 ### <a id="apply-workload"></a> Apply a workload
@@ -137,39 +142,6 @@ application to the cluster.
 To stop Live Update, click the trash can button in the terminal pane to stop the Live Update process.
 
 ![The VS Code interface showing the terminal window with the pointer on the trash can button.](../images/vscode-stopliveupdate.png)
-
-#### <a id="disable-live-update"></a> Deactivate Live Update
-
-You can remove the Live Update capability from your application entirely.
-You might find this option useful in a troubleshooting scenario.
-Deactivating Live Update redeploys your workload to the cluster and removes the Live Update capability.
-
-To deactivate Live Update:
-
-1. Press ⇧⌘P (Ctrl+Shift+P on Windows) to open the Command Palette.
-2. Run `Tanzu: Live Update Disable`.
-
-   ![Command palette open showing text Tanzu: Live Update Disable.](../images/vscode-liveupdatedisable.png)
-
-3. Type the name of the workload for which you want to deactivate Live Update.
-
-#### <a id="live-update-status"></a> Live Update status
-
-The current status of Live Update is visible on the right side of the status bar at the bottom of
-the VS Code window.
-
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar. The pop-up menu is open.](../images/vscode-liveupdatestatus1.png)
-
-The Live Update status bar entry shows the following states:
-
-- Live Update Stopped
-- Live Update Starting…
-- Live Update Running
-
-To hide the Live Update status bar entry, right-click it and then click
-**Hide 'Tanzu Developer Tools (Extension)'**.
-
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the Hide Tanzu Developer Tools (Extension) option highlighted.](../images/vscode-liveupdatestatus2.png)
 
 #### <a id="microservices-live-update"></a> Live Update apps in a microservices repository
 
@@ -307,8 +279,9 @@ microservice can be built completely independently.
 
 To work with these monorepos:
 
-- Import the monorepo as a project into VSCode.
-- Interact with each of the subfolders in the same way you would a project containing a single workload.
+- Import the monorepo as a project into VS Code.
+- Interact with each of the subfolders in the same way you would interact with a project containing
+  a single workload.
 
 ## <a id="alt-struct"></a> Alternative structure: Services with build-time interdependencies
 

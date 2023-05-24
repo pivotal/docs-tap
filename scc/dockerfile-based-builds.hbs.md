@@ -1,10 +1,12 @@
-# Dockerfile-based builds
+# Use Dockerfile-based builds with Supply Chain Choreographer
 
-For any source-based supply chains, that is, supply chains not taking a
-pre-built image, when you specify the new `dockerfile` parameter in a workload,
-the builds switch from using Kpack to using Kaniko. Kaniko is an open-source
-tool for building container images from a Dockerfile without the need for
-running Docker inside a container.
+This topic explains how you can use Dockerfile-based builds with Supply Chain Choreographer.
+
+For any source-based supply chains, when you specify the new `dockerfile`
+parameter in a workload, the builds switch from using Kpack to using Kaniko.
+Source-based supply chains are supply chains that don't take a pre-built image.
+Kaniko is an open-source tool for building container images from a Dockerfile
+without running Docker inside a container.
 
 <table>
   <tr>
@@ -45,24 +47,27 @@ Dockerfile by passing the `dockerfile` parameter:
 $ tanzu apps workload create foo \
   --git-repo https://github.com/foo/bar \
   --git-branch dev \
-  --param dockerfile=./Dockerfile
+  --param dockerfile=./Dockerfile \
+  --type web
 
-  Create workload:
-        1 + |---
-        2 + |apiVersion: carto.run/v1alpha1
-        3 + |kind: Workload
-        4 + |metadata:
-        5 + |  name: foo
-        6 + |  namespace: default
-        7 + |spec:
-        8 + |  params:
-        9 + |  - name: dockerfile
-       10 + |    value: ./Dockerfile
-       11 + |  source:
-       12 + |    git:
-       13 + |      ref:
-       14 + |        branch: dev
-       15 + |      url: https://github.com/foo/bar
+🔎 Create workload:
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/workload-type: web
+      7 + |  name: foo
+      8 + |  namespace: dev
+      9 + |spec:
+     10 + |  params:
+     11 + |  - name: dockerfile
+     12 + |    value: ./Dockerfile
+     13 + |  source:
+     14 + |    git:
+     15 + |      ref:
+     16 + |        branch: dev
+     17 + |      url: https://github.com/foo/bar
 ```
 
 Similarly, if the context to be used for the build must be set to a different
@@ -100,8 +105,8 @@ SecurityContextConstraints (SCC), Tanzu Application Platform installs:
 - `ClusterRole/ootb-templates-kaniko-restricted-v2-with-anyuid` to permit the use of such SCC to any actor binding to
   that cluster role.
 
-Each developer namespace needs a role binding that binds the role to an actor: `ServiceAccount`. 
-For more information, see [Set up developer namespaces to use installed packages ](../set-up-namespaces.hbs.md).
+Each developer namespace needs a role binding that binds the role to an actor: `ServiceAccount`.
+For more information, see [Set up developer namespaces to use your installed packages ](../install-online/set-up-namespaces.hbs.md).
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1

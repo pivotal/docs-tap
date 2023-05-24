@@ -1,4 +1,4 @@
-# Services Toolkit Terminology and User roles
+# Services Toolkit terminology and user roles
 
 This topic provides descriptions of the terms and user roles used in the Services Toolkit documentation.
 

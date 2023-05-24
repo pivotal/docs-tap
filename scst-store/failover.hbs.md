@@ -1,4 +1,6 @@
-# Failover, redundancy, and backups
+# Failover, redundancy, and backups for Supply Chain Security Tools - Store
+
+This topic describes how you can configure and use failover, redundancy, and backups for Supply Chain Security Tools (SCST) - Store.
 
 ## <a id="API-Server"></a>API Server
 

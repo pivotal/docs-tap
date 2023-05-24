@@ -1,6 +1,7 @@
 # Access Tanzu Application Platform GUI
 
-Use one of the following methods to access Tanzu Application Platform GUI:
+This topic tells you how to access Tanzu Application Platform GUI (commonly called TAP GUI) by using
+one of the following methods:
 
 - Access with the LoadBalancer method (default)
 - Access with the shared Ingress method
@@ -32,8 +33,8 @@ It has the following form:
 
 ## <a id="ingress-method"></a> Access with the shared Ingress method
 
-The Ingress method of access for Tanzu Application GUI uses the shared `tanzu-system-ingress` instance
-of Contour that is installed as part of the Profile installation.
+The Ingress method of access for Tanzu Application Platform GUI uses the shared
+`tanzu-system-ingress` instance of Contour that is installed as part of the Profile installation.
 
 1. The Ingress method of access requires that you have a DNS host name that you can point at the
 External IP address of the `envoy` service that the shared `tanzu-system-ingress` uses.
@@ -61,9 +62,6 @@ Retrieve this IP address by running:
     ```yaml
     shared:
       ingress_domain: "example.com"
-
-    tap_gui:
-      service_type: ClusterIP
     ```
 
 1. Update your other host names in the `tap_gui` section of your `tap-values.yaml` with the new host
@@ -74,7 +72,6 @@ name. For example:
       ingress_domain: "example.com"
 
     tap_gui:
-      service_type: ClusterIP
     # Existing tap-values.yaml above
       app_config:
         app:
@@ -102,4 +99,4 @@ name. For example:
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-2. Use a web browser to access Tanzu Application Platform GUI at the host name that you provided.
+1. Use a web browser to access Tanzu Application Platform GUI at the host name that you provided.

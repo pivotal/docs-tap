@@ -1,8 +1,17 @@
 # Get started with multicluster Tanzu Application Platform
 
-In this topic, you will validate the implementation of a multicluster topology by taking a sample workload and passing it through the supply chains on the Build and Run clusters. You can take various approaches to configuring the supply chain in this topology, but the following procedures validate the most basic capabilities.
+This topic tells you how to validate the implementation of a multicluster topology 
+by taking a sample workload and passing it by using the supply chains on the Build 
+and Run clusters. 
 
-By following the steps in this topic, you will build an application on the Build profile clusters and run the application on the Run profile clusters. You will be able to view the workload and associated objects from Tanzu Application Platform GUI interface on the View profile cluster.
+Use this topic to build an application on the Build profile clusters and run the 
+application on the Run profile clusters. 
+
+You can view the workload and associated objects from Tanzu Application Platform GUI 
+(commonly known as TAP GUI) interface on the View profile cluster.
+
+You can take various approaches to configuring the supply chain in this topology, 
+but the following procedures validate the most basic capabilities.
 
 ## <a id='prerequisites'></a> Prerequisites
 
@@ -12,9 +21,9 @@ Before implementing a multicluster topology, complete the following:
 
 1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Get Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [application-accelerator-samples GitHub repository](https://github.com/vmware-tanzu/application-accelerator-samples).
 
-1. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../set-up-namespaces.md). This guide assumes that you use the `default` namespace.
+2. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../install-online/set-up-namespaces.hbs.md). This guide assumes that you use the `default` namespace.
 
-1. To set the value of `DEVELOPER_NAMESPACE` to the namespace you setup in the previous step, run:
+3. To set the value of `DEVELOPER_NAMESPACE` to the namespace you setup in the previous step, run:
 
     ```bash
     export DEVELOPER_NAMESPACE=YOUR-DEVELOPER-NAMESPACE
@@ -22,7 +31,7 @@ Before implementing a multicluster topology, complete the following:
 
     Where:
 
-    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../set-up-namespaces.md). `default` is used in this example.
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md). `default` is used in this example.
 
 
 ## <a id='build-cluster'></a> Start the workload on the Build profile cluster

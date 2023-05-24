@@ -41,7 +41,7 @@ Before following this tutorial, an application developer must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have the Tanzu CLI and the corresponding plug-ins.
 1. Have access to the `default` namespace which has been set up to use installed packages.
-For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+For more information, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 1. Have a Tanzu Application Platform cluster that can pull source code from GitHub.
 
 ## <a id="stk-discover-claims"></a> Discovering existing claims

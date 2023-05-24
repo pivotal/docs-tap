@@ -1,9 +1,10 @@
-# Install Out of the Box Supply Chain with Testing
+# Install Out of the Box Supply Chain with Testing for Supply Chain Choreographer
 
-This document describes how to install Out of the Box Supply Chain with Testing
-from the Tanzu Application Platform package repository.
+This topic describes how you can install Out of the Box Supply Chain with Testing
+for Supply Chain Choreographer from the Tanzu Application Platform package
+repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Out of the Box Supply Chain with Testing. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Out of the Box Supply Chain with Testing. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 The Out of the Box Supply Chain with Testing package provides a
 ClusterSupplyChain that brings an application from source code to a deployed

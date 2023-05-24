@@ -42,7 +42,7 @@ Before following this tutorial, an application operator must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have the Tanzu CLI and the corresponding plug-ins.
 1. Have access to the `default` namespace which has been set up to use installed packages.
-For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+For more information, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
 ## <a id="stk-discover"></a> Discover available services
 

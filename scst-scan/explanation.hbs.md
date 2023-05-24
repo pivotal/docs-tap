@@ -1,7 +1,8 @@
 # Spec reference
 
-With the Scan Controller and Grype Scanner installed (see Install Supply Chain Security Tools - Scan
-from [Installing Individual Packages](../install-components.html#install-scst-scan),
+This topic describes the specifications and custom resources you can use with Supply Chain Security Tools - Scan.
+
+With the Scan Controller and Grype Scanner installed
 the following Custom Resource Definitions (CRDs) are now available:
 
 ```console
@@ -11,6 +12,10 @@ scanpolicies.scanning.apps.tanzu.vmware.com              2021-09-09T15:22:07Z
 scantemplates.scanning.apps.tanzu.vmware.com             2021-09-09T15:22:07Z
 sourcescans.scanning.apps.tanzu.vmware.com               2021-09-09T15:22:07Z
 ```
+
+For more information about installing SCST - Scan, see
+[Installing Individual
+Packages](../install-online/components.hbs.md#install-scst-scan).
 
 ## <a id="about-src-and-image-scans"></a>About source and image scans
 

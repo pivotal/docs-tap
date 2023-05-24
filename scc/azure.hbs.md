@@ -1,6 +1,6 @@
-# Using Azure DevOps as a Git provider
+# Using Azure DevOps as a Git provider with your supply chains
 
-This topic describes how to use Azure DevOps as a Git provider with your supply chains.
+This topic describes how to use Azure DevOps as a Git provider with your Supply Chain Choreographer supply chains.
 
 There are two uses for Git in a supply chain:
 
@@ -61,41 +61,53 @@ The following example uses the Azure DevOps Git repository:
 
 `https://dev.azure.com/vmware-tanzu/tap/_git/tap`
 
-Configure the supply chain through tap-values:
+Set the `gitops_server_kind` workload params to `azure`.
 
-```yaml
-ootb_supply_chain_testing_scanning:
-  gitops:
-    server_address: https://dev.azure.com
-    repository_owner: vmware-tanzu/tap
-    repository_name: tap
-    pull-request:
-      server-kind: azure
-```
-
-or the workload parameters:
-
-```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  ...
-spec:
-  params:
-    - name: gitops_server_address
-      value: https://dev.azure.com
-    - name: gitops_repository_owner
-      value: vmware-tanzu/tap
-    - name: gitops_repository_name
-      value: tap
-    - name: gitops_server_kind
-      value: azure
+  ```yaml
+  apiVersion: carto.run/v1alpha1
+  kind: Workload
+  metadata:
     ...
-```
+  spec:
+    params:
+      - name: gitops_server_kind
+        value: azure
+      ...
+  ```
+
+Set other gitops values in either tap-values or in the workload params.
+
+  - By using tap-values:
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      gitops:
+        server_address: https://dev.azure.com
+        repository_owner: vmware-tanzu/tap
+        repository_name: tap
+    ```
+
+  - By using the workload parameters:
+
+    ```yaml
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      ...
+    spec:
+      params:
+        - name: gitops_server_address
+          value: https://dev.azure.com
+        - name: gitops_repository_owner
+          value: vmware-tanzu/tap
+        - name: gitops_repository_name
+          value: tap
+        ...
+    ```
 
 ### <a id="gitops-write-temp"></a> Gitops write path templates
 
-Azure DevOps and Git use different URL structures. 
+Azure DevOps and Git use different URL structures.
 
 For example, the Git clone URL of an Azure DevOps repository is structured as:
 
@@ -126,14 +138,11 @@ Configure the template parameters as follows:
   or `gitops_repository_name` configured as a workload parameter.
 
 To properly contruct the write path, the template parameter `gitops_server_kind` must be configured
-as `azure`. Configure `gitops_server_kind`:
+as `azure`.
 
-- Use the `gitops.pull-request.server-kind` tap-value during the Out of the Box Supply Chains package installation
-- or configure`gitops_server_kind` as a workload parameter
+Configure`gitops_server_kind` as a workload parameter.
 
-> **Note** Even if the commit strategy is not pull-request, such as direct commits, to use an 
-Azure DevOps repository either the tap value `gitops.pull-request.server-kind` or the workload parameter
-`gitops_server_kind` must be configured to `azure`.
+>**Note** When you use pull requests with GitOps, you can set the type of server with the tap-value `gitops.pull_request.server_kind`. See [GitOps versus RegistryOps](gitops-vs-regops.hbs.md#a-idprsa-pull-requests).
 
 For information about configuring the GitOps write operations, see
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).

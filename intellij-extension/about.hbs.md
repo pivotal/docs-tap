@@ -1,6 +1,6 @@
 # Overview of Tanzu Developer Tools for IntelliJ
 
-Tanzu Developer Tools for IntelliJ is VMware Tanzu's official IDE extension for IntelliJ IDEA.
+Tanzu Developer Tools for IntelliJ is the official VMware Tanzu IDE extension for IntelliJ IDEA.
 The extension helps you develop with Tanzu Application Platform and enables you to rapidly iterate
 on your workloads on supported Kubernetes clusters that have Tanzu Application Platform installed.
 
@@ -10,25 +10,30 @@ Tanzu Developer Tools for IntelliJ currently supports Java applications on macOS
 
 This extension gives the following features:
 
-- **Deploy applications directly from IntelliJ**
+- **Deploy applications directly from IntelliJ:**
+
   Rapidly iterate on your applications on Tanzu Application Platform and deploy them as workloads
   directly from within IntelliJ.
 
-- **See code updates running on-cluster in seconds**
+- **See code updates running on-cluster in seconds:**
+
   With the use of Live Update facilitated by Tilt, deploy your workload once, save changes to the
   code and then, seconds later, see those changes reflected in the workload running on the cluster.
 
-- **Debug workloads directly on the cluster**
+- **Debug workloads directly on the cluster:**
+
   Debug your application in a production-like environment by debugging on your Kubernetes cluster
   that has Tanzu Application Platform.
   An environment’s similarity to production relies on keeping dependencies updated, among other
   variables.
 
-- **See workloads running on the cluster**
+- **See workloads running on the cluster:**
+
   From the Workloads panel you can see any workload found within the cluster and namespace specified
   in the current kubectl context.
 
-- **Work with microservices in a Java monorepo**
+- **Work with microservices in a Java monorepo:**
+
   Tanzu Developer Tools for IntelliJ v1.3 and later supports working with a monorepo containing
   multiple modules that represent different microservices.
   This makes it possible to deploy, debug, and Live Update multiple workloads simultaneously from

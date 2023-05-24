@@ -1,7 +1,7 @@
 # Get started with Application Single Sign-On
 
 At the core of AppSSO is the concept of an Authorization Server, outlined by
-the [AuthServer custom resource](../crds/authserver.md). Service Operators create those resources to provision running
+the [AuthServer custom resource](../reference/api/authserver.hbs.md). Service Operators create those resources to provision running
 Authorization Servers, which are [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
 Providers. They issue [ID Tokens](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) to Client applications,
 which contain identity information about the End-User (such as email, first name, last name, etc).

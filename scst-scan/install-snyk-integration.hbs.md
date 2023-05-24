@@ -1,6 +1,6 @@
-# Prerequisites for Snyk Scanner (Beta)
+# Prerequisites for Snyk Scanner for Supply Chain Security Tools - Scan (Beta)
 
-This topic describes the prerequisites for installing Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
+This topic describes the prerequisites you must complete to install Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
 
 >**Important** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
 
@@ -106,7 +106,8 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
 
 ```yaml
 # ...
-metadataStore: {} # Deactivate Supply Chain Security Tools - Store integration
+metadataStore:
+   url: "" # Configuration is moved, so set this string to empty.
 ```
 
 ## <a id="snyk-scan-policy"></a> Sample ScanPolicy for Snyk in SPDX JSON format

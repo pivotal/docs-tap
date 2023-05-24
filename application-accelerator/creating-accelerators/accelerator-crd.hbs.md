@@ -69,6 +69,7 @@ The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following f
 | displayName | DisplayName is a short descriptive name used for a Fragment. | Optional |
 | git | Defines the fragment source Git repository. | Required |
 | git.url | The repository URL, can be a HTTP/S or SSH address. | Required |
+| git.gitImplementation | Determines which git client library to use. The default setting is to go-git. Valid values are ('go-git', 'libgit2'). Deprecated: gitImplementation is deprecated. go-git is the only supported implementation. | Optional (**) |
 | git.ignore | Overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default of `.git/` is used. | Optional (**) |
 | git.interval | The interval at which to inquire for repository updates. If not provided the default is 10 min.| Optional (**) |
 | git.ref | Git reference to checkout and monitor for changes, the default is main branch. | Optional (**) |

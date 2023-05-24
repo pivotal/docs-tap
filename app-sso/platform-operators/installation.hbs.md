@@ -3,15 +3,15 @@
 The AppSSO package is currently published as part of the Tanzu Application Platform package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../../about-package-profiles.hbs.md).
+For more information about profiles, see [Components and installation profiles](../../about-package-profiles.hbs.md).
 
 ## What's inside
 
-The AppSSO package will install the following resources:
+The AppSSO package installs the following resources:
 
-* The `appsso` Namespace with a Deployment of the AppSSO controller and Services for Webhooks
-* A `ServiceAccount` with RBAC outlined in detail [here](./rbac.md)
-* [AuthServer and ClientRegistration CRDs](../crds/index.md)
+- The `appsso` namespace with a deployment of the AppSSO controller and services for webhooks.
+- [RBAC](../reference/rbac.hbs.md)
+- [APIs](../reference/api/index.hbs.md)
 
 ## Prerequisites
 

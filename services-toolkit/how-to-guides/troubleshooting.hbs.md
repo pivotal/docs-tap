@@ -1,7 +1,8 @@
 # Troubleshoot Services Toolkit
 
-This topic provides guidance on how to troubleshoot issues related to working with services on Tanzu
-Application Platform. For workarounds for known limitations, see [Known limitations](../reference/known-limitations.hbs.md).
+This topic gives you guidance about how to troubleshoot issues related to working with services on
+Tanzu Application Platform.
+For known limitations and the corresponding workarounds, see [Known limitations for Services Toolkit](../reference/known-limitations.hbs.md).
 
 ## <a id="prereq"></a> Prerequisites
 
@@ -29,7 +30,7 @@ resources that are created when fulfilling the `ClassClaim`.
    - Check the status conditions for information that can lead you to the cause of the issue.
    - Check `.spec.classRef.name` and record the value.
 
-2. Inspect the status of the `ClusterInstanceClass` by running:
+1. Inspect the status of the `ClusterInstanceClass` by running:
 
    ```console
    kubectl describe clusterinstanceclass CLASS-NAME
@@ -43,7 +44,7 @@ resources that are created when fulfilling the `ClassClaim`.
    - Check that the `Ready` condition has status `"True"`.
    - Check `.spec.provisioner.crossplane` and record the value.
 
-3. Inspect the status of the `CompositeResourceDefinition` by running:
+1. Inspect the status of the `CompositeResourceDefinition` by running:
 
    ```console
    kubectl describe xrd XRD-NAME

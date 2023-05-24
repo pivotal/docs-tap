@@ -1,7 +1,7 @@
 # Create Azure Resources for Tanzu Application Platform
 
-To install Tanzu Application Platform within Azure ecosystem, you must create several Azure resources. 
-This topic walks you through creating:
+To install Tanzu Application Platform (commonly known as TAP) within the Azure ecosystem, 
+you must create several Azure resources. Use this topic to learn how to create:
 
 - An Azure Kubernetes Service (AKS) cluster to install Tanzu Application Platform.
 - Identity and Access Management (IAM) roles to allow authentication and
@@ -65,8 +65,10 @@ The following example creates a cluster named `tap-on-azure` with one node and
 enables a system-assigned managed identity:
 
 ```console
-az aks create -g myTAPResourceGroup -n tap-on-azure --enable-managed-identity --node-count 6 --enable-addons monitoring --enable-msi-auth-for-monitoring --generate-ssh-keys --node-vm-size Standard_D4ds_v4 --kubernetes-version KUBERNETES_VERSION
+az aks create -g myTAPResourceGroup -n tap-on-azure --enable-managed-identity --node-count 6 --enable-addons monitoring --enable-msi-auth-for-monitoring --generate-ssh-keys --node-vm-size Standard_D4ds_v4 --kubernetes-version K8S-VERSION
 ```
+
+Where `K8S-VERSION` is the compatible Kubernetes version that can be retrieved by running `az aks get-versions`.
 
 After a few minutes, the command completes and returns JSON-formatted information about the cluster.
 

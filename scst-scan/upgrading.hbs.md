@@ -1,6 +1,6 @@
 # Upgrade Supply Chain Security Tools - Scan
 
-This topic describes how to upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
+This topic describes how you can upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
 You can perform a fresh install of SCST - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
 
@@ -40,7 +40,7 @@ automatically upgraded.
 
 ### <a id="upgrade-scanner-manual"></a> Manual installation
 
-1. If a scanner, such as Grype Scanner, was installed as part of Tanzu Application Platform by using the [full profile](../install.hbs.md#full-profile), run to upgrade:
+1. If a scanner, such as Grype Scanner, was installed as part of Tanzu Application Platform by using the [full profile](../install-online/profile.hbs.md#full-profile), run to upgrade:
 
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file tap-values.yaml -n tap-install

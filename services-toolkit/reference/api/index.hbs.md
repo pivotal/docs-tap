@@ -1,4 +1,4 @@
-# API Documentation
+# Services Toolkit API documentation
 
 This section of the documentation provides detailed information about Services Toolkit's APIs.
 

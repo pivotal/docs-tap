@@ -1,9 +1,10 @@
-# Install default roles independently
+# Install default roles independently for your Tanzu Application Platform
 
-This document describes how to install default roles for Tanzu Application Platform without deploying a Tanzu Application Platform profile.
+This topic tells you how to install default roles for Tanzu Application Platform
+(commonly known as TAP) without deploying a TAP profile.
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install default roles. 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+>**Note** Follow the steps in this topic if you do not want to use a profile to install default roles.
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 

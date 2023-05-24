@@ -1,8 +1,12 @@
 # Configure grant types
 
-These are the grant types/flows for apps to get an access token on behalf of a user. If not included, the default
-will be `['client_credentials']`. They take effect by being included in the `authorizationGrantTypes` property list in
-the [Client Registration](../crds/clientregistration.md).
+This topic tells you how to configure grant types for Application Single Sign-On 
+(commonly called AppSSO).
+
+Apps use grant types or flows to get an access token on behalf of a user. 
+If not included, the default grant type is `['client_credentials']`. 
+You must include these grant types in the `authorizationGrantTypes` property list 
+in the [Client Registration](../reference/api/clientregistration.hbs.md).
 
 To register a client/application, apply the `yaml` with your specifications to your cluster
 `kubectl apply -f <path-to-your-yaml>`.
@@ -31,7 +35,7 @@ spec:
 
 > Ensure that you are able to retrieve a token through your setup
 
-1. Apply your [ClientRegistration](../crds/clientregistration.md#example)
+1. Apply your [ClientRegistration](../reference/api/clientregistration.hbs.md#example)
 
    ```shell
    kubectl apply -f <path-to-the-clientregistration-yaml>
@@ -98,7 +102,7 @@ Ensure there is an Identity Provider configured
    kubectl get authserver sso4k8s -o jsonpath="{.metadata.labels.name}"
    ```
 
-2. Apply this sample ClientRegistration ([read more about ClientRegistrations](../crds/clientregistration.md)
+2. Apply this sample ClientRegistration ([read more about ClientRegistrations](../reference/api/clientregistration.hbs.md)
 
    The following is an example ClientRegistration that will work in this setup. The required scopes are `openid, email,
 profile, roles`. The redirect URI here has been set to match that of `oauth2-proxy`.

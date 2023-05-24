@@ -1,6 +1,6 @@
 # Install External Secrets Operator
 
-This topic describes how to install the External Secrets Operator
+This topic tells you how to install the External Secrets Operator
 from the Tanzu Application Platform package repository.
 
 > **Important** External Secrets Operator is not included or installed with any

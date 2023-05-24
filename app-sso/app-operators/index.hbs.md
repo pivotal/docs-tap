@@ -1,5 +1,8 @@
 # Application Single Sign-On for App Operators
 
-- [Workloads and AppSSO](workloads-and-appsso.hbs.md)
-- [Secure a Spring Boot Workload](secure-spring-boot-workload.hbs.md)
-- [Secure a single-page app Workload](secure-spa-workload.hbs.md)
+The following topics tell you how to secure a sample app with 
+Application Single Sign-On (commonly called AppSSO): 
+
+- [Configure AppSSO for workloads ](workloads-and-appsso.hbs.md)
+- [Secure a Spring Boot workload](secure-spring-boot-workload.hbs.md)
+- [Secure a single-page app workload](secure-spa-workload.hbs.md)

@@ -1,5 +1,6 @@
-You can install Tanzu Application Platform through predefined profiles or through individual packages.
-This page provides links to install instructions for each of the individual packages.
+You can install Tanzu Application Platform (commonly known as TAP) through 
+predefined profiles or through individual packages.
+Use this topic to learn how to install each individual package.
 For more information about installing through profiles, see
 [Components and installation profiles](/docs-tap/about-package-profiles.hbs.md).
 

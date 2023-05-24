@@ -1,4 +1,8 @@
-# PodIntent
+# PodIntent for Cartographer Conventions
+
+This reference topic describes `PodIntent` that you can use with Cartographer Conventions.
+
+## Overview
 
 `PodIntent` applies conventions to a workload. The `.spec.template`'s PodTemplateSpec is enriched by the conventions and exposed as the `.status.template`s PodTemplateSpec. A log of which sources and conventions applied is captured with the `conventions.carto.run/applied-conventions` annotation on the PodTemplateSpec.
 

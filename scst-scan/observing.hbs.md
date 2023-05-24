@@ -1,6 +1,6 @@
 # Observe Supply Chain Security Tools - Scan
 
-This topic outlines observability and troubleshooting methods and issues for using the SCST - Scan components.
+This topic outlines observability and troubleshooting methods and issues you can use with SCST - Scan components.
 
 ## <a id="observability"></a> Observability
 

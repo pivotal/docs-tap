@@ -1,6 +1,6 @@
-# Runtime resources visibility
+# Runtime resources visibility in Tanzu Application Platform GUI
 
-This topic describes runtime resources visibility.
+This topic tells you about runtime resources visibility.
 
 The Runtime Resources Visibility plug-in enables users to visualize their Kubernetes resources
 associated with their workloads.

@@ -1,8 +1,8 @@
 # Install API Auto Registration
 
-This topic describes how to install API Auto Registration from the Tanzu Application Platform package repository.
+This topic describes how you can install API Auto Registration from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install API Auto Registration. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install API Auto Registration. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Tanzu Application Platform prerequisites
 
@@ -57,9 +57,9 @@ To install the API Auto Registration package:
 
     Retrieving package details for apis.apps.tanzu.vmware.com/0.2.2...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS. 
+    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS.
     ingress_issuer                                                           string   Optional: Name of the default cluster issuer used to generate certificates
-    auto_generate_cert         true                                          boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified      
+    auto_generate_cert         true                                          boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified
     connections with a custom CA
     cluster_name               dev                                           string   Name of the cluster used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
     sync_period                5m                                            string   Time period used for reconciling an APIDescriptor.

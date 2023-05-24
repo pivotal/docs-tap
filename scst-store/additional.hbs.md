@@ -1,6 +1,6 @@
-# Additional documentation
+# Additional documentation for Supply Chain Security Tools - Store
 
-This section includes the following topics:
+This topic describes additional documentation you can use with Supply Chain Security Tools - Store.
 
 ## Use and operate
 
@@ -14,6 +14,7 @@ This section includes the following topics:
 
 - [Troubleshooting upgrading](upgrading.hbs.md)
 - [Log configuration and usage](logs.hbs.md)
+- [Connecting to the Postgres Database](connect-to-database.hbs.md)
 
 ## Configuration
 
@@ -33,7 +34,7 @@ This section includes the following topics:
 - [Custom certificate configuration](custom-cert.hbs.md)
 - [TLS configuration](tls-configuration.hbs.md)
 - [Certificate rotation](cert-rotation.hbs.md)
-- [Scanners Cluster Specific Configurations](cluster-specific-scanner-configurations.hbs.md)
+- [Scanners cluster specific configurations](cluster-specific-scanner-configurations.hbs.md)
 
 ### Database
 

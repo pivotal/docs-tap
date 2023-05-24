@@ -1,10 +1,10 @@
 # Install Tanzu Application Platform Telemetry
 
-This topic describes how to install Tanzu Application Platform Telemetry
-from the Tanzu Application Platform package repository.
+This topic tells you how to install Tanzu Application Platform Telemetry
+from the Tanzu Application Platform (commonly known as TAP) package repository.
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install Telemetry. 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Telemetry.
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 

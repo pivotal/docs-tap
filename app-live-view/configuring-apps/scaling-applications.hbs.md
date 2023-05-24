@@ -1,6 +1,7 @@
 # Scaling Knative apps in Tanzu Application Platform
 
-This topic describes how to use Application Live View when scaling Knative apps or developer workloads in Tanzu Application Platform.
+This topic tells you how to use Application Live View when scaling Knative apps or developer workloads
+in Tanzu Application Platform.
 
 Application Live View is focused on monitoring apps for a `live` window and does not apply to any of the apps that are scaled down to zero. The intended behavior for Knative apps is to keep track of revisions to allow you to rollback easily, but also scale all of the unused revision instances down to zero to keep resource consumption low.
 
@@ -60,7 +61,7 @@ To verify the annotation:
 shows the newly added annotation has propagated through the Supply Chain:
 
     ```console
-    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml  
+    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml
 
     status:
       conditions:

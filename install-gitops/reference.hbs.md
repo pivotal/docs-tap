@@ -1,12 +1,8 @@
 # Tanzu GitOps RI Reference Documentation
 
->**Caution** Tanzu Application Platform (GitOps) is currently in beta and 
-> is intended for evaluation and test purposes only. Do not use in a production environment.
-
-## <a id="overview"></a>Component Overview
-
-The following diagrams shows the components that are installed as part of Tanzu GitOps Reference Implememtation (RI) 
-and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows you the components that are installed as part of 
+Tanzu GitOps Reference Implememtation (RI) and how they work together to automate 
+the installation of Tanzu Application Platform (commonly known as TAP):
 
 SOPS
 : ![Diagram describing the architecture of GitOps Installer using SOPS.](./images/arch-sops.png)
@@ -14,8 +10,10 @@ SOPS
 ESO
 : ![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
 
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and 
+> is intended for evaluation and test purposes only. Do not use in a production environment.
 
-### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
+## <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
 Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/) 
 application named `sync` that is installed in the `tanzu-sync` namespace. The sync application:

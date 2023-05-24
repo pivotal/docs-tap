@@ -1,4 +1,6 @@
-# Out of the Box Supply Chain with testing on Jenkins
+# Out of the Box Supply Chain with testing on Jenkins for Supply Chain Choreographer
+
+This topic provides an overview of Out of the Box Supply Chain with testing on Jenkins for Supply Chain Choreographer.
 
 The Out of the Box templates package now includes a Tekton `ClusterTask`
 resource, which triggers a build for a specified Jenkins job.
@@ -139,7 +141,7 @@ A secret must be created in the developer namespace to contain the credentials r
 - `password` **required**: Password of the user that has access to trigger a build on Jenkins.
 - `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.
 
-Use the Kubernetes CLI tool (kubectl) to create the above secret. You can provide the optional PEM-encoded CA certificate as a file using the the `--from-file` flag as shown below:  
+Use the Kubernetes CLI tool (kubectl) to create the above secret. You can provide the optional PEM-encoded CA certificate as a file using the `--from-file` flag as shown below:  
 
 ```bash
 kubectl create secret generic my-secret \

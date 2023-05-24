@@ -2,42 +2,41 @@
 
 Tanzu Application Platform exposes ingress endpoints so that:
 
-* Platform operator and application developers can interact with the platform
-* End-users can interact with applications running on the platform
+- Platform operators and application developers can interact with the platform.
+- End users can interact with applications running on the platform.
 
-Refer to the [inventory](./inventory.hbs.md) for an accounting of ingress endpoints.
+For information about ingress endpoints and their certificates, see [Ingress
+certificates inventory](./inventory.hbs.md).
 
-To secure these endpoints with TLS, i.e. `https://`, Tanzu Application Platform
-has two primary ways of configuring ingress certificates:
+To secure these endpoints with TLS, for example, `https://`, Tanzu Application Platform
+has two ways of configuring ingress certificates:
 
-* **A shared ingress issuer**
+## A shared ingress issuer
 
-  This is the recommended best practice for issuing ingress certificates on
-  Tanzu Application Platform.
+VMware recommends a shared ingress issuer as the best practice for issuing ingress certificates on
+Tanzu Application Platform.
 
-  The ingress issuer is an on-platform representation of a _certificate
-  authority_. All participating components will get their certificates issued
-  by it. It is designated by the single TAP configuration value
-  `shared.ingress_issuer`. Unless customized, all components obtain their
-  ingress certificates from this issuer.
+The ingress issuer is an on-platform representation of a _certificate
+authority_. All participating components get their certificates issued
+by it. It is designated by the single Tanzu Application Platform configuration value
+`shared.ingress_issuer`. Unless customized, all components obtain their
+ingress certificates from this issuer.
 
-  By default, the ingress issuer is self-signed.
+By default, the ingress issuer is self-signed.
 
-  Refer to [shared ingress issuer](./issuer.hbs.md) to learn about its
-  prerequisites, defaults and how to bring your own issuer.
+For more information about prerequisites, defaults, and how to bring your own issuer, see
+[Shared ingress issuer](./issuer.hbs.md).
 
-* **Component-level configuration**
+## Component-level configuration
 
-  In some situations the shared ingress issuer is not the right choice(see [its
-  prerequisites](./issuer.hbs.md#prerequisites)). It is possible to override
-  configuration of TLS and certificates per component. A component's
-  ingress/TLS configuration takes precedence over the shared ingress issuer.
+In some situations, depending on [prerequisites](./issuer.hbs.md#prerequisites), the shared ingress
+issuer is not the right choice. You can override
+configuration of TLS and certificates per component. A component's
+ingress/TLS configuration takes precedence over the shared ingress issuer.
 
-  Refer to the [inventory](./inventory.hbs.md) for a listing of components with
-  ingress and how to customize them.
+For a list of components with ingress and how to customize them, see [Inventory](./inventory.hbs.md).
 
-  TAP also has limited support for [wildcard certificates](./wildcards.hbs.md).
+Tanzu Application Platform also has limited support for [wildcard certificates](./wildcards.hbs.md).
 
->**Note** The approaches can be mixed; use a shared ingress issuer, but
->override TLS configuration for select components.
-
+>**Note** The approaches can be mixed, for example, use a shared ingress issuer, but
+override TLS configuration for select components.

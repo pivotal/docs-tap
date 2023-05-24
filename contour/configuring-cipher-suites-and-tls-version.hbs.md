@@ -1,12 +1,15 @@
 # Configure Cipher Suites and TLS version in Contour
 
-Contour provides configuration options for TLS Version and Cipher Suites. Rather than directly exposed through a top level key in the pacakge, 
-they fall into the category of advanced Contour configurations by using the `contour.configFileContents` key.
+This topic tells you how to configure TLS options for Contour in Tanzu Application Platform (commonly known as TAP).
 
-For more information about these configuration options, see [Contour documentation](https://projectcontour.io/docs/v1.23.1/configuration/). 
-This topic is focused on the TLS Configuration section.
+Contour provides configuration options for TLS version and Cipher Suites. 
+Rather than directly exposed through a top level key in the pacakge, 
+they fall into the category of advanced Contour configurations by using the `contour.configFileContents` key. 
+For more information about these configuration options, 
+see [Contour documentation](https://projectcontour.io/docs/v1.23.1/configuration/). 
 
-To configure TLS options for Contour in Tanzu Application Platform, edit the `contour` section of your Tanzu Application Platform values file as follows:
+To configure TLS options for Contour in Tanzu Application Platform, 
+edit the `contour` section of your TAP values file as follows:
 
 ```yaml
 contour:

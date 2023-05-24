@@ -1,4 +1,6 @@
-# Use an existing image
+# Use an existing image with Supply Chain Choreographer
+
+This topic describes how you can use an existing image with Supply Chain Choreographer.
 
 For apps that build container images in a predefined way, the supply chains
 in the Out of the Box packages enable you to specify a prebuilt image.

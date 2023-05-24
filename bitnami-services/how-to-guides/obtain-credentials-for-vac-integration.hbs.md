@@ -1,6 +1,6 @@
-# Obtain credentials for VMware Application Catalog Integration
+# Obtain credentials for VMware Application Catalog integration with Bitnami Services
 
-This topic describes how to obtain credentials for VMware Application Catalog (VAC) to use
+This topic tells you how to obtain credentials for VMware Application Catalog (VAC) to use
 when following the procedure in [Configure private registry and VMware Application Catalog integration for Bitnami Services](./configure-private-reg-integration.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites

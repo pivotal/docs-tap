@@ -1,6 +1,6 @@
-# Troubleshoot Rego files with a scan policy
+# Troubleshoot Rego files with a scan policy for Supply Chain Security Tools - Scan
 
-This topic describes how to use an example output to troubleshoot your Rego file. You use a Rego file in a scan policy custom resource. See [Enforce compliance policy using Open Policy Agent](./policies.hbs.md).
+This topic describes how you can use an example output to troubleshoot your Rego file for SCST - Scan. You use a Rego file in a scan policy custom resource. See [Enforce compliance policy using Open Policy Agent](./policies.hbs.md).
 
 For information about how to write Rego, see [Open Policy Agent documentation](https://www.openpolicyagent.org/docs/latest/policy-language/).
 

@@ -1,6 +1,6 @@
-## Use API Validation and Scoring to score an auto-registered API
+## Use API Validation and Scoring to score your auto-registered API
 
-This topic describes how an [Auto Registered API](../api-auto-registration/about.hbs.md) is scored:
+This topic tells you how an [Auto Registered API](../api-auto-registration/about.hbs.md) is scored:
 
 - See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) to deploy the workload. 
 - Navigate to the Tanzu Application Platform GUI to view the API .

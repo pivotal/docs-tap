@@ -1,6 +1,6 @@
 # Add Tanzu Application Platform GUI integrations
 
-You can integrate Tanzu Application Platform GUI with several Git providers.
+You can integrate Tanzu Application Platform GUI (commonly called TAP GUI) with several Git providers.
 To use an integration, you must enable it and provide the necessary token or credentials in
 `tap-values.yaml`.
 
@@ -22,10 +22,10 @@ To add a GitHub provider integration, edit `tap-values.yaml` as in this example:
 Where:
 
 - `EXTERNAL-IP` is the external IP address.
-- `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice.
-Ensure `GITHUB-TOKEN` has the necessary read permissions for the catalog definition files you
-extracted from the blank software catalog introduced in the
-[Tanzu Application Platform GUI prerequisites](../prerequisites.md#tap-gui).
+- `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice. Ensure that
+  `GITHUB-TOKEN` has the necessary read permissions for the catalog definition files you extracted
+  from the blank software catalog introduced in the
+  [Tanzu Application Platform GUI prerequisites](../prerequisites.hbs.md#tap-gui).
 
 ## <a id="add-non-gh-integration"></a> Add a Git-based provider integration that isn't GitHub
 
@@ -48,10 +48,11 @@ component information:
    Tanzu Application Platform GUI can read when registering new components.
    For example, `git.example.com.`
    For more information about registering new components, see
-   [Adding catalog entities](catalog/catalog-operations.md#add-cat-entities).
+   [Adding catalog entities](catalog/catalog-operations.hbs.md#add-cat-entities).
 
 2. Adding the YAML from the previous step currently causes the **Accelerators** page to break and not
-   show any accelerators. Provide a value for Application Accelerator as a workaround, as in this example:
+   show any accelerators. Provide a value for Application Accelerator as a workaround, as in this
+   example:
 
    ```yaml
      app_config:
@@ -72,7 +73,8 @@ To add an integration for a provider that isn't associated with GitHub, see the
 After making changes to `tap-values.yaml`, update the package profile by running:
 
 ```console
-tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
+tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER \
+--values-file tap-values.yaml -n tap-install
 ```
 
 Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
@@ -80,7 +82,8 @@ Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `
 For example:
 
 ```console
-$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version {{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
+$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version \
+{{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'
 | Getting package metadata for 'tap.tanzu.vmware.com'

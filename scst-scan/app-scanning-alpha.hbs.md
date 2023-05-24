@@ -1,6 +1,8 @@
 # Supply Chain Security Tools - Scan 2.0 (alpha)
 
->**Important** This component is in Alpha, which means that it is still in
+This topic describes how you can install and configure Supply Chain Security Tools - Scan 2.0. 
+
+>**Important** SCST - Scan 2.0 is in Alpha, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
 >might encounter unexpected behavior due to capability gaps. This is an opt-in
 >component to gather early feedback from alpha testers and is not installed by
@@ -140,7 +142,7 @@ The following sections describe how to configure service accounts and registry c
 
 The following access is required:
 
-  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
+  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
   - Read access to the registry containing the image to scan, if scanning a private image
   - Write access to the registry to which results are published
 
@@ -161,7 +163,7 @@ The following access is required:
 
 2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
-    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install.hbs.md#full-profile).
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install-online/profile.hbs.md#full-profile).
 
     ```console
     read -s REGISTRY_PASSWORD
@@ -198,6 +200,7 @@ The following access is required:
     ```
 
     Where:
+    
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is required if the image you are scanning is private.
 

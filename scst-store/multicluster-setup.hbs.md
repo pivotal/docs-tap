@@ -1,7 +1,10 @@
-# Multicluster setup
+# Multicluster setup for Supply Chain Security Tools - Store
 
-Deploying Tanzu Application Platform in a multicluster setup includes installing
-multiple profiles such as, View, Build, Run, and Iterate.
+This topic describes how you can deploy Supply Chain Security Tools (SCST) -
+Store in a multicluster setup includes installing multiple profiles such as,
+View, Build, Run, and Iterate.
+
+## Overview
 
 SCST - Store is deployed with the View profile. After
 installing the View profile, but before installing the Build profile, you must

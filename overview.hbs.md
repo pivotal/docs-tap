@@ -1,7 +1,8 @@
 # Tanzu Application Platform v{{ vars.url_version }}
 
-VMware Tanzu Application Platform (informally known as TAP) is an application development platform with a rich set
-of developer tools. It offers developers a paved path to production to build and deploy software quickly and
+VMware Tanzu Application Platform (informally known as TAP) is an application development platform
+with a rich set of developer tools.
+It offers developers a paved path to production to build and deploy software quickly and
 securely on any compliant public cloud or on-premises Kubernetes cluster.
 
 ## <a id='overview'></a> Tanzu Application Platform overview
@@ -48,20 +49,22 @@ Supply chains provide a way of codifying all of the steps of your path to produc
 
 ![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
 
-In order to address the developer experience gap, the path to production allows users to create a
+To address the developer experience gap, the path to production allows users to create a
 unified access point for all of the tools required for their applications to reach a customer-facing
 environment.
 
-Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction. Where tools typically can't integrate with
+Instead of having separate tools that are loosely coupled to each other for testing and building,
+security, deploying, and running apps, a path to production defines all four tools in a single,
+unified layer of abstraction. Where tools typically can't integrate with
 one another and additional scripting or webhooks are necessary, a unified automation tool codifies
 all interactions between each of the tools.
 
 Tanzu Application Platform provides a default set of components that automates pushing an app to
 staging and production on Kubernetes. This removes the pain points for both inner and outer loops.
-It also allows operators to customize the platform by replacing Tanzu Application Platform components with other products.
+It also allows operators to customize the platform by replacing Tanzu Application Platform components
+with other products.
 
-![Diagram depicting the layered structure of TAP](images/tap-layered-capabilities.png)
+![Diagram depicting the layered structure of Tanzu Application Platform.](images/tap-layered-capabilities.png)
 
 For more information about Tanzu Application Platform components, see [Components and installation profiles](about-package-profiles.md).
 
@@ -84,6 +87,6 @@ This information cannot directly identify any individual.
 
 You must acknowledge that you have read the VMware CEIP policy before you can proceed with the
 installation.
-For more information, see [Install your Tanzu Application Platform profile](install.md#install-profile).
+For more information, see [Install your Tanzu Application Platform profile](install-online/profile.hbs.md#install-profile).
 To opt out of telemetry participation after installation, see
 [Opting out of telemetry collection](opting-out-telemetry.md).

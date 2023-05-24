@@ -1,4 +1,4 @@
-# Release notes
+# Tanzu Application Platform release notes
 
 This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
 
@@ -32,9 +32,64 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-6-0-COMPONENT-NAME'></a> COMPONENT-NAME
+#### <a id='1-6-0-flux-sc'></a> FluxCD Source Controller
 
-- Feature description.
+Flux Source Controller v0.36.1-build.2 release includes the following API changes:
+
+- `GitRepository` API
+
+    - `spec.ref.name` is the reference value for Git checkout. It takes precedence over Branch,
+    Tag and SemVer, It must be a valid 
+    [Git reference](https://git-scm.com/docs/git-check-ref-format#_description).
+
+        Examples:
+
+        - `"refs/heads/main"`
+        - `"refs/tags/v0.1.0"`
+        - `"refs/pull/420/head"`
+        - `"refs/merge-requests/1/head"`
+
+    - `status.artifact.digest` represents the value of the file in the form of `ALGORITHM:CHECKSUM`.
+    - `status.observedIgnore` represents the latest `spec.ignore` value. It indicates the ignore
+    rules for building the current artifact in storage.
+    - `status.observedRecurseSubmodules` represents the latest `spec.recurseSubmodules` value 
+    during the latest reconciliation.
+    - `status.observedInclude` represents the list of `GitRepository` resources that produces
+    the current artifact.
+
+- `OCIRepository` API
+
+    - `spec.layerSelector` specifies which layer is extracted from an OCI Artifact.
+    This field is optional and set to extracting the first layer in the artifact by default.
+    - `spec.verify` includes the secret name that holds the trusted public keys for signature verification.
+    It also indicates the provider responsible for validating the authenticity of the OCI image.
+    - `spec.insecure` enables connections to a non-TLS HTTP container image registry.
+
+- `HelmChart` API
+
+    - Add the new field `spec.verify`, which includes the secret name that holds 
+    the trusted public keys for signature verification. 
+    It also indicates the provider responsible for validating the authenticity of the OCI image. 
+    This field is only supported when using the HelmRepository source with the `spec.type` OCI.
+    Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.
+
+- `HelmRepository` API
+
+    - Add the new field `spec.provider` for authentication purposes. Supported values are 
+    `aws`, `azure`, `gcp` or `generic`.
+    `generic` is its default value. This field is only required when the `.spec.type` field is set to `oci`
+
+- `Bucket` API
+
+    - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
+    It indicates the ignore rules for building the current artifact in storage.
+
+#### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
+
+- Incorporate the token expiry settings into the `AuthServer` resource.
+  Service operators can customize the expiry settings of access, refresh or
+  identity token.
+  For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings).
 
 ---
 
@@ -45,6 +100,18 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-0-COMPONENT-NAME-bc'></a> COMPONENT-NAME
 
 - Breaking change description.
+
+#### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
+
+- Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
+
+- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to `["http:127.0.0.0:8080"]`.
+
+#### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
+
+- The format of the `status.artifact.revision` value in the `GitRepository` resource's 
+  status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
+    - Example: `main/6db88c7a7e7dec1843809b058195b68480c4c12a` to `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
 
 ---
 
@@ -140,3 +207,24 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.6.0. Use the command `tanzu apps workload apply` instead.
+
+### <a id="1-6-flux-sc"></a> FluxCD Source Controller
+
+- `GitRepository` API
+
+    - `spec.gitImplementation` is deprecated.
+    `GitImplementation` defines the Git client library implementation.
+    `go-git` is the default and only supported implementation. `libgit2`
+    is no longer supported.
+    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access 
+    Control List for enabling cross-namespace references to this object, was never 
+    implemented.
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
+    defined in the observed artifact content config within the status.
+    - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
+    - `status.url` is deprecated in favor of `status.artifact.url`.
+
+- `OCIRepository` API
+
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
+    defined in the observed artifact content config within the status.

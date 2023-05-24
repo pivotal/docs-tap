@@ -7,7 +7,7 @@ To provision namespaces manually, complete the following steps:
 
 1. [Enable single user access](#single-user-access).
 
-2. (Optional) [Enable additional users with Kubernetes RBAC](#additional-user-access).
+2. (Optional) [Enable additional users with Kubernetes RBAC](#user-rbac-k8s).
 
 ## <a id='single-user-access'></a>Enable single user access
 
@@ -23,7 +23,7 @@ To provision namespaces manually, complete the following steps:
      `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. You can use the same registry server as in
      `ootb_supply_chain_basic` - `registry` - `server`. For more information, see
-     [Install Tanzu Application Platform package and profiles](../install.hbs.md).
+     [Install Tanzu Application Platform package and profiles](../install-online/profile.hbs.md).
       - For Docker Hub, the value is `https://index.docker.io/v1/`. It must have the leading
       `https://`, the `v1` path, and the trailing `/`.
       - For Google Container Registry (GCR), the value is `gcr.io`.
@@ -114,11 +114,12 @@ To provision namespaces manually, complete the following steps:
       - name: tap-registry
     ```
 
-## <a id='additional-user-access'></a>Enable additional users with Kubernetes RBAC
+## <a id='user-rbac-k8s'></a>Enable additional users with Kubernetes RBAC
 
 Follow these steps to enable additional users in your namespace by using Kubernetes RBAC:
 
-1. Before you begin, ensure that you have [enabled single user access](#single-user-access).
+1. (Optional) Before you begin, ensure that you have [enabled single user access](#single-user-access). If you've set up your developer namespace using [Namespace Provisioner](provision-developer-ns.md),
+you can skip this step.
 2. Choose either of the following options to give developers namespace-level access and view access
    to the appropriate cluster-level resources:
 

@@ -1,6 +1,7 @@
-# Set up authentication for Tanzu Application Platform
+# Set up authentication for your Tanzu Application Platform
 
-There are multiple ways to set up authentication for your Tanzu Application Platform deployment.
+There are multiple ways to set up authentication for your Tanzu Application Platform 
+(commonly known as TAP) deployment.
 You can manage authentication at the infrastructure level with your Kubernetes provider,
 such as Tanzu Kubernetes Grid, EKS, AKS, or GKE.
 

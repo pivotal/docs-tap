@@ -1,6 +1,7 @@
 # Application Accelerator in Tanzu Application Platform GUI
 
-This topic describes how to use Application Accelerator in Tanzu Application Platform GUI.
+This topic tells you how to use Application Accelerator in Tanzu Application Platform GUI
+(commonly called TAP GUI).
 
 ## <a id="overview"></a> Overview
 

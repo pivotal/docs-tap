@@ -1,10 +1,10 @@
 
 # Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles
 
-This topic describes how to install Supply Chain Security Tools - Store
+This topic describes how you can install Supply Chain Security Tools (SCST) - Store
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Security Tools - Store. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Security Tools - Store. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -17,7 +17,7 @@ Before installing SCST - Store:
 - See [Deployment Details and Configuration](deployment-details.md) to review
   what resources are deployed. For more information, see the
   [overview](overview.md).
-- Create ClusterIssuer 
+- Create ClusterIssuer
 
     ```console
   kubectl apply -f - <<EOF
@@ -29,7 +29,7 @@ Before installing SCST - Store:
         selfSigned: {}
   EOF
     ```
-    
+
 ## <a id='install'></a>Install
 
 To install SCST - Store:

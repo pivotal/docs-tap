@@ -1,8 +1,8 @@
 # Use Gitops Delivery with a Carvel App (alpha)
 
-This topic explains how to deliver Carvel `Packages`, created by the Carvel
+This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
-using Carvel App.
+using Carvel App. You can use Carvel Package Supply Chains with Supply Chain Choreographer. 
 
 ## Prerequisites
 
@@ -18,16 +18,16 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
   Kubernetes clusters, but they must have kapp-controller and Contour installed.
   See the [Carvel documentation](https://carvel.dev/kapp-controller/) and the
   [Contour documentation](https://projectcontour.io/).
-- If you plan to use a build cluster to control the deployment on all the Run clusters,
-  then you must create a Build cluster that has network access to your Run clusters. However,
-  if you intend to directly deploy on the run cluster without the involvement of a build
-  cluster, then the use of a build cluster is only necessary for building the package.
+- If you plan to use a build cluster to control the deployment on all of the run
+  clusters, you must create a Build cluster that has network access to your run
+  clusters. If you intend to deploy directly on the run cluster without using a
+  build cluster, a build cluster is only necessary for building the package.
 
 ## Set up Run cluster namespaces
 
 Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
-To set up a developer namespace if your Run cluster is also a Tanzu Application Platform cluster, see [Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
+To set up a developer namespace if your Run cluster is also a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
 If your Run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
 

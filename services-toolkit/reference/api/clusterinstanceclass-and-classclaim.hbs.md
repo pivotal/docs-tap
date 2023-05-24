@@ -1,6 +1,6 @@
 # ClusterInstanceClass and ClassClaim
 
-This topic provides API documentation for `ClusterInstanceClass` and `ClassClaim`.
+This topic provides Services Toolkit API documentation for `ClusterInstanceClass` and `ClassClaim`.
 
 ## <a id="clusterinstanceclass"></a> ClusterInstanceClass
 

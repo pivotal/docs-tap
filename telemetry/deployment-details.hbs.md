@@ -1,5 +1,8 @@
 # Deployment details and configurations of Tanzu Application Platform Telemetry
 
+Use this topic to learn the deployment details and configurations of your 
+Tanzu Application Platform Telemetry (commonly known as TAP Telemetry).
+
 ## <a id='what-deploy'></a>What is deployed
 
 The installation creates the following in your Kubernetes cluster:

@@ -1,6 +1,6 @@
-# Install Trivy (alpha)
+# Install Trivy for Supply Chain Security Tools - Scan (alpha)
 
-This topic describes how to install SCST - Scan (Trivy) from the VMware package repository.
+This topic describes how you can install SCST - Scan (Trivy) from the VMware package repository.
 
 >**Important** This integration is in Alpha, which means that it is still in active
 >development by the Tanzu Practice Global Tech Team and might be subject to
@@ -381,7 +381,7 @@ To prepare the ScanPolicy:
 After the following prerequisites are completed, install the Trivy:
 
 - Prerequisites listed in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
-- Install the ORAS CLI. See [the ORAS documentation](https://oras.land/cli/).
+- Install the ORAS CLI. See [the ORAS documentation](https://oras.land/docs/).
 
 ## <a id='airgap-config'></a> Air-gap configuration
 
@@ -490,7 +490,7 @@ This section describes how to use a different Trivy CLI version than what is bun
 
 To use another Trivy version:
 
-1. Install the ORAS CLI. See [the ORAS documentation](https://oras.land/cli/).
+1. Install the ORAS CLI. See [the ORAS documentation](https://oras.land/docs/).
 
 2. Download the version of the CLI you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy/releases).
 For example: https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz
@@ -534,7 +534,7 @@ Trivy Aqua plug-in enables Aqua SaaS integration with your Trivy scans.
 
 To use another Trivy Aqua plug-in version:
 
-1. Install the ORAS CLI. See [the ORAS documentation](https://oras.land/cli/).
+1. Install the ORAS CLI. See [the ORAS documentation](https://oras.land/docs/).
 
 2. Download the version of Trivy Aqua plug-in you want from the GitHub releases page. See [trivy-plugin-aqua](https://github.com/aquasecurity/trivy-plugin-aqua/releases) in GitHub.
 

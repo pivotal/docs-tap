@@ -112,7 +112,7 @@ the workload must be updated to point at your Tekton pipeline.
 1. Update the workload by running the following with the Tanzu CLI:
 
     ```console
-    tanzu apps workload create tanzu-java-web-app \
+    tanzu apps workload apply tanzu-java-web-app \
       --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
       --sub-path tanzu-java-web-app \
       --git-branch main \
@@ -122,28 +122,7 @@ the workload must be updated to point at your Tekton pipeline.
       --yes
     ```
 
-    ```console
-    Create workload:
-        1 + |---
-        2 + |apiVersion: carto.run/v1alpha1
-        3 + |kind: Workload
-        4 + |metadata:
-        5 + |  labels:
-        6 + |    apps.tanzu.vmware.com/has-tests: "true"
-        7 + |    apps.tanzu.vmware.com/workload-type: web
-        8 + |  name: tanzu-java-web-app
-        9 + |  namespace: default
-       10 + |spec:
-       11 + |  source:
-       12 + |    git:
-       13 + |      ref:
-       14 + |        branch: main
-       15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
-       16 + |    subPath: tanzu-java-web-app
-
-    ? Do you want to create this workload? Yes
-    Created workload "tanzu-java-web-app"
-    ```
+    <!-- add example output -->
 
 2. After accepting the workload creation, monitor the creation of new resources by the workload by running:
 
@@ -180,7 +159,6 @@ the workload must be updated to point at your Tekton pipeline.
 
 ### <a id="prereqs-install-OOTB-test-scan"></a>Prerequisites
 
-- Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
 - Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
 
   > **Note** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
@@ -294,7 +272,7 @@ pipeline:
 1. Update the workload by running the following using the Tanzu CLI:
 
     ```console
-    tanzu apps workload create tanzu-java-web-app \
+    tanzu apps workload apply tanzu-java-web-app \
       --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
       --sub-path tanzu-java-web-app \
       --git-branch main \
@@ -304,30 +282,7 @@ pipeline:
       --yes
     ```
 
-    Example output:
-
-    ```console
-    Create workload:
-          1 + |---
-          2 + |apiVersion: carto.run/v1alpha1
-          3 + |kind: Workload
-          4 + |metadata:
-          5 + |  labels:
-          6 + |    apps.tanzu.vmware.com/has-tests: "true"
-          7 + |    apps.tanzu.vmware.com/workload-type: web
-          8 + |  name: tanzu-java-web-app
-          9 + |  namespace: default
-        10 + |spec:
-        11 + |  source:
-        12 + |    git:
-        13 + |      ref:
-        14 + |        branch: main
-        15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
-        16 + |    subPath: tanzu-java-web-app
-
-    ? Do you want to create this workload? Yes
-    Created workload "tanzu-java-web-app"
-    ```
+    <!-- add example output -->
 
 1. After accepting the workload creation, view the new resources that the workload created by running:
 

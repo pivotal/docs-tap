@@ -1,6 +1,6 @@
-# Key Concepts
+# Key Concepts for API Auto Registration
 
-This topic explains key concepts related to API Auto Registration.
+This topic explains key concepts you use with API Auto Registration.
 
 ## <a id='architecture'></a>API Auto Registration Architecture
 

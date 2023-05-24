@@ -1,9 +1,9 @@
 # Install Supply Chain Security Tools - Scan
 
-This topic describes how to install Supply Chain Security Tools - Scan
+This topic describes how you can install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install SCST - Scan. For information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install SCST - Scan. For information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
@@ -106,7 +106,21 @@ To install SCST - Scan (Scan controller):
 
 2. (Optional) Make changes to the default installation settings:
 
-    If you are using Grype Scanner `v1.5.0 and later` or other supported scanners included with Tanzu Application Platform `v1.5 and later` and do not want to use the default SCST - Store integration, deactivate the integration by appending the following field to the `values.yaml` file:
+    If you are using Grype Scanner `v1.5.1 and later` or other supported
+    scanners included with Tanzu Application Platform `v1.5.1 and later`, and do
+    not want to use the default SCST - Store integration, deactivate the
+    integration by appending the following field to the `values.yaml` file:
+
+    ```yaml
+    ---
+    metadataStore:
+      url: "" # Deactivate Supply Chain Security Tools - Store integration
+    ```
+
+    If you are using Grype Scanner `v1.5.0` or other supported scanners included
+    with Tanzu Application Platform `v1.5.0`, and do not want to use the default
+    SCST - Store integration, deactivate the integration by appending the
+    following field to the `values.yaml` file:
 
     ```yaml
     ---
@@ -119,7 +133,7 @@ To install SCST - Scan (Scan controller):
     ```yaml
     ---
     metadataStore:
-      url: ""
+      url: "" # Deactivate Supply Chain Security Tools - Store integration
     ```
 
     If your Grype Scanner version is earlier than v1.2.0, the scanning configuration must
@@ -210,7 +224,7 @@ To install SCST - Scan (Scan controller):
     images are pushed to the same registry as the Tanzu Application Platform
     images, this can reuse the `tap-registry` secret created in [Add the Tanzu
     Application Platform package
-    repository](../install.html#add-tap-package-repo) as described earlier.
+    repository](../install-online/profile.hbs.md#add-tap-package-repo) as described earlier.
 
     Run to retrieve other configurable settings and append the key-value pair to the previous `grype-values.yaml` file:
 

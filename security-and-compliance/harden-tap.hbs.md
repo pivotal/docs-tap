@@ -2,13 +2,12 @@
 
 ## Objective
 
-This document aims to provide Tanzu Application Platform installation and configuration guidance for
+This topic provides installation and configuration guidance for
 users looking to achieve an
 [800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) based Authority
-to Operate. This is not a comprehensive security guide, but rather, an abbreviated TAP readiness
-outline with considerations for hardening TAP with 800-53 controls as a guide.
+to Operate. This is not a comprehensive security guide, but rather, an abbreviated Tanzu Application Platform readiness outline with considerations for hardening Tanzu Application Platform with 800-53 controls as a guide.
 
-Configuring your TAP installation to this standard does not guarantee approval given there are
+Configuring your Tanzu Application Platform installation to this standard does not guarantee approval given there are
 multiple organizational requirements and deviations that a platform team may make during
 installation and configuration.
 
@@ -82,8 +81,8 @@ will use to authenticate to remote clusters, and by setting up an authentication
 remote cluster.  As best security practice, VMware recommends setting up a remote authentication
 provider for the Kubernetes cluster.
 
-Full documentation for this can be found
-[here]([https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-gui-auth.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-gui-cluster-view-setup.html#update-tap-gui).
+For more information, see
+[Update Tanzu Application Platform GUI to view resources on multiple clusters](../tap-gui/cluster-view-setup.hbs.md#update-tap-gui).
 
 As best practice, the users on the Kubernetes clusters that are used for remote authentication
 should be assigned to Kubernetes roles that limit access in a least privilege model.  More
@@ -121,21 +120,22 @@ Platform, this protection focuses on the two primary states of data that should 
 
 ### Encryption of Data in Transit
 
-#### Internal TLS Configuration
+#### Internal Communication of Data in Transit Configuration
 
-Communication between services that originates and terminates within the cluster is referred to as
-internal communication. The Tanzu Application Platform is in the process of enabling TLS on
+Communication between services that originate and terminate within the cluster is referred to as
+internal communication. Tanzu Application Platform is in the process of enabling TLS on
 internal communication for components.
 
-For those users who have a requirement to have all internal communication encrypted, the Tanzu
-Application Platform supports enabling the Tanzu Service Mesh, which will provide mutual TLS between
-components.
+If you require encrypted internal communication, there are three
+remediating options:
 
-For more information, please see the
-[guide](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html)
-for setting up Tanzu Service Mesh with the Tanzu Application Platform.
+1. Enable Tanzu Service Mesh, which provides mutual TLS between
+components. For more information, see [Set up Tanzu Service Mesh](../integrations/tsm-tap-integration.hbs.md).
+2. Configure Kubernetes to encrypt all communication with a Container Networking Interface (CNI)
+that supports traffic encryption, for example, [Antrea](https://github.com/antrea-io/antrea/blob/main/docs/traffic-encryption.md).
+3. Use the underlying network infrastructure running Kubernetes which has encryption on all network traffic.
 
-#### External TLS Configuration
+#### External Communication of Data in Transit Configuration
 
 Based upon OSS doc:
 [https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration)
@@ -185,36 +185,45 @@ For more settings in the Contour component, you can reference the
 
 #### Ingress Certificates
 
-Refer to [ingress certificates](./tls-and-certificates/ingress/about.hbs.md) to
-learn how to configure TLS for a TAP installation's ingress endpoints.
+For information about to configure TLS for a Tanzu Application Platform installation's ingress
+endpoints, see [Ingress certificates](./tls-and-certificates/ingress/about.hbs.md).
 
 ### Encryption of Data At Rest
 
-All data should be encrypted at rest.  The Tanzu Application Platform runs on top of the Kubernetes
-platform and as such, TAP will verify the default storage class configured on the Kubernetes
-cluster. Customers are required to provide a Persistent Volume Provisioner to the Kubernetes
-infrastructure that supports encryption if the customers desire to have Encryption of Data at Rest as
-an outcome.
+All data should be encrypted at rest. The Tanzu Application Platform runs on Kubernetes
+and verifies the default storage class configured on the Kubernetes
+cluster. If you require Encryption of Data at Rest (DARE), you must provide a Persistent Volume Provisioner that supports encryption to the Kubernetes infrastructure.
 
 - Persistent Volume claim encryption
 - Data at rest should be encrypted.
 
 ### Ports and Protocols
 
-Ports are used in TCP and UDP protocols for identification of applications. While some applications use well-known port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic ports. Open port refers to a port on which a system is accepting communication. An open port does not immediately mean a security issue, but it's important to understand that it can provide a pathway for attackers to the application listening on that port. To help with understanding the traffic flows in the Tanzu Application Platform, a list of TAP ports and protocols is available to existing and future customers upon request. 
+Ports are used in TCP and UDP protocols for identification of applications. While some applications
+use common port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic
+ports. An *open port* refers to a port on which a system is accepting communication. An open port does
+not always mean that there is a security issue, but it can provide a pathway
+for attackers listening on that port. To help understand the traffic flows
+in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and protocols on request.
 
-Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html)
+See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
 
 ## Networking
 
-TAP networking is a shared responsibility with customers to ensure that customer workloads only expose internal-only routes. All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/). TAP is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html). It is vital that customers configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on knative deployed services. For more information, please refer to instructions for [installing TAP in an air-gapped environment](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-air-gap.html?hWord=N4IghgNiBcIC5gHYC8CuACRBTOB3A9gE4DWIAvkA).
+Ensure that workloads only expose internal-only routes.
 
+All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/).
+
+Tanzu Application Platform is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html).
+
+You must configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on Knative deployed services.
+For more information, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
 ## Key Management
 
-Key management is the foundation of all data security. Data is encrypted and decrypted via the use of encryption keys or secrets that must be safely stored to prevent the loss or compromise of infrastructure, systems, and applications. TAP values are secrets and must be protected to ensure the security and integrity of the platform.
+Key management is the foundation of all data security. Data is encrypted and decrypted with encryption keys or secrets that must be safely stored to prevent the loss or compromise of infrastructure, systems, and applications. Tanzu Application Platform values are secrets and must be protected to ensure that the security and integrity of the platform is maintained.
 
-- TAP stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
+- Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
 - Encryption of secrets at rest are Kubernetes Distribution Dependent.
 - If customers desire to store secrets in a Secret Management service (e.g. [Hashicorp Vault](https://www.vaultproject.io),
   [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/),
@@ -222,13 +231,13 @@ Key management is the foundation of all data security. Data is encrypted and dec
   use of the [External Secrets Operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/external-secrets-about-external-secrets-operator.html)
   to automate the lifecycle management (ALPHA).
 - 800-53 [Section AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
-  related to safeguarding of sensitive information from exploitation (ex. TAP values)
+  related to safeguarding of sensitive information from exploitation, for example, Tanzu Application Platform values.
 
 ## Logging
 
-Log files provide an audit trail necessary to monitor activity within infrastructure, identify policy violations, unusual activity, and highlight security incidents. It is vital that logs are captured and retained according to the policies set forth by the organization's security team or governing body. TAP components run as pods on the Kubernetes infrastructure and all components output to standard out, captured as part of the pod logs.
+Log files provide an audit trail to monitor activity within infrastructure. Use log files to identify policy violations, unusual activity, and security incidents. It is vital that logs are captured and retained according to the policies set forth by your organization's security team or governing body. Tanzu Application Platform components run as pods on the Kubernetes infrastructure and all components output is captured as part of the pod logs.
 
-All TAP components follow
+All Tanzu Application Platform components follow
 [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
 Log aggregation should be implemented following the best practices of the organization log retention
 process.
@@ -237,7 +246,8 @@ process.
 
 ## Deployment Architecture
 
-The Tanzu Application Platform [reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) illustrates components based on function.
-The architecture recommends individual Kubernetes clusters for the iterate, build, view, and run
-functions. This separation protects the availability and performance of the platform from functions
-such as build and scan, that can consume extensive resources at peak times.
+Tanzu Application Platform provides a
+[reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function. VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run
+functions. This separation enables Kubernetes administrators to manage each function independently
+and therefore, protect the availability and performance of the platform during high usage periods,
+for example, building or scanning.

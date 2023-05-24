@@ -1,7 +1,10 @@
 # The four levels of service consumption in Tanzu Application Platform
 
+This topic describes the different levels of abstraction when using Services Toolkit and explains
+when and why you might choose to use one level over the other.
+
 As Tanzu Application Platform has evolved, so has the way to offer and consume services on the platform.
-This topic charts the progress of this evolution in terms of four levels of service consumption.
+In this topic, the progress of this evolution is charted in terms of four levels of service consumption.
 
 The introduction of a higher level does not automatically mean that all lower levels are made obsolete.
 In most cases, the higher levels build upon the foundations laid by the lower

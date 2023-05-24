@@ -1,10 +1,10 @@
 # Install API portal for VMware Tanzu
 
-This topic describes how to install and update API portal for VMware Tanzu
-from the Tanzu Application Platform package repository.
+This topic tells you how to install and update Tanzu API portal for VMware Tanzu
+from the Tanzu Application Platform (commonly known as TAP) package repository.
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install API portal. 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+>**Note** Follow the steps in this topic if you do not want to use a profile to install API portal.
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -124,8 +124,8 @@ To update the installation values for the `api-portal` package:
     --values-file api-portal-values.yaml
     ```
 
-3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the installation of Tanzu Application Platform. 
-See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
+3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the installation of Tanzu Application Platform.
+See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
 
     ```console
     tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
