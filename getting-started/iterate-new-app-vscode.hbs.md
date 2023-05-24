@@ -2,13 +2,13 @@
 
 This how-to topic guides you through starting to iterate on your first application on
 Tanzu Application Platform.
-You deployed the app in the previous how-to [Deploy your first application](deploy-first-app.md).
+You deployed the app in the previous how-to [Deploy your first application](deploy-first-app.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 
-- Prepare to iterate on your application. 
-   - Prepare your project to support Live Update.
-   - Prepare your IDE to iterate on your application.
+- Prepare to iterate on your application.
+  - Prepare your project to support Live Update.
+  - Prepare your IDE to iterate on your application.
 - Apply your application to the cluster.
 - Live update your application to view code changes updating live on the cluster.
 - Debug your application.
@@ -17,7 +17,7 @@ You deployed the app in the previous how-to [Deploy your first application](depl
 
 ## <a id="prepare-to-iterate"></a>Prepare to iterate on your application
 
-In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.md),
+In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.hbs.md),
 you deployed your first application on Tanzu Application Platform.
 Now that you have a skeleton workload developed, you are ready to begin to iterate on your new
 application and test code changes on the cluster.
@@ -32,22 +32,28 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
 >**Important** Use Tilt v0.30.12 or a later version for the sample application.
 
-### Prepare your project to support Live Update
+To prepare to iterate on your application, you must:
 
-Tanzu Live update uses [Tilt](https://tilt.dev/). This requires a suitable 
+1. [Prepare your project to support Live Update](#prepare-live-update)
+1. [Set up the IDE](#set-up-ide)
+
+### <a id="prepare-live-update"></a>Prepare your project to support Live Update
+
+Tanzu Live Update uses [Tilt](https://tilt.dev/). This requires a suitable
 `Tiltfile` to exist at the root of your project. Both Gradle and Maven projects are
-supported but each requires a `Tiltfile` specific to that type of project. 
+supported, but each requires a `Tiltfile` specific to that type of project.
 
-The "Tanzu Java Web App" accelerator provides an option for you to choose between 
-Maven and Gradle and will include a suitable `Tiltfile`. If you used the accelerator 
-then your project should already be setup correctly. However, let's double-check and 
-review the requirements depending on your chosen build system.
+The Tanzu Java Web App accelerator allows you to choose between Maven and Gradle and includes a `Tiltfile`.
+If you used the accelerator then your project is already set up correctly.
 
-#### Maven Spring Boot project requirements
+To verify your project is set up correctly, review the following requirements depending on your chosen
+build system.
 
-If you are using Maven you should have a `Tiltfile` like this one:
+#### <a id="maven"></a>Maven Spring Boot project requirements
 
-```
+If you are using Maven, your `Tiltfile` must be similar to the following:
+
+```starlark
 SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='your-registry.io/project/tanzu-java-web-app-source')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='default')
@@ -71,38 +77,38 @@ k8s_resource('tanzu-java-web-app', port_forwards=["8080:8080"],
             extra_pod_selectors=[{'carto.run/workload-name': 'tanzu-java-web-app', 'app.kubernetes.io/component': 'run'}])
 ```
 
-#### Gradle Spring Boot Project Requirements
+#### <a id="gradle"></a>Gradle Spring Boot project requirements
 
-If you are using Gradle there are some key differences in the `deps=` and `live-update=` 
-sections of the `Tiltfile`:
+If you are using Gradle, review the following requirements:
 
-```
+- The `Tiltfile` looks identical to a Maven `Tiltfile` except for some key differences in the `deps=`
+  and `live-update=` sections:
+
+    ```starlark
+        ...
+        deps=['build.gradle.kts', './build/classes/java/main', './build/resources/main'],
+        live_update=[
+           sync('./build/classes/java/main', '/workspace/BOOT-INF/classes'),
+           sync('./build/resources/main', '/workspace/BOOT-INF/classes')
+        ]
+        ...
+    ```
+
+- The project must be built as an exploded JAR. This is not the default behavior for a Gradle-based build.
+  For a typical Spring Boot Gradle project you must deactivate the `jar` task in the `build.gradle.kts`
+  file as follows:
+
+    ```kotlin
     ...
-    deps=['build.gradle.kts', './bin/main'],
-    live_update=[
-        sync('./bin/main', '/workspace/BOOT-INF/classes')
-    ]
-    ...
-```
+    tasks.named<Jar>("jar") {
+        enabled = false
+    }
+    ```
 
-Other parts of the `Tiltfile` look identical to a Maven `Tiltfile`.
+### <a id="set-up-ide"></a>Set up the IDE
 
-> **Important:** Additionally, for Gradle, you need to make sure that the project
-is built as an 'exploded jar'. This is not the default behavior for a Gradle-based build.
-For a typical Spring Boot Gradle project we need to disable the `jar` 
-task in the `build.gradle.kts` file as follows:
-
-```
-...
-tasks.named<Jar>("jar") {
-    enabled = false
-}
-``` 
-
-### Setting up the IDE
-
-If you have ensured your project has the required `Tiltfile` and Maven or Gradle build 
-support, then you are ready to setup your development environment.
+After verifying your project has the required `Tiltfile` and Maven or Gradle build
+support, you are ready to set up your development environment.
 
 1. Open the Tanzu Java Web App as a project within your VS Code IDE by clicking **File** > **Open Folder**,
    select the Tanzu Java Web App folder and click **Open**.
