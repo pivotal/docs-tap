@@ -326,7 +326,7 @@ service's External IP address. It is not required to know the External IP addres
     - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-SECRET` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+- `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
     - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
 - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
