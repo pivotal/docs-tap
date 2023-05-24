@@ -87,6 +87,8 @@ You can wait for the next build of the workloads that new source code changes tr
 If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
+When upgrading to Tanzu Application Platform v1.5, you might encounter a temporary resource reconciliation failure. This error does not persist and the packages will reconcile subsequently. To facilitate the reconciliation of packages, you can execute the latest package plugin command `tanzu package installed kick -n tap-install tap -y` command repeatedly.
+
 ### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
 If you installed the [full dependencies package](install-online/profile.hbs.md#tap-install-full-deps),
