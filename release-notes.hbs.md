@@ -105,6 +105,8 @@ This release includes the following changes, listed by component and area.
 
 - Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
 
+- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to `["http:127.0.0.0:8080"]`.
+
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
 
 - The format of the `status.artifact.revision` value in the `GitRepository` resource's 
