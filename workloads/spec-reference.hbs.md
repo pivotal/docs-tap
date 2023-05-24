@@ -61,13 +61,11 @@ Parameters:
     <td><code>gitImplementation</code></td>
     <td>
       VMware recommends that you use the underlying library for fetching the source code.
-      Either <code>libgit2</code>, required for Azure DevOps, or
-      <code>go-git</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libgit2
+        value: go-git
       </pre>
     </td>
   </tr>
@@ -87,10 +85,6 @@ Parameters:
     </td>
   </tr>
 </table>
-
-It might not be necessary to change the default Git  implementation, but some providers such as
-Azure DevOps, require you to use `libgit2` as the server-side implementation provides support
- only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 
 For information about the features supported by each implementation, see
 [Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux documentation.
@@ -906,13 +900,13 @@ Parameters:
     <td><code>gitImplementation</code></td>
     <td>
       VMware recommends that you use the underlying library for fetching the
-      source code.  Either <code>libgit2</code>, required for Azure DevOps, or
+      source code.
       <code>go-git</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libgit2
+        value: go-git
       </pre>
     </td>
   </tr>
@@ -933,10 +927,6 @@ Parameters:
 
   </tr>
 </table>
-
-It might not be necessary to change the default Git implementation but some providers, such as
-Azure DevOps, require you to use `libgit2` as the server-side implementation provides support only
-for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 
 For information about the features supported by each implementation, see [git
 implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux

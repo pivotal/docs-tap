@@ -31,7 +31,7 @@ You can configure the supply chain by using `tap-values`:
 
 ```yaml
 ootb_supply_chain_testing_scanning:
-  git_implementation: libgit2
+  git_implementation: go-git
 ```
 
 or by using workload parameter:
@@ -44,23 +44,8 @@ metadata:
 spec:
   params:
     - name: gitImplementation
-      value: libgit2
+      value: go-git
 ```
-
-### <a id="config-git"></a> Configuring your Git implementation for Azure DevOps
-
-The default configuration of the source controller does not use a Git
-implementation compatible with Azure DevOps.
-
-To resolve this, you must configure the [source-template's](ootb-template-reference.hbs.md#source-template) parameter
-`gitImplementation` to `libgit2`. Use one of these options:
-
-- Use the tap-value `git_implementation` to set the parameter
-   for the supply chain. See [source-provider](ootb-supply-chain-reference.hbs.md#source-provider).
-- Use the workload parameter `gitImplementation` to configure the parameter
-   for the individual workload. See [Parameters](workload-reference.hbs.md#parameters).
-
-If both methods are set and do not match, the workload's parameter is respected.
 
 ## <a id="using-gitops"></a> Using Azure DevOps as a GitOps repository
 
@@ -163,7 +148,7 @@ You can configure the delivery tap-values:
 
 ```yaml
 ootb_delivery_basic:
-  git_implementation: libgit2
+  git_implementation: go-git
 ```
 
 or the deliverable parameter:
@@ -176,8 +161,10 @@ metadata:
 spec:
   params:
     - name: gitImplementation
-      value: libgit2
+      value: go-git
 ```
+
+*NOTE*: Source Controller's `go-git` implementation supports Azure DevOps (ADO).
 
 ### <a id="gitops-read-temp"></a> Gitops read implementation templates
 

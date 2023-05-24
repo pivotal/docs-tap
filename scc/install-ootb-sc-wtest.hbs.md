@@ -77,8 +77,8 @@ Install by following these steps:
     registry.server                        Name of the registry server where application images should be pushed to
                                            (required).
 
-    git_implementation                     Determines which git client library to use. Valid options are go-git or
-                                           libgit2.
+    git_implementation                     Determines which git client library to use. The only valid option is
+                                           go-git.
 
     gitops.server_address                  Default server address to be used for forming Git URLs for pushing
                                            Kubernetes configuration produced by the supply chain. This must
