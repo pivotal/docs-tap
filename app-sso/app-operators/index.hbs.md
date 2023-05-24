@@ -1,5 +1,8 @@
 # Application Single Sign-On for App Operators
 
+This topic tells you how to secure a sample app with Application Single Sign-On 
+(commonly called AppSSO).
+
 To secure a `Workload` with AppSSO you need a `ClientRegistration` with these ingredients:
 
 * A unique label selector for the `AuthServer` you want to register a client for
