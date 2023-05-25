@@ -2,7 +2,7 @@
 
 Use the following flags with the Apps CLI plug-in.
 
-## <a id='custom-registry'> Custom registry credentials
+## <a id='custom-registry'></a> Custom registry credentials
 
 Either use a custom certificate on your system or pass the path to the certificate
 through flags.
@@ -34,7 +34,7 @@ export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
 tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE
 ```
 
-## <a id='live-updated-debug'> --live-update and --debug
+## <a id='live-updated-debug'></a> --live-update and --debug
 
 Use the `--live-update` flag to ensure that local source code changes are reflected quickly
 on the running workload. This is particularly valuable when iterating on features that require
@@ -133,7 +133,7 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
     ...
     ```
 
-## <a id='export-usage'> --export
+## <a id='export-usage'></a>  --export
 
 Use this flag to retrieve the workload definition with all the
 extraneous, cluster-specific, properties, and values removed. For example, the status and metadata text
@@ -210,7 +210,7 @@ When querying the workload with `--export`, the default export format in YAML is
     }
 ```
 
-## <a id='export-usage'> --output
+## <a id='export-usage'></a>  --output
 
 Use this flag to retrieve the workload including all the cluster-specifics. The
 `--output` flag can also be used in conjunction with the `--export` flag to set the export format
@@ -383,7 +383,7 @@ status:
     - name: source-provider
 ```
 
-## <a id='subpath-usage'> --sub-path
+## <a id='subpath-usage'></a>  --sub-path
 
 Use this flag to support use cases where more than one application is in a single project or repository.
 
@@ -440,7 +440,7 @@ In the directory of the project you want to create the workload from:
 of code that is uploaded, set the `--local-path` value to point directly to the
 directory containing the code rather than using `--sub-path`.
 
-## <a id='tanzuignore-file-usage'> .tanzuignore file
+## <a id='tanzuignore-file-usage'></a>  .tanzuignore file
 
 There are many files and directories in projects that are not connected to running code
 (these files are not part of the final running container). When creating a workload from local
@@ -468,7 +468,7 @@ are ignored.
     this-is-a-file.ext
 ```
 
-## <a id='dry-run'> --dry-run
+## <a id='dry-run'></a>  --dry-run
 
 Use the `--dry-run` flag to prepare all the steps to submit a workload to the cluster
 but stop before sending it, and display an output of the final structure of the workload.
@@ -512,7 +512,7 @@ tanzu apps workload create rmq-sample-app --git-repo https://github.com/jhvhs/ra
 Error: workload "default/rmq-sample-app" already exists
 ```
 
-## <a id='update-strategy-usage'> --update-strategy
+## <a id='update-strategy-usage'></a>  --update-strategy
 
 Use this flag to control whether configuration properties and values passed through
 `--file workload.yaml` for an existing workload `merge` with, or `replace` (overwrite),
@@ -621,7 +621,7 @@ cluster. The only text boxes that remain exactly as they were created are the sy
 metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`,
 `deletionTimestamp`).
 
-## <a id='apply-output-usage'> Output workload after create/apply
+## <a id='apply-output-usage'></a>  Output workload after create/apply
 
 `tanzu apps workload create/apply` commands can be used with `--output` flag which prints the
 workload once the process of its creation or update happens.
@@ -956,7 +956,7 @@ status:
     name: source-to-url
 ```
 
-## <a id='unsetting-git-fields'> Un-setting Git fields
+## <a id='unsetting-git-fields'></a>  Un-setting Git fields
 
 There are various ways to update a workload. It can be by changing its fields through flags or create
 a `yaml` file with the changes and run `tanzu apps workload apply` command with the `--update-strategy`
@@ -1081,7 +1081,7 @@ spec:
       name: example-rabbitmq-cluster-1
 ```
 
-## <a id='no-color-usage'> Remove color from output
+## <a id='no-color-usage'></a>  Remove color from output
 
 Most of Tanzu Apps Plug-in commands have emojis and colored output with the intention to be more user-friendly.
 
