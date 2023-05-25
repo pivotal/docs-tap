@@ -141,6 +141,16 @@ AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
 >**Note** If omitted, `kubernetes_version` is set to
 >`shared.kubernetes_version`.
 
+### workload_domain_name
+
+This is used as the value for `\{{.Domain}}` in
+[WorkloadRegistration](./api/workloadregistration.hbs.md)'s domain template.
+
+`workload_domain_name` defaults to the value of `domain_name`.
+
+>**Note** Usually, you will want this to be same as
+>[CNRs](../../cloud-native-runtimes/about.hbs.md)' `domain_name`.
+
 ## Schema
 
 The package installation of `sso.apps.tanzu.vmware.com` has the following
