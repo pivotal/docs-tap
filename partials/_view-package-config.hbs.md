@@ -4,29 +4,47 @@ To view possible configuration settings for a package, run:
 tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
->**Note** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top-level keys.
->You can view individual package configuration settings with the same `tanzu package available get` command.
->For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/$TAP_VERSION --values-schema` for Cloud Native Runtimes.
+The `tap.tanzu.vmware.com` package does not show all configuration settings for 
+packages it plans to install. The package only shows top-level keys.
+You can view individual package configuration settings with the same 
+`tanzu package available get` command.
+ 
+For example, to find the keys for Cloud Native Runtimes: 
 
-```yaml
-profile: full
+1. Lists all the installed packages versions by running:
 
-# Shared configurations go under the shared key.
-shared:
-  ingress_domain: tap.example.com
+    ```console
+    tanzu package installed list -n tap-install
+    ```
 
-# ...
+1. List the keys for Cloud Native Runtimes: 
 
-# For example, CNRs specific values go under its name.
-cnrs:
-  provider: local
+    ```console
+    tanzu package available get -n tap-install cnrs.tanzu.vmware.com/CNRS-VERSION --values-schema`
+    ```
 
-# For example, App Accelerator specific values go under its name.
-accelerator:
-  server:
-    service_type: "ClusterIP"
-```
+    Where `CNRS-VERSION` is the package version for Cloud Native Runtimes.
+
+    The output is similar, but probably not identical, to the following example:
+
+    ```yaml
+    profile: full
+
+    # Shared configurations go under the shared key.
+    shared:
+      ingress_domain: tap.example.com
+
+    # ...
+
+    # For example, CNRs specific values go under its name.
+    cnrs:
+      provider: local
+
+    # For example, App Accelerator specific values go under its name.
+    accelerator:
+      server:
+        service_type: "ClusterIP"
+    ```
 
 Shared Keys define values that configure multiple packages. 
 These keys are defined under the `shared` Top-level Key, as summarized in the following table:
