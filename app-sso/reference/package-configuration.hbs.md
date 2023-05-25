@@ -41,6 +41,21 @@ AuthServer](../service-operators/ca-certs.hbs.md).
 >**Note** AppSSO-specific `ca_cert_data` is concatenated with
 >`shared.ca_cert_data`. The resulting PEM bundle contains both.
 
+### cluster_resource_namespace
+
+This setting designates the target namespace for when cluster-scoped APIs
+reconcile into namespace-scoped resources.
+
+In particular, the cluster-scoped
+[ClusterUnsafeTestLogin](./api/clusterunsafetestlogin.hbs.md) reconciles into
+namespace-scoped resources; an `AuthServer` amongst others. These resources
+will be placed in the `cluster_resource_namespace`.o
+
+The default is `appsso`.
+
+>**Note** Updating the `cluster_resource_namespace` of an existing package
+>installation will delete-create namespace-scoped resources in the new
+>namespace. This causes downtime of the impacted resources momentarily.
 
 ### default_authserver_clusterissuer
 
