@@ -179,7 +179,7 @@ To configure the service account to work with private Git repositories, follow t
 
 1. Create a secret in the `tap-install` namespace or any namespace of your preference, that contains the Git credentials in the YAML format.
 
-   - `host`, `username` and `password` values for HTTP based Git Authentication.
+   - `host`, `username` and `password` or `personal access token` values for HTTP based Git Authentication.
    - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
     >**Note** stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
@@ -201,7 +201,7 @@ To configure the service account to work with private Git repositories, follow t
             #! For HTTP Auth. Recommend using https:// for the git server.
             host: GIT-SERVER
             username: GIT-USERNAME
-            token: GIT-PASSWORD
+            password: GIT-PASSWORD
       EOF
       ```
 
@@ -241,7 +241,7 @@ To configure the service account to work with private Git repositories, follow t
     type: kubernetes.io/basic-auth
     stringData:
       username: #@ data.values.imported.git.username
-      password: #@ data.values.imported.git.token
+      password: #@ data.values.imported.git.password
     ```
 
 3. Create a secret to specify an overlay to patch the default service account adding a reference to the secret **git**.
