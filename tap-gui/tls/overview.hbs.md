@@ -1,8 +1,8 @@
 # Overview of enabling TLS for Tanzu Application Platform GUI
 
-Many users want inbound traffic to Tanzu Application Platform GUI to be properly encrypted.
-These topics instruct how to enable TLS encryption either with an existing certificate or by
-using the included cert-manager instance.
+Many users want inbound traffic to Tanzu Application Platform GUI (commonly called TAP GUI) to be
+properly encrypted. These topics tell you how to enable TLS encryption either with an existing
+certificate or by using the included cert-manager instance.
 
 ## <a id="concepts"></a> Concepts
 
