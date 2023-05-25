@@ -7,10 +7,9 @@ The Tanzu Application Platform package has a `shared` top-level configuration ke
 for sharing common configuration between the packages it installs.
 
 AppSSO inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data,
-kubernetes_distribution}` configuration values from Tanzu Application Platform.
-You can configure the AppSSO-specific parameters under `appsso`.
-AppSSO-specific configuration has precedence over the shared values of Tanzu
-Application Platform.
+kubernetes_distribution}` configuration values from TAP. These values can be
+overridden with AppSSO-specific values under `appsso`. AppSSO-specific
+configuration has precedence over the shared values of TAP.
 
 For example:
 
@@ -23,6 +22,81 @@ shared:
 appsso:
 # AppSSO-specific configuration goes here.
 ```
+
+## Values
+
+### <a id="ca"></a>ca_cert_data
+
+You can configure trust for custom CAs by providing their certificates as a PEM
+bundle to `ca_cert_data`. As a result, all `AuthServer`s trust your custom CAs.
+
+This is useful if you have [identity
+providers](../service-operators/identity-providers.hbs.md) serving certificates
+from a custom CA and [configuring AuthServer
+storage](../service-operators/storage.hbs.md).
+
+Alternatively, you can [configure trust for a single
+AuthServer](../service-operators/ca-certs.hbs.md).
+
+>**Note** AppSSO-specific `ca_cert_data` is concatenated with
+>`shared.ca_cert_data`. The resulting PEM bundle contains both.
+
+
+### default_authserver_clusterissuer
+
+You can denote a `cert-manager.io/v1/ClusterIssuer` as a default issuer for
+`AuthServer.spec.tls.issuerRef` and omit `AuthServer.spec.tls`. When the value
+of `AuthServer.spec.tls.issuerRef` is the empty string `""`, no default issuer
+is assumed and `AuthServer.spec.tls` is required.
+
+If you configured `shared.ingress_issuer` and omitted
+`default_authserver_clusterissuer` while installing Tanzu Application Platform,
+AppSSO uses the ingress issuer of Tanzu Application Platform and sets
+`default_authserver_clusterissuer` to `shared.ingress_issuer`.
+
+
+### domain_name
+
+The AppSSO package has one required configuration value, its `domain_name`. It
+is used for templating the issuer URI for `AuthServer`. `domain_name` must be
+the shared ingress domain of your TAP package installation. If your TAP
+installation is configured with `shared.ingress_domain`, then AppSSO will
+inherit the correct configuration.
+
+>**Note** If omitted, `domain_name` is set to `shared.ingress_domain`.
+
+### domain_template
+
+You can customize how AppSSO template's issuerURIs with the `domain_template`
+configuration. This is a Golang
+[text/template](https://pkg.go.dev/text/template). The default is
+`"\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"`.
+
+The domain template will be applied with the given `domain_name` and the
+`AuthServer`'s name and namespace:
+
+- `\{{.Domain}}` will evaluate to the configured `domain_name`
+- `\{{.Name}}` will evaluate to `AuthServer.metadata.name`
+- `\{{.Namespace}}` will evaluate to `AuthServer.metadata.namespace`
+
+To be able to use a wild-card certificate, consider
+`"\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"`.
+
+It is strongly recommended to keep the name and namespace part of the template
+to avoid domain name collisions.
+
+### kubernetes_distribution
+
+This setting toggles behavior specific to Kubernetes distribution. Currently,
+the only supported values are `""` and `openshift`.
+
+AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
+
+>**Note** If omitted, `kubernetes_distribution` is set to
+>`shared.kubernetes_distribution`.
+
+
+## Schema
 
 The package installation of `sso.apps.tanzu.vmware.com` has the following
 configuration schema:

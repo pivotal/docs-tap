@@ -290,7 +290,6 @@ docs.vmware.com is built.
         - [AppSSO for platform operators](app-sso/platform-operators/index.hbs.md)
             - [AppSSO for platform operators overview](app-sso/platform-operators/index.hbs.md)
             - [Install AppSSO](app-sso/platform-operators/installation.hbs.md)
-            - [Configure AppSSO](app-sso/platform-operators/configuration.hbs.md)
             - [AppSSO for OpenShift clusters](app-sso/platform-operators/openshift.hbs.md)
             - [Upgrade AppSSO](app-sso/upgrades/index.hbs.md)
             - [Uninstall AppSSO](app-sso/platform-operators/uninstallation.hbs.md)

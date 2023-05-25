@@ -16,7 +16,14 @@ The AppSSO package installs the following resources:
 
 ## Prerequisites
 
-Before installing AppSSO, please ensure you have Tanzu Application Platform installed on your Kubernetes cluster.
+Before installing AppSSO, please ensure you have Tanzu Application Platform
+installed on your Kubernetes cluster.
+
+In particular, the `sso.apps.tanzu.vmware.com` package has these dependencies:
+
+* `cert-manager.tanzu.vmware.com` (installation-time and runtime)
+* `crossplane.tanzu.vmware.com` (installation-time and runtime)
+* `service-bindings.tanzu.vmware.com` (runtime)
 
 ## Installation
 
@@ -40,3 +47,9 @@ Before installing AppSSO, please ensure you have Tanzu Application Platform inst
    ```shell
    tanzu package installed get appsso --namespace tap-install
    ```
+
+## Configuration
+
+For the AppSSO package to meet your needs, refer to the [package configuration
+reference](../reference/package-configuration.hbs.md).
+

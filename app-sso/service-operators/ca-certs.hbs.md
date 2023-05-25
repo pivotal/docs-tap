@@ -4,7 +4,7 @@ This topic tells you how to configure CA certificates for `AuthServer` in
 Application Single Sign-On (commonly called AppSSO).
 
 An `AuthServer` can trust custom CAs. You can establish either [for 
-all `AuthServer`s](../platform-operators/configuration.md#ca) or for a single `AuthServer`. This is useful when either
+all `AuthServer`s](../reference/package-configuration.hbs.md#ca) or for a single `AuthServer`. This is useful when either
 your [identity provider](identity-providers.hbs.md) or [storage](storage.hbs.md) serves certificates from a custom CA.
 
 In most cases, CA certificates are PEM-encoded and located in a `Secret` referred 
