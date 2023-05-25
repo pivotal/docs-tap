@@ -325,6 +325,7 @@ docs.vmware.com is built.
             - [Known issues](app-sso/reference/known-issues.hbs.md)
             - [Package configuration](app-sso/reference/package-configuration.hbs.md)
             - [RBAC](app-sso/reference/rbac.hbs.md)
+            - [Upgrades](app-sso/reference/upgrades.hbs.md)
         - [Troubleshoot AppSSO](app-sso/troubleshoot.hbs.md)
     - [Authentication and authorization](authn-authz/overview.hbs.md)
         - [Authentication and authorization overview](authn-authz/overview.hbs.md)

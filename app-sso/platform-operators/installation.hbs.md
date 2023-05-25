@@ -53,3 +53,8 @@ In particular, the `sso.apps.tanzu.vmware.com` package has these dependencies:
 For the AppSSO package to meet your needs, refer to the [package configuration
 reference](../reference/package-configuration.hbs.md).
 
+## Upgrades
+
+To successfully upgrade to a newer version of the package, refer to the
+[upgrades reference](../reference/upgrades.hbs.md).
+
