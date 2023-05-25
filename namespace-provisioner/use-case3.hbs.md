@@ -222,7 +222,7 @@ To configure the service account to work with private Git repositories, follow t
             #! For SSH Auth
             ssh_privatekey: SSH-PRIVATE-KEY
             identity: SSH-PRIVATE-KEY
-            dentity_pub: SSH-PUBLIC-KEY
+            identity_pub: SSH-PUBLIC-KEY
             known_hosts: GIT-SERVER-PUBLIC-KEYS
       EOF
       ```
