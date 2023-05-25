@@ -161,6 +161,13 @@ The default is `1`.
 >active replica at a time. Increasing this value does not improve the
 >controller's performance.
 
+### resources
+
+This is the value for the controller's
+`Deployment.spec.template.spec.containers[0].resources`.
+
+See [the schema](#schema) for its structure and defaults.
+
 ## Schema
 
 The package installation of `sso.apps.tanzu.vmware.com` has the following
