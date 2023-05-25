@@ -95,6 +95,16 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - Enable the capability to:
     - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
     - Configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
+- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
+  ready-to-claim AppSSO service offering
+- `WorkloadRegistration` is portable client registration which templates
+  redirect URIs
+- `XWorkloadRegistration` is an XRD and an integration API between Services
+  Toolkit, Crossplane and AppSSO
+- The general recommendation is to consume AppSSO service offering via
+  `ClassClaim` instead of the lower-level `WorkloadRegistration` and
+  `ClientRegistration`
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
 
@@ -123,7 +133,6 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       set to the date of the original vulnerability scan SBOM. In addition, the
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
-
 
 #### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
@@ -159,6 +168,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       - Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled.
       - WARNING: setting this value to false will result in all Crossplane CRDs, providers, and managed resources being deleted when the crossplane.tanzu.vmware.com Package is deleted, which in turn may lead to any existing service instances also being deleted
       - See [How-to guide: Delete all Crossplane resources upon deletion of Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
+
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
