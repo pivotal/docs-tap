@@ -151,6 +151,16 @@ This is used as the value for `\{{.Domain}}` in
 >**Note** Usually, you will want this to be same as
 >[CNRs](../../cloud-native-runtimes/about.hbs.md)' `domain_name`.
 
+### replicas
+
+The controller will be run with this many replicas. 
+
+The default is `1`.
+
+>**Note** The controller uses leader election so that there's only a single
+>active replica at a time. Increasing this value does not improve the
+>controller's performance.
+
 ## Schema
 
 The package installation of `sso.apps.tanzu.vmware.com` has the following
