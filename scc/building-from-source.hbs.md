@@ -304,7 +304,7 @@ You can pass the following parameters by using the workload object's
 `workload.spec.params` field to override the default behavior of the
 `GitRepository` object created for keeping track of the changes to a repository:
 
-- `gitImplementation`: name of the Git implementation (either `libgit2` or `go-git`) to fetch the source code.
+- `gitImplementation`: name of the Git implementation (`go-git`) to fetch the source code.
 - `gitops_ssh_secret`: name of the secret in the same namespace as the workload
   where credentials to fetch the repository are found.
 
