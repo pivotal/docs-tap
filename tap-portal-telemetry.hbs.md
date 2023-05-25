@@ -2,8 +2,9 @@
 
 <!-- This topic must be accessible from https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/tap-portal-telemetry.html. And possibly all the content needs to be in one place, exactly as below, because it's a legal disclosure about data collection. Be careful wrt to content strategy, in other words. -->
 
-Tanzu Application Platform GUI uses Pendo.io to better understand the way users interact with it in
-order to provide a better user experience for our customers and to improve VMware products and services.
+Tanzu Application Platform GUI (commonly called TAP GUI) uses Pendo.io to better understand the way
+users interact with it to provide a better user experience for VMware customers and to
+improve VMware products and services.
 
 Pendo.io collects data based on your interaction with the software, such as clickstream data and page
 loads, hashed user ID, and limited browser and device information.
