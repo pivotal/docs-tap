@@ -118,14 +118,28 @@ to avoid domain name collisions.
 
 ### kubernetes_distribution
 
-This setting toggles behavior specific to Kubernetes distribution. Currently,
+This setting toggles behavior for specific Kubernetes distributions. Currently,
 the only supported values are `""` and `openshift`.
+
+It is processed in combination with `kubernetes_version`.
 
 AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
 
 >**Note** If omitted, `kubernetes_distribution` is set to
 >`shared.kubernetes_distribution`.
 
+### kubernetes_version
+
+This setting toggles behavior for specific Kubernetes distributions. Currently,
+the only supported values are `""` and or semantic versions in the form of
+`\d*\.\d*\.\d*`.
+
+It is processed in combination with `kubernetes_distribution`.
+
+AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
+
+>**Note** If omitted, `kubernetes_version` is set to
+>`shared.kubernetes_version`.
 
 ## Schema
 
