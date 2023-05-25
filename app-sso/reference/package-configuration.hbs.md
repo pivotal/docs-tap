@@ -168,6 +168,17 @@ This is the value for the controller's
 
 See [the schema](#schema) for its structure and defaults.
 
+### resync_period
+
+This is the duration after which the controller re-synchronizes _all_
+resources. That means that every instance of a AppSSO API is reconciled at this
+point.
+
+The default is `2h`.
+
+>**Note** There's no benefit to customizing this value in all practical
+>scenarios.
+
 ## Schema
 
 The package installation of `sso.apps.tanzu.vmware.com` has the following
