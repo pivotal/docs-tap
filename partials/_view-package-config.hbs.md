@@ -4,10 +4,15 @@ To view possible configuration settings for a package, run:
 tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
->**Note** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top-level keys.
->You can view individual package configuration settings with the same `tanzu package available get` command.
->For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/$TAP_VERSION --values-schema` for Cloud Native Runtimes.
+>**Note** The `tap.tanzu.vmware.com` package does not show all configuration settings 
+> for packages it plans to install. The package only shows top-level keys. 
+> You can view individual package configuration settings with the same 
+> `tanzu package available get` command.
+> For example, to find the keys for Cloud Native Runtimes, you must first identify 
+> the version of the package with `tanzu package installed list -n tap-install`, 
+> which lists all the installed packages versions. Then run the command 
+> `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/CNRS-VERSION --values-schema` 
+> by using the package version listed for Cloud Native Runtimes.
 
 ```yaml
 profile: full
