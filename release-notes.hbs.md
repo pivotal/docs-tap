@@ -181,6 +181,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
+- Crossplane is an installation- and runtime dependency of AppSSO
+
 - Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
 
 - The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to `["http://127.0.0.0:8080"]`.
