@@ -7,5 +7,6 @@ Application Single Sign-On (commonly called AppSSO):
 - [Known issues](known-issues.hbs.md)
 - [Package configuration](package-configuration.hbs.md)
 - [RBAC](rbac.hbs.md)
+- [Troubleshoot](troubleshoot.hbs.md)
 - [Upgrades](upgrades.hbs.md)
 

@@ -141,3 +141,4 @@ applications.
 
 If your client application stores `sub` claims, you must update the `sub` claims to match the new pattern 
 `<providerId>_<userId>`.
+
