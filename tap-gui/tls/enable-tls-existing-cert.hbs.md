@@ -1,7 +1,7 @@
 # Configuring a TLS certificate by using an existing certificate
 
-This topic describes how to use the certificate information from your external certificate authority
-to encrypt inbound traffic to Tanzu Application Platform GUI.
+This topic tells you how to use the certificate information from your external certificate authority
+to encrypt inbound traffic to Tanzu Application Platform GUI (commonly called TAP GUI).
 
 ## <a id="prereqs"></a> Prerequisites
 
