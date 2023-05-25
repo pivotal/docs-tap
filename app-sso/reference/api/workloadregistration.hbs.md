@@ -6,8 +6,8 @@ over [ClientRegistration](clientregistration.hbs.md). It is namespaced and
 is identified by its short name `workloadreg`.
 
 `WorkloadRegistration` templates redirect URIs and reconciles into a
-[ClientRegistration](clientregistration.hbs.md). See [redirect URI
-templating](#redirect-uri-templating).
+[ClientRegistration](clientregistration.hbs.md). For more information, 
+see [Redirect URI templating](#redirect-uri).
 
 `WorkloadRegistration` exposes most of the fields of
 [ClientRegistration](clientregistration.hbs.md). The exceptions are
