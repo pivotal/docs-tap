@@ -25,30 +25,6 @@ For more information about configuring identity providers, see [Identity provide
 
 The deployment can be further customized by configuring replicas, resources, http server and logging properties.
 
-An `AuthServer` reconciles into the following resources in its namespace:
-
-```text
-AuthServer/my-authserver
-├─Certificate/my-authserver-redis-client                   # if no storage is defined
-├─Certificate/my-authserver-redis-server                   # if no storage is defined
-├─Certificate/my-authserver-root
-├─ConfigMap/my-authserver-ca-cert
-├─Deployment/my-authserver-auth-server
-├─Deployment/my-authserver-redis                           # if no storage is defined
-├─Issuer/my-authserver-bootstrap
-├─Issuer/my-authserver-root
-├─Role/my-authserver-auth-server
-├─RoleBinding/my-authserver-auth-server
-├─Secret/my-authserver-auth-server-clients
-├─Secret/my-authserver-auth-server-keys
-├─Secret/my-authserver-auth-server-properties
-├─Secret/my-authserver-redis-service-binding               # if no storage is defined
-├─Secret/my-authserver-redis-client-cert-keystore-password # if no storage is defined
-├─Secret/my-authserver-registry-credentials
-├─Service/my-authserver-redis                              # if no storage is defined
-└─ServiceAccount/my-authserver-auth-server
-```
-
 ## Spec
 
 ```yaml
