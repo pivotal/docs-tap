@@ -6,16 +6,16 @@ This document tells you how to upgrade your Tanzu Application Platform
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 You can perform a fresh install of Tanzu Application Platform by following the 
-instructions in [Installing Tanzu Application Platform](install-intro.md).
+instructions in [Installing Tanzu Application Platform](../install-intro.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
 Before you upgrade your Tanzu Application Platform:
 
-- Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
+- Verify that you meet all the [prerequisites](../prerequisites.hbs.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
 - For information about installing your Tanzu Application Platform, see [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](sops.hbs.md) or [Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](eso.hbs.md).
-- Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.hbs.md#cli-and-plugin).
-- For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
+- Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](../install-tanzu-cli.hbs.md#cli-and-plugin).
+- For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](../tap-gui/upgrades.hbs.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
 - To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
 
@@ -25,7 +25,7 @@ Before you upgrade your Tanzu Application Platform:
 
 Follow these steps to update the new package repository:
 
-1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 6 in [Relocate images to a registry](install-online/profile.hbs.md#add-tap-package-repo).
+1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 6 in [Relocate images to a registry](../install-online/profile.hbs.md#add-tap-package-repo).
 
     >**Important** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
 
@@ -66,7 +66,7 @@ The following changes affect the upgrade procedures:
 
 - **Keyless support deactivated by default**
 
-    In Tanzu Application Platform v1.5.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md).
+    In Tanzu Application Platform v1.5.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.hbs.md).
 
     To support the keyless authorities in `ClusterImagePolicy`, Policy Controller no longer initializes TUF by default. To continue using keyless authorities, you must set the `policy.tuf_enabled` field to `true` in the `tap-values.yaml` file during the upgrade process.
 
@@ -75,11 +75,11 @@ The following changes affect the upgrade procedures:
 - **Image Policy Webhook no longer in use**
 
     Tanzu Application Platform v1.5.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
-    from Image Policy Webhook to Policy Controller. For more information, see [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.hbs.md).
+    from Image Policy Webhook to Policy Controller. For more information, see [Migration From Supply Chain Security Tools - Sign](../scst-policy/migration.hbs.md).
 
 - **CVE results require a read-write service account**
 
-    Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0 and later, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+    Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0 and later, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
 If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
@@ -97,7 +97,7 @@ When upgrading to Tanzu Application Platform v1.5, you might encounter a tempora
 
 ### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
-If you installed the [full dependencies package](install-online/profile.hbs.md#tap-install-full-deps),
+If you installed the [full dependencies package](../install-online/profile.hbs.md#tap-install-full-deps),
 you can upgrade the package by following these steps:
 
 1. After upgrading Tanzu Application Platform, retrieve the latest version of the
@@ -132,7 +132,7 @@ you can upgrade the package by following these steps:
 
 ### <a id="upgrade-order"></a> Multicluster upgrade order
 
-Upgrading a [multicluster deployment](multicluster/installing-multicluster.hbs.md) requires updating multiple clusters with different profiles.
+Upgrading a [multicluster deployment](../multicluster/installing-multicluster.hbs.md) requires updating multiple clusters with different profiles.
 If upgrades are not performed at the exact same time, different clusters have different versions of profiles installed temporarily.
 This might cause a temporary API mismatch that leads to errors.
 Those errors eventually disappear when the versions are consistent across all clusters.
@@ -144,8 +144,8 @@ To reduce the likelihood of temporary failures, follow these steps to upgrade yo
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
-For information about upgrading Tanzu Application Platform GUI, see [Upgrade Tanzu Application Platform GUI](tap-gui/upgrades.html).
-For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+For information about upgrading Tanzu Application Platform GUI, see [Upgrade Tanzu Application Platform GUI](../tap-gui/upgrades.hbs.md).
+For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](../scst-scan/upgrading.hbs.md).
 
 ## <a id="verify"></a> Verify the upgrade
 
