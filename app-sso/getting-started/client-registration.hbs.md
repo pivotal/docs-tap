@@ -1,14 +1,17 @@
 # Provision a client registration
 
-> **Important** This topic assumes that you have completed the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
+This topic tells you how to provision a client registration for Application Single 
+Sign-On (commonly called AppSSO). Use this topic to learn how to:
 
-In this tutorial, you are going to:
-
-1. Obtain credentials for the Authorization Server you have provisioned in
-   [Provision your first AuthServer](provision-auth-server.md)
-2. Do a basic check that the credentials are valid using client-credentials flow.
+1. Obtain credentials for the Authorization Server that you provisioned in
+   [Provision your first AuthServer](provision-auth-server.hbs.md).
+2. Verify that the credentials are valid using client-credentials flow.
 
 ![Diagram of AppSSO's components, with AuthServer and ClientRegistration highlighted](../../images/app-sso/client-registration.png)
+
+## Prerequisites
+
+Complete the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
 
 ## Creating the ClientRegistration
 
