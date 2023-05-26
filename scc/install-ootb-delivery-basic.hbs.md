@@ -39,7 +39,7 @@ To install Out of the Box Delivery Basic:
 
 
     git_implementation   go-git   string  Which git client library to use.
-                                          Valid options are go-git or libgit2.
+                                          The only valid choice is go-git.
     ```
 
 1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the

@@ -48,14 +48,11 @@ cluster. Other resources in the supply chain can then access that code.
     <td><code>gitImplementation<code></td>
     <td>
       The library used to fetch source code.
-      If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
-      which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
-      An alternate value that can be used with other Git providers is <code>libgit2</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libgit2
+        value: go-git`
       </pre>
     </td>
   </tr>
@@ -77,13 +74,6 @@ cluster. Other resources in the supply chain can then access that code.
     </td>
   </tr>
 </table>
-
-> **Note** Some Git providers, notably Azure DevOps, require you to use
-> `libgit2` due to the server-side implementation providing support
-> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
-> For information about the features supported by each implementation, see
-> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
-> in the flux documentation.
 
 ##### <a id='source-template-more-info'></a> More information
 
@@ -1792,14 +1782,11 @@ cluster. Other resources in the supply chain can then access that code.
     <td><code>gitImplementation<code></td>
     <td>
       The library used to fetch source code.
-      If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
-      which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
-      An alternate value that you can use with other Git providers is <code>libgit2</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libgit2
+        value: go-git
       </pre>
     </td>
   </tr>
@@ -1821,13 +1808,6 @@ cluster. Other resources in the supply chain can then access that code.
     </td>
   </tr>
 </table>
-
-> **Note** Some Git providers, notably Azure DevOps, require you to use
-> `libgit2` due to the server-side implementation providing support
-> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
-> For information about the features supported by each implementation, see
-> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
-> in the flux documentation.
 
 ##### <a id='delivery-source-more-info'></a> More information
 
