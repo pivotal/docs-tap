@@ -3,6 +3,10 @@
 The following topics tell you how to configure a fully operational authorization 
 server for Application Single Sign-On (commonly called AppSSO):
 
+The following sections outline the essential steps to configure a fully
+operational, ready-to-claim AppSSO service offering:
+
+- [Unsafe test login](./unsafe-test-login.hbs.md)
 - [Annotations and labels](./metadata.md)
 - [Issuer URI and TLS](./issuer-uri-and-tls.md)
 - [TLS scenario guides](./tls-scenario-guides.hbs.md)
