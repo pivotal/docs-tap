@@ -5,7 +5,7 @@ function of [FluxCD Source Controller](../fluxcd-source-controller/about.hbs.md)
 
 Tanzu Source Controller supports the following two resource types:
 
-- ImageRepository
+- ImageRepository [Deprecated]
 - MavenArtifact
 
 An `ImageRepository` resource can resolve the source from the contents of an image in an image registry.

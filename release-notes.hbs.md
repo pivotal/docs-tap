@@ -228,3 +228,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
     - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
     defined in the observed artifact content config within the status.
+
+### <a id="1-6-tanzu-sc"></a> Tanzu Source Controller
+
+- Tanzu Source Controller `ImageRepository` API is being deprecated. Please use the `OCIRepository`
+API instead. Flux Source Controller install includes `OCIRepository` API. You can find more
+information regarding the `OCIRepository` API [here](https://fluxcd.io/flux/components/source/ocirepositories/)

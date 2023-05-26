@@ -2,7 +2,7 @@
 
 This topic provides reference documentation for Source Controller.
 
-## <a id="image-repository"></a> ImageRepository
+## <a id="image-repository"></a> ImageRepository [Deprecated]
 
 ```yaml
 ---
