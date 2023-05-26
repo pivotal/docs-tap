@@ -24,7 +24,7 @@ credentials for it:
 ```plain
 ❯ tanzu services classes list
   NAME  DESCRIPTION
-  demo  Single sign-on for testing - user:password - UNSAFE FOR PRODUCTION!
+  demo  Login by AppSSO - user:password - UNSAFE FOR PRODUCTION!
 ```
 
 Keep in mind that this is not safe for production. For production you will want

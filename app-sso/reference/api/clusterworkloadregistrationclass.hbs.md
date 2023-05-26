@@ -4,9 +4,9 @@ In Application Single Sign-On (commonly called AppSSO), `ClusterWorkloadRegistra
 represents the request to expose an `AuthServer` as a claimable service offering. 
 It is cluster-scoped and is identified by its short name `cwrc`.
 
-`ClusterWorkloadRegistrationClass` receives a free-form description which explains 
-the offering to those which discover it with the `tanzu` CLI. It also receives a 
-base `WorkloadRegistration` section.
+`ClusterWorkloadRegistrationClass` optionally receives a free-form description
+which explains the offering to those which discover it with the `tanzu` CLI. It
+also receives a base `WorkloadRegistration` section.
 
 `ClusterWorkloadRegistrationClass` reconciles into a Crossplane `Composition` and 
 a Services Toolkit `ClusterInstanceClass`.
@@ -78,7 +78,7 @@ metadata:
   name: "" #! required
 spec:
   description:
-    short: "" #! required
+    short: "" #! required, default "Login by AppSSO"
   base:
     metadata:
       labels: {} #! optional
@@ -138,8 +138,6 @@ kind: ClusterWorkloadRegistrationClass
 metadata:
   name: sample-minimal
 spec:
-  description:
-    short: Single sign-on
   base: 
     spec:
       authServerSelector:
@@ -160,7 +158,7 @@ metadata:
   name: sample-full
 spec:
   description:
-    short: Single sign-on
+    short: Login by AppSSO with a custom domain template
   base: 
     metadata:
       labels:

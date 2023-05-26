@@ -27,7 +27,7 @@ Once created, you can discover it with the `tanzu` CLI:
 ```console
 ❯ tanzu services classes list
   NAME      DESCRIPTION
-  <name>    Single sign-on for testing - user:password - UNSAFE FOR PRODUCTION!
+  <name>    Login by AppSSO - user:password - UNSAFE FOR PRODUCTION!
 ```
 
 ## <a id="spec"></a> Specification
