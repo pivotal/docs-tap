@@ -15,28 +15,29 @@ Query all related `AuthServer` sub-resources by using `app.kubernetes.io/part-of
 kubectl get all,ingress,service -A -l app.kubernetes.io/part-of=<authserver-name>
 ```
 
-## See logs of all AuthServers
+## <a id="logs"></a> See logs of all AuthServers
 
-With [stern](https://github.com/stern/stern) you can tail the logs of all AppSSO managed `Pods` inside your cluster
-with:
+With [stern](https://github.com/stern/stern), you can tail the logs of all AppSSO 
+managed `Pods` inside your cluster with:
 
 ```shell
 stern --all-namespaces --selector=app.kubernetes.io/managed-by=sso.apps.tanzu.vmware.com
 ```
 
-## Wait for change propagation
+## <a id="propagation"></a> Wait for change propagation
 
-When applying changes to an `AuthServer`, keep in mind that changes to issuer URI, IDP, server and logging configuration
-take a moment to be effective as the operator will roll out the authorization server `Deployment`.
+When applying changes to an `AuthServer`, changes to issuer URI, IdP (identity provider), 
+server and logging configuration take a moment to be effective as the operator rolls out 
+the authorization server `Deployment`.
 
-## Set up debug logs
+## <a id="debug"></a> Set up debug logs
 
-> **Caution** debug logs are very verbose, and display all identity information coming from usptream
-> identityProviders, e.g. all LDAP attributes for a given user. VMware recommends not using debug
-> logs in production.
+> **Caution** Debug logs display all identity information from the usptream
+> identity providers, for example, all LDAP attributes for a user. 
+> VMware recommends not using debug logs in production.
 
-An `AuthServer` can display more information related to configuration or claim mappings. To enable
-debug logs, you can update your configuration with:
+An `AuthServer` can display more information related to configuration or claim mappings. 
+To enable debug logs, update your configuration with:
 
 ```yaml
 ---
