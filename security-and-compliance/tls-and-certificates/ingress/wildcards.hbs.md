@@ -3,9 +3,7 @@
 You can use wildcard certificates, but Tanzu Application Platform
 does not offer support.
 
-Wildcard certificate requires component-level configuration. See
-[inventory](./inventory.hbs.md) to understand which components support
-wildcards and where to find documentation.
+Wildcard certificates require component-level configuration. For more information about which components support wildcards, see [Inventory](./inventory.hbs.md).
 
 When using wildcard certificates the approach differs between
 components that have a fixed set of ingress endpoints and those that have
