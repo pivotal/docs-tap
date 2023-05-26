@@ -286,12 +286,14 @@ Other
       When the configuration is applied, components obtain certificates
       from the new issuer and serve them.
 
+<br>
+
 There are many ways and tools to assert that new certificates are
 issued and served. It is best to connect to one of the ingress endpoints and
 inspect the certificate it serves.
 
 The `openssl` command-line utility is available on most
-operating system. The following command retrieves the certificate from an
+operating systems. The following command retrieves the certificate from an
 ingress endpoint and shows its text representation:
 
 ```shell
@@ -299,7 +301,7 @@ ingress endpoint and shows its text representation:
 openssl s_client -showcerts -servername tap-gui.tap.example.com -connect tap-gui.tap.example.com:443 <<< Q | openssl x509 -text -noout
 ```
 
-Alternatively, use a browser to navigate to the ingress endpoint, and click the
+Alternatively, use a browser to navigate to the ingress endpoint and click the
 lock icon in the navigation bar to inspect the certificate.
 
 ## <a id="deactivate"></a>Deactivating TLS for ingress
