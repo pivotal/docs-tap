@@ -69,7 +69,7 @@ If you configured `shared.ingress_issuer` and omitted
 AppSSO uses the ingress issuer of Tanzu Application Platform and sets
 `default_authserver_clusterissuer` to `shared.ingress_issuer`.
 
-### default_workload_domain_template
+### <a id="default_workload_domain_template"></a>default_workload_domain_template
 
 This is the default template from which
 [WorkloadRegistration](./api/workloadregistration.hbs.md) render redirect URIs.

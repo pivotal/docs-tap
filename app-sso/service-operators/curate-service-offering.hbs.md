@@ -13,8 +13,9 @@ the offering as an AppSSO service and say more about it if you like.
 
 Furthermore, `ClusterWorkloadRegistrationClass` carries a base
 `WorkloadRegistration` which is the blueprint for claims against this service.
-This base selects the target `AuthServer`. It also can receive labels and
-annotations which all `WorkloadRegistration` will inherit.
+This base selects the target `AuthServer`. It can optionally receive a custom
+domain template, labels and annotations which all `WorkloadRegistration` will
+inherit.
 
 Say, we have an `AuthServer` with the following labels:
 
@@ -55,14 +56,24 @@ After applying this resource, _application operators_ can discover it like so:
   demo  Single sign-on with LDAP
 ```
 
-When they claim credentials from this class, a `WorkloadRegistration` is
-created and it will target our `AuthServer`. They can either use the command
-`tanzu services class-claims create` or create a `ClassClaim` directly.
+Credentials for this service can be claimed either with the command `tanzu
+services class-claims create` or with a `ClassClaim` resource.
 
-It is possible to further customize the minted `WorkloadRegistration` by
-setting labels and annotations for them. For example, if you would like for
-`WorkloadRegistration` to template redirect URIs with both `https://` _and_
-`http://`, then you modify the `ClusterWorkloadRegistrationClass` like so:
+When a claim is created, a `WorkloadRegistration` gets stamped out from the
+base and it will target our `AuthServer`.
+
+Each `WorkloadRegistration` will gets `https://` redirect URIs templated. The
+default template is configured with
+[default_workload_domain_template](../reference/package-configuration.hbs.md#default_workload_domain_template)
+If omitted the default template is used. Otherwise it can be customized by
+setting a template on the base.
+
+Furthremore, it is possible to further customize each minted
+`WorkloadRegistration` by setting labels and annotations for them.
+
+For example, if you would like for `WorkloadRegistration` to template redirect
+URIs from a custom template and with both `https://` and `http://`, then you
+modify the `ClusterWorkloadRegistrationClass` like so:
 
 ```yaml
 apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
@@ -76,8 +87,10 @@ spec:
     metadata:
       annotations:
         sso.apps.tanzu.vmware.com/template-unsafe-redirect-uris: ""
-    authServerSelector:
-      matchLabels:
-        sso.apps.tanzu.vmware.com/env: staging
-        sso.apps.tanzu.vmware.com/ldap: ""
+    spec:
+      workloadDomainTemplate: "\{{.Name}}-\{{.Namespace}}.demo.\{{.Domain}}"
+      authServerSelector:
+        matchLabels:
+          sso.apps.tanzu.vmware.com/env: staging
+          sso.apps.tanzu.vmware.com/ldap: ""
 ```
