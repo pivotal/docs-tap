@@ -131,7 +131,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
 ## <a id="update-app-config.yaml"></a> Update techdocs section in app-config.yaml to point to the Amazon S3 bucket
 
 Update the config values you used during installation to point to the Amazon S3 bucket that has the
-published TechDocs files:
+published TechDocs files: 
 
 1. Add or edit the `techdocs` section under `app_config` in the config values with the following
    YAML, replacing placeholders with the appropriate values.
@@ -143,13 +143,16 @@ published TechDocs files:
         type: 'awsS3'
         awsS3:
           bucketName: BUCKET-NAME
-          credentials:
-            accessKeyId: AWS-READONLY-ACCESS-KEY-ID
-            secretAccessKey: AWS-READONLY-SECRET-ACCESS-KEY
+          accountId: ACCOUNT-ID
           region: AWS-REGION
-          s3ForcePathStyle: false
+    aws:
+      accounts:
+        - accountId: ACCOUNT-ID
+          accessKeyId: AWS-READONLY-ACCESS-KEY-ID
+          secretAccessKey: AWS-READONLY-SECRET-ACCESS-KEY
     ```
-
+    Note: authentication to AWS S3 bucket via assumed role is outlined in [Backstage.io doc on configuring AWS S3 bucket with Techdocs](https://backstage.io/docs/features/techdocs/using-cloud-storage/#configuring-aws-s3-bucket-with-techdocs).
+    
 1. Update your installation from the Tanzu CLI.
 
   - If you installed Tanzu Application Platform GUI as part of the Tanzu Application Platform
