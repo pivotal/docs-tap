@@ -1,10 +1,31 @@
 # Get started with Application Single Sign-On
 
+This topic tells you about concepts important to getting started with Application 
+Single Sign-On (commonly called AppSSO).
+
+Use this topic to learn how to:
+
+1. [Set up your first authorization server](provision-auth-server.hbs.md).
+1. [Provision a ClientRegistration](client-registration.hbs.md).
+1. [Deploy an application](application.hbs.md) that uses the provisioned ClientRegistration to enable SSO.
+
+After completing these steps, you can proceed with 
+[securing a Workload](../app-operators/tutorials/securing-first-workload.hbs.md).
+
+## <a id='prereqs'></a> Prerequisites
+
+You must install AppSSO on your Tanzu Application Platform cluster. 
+For more information, see [Install AppSSO](../platform-operators/installation.hbs.md).
+
+## <a id='concepts'></a>Key concepts
+
 At the core of AppSSO is the concept of an Authorization Server, outlined by
-the [AuthServer custom resource](../crds/authserver.md). Service Operators create those resources to provision running
-Authorization Servers, which are [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
-Providers. They issue [ID Tokens](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) to Client applications,
-which contain identity information about the End-User (such as email, first name, last name, etc).
+the [AuthServer custom resource](../crds/authserver.hbs.md). 
+Service Operators create those resources to provision running Authorization Servers, 
+which are [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
+Providers. They issue [ID Tokens](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) 
+to Client applications, which contain identity information about the end user 
+such as email, first name, last name and so on.
 
 ![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
 
@@ -43,25 +64,7 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../service-operators/token-signature.md). Client
 applications may verify their validity using the AuthServer's public keys.
 
-## Getting started
-
----
-
-👉 This section assumes AppSSO is installed on your TAP cluster. To install AppSSO, refer to the instructions
-in [Install AppSSO](../platform-operators/installation.md).
-
----
-
-In this section, you will:
-
-1. [Set up your first authorization server](provision-auth-server.md), and validate that it is running
-1. [Provision a ClientRegistration](client-registration.md), and validate it is working
-1. [Deploy an application](application.md) that uses the provisioned ClientRegistration to enable SSO
-
----
-
-✅ Once you have completed the above steps, you can continue
-by [securing a Workload](../app-operators/tutorials/securing-first-workload.md).
+## <a id='next-steps'></a> Next steps
 
 ---
 

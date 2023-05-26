@@ -1,18 +1,18 @@
 # Deploy an application with Application Single Sign-On
 
----
-
-👉 This article assumes that you have completed the previous step in this Getting Started
-guide. If not, please refer to instructions in [Provision a client registration](client-registration.md).
-
----
-
-In this tutorial, you are going to deploy a minimal Kubernetes application that uses the credentials created through 
-the [ClientRegistration](client-registration.md) and be protected through SSO.
+This topic tells you how to deploy a minimal Kubernetes application that is protected 
+by Application Single Sign-On (commonly called AppSSO) by using the credentials 
+that [ClientRegistration](client-registration.hbs.md) creates.
 
 ![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
 
-For more information about how a Client application uses an AuthServer to authenticate an End-User, see [AppSSO Overview](appsso-overview.md).
+For more information about how a Client application uses an AuthServer to 
+authenticate an end user, see [AppSSO Overview](appsso-overview.md).
+
+## Prerequisites
+
+You must complete the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
+If not, see [Provision a client registration](client-registration.md).
 
 ## Deploy a minimal application
 

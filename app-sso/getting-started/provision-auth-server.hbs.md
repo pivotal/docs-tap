@@ -1,29 +1,31 @@
 # Provision an AuthServer
 
----
+This topic tells you how to provision an AuthServer for Application Single 
+Sign-On (commonly called AppSSO). Use this topic to learn how to:
 
-👉 This article assumes AppSSO is installed on your TAP cluster and that your TAP installation is correctly configured.
-If you are unsure about your TAP installation, refer
-to [its documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html).
-To install AppSSO, refer to the instructions in [Install AppSSO](../platform-operators/installation.md).
+1. Set up your first authorization server in the `default` namespace.
+2. Ensure it is running so that users can log in.
 
-👉 AppSSO is installed automatically installed with the `run`, `iterate`, and `full` TAP profiles, no extra steps
-required.
+![Diagram of AppSSO's components, with AuthServer and Identity Providers highlighted](../../images/app-sso/authserver-tutorial.png)
 
-👉 To make sure AppSSO is installed on your cluster, you can run:
+## Prerequisites
+
+You must install AppSSO on your Tanzu Application Platform cluster and ensure that 
+your Tanzu Application Platform installation is correctly configured.
+
+AppSSO is installed with the `run`, `iterate`, and `full` profiles, no extra steps required.
+
+To verify AppSSO is installed on your cluster, run:
 
 ```shell
 tanzu package installed list -A | grep "sso.apps.tanzu.vmware.com"
 ```
 
----
+For more information about the Tanzu Application Platform installation, 
+see [Install Tanzu Application Platform](../../install-intro.hbs.md). 
 
-In this tutorial, you are going to:
-
-1. Set up your first authorization server, in the `default` namespace
-2. Ensure it is running, so that users can log in
-
-![Diagram of AppSSO's components, with AuthServer and Identity Providers highlighted](../../images/app-sso/authserver-tutorial.png)
+For more information about the AppSSO installation, 
+see [Install AppSSO](../platform-operators/installation.md).
 
 ## Provision an AuthServer
 
