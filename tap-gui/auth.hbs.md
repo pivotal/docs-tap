@@ -91,6 +91,25 @@ Configure a supported authentication provider or a custom OIDC provider:
   [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
   in GitHub.
 
+- (Optional) To configure offline access scope for the OIDC provider, 
+  edit your `tap-values.yaml` or your custom configuration file to 
+  include an additional `scope` parameter `offline_access`:
+
+  ```yaml
+  auth:
+    providers:
+      oidc:
+        development:
+          ... # auth configs
+          scope: 'openid profile email offline_access'
+  ```
+
+  By default, the `scope` is not configured to provide persistence 
+  to user login sessions (such as in the case of a page refresh).
+  Note that not all identity providers support the `offline_access` 
+  scope. Consult with your identity provider documentation for 
+  more information. 
+
 ## <a id='allow-guest-access'></a> (Optional) Allow guest access
 
 Enable guest access with other providers by adding the following flag under your authentication
