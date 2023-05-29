@@ -91,8 +91,8 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
   identity token.
   For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enable the capability to: 
-    - map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML. 
-    - configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+    - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML. 
+    - Configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
