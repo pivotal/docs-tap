@@ -1,4 +1,8 @@
-# Fragments - Best Practices and Useful Hints
+# Best practices for using Fragments
+
+This topic outlines the benefits, and design considerations for Fragments.
+
+## Benefits of using Fragment
 
 A fragment is a partial accelerator. It can do the same transformations as an accelerator, but
 it cannot run on its own. It’s always part of the calling (host) accelerator.
