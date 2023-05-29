@@ -60,8 +60,8 @@ spec:
         accessToken:
           scope:
             rolesToScopes:
-              - fromRole: "hr" # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
-                toScopes:      #    Only users with "hr" role can be issued access token with these scopes.
+              - fromRole: "hr" # -> Role "hr" is mapped to the "hr.read" and "hr.write" scopes.
+                toScopes:      #    Only users with the "hr" role can be issued access token with these scopes.
                   - "hr.read"  # ^^
                   - "hr.write" # ^^
 ```

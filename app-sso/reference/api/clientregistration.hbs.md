@@ -59,15 +59,15 @@ kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 
 ## <a id='scopes'></a> Scopes
 
-**Identity token**
+The following scopes must be included for the issuance of identity tokens:
 
-- **`openid`** scope must be included for identity tokens to be issued.
-- **`profile`** scope must be included for custom-mapped claims to be included in an issued identity token. e.g. `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. See [identity token claims mapping docs](../../service-operators/identity-providers.hbs.md#id-token-claims-mapping)
-- **`email`** scope must be included to retain `email` and `email_verified` claims.
-- **`address`** scope must be included to retain `address` claim.
-- **`phone`** scope must be included to retain `phone_number` and `phone_number_verified` claims.
-- **`roles`** scope must be included to be able to retrieve user role information from an upstream identity provider.
-  See [configure authorization](../../service-operators/configure-authorization.hbs.md)
+- `openid` scope must be included for identity tokens to be issued.
+- `profile` scope must be included for the custom-mapped claims to be included in an issued identity token, for example, `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. For more information, see [Identity token claims mapping](../../service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `email` scope must be included to retain the `email` and `email_verified` claims.
+- `address` scope must be included to retain the `address` claim.
+- `phone` scope must be included to retain the `phone_number` and `phone_number_verified` claims.
+- `roles` scope must be included to retrieve the user role information from an upstream identity provider.
+  For more information, see [Configure authorization](../../service-operators/configure-authorization.hbs.md).
 
 ## <a id='client-auth-methods'></a> Client authentication methods
 
