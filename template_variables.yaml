@@ -4,6 +4,6 @@ template_variables:
   url_version: 1.6
   hide_content: true
   app-sso:
-    version: 4.0.0
+    version: 4.0
   tanzu-cli:
     version: 0.28.1
