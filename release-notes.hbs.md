@@ -212,7 +212,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 ### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
 
-- `GitRepository` API
+- Deprecations for the `GitRepository` API:
 
     - `spec.gitImplementation` is deprecated.
     `GitImplementation` defines the Git client library implementation.
@@ -226,14 +226,15 @@ Deprecated features will remain on this list until they are retired from Tanzu A
     - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
     - `status.url` is deprecated in favor of `status.artifact.url`.
 
-- `OCIRepository` API
+- Deprecations for the `OCIRepository` API:
 
     - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
     defined in the observed artifact content config within the status.
 
 ### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
 
-- Tanzu Source Controller `ImageRepository` API is being deprecated. Use the `OCIRepository`
-  API instead. The Flux Source Controller installation includes the `OCIRepository` API.
+- The Tanzu Source Controller `ImageRepository` API is deprecated and is marked for
+  removal in Tanzu Application Platform v1.9. Use the `OCIRepository` API instead.
+  The Flux Source Controller installation includes the `OCIRepository` API.
   For more information about the `OCIRepository` API, see the
   [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
