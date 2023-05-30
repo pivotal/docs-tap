@@ -39,7 +39,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - `GitRepository` API
 
     - `spec.ref.name` is the reference value for Git checkout. It takes precedence over Branch,
-    Tag and SemVer, It must be a valid 
+    Tag and SemVer, It must be a valid
     [Git reference](https://git-scm.com/docs/git-check-ref-format#_description).
 
         Examples:
@@ -52,7 +52,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
     - `status.artifact.digest` represents the value of the file in the form of `ALGORITHM:CHECKSUM`.
     - `status.observedIgnore` represents the latest `spec.ignore` value. It indicates the ignore
     rules for building the current artifact in storage.
-    - `status.observedRecurseSubmodules` represents the latest `spec.recurseSubmodules` value 
+    - `status.observedRecurseSubmodules` represents the latest `spec.recurseSubmodules` value
     during the latest reconciliation.
     - `status.observedInclude` represents the list of `GitRepository` resources that produces
     the current artifact.
@@ -67,15 +67,15 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 - `HelmChart` API
 
-    - Add the new field `spec.verify`, which includes the secret name that holds 
-    the trusted public keys for signature verification. 
-    It also indicates the provider responsible for validating the authenticity of the OCI image. 
+    - Add the new field `spec.verify`, which includes the secret name that holds
+    the trusted public keys for signature verification.
+    It also indicates the provider responsible for validating the authenticity of the OCI image.
     This field is only supported when using the HelmRepository source with the `spec.type` OCI.
     Chart dependencies, which are not bundled in the umbrella chart artifact, are not verified.
 
 - `HelmRepository` API
 
-    - Add the new field `spec.provider` for authentication purposes. Supported values are 
+    - Add the new field `spec.provider` for authentication purposes. Supported values are
     `aws`, `azure`, `gcp` or `generic`.
     `generic` is its default value. This field is only required when the `.spec.type` field is set to `oci`
 
@@ -90,8 +90,8 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
   Service operators can customize the expiry settings of access, refresh or
   identity token.
   For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings).
-- Enable the capability to: 
-    - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML. 
+- Enable the capability to:
+    - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
     - Configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 ---
 
@@ -111,7 +111,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
 
-- The format of the `status.artifact.revision` value in the `GitRepository` resource's 
+- The format of the `status.artifact.revision` value in the `GitRepository` resource's
   status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
     - Example: `main/6db88c7a7e7dec1843809b058195b68480c4c12a` to `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
 
@@ -210,7 +210,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.6.0. Use the command `tanzu apps workload apply` instead.
 
-### <a id="1-6-flux-sc"></a> FluxCD Source Controller
+### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
 
 - `GitRepository` API
 
@@ -218,21 +218,22 @@ Deprecated features will remain on this list until they are retired from Tanzu A
     `GitImplementation` defines the Git client library implementation.
     `go-git` is the default and only supported implementation. `libgit2`
     is no longer supported.
-    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access 
-    Control List for enabling cross-namespace references to this object, was never 
+    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
+    Control List for enabling cross-namespace references to this object, was never
     implemented.
-    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
     defined in the observed artifact content config within the status.
     - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
     - `status.url` is deprecated in favor of `status.artifact.url`.
 
 - `OCIRepository` API
 
-    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields 
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
     defined in the observed artifact content config within the status.
 
-### <a id="1-6-tanzu-sc"></a> Tanzu Source Controller
+### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
 
-- Tanzu Source Controller `ImageRepository` API is being deprecated. Please use the `OCIRepository`
-API instead. Flux Source Controller install includes `OCIRepository` API. You can find more
-information regarding the `OCIRepository` API [here](https://fluxcd.io/flux/components/source/ocirepositories/)
+- Tanzu Source Controller `ImageRepository` API is being deprecated. Use the `OCIRepository`
+  API instead. The Flux Source Controller installation includes the `OCIRepository` API.
+  For more information about the `OCIRepository` API, see the
+  [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
