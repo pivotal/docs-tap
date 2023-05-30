@@ -1,5 +1,9 @@
 # Accelerator custom resource definition
 
+This topic describes the Application Accelerator custom resource definition.
+
+## Overview
+
 The `Accelerator` custom resource definition (CRD) defines any accelerator resources to be made
 available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning
 that any resources created belong to a namespace. For the resource to be available to the
