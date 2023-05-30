@@ -115,6 +115,7 @@ docs.vmware.com is built.
   - [Use web workloads](workloads/web.hbs.md)
   - [Use server workloads](workloads/server.hbs.md)
   - [Use worker workloads](workloads/worker.hbs.md)
+  - [Service-to-Service Communication](workloads/service-to-service-communication.hbs.md)
   - [Parameter reference](workloads/spec-reference.hbs.md)
   - [Functions (Beta)](workloads/using-functions.hbs.md)
       - [Using functions](workloads/using-functions.hbs.md)
