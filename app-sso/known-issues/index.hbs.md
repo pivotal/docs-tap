@@ -1,8 +1,6 @@
 # Known Issues
 
-# Known Limitations
-
-As of {{ vars.app-sso.version}}, the following are known product limitations to be aware of.
+Application Single Sign-On (commonly called AppSSO) has the following known issues.
 
 ## Limited number of `ClientRegistrations` per `AuthServer`
 

@@ -1,5 +1,7 @@
 # Configure Application Single Sign-On
 
+This topic tells you how to configure Application Single Sign-On (commonly called AppSSO).
+
 ## TAP values
 
 Most commonly, the AppSSO package installation is configured through TAP's meta package installation. The TAP package
