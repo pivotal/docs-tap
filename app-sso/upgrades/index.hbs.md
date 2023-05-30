@@ -1,6 +1,9 @@
 # Upgrade Application Single Sign-On
 
-The `AppSSO` package is upgraded as part of your `TAP` package installation.
+This topic tells you how to upgrade Application Single Sign-On (commonly called AppSSO) 
+outside of a Tanzu Application Platform profile installation.
+If you installed Tanzu Application Platform through a profile, see
+[Upgrade Tanzu Application Platform](../../upgrading.hbs.md) instead.
 
 For help on migrating your resources in between versions, see the [migration guides](#migration-guides).
 
