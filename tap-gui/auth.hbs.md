@@ -32,41 +32,20 @@ Configure a supported authentication provider or a custom OIDC provider:
     shared:
       ingress_domain: "INGRESS-DOMAIN"
 
-<<<<<<< HEAD
-  tap_gui:
-    service_type: ClusterIP
-    app_config:
-      app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-      catalog:
-        locations:
-          - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN
-  #Existing values file above
-      auth:
-        environment: development
-        session:
-          secret: custom session secret
-        providers:
-          oidc:
-            development:
-              metadataUrl: AUTH-OIDC-METADATA-URL
-              clientId: AUTH-OIDC-CLIENT-ID
-              clientSecret: AUTH-OIDC-CLIENT-SECRET
-              tokenSignedResponseAlg: AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG # default='RS256'
-              scope: AUTH-OIDC-SCOPE # default='openid profile email'
-              prompt: auto # default=none (allowed values: auto, none, consent, login)
-  ```
-=======
-    # ... any existing values
-
     tap_gui:
-      # ... any other TAP GUI values
+      service_type: ClusterIP
       app_config:
+        app:
+          baseUrl: http://tap-gui.INGRESS-DOMAIN
+        catalog:
+          locations:
+            - type: url
+              target: https://GIT-CATALOG-URL/catalog-info.yaml
+        backend:
+          baseUrl: http://tap-gui.INGRESS-DOMAIN
+          cors:
+            origin: http://tap-gui.INGRESS-DOMAIN
+    #Existing values file above
         auth:
           environment: development
           session:
@@ -81,7 +60,6 @@ Configure a supported authentication provider or a custom OIDC provider:
                 scope: AUTH-OIDC-SCOPE # default='openid profile email'
                 prompt: auto # default=none (allowed values: auto, none, consent, login)
     ```
->>>>>>> 325006209 ([TAAP-1512] Style edits)
 
   Where `AUTH-OIDC-METADATA-URL` is a JSON file with generic OIDC provider configuration.
   It contains `authorizationUrl` and `tokenUrl`.
