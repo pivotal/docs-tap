@@ -1,5 +1,7 @@
 # Troubleshoot Application Single Sign-on
 
+This topic tells you how to troubleshoot Application Single Sign-On (commonly called AppSSO).
+
 ## Why is my AuthServer not working?
 
 Generally, `AuthServer.status` is designed to provide you with helpful feedback to debug a faulty `AuthServer`.
