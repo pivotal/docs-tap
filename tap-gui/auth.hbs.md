@@ -22,16 +22,17 @@ You can also configure a custom OpenID Connect (OIDC) provider.
 Configure a supported authentication provider or a custom OIDC provider:
 
 - To configure a supported authentication provider, see the
-[Backstage authentication documentation](https://backstage.io/docs/auth/).
+  [Backstage authentication documentation](https://backstage.io/docs/auth/).
 
-- To configure a custom OIDC provider, edit your `tap-values.yaml` file or your
-  custom configuration file to include an OIDC authentication provider.
-  Configure the OIDC provider with your OAuth App values. For example:
+- To configure a custom OIDC provider, edit your `tap-values.yaml` file or your custom configuration
+  file to include an OIDC authentication provider. Configure the OIDC provider with your OAuth App
+  values. For example:
 
-  ```yaml
-  shared:
-    ingress_domain: "INGRESS-DOMAIN"
+    ```yaml
+    shared:
+      ingress_domain: "INGRESS-DOMAIN"
 
+<<<<<<< HEAD
   tap_gui:
     service_type: ClusterIP
     app_config:
@@ -60,6 +61,27 @@ Configure a supported authentication provider or a custom OIDC provider:
               scope: AUTH-OIDC-SCOPE # default='openid profile email'
               prompt: auto # default=none (allowed values: auto, none, consent, login)
   ```
+=======
+    # ... any existing values
+
+    tap_gui:
+      # ... any other TAP GUI values
+      app_config:
+        auth:
+          environment: development
+          session:
+            secret: custom session secret
+          providers:
+            oidc:
+              development:
+                metadataUrl: AUTH-OIDC-METADATA-URL
+                clientId: AUTH-OIDC-CLIENT-ID
+                clientSecret: AUTH-OIDC-CLIENT-SECRET
+                tokenSignedResponseAlg: AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG # default='RS256'
+                scope: AUTH-OIDC-SCOPE # default='openid profile email'
+                prompt: auto # default=none (allowed values: auto, none, consent, login)
+    ```
+>>>>>>> 325006209 ([TAAP-1512] Style edits)
 
   Where `AUTH-OIDC-METADATA-URL` is a JSON file with generic OIDC provider configuration.
   It contains `authorizationUrl` and `tokenUrl`.
@@ -91,24 +113,21 @@ Configure a supported authentication provider or a custom OIDC provider:
   [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
   in GitHub.
 
-- (Optional) To configure offline access scope for the OIDC provider, 
-  edit your `tap-values.yaml` or your custom configuration file to 
-  include an additional `scope` parameter `offline_access`:
+- (Optional) Configure offline access scope for the OIDC provider by adding the `scope` parameter
+  `offline_access` to either `tap-values.yaml` or your custom configuration file. For example:
 
-  ```yaml
-  auth:
-    providers:
-      oidc:
-        development:
-          ... # auth configs
-          scope: 'openid profile email offline_access'
-  ```
+    ```yaml
+    auth:
+      providers:
+        oidc:
+          development:
+            ... # auth configs
+            scope: 'openid profile email offline_access'
+    ```
 
-  By default, the `scope` is not configured to provide persistence 
-  to user login sessions (such as in the case of a page refresh).
-  Note that not all identity providers support the `offline_access` 
-  scope. Consult with your identity provider documentation for 
-  more information. 
+  By default, `scope` is not configured to provide persistence to user login sessions, such as in
+  the case of a page refresh. Not all identity providers support the `offline_access` scope.
+  For more information, see your identity provider documentation.
 
 ## <a id='allow-guest-access'></a> (Optional) Allow guest access
 
