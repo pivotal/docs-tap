@@ -74,7 +74,7 @@ To install SCST - Scan 2.0:
     $ tanzu package available list app-scanning.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for app-scanning.apps.tanzu.vmware.com...
         NAME                                VERSION              RELEASED-AT
-        app-scanning.apps.tanzu.vmware.com  0.1.0-alpha          2023-03-01 20:00:00 -0400 EDT
+        app-scanning.apps.tanzu.vmware.com  0.1.0-beta          2023-03-01 20:00:00 -0400 EDT
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -87,13 +87,13 @@ To install SCST - Scan 2.0:
     tanzu package available get app-scanning.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is your package version number. For example, `0.1.0-alpha`.
+    Where `VERSION` is your package version number. For example, `0.1.0-beta`.
 
     For example:
 
     ```console
-    tanzu package available get app-scanning.apps.tanzu.vmware.com/0.1.0-alpha --values-schema --namespace tap-install
-    | Retrieving package details for app-scanning.apps.tanzu.vmware.com/0.1.0-alpha...
+    tanzu package available get app-scanning.apps.tanzu.vmware.com/0.1.0-beta --values-schema --namespace tap-install
+    | Retrieving package details for app-scanning.apps.tanzu.vmware.com/0.1.0-beta...
 
       KEY                     DEFAULT                 TYPE     DESCRIPTION
       docker.import           true                    boolean  Import `docker.pullSecret` from another namespace (requires
@@ -115,13 +115,13 @@ To install SCST - Scan 2.0:
         --values-file app-scanning-values-file.yaml
     ```
 
-    Where `VERSION` is your package version number. For example, `0.1.0-alpha`.
+    Where `VERSION` is your package version number. For example, `0.1.0-beta`.
 
     For example:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
-        --version 0.1.0-alpha \
+        --version 0.1.0-beta\
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
 
