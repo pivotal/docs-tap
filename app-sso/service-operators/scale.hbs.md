@@ -1,4 +1,6 @@
-# Scale AuthServer
+# Scale AuthServer for AppSSO
+
+This topic tells you how to scale `AuthServer` for Application Single Sign-On (commonly called AppSSO). 
 
 The number of authorization server replicas for an `AuthServer` can be specified under `spec.replicas`.
 

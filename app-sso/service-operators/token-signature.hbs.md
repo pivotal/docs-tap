@@ -1,4 +1,9 @@
-# Token signatures
+# Token signatures for AppSSO
+
+This topic tells you how to configure token signatures keys for Application Single 
+Sign-On (commonly called AppSSO).
+
+## Overview
 
 An `AuthServer` must have token signature keys configured to be able to mint tokens.
 

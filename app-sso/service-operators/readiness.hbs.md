@@ -1,6 +1,7 @@
-# AuthServer readiness
+# AuthServer readiness for AppSSO
 
-Generally, `AuthServer.status` is a reliable source to judge an `AuthServer`'s readiness.
+This topic tells you how to use `AuthServer.status` as a reliable source to verify 
+an `AuthServer`'s readiness for Application Single Sign-On (commonly called AppSSO). 
 
 However, you are encouraged to verify your `AuthServer` with the following checks:
 

@@ -1,4 +1,7 @@
-# Identity providers
+# Identity providers for AppSSO
+
+This topic tells you how to configure Application Single Sign-On (commonly called AppSSO) 
+to use external identity providers (commonly called IdPs).
 
 An `AuthServer` does not manage users internally. Instead, users log in through external identity providers (IdPs).
 Currently, `AuthServer` supports OpenID Connect providers, as well a list of "static" hard-coded users for development
