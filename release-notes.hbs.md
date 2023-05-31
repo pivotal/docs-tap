@@ -93,6 +93,21 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - Enable the capability to:
     - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
     - Configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+
+#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
+
+- New report feature that links all packages, vulnerabilities and ratings associated from a specific vulnerability scan SBOM to a Store report. When querying for a report, it will return information linked to the original SBOM report instead of returning the aggregated data of all reports for the linked image or source. 
+  - `POST /api/v1/images` and `POST /api/v1/sources` APIs updated
+    - New optional header request field added: 
+      - `Report-UID`: A unique identifier to assign to the report. If omitted, a unique identifier will be randomly generated for the report. Supported characters: ALPHA DIGIT "-" / "." / "_" / "~"
+      - `Original-Location`: The stored location of the original SBOM vulnerability scan result used to create this report.
+    - New response field returned `ReportUID`, the report's unique identifier associated with the data submitted by this image
+  - `POST /api/v1/artifact-groups` API updated
+    - New `ReportUID` optional body payload field which links an existing report, tagged by its UID, to this artifact group
+  - New `GET /api/v1/report/{ReportUID}` API designed to get a specific report by its unique identifier
+  - New `GET /api/v1/reports` API designed to query for a list of reports with specified image digest, source sha, or original location.
+    - **NOTE**: When requesting SPDX or CycloneDX format, the report date will be set to the date of the original vulnerability scan SBOM. In addition, the tooling section will include the tool used to generate the original vulnerability scan report, if provided, as well as the SCST - Store tool
+
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
