@@ -245,6 +245,9 @@ krane digest nginx:latest
 
 ### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
 
+## Authoring a ClusterImageTemplate
+
+## Configuring the supply chain
 The `GrypeImageVulnerabilityScan` is available for users to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via the ClusterImageTemplate `grype-image-vulnerability-scan`.
 
 1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
@@ -276,6 +279,8 @@ Where:
 - `TYPE` is the type of your app.
 - `IMAGE` is the container image that contains the app you want to deploy.
 - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+
+TODO - add link for labels (https://github.com/pivotal/docs-tap/blob/main/scc/authoring-supply-chains.hbs.md)
 
 **Note**: There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
 
