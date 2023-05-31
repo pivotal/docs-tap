@@ -1,11 +1,11 @@
-# Supply Chain Security Tools - Scan 2.0 (alpha)
+# Supply Chain Security Tools - Scan 2.0 (beta)
 
 This topic describes how you can install and configure Supply Chain Security Tools - Scan 2.0. 
 
->**Important** SCST - Scan 2.0 is in Alpha, which means that it is still in
+>**Important** SCST - Scan 2.0 is in Beta, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
 >might encounter unexpected behavior due to capability gaps. This is an opt-in
->component to gather early feedback from alpha testers and is not installed by
+>component to gather early feedback from beta testers and is not installed by
 >default with any profile.
 
 ## <a id="overview"></a>Overview
@@ -25,7 +25,7 @@ During scanning:
 - The PipelineRun creates corresponding TaskRuns for every Task in the Pipeline and executes them.
 - A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) triggers Tekton's injected sidecar cleanup.
 
->**Note** SCST - Scan 2.0 is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md).
+>**Note** SCST - Scan 2.0 is in Beta and supersedes the [SCST - Scan component](overview.hbs.md).
 
 ## <a id="features"></a>Features
 
@@ -242,6 +242,36 @@ Alternatively, you can install [krane](https://github.com/google/go-containerreg
 ```console
 krane digest nginx:latest
 ```
+
+### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
+
+The `GrypeImageVulnerabilityScan` is available for users to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via the ClusterImageTemplate `grype-image-vulnerability-scan`.
+
+1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
+
+1. Update your `tap-values.yaml` file to specify the `grype-image-vulnerability-scan` ClusterImageTemplate. For example:
+  ```yaml
+  ootb_supply_chain_testing_scanning:
+    image_scanner_template_name: grype-image-vulnerability-scan
+  ```
+1. Update the TAP installation by running:
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+  ```
+
+  - Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+
+1. Create a sample workload by using the `tanzu apps workload create` command:
+  ```console
+  tanzu apps workload create tanzu-java-web-app \
+    --git-branch main \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
+    --label apps.tanzu.vmware.com/has-tests=true \
+    --label app.kubernetes.io/part-of=tanzu-java-web-app \
+    --type web
+  ```
+**Note**: SCST - Scan 2.0 is in Beta and active keychains, workspace bindings, and `spec.advanced` sections are not modifiable in the ClusterImageTemplate `grype-image-vulnerability-scan`.
 
 ### <a id="using-grype"></a> Using the provided Grype scanner
 
