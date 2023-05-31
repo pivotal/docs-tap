@@ -4,7 +4,7 @@ This topic tells you how to configure authorization for Application Single Sign-
 (commonly called AppSSO). 
 
 > **Note** This topic is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
-> `AuthServer` configurations. For more information, see [AuthServer](../crds/authserver.hbs.md).
+> `AuthServer` configurations. For more information, see [AuthServer](../reference/api/authserver.hbs.md).
 
 ## Overview
 

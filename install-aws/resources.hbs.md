@@ -103,7 +103,7 @@ aws ecr create-repository --repository-name tanzu-application-platform/tanzu-jav
 aws ecr create-repository --repository-name tanzu-application-platform/tanzu-java-web-app-default-bundle --region $AWS_REGION
 ```
 
->**Note** The default Supply Chain Choreographer method of storing Kubernetes Configuration is RegistryOps, which requires the `bundle` repository. If you have configured the GitOps capability, this repository is not required.  For more information, read the differences between RegistryOps and GitOps [here](scc/gitops-vs-regops.hbs.md) .
+>**Note** The default Supply Chain Choreographer method of storing Kubernetes Configuration is RegistryOps, which requires the `bundle` repository. If you have configured the GitOps capability, this repository is not required.  For more information, read the differences between RegistryOps and GitOps [here](../scc/gitops-vs-regops.hbs.md) .
 
 ## <a id='create-iam-roles'></a>Create IAM roles
 
