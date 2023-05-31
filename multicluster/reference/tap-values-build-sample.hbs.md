@@ -43,9 +43,12 @@ ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys 
     repository: "REPO-NAME"
   gitops:
     ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
+
+# Warning: Installing Grype via TAP install here has been deprecated in TAP 1.6 and will be removed in TAP 1.8.
+# Please install via Namespace Provisioner instead.
 grype:
-  namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
-  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+#  namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
+#  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   metadataStore:
     url: METADATA-STORE-URL-ON-VIEW-CLUSTER
     caSecret:

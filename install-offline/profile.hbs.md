@@ -336,9 +336,11 @@ metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
   app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
 
-grype:
-  namespace: "MY-DEV-NAMESPACE"
-  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+# Warning: Installing Grype via TAP install here has been deprecated in TAP 1.6 and will be removed in TAP 1.8.
+# Please install via Namespace Provisioner instead.
+#grype:
+#  namespace: "MY-DEV-NAMESPACE"
+#  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 ```
 
 Where:
