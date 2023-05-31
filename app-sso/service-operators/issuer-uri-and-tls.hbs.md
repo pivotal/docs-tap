@@ -1,12 +1,13 @@
-# Issuer URI & TLS
+# Issuer URI and TLS for AppSSO
 
-An `AuthServer` entry point for its clients and their end-users is called _issuer URI_. AppSSO will template the issuer
-URI and create a TLS-enabled `Ingress` for it. For this purpose, your platform operator configures the domain name and
-template. Once you created and `AuthServer` you can find the actual URL in `.status.issuerURI`.
+This topic tells you how to configure the issuer URI and TLS for 
+Application Single Sign-On (commonly called AppSSO). 
 
-You can configure whether and how to obtain a TLS certificate for the issuer URI by using `.spec.tls`. Unless TLS is deactivated, 
-HTTPS is enforced. For example, requests for `http://` are redirected to `https://`. You can observe the TLS
-configuration in `.status.tls`.
+## Overview
+
+An `AuthServer` entry point for its clients and their end-users is called _issuer URI_. AppSSO will template the issuer URI and create a TLS-enabled `Ingress` for it. For this purpose, your platform operator configures the domain name and template. Once you created and `AuthServer` you can find the actual URL in `.status.issuerURI`.
+
+You can configure whether and how to obtain a TLS certificate for the issuer URI by using `.spec.tls`. Unless TLS is deactivated, HTTPS is enforced. For example, requests for `http://` are redirected to `https://`. You can observe the TLS configuration in `.status.tls`.
 
 If AppSSO is installed with [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer), 
 you can omit `AuthServer.spec.tls` and a TLS certificate is obtained automatically. This is the recommended approach for TLS.

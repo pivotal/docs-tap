@@ -1,9 +1,14 @@
-# TLS scenario guides
+# TLS scenario guides for AppSSO
+
+This topic tells you how to obtain a TLS certificate in difference scenatios 
+for Application Single Sign-On (commonly called AppSSO). 
+
+## Overview
 
 `AuthServer` is a piece of security infrastructure. It is imperative to configure TLS for it, 
 so that its issuer URI's scheme is `https://`.
 
-`AuthServer.spec.tls` accommodates different scenarios for how to obtain a TLS certificate. 
+`AuthServer.spec.tls` accommodates different scenarios for obtaining a TLS certificate. 
 Select the scenario that matches your case.
 
 The recommended path is to install AppSSO with a [default issuer](#default-issuer). In that case,
