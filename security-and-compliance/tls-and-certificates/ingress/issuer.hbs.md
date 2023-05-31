@@ -283,7 +283,7 @@ Other
 
   1. Apply the Tanzu Application Platform installation values file.
 
-      When the configuration is applied, components obtain certificates
+      After the configuration is applied, components obtain certificates
       from the new issuer and serve them.
 
 <br>
