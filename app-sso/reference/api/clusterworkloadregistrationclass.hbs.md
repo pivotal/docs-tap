@@ -1,8 +1,8 @@
-# ClusterWorkloadRegistrationClass
+# ClusterWorkloadRegistrationClass API for AppSSO
 
-`ClusterWorkloadRegistrationClass` represents the request to expose an
-`AuthServer` as a claimable service offering. It is cluster-scoped and is 
-identified by its short name `cwrc`.
+In Application Single Sign-On (commonly called AppSSO), `ClusterWorkloadRegistrationClass` 
+represents the request to expose an `AuthServer` as a claimable service offering. 
+It is cluster-scoped and is identified by its short name `cwrc`.
 
 `ClusterWorkloadRegistrationClass` receives a free-form description which explains 
 the offering to those which discover it with the `tanzu` CLI. It also receives a 

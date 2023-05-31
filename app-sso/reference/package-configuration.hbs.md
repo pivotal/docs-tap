@@ -1,6 +1,6 @@
-# Package configuration
+# Package configuration for AppSSO
 
-Most commonly, the Application Single Sign-on (commonly called AppSSO) package 
+In most cases, the Application Single Sign-on (commonly called AppSSO) package 
 installation is configured by using the meta package installation of Tanzu 
 Application Platform (commonly called TAP). 
 The Tanzu Application Platform package has a `shared` top-level configuration key 

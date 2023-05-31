@@ -1,7 +1,8 @@
-# XWorkloadRegistration
+# XWorkloadRegistration API for AppSSO
 
-`XWorkloadRegistration` is a cluster-scoped Crossplane XRD. It serves as an integration 
-API between Services Toolkit, Crossplane and AppSSO.
+In Application Single Sign-On (commonly called AppSSO), `XWorkloadRegistration` 
+is a cluster-scoped Crossplane XRD. It serves as an integration API between 
+Services Toolkit, Crossplane and AppSSO.
 
 > **Note** This API is not intended for direct usage. Although it is supported, 
 > VMware recommend using `ClassClaim`, `WorkloadRegistration`, or `ClientRegistration` 

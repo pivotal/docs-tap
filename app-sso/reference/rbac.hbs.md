@@ -1,4 +1,4 @@
-# RBAC for Application Single Sign-On
+# RBAC for AppSSO
 
 <!--- TODO(mbrauer) --->
 

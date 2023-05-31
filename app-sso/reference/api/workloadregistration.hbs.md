@@ -1,9 +1,9 @@
-# WorkloadRegistration
+# WorkloadRegistration API for AppSSO
 
-`WorkloadRegistration` represents the request for client credentials for an
-[AuthServer](authserver.hbs.md). It is a portable, higher-level abstraction
-over [ClientRegistration](clientregistration.hbs.md). It is namespaced and 
-is identified by its short name `workloadreg`.
+In Application Single Sign-On (commonly called AppSSO), `WorkloadRegistration` 
+represents the request for client credentials for an [AuthServer](authserver.hbs.md). 
+It is a portable, higher-level abstraction over [ClientRegistration](clientregistration.hbs.md). 
+It is namespaced and is identified by its short name `workloadreg`.
 
 `WorkloadRegistration` templates redirect URIs and reconciles into a
 [ClientRegistration](clientregistration.hbs.md). For more information, 
