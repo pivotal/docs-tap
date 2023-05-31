@@ -27,3 +27,5 @@ shared:
     -----END CERTIFICATE-----
 
 ```
+
+When using GitOps please also see the guide on [Git Authentication](../../scc/git-auth.hbs.md) to configure the `caFile` parameter.
