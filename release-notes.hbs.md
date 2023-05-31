@@ -26,7 +26,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-5-2-scst-scan-ri'></a> Supply Chain Security Tools (SCST) - Scan
 
-- Old `TaskRuns` associated with scans are now being deleted to reduce memory consumption.
+- Old `TaskRuns` associated with scans are now deleted to reduce memory consumption.
 - Added support for `ConfigMaps` in custom `ScanTemplates`.
 
 ---
