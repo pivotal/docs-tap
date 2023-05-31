@@ -1,18 +1,22 @@
-# Configure Workloads to trust a custom Certificate Authority (CA)
+# Configure workloads to trust a custom CA
+
+This topic tells you how to configure workloads to trust a custom Certificate 
+Authority (commonly called CA) for Application Single Sign-On (commonly called AppSSO).
+
+## Overview
 
 If your `ClientRegistration` selects an `AuthServer` that serves a certificate from a custom CA, your `Workload`
-does not trust it by default. This is because the certificate is not issued by a trusted certificate authority from the `Workload`'s 
-perspective. 
+does not trust it by default. This is because the certificate is not issued by a trusted certificate authority from the `Workload`'s perspective. 
 
 To establish trust between a `Workload` and an `AuthServer`:
-
-> **Important** These steps are mandatory if Tanzu Application Platform is installed with the default self-signed `ClusterIssuer` resource, in which the CA is custom.
 
 |Step|Task|Link|
 |----|----|----|
 |1.| Service Operator exports the custom CA certificate `Secret` resource from the namespace in which it is issued. |[Exporting custom CA certificate Secret](#export-ca)|
 |2.| Service Operator imports the custom CA certificate `Secret` to the namespace in which the `Workload` is created. |[Importing custom CA certificate Secret](#import-ca)|
 |3.| Append the deployed `Workload` as a service resource claim, denoting the custom CA certificate `Secret` in the workload namespace. |[Appending custom CA certificate Secret reference to Workload](#append-ca)|
+
+> **Important** These steps are mandatory if Tanzu Application Platform is installed with the default self-signed `ClusterIssuer` resource, in which the CA is custom.
 
 ## <a id="export-ca"></a> Exporting custom CA certificate Secret
 
