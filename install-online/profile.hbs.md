@@ -307,9 +307,11 @@ scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
 
-grype:
-  namespace: "MY-DEV-NAMESPACE" # Verify this namespace is available within your cluster before initiating the Tanzu Application Platform installation.
-  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+# Warning: Installing Grype via TAP install here has been deprecated in TAP 1.6 and will be removed in TAP 1.8.
+# Please install via Namespace Provisioner instead.
+#grype:
+#  namespace: "MY-DEV-NAMESPACE" # Verify this namespace is available within your cluster before initiating the Tanzu Application Platform installation.
+#  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   # In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
 
 policy:
