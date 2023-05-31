@@ -1,4 +1,7 @@
-# CA certificates
+# CA certificates for AppSSO
+
+This topic tells you how to configure CA certificates for `AuthServer` in 
+Application Single Sign-On (commonly called AppSSO).
 
 An `AuthServer` can trust custom CAs. You can establish either [for 
 all `AuthServer`s](../platform-operators/configuration.md#ca) or for a single `AuthServer`. This is useful when either

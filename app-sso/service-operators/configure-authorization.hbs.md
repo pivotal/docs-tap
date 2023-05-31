@@ -1,10 +1,16 @@
-# Configure authorization
+# Configure authorization for AppSSO
 
-> **Note** This section is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
+This topic tells you how to configure authorization for Application Single Sign-On 
+(commonly called AppSSO). 
+
+> **Note** This topic is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
 > `AuthServer` configurations. For more information, see [AuthServer](../crds/authserver.hbs.md).
 
-An application or `Workload` can protect certain resources based on user's level of authorization. Within OAuth 2, the application
-with protected resources, the Resource Server, verifies if the access token provided contains the scopes to perform
+## Overview
+
+An application or `Workload` can protect certain resources based on user's level 
+of authorization. Within OAuth 2, the application with protected resources, the 
+Resource Server, verifies if the access token provided contains the scopes to perform
 an action on a protected resource.
 
 The following excerpt is from a Spring Boot application, OAuth2 Resource Server, 
@@ -60,10 +66,10 @@ spec:
         accessToken:
           scope:
             rolesToScopes:
-              - fromRole: "hr"           # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
-                toScopes:                #    Only users with "hr" role can be issued access token with these scopes.
-                  - "hr.read"            # ^^
-                  - "hr.write"           # ^^
+              - fromRole: "hr" # -> Role "hr" is mapped to the "hr.read" and "hr.write" scopes.
+                toScopes:      #    Only users with the "hr" role can be issued access token with these scopes.
+                  - "hr.read"  # ^^
+                  - "hr.write" # ^^
 ```
 
 For example, given that a `ClientRegistration` is applied to include `hr.read` or `hr.write`:
