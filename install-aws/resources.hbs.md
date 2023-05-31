@@ -83,6 +83,28 @@ aws ecr create-repository --repository-name tap-build-service --region $AWS_REGI
 
 Name the repositories any name you want, but remember the names for when you later build the configuration.
 
+## <a id='create-workload-container-repos'></a>Create the workload container repositories
+
+Similar to the two repositories created above for the platform, you will need to create repositories for each workload that is created by the Tanzu Applicatoin Platform.  These need to be created prior to creating any workloads so that a repository is available to upload container images and workload bundles.  This is required because AWS ECR does not support [automatically creating container repositories on initial push yet](https://github.com/aws/containers-roadmap/issues/853).
+
+When installing the Tanzu Application Platform, you will specify a prefix that is used for all workload registries.  This guide uses `tanzu-application-platform` as the default value, but this can be customized in the profile configuration created in the [Install the Tanzu Application Platform package and profiles](profile.hbs.md) section of the documents.
+
+If you wish to use the default, you will create two workload repositories for each workload with the following format:
+
+```
+tanzu-application-platform/<workloadname>-<namespace>
+tanzu-application-platform/<workloadname>-<namespace>-bundle
+```
+
+For example, to create these repositories for the sample workload `tanzu-java-web-app` in the `default` namespace, the ECR command to run is:
+
+```console
+aws ecr create-repository --repository-name tanzu-application-platform/tanzu-java-web-app-default --region $AWS_REGION
+aws ecr create-repository --repository-name tanzu-application-platform/tanzu-java-web-app-default-bundle --region $AWS_REGION
+```
+
+>**Note** The default Supply Chain Choreographer method of storing Kubernetes Configuration is RegistryOps, which requires the `bundle` repository. If you have configured the GitOps capability, this repository is not required.  For more information, read the differences between RegistryOps and GitOps [here](scc/gitops-vs-regops.hbs.md) .
+
 ## <a id='create-iam-roles'></a>Create IAM roles
 
 By default, the EKS cluster is provisioned with an EC2 instance profile that provides read-only access for the entire EKS cluster to the ECR registery within your AWS account. For more information, see this [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
