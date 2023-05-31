@@ -19,7 +19,6 @@ Using Namespace Provisioner Controller
           ref: origin/main
           subPath: ns-provisioner-samples/testing-scanning-supplychain-parameterized
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-scanning-supplychain-parameterized-setup
       parameter_prefixes:
       - tap.tanzu.vmware.com
     ```
@@ -76,7 +75,6 @@ Using GitOps
           ref: origin/main
           subPath: ns-provisioner-samples/testing-scanning-supplychain-parameterized
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-scanning-supplychain-parameterized-setup
       gitops_install:
         ref: origin/main
         subPath: ns-provisioner-samples/gitops-install-with-params
