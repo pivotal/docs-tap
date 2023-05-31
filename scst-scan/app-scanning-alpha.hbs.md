@@ -261,16 +261,24 @@ The `GrypeImageVulnerabilityScan` is available for users to integrate into the [
 
   - Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
-1. Create a sample workload by using the `tanzu apps workload create` command:
+1. Create a sample workload using a pre-built image by using the `tanzu apps workload create` command:
   ```console
-  tanzu apps workload create tanzu-java-web-app \
-    --git-branch main \
-    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
-    --sub-path tanzu-java-web-app \
-    --label apps.tanzu.vmware.com/has-tests=true \
-    --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --type web
+  tanzu apps workload create WORKLOAD-NAME \
+    --app APP-NAME \
+    --type TYPE \
+    --image IMAGE \
+    --namespace DEV-NAMESPACE
   ```
+
+Where:
+- `WORKLOAD-NAME` is the name you choose for your workload.
+- `APP-NAME` is the name of your app.
+- `TYPE` is the type of your app.
+- `IMAGE` is the container image that contains the app you want to deploy.
+- `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+
+**Note**: There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+
 **Note**: SCST - Scan 2.0 is in Beta and active keychains, workspace bindings, and `spec.advanced` sections are not modifiable in the ClusterImageTemplate `grype-image-vulnerability-scan`.
 
 ### <a id="using-grype"></a> Using the provided Grype scanner
