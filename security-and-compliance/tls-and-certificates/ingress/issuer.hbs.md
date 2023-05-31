@@ -1,7 +1,7 @@
 # Shared ingress issuer
 
 The Tanzu Application Platform shared ingress issuer is an on-platform
-representation of a _certificate authority_. It provides a method to set up TLS
+representation of a certificate authority. It provides a method to set up TLS
 for the entire platform. All participating components get their ingress
 certificates issued by it.
 
@@ -65,7 +65,7 @@ is not included in any trust chain configured.
 As a result, nothing trusts the default ingress issuer implicitly, not even
 Tanzu Application Platform components. While the issued certificates are valid in principal, they
 are rejected, for example, by your browser. Furthermore, some interactions between components are
-not functional out of the box.
+not functional by default.
 
 ### <a id="trust-self-signed"></a>Trusting the default, self-signed issuer
 
@@ -87,8 +87,8 @@ You can trust the default ingress issuer by including
    certificates](../custom-ca-certificates.hbs.md) by appending it to
    `shared.ca_cert_data` and applying Tanzu Application Platform's installation values
 
-1. Add the certificate to your device's trust chain _(this depends on your
-   operating system and privileges)_
+1. Add the certificate to your device's trust chain. The trust chain will vary depending on your
+   operating system and privileges.
 
 ## <a id="replace"></a>Replacing the default ingress issuer
 
@@ -258,7 +258,7 @@ LetsEncrypt staging
 
   3. Apply Tanzu Application Platform installation values
 
-      Once the configuration is applied, components obtain certificates
+      After the configuration is applied, components obtain certificates
       from the new issuer and serve them.
 
 Other
