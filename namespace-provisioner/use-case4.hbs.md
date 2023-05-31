@@ -158,7 +158,6 @@ Using Namespace Provisioner Controller
           ref: origin/main
           subPath: ns-provisioner-samples/credentials
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/credentials-setup
       import_data_values_secrets:
       - name: workload-git-auth
         namespace: tap-install
@@ -180,7 +179,6 @@ Using GitOps
           ref: origin/main
           subPath: ns-provisioner-samples/credentials
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/credentials-setup
       gitops_install:
         ref: origin/main
         subPath: ns-provisioner-samples/gitops-install

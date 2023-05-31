@@ -36,7 +36,6 @@ Using Namespace Provisioner Controller
           ref: origin/main
           subPath: ns-provisioner-samples/testing-scanning-supplychain-multiple-scanners
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-scanning-supplychain-multiple-scanners-setup
       import_data_values_secrets:
       - name: scanner-auth
         namespace: tap-install
@@ -54,7 +53,6 @@ Using GitOps
           ref: origin/main
           subPath: ns-provisioner-samples/testing-scanning-supplychain-multiple-scanners
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-scanning-supplychain-multiple-scanners-setup
       import_data_values_secrets:
       - name: scanner-auth
         namespace: tap-install
