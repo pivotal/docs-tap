@@ -1,7 +1,8 @@
-# AuthServer
+# AuthServer API for AppSSO
 
-`AuthServer` represents the request for an OIDC authorization server. It results in the deployment of an authorization
-server backed by Redis over mTLS.
+In Application Single Sign-On (commonly called AppSSO), `AuthServer` represents 
+the request for an OIDC authorization server. It causes the deployment of an 
+authorization server backed by Redis over mTLS.
 
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
