@@ -318,6 +318,8 @@ docs.vmware.com is built.
             - [Secure a Spring Boot workload](app-sso/how-to-guides/secure-spring-boot-workload.hbs.md)
             - [Secure a single-page app workload](app-sso/how-to-guides/secure-spa-workload.hbs.md)
             - [Troubleshoot](app-sso/how-to-examples/troubleshoot.hbs.md)
+        - [Concepts](app-sso/concepts/index.hbs.md)
+            - [Grant types](app-sso/concepts/grant-types.hbs.md)
         - [Reference](app-sso/reference/index.hbs.md)
             - [API](app-sso/reference/api/index.hbs.md)
                 - [AuthServer](app-sso/reference/api/authserver.hbs.md)
