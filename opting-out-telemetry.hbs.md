@@ -51,7 +51,7 @@ Tanzu CLI
 
     To learn more about how to update the telemetry settings:
 
-    ```concole
+    ```console
     $ tanzu telemetry update --help
     Update tanzu telemetry settings
 
