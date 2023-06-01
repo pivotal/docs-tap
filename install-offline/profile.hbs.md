@@ -334,6 +334,7 @@ metadata_store:
 ```
 
 > **Important** 
+>
 > - Tanzu Build Service is installed by default with `lite` depndencies.
 > When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because > they require Internet access. You must install the `full` dependencies by setting `exclude_dependencies` to `true`.
 >
