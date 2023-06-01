@@ -305,20 +305,25 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # Configuration is moved, so set this string to empty.
-
-# Warning: Installing Grype via TAP install here has been deprecated in TAP 1.6 and will be removed in TAP 1.8.
-# Please install via Namespace Provisioner instead.
-#grype:
-#  namespace: "MY-DEV-NAMESPACE" # Verify this namespace is available within your cluster before initiating the Tanzu Application Platform installation.
-#  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   # In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
+    url: "" # Configuration is moved, so set this string to empty.
 
 policy:
   tuf_enabled: false # By default, TUF initialization and keyless verification are deactivated.
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
 ```
+
+> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> deprecated in v1.6 and will be removed in v1.8:
+>
+> ```yaml
+> grype:
+>   namespace: "MY-DEV-NAMESPACE"
+>   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+>```
+>
+> You can install Grype by using Namespace Provisioner instead.
 
 Where:
 

@@ -284,7 +284,7 @@ cnrs:
   domain_name: tap.com
 ```
 
-> **Caution** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is 
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml

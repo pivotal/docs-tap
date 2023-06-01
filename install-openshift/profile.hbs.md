@@ -295,14 +295,18 @@ metadata_store:
 scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
-
-# Warning: Installing Grype via TAP install here has been deprecated in TAP 1.6 and will be removed in TAP 1.8.
-# Please install via Namespace Provisioner instead.
-#grype:
-#  namespace: "MY-DEV-NAMESPACE"
-#  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
-
 ```
+
+> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> deprecated in v1.6 and will be removed in v1.8:
+>
+> ```yaml
+> grype:
+>   namespace: "MY-DEV-NAMESPACE"
+>   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+>```
+>
+> You can install Grype by using Namespace Provisioner instead.
 
 Where:
 
