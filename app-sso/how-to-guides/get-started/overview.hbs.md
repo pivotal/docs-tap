@@ -10,12 +10,12 @@ Use this topic to learn how to:
 1. [Deploy an application](application.hbs.md) that uses the provisioned ClientRegistration to enable SSO.
 
 After completing these steps, you can proceed with 
-[securing a Workload](../app-operators/secure-spring-boot-workload.md).
+[securing a Workload](../secure-spring-boot-workload.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
 You must install AppSSO on your Tanzu Application Platform cluster. 
-For more information, see [Install AppSSO](../platform-operators/installation.hbs.md).
+For more information, see [Install AppSSO](../../tutorials/platform-operators/installation.hbs.md).
 
 ## <a id='concepts'></a>Key concepts
 
@@ -68,11 +68,11 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 `roles` claim can only be part of an `id_token` when user roles are mapped and 'roles' scope is requested. 
 For more information about mapping for OpenID Connect, LDAP and SAML, see:
 
-- [OpenID external groups mapping](../service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
-- [LDAP external groups mapping](../service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
-- [SAML (experimental) external groups mapping](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
+- [OpenID external groups mapping](../../tutorials/service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
+- [LDAP external groups mapping](../../tutorials/service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
+- [SAML (experimental) external groups mapping](../../tutorials/service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
-ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../service-operators/token-signature.md). Client
+ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../../tutorials/service-operators/token-signature.md). Client
 applications may verify their validity using the AuthServer's public keys.
 
 ## <a id='next-steps'></a> Next steps

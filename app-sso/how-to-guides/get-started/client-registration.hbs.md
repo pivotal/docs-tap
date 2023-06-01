@@ -11,7 +11,7 @@ Sign-On (commonly called AppSSO). Use this topic to learn how to:
 
 ## Prerequisites
 
-Complete the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
+Complete the steps described in [Get started with Application Single Sign-On](./overview.hbs.md). 
 
 ## Creating the ClientRegistration
 
@@ -94,4 +94,4 @@ curl -XPOST "$ISSUER_URI/oauth2/token?grant_type=client_credentials&scope=messag
 
 You can decode the `access_token` using an online service, such as [JWT.io](https://jwt.io).
 
-To learn more about grant types, see [Grant Types](../app-operators/grant-types.md)
+To learn more about grant types, see [Grant Types](../../concepts/grant-types.hbs.md).

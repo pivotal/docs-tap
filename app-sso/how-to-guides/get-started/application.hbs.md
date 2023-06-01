@@ -7,12 +7,12 @@ that [ClientRegistration](client-registration.hbs.md) creates.
 ![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
 
 For more information about how a Client application uses an AuthServer to 
-authenticate an end user, see [AppSSO Overview](appsso-overview.md).
+authenticate an end user, see the [overview](./overview.md).
 
 ## Prerequisites
 
-You must complete the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
-If not, see [Provision a client registration](client-registration.md).
+You must complete the steps described in [Get started with Application Single Sign-On](./overview.hbs.md). 
+If not, see [Provision a client registration](client-registration.hbs.md).
 
 ## Deploy a minimal application
 

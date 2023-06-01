@@ -1,10 +1,11 @@
 # Configure AppSSO for workloads 
 
+TODO(mbrauer)
+
 This topic tells you how to configure Application Single Sign-On (commonly called AppSSO) 
 when defining workloads. 
 
-For specific stack implementations such as Spring Boot, 
-see [Application Single Sign-On for App Operators](index.hbs.md).
+For specific stack implementations such as Spring Boot see all the [how-to guides](./index.hbs.md).
 
 An AppSSO `AuthServer` and your `Workload` must be able to detect each other and can communicate bidirectionally:
 
@@ -18,7 +19,7 @@ An AppSSO `AuthServer` and your `Workload` must be able to detect each other and
   credentials for your `Workload` to consume. 
   For more information, see [Claim a ClientRegistration](#claim).
 - (Optional) Ensure your `Workload` trusts a TLS-enabled `AuthServer`.
-  For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../service-operators/workload-trust-custom-ca.hbs.md).
+  For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../tutorials/service-operators/workload-trust-custom-ca.hbs.md).
 
     > **Important** You must ensure `Workload` trusts the `AuthServer` if you use the default self-signed
     > certificate `ClusterIssuer` while installing Tanzu Application Platform.
@@ -120,14 +121,14 @@ value of `client_secret_basic` is the recommended method for authenticating serv
 Spring Boot or .NET Core apps (confidential clients).
 
 For browser-based single-page apps, client authentication method must be set to `none`.
-For more information, see [Configure authorization](../service-operators/configure-authorization.hbs.md) 
+For more information, see [Configure authorization](../tutorials/service-operators/configure-authorization.hbs.md) 
 and [Client authentication methods](../reference/api/clientregistration.hbs.md#client-auth-methods).
 
 ### <a id='scopes'></a> Scopes
 
 The `scopes` field allows for configuring requested OAuth2 scopes including standard OpenID claims. 
 The scopes provided within this field can be mapped to upstream identity provider roles. 
-For more information, see [Configure authorization](../service-operators/configure-authorization.hbs.md).
+For more information, see [Configure authorization](../tutorials/service-operators/configure-authorization.hbs.md).
 
 To activate issuance of uers' identity tokens and authentication, you must include the `openid` scope.
 

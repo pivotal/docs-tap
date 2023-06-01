@@ -1,7 +1,7 @@
 # ClientRegistration API for AppSSO
 
 In Application Single Sign-On (commonly called AppSSO), `ClientRegistration` is 
-the request for client credentials for an [AuthServer](authserver.hbs.md).
+the request for client credentials for an [AuthServer](./authserver.hbs.md).
 
 It implements the [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
 are returned as a [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `Secret`.
@@ -63,12 +63,12 @@ kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 The following scopes must be included for the issuance of identity tokens:
 
 - `openid` scope must be included for identity tokens to be issued.
-- `profile` scope must be included for the custom-mapped claims to be included in an issued identity token, for example, `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. For more information, see [Identity token claims mapping](../../service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `profile` scope must be included for the custom-mapped claims to be included in an issued identity token, for example, `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. For more information, see [Identity token claims mapping](../../tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - `email` scope must be included to retain the `email` and `email_verified` claims.
 - `address` scope must be included to retain the `address` claim.
 - `phone` scope must be included to retain the `phone_number` and `phone_number_verified` claims.
 - `roles` scope must be included to retrieve the user role information from an upstream identity provider.
-  For more information, see [Configure authorization](../../service-operators/configure-authorization.hbs.md).
+  For more information, see [Configure authorization](../../tutorials/service-operators/configure-authorization.hbs.md).
 
 ## <a id='client-auth-methods'></a> Client authentication methods
 
@@ -79,7 +79,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 - `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
 - `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
 - `none`: No client authentication. Required for public clients. 
-For more information, see [Public clients and CORS](../../service-operators/cors.md).
+For more information, see [Public clients and CORS](../../tutorials/service-operators/cors.md).
 
 > **Caution** When running Workloads using _Spring Boot 3_, you must use
 > `client_secret_basic` or `client_secret_post`. For more information, see

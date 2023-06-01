@@ -62,7 +62,7 @@ AppSSO to `v2.0.0` with the following changes:
     >a `Service` and an ingress resource as in AppSSO v1.0.0.
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See
-       [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more
+       [Issuer URI & TLS](../tutorials/service-operators/issuer-uri-and-tls.md) for more
        information.
     1. (Optional) Disable TLS with `.spec.tls.disabled`.
     1. Remove `.spec.issuerURI`.

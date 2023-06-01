@@ -58,7 +58,7 @@ spec:
   clientAuthenticationMethod: client_secret_basic
 ```
 
-See the [ClientRegistration API reference](../reference/api/clientregistration.hbs.md) for more field definitions.
+See the [ClientRegistration API reference](../../reference/api/clientregistration.hbs.md) for more field definitions.
 
 This defines a test `ClientRegistration` with the `client_credentials` OAuth grant type.
 

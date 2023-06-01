@@ -21,18 +21,15 @@ To verify AppSSO is installed on your cluster, run:
 tanzu package installed list -A | grep "sso.apps.tanzu.vmware.com"
 ```
 
-For more information about the Tanzu Application Platform installation, 
-see [Install Tanzu Application Platform](../../install-intro.hbs.md). 
-
 For more information about the AppSSO installation, 
-see [Install AppSSO](../platform-operators/installation.md).
+see [Install AppSSO](../../tutorials/platform-operators/installation.md).
 
 ## Provision an AuthServer
 
 Deploy your first Authorization Server along with an `RSAKey` key for signing tokens.
 
 > **Caution** This `AuthServer` example uses an unsafe testing-only identity provider. Never use it in
-production environments. For more information about identity providers, see [Identity providers](../service-operators/identity-providers.md).
+production environments. For more information about identity providers, see [Identity providers](../../tutorials/service-operators/identity-providers.md).
 
 ```yaml
 ---
@@ -113,7 +110,7 @@ You can review the standard OpenID information of your `AuthServer` by visiting
 `http://my-authserver-example.default.<your domain>/.well-known/openid-configuration`.
 
 > **Important** If the issuer URIs domain is not yours, the AppSSO package installation must be updated. 
-For more information, see [Install Application Single Sign-On](../platform-operators/installation.md).
+For more information, see [Install Application Single Sign-On](../../tutorials/platform-operators/installation.md).
 
 ## The AuthServer spec in detail
 
@@ -146,7 +143,7 @@ client registrations in the `default` namespace.
 The `sso.apps.tanzu.vmware.com/allow-unsafe-...` annotations enable "development mode" features, useful for testing.
 Those should not be used for production-grade authorization servers.
 
-For more information about annotations and labels in `AuthServer` resource, see [Annotation and labels](../service-operators/metadata.md).
+For more information about annotations and labels in `AuthServer` resource, see [Annotation and labels](../../tutorials/service-operators/metadata.md).
 
 ### TLS & issuer URI
 
@@ -160,7 +157,7 @@ The `tls` field configures whether and how to obtain a certificate for an `AuthS
 If you deactivate `tls`, the issuer URI uses plain HTTP.
 
 > **Caution** Plain HTTP access is for development purposes only and must never be used in production. 
-For more information about the production readiness with TLS, see [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md).
+For more information about the production readiness with TLS, see [Issuer URI & TLS](../../tutorials/service-operators/issuer-uri-and-tls.md).
 
 ### Token Signature
 
@@ -197,7 +194,7 @@ and `pub.pem`. In this specific example, we are
 using [Secretgen-Controller](https://github.com/vmware-tanzu/carvel-secretgen-controller), a TAP dependency, to generate
 the key for us.
 
-Learn more about [Token Signatures](../service-operators/token-signature.md).
+Learn more about [Token Signatures](../../tutorials/service-operators/token-signature.md).
 
 ### Identity providers
 
@@ -232,4 +229,4 @@ with a client application later in this guide.
 An `AuthServer` issues a Redis instance by default. It can be used for testing, prototyping and other non-production
 purposes. No additional configuration is required.
 
-To configure your own storage that is ready for production, see [Storage](../service-operators/storage.hbs.md).
+To configure your own storage that is ready for production, see [Storage](../../tutorials/service-operators/storage.hbs.md).

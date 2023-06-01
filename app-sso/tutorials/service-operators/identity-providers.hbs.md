@@ -9,7 +9,7 @@ started quickly without needing to connect to an IdP by using static hard-coded 
 only. 
 
 Identity providers are configured under `spec.identityProviders`, learn more
-from [the API reference](../reference/api/authserver.hbs.md).
+from [the API reference](../../reference/api/authserver.hbs.md).
 
 > **Caution** Changes to `spec.identityProviders` do not take effect immediately because the operator will roll out a new deployment of the authorization server.
 
@@ -124,7 +124,7 @@ spec:
 > **Caution** Some OpenID providers, such as Okta OpenID, might require requesting the roles or groups scope from the
 > identity provider, as a result, you must include it in the `.openid.scopes` list.
 
-For every [ClientRegistration](../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity token is populated with the `roles` claim:
+For every [ClientRegistration](../../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity token is populated with the `roles` claim:
 
 ```yaml
 kind: ClientRegistration
@@ -268,7 +268,7 @@ spec:
             attribute: "upstream-identity-providers-groups-attribute" # e.g. "cn" or "dn"
 ```
 
-For every [ClientRegistration](../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
@@ -630,7 +630,7 @@ spec:
             attribute: "saml-group-attribute"
 ```
 
-For every [ClientRegistration](../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../../reference/api/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml

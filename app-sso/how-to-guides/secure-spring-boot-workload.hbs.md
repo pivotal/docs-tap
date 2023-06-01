@@ -83,7 +83,7 @@ spec:
 > In this case, it is `appsso-starter-java` and `my-apps`.
 > Keep the suffix formatted as `/login/oauth2/code/{ClientRegistration.metadata.name}`.
 > For more information about the redirect URI format of Spring Security OAuth 2 Client library,
-> see [Configure AppSSO for workloads ](./workloads-and-appsso.hbs.md#redirect-uris).
+> see [Configure AppSSO for workloads ](./secure-workload.hbs.md#redirect-uris).
 
 The accelerator is pre-packaged with a ytt-templated `ClientRegistration` that is located in `client.yaml`.
 You can generate the same `ClientRegistration` as earlier with your specific values by running:
@@ -142,7 +142,7 @@ by using the Tanzu Services plugin CLI:
 ## <a id="trust-authserver"></a> Ensure `Workload` trusts `AuthServer`
 
 For TAP cluster with a custom or self-signed CA certificate,
-see [Configure workloads to trust a custom Certificate Authority (CA)](../service-operators/workload-trust-custom-ca.hbs.md).
+see [Configure workloads to trust a custom Certificate Authority (CA)](../tutorials/service-operators/workload-trust-custom-ca.hbs.md).
 
 ## <a id="deploy-workload"></a> Deploy the `Workload`
 

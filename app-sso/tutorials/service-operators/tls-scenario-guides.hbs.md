@@ -49,7 +49,7 @@ kubectl get --namespace login authserver sso --output=jsonpath='{.status.issuerU
 
 ## <a id='default-issuer'></a> Using a default issuer
 
-VMware recommend using [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer),  
+VMware recommend using [a default issuer](../../platform-operators/configuration.md#default_authserver_clusterissuer),  
 because this approach separates the responsibilities of platform operators and service operators. 
 In this case, the `Authserver.spec.tls` field is not required.
 

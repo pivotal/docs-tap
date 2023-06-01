@@ -4,15 +4,15 @@ This topic tells you how to install Application Single Sign-On (commonly called 
 from the Tanzu Application Platform package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
-For more information about profiles, see [Components and installation profiles](../../about-package-profiles.hbs.md).
+For more information about profiles, see [Components and installation profiles](../../../about-package-profiles.hbs.md).
 
 ## What's inside
 
 The AppSSO package installs the following resources:
 
 - The `appsso` namespace with a deployment of the AppSSO controller and services for webhooks.
-- [RBAC](../reference/rbac.hbs.md)
-- [APIs](../reference/api/index.hbs.md)
+- [RBAC](../../reference/rbac.hbs.md)
+- [APIs](../../reference/api/index.hbs.md)
 
 ## Prerequisites
 
@@ -51,10 +51,11 @@ In particular, the `sso.apps.tanzu.vmware.com` package has these dependencies:
 ## Configuration
 
 For the AppSSO package to meet your needs, refer to the [package configuration
-reference](../reference/package-configuration.hbs.md).
+reference](../../reference/package-configuration.hbs.md).
 
 ## Upgrades
 
 To successfully upgrade to a newer version of the package, refer to the
-[upgrades reference](../reference/upgrades.hbs.md).
+[upgrades reference](../../reference/upgrades.hbs.md).
+
 

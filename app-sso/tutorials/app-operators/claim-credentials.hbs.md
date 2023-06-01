@@ -88,15 +88,15 @@ kubectl get classclaim <my-claim-name> --namespace <my-namespace> --output yaml
 ```
 
 Now you have OAuth2 client credentials which you can use to secure your
-workload with SSO. Refer to [the how-to guides](../how-to-guides/index.hbs.md)
+workload with SSO. Refer to [the how-to guides](../../how-to-guides/index.hbs.md)
 to learn how to secure specific types of workloads with AppSSO.
 
 >**Caution** It can take `~60-120s` for your AppSSO credentials to be
 >propagated into your service bindings secret.
 
 If you run into problems claiming credentials for an AppSSO service, learn how
-to [troubleshoot](../reference/troubleshoot.hbs.md).
+to [troubleshoot](../../how-to-guides/troubleshoot.hbs.md).
 
 For in-depth documentation on the `tanzu services` command, classes and claims,
-refer to [Services Toolkit](../../services-toolkit/about.hbs.md).
+refer to [Services Toolkit](../../tutorials/services-toolkit/about.hbs.md).
 

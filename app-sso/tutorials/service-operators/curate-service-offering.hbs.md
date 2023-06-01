@@ -62,7 +62,7 @@ base and it will target our `AuthServer`.
 
 Each `WorkloadRegistration` gets `https://` redirect URIs templated. The
 default template is configured with
-[default_workload_domain_template](../reference/package-configuration.hbs.md#default_workload_domain_template)
+[default_workload_domain_template](../../reference/package-configuration.hbs.md#default_workload_domain_template)
 If omitted the default template is used. Otherwise it can be customized by
 setting a template on the base.
 

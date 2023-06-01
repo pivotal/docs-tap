@@ -31,12 +31,12 @@ You can configure trust for custom CAs by providing their certificates as a PEM
 bundle to `ca_cert_data`. As a result, all `AuthServer`s trust your custom CAs.
 
 This is useful if you have [identity
-providers](../service-operators/identity-providers.hbs.md) serving certificates
+providers](../tutorials/service-operators/identity-providers.hbs.md) serving certificates
 from a custom CA and [configuring AuthServer
-storage](../service-operators/storage.hbs.md).
+storage](../tutorials/service-operators/storage.hbs.md).
 
 Alternatively, you can [configure trust for a single
-AuthServer](../service-operators/ca-certs.hbs.md).
+AuthServer](../tutorials/service-operators/ca-certs.hbs.md).
 
 >**Note** AppSSO-specific `ca_cert_data` is concatenated with
 >`shared.ca_cert_data`. The resulting PEM bundle contains both.

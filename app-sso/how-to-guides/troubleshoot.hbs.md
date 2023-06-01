@@ -1,7 +1,5 @@
 # Troubleshoot Application Single Sign-on
 
-TODO(mbrauer)
-
 This topic tells you how to troubleshoot Application Single Sign-On (commonly called AppSSO).
 
 ## Why is my AuthServer not working?
@@ -78,7 +76,7 @@ You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signin
 ### Solution:
 
 The `redirectURIs` of a `ClientRegistration` must refer to the URI (one or more) of the registered `Workload`.
-It does not refer to the URI of the AuthServer. For more information, see [Redirect URIs](app-operators/workloads-and-appsso.hbs.md#redirect-uris).
+It does not refer to the URI of the AuthServer. For more information, see [Redirect URIs](./secure-workload.hbs.md#redirect-uris).
 
 ## Unsupported `id_token_signed_response_alg` with openid `identityProviders`
 

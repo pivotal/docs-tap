@@ -14,7 +14,7 @@ further details for its deployment.
 `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a ready-to-claim
 service offering. _Application operators_ can disover this offering and claim
 credentials. The mechanisms for this are provided by [Services
-Toolkit](../../services-toolkit/about.hbs.md). This is the recommended way for
+Toolkit](../../../services-toolkit/about.hbs.md). This is the recommended way for
 offering and consuming AppSSO.
 
 If you just want to get started in a non-production environment,
@@ -23,7 +23,7 @@ ready-to-claim AppSSO service offering. It is a higher-level alternative to the
 combination of `AuthServer` and `ClusterWorkloadRegistrationClass`.
 
 For a full explanation of the available APIs, refer to [the API
-reference](../reference/api/index.hbs.md).
+reference](../../reference/api/index.hbs.md).
 
 The following sections outline the essential steps to configure a fully
 operational, ready-to-claim AppSSO service offering:
