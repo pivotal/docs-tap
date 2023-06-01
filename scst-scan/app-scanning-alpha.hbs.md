@@ -245,25 +245,22 @@ krane digest nginx:latest
 
 ### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
 
-## Authoring a ClusterImageTemplate
-
-## Configuring the supply chain
-The `GrypeImageVulnerabilityScan` is available for users to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via the ClusterImageTemplate `grype-image-vulnerability-scan`.
+#### Configuring the supply chain
+The `ImageVulnerabilityScan` is available to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via either a user created ClusterImageTemplate or the following packaged ClusterImageTemplates:
+- `image-vulnerability-scan-grype`
+- `image-vulnerability-scan-trivy`
 
 1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
-
-1. Update your `tap-values.yaml` file to specify the `grype-image-vulnerability-scan` ClusterImageTemplate. For example:
+1. Update your `tap-values.yaml` file to specify the ClusterImageTemplate. For example:
   ```yaml
   ootb_supply_chain_testing_scanning:
-    image_scanner_template_name: grype-image-vulnerability-scan
+    image_scanner_template_name: image-vulnerability-scan-grype
   ```
 1. Update the TAP installation by running:
   ```console
   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
   ```
-
   - Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-
 1. Create a sample workload using a pre-built image by using the `tanzu apps workload create` command:
   ```console
   tanzu apps workload create WORKLOAD-NAME \
@@ -280,11 +277,9 @@ Where:
 - `IMAGE` is the container image that contains the app you want to deploy.
 - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
-TODO - add link for labels (https://github.com/pivotal/docs-tap/blob/main/scc/authoring-supply-chains.hbs.md)
-
 **Note**: There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
 
-**Note**: SCST - Scan 2.0 is in Beta and active keychains, workspace bindings, and `spec.advanced` sections are not modifiable in the ClusterImageTemplate `grype-image-vulnerability-scan`.
+**Note**: SCST - Scan 2.0 is in Beta and active keychains and workspace bindings are not modifiable in the packaged ClusterImageTemplates.
 
 ### <a id="using-grype"></a> Using the provided Grype scanner
 
