@@ -144,6 +144,14 @@ This release includes the following changes, listed by component and area.
   status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
     - Example: `main/6db88c7a7e7dec1843809b058195b68480c4c12a` to `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
 
+#### <a id='1-6-0-buildservice-bc'></a> Tanzu Build Service
+
+- The full deps package has been renamed and the installation process has been modified.
+  - You will need to remove existing full dependencies installs before installing the new version.
+  - The full deps package install now requires the tap-values file to be provided
+- The full deps package repository will now be tagged with the TAP package version instead of the Tanzu Build Service package version
+- Ubuntu Bionic stacks/builders are no longer shipped in TAP and the Full Deps Package Repository
+
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
