@@ -58,4 +58,8 @@ reference](../../reference/package-configuration.hbs.md).
 To successfully upgrade to a newer version of the package, refer to the
 [upgrades reference](../../reference/upgrades.hbs.md).
 
+## OpenShift
+
+When deployed on an _OpenShift_ cluster, [additional _OpenShift_-specific
+resources](../../reference/openshift.hbs.md) are being installed.
 
