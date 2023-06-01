@@ -37,7 +37,7 @@ For more information about the fields, see
 
 After the offering is created, you can discover it with the `tanzu` CLI:
 
-```concole
+```console
 ❯ tanzu services classes list
   NAME     DESCRIPTION
   <name>   <description>
@@ -45,7 +45,7 @@ After the offering is created, you can discover it with the `tanzu` CLI:
 
 You can also discover the service's parameters with the `tanzu` CLI:
 
-```concole
+```console
 ❯ tanzu services classes get <name>
 NAME:           <name>
 DESCRIPTION:    <description>
