@@ -4,7 +4,7 @@ This topic describes options for installing Tanzu Application Platform to a clus
 
 ## About
 
-The crossplane.tanzu.vmware.com Package is included in Tanzu Application Platform's Full, Iterate and Run profiles. Any installation of Tanzu Appliation Platform using one of these profiles will result in the installation of Crossplane to the cluster via the Package. In most cases this is desirable behaviour as Crossplane is required to support many of the services capabilities offered by Tanzu Application Platform.
+The crossplane.tanzu.vmware.com Package is included in Tanzu Application Platform's Full, Iterate and Run profiles. By default, any installation of Tanzu Appliation Platform using one of these profiles will result in the installation of Crossplane to the cluster via the Package. In most cases, this is desirable behaviour as Crossplane is required to support many of the services capabilities offered by Tanzu Application Platform.
 
 However there are cases where this is not desirable, for example if you are planning to install Tanzu Application Platform to a cluster which already has an installation of Crossplane on it, or if you would like to install Crossplane via some other, out-of-band mechanism (e.g. through Helm install). This guide details how to exclude the crossplane.tanzu.vmware.com Package in tap-values.yaml.
 
