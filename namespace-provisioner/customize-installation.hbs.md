@@ -40,7 +40,7 @@ Options if using Controller
      - `name`: name of the secret to be imported to use as valuesFrom in kapp.
      - `namespace`: namespace where the secret exists.
      - `create_export`:  Boolean flag to control creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
-     - `path` must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib`  prefix can be any string value, and must be unique across all additional sources.
+     - `path` (**Optional**) must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib`  prefix can be any string value, and must be unique across all additional sources. If not provided, namespace provisioner will generate a `path` using `url` and `subPath`.
 
    Sample TAP values configuration:
 
@@ -59,6 +59,8 @@ Options if using Controller
           create_export: true
       path: _ytt_lib/testing-scanning-supplychain-setup
    ```
+
+    In case a path is not specified in the additional sources configuration, the namespace provisioner will automatically generate a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
    See [Git Authentication for Private repository](use-case3.md#git-private).
 
@@ -323,7 +325,7 @@ Options if using GitOps
       - `name`: name of the secret to be imported to use as valuesFrom in kapp.
       - `namespace`: namespace where the secret exists.
       - `create_export`: Boolean flag to decide creation of a SecretExport resource in the namespace. The default value is `false`. If the secret is already exported, ensure that it is exported for the `tap-namespace-provisioning` namespace.
-   - `path` must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib` prefix can be any string value and must be unique across all additional sources.
+   - `path` (**Optional**) must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib` prefix can be any string value and must be unique across all additional sources. If not provided, namespace provisioner will generate a `path` path from the git `url` and `subpath`.
 
   Sample TAP values configuration:
 
@@ -346,6 +348,8 @@ Options if using GitOps
       subPath: ns-provisioner-samples/gitops-install
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
+
+  In case a path is not specified in the additional sources configuration, the namespace provisioner will automatically generate a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
   See [Git Authentication for using a private Git repository](use-case3.md#git-private) guide.
 
