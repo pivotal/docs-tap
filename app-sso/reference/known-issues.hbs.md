@@ -46,3 +46,7 @@ authentication methods:
 The existing `post` and `basic` values do not work with Spring Boot 3 based
 `Workloads` with Spring Cloud Bindings and are deprecated.
 
+## `ClassClaim` credential propagation time
+
+It can take up `~60-120s` for client credentials to propagate up into a
+`ClassClaim`'s service binding secret.

@@ -144,3 +144,18 @@ applications.
 If your client application stores `sub` claims, you must update the `sub` claims to match the new pattern 
 `<providerId>_<userId>`.
 
+## Troubleshoot a `ClassClaim` for an AppSSO service
+
+### Problem:
+
+The service binding secret of a `ClassClaim` for an AppSSO service is empty.
+
+### Solution:
+
+Wait. It can take up to `~60-120s` for client credentials to be propagated up
+into the claim's service binding secret.
+
+If you think you have waited long enough and there are no credentials yet,
+refer to [Services Toolkit's troubleshooting
+guide](../../services-toolkit/how-to-guides/troubleshooting.hbs.md).
+
