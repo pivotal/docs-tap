@@ -279,6 +279,16 @@ Where:
 
 **Note**: There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
 
+1. (Optional) Results will be pushed to the Artifactory Metadata Repository but if you wish to verify independently, you can use the following command to review the scan results.
+```console
+results=$(kubectl get imagevulnerabilityscan <IVS-NAME> -n DEV-NAMESPACE -o jsonpath="{.status.scanResult}")
+
+imgpkg pull -b $results -o /tmp/scan-results
+```
+Where:
+- `IVS-NAME` is the name of the ImageVulnerabilityScan.
+- `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+
 **Note**: SCST - Scan 2.0 is in Beta and active keychains and workspace bindings are not modifiable in the packaged ClusterImageTemplates.
 
 ### <a id="using-grype"></a> Using the provided Grype scanner
