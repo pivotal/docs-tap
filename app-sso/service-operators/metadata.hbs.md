@@ -1,7 +1,10 @@
-# Annotations and labels
+# Annotations and labels for AppSSO
 
-An `AuthServer` is selectable by `ClientRegistration` through labels. The namespace an `AuthServer`
-allows `ClientRegistrations` from is controlled with an annotation.
+This topic tells you how to configure annotations and labels for 
+Application Single Sign-On (commonly called AppSSO). 
+
+An `AuthServer` is selectable by `ClientRegistration` through labels. 
+The namespace an `AuthServer` allows `ClientRegistrations` from is controlled with an annotation.
 
 ## Labels
 

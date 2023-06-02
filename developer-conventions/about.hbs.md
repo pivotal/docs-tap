@@ -2,7 +2,7 @@
 
 ## <a id='overview'></a> Overview
 
-Developer Conventions is a set of [conventions](../convention-service/about.md) that
+Developer Conventions is a set of [conventions](../cartographer-conventions/about.hbs.md) that
 enable your workloads to support live-update and debug operations.
 It is used alongside the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.md)
 and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension.

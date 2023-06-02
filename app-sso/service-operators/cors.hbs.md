@@ -1,4 +1,9 @@
-# Public clients and CORS
+# Public clients and CORS for AppSSO
+
+This topic tells you how to configure Application Single Sign-On (commonly called AppSSO) 
+to use public clients. 
+
+## Overview
 
 A public client is a client application that does not require credentials to obtain tokens, such as single-page 
 apps (SPAs) or mobile devices. Public clients rely on Proof Key for Code Exchange (PKCE) Authorization Code flow extension.

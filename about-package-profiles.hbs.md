@@ -100,13 +100,6 @@ a predefined group of packages.
   delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
   the [Contour documentation](https://projectcontour.io/docs/v1.22.0/).
 
-- **[Convention Service](convention-service/about.md)**
-
-  Convention Service provides a means for people in operational roles to express their hard-won
-  knowledge and opinions about how apps run on Kubernetes as a convention. The convention
-  service applies these opinions to fleets of developer workloads as they are deployed to the
-  platform, saving time for operators and developers.
-
 <!-- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
 
 <!--This package includes five default roles for users, including app-editor, app-viewer, app-operator,

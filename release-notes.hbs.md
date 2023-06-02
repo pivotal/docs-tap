@@ -26,7 +26,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-5-2-scst-scan-ri'></a> Supply Chain Security Tools (SCST) - Scan
 
-- Old `TaskRuns` associated with scans are now being deleted to reduce memory consumption.
+- Old `TaskRuns` associated with scans are now deleted to reduce memory consumption.
 - Added support for `ConfigMaps` in custom `ScanTemplates`.
 
 ---
@@ -175,7 +175,8 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-5-1-scst-scan-ki'></a> Supply Chain Security Tools (SCST) - Scan
 
 - `TaskRuns` associated with scans are kept during the lifetime of the owner scan. This can lead to Out of Memory restart problems in the SCST - Scan controller.
-- `ConfigMaps` used in `ScanTemplates` are not supported, whether introduced by overlays or in a custom `ScanTemplate`. This is the error message you will see:
+- `ConfigMaps` used in `ScanTemplates` are not supported, whether introduced by overlays or in a custom `ScanTemplate`. This is the error message you see:
+
     ```
     The scan job could not be created. admission webhook "validation.webhook.pipeline.tekton.dev" denied the request: validation failed: expected exactly one, got neither: spec.workspaces[5].configmap, spec.workspaces[5].emptydir, spec.workspaces[5].persistentvolumeclaim, spec.workspaces[5].secret, spec.workspaces[5].volumeclaimtemplate
     ```
