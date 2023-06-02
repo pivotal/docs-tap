@@ -20,8 +20,13 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
-    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
-    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-PUSH-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PUSH-PASSWORD
+    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
+    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
+    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_PUSH_USERNAME=MY-REGISTRY-PUSH-USER
+    export INSTALL_REGISTRY_PUSH_PASSWORD=MY-REGISTRY-PUSH-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
     export REGISTRY_CA_PATH=PATH-TO-CA
     ```
@@ -29,8 +34,10 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     Where:
 
     - `MY-REGISTRY` is your air-gapped container registry.
-    - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-USER` is the user with read access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
+    - `MY-REGISTRY-PUSH-USER` is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PUSH-PASSWORD` is the password for `MY-REGISTRY-PUSH-USER`.
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
@@ -54,7 +61,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     ```console
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
-      --to-repo $IMGPKG_REGISTRY_HOSTNAME/tap-packages \
+      --to-repo $INSTALL_REGISTRY_HOSTNAME/tap-packages \
       --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
@@ -67,40 +74,33 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     This namespace keeps the objects grouped together logically.
 
-1. Create a registry secret by running:
+1. Create a registry pull secret by running:
 
     ```console
     tanzu secret registry add tap-registry \
-        --server   $IMGPKG_REGISTRY_HOSTNAME \
-        --username $IMGPKG_REGISTRY_USERNAME \
-        --password $IMGPKG_REGISTRY_PASSWORD \
+        --server   $INSTALL_REGISTRY_HOSTNAME \
+        --username $INSTALL_REGISTRY_USERNAME \
+        --password $INSTALL_REGISTRY_PASSWORD \
         --namespace tap-install \
         --export-to-all-namespaces \
         --yes
     ```
-1. Create a internal registry secret by running:
+1. Create a internal registry push secret by running:
 
     ```console
     tanzu secret registry add registry-credentials \
-        --server   $MY_REGISTRY \
-        --username $MY_REGISTRY_USER \
-        --password $MY_REGISTRY_PASSWORD \
+        --server   $INSTALL_REGISTRY_HOSTNAME \
+        --username $INSTALL_REGISTRY_PUSH_USERNAME \
+        --password $INSTALL_REGISTRY_PUSH_PASSWORD \
         --namespace tap-install \
-        --export-to-all-namespaces \
         --yes
     ```
-
-    Where:
-
-    - `MY_REGISTRY` is where the workload images and the Tanzu Build Service dependencies are stored.
-    - `MY_REGISTRY_USER` is the user with write access to `MY_REGISTRY`.
-    - `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USER`.
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
     ```console
     tanzu package repository add tanzu-tap-repository \
-      --url $IMGPKG_REGISTRY_HOSTNAME/tap-packages:$TAP_VERSION \
+      --url $INSTALL_REGISTRY_HOSTNAME/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
@@ -359,7 +359,7 @@ service's External IP address.
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
 - `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
+    - You must create the secret before the installation. This secret must be used only for this purpose and does not need to be exported to other namespaces. You can use the `registry-credentials` secret created earlier.
 - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     - Harbor has the form `server: "my-harbor.io"`.
