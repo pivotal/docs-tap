@@ -80,7 +80,7 @@ For Tanzu Application Platform GUI, you must have:
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.24, v1.25 or v1.26 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.25, v1.26 or v1.27 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
