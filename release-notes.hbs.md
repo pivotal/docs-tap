@@ -20,7 +20,8 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-platform-features'></a> New platform-wide features
 
-- Feature Description.
+- New out of the box Bitnami Service - MongoDB
+- New out of the box Bitnami Service - Kafka
 
 #### <a id='1-6-0-new-components'></a> New components
 
@@ -122,6 +123,41 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
 
+
+#### <a id='1-6-0-stk'></a> Services Toolkit (STK)
+
+- Bump the services-toolkit.tanzu.vmware.com Package to v0.11.0
+  - Add Kubernetes events to improve debuggability
+    - Normal events: CreatedCompositeResource, DeletedCompositeResource, ClaimableInstanceFound, NoClaimableInstancesFound
+    - Warning events: ParametersValidationFailed, CompositeResourceDeletionFailed
+  - Bump reconciler-runtime to v0.11.1
+- Bump the tanzu services CLI plug-in to v0.7.0
+  - The tanzu services plug-in is now compiled using the new tanzu CLI runtime (v0.90.0)
+  - No new features or changes to existing commands
+
+#### <a id='1-6-0-bitnami-services'></a> Bitnami Services
+
+- Bump the bitnami.services.tanzu.vmware.com Package to v0.2.0
+  - New service MongoDB
+  - New service Kafka
+
+#### <a id='1-6-0-crossplane'></a> Crossplane
+
+- Bump the crossplane.tanzu.vmware.com Package to v0.2.0
+  - Bump Universal Crossplane (UXP) to v1.12.1-up.1, which brings with it new Crossplane features such as ObserveOnly resources, Composition Validation, and Pluggable Secret Stores
+    - See [here](https://github.com/upbound/universal-crossplane/releases/tag/v1.12.1-up.1) for the full set of release notes
+  - Bump provider-helm to v0.15.0
+    - See [here](https://github.com/crossplane-contrib/provider-helm/releases/tag/v0.15.0) for the full set of release notes
+  - Bump provider-kubernetes to v0.8.0
+    - See [here](https://github.com/crossplane-contrib/provider-kubernetes/releases/tag/v0.8.0) for the full set of release notes
+  - The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
+    - See [Crossplane Resolved Issues](./release-notes.hbs.md#1-6-0-crossplane-ri)
+  - Added a new Package value to provide a lever to configure the behaviour of the Package during installation and uninstallation
+    - orphan_resources
+      - Optional, default true.
+      - Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled.
+      - WARNING: setting this value to false will result in all Crossplane CRDs, providers, and managed resources being deleted when the crossplane.tanzu.vmware.com Package is deleted, which in turn may lead to any existing service instances also being deleted
+      - See [How-to guide: Delete all Crossplane resources upon deletion of Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -171,6 +207,25 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-0-COMPONENT-NAME-ri'></a> COMPONENT-NAME
 
 - Resolved issue description.
+
+#### <a id='1-6-0-stk-ri'></a> Services Toolkit (STK)
+
+- Resolved an issue which prevented the default cluster-admin IAM role on GKE clusters from claiming any of the Bitnami Services
+  - Previously, if a user with cluster-admin on a GKE cluster attempted to claim any of the bitnami services, they would be met with a validation error
+  - This issue has now been resolved
+- Resolved an issue affecting the dynamic provisioning flow when attempting to use a CompositeResourceDefinition which specified a schema which only defined .status without also defining .spec
+  - Previously, if attempting to create a ClassClaim for a ClusterInstanceClass which referred to such a CompositeResourceDefinition, the ClassClaim would not transition into Ready=True and would instead report, "unexpected end of JSON input"
+  - This issue has now been resolved and thus it is now possible to use CompositeResourceDefinitions which only specify .status in their schemas
+
+#### <a id='1-6-0-crossplane-ri'></a> Crossplane
+
+- The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
+  - Previously the Crossplane Package (which ships as part of the Full, Iterate and Run TAP profiles) assumed that Crossplane was not already installed on the cluster, which is not always guaranteed to be true
+  - Rather than fail installation, the Package installation would move ahead and try to succeed, which would result in non-deterministic behaviour
+  - Now, any attempt to install or upgrade to the Crossplane Package on a cluster which already has Crossplane installed will fail the installation with the following error, "Resource already exists. Consider excluding package in tap-values."
+  - In such cases, the operator then has two options
+    - 1). Exclude the crossplane Package in the tap-values file
+    - 2). Choose to set the crossplane Package's adopt_resources value to true
 
 ---
 
