@@ -313,7 +313,7 @@ into `tap-sensitive-values.sops.yaml` that you prepared earlier:
 
 ## <a id='create-sensitive-tanzu-sync-values'></a>Create sensitive Tanzu Sync values
 
-1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.yaml` that contains a placeholder
+1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/sensitive-values/tanzu-sync-values.yaml` that contains a placeholder
 for the sensitive portion of Tanzu Sync values:
 
     ```yaml
