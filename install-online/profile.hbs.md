@@ -463,6 +463,21 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --va
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
+NOTE: If you have an existing install of the full deps from a version earlier than TAP 1.6.0, 
+you will need to uninstall the full deps package and remove the package repository:
+
+1. Uninstall the package
+
+    ```console
+   tanzu package installed delete full-tbs-deps -n tap-install
+   ```
+
+1. Remove the package repository
+
+    ```console
+    tanzu package repository delete tbs-full-deps-repository -n tap-install
+   ```
+
 If you configured `full` dependencies in your `tap-values.yaml` file in
 [Configure your profile with full dependencies](#full-dependencies) earlier,
 you must install the `full` dependencies package.
@@ -482,38 +497,38 @@ To install the `full` dependencies package:
     ...
     ```
 
-1. Get the latest version of the `buildservice` package by running:
+1. Get the latest version of the `tap` package by running:
 
     ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
+    Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
 
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+    tanzu package repository add full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
       --namespace tap-install
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v VERSION -n tap-install --data-values-file <path to tap-values.yaml>
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
