@@ -199,7 +199,7 @@ The following sections describe how to create these values files.
     AGE-SECRET-KEY-my-secret-key
     ```
 
-1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/sensitive-values/tap-sensitive-values.yaml` that contains a placeholder
+1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-sensitive-values.yaml` that contains a placeholder
 for the sensitive portion of Tanzu Application Platform values:
 
     ```yaml
