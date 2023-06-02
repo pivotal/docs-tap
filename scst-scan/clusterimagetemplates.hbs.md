@@ -1,6 +1,6 @@
 # Authoring a ClusterImageTemplate for Supply Chain integration
 
-In addition to using a packaged ClusterImageTemplate, you can create your own and customize the ImageVulnerabilityScan to utilize the scanner of your choice.
+In addition to using a packaged ClusterImageTemplate, you can create your own and customize the embedded ImageVulnerabilityScan to utilize the scanner of your choice.
 
 Follow the instructions below to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy as an example.
 
@@ -79,8 +79,6 @@ spec:
     metadata:
       labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
       generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
-      annotations:
-        sue: #@ data.values.workload.metadata.uid
     spec:
       image: #@ data.values.image
       scanResults:
@@ -92,7 +90,7 @@ spec:
         publisher: #@ data.values.params.image_scanning_service_account_publisher
       steps:
       - name: trivy-generate-report
-        image: dev.registry.tanzu.vmware.com/supply-chain-security-tools/aquasec/trivy:0.41.0
+        image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
         env:
         - name: TRIVY_DB_REPOSITORY
           value: #@ data.values.params.trivy_db_repository
@@ -113,7 +111,7 @@ spec:
         - --format=cyclonedx
         - --output=scan.cdx.json
       - name: trivy-display-report
-        image: dev.registry.tanzu.vmware.com/supply-chain-security-tools/aquasec/trivy:0.41.0
+        image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
         env:
         - name: TRIVY_DB_REPOSITORY
           value: #@ data.values.params.trivy_db_repository
@@ -137,8 +135,10 @@ spec:
 ```
 Where:
 - `.metadata.name` is the name of your ClusterImageTemplate. It must not conflict with the names of packaged [templates](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates)
+- `registry_server` is the registry server
+- `registry_repository` is the registry repository
 
-1. Modify
+1. Modify the fields with comments in your `custom-ivs-template.yaml`. You will need to update the name of your ClusterImageTemplate, the registry fields for your registry, and the location of your Trivy scanner image.
 1. Create the ClusterImageTemplate:
     ```console
     kubectl apply -f custom-ivs-template.yaml
