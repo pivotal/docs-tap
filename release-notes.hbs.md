@@ -178,6 +178,10 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
+- The recommendation is to consume AppSSO service offerings via
+  `ClassClaim` instead of the lower-level `WorkloadRegistration` or
+  `ClientRegistration`
+
 - Crossplane is an installation- and runtime dependency of AppSSO
 
 - Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
