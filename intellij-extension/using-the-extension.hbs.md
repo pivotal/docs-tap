@@ -276,11 +276,45 @@ You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Develo
 
 Native Image is a technology to compile Java code ahead-of-time to a binary – a native executable. For more information about native images see [Native Image Reference](https://www.graalvm.org/latest/reference-manual/native-image/).
 
-You can find an example of how to deploy Native Images in [Application Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/README-native.md).
+Native images require some changes to your `workload.yaml` files, additional environment variables need to be added to the build section of the workload spec:
 
-To work with these Java Native Images keep in mind that:
+```yaml
+spec:
+  build:
+    env:
+      - name: BP_NATIVE_IMAGE
+        value: "true"
+      - name: BP_MAVEN_BUILD_ARGUMENTS
+        value: -Dmaven.test.skip=true --no-transfer-progress package -Pnative
+      - name: BP_JVM_VERSION  
+        value: 17 ## only JVM 17 and up support native images, depending on your configuration this might already be the default
+````
+
+### <a id="java-native-maven"></a> Using native images with maven
+Additionally if you are using Maven you need to add a native profile that includes the native-maven-plugin for the build phase in `pom.xml`:
+
+```xml
+<profiles>
+   	<profile>
+        <id>native</id>
+        <build>
+           <plugins>
+              <plugin>
+                 <groupId>org.graalvm.buildtools</groupId>
+                   <artifactId>native-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+         </build>
+   	</profile>
+</profiles>
+```
+
+### <a id="java-native-features"></a> Supported Features
+
+There are some differences on supported features when working with Native images
 
 - You can deploy workloads with native images using the `Tanzu: Apply Workload` [command](#apply-workload).
+- You can delete workloads with native images using the `Tanzu: Delete Workload` [command](#delete-workload).
 - Debug and Live update are not supported when using native images, however it is possible to add an additional `workload.yaml` that doesn't use a native image to iterate on your development.
 
 ```yaml
