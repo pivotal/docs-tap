@@ -102,9 +102,6 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
   redirect URIs
 - `XWorkloadRegistration` is an XRD and an integration API between Services
   Toolkit, Crossplane and AppSSO
-- The general recommendation is to consume AppSSO service offering via
-  `ClassClaim` instead of the lower-level `WorkloadRegistration` and
-  `ClientRegistration`
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
 
