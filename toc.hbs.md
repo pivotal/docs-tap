@@ -267,6 +267,7 @@ docs.vmware.com is built.
         - [Configure security and access control](app-live-view/improved-security-and-access-control.hbs.md)
         - [Configure apps](app-live-view/configuring-apps/spring-boot-enablement.hbs.md)
             - [Enable Spring Boot apps](app-live-view/configuring-apps/spring-boot-enablement.hbs.md)
+            - [Enable Spring Native apps](app-live-view/configuring-apps/spring-native-enablement.hbs.md)
             - [Enable Steeltoe apps](app-live-view/configuring-apps/steeltoe-enablement.hbs.md)
             - [Convention server](app-live-view/configuring-apps/convention-server.hbs.md)
             - [Custom config for the connector](app-live-view/configuring-apps/configuring-app-for-connector.hbs.md)
