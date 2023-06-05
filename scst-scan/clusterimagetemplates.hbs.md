@@ -10,7 +10,7 @@ Follow the instructions below to create a ClusterImageTemplate using an ImageVul
 apiVersion: carto.run/v1alpha1
 kind: ClusterImageTemplate
 metadata:
-  name: image-vulnerability-scan-custom # customized name
+  name: image-vulnerability-scan-custom # input name of your ClusterImageTemplate
 spec:
   imagePath: .status.scannedImage
   retentionPolicy:
@@ -138,9 +138,9 @@ Where:
 - `registry_server` is the registry server
 - `registry_repository` is the registry repository
 
-1. Modify the fields with comments in your `custom-ivs-template.yaml`. You will need to update the name of your ClusterImageTemplate, the registry fields for your registry, and the location of your Trivy scanner image.
+1. Modify your `custom-ivs-template.yaml` to update the name of your ClusterImageTemplate, the registry fields for your registry, and the location of your Trivy scanner image.
 1. Create the ClusterImageTemplate:
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
-1. Once you have created your custom ClusterImageTemplate, you can proceed to integrating it in the [Supply Chain](insert link)
+1. Once you have created your custom ClusterImageTemplate, you can proceed to integrating it in the [Supply Chain](./app-scanning-alpha.hbs.md#integrating-with-the-out-of-the-box-supply-chain)
