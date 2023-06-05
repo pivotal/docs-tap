@@ -1,11 +1,16 @@
-# AuthServer audit logs
+# AuthServer audit logs for AppSSO
 
-AppSSO `AuthServer`s do the following:
+This topic tells you how to use `AuthServer` audit logs in Application Single 
+Sign-On (commonly called AppSSO).
+
+## Overview
+
+`AuthServer`s perform the following tasks:
 
 - Handle user authentication
 - Issue `id_token` and `access_token`
 
-Each audit event contains the following:
+Each audit event contains the following information:
 
 - `ts` - date/time of the event
 - `remoteIpAddress` - the IP of the user-authentication or if not attainable, the IP of the last proxy

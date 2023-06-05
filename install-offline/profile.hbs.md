@@ -232,10 +232,6 @@ and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
 
->**Important** Tanzu Build Service is installed by default with `lite` depndencies.
-When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because they require Internet access.
-You must install the `full` dependencies by setting `exclude_dependencies` to `true`.
-
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
@@ -335,11 +331,23 @@ tap_gui:
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
   app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
-
-grype:
-  namespace: "MY-DEV-NAMESPACE"
-  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 ```
+
+> **Important** 
+>
+> - Tanzu Build Service is installed by default with `lite` depndencies.
+> When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because > they require Internet access. You must install the `full` dependencies by setting `exclude_dependencies` to `true`.
+>
+> - Installing Grype by using `tap-values.yaml` as follows is 
+> deprecated in v1.6 and will be removed in v1.8:
+>
+>    ```yaml
+>    grype:
+>      namespace: "MY-DEV-NAMESPACE"
+>      targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+>    ```
+>
+>    You can install Grype by using Namespace Provisioner instead.
 
 Where:
 

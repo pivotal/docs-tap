@@ -1,9 +1,12 @@
-# Storage
+# Storage for AppSSO
+
+This topic tells you how to configure the storage for Application Single Sign-On (commonly called AppSSO). 
+
+## Overview
 
 AppSSOs `AuthServer` handles data pertaining to user's session, identity, access tokens and approved or rejected
 consents. For production environments, it is critical to provide your own storage source to enable enterprise
-functions such as data backup and recovery, auditing and long-term persistence according to your organization's data and
-security policies.
+functions such as data backup and recovery, auditing and long-term persistence according to your organization's data and security policies.
 
 AppSSO currently only supports Redis `v6.0` or above as a storage solution. `v6.0` introduced TLS support to ensure
 encrypted client-server communication - AppSSO enforces TLS by default.

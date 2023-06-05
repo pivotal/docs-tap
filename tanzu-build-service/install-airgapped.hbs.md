@@ -100,4 +100,4 @@ To install the Tanzu Build Service package on an air-gapped environment:
 
 ## <a id='tbs-offline-install-deps'></a> Install the Tanzu Build Service dependencies
 
-{{> 'partials/full-deps' find_tbs_version="" }}
+{{> 'partials/full-deps' find_tap_version="" }}

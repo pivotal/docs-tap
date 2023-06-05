@@ -282,11 +282,18 @@ accelerator:
 
 cnrs:
   domain_name: tap.com
-
-grype:
-  namespace: tap-workload
-  targetImagePullSecret: registry-credentials
 ```
+
+> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> deprecated in v1.6 and will be removed in v1.8:
+>
+> ```yaml
+> grype:
+>   namespace: tap-workload
+>   targetImagePullSecret: registry-credentials
+>```
+>
+> You can install Grype by using Namespace Provisioner instead.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

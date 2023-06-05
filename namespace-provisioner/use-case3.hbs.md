@@ -66,7 +66,6 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
             url: git@github.com:private-repo-org/repo.git
             secretRef:
               name: git-auth
-          path: _ytt_lib/my-additional-source
       ```
 
     Using GitOps
@@ -90,7 +89,6 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
             url: git@github.com:private-repo-org/repo.git
             secretRef:
               name: git-auth
-          path: _ytt_lib/my-additional-source
         gitops_install:
           ref: origin/main
           subPath: gitops-install
@@ -128,7 +126,6 @@ Using Namespace Provisioner Controller
             namespace: tap-install
             #! If this secret is already exported for this namespace, you can ignore the create_export key as it defaults to false
             create_export: true
-      path: _ytt_lib/my-additional-source
   ```
 
 Using GitOps
@@ -148,7 +145,6 @@ Using GitOps
             namespace: tap-install
             #! If this secret is already exported for this namespace, you can ignore the create_export key as it defaults to false
             create_export: true
-      path: _ytt_lib/my-additional-source
     gitops_install:
       ref: origin/main
       subPath: gitops-install
@@ -279,7 +275,6 @@ To configure the service account to work with private Git repositories, follow t
             ref: origin/main
             subPath: ns-provisioner-samples/credentials
             url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-          path: _ytt_lib/credentials-setup
         import_data_values_secrets:
         - name: workload-git-auth
           namespace: tap-install
@@ -301,7 +296,6 @@ To configure the service account to work with private Git repositories, follow t
             ref: origin/main
             subPath: ns-provisioner-samples/credentials
             url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-          path: _ytt_lib/credentials-setup
         gitops_install:
           ref: origin/main
           subPath: ns-provisioner-samples/gitops-install

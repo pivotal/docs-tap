@@ -106,7 +106,6 @@ Using Namespace Provisioner Controller
           ref: origin/main
           subPath: ns-provisioner-samples/testing-supplychain
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-supplychain-setup
     ```
 
 Using GitOps
@@ -120,7 +119,6 @@ Using GitOps
           ref: origin/main
           subPath: ns-provisioner-samples/testing-supplychain
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-supplychain-setup
       gitops_install:
         ref: origin/main
         subPath: ns-provisioner-samples/gitops-install
@@ -221,7 +219,6 @@ Using Namespace Provisioner Controller
           ref: origin/main
           subPath: ns-provisioner-samples/testing-scanning-supplychain
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-scanning-supplychain-setup
     ```
 
 Using GitOps
@@ -235,7 +232,6 @@ Using GitOps
           ref: origin/main
           subPath: ns-provisioner-samples/testing-scanning-supplychain
           url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-        path: _ytt_lib/testing-scanning-supplychain-setup
       gitops_install:
         ref: origin/main
         subPath: ns-provisioner-samples/gitops-install

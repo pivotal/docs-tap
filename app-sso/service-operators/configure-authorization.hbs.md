@@ -1,10 +1,16 @@
-# Configure authorization
+# Configure authorization for AppSSO
 
-> **Note** This section is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
+This topic tells you how to configure authorization for Application Single Sign-On 
+(commonly called AppSSO). 
+
+> **Note** This topic is applicable to Internal, OpenID, LDAP, and SAML (experimental) identity provider
 > `AuthServer` configurations. For more information, see [AuthServer](../reference/api/authserver.hbs.md).
 
-An application or `Workload` can protect certain resources based on user's level of authorization. Within OAuth 2, the application
-with protected resources, the Resource Server, verifies if the access token provided contains the scopes to perform
+## Overview
+
+An application or `Workload` can protect certain resources based on user's level 
+of authorization. Within OAuth 2, the application with protected resources, the 
+Resource Server, verifies if the access token provided contains the scopes to perform
 an action on a protected resource.
 
 The following excerpt is from a Spring Boot application, OAuth2 Resource Server, 

@@ -341,3 +341,39 @@ For these projects, make these adjustments:
 The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
 You can change the log verbosity in **Preferences** > **Settings** > **Extensions** >
 **Tanzu Developer Tools** > **Language Server: Log Verbosity**.
+
+## <a id="java-native"></a> Working with Java Native images
+
+Native Image is a technology to compile Java code ahead-of-time to a binary – a native executable. For more information about native images see [Native Image Reference](https://www.graalvm.org/latest/reference-manual/native-image/).
+
+You can find an example of how to deploy Native Images in [Application Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/README-native.md).
+
+To work with these Java Native Images keep in mind that:
+
+- You can deploy workloads with native images using the `Tanzu: Apply Workload` [command](#apply-workload).
+- Debug and Live update are not supported when using native images, however it is possible to add an additional `workload.yaml` that doesn't use a native image to iterate on your development.
+
+```yaml
+## workload.yaml spec with native image flag
+...
+spec:
+  build:
+    env:
+      - name: BP_NATIVE_IMAGE
+        value: "true"
+...
+```
+
+```yaml
+## workload.yaml spec without native image flag
+...
+spec:
+  build:
+    env:
+      #- name: BP_NATIVE_IMAGE
+      #  value: "true"
+...
+```
+
+- The Tanzu Workloads panel will add the `Native` label to any workloads that contain native images
+  ![Tanzu Workloads panel showing a workload that uses a native image.](../images/vscode-native-panel.png).

@@ -43,9 +43,6 @@ ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys 
     repository: "REPO-NAME"
   gitops:
     ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
-grype:
-  namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
-  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   metadataStore:
     url: METADATA-STORE-URL-ON-VIEW-CLUSTER
     caSecret:
@@ -60,6 +57,17 @@ scanning:
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 ```
+
+> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> deprecated in v1.6 and will be removed in v1.8:
+>
+> ```yaml
+> grype:
+>   namespace: "MY-DEV-NAMESPACE"
+>   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+>```
+>
+> You can install Grype by using Namespace Provisioner instead.
 
 Where:
 
