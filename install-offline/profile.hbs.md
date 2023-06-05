@@ -7,7 +7,7 @@ Before installing the packages, ensure that you have completed the following tas
 
 - Review the [Prerequisites](../prerequisites.html) to ensure that you have set up everything required before beginning the installation.
 - [Accept Tanzu Application Platform EULA and install Tanzu CLI](../install-tanzu-cli.html).
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html). This step is optional if you are using VMware Tanzu Kubernetes Grid cluster.
+- [Deploy Cluster Essentials](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html). This step is optional if you are using VMware Tanzu Kubernetes Grid cluster.
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
