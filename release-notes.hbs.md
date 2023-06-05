@@ -182,9 +182,9 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
 - The recommendation is to consume AppSSO service offerings via `ClassClaim`
-  instead of the lower-level `WorkloadRegistration` or `ClientRegistration`
+  instead of the lower-level `WorkloadRegistration` or `ClientRegistration`.
 - Crossplane is an installation- and runtime dependency of AppSSO
-- Remove the field `AuthServer.spec.tls.disabled` and use
+- The field `AuthServer.spec.tls.disabled` is removed. Use
   `AuthServer.spec.tls.deactivated` instead.
 - The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to
   `["http://127.0.0.0:8080"]`.
@@ -274,10 +274,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `ClientRegistration` resource `clientAuthenticationMethod` field values
   `post` and `basic` are deprecated and marked for removal in Tanzu Application
   Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in Tanzu
-  Application Platform v1.6.0. For more information about how to migrate to
-  `AuthServer.spec.tls.deactivated`, see [Migration
-  guides](./app-sso/reference/upgrades.hbs.md#migration-guides).
 
 ### <a id="1-6-0-stk-deprecations"></a> Services Toolkit
 
