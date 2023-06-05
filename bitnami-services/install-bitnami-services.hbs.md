@@ -13,6 +13,8 @@ This topic tells you how to install Bitnami Services from the Tanzu Application 
 Before installing Bitnami Services:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
+- Install Crossplane, see [Install Crossplane](../crossplane/install-crossplane.hbs.md).
+- Install Services Toolkit, see [Install Services Toolkit](../services-toolkit/install-services-toolkit.hbs.md).
 
 ## <a id='install-bitnami-services'></a> Install Bitnami Services
 
