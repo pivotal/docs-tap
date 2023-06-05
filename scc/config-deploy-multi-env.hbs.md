@@ -19,8 +19,7 @@ This feature is in alpha and has the following limits:
 - Only the Out of the Box Basic Supply Chain package is supported. 
 - The Testing and Scanning supply chains are not supported. 
 - Only workloads of type server are supported. 
-- Innerloop development is not supported. 
-- Azure GitOps repositories are not supported.
+- Innerloop development is not supported.
 
 ## <a id="using-carvel"></a> Using Carvel packages
 
