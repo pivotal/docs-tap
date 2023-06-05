@@ -285,7 +285,6 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
 tap_gui:
-  metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
   app_config:
     catalog:
       locations:
