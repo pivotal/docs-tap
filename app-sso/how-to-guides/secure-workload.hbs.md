@@ -1,7 +1,5 @@
 # Configure AppSSO for workloads 
 
-TODO(mbrauer)
-
 This topic tells you how to configure Application Single Sign-On (commonly called AppSSO) 
 when defining workloads. 
 

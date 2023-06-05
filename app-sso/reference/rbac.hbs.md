@@ -1,7 +1,5 @@
 # RBAC for AppSSO
 
-<!--- TODO(mbrauer) --->
-
 The Application Single Sign-On (commonly called AppSSO) package aggregates the 
 following permissions into Tanzu Application Platform's well-known roles. 
 For more information, see 
