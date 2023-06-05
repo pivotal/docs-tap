@@ -143,4 +143,4 @@ Where:
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
-1. Once you have created your custom ClusterImageTemplate, you can proceed to integrating it in the [Supply Chain](./app-scanning-alpha.hbs.md#integrating-with-the-out-of-the-box-supply-chain)
+2. Once you have created your custom ClusterImageTemplate, you can proceed to integrating it in the [Supply Chain](./app-scanning-alpha.hbs.md#configuring-the-supply-chain)

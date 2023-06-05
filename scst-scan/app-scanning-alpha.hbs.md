@@ -245,12 +245,19 @@ krane digest nginx:latest
 
 ### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
 
-#### Configuring the supply chain
+#### <a id="authoring-a-clusterimagetemplate"></a> Authoring a ClusterImageTemplate
+To create a ClusterImageTemplate to which you can incorporate a scanner of your choice, follow steps in [Authoring a ClusterImageTemplate](./clusterimagetemplates.hbs.md).
+
+#### <a id="configuring-the-supply-chain"></a> Configuring the supply chain
 The `ImageVulnerabilityScan` is available to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via either a user created ClusterImageTemplate or the following packaged ClusterImageTemplates:
 - `image-vulnerability-scan-grype`
 - `image-vulnerability-scan-trivy`
 
 1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
+1. View available ClusterImageTemplates by running:
+  ```console
+  kubectl get clusterimagetemplates
+  ```
 1. Update your `tap-values.yaml` file to specify the ClusterImageTemplate. For example:
   ```yaml
   ootb_supply_chain_testing_scanning:
