@@ -4,3 +4,4 @@ The following sections explain how to get credentials for an AppSSO service:
 
 - [Discover AppSSO service offerings](./discover-service-offering.hbs.md)
 - [Claim credentials](./claim-credentials.hbs.md)
+- [Secure a workload](./secure-workload.hbs.md)

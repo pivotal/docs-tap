@@ -82,8 +82,8 @@ spec:
 > The prefix of the `redirectURIs` denotes the name and namespace of the `Workload`.
 > In this case, it is `appsso-starter-java` and `my-apps`.
 > Keep the suffix formatted as `/login/oauth2/code/{ClientRegistration.metadata.name}`.
-> For more information about the redirect URI format of Spring Security OAuth 2 Client library,
-> see [Configure AppSSO for workloads ](./secure-workload.hbs.md#redirect-uris).
+> For more information about the redirect path format of Spring Security OAuth 2 Client library,
+> see [Configure AppSSO for workloads ](./secure-workload.hbs.md#redirect-paths).
 
 The accelerator is pre-packaged with a ytt-templated `ClientRegistration` that is located in `client.yaml`.
 You can generate the same `ClientRegistration` as earlier with your specific values by running:

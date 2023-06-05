@@ -307,6 +307,7 @@ docs.vmware.com is built.
             - [AppSSO for app operators](app-sso/tutorials/app-operators/index.hbs.md)
                 - [Discover AppSSO services](app-sso/tutorials/app-operators/discover-service-offerings.hbs.md)
                 - [Claim credentials for an AppSSO service](app-sso/tutorials/app-operators/claim-credentials.hbs.md)
+                - [Secure a workload](app-sso/tutorials/app-operators/secure-workload.hbs.md)
         - [How-to guides](app-sso/how-to-guides/index.hbs.md)
             - [Get started](app-sso/how-to-guides/get-started/index.hbs.md)
                 - [Overview](app-sso/how-to-guides/get-started/overview.hbs.md)
