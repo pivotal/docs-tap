@@ -16,6 +16,17 @@ For information about how Azure DevOps is different from other Git providers, se
 
 The operator requires special configuration to integrate Azure DevOps repositories into a supply chain.
 
+## <a id="Azure Auth"></a> Azure Authentication
+
+Documentation for configuring secrets to authenticate with your Azure Devops git repository can be found
+[here](./git-auth.hbs.md). Note that Azure http/s auth requires:
+```yaml
+username: "_token"
+password: AZURE-USER-TOKEN
+```
+
+See Microsoft documentation for [Azure Devops Personal Access Tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate).
+
 ## <a id="repo-committed"></a> Using Azure DevOps as a repository for committed code
 
 Developers can use Azure DevOps to commit source code to a repository that the
