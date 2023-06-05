@@ -1,13 +1,13 @@
 # Customize OOTB default resources
 
-This topic describes how to disable Grype and how to configure the `default` service account to
+This topic describes how to deactivate Grype and how to configure the `default` service account to
 work with private Git repositories.
 
-## Disable Grype install
+## Deactivate Grype install
 
 If you prefer to utilize a different scanner for namespaces instead of Grype, you have the option to deactivate the installation of the default Grype scanner, which is automatically created by the Namespace Provisioner. To do so, you can follow these steps:
 
-### Disable for all namespaces
+### Deactivate for all namespaces
 
 To deactivate the default installation of `grype` for all namespaces managed by the Namespace Provisioner, you can set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
 
@@ -18,10 +18,10 @@ namespace_provisioner:
 ```
 By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `grype-scanner-{namespace}` will not be generated in the `tap-install` namespace for any namespaces that are managed by the namespace provisioner.
 
-### Disable for a specific namespace
+### Deactivate for a specific namespace
 
 Using Namespace Provisioner Controller
-: To disable the installation of the Out-of-the-box Grype scanner for a specific namespace, you can annotate or label the desired namespace using the reserved parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized parameter_prefixes, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
+: To deactivate the installation of the Out-of-the-box Grype scanner for a specific namespace, you can annotate or label the desired namespace using the reserved parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized parameter_prefixes, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
 
     ```bash
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_grype=true
@@ -337,12 +337,12 @@ Using GitOps
     The Namespace Provisioner creates a LimitRange with default values for `qa` namespace and with
     the given values for `dev` namespace.
 
-## Disable LimitRange Setup
+## Deactivate LimitRange Setup
 
 
-The Namespace Provisioner generates a Kubernetes LimitRange object as a [default resource](namespace-provisioner-reference.MD#default-resources) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to disable the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
+The Namespace Provisioner generates a Kubernetes LimitRange object as a [default resource](namespace-provisioner-reference.MD#default-resources) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to deactivate the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
 
-### Disable for all namespaces
+### Deactivate for all namespaces
 
 To exclude the installation of the default LimitRange, you can set the `skip_limit_range` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
 
@@ -352,10 +352,10 @@ namespace_provisioner:
     skip_limit_range: true
 ```
 
-### Disable for a specific namespaces
+### Deactivate for a specific namespaces
 
 Using Namespace Provisioner Controller
-: To disable the LimitRange for a specific developer namespace, you can annotate or label the desired namespace using the parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized `parameter_prefixes`, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
+: To deactivate the LimitRange for a specific developer namespace, you can annotate or label the desired namespace using the parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized `parameter_prefixes`, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
 
     ```bash
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_limit_range=true
