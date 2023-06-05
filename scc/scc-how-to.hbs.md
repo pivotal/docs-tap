@@ -18,4 +18,5 @@ The following how-to guides apply to Supply Chain Choreographer for Tanzu:
 - [Output Carvel Packages from your Supply Chain](carvel-package-supply-chain.hbs.md)
 - [Deploy Carvel Packages using Carvel App CR](delivery-with-carvel-app.hbs.md)
 - [Deploy Carvel Packages using FluxCD Kustomization](delivery-with-flux.hbs.md)
+- [Deploy Carvel Packages using ArgoCD](delivery-with-argo.hbs.md)
 - [Use Blue-green deployments with Contour and Carvel Packages](blue-green-with-packageinstall.hbs.md)
