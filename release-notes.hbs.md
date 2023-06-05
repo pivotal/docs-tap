@@ -88,13 +88,16 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
-- Incorporate the token expiry settings into the `AuthServer` resource.
-  Service operators can customize the expiry settings of access, refresh or
-  identity token.
-  For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings).
+- Incorporate the token expiry settings into the `AuthServer` resource. Service
+  operators can customize the expiry settings of access, refresh or identity
+  token. For more information, see [Token
+  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enable the capability to:
-    - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
-    - Configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+    - Map custom user attributes or claims from upstream identity providers,
+      such as OpenID, LDAP, and SAML.
+    - Configure the internal unsafe provider with custom claims out of the box.
+      For more information, see [identity
+      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
 - `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
   ready-to-claim AppSSO service offering
@@ -178,15 +181,13 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
-- The recommendation is to consume AppSSO service offerings via
-  `ClassClaim` instead of the lower-level `WorkloadRegistration` or
-  `ClientRegistration`
-
+- The recommendation is to consume AppSSO service offerings via `ClassClaim`
+  instead of the lower-level `WorkloadRegistration` or `ClientRegistration`
 - Crossplane is an installation- and runtime dependency of AppSSO
-
-- Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
-
-- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to `["http://127.0.0.0:8080"]`.
+- Remove the field `AuthServer.spec.tls.disabled` and use
+  `AuthServer.spec.tls.deactivated` instead.
+- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to
+  `["http://127.0.0.0:8080"]`.
 
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
 
@@ -270,13 +271,13 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
 
-- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are
-  deprecated and marked for removal in Tanzu Application Platform v1.7.0.
-  Use `client_secret_post` and `client_secret_basic` instead.
-
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in Tanzu Application Platform v1.6.0.
-  For more information about how to migrate to `AuthServer.spec.tls.deactivated`, see
-  [Migration guides](app-sso/upgrades/index.md#migration-guides).
+- `ClientRegistration` resource `clientAuthenticationMethod` field values
+  `post` and `basic` are deprecated and marked for removal in Tanzu Application
+  Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in Tanzu
+  Application Platform v1.6.0. For more information about how to migrate to
+  `AuthServer.spec.tls.deactivated`, see [Migration
+  guides](./app-sso/reference/upgrades.hbs.md#migration-guides).
 
 ### <a id="1-6-0-stk-deprecations"></a> Services Toolkit
 
