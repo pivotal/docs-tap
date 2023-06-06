@@ -73,6 +73,6 @@ When a user tries to delete a namespace that was managed by Namespace Provisione
 
 **Solution:** Remove the Kapp App finalizer in the Kapp App
 
-**Possible Cause 2**: When a user tries to delete a namespace that was previously managed by the Namespace Provisioner controller, and the namespace was not cleaned up before disabling the controller, it gets stuck in the `Terminating` state. This happens because the Namespace Provisioner controller adds a `finalizer` to the namespaces (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`) it manages, and is no longer there to clean up that finalizer as it was disabled by the user.
+**Possible Cause 2**: When a user tries to delete a namespace that was previously managed by the Namespace Provisioner controller, and the namespace was not cleaned up before disabling the controller, it gets stuck in the `Terminating` state. This happens because the Namespace Provisioner controller adds a `finalizer` to the namespaces (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`) it manages, and is no longer there to clean up that finalizer as it was deactivated by the user.
 
 **Solution:** Remove manually the finalizer in the namespace
