@@ -1,6 +1,7 @@
 # Add testing and scanning to your application
 
-This how-to guide walks you through installing the optional OOTB Supply Chain with Testing and the optional OOTB Supply Chain with Testing and Scanning.
+This topic guides you through installing the optional OOTB Supply Chain with Testing and the optional
+OOTB Supply Chain with Testing and Scanning.
 
 For more information about available supply chains, see [Supply chains on Tanzu Application Platform](about-supply-chains.md).
 

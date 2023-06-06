@@ -1,16 +1,11 @@
 # Consume services on Tanzu Application Platform
 
-This how-to guide walks the application developer through deploying two application workloads and configuring them to communicate with a service. It uses RabbitMQ as an example, but the process is the same regardless of the service you want to set up. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+This topic for application developers guides you through deploying two application workloads and configuring
+them to communicate using a service instance.
+The topic uses RabbitMQ as an example, but the process is the same regardless of the service you
+want to consume.
 
-## <a id="prereqs"></a>Prerequisites
-
-Before starting this procedure, ensure that the service operator and application operator have already:
-
-- Set up a service.
-- Created a service instance.
-- Claimed the service instance.
-
-For more information about these prerequisites, see [Set up services for consumption by developers](set-up-services.md). Also, for important background, see [Consume services on Tanzu Application Platform](about-consuming-services.md).
+You will use the `tanzu service` CLI plug-in and will learn about classes, claims, and bindings.
 
 ## <a id="you-will"></a>What you will do
 
