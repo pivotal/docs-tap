@@ -1,4 +1,4 @@
-# Configure the Learning Center operator
+# Install and configure the Learning Center operator
 
 This topic gives you additional information about installing and configuring the Learning Center operator.
 
