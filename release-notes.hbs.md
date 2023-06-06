@@ -182,7 +182,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-buildservice-bc'></a> Tanzu Build Service
 
-- The full dependencies package has been renamed and the installation process has been modified.
+- The full dependencies package is renamed and the installation process is modified.
   - You must remove existing full dependencies installations before installing the new version.
   - You must provide the tap-values file during the full dependencies package installation.
 - The full dependencies package repository is tagged with the TAP package version instead of the Tanzu Build Service package version.

@@ -91,24 +91,24 @@ When upgrading to Tanzu Application Platform v1.5, you might encounter a tempora
 
 ### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
-NOTE: If you have an existing installation of the full deps from a version earlier than TAP 1.6.0,
-you will need to uninstall the full deps package and remove the package repository. 
-Subsequent upgrades will not require a removal:
-
-1. Uninstall the package
-
-    ```console
-   tanzu package installed delete full-tbs-deps -n tap-install
-   ```
-
-1. Remove the package repository
-
-    ```console
-    tanzu package repository delete tbs-full-deps-repository -n tap-install
-   ```
-
 If you installed the [full dependencies package](install-online/profile.hbs.md#tap-install-full-deps),
 you can upgrade the package by following these steps:
+
+1. (Optional) If you have an existing installation of the full dependencies from a version earlier
+than TAP v1.6.0, you must uninstall the full dependencies package and remove the package repository.
+Subsequent upgrades will not require a removal:
+
+  Uninstall the package
+
+  ```console
+  tanzu package installed delete full-tbs-deps -n tap-install
+  ```
+
+  Remove the package repository
+
+  ```console
+  tanzu package repository delete tbs-full-deps-repository -n tap-install
+  ```
 
 1. After upgrading Tanzu Application Platform, retrieve the latest version of the
    TAP package by running:
@@ -117,7 +117,7 @@ you can upgrade the package by following these steps:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
+2. Relocate the Tanzu Build Service `full` dependencies package repository by running:
 
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
@@ -126,7 +126,7 @@ you can upgrade the package by following these steps:
 
     Where `VERSION` is the version of the TAP package you retrieved in the previous step.
 
-1. Update the Tanzu Build Service  `full` dependencies package repository by running:
+3. Update the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add full-deps-repository \
@@ -134,7 +134,7 @@ you can upgrade the package by following these steps:
       --namespace tap-install
     ```
 
-1. Update the `full` dependencies package by running:
+4. Update the `full` dependencies package by running:
 
     ```console
     tanzu package installed update full-deps -p full-deps.buildservice.tanzu.vmware.com -v VERSION -n tap-install

@@ -472,15 +472,15 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
 
     Uninstall the package:
 
-        ```console
-      tanzu package installed delete full-tbs-deps -n tap-install
-      ```
+    ```console
+    tanzu package installed delete full-tbs-deps -n tap-install
+    ```
 
     Remove the package repository:
 
-        ```console
-        tanzu package repository delete tbs-full-deps-repository -n tap-install
-      ```
+    ```console
+    tanzu package repository delete tbs-full-deps-repository -n tap-install
+    ```
 
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tap-values.yaml` file under the `buildservice` section. For example:
