@@ -1,7 +1,7 @@
 # Configure security and access control in Application Live View
 
 This topic tells you how to enable improved security and access control in Application Live View
-in Tanzu Application Platform. Improved security and access control in
+in Tanzu Application Platform (commonly known as TAP). Improved security and access control in
 Application Live View secures the REST API exposed by the Application Live View
 back end.
 
