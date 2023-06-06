@@ -1,7 +1,7 @@
 # Get started with Tanzu Application Platform
 
-Welcome to Tanzu Application Platform. The guides in this section offer hands-on instruction to
-help get developers and operators started on Tanzu Application Platform.
+Welcome to Tanzu Application Platform. The guides in this section provide hands-on instructions for
+developers and operators to help you get started on Tanzu Application Platform.
 
 ## <a id="get-started-prereqs"></a>Prerequisites
 
