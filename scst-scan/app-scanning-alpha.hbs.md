@@ -79,9 +79,7 @@ To install SCST - Scan 2.0:
 
 1. (Optional) Make changes to the default installation settings:
 
-    Create an `app-scanning-values-file.yaml` file which contains any changes to the default installation settings.
-
-    Retrieve the configurable settings and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file:
+    Retrieve the configurable settings:
 
     ```console
     tanzu package available get app-scanning.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
@@ -106,7 +104,15 @@ To install SCST - Scan 2.0:
       caCertData                                      string   The custom certificates to be trusted by the scan's connections
     ```
 
-2. Install the package by running:
+    To modify any of the default installation settings, create an `app-scanning-values-file.yaml` and append the key-value pairs to be modified to the file. For example:
+
+    ```yaml
+    scans:
+      workspace:
+        storageSize: 200Mi
+    ```
+
+1. Install the package by running the following command. If you did not modify the default installation settings, you do not need to specify the `--values-file` flag:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
