@@ -1,9 +1,10 @@
 # Claim services on Tanzu Application Platform
 
-This tutorial guides application operators claiming a service instance and
+This topic for application operators guides you through claiming a service instance and
 therefore making credentials available to workloads within their namespace.
-It uses RabbitMQ as an example, but the process is the same regardless of the
+The topic uses RabbitMQ as an example, but the process is the same regardless of the
 service you want to consume.
+
 You will use the `tanzu service` CLI plug-in and will learn about classes,
 claims, and bindings.
 
