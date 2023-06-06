@@ -185,7 +185,7 @@ This release includes the following changes, listed by component and area.
 - The full dependencies package is renamed and the installation process is modified.
   - You must remove existing full dependencies installations before installing the new version.
   - You must provide the tap-values file during the full dependencies package installation.
-- The full dependencies package repository is tagged with the TAP package version instead of the Tanzu Build Service package version.
+- The full dependencies package repository is tagged with the Tanzu Application Platform package version instead of the Tanzu Build Service package version.
 - The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
 
 ---

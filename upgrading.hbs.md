@@ -111,7 +111,7 @@ Subsequent upgrades will not require a removal:
   ```
 
 1. After upgrading Tanzu Application Platform, retrieve the latest version of the
-   TAP package by running:
+   Tanzu Application Platform package by running:
 
     ```console
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
@@ -124,7 +124,7 @@ Subsequent upgrades will not require a removal:
     --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
     ```
 
-    Where `VERSION` is the version of the TAP package you retrieved in the previous step.
+    Where `VERSION` is the version of the Tanzu Application Platform package you retrieved in the previous step.
 
 3. Update the Tanzu Build Service  `full` dependencies package repository by running:
 
