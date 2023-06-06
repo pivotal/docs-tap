@@ -9,9 +9,13 @@ AppSSO service offering. It reconciles into an unsafe `AuthServer`, a token
 signing key `Secret` and a `ClusterWorkloadRegistrationClass`. It is
 cluster-scoped. It has no specifications. Its short name is `cutl`.
 
-Its `AuthServer` is `http` only, which allows all CORS origins, runs a single
-replica, and has a single `user:password` login. Its name is prefixed with
-`unsafe-`. Its issuer URI resembles `http://unsafe-demo.appsso.example.com`.
+Its `AuthServer` is `http` only, which allows all CORS origins and runs with a
+single replica. Its name is prefixed with `unsafe-`. Its issuer URI resembles
+`http://unsafe-demo.appsso.example.com`.
+
+There's a single `user:password` login. That user has roles `user` and `test`
+as well as claims `first_name=First-Name`, `last_name=Last-Name` and
+`email=user@example.com`.
 
 Its `ClusterWorkloadRegistrationClass` templates `WorkloadRegistration` with
 safe and unsafe redirect URIs. That means a redirect path is templated with
