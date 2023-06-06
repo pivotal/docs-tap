@@ -1,7 +1,7 @@
 # Services Toolkit
 
 Services Toolkit is responsible for backing many of the most powerful service capabilities in
-Tanzu Application Platform.
+Tanzu Application Platform (commonly known as TAP).
 
 From the integration of an extensive list of cloud-based and on-prem services, through to the offering
 and discovery of those services, and finally to the claiming and binding of service instances to

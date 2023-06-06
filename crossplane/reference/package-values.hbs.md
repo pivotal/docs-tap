@@ -2,7 +2,7 @@
 
 This topic lists the keys and values you can use to configure the behavior of the Crossplane package.
 Configuration is split between configuration specific to Crossplane in Tanzu Application Platform
-and configuration of the Upbound Universal Crossplane (UXP) Helm Chart.
+(commonly known as TAP) and configuration of the Upbound Universal Crossplane (UXP) Helm Chart.
 
 If you are applying configuration to Tanzu Application Platform through the use of profiles and the `tap-values.yaml`,
 all configuration must exist under the `crossplane` top-level key.

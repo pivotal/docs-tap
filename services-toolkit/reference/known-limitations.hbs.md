@@ -1,7 +1,7 @@
 # Known limitations for Services Toolkit
 
 This topic describes known limitations and workarounds related to working with services on
-Tanzu Application Platform. For further troubleshooting guidance, see
+Tanzu Application Platform (commonly known as TAP). For further troubleshooting guidance, see
 [Troubleshoot Services Toolkit](../how-to-guides/troubleshooting.hbs.md).
 
 ## <a id="multi-workloads"></a> Cannot claim and bind to the same service instance from across multiple namespaces
