@@ -256,7 +256,7 @@ The `ImageVulnerabilityScan` is available to integrate into the [Out of the Box 
 1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
 1. View available ClusterImageTemplates by running:
   ```console
-  kubectl get clusterimagetemplates
+  kubectl get clusterimagetemplates | grep grype
   ```
 1. Update your `tap-values.yaml` file to specify the ClusterImageTemplate. For example:
   ```yaml
