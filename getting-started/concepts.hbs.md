@@ -1,6 +1,7 @@
 # Learn about Tanzu Application Platform
 
-The topics in this section explain concepts important to getting started with Tanzu Application Platform.
+The topics in this section explain concepts important to getting started with Tanzu Application Platform
+(commonly known as TAP).
 
 In this section:
 
