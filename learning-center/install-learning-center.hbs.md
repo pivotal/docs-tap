@@ -7,7 +7,7 @@ This topic describes how to install Learning Center from the Tanzu Application P
 
 To install Tanzu Learning Center, see the following sections.
 
-For general information about Learning Center, see [Learning Center](about.md). For information about deploying Learning Center operator, see [Configure the Learning Center operator](getting-started/learning-center-operator.md).
+For general information about Learning Center, see [Learning Center](about.md). For information about deploying Learning Center operator, see [Install and configure the Learning Center operator](getting-started/learning-center-operator.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
