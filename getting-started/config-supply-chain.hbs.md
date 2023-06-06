@@ -1,6 +1,7 @@
 # Configure image signing and verification in your supply chain
 
-This how-to guide walks you through configuring your supply chain to sign and verify your image builds.
+This topic guides you through configuring your Tanzu Application Platform supply chain to sign and
+verify your image builds.
 
 ## <a id="you-will"></a>What you will do
 

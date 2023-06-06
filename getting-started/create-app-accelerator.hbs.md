@@ -1,5 +1,8 @@
 # Create an accelerator
 
+This topic guides you through creating an accelerator and registering it in a Tanzu Application Platform
+instance.
+
 > **Note** This guide follows a quick start format. See the [Application Accelerator
 > documentation](../application-accelerator/about-application-accelerator.hbs.md)
 > for advanced features.
