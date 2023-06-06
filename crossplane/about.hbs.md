@@ -1,5 +1,7 @@
 # Crossplane
 
+> **Note** If installing Tanzu Application Platform to a cluster which already has a pre-existing installation of Crossplane, please refer to [Use a pre-existing or out-of-band installation of Crossplane with Tanzu Application Platform](how-to-guides/use-pre-existing-crossplane-tap.hbs.md)
+
 Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
 foundation of Kubernetes.
 Tanzu Application Platform uses Crossplane to power a number of capabilities, such as dynamic
@@ -33,5 +35,7 @@ see one of the following tutorials to get started.
 **For ops teams:**
 
 - Tutorial: [Setup Dynamic Provisioning of Service Instances](../services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md)
+- How-to guide: [Use a pre-existing or out-of-band installation of Crossplane with Tanzu Application Platform](how-to-guides/use-pre-existing-crossplane-tap.hbs.md)
+- How-to guide: [Delete all Crossplane resources upon deletion of Tanzu Application Platform](how-to-guides/delete-resources.hbs.md)
 
 Alternatively, see the [reference material](reference/index.hbs.md).

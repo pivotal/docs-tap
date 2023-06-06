@@ -8,7 +8,8 @@ You can configure this globally for all services, or on a per-service basis.
 
 Before you integrate Bitnami Services with a private registry or VAC, you must:
 
-- Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`.
+- Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`
+  - Some VAC instances append the operating system to the repository URL, in which case you'll need the URL in the format `oci://REPOSITORY-NAME/charts/centos-7`, for example
 - Have the credentials to access the private registry.
 
 For how to obtain both of these prerequisites for VAC integration, see
@@ -63,7 +64,7 @@ The following examples put these in the `default` namespace, but you can choose 
 
             ```yaml
             bitnami_services:
-              mysql: # choose from 'mysql', 'postgresql', 'rabbitmq' and 'redis'
+              mysql: # choose from 'mysql', 'postgresql', 'rabbitmq', 'redis', 'mongodb' and 'kafka'
                 helm_chart:
                   repo: oci://REPOSITORY-NAME/charts # update this
                   chart_pull_secret_ref:
@@ -79,6 +80,18 @@ The following examples put these in the `default` namespace, but you can choose 
             ```console
             tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
             ```
+
+1. Configure versions for charts
+Each service has a `helm_chart.version` value, for example:
+
+```yaml
+bitnami_services:
+  mysql: # choose from 'mysql', 'postgresql', 'rabbitmq', 'redis', 'mongodb' and 'kafka'
+    helm_chart:
+      version: <version>
+```
+
+It's possible that your VAC instance may not have the default version of a given chart, in which case you will need to configure the version value specifically here.
 
 ## Known issue
 

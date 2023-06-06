@@ -20,9 +20,9 @@ To customize:
 
    ```yaml
    tap_gui:
-   app_config:
-     pendoAnalytics:
-       organizationId: 'ORGANIZATION-NAME'
+     app_config:
+       pendoAnalytics:
+         organizationId: 'ORGANIZATION-NAME'
    ```
 
    Where `ORGANIZATION-NAME` is the name of your organization or the name of the

@@ -150,6 +150,8 @@ following steps.
     activateSensitiveOperations: true
     ```
 
+    To control the access to execute sensitive operations at a user level, see [Authorize a user to execute sensitive operations](#authorize-a-user-to-execute-sensitive-operations)
+
 1. Install the Application Live View connector package by running:
 
     ```console
@@ -289,3 +291,81 @@ plug-in, take the following steps.
 
 1. To access Tanzu Application Platform GUI, use the service you exposed in the
 `service_type` field in the values file.
+
+## <a id='access-control'></a> Authorize a user to execute sensitive operations
+
+  To secure the access to execute sensitive operations, such as editing environment variables, downloading heap dump data, and changing log levels for the applications at a individual level, follow the below steps.
+
+  Create a `ClusterRole` with a rule that specifies the `execute` verb for `SensitiveOperationsAccess` resource and a corresponding `RoleBinding` to bind it to a user.
+
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    name: alv-execute-sensitive-op-role
+  rules:
+  - apiGroups: ['appliveview.apps.tanzu.vmware.com']
+    resources:
+    - sensitiveoperationsaccesses
+    verbs: ['execute']
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: alice-alv-execute-sensitive-op-role-binding
+    namespace: dev-team-1
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: alv-execute-sensitive-op-role
+  subjects:
+  - kind: User
+    name: "alice@example.com"
+    apiGroup: rbac.authorization.k8s.io
+  ```
+
+  If you are using Service Account to view resources on a cluster in Tanzu Application Platform GUI, create a `ClusterRole` with a rule that specifies the `execute` verb for `SensitiveOperationsAccess` resource and a corresponding `RoleBinding` to bind it tap-gui service account.
+
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    name: alv-execute-sensitive-op-role
+  rules:
+  - apiGroups: ['appliveview.apps.tanzu.vmware.com']
+    resources:
+    - sensitiveoperationsaccesses
+    verbs: ['execute']
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: alv-execute-sensitive-op-role-binding
+    namespace: dev-team-1
+  subjects:
+  - kind: ServiceAccount
+    namespace: tap-gui
+    name: tap-gui-viewer
+  roleRef:
+    kind: ClusterRole
+    name: alv-execute-sensitive-op-role
+    apiGroup: rbac.authorization.k8s.io
+  ```
+
+  (Optional) You can edit the tap-gui clusterrole `k8s-reader` to add the a rule that specifies the `execute` verb for `SensitiveOperationsAccess` resource in a single cluster setup.
+
+  ```console
+  kubectl edit clusterrole k8s-reader -n tap-gui
+  ```
+
+  Add the below rule to the clusterrole
+
+  ```yaml
+  - apiGroups: ['appliveview.apps.tanzu.vmware.com']
+    resources:
+    - sensitiveoperationsaccesses
+    verbs: ['execute']
+  ```
+
+
+>**Note** The execution of sensitive operations are disabled by default. It can be enabled at the cluster level by setting the `activateSensitiveOperations: true` key in appliveview_connector config or at the individual user level by assigning the neccessary roles/permissions as mentioned above.
