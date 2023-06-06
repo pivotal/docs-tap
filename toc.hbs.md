@@ -388,7 +388,7 @@ docs.vmware.com is built.
       - [Learning Center workshops](learning-center/about-learning-center/about-workshops.hbs.md)
       - [Get started](learning-center/getting-started/about.hbs.md)
           - [Overview](learning-center/getting-started/about.hbs.md)
-          - [Configure the Learning Center operator](learning-center/getting-started/learning-center-operator.hbs.md)
+          - [Install and configure the Learning Center operator](learning-center/getting-started/learning-center-operator.hbs.md)
           - [Learning Center Workshops](learning-center/getting-started/workshops.hbs.md)
           - [Learning Center Training Portals](learning-center/getting-started/training-portal.hbs.md)
           - [Delete Learning Center](learning-center/getting-started/deleting-learning-center.hbs.md)
