@@ -100,6 +100,10 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client,
     az aks get-credentials --resource-group myTAPResourceGroup --name tap-on-azure
     ```
 
+## <a id='create-container-repos'></a>Create the container repositories
+
+ACR does not require that the container repositories are already created. Repositories are created automatically when images are uploaded.
+
 ## <a id='next-steps'></a>Next steps
 
 - [Install Tanzu Application Platform package and profiles on Azure](profile.hbs.md)
