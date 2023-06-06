@@ -1,6 +1,7 @@
 # Tanzu Application Platform release notes
 
-This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
+This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
+v{{ vars.url_version }}.
 
 {{#unless vars.hide_content}}
 
