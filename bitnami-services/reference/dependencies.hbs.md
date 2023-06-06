@@ -1,7 +1,7 @@
 # Dependencies for Bitnami Services
 
 Bitnami Services is an integration package, which means that it provides configuration for other
-Tanzu Application Platform components.
+Tanzu Application Platform (commonly known as TAP) components.
 As such, it has a number of dependencies that must be met before you can use it.
 
 The dependencies for Bitnami Services are:

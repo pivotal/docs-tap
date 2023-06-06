@@ -1,7 +1,7 @@
 # Class claims compared to resource claims
 
-There are two types of claim you can choose from when working with services on Tanzu Application Platform.
-These are `ClassClaim` and `ResourceClaim`.
+There are two types of claim you can choose from when working with services on Tanzu Application Platform
+(commonly known as TAP). These are `ClassClaim` and `ResourceClaim`.
 This Services Toolkit topic explains the similarities and differences between the two and when using
 one is preferable over the other.
 

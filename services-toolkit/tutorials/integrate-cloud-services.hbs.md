@@ -1,7 +1,7 @@
 # Integrating cloud services into Tanzu Application Platform
 
 In this Services Toolkit tutorial you learn how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
-can integrate the cloud services of their choice into Tanzu Application Platform.
+can integrate the cloud services of their choice into Tanzu Application Platform (commonly known as TAP).
 
 There are a multitude of cloud-based services available on the market for consumers today.
 AWS, Azure, and GCP all provide support for a wide range of fully-managed, performant and
