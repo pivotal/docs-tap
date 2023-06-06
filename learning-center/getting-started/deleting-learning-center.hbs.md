@@ -1,6 +1,6 @@
 # Delete Learning Center
 
-Follow these steps to delete Learning Center:
+This topic tells you how you can delete Learning Center.
 
 1. Delete all current workshop environments by running:
 

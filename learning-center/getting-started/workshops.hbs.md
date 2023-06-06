@@ -1,8 +1,10 @@
-# Learning Center Workshops
+# Get started with Learning Center Workshops
 
-Workshops are where you create your content. You can create a workshop for individual use or group multiple workshops
-together with a [Training Portal](training-portal.md). The following helps you get started with workshops. For more
-detailed instructions, go to [Working with Learning Center Workshops](../workshop-content/about.md)
+This topic helps you get started working with Learning Center workshops.
+Workshops are where you create your content. You can create a workshop for individual use or group
+multiple workshops together with a [Training Portal](training-portal.md).
+
+For more detailed instructions, go to [Working with Learning Center Workshops](../workshop-content/about.md)
 
 ## <a id="create-workshop-env"></a>Creating the workshop environment
 
@@ -128,5 +130,5 @@ kubectl delete workshopenvironment/lab-k8s-fundamentals
 ```
 
 If you don't delete the custom resources for the workshop requests, the workshop instances are still cleaned up and
-removed when the workshop environment is removed. The custom resources for the workshop requests still remain, however,  
+removed when the workshop environment is removed. The custom resources for the workshop requests still remain, however,
 and need to be deleted separately.
