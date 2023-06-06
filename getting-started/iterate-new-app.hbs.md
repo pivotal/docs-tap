@@ -1,6 +1,6 @@
 # Iterate on your new app
 
-This how-to guide walks you through starting to iterate on your first application on Tanzu Application Platform, which you deployed in the previous how-to, [Deploy your first application](deploy-first-app.md).
+This topic guides you through starting to iterate on your first application on Tanzu Application Platform, which you deployed in the previous how-to, [Deploy your first application](deploy-first-app.md).
 
 ## <a id="you-will"></a>What you will do
 

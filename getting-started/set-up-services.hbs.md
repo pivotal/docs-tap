@@ -1,6 +1,11 @@
 # Set up services for consumption by developers
 
-This how-to guide walks service operators and application operators through setting up services for consumption by application developers. In this example, you set up the RabbitMQ Cluster Kubernetes operator, but the process is the same for any other services you want to set up. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+This topic for service operators and application operators guides you through setting up services for
+consumption by application developers. In this example, you set up the RabbitMQ Cluster Kubernetes operator,
+but the process is the same for any other services you want to set up.
+
+You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with
+services on Tanzu Application Platform.
 
 ## <a id="you-will"></a>What you will do
 
