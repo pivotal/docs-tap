@@ -1,6 +1,6 @@
 # Tanzu Application Platform v1.2
 
-VMware Tanzu Application Platform (informally known as TAP) is an application development platform
+VMware Tanzu Application Platform (commonly known as TAP) is an application development platform
 with a rich set of developer tools.
 It offers developers a paved path to production to build and deploy software quickly and
 securely on any compliant public cloud or on-premises Kubernetes cluster.
