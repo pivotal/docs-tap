@@ -182,11 +182,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-buildservice-bc'></a> Tanzu Build Service
 
-- The full deps package has been renamed and the installation process has been modified.
-  - You will need to remove existing full dependencies installs before installing the new version.
-  - The full deps package install now requires the tap-values file to be provided
-- The full deps package repository will now be tagged with the TAP package version instead of the Tanzu Build Service package version
-- Ubuntu Bionic stacks/builders are no longer shipped in TAP and the Full Deps Package Repository
+- The full dependencies package has been renamed and the installation process has been modified.
+  - You must remove existing full dependencies installations before installing the new version.
+  - You must provide the tap-values file during the full dependencies package installation.
+- The full dependencies package repository is tagged with the TAP package version instead of the Tanzu Build Service package version.
+- The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
 
 ---
 
