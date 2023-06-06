@@ -10,11 +10,11 @@ repository.
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing Bitnami Services:
+Before installing Bitnami Services, you must:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Install Crossplane, see [Install Crossplane](../crossplane/install-crossplane.hbs.md).
-- Install Services Toolkit, see [Install Services Toolkit](../services-toolkit/install-services-toolkit.hbs.md).
+- Fulfill all [prerequisites for installing Tanzu Application Platform](../prerequisites.hbs.md)
+- [Install Crossplane](../crossplane/install-crossplane.hbs.md)
+- [Install Services Toolkit](../services-toolkit/install-services-toolkit.hbs.md)
 
 ## <a id='install-bitnami-services'></a> Install Bitnami Services
 
