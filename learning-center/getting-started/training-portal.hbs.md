@@ -1,4 +1,7 @@
-# TrainingPortal
+# Get started with Learning Center Training Portals
+
+This topic tells you how to configure and use a `TrainingPortal`, which deploys a set of workshops
+for attendees.
 
 ## <a id="work-with-workshops"></a>Working with multiple workshops
 
