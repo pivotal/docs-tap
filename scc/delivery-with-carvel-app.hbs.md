@@ -2,7 +2,7 @@
 
 This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
-using Carvel App. You can use Carvel Package Supply Chains with Supply Chain Choreographer. 
+using Carvel App. You can use Carvel Package Supply Chains with Supply Chain Choreographer.
 
 ## Prerequisites
 
@@ -174,12 +174,12 @@ app.default.tap/
          rawOptions: ["--dangerous-allow-empty-list-of-resources=true"]
    ```
 
-  Where:
+   Where:
 
-  - `DESIRED-NAMESPACE` is the namespace you want to use with your app.
-  - `PATH-FOR-PACKAGE-INSTALLS` is the package install path.
-  - `PATH-FOR-PACKAGES` is the package path.
-  - `BUILD-CLUSTER-NS` is the build cluster namespace.
+   - `DESIRED-NAMESPACE` is the namespace you want to use with your app.
+   - `PATH-FOR-PACKAGE-INSTALLS` is the package install path.
+   - `PATH-FOR-PACKAGES` is the package path.
+   - `BUILD-CLUSTER-NS` is the build cluster namespace.
 
    > **Note** The fetch section can includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 

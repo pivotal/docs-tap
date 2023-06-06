@@ -1,6 +1,6 @@
-# Deploy Spring Cloud DiscoveryClient Applications
+# Deploy Spring Cloud DiscoveryClient applications to Tanzu Application Platform
 
-This topic describes how to run Spring applications that use the Spring Cloud DiscoveryClient
+This topic tells you how to run Spring applications that use the Spring Cloud DiscoveryClient
 as workloads on Tanzu Application Platform.
 
 ## <a id="background"></a> Identify Spring Cloud DiscoveryClient applications

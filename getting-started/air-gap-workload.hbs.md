@@ -1,6 +1,7 @@
-# Deploy an air-gapped workload
+# Deploy an air-gapped workload on Tanzu Application Platform
 
-This how-to guide walks developers through deploying your first workload on Tanzu Application Platform in an air-gapped environment.
+This topic for developers guides you through deploying your first workload on Tanzu Application Platform
+in an air-gapped environment.
 
 For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 

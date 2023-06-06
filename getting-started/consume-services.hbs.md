@@ -1,8 +1,10 @@
 # Consume services on Tanzu Application Platform
 
-This tutorial guides application developers through deploying two application workloads and configuring
+This topic for application developers guides you through deploying two application workloads and configuring
 them to communicate using a service instance.
-It uses RabbitMQ as an example, but the process is the same regardless of the service you want to consume.
+The topic uses RabbitMQ as an example, but the process is the same regardless of the service you
+want to consume.
+
 You will use the `tanzu service` CLI plug-in and will learn about classes, claims, and bindings.
 
 ## <a id="you-will"></a>What you will do
