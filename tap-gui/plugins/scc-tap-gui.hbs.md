@@ -32,11 +32,10 @@ to the Tanzu Application Platform component Supply Chain Security Tools - Store 
 ### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to the Metadata Store
 
 Tanzu Application Platform GUI has automation for enabling connection between
-Tanzu Application Platform GUI and SCST - Store.
-To use this automation, add it to the Tanzu Application Platform GUI section within your
-`tap-values.yaml` file.
-
-The default value for `tap_gui.metadataStoreAutoconfiguration` is `false`. See the following example:
+Tanzu Application Platform GUI and SCST - Store. By default this automation is
+active and requires no configuration. If you wish to deactivate this automation,
+add the following block to the Tanzu Application Platform GUI section within
+your `tap-values.yaml` file.
 
 ```yaml
 # tap-values.yaml
@@ -44,7 +43,7 @@ The default value for `tap_gui.metadataStoreAutoconfiguration` is `false`. See t
 # ...
 tap_gui:
   # ...
-  metadataStoreAutoconfiguration: true
+  metadataStoreAutoconfiguration: false
 ```
 
 This file change creates a service account for the connection with privileges scoped only to the
@@ -52,6 +51,73 @@ Metadata Store.
 In addition it mounts the token of the service account into the Tanzu Application Platform GUI
 pod and produces for you the `app_config` section necessary for Tanzu Application Platform GUI to
 communicate with SCST - Store.
+
+#### Troubleshooting
+
+In the course of debugging the automation, or to verify that the automation is
+active, it will be imperative to know which resources are created. The following
+commands reflect the different kubernetes resources that are created when
+`tap_gui.metadataStoreAutoconfiguration` is set to `true`.
+
+```shell
+kubectl -n tap-gui get serviceaccount metadata-store
+```
+
+```
+NAME             SECRETS   AGE
+metadata-store   1         <AGE>
+```
+
+```shell
+kubectl -n tap-gui get secret metadata-store-access-token
+```
+
+```
+NAME                          TYPE                                  DATA   AGE
+metadata-store-access-token   kubernetes.io/service-account-token   3      <AGE>
+```
+
+```shell
+kubectl -n tap-gui get clusterrole metadata-store-reader
+```
+
+```
+NAME                    CREATED AT
+metadata-store-reader   <CREATED AT TIME>
+```
+
+```shell
+kubectl -n tap-gui get clusterrolebinding read-metadata-store
+```
+
+```
+NAME                  ROLE                                AGE
+read-metadata-store   ClusterRole/metadata-store-reader   <AGE>
+```
+
+
+There is another condition that impacts whether or not the automation creates
+the necessary service account. If your configuration includes a
+`/metadata-store` block the automation **will not** create the kubernetes
+resources for used in autoconfiguration nor will it overwrite the proxy block
+you provide. In order to use the automation you must delete the block at
+`tap_gui.app_config.proxy["/metadata-store"]`
+
+For example, a `tap-values.yaml` file with the following contents
+
+```yaml
+# ...
+tap_gui:
+  # ...
+  app_config:
+    # ...
+    proxy:
+      '/metadata-store':
+        target: <SOMETHING>
+```
+
+**will not** create additional kubernetes resources as described above.
+
 
 ### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to the Metadata Store
 
