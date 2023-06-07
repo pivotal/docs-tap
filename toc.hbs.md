@@ -557,6 +557,7 @@ docs.vmware.com is built.
             - [View scan status conditions](scst-scan/results.hbs.md)
             - [Troubleshooting Rego Files](scst-scan/troubleshoot-rego.hbs.md)
         - [Supply Chain Security Tools - Scan 2.0 (alpha)](scst-scan/app-scanning-alpha.hbs.md)
+            - [Authoring a ClusterImageTemplate](scst-scan/clusterimagetemplates.hbs.md)
     - [Supply Chain Security Tools - Sign](scst-sign/overview.hbs.md)
     - [Supply Chain Security Tools – Store](scst-store/overview.hbs.md)
       - [Overview](scst-store/overview.hbs.md)

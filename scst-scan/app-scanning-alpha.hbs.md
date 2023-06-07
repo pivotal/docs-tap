@@ -200,7 +200,7 @@ The following access is required:
     ```
 
     Where:
-    
+
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is required if the image you are scanning is private.
 
@@ -242,6 +242,63 @@ Alternatively, you can install [krane](https://github.com/google/go-containerreg
 ```console
 krane digest nginx:latest
 ```
+
+### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
+
+#### <a id="authoring-a-clusterimagetemplate"></a> Authoring a ClusterImageTemplate
+To create a ClusterImageTemplate to which you can incorporate a scanner of your choice, follow steps in [Authoring a ClusterImageTemplate](./clusterimagetemplates.hbs.md).
+
+#### <a id="configuring-the-supply-chain"></a> Configuring the supply chain
+The `ImageVulnerabilityScan` is available to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via either a user created ClusterImageTemplate or the following packaged ClusterImageTemplates:
+- `image-vulnerability-scan-grype`
+- `image-vulnerability-scan-trivy`
+
+1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
+1. View available ClusterImageTemplates by running:
+  ```console
+  kubectl get clusterimagetemplates | grep grype
+  ```
+1. Update your `tap-values.yaml` file to specify the ClusterImageTemplate. For example:
+  ```yaml
+  ootb_supply_chain_testing_scanning:
+    image_scanner_template_name: image-vulnerability-scan-grype
+  ```
+1. Update the TAP installation by running:
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+  ```
+  - Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+1. Create a sample workload using a pre-built image by using the `tanzu apps workload create` command:
+  ```console
+  tanzu apps workload create WORKLOAD-NAME \
+    --app APP-NAME \
+    --type TYPE \
+    --image IMAGE \
+    --namespace DEV-NAMESPACE
+  ```
+
+Where:
+- `WORKLOAD-NAME` is the name you choose for your workload.
+- `APP-NAME` is the name of your app.
+- `TYPE` is the type of your app.
+- `IMAGE` is the container image that contains the app you want to deploy.
+- `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+
+**Note**: There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+
+1. (Optional) Results will be pushed to the Artifactory Metadata Repository but if you wish to verify independently, you can use the following command to review the scan results.
+  ```console
+  results=$(kubectl get imagevulnerabilityscan <IVS-NAME> -n DEV-NAMESPACE -o jsonpath="{.status.scanResult}")
+
+  imgpkg pull -b $results -o /tmp/scan-results
+  ```
+
+  Where:
+
+  - `IVS-NAME` is the name of the ImageVulnerabilityScan.
+  - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+
+**Note**: SCST - Scan 2.0 is in Beta and active keychains and workspace bindings are not modifiable in the packaged ClusterImageTemplates.
 
 ### <a id="using-grype"></a> Using the provided Grype scanner
 
