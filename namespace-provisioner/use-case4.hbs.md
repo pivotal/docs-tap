@@ -5,23 +5,24 @@ work with private Git repositories.
 
 ## Deactivate Grype install
 
-If you prefer to utilize a different scanner for namespaces instead of Grype, you have the option to deactivate the installation of the default Grype scanner, which is automatically created by the Namespace Provisioner. To do so, you can follow these steps:
+Grype is installed by Namespace Provisioner by default. If you prefer to use a different scanner for namespaces instead of Grype, you can deactivate the installation of the default Grype scanner.
 
-### Deactivate for all namespaces
+### Deactivate Grype for all namespaces
 
-To deactivate the default installation of `grype` for all namespaces managed by the Namespace Provisioner, you can set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
+To deactivate the default installation of `grype` for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
 
 ```yaml
 namespace_provisioner:
   default_parameters:
     skip_grype: true
 ```
-By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `grype-scanner-{namespace}` will not be generated in the `tap-install` namespace for any namespaces that are managed by the namespace provisioner.
 
-### Deactivate for a specific namespace
+By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `grype-scanner-{namespace}` are not generated in the `tap-install` namespace for any namespaces that are managed by the namespace provisioner.
+
+### Deactivate Grype for a specific namespace
 
 Using Namespace Provisioner Controller
-: To deactivate the installation of the Out-of-the-box Grype scanner for a specific namespace, you can annotate or label the desired namespace using the reserved parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized parameter_prefixes, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
+: To deactivate the installation of Grype for a specific namespace, annotate or label the desired namespace by setting the reserved parameter `skip_grype` to `true`. Use the default or customized `parameter_prefixes`, for more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
     ```bash
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_grype=true
@@ -48,7 +49,7 @@ private Git repositories for workloads and supply chain using Namespace Provisio
 
 To configure the service account to work with private Git repositories, follow the steps below:
 
-1.  Create a secret in the `tap-install` namespace (or any namespace of your preference) that
+1. Create a secret in the `tap-install` namespace (or any namespace of your preference) that
 contains the Git credentials in the YAML format.
     - `host`, `username`, and `password` values for HTTP based Git Authentication.
     - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
@@ -99,7 +100,7 @@ Instead of putting the user name and password in the secret in your Git reposito
       password: #@ base64.encode(data.values.imported.git.token)
     ```
 
-4. Put all this together in as follows:
+3. Put all this together in as follows:
 
 ### Update ServiceAccount for all namespaces
 
