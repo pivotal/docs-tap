@@ -22,15 +22,6 @@ To install the Age CLI, see [age documentation](https://github.com/FiloSottile/a
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
-## <a id='upgrade'></a>Upgrading
-
-To upgrade from a previous version, please follow the same steps as installation.
-
->**Breaking Changes**
->
-> - `configure.sh` does not generate credentials for Tanzu Sync anymore.
-> - `deploy.sh` relies on the presence of a sops encrypted file containing Tanzu Sync credentials. Please see [Create Sensitive Tanzu Sync Values](#create-sensitive-tanzu-sync-values) for more details.
-
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
@@ -199,7 +190,7 @@ The following sections describe how to create these values files.
     AGE-SECRET-KEY-my-secret-key
     ```
 
-1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-sensitive-values.yaml` that contains a placeholder
+1. Create a plain YAML file (outside of your git repository) `tap-sensitive-values.yaml` that contains a placeholder
 for the sensitive portion of Tanzu Application Platform values:
 
     ```yaml
@@ -231,6 +222,18 @@ for the sensitive portion of Tanzu Application Platform values:
 
     ```console
     sops tap-sensitive-values.sops.yaml
+    ```
+
+1. Move the sensitive Tanzu Application Platform values into the cluster config:
+
+    ```console
+    mv tap-sensitive-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/
+    ```
+
+    Example:
+
+    ```console
+    mv tap-sensitive-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/cluster-config/values/
     ```
 
 1. (Optional) Retain the Age identity key file in a safe and secure place such as a password manager,
@@ -311,10 +314,60 @@ into `tap-sensitive-values.sops.yaml` that you prepared earlier:
              }
     ```
 
-## <a id='create-sensitive-tanzu-sync-values'></a>Create sensitive Tanzu Sync values
+## <a id='prep-sensitive-tanzu-sync-values'></a>Preparing sensitive Tanzu Sync values
 
-1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/sensitive-values/tanzu-sync-values.yaml` that contains a placeholder
+1. Create a plain YAML file (outside of your git repository) `tanzu-sync-values.yaml` that contains a placeholder
 for the sensitive portion of Tanzu Sync values:
+
+    ```yaml
+    ---
+    secrets:
+        sops:
+    ```
+
+1. Encrypt `tanzu-sync-values.yaml` with Age using SOPS:
+
+    ```console
+    export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')
+    sops --encrypt tanzu-sync-values.yaml > tanzu-sync-values.sops.yaml
+    ```
+
+    Where:
+
+    - `grep` is used to find the line containing the public key portion of the generated secret.
+    - `sed` is used to extract the public key from the line found by `grep`.
+
+1. Move the encrypted sensitive Tanzu Application Platform values into the tanzu sync config:
+
+    ```console
+    mv tanzu-sync-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+    Example:
+
+    ```console
+    mv tanzu-sync-values.sops.yaml $HOME/tap-gitops/clusters/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+## <a id='update-sensitive-tanzu-sync-values'></a> Updating sensitive Tanzu Sync values
+
+Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials:
+
+1. Open an editor through SOPS to edit the encrypted sensitive values file:
+
+    ```console
+    sops <<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+    Example:
+
+    ```console
+    sops $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+1. Add the sensitive values:
+
+    Example of the container registry credentials using basic authentication:
 
     ```yaml
     ---
@@ -327,7 +380,7 @@ for the sensitive portion of Tanzu Sync values:
                 username: MY-REGISTRY-USER
                 password: MY-REGISTRY-PASSWORD
             git:
-                # only one of ssh or basic_auth may be provided
+                # only one of `ssh` or `basic_auth` may be provided (not both!)
                 ssh:
                     private_key: |
                         PRIVATE-KEY
@@ -350,18 +403,6 @@ for the sensitive portion of Tanzu Sync values:
     - `MY-GIT-PASSWORD` (if basic_auth selected) is the password / personal access token for `MY-GIT-USERNAME`.
 
     The schema for Tanzu Sync credentials can be found in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/.tanzu-managed/schema--sops.yaml`
-
-1. Encrypt `tanzu-sync-values.yaml` with Age using SOPS:
-
-    ```console
-    export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')
-    sops --encrypt tanzu-sync-values.yaml > tanzu-sync-values.sops.yaml
-    ```
-
-    Where:
-
-    - `grep` is used to find the line containing the public key portion of the generated secret.
-    - `sed` is used to extract the public key from the line found by `grep`.
 
 ## <a id='generate-tap-config'></a>Generate Tanzu Application Platform installation and Tanzu Sync configuration
 
@@ -409,7 +450,7 @@ Follow these steps to generate the Tanzu Application Platform installation and T
     git push
     ```
 
-## <a id='deploy-tanzu-synci'></a>Deploy Tanzu Sync
+## <a id='deploy-tanzu-sync'></a>Deploy Tanzu Sync
 
 1. Install the Carvel tools `kapp` and `ytt` onto your `$PATH`:
 
