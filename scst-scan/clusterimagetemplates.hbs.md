@@ -133,10 +133,11 @@ spec:
         - --severity=HIGH
         - --no-progress
 ```
-Where:
-- `.metadata.name` is the name of your ClusterImageTemplate. It must not conflict with the names of packaged [templates](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates)
-- `registry_server` is the registry server
-- `registry_repository` is the registry repository
+  Where:
+
+  - `.metadata.name` is the name of your ClusterImageTemplate. It must not conflict with the names of packaged [templates](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates)
+  - `registry_server` is the registry server
+  - `registry_repository` is the registry repository
 
 1. Modify your `custom-ivs-template.yaml` to update the name of your ClusterImageTemplate, the registry fields for your registry, and the location of your Trivy scanner image.
 1. Create the ClusterImageTemplate:
