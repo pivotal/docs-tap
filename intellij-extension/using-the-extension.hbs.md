@@ -267,7 +267,13 @@ For these projects, make these adjustments:
 
    ![Edit Run Configuration window for Tanzu Debug dash SMTP-gateway.](../images/intellij-mono-repo-launch-config.png)
 
-## <a id="log-setting"></a> Changing logging verbosity
+## <a id="log-setting"></a> Change logging verbosity
 
 The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
 You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Developer Tools**.
+
+## <a id="java-native"></a> Work with Native Image for Java
+
+{{> 'partials/ide-extensions/java-native-images' }}
+
+![Tanzu Workloads panel showing a workload that uses a native image.](../images/intellij-native-panel.png).

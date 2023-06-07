@@ -1,15 +1,23 @@
 # Get started with Learning Center
 
-To view information about Learning Center, see [Learning Center for Tanzu Application Platform](../../learning-center/about.md).
-Before deploying workshops, install a Kubernetes Operator for Learning Center.
-The operator manages the setup of the environment for each workshop and deploys instances of a workshop for each person.
+This topic gives you information about how to get started with Learning Center.
+For information about Learning Center and its use cases, see
+[Learning Center for Tanzu Application Platform](../../learning-center/about.hbs.md).
 
-For information about installing Learning Center,
-see [Install Learning Center](../../learning-center/install-learning-center.md).
+## <a id="install"></a>Installing Learning Center
 
-Other useful information about getting started with Learning Center:
+Before deploying workshops, you must install a Kubernetes operator for Learning Center.
+The operator manages the setup of the environment for each workshop and deploys instances of a
+workshop for each person.
 
--  [Learning Center operator](learning-center-operator.md)
--  [Deleting an operator](deleting-learning-center.md)
--  [Workshops](workshops.md)
--  [TrainingPortal](training-portal.md)
+For basic information about installing the Learning Center operator,
+see [Install Learning Center](../../learning-center/install-learning-center.hbs.md).
+
+## <a id="get-started"></a>Get started
+
+See the following useful information about getting started with Learning Center:
+
+- [Configure the Learning Center operator](learning-center-operator.hbs.md)
+- [Get started with Workshops](workshops.hbs.md)
+- [Get started with Training Portals](training-portal.hbs.md)
+- [Delete an operator](deleting-learning-center.hbs.md)

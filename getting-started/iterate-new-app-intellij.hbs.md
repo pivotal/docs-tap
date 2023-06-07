@@ -1,7 +1,8 @@
 # Iterate on your new app using Tanzu Developer Tools for IntelliJ
 
-This how-to topic guides you through starting to iterate on your first application on
-Tanzu Application Platform. You deployed the app in the previous how-to [Deploy your first application](deploy-first-app.hbs.md).
+This topic guides you through starting to iterate on your first application on
+Tanzu Application Platform (commonly known as TAP).
+You deployed the app in the previous how-to [Deploy your first application](deploy-first-app.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 

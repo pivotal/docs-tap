@@ -1,9 +1,8 @@
 # Generate an application with Application Accelerator
 
-This topic guides you through how to generate a new project using Application Accelerators
-and how to deploy the project onto a Tanzu Application Platform cluster.
-For background information about Application Accelerators, see
-[Application Accelerator](about-application-accelerator.md).
+This topic guides you through how to generate a new project using Application Accelerator
+and how to deploy the project onto a Tanzu Application Platform (commonly known as TAP) cluster.
+For background information, see [Application Accelerator](about-application-accelerator.md).
 
 ## <a id="prereqs"></a> Prerequisites
 

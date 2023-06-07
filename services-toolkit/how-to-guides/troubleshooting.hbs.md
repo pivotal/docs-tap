@@ -1,7 +1,7 @@
 # Troubleshoot Services Toolkit
 
 This topic gives you guidance about how to troubleshoot issues related to working with services on
-Tanzu Application Platform.
+Tanzu Application Platform (commonly known as TAP).
 For known limitations and the corresponding workarounds, see [Known limitations for Services Toolkit](../reference/known-limitations.hbs.md).
 
 ## <a id="prereq"></a> Prerequisites

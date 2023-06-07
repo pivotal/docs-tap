@@ -1,7 +1,7 @@
-# Using Spring Cloud Gateway for Kubernetes
+# Using Spring Cloud Gateway for Kubernetes with Tanzu Application Platform
 
-This topic describes how to use Spring Cloud Gateway for Kubernetes as an API gateway for
-workloads running on Tanzu Application Platform.
+This topic tells you how to use Spring Cloud Gateway for Kubernetes as an API gateway for
+workloads running on Tanzu Application Platform (commonly known as TAP).
 
 Spring Cloud Gateway is a popular project library for creating an API Gateway that is built on top of
 the Spring ecosystem.

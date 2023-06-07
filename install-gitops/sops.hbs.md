@@ -20,7 +20,7 @@ To install the SOPS CLI, see [SOPS documentation](https://github.com/mozilla/sop
 To install the Age CLI, see [age documentation](https://github.com/FiloSottile/age#installation) in GitHub.
 - Completed the [Prerequisites](../prerequisites.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
-- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
+- Installed [Cluster Essentials for Tanzu](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
 
@@ -72,7 +72,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool `imgpkg` CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
     To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 

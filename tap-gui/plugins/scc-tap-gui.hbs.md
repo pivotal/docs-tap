@@ -29,14 +29,12 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 To see CVE scan results within Tanzu Application Platform GUI, connect Tanzu Application Platform GUI
 to the Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
 
-### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to the Metadata Store
+### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to Metadata Store
 
 Tanzu Application Platform GUI has automation for enabling connection between
-Tanzu Application Platform GUI and SCST - Store.
-To use this automation, add it to the Tanzu Application Platform GUI section within your
-`tap-values.yaml` file.
-
-The default value for `tap_gui.metadataStoreAutoconfiguration` is `false`. See the following example:
+Tanzu Application Platform GUI and SCST - Store. By default, this automation is active and requires
+no configuration. To deactivate this automation, add the following block to the
+Tanzu Application Platform GUI section within your `tap-values.yaml` file:
 
 ```yaml
 # tap-values.yaml
@@ -44,16 +42,66 @@ The default value for `tap_gui.metadataStoreAutoconfiguration` is `false`. See t
 # ...
 tap_gui:
   # ...
-  metadataStoreAutoconfiguration: true
+  metadataStoreAutoconfiguration: false
 ```
 
-This file change creates a service account for the connection with privileges scoped only to the
+This file change creates a service account for the connection with privileges scoped only to
 Metadata Store.
-In addition it mounts the token of the service account into the Tanzu Application Platform GUI
+In addition, it mounts the token of the service account into the Tanzu Application Platform GUI
 pod and produces for you the `app_config` section necessary for Tanzu Application Platform GUI to
 communicate with SCST - Store.
 
-### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to the Metadata Store
+#### <a id="troubleshooting"></a> Troubleshooting
+
+For debugging the automation, or for verifying that the automation is active, you must know
+which resources are created. The following commands display the different Kubernetes resources that
+are created when `tap_gui.metadataStoreAutoconfiguration` is set to `true`:
+
+```console
+$ kubectl -n tap-gui get serviceaccount metadata-store
+NAME             SECRETS   AGE
+metadata-store   1         AGE-VALUE
+```
+
+```console
+$ kubectl -n tap-gui get secret metadata-store-access-token
+NAME                          TYPE                                  DATA   AGE
+metadata-store-access-token   kubernetes.io/service-account-token   3      AGE-VALUE
+```
+
+```console
+$ kubectl -n tap-gui get clusterrole metadata-store-reader
+NAME                    CREATED AT
+metadata-store-reader   CREATED-AT-TIME
+```
+
+```console
+$ kubectl -n tap-gui get clusterrolebinding read-metadata-store
+NAME                  ROLE                                AGE
+read-metadata-store   ClusterRole/metadata-store-reader   AGE-VALUE
+```
+
+There is another condition that impacts whether the automation creates the necessary service account.
+If your configuration includes a `/metadata-store` block, the automation doesn't create the
+Kubernetes resources for use in `autoconfiguration` and the automation doesn't overwrite the proxy
+block that you provide. To use the automation, you must delete the block at
+`tap_gui.app_config.proxy["/metadata-store"]`.
+
+For example, a `tap-values.yaml` file with the following content does not create additional Kubernetes
+resources as described earlier:
+
+```yaml
+# ...
+tap_gui:
+  # ...
+  app_config:
+    # ...
+    proxy:
+      '/metadata-store':
+        target: SOMETHING
+```
+
+### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to Metadata Store
 
 To manually enable CVE scan results:
 

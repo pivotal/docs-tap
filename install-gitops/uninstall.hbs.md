@@ -52,4 +52,4 @@ rm -rf ~/Library/Application\ Support/tanzu-cli/* # Remove plug-ins
 
 ## <a id='remove-ce'></a> Remove Cluster Essentials
 
-To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#uninstall).
+To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#uninstall).

@@ -241,17 +241,17 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 For online installation:
 
-- [Deploy Cluster Essentials*](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install the Tanzu Application Platform package and profiles](install-online/profile.hbs.md)
 
 For air-gapped installation:
 
-- [Deploy Cluster Essentials*](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform in an air-gapped environment](install-offline/profile.hbs.md)
 
 For GitOps (beta) installation:
 
-- [Deploy Cluster Essentials*](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 
 - [Install Tanzu Application Platform through GitOps using AWS Secrets Manager](install-gitops/aws-secrets-manager.hbs.md)
 - [Install Tanzu Application Platform through Gitops with SOPS](install-gitops/sops.hbs.md)

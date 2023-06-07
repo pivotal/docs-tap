@@ -1,7 +1,7 @@
 # Known limitations for Services Toolkit
 
 This topic describes known limitations and workarounds related to working with services on
-Tanzu Application Platform. For further troubleshooting guidance, see
+Tanzu Application Platform (commonly known as TAP). For further troubleshooting guidance, see
 [Troubleshoot Services Toolkit](../how-to-guides/troubleshooting.hbs.md).
 
 ## <a id="multi-workloads"></a> Cannot claim and bind to the same service instance from across multiple namespaces
@@ -70,22 +70,3 @@ updates.
 
 Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
 back online after having applied the updated registry configuration.
-
-## <a id="default-cluster-admin"></a>Default cluster-admin IAM roles on GKE do not allow claiming of Bitnami Services
-
-**Description:**
-
-For Tanzu Application Platform installations on Google Kubernetes Engine (GKE) clusters,
-users with cluster-admin Role-Based Access Control (RBAC) permissions are not able to
-create class claims for any of the Bitnami Services. The following error occurs:
-
-```console
-Error: admission webhook "vclassclaim.validation.resourceclaims.services.apps.tanzu.vmware.com" denied the request: user 'user@example.com' cannot 'claim' from clusterinstanceclass 'mysql-unmanaged'
-Error: exit status 1
-```
-
-**Workaround:**
-
-Explicitly create a ClusterRoleBinding for your user or group to the corresponding
-`app-operator-claim-class-SERVICE` ClusterRole, where `SERVICE` is one of `mysql`, `postgresql`,
-`rabbitmq`, or `redis`.

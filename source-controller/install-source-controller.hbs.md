@@ -1,7 +1,7 @@
 # Install Source Controller
 
 This document tells you how to install Source Controller from the Tanzu Application Platform
-package repository.
+(commonly known as TAP) package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Source Controller.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).

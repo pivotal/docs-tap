@@ -1,7 +1,6 @@
 # Troubleshoot Learning Center
 
-This section includes a list of known issues with troubleshooting and recovery steps
-for Learning Center.
+This topic gives you troubleshooting and recovery steps for Learning Center known issues.
 
 ## <a id="training-portal-pending"></a>Training portal stays in pending state
 
@@ -137,7 +136,7 @@ After deploying the Learning Center Operator and Trainingportal resources, the f
 kubectl get trainingportals
 ```
 
-You also already specified learningcenter.mydomain.com in your tap values YAML file if installed through Tanzu Application Platform. See [specifying ingress domain](./getting-started/learning-center-operator.md#ingress-domain)
+You also already specified learningcenter.mydomain.com in your tap values YAML file if installed through Tanzu Application Platform. See [specifying ingress domain](./getting-started/learning-center-operator.hbs.md#ingress-domain)
 
 ***Solution***
 

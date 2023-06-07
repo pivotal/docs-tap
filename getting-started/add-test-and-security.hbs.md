@@ -1,6 +1,7 @@
 # Add testing and scanning to your application
 
-This how-to guide walks you through installing the optional OOTB Supply Chain with Testing and the optional OOTB Supply Chain with Testing and Scanning.
+This topic guides you through installing the optional OOTB Supply Chain with Testing and the optional
+OOTB Supply Chain with Testing and Scanning.
 
 For more information about available supply chains, see [Supply chains on Tanzu Application Platform](about-supply-chains.md).
 
@@ -169,6 +170,8 @@ the workload must be updated to point at your Tekton pipeline.
   retrieve metadata about project packages and their vulnerabilities.
 
 To install OOTB Supply Chain with Testing and Scanning:
+
+>**Note** In the test and scan supply chain, the source scanning capability has been changed to opt-in and will be skipped by default starting in Tanzu Application Platform 1.6.  See [here](../scst-scan/scan-types.md) for more information.
 
 1. Supply Chain Security Tools (SCST) - Scan is installed as part of the Tanzu Application Platform profiles.
 Verify that both Scan Controller and Grype Scanner are installed by running:

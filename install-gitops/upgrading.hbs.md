@@ -17,7 +17,7 @@ Before you upgrade your Tanzu Application Platform:
 - Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](../install-tanzu-cli.hbs.md#cli-and-plugin).
 - For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](../tap-gui/upgrades.hbs.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
-- To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
+- To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
 
 <!-- The following sections are copied from the legacy upgrade topic. Please adjust the content accordingly for upgrade using GitOps. -->
 

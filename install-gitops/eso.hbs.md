@@ -12,5 +12,6 @@ Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets
 
 ## <a id='supported-secret-managers'></a>Select a secrets manager for external secret storage
 
+
 - [AWS Secrets Manager](eso/aws-secrets-manager.hbs.md)
 - [Hashicorp Vault](eso/vault.hbs.md)

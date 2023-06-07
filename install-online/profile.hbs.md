@@ -59,7 +59,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
-1. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
     To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
@@ -414,15 +414,7 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-#### <a id='jammy-only'></a> (Optional) Configure your profile with the Jammy stack only
-
-Tanzu Application Platform v1.5.0 supports building applications with both the
-Ubuntu v22.04 (Jammy) and v18.04 (Bionic) stack. For more information, see
-[Bionic and Jammy stacks](../tanzu-build-service/dependencies.html#bionic-vs-jammy).
-
-To install Tanzu Application Platform with Jammy as the only available stack,
-include the `stack_configuration: jammy-only` field under the `buildservice:`
-section in `tap-values.yaml`.
+Tanzu Application Platform v1.6.0 supports building applications with Ubuntu v22.04 (Jammy).
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
@@ -467,10 +459,20 @@ If you configured `full` dependencies in your `tap-values.yaml` file in
 [Configure your profile with full dependencies](#full-dependencies) earlier,
 you must install the `full` dependencies package.
 
-For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+1. (Optional) If you have an existing installation of the full dependencies package from a version
+earlier than Tanzu Application Platform v1.6.0, you must uninstall the full dependencies package and remove the package repository:
 
-To install the `full` dependencies package:
+    Uninstall the package:
+
+    ```console
+    tanzu package installed delete full-tbs-deps -n tap-install
+    ```
+
+    Remove the package repository:
+
+    ```console
+    tanzu package repository delete tbs-full-deps-repository -n tap-install
+    ```
 
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tap-values.yaml` file under the `buildservice` section. For example:
@@ -481,39 +483,46 @@ To install the `full` dependencies package:
       exclude_dependencies: true
     ...
     ```
-
-1. Get the latest version of the `buildservice` package by running:
+ 
+1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    tanzu package installed update tap --namespace tap-install --values-file PATH-TO-UPDATED-VALUES
+    ```
+
+1. Get the latest version of the `tap` package by running:
+
+    ```console
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
+    Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
 
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+    tanzu package repository add full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
       --namespace tap-install
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --data-values-file <path to tap-values.yaml>
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 

@@ -13,7 +13,7 @@ Before you upgrade Tanzu Application Platform:
 - Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.hbs.md#cli-and-plugin).
 - For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
-- To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
+- To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
 
@@ -94,34 +94,50 @@ When upgrading to Tanzu Application Platform v1.5, you might encounter a tempora
 If you installed the [full dependencies package](install-online/profile.hbs.md#tap-install-full-deps),
 you can upgrade the package by following these steps:
 
+1. (Optional) If you have an existing installation of the full dependencies from a version earlier
+than TAP v1.6.0, you must uninstall the full dependencies package and remove the package repository.
+Subsequent upgrades will not require a removal:
+
+  Uninstall the package
+
+  ```console
+  tanzu package installed delete full-tbs-deps -n tap-install
+  ```
+
+  Remove the package repository
+
+  ```console
+  tanzu package repository delete tbs-full-deps-repository -n tap-install
+  ```
+
 1. After upgrading Tanzu Application Platform, retrieve the latest version of the
-   Tanzu Build Service package by running:
+   Tanzu Application Platform package by running:
 
     ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
+2. Relocate the Tanzu Build Service `full` dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
     --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
     ```
 
-    Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+    Where `VERSION` is the version of the Tanzu Application Platform package you retrieved in the previous step.
 
-1. Update the Tanzu Build Service  `full` dependencies package repository by running:
+3. Update the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
-    tanzu package repository add tbs-full-deps-repository \
+    tanzu package repository add full-deps-repository \
       --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
       --namespace tap-install
     ```
 
-1. Update the `full` dependencies package by running:
+4. Update the `full` dependencies package by running:
 
     ```console
-    tanzu package installed update full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package installed update full-deps -p full-deps.buildservice.tanzu.vmware.com -v VERSION -n tap-install
     ```
 
 ### <a id="upgrade-order"></a> Multicluster upgrade order

@@ -1,6 +1,6 @@
 # Components and installation profiles for Tanzu Application Platform
 
-This topic lists the components you can install with Tanzu Application Platform.
+This topic lists the components you can install with Tanzu Application Platform (commonly known as TAP).
 You can install components as individual packages or you can install them using a profile containing
 a predefined group of packages.
 

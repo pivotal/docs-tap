@@ -3,7 +3,7 @@
 In this tutorial you learn how [application operators](../../services-toolkit/reference/terminology-and-user-roles.hbs.md#ao)
 can discover, claim, and bind services to application workloads.
 
-Tanzu Application Platform has four pre-installed services, which are MySQL, PostgreSQL, RabbitMQ, and Redis.
+Tanzu Application Platform has six pre-installed services, which are MySQL, PostgreSQL, RabbitMQ, Redis, MongoDB and Kafka.
 The corresponding Bitnami Helm Chart backs each of these services.
 
 ## <a id="about"></a> About this tutorial
@@ -56,13 +56,15 @@ The expected output is similar to the following:
 
 ```console
   NAME                  DESCRIPTION
+  kafka-unmanaged       Kafka by Bitnami
+  mongodb-unmanaged     MongoDB by Bitnami
   mysql-unmanaged       MySQL by Bitnami
   postgresql-unmanaged  PostgreSQL by Bitnami
   rabbitmq-unmanaged    RabbitMQ by Bitnami
   redis-unmanaged       Redis by Bitnami
 ```
 
-Here the output shows 4 classes. These are the four pre-installed Bitnami Services.
+Here the output shows 6 classes. These are the six pre-installed Bitnami Services.
 You can see from the names and descriptions that they are all _unmanaged_ services.
 This implies that the resulting service instances run on cluster, that is, they are not a managed
 service running in the cloud.

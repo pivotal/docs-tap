@@ -22,7 +22,7 @@ There are two ways to manage the list of developer namespaces that are managed b
 Using Namespace Provisioner Controller
 :
 
-  Sample TAP values configuration:
+  TAP values configuration example:
 
   ```yaml
   namespace_provisioner:
@@ -79,7 +79,7 @@ Using GitOps
 : The GitOps approach provides a fully declarative way to create developer namespaces managed
 by Namespace Provisioner.
 
-  Sample Tanzu Application Platform values configuration:
+  TAP values configuration example:
 
   ```yaml
   namespace_provisioner:
@@ -100,7 +100,7 @@ by Namespace Provisioner.
 
   >**Note** If you have another tool like Tanzu Mission Control or some other process that is taking care of creating namespaces for you, and you don’t want a Namespace Provisioner to create the namespaces, you can delete this file from your GitOps install repository.
 
-  >**Important**  The GitOps sample creates the following two namespaces: `dev` and `qa`. If these namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps repository so they do not conflict with existing resources.
+  >**Important**  The TAP values configuration example above creates the following two namespaces: `dev` and `qa`. If these namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps repository so they do not conflict with existing resources.
 
   Run the following command to verify the [default resources](reference.md#default-resources) are created in the namespace:
 

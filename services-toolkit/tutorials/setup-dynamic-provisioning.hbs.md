@@ -1,7 +1,7 @@
 # Set up dynamic provisioning of service instances
 
 In this Services Toolkit tutorial you learn how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
-can set up a new, self-serve, and customized service for Tanzu Application Platform.
+can set up a new, self-serve, and customized service for Tanzu Application Platform (commonly known as TAP).
 The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any
 other service.
 

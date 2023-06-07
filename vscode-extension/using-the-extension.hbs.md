@@ -341,3 +341,9 @@ For these projects, make these adjustments:
 The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
 You can change the log verbosity in **Preferences** > **Settings** > **Extensions** >
 **Tanzu Developer Tools** > **Language Server: Log Verbosity**.
+
+## <a id="java-native"></a> Working with Java Native images
+
+{{> 'partials/ide-extensions/java-native-images' }}
+
+![Tanzu Workloads panel showing a workload that uses a native image.](../images/vscode-native-panel.png).
