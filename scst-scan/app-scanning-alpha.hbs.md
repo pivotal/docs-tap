@@ -245,6 +245,10 @@ krane digest nginx:latest
 
 ### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
 
+#### <a id=""></a> Customizing your own ImageVulnerabilityScan
+
+See [here](./custom-ivs-samples.md) for custom samples of ImageVulnerabilityScan CRs.
+
 #### <a id="authoring-a-clusterimagetemplate"></a> Authoring a ClusterImageTemplate
 To create a ClusterImageTemplate to which you can incorporate a scanner of your choice, follow steps in [Authoring a ClusterImageTemplate](./clusterimagetemplates.hbs.md).
 
