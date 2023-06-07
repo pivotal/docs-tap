@@ -238,14 +238,14 @@ To install `full` Tanzu Build Service dependencies:
         namespace: tap-install
       exclude_dependencies: true
     ```
-   
-1. If you have not updated your package install after adding the `exclude_dependencies: true` to your values file, you must do that now:
+ 
+1. If you have not updated your package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
-    tanzu package installed update  <APP-NAME> --namespace tap-install --values-file <PATH-TO-UPDATED-VALUES>
+    tanzu package installed update  APP-NAME --namespace tap-install --values-file PATH-TO-UPDATED-VALUES
     ```
 
-1. Get the latest version of the TAPpackage by running:
+1. Get the latest version of the Tanzu Application Platform package by running:
 
     ```console
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
@@ -281,7 +281,7 @@ To install `full` Tanzu Build Service dependencies:
 3. Install the `full` dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file <PATH-TO-TBS-OR-TAP-VALUES-FILE>
+    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TBS-OR-TAP-VALUES-FILE
     ```
 
 ## <a id='deactivate-cnb-bom'></a> (Optional) Deactivate the CNB BOM format
