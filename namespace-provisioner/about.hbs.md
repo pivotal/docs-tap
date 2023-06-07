@@ -19,7 +19,7 @@ Controller mode
     ![Diagram of Namespace Provisioner controller.](../images/namespace-provisioner-controller.png)
 
     - The list of developer namespaces is managed by the Namespace Provisioner controller using a label selector `apps.tanzu.vmware.com/tap-ns=""`
-    - Namespace Provisioner creates [default resources](reference.hbs.md#default-resources) in all managed namespaces.
+    - Namespace Provisioner creates [default resources](default-resources.hbs.md) in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under the `additional_sources` section in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 GitOps mode
@@ -28,7 +28,7 @@ GitOps mode
     ![Diagram of Namespace Provisioner.](../images/namespace-provisioner-1.png)
 
     - The list of developer namespaces is managed in a Git repository that is specified in the `gitops_install` section of the Namespace Provisioner configuration.
-    - Namespace Provisioner creates [default resources](reference.hbs.md#default-resources) that are shipped Out of the Box in all managed namespaces.
+    - Namespace Provisioner creates [default resources](default-resources.hbs.md) that are shipped Out of the Box in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repositories specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 <br>
