@@ -8,7 +8,7 @@ Follow these steps to deploy a sample single-page app `Workload`:
 
 1. [Get the sample application](#sample-app).
 1. [Create a namespace for workloads](#create-namespace).
-1. [Apply a client registration](#clientregistration).
+1. [Claim client credentials](#credentials).
 1. [Verify application authentication settings](#auth-settings).
 1. [Start a sample back end](#backend).
 1. [Deploy the Workload](#deploy-workload).
@@ -71,50 +71,56 @@ kubectl label namespaces my-apps apps.tanzu.vmware.com/tap-ns=""
 For more information about provisioning namespaces for running `Workloads`,
 see [Set up developer namespaces](../../install-online/set-up-namespaces.hbs.md).
 
-## <a id='clientregistration'></a> Create a `ClientRegistration`
+## <a id='credentials'></a> Claim client credentials
 
-You must create a `ClientRegistration` to register the frontend application with the `AuthServer`.
+Claim credentials for an AppSSO service so that you can secure your workload.
 
-**Example:** A `ClientRegistration` named `angular-frontend` in the `my-apps` namespace.
-`angular-frontend` is attached to an existing `AuthServer` with labels `my-sso=true` and an
-allowance of client registrations from the `my-apps` namespace.
+Discover the available AppSSO services with the `tanzu` CLI:
+
+```console
+❯ tanzu services classes list
+  NAME      DESCRIPTION
+  sso       Login by AppSSO
+```
+
+In your case, the actual names of your AppSSO services might be different. We
+assume that there's one AppSSO service with the name `sso`.
+
+Then, claim credentials for that service by creating a `ClassClaim` named
+`angular-frontend` in the `my-apps` namespace.
 
 ```yaml
-apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
-kind: ClientRegistration
+---
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClassClaim
 metadata:
   name: angular-frontend
   namespace: my-apps
 spec:
-  authServerSelector:
-    matchLabels:
-      my-sso: "true"
-  clientAuthenticationMethod: none
-  authorizationGrantTypes:
-  - authorization_code
-  redirectURIs:
-  - https://angular-frontend.my-apps.TAP-CLUSTER-DOMAIN-NAME/user-profile
-  - https://angular-frontend.my-apps.TAP-CLUSTER-DOMAIN-NAME/customer-profiles/list
-  - https://angular-frontend.my-apps.TAP-CLUSTER-DOMAIN-NAME/
-  - http://angular-frontend.my-apps.TAP-CLUSTER-DOMAIN-NAME/user-profile
-  - http://angular-frontend.my-apps.TAP-CLUSTER-DOMAIN-NAME/customer-profiles/list
-  - http://angular-frontend.my-apps.TAP-CLUSTER-DOMAIN-NAME/
-  scopes:
-  - name: openid
-  - name: email
-  - name: profile
-  - name: message.read
-  - name: message.write
+  classRef:
+    name: sso
+  parameters:
+    workloadRef:
+      name: angular-frontend
+    redirectPaths:
+      - /user-profile
+      - /customer-profiles/list
+      - /
+    scopes:
+      - name: openid
+      - name: email
+      - name: profile
+      - name: message.read
+      - name: message.write
+    authorizationGrantTypes:
+      - authorization_code
+    clientAuthenticationMethod: none
 ```
 
-> **Note** You can choose `redirectURIs` that use HTTP or HTTPS based on your need.
-> The prefix of the `redirectURIs` denotes the name and namespace of the `Workload`.
-> In this scenario, it is `angular-frontend` and `my-apps`.
-
-You can apply the `ClientRegistration` and verify the status is `Ready` by running:
+Apply the `ClassClaim` and verify the status is `Ready` by running:
 
 ```shell
-kubectl get clientregistration angular-frontend --namespace my-apps
+kubectl get classclaim angular-frontend --namespace my-apps
 ```
 
 ## <a id="auth-settings"></a> Verify application authentication settings
@@ -126,19 +132,31 @@ Open the file and verify that it adheres to the following structure:
 
 ```json
 {
-  "authority": "AUTHSERVER-ISSUER-URI",
-  "clientId": "my-apps_angular-frontend",
+  "authority": "<ISSUER_URI>",
+  "clientId": "<CLIENT_ID>",
   "scope": [ "openid", "profile", "email", "message.read", "message.write" ]
 }
 ```
 
-You can retrieve the `clientId` field by running:
+Retrieve your client id by running:
 
 ```shell
-kubectl get secret angular-frontend -n my-apps -o jsonpath="{.data.client-id}" | base64 -d
+kubectl get secret \
+  $(kubectl get classclaim -n my-apps angular-frontend -o jsonpath='{.status.binding.name}') \
+  --namespace my-apps \
+  --template='\{{ index .data "client-id" | base64decode}}'
 ```
 
-## <a id='backend'></a> Start a sample back end
+Retrieve your issuer URI by running:
+
+```shell
+kubectl get secret \
+  $(kubectl get classclaim -n my-apps angular-frontend -o jsonpath='{.status.binding.name}') \
+  --namespace my-apps \
+  --template='\{{ index .data "issuer-uri" | base64decode}}'
+```
+
+## Start a sample back end
 
 > **Important** You can skip this step if you have a `java-rest-service` back end running already.
 
@@ -222,16 +240,10 @@ Delete the running application by running these commands:
     tanzu apps workload delete angular-frontend --namespace my-apps
     ```
 
-1. Delete the service resource claim for the `ClientRegistration`:
+1. Delete the claim:
 
     ```shell
-    tanzu service resource-claim delete angular-frontend --namespace my-apps
-    ```
-
-1. Disconnect the client from AppSSO:
-
-    ```shell
-    kubectl delete clientregistration angular-frontend --namespace my-apps
+    tanzu service class-claims delete angular-frontend --namespace my-apps
     ```
 
 1. Delete the sample back end if was previously applied:
