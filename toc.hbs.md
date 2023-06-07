@@ -52,7 +52,7 @@ docs.vmware.com is built.
       - [Custom Security Context Constraint details](install-openshift/scc-details.hbs.md)
   - [Install with GitOps (beta)](install-gitops/intro.hbs.md)
       - [Install overview](install-gitops/intro.hbs.md)
-      - [GitOps with ESO](install-gitops/eso.hbs.md)
+      - [GitOps with AWS Secrets Manager](install-gitops/aws-secrets-manager.hbs.md)
       - [GitOps with SOPS](install-gitops/sops.hbs.md)
       - [Install individual packages](install-gitops/components.hbs.md)
       - [Set up namespaces](install-gitops/set-up-namespaces.hbs.md)

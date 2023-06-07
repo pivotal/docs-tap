@@ -262,6 +262,8 @@ tap_install:
 ...
 ```
 
+For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
+
 ## <a id='update-sensitive-tap-values'></a> Updating sensitive Tanzu Application Platform values
 
 After filling in the non-sensitive values, follow these steps to extract the sensitive values
