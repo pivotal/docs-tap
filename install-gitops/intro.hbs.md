@@ -30,10 +30,8 @@ GitOps with Secrets OPerationS (SOPS)
     |6.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
     |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
 
-GitOps with External Secrets Operator (ESO)
+GitOps with AWS Secrets Manager on EKS
 : Applies to the scenario when you want to store sensitive data in external store:
-
-    <!-- ... "Supported on AWS Secrets Manager" ... -->
 
     |Step|Task|Link|
     |----|----|----|
@@ -41,7 +39,20 @@ GitOps with External Secrets Operator (ESO)
     |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accept Tanzu Application Platform EULAs and installing the Tanzu CLI](../install-tanzu-cli.hbs.md)|
     |3.| Create AWS Resources (EKS Cluster, roles, etc)|[Create AWS Resources](../install-aws/resources.hbs.md)|
     |4.| Install Cluster Essentials for Tanzu*. |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)|
-    |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](eso.hbs.md)|
+    |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Install Tanzu Application Platform through GitOps using AWS Secrets Manager](aws-secrets-manager.hbs.md)|
+    |6.| (Optional) Install any additional packages that were not in the profile. |[Install individual packages](components.hbs.md)|
+    |7.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
+    |8.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
+
+GitOps with Hashicorp Vault
+: Applies to the scenario when you want to store sensitive data in external store:
+
+    |Step|Task|Link|
+    |----|----|----|
+    |1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](../prerequisites.hbs.md)|
+    |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accept Tanzu Application Platform EULAs and installing the Tanzu CLI](../install-tanzu-cli.hbs.md)|
+    |4.| Install Cluster Essentials for Tanzu*. |[Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)|
+    |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Install Tanzu Application Platform through GitOps using Hashicorp Vault](vault.hbs.md)|
     |6.| (Optional) Install any additional packages that were not in the profile. |[Install individual packages](components.hbs.md)|
     |7.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
     |8.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
