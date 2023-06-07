@@ -41,7 +41,5 @@ To install `full` dependencies:
 1. Install the `full` dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file <PATH-TO-TAP-VALUES-FILE>
     ```
-
-    Where `VERSION` is the version of the TAP package you retrieved earlier.
