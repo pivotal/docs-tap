@@ -238,17 +238,23 @@ To install `full` Tanzu Build Service dependencies:
         namespace: tap-install
       exclude_dependencies: true
     ```
-
-1. Get the latest version of the Tanzu Build Service package by running:
+   
+1. If you have not updated your package install after adding the `exclude_dependencies: true` to your values file, you must do that now:
 
     ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    tanzu package installed update  <APP-NAME> --namespace tap-install --values-file <PATH-TO-UPDATED-VALUES>
+    ```
+
+1. Get the latest version of the TAPpackage by running:
+
+    ```console
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
 1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
     --to-repo INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps
     ```
 
@@ -262,7 +268,7 @@ To install `full` Tanzu Build Service dependencies:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
-      --url INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps:VERSION \
+      --url INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/full-deps:VERSION \
       --namespace tap-install
     ```
 
@@ -275,10 +281,8 @@ To install `full` Tanzu Build Service dependencies:
 3. Install the `full` dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file <PATH-TO-TBS-OR-TAP-VALUES-FILE>
     ```
-
-    Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
 
 ## <a id='deactivate-cnb-bom'></a> (Optional) Deactivate the CNB BOM format
 
