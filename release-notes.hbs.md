@@ -30,6 +30,17 @@ The following issues, listed by component and area, are resolved in this release
 - Old `TaskRuns` associated with scans are now deleted to reduce memory consumption.
 - Added support for `ConfigMaps` in custom `ScanTemplates`.
 
+#### <a id='1-5-2-tap-gui-ri'></a> Tanzu Application Platform GUI
+
+- Simplified the default content security policy to remove violations from fonts.googleapis.com.
+
+#### <a id="1-5-2-tap-gui-plug-in-ri"></a> Tanzu Application Platform GUI plug-ins
+
+- **Security Analysis GUI Plug-in:**
+  - **CVE Details:** The impacted workload count in the widget now matches the table.
+  - **Security Analysis Dashboard:** Snyk CVE IDs are no longer overlapped by the Highest Reach Critical Vulnerabilities chart.
+  - **Package Details:** Removed extra versions from Workload Builds using Package table.
+
 ---
 
 ### <a id='1-5-2-known-issues'></a> Known issues
