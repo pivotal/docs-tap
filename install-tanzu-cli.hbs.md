@@ -253,7 +253,7 @@ For GitOps (beta) installation:
 
 - [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 
-- [Install Tanzu Application Platform through GitOps using AWS Secrets Manager](install-gitops/aws-secrets-manager.hbs.md)
+- [Install Tanzu Application Platform through GitOps with ESO](install-gitops/eso.hbs.md)
 - [Install Tanzu Application Platform through Gitops with SOPS](install-gitops/sops.hbs.md)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
