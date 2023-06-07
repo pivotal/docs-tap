@@ -21,7 +21,7 @@ By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `g
 ### Deactivate for a specific namespace
 
 Using Namespace Provisioner Controller
-: To deactivate the installation of the Out-of-the-box Grype scanner for a specific namespace, you can annotate or label the desired namespace using the reserved parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized parameter_prefixes, as explained in the <!--"[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)"--> section.
+: To deactivate the installation of the Out-of-the-box Grype scanner for a specific namespace, you can annotate or label the desired namespace using the reserved parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized parameter_prefixes, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
 
     ```bash
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_grype=true
@@ -127,7 +127,7 @@ namespace_provisioner:
       imagePullSecrets: [] #! optional
 ```
 
-This will add the secret `git` to the Service Account mentioned in `ootb_supply_chain_*.service_account`. if not specified, it takes the `default` service account.
+This will add the secret `git` to the Service Account mentioned in `ootb_supply_chain_*.service_account`. if not specified, it takes the `default` service account. 
 
 - First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
 - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
@@ -230,7 +230,7 @@ is in all provisioned namespaces and is also added to the default service accoun
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates the [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all Namespace Provisioner managed namespaces. For more information, see <!--[Default Resources](reference.md#default-resources)-->.
+Namespace Provisioner creates the [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all Namespace Provisioner managed namespaces. For more information, see [Default Resources](reference.md#default-resources).
 
 You can opt-in to have the LimitRange resource created on Full and Iterate clusters. For more
 information, see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific).
@@ -286,7 +286,7 @@ YAML path to CPU or memory limits as follows:
     ```
 
     * The controller detects the annotations and labels with the `param.nsp.tap/` prefix, and adds the keys and values in the desired-namespace ConfigMaps as parameters for that namespace.
-    * If you want the controller to search for a custom prefix, instead of  the default `param.nsp.tap`, prefix, use the `parameter_prefixes` configuration option in the Namespace Provisioner TAP values values. For more information, see <!--[Customize the label and annotation prefixes that controller watches](customize-installation.md#con-custom-label)-->.
+    * If you want the controller to search for a custom prefix, instead of  the default `param.nsp.tap`, prefix, use the `parameter_prefixes` configuration option in the Namespace Provisioner TAP values values. For more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.md#con-custom-label).
 
     >**Note** Labels take precedence over annotations if the same key is provided in both.
 
@@ -340,7 +340,7 @@ Using GitOps
 ## Deactivate LimitRange Setup
 
 
-The Namespace Provisioner generates a Kubernetes LimitRange object as a <!--[default resource](namespace-provisioner-reference.MD#default-resources)--> in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to deactivate the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
+The Namespace Provisioner generates a Kubernetes LimitRange object as a [default resource](namespace-provisioner-reference.MD#default-resources) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to deactivate the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
 
 ### Deactivate for all namespaces
 
@@ -355,7 +355,7 @@ namespace_provisioner:
 ### Deactivate for a specific namespaces
 
 Using Namespace Provisioner Controller
-: To deactivate the LimitRange for a specific developer namespace, you can annotate or label the desired namespace using the parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized `parameter_prefixes`, as explained in the <!--"[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)"--> section.
+: To deactivate the LimitRange for a specific developer namespace, you can annotate or label the desired namespace using the parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized `parameter_prefixes`, as explained in the "[Customize the label and annotation prefixes that controller watches](namespace-provisioner-customize-installation.md#con-custom-label)" section.
 
     ```bash
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_limit_range=true
