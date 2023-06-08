@@ -6,7 +6,7 @@
 
 This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
 through GitOps with secrets managed in an external secrets store. 
-To decide which approach to use, see [Choosing SOPS or ESO](reference.hbs.md#choosing-sops-or-eso).
+To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
 Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
 The External Secrets Operator integration in this release of Tanzu GitOps RI
@@ -16,8 +16,8 @@ is verified to support Kubernetes integration with Hashicorp Vault.
 
 Before installing Tanzu Application Platform, ensure you have:
 
-- Completed the [Prerequisites](../prerequisites.hbs.md).
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
+- Completed the [Prerequisites](../../prerequisites.hbs.md).
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 - Installed [eksctl CLI](https://github.com/weaveworks/eksctl#installation).
 
@@ -576,7 +576,7 @@ The configuration for the Tanzu Application Platform is divided into two separat
 
 Follow these steps to split the Tanzu Application Platform values:
 
-1. Create the file `cluster-config/values/tap-values.yaml` by using the [Full Profile sample](../install-online/profile.hbs.md#full-profile) as a guide:
+1. Create the file `cluster-config/values/tap-values.yaml` by using the [Full Profile sample](../../install-online/profile.hbs.md#full-profile) as a guide:
 
     The Tanzu Application Platform values are input configurations to the Tanzu Application Platform installation
     and are placed under the `tap_install.values` path.
