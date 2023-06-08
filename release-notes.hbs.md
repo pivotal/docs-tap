@@ -25,6 +25,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-3-9-COMPONENT-NAME-ri'></a> Tanzu Developer Tools for VSCode/Intellij/Visual Studio
+
+- Permission denied errors encountered during live update when operating against platforms configured to use the Jammy build stack are now resolved
+
 ---
 
 ### <a id='1-3-9-known-issues'></a> Known issues
