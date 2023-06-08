@@ -247,7 +247,7 @@ krane digest nginx:latest
 
 #### <a id=""></a> Customizing your own ImageVulnerabilityScan
 
-See [here](./custom-ivs-samples.md) for custom samples of ImageVulnerabilityScan CRs.
+VMware provides several examples on how to bring your own scanner using samples of ImageVulnerabilityScan CRs [here](./custom-ivs-samples.md).
 
 #### <a id="authoring-a-clusterimagetemplate"></a> Authoring a ClusterImageTemplate
 To create a ClusterImageTemplate to which you can incorporate a scanner of your choice, follow steps in [Authoring a ClusterImageTemplate](./clusterimagetemplates.hbs.md).
