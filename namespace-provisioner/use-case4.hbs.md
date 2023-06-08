@@ -9,7 +9,7 @@ Grype is installed by Namespace Provisioner by default. If you prefer to use a d
 
 ### Deactivate Grype for all namespaces
 
-To deactivate the default installation of `grype` for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
+To deactivate the default installation of Grype for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
 
 ```yaml
 namespace_provisioner:
@@ -25,7 +25,7 @@ Using Namespace Provisioner Controller
 : To deactivate the installation of Grype for a specific namespace, annotate or label the namespace
 by setting the reserved parameter `skip_grype` to `true`. Use the default or customized `parameter_prefixes`, for more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
-    ```bash
+    ```console
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_grype=true
     ```
 
@@ -133,7 +133,7 @@ namespace_provisioner:
 This adds the secret `git` to the Service Account mentioned
 in `ootb_supply_chain_*.service_account`. If not specified, it takes the `default` service account.
 
-- First additional source points to the location where the templated Git secret resides which will be created in all developer namespaces.
+- `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
 - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 - Add the secret to be added to the ServiceAccount in the `default_parameters`
 
@@ -160,12 +160,12 @@ Using Namespace Provisioner Controller
         create_export: true
     ```
 
-    - First additional source points to the location where the templated Git secret resides which will be created in all developer namespaces.
+    - `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
     - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
     Annotate the namespace with the parameter so the ServiceAccount is updated
 
-    ```bash
+    ```console
     kubectl annotate ns dev param.nsp.tap/supply_chain_service_account.secrets='["git"]'
     ```
 
@@ -183,7 +183,7 @@ Using Namespace Provisioner Controller
 
     If the ServiceAccount for delivery is different, then:
 
-    ```bash
+    ```console
     kubectl annotate ns dev param.nsp.tap/delivery_service_account.secrets='["git"]'
     ```
 
@@ -223,8 +223,8 @@ Using GitOps
         create_export: true
     ```
 
-    - First additional source points to the location where the templated Git secret resides which will be created in all developer namespaces.
-    - Configure the desired namespaces yaml in the GitOps repository with the parameter in the namespace. Check the sample [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-params-sa/desired-namespaces.yaml) where we are adding the `git` secret to the supply chain service account
+    - `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
+    - Configure the desired namespaces yaml in the GitOps repository with the parameter in the namespace. Check the sample [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-params-sa/desired-namespaces.yaml) where we are adding the `git` secret to the supply chain service account.
     - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
 >**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a
@@ -361,7 +361,7 @@ namespace_provisioner:
 Using Namespace Provisioner Controller
 : To deactivate the LimitRange for a specific developer namespace, annotate or label the namespace using the parameter `skip_grype` and set its value to `true`. Use the default or customized `parameter_prefixes`, for more information, as explained in the [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label) section.
 
-    ```bash
+    ```console
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_limit_range=true
     ```
 Using GitOps
