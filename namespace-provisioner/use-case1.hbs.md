@@ -1,6 +1,6 @@
 # Multiple Tekton pipelines and Scan policies in the same namespace
 
-Refer to the [Provision Developer Namespaces](provision-developer-ns.md) section to create a developer namespace.
+Refer to the [Provision Developer Namespaces](provision-developer-ns.hbs.md) section to create a developer namespace.
 
 Configure developer namespace to include more than one Tekton pipelines and ScanPolices.
 

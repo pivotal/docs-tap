@@ -45,8 +45,8 @@ Using Namespace Provisioner Controller
 
       - This label tells the Namespace Provisioner controller to add this namespace to the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
       - By default, the label’s value can be anything, including "".
-      - If required, you can change the default label selector, see [Customize Installation of Namespace Provisioner](customize-installation.md#con-label-selector).
-  3. Run the following command to verify the [default resources](reference.md#default-resources) have been created in the namespace:
+      - If required, you can change the default label selector, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md#con-label-selector).
+  3. Run the following command to verify the [default resources](reference.hbs.md#default-resources) have been created in the namespace:
 
       ```shell
       kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n YOUR-NEW-DEVELOPER-NAMESPACE
@@ -102,7 +102,7 @@ by Namespace Provisioner.
 
   >**Important**  The TAP values configuration example above creates the following two namespaces: `dev` and `qa`. If these namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps repository so they do not conflict with existing resources.
 
-  Run the following command to verify the [default resources](reference.md#default-resources) are created in the namespace:
+  Run the following command to verify the [default resources](reference.hbs.md#default-resources) are created in the namespace:
 
   ```shell
   kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n dev
@@ -131,7 +131,7 @@ by Namespace Provisioner.
   limitrange/dev-lr   2023-03-08T04:22:20Z
   ```
   
-  For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md).
+  For more information, see the GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 ## <a id ='additional-users-k8s-rbac'></a>Enable additional users with Kubernetes RBAC
   

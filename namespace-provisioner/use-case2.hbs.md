@@ -1,13 +1,13 @@
 # Add Tekton pipelines and Scan policies using namespace parameters
 
-Refer to the [Provision Developer Namespaces](provision-developer-ns.md) section to create a developer namespace.
+Refer to the [Provision Developer Namespaces](provision-developer-ns.hbs.md) section to create a developer namespace.
 
 Namespace Provisioner allows you to parameterize your additional resources and pass those parameters. Create a Tekton pipeline and ScanPolicy that is bespoke to certain namespaces that are running workloads using a particular language stack instead of creating all the pipelines in all provisioned namespaces.
 
 This use case uses looks at the pipelines and ScanPolicies in this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-parameterized).
 
 Using Namespace Provisioner Controller
-: When using the Namespace Provisioner controller, pass the parameters to a namespace via labels and annotations on the namespace. To enable this, set the `parameter_prefixes` in TAP configuration for Namespace Provisioner so the controller will look for labels/annotations starting with that prefix to populate parameters for a given namespace. See Controller section of [Customize Installation of Namespace Provisioner](customize-installation.md) guide for more information.
+: When using the Namespace Provisioner controller, pass the parameters to a namespace via labels and annotations on the namespace. To enable this, set the `parameter_prefixes` in TAP configuration for Namespace Provisioner so the controller will look for labels/annotations starting with that prefix to populate parameters for a given namespace. See Controller section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) guide for more information.
 
     Add the following configuration to your TAP values to add parameterized tekton pipelines and scan policies to your developer namespace:
 
@@ -81,7 +81,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-    **Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.md) guide for more information.
+    **Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) guide for more information.
 
     Sample of `gitops_install` files:
 

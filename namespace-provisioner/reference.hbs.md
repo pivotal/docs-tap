@@ -5,7 +5,7 @@ This topic contains know issues and limitations
 
 If you are using a GitOps repository to manage the list of namespaces, all the namespaces in the list must exist in the cluster. The provisioner application fails to reconcile if the namespaces do not exist on the cluster.
 
-If you switch from  controller mode to GitOps mode, you must manually remove the finalizer on all the namespaces previously managed by the controller. For more information on using controller versus GitOps, see [Manage a list of developer namespaces](provision-developer-ns.md).
+If you switch from  controller mode to GitOps mode, you must manually remove the finalizer on all the namespaces previously managed by the controller. For more information on using controller versus GitOps, see [Manage a list of developer namespaces](provision-developer-ns.hbs.md).
 
 To use different private repositories, the secret used for each entry (gitops_install, additional_sources) must be a unique name. Re-using the same secret is not supported due to a limitation in kapp-controller.
 

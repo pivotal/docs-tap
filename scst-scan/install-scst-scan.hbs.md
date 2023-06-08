@@ -76,7 +76,7 @@ There are two options for installing Supply Chain Security Tools – Scan
 
 The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
 
-The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Customize installation](../namespace-provisioner/customize-installation.md) in the Namespace Provisioner documentation for configuration steps.
+The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Customize installation](../namespace-provisioner/customize-installation.hbs.md) in the Namespace Provisioner documentation for configuration steps.
 
 ### <a id='install-scst-scan-manually'></a> Option 2: Install manually to each individual namespace
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
