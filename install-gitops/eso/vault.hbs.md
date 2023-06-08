@@ -591,7 +591,7 @@ Follow these steps to split the Tanzu Application Platform values:
     ...
     ```
 
-    For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
+    For more information, see [Components and installation profiles](../../about-package-profiles.hbs.md).
 
 1. Review the contents of `tap-values.yaml` and move all sensitive values into
 the Vault secret created in the [Review and store Tanzu Application Platform installation config](#reviewstore-tap-installation-config) section.
