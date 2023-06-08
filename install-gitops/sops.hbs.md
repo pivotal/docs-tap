@@ -348,7 +348,7 @@ for the sensitive portion of Tanzu Sync values:
     Example:
 
     ```console
-    mv tanzu-sync-values.sops.yaml $HOME/tap-gitops/clusters/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    mv tanzu-sync-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
 ## <a id='update-sensitive-tanzu-sync-values'></a> Updating sensitive Tanzu Sync values
