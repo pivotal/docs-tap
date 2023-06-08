@@ -21,9 +21,20 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-4-6-COMPONENT-NAME-ri'></a> COMPONENT-NAME
+#### <a id='1-4-6-intellij-ext-ri'></a> Tanzu Developer Tools for IntelliJ
 
-- Resolved issue description.
+- Permission-denied errors encountered during Live Update, when operating against platforms
+  configured to use the Jammy build stack, are now resolved.
+
+#### <a id='1-4-6-vs-ext-ri'></a> Tanzu Developer Tools for Visual Studio
+
+- Permission-denied errors encountered during Live Update, when operating against platforms
+  configured to use the Jammy build stack, are now resolved.
+
+#### <a id='1-4-6-vscode-ext-ri'></a> Tanzu Developer Tools for Visual Studio Code
+
+- Permission-denied errors encountered during Live Update, when operating against platforms
+  configured to use the Jammy build stack, are now resolved.
 
 ---
 
