@@ -483,12 +483,12 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
       exclude_dependencies: true
     ...
     ```
-   
-1. If you have not updated your TAP package install after adding the `exclude_dependencies: true` to your values file, you must do that now:
+ 
+1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
- ```console
- tanzu package installed update tap --namespace tap-install --values-file <PATH-TO-UPDATED-VALUES>
- ```
+    ```console
+    tanzu package installed update tap --namespace tap-install --values-file PATH-TO-UPDATED-VALUES
+    ```
 
 1. Get the latest version of the `tap` package by running:
 
