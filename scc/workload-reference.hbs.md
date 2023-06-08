@@ -110,6 +110,7 @@ The reference for the template details which supply chains include the template.
 - carvel_package_name_suffix (experimental): [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental),
   [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental),
   [package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
+- carvel_package_openapiv3_enabled (experimental): [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental)
 
 ## Service Account
 
