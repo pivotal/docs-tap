@@ -45,7 +45,7 @@ Using Namespace Provisioner Controller
 
       - This label tells the Namespace Provisioner controller to add this namespace to the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
       - By default, the label’s value can be anything, including "".
-      - If required, you can change the default label selector, see [Customize Installation of Namespace Provisioner](customize-installation.md#con-label-selector).
+      - If required, you can change the default label selector, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md#con-label-selector).
   3. Run the following command to verify the [default resources](default-resources.hbs.md) have been created in the namespace:
 
       ```shell
