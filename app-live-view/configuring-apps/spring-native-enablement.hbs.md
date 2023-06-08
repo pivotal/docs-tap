@@ -40,7 +40,6 @@ For Application Live View to interact with a Spring Native app within Tanzu Appl
 1. Add the following configuration in `pom.xml` to generate `build-info.properties` into your
 Spring Boot application.
 This information is used to display the Spring Boot version that the app uses in Application Live View.
-<!-- Can I reword to "Application Live View uses this information to display the Spring Boot version that the app uses"? -->
 
     ```xml
     <plugin>
@@ -64,7 +63,27 @@ This information is used to display the Spring Boot version that the app uses in
 1. Create a workload for the Spring Native application. For example:
 
     ```console
-    tanzu apps workload create spring-cloud-serverless --git-repo https://github.com/vudayani-vmw/spring-cloud-serverless --git-branch main --type web --label apps.tanzu.vmware.com/auto-configure-actuators=true --label app.kubernetes.io/part-of=spring-cloud-serverless --yes --annotation autoscaling.knative.dev/min-scale=1 --build-env "BP_JVM_VERSION=17" --build-env "BP_NATIVE_IMAGE=true" --build-env "BP_MAVEN_BUILD_ARGUMENTS= -Pnative -Dmaven.test.skip=true --no-transfer-progress package -Dspring-boot.aot.jvmArguments='-Dmanagement.endpoint.health.probes.add-additional-paths='true' -Dmanagement.endpoint.health.show-details='always' -Dmanagement.endpoints.web.base-path='/actuator' -Dmanagement.endpoints.web.exposure.include='*' -Dmanagement.health.probes.enabled='true' -Dmanagement.server.port=8081 -Dserver.port=8080' " --env MANAGEMENT_SERVER_PORT=8081 --env MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS=true  --env MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS=always --env MANAGEMENT_ENDPOINTS_WEB_BASE_PATH="/actuator" --env MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE="*"  --env MANAGEMENT_HEALTH_PROBES_ENABLED=true --env SERVER_PORT=8080
+    tanzu apps workload create spring-cloud-serverless \
+    --git-repo https://github.com/vudayani-vmw/spring-cloud-serverless --git-branch main \
+    --type web --label apps.tanzu.vmware.com/auto-configure-actuators=true \
+    --label app.kubernetes.io/part-of=spring-cloud-serverless --yes \
+    --annotation autoscaling.knative.dev/min-scale=1 \
+    --build-env "BP_JVM_VERSION=17" --build-env "BP_NATIVE_IMAGE=true" \
+    --build-env "BP_MAVEN_BUILD_ARGUMENTS= -Pnative -Dmaven.test.skip=true \
+    --no-transfer-progress package \
+    -Dspring-boot.aot.jvmArguments='-Dmanagement.endpoint.health.probes.add-additional-paths='true'\
+    -Dmanagement.endpoint.health.show-details='always' \
+    -Dmanagement.endpoints.web.base-path='/actuator' \
+    -Dmanagement.endpoints.web.exposure.include='*' \
+    -Dmanagement.health.probes.enabled='true' \
+    -Dmanagement.server.port=8081 -Dserver.port=8080' " \
+    --env MANAGEMENT_SERVER_PORT=8081 \
+    --env MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS=true  \
+    --env MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS=always \
+    --env MANAGEMENT_ENDPOINTS_WEB_BASE_PATH="/actuator" \
+    --env MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE="*"  \
+    --env MANAGEMENT_HEALTH_PROBES_ENABLED=true \
+    --env SERVER_PORT=8080
     ```
     <!-- Can I break up the lines at sensible points with backslashes to make reading it easier? -->
 
