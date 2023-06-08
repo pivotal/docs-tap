@@ -53,6 +53,8 @@ docs.vmware.com is built.
   - [Install with GitOps (beta)](install-gitops/intro.hbs.md)
       - [Install overview](install-gitops/intro.hbs.md)
       - [GitOps with ESO](install-gitops/eso.hbs.md)
+          - [AWS Secrets Manager](install-gitops/eso/aws-secrets-manager.hbs.md)
+          - [Vault](install-gitops/eso/vault.hbs.md)
       - [GitOps with SOPS](install-gitops/sops.hbs.md)
       - [Install individual packages](install-gitops/components.hbs.md)
       - [Set up namespaces](install-gitops/set-up-namespaces.hbs.md)
