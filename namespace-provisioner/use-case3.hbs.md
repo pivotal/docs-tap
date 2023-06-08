@@ -225,10 +225,10 @@ To configure the service account to work with private Git repositories, follow t
 
 2. To create a secret that will be added to the service account in the developer namespace within the GitOps repository, use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/credentials/git.yaml) or follow the example provided below.
 
-Instead of directly including the actual username and password in the Git repository secret, use
-the `data.values.imported` keys to add references to the values from the git-auth secret created in Step 1.
+    Instead of directly including the actual username and password in the Git repository secret, use
+    the `data.values.imported` keys to add references to the values from the git-auth secret created in Step 1.
 
-This secret represents the actual Git secret that will be created by the Namespace Provisioner in each managed namespace. It should be included in your Git repository linked in the `additional_sources` section of TAP values mentioned in Step 4.
+    This secret represents the actual Git secret that will be created by the Namespace Provisioner in each managed namespace. It should be included in your Git repository linked in the `additional_sources` section of TAP values mentioned in Step 4.
 
     ```yaml
     #@ load("@ytt:data", "data")
