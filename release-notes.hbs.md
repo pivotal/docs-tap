@@ -36,9 +36,10 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id="1-5-2-tap-gui-plug-in-ri"></a> Tanzu Application Platform GUI plug-ins
 
-- **Security Analysis GUI Plug-in:**
+- **Security Analysis GUI plug-in:**
   - **CVE Details:** The impacted workload count in the widget now matches the table.
-  - **Security Analysis Dashboard:** Snyk CVE IDs are no longer overlapped by the Highest Reach Critical Vulnerabilities chart.
+  - **Security Analysis Dashboard:** The Highest Reach Critical Vulnerabilities chart no longer
+    overlaps Snyk CVE IDs.
   - **Package Details:** Removed extra versions from Workload Builds using Package table.
 
 ---
