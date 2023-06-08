@@ -60,7 +60,8 @@ Options if using Controller
       path: _ytt_lib/testing-scanning-supplychain-setup
    ```
 
-    If you do not specify a `path` in the `additional_sources` configuration, Namespace Provisioner automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
+    If you do not specify a `path` in the `additional_sources` configuration, Namespace Provisioner automatically generates a path as follows:
+    `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
    See [Git Authentication for Private repository](use-case3.md#git-private).
 
