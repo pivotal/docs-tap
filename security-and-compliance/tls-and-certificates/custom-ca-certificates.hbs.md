@@ -28,4 +28,4 @@ shared:
 
 ```
 
-When using GitOps please also see the guide on [Git Authentication](../../scc/git-auth.hbs.md) to configure the `caFile` parameter.
+When using git with custom CA in supply chains please also see the guide on [Git Authentication](../../scc/git-auth.hbs.md#https-with-custom-ca-certificate) to configure the `caFile` parameter.

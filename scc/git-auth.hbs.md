@@ -71,6 +71,8 @@ workload by including it in its set of secrets. For example:
 
 ## HTTPS with Custom CA Certificate
 
+In addition to the [`shared.ca_cert_data`](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md) field, the certificate needs to be added to the secret used to access the git repository. As of writing the only platform tested with custom CA certificates is Gitlab.
+
 The secret is set up similarly as above, but with the addition of the `caFile` field specifying a certificate authority.
 
    ```yaml
