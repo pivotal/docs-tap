@@ -6,7 +6,7 @@
 
 This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
 through GitOps with secrets managed externally in AWS Secrets Manager. 
-To decide which approach to use, see [Choosing SOPS or ESO](reference.hbs.md#choosing-sops-or-eso).
+To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
 Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
 The External Secrets Operator integration in this release of Tanzu GitOps RI
@@ -17,9 +17,9 @@ Other combinations of Kubernetes distribution and ESO providers are not verified
 
 Before installing Tanzu Application Platform, ensure you have:
 
-- Completed the [Prerequisites](../prerequisites.hbs.md).
-- Created [AWS Resources](../install-aws/resources.hbs.md).
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
+- Completed the [Prerequisites](../../prerequisites.hbs.md).
+- Created [AWS Resources](../../install-aws/resources.hbs.md).
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 - Installed [eksctl CLI](https://github.com/weaveworks/eksctl#installation).
 
@@ -566,7 +566,7 @@ The configuration for the Tanzu Application Platform is divided into two separat
 
 Follow these steps to split the Tanzu Application Platform values:
 
-1. Create the file `cluster-config/values/tap-values.yaml` by using the [Full Profile (AWS)](../install-aws/profile.hbs.md#full-profile)
+1. Create the file `cluster-config/values/tap-values.yaml` by using the [Full Profile (AWS)](../../install-aws/profile.hbs.md#full-profile)
 which contains the minimum configurations required to deploy Tanzu Application Platform on AWS.
 
     The Tanzu Application Platform values are input configurations to the Tanzu Application Platform installation
@@ -582,7 +582,7 @@ which contains the minimum configurations required to deploy Tanzu Application P
     ...
     ```
 
-    For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
+    For more information, see [Components and installation profiles](../../about-package-profiles.hbs.md).
 
 1. Review the contents of `tap-values.yaml` and move all sensitive values into
 the AWS Secrets Store secret created in the [Review and store Tanzu Application Platform installation config](#reviewstore-tap-installation-config) section.
