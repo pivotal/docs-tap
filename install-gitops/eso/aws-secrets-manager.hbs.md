@@ -8,7 +8,7 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed externally in AWS Secrets Manager. 
 To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, i.e SOPs to ESO. However changing between AWS Secrets Manager and Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI
 is verified to support AWS Elastic Kubernetes Service cluster with AWS Secrets Manager.
 Other combinations of Kubernetes distribution and ESO providers are not verified.
@@ -194,7 +194,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
     ```console
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     export AWS_REGION=AWS-REGION
-    export CLUSTER_NAME=EKS-CLUSTER-NAME
+    export CLUSTER_NAME=CLUSTER-NAME
     export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
     ```
 
@@ -268,7 +268,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
 1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository. There are two supported authentication methods:
 
-    - SSH
+    1. SSH
 
       Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
       the following information as plaintext:
@@ -290,8 +290,8 @@ Follow these steps to create the sensitive configuration and review the non-sens
         --name dev/${CLUSTER_NAME}/tanzu-sync/sync-git/ssh \
         --secret-string "$(cat <<EOF
       {
-      "privatekey": "$(cat ~/.ssh/id_ed25519 | awk '{printf "%s\\\\n", $0}')",
-      "knownhosts": "$(ssh-keyscan github.com | awk '{printf "%s\\\\n", $0}')"
+        "privatekey": "$(cat ~/.ssh/id_ed25519 | awk '{printf "%s\\\\n", $0}')",
+        "knownhosts": "$(ssh-keyscan github.com | awk '{printf "%s\\\\n", $0}')"
       }
       EOF
       )"
@@ -304,7 +304,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
       - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
       string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
-    - Basic Authentication
+    2. Basic Authentication
 
       Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
         the following information as plaintext:
@@ -425,7 +425,7 @@ containing the following information as plaintext:
 
 5. Replace any `TODO` sections with the relevant values.
 
-    `# TODO: Fill in your configuration for ssh or basic auth here (see tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml)`
+    Line 10 from the example above states: `# TODO: Fill in your configuration for ssh or basic auth here (see tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml)`
 
     Configuration example for SSH authentication:
 
@@ -441,10 +441,10 @@ containing the following information as plaintext:
         sync_git:
           ssh:
             private_key:
-              key: dev/iterate-green/tanzu-sync/sync-git/ssh"
+              key: dev/iterate-green/tanzu-sync/sync-git/ssh
               property: privatekey
             known_hosts:
-              key: dev/iterate-green/tanzu-sync/sync-git/ssh"
+              key: dev/iterate-green/tanzu-sync/sync-git/ssh
               property: knownhosts
         install_registry_dockerconfig:
           dockerconfigjson:
@@ -465,10 +465,10 @@ containing the following information as plaintext:
         sync_git:
           basic_auth:
             username:
-              key: dev/iterate-green/tanzu-sync/sync-git/basic_auth"
+              key: dev/iterate-green/tanzu-sync/sync-git/basic_auth
               property: username
             password:
-              key: dev/iterate-green/tanzu-sync/sync-git/basic_auth"
+              key: dev/iterate-green/tanzu-sync/sync-git/basic_auth
               property: password
         install_registry_dockerconfig:
           dockerconfigjson:

@@ -25,14 +25,25 @@ To delete Tanzu Sync Application, run:
 kapp delete -a tanzu-sync
 ```
 
-## <a id='del-aws-resources'></a>Delete external resources (ESO installation only)
+## <a id='del-aws-resources'></a>Delete external resources from AWS Secrets Manager
 
 To delete external resources from AWS, run:
 
 ```console
 cd $HOME/REPO-NAME/clusters/CLUSTER-NAME
-./tanzu-sync/aws/scripts/delete-irsa.sh
-./tanzu-sync/aws/scripts/delete-policies.sh
+./tanzu-sync/aws/scripts/setup/delete-irsa.sh
+./tanzu-sync/aws/scripts/setup/delete-policies.sh
+```
+
+## <a id='del-vault-resources'></a>Delete external resources from Hashicorp Vault
+
+To delete external resources from AWS, run:
+
+```console
+cd $HOME/REPO-NAME/clusters/CLUSTER-NAME
+./tanzu-sync/vault/scripts/setup/delete-roles.sh
+./tanzu-sync/vault/scripts/setup/delete-policies.sh
+./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh
 ```
 
 ## <a id='remove-tanzu-cli'></a> Remove the Tanzu CLI, plug-ins, and associated files
