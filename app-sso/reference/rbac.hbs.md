@@ -1,7 +1,5 @@
 # RBAC for AppSSO
 
-<!--- TODO(mbrauer) --->
-
 The Application Single Sign-On (commonly called AppSSO) package aggregates the 
 following permissions into Tanzu Application Platform's well-known roles. 
 For more information, see 
@@ -220,4 +218,4 @@ kubectl get clusterrolebinding -A -oyaml | yq '.items[] | select(.subjects[] | c
 ```
 
 AppSSO also installs OpenShift specific RBAC and resources. For more information, 
-see [Application Single Sign-On for OpenShift clusters](../platform-operators/openshift.hbs.md).
+see [Application Single Sign-On for OpenShift clusters](./openshift.hbs.md).

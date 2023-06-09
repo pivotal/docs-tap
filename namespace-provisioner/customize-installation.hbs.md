@@ -4,7 +4,7 @@ Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 
 The Namespace Provisioner package is installed as part of all the standard installation profiles except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
 
-The default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster. For a list of what resources are created for different profile and supply chain combinations, see the [Default Resources](reference.md#default-resource) mapping table.
+The default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster. For a list of what resources are created for different profile and supply chain combinations, see the [Default Resources](reference.hbs.md#default-resource) mapping table.
 
 To see the Namespace Provisioner Package Schema for all configurable values, run:
 
@@ -35,12 +35,12 @@ Options if using Controller
    templated resources to create in the provisioned namespaces, in addition to the default
    resources. See the “fetch” section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification for the format. Only the Git type fetch is supported.
    - `additional_sources[].git` can have a secretRef specified for providing authentication details for
-   connecting to a private Git repository. For more information, see [Git Authentication for Private repository](use-case3.md#git-private). The following parameters are available:
+   connecting to a private Git repository. For more information, see [Git Authentication for Private repository](use-case3.hbs.md#git-private). The following parameters are available:
 
      - `name`: name of the secret to be imported to use as valuesFrom in kapp.
      - `namespace`: namespace where the secret exists.
      - `create_export`:  Boolean flag to control creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
-     - `path` (**Optional**) must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib`  prefix can be any string value, and must be unique across all additional sources. If not provided, namespace provisioner will generate a `path` using `url` and `subPath`.
+     - `path` (**Optional**) must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib`  prefix can be any string value, and must be unique across all additional sources. If you do not provide a `path`, Namespace Provisioner generates a `path` using `url` and `subPath`.
 
    Sample TAP values configuration:
 
@@ -60,9 +60,10 @@ Options if using Controller
       path: _ytt_lib/testing-scanning-supplychain-setup
    ```
 
-    In case a path is not specified in the additional sources configuration, the namespace provisioner will automatically generate a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
+    If you do not specify a `path` in the `additional_sources` configuration, Namespace Provisioner automatically generates a path as follows:
+    `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
-   See [Git Authentication for Private repository](use-case3.md#git-private).
+   See [Git Authentication for Private repository](use-case3.hbs.md#git-private).
 
    **<a id ='con-adjust-sync'></a>Adjust sync period of Namespace Provisioner**
 
@@ -274,7 +275,7 @@ Options if using GitOps
   - `subPath`: the Git repository subpath where the file is
   - `ref`: the Git repository reference, the default is origin/main
   - `secretRef`: if the repository needs authentication, the reference to the secret is set here
-     - `name`: the name of the secret to be used for the repository authentication, see [Git Authentication for Private repository](use-case3.md#git-private).
+     - `name`: the name of the secret to be used for the repository authentication, see [Git Authentication for Private repository](use-case3.hbs.md#git-private).
      - `namespace`: the namespace where the secret is created. Namespace Provisioner creates a Carvel secretgen [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) from this given namespaces to Namespace Provisioner namespace.
      - `create_export`: Boolean flag to create a Carvel secretgen [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) from the given namespace to Namespace Provisioner namespace. The default value is `false`.
      
@@ -320,12 +321,12 @@ Options if using GitOps
 
    - `additional_sources` is an array of locations of your Git repositories that contain Platform Operator templated resources to be created on the provisioned namespaces, in addition to the default resources.
    - See the "fetch" section of the  [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification  for the format. Only the Git type fetch is supported.
-   - `additional_sources[].git` can have secretRef specified for providing authentication details for connecting to a private Git repository. See [Git Authentication for Private repository](use-case3.md#git-private) for more details. The following parameters are available:
+   - `additional_sources[].git` can have secretRef specified for providing authentication details for connecting to a private Git repository. See [Git Authentication for Private repository](use-case3.hbs.md#git-private) for more details. The following parameters are available:
 
       - `name`: name of the secret to be imported to use as valuesFrom in kapp.
       - `namespace`: namespace where the secret exists.
       - `create_export`: Boolean flag to decide creation of a SecretExport resource in the namespace. The default value is `false`. If the secret is already exported, ensure that it is exported for the `tap-namespace-provisioning` namespace.
-   - `path` (**Optional**) must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib` prefix can be any string value and must be unique across all additional sources. If not provided, namespace provisioner will generate a `path` path from the git `url` and `subPath`.
+   - `path` (**Optional**) must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib` prefix can be any string value and must be unique across all additional sources. If not provided, Namespace Provisioner generates a `path` path from the Git `url` and `subPath`.
 
   Sample TAP values configuration:
 
@@ -349,9 +350,9 @@ Options if using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-  In case a path is not specified in the additional sources configuration, the namespace provisioner will automatically generate a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scanning-supplychain-0`
+  If you do not specify a `path` in the `additional sources` configuration, Namespace Provisioner automatically generate a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scanning-supplychain-0`
 
-  See [Git Authentication for using a private Git repository](use-case3.md#git-private) guide.
+  See [Git Authentication for using a private Git repository](use-case3.hbs.md#git-private) guide.
 
   **<a id ='git-adjust-sync'></a>Adjust sync period of Namespace Provisioner**
 

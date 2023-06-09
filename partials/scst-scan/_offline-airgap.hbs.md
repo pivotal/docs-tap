@@ -29,7 +29,7 @@ For information about setting up an offline vulnerability database, see the [Anc
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
-> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.md).
+> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md).
 
 ## <a id="troubleshooting"></a> Troubleshooting
 

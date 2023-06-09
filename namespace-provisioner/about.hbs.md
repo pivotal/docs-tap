@@ -19,8 +19,8 @@ Controller mode
     ![Diagram of Namespace Provisioner controller.](../images/namespace-provisioner-controller.png)
 
     - The list of developer namespaces is managed by the Namespace Provisioner controller using a label selector `apps.tanzu.vmware.com/tap-ns=""`
-    - Namespace Provisioner creates [default resources](reference.md#default-resources) in all managed namespaces.
-    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under the `additional_sources` section in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.md).
+    - Namespace Provisioner creates [default resources](default-resources.hbs.md) in all managed namespaces.
+    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under the `additional_sources` section in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 GitOps mode
 : Gitops mode has the following characteristics
@@ -28,8 +28,8 @@ GitOps mode
     ![Diagram of Namespace Provisioner.](../images/namespace-provisioner-1.png)
 
     - The list of developer namespaces is managed in a Git repository that is specified in the `gitops_install` section of the Namespace Provisioner configuration.
-    - Namespace Provisioner creates [default resources](reference.md#default-resources) that are shipped Out of the Box in all managed namespaces.
-    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repositories specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.md).
+    - Namespace Provisioner creates [default resources](default-resources.hbs.md) that are shipped Out of the Box in all managed namespaces.
+    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repositories specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 <br>
 ## <a id='carvel-app'></a>Provisioner Carvel application
@@ -70,11 +70,11 @@ Controller mode
     ```
 
 GitOps mode
-: In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the `Options if using GitOps` section in [Customize Install](customize-installation.md).
+: In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the `Options if using GitOps` section in [Customize Install](customize-installation.hbs.md).
 
 <br>
 ## <a id ='nsp-controller'></a>Namespace Provisioner controller
 
 The Namespace Provisioner controller (controller) is installed by default and manages the content contained in
 the `desired-namespaces` ConfigMap. The controller watches namespaces in the cluster and updates the
-`desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector.The defalut namespace label selector is `apps.tanzu.vmware.com/tap-ns`. For more information, see [Use a different label selector than default](customize-installation.md#con-label-selector).
+`desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector.The defalut namespace label selector is `apps.tanzu.vmware.com/tap-ns`. For more information, see [Use a different label selector than default](customize-installation.hbs.md#con-label-selector).

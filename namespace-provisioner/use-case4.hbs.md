@@ -3,13 +3,13 @@
 This topic describes how to deactivate Grype and how to configure the `default` service account to
 work with private Git repositories.
 
-## Deactivate Grype install
+## <a id='deactivate-grype'></a>Deactivate Grype install
 
 Grype is installed by Namespace Provisioner by default. If you prefer to use a different scanner for namespaces instead of Grype, you can deactivate the installation of the default Grype scanner.
 
 ### Deactivate Grype for all namespaces
 
-To deactivate the default installation of `grype` for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
+To deactivate the default installation of Grype for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
 
 ```yaml
 namespace_provisioner:
@@ -17,19 +17,20 @@ namespace_provisioner:
     skip_grype: true
 ```
 
-By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `grype-scanner-{namespace}` are not generated in the `tap-install` namespace for any namespaces that are managed by the namespace provisioner.
+By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `grype-scanner-{namespace}` are not generated in the `tap-install` namespace for any namespaces that are managed by the Namespace Provisioner.
 
 ### Deactivate Grype for a specific namespace
 
 Using Namespace Provisioner Controller
-: To deactivate the installation of Grype for a specific namespace, annotate or label the desired namespace by setting the reserved parameter `skip_grype` to `true`. Use the default or customized `parameter_prefixes`, for more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
+: To deactivate the installation of Grype for a specific namespace, annotate or label the namespace
+by setting the reserved [parameter](parameters.hbs.md#namespace-parameters) `skip_grype` to `true`. Use the default or customized `parameter_prefixes`, for more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
-    ```bash
+    ```console
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_grype=true
     ```
 
 Using GitOps
-: Add the parameter `skip_grype` with the value `true` in the desired namespaces file in the GitOps repository.
+: Add the [parameter](parameters.hbs.md#namespace-parameters) `skip_grype` with the value `true` in the namespaces file in the GitOps repository.
 
     ```yaml
     #@data/values
@@ -42,14 +43,14 @@ Using GitOps
 
 <br>
 
-## Customize service accounts
+## <a id='customize-sa'></a>Customize service accounts
 
 This section provides instructions on how to configure the `default` service account to work with
 private Git repositories for workloads and supply chain using Namespace Provisioner.
 
 To configure the service account to work with private Git repositories, follow the steps below:
 
-1. Create a secret in the `tap-install` namespace (or any namespace of your preference) that
+1. Create a secret in the `tap-install` namespace, or any namespace that
 contains the Git credentials in the YAML format.
     - `host`, `username`, and `password` values for HTTP based Git Authentication.
     - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
@@ -81,7 +82,7 @@ contains the Git credentials in the YAML format.
     ```
 
 2. Create a scaffolding of a Git secret, this must be added to the service account in your developer namespace in your GitOps repository. A [sample secret](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/credentials/git.yaml) is available
-in the vmware-tanzu/application-accelerator-samples Git repo.
+in the vmware-tanzu/application-accelerator-samples Git repository.
 Instead of putting the user name and password in the secret in your Git repository, use the `data.values.imported` keys to put the reference to the values in the git-auth secret created in step 1. For example:
 
     ```yaml
@@ -100,11 +101,12 @@ Instead of putting the user name and password in the secret in your Git reposito
       password: #@ base64.encode(data.values.imported.git.token)
     ```
 
-3. Put all this together in as follows:
+3. Complete the process by customizing the SupplyChain ServiceAccount for all or specific namespaces
+as described in the following sections.
 
 ### Update ServiceAccount for all namespaces
 
-To customize the SupplyChain Service Account by adding additional `secrets` or `imagePullSecrets` for all namespaces managed by the Namespace Provisioner, modify the `supply_chain_service_account` parameter within the `default_parameters` section of the TAP values in the `namespace_provisioner` configuration. If you have a separate Service Account for delivery purposes, configure it using the `delivery_service_account` parameter. Refer to the example below for guidance:
+To customize the SupplyChain ServiceAccount by adding additional `secrets` or `imagePullSecrets` for all namespaces managed by the Namespace Provisioner, modify the `supply_chain_service_account` [parameter](parameters.hbs.md#namespace-parameters) within the `default_parameters` section of the TAP values in the `namespace_provisioner` configuration. If you have a separate Service Account for delivery purposes, configure it using the `delivery_service_account` parameter. Refer to the example below for guidance:
 
 ```yaml
 namespace_provisioner:
@@ -131,13 +133,13 @@ namespace_provisioner:
 This adds the secret `git` to the Service Account mentioned
 in `ootb_supply_chain_*.service_account`. If not specified, it takes the `default` service account.
 
-- First additional source points to the location where our templated Git secret resides which will be created in all developer namespaces.
+- `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
 - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 - Add the secret to be added to the ServiceAccount in the `default_parameters`
 
 ### Update ServiceAccount for a specific namespace
 
-To customize the SupplyChain ServiceAccount for a specific namespace managed by the Namespace Provisioner and include additional `secrets` or `imagePullSecrets`, you can utilize the `supply_chain_service_account` parameter. This parameter allows you to modify the ServiceAccount and add any required `secrets` or `imagePullSecrets`.
+To customize the SupplyChain ServiceAccount for a specific namespace managed by the Namespace Provisioner and include additional `secrets` or `imagePullSecrets`, use the `supply_chain_service_account` parameter. This [parameter](parameters.hbs.md#namespace-parameters) allows you to modify the ServiceAccount and add any required `secrets` or `imagePullSecrets`.
 
 If you have a separate ServiceAccount for delivery purposes, you can also configure it using the `delivery_service_account` parameter.
 
@@ -158,12 +160,12 @@ Using Namespace Provisioner Controller
         create_export: true
     ```
 
-    - First additional source points to the location where our templated Git secret resides which will be created in all developer namespaces.
+    - `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
     - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
-    Annotate the desired namespace with the parameter so the ServiceAccount get updated
+    Annotate the namespace with the [parameter](parameters.hbs.md#namespace-parameters) so the ServiceAccount is updated
 
-    ```bash
+    ```console
     kubectl annotate ns dev param.nsp.tap/supply_chain_service_account.secrets='["git"]'
     ```
 
@@ -181,7 +183,7 @@ Using Namespace Provisioner Controller
 
     If the ServiceAccount for delivery is different, then:
 
-    ```bash
+    ```console
     kubectl annotate ns dev param.nsp.tap/delivery_service_account.secrets='["git"]'
     ```
 
@@ -221,8 +223,8 @@ Using GitOps
         create_export: true
     ```
 
-    - First additional source points to the location where our templated Git secret resides which will be created in all developer namespaces.
-    - Configure the desired namespaces yaml in the GitOps repo with the parameter in the namespace (check the sample [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-params-sa/desired-namespaces.yaml) where we are adding the `git` secret to the supply chain service account)
+    - `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
+    - Configure the desired namespaces yaml in the GitOps repository with the [parameter](parameters.hbs.md#namespace-parameters) in the namespace. Check the sample [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-params-sa/desired-namespaces.yaml) where we are adding the `git` secret to the supply chain service account.
     - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
 >**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a
@@ -230,9 +232,9 @@ SecretExport is created for the `workload-git-auth` secret in the `tap-install` 
 automatically by Namespace Provisioner. After the changes are reconciled, the secret named **git**
 is in all provisioned namespaces and is also added to the default service account of those namespaces.
 
-## Customize Limit Range defaults
+## <a id='custom-lr'></a>Customize Limit Range defaults
 
-Namespace Provisioner creates the [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all Namespace Provisioner managed namespaces. For more information, see [Default Resources](reference.hbs.md#default-resources).
+Namespace Provisioner creates the [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resources on Run clusters in all Namespace Provisioner managed namespaces. For more information, see [Default Resources](default-resources.hbs.md).
 
 You can opt-in to have the LimitRange resource created on Full and Iterate clusters. For more
 information, see [Set/Update LimitRange defaults for all namespaces](#update-lr) and [Set/Update LimitRange defaults for a specific namespace](#update-lr-specific).
@@ -271,7 +273,7 @@ namespace_provisioner:
 
 ### <a id='update-lr-specific'></a>Set or Update LimitRange defaults for a specific namespace
 
-Override the LimitRange for specific namespaces follows:
+Override the LimitRange for specific namespaces as follows:
 
 Using Namespace Provisioner Controller
 : Annotate or label a namespace using the default _parameter_prefix_ `param.nsp.tap/` followed by the
@@ -339,14 +341,14 @@ Using GitOps
     The Namespace Provisioner creates a LimitRange with default values for `qa` namespace and with
     the given values for `dev` namespace.
 
-## Deactivate LimitRange Setup
+## <a id='deactivate-lr'></a>Deactivate LimitRange Setup
 
 The Namespace Provisioner generates a Kubernetes LimitRange object as a
-[default resource](reference.hbs.md#default-resources) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to deactivate the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
+[default resource](default-resources.hbs.md) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to deactivate the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
 
 ### Deactivate for all namespaces
 
-To exclude the installation of the default LimitRange, set the `skip_limit_range` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
+To exclude the installation of the default LimitRange, set the `skip_limit_range` [parameter](parameters.hbs.md#namespace-parameters) to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
 
 ```yaml
 namespace_provisioner:
@@ -354,16 +356,16 @@ namespace_provisioner:
     skip_limit_range: true
 ```
 
-### Deactivate for a specific namespaces
+### Deactivate for a specific namespace
 
 Using Namespace Provisioner Controller
-: To deactivate the LimitRange for a specific developer namespace, you can annotate or label the desired namespace using the parameter `skip_grype` and set its value to `true`. This can be done by utilizing the default or customized `parameter_prefixes`, as explained in the [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label) section.
+: To deactivate the LimitRange for a specific developer namespace, annotate or label the namespace using the [parameter](parameters.hbs.md#namespace-parameters) `skip_grype` and set its value to `true`. Use the default or customized `parameter_prefixes`, for more information, as explained in the [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label) section.
 
-    ```bash
+    ```console
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_limit_range=true
     ```
 Using GitOps
-: Add the parameter `skip_limit_range` with the value `true` in the desired namespaces file in the GitOps repository as shown below:
+: Add the parameter `skip_limit_range` with the value `true` in the namespaces file in the GitOps repository as shown below:
 
     ```yaml
     #@data/values
