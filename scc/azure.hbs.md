@@ -1,6 +1,8 @@
 # Using Azure DevOps as a Git provider with your supply chains
 
-This topic describes how to use Azure DevOps as a Git provider with your Supply Chain Choreographer supply chains.
+This topic describes how you can Azure DevOps as a Git provider with your Supply Chain Choreographer supply chains.
+
+## Overview 
 
 There are two uses for Git in a supply chain:
 
@@ -16,16 +18,22 @@ For information about how Azure DevOps is different from other Git providers, se
 
 The operator requires special configuration to integrate Azure DevOps repositories into a supply chain.
 
-## <a id="Azure Auth"></a> Azure Authentication
+## <a id="azure-auth"></a> Azure authentication
 
-Documentation for configuring secrets to authenticate with your Azure Devops git repository can be found
-[here](./git-auth.hbs.md). Note that Azure http/s auth requires:
+You can use Azure authentication with Supply Chain Choreographer. 
+
+For information about configuring secrets to authenticate with your Azure DevOps Git repository, see 
+[Use Git authentication with Supply Chain Choreographer](./git-auth.hbs.md). 
+
+Azure http and https authentication requires:
+
 ```yaml
 username: "_token"
 password: AZURE-USER-TOKEN
 ```
 
-See Microsoft documentation for [Azure Devops Personal Access Tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate).
+Where `AZURE-USER-TOKEN` is your Azure personal access token. 
+See [Azure Devops Personal Access Tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate) in the Microsoft documentation.
 
 ## <a id="repo-committed"></a> Using Azure DevOps as a repository for committed code
 
@@ -72,7 +80,7 @@ The following example uses the Azure DevOps Git repository:
 
 `https://dev.azure.com/vmware-tanzu/tap/_git/tap`
 
-Set the `gitops_server_kind` workload params to `azure`.
+Set the `gitops_server_kind` workload parameters to `azure`.
 
   ```yaml
   apiVersion: carto.run/v1alpha1
@@ -86,7 +94,7 @@ Set the `gitops_server_kind` workload params to `azure`.
       ...
   ```
 
-Set other gitops values in either tap-values or in the workload params.
+Set other GitOps values in either tap-values or in the workload parameters.
 
   - By using tap-values:
 
