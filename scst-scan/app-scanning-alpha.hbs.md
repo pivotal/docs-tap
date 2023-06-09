@@ -257,10 +257,9 @@ To create a ClusterImageTemplate to which you can incorporate a scanner of your 
 
 #### <a id="config-supply-chain"></a> Configuring the supply chain
 
-The `ImageVulnerabilityScan` can integrate with the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) by using either a user created ClusterImageTemplate or the following packaged ClusterImageTemplates:
+The `ImageVulnerabilityScan` can integrate with the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) by using either a user created ClusterImageTemplate or the following packaged ClusterImageTemplate:
 
 - `image-vulnerability-scan-grype`
-- `image-vulnerability-scan-trivy`
 
 **Note** SCST - Scan 2.0 is in beta and active keychains and workspace bindings are not modifiable in the packaged ClusterImageTemplates.
 
