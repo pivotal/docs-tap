@@ -134,6 +134,6 @@ Where:
 - `SNYK-SCANNER-IMAGE` is the Snyk Scanner image used to run Snyk scans. See [Snyk documentation](https://github.com/snyk/snyk-images) for Snyk Docker images.
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. View the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx) for more details.
 
-> **Note:** After detecting vulnerabilities the Snyk docker images will terminate with Exit Code 1 resulting in a failed scan task. A possible solution could be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
+> **Note:** After detecting vulnerabilities, the Snyk docker image will terminate with Exit Code 1 resulting in a failed scan task. A possible solution could be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
 
 See the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config) for more information on setting up scanner credentials.
