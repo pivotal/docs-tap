@@ -25,6 +25,13 @@ In particular, the `sso.apps.tanzu.vmware.com` package has these dependencies:
 * `crossplane.tanzu.vmware.com` (installation-time and runtime)
 * `service-bindings.tanzu.vmware.com` (runtime)
 
+> **Note**
+> - Installation-time dependencies are expected to present on the cluster at
+>   the moment the AppSSO package is being applied.
+> - Runtime dependencies don't have to be present at the moment the AppSSO
+>   package is being applied, but they are required eventually and needed to
+>   function fully.
+
 ## Installation
 
 1. Learn more about the AppSSO package:

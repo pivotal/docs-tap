@@ -71,11 +71,11 @@ application code can use them to initiate OAuth2 flows.
 
 ### <a id='redirect-paths'></a> Redirect paths
 
-`redirectPaths` define the locations on your application end-users returns to
-after they have authenticated with the authorization server. Getting this
-setting right is a critical part of your client parameters. Wrong redirect URIs
-are the most common source of error for clients. When they aren't configured
-correctly, your application will not be able to perform OAuth2 flows and error.
+`redirectPaths` define the locations to where you application's end-users will
+be redirected to after authenticating. Getting this setting right is a critical
+part of your client parameters. Wrong redirect URIs are the most common source
+of error for clients. When they aren't configured correctly, your application
+will not be able to perform OAuth2 flows and error.
 
 For servlet-based Spring Boot workloads using Spring Security OAuth 2 Client
 library, the default redirect path template looks like this:
@@ -128,6 +128,9 @@ spec:
 
 Therefore, if you rename your workload from `my-workload` to something else,
 then this parameter needs to reflect the new name.
+
+> **Note** `workloadRef` is not resolved to a actual `Workload` existing on the
+> cluster. That means them claim does not depend on the existence of a `Workload`.
 
 ### Authorization grant types
 

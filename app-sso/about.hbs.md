@@ -22,12 +22,12 @@ For more information, see [Spring documentation](https://spring.io/projects/spri
 ## How this documentation is organized
 
 The AppSSO component documentation consists of the following sections that relate to what
-you are want to achieve:
+you want to achieve:
 
-- [Tutorials](tutorials/index.hbs.md): To learn through following examples
-  acting as a certain user persona.
 - [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
   a specific problem.
+- [Tutorials](tutorials/index.hbs.md): To learn through following examples
+  acting as a certain user persona.
 - [Concepts](concepts/index.hbs.md): To gain a deeper understanding of AppSSO.
 - [Reference](reference/index.hbs.md): To find specific information such as
   AppSSO's APIs.

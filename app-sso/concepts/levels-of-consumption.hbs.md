@@ -1,22 +1,22 @@
 # The three levels of AppSSO consumption
 
 This topic describes the different levels of consuming AppSSO services and
-explains when and why you might choose to use one level over the other.
+explains when and why you might choose to use one level over another.
 
-Generally, the recommendation is to consume AppSSO through `ClassClaim` but
-there can be situations where the lower level `WorkloadRegistration` or
+Generally, the recommendation is to consume an AppSSO service via `ClassClaim`
+but there can be situations where the lower level `WorkloadRegistration` or
 `ClientRegistration` are a better fit.
 
 At its core consumption of AppSSO is about obtaining client credentials for an
-authorisation server and loading them into a running workload. In particular, it
-breaks down into the following steps:
+authorization server and loading them into a running workload. In particular,
+it breaks down into the following steps:
 
 1. Define your environment-independent OAuth2 client configurations, e.g. client
    authentication method, scopes, ...
 
 1. Define your OAuth2 client's redirect URIs
 
-1. Specify the authorisation server that you want credentials for
+1. Specify the authorization server that you want credentials for
 
 1. Create a resource that expresses your configuration
 
@@ -26,7 +26,7 @@ Each of the following levels gradually takes away some of these steps
 by distributing them across APIs, so that eventually, each persona
 is only concerned with what's in their purview:
 
-* _Platform operators_ manage the TAP (and AppSSO) installation
+* _Platform operators_ manage the TAP (and AppSSO) installations
 * _Service operators_ curate and manage AppSSO services
 * _Application operators_ consume AppSSO services from their workloads
 
@@ -52,9 +52,9 @@ spec:
       sso.apps.tanzu.vmware.com/env: staging
       sso.apps.tanzu.vmware.com/ldap: ""
   redirectURIs:
-    - https://profile.shop.staging.acme.com/login
-    - https://profile.shop.acme.com/login
-    - http://profile.shop.dev.acme.com/login
+    - https://profile.shop.staging.example.com/login
+    - https://profile.shop.example.com/login
+    - http://profile.shop.dev.example.com/login
   scopes:
     - name: openid
     - name: email
@@ -72,16 +72,16 @@ spec:
 
 To be able to specify redirect URIs for an application running on TAP, you need
 to be able to know its scheme and FQDN in advance. For example, you must be
-able to say that your redirect URI is `https://profile.shop.acme.com/login`.
+able to say that your redirect URI is `https://profile.shop.example.com/login`.
 However, the different parts of such a redirect URI are controlled by multiple
 personas; the _platform operator_ and the _application operator_.
 
 Usually, the _platform operator_ controls how FQDNs are templated and whether
 TLS is used. In the case of our redirect URI they control everything in
-`https://profile.shop.acme.com`, i.e. they configure TLS, the template for
+`https://profile.shop.example.com`, i.e. they configure TLS, the template for
 domain names and the top-level ingress domain. Furthermore, they will configure
 things differently on different environments. That means on another environment
-`https://profile.shop.staging.acme.com` could be the right thing to set.
+`https://profile.shop.staging.example.com` could be the right thing to set.
 
 The _application operator_ on the other hand is in control of the application's
 code and its paths. In case of our redirect URI they control `/login`. This
@@ -102,7 +102,7 @@ know the labels of their desired `AuthServers`. Maybe _application operators_
 shouldn't even be able to see `AuthServers` since it is the purview of _service
 operators_.
 
-All of This makes it hard for _application operators_ to use the same
+All of this makes it hard for _application operators_ to use the same
 `ClientRegistration` across different environments.
 
 ![Diagram shows level 1 of AppSSO consumption with
@@ -116,7 +116,7 @@ portable across environments. It mixes the concerns of personas.
 ## Level 2 - WorkloadRegistration
 
 A higher-level abstraction over `ClientRegistration` is `WorkloadRegistration`.
-It is identical to `ClientRegistration` except for one major difference: it
+It is similar to `ClientRegistration` except for one major difference: it
 templates redirect URIs.
 
 Instead of providing full redirect URIs, a `WorkloadRegistration` receives
@@ -161,17 +161,18 @@ spec:
 status:
   workloadDomainTemplate: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"
   redirectURIs:
-    - https://my-workload.my-namespace.acme.com/login
+    - https://my-workload.my-namespace.example.com/login
 ```
 
-So that redirect URIs can be templated an additional `spec.workloadRef` is
-provided. This provides the values for the template.
+The additional `spec.workloadRef` is provided so that redirect URIs can be
+templated. This provides the values for the template.
 
 Templating redirect URIs template decouples the _application operator_ from the
 _platform operator_. Now the _application operator_ only has to provide
 absolute redirect paths and these are stable across environments. The _platform
 operator_ on the other hand can configure domain templates, ingress domains and
-TLS as they see fit and rest assured that update settings without interruption.
+TLS as they see fit and rest assured that settings are updated without
+interruption.
 
 However, `WorkloadRegistration` still requires matching an `AuthServer` by
 label selector. That means _application operators_ and _service operators_ are
@@ -260,8 +261,8 @@ WorkloadRegistration.](../../images/app-sso/level-3-classclaim.png)
 
 In summary, `ClassClaim` is less flexible but when redirect URIs can be
 templated it is portable across environments. Furthermore, it completely
-decouples the concerns of personas. Also, it's only a single resource to manage
-for _application operators_.
+decouples the concerns of personas. Additionally, it's only a single resource
+for _application operators_ to manage.
 
 ## Summary
 
