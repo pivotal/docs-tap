@@ -8,6 +8,5 @@ Application Single Sign-On (commonly called AppSSO):
 - [OpenShift](openshift.hbs.md)
 - [Package configuration](package-configuration.hbs.md)
 - [RBAC](rbac.hbs.md)
-- [Troubleshoot](troubleshoot.hbs.md)
+- [Troubleshoot](../how-to-guides/troubleshoot.hbs.md)
 - [Upgrades](upgrades.hbs.md)
-

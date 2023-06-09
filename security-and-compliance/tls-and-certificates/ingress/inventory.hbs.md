@@ -24,7 +24,7 @@ Package name | Ingress purpose | Supports ingress issuer | Supports wildcards | 
 [learningcenter.tanzu.vmware.com](../../../learning-center/install-learning-center.hbs.md) | Instances of [TrainingPortal](../../../learning-center/runtime-environment/training-portal.hbs.md) have ingress | No| Yes** | `Number of TrainingPortals` | `TRAINING-PORTAL.learningcenter.INGRESS-DOMAIN` |
 [metadata-store.apps.tanzu.vmware.com](../../../scst-store/tls-configuration.hbs.md) | Serves the Supply Chain Security Tools store | Yes | Yes | `1` | `metadata-store.INGRESS-DOMAIN`  |
 [spring-cloud-gateway.tanzu.vmware.com](../../../spring-cloud-gateway/about.hbs.md) |Instances of [SpringCloudGateway](../../../spring-cloud-gateway/about.hbs.md) have ingress | No | Yes | `Number of SpringCloudGateways` | See [Using an Ingress Resource](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.0/scg-k8s/GUID-guides-external-access.html) in the Spring Cloud Gateway documentation|
-[sso.apps.tanzu.vmware.com](../../../app-sso/service-operators/issuer-uri-and-tls.hbs.md) |Instances of [AuthServer](../../../app-sso/service-operators/index.hbs.md) have ingress | Yes | Yes | `Number of AuthServers` | Depends on the component's `domain_template` |
+[sso.apps.tanzu.vmware.com](../../../app-sso/tutorials/service-operators/issuer-uri-and-tls.hbs.md) |Instances of [AuthServer](../../../app-sso/tutorials/service-operators/index.hbs.md) have ingress | Yes | Yes | `Number of AuthServers` | Depends on the component's `domain_template` |
 [tap-gui.tanzu.vmware.com](../../../tap-gui/tls/overview.hbs.md) | Serves the platform-internal developer and service portal | Yes | Yes | `1` | `tap-gui.INGRESS-DOMAIN` |
 
 *The SANs is configurable for components in the following two ways:

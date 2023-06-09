@@ -6,7 +6,7 @@ Sign-On (commonly called AppSSO). Use this topic to learn how to:
 1. Set up your first authorization server in the `default` namespace.
 2. Ensure it is running so that users can log in.
 
-![Diagram of AppSSO's components, with AuthServer and Identity Providers highlighted](../../images/app-sso/authserver-tutorial.png)
+![Diagram of AppSSO's components, with AuthServer and Identity Providers highlighted](../../../images/app-sso/authserver-tutorial.png)
 
 ## Prerequisites
 

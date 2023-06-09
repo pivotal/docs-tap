@@ -7,7 +7,7 @@ Sign-On (commonly called AppSSO). Use this topic to learn how to:
    [Provision your first AuthServer](provision-auth-server.hbs.md).
 2. Verify that the credentials are valid using client-credentials flow.
 
-![Diagram of AppSSO's components, with AuthServer and ClientRegistration highlighted](../../images/app-sso/client-registration.png)
+![Diagram of AppSSO's components, with AuthServer and ClientRegistration highlighted](../../../images/app-sso/client-registration.png)
 
 ## Prerequisites
 

@@ -9,7 +9,7 @@ An `AuthServer` entry point for its clients and their end-users is called _issue
 
 You can configure whether and how to obtain a TLS certificate for the issuer URI by using `.spec.tls`. Unless TLS is deactivated, HTTPS is enforced. For example, requests for `http://` are redirected to `https://`. You can observe the TLS configuration in `.status.tls`.
 
-If AppSSO is installed with [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer), 
+If AppSSO is installed with [a default issuer](../../reference//package-configuration.hbs.md#default_authserver_clusterissuer), 
 you can omit `AuthServer.spec.tls` and a TLS certificate is obtained automatically. This is the recommended approach for TLS.
 
 For example:
@@ -38,10 +38,13 @@ and serves a TLS certificate obtained from `my-default-issuer`.
 
 Learn how to configure TLS for your `AuthServer`:
 
-- [Configure TLS by using a (Cluster)Issuer](#configure-tls-by-using-a-clusterissuer)
-- [Configure TLS by using a Certificate](#configure-tls-by-using-a-certificate)
-- [Configure TLS by using a Secret](#configure-tls-by-using-a-secret)
-- [Deactivate TLS](#deactivate-tls-unsafe)
+- [Issuer URI and TLS for AppSSO](#issuer-uri-and-tls-for-appsso)
+  - [Overview](#overview)
+  - [Configure TLS by using a (Cluster)Issuer](#configure-tls-by-using-a-clusterissuer)
+  - [Configure TLS by using a Certificate](#configure-tls-by-using-a-certificate)
+  - [Configure TLS by using a Secret](#configure-tls-by-using-a-secret)
+  - [Deactivate TLS (unsafe)](#deactivate-tls-unsafe)
+  - [ Allow `Workloads` to trust a custom CA `AuthServer`](#-allow-workloads-to-trust-a-custom-ca-authserver)
 
 There are many use-cases that pertain to TLS use. To find out which scenario applies to you and how to configure it, see
 [TLS scenario guides](tls-scenario-guides.hbs.md).

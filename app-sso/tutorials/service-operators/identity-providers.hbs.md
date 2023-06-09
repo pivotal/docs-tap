@@ -928,7 +928,7 @@ the "group" claim by default, and allows administrators to select the name of th
 Service Operators may choose to make these "groups", "roles", or equivalent, available in the id_token issued by an AppSSO
 `AuthServer`, in the `roles` claim, with [filtering rules](#roles-filtering) applied.
 
-![identity provider roles claim filtering and mapping diagram](../../images/app-sso/idp-roles-mapping-filtering.png)
+![identity provider roles claim filtering and mapping diagram](../../../images/app-sso/idp-roles-mapping-filtering.png)
 
 ## <a id='restrictions'></a> Restrictions
 

@@ -1,10 +1,9 @@
 # Discover AppSSO service offerings
 
-The recommendation is to consume AppSSO with [Services
-Toolkit](../../tutorials/services-toolkit/about.hbs.md) by claiming credentials for an
+The recommendation is to consume AppSSO with 
+[Services Toolkit](../../../services-toolkit/about.hbs.md) by claiming credentials for an
 AppSSO service. Curation of service offerings is the purview of [service
-operators](../../tutorials/service-operators/index.hbs.md).
-
+operators](../../tutorials/service-operators/index.hbs.md).[](../../tutorials/app-operators/)
 You can discover the available service offerings with the `tanzu` CLI:
 
 ```shell

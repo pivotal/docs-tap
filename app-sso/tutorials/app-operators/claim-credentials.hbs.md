@@ -6,6 +6,7 @@ claiming credentials for it through a class claim. If you want to learn more
 about the different levels of AppSSO, see [The three levels of AppSSO
 consumption](../concepts/app-sso-consumption.hbs.md).
 
+
 When we create a claim for an AppSSO service, we will receive our service
 credentials through [service bindings](https://servicebinding.io/). This makes
 it easy to load the credentials into a workload running on TAP.
@@ -102,7 +103,7 @@ effect](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#
 If you run into problems claiming credentials for an AppSSO service, learn how
 to [troubleshoot](../../how-to-guides/troubleshoot.hbs.md). For in-depth
 documentation on the `tanzu services` command, classes and claims, refer to
-[Services Toolkit](../../tutorials/services-toolkit/about.hbs.md).
+[Services Toolkit](../../../services-toolkit/about.hbs.md).
 
 In the next section you will learn more about the specific client settings and how
 you can use a claim to secure a `Workload` with AppSSO.

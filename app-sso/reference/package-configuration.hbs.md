@@ -57,7 +57,7 @@ The default is `appsso`.
 >installation will delete-create namespace-scoped resources in the new
 >namespace. This causes downtime of the impacted resources momentarily.
 
-### default_authserver_clusterissuer
+### <a id="default_authserver_clusterissuer"></a> default_authserver_clusterissuer
 
 You can denote a `cert-manager.io/v1/ClusterIssuer` as a default issuer for
 `AuthServer.spec.tls.issuerRef` and omit `AuthServer.spec.tls`. When the value
