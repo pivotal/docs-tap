@@ -31,7 +31,7 @@ The following issues, listed by component and area, are resolved in this release
 - Permission-denied errors encountered during Live Update, when operating against platforms
   configured to use the Jammy build stack, are now resolved.
 
-#### <a id='1-4-6-vscode-ext-ri'></a> Tanzu Developer Tools for Visual Studio Code
+#### <a id='1-4-6-vscode-ext-ri'></a> Tanzu Developer Tools for VS Code
 
 - Permission-denied errors encountered during Live Update, when operating against platforms
   configured to use the Jammy build stack, are now resolved.
