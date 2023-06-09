@@ -8,9 +8,8 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed in an external secrets store. 
 To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
-The External Secrets Operator integration in this release of Tanzu GitOps RI
-is verified to support Kubernetes integration with Hashicorp Vault.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, i.e SOPs to ESO. However changing between AWS Secrets Manager and Vault is supported.
+The External Secrets Operator integration in this release of Tanzu GitOps RI is verified to support Kubernetes integration with Hashicorp Vault.
 
 ## <a id='prerequisites'></a>Prerequisites
 
@@ -203,10 +202,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
     If they are relocated to a different registry as described in [Relocate images to a registry](#relocate-images-to-a-registry),
     the value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
-### <a id='grant-read-access-to-secret-data'></a>Grant read access to secret data
-
-All sensitive configuration is stored in Vault secrets.
-Both Tanzu Sync and the Tanzu Application Platform installation require access to this sensitive data.
+### <a id='connect-vault-to-kubernetes'></a>Connect Vault to a Kubernetes Cluster
 
 Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing trust between the kubernetes cluster and Vault, see [Vault Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for more. This authetication method uses the Kubernetes Control Plane [TokenReview API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/) to authenticate the kubernetes service accounts with Vault. For this reason, the clusters control plane must be able to commuicate over the network to the Vault instance.
 
@@ -215,7 +211,7 @@ Follow these step to configure Kubernetes Authentication for Vault:
 1. Create a new Kubernetes authentication engine instance on Vault and two IAM Roles by using the supplied script:
 
   ```console
-  tanzu-sync/scripts/vault/setup/setup-kubernetes-auth.sh
+  tanzu-sync/scripts/vault/setup/create-kubernetes-auth.sh
   ```
 
   This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
@@ -229,30 +225,24 @@ Follow these step to configure Kubernetes Authentication for Vault:
     ttl=1h
   ```
 
-  This also creates two Roles for this authentication engine, which are bound to the service accounts supplied in Tanzu GitOps RI bootstrapping stage, see [Deploy Tanzu Sync](#deploy-tanzu-sync):
+### <a id='grant-read-access-to-secret-data'></a>Grant read access to secret data
 
-  Example:
-  
+All sensitive configuration is stored in Vault secrets.
+Both Tanzu Sync and the Tanzu Application Platform installation require access to this sensitive data.
+
+Follow these step to configure Roles in Vault:
+
+1. Create two Policies, one to read Tanzu Sync secrets and another to read the Tanzu Application Platform installation secrets by using the supplied script:
+
   ```console
-  vault write auth/iterate-green/role/iterate-green--tanzu-sync-secrets \
-    bound_service_account_names="tanzu-sync-vault-sa" \
-    bound_service_account_namespaces="tanzu-sync" \
-    policies="iterate-green--read-tanzu-sync-secrets" \
-    ttl=1h
-
-  vault write auth/iterate-green/role/iterate-green--tap-install-secrets \
-    bound_service_account_names="tap-install-vault-sa" \
-    bound_service_account_namespaces="tap-install" \
-    policies="iterate-green--read-tap-secrets" \
-    ttl=1h
+  tanzu-sync/scripts/vault/setup/create-policies.sh
   ```
 
-2. In Vault, create two Policies, one to read Tanzu Sync secrets
-and another to read the Tanzu Application Platform installation secrets by using the supplied script:
+2. Create two Roles, one to read Tanzu Sync secrets and another to read the Tanzu Application Platform installation secrets by using the supplied script:
 
-    ```console
-    tanzu-sync/scripts/vault/setup/create-policies.sh
-    ```
+  ```console
+  tanzu-sync/scripts/vault/setup/create-roles.sh
+  ```
 
 ### <a id='generate-default-configuration'></a>Generate default configuration
 
@@ -277,7 +267,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
 1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository. There are two supported authentication methods:
 
-  - SSH
+  1. SSH
 
     Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
     the following information as plaintext:
@@ -311,7 +301,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
     - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
     string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
-  - Basic Authentication
+  2. Basic Authentication
 
     Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
       the following information as plaintext:
@@ -640,9 +630,6 @@ the Vault secret created in the [Review and store Tanzu Application Platform ins
     ...
     ```
 
-    To update the secret value, follow the instructions in
-    [Modify an AWS Secrets Manager secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_update-secret.html).
-
     When moving values, you must omit the `tap_install.values` root,
     but keep the remaining structure.
     All of the parent keys, for example, `ootb_supply_chain_basic.gitops` of the moved value,
@@ -675,7 +662,7 @@ The following deployment process is only required once per cluster:
 
     This step is required to ensure the correct deployment of the `tanzu-sync` App.
 
-1. Ensure the Kubernetes cluster context is set to the EKS cluster.
+1. Ensure the Kubernetes cluster context is set to the correct cluster.
 
     1. List the existing contexts:
 
