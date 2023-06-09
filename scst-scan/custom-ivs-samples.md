@@ -1,8 +1,14 @@
-# Custom ImageVulnerabilityScan Samples
+# Configure custom ImageVulnerabilityScan samples
 
-This topic lists out ImageVulnerabilityScan Sample for running CarbonBlack scan.
+This topic explains how to configure an ImageVulnerabilityScan sample for CarbonBlack scans with Supply Chain Security tools - Scan.
 
-## ImageVulnerabilityScan Carbon Black Sample
+## Configure an ImageVulnerabilityScan
+
+The Carbon Black CLI uses the `cbctl.yaml` config file. The `cbctl.yaml` config file must include your Carbon Black `cbctl-creds` secret and credentials.
+
+See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
+
+To mount the `cbctl-creds` as a workspace binding, use the following ImageVulnerabilityScan configuration:
 
 ```yaml
 apiVersion: v1
@@ -50,16 +56,13 @@ spec:
 
 Where:
 
-- `CB-API-ID` is the API ID obtained from CBC.
+- `CB-API-ID` is the API ID obtained from VMware Carbon Black Cloud (CBC).
 - `CB-API-KEY` is the API Key obtained from CBC.
-- `ORG-KEY` is the Org Key of your CBC organization.
+- `ORG-KEY` is the Org Key for your CBC organization.
 - `SAAS-URL` is the CBC Backend URL.
 - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
-- scanResults.location is the registry URL where results are uploaded. For example, my.registry/scan-results.
+- scanResults.location is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
 - `serviceAccountNames` includes:
   - `scanner` is the service account that runs the scan. It must have read access to `image`.
   - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
 - `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black Scanner image used to run Carbon Black scans.
-
-**Note:**
-- The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials get inserted into a `cbctl.yaml` config file that the Carbon Black CLI utilizes. See [here](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration)

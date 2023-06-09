@@ -6,12 +6,10 @@
 
 This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
 through GitOps with secrets managed externally in AWS Secrets Manager. 
-To decide which approach to use, see [Choosing SOPS or ESO](reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
-
-## <a id='supported-secret-managers'></a>Select a secrets manager for external secret storage
-
+Select a secrets manager for external secret storage:
 
 - [AWS Secrets Manager](eso/aws-secrets-manager.hbs.md)
 - [Hashicorp Vault](eso/vault.hbs.md)
+
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.

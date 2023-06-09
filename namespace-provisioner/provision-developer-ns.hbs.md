@@ -37,7 +37,7 @@ Using Namespace Provisioner Controller
       kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
       ```
 
-  2. Label your new developer namespace with the default namespace_selector `apps.tanzu.vmware.com/tap-ns=""`.
+  2. Label your new developer namespace with the default *namespace_selector* `apps.tanzu.vmware.com/tap-ns=""`.
 
       ```shell
       kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
@@ -46,7 +46,7 @@ Using Namespace Provisioner Controller
       - This label tells the Namespace Provisioner controller to add this namespace to the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
       - By default, the label’s value can be anything, including "".
       - If required, you can change the default label selector, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md#con-label-selector).
-  3. Run the following command to verify the [default resources](reference.hbs.md#default-resources) have been created in the namespace:
+  3. Run the following command to verify the [default resources](default-resources.hbs.md) have been created in the namespace:
 
       ```shell
       kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n YOUR-NEW-DEVELOPER-NAMESPACE
@@ -102,7 +102,7 @@ by Namespace Provisioner.
 
   >**Important**  The TAP values configuration example above creates the following two namespaces: `dev` and `qa`. If these namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps repository so they do not conflict with existing resources.
 
-  Run the following command to verify the [default resources](reference.hbs.md#default-resources) are created in the namespace:
+  Run the following command to verify the [default resources](default-resources.hbs.md) are created in the namespace:
 
   ```shell
   kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n dev

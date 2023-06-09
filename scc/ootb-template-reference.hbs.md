@@ -1997,6 +1997,126 @@ flag to create new immutable objects rather than updating the previous object.
       </pre>
     </td>
   </tr>
+
+  <tr>
+    <td><code>carvel_package_parameters<code></td>
+    <td>
+      Specifies the custom Carvel Package parameters
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_parameters
+        value: |
+        - selector:
+            matchLabels:
+              apps.tanzu.vmware.com/workload-type: server
+          schema: |
+            #@data/values-schema
+            ---
+            #@schema/title "Workload name"
+            #@schema/desc "Required. Name of the workload, used by K8s Ingress HTTP rules."
+            #@schema/example "tanzu-java-web-app"
+            #@schema/validation min_len=1
+            workload_name: ""
+
+            #@schema/title "Replicas"
+            #@schema/desc "Number of replicas."
+            replicas: 1
+
+            #@schema/title "Port"
+            #@schema/desc "Port number for the backend associated with K8s Ingress."
+            port: 8080
+
+            #@schema/title "Hostname"
+            #@schema/desc "If set, K8s Ingress will be created with HTTP rules for hostname."
+            #@schema/example "app.tanzu.vmware.com"
+            hostname: ""
+
+            #@schema/title "Cluster Issuer"
+            #@schema/desc "CertManager Issuer to use to generate certificate for K8s Ingress."
+            cluster_issuer: "tap-ingress-selfsigned"
+          overlays: |
+            #@ load("@ytt:overlay", "overlay")
+            #@ load("@ytt:data", "data")
+            #@overlay/match by=overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
+            ---
+            spec:
+              #@overlay/match missing_ok=True
+              replicas: #@ data.values.replicas
+
+            #@ if data.values.hostname != "":
+            ---
+            apiVersion: networking.k8s.io/v1
+            kind: Ingress
+            metadata:
+              name: #@ data.values.workload_name
+              annotations:
+                cert-manager.io/cluster-issuer:  #@ data.values.cluster_issuer
+                ingress.kubernetes.io/force-ssl-redirect: "true"
+                kubernetes.io/ingress.class: contour
+                kapp.k14s.io/change-rule: "upsert after upserting Services"
+              labels:
+                app.kubernetes.io/component: "run"
+                carto.run/workload-name:  #@ data.values.workload_name
+            spec:
+              tls:
+                - secretName: #@ data.values.workload_name
+                  hosts:
+                  - #@ data.values.hostname
+              rules:
+              - host: #@ data.values.hostname
+                http:
+                  paths:
+                  - pathType: Prefix
+                    path: /
+                    backend:
+                      service:
+                        name: #@ data.values.workload_name
+                        port:
+                          number: #@ data.values.port
+            #@ end              
+        - selector:
+            matchLabels:
+              apps.tanzu.vmware.com/workload-type: web
+          schema: |
+            #@data/values-schema
+            ---
+            #@schema/validation min_len=1
+            workload_name: ""
+          overlays: ""
+        - selector:
+            matchLabels:
+              apps.tanzu.vmware.com/workload-type: worker
+          schema: |
+            #@data/values-schema
+            ---
+            #@schema/validation min_len=1
+            workload_name: ""
+            replicas: 1
+          overlays: |
+            #@ load("@ytt:overlay", "overlay")
+            #@ load("@ytt:data", "data")
+            #@overlay/match by=overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
+            ---
+            spec:
+              #@overlay/match missing_ok=True
+              replicas: #@ data.values.replicas
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_openapiv3_enabled<code></td>
+    <td>
+      Specifies whether the Carvel Package should include a generated OpenAPIv3 specification
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_openapiv3_enabled
+        value: true
+      </pre>
+    </td>
+  </tr>
 </table>
 
 ### <a id='carvel-more-info'></a> More information

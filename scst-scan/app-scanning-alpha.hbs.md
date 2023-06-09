@@ -2,7 +2,7 @@
 
 This topic describes how you can install and configure Supply Chain Security Tools - Scan 2.0. 
 
->**Important** SCST - Scan 2.0 is in Beta, which means that it is still in
+>**Important** SCST - Scan 2.0 is in beta, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
 >might encounter unexpected behavior due to capability gaps. This is an opt-in
 >component to gather early feedback from beta testers and is not installed by
@@ -25,7 +25,7 @@ During scanning:
 - The PipelineRun creates corresponding TaskRuns for every Task in the Pipeline and executes them.
 - A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) triggers Tekton's injected sidecar cleanup.
 
->**Note** SCST - Scan 2.0 is in Beta and supersedes the [SCST - Scan component](overview.hbs.md).
+>**Note** SCST - Scan 2.0 is in beta and supersedes the [SCST - Scan component](overview.hbs.md).
 
 ## <a id="features"></a>Features
 
@@ -243,36 +243,54 @@ Alternatively, you can install [krane](https://github.com/google/go-containerreg
 krane digest nginx:latest
 ```
 
-### <a id="integrating-with-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
+### <a id="integrating-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
 
-#### <a id=""></a> Customizing your own ImageVulnerabilityScan
+You can integrate SCST - Scan 2.0 with the Out of the Box Supply Chain.
 
-VMware provides several examples on how to bring your own scanner using samples of ImageVulnerabilityScan CRs [here](./custom-ivs-samples.md).
+#### <a id="custom-scan"></a> Customizing your own ImageVulnerabilityScan
 
-#### <a id="authoring-a-clusterimagetemplate"></a> Authoring a ClusterImageTemplate
+You can bring your own scanner by using ImageVulnerabilityScan CRs. See [Configure custom ImageVulnerabilityScan samples](./custom-ivs-samples.md).
+
+#### <a id="author-clusterimagetemplate"></a> Authoring a ClusterImageTemplate
+
 To create a ClusterImageTemplate to which you can incorporate a scanner of your choice, follow steps in [Authoring a ClusterImageTemplate](./clusterimagetemplates.hbs.md).
 
-#### <a id="configuring-the-supply-chain"></a> Configuring the supply chain
-The `ImageVulnerabilityScan` is available to integrate into the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) via either a user created ClusterImageTemplate or the following packaged ClusterImageTemplates:
+#### <a id="config-supply-chain"></a> Configuring the supply chain
+
+The `ImageVulnerabilityScan` can integrate with the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) by using either a user created ClusterImageTemplate or the following packaged ClusterImageTemplates:
+
 - `image-vulnerability-scan-grype`
 - `image-vulnerability-scan-trivy`
 
-1. Complete the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
+**Note** SCST - Scan 2.0 is in beta and active keychains and workspace bindings are not modifiable in the packaged ClusterImageTemplates.
+
+To configure the supply chain with an `ImageVulnerabilityScan`:
+
+1. Follow the steps for [Install Out of the Box Supply Chain with Testing and Scanning for Supply Chain Choreographer](../scc/install-ootb-sc-wtest-scan.hbs.md) or confirm installation.
+
 1. View available ClusterImageTemplates by running:
+   
   ```console
   kubectl get clusterimagetemplates | grep grype
   ```
+
 1. Update your `tap-values.yaml` file to specify the ClusterImageTemplate. For example:
+  
   ```yaml
   ootb_supply_chain_testing_scanning:
     image_scanner_template_name: image-vulnerability-scan-grype
   ```
-1. Update the TAP installation by running:
+
+1. Update your Tanzu Application Platform installation by running:
+  
   ```console
   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
   ```
+
   - Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
-1. Create a sample workload using a pre-built image by using the `tanzu apps workload create` command:
+
+1. Create a sample workload with a pre-built image by using the `tanzu apps workload create` command:
+  
   ```console
   tanzu apps workload create WORKLOAD-NAME \
     --app APP-NAME \
@@ -281,18 +299,20 @@ The `ImageVulnerabilityScan` is available to integrate into the [Out of the Box 
     --namespace DEV-NAMESPACE
   ```
 
-Where:
-- `WORKLOAD-NAME` is the name you choose for your workload.
-- `APP-NAME` is the name of your app.
-- `TYPE` is the type of your app.
-- `IMAGE` is the container image that contains the app you want to deploy.
-- `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+  Where:
 
-**Note**: There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+  - `WORKLOAD-NAME` is the name you choose for your workload.
+  - `APP-NAME` is the name of your app.
+  - `TYPE` is the type of your app.
+  - `IMAGE` is the container image that contains the app you want to deploy.
+  - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
-1. (Optional) Results will be pushed to the Artifactory Metadata Repository but if you wish to verify independently, you can use the following command to review the scan results.
+  **Note** There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+
+1. (Optional) Results are pushed to the Artifactory Metadata Repository. If you want to verify independently, review the scan results.
+  
   ```console
-  results=$(kubectl get imagevulnerabilityscan <IVS-NAME> -n DEV-NAMESPACE -o jsonpath="{.status.scanResult}")
+  results=$(kubectl get imagevulnerabilityscan IVS-NAME -n DEV-NAMESPACE -o jsonpath="{.status.scanResult}")
 
   imgpkg pull -b $results -o /tmp/scan-results
   ```
@@ -301,8 +321,6 @@ Where:
 
   - `IVS-NAME` is the name of the ImageVulnerabilityScan.
   - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
-
-**Note**: SCST - Scan 2.0 is in Beta and active keychains and workspace bindings are not modifiable in the packaged ClusterImageTemplates.
 
 ### <a id="using-grype"></a> Using the provided Grype scanner
 
@@ -391,10 +409,13 @@ To trigger a Grype scan:
 2. The Grype scan creates child resources.
 
     - View the child ImageVulnerabilityScan by running:
+      
       ```console
       kubectl get imagevulnerabilityscan -n DEV-NAMESPACE
       ```
+
     - View the child PipelineRun, TaskRuns, and pods by running:
+      
       ```console
       kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE
       ```
@@ -557,7 +578,7 @@ To trigger your scan:
 
     ```
 
-## <a id="retrieve-results"></a> Retrieving results
+## <a id="retrieve-results"></a> Retrieve results
 
 Scan results are uploaded to the container image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.
 To retrieve a vulnerability report:
@@ -670,7 +691,7 @@ Where `DEV-NAMESPACE` is your developer namespace.
 
 For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
 
-### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
+### <a id="scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
 
 To retrieve scan-controller manager logs:
 
