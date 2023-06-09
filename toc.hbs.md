@@ -521,6 +521,7 @@ docs.vmware.com is built.
           - [Use an existing image in Your Supply Chain](scc/pre-built-image.hbs.md)
           - [Authenticate Git](scc/git-auth.hbs.md)
           - [Use Azure DevOps as a Git provider](scc/azure.hbs.md)
+          - [Use Gitlab as a Git provider](scc/gitlab.hbs.md)
           - [Author Supply Chains](scc/authoring-supply-chains.hbs.md)
       - [Reference guides](scc/scc-reference.hbs.md)
           - [Events Reference](scc/events.hbs.md)
