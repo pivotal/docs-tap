@@ -243,7 +243,7 @@ Alternatively, you can install [krane](https://github.com/google/go-containerreg
 krane digest nginx:latest
 ```
 
-### <a id="integrating-ootb-supply-chain"></a> Integrating with the Out of the Box Supply Chain
+### <a id="integrate-supply-chain"></a> Integrating with the Out of the Box Supply Chain
 
 You can integrate SCST - Scan 2.0 with the Out of the Box Supply Chain.
 
@@ -286,7 +286,7 @@ To configure the supply chain with an `ImageVulnerabilityScan`:
   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
   ```
 
-  - Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+  Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
 1. Create a sample workload with a pre-built image by using the `tanzu apps workload create` command:
   
@@ -308,7 +308,7 @@ To configure the supply chain with an `ImageVulnerabilityScan`:
 
   **Note** There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
 
-1. (Optional) Results are pushed to the Artifactory Metadata Repository. If you want to verify independently, review the scan results.
+1. (Optional) Results are pushed to the Artifactory Metadata Repository. To verify independently, review the scan results.
   
   ```console
   results=$(kubectl get imagevulnerabilityscan IVS-NAME -n DEV-NAMESPACE -o jsonpath="{.status.scanResult}")
@@ -485,7 +485,7 @@ Required fields:
 - `scanResults.location` is the registry URL where results are uploaded.
   For example, `my.registry/scan-results`.
 
-Optional fields:
+Optional f:
 
 - `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
 
@@ -633,7 +633,7 @@ kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-syste
 
 ### <a id="debugging-commands"></a> Debugging commands
 
-The following sections describe commands you can run to get logs and details about scanning errors.
+The following sections describe commands you run to get logs and details about scanning errors.
 
 ### <a id="debug-source-image-scan"></a> Debugging resources
 
