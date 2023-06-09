@@ -245,29 +245,7 @@ To configure the service account to work with private Git repositories, follow t
       password: #@ data.values.imported.git.password
     ```
 
-1. Create a secret to specify an overlay to patch the default service account adding a reference to the secret **git**.
-
-    ```yaml
-    cat << EOF | kubectl apply -f -
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: workload-git-auth-overlay
-      namespace: tap-install
-      annotations:
-        kapp.k14s.io/change-rule: "delete after deleting tap"
-    stringData:
-      workload-git-auth-overlay.yaml: |
-        #@ load("@ytt:overlay", "overlay")
-        #@overlay/match by=overlay.subset({"apiVersion": "v1", "kind": "ServiceAccount","metadata":{"name":"default"}}), expects="0+"
-        ---
-        secrets:
-        #@overlay/append
-        - name: git
-    EOF
-    ```
-
-2. Put all this together in Namespace Provisioner configuration in TAP values as follows:
+3. Put all this together in Namespace Provisioner configuration in TAP values as follows:
 
     Using Namespace Provisioner Controller
     : Add the following configuration to your TAP values
@@ -284,10 +262,10 @@ To configure the service account to work with private Git repositories, follow t
         - name: workload-git-auth
           namespace: tap-install
           create_export: true
-        overlay_secrets:
-        - name: workload-git-auth-overlay
-          namespace: tap-install
-          create_export: true
+        default_parameters:
+          supply_chain_service_account:
+            secrets:
+            - git
       ```
 
     Using GitOps
@@ -309,14 +287,24 @@ To configure the service account to work with private Git repositories, follow t
         - name: workload-git-auth
           namespace: tap-install
           create_export: true
-        overlay_secrets:
-        - name: workload-git-auth-overlay
-          namespace: tap-install
-          create_export: true
+        default_parameters:
+          supply_chain_service_account:
+            secrets:
+            - git
       ```
 
-* First additional source points to the location where our templated Git secret resides which will be created in all developer namespaces.
-* Second additional source points to the overlay file which will add the git secret to the default service account
-* Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
+* First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
+* Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
+* Add the secret to be added to the ServiceAccount in the `default_parameters` (refer to [Customize service accounts](use-case4.hbs.md#customize-sa) for detailed information)
 
 >**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git **in all provisioned namespaces and also added to the default service account of those namespaces.
+
+4. In your TAP values YAML file, within the `ootb_supply_chain_*.gitops.ssh_secret section`, you need to specify the name of the Git secret that contains the credentials. This is necessary for the supply chain to include the `secretRef` when creating the Flux `GitRepository` resource. Here is an example:
+
+  ```yaml
+  ootb_supply_chain_testing_scanning:
+    gitops:
+      ssh_secret: git  # Replace with the actual name of your Git secret for the workload, if different
+  ```
+
+  By providing this configuration, the supply chain will associate the created GitRepository resource with the specified Git secret managed by the namespace provisioner.

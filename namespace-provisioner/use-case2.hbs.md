@@ -52,7 +52,7 @@ Using Namespace Provisioner Controller
     #@ if/end in_list('supply_chain', ['testing_scanning']) and in_list('profile', ['full', 'build']) and hasattr(data.values, 'scanpolicy') and data.values.scanpolicy == 'lax':
     ```
 
-    Label your developer namespace using the `parameter_prefixes` with the parameter to be used in the `additional_sources` as follows:
+    Label your developer namespace using the `parameter_prefixes` with the [parameter](parameters.hbs.md#namespace-parameters) to be used in the `additional_sources` as follows:
 
     ```shell
     kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE tap.tanzu.vmware.com/scanpolicy=lax
