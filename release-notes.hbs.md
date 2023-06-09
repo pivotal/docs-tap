@@ -21,10 +21,6 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-5-2-COMPONENT-NAME-ri'></a> COMPONENT-NAME
-
-- Resolved issue description.
-
 #### <a id='1-5-2-scst-scan-ri'></a> Supply Chain Security Tools (SCST) - Scan
 
 - Old `TaskRuns` associated with scans are now deleted to reduce memory consumption.
@@ -41,6 +37,21 @@ The following issues, listed by component and area, are resolved in this release
   - **Security Analysis Dashboard:** The Highest Reach Critical Vulnerabilities chart no longer
     overlaps Snyk CVE IDs.
   - **Package Details:** Removed extra versions from Workload Builds using Package table.
+
+#### <a id='1-5-2-intellij-ext-ri'></a> Tanzu Developer Tools for IntelliJ
+
+- Permission-denied errors encountered during Live Update, when operating against platforms
+  configured to use the Jammy build stack, are now resolved.
+
+#### <a id='1-5-2-vs-ext-ri'></a> Tanzu Developer Tools for Visual Studio
+
+- Permission-denied errors encountered during Live Update, when operating against platforms
+  configured to use the Jammy build stack, are now resolved.
+
+#### <a id='1-5-2-vscode-ext-ri'></a> Tanzu Developer Tools for Visual Studio Code
+
+- Permission-denied errors encountered during Live Update, when operating against platforms
+  configured to use the Jammy build stack, are now resolved.
 
 ---
 
