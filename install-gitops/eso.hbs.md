@@ -10,6 +10,6 @@ through GitOps with secrets managed externally in AWS Secrets Manager.
 Select a secrets manager for external secret storage:
 
 - [AWS Secrets Manager](eso/aws-secrets-manager.hbs.md)
-- [Hashicorp Vault](eso/vault.hbs.md)
+- [Hashicorp Vault](eso/hashicorp-vault.hbs.md)
 
 Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
