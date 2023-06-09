@@ -1,28 +1,33 @@
-# Configure custom ImageVulnerabilityScan samples
+# Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan
 
-This topic lists out sample ImageVulnerabilityScans utilizing various scanners and associated secrets. The following samples provide a scaffold for you to use with the below scanners:
+This topic lists sample ImageVulnerabilityScans using various scanners and associated secrets. You can use the samples in this topic with the following scanners:
+
 - Carbon Black
 - Snyk
 
-For more information on integrating your own scanner see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner)
+For information about integrating your own scanner see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner)
 
-### <a id="general-usage-instructions"></a>General usage instructions
-To use one of the provided samples, you will need to:
-1. Copy the sample yaml into a file named `custom-ivs.yaml`.
-1. Obtain the necessary image(s) (e.g. an image containing the scanner).
-1. Modify these common fields of your ImageVulnerabilityScan:
+### <a id="use-samples"></a> Use custom ImageVulnerabilityScan samples
+
+To use one of the samples:
+
+1. Copy the sample YAML into a file named `custom-ivs.yaml`.
+2. Obtain the one or more necessary images. For example, an image containing the scanner.
+3. Edit these common fields of your ImageVulnerabilityScan:
+
    - `spec.image` is the image that you are scanning.
-   - `scanResults.location` is the registry URL where results are uploaded (e.g. `my.registry/scan-results`).
+   - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
    - `serviceAccountNames` includes:
      - `scanner` is the service account that runs the scan. It must have read access to `image`.
      - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
-1. Complete any scanner specific changes as specified in the sample.
-1. You can now either incorporate your custom ImageVulnerabilityScan into a [ClusterImageTemplate](./clusterimagetemplates.hbs.md) or run a standalone scan using:
+4. Complete any scanner specific changes specified in the sample.
+5. You can either incorporate your custom ImageVulnerabilityScan into a [ClusterImageTemplate](./clusterimagetemplates.hbs.md) or run a standalone scan using:
+  
   ```console
   kubectl apply -f custom-ivs.yaml -n DEV-NAMESPACE
   ```
-  Where `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
+  Where `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
 ### <a id="ivs-cbc"></a>Configure a ImageVulnerabilityScan for Carbon Black
 
@@ -82,10 +87,12 @@ Where:
 - `ORG-KEY` is the Org Key for your CBC organization.
 - `SAAS-URL` is the CBC Backend URL.
 
-**Note:**
-- The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials get inserted into a `cbctl.yaml` config file that the Carbon Black CLI utilizes. See [here](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration)
+**Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses. See the [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration).
 
-### <a id="ivs-snyk"></a>Configure a ImageVulnerabilityScan for Snyk
+### <a id="ivs-snyk"></a>Configure an ImageVulnerabilityScan for Snyk
+
+To configure an ImageVulnerabilityScan for Snyk, update your YAML file as follows:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -132,8 +139,8 @@ Where:
 
 - `SNYK-API-TOKEN` is your Snyk API Token obtained from the [Snyk documentation](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account).
 - `SNYK-SCANNER-IMAGE` is the Snyk Scanner image used to run Snyk scans. See [Snyk documentation](https://github.com/snyk/snyk-images) for Snyk Docker images.
-- `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. View the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx) for more details.
+- `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx).
 
-> **Note:** After detecting vulnerabilities, the Snyk docker image will terminate with Exit Code 1 resulting in a failed scan task. A possible solution could be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
+> **Note** After detecting vulnerabilities, the Snyk Docker image ends with Exit Code 1 resulting in a failed scan task. A possible solution might be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
 
-See the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config) for more information on setting up scanner credentials.
+For information about setting up scanner credentials, see the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config).
