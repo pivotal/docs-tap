@@ -15,39 +15,15 @@ denoting that all client namespaces are allowed.
 The issuer URI, which is the point of entry for clients and end-users, is constructed through the package's `domain_template`.
 You can view the issuer URI by running `kubectl get authserver -n authservers`.
 
-See [Issuer URI & TLS](../../service-operators/issuer-uri-and-tls.md) for more information.
+See [Issuer URI & TLS](../../tutorials/service-operators/issuer-uri-and-tls.md) for more information.
 
 Token signature keys are configured by using `spec.tokenSignature`. This is a required field. See
-[Token signatures](../../service-operators/token-signature.md) for more context.
+[Token signatures](../../tutorials/service-operators/token-signature.md) for more context.
 
 You can configure identity providers under `spec.identityProviders`. If there is none, end-users can not log in. 
-For more information about configuring identity providers, see [Identity providers](../../service-operators/identity-providers.hbs.md).
+For more information about configuring identity providers, see [Identity providers](../../tutorials/service-operators/identity-providers.hbs.md).
 
 The deployment can be further customized by configuring replicas, resources, http server and logging properties.
-
-An `AuthServer` reconciles into the following resources in its namespace:
-
-```text
-AuthServer/my-authserver
-├─Certificate/my-authserver-redis-client                   # if no storage is defined
-├─Certificate/my-authserver-redis-server                   # if no storage is defined
-├─Certificate/my-authserver-root
-├─ConfigMap/my-authserver-ca-cert
-├─Deployment/my-authserver-auth-server
-├─Deployment/my-authserver-redis                           # if no storage is defined
-├─Issuer/my-authserver-bootstrap
-├─Issuer/my-authserver-root
-├─Role/my-authserver-auth-server
-├─RoleBinding/my-authserver-auth-server
-├─Secret/my-authserver-auth-server-clients
-├─Secret/my-authserver-auth-server-keys
-├─Secret/my-authserver-auth-server-properties
-├─Secret/my-authserver-redis-service-binding               # if no storage is defined
-├─Secret/my-authserver-redis-client-cert-keystore-password # if no storage is defined
-├─Secret/my-authserver-registry-credentials
-├─Service/my-authserver-redis                              # if no storage is defined
-└─ServiceAccount/my-authserver-auth-server
-```
 
 ## Spec
 
