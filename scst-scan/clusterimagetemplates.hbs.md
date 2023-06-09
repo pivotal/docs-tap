@@ -37,7 +37,7 @@ To create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy:
 
     params:
       - name: image_scanning_workspace_size
-        default: 3Gi
+        default: 4Gi
       - name: image_scanning_service_account_scanner
         default: scanner
       - name: image_scanning_service_account_publisher
