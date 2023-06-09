@@ -291,7 +291,7 @@ docs.vmware.com is built.
             - [Secure a workload](app-sso/how-to-guides/secure-spring-boot-workload.hbs.md)
             - [Secure a Spring Boot workload](app-sso/how-to-guides/secure-spring-boot-workload.hbs.md)
             - [Secure a single-page app workload](app-sso/how-to-guides/secure-spa-workload.hbs.md)
-            - [Troubleshoot](app-sso/how-to-examples/troubleshoot.hbs.md)
+            - [Troubleshoot](app-sso/how-to-guides/troubleshoot.hbs.md)
         - [Tutorials](app-sso/tutorials/index.hbs.md)
             - [AppSSO for platform operators](app-sso/tutorials/platform-operators/index.hbs.md)
                 - [AppSSO for platform operators overview](app-sso/tutorials/platform-operators/index.hbs.md)
