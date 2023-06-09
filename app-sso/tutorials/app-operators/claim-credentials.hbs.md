@@ -2,9 +2,10 @@
 
 In the previous section we have seen how to discover the available AppSSO
 service offerings. The recommended way to consume such an AppSSO offering is by
-claiming credentials for it through a class claim. If you want to learn more
+claiming credentials for it through a class claim. 
+<!--If you want to learn more
 about the different levels of AppSSO, see [The three levels of AppSSO
-consumption](../concepts/app-sso-consumption.hbs.md).
+consumption](../concepts/app-sso-consumption.hbs.md).-->
 
 
 When we create a claim for an AppSSO service, we will receive our service
