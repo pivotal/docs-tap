@@ -11,9 +11,17 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-3-9-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
-
-- Security fix description.
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| apis.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+| conventions.appliveview.tanzu.vmware.com | <ul><li> GHSA-69ch-w2m2-3vjp </li></ul>|
+| spring-boot-conventions.tanzu.vmware.com | <ul><li> GHSA-69ch-w2m2-3vjp </li></ul>|
+| backend.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
+| connector.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2022-41881 </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-1281</li><li>CVE-2023-1829</li><li>CVE-2023-0386 </li></ul>|
+| image-policy-webhook.signing.apps.tanzu.vmware.com | <ul><li> GHSA-232p-vwff-86mp </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> GHSA-f9xv-q969-pqx4 </li></ul>|
 
 ---
 
