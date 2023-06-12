@@ -9,11 +9,11 @@ referenced by the intended Kubernetes object created for performing the action.
 The following sections provide details about how to appropriately set up
 Kubernetes secrets for carrying those credentials forward to the proper resources.
 
->**Important** For both HTTP(s) and SSH, do not use the same server for multiple secrets to avoid a Tekton error.
+>**Important** For HTTP, HTTPS, and SSH, do not use the same server for multiple secrets to avoid a Tekton error.
 
 ## <a id="http"></a>HTTP
 
-For any action upon an HTTP(s)-based repository, create a Kubernetes secret
+For any action upon an HTTP or HTTPS based repository, create a Kubernetes secret
 object of type `kubernetes.io/basic-auth` as follows:
 
   ```yaml
@@ -69,11 +69,14 @@ workload by including it in its set of secrets. For example:
     - name: tap-registry
   ```
 
-## HTTPS with Custom CA Certificate
+## <a id="http-custom-cert"></a>HTTPS with a Custom CA Certificate
 
-In addition to the [`shared.ca_cert_data`](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md) field, the certificate needs to be added to the secret used to access the git repository. As of writing the only platform tested with custom CA certificates is Gitlab.
+In addition to the
+[shared.ca_cert_data](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
+field, you must add the certificate to the secret used to access the Git
+repository. The only platform tested with custom CA certificates is GitLab.
 
-The secret is set up similarly as above, but with the addition of the `caFile` field specifying a certificate authority.
+You set up the secret similarly to the section above, but the `caFile` field specifies a certificate authority.
 
    ```yaml
   apiVersion: v1
@@ -92,7 +95,7 @@ The secret is set up similarly as above, but with the addition of the `caFile` f
      -----END CERTIFICATE-----
    ```
 
-The secret is then associated with the `ServiceAccount` as above.
+The secret is associated with the `ServiceAccount`.
 
   ```yaml
   apiVersion: v1
@@ -110,11 +113,11 @@ The secret is then associated with the `ServiceAccount` as above.
 
 ## <a id="ssh"></a>SSH
 
-Aside from using HTTP(S) as a transport, the supply chains also allow you to
+Aside from using HTTP or HTTPS as a transport, the supply chains also allow you to
 use SSH.
 
 >**Important** To use the pull request feature, you must use
-HTTP(S) authentication with an access token.
+HTTP or HTTPS authentication with an access token.
 
 1. To provide the credentials for any Git operations with SHH,
 create the Kubernetes secret as follows:
@@ -213,6 +216,6 @@ workload by including it in its set of secrets. For example:
       - name: tap-registry
     ```
 
-## Read more on Git
+## <a id="more-info"></a>More information about Git
 
 For information about Git, see [Git Reference](git.hbs.md).

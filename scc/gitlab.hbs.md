@@ -1,20 +1,22 @@
-# Using Gitlab as a Git provider with your supply chains
+# Using GitLab as a Git provider with your supply chains
 
-This topic describes how to use Gitlab as a Git provider with your Supply Chain Choreographer supply chains.
+This topic describes how to use GitLab as a Git provider with your Supply Chain Choreographer supply chains.
+
+## <a id="overview"></a>Overview
 
 There are two uses for Git in a supply chain:
 
 - As a source of code to build and deploy applications
 - As a repository of configuration created by the build cluster which is deployed on a run or production cluster
 
-## <a id="repo-committed"></a> Using Gitlab as a repository for committed code
+## <a id="repo-committed"></a> Using GitLab as a repository for committed code
 
-Developers can use Gitlab to commit source code to a repository that the
+This section tells you how developers can use GitLab to commit source code to a repository that the
 supply chain pulls.
 
-### <a id="devops-example"></a> Gitlab example
+### <a id="devops-example"></a> GitLab example
 
-The following example uses the Gitlab source repository:
+The following example uses the GitLab source repository:
 
 `https://gitlab.example.com/my-org/repository.git`
 
@@ -25,7 +27,7 @@ ootb_supply_chain_testing_scanning:
   git_implementation: go-git
 ```
 
-or by using workload parameter:
+or by using a workload parameter:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -38,21 +40,21 @@ spec:
       value: go-git
 ```
 
-## <a id="using-gitops"></a> Using Gitlab as a GitOps repository
+## <a id="using-gitops"></a> Using GitLab as a GitOps repository
 
 The supply chain commits Kubernetes configuration to a Git repository.
 This configuration is then applied to another cluster. This is the GitOps
-promotion pattern.
+promotion process.
 
-You must construct a path and configure your Git implementation to read and write to an Gitlab repository.
+You must construct a path and configure your Git implementation to read and write to an GitLab repository.
 
 ### <a id="gitops-write-ex"></a> GitOps write path example
 
-The following example uses the Gitlab Git repository:
+The following example uses the GitLab Git repository:
 
 `https://gitlab.example.com/my-org/repository.git`
 
-Set the `gitops_server_kind` workload params to `gitlab`.
+1. Set the `gitops_server_kind` workload parameters to `gitlab`.
 
   ```yaml
   apiVersion: carto.run/v1alpha1
@@ -66,9 +68,9 @@ Set the `gitops_server_kind` workload params to `gitlab`.
       ...
   ```
 
-Set other gitops values in either tap-values or in the workload params.
+1. Set other GitOps values in either `tap-values` or in the workload parameters.
 
-  - By using tap-values:
+  By using tap-values:
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -78,7 +80,7 @@ Set other gitops values in either tap-values or in the workload params.
         repository_name: repository
     ```
 
-  - By using the workload parameters:
+  By using the workload parameters:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
@@ -96,9 +98,9 @@ Set other gitops values in either tap-values or in the workload params.
         ...
     ```
 
-### <a id="gitops-read-ex"></a> Gitlab read example
+### <a id="gitops-read-ex"></a> GitLab read example
 
-The following example uses the Gitlab repository:
+The following example uses the GitLab repository:
 
 `https://gitlab.example.com/my-org/repository.git`
 
@@ -122,13 +124,13 @@ spec:
       value: go-git
 ```
 
-### <a id="gitops-read-temp"></a> Gitlab over HTTPS with a custom CA certificate
+### <a id="gitops-read-temp"></a> GitLab over HTTPS with a custom CA certificate
 
-When using HTTPS with a custom certificate authority the git secret must be configured both in the `tap-values` as 
-well as the git secret used by the GitRepository.
+When using HTTPS with a custom certificate authority, you must configure the Git
+secret both in `tap-values` and the Git secret used by the GitRepository.
 
-The [`shared.ca_cert_data`](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md) is set inside 
-`tap-values.yaml`. Inside the git secret the `caFile` field must be set.
+1. Set the [shared.ca_cert_data](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
+ in `tap-values.yaml`. You must set the Git secret in the `caFile` field.
 
    ```yaml
   apiVersion: v1
@@ -147,7 +149,7 @@ The [`shared.ca_cert_data`](../security-and-compliance/tls-and-certificates/cust
      -----END CERTIFICATE-----
    ```
 
-The secret is then associated with the `ServiceAccount`.
+1. Associate the secret with the `ServiceAccount`.
 
   ```yaml
   apiVersion: v1
@@ -163,4 +165,4 @@ The secret is then associated with the `ServiceAccount`.
     - name: tap-registry
   ```
 
-For more details please see [Git Authentication](git-auth.hbs.md).
+For information about authentication, see [Git Authentication](git-auth.hbs.md).
