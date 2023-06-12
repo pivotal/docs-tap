@@ -11,9 +11,12 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-5-2-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
-
-- Security fix description.
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-1281</li><li>CVE-2023-1829</li><li>CVE-2023-0386 </li></ul>|
+| cert-manager.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-31484 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> GHSA-f9xv-q969-pqx4 </li></ul>|
 
 ---
 
