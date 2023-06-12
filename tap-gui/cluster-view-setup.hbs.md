@@ -123,6 +123,7 @@ To set up a Service Account to view resources on a cluster:
       - sourcescans
       - imagescans
       - scanpolicies
+      - scantemplates
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['tekton.dev']
       resources:
