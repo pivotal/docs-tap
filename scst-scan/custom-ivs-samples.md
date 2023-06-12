@@ -1,18 +1,22 @@
 # Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan
 
-This topic lists sample ImageVulnerabilityScans using various scanners and if required, their associated secrets. You can use the samples in this topic for the following scanners:
+This topic tells you which sample ImageVulnerabilityScans you can use with various scanners, and their associated secrets if required. 
+
+## <a id="overview"></a> Overview
+
+You can use the samples in this topic for the following scanners:
 
 - Carbon Black
 - Snyk
 - Trivy
 
-For information about integrating your own scanner see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner)
+For information about integrating your own scanner, see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner).
 
 ### <a id="use-samples"></a> Use custom ImageVulnerabilityScan samples
 
 To use one of the samples:
 
-1. Copy the sample YAML into a file named `custom-ivs.yaml`. Some scanners (e.g. Carbon Black, Snyk, and Prisma Scanner) require specific credentials to scan that need to be specified in the included secret.
+1. Copy the sample YAML into a file named `custom-ivs.yaml`. Some scanners, such as Carbon Black, Snyk, and Prisma Scanner, require specific credentials that you must specifiy in the secret.
 2. Obtain the one or more necessary images. For example, an image containing the scanner.
 3. Edit these common fields of your ImageVulnerabilityScan:
 
@@ -142,7 +146,7 @@ Where:
 - `SNYK-SCANNER-IMAGE` is the Snyk Scanner image used to run Snyk scans. See [Snyk documentation](https://github.com/snyk/snyk-images) for Snyk images.
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx).
 
-> **Note** After detecting vulnerabilities, the Snyk image ends with Exit Code 1 resulting in a failed scan task. A possible solution might be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
+> **Note** After detecting vulnerabilities, the Snyk image ends with Exit Code 1 and results in a failed scan task. A possible solution might be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
 
 For information about setting up scanner credentials, see the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config).
 
@@ -179,4 +183,4 @@ spec:
 
 Where:
 
-- `TRIVY-SCANNER-IMAGE` is the Trivy Scanner image used to run Trivy scans. See [Trivy documentation](https://github.com/aquasecurity/trivy) for Trivy images.
+- `TRIVY-SCANNER-IMAGE` is the Trivy Scanner image used to run Trivy scans. For information about Trivy images, see [Trivy documentation](https://github.com/aquasecurity/trivy).
