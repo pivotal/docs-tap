@@ -130,7 +130,7 @@ To simplify this walkthrough, use a script to create these policy documents and 
 Run:
 
 ```console
-# Retrieve the OIDC endpoint from the Kubernetes Cluster and store it for use in the policy
+# Retrieve the OIDC endpoint from the Kubernetes cluster and store it for use in the policy.
 export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
 cat << EOF > build-service-trust-policy.json
 {
