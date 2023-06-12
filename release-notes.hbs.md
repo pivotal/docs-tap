@@ -21,8 +21,8 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-platform-features'></a> New platform-wide features
 
-- New out of the box Bitnami Service - MongoDB
-- New out of the box Bitnami Service - Kafka
+- New pre-installed Bitnami service: MongoDB.
+- New pre-installed Bitnami service: Kafka.
 
 #### <a id='1-6-0-new-components'></a> New components
 
@@ -106,15 +106,15 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - `XWorkloadRegistration` is an XRD and an integration API between Services
   Toolkit, Crossplane and AppSSO
 
-#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
+#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
 - New report feature that links all packages, vulnerabilities, and ratings
   associated from a specific vulnerability scan SBOM to a Store report. When
   querying a report, it returns information linked to the original SBOM report
   instead of returning the aggregated data of all reports for the linked image
-  or source. 
+  or source.
   - `POST /api/v1/images` and `POST /api/v1/sources` APIs updated
-    - New optional header request fields: 
+    - New optional header request fields:
       - `Report-UID`: A unique identifier to assign to the report. If omitted, a
         unique identifier is randomly generated for the report. Supported
         characters: ALPHA DIGIT "-" / "." / "_" / "~".
