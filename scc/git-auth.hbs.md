@@ -69,6 +69,45 @@ workload by including it in its set of secrets. For example:
     - name: tap-registry
   ```
 
+## HTTPS with Custom CA Certificate
+
+In addition to the [`shared.ca_cert_data`](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md) field, the certificate needs to be added to the secret used to access the git repository. As of writing the only platform tested with custom CA certificates is Gitlab.
+
+The secret is set up similarly as above, but with the addition of the `caFile` field specifying a certificate authority.
+
+   ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: SECRET-NAME
+    annotations:
+      tekton.dev/git-0: GIT-SERVER        # ! required
+  type: kubernetes.io/basic-auth          # ! required
+  stringData:
+    username: GIT-USERNAME
+    password: GIT-PASSWORD
+    caFile: |
+     -----BEGIN CERTIFICATE-----
+     ...
+     -----END CERTIFICATE-----
+   ```
+
+The secret is then associated with the `ServiceAccount` as above.
+
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: default
+  secrets:
+    - name: registry-credentials
+    - name: tap-registry
+    - name: GIT-SECRET-NAME
+  imagePullSecrets:
+    - name: registry-credentials
+    - name: tap-registry
+  ```
+
 ## <a id="ssh"></a>SSH
 
 Aside from using HTTP(S) as a transport, the supply chains also allow you to
