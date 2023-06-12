@@ -294,8 +294,9 @@ plug-in, take the following steps.
 
 ## <a id='access-control'></a> Authorize a user to execute sensitive operations
 
-You can secure at an individual level the access to execute sensitive operations, such as editing
-environment variables, downloading heap dump data, and changing log levels for applications.
+You can limit the access to execute sensitive operations to specific users.
+This secures operations such as editing environment variables, downloading heap dump data,
+and changing log levels for applications.
 
 To authorize a user to execute these sensitive operations:
 
@@ -358,14 +359,14 @@ resource and a corresponding `RoleBinding` to bind it to the `tap-gui` service a
       apiGroup: rbac.authorization.k8s.io
     ```
 
-1. (Optional) Edit the tap-gui clusterrole `k8s-reader` to add a rule that specifies the
+1. (Optional) Edit the tap-gui cluster role `k8s-reader` to add a rule that specifies the
 `execute` verb for the `SensitiveOperationsAccess` resource in a single cluster setup:
 
     ```console
     kubectl edit clusterrole k8s-reader -n tap-gui
     ```
 
-1. Add the following rule to the clusterrole:
+1. Add the following rule to the cluster role:
 
     ```yaml
     - apiGroups: ['appliveview.apps.tanzu.vmware.com']
