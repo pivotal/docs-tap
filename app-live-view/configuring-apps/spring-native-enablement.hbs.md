@@ -39,7 +39,7 @@ For Application Live View to interact with a Spring Native app within Tanzu Appl
 
 1. Add the following configuration in `pom.xml` to generate `build-info.properties` into your
 Spring Boot application.
-This information is used to display the Spring Boot version that the app uses in Application Live View.
+Application Live View uses this information to display the Spring Boot version that the app uses.
 
     ```xml
     <plugin>
@@ -85,7 +85,6 @@ This information is used to display the Spring Boot version that the app uses in
     --env MANAGEMENT_HEALTH_PROBES_ENABLED=true \
     --env SERVER_PORT=8080
     ```
-    <!-- Can I break up the lines at sensible points with backslashes to make reading it easier? -->
 
     When you run `tanzu apps workload create`:
 
