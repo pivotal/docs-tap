@@ -390,7 +390,12 @@ provide the credentials for that repository as follows:
   stringData:
     username: GIT-USERNAME
     password: GIT-PASSWORD
+    # ! Optional, required if the git repository is signed by a certificate authority not in the system trust store
+    caFile: |
+      CADATA-BASE64
   ```
+
+
 
 Both the Tekton annotation and the `basic-auth` secret type must be
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git

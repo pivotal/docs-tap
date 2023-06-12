@@ -22,7 +22,8 @@ Tanzu Application Platform supports three git providers:
 ## Related Articles
 
 [Git Authentication](git-auth.hbs.md) walks through the objects, such as secrets and service accounts,
-to create on cluster to allow supply chain Git operations to succeed.
+to create on cluster to allow supply chain Git operations to succeed. This includes the configuration of a custom CA 
+certificate.
 
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md) discusses the two methods
 of storing built Kubernetes configuration, either in a Git repository or a

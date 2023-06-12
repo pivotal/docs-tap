@@ -27,3 +27,5 @@ shared:
     -----END CERTIFICATE-----
 
 ```
+
+When using git with custom CA in supply chains please also see the guide on [Git Authentication](../../scc/git-auth.hbs.md#https-with-custom-ca-certificate) to configure the `caFile` parameter.
