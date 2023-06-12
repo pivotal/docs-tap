@@ -8,6 +8,7 @@ You can use the samples in this topic for the following scanners:
 
 - Carbon Black
 - Snyk
+- Prisma
 - Trivy
 
 For information about integrating your own scanner, see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner).
@@ -152,18 +153,17 @@ For information about setting up scanner credentials, see the [Snyk CLI document
 
 ### <a id="ivs-prisma"></a>Configure an ImageVulnerabilityScan for Prisma
 
-To configure an ImageVulnerabilityScan for Trivy, use the following ImageVulnerabilityScan configuration:
+To configure an ImageVulnerabilityScan for Prisma, use the following ImageVulnerabilityScan configuration:
 
 1. Have a scanner image installed with the following dependencies:
      - [podman](https://podman.io/docs/installation)
      - [twistcli](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli)
-2. Using the yaml below, populate the placeholder fields with the appropriate values and save to a file `ivs-prisma.yaml`:
+2. Using the yaml below, populate the placeholder fields with the appropriate values and save to a file `custom-ivs.yaml`:
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
   name: prisma-auth
-  namespace: app-scanning
 stringData:
   username: USERNAME
   password: PASSWORD
