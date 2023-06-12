@@ -1,9 +1,10 @@
 # Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan
 
-This topic lists sample ImageVulnerabilityScans using various scanners and associated secrets. You can use the samples in this topic with the following scanners:
+This topic lists sample ImageVulnerabilityScans using various scanners and if required, their associated secrets. You can use the samples in this topic for the following scanners:
 
 - Carbon Black
 - Snyk
+- Trivy
 
 For information about integrating your own scanner see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner)
 
@@ -11,7 +12,7 @@ For information about integrating your own scanner see [Integrate your own scann
 
 To use one of the samples:
 
-1. Copy the sample YAML into a file named `custom-ivs.yaml`.
+1. Copy the sample YAML into a file named `custom-ivs.yaml`. Some scanners (e.g. Carbon Black, Snyk, and Prisma Scanner) require specific credentials to scan that need to be specified in the included secret.
 2. Obtain the one or more necessary images. For example, an image containing the scanner.
 3. Edit these common fields of your ImageVulnerabilityScan:
 
@@ -22,7 +23,7 @@ To use one of the samples:
      - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
 4. Complete any scanner specific changes specified in the sample.
 5. You can either incorporate your custom ImageVulnerabilityScan into a [ClusterImageTemplate](./clusterimagetemplates.hbs.md) or run a standalone scan using:
-  
+
   ```console
   kubectl apply -f custom-ivs.yaml -n DEV-NAMESPACE
   ```
@@ -35,7 +36,7 @@ The Carbon Black CLI uses the `cbctl.yaml` config file. The `cbctl.yaml` config 
 
 See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
 
-To mount the `cbctl-creds` as a workspace binding, use the following ImageVulnerabilityScan configuration:
+To mount the `cbctl-creds` as a workspace binding, use the following ImageVulnerabilityScan and secret configuration:
 
 ```yaml
 apiVersion: v1
@@ -91,7 +92,7 @@ Where:
 
 ### <a id="ivs-snyk"></a>Configure an ImageVulnerabilityScan for Snyk
 
-To configure an ImageVulnerabilityScan for Snyk, update your YAML file as follows:
+To configure an ImageVulnerabilityScan for Snyk, use the following ImageVulnerabilityScan and secret configuration:
 
 ```yaml
 apiVersion: v1
@@ -144,3 +145,38 @@ Where:
 > **Note** After detecting vulnerabilities, the Snyk Docker image ends with Exit Code 1 resulting in a failed scan task. A possible solution might be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
 
 For information about setting up scanner credentials, see the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config).
+
+### <a id="ivs-trivy"></a>Configure an ImageVulnerabilityScan for Trivy
+
+To configure an ImageVulnerabilityScan for Trivy, use the following ImageVulnerabilityScan configuration:
+
+```yaml
+apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ImageVulnerabilityScan
+metadata:
+  name: trivy-ivs
+spec:
+  image: harbor-repo.vmware.com/dockerhub-proxy-cache/library/nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
+  scanResults:
+    location: registry/project/scan-results
+  serviceAccountNames:
+    publisher: publisher
+    scanner: scanner
+  steps:
+  - name: trivy
+    image: TRIVY-SCANNER-IMAGE
+    command: ["trivy"]
+    args:
+    - image
+    - --format
+    - cyclonedx
+    - --output
+    - $(params.scan-results-path)/scan.cdx
+    - --scanners
+    - vuln
+    - $(params.image)
+```
+
+Where:
+
+- `TRIVY-SCANNER-IMAGE` is the Trivy Scanner image used to run Trivy scans.
