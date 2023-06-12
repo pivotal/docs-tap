@@ -65,19 +65,11 @@ The following issues, listed by component and area, are resolved in this release
 
 ---
 
-{{#unless vars.hide_content}}
-
 ### <a id='1-4-6-known-issues'></a> Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-4-6-COMPONENT-NAME-ki'></a> COMPONENT-NAME
-
-- Known issue description with link to workaround.
+This release introduces no new known issues.
 
 ---
-
-{{/unless}}
 
 ## <a id='1-4-5'></a> v1.4.5
 
