@@ -11,17 +11,52 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| apis.apps.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
-| conventions.appliveview.tanzu.vmware.com | <ul><li> GHSA-69ch-w2m2-3vjp </li></ul>|
-| spring-boot-conventions.tanzu.vmware.com | <ul><li> GHSA-69ch-w2m2-3vjp </li></ul>|
-| backend.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
-| connector.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-20860 </li></ul>|
-| api-portal.tanzu.vmware.com | <ul><li> CVE-2022-41881 </li></ul>|
-| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-1281</li><li>CVE-2023-1829</li><li>CVE-2023-0386 </li></ul>|
-| image-policy-webhook.signing.apps.tanzu.vmware.com | <ul><li> GHSA-232p-vwff-86mp </li></ul>|
-| tap-gui.tanzu.vmware.com | <ul><li> GHSA-f9xv-q969-pqx4 </li></ul>|
+<table>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+<tr>
+<td>apis.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-vvpx-j8f3-3w6h</li></ul></td>
+</tr>
+<tr>
+<td>conventions.appliveview.tanzu.vmware.com</td>
+<td><ul><li>GHSA-69ch-w2m2-3vjp</li></ul></td>
+</tr>
+<tr>
+<td>spring-boot-conventions.tanzu.vmware.com</td>
+<td><ul><li>GHSA-69ch-w2m2-3vjp</li></ul></td>
+</tr>
+<tr>
+<td>backend.appliveview.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li></ul></td>
+</tr>
+<tr>
+<td>connector.appliveview.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20860">CVE-2023-20860</a></li></ul></td>
+</tr>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><ul><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41881">CVE-2022-41881</a></li></ul></td>
+</tr>
+<tr>
+<td>buildservice.tanzu.vmware.com</td>
+<td><ul>
+  <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1281">CVE-2023-1281</a></li>
+  <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1829">CVE-2023-1829</a></li>
+  <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0386">CVE-2023-0386</a></li>
+</ul></td>
+</tr>
+<tr>
+<td>image-policy-webhook.signing.apps.tanzu.vmware.com</td>
+<td><ul><li>GHSA-232p-vwff-86mp</li></ul></td>
+</tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><ul><li>GHSA-f9xv-q969-pqx4</li></ul></td>
+</tr>
+</table>
 
 ---
 
@@ -31,28 +66,24 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-3-9-intellij-ext-ri'></a> Tanzu Developer Tools for IntelliJ
 
-- Permission-denied errors encountered during Live Update, when operating against platforms
-  configured to use the Jammy build stack, are now resolved.
+- Resolved permission-denied errors encountered during Live Update when operating against platforms
+  configured to use the Jammy build stack.
 
 #### <a id='1-3-9-vs-ext-ri'></a> Tanzu Developer Tools for Visual Studio
 
-- Permission-denied errors encountered during Live Update, when operating against platforms
-  configured to use the Jammy build stack, are now resolved.
+- Resolved permission-denied errors encountered during Live Update when operating against platforms
+  configured to use the Jammy build stack.
 
 #### <a id='1-3-9-vscode-ext-ri'></a> Tanzu Developer Tools for VS Code
 
-- Permission-denied errors encountered during Live Update, when operating against platforms
-  configured to use the Jammy build stack, are now resolved.
+- Resolved permission-denied errors encountered during Live Update when operating against platforms
+  configured to use the Jammy build stack.
 
 ---
 
 ### <a id='1-3-9-known-issues'></a> Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-3-9-COMPONENT-NAME-ki'></a> COMPONENT-NAME
-
-- Known issue description with link to workaround.
+This release introduces no new known issues.
 
 ---
 
