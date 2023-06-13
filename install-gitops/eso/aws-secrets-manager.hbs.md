@@ -8,7 +8,7 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed externally in AWS Secrets Manager. 
 To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and Vault is supported.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI
 is verified to support AWS Elastic Kubernetes Service cluster with AWS Secrets Manager.
 Other combinations of Kubernetes distribution and ESO providers are not verified.

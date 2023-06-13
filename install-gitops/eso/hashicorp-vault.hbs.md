@@ -1,4 +1,4 @@
-# Install Tanzu Application Platform through GitOps with Vault
+# Install Tanzu Application Platform through GitOps with HashiCorp Vault
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
@@ -8,8 +8,8 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed in an external secrets store. 
 To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and Vault is supported.
-The External Secrets Operator integration in this release of Tanzu GitOps RI is verified to support Kubernetes integration with Hashicorp Vault.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
+The External Secrets Operator integration in this release of Tanzu GitOps RI is verified to support Kubernetes integration with HashiCorp Vault.
 
 ## <a id='prerequisites'></a>Prerequisites
 
