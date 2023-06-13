@@ -2,9 +2,11 @@
 
 This topic tells you how to create your own ClusterImageTemplate and customize the embedded ImageVulnerabilityScan to use the scanner of your choice.
 
+- A prerequisite is that you have [created your own ImageVulnerabilityScan](./app-scanning-alpha.hbs.md#integrate-your-own-scanner) or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./custom-ivs-samples.md).
+
 ## Create a ClusterImageTemplate
 
-To create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy:
+The below steps describe how to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy. To use a different scanner, replace the embedded ImageVulnerabilityScan with your own.
 
 1. Create a YAML file with the following content and name it `custom-ivs-template.yaml`.
 
@@ -42,6 +44,8 @@ To create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy:
         default: scanner
       - name: image_scanning_service_account_publisher
         default: publisher
+      - name: image_scanning_active_keychains
+        default: []
       - name: trivy_db_repository
         default: ghcr.io/aquasecurity/trivy-db
       - name: trivy_java_db_repository
@@ -83,6 +87,7 @@ To create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy:
         generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
       spec:
         image: #@ data.values.image
+        activeKeychains: #@ data.values.params.image_scanning_active_keychains
         scanResults:
           location: #@ scanResultsLocation()
         workspace:
@@ -144,10 +149,10 @@ To create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy:
 
 1. Update the name of your ClusterImageTemplate, the registry fields for your registry, and the location of your Trivy scanner image by editing your `custom-ivs-template.yaml`.
 
-2. Create the ClusterImageTemplate:
+1. Create the ClusterImageTemplate:
 
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-3. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./app-scanning-alpha.hbs.md#configuring-the-supply-chain).
+1. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./app-scanning-alpha.hbs.md#configuring-the-supply-chain).
