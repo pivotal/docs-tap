@@ -4,7 +4,7 @@ This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
 using Carvel App. You can use Carvel Package Supply Chains with Supply Chain Choreographer.
 
-## Prerequisites
+## <a id="prerecs"></a> Prerequisites
 
 To use GitOps Delivery with Carvel App, you must complete the following prerequisites:
 
@@ -23,7 +23,7 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
   clusters. If you intend to deploy directly on the run cluster without using a
   build cluster, a build cluster is only necessary for building the package.
 
-## Set up Run cluster namespaces
+## <a id="-set-up-run-cluster"></a> Set up Run cluster namespaces
 
 Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
@@ -50,7 +50,7 @@ rules:
   verbs: ["get", "list", "create", "update", "delete"]
 ```
 
-## Create Carvel PackageInstalls and secrets
+## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
 For each Carvel `Package` and each Run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` is stored in your GitOps repository and deployed to Run clusters by the Carvel `App`.
 
@@ -110,7 +110,7 @@ app.default.tap/
 
 3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## Create an App
+## <a id="create app"></a> Create an App
 
 1. You must give the Build cluster access to the Run clusters. On the Build cluster, for each Run cluster, create a `Secret` containing the Run cluster's kubeconfig:
 
@@ -120,7 +120,7 @@ app.default.tap/
        --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
    ```
 
-2. Each Carvel `App` CR must specify either a service account, by using
+2. Each Carvel `App` custom resource (CR) must specify either a service account, by using
    `spec.serviceAccountName`, in the same namespace where the App CR is located
    on the Build cluster. Or specify a `Secret` with kubeconfig contents for a
    target destination Run cluster, by using
@@ -183,7 +183,7 @@ app.default.tap/
 
    > **Note** The fetch section can includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 
-## Verifying applications
+## <a id="verify-app"></a> Verifying applications
 
 To verify your installation:
 
