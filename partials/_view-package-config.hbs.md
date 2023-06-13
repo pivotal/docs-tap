@@ -38,7 +38,7 @@ These keys are defined under the `shared` Top-level Key, as summarized in the fo
 
 |Shared Key|Description|Optional|
 |----|----|----|
-|`ca_cert_data`|PEM-encoded certificate data to trust TLS connections with a private CA. This shared key is used by `convention_controller`, `scanning` and `source_controller`|Yes|
+|`ca_cert_data`|PEM-encoded certificate data to trust TLS connections with a private CA. This shared key is used by `convention_controller`, `scanning` and the Tanzu `source_controller` (not the FluxCD Source Controller)|Yes|
 |`ingress_domain`|Domain name to be used in service routes and host names for instances of Tanzu Application Platform components.|Yes|
 |`ingress_issuer`|A `cert-manager.io/v1/ClusterIssuer` for issuing TLS certificates to Tanzu Application Platform components. Default value: `tap-ingress-selfsigned`|Yes|
 |`kubernetes_distribution`|Type of Kubernetes infrastructure being used. You can use this shared key in coordination with the `kubernetes_version` key. Supported value: `openshift`.|Yes|
