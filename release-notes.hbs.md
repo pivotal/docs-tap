@@ -13,7 +13,7 @@ In release notes, this condition hides content that describes an unreleased patc
 
 ## <a id='1-6-0'></a> v1.6.0
 
-**Release Date**: 11 July 2023
+**Release Date**: 27 July 2023
 
 ### <a id='1-6-0-whats-new'></a> What's new in Tanzu Application Platform
 
