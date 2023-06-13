@@ -46,41 +46,41 @@ To create a workload from Git through https, follow these steps:
 
 3. To pass in a custom settings.xml for Java, create a file called `settings-xml.yaml`. For example:
 
-   ```yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: settings-xml
-   type: service.binding/maven
-   stringData:
-     type: maven
-     provider: sample
-     settings.xml: |
-       <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-           <mirrors>
-               <mirror>
-                   <id>reposilite</id>
-                   <name>Tanzu seal Internal Repo</name>
-                   <url>https://reposilite.tap-trust.cf-app.com/releases</url>
-                   <mirrorOf>*</mirrorOf>
-               </mirror>
-           </mirrors>
-           <servers>
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: settings-xml
+    type: service.binding/maven
+    stringData:
+      type: maven
+      provider: sample
+      settings.xml: |
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <mirrors>
+                <mirror>
+                    <id>reposilite</id>
+                    <name>Tanzu seal Internal Repo</name>
+                    <url>https://reposilite.tap-trust.cf-app.com/releases</url>
+                    <mirrorOf>*</mirrorOf>
+                </mirror>
+            </mirrors>
+            <servers>
                 <server>
-                   <id>reposilite</id>
-                   <username>USERNAME</username>
-                   <password>PASSWORD</password>
+                    <id>reposilite</id>
+                    <username>USERNAME</username>
+                    <password>PASSWORD</password>
                 </server>
-           </servers>
-       </settings>
-   ```
+            </servers>
+        </settings>
+    ```
 
 4. Apply the file:
 
-   ```console
-   kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
-   ```
+    ```console
+    kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
+    ```
 
 ## <a id="create-basic-wkload"></a>Create a basic supply chain workload
 
@@ -158,3 +158,4 @@ To instead pass the CA certificate when you create the workload, run:
 
 ```console
 tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca"
+```
