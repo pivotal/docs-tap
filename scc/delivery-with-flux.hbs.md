@@ -4,7 +4,7 @@ This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
 using FluxCD and Supply Chain Choreographer.
 
-## Prerequisites
+## <a id="prerecs"></a> Prerequisites
 
 To use Gitops Delivery with FluxCD, you must complete the following prerequisites:
 
@@ -26,7 +26,7 @@ To use Gitops Delivery with FluxCD, you must complete the following prerequisite
   cluster without a build cluster, a build cluster is only necessary for
   building the package.
 
-## Set up run cluster namespaces
+## <a id="run-cluster-ns"></a> Set up run cluster namespaces
 
 Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
@@ -53,7 +53,7 @@ rules:
   verbs: ["get", "list", "create", "update", "delete"]
 ```
 
-## Create Carvel PackageInstalls and secrets
+## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
 For each Carvel `Package` and for each run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` is stored in your GitOps repository and deployed to run clusters by FluxCD.
 
@@ -112,7 +112,7 @@ app.default.tap/
 
 3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## Create FluxCD GitRepository and FluxCD Kustomizations on the Build Cluster
+## <a id="create-flux"></a> Create FluxCD GitRepository and FluxCD Kustomizations on the Build Cluster
 
 Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each of your run clusters.
 
@@ -220,7 +220,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      serviceAccountName: <run-cluster-ns-sa>
    ```
 
-## Verifying Installation
+## <a id="verify-install"></a> Verifying Installation
 
 To verify your installation:
 

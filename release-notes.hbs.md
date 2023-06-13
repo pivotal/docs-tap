@@ -106,6 +106,10 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - `XWorkloadRegistration` is an XRD and an integration API between Services
   Toolkit, Crossplane and AppSSO
 
+#### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
+
+- The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
+
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
 
 - New report feature that links all packages, vulnerabilities, and ratings
@@ -295,6 +299,17 @@ Deprecated features will remain on this list until they are retired from Tanzu A
    Carbon Black Scanner is not impacted.
    For information about the migration path, see
    [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
+
+- The profile based installation of Grype to a developer namespace and related
+  fields in the values file, such as `grype.namespace` and
+  `grype.targetImagePullSecret`, are deprecated and marked for removal in Tanzu
+  Application Platform v1.8.0.
+
+   VMware recommends using the namespace provisioner to populate namespaces with
+   all the required resources, including the Grype installation.  For
+   information about how to use namespace provisioner to populate a namespace
+   with SCST - SCST scan, see [Setup for OOTB Supply
+   Chains](namespace-provisioner/ootb-supply-chain.hbs.md#test-scan).
 
 ### <a id="1-6-tbs-deprecations"></a> Tanzu Build Service
 

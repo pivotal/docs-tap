@@ -28,4 +28,4 @@ shared:
 
 ```
 
-When using git with custom CA in supply chains please also see the guide on [Git Authentication](../../scc/git-auth.hbs.md#https-with-custom-ca-certificate) to configure the `caFile` parameter.
+For information about using Git with a custom CA in supply chains and configuring the `caFile` parameter, see [Git Authentication](../../scc/git-auth.hbs.md#https-with-custom-ca-certificate).
