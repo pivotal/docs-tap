@@ -332,7 +332,7 @@ To use the `pull_request` commit strategy, set the following parameters:
   Chains package installation.
 - `gitops.pull_request.server_kind` configured during the Out of the Box Supply
   Chains package installation or `gitops_server_kind` configured as a workload parameter.
-  Supported values are `github` and `gitlab`.
+  Supported values are `github`, `gitlab` and `azure`.
 - `gitops.pull_request.commit_branch` configured during the Out of the Box Supply
   Chains package installation or `gitops_commit_branch` configured as a workload parameter.
 - `gitops.pull_request.pull_request_title` configured during the Out of the Box Supply
