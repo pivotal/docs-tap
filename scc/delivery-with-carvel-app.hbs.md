@@ -36,7 +36,7 @@ If your Run cluster is not a Tanzu Application Platform cluster, create a namesp
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: <run-cluster-ns>
+  namespace: RUN-CLUSTER-NS
   name: app-cr-role
 rules:
 - apiGroups: ["apps"]
@@ -49,6 +49,8 @@ rules:
   resources: ["ingresses"]
   verbs: ["get", "list", "create", "update", "delete"]
 ```
+
+Where `RUN-CLUSTER-NS` is the name of your run cluster you want to create a namespace with.
 
 ## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
@@ -68,7 +70,7 @@ app.default.tap/
     params.yaml              # Secret
 ```
 
-1. For each Run cluster, create a `Secret` that has the values for each `Package` parameter. To see the configurable properties of the `Package`, inspect the `Package` CR’s valuesSchema. See [Carvel Package Supply Chains](./carvel-package-supply-chain.hbs.md). Store the `Secret` in your GitOps repository at `<package_name>/<run_cluster>/params.yaml`.
+1. For each Run cluster, create a `Secret` that has the values for each `Package` parameter. To see the configurable properties of the `Package`, inspect the `Package` CR’s valuesSchema. See [Carvel Package Supply Chains](./carvel-package-supply-chain.hbs.md). Store the `Secret` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/params.yaml`.
 
    ```yaml
    ---
@@ -83,9 +85,14 @@ app.default.tap/
        hostname: app.mycompany.com
    ```
 
+  Where:
+
+  - `PACKAGE-NAME` is the name of your Carvel package you want to use.
+  - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+
    > **Note** You can skip this step to use the default parameter values.
 
-2. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
+1. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/packageinstall.yaml`.
 
    ```yaml
    ---
@@ -94,7 +101,7 @@ app.default.tap/
    metadata:
      name: app
    spec:
-     serviceAccountName: <run-cluster-ns-sa> # ServiceAccount on Run cluster with permissions to deploy Package, see "Set up Run Cluster Namespaces"
+     serviceAccountName: RUN-CLUSTER-NS-SA # ServiceAccount on Run cluster with permissions to deploy Package, see "Set up Run Cluster Namespaces"
      packageRef:
        refName: app.default.tap # name of the Package
        versionSelection:
@@ -104,21 +111,33 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
+  Where:
+
+   - `PACKAGE-NAME` is the name of your Carvel package you want to use.
+   - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+   - `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
+  
    > **Note** To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`.
 
    > **Important** If you skipped creation of the `Secret`, omit the `values` key.
 
-3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
+2. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
 ## <a id="create app"></a> Create an App
 
 1. You must give the Build cluster access to the Run clusters. On the Build cluster, for each Run cluster, create a `Secret` containing the Run cluster's kubeconfig:
 
    ```console
-   kubectl create secret generic <run-cluster>-kubeconfig \
-       -n <build-cluster-ns> \
-       --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
+   kubectl create secret generic RUN-CLUSTER-kubeconfig \
+       -n BUILD-CLUSTER-NS \
+       --from-file=value.yaml=PATH-TO-RUN-CLUSTER-KUBECONFIG
    ```
+
+  Where: 
+
+  - `RUN-CLUSTER` is the name of the run cluster you want to use with your app.
+  - `BUILD-CLUSTER-NS` is the namespace of the build cluster you want to use.
+  - `PATH-TO-RUN-CLUSTER-KUBECONFIG` is the location of your run cluster kubeconfig.
 
 2. Each Carvel `App` custom resource (CR) must specify either a service account, by using
    `spec.serviceAccountName`, in the same namespace where the App CR is located
