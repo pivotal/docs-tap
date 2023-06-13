@@ -41,6 +41,12 @@ Alternatively, you can deliver packages created by the Carvel package supply
 chain, and add them to clusters by using a GitOps repository. For information
 about this delivery method, see [Use Gitops Delivery with Carvel App](delivery-with-carvel-app.hbs.md)
 
+## <a id="using-argo"></a> Using GitOps delivery with Argo CD
+
+Alternatively, you can deliver packages created by the Carvel package supply
+chain, and add them to clusters by using a GitOps repository. For information
+about this delivery method, see [Use Gitops Delivery with Argo CD](delivery-with-argo.hbs.md)
+
 ## <a id="config-blue-grn"></a> Configuring blue-green deployment
 
 You can use blue-green deployment to transfer user traffic from one version of
