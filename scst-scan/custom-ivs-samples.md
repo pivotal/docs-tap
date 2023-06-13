@@ -37,11 +37,9 @@ To use one of the samples:
 
 ### <a id="ivs-cbc"></a>Configure a ImageVulnerabilityScan for Carbon Black
 
-The Carbon Black CLI uses the `cbctl.yaml` config file. The `cbctl.yaml` config file must include your Carbon Black `cbctl-creds` secret and credentials.
+To configure an ImageVulnerabilityScan for Carbon Black, use the following ImageVulnerabilityScan and secret configuration:
 
-See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
-
-To mount the `cbctl-creds` as a workspace binding, use the following ImageVulnerabilityScan and secret configuration:
+- The Carbon Black CLI can be configured with CarbonBlack `cbctl-creds` secret and credentials via the `~/.cbctl/cbctl.yaml` config file. See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation for more info on configuration.
 
 ```yaml
 apiVersion: v1
@@ -93,7 +91,7 @@ Where:
 - `ORG-KEY` is the Org Key for your CBC organization.
 - `SAAS-URL` is the CBC Backend URL.
 
-**Note**: The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses. See the [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration).
+**Note**: The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
 
 ### <a id="ivs-snyk"></a>Configure an ImageVulnerabilityScan for Snyk
 
@@ -155,10 +153,9 @@ For information about setting up scanner credentials, see the [Snyk CLI document
 
 To configure an ImageVulnerabilityScan for Prisma, use the following ImageVulnerabilityScan configuration:
 
-1. Have a scanner image installed with the following dependencies:
+- Install the following dependencies into the scanner image:
      - [podman](https://podman.io/docs/installation)
      - [twistcli](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli)
-2. Using the yaml below, populate the placeholder fields with the appropriate values and save to a file `custom-ivs.yaml`:
 ```yaml
 apiVersion: v1
 kind: Secret
