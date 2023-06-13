@@ -241,10 +241,9 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
     If the package is not installed, follow the installation instructions at [Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles](../scst-store/install-scst-store.md).
 
 
-3. Update the profile to use the supply chain with testing and scanning by
+1. Update the profile to use the supply chain with testing and scanning by
    updating `tap-values.yaml` (the file used to customize the profile in `tanzu
    package install tap --values-file=...`) with the following changes:
-
 
     ```console
     - supply_chain: testing
@@ -257,7 +256,7 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
           repository: "<REPO-NAME>"
     ```
 
-4. Update the `tap` package:
+1. Update the `tap` package:
 
     ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
@@ -330,10 +329,10 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
 Query the tanzu-java-web-app image dependencies and vulnerabilities by running:
 
-  ```console
-    tanzu insight image get --digest DIGEST
-    tanzu insight image vulnerabilities --digest  DIGEST
-  ```
+```console
+tanzu insight image get --digest DIGEST
+tanzu insight image vulnerabilities --digest  DIGEST
+```
 
 Where `DIGEST` is the component version or image digest printed in the `KUBECTL GET` command.
 
