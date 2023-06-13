@@ -8,6 +8,7 @@ You can use the samples in this topic for the following scanners:
 
 - Carbon Black
 - Snyk
+- Prisma
 - Trivy
 
 For information about integrating your own scanner, see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner).
@@ -92,7 +93,7 @@ Where:
 - `ORG-KEY` is the Org Key for your CBC organization.
 - `SAAS-URL` is the CBC Backend URL.
 
-**Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses. See the [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration).
+**Note**: The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses. See the [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration).
 
 ### <a id="ivs-snyk"></a>Configure an ImageVulnerabilityScan for Snyk
 
@@ -150,6 +151,77 @@ Where:
 
 For information about setting up scanner credentials, see the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config).
 
+### <a id="ivs-prisma"></a>Configure an ImageVulnerabilityScan for Prisma
+
+To configure an ImageVulnerabilityScan for Prisma, use the following ImageVulnerabilityScan configuration:
+
+1. Have a scanner image installed with the following dependencies:
+     - [podman](https://podman.io/docs/installation)
+     - [twistcli](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli)
+2. Using the yaml below, populate the placeholder fields with the appropriate values and save to a file `custom-ivs.yaml`:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prisma-auth
+stringData:
+  username: USERNAME
+  password: PASSWORD
+  address: ADDRESS
+---
+apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ImageVulnerabilityScan
+metadata:
+  name: prisma-ivs
+spec:
+  image: harbor-repo.vmware.com/dockerhub-proxy-cache/library/nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
+  scanResults:
+    location: registry/project/scan-results
+  serviceAccountNames:
+    publisher: publisher
+    scanner: scanner
+  steps:
+  - name: prisma
+    image: PRISMA-SCANNER-IMAGE
+    imagePullPolicy: IfNotPresent
+    workingDir: /workspace
+    script: |
+      #!/bin/bash
+      podman pull $IMAGE
+      twistcli images scan --podman-path /usr/bin/podman --address $ADDRESS --user $USER_NAME --password $PASSWORD $IMAGE --output-file ./scan-results/twist-scan.json --containerized
+    env:
+    - name: USER_NAME
+      valueFrom:
+        secretKeyRef:
+          key: username
+          name: prisma-auth
+          optional: false
+    - name: PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: prisma-auth
+          optional: false
+    - name: ADDRESS
+      valueFrom:
+        secretKeyRef:
+          key: address
+          name: prisma-auth
+          optional: false
+    - name: IMAGE
+      value: $(params.image)
+  workspace: {}
+```
+
+Where:
+
+- `USERNAME` is the Access Key from the Prisma Cloud account.
+- `PASSWORD` is the Secret Key from the Prisma Cloud account.
+- `ADDRESS` is the URL for Console from the Prisma Cloud account.
+- `PRISMA-SCANNER-IMAGE` is the prisma scanner image with twistcli and podman from step 1.
+
+
+**Note**: See the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images) for more information on CLI usage.
 ### <a id="ivs-trivy"></a>Configure an ImageVulnerabilityScan for Trivy
 
 To configure an ImageVulnerabilityScan for Trivy, use the following ImageVulnerabilityScan configuration:
