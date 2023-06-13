@@ -8,7 +8,7 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed in an external secrets store. 
 To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, i.e SOPs to ESO. However changing between AWS Secrets Manager and Vault is supported.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI is verified to support Kubernetes integration with Hashicorp Vault.
 
 ## <a id='prerequisites'></a>Prerequisites
@@ -202,7 +202,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
     If they are relocated to a different registry as described in [Relocate images to a registry](#relocate-images-to-a-registry),
     the value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
-### <a id='connect-vault-to-kubernetes'></a>Connect Vault to a Kubernetes Cluster
+### <a id='connect-vault-to-kubernetes'></a>Connect Vault to a Kubernetes cluster
 
 Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing trust between the kubernetes cluster and Vault, see [Vault Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for more. This authetication method uses the Kubernetes Control Plane [TokenReview API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/) to authenticate the kubernetes service accounts with Vault. For this reason, the clusters control plane must be able to commuicate over the network to the Vault instance.
 
@@ -210,39 +210,41 @@ Follow these step to configure Kubernetes Authentication for Vault:
 
 1. Create a new Kubernetes authentication engine instance on Vault and two IAM Roles by using the supplied script:
 
-  ```console
-  tanzu-sync/scripts/vault/setup/create-kubernetes-auth.sh
-  ```
+    ```console
+    tanzu-sync/scripts/vault/setup/create-kubernetes-auth.sh
+    ```
 
-  This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
+    This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
 
-  Example:
+    Example:
 
-  ```console
-  vault write auth/iterate-green/config \
-    kubernetes_host="MY-KUBERNETES-API-URL" \
-    kubernetes_ca_cert="MY-KUBERNETES-CA-CERT" \
-    ttl=1h
-  ```
+    ```console
+    vault write auth/iterate-green/config \
+      kubernetes_host="MY-KUBERNETES-API-URL" \
+      kubernetes_ca_cert="MY-KUBERNETES-CA-CERT" \
+      ttl=1h
+    ```
 
 ### <a id='grant-read-access-to-secret-data'></a>Grant read access to secret data
 
-All sensitive configuration is stored in Vault secrets.
-Both Tanzu Sync and the Tanzu Application Platform installation require access to this sensitive data.
+Vault secrets store all sensitive configurations, which are accessed by both 
+Tanzu Sync and the Tanzu Application Platform installation.
 
 Follow these step to configure Roles in Vault:
 
-1. Create two Policies, one to read Tanzu Sync secrets and another to read the Tanzu Application Platform installation secrets by using the supplied script:
+1. Create two Policies, one to read Tanzu Sync secrets and another to read the 
+Tanzu Application Platform installation secrets by using the supplied script:
 
-  ```console
-  tanzu-sync/scripts/vault/setup/create-policies.sh
-  ```
+    ```console
+    tanzu-sync/scripts/vault/setup/create-policies.sh
+    ```
 
-2. Create two Roles, one to read Tanzu Sync secrets and another to read the Tanzu Application Platform installation secrets by using the supplied script:
+2. Create two Roles, one to read Tanzu Sync secrets and another to read the 
+Tanzu Application Platform installation secrets by using the supplied script:
 
-  ```console
-  tanzu-sync/scripts/vault/setup/create-roles.sh
-  ```
+    ```console
+    tanzu-sync/scripts/vault/setup/create-roles.sh
+    ```
 
 ### <a id='generate-default-configuration'></a>Generate default configuration
 

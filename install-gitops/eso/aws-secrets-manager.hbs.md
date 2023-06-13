@@ -8,7 +8,7 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed externally in AWS Secrets Manager. 
 To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, i.e SOPs to ESO. However changing between AWS Secrets Manager and Vault is supported.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI
 is verified to support AWS Elastic Kubernetes Service cluster with AWS Secrets Manager.
 Other combinations of Kubernetes distribution and ESO providers are not verified.
@@ -415,7 +415,7 @@ containing the following information as plaintext:
            role_arn: arn:aws:iam::665100000000:role/iterate-green--tanzu-sync-secrets
        remote_refs:
          sync_git:
-         # TODO: Fill in your configuration for ssh or basic auth here (see tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml)
+         # TODO: Fill in your configuration for ssh or basic auth here. See tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml for details.
          install_registry_dockerconfig:
            dockerconfigjson:
              key: dev/iterate-green/tanzu-sync/install-registry-dockerconfig
@@ -431,7 +431,7 @@ containing the following information as plaintext:
 
 1. Replace any `TODO` sections with the relevant values.
 
-    Line 10 from the example above states: `# TODO: Fill in your configuration for ssh or basic auth here (see tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml)`
+    Line 10 from the earlier example states: `# TODO: Fill in your configuration for ssh or basic auth here. See tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml for details.)`
 
     Configuration example for SSH authentication:
 
