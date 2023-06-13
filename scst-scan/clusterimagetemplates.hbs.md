@@ -2,11 +2,16 @@
 
 This topic tells you how to create your own ClusterImageTemplate and customize the embedded ImageVulnerabilityScan to use the scanner of your choice.
 
-- A prerequisite is that you have [created your own ImageVulnerabilityScan](./app-scanning-alpha.hbs.md#integrate-your-own-scanner) or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./custom-ivs-samples.md).
+## <a id="prerecs"></a> Prerequisites
 
-## Create a ClusterImageTemplate
+You must:
 
-The below steps describe how to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy. To use a different scanner, replace the embedded ImageVulnerabilityScan with your own.
+- Create your own ImageVulnerabilityScan. See [Supply Chain Security Tools - Scan 2.0 (beta)](./app-scanning-alpha.hbs.md#integrate-your-own-scanner).
+- Use a sample ImageVulnerabilityScan. See [Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan](./custom-ivs-samples.md).
+
+## <a id="create-template"></a> Create a ClusterImageTemplate
+
+This section tells you how to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy. To use a different scanner, replace the embedded ImageVulnerabilityScan with your own.
 
 1. Create a YAML file with the following content and name it `custom-ivs-template.yaml`.
 
