@@ -39,59 +39,59 @@ To use one of the samples:
 
 To configure an ImageVulnerabilityScan for Carbon Black, use the following ImageVulnerabilityScan and secret configuration:
 
-- The Carbon Black CLI can be configured with CarbonBlack `cbctl-creds` secret and credentials via the `~/.cbctl/cbctl.yaml` config file. See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation for more info on configuration.
+**Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cbctl-creds
-stringData:
-  cbctl: |
-    cb_api_id: CB-API-ID
-    cb_api_key: CB-API-KEY
-    org_key: ORG-KEY
-    saas_url: SAAS-URL
----
-apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-kind: ImageVulnerabilityScan
-metadata:
-  name: carbon-black-ivs
-spec:
-  image: harbor-repo.vmware.com/dockerhub-proxy-cache/library/nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
-  scanResults:
-    location: registry/project/scan-results
-  serviceAccountNames:
-    publisher: publisher
-    scanner: scanner
-  workspace:
-    bindings:
-    - name: cbctl
-      secret:
-        secretName: cbctl-creds
-        items:
-          - key: cbctl
-            path: .cbctl.yaml
-  steps:
-  - name: carbon-black
-    image: CARBON-BLACK-SCANNER-IMAGE
-    imagePullPolicy: IfNotPresent
-    command:
-    - bash
-    args:
-    - -c
-    - cbctl --config /cbctl/.cbctl.yaml image scan --force=true $(params.image) -o
-      cyclonedx > scan.cdx.xml
-```
+1. Configure the Carbon Black CLI with CarbonBlack `cbctl-creds` secret and credentials by using the `~/.cbctl/cbctl.yaml` config file. For information about configuration, see the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
 
-Where:
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: cbctl-creds
+  stringData:
+    cbctl: |
+      cb_api_id: CB-API-ID
+      cb_api_key: CB-API-KEY
+      org_key: ORG-KEY
+      saas_url: SAAS-URL
+  ---
+  apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+  kind: ImageVulnerabilityScan
+  metadata:
+    name: carbon-black-ivs
+  spec:
+    image: harbor-repo.vmware.com/dockerhub-proxy-cache/library/nginx@sha256:6650513efd1d27c1f8a5351cbd33edf85cc7e0d9d0fcb4ffb23d8fa89b601ba8
+    scanResults:
+      location: registry/project/scan-results
+    serviceAccountNames:
+      publisher: publisher
+      scanner: scanner
+    workspace:
+      bindings:
+      - name: cbctl
+        secret:
+          secretName: cbctl-creds
+          items:
+            - key: cbctl
+              path: .cbctl.yaml
+    steps:
+    - name: carbon-black
+      image: CARBON-BLACK-SCANNER-IMAGE
+      imagePullPolicy: IfNotPresent
+      command:
+      - bash
+      args:
+      - -c
+      - cbctl --config /cbctl/.cbctl.yaml image scan --force=true $(params.image) -o
+        cyclonedx > scan.cdx.xml
+  ```
 
-- `CB-API-ID` is the API ID obtained from VMware Carbon Black Cloud (CBC).
-- `CB-API-KEY` is the API Key obtained from CBC.
-- `ORG-KEY` is the Org Key for your CBC organization.
-- `SAAS-URL` is the CBC Backend URL.
+  Where:
 
-**Note**: The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
+  - `CB-API-ID` is the API ID obtained from VMware Carbon Black Cloud (CBC).
+  - `CB-API-KEY` is the API Key obtained from CBC.
+  - `ORG-KEY` is the Org Key for your CBC organization.
+  - `SAAS-URL` is the CBC Backend URL.
 
 ### <a id="ivs-snyk"></a>Configure an ImageVulnerabilityScan for Snyk
 
@@ -145,7 +145,7 @@ Where:
 - `SNYK-SCANNER-IMAGE` is the Snyk Scanner image used to run Snyk scans. See [Snyk documentation](https://github.com/snyk/snyk-images) for Snyk images.
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx).
 
-> **Note** After detecting vulnerabilities, the Snyk image ends with Exit Code 1 and results in a failed scan task. A possible solution might be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
+> **Note** After detecting vulnerabilities, the Snyk image ends with Exit Code 1 and causes a failed scan task. A possible solution might be to ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
 
 For information about setting up scanner credentials, see the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config).
 
@@ -213,12 +213,12 @@ spec:
 Where:
 
 - `USERNAME` is the Access Key from the Prisma Cloud account.
-- `PASSWORD` is the Secret Key from the Prisma Cloud account.
+- `PASSWORD` is the secret Key from the Prisma Cloud account.
 - `ADDRESS` is the URL for Console from the Prisma Cloud account.
 - `PRISMA-SCANNER-IMAGE` is the prisma scanner image with twistcli and podman from step 1.
 
+**Note** For information about CLI use, see the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images).
 
-**Note**: See the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images) for more information on CLI usage.
 ### <a id="ivs-trivy"></a>Configure an ImageVulnerabilityScan for Trivy
 
 To configure an ImageVulnerabilityScan for Trivy, use the following ImageVulnerabilityScan configuration:
