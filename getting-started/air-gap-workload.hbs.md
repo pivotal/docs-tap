@@ -40,7 +40,7 @@ To create a workload from Git through https, follow these steps:
 
    Where:
 
-   - `USERNAME` is the username.
+   - `USERNAME` is the user name.
    - `PASSWORD` is the password.
    - `CADATA` is the PEM-encoded CA certificate for the Git repository.
 
