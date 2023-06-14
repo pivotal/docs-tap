@@ -1,43 +1,48 @@
-# DRAFT Scalability
+# Workload scalability best practices
 
 ## Workload configuration
 
 This topic describes the best practices required to build and deploy workloads at scale.
 
-The following sections describe xyz, for the purposes of this topic, this is a description of the services 
+## Sample application reference
+
+The following sections describe the configuration of the different-size applications used to derive
+scalability best practices.
 
 ### Small
 
 This is the simplest configuration and consists of the following services and workloads:
-API Gateway workload
-Search workload (In memory database)
-Search Processor workload
-Availability workload (In memory database)
-UI workload
-3 Node RabbitMQ Cluster
+
+- API Gateway workload
+- Search workload (In memory database)
+- Search Processor workload
+- Availability workload (In memory database)
+- UI workload
+- 3 Node RabbitMQ Cluster
 
 ### Medium
 
-This includes all of the services of the small size plus the following services and workloads:
+This includes all of the services of the small-size application and the following services and workloads:
 
-Notify workload
-Persistent Database (MySQL or Postgres)
-RabbitMQ Event Source
-KNative eventing broker
-KNative triggers
+- Notify workload
+- Persistent Database (MySQL or Postgres)
+- RabbitMQ Event Source
+- KNative Eventing broker
+- KNative triggers
 
 ### Large
 
-This includes all of the services of the medium size the following services and workloads:
+This includes all of the services of the medium size application and the following services and workloads:
 
-Crawler Service
-Redis
-RabbitMQ backed eventing broker
-RabbitMQ backed triggers
+- Crawler Service
+- Redis
+- RabbitMQ backed eventing broker
+- RabbitMQ backed triggers
 
 ## Application Configuration
 
-The best practices were derived for the following application configuration:
+The following section describes the application configuration that was used to derive the
+scalability best practices:
 
 Supply chain: Testing_Scanning (Build+Run), Basic & Testing (Iterate)
 
@@ -67,7 +72,7 @@ Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
 
 ## Best Practices
 
-The following table describes the resource limits changes that are required for TAP components to support the aforementioned scale of apps.
+The following table describes the resource limit changes that are required for components to support the scale configuration described in the previous table.
 
 |**Controller/Pod**|**CPU**|**Memory**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
@@ -84,7 +89,11 @@ The following table describes the resource limits changes that are required for 
 | Eventing/triggermesh | | 100Mi/800Mi | | No | Yes | Yes| Overlay |
 | tap-telemetry/tap-telemetry-informer | 2GiB | YTD | | Yes| No | Yes| Tap-values |
 
-## Cartographer
+## Example resource limit changes
+
+The following section provides examples of changes required to the default limits to achieve scalability:
+
+### Cartographer
 
 The default Cartographer concurrency limits are:
 
@@ -146,7 +155,7 @@ cartographer:
         memory: 1G
 ```
 
-## Cartographer-conventions
+### Cartographer-conventions
 
 The default resource limits are:
 
@@ -170,7 +179,7 @@ cartographer:
         memory: 1.4Gi
 ```
 
-## Scan-link-controller
+### Scan-link-controller
 
 The default resource limits are:
 
@@ -222,9 +231,9 @@ stringData:
               value: "10800"
 ```
 
-## kpack-controller in build service
+### kpack-controller in build service
 
-The resource limits are:
+The default resource limits are:
 
 ```console
 resources:
@@ -235,7 +244,7 @@ resources:
     memory: 1Gi
 ```
 
-Edit `values.yaml` to scale resource limit:
+Edit `values.yaml` to scale resource limits:
 
 ```console
 buildservice:
@@ -249,7 +258,7 @@ buildservice:
          cpu: 20m
 ```
 
-## Namespace provisioner
+### Namespace Provisioner
 
 The default resource limits are:
 
@@ -263,7 +272,7 @@ resources:
     memory: 20Mi
 ```
 
-Edit `values.yaml` to scale resource limit:
+Edit `values.yaml` to scale resource limits:
 
 ```console
 namespace_provisioner:
@@ -277,7 +286,7 @@ namespace_provisioner:
         memory: 500Mi
 ```
 
-## CNRS knative-serving
+### CNRS Knative Serving
 
 The default resource limits are:
 
@@ -319,7 +328,7 @@ stringData:
                   memory: 512Mi
 ```
 
-## net-contour controller
+### net-contour controller
 
 The deployment type to be changed from Daemonset to Deployment.
 
@@ -371,7 +380,7 @@ stringData:
                   memory: 512Mi
 ```
 
-## Autoscaler
+### Autoscaler
 
 The default resource limits are:
 
@@ -413,7 +422,7 @@ stringData:
                   memory: 2Gi
 ```
 
-## Activator
+### Activator
 
 The default resource limits are:
 
@@ -455,7 +464,7 @@ stringData:
                   memory: 5Gi
 ```
 
-## Triggermesh:
+### Triggermesh:
 
 The default resource limits are:
 
