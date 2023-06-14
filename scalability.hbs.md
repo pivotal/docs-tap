@@ -40,15 +40,18 @@ This includes all of the services of the medium size application and the followi
 ## Application Configuration
 
 The following section describes the application configuration that was used to derive the
-scalability best practices:
+scalability best practices.
 
-Supply chain: Testing_Scanning (Build+Run), Basic & Testing (Iterate)
+**Supply chains used:**
 
-Workload type: Web, Server+Worker
+- Out of the Box Supply Chain with Testing and Scanning (Build+Run)
+- Out of the Box Supply Chain Basic +  Out of the Box Supply Chain with Testing (Iterate)
 
-Kubernetes Distribution: Azure Kubernetes Service
+**Workload type**: `web`, `server` + `worker`
 
-No of Apps deployed concurrently: 50-55
+**Kubernetes Distribution**: Azure Kubernetes Service
+
+**Number of applications deployed concurrently**: 50-55
 
 |  | **CPUs** | **Number of workload CRs** |**Workload Transactions per second**|
 |:--- |:--- |:--- |:--- |
