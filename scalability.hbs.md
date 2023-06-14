@@ -1,7 +1,5 @@
 # Workload scalability best practices
 
-## Workload configuration
-
 This topic describes the best practices required to build and deploy workloads at scale.
 
 ## Sample application reference
@@ -64,11 +62,11 @@ Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
 
 |**Cluster Type / Workload Details** |**Shared Iterate Cluster** | **Build Cluster** |**Run Cluster 1** |**Run Cluster 2**| **Run Cluster 3** |
 |:--- |:--- |:--- |:--- |:---|:--- |:--- |
-|**No. of Namespaces** |300| 333 | 333 | 333 | 333 | 333 |
-|**Small** | 300 | 233 | 233 | 233 | 233 | 233 |
-|**Medium** | | 83 | 83 | 83 | 83 | 83   |
-|**Large** | | 17 | 17 | 17 | 17 | 17 |
-|**No. of Nodes** |90 | 60 | 135 | 135 | 135 | 135 |
+|**No. of Namespaces** |300| 333 | 333 | 333 | 333 |
+|**Small** | 300 | 233 | 233 | 233 | 233 |
+|**Medium** | | 83 | 83 | 83 | 83 |
+|**Large** | | 17 | 17 | 17 | 17 |
+|**No. of Nodes** |90 | 60 | 135 | 135 | 135 |
 
 ## Best Practices
 
@@ -76,22 +74,22 @@ The following table describes the resource limit changes that are required for c
 
 |**Controller/Pod**|**CPU**|**Memory**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- Build Service/kpack controller | 20m/100m | 1Gi/2Gi || Yes | No | Yes | Tap\-values |
+ Build Service/kpack controller | 20m/100m | 1Gi/2Gi || Yes | No | Yes | tap-values |
 | Scanning/scan-link | 200m/500m | 1Gi/3Gi| | Yes | No | No | Tap-values |
-| Cartographer| 3/4 (Concurrency 25) | 10Gi/10Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | Tap-values  |
-| Cartographer conventions|  | 1.4Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | Tap-values |
-| Namespace provisioner | 100m/500m | 500Mi/2Gi | | Yes | Yes | Yes | Tap-values |
-| Cnrs/knative-controller  | 100m/1 vCPU | 512Mi/2Gi | | No | Yes | Yes | Overlay |
-| Cnrs/net-contour | 40m/400m | 512Mi/2Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | verlay |
-| Cnrs/activator | 300m/1000m | 5Gi/5Gi |  | No | Yes | No | Overlay |
+| Cartographer| 3/4 (Concurrency 25) | 10Gi/10Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
+| Cartographer conventions|  | 1.4Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
+| Namespace provisioner | 100m/500m | 500Mi/2Gi | | Yes | Yes | Yes | tap-values |
+| Cnrs/knative-controller  | 100m/1 vCPU | 512Mi/2Gi | | No | Yes | Yes | overlay |
+| Cnrs/net-contour | 40m/400m | 512Mi/2Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
+| Cnrs/activator | 300m/1000m | 5Gi/5Gi |  | No | Yes | No | overlay |
 | Cnrs/autoscaler  | 100m/1000m | 2Gi/2Gi |  | No | Yes | No | overlay |
 | Eventing/vmware-sources |  | YTD | | No  | Yes | No | YTD |
-| Eventing/triggermesh | | 100Mi/800Mi | | No | Yes | Yes| Overlay |
-| tap-telemetry/tap-telemetry-informer | 2GiB | YTD | | Yes| No | Yes| Tap-values |
+| Eventing/triggermesh | | 100Mi/800Mi | | No | Yes | Yes| overlay |
+| tap-telemetry/tap-telemetry-informer | 2GiB | YTD | | Yes| No | Yes| tap-values |
 
 ## Example resource limit changes
 
-The following section provides examples of changes required to the default limits to achieve scalability:
+The following section provides examples of the changes required to the default limits to achieve scalability:
 
 ### Cartographer
 
