@@ -33,7 +33,8 @@ Different package customization options are available depending on what method y
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-:
+: The git repository is configured under `additional_sources`
+
   ```yaml
   namespace_provisioner:
     controller: true
@@ -50,7 +51,8 @@ Using Namespace Provisioner Controller
       path: _ytt_lib/testing-scanning-supplychain-setup
   ```
 Using GitOps
-:
+: The git repository is configured under `additional_sources`
+
   ```yaml
   namespace_provisioner:
     controller: false
@@ -82,18 +84,26 @@ See [Git Authentication for Private repository](use-case3.md#git-private).
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-:
+: Use the `sync_period` key
+
   ```yaml
   namespace_provisioner:
     sync_period: 2m0s
   ```
+
 Using GitOps
-:
+: Use the `sync_period` key
+
   ```yaml
   namespace_provisioner:
     controller: false
     sync_period: 1m0s
+    gitops_install:
+      ref: origin/main
+      subPath: ns-provisioner-samples/gitops-install
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
+
 ## Import user defined secrets in YAML format as ytt data.values
 
 The `import_data_values_secrets` is an array of additional secrets in YAML format that can be imported into the provisioner as data.values under the `data.values.imported` key. The Namespace Provisioner package creates a SecretImport for each secret listed in the array in the `tap-namespace-provisioning` namespace. Alternatively, you can manually create a SecretExport for the same secrets and export them to the `tap-namespace-provisioning` namespace. The following parameters are available:
@@ -123,7 +133,8 @@ stringData:
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-:
+: The list of secrets are imported under `import_data_values_secrets`
+
   ```yaml
   namespace_provisioner:
     controller: true
@@ -132,8 +143,10 @@ Using Namespace Provisioner Controller
       namespace: tap-install
       create_export: true
   ```
+
 Using GitOps
-:
+:  The list of secrets are imported under `import_data_values_secrets`
+
   ```yaml
   namespace_provisioner:
     controller: false
@@ -141,7 +154,12 @@ Using GitOps
     - name: user-defined-secrets
       namespace: tap-install
       create_export: true
+    gitops_install:
+      ref: origin/main
+      subPath: ns-provisioner-samples/gitops-install
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
+
 ## Use AWS IAM roles
 
 If you are installing TAP on AWS with EKS, you can utilize the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes Service Account used by the Workload and the Supply chain components.
@@ -149,18 +167,25 @@ If you are installing TAP on AWS with EKS, you can utilize the IAM Role specifie
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-:
+: Add the AWS IAM Role to `aws_iam_role_arn`
+
   ```yaml
   namespace_provisioner:
     controller: yes
     aws_iam_role_arn: "arn:aws:iam::123456789012:role/EKSIAMRole"
   ```
+
 Using GitOps
-:
+: Add the AWS IAM Role to `aws_iam_role_arn`
+
   ```yaml
   namespace_provisioner:
     controller: false
     aws_iam_role_arn: "arn:aws:iam::123456789012:role/EKSIAMRole"
+    gitops_install:
+      ref: origin/main
+      subPath: ns-provisioner-samples/gitops-install
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
 ## Apply default parameters to all namespaces
@@ -170,7 +195,8 @@ The `default_parameters` is an array of parameters that are applied to all names
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-:
+: Use the `default_parameters` with the desired parameter
+
   ```yaml
   namespace_provisioner:
     controller: yes
@@ -184,7 +210,8 @@ Using Namespace Provisioner Controller
           memory: 1Gi
   ```
 Using GitOps
-:
+: Use the `default_parameters` with the desired parameter
+
   ```yaml
   namespace_provisioner:
     controller: false
@@ -196,7 +223,12 @@ Using GitOps
         defaultRequest:
           cpu: 100m
           memory: 1Gi
+    gitops_install:
+      ref: origin/main
+      subPath: ns-provisioner-samples/gitops-install
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
+
 ## Import overlay secrets
 
 The `overlay_secrets` is a list of secrets that contains [Carvel ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) definitions. These overlays are applied to the resources created by the Namespace Provisioner. If the secrets are located in a different namespace, they are imported to the `namespace-provisioner` namespace.
@@ -237,7 +269,7 @@ Sample secret with overlay to be used:
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-:
+: The list of secrets with the overlay are set under `overlay_secrets`
   ```yaml
   namespace_provisioner:
     controller: true
@@ -246,8 +278,10 @@ Using Namespace Provisioner Controller
       namespace: tap-install
       create_export: true
   ```
+
 Using GitOps
-:
+: The list of secrets with the overlay are set under `overlay_secrets`
+
   ```yaml
   namespace_provisioner:
     controller: false
@@ -255,14 +289,16 @@ Using GitOps
     - name: grype-package-overlay
       namespace: tap-install
       create_export: true
+    gitops_install:
+      ref: origin/main
+      subPath: ns-provisioner-samples/gitops-install
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
 Furthermore, you have the following options for customization: 
 
 Options if using Controller
-:
-
-   If you are using the controller to manage the list of developer namespaces, you have the following additional customization options available:
+: If you are using the controller to manage the list of developer namespaces, you have the following additional customization options available:
 
    - [Use a different label selector than default](#con-label-selector)
    - [Override default CPU and memory limits for controller pods](#con-override-cpu)
@@ -322,8 +358,7 @@ Options if using Controller
    ```
 
 Options if using GitOps
-: 
-   If you are using GitOps to manage the list of developer namespaces, you have the following customization option:
+: If you are using GitOps to manage the list of developer namespaces, you have the following customization option:
 
    **<a id ='git-install'></a>Use GitOps to manage developer namespaces list**
 
@@ -380,4 +415,3 @@ Options if using GitOps
        subPath: ns-provisioner-samples/gitops-install
        url: https://github.com/vmware-tanzu/application-accelerator-samples.git
    ```
-
