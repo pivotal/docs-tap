@@ -534,6 +534,7 @@ docs.vmware.com is built.
               -  [Carvel Package Supply Chains (alpha)](scc/carvel-package-supply-chain.hbs.md)
               -  [Use Gitops Delivery with a Carvel App (alpha)](scc/delivery-with-carvel-app.hbs.md)
               - [Deploy Package and PackageInstall using FluxCD Kustomization (alpha)](scc/delivery-with-flux.hbs.md)
+              - [Use Gitops delivery with ArgoCD (alpha)](scc/delivery-with-argo.hbs.md)
               - [Use Blue-green deployment with Contour and PackageInstall (alpha)](scc/blue-green-with-packageinstall.hbs.md)
           - [Use an existing image in Your Supply Chain](scc/pre-built-image.hbs.md)
           - [Authenticate Git](scc/git-auth.hbs.md)
