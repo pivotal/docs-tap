@@ -13,7 +13,7 @@ In release notes, this condition hides content that describes an unreleased patc
 
 ## <a id='1-6-0'></a> v1.6.0
 
-**Release Date**: 11 July 2023
+**Release Date**: 27 July 2023
 
 ### <a id='1-6-0-whats-new'></a> What's new in Tanzu Application Platform
 
@@ -110,15 +110,15 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
 
-#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
+#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
 - New report feature that links all packages, vulnerabilities, and ratings
   associated from a specific vulnerability scan SBOM to a Store report. When
   querying a report, it returns information linked to the original SBOM report
   instead of returning the aggregated data of all reports for the linked image
-  or source. 
+  or source.
   - `POST /api/v1/images` and `POST /api/v1/sources` APIs updated
-    - New optional header request fields: 
+    - New optional header request fields:
       - `Report-UID`: A unique identifier to assign to the report. If omitted, a
         unique identifier is randomly generated for the report. Supported
         characters: ALPHA DIGIT "-" / "." / "_" / "~".
@@ -265,7 +265,7 @@ This release has the following known issues, listed by component and area.
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 ---
 
-## <a id='1-6-deprecations'></a> Deprecations
+<h2 id='1-6-deprecations'>Deprecations</h2>
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
