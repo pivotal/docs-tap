@@ -116,13 +116,13 @@ For each run cluster:
 Configure ArgoCD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each run cluster:
 
 1. Register a cluster's credentials to Argo CD. Thi is only necessary when deploying to an external cluster.
-  1. First list all clusters contexts in your current kubeconfig:
+  - First list all clusters contexts in your current kubeconfig:
 
    ```console
    kubectl config get-contexts -o name
    ```
 
-  1. Choose a context name from the list and supply it to the argocd cluster. This command installs a ServiceAccount, argocd-manager, into the kube-system namespace of that kubectl context, binding the service account to an admin-level ClusterRole. Argo CD uses this service account token to perform its management tasks, such as deployment and monitoring. 
+  - Choose a context name from the list and supply it to the argocd cluster. This command installs a ServiceAccount, argocd-manager, into the kube-system namespace of that kubectl context, binding the service account to an admin-level ClusterRole. Argo CD uses this service account token to perform its management tasks, such as deployment and monitoring. 
   
   For example, for `run-cluster1` context, run:
 
@@ -137,13 +137,13 @@ Configure ArgoCD on the Build cluster to deploy your `Packages`, `PackageInstall
 
 1. Create an application from a Git repository.
 
-  1. Set the current namespace to argocd:
+  - Set the current namespace to argocd:
 
    ```console
     kubectl config set-context --current --namespace=argocd
    ```
 
-  1. Create a hello-world-app:
+  - Create a hello-world-app:
 
    ```console
     argocd app create hello-world-app --repo https://github.com/mycompany/gitops-repo
@@ -151,7 +151,7 @@ Configure ArgoCD on the Build cluster to deploy your `Packages`, `PackageInstall
 
 1. Deploy the application.
 
-  1. After you create the application, you can view its status:
+  - After you create the application, you can view its status:
 
    ```console
     argocd app get hello-world-app
