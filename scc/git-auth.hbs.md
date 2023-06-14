@@ -75,7 +75,7 @@ use SSH.
 >**Important** To use the pull request feature, you must use
 HTTP(S) authentication with an access token.
 
-1. To provide the credentials for any Git operations with SHH,
+1. To provide the credentials for any Git operations with SSH,
 create the Kubernetes secret as follows:
 
     ```yaml
