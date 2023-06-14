@@ -92,33 +92,36 @@ not associated with any image pull secrets.
 Without these credentials, PipelineRuns fail with a timeout and the pods report that they cannot
 pull images.
 
-*NOTE*: If you are using a registry with a custom CA certificate then you must
-provide this certificate to the Tekton directly by including the CA in the
-service account used by the supply chain.  TAP's distribution of Tekton does
-*not* support TAP's `shared.ca_cert_data` field.  For more information on
-setting the CA in the service account see the document [Use Git authentication
-with Supply Chain Choreographer](../scc/git-auth.hbs.md).
+> **Important** If you are using a registry with a custom CA certificate then you must provide this
+> certificate to Tekton directly by including the CA in the service account used by the supply
+> chain.
+>
+> The Tanzu Application Platform distribution of Tekton does not support the
+> Tanzu Application Platform field `shared.ca_cert_data`. For more information about setting the CA
+> in the service account, see
+> [Use Git authentication with Supply Chain Choreographer](../scc/git-auth.hbs.md).
 
 To configure a namespace to use Tekton Pipelines:
 
 1. Create an image pull secret in the current namespace and fill it from the `tap-registry` secret.
-For more information, see [Relocate images to a registry](../install-online/profile.hbs.md#add-tap-package-repo).
+   For more information, see
+   [Relocate images to a registry](../install-online/profile.hbs.md#add-tap-package-repo).
 
-1. Create an empty secret, and annotate it as a target of the secretgen controller, by running:
+2. Create an empty secret, and annotate it as a target of the secretgen controller, by running:
 
     ```console
     kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
     kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
     ```
 
-1. After you create a `pull-secret` secret in the same namespace as the service account, add the
+3. After you create a `pull-secret` secret in the same namespace as the service account, add the
 secret to the service account by running:
 
     ```console
     kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
     ```
 
-1. Verify that a service account is correctly configured by running:
+4. Verify that a service account is correctly configured by running:
 
     ```console
     kubectl describe serviceaccount default

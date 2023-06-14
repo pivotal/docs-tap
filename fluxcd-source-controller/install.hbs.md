@@ -135,12 +135,13 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
     >**Note** You will communicate with `fluxcd-source-controller` through its CRDs.
 
-3. If you are using a git repository with a custom CA certificate then you must
-   provide this certificate to the FluxCD Source Controller directly by
-   including the CA in the service account used by the supply chain.  TAP's
-   distribution of FluxCD Source Controller does *not* support TAP's
-   `shared.ca_cert_data` field.  For more information on setting the CA in the
-   service account see the document
+3. If you are using a Git repository with a custom CA certificate, provide this certificate to the
+   FluxCD Source Controller directly by including the CA in the service account used by the supply
+   chain.
+
+   The Tanzu Application Platform distribution of FluxCD Source Controller does not support the
+   Tanzu Application Platform `shared.ca_cert_data` field. For more information about setting the CA
+   in the service account, see
    [Use Git authentication with Supply Chain Choreographer](../scc/git-auth.hbs.md).
 
 4. Follow these steps to consume a `GitRepository` object:

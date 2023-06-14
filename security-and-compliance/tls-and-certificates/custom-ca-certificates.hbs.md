@@ -28,9 +28,9 @@ shared:
 
 ```
 
-*NOTE*: Some TAP components do not support the `shared.ca_cert_data` feature.
-In particular FluxCD, Tekton, and the External Secrets operator do not use the
-`shared.ca_cert_data` feature and any custom CA certificates must be configured
-directly by those products.
+Some Tanzu Application Platform components do not support the `shared.ca_cert_data` feature, such as
+FluxCD, Tekton, and the External Secrets operator.
+Any custom CA certificates must be configured directly by those components.
 
-For information about using Git with a custom CA in supply chains and configuring the `caFile` parameter, see [Git Authentication](../../scc/git-auth.hbs.md#https-with-custom-ca-certificate).
+For information about using Git with a custom CA in supply chains and configuring the `caFile`
+parameter, see [Git Authentication](../../scc/git-auth.hbs.md#https-with-custom-ca-certificate).
