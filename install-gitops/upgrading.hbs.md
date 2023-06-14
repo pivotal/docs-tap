@@ -17,16 +17,15 @@ Before you upgrade your Tanzu Application Platform:
 - For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](../tap-gui/upgrades.hbs.md#considerations).
 - Verify all packages are reconciled by running `kubectl get packageinstall --namespace tap-install`.
 
-## <a id="relocate-images"></a> Relocate Tanzu Application Platform {{ vars.tap_version }} Image(s) to a Registry
+## <a id="relocate-images"></a> Relocate Tanzu Application Platform images to a registry
 
-VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
-attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
+VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
 VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
 
 The supported registries are Harbor, Azure Container Registry, Google Container Registry,
 and Quay.io.
-See the following documentation for a registry to learn how to set it up:
+See the following the documentation for instructions on setting up a registry:
 
 - [Harbor documentation](https://goharbor.io/docs/2.5.0/)
 - [Google Container Registry documentation](https://cloud.google.com/container-registry/docs)
@@ -58,8 +57,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`.
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
-    - `TARGET-REPOSITORY` is your target repository, a folder or repository on `MY-REGISTRY` that serves as the location
-    for the installation files for Tanzu Application Platform.
+    - `TARGET-REPOSITORY` is your target repository, a folder or repository on `MY-REGISTRY` that serves as the location for the installation files of Tanzu Application Platform.
 
     VMware recommends using a JSON key file to authenticate with Google Container Registry.
     In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
@@ -81,13 +79,15 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
-## <a id="upgrading-sops"></a> Upgrade existing SOPs based installation
+## <a id="upgrading-sops"></a> Upgrade the existing SOPs based installation
 
->**Note** In previous versions of Tanzu GitOps RI, sensitive values were provided to Tanzu Sync via the command line and environment variables. This has been removed and replaced by a SOPs encrypted file that is commited to the repository. This is described in section 3 below.
+In previous versions of Tanzu GitOps RI, sensitive values were provided to Tanzu Sync by using the command line and environment variables. This is replaced by a SOPs encrypted file that is committed to the repository. 
+
+Follow these steps to upgrade the existing SOPs based installation:
 
 1. [Download and unpack the new version of Tanzu GitOps RI](sops.hbs.md#download-tanzu-gitops-ri).
 
-2. Overwrite the configuration for TAP installation and Tanzu Sync from the catalog:
+1. Overwrite the configuration for TAP installation and Tanzu Sync from the catalog:
 
     ```console
     cd $HOME/tap-gitops
@@ -110,13 +110,15 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ...
     ```
 
-3. Follow the installation documentation from section [Preparing Sensitive Tanzu Sync Values](sops.hbs.md#prep-sensitive-tanzu-sync-values) to the end.
+1. [Prepare sensitive Tanzu Sync values](sops.hbs.md#prep-sensitive-tanzu-sync-values).
 
-## <a id="upgrading-eso"></a> Upgrade existing ESO based installation (AWS Secrets Manager)
+## <a id="upgrading-eso"></a> Upgrade the existing ESO based installation
+
+Follow these steps to upgrade the existing ESO based installation with secrets managed externally in AWS Secrets Manager:
 
 1. [Download and unpack the new version of Tanzu GitOps RI](eso/aws-secrets-manager.hbs.md#download-tanzu-gitops-ri).
 
-2. Overwrite the configuration for TAP installation and Tanzu Sync from the catalog:
+1. Overwrite the configuration for Tanzu Application Platform installation and Tanzu Sync from the catalog:
 
     ```console
     cd $HOME/tap-gitops
@@ -139,7 +141,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ...
     ```
 
-3. Follow the installation documentation from section [Generate default configuration](eso/aws-secrets-manager.hbs.md#generate-default-configuration) to the end.
+1. [Generate the default configuration](eso/aws-secrets-manager.hbs.md#generate-default-configuration).
 
 ## <a id="verify"></a> Verify the upgrade
 

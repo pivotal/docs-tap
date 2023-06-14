@@ -136,9 +136,9 @@ Follow these steps to download and unpack Tanzu GitOps Reference Implementation 
     git push -u origin
     ```
 
-## <a id='create-cluster-configuration'></a>Create cluster configuration
+## <a id='create-cluster-configuration'></a>Create your cluster configuration
 
-Follow these steps to create cluster configuration:
+Follow these steps to create your cluster configuration:
 
 1. Seed configuration for a cluster through the provided convenience script:
 
@@ -173,7 +173,7 @@ Follow these steps to create cluster configuration:
 
     Saving the base configuration in an initial commit makes it easier to review customizations in the future.
 
-## <a id='customize-cluster-configuration'></a>Customize cluster configuration
+## <a id='customize-cluster-configuration'></a>Customize your cluster configuration
 
 Configuring the Tanzu Application Platform installation involves setting up two components:
 
@@ -251,9 +251,9 @@ and anther for the Tanzu Application Platform installation by using the supplied
     ]
     ```
 
-### <a id='generate-default-configuration'></a>Generate default configuration
+### <a id='generate-default-configuration'></a>Generate the default configuration
 
-You can use the following script to generate default configuration for the both
+You can use the following script to generate the default configuration for both
 Tanzu Sync and Tanzu Application Platform installation:
 
 ```console
