@@ -18,7 +18,18 @@ tanzu package installed update PACKAGE-INSTALLATION-NAME -p sso.apps.tanzu.vmwar
 
 ## <a id="migration-guides"></a>Migration guides
 
-### <a id="v3-to-v3_1">`v3.0.0` to `v3.1.0`
+### <a id="v4-to-v5"> `v4.0.x` to `v5.0.x`
+
+VMware recommends that you recreate your `AuthServers` after upgrading your
+AppSSO to `v5.0.x` with the following changes:
+
+- `AuthServer` resource definition
+  - Migrate field `.spec.identityProviders[*].internalUnsafe.users[*].givenName` to `.spec.identityProviders[*].internalUnsafe.users[*].claims.given_name`
+  - Migrate field `.spec.identityProviders[*].internalUnsafe.users[*].familyName` to `.spec.identityProviders[*].internalUnsafe.users[*].claims.family_name`
+  - Migrate field `.spec.identityProviders[*].internalUnsafe.users[*].email` to `.spec.identityProviders[*].internalUnsafe.users[*].claims.email`
+  - Migrate field `.spec.identityProviders[*].internalUnsafe.users[*].emailVerified` to `.spec.identityProviders[*].internalUnsafe.users[*].claims.email_verified`
+
+### <a id="v3-to-v3_1"> `v3.0.0` to `v3.1.0`
 
 VMware recommends that you recreate your `AuthServers` after upgrading your
 AppSSO to `v3.1.0` with the following changes:

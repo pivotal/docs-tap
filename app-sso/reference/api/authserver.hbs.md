@@ -86,10 +86,6 @@ spec:
         users:
           - username: ""
             password: ""
-            givenName: ""
-            familyName: ""
-            email: ""
-            emailVerified: false
             claims: # optional
               custom_claim: ""
               another_custom_claim: ""
