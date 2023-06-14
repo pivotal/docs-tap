@@ -171,7 +171,7 @@ Tanzu Sync Reference Implementation (RI) splits the values configuration of Tanz
 
 The following sections describe how to create these values files.
 
-## <a id='prep-sensitive-tap-values'></a>Preparing sensitive Tanzu Application Platform values
+## <a id='prep-sensitive-tap-values'></a>Prepare sensitive Tanzu Application Platform values
 
 1. Generate Age public or secrets keys:
 
