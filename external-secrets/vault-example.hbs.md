@@ -65,6 +65,13 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    EOF
    ```
 
+*NOTE*: If you are using a secret store service with a custom CA certificate
+then you must provide this certificate to External Secret Operator directly by
+including the CA `SecretStore` or `ClusterSecretStore` resource. TAP's
+distribution of External Secret Operator does *not* support TAP's
+`shared.ca_cert_data` field.  For more information on setting the CA in the ESO
+configuration please reger to the [ESO documentation](https://external-secrets.io/v0.8.3/api/secretstore/).
+
 1. Verify that the status of the `SecretStore` resource is `Valid` by running:
 
    ```console

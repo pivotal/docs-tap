@@ -92,6 +92,13 @@ not associated with any image pull secrets.
 Without these credentials, PipelineRuns fail with a timeout and the pods report that they cannot
 pull images.
 
+*NOTE*: If you are using a registry with a custom CA certificate then you must
+provide this certificate to the Tekton directly by including the CA in the
+service account used by the supply chain.  TAP's distribution of Tekton does
+*not* support TAP's `shared.ca_cert_data` field.  For more information on
+setting the CA in the service account see the document [Use Git authentication
+with Supply Chain Choreographer](../scc/git-auth.hbs.md).
+
 To configure a namespace to use Tekton Pipelines:
 
 1. Create an image pull secret in the current namespace and fill it from the `tap-registry` secret.
