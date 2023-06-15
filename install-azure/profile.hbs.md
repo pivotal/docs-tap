@@ -19,6 +19,45 @@ The option to skip relocation is documented for evaluation and proof-of-concept 
 
 To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
+1. Set up environment variables for installation use by running:
+
+    ```console
+    export AZURE_SP_APP_ID=MY-AZURE-APP-ID
+    export AZURE_SP_TENANT=AZURE-TENANT
+    export AZURE_SP_PASSWORD=AZURE-PASSWORD
+    export AZURE_SUBSCRIPTION_ID=MY-AZURE-SUBSCRIPTION-ID
+    export AZURE_ACCOUNT_ID=MY-AZURE-ACCOUNT-ID
+    export AZURE_REGION=TARGET-AZURE-REGION
+    export AKS_CLUSTER_NAME=tap-on-azure
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=$INSTALL_REGISTRY_HOSTNAME
+    export IMGPKG_REGISTRY_USERNAME_1=$REGISTRY_NAME
+    export IMGPKG_REGISTRY_PASSWORD_1=REGISTRY-PASSWORD
+    export TAP_VERSION=VERSION-NUMBER
+    export INSTALL_REGISTRY_HOSTNAME=$REGISTRY_NAME.azurecr.io
+    export INSTALL_REPO=tapimages    
+    ```
+
+    Where:
+
+    - `MY-AZURE-APP-ID` is the application ID you deploy Tanzu Application Platform in. Must be in UUID format.
+    - `AZURE-TENANT` is the tenant you deploy Tanzu Application Platform in. Must be in UUID format.    
+    - `MY-AZURE-SUBSCRIPTION-ID` is the Azure subscription ID you deploy Tanzu Application Platform in. Must be in UUID format.    
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
+    - `TARGET-AZURE-REGION` is the region you deploy the Tanzu Application Platform to.      
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+
+1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).  
+
+1. Relocate the images with the `imgpkg` CLI by running:
+
+    ```console
+    imgpkg copy --concurrency 1 -b ${IMGPKG_REGISTRY_HOSTNAME_0}/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME_1}/${INSTALL_REPO}
+    ```
+
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```console
