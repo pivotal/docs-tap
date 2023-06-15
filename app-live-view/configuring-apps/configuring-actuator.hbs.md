@@ -1,6 +1,6 @@
 # Custom configuration for application actuator endpoints
 
-This topic tells you how developers can configure the Application Live View connector component
+This topic for developers tells you how to configure the Application Live View connector component
 to access actuator endpoints for custom settings, such as a different base path.
 By default, the actuator endpoint for an application is exposed on `/actuator`.
 
