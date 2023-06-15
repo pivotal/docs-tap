@@ -7,8 +7,8 @@ to meet their needs.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
-[Set up dynamic provisioning of service instances](../tutorials/setup-dynamic-provisioning.hbs.md).
-might be help you understand the steps presented in this topic.
+[Set up dynamic provisioning of service instances](../tutorials/setup-dynamic-provisioning.hbs.md)
+might help you to understand the steps presented in this topic.
 
 ## <a id="prereqs"></a> Prerequisites
 
