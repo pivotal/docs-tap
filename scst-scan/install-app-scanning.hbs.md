@@ -42,9 +42,7 @@ To install SCST - Scan 2.0:
 
 1. (Optional) Make changes to the default installation settings:
 
-    Create an `app-scanning-values-file.yaml` file which contains any changes to the default installation settings.
-
-    Retrieve the configurable settings and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file:
+    Retrieve the configurable settings:
 
     ```console
     tanzu package available get app-scanning.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
@@ -68,8 +66,14 @@ To install SCST - Scan 2.0:
                                                                used by tekton pipelineruns
       caCertData                                      string   The custom certificates to be trusted by the scan's connections
     ```
+    To modify any of the default installation settings, create an `app-scanning-values-file.yaml` and append the key-value pairs to be modified to the file. For example:
 
-2. Install the package by running:
+    ```yaml
+    scans:
+      workspace:
+        storageSize: 200Mi
+    ```
+1. Install the package by running the following command. If you did not modify the default installation settings, you do not need to specify the `--values-file` flag:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
@@ -101,9 +105,9 @@ To install SCST - Scan 2.0:
 
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
 
-The following sections describe how to configure service accounts and registry credentials.
+>**Note:** If you used the Namespace Provisioner to provision your developer namespace, the following section has already been completed and you can proceed to [scanning integration](./integrate-app-scanning.hbs.md). For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
 
-The following access is required:
+The following section describes how to configure service accounts and registry credentials. SCST - Scan 2.0 requires the following access:
 
   - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
   - Read access to the registry containing the image to scan, if scanning a private image
@@ -124,7 +128,7 @@ The following access is required:
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
-2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
+1. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install-online/profile.hbs.md#full-profile).
 
@@ -137,7 +141,7 @@ The following access is required:
       -n DEV-NAMESPACE
     ```
 
-3. Create a secret `write-creds` with write access to the registry for the scanner to upload the scan results to.
+1. Create a secret `write-creds` with write access to the registry for the scanner to upload the scan results to.
 
     ```console
     read -s WRITE_PASSWORD
@@ -148,7 +152,7 @@ The following access is required:
       -n DEV-NAMESPACE
     ```
 
-4. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to scan. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
+1. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to scan. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -167,7 +171,7 @@ The following access is required:
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is required if the image you are scanning is private.
 
-5. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
+1. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
 
     ```yaml
     apiVersion: v1
