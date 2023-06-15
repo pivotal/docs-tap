@@ -130,7 +130,10 @@ For more information, see [Kubernetes documentation](https://kubernetes.io/docs/
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
-
+- To deploy Tanzu Application Platform packages view profile, your cluster must have at least:
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 8&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
 - For the [full profile](install-online/profile.hbs.md#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
