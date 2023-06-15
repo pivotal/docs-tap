@@ -4,4 +4,4 @@ The getting started guide contains the following topics:
 
 [Installation](./install-app-scanning.hbs.md)
 
-[Setup for OOTB Supply Chains](./ootb-supply-chain.hbs.md)
+[Integration Guide](./integrate-app-scanning.hbs.md)
