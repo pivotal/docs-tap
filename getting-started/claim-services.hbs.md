@@ -1,7 +1,7 @@
 # Claim services on Tanzu Application Platform
 
 This topic for application operators guides you through claiming a service instance and
-therefore making credentials available to workloads within their namespace.
+therefore making credentials available to workloads within your namespace.
 The topic uses RabbitMQ as an example, but the process is the same regardless of the
 service you want to consume.
 
@@ -17,9 +17,8 @@ claims, and bindings.
 
 The following diagram depicts a summary of what this tutorial covers.
 
-![Diagram shows the default namespace and a glimpse at what is happening behind the scenes.
-The default namespace has two application workloads, each connected to a service binding.
-The service bindings refer to a single claim, which refers to a service instance.](../images/getting-started-stk-1.png)
+![Diagram shows the default namespace, which has two app workloads, each connected to a service binding.
+The service bindings refer to one claim, which refers to a service instance.](../images/getting-started-stk-1.png)
 
 Bear the following observations in mind as you work through this guide:
 

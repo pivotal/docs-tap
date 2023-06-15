@@ -75,12 +75,13 @@ gitops:
 
 ```
 
-Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer`
+Resulting GitOps repository: `https://github.com/vmware-tanzu/cartographer`
 
 Directory containing configuration: `./config/awesomeTeam/incrediApp`
 
 ---
-`tap-values.yaml`
+`tap-values.yaml`:
+
 ```yaml
 gitops:
   server_address: https://github.com/
@@ -88,25 +89,28 @@ gitops:
   repository_name: cartographer
 ```
 
-`workload`
+`workload`:
+
 ```yaml
   name: superApp
   namespace: awesomeTeam
 ```
 
-Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer`
+Resulting GitOps repository: `https://github.com/vmware-tanzu/cartographer`
 
 Directory containing configuration: `./config/awesomeTeam/superApp`
 
 ---
-`tap-values.yaml`
+`tap-values.yaml`:
+
 ```yaml
 gitops:
   server_address: https://github.com/
   repository_owner: vmware-tanzu
 ```
 
-`workload`
+`workload`:
+
 ```yaml
   name: superApp
   namespace: awesomeTeam
@@ -117,12 +121,13 @@ gitops:
        value: kpack
 ```
 
-Resulting gitops repository: `https://github.com/pivotal/kpack`
+Resulting GitOps repository: `https://github.com/pivotal/kpack`
 
 Directory containing configuration: `./config/awesomeTeam/superApp`
 
 ---
-`tap-values.yaml`
+`tap-values.yaml`:
+
 ```yaml
 gitops:
   server_address:
@@ -130,7 +135,8 @@ gitops:
   repository_name:
 ```
 
-`workload`
+`workload`:
+
 ```yaml
   name: superApp
   namespace: awesomeTeam
@@ -141,13 +147,13 @@ gitops:
        value: kpack
 ```
 
-Resulting gitops repository: Fails to resolve as some, but not all, of the three required values are provided.
+Resulting GitOps repository: Fails to resolve as some, but not all, of the three required values are provided.
 
 ---
 
 ### <a id="dep-params"></a> Deprecated parameters
 
-The following parameters are deprecated and no longer recommended for specifying gitops repositories:
+The following parameters are deprecated and no longer recommended for specifying GitOps repositories:
 
 - `gitops.repository_prefix`: configured during the Out of the Box Supply
   Chains package installation.
@@ -175,7 +181,7 @@ for example, `https://github.com/my-org/$(workload.metadata.name).git`.
 
   ```console
   Supply Chain
-    params:
+    param:
         - gitops_repository_prefix: GIT-REPO_PREFIX
 
 
@@ -216,31 +222,34 @@ workloads specify the same repository, or two workloads in different namespaces
 have the same name and the `gitops.repository_prefix` is set in
 `tap-values.yaml`.
 
-If the deprecated values are set and any of the suggested gitops values are set,
+If the deprecated values are set and any of the suggested GitOps values are set,
 the deprecated values are ignored.
 
 #### <a id="examples"></a> Examples
 
 ---
-`tap-values.yaml`
+`tap-values.yaml`:
+
 ```yaml
 gitops:
   repository_prefix: https://github.com/vmware-tanzu
 ```
 
-`workload`
+`workload`:
+
 ```yaml
   name: superApp
   namespace: awesomeTeam
 ```
 
-Resulting gitops repository: `https://github.com/vmware-tanzu/incrediApp`
+Resulting GitOps repository: `https://github.com/vmware-tanzu/incrediApp`
 
 Directory containing configuration: `./config`
 
 ---
 
-`tap-values.yaml`
+`tap-values.yaml`:
+
 ```yaml
 gitops:
   server_address: https://github.com/
@@ -248,7 +257,8 @@ gitops:
   repository_name: cartographer
 ```
 
-`workload`
+`workload`:
+
 ```yaml
   name: superApp
   namespace: awesomeTeam
@@ -257,19 +267,21 @@ gitops:
       value: https://github.com/pivotal/kpack
 ```
 
-Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer` (The deprecated param
-`gitops_repository` is ignored.)
+Resulting GitOps repository: `https://github.com/vmware-tanzu/cartographer` The deprecated parameter
+`gitops_repository` is ignored.
 
 Directory containing configuration: `./config/awesomeTeam/superApp`
 
 ---
-`tap-values.yaml`
+`tap-values.yaml`:
+
 ```yaml
 gitops:
   repository_prefix: https://github.com/vmware-tanzu
 ```
 
-`workload`
+`workload`:
+
 ```yaml
   name: superApp
   namespace: awesomeTeam
@@ -280,8 +292,8 @@ gitops:
       value: kpack
 ```
 
-Resulting gitops repository: Fails to resolve as some, but not all, of the three gitops values are provided. (The
-deprecated value repository_prefix is ignored because suggested values are present)
+Resulting GitOps repository: Fails to resolve as some, but not all, of the three GitOps values are provided. The
+deprecated value `repository_prefix` is ignored because suggested values are present.
 
 ---
 
@@ -320,7 +332,7 @@ To use the `pull_request` commit strategy, set the following parameters:
   Chains package installation.
 - `gitops.pull_request.server_kind` configured during the Out of the Box Supply
   Chains package installation or `gitops_server_kind` configured as a workload parameter.
-  Supported values are `github` and `gitlab`.
+  Supported values are `github`, `gitlab`, and `azure`.
 - `gitops.pull_request.commit_branch` configured during the Out of the Box Supply
   Chains package installation or `gitops_commit_branch` configured as a workload parameter.
 - `gitops.pull_request.pull_request_title` configured during the Out of the Box Supply
@@ -369,7 +381,7 @@ secret in the same namespace as the workload attached to the workload
 Because the operation of pushing requires elevated permissions, credentials are
 required by both public and private repositories.
 
-#### <a id="http-auth"></a>HTTP(S) Basic-auth or Token-based authentication
+#### <a id="http-auth"></a>HTTP(S) Basic authentication or Token-based authentication
 
 If the repository at which configuration is published uses
 `https://` or `http://` as the URL scheme, the Kubernetes secret must
@@ -390,6 +402,9 @@ provide the credentials for that repository as follows:
   stringData:
     username: GIT-USERNAME
     password: GIT-PASSWORD
+    # ! Optional, required if the git repository is signed by a certificate authority not in the system trust store
+    caFile: |
+      CADATA-BASE64
   ```
 
 Both the Tekton annotation and the `basic-auth` secret type must be

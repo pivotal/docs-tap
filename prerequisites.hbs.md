@@ -97,11 +97,11 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.11 or v4.12.
+- Red Hat OpenShift Container Platform v4.12 or v4.13.
     - vSphere
     - Baremetal
-- Tanzu Kubernetes Grid multicloud.
-- vSphere with Tanzu v7.0 U3f or later.<br>
+- Tanzu Kubernetes Grid (commonly called TKG) multicloud. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
+- vSphere with Tanzu v8.0.1 or later.<br>
 For vSphere with Tanzu, you must configure pod security policies so Tanzu Application Platform controller pods can run as root.
 For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
@@ -130,7 +130,10 @@ For more information, see [Kubernetes documentation](https://kubernetes.io/docs/
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
-
+- To deploy Tanzu Application Platform packages view profile, your cluster must have at least:
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 8&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
 - For the [full profile](install-online/profile.hbs.md#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:

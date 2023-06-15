@@ -1,7 +1,7 @@
 # Deploy Spring Cloud Config applications to Tanzu Application Platform
 
 This topic tells you how to run Spring applications that depend on Spring Cloud Config Server as
-workloads on Tanzu Application Platform.
+workloads on Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="identify-apps"></a> Identify Spring Cloud Config applications
 

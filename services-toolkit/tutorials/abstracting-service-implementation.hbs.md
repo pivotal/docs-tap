@@ -60,8 +60,8 @@ In this diagram:
 
 - There are three clusters: `iterate`, `run-test`, and `run-production`.
 - In each cluster, the service operator creates a `ClusterInstanceClass` called postgres.
-  - In the `iterate` cluster, this is a provisioner-based class that uses the pre-installed Bitnami
-    services to provision Helm instances of PostgreSQL.
+  - In the `iterate` cluster, this is a provisioner-based class that uses the services available in
+    the Bitnami Services package to provision Helm instances of PostgreSQL.
   - In the `run-test` cluster, this is a provisioner-based class that uses VMware Tanzu Postgres to
     provision instances of PostgreSQL.
   - In the `run-production` cluster, this is a provisioner-based class that uses Amazon RDS to provision
@@ -152,7 +152,7 @@ spec:
 This class refers to the `xpostgresqlinstances.bitnami.database.tanzu.vmware.com`
 CompositeResourceDefinition.
 This is installed as part of the [Bitnami Services](../../bitnami-services/about.hbs.md) package and
-powers the pre-installed PostgreSQL service.
+powers the PostgreSQL service.
 
 You are reusing the underlying CompositeResourceDefinition here from a different class using the
 class name you want.

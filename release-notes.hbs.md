@@ -1,6 +1,7 @@
 # Tanzu Application Platform release notes
 
-This topic contains release notes for Tanzu Application Platform v{{ vars.url_version }}.
+This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
+v{{ vars.url_version }}.
 
 {{#unless vars.hide_content}}
 
@@ -12,7 +13,7 @@ In release notes, this condition hides content that describes an unreleased patc
 
 ## <a id='1-6-0'></a> v1.6.0
 
-**Release Date**: 11 July 2023
+**Release Date**: 27 July 2023
 
 ### <a id='1-6-0-whats-new'></a> What's new in Tanzu Application Platform
 
@@ -87,23 +88,37 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
-- Incorporate the token expiry settings into the `AuthServer` resource.
-  Service operators can customize the expiry settings of access, refresh or
-  identity token.
-  For more information, see [Token settings](app-sso/service-operators/token-settings.hbs.md#token-expiry-settings).
+- Incorporate the token expiry settings into the `AuthServer` resource. Service
+  operators can customize the expiry settings of access, refresh or identity
+  token. For more information, see [Token
+  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enable the capability to:
-    - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
-    - Configure the internal unsafe provider with custom claims out of the box. For more information, see [identity providers](app-sso/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+    - Map custom user attributes or claims from upstream identity providers,
+      such as OpenID, LDAP, and SAML.
+    - Configure the internal unsafe provider with custom claims out of the box.
+      For more information, see [identity
+      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
+- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
+  ready-to-claim AppSSO service offering
+- `WorkloadRegistration` is portable client registration which templates
+  redirect URIs
+- `XWorkloadRegistration` is an XRD and an integration API between Services
+  Toolkit, Crossplane and AppSSO
 
-#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
+#### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
+
+- The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
+
+#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
 - New report feature that links all packages, vulnerabilities, and ratings
   associated from a specific vulnerability scan SBOM to a Store report. When
   querying a report, it returns information linked to the original SBOM report
   instead of returning the aggregated data of all reports for the linked image
-  or source. 
+  or source.
   - `POST /api/v1/images` and `POST /api/v1/sources` APIs updated
-    - New optional header request fields: 
+    - New optional header request fields:
       - `Report-UID`: A unique identifier to assign to the report. If omitted, a
         unique identifier is randomly generated for the report. Supported
         characters: ALPHA DIGIT "-" / "." / "_" / "~".
@@ -122,7 +137,6 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       set to the date of the original vulnerability scan SBOM. In addition, the
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
-
 
 #### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
@@ -157,7 +171,8 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       - Optional, default true.
       - Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled.
       - WARNING: setting this value to false will result in all Crossplane CRDs, providers, and managed resources being deleted when the crossplane.tanzu.vmware.com Package is deleted, which in turn may lead to any existing service instances also being deleted
-      - See [How-to guide: Delete all Crossplane resources upon deletion of Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
+      - See [How-to guide: Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
+
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -170,9 +185,13 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
-- Remove the field `AuthServer.spec.tls.disabled` and use `AuthServer.spec.tls.deactivated` instead.
-
-- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to `["http://127.0.0.0:8080"]`.
+- The recommendation is to consume AppSSO service offerings via `ClassClaim`
+  instead of the lower-level `WorkloadRegistration` or `ClientRegistration`.
+- Crossplane is an installation- and runtime dependency of AppSSO
+- The field `AuthServer.spec.tls.disabled` is removed. Use
+  `AuthServer.spec.tls.deactivated` instead.
+- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to
+  `["http://127.0.0.0:8080"]`.
 
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
 
@@ -241,9 +260,12 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+#### <a id='1-6-0-scc-ki'></a> Supply Chain Choreographer
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 ---
 
-## <a id='1-6-deprecations'></a> Deprecations
+<h2 id='1-6-deprecations'>Deprecations</h2>
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
@@ -256,13 +278,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
 
-- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are
-  deprecated and marked for removal in Tanzu Application Platform v1.7.0.
-  Use `client_secret_post` and `client_secret_basic` instead.
-
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in Tanzu Application Platform v1.6.0.
-  For more information about how to migrate to `AuthServer.spec.tls.deactivated`, see
-  [Migration guides](app-sso/upgrades/index.md#migration-guides).
+- `ClientRegistration` resource `clientAuthenticationMethod` field values
+  `post` and `basic` are deprecated and marked for removal in Tanzu Application
+  Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
 
 ### <a id="1-6-0-stk-deprecations"></a> Services Toolkit
 
@@ -281,6 +299,17 @@ Deprecated features will remain on this list until they are retired from Tanzu A
    Carbon Black Scanner is not impacted.
    For information about the migration path, see
    [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
+
+- The profile based installation of Grype to a developer namespace and related
+  fields in the values file, such as `grype.namespace` and
+  `grype.targetImagePullSecret`, are deprecated and marked for removal in Tanzu
+  Application Platform v1.8.0.
+
+   VMware recommends using the namespace provisioner to populate namespaces with
+   all the required resources, including the Grype installation.  For
+   information about how to use namespace provisioner to populate a namespace
+   with SCST - SCST scan, see [Setup for OOTB Supply
+   Chains](namespace-provisioner/ootb-supply-chain.hbs.md#test-scan).
 
 ### <a id="1-6-tbs-deprecations"></a> Tanzu Build Service
 

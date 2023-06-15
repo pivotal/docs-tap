@@ -1,6 +1,6 @@
 # Components and installation profiles for Tanzu Application Platform
 
-This topic lists the components you can install with Tanzu Application Platform.
+This topic lists the components you can install with Tanzu Application Platform (commonly known as TAP).
 You can install components as individual packages or you can install them using a profile containing
 a predefined group of packages.
 
@@ -8,7 +8,7 @@ a predefined group of packages.
 
 - **[API Auto Registration](api-auto-registration/about.md)**
 
-  When users deploy a workload that exposes an API, they want that API to automatically show in
+  When users deploy a [workload](workloads/workload-types.hbs.md) that exposes an API, they want that API to automatically show in
   Tanzu Application Platform GUI without requiring any added manual steps.
 
   API Auto Registration is an automated workflow that can use a supply chain to create and manage a

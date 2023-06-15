@@ -59,12 +59,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
-    - `MY-REGISTRY` is your own container registry.
+    - `MY-REGISTRY` is your own container image registry.
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`.
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
-    - `TARGET-REPOSITORY` is your target repository, a folder or repository on `MY-REGISTRY` that serves as the location
-    for the installation files for Tanzu Application Platform.
+    - `TARGET-REPOSITORY` is your target repository, a folder or repository on `MY-REGISTRY` that serves as the location for the installation files for Tanzu Application Platform.
 
     VMware recommends using a JSON key file to authenticate with Google Container Registry.
     In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
@@ -127,7 +126,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     git push -u origin
     ```
 
-## <a id=''></a>Create cluster configuration
+## <a id='create-cluster-config'></a>Create cluster configuration
 
 1. Seed configuration for a cluster using SOPS:
 
@@ -171,7 +170,9 @@ Tanzu Sync Reference Implementation (RI) splits the values configuration of Tanz
 
 The following sections describe how to create these values files.
 
-## <a id='prep-sensitive-tap-values'></a>Preparing sensitive Tanzu Application Platform values
+## <a id='prep-sensitive-tap-values'></a>Prepare the sensitive Tanzu Application Platform values
+
+Follow these steps to prepare the sensitive Tanzu Application Platform values:
 
 1. Generate Age public or secrets keys:
 
@@ -190,8 +191,7 @@ The following sections describe how to create these values files.
     AGE-SECRET-KEY-my-secret-key
     ```
 
-1. Create a plain YAML file `tap-sensitive-values.yaml` that contains a placeholder
-for the sensitive portion of Tanzu Application Platform values:
+1. Create a plain YAML file `tap-sensitive-values.yaml` outside of your Git repository that contains a placeholder for the sensitive portion of the Tanzu Application Platform values:
 
     ```yaml
     ---
@@ -245,10 +245,9 @@ and purge the scratch space:
     rm -rf $HOME/tmp-enc
     ```
 
-## <a id='prep-non-sensitive-tap-values'></a> Preparing non-sensitive Tanzu Application Platform values
+## <a id='prep-non-sensitive-tap-values'></a> Prepare the non-sensitive Tanzu Application Platform values
 
-Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml`
-by using the [Full Profile sample](../install-online/profile.hbs.md#full-profile) as a guide:
+Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](../install-online/profile.hbs.md#full-profile) as a guide:
 
 Example:
 
@@ -262,7 +261,9 @@ tap_install:
 ...
 ```
 
-## <a id='update-sensitive-tap-values'></a> Updating sensitive Tanzu Application Platform values
+For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
+
+## <a id='update-sensitive-tap-values'></a> Update the sensitive Tanzu Application Platform values
 
 After filling in the non-sensitive values, follow these steps to extract the sensitive values
 into `tap-sensitive-values.sops.yaml` that you prepared earlier:
@@ -314,6 +315,97 @@ into `tap-sensitive-values.sops.yaml` that you prepared earlier:
              }
     ```
 
+## <a id='prep-sensitive-tanzu-sync-values'></a>Prepare the sensitive Tanzu Sync values
+
+Follow these steps to prepare the sensitive Tanzu Sync values:
+
+1. Create a plain YAML file `tanzu-sync-values.yaml` outside of your Git repository that contains a placeholder for the sensitive portion of Tanzu Sync values:
+
+    ```yaml
+    ---
+    secrets:
+        sops:
+    ```
+
+1. Encrypt `tanzu-sync-values.yaml` with Age using SOPS:
+
+    ```console
+    export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')
+    sops --encrypt tanzu-sync-values.yaml > tanzu-sync-values.sops.yaml
+    ```
+
+    Where:
+
+    - `grep` is used to find the line containing the public key portion of the generated secret.
+    - `sed` is used to extract the public key from the line found by `grep`.
+
+1. Move the encrypted sensitive Tanzu Application Platform values into the Tanzu Sync config:
+
+    ```console
+    mv tanzu-sync-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+    Example:
+
+    ```console
+    mv tanzu-sync-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+## <a id='update-sensitive-tanzu-sync-values'></a> Update the sensitive Tanzu Sync values
+
+Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials:
+
+1. Open an editor and use SOPS to edit the encrypted sensitive values file:
+
+    ```console
+    sops <<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+    Example:
+
+    ```console
+    sops $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    ```
+
+1. Add the sensitive values:
+
+    Example of the container registry credentials using basic authentication:
+
+    ```yaml
+    ---
+    secrets:
+        sops:
+            age_key: |
+                AGE-KEY
+            registry:
+                hostname: MY-REGISTRY
+                username: MY-REGISTRY-USER
+                password: MY-REGISTRY-PASSWORD
+            git:
+                # Only use one of `ssh` or `basic_auth`, not both.
+                ssh:
+                    private_key: |
+                        PRIVATE-KEY
+                    known_hosts: |
+                        HOST-LIST
+                basic_auth:
+                    username: MY-GIT-USERNAME
+                    password: MY-GIT-PASSWORD
+    ```
+
+    Where:
+
+    - `AGE-KEY` is the contents of the Age key generated earlier.
+    - `MY-REGISTRY` is your container image registry.
+    - `MY-REGISTRY-USER` is the user with read access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
+    - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository. Only applies when you use `ssh`.
+    - `HOST-LIST` is the list of known hosts for Git host service. Only applies when you use `ssh`.
+    - `MY-GIT-USERNAME` is the user with read access to your Git repository. Only applies when you use `basic_auth`.
+    - `MY-GIT-PASSWORD` is the password or personal access token for `MY-GIT-USERNAME`. Only applies when you use `basic_auth`.
+
+    You can find the schema for Tanzu Sync credentials in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/.tanzu-managed/schema--sops.yaml`
+
 ## <a id='generate-tap-config'></a>Generate Tanzu Application Platform installation and Tanzu Sync configuration
 
 Follow these steps to generate the Tanzu Application Platform installation and Tanzu Sync configuration:
@@ -321,23 +413,11 @@ Follow these steps to generate the Tanzu Application Platform installation and T
 1. Set up environment variables by running:
 
     ```console
-    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
-    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
-    export GIT_SSH_PRIVATE_KEY=PRIVATE-KEY
-    export GIT_KNOWN_HOSTS=KNOWN-HOST-LIST
-    export SOPS_AGE_KEY=AGE-KEY
     export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
     ```
 
     Where:
 
-    - `MY-REGISTRY` is your container registry.
-    - `MY-REGISTRY-USER` is the user with read access to `MY-REGISTRY`.
-    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
-    - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository.
-    - `HOST-LIST` is the list of known hosts for Git host service.
-    - `AGE-KEY` is the contents of the Age key generated earlier.
     - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images.
     If the images are relocated as described in [Relocate images to a registry](#relocate-images-to-a-registry),
     this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
@@ -345,12 +425,6 @@ Follow these steps to generate the Tanzu Application Platform installation and T
     Example of the Git repo hosted on GitHub:
 
     ```console
-    export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
-    export INSTALL_REGISTRY_USERNAME=foo@example.com
-    export INSTALL_REGISTRY_PASSWORD=my-password
-    export GIT_SSH_PRIVATE_KEY=$(cat $HOME/.ssh/my_private_key)
-    export GIT_KNOWN_HOSTS=$(ssh-keyscan github.com)
-    export SOPS_AGE_KEY=$(cat $HOME/key.txt)
     export TAP_PKGR_REPO=registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
     ```
 
@@ -374,11 +448,13 @@ Follow these steps to generate the Tanzu Application Platform installation and T
 
     ```console
     git add cluster-config/ tanzu-sync/
-    git commit -m "Configure install of TAP 1.5.0"
+    git commit -m "Configure install of TAP 1.6.0"
     git push
     ```
 
-## <a id='deploy-tanzu-synci'></a>Deploy Tanzu Sync
+## <a id='deploy-tanzu-sync'></a>Deploy Tanzu Sync
+
+Follow these steps to deploy Tanzu Sync:
 
 1. Install the Carvel tools `kapp` and `ytt` onto your `$PATH`:
 

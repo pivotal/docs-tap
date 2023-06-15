@@ -1,7 +1,7 @@
 # Deploy Spring Cloud applications to Tanzu Application Platform
 
 This sub-section tells you how to run Spring applications that rely on various Spring Cloud services
-as workloads on Tanzu Application Platform.
+as workloads on Tanzu Application Platform (commonly known as TAP).
 
 In this sub-section:
 

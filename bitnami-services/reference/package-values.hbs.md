@@ -2,7 +2,7 @@
 
 This topic lists the keys and values that you can use to configure the behavior of the Bitnami Services package.
 You can apply configuration globally to all services using the `globals` key, or on a per-service basis
-using the `mysql`, `postgresql`, `rabbitmq`, `redis`, `mongodb` and `kafka` keys.
+using the `mysql`, `postgresql`, `rabbitmq`, `redis`, `mongodb`, and `kafka` keys.
 
 If you are applying configuration to Tanzu Application Platform through the use of profiles and the `tap-values.yaml`,
 all configuration must exist under the `bitnami_services` top-level key.
@@ -129,8 +129,8 @@ The following table lists configuration that applies to the `mongodb` service.
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
 |mongodb.instance_class.description                           |`MongoDB by Bitnami`                  |string   |Optional: Description of the ClusterInstanceClass that is used by developers to provision and claim MongoDB instances.|
 |mongodb.instance_class.name                                  |`mongodb-unmanaged`                   |string   |Optional: Name of the ClusterInstanceClass that is used by developers to provision and claim MongoDB instances.|
-|mongodb.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned MongoDB instances. By default, each instance will be provisioned in its own dedicated namespace.|
-|mongodb.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage to give each MongoDB instance by default, in Gigabytes.|
+|mongodb.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned MongoDB instances. By default, each instance is provisioned in its own dedicated namespace.|
+|mongodb.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage in Gigabytes to give each MongoDB instance by default.|
 |mongodb.enabled                                              |`true`                              |boolean  |Optional: Provide developers an offering for unmanaged MongoDB instances.|
 |mongodb.helm_chart.chart_pull_secret_ref.name                |`""`                                |string   |Name of the pull secret.|
 |mongodb.helm_chart.chart_pull_secret_ref.namespace           |`""`                                |string   |Namespace of the pull secret.|
@@ -148,8 +148,8 @@ The following table lists configuration that applies to the `kafka` service.
 |-----------------------------------------------------------|------------------------------------|---------|-----------|
 |kafka.instance_class.description                           |`Kafka by Bitnami`                  |string   |Optional: Description of the ClusterInstanceClass that is used by developers to provision and claim Kafka instances.|
 |kafka.instance_class.name                                  |`kafka-unmanaged`                   |string   |Optional: Name of the ClusterInstanceClass that is used by developers to provision and claim Kafka instances.|
-|kafka.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned Kafka instances. By default, each instance will be provisioned in its own dedicated namespace.|
-|kafka.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage to give each Kafka instance by default, in Gigabytes.|
+|kafka.shared_namespace                                     |`""`                                |string   |Optional: Name of the namespace that is shared by all provisioned Kafka instances. By default, each instance is provisioned in its own dedicated namespace.|
+|kafka.defaults.storage_size_gb                             |`1`                                 |integer  |Optional: The amount of storage in Gigabytes to give each Kafka instance by default.|
 |kafka.enabled                                              |`true`                              |boolean  |Optional: Provide developers an offering for unmanaged Kafka instances.|
 |kafka.helm_chart.chart_pull_secret_ref.name                |`""`                                |string   |Name of the pull secret.|
 |kafka.helm_chart.chart_pull_secret_ref.namespace           |`""`                                |string   |Namespace of the pull secret.|

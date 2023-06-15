@@ -171,7 +171,7 @@ the workload must be updated to point at your Tekton pipeline.
 
 To install OOTB Supply Chain with Testing and Scanning:
 
->**Note** In the test and scan supply chain, the source scanning capability has been changed to opt-in and will be skipped by default starting in Tanzu Application Platform 1.6.  See [here](../scst-scan/scan-types.md) for more information.
+>**Note** The OOTB Supply Chain with Testing and Scanning capability has been changed to opt-in and is skipped by default starting in Tanzu Application Platform 1.6. See [Scan Types](../scst-scan/scan-types.hbs.md).
 
 1. Supply Chain Security Tools (SCST) - Scan is installed as part of the Tanzu Application Platform profiles.
 Verify that both Scan Controller and Grype Scanner are installed by running:
@@ -234,7 +234,7 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (optional) The Tanzu Application Platform profiles install the [Supply Chain Security Tools - Store](../scst-store/overview.md) package by default. To persist and query the vulnerability results post-scan, confirm it is installed by running:
+1. (optional) The Tanzu Application Platform profiles install the [Supply Chain Security Tools - Store](../scst-store/overview.md) package by default. To persist and query the vulnerability results post-scan, confirm it is installed by running:
 
     ```console
     tanzu package installed get metadata-store -n tap-install
@@ -243,10 +243,9 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
     If the package is not installed, follow the installation instructions at [Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles](../scst-store/install-scst-store.md).
 
 
-3. Update the profile to use the supply chain with testing and scanning by
+1. Update the profile to use the supply chain with testing and scanning by
    updating `tap-values.yaml` (the file used to customize the profile in `tanzu
    package install tap --values-file=...`) with the following changes:
-
 
     ```console
     - supply_chain: testing
@@ -259,7 +258,7 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
           repository: "<REPO-NAME>"
     ```
 
-4. Update the `tap` package:
+1. Update the `tap` package:
 
     ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
@@ -332,10 +331,10 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 
 Query the tanzu-java-web-app image dependencies and vulnerabilities by running:
 
-  ```console
-    tanzu insight image get --digest DIGEST
-    tanzu insight image vulnerabilities --digest  DIGEST
-  ```
+```console
+tanzu insight image get --digest DIGEST
+tanzu insight image vulnerabilities --digest  DIGEST
+```
 
 Where `DIGEST` is the component version or image digest printed in the `KUBECTL GET` command.
 

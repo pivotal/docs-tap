@@ -5,7 +5,7 @@ user traffic from one version of your app to a later version while both are
 running in production. This topic outlines how to use blue-green
 deployment with Packages and PackageInstalls.
 
-## Prerequisites
+## <a id="prerecs"></a> Prerequisites
 
 To use blue-green deployment, you must complete the following prerequisites:
 
@@ -13,7 +13,7 @@ To use blue-green deployment, you must complete the following prerequisites:
 - Configure Carvel for your supply chain. See [Carvel Package Supply Chains (alpha)](./carvel-package-supply-chain.hbs.md).
 - Configure FluxCD for your supply chain. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
 
-## Add HTTPProxy to the blue deployment
+## <a id="add-http"></a> Add HTTPProxy to the blue deployment
 
 The following example deploys
 a sample application, `hello-app`, to production using a Carvel Package and PackageInstall.
@@ -61,7 +61,7 @@ a sample application, `hello-app`, to production using a Carvel Package and Pack
   prod             www                      www.hello-app.mycompany.com          hello-app-cert        valid     Valid HTTPProxy
   ```
 
-## Create the green deployment
+## <a id="create-green"></a> Create the green deployment
 
 After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to create the green deployment.
 
@@ -156,7 +156,7 @@ After a new version of the package is added to the GitOps repository, create a n
         name: green-dev-values
   ```
 
-## Divide traffic between the blue and green deployments
+## <a id="divide traffic"></a> Divide traffic between the blue and green deployments
 
 Use the following procedure to divide traffic between your blue and green deployments.
 
@@ -319,7 +319,7 @@ After the new green app is ready to handle the complete load and the `-green` ve
 
 1. After the deployment is complete, you can delete the secrets with the overlays.
 
-## Verify application
+## <a id="verify-app"></a> Verify application
 
 To verify the name of the deployment and service that are part of the PackageInstall:
 

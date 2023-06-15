@@ -4,7 +4,7 @@ This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
 using Carvel App. You can use Carvel Package Supply Chains with Supply Chain Choreographer.
 
-## Prerequisites
+## <a id="prerecs"></a> Prerequisites
 
 To use GitOps Delivery with Carvel App, you must complete the following prerequisites:
 
@@ -23,7 +23,7 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
   clusters. If you intend to deploy directly on the run cluster without using a
   build cluster, a build cluster is only necessary for building the package.
 
-## Set up Run cluster namespaces
+## <a id="-set-up-run-cluster"></a> Set up Run cluster namespaces
 
 Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
@@ -36,7 +36,7 @@ If your Run cluster is not a Tanzu Application Platform cluster, create a namesp
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: <run-cluster-ns>
+  namespace: RUN-CLUSTER-NS
   name: app-cr-role
 rules:
 - apiGroups: ["apps"]
@@ -50,7 +50,9 @@ rules:
   verbs: ["get", "list", "create", "update", "delete"]
 ```
 
-## Create Carvel PackageInstalls and secrets
+Where `RUN-CLUSTER-NS` is the name of your run cluster you want to create a namespace with.
+
+## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
 For each Carvel `Package` and each Run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` is stored in your GitOps repository and deployed to Run clusters by the Carvel `App`.
 
@@ -68,7 +70,7 @@ app.default.tap/
     params.yaml              # Secret
 ```
 
-1. For each Run cluster, create a `Secret` that has the values for each `Package` parameter. To see the configurable properties of the `Package`, inspect the `Package` CR’s valuesSchema. See [Carvel Package Supply Chains](./carvel-package-supply-chain.hbs.md). Store the `Secret` in your GitOps repository at `<package_name>/<run_cluster>/params.yaml`.
+1. For each Run cluster, create a `Secret` that has the values for each `Package` parameter. To see the configurable properties of the `Package`, inspect the `Package` CR’s valuesSchema. See [Carvel Package Supply Chains](./carvel-package-supply-chain.hbs.md). Store the `Secret` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/params.yaml`.
 
    ```yaml
    ---
@@ -83,9 +85,14 @@ app.default.tap/
        hostname: app.mycompany.com
    ```
 
+  Where:
+
+  - `PACKAGE-NAME` is the name of your Carvel package you want to use.
+  - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+
    > **Note** You can skip this step to use the default parameter values.
 
-2. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
+1. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/packageinstall.yaml`.
 
    ```yaml
    ---
@@ -94,7 +101,7 @@ app.default.tap/
    metadata:
      name: app
    spec:
-     serviceAccountName: <run-cluster-ns-sa> # ServiceAccount on Run cluster with permissions to deploy Package, see "Set up Run Cluster Namespaces"
+     serviceAccountName: RUN-CLUSTER-NS-SA # ServiceAccount on Run cluster with permissions to deploy Package, see "Set up Run Cluster Namespaces"
      packageRef:
        refName: app.default.tap # name of the Package
        versionSelection:
@@ -104,23 +111,35 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
+  Where:
+
+   - `PACKAGE-NAME` is the name of your Carvel package you want to use.
+   - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+   - `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
+  
    > **Note** To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`.
 
    > **Important** If you skipped creation of the `Secret`, omit the `values` key.
 
-3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
+2. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## Create an App
+## <a id="create app"></a> Create an App
 
 1. You must give the Build cluster access to the Run clusters. On the Build cluster, for each Run cluster, create a `Secret` containing the Run cluster's kubeconfig:
 
    ```console
-   kubectl create secret generic <run-cluster>-kubeconfig \
-       -n <build-cluster-ns> \
-       --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
+   kubectl create secret generic RUN-CLUSTER-kubeconfig \
+       -n BUILD-CLUSTER-NS \
+       --from-file=value.yaml=PATH-TO-RUN-CLUSTER-KUBECONFIG
    ```
 
-2. Each Carvel `App` CR must specify either a service account, by using
+  Where: 
+
+  - `RUN-CLUSTER` is the name of the run cluster you want to use with your app.
+  - `BUILD-CLUSTER-NS` is the namespace of the build cluster you want to use.
+  - `PATH-TO-RUN-CLUSTER-KUBECONFIG` is the location of your run cluster kubeconfig.
+
+2. Each Carvel `App` custom resource (CR) must specify either a service account, by using
    `spec.serviceAccountName`, in the same namespace where the App CR is located
    on the Build cluster. Or specify a `Secret` with kubeconfig contents for a
    target destination Run cluster, by using
@@ -183,7 +202,7 @@ app.default.tap/
 
    > **Note** The fetch section can includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 
-## Verifying applications
+## <a id="verify-app"></a> Verifying applications
 
 To verify your installation:
 

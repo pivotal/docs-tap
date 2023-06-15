@@ -4,9 +4,9 @@ This topic describes how to set up Namespace Provisioner for OOTB supply chains.
 
 ## Basic Supply Chain
 
-To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.md).
+To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
-Namespace Provisioner creates a set of [default resources](reference.md#default-resources) in all managed namespaces which are sufficient to run a workload through the Basic supply chain.
+Namespace Provisioner creates a set of [default resources](reference.hbs.md#default-resources) in all managed namespaces which are sufficient to run a workload through the Basic supply chain.
 
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
@@ -89,9 +89,9 @@ spec:
 
 ### Add a Java Tekton Pipeline to your developer namespace
 
-To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns.md).
+To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on a Testing supply chain. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.md).
+Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on a Testing supply chain. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 Add the following configuration to your TAP values to add [this sample java pipeline](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-supplychain/tekton-pipeline-java.yaml) to your developer namespace:
 
@@ -202,9 +202,9 @@ The Testing Scanning supply chain adds the `source-tester`, `source-scanner`, an
 
 ### Add a Java Tekton Pipeline & Grype Scan Policy to your developer namespace
 
-To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.md).
+To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on a Testing & Scanning supply chain. Create a sample Pipeline and a ScanPolicy in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.md) for more details.
+Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on a Testing & Scanning supply chain. Create a sample Pipeline and a ScanPolicy in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) for more details.
 
 Add the following configuration to your TAP values to add the [sample java pipeline and grype scan policy ](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain)to your developer namespace:
 

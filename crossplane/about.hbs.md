@@ -1,12 +1,13 @@
 # Crossplane
 
-> **Note** If installing Tanzu Application Platform to a cluster which already has a pre-existing installation of Crossplane, please refer to [Use a pre-existing or out-of-band installation of Crossplane with Tanzu Application Platform](how-to-guides/use-pre-existing-crossplane-tap.hbs.md)
-
 Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
 foundation of Kubernetes.
-Tanzu Application Platform uses Crossplane to power a number of capabilities, such as dynamic
-provisioning of services instances with [Services Toolkit](../services-toolkit/about.hbs.md) and
-the pre-installed [Bitnami Services](../bitnami-services/about.hbs.md).
+Tanzu Application Platform (commonly known as TAP) uses Crossplane to power a number of capabilities,
+such as dynamic provisioning of services instances with [Services Toolkit](../services-toolkit/about.hbs.md)
+and the [Bitnami Services](../bitnami-services/about.hbs.md).
+
+> **Note** If installing Tanzu Application Platform to a cluster that already has Crossplane
+> installed, see [Use your existing Crossplane installation](how-to-guides/use-existing-crossplane.hbs.md).
 
 ## <a id="crossplane"></a> Crossplane with Tanzu Application Platform
 
@@ -35,7 +36,7 @@ see one of the following tutorials to get started.
 **For ops teams:**
 
 - Tutorial: [Setup Dynamic Provisioning of Service Instances](../services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md)
-- How-to guide: [Use a pre-existing or out-of-band installation of Crossplane with Tanzu Application Platform](how-to-guides/use-pre-existing-crossplane-tap.hbs.md)
-- How-to guide: [Delete all Crossplane resources upon deletion of Tanzu Application Platform](how-to-guides/delete-resources.hbs.md)
+- How-to guide: [Use your existing Crossplane installation](how-to-guides/use-existing-crossplane.hbs.md)
+- How-to guide: [Delete Crossplane resources when you uninstall Tanzu Application Platform](how-to-guides/delete-resources.hbs.md)
 
 Alternatively, see the [reference material](reference/index.hbs.md).

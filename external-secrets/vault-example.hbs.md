@@ -65,6 +65,15 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    EOF
    ```
 
+> **Important** If you are using a secret store service with a custom CA certificate then you must
+> provide this certificate to External Secret Operator directly by including the CA `SecretStore` or
+> `ClusterSecretStore` resource.
+>
+> The Tanzu Application Platform distribution of External Secret Operator does not support the
+> Tanzu Application Platform field `shared.ca_cert_data`.
+> For more information about setting the CA in the ESO configuration, see the
+> [ESO documentation](https://external-secrets.io/v0.8.3/api/secretstore/).
+
 1. Verify that the status of the `SecretStore` resource is `Valid` by running:
 
    ```console
@@ -78,7 +87,7 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    default    vault-secret-store  Hashicorp Vault  Valid
    ```
 
-1. Create an `ExternalSecret` resource that uses the `SecretStore` you just created by running:
+2. Create an `ExternalSecret` resource that uses the `SecretStore` you just created by running:
 
    ```sh
    cat <<EOF | tanzu external-secrets secret create -y -f -
@@ -107,7 +116,7 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    EOF
    ```
 
-1. Verify that the status of the `ExternalSecret` resource is `Valid` by running:
+3. Verify that the status of the `ExternalSecret` resource is `Valid` by running:
 
    ```console
    tanzu external-secrets secret list
@@ -120,7 +129,7 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
    default    vault-secret-example  registry-secret  vault-secret-store  15m               SecretSynced  21s           10m
    ```
 
-1. After the resource has reconciled, a Kubernetes `secret` resource is created.
+4. After the resource has reconciled, a Kubernetes `secret` resource is created.
    Look for a secret named `registry-secret` created by the referenced `ExternalSecret`. For example:
 
    ```console

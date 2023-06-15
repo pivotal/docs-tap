@@ -1,6 +1,7 @@
 # Bitnami Services
 
-Bitnami Services provides a pre-installed set of backing services for Tanzu Application Platform.
+Bitnami Services provides a set of backing services for Tanzu Application Platform
+(commonly known as TAP).
 The services are MySQL, PostgreSQL, RabbitMQ, Redis, MongoDB and Kafka all of which are backed by the
 corresponding Bitnami Helm Chart.
 

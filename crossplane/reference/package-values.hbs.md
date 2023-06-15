@@ -2,7 +2,7 @@
 
 This topic lists the keys and values you can use to configure the behavior of the Crossplane package.
 Configuration is split between configuration specific to Crossplane in Tanzu Application Platform
-and configuration of the Upbound Universal Crossplane (UXP) Helm Chart.
+(commonly known as TAP) and configuration of the Upbound Universal Crossplane (UXP) Helm Chart.
 
 If you are applying configuration to Tanzu Application Platform through the use of profiles and the `tap-values.yaml`,
 all configuration must exist under the `crossplane` top-level key.
@@ -22,8 +22,8 @@ The following table lists configuration specific to Crossplane in Tanzu Applicat
 |------------------------------------------------------|--------------------------------------------|--------|-------------|
 | kubernetes_version                                   |`""`                                        |string  | Optional: The Kubernetes version. Valid values are `''` or take the form `'1.25.0'` |
 | kubernetes_distribution                              |`""`                                        |string  | Optional: The Kubernetes distribution. Valid values are `''` or `'openshift'` |
-| orphan_resources                                     |`true`                                      |boolean | Optional: Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled. |
-| adopt_resources                                      |`false`                                     |boolean | Optional: Whether or not to adopt pre-existing Crossplane CRDs and resources when the package is being installed. |
+| orphan_resources                                     |`true`                                      |boolean | Optional: Whether to orphan Crossplane CRDs, providers, and managed resources when the package is uninstalled. If `false` the resources are deleted. |
+| adopt_resources                                      |`false`                                     |boolean | Optional: Whether to adopt existing Crossplane CRDs and resources when the package is installed. |
 
 ## <a id="crossplane"></a> Standard Crossplane configuration
 

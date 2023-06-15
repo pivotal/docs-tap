@@ -414,15 +414,7 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-#### <a id='jammy-only'></a> (Optional) Configure your profile with the Jammy stack only
-
-Tanzu Application Platform v1.5.0 supports building applications with both the
-Ubuntu v22.04 (Jammy) and v18.04 (Bionic) stack. For more information, see
-[Bionic and Jammy stacks](../tanzu-build-service/dependencies.html#bionic-vs-jammy).
-
-To install Tanzu Application Platform with Jammy as the only available stack,
-include the `stack_configuration: jammy-only` field under the `buildservice:`
-section in `tap-values.yaml`.
+Tanzu Application Platform v1.6.0 supports building applications with Ubuntu v22.04 (Jammy).
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
@@ -491,6 +483,12 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
       exclude_dependencies: true
     ...
     ```
+ 
+1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
+
+    ```console
+    tanzu package installed update tap --namespace tap-install --values-file PATH-TO-UPDATED-VALUES
+    ```
 
 1. Get the latest version of the `tap` package by running:
 
@@ -520,10 +518,8 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v VERSION -n tap-install --data-values-file <path to tap-values.yaml>
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --data-values-file <path to tap-values.yaml>
     ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 For more information about the differences between `lite` and `full` dependencies, see
 [About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).

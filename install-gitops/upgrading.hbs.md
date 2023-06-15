@@ -6,7 +6,7 @@ This document tells you how to upgrade your Tanzu Application Platform
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 You can perform a fresh install of Tanzu Application Platform by following the 
-instructions in [Installing Tanzu Application Platform](../install-intro.hbs.md).
+instructions in [Installing Tanzu Application Platform](intro.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
@@ -14,152 +14,148 @@ Before you upgrade your Tanzu Application Platform:
 
 - Verify that you meet all the [prerequisites](../prerequisites.hbs.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
 - For information about installing your Tanzu Application Platform, see [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](sops.hbs.md) or [Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](eso.hbs.md).
-- Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](../install-tanzu-cli.hbs.md#cli-and-plugin).
 - For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](../tap-gui/upgrades.hbs.md#considerations).
-- Verify all packages are reconciled by running `tanzu package installed list -A`.
-- To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
+- Verify all packages are reconciled by running `kubectl get packageinstall --namespace tap-install`.
 
-<!-- The following sections are copied from the legacy upgrade topic. Please adjust the content accordingly for upgrade using GitOps. -->
+## <a id="relocate-images"></a> Relocate Tanzu Application Platform images to a registry
 
-## <a id="add-new-package-repo"></a> Update the new package repository
+VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
+VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
+The option to skip relocation is documented for evaluation and proof-of-concept only.
 
-Follow these steps to update the new package repository:
+The supported registries are Harbor, Azure Container Registry, Google Container Registry,
+and Quay.io.
+See the following the documentation for instructions on setting up a registry:
 
-1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 6 in [Relocate images to a registry](../install-online/profile.hbs.md#add-tap-package-repo).
+- [Harbor documentation](https://goharbor.io/docs/2.5.0/)
+- [Google Container Registry documentation](https://cloud.google.com/container-registry/docs)
+- [Quay.io documentation](https://docs.projectquay.io/welcome.html)
 
-    >**Important** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
+To relocate images from the VMware Tanzu Network registry to your registry:
 
-1. Add the target version of the Tanzu Application Platform package repository by running:
-
-    Cluster Essentials 1.2 or above
-    :
-    ```console
-    tanzu package repository add tanzu-tap-repository \
-    --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages:$TAP_VERSION \
-    --namespace tap-install
-    ```
-
-    Cluster Essentials 1.1 or 1.0
-    :
-    ```console
-    tanzu package repository update tanzu-tap-repository \
-    --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
-    --namespace tap-install
-    ```
-    Expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0.
-
-1. Verify you have added the new package repository by running:
+1. Set up environment variables for installation use by running:
 
     ```console
-    tanzu package repository get TAP-REPO-NAME --namespace tap-install
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
+    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
+    export TAP_VERSION=VERSION-NUMBER
+    export INSTALL_REPO=TARGET-REPOSITORY
     ```
 
-    Where `TAP-REPO-NAME` is the package repository name. It must match with either `NEW-TANZU-TAP-REPOSITORY` or `tanzu-tap-repository` in the previous step.
+    Where:
 
-## <a id="upgrade-tap"></a> Perform the upgrade of Tanzu Application Platform
+    - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
+    - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
+    - `MY-REGISTRY` is your own container registry.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`.
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `TARGET-REPOSITORY` is your target repository, a folder or repository on `MY-REGISTRY` that serves as the location for the installation files of Tanzu Application Platform.
 
-The following sections describe how to upgrade in different scenarios.
+    VMware recommends using a JSON key file to authenticate with Google Container Registry.
+    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
+    the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
+    For more information about how to generate the JSON key file,
+    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
-### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
+1. [Install the Carvel tool `imgpkg` CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
-The following changes affect the upgrade procedures:
-
-- **Keyless support deactivated by default**
-
-    In Tanzu Application Platform v1.5.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.hbs.md).
-
-    To support the keyless authorities in `ClusterImagePolicy`, Policy Controller no longer initializes TUF by default. To continue using keyless authorities, you must set the `policy.tuf_enabled` field to `true` in the `tap-values.yaml` file during the upgrade process.
-
-    By default, the public official Sigstore "The Update Framework (TUF) server" is used. You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `policy.tuf_root`.
-
-- **Image Policy Webhook no longer in use**
-
-    Tanzu Application Platform v1.5.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
-    from Image Policy Webhook to Policy Controller. For more information, see [Migration From Supply Chain Security Tools - Sign](../scst-policy/migration.hbs.md).
-
-- **CVE results require a read-write service account**
-
-    Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0 and later, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
-
-If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
-
-```console
-tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
-```
-
-When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
-This error does not persist and any subsequent builds resolve this error.
-You can wait for the next build of the workloads that new source code changes trigger.
-If you do not want to wait for subsequent builds to run automatically, follow the instructions in
-[Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
-
-When upgrading to Tanzu Application Platform v1.5, you might encounter a temporary resource reconciliation failure. This error does not persist and the packages will reconcile subsequently. To facilitate the reconciliation of packages, you can execute the `tanzu package installed kick -n tap-install tap -y` command repeatedly.
-
-### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
-
-If you installed the [full dependencies package](../install-online/profile.hbs.md#tap-install-full-deps),
-you can upgrade the package by following these steps:
-
-1. After upgrading Tanzu Application Platform, retrieve the latest version of the
-   Tanzu Build Service package by running:
+    To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
     ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | sort -V
     ```
 
-1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
+1. Relocate the images with the `imgpkg` CLI by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
-    --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
-    Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+## <a id="upgrading-sops"></a> Upgrade the existing SOPs based installation
 
-1. Update the Tanzu Build Service  `full` dependencies package repository by running:
+In previous versions of Tanzu GitOps RI, sensitive values were provided to Tanzu Sync by using the command line and environment variables. This is replaced by a SOPs encrypted file that is committed to the repository. 
+
+Follow these steps to upgrade the existing SOPs based installation:
+
+1. [Download and unpack the new version of Tanzu GitOps RI](sops.hbs.md#download-tanzu-gitops-ri).
+
+1. Overwrite the configuration for TAP installation and Tanzu Sync from the catalog:
 
     ```console
-    tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
-      --namespace tap-install
+    cd $HOME/tap-gitops
+
+    ./setup-repo.sh CLUSTER-NAME sops
     ```
 
-1. Update the `full` dependencies package by running:
+    Where:
+
+    - `CLUSTER-NAME` the name of your cluster you want to upgrade.
+    - `sops` selects the Secrets OPerationS-based secrets management variant. Changing between SOPs and any other secret management variant is not supported!
+
+    Example:
 
     ```console
-    tanzu package installed update full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    cd $HOME/tap-gitops
+
+    ./setup-repo.sh full-tap-cluster sops
+    Created cluster configuration in ./clusters/full-tap-cluster.
+    ...
     ```
 
-### <a id="upgrade-order"></a> Multicluster upgrade order
+1. [Prepare sensitive Tanzu Sync values](sops.hbs.md#prep-sensitive-tanzu-sync-values).
 
-Upgrading a [multicluster deployment](../multicluster/installing-multicluster.hbs.md) requires updating multiple clusters with different profiles.
-If upgrades are not performed at the exact same time, different clusters have different versions of profiles installed temporarily.
-This might cause a temporary API mismatch that leads to errors.
-Those errors eventually disappear when the versions are consistent across all clusters.
+## <a id="upgrading-eso"></a> Upgrade the existing ESO based installation
 
-To reduce the likelihood of temporary failures, follow these steps to upgrade your multicluster deployment:
+Follow these steps to upgrade the existing ESO based installation with secrets managed externally in AWS Secrets Manager:
 
-1. Upgrade the view-profile cluster.
-1. Upgrade the remaining clusters in any order.
+1. [Download and unpack the new version of Tanzu GitOps RI](eso/aws-secrets-manager.hbs.md#download-tanzu-gitops-ri).
 
-### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
+1. Overwrite the configuration for Tanzu Application Platform installation and Tanzu Sync from the catalog:
 
-For information about upgrading Tanzu Application Platform GUI, see [Upgrade Tanzu Application Platform GUI](../tap-gui/upgrades.hbs.md).
-For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](../scst-scan/upgrading.hbs.md).
+    ```console
+    cd $HOME/tap-gitops
+
+    ./setup-repo.sh CLUSTER-NAME aws-secrets-manager
+    ```
+
+    Where:
+
+    - `CLUSTER-NAME` the name of your cluster you want to upgrade.
+    - `aws-secrets-manager` selects the AWS Secrets Manager external Secret Store.
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops
+
+    ./setup-repo.sh full-tap-cluster aws-secrets-manager
+    Created cluster configuration in ./clusters/full-tap-cluster.
+    ...
+    ```
+
+1. [Generate the default configuration](eso/aws-secrets-manager.hbs.md#generate-default-configuration).
 
 ## <a id="verify"></a> Verify the upgrade
 
 Verify the versions of packages after the upgrade by running:
 
 ```console
-tanzu package installed list --namespace tap-install
+kubectl get packageinstall --namespace tap-install
 ```
 
 Your output is similar, but probably not identical, to the following example output:
 
 ```console
 - Retrieving installed packages...
-  NAME                                PACKAGE-NAME                                         PACKAGE-VERSION  STATUS
+  NAME                                PACKAGE-NAME                                         PACKAGE-VERSION  DESCRIPTION
   accelerator                         accelerator.apps.tanzu.vmware.com                    1.3.0            Reconcile succeeded
   api-auto-registration               apis.apps.tanzu.vmware.com                           0.1.1            Reconcile succeeded
   api-portal                          api-portal.tanzu.vmware.com                          1.2.2            Reconcile succeeded
@@ -190,7 +186,7 @@ Your output is similar, but probably not identical, to the following example out
   services-toolkit                    services-toolkit.tanzu.vmware.com                    0.8.0            Reconcile succeeded
   source-controller                   controller.source.apps.tanzu.vmware.com              0.5.0            Reconcile succeeded
   spring-boot-conventions             spring-boot-conventions.tanzu.vmware.com             0.5.0            Reconcile succeeded
-  tap                                 tap.tanzu.vmware.com                                 1.3.0            Reconcile succeeded
+  tap                                 tap.tanzu.vmware.com                                 1.6.0            Reconcile succeeded
   tap-auth                            tap-auth.tanzu.vmware.com                            1.1.0            Reconcile succeeded
   tap-gui                             tap-gui.tanzu.vmware.com                             1.3.0            Reconcile succeeded
   tap-telemetry                       tap-telemetry.tanzu.vmware.com                       0.3.1            Reconcile succeeded

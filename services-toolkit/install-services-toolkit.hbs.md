@@ -1,7 +1,7 @@
 # Install Services Toolkit
 
-This topic tells you how to install Services Toolkit from the Tanzu Application Platform package
-repository.
+This topic tells you how to install Services Toolkit from the Tanzu Application Platform
+(commonly known as TAP) package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > Services Toolkit.
