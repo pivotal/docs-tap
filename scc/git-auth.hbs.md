@@ -140,7 +140,7 @@ create the Kubernetes secret as follows:
 1. Generate a new SSH keypair: `identity` and `identity.pub`.
 
     ```console
-    ssh-keygen -t ecdsa -b 521 -C "" -f "identity" -N ""
+    ssh-keygen -t ecdsa -b 512 -C "" -f "identity" -N ""
     ```
 
 1. Go to your Git provider and add the `identity.pub` as a deployment key for
