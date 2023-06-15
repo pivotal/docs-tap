@@ -147,7 +147,27 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
   - `registry-server` is the registry server.
   - `registry-repository` is the registry repository.
 
-1. Update the name of your ClusterImageTemplate, the registry fields for your registry, and the location of your Trivy scanner image by editing your `custom-ivs-template.yaml`.
+1. Modify the following in your `custom-ivs-template.yaml` file for your own use case:
+   - `.metadata.name` is the name of your ClusterImageTemplate
+   - `registry-server` and `registry-repository` refer to your registry
+   - location of your Trivy scanner image
+
+1. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan as shown below:
+  ```yaml
+  metadata:
+    labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
+    generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
+  spec:
+    image: #@ data.values.image
+    activeKeychains: #@ data.values.params.image_scanning_active_keychains
+    scanResults:
+      location: #@ scanResultsLocation()
+    workspace:
+      size: #@ data.values.params.image_scanning_workspace_size
+    serviceAccountNames:
+      scanner: #@ data.values.params.image_scanning_service_account_scanner
+      publisher: #@ data.values.params.image_scanning_service_account_publisher
+  ```
 
 1. Create the ClusterImageTemplate:
 
@@ -155,4 +175,4 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-2. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
+1. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).

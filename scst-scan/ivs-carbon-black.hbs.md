@@ -53,5 +53,6 @@ Where:
 - `CB-API-KEY` is the API Key obtained from CBC.
 - `ORG-KEY` is the Org Key for your CBC organization.
 - `SAAS-URL` is the CBC Backend URL.
+- `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image.
 
 **Note**: The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
