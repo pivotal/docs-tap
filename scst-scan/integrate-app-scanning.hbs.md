@@ -58,7 +58,7 @@ To verify that you can scan an image using your ImageVulnerabilityScan:
 
     - View the child PipelineRun, TaskRuns, and pods
       ```console
-      kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE
+      kubectl get -l imagevulnerabilityscan,pipelinerun,taskrun,pod -n DEV-NAMESPACE
       ```
 
 3. When the scanning completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the published results.
@@ -91,7 +91,10 @@ To verify that you can scan an image using your ImageVulnerabilityScan:
   - `IMAGE` is the container image that contains the app you want to deploy.
   - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
-  **Note** There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+  **Note**:
+  - For more info on how to use the Tanzu CLI workload creation see [Create a Workload](../cli-plugins/apps/create-workload.hbs.md) documentation.
+  - Specifying the `--image` flag configures the workload to skip the source scanning step by using the specified pre-built image. Currently SCST - Scan 2.0 only performs image scanning. There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+
 
 ### <a id="retrieve-scan-results"></a> Retrieve scan results
 
@@ -100,7 +103,7 @@ To retrieve a vulnerability report:
 
 1. Retrieve the result location from the ImageVulnerabilityScan CR Status
    ```console
-   SCAN_RESULT_URL=$(kubectl get imagevulnerabilityscan my-scan -o jsonpath='{.status.scanResult}')
+   SCAN_RESULT_URL=$(kubectl get imagevulnerabilityscan my-scan -n DEV-NAMESPACE -o jsonpath='{.status.scanResult}')
    ```
 
 1. Download the bundle to a local directory and list the content
