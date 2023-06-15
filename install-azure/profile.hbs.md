@@ -221,6 +221,8 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.    
+
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
 ### <a id='full-profile'></a> Full profile (Azure)
@@ -229,54 +231,34 @@ The following is the YAML file sample for the full-profile on Azure by using the
 The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run`, or `view`.
 See [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) for more information.
 
-Where:
+```console
+cat << EOF > tap-values.yaml 
+ceip_policy_disclosed: true 
+profile: full # Can take iterate, build, run, view.
 
-- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file.
-  You can download either a blank or populated catalog file from the
-  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
-  Otherwise, you can use a Backstage-compliant catalog that was built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace.
-  SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there.
-  This allows the scanning feature to run in this namespace.
-  If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`
-  to export the SCST - Store CA certificate to all namespaces.
-- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
-  the credentials to pull an image from the registry for scanning.
-
-For Azure, the default settings creates a classic LoadBalancer.
-To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
-following to your `tap-values.yaml`:
-
-```yaml
-profile: full
-ceip_policy_disclosed: true # Installation fails if this is set to 'false'
-buildservice:
-  kp_default_repository: tapbuildservice.azurecr.io/buildservice
-  kp_default_repository_secret:
-    name: registry-credentials
-    namespace: "YOUR_NAMESPACE"
-  enable_automatic_dependency_updates: false
-
-supply_chain: testing_scanning
+supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_templates:
   iaas_auth: true
 
-ootb_supply_chain_testing:
+ootb_supply_chain_basic:
   registry:
-    server: tapbuildservice.azurecr.io
-    repository:tapsupplychain
+    server: ${KP_REGISTRY_HOSTNAME}
+    repository: ${INSTALL_REPO}
   gitops:
-    ssh_secret: ""
+    ssh_secret: "" 
 
-ootb_supply_chain_testing_scanning:
-  registry:
-    server: tapbuildservice.azurecr.io
-    repository: tapsupplychain
-  gitops:
-    ssh_secret: ""
+contour:
+  envoy:
+    service:
+      type: LoadBalancer 
+
+buildservice:
+  kp_default_repository: ${KP_REGISTRY_HOSTNAME}
+  kp_default_repository_secret:
+    name: registry-credentials
+    namespace: "MY-DEV-NAMESPACE"
+  enable_automatic_dependency_updates: false          
 
 learningcenter:
   ingressDomain: learning-center.tap.com
@@ -299,29 +281,45 @@ tap_gui:
     app:
       baseUrl: http://tap-gui.tap.com
 
-scanning:
-  metadataStore:
-    url: ""
-
 metadata_store:
   ingressEnabled: true
-  ingressDomain: tap.com
+  ingressDomain: "INGRESS-DOMAIN"
   app_service_type: ClusterIP
-  ns_for_export_app_cert: tap-workload
+  ns_for_export_app_cert: "MY-DEV-NAMESPACE"
 
-contour:
-  envoy:
-    service:
-      type: LoadBalancer
+scanning:
+  metadataStore:
+    url: "" # Configuration is moved, so set this string to empty.
 
 accelerator:
   server:
     service_type: "ClusterIP"
 
-
 cnrs:
   domain_name: tap.com
+EOF 
 ```
+
+Where:
+
+- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+service's External IP address.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file.
+  You can download either a blank or populated catalog file from the
+  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
+  Otherwise, you can use a Backstage-compliant catalog that was built and posted on the Git infrastructure.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace.
+  SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there.
+  This allows the scanning feature to run in this namespace.
+  If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`
+  to export the SCST - Store CA certificate to all namespaces.
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
+  the credentials to pull an image from the registry for scanning.
+
+For Azure, the default settings creates a classic LoadBalancer.
+To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
+following to your `tap-values.yaml`:
+
 
 > **Important** Installing Grype by using `tap-values.yaml` as follows is 
 > deprecated in v1.6 and will be removed in v1.8:
