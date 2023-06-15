@@ -1,0 +1,148 @@
+# Integrate your own scanner in an ImageVulnerabilityScan
+
+An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a [Tekton step](https://tekton.dev/docs/pipelines/tasks/#defining-steps).
+
+## <a id="sample-img-vuln"></a> Customize an ImageVulnerabilityScan
+
+To customize an ImageVulnerabilityScan to use your scanner:
+
+1. Create a file named `image-vulnerability-scan.yaml`.
+
+    ```yaml
+    apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+    kind: ImageVulnerabilityScan
+    metadata:
+      name: generic-image-scan
+      namespace: DEV-NAMESPACE
+    spec:
+      image: nginx@sha256:... # The image to be scanned. Digest must be specified.
+      scanResults:
+        location: registry/project/scan-results
+      serviceAccountNames:
+        scanner: scanner
+        publisher: publisher
+      steps:
+      - name: scan
+        image: SCANNER-IMAGE
+        command: ["SCANNER-CLI-COMMAND"]
+        args:
+        ...
+    ```
+
+    Where:
+    - `DEV-NAMESPACE` is the developer namespace where scanning occurs.
+    - `spec.image` is the image that you are scanning. **Note**: See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest)
+    - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
+    - `serviceAccountNames` includes:
+        - `scanner` is the service account that runs the scan. It must have read access to `image`.
+        - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
+    - `SCANNER-IMAGE` is the image containing the scanner of your choice.
+    - `SCANNER-CLI-COMMAND` is the scanner's CLI command.
+
+    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names are already used in steps during scanning.
+2. Configure the `scan` step. You will need to input your scanner specific `image`, `command`, and `args`. Below is an example:
+    ```yaml
+    - name: scan
+      image: anchore/grype:latest
+      command: ["grype"]
+      args:
+      - registry:$(params.image)
+      - -o
+      - cyclonedx
+      - --file
+      - $(params.scan-results-path)/scan.cdx
+    ```
+    To pass `spec.image` and `scanResults.location` to `args`, you can use `$(params.image)` and `$(params.scan-results-path)`.
+
+## <a id="img-vuln-config-options"></a> Configuration options
+
+This section lists optional and required ImageVulnerabilityScan specifications fields.
+
+Required fields:
+
+- `image` is the registry URL and digest of the image to scan.
+  For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
+
+- `scanResults.location` is the registry URL where results are uploaded.
+  For example, `my.registry/scan-results`.
+
+Optional fields:
+
+- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
+
+  ```yaml
+  activeKeychains:
+  - name: acr  # Azure Container Registry
+  - name: ecr  # Elastic Container Registry
+  - name: gcr  # Google Container Registry
+  - name: ghcr # Github Container Registry
+  ```
+
+- `serviceAccountNames` includes:
+  - `scanner` is the service account that runs the scan. It must have read access to `image`.
+  - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
+- `workspace` includes:
+  - `size` is size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
+  - `bindings` are additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path.
+
+    ```yaml
+    bindings:
+    - name: additionalconfig
+      configMap:
+        name: my-configmap
+    - name: additionalsecret
+      secret:
+        secretName: my-secret
+    - name: scratch
+      emptyDir: {}
+    ```
+
+    For information about workspace bindings, see [Using other types of volume
+    sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources).
+    Only Secrets, ConfigMaps, and EmptyDirs are  supported.
+
+## <a id="default-env"></a> Default environment
+
+**Tekton Workspaces**:
+
+- `/home/app-scanning`: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
+- `/cred-helper`: a memory-backed EmptyDir mount containing:
+  - config.json which combines static credentials with workload identity credentials when `activeKeychains` is enabled
+  - trusted-cas.crt when SCST - Scan 2.0 is deployed with `caCertData`
+- `/workspace`: a PersistentVolumeClaim to hold scan artifacts and results
+  - The working directory for all Steps is by default located at `/workspace/scan-results`
+
+**Environment Variables**:
+If undefined by your `step` definition the environment uses the following default variables:
+
+- HOME=/home/app-scanning
+- DOCKER_CONFIG=/cred-helper
+- XDG_CACHE_HOME=/workspace/.cache
+- TMPDIR=/workspace/tmp
+- SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
+
+**Tekton Pipeline Parameters**:
+
+These parameters are populated after creating the GrypeImageVulnerabilityScan. For information about parameters, see the [Tekton documentation](https://tekton.dev/docs/pipelines/pipelines/#specifying-parameters).
+
+| Parameters | Default | Type | Description |
+| --- | --- | --- | --- |
+| image | "" | string | The scanned image |
+| scan-results-path | /workspace/scan-results | string | Location to save scanner output |
+| trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData` |
+
+## <a id="retrieve-digest"></a> Retrieving an image digest
+
+SCST - Scan 2.0 custom resources require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
+
+Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull and inspect an image digest:
+
+```console
+docker pull nginx:latest
+docker inspect --format='\{{index .RepoDigests 0}}' nginx:latest
+```
+
+Alternatively, you can install [krane](https://github.com/google/go-containerregistry/tree/main/cmd/krane) to retrieve the digest without pulling the image:
+
+```console
+krane digest nginx:latest
