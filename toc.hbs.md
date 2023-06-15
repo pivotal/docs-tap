@@ -93,6 +93,7 @@ docs.vmware.com is built.
       - [Generate an app](getting-started/generate-first-app.hbs.md)
       - [Deploy an app](getting-started/deploy-first-app.hbs.md)
       - [Iterate on your app - IntelliJ](getting-started/iterate-new-app-intellij.hbs.md)
+      - [Iterate on your app - Visual Studio](getting-started/iterate-new-app-vs.hbs.md)
       - [Iterate on your app - VS Code](getting-started/iterate-new-app-vscode.hbs.md)
       - [Claim services](getting-started/claim-services.hbs.md)
       - [Consume services](getting-started/consume-services.hbs.md)
