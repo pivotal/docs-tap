@@ -100,23 +100,25 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client,
 
 ## <a id='create-container-repos'></a>Create the container repositories
 
-ACR does not require that the container repositories are already created. Repositories are created automatically when images are uploaded.
+Azure Container Registry (ACR) does not require that the container repositories are already created. Repositories are created automatically when images are uploaded.
 
 ## <a id='enable-admin-account'></a>Enable registry admin account
 
-In order to enable push and pull to your registries, you will need to enable the admin user account. An admin user is created with each registry, but run the following command to enable it:
+To enable push and pull to your registries, you must enable the admin user account, which is created with each registry. Run the following command to enable the admin user account:
 
 ```console
 az acr update -n $REGISTRY_NAME --admin-enabled true
 ```
 
-There are two passwords created for each admin user account per registry. To see the passwords, run the following for each registry:
+There are two passwords created for each admin user account per registry. To retrieve the passwords, run the following for each registry:
 
 ```console
 az acr credential show --name $REGISTRY_NAME --resource-group myTAPResourceGroup
 ```
 
-```
+Expect to see the following outputs:
+
+```console
 {
   "passwords": [
     {
@@ -131,7 +133,8 @@ az acr credential show --name $REGISTRY_NAME --resource-group myTAPResourceGroup
   "username": ""
 }
 ```
-Export the username and password:
+
+Export the username and password by running:
 
 ```console
 export KP_REGISTRY_USERNAME=$REGISTRY_NAME
