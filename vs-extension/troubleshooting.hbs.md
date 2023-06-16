@@ -75,3 +75,17 @@ kubectl config set-context --current --namespace=NAMESPACE
 ## <a id="live-update-jammy-fail"></a> Live Update does not work with the Jammy `ClusterBuilder`
 
 {{> 'partials/ide-extensions/ki-live-update-jammy' }}
+
+## <a id="wait-lang-server"></a> The Tanzu Workloads panel shows `waiting on language server...`
+
+### Symptom
+
+The Tanzu Workloads panel shows `waiting on language server...`.
+
+### Cause
+
+The language server has not started.
+
+### Solution
+
+Open `workload.yaml` or `Tiltfile` in the editor.
