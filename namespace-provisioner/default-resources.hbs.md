@@ -1,8 +1,8 @@
-# Namespace Provisioner reference
+# Default resources
 
-## <a id='default-resources'></a>Default resources
+This topic describes the resources that are templated in the default-resources secret for the different installation profile and supply chain value combinations.
 
-Namespace Provisioner is installed as part of the standard installation profiles.  and the default set of resources provisioned in a namespace is based on a combination of the installation profile employed and the supply chain that is installed on the cluster. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages)
+Namespace Provisioner is installed as part of the standard installation profiles. The default set of resources provisioned in a namespace is based on a combination of the installation profile employed and the supply chain that is installed on the cluster. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages)
 
  The following table shows the list of resources that are templated in the default-resources secret for an installation profile and supply chain value combination:
 

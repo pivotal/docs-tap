@@ -1,27 +1,34 @@
-# Namespace Provisioner reference
+# Namespace parameters
 
-## <a id='namespace-parameters'></a>Namespace parameters
+When managing multiple developer namespaces in a cluster, it is often necessary to customize each
+namespace individually. The Namespace Provisioner in controller mode, offers a feature that enables
+the addition of parameters through labels and annotations. In GitOps mode, you can configure
+these parameters in the GitOps file. For more detailed information, see
+[Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
-When managing multiple developer namespaces in a cluster, it is often necessary to customize each namespace individually. The namespace provisioner, in controller mode, offers a feature that enables the addition of parameters through labels and annotations. In GitOps mode, you can easily configure these parameters in the GitOps file. For more detailed information, please refer to the documentation on [customizing label and annotation prefixes ](customize-installation.hbs.md#con-custom-label)for more information..
+To add a parameter to a specific namespace, you can label or annotate it using either the default
+prefix or a custom-defined prefix. The format for specifying the parameter is as follows:
+ `<prefix>/<parameter-key>=<parameter-value>`.
 
-To add a parameter to a specific namespace, you can label or annotate it using either the default prefix or a custom-defined prefix. The format for specifying the parameter is as follows: `<prefix>/<parameter-key>=<parameter-value>`.
+>**Caution** If a parameter is initially created through annotations and later a label with the same
+key is used, the annotation will be overwritten.
 
->**Caution** If a parameter is initially created through annotations and later a label with the same key is used, the annotation will be overwritten.
-
-Please note the following
-
-- The parameter key can be a single string or a pseudo JSON-path structure (e.g. `kye1.inner-key1.inner-key3.inner-key4`) which will be translated into a structured format in the values
-- The label value can only be a string
-- If you need to pass a list or another object as the parameter value, annotations should be used instead. Annotations support using `[]` to define lists and `{}` to define objects
-- All parameters created via labels and annotations can be utilized when using templates for resources in ytt `additional_sources` from `data.values`
+- The parameter key can be a single string or a pseudo JSON-path structure, for example,
+`kye1.inner-key1.inner-key3.inner-key4`.  This is translated into a structured format in the values.
+- The label value can only be a string.
+- If you need to pass a list or another object as the parameter value, annotations should be used
+instead. Annotations support using `[]` to define lists and `{}` to define objects
+- All parameters created with labels and annotations can be utilized when using templates for
+resources in ytt `additional_sources` from `data.values`.
 
 Examples:
 
 1. To define a list of tools used by the namespace
-   
+
    ```bash
    kubectl annotate ns dev param.nsp.tap/project.tools='["git", "maven"]'
    ```
+
    The `desired-namespaces` ConfigMap will look like:
 
    ```yaml
@@ -95,10 +102,17 @@ Examples:
 
 ## Reserved Namespace Parameters
 
-The namespace provisioner reserves certain parameters for its use. The following is a list of parameters used by the namespace provisioner, which apply to both the `default_parameters` in TAP values and the namespace parameters through labels and annotations.:
+Namespace Provisioner reserves certain parameters for its use. The following is a list of parameters
+used by the Namespace Provisioner, which apply to both the `default_parameters` in TAP values and
+the namespace parameters through labels and annotations:
 
-- `limits` (*object*): Limits parameter is used to configure the the LimitRange  (see [Deactivate LimitRange Setup](use-case4.hbs.md#custom-lr))
-- `skip_limit_range` (*boolean*): Flag to determine if the LimitRange should be created (see [Deactivate LimitRange Setup](use-case4.hbs.md#deactivate-lr))
-- `skip_grype` (*boolean*): Flag to determine if Grype scanner resources are going to be created (see [Deactivate Grype install](use-case4.hbs.md#deactivate-grype))
-- `supply_chain_service_account` (*object*): Contain the secrets and imagePullSecrets to be added to the Supply Chain ServiceAccount (see [Customize service accounts](use-case4.hbs.md#customize-sa))
-- `delivery_service_account` (*object*): Contain the secrets and imagePullSecrets to be added to the delivery ServiceAccount (see [Customize service accounts](use-case4.hbs.md#customize-sa))
+- `limits` (*object*): Use to configure the LimitRange. For more information, see
+[Deactivate LimitRange Setup](use-case4.hbs.md#custom-lr).
+- `skip_limit_range` (*boolean*): Use to determine if the LimitRange should be created. For more
+information, see [Deactivate LimitRange Setup](use-case4.hbs.md#deactivate-lr).
+- `skip_grype` (*boolean*): Use to determine if Grype scanner resources are going to be created.
+For more information, see [Deactivate Grype install](use-case4.hbs.md#deactivate-grype).
+- `supply_chain_service_account` (*object*): Contains the secrets and imagePullSecrets to be added
+to the Supply Chain ServiceAccount. For more information, see [Customize service accounts](use-case4.hbs.md#customize-sa).
+- `delivery_service_account` (*object*): Contains the secrets and imagePullSecrets to be added to
+the delivery ServiceAccount. For more information, see [Customize service accounts](use-case4.hbs.md#customize-sa).

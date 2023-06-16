@@ -1,6 +1,6 @@
-# Namespace Provisioner reference
+# Known limitations and issues
 
-## Known limitations and issues
+This topic describes the know issues and limitations for Namespace Provisioner.
 
 - If you are using a GitOps repository to manage the list of namespaces, all the namespaces in the list must exist in the cluster. The provisioner application fails to reconcile if the namespaces do not exist on the cluster.
 
