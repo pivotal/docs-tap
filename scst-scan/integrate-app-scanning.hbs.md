@@ -93,7 +93,7 @@ To verify that you can scan an image using your ImageVulnerabilityScan:
 
   **Note**:
   - For more info on how to use the Tanzu CLI workload creation see [Create a Workload](../cli-plugins/apps/create-workload.hbs.md) documentation.
-  - Specifying the `--image` flag configures the workload to skip the source scanning step by using the specified pre-built image. Currently SCST - Scan 2.0 only performs image scanning. There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
+  - Specifying the `--image` flag sets the `workload.spec.image` of the workload so that it is taken up by the `scanning-image-scan-to-url` supply chain. Currently SCST - Scan 2.0 only performs image scanning. There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
 
 
 ### <a id="retrieve-scan-results"></a> Retrieve scan results
