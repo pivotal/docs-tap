@@ -171,7 +171,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       - Optional, default true.
       - Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled.
       - WARNING: setting this value to false will result in all Crossplane CRDs, providers, and managed resources being deleted when the crossplane.tanzu.vmware.com Package is deleted, which in turn may lead to any existing service instances also being deleted
-      - See [How-to guide: Delete all Crossplane resources upon deletion of Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
+      - See [How-to guide: Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
 
 ---
 

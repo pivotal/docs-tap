@@ -3,12 +3,13 @@
 This topic tells you how to install Crossplane from the Tanzu Application Platform
 (commonly known as TAP) package repository.
 
-> **Note** If installing Tanzu Application Platform to a cluster which already has a pre-existing installation of Crossplane, please refer to [Use a pre-existing or out-of-band installation of Crossplane with Tanzu Application Platform](how-to-guides/use-pre-existing-crossplane-tap.hbs.md)
-
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > Crossplane.
 > For more information about profiles, see
 > [Components and installation profiles](../about-package-profiles.hbs.md).
+>
+> If installing Tanzu Application Platform to a cluster that already has Crossplane
+> installed, see [Use your existing Crossplane installation](how-to-guides/use-existing-crossplane.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
