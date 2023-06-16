@@ -169,8 +169,8 @@ Install from a binary release
 
   1. Download and unpack the Tanzu CLI binary:
 
-     1. Download the Tanzu CLI binary for your operating system from the
-        [**VMware Customer Connect Tanzu CLI download page**](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
+     1. Download the Tanzu CLI binary for your operating system from
+        [Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
      1. Use an extraction tool to unpack the binary file, for example, on Linux or macOS, you can
      use the `tar` command.
 
