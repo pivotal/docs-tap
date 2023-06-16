@@ -72,7 +72,7 @@ To set the Kubernetes cluster context:
 The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
-As of TAP v{{ vars.tap_version }}+, the Tanzu CLI and the CLI plugins required to interact with TAP are released and distributed independently from TAP itself. 
+As of TAP v{{ vars.tap_version }}+, the Tanzu CLI and the CLI plugins required to interact with TAP are released and distributed independently from TAP itself.
 
 1. [Install the Tanzu CLI](#install-cli)
 1. [Install Tanzu CLI Plugins](#install-plugins)
@@ -162,7 +162,8 @@ Install from a binary release
 
   1. Download and unpack the Tanzu CLI binary:
 
-     1. Download the Tanzu CLI binary for your operating system (OS) from the [**VMware Customer Connect Tanzu CLI download page**]([https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431](http://www.vmware.com/go/download-tanzu-cli)).
+     1. Download the Tanzu CLI binary for your operating system (OS) from the
+        [**VMware Customer Connect Tanzu CLI download page**](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
      1. Unpack the Tanzu CLI file for your OS. To unpack the file, use the extraction tool of your choice. For example, on Linux or macOS, you can use the `tar` command.
 
         * **macOS:**
@@ -181,7 +182,7 @@ Install from a binary release
 
            Use the Windows extractor tool to unzip `tanzu-cli-windows-amd64.zip`.
 
-  1. Make the CLI available to the system:
+  3. Make the CLI available to the system:
 
      * **macOS:**
 
@@ -200,7 +201,7 @@ Install from a binary release
         ```
 
      * **Windows:**
-        
+
         1. Create a new `Program Files\tanzu` folder.
         2. Copy the `tanzu-cli-windows_amd64.exe` file into the new `Program Files\tanzu` folder.
         3. Rename `tanzu-cli-windows_amd64.exe` to `tanzu.exe`.
@@ -210,7 +211,7 @@ Install from a binary release
         7. Select the `Path` row under **System variables**, and click **Edit**.
         8. Click **New** to add a new row and enter the path to the `tanzu` CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
 
-  1. Check that the correct version of the CLI is properly installed.
+  4. Check that the correct version of the CLI is properly installed.
 
      ```
      tanzu version
