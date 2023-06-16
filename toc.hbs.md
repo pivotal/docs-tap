@@ -587,7 +587,7 @@ docs.vmware.com is built.
         - [Supply Chain Security Tools - Scan 2.0 (beta)](scst-scan/app-scanning-beta.hbs.md)
             - [Getting Started](scst-scan/getting-started.hbs.md)
               - [Installation](scst-scan/install-app-scanning.hbs.md)
-              - [Integration Guide](scst-scan/integrate-app-scanning.hbs.md)
+              - [Integrating your own scanner](scst-scan/integrate-app-scanning.hbs.md)
                 - [Customize your own ImageVulnerabilityScan](scst-scan/ivs-create-your-own.hbs.md)
                 - [Samples](scst-scan/ivs-custom-samples.hbs.md)
                   - [Carbon Black IVS sample](scst-scan/ivs-carbon-black.hbs.md)

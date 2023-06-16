@@ -1,13 +1,13 @@
 # <a id="installing"></a> Installing SCST - Scan 2.0 in a cluster
 
-The following sections describe how to install SCST - Scan 2.0.
+The following sections describe how to install SCST - Scan 2.0. Since SCST-Scan 2.0 is in beta, it is not currently installed with any profiles and must be installed following these directions.
 
 ## <a id='scst-app-scanning-prereqs'></a> Prerequisites
 
 SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is in the Full and Build profiles of Tanzu Application Platform.
+- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton will already be installed if you installed TAP via a profile based installation in both the Full and Build Profiles.
 
 ## <a id='configure-app-scanning'></a> Configure properties
 

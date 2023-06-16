@@ -2,6 +2,6 @@
 
 The getting started guide contains the following topics:
 
-[Installation](./install-app-scanning.hbs.md)
+[Installing SCST - Scan 2.0](./install-app-scanning.hbs.md)
 
-[Integration Guide](./integrate-app-scanning.hbs.md)
+[Integrating your own scanner](./integrate-app-scanning.hbs.md)

@@ -1,6 +1,6 @@
 # Observability
 
-This topic provides information to help observe Supply Chain Security Tools - Scan 2.0.
+This topic guides you through observing Supply Chain Security Tools - Scan 2.0. This will help a user understand the each step of the scanning process.
 
 To watch the status of the scanning custom resources and child resources:
 

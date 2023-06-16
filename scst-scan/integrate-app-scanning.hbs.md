@@ -1,4 +1,4 @@
-# Integration Guide
+# Integrating your own scanner
 
 This topic describes how to integrate Supply Chain Security Tools - Scan 2.0 with the Out of the Box Supply Chain.
 
