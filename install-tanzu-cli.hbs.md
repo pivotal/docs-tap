@@ -72,7 +72,9 @@ To set the Kubernetes cluster context:
 The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
-As of TAP v{{ vars.tap_version }}+, the Tanzu CLI and the CLI plugins required to interact with TAP are released and distributed independently from TAP itself.
+As of Tanzu Application Platform v{{ vars.tap_version }}+, the Tanzu CLI and the CLI plugins
+required to interact with Tanzu Application Platform are released and distributed independently
+from Tanzu Application Platform itself.
 
 1. [Install the Tanzu CLI](#install-cli)
 1. [Install Tanzu CLI Plugins](#install-plugins)
@@ -80,9 +82,9 @@ As of TAP v{{ vars.tap_version }}+, the Tanzu CLI and the CLI plugins required t
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-As of TAP release v{{ vars.tap_version }}+, the Tanzu CLI is released and distributed independently from TAP. The Tanzu CLI can be installed using a package manager such as Chocolatey, Homebrew, APT, YUM, and DNF, or it can be installed from a binary release.
+For Tanzu Application Platform v{{ vars.tap_version }}+, the Tanzu CLI is released and distributed independently from Tanzu Application Platform. The Tanzu CLI can be installed using a package manager such as Chocolatey, Homebrew, APT, YUM, and DNF, or it can be installed from a binary release.
 
-Basic installation instructions are provided below. If you're interested in more detailed explanations including how to install the Tanzu CLI and CLI plugins in internet restricted environments, visit the new [VMware docs for Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html)
+Basic installation instructions are provided below. If you're interested in more detailed explanations including how to install the Tanzu CLI and CLI plugins in Internet restricted environments, see the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html) documentation.
 
 > **Note** If you want to retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` (or `C:\Program Files\tanzu` on Windows) to a different location before following the steps below.
 
@@ -162,9 +164,10 @@ Install from a binary release
 
   1. Download and unpack the Tanzu CLI binary:
 
-     1. Download the Tanzu CLI binary for your operating system (OS) from the
+     1. Download the Tanzu CLI binary for your operating system from the
         [**VMware Customer Connect Tanzu CLI download page**](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
-     1. Unpack the Tanzu CLI file for your OS. To unpack the file, use the extraction tool of your choice. For example, on Linux or macOS, you can use the `tar` command.
+     1. Use an extraction tool to unpack the binary file, for example, on Linux or macOS, you can
+     use the `tar` command.
 
         * **macOS:**
 
@@ -223,13 +226,12 @@ Install from a binary release
 ### <a id="install-plugins"></a> Install Tanzu CLI Plugins
 
 
-1. Run the following command to install the CLI plugins required for TAP:
+1. Run the following command to install the CLI plugins required for Tanzu Application Platform:
    ```
    tanzu plugin install --plugin-group vmware-tap/default
    ```
 
-To learn more about the latest `tanzu plugin` features and sub-commands, please visit see the [**plugin** system-command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.version }}/tanzu-cli/tanzu-plugin.html).
-
+For more information about the latest `tanzu plugin` features and sub-commands, see the [tanzu plugin](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.version }}/tanzu-cli/tanzu-plugin.html) topic in the VMware Tanzu CLI documentation.
 
 ## Next steps
 
