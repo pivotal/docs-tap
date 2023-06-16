@@ -4,7 +4,7 @@ The default configuration for Out of the Box Supply Chain - Testing and Scanning
 
 ## <a id="prerequisites"></a> Prerequisites
 
-Before you can integrate Supply Chain Security Tools - Scan 2.0 with the Out of the Box Supply Chain:
+Before you can integrate Supply Chain Security Tools - Scan 2.0 with the out of the box supply chain:
 - Select an ImageVulnerabilityScan. You can either bring your own scanner by creating a custom ImageVulnerabilityScan template or select from the provided samples:
   - [Create your own ImageVulnerabilityScan to bring your own scanner](./ivs-create-your-own.hbs.md)
   - [ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md)
