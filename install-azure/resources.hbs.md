@@ -4,8 +4,6 @@ To install Tanzu Application Platform (commonly known as TAP) within the Azure e
 you must create several Azure resources. Use this topic to learn how to create:
 
 - An Azure Kubernetes Service (AKS) cluster to install Tanzu Application Platform.
-- Identity and Access Management (IAM) roles to allow authentication and
-  authorization to read and write from Azure Container Registry (ACR).
 - ACR repositories for the Tanzu Application Platform container images.
 
 Creating these resources enables Tanzu Application Platform to use an IAM role 
@@ -99,6 +97,46 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client,
     ```console
     az aks get-credentials --resource-group myTAPResourceGroup --name tap-on-azure
     ```
+
+## <a id='create-container-repos'></a>Create the container repositories
+
+ACR does not require that the container repositories are already created. Repositories are created automatically when images are uploaded.
+
+## <a id='enable-admin-account'></a>Enable registry admin account
+
+In order to enable push and pull to your registries, you will need to enable the admin user account. An admin user is created with each registry, but run the following command to enable it:
+
+```console
+az acr update -n $REGISTRY_NAME --admin-enabled true
+```
+
+There are two passwords created for each admin user account per registry. To see the passwords, run the following for each registry:
+
+```console
+az acr credential show --name $REGISTRY_NAME --resource-group myTAPResourceGroup
+```
+
+```
+{
+  "passwords": [
+    {
+      "name": "password",
+      "value": YOUR-PASSWORD
+    },
+    {
+      "name": "password2",
+      "value": YOUR-PASSWORD-2
+    }
+  ],
+  "username": ""
+}
+```
+Export the username and password:
+
+```console
+export KP_REGISTRY_USERNAME=$REGISTRY_NAME
+export KP_REGISTRY_PASSWORD=YOUR-PASSWORD
+```
 
 ## <a id='next-steps'></a>Next steps
 
