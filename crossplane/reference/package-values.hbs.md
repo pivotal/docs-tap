@@ -24,6 +24,7 @@ The following table lists configuration specific to Crossplane in Tanzu Applicat
 | kubernetes_distribution                              |`""`                                        |string  | Optional: The Kubernetes distribution. Valid values are `''` or `'openshift'` |
 | orphan_resources                                     |`true`                                      |boolean | Optional: Whether to orphan Crossplane CRDs, providers, and managed resources when the package is uninstalled. If `false` the resources are deleted. |
 | adopt_resources                                      |`false`                                     |boolean | Optional: Whether to adopt existing Crossplane CRDs and resources when the package is installed. |
+| ca_cert_data                                         |`""`                                        |string  | Optional: PEM-encoded certificate data for Crossplane to trust TLS connections with a custom CA |
 
 ## <a id="crossplane"></a> Standard Crossplane configuration
 
