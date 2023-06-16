@@ -33,7 +33,7 @@ Different package customization options are available depending on what method y
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-: The git repository is configured under `additional_sources`
+: The Git repository is configured under `additional_sources`.
 
   ```yaml
   namespace_provisioner:
@@ -51,7 +51,7 @@ Using Namespace Provisioner Controller
       path: _ytt_lib/testing-scanning-supplychain-setup
   ```
 Using GitOps
-: The git repository is configured under `additional_sources`
+: The Git repository is configured under `additional_sources`.
 
   ```yaml
   namespace_provisioner:
@@ -84,7 +84,7 @@ See [Git Authentication for Private repository](use-case3.md#git-private).
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-: Use the `sync_period` key
+: Use the `sync_period` key.
 
   ```yaml
   namespace_provisioner:
@@ -92,7 +92,7 @@ Using Namespace Provisioner Controller
   ```
 
 Using GitOps
-: Use the `sync_period` key
+: Use the `sync_period` key.
 
   ```yaml
   namespace_provisioner:
@@ -133,7 +133,7 @@ stringData:
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-: The list of secrets are imported under `import_data_values_secrets`
+: The list of secrets are imported under `import_data_values_secrets`.
 
   ```yaml
   namespace_provisioner:
@@ -145,7 +145,7 @@ Using Namespace Provisioner Controller
   ```
 
 Using GitOps
-:  The list of secrets are imported under `import_data_values_secrets`
+:  The list of secrets are imported under `import_data_values_secrets`.
 
   ```yaml
   namespace_provisioner:
@@ -167,7 +167,7 @@ If you are installing TAP on AWS with EKS, you can utilize the IAM Role specifie
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-: Add the AWS IAM Role to `aws_iam_role_arn`
+: Add the AWS IAM Role to `aws_iam_role_arn`.
 
   ```yaml
   namespace_provisioner:
@@ -176,7 +176,7 @@ Using Namespace Provisioner Controller
   ```
 
 Using GitOps
-: Add the AWS IAM Role to `aws_iam_role_arn`
+: Add the AWS IAM Role to `aws_iam_role_arn`.
 
   ```yaml
   namespace_provisioner:
@@ -195,7 +195,7 @@ The `default_parameters` is an array of parameters that are applied to all names
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-: Use the `default_parameters` with the desired parameter
+: Use the `default_parameters` with the desired parameter.
 
   ```yaml
   namespace_provisioner:
@@ -210,7 +210,7 @@ Using Namespace Provisioner Controller
           memory: 1Gi
   ```
 Using GitOps
-: Use the `default_parameters` with the desired parameter
+: Use the `default_parameters` with the desired parameter.
 
   ```yaml
   namespace_provisioner:
@@ -269,7 +269,7 @@ Sample secret with overlay to be used:
 Sample TAP values configuration:
 
 Using Namespace Provisioner Controller
-: The list of secrets with the overlay are set under `overlay_secrets`
+: The list of secrets with the overlay are set under `overlay_secrets`.
   ```yaml
   namespace_provisioner:
     controller: true
@@ -280,7 +280,7 @@ Using Namespace Provisioner Controller
   ```
 
 Using GitOps
-: The list of secrets with the overlay are set under `overlay_secrets`
+: The list of secrets with the overlay are set under `overlay_secrets`.
 
   ```yaml
   namespace_provisioner:
