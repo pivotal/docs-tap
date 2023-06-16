@@ -1,4 +1,4 @@
-# Workload scalability best practices
+# Scale workloads 
 
 This topic describes the best practices required to build and deploy workloads at scale.
 
@@ -39,7 +39,7 @@ This includes all of the services of the medium size application and the followi
 
 ## Application Configuration
 
-The following section describes the application configuration that was used to derive the
+The following section describes the application configuration used to derive the
 scalability best practices.
 
 **Supply chains used:**
@@ -78,7 +78,7 @@ The following table describes the resource limit changes that are required for c
 |**Controller/Pod**|**CPU**|**Memory**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
  Build Service/kpack controller | 20m/100m | 1Gi/2Gi || Yes | No | Yes | tap-values |
-| Scanning/scan-link | 200m/500m | 1Gi/3Gi| | Yes | No | No | Tap-values |
+| Scanning/scan-link | 200m/500m | 1Gi/3Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
 | Cartographer| 3/4 (Concurrency 25) | 10Gi/10Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
 | Cartographer conventions|  | 1.4Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
 | Namespace provisioner | 100m/500m | 500Mi/2Gi | | Yes | Yes | Yes | tap-values |
@@ -90,6 +90,7 @@ The following table describes the resource limit changes that are required for c
 | Eventing/triggermesh | | 100Mi/800Mi | | No | Yes | Yes| overlay |
 | tap-telemetry/tap-telemetry-informer | 2GiB | YTD | | Yes| No | Yes| tap-values |
 
+* Only when there is issue with scan pods getting deleted before Vartographer can process it
 ## Example resource limit changes
 
 The following section provides examples of the changes required to the default limits to achieve scalability:

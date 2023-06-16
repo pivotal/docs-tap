@@ -65,7 +65,7 @@ docs.vmware.com is built.
   - [Upgrade by GitOps (beta)](install-gitops/upgrading.hbs.md)
   - [Opt out of telemetry collection](opting-out-telemetry.hbs.md)
       - [Opt in or opt out of Pendo telemetry](tap-portal-telemetry.hbs.md)
-- [Scalability](scalability.hbs.md)
+- [Scale Workloads](scalability.hbs.md)
 - [Security and compliance](security-and-compliance/about.hbs.md)
   - [TLS and certificates](security-and-compliance/tls-and-certificates/about.hbs.md)
       - [Ingress](security-and-compliance/tls-and-certificates/ingress/about.hbs.md)
