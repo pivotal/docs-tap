@@ -1,4 +1,4 @@
-# Integrate your own scanner in an ImageVulnerabilityScan
+# Bring your own scanner using an ImageVulnerabilityScan template
 
 An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a [Tekton step](https://tekton.dev/docs/pipelines/tasks/#defining-steps).
 

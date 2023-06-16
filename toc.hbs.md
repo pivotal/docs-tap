@@ -588,7 +588,7 @@ docs.vmware.com is built.
             - [Getting Started](scst-scan/getting-started.hbs.md)
               - [Installation](scst-scan/install-app-scanning.hbs.md)
               - [Integrating your own scanner](scst-scan/integrate-app-scanning.hbs.md)
-                - [Customize your own ImageVulnerabilityScan](scst-scan/ivs-create-your-own.hbs.md)
+                - [Bring your own scanner using an ImageVulnerabilityScan template](scst-scan/ivs-create-your-own.hbs.md)
                 - [Samples](scst-scan/ivs-custom-samples.hbs.md)
                   - [Carbon Black IVS sample](scst-scan/ivs-carbon-black.hbs.md)
                   - [Snyk IVS sample](scst-scan/ivs-snyk.hbs.md)

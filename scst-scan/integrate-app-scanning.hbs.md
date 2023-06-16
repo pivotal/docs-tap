@@ -1,14 +1,14 @@
 # Integrating your own scanner
 
-This topic describes how to integrate Supply Chain Security Tools - Scan 2.0 with the Out of the Box Supply Chain.
+The default configuration for Out of the Box Supply Chain - Testing and Scanning uses Supply Chain Security Tools - Scan 1.0. This topic describes how to enable Supply Chain Security Tools - Scan 2.0 with the out of the box test + scan supply chain, as well as bring your own scanner by creating an ImageVulnerabilityScan template.
 
 ## <a id="prerequisites"></a> Prerequisites
 
 Before you can integrate Supply Chain Security Tools - Scan 2.0 with the Out of the Box Supply Chain:
-- Create an ImageVulnerabilityScan. You can either integrate your scanner or select from the provided samples:
-  - [Customize your own ImageVulnerabilityScan](./ivs-create-your-own.hbs.md)
+- Select an ImageVulnerabilityScan. You can either bring your own scanner by creating a custom ImageVulnerabilityScan template or select from the provided samples:
+  - [Create your own ImageVulnerabilityScan to bring your own scanner](./ivs-create-your-own.hbs.md)
   - [ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md)
-- [Create a ClusterImageTemplate](./clusterimagetemplates.hbs.md). The previously created ImageVulnerabilityScan needs to be incorporated into a ClusterImageTemplate.
+- [Create a ClusterImageTemplate](./clusterimagetemplates.hbs.md). Incorporate the ImageVulnerabilityScan template into a ClusterImageTemplate.
 
 ## <a id="integration-with-supply-chain"></a> Integration with OOTB Supply Chain
 
@@ -19,7 +19,7 @@ Before you can integrate Supply Chain Security Tools - Scan 2.0 with the Out of 
       image_scanner_template_name: CLUSTERIMAGETEMPLATE
     ```
 
-    Where `CLUSTERIMAGETEMPLATE` is the ClusterImageTemplate with the embdedded ImageVulnerabilityScan using the scanner of your choice.
+    Where `CLUSTERIMAGETEMPLATE` is the name of the ClusterImageTemplate with the embedded ImageVulnerabilityScan using the scanner of your choice.
 
 1. Update your Tanzu Application Platform installation by running:
 

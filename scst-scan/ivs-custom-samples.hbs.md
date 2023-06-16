@@ -12,7 +12,7 @@ Below are sample ImageVulnerabilityScans (IVS) for various scanners. To use them
 - [Trivy](./ivs-trivy.hbs.md)
 - [Grype](./ivs-grype.hbs.md)
 
-For information about integrating your own scanner, see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner).
+For information about bringing your own scanner, see [Integrate your own scanner](./app-scanning-alpha.hbs.md#integrate-your-own-scanner).
 
 ### <a id="use-samples"></a> Use custom ImageVulnerabilityScan samples
 
