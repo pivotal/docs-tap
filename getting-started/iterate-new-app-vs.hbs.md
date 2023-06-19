@@ -9,15 +9,17 @@ You deployed the app in the previous how-to [Deploy your first application](depl
 - Prepare to iterate on your application.
   - Prepare your project to support Live Update.
   - Prepare your IDE to iterate on your application.
+- Apply your application to the cluster.
 - Live update your application to view code changes updating live on the cluster.
 - Debug your application.
 - Monitor your running application on the Application Live View UI.
+- Delete your application from the cluster.
 
 ## <a id="prepare-to-iterate"></a>Prepare to iterate on your application
 
 In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.hbs.md),
 you deployed your first application on Tanzu Application Platform.
-Now that you have a skeleton workload developed, you are ready to begin to iterate on your new
+Now that you have developed a skeleton workload, you are ready to begin to iterate on your new
 application and test code changes on the cluster.
 
 Tanzu Developer Tools for Visual Studio is VMware Tanzu’s official IDE extension for Visual Studio.
@@ -72,9 +74,9 @@ k8s_resource('tanzu-java-web-app', port_forwards=["8080:8080"],
 After verifying your project has the required `Tiltfile`,
 you are ready to set up your development environment.
 
-1. Open the Weatherforecast solution in Visual Studio by selecting **File** > **Open** > **Project/Solution...**.
-   If you don't have the Tanzu Java Web App you can obtain it by following the instructions in
-   [Generate a new project using an Application Accelerator](generate-first-app.html), or from the
+1. Open the Weather Forecast solution in Visual Studio by selecting **File** > **Open** > **Project/Solution...**.
+   If you don't have the Weather Forecast app you can obtain it by following the instructions in
+   [Generate an application with Application Accelerator](generate-first-app.html), or from the
    [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples)
    GitHub page.
 
@@ -86,9 +88,9 @@ Apply the workload to see your application running on the cluster:
 
 1. In **Solution Explorer**, right-click any file under the application name and click **Tanzu** > **Apply Workload**.
 
-1. In the dialog box enter your **Local Path**, **Namespace**, and optionally a **Source Image**.
+1. In the dialog box, enter the following:
 
-   1. In the **Local Path** text box, provide the path to the directory containing the wetherforecast app.
+   1. In the **Local Path** text box, provide the path to the directory containing the Weather Forecast app.
       The current directory is the default.
 
       The local path value tells the Tanzu Developer Tools for Visual Studio extension which directory
@@ -98,13 +100,13 @@ Apply the workload to see your application running on the cluster:
    1. In the **Namespace** text box, provide the namespace to be associated with the workload
       on the cluster.
 
-   1. (Optional) In the **Source Image** text box, provide the destination image repository to publish an
+   1. (Optional) In the **Source Image** text box, provide the destination image repository to publish the
       image containing your workload source code.
 
       The source image value tells the Tanzu Developer Tools for Visual Studio extension where to publish
       the container image with your uncompiled source code, and what to name that image.
       The image must be published to a container image registry where you have write (push) access.
-      For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+      For example, `gcr.io/myteam/weather-forecast-source`.
 
       > **Note** See the documentation for the registry you're using to find out which steps are
       > necessary to authenticate and gain push access.
@@ -122,9 +124,11 @@ The `apply workload` command can take a few minutes to deploy your application o
 Live Update allows you to save changes to your code and see those changes reflected within seconds
 in the workload running on the cluster.
 
+To enable Live Update for your application:
+
 1. In **Solution Explorer**, right-click any file under the application name and click **Tanzu** > **Start Live Update**.
 
-2. Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+1. Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >
@@ -139,12 +143,13 @@ in the workload running on the cluster.
 
 1. Build your project.
 
-1. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
+1. The container is updated when the logs stop streaming. Go to your browser and refresh the page.
 
 1. View the changes to your workload running on the cluster.
 
 1. Either continue making changes, or stop the Live Update process when finished.
-   To stop Live Update, in **Solution Explorer**, right-click any file under the application name  and click **Tanzu** > **Stop Live Update**.
+   To stop Live Update, in **Solution Explorer**, right-click any file under the application name
+   and click **Tanzu** > **Stop Live Update**.
 
 ## <a id="debug-your-app"></a>Debug your application
 
