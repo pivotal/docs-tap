@@ -175,8 +175,8 @@ Follow these steps to create your cluster configuration:
 
 Configuring the Tanzu Application Platform installation involves setting up two components:
 
-- an installation of Tanzu Application Platform;
-- an instance of Tanzu Sync, the component that implements the GitOps workflow,
+- An installation of Tanzu Application Platform.
+- An instance of Tanzu Sync, the component that implements the GitOps workflow,
 fetching configuration from Git and applying it to the cluster.
 
 Follow these steps to customize your Tanzu Application Platform cluster configuration:
@@ -409,7 +409,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
            role_arn: arn:aws:iam::665100000000:role/iterate-green--tanzu-sync-secrets
        remote_refs:
          sync_git:
-         # TODO: Fill in your configuration for ssh or basic authentication here. See tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml for details.
+         # TO DO: Fill in your configuration for ssh or basic authentication here. See tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml for details.
          install_registry_dockerconfig:
            dockerconfigjson:
              key: dev/iterate-green/tanzu-sync/install-registry-dockerconfig
@@ -423,9 +423,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
     that contains the Docker config authentication to the OCI registry hosting the
     Tanzu Application Platform images created earlier.
 
-1. Replace any `TODO` sections with the relevant values.
-
-    Line 10 from the earlier example states: `# TODO: Fill in your configuration for ssh or basic authentication here. See tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml for details.`
+1. Replace any `TO DO` sections from line 10 in the earlier example with the relevant values.
 
     Configuration example for SSH authentication:
 
