@@ -1,7 +1,6 @@
-# Service-to-Service Communication
+# Service-to-Service communication
 
-This topic explores service-to-service communication within a cluster. It provides you with
-information about how workloads interact with each other.
+This topic tells you service-to-service communication for `web` and `server` workloads.
 
 ## <a id="communication"></a> Calling `web` workloads within a cluster
 
