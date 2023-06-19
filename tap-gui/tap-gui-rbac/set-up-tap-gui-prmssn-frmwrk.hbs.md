@@ -120,16 +120,3 @@ a member of another group.
 > identities.
 > Requests against the Catalog API will no longer work as before. For more information, see the
 > [known issues in the release notes](../../release-notes.hbs.md#1-6-0-tap-gui-ki).
-
-### <a id='use-cstm-prmssn-policy'></a> Use custom permission policy
-
-The current release of the permission framework does not allow the permission policy to be modified
-in Tanzu Application Platform GUI.
-
-However, you can replace the built-in permission policy with your custom policy when creating a new
-portal by using Tanzu Portal Builder. For more information, see
-[Add a custom permission policy to your portal](../../tanzu-portal-builder/create-custom-dev-portal.hbs.md#add-custom-prmssn-policy).
-
-## Next steps
-
-See [Create your customized developer portal using Tanzu Portal Builder](../../tanzu-portal-builder/create-custom-dev-portal.hbs.md).

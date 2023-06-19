@@ -157,15 +157,18 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 #### <a id='1-6-0-crossplane'></a> Crossplane
 
-- Bump the crossplane.tanzu.vmware.com Package to v0.2.0
+- Bump the crossplane.tanzu.vmware.com Package to v0.2.1
   - Bump Universal Crossplane (UXP) to v1.12.1-up.1, which brings with it new Crossplane features such as ObserveOnly resources, Composition Validation, and Pluggable Secret Stores
     - See [here](https://github.com/upbound/universal-crossplane/releases/tag/v1.12.1-up.1) for the full set of release notes
   - Bump provider-helm to v0.15.0
     - See [here](https://github.com/crossplane-contrib/provider-helm/releases/tag/v0.15.0) for the full set of release notes
   - Bump provider-kubernetes to v0.8.0
     - See [here](https://github.com/crossplane-contrib/provider-kubernetes/releases/tag/v0.8.0) for the full set of release notes
+  - See [Version matrix for Crossplane](./crossplane/reference/version-matrix.hbs.md) for detailed information about versions of software comprising the Crossplane Package
   - The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
     - See [Crossplane Resolved Issues](./release-notes.hbs.md#1-6-0-crossplane-ri)
+  - The Crossplane Package now includes kapp wait rules which match on Healthy=True for the Providers, meaning that package installation will now wait for the Providers to become healthy before reporting success
+  - Added support for successful installation of Providers in environments which use custom CAs
   - Added a new Package value to provide a lever to configure the behaviour of the Package during installation and uninstallation
     - orphan_resources
       - Optional, default true.
