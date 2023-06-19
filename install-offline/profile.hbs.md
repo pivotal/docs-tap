@@ -44,17 +44,12 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       --include-non-distributable-layers
     ```
 
-    Where:
-
-    - `TANZUNET-REGISTRY-USERNAME` is your username of the VMware Tanzu Network.
-    - `TANZUNET-REGISTRY-PASSWORD` is your password of the VMware Tanzu Network.
-
 1. Relocate the images with the Carvel tool imgpkg by running:
 
     ```console
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
-      --to-repo $IMGPKG_REGISTRY_HOSTNAME/tap-packages \
+      --to-repo $IMGPKG_REGISTRY_HOSTNAME_1/tap-packages \
       --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
@@ -71,9 +66,9 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     tanzu secret registry add tap-registry \
-        --server   $IMGPKG_REGISTRY_HOSTNAME \
-        --username $IMGPKG_REGISTRY_USERNAME \
-        --password $IMGPKG_REGISTRY_PASSWORD \
+        --server   $IMGPKG_REGISTRY_HOSTNAME_1 \
+        --username $IMGPKG_REGISTRY_USERNAME_1 \
+        --password $IMGPKG_REGISTRY_PASSWORD_1 \
         --namespace tap-install \
         --export-to-all-namespaces \
         --yes
@@ -82,32 +77,23 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     tanzu secret registry add registry-credentials \
-        --server   $MY_REGISTRY \
-        --username $MY_REGISTRY_USER \
-        --password $MY_REGISTRY_PASSWORD \
+        --server   $IMGPKG_REGISTRY_HOSTNAME_1 \
+        --username $IMGPKG_REGISTRY_USERNAME_1 \
+        --password $IMGPKG_REGISTRY_PASSWORD_1 \
         --namespace tap-install \
         --export-to-all-namespaces \
         --yes
     ```
 
-    Where:
-
-    - `MY_REGISTRY` is where the workload images and the Tanzu Build Service dependencies are stored.
-    - `MY_REGISTRY_USER` is the user with write access to `MY_REGISTRY`.
-    - `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USER`.
-
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
     ```console
     tanzu package repository add tanzu-tap-repository \
-      --url $IMGPKG_REGISTRY_HOSTNAME/tap-packages:$TAP_VERSION \
+      --url $IMGPKG_REGISTRY_HOSTNAME_1/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
-    Where:
-
-    - `$TAP_VERSION` is the Tanzu Application Platform version environment variable you defined earlier.
-    - `TARGET-REPOSITORY` is the necessary repository.
+    Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable you defined earlier.
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
