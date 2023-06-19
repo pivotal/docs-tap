@@ -21,8 +21,7 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-platform-features'></a> New platform-wide features
 
-- New out of the box Bitnami Service - MongoDB
-- New out of the box Bitnami Service - Kafka
+- New services available with the Bitnami Service package: MongoDB and Kafka.
 
 #### <a id='1-6-0-new-components'></a> New components
 
@@ -33,6 +32,71 @@ This release includes the following platform-wide enhancements.
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
+
+- Incorporate the token expiry settings into the `AuthServer` resource. Service
+  operators can customize the expiry settings of access, refresh or identity
+  token. For more information, see [Token
+  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
+- Enable the capability to:
+    - Map custom user attributes or claims from upstream identity providers,
+      such as OpenID, LDAP, and SAML.
+    - Configure the internal unsafe provider with custom claims out of the box.
+      For more information, see [identity
+      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
+- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
+  ready-to-claim AppSSO service offering
+- `WorkloadRegistration` is portable client registration which templates
+  redirect URIs
+- `XWorkloadRegistration` is an XRD and an integration API between Services
+  Toolkit, Crossplane and AppSSO
+
+#### <a id='1-6-0-bitnami-services'></a> Bitnami Services
+
+The `bitnami.services.tanzu.vmware.com` package v0.2.0 includes the following:
+
+- New services available: MongoDB and Kafka
+
+#### <a id='1-6-0-crossplane'></a> Crossplane
+
+The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
+
+- Includes updates to the following software components:
+
+  - Updates Universal Crossplane (UXP) to v1.12.1-up.1, which includes new Crossplane features such
+    as ObserveOnly resources, Composition Validation, and Pluggable Secret Stores.
+    For the full release notes, see
+    [universal-crossplane releases](https://github.com/upbound/universal-crossplane/releases/tag/v1.12.1-up.1)
+    in GitHub.
+  - Updates provider-helm to v0.15.0. For the full release notes, see
+    [provider-helm releases](https://github.com/crossplane-contrib/provider-helm/releases/tag/v0.15.0)
+    in GitHub.
+  - Updates provider-kubernetes to v0.8.0. For the full release notes, see
+    [provider-kubernetes releases](https://github.com/crossplane-contrib/provider-kubernetes/releases/tag/v0.8.0)
+    in GitHub.
+
+  For more information about versions of software comprising the Crossplane package, See
+  [Version matrix for Crossplane](./crossplane/reference/version-matrix.hbs.md).
+
+- The Crossplane package now more gracefully handles situations in which Crossplane is already
+  installed to a cluster by using another method, for example, Helm install.
+  For more information, see [Crossplane Resolved Issues](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+
+- Includes kapp wait rules that match on `Healthy=True` for the Providers.
+  This means that package installation now waits for the Providers to become healthy before reporting
+  success.
+
+- Adds support for installing Providers in environments that use custom CA certificates.
+
+- Adds the `orphan_resources` package value to allow you to configure whether to orphan all Crossplane
+  CRDs, providers, and managed resources when the package is uninstalled. Optional, defaults to `true`.
+
+  **Caution**: setting this value to `false` causes all Crossplane CRDs, providers, and managed
+  resources to be deleted when the `crossplane.tanzu.vmware.com` package is uninstalled.
+  This might also cause any existing service instances also being deleted.
+  For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
 
 #### <a id='1-6-0-flux-sc'></a> FluxCD Source Controller
 
@@ -86,25 +150,19 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
     - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
-#### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
+#### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
-- Incorporate the token expiry settings into the `AuthServer` resource. Service
-  operators can customize the expiry settings of access, refresh or identity
-  token. For more information, see [Token
-  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
-- Enable the capability to:
-    - Map custom user attributes or claims from upstream identity providers,
-      such as OpenID, LDAP, and SAML.
-    - Configure the internal unsafe provider with custom claims out of the box.
-      For more information, see [identity
-      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
-- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
-  ready-to-claim AppSSO service offering
-- `WorkloadRegistration` is portable client registration which templates
-  redirect URIs
-- `XWorkloadRegistration` is an XRD and an integration API between Services
-  Toolkit, Crossplane and AppSSO
+The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
+
+- Adds Kubernetes events to make debugging easier:
+  - Normal events: CreatedCompositeResource, DeletedCompositeResource, ClaimableInstanceFound, NoClaimableInstancesFound
+  - Warning events: ParametersValidationFailed, CompositeResourceDeletionFailed
+- Updates reconciler-runtime to v0.11.1.
+
+The Tanzu Service CLI plug-in v0.7.0 includes the following:
+
+- The Tanzu Service plug-in is now compiled using the new tanzu CLI runtime (v0.90.0).
+- No new features or changes to existing commands.
 
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
@@ -137,44 +195,6 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       set to the date of the original vulnerability scan SBOM. In addition, the
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
-
-#### <a id='1-6-0-stk'></a> Services Toolkit (STK)
-
-- Bump the services-toolkit.tanzu.vmware.com Package to v0.11.0
-  - Add Kubernetes events to improve debuggability
-    - Normal events: CreatedCompositeResource, DeletedCompositeResource, ClaimableInstanceFound, NoClaimableInstancesFound
-    - Warning events: ParametersValidationFailed, CompositeResourceDeletionFailed
-  - Bump reconciler-runtime to v0.11.1
-- Bump the tanzu services CLI plug-in to v0.7.0
-  - The tanzu services plug-in is now compiled using the new tanzu CLI runtime (v0.90.0)
-  - No new features or changes to existing commands
-
-#### <a id='1-6-0-bitnami-services'></a> Bitnami Services
-
-- Bump the bitnami.services.tanzu.vmware.com Package to v0.2.0
-  - New service MongoDB
-  - New service Kafka
-
-#### <a id='1-6-0-crossplane'></a> Crossplane
-
-- Bump the crossplane.tanzu.vmware.com Package to v0.2.1
-  - Bump Universal Crossplane (UXP) to v1.12.1-up.1, which brings with it new Crossplane features such as ObserveOnly resources, Composition Validation, and Pluggable Secret Stores
-    - See [here](https://github.com/upbound/universal-crossplane/releases/tag/v1.12.1-up.1) for the full set of release notes
-  - Bump provider-helm to v0.15.0
-    - See [here](https://github.com/crossplane-contrib/provider-helm/releases/tag/v0.15.0) for the full set of release notes
-  - Bump provider-kubernetes to v0.8.0
-    - See [here](https://github.com/crossplane-contrib/provider-kubernetes/releases/tag/v0.8.0) for the full set of release notes
-  - See [Version matrix for Crossplane](./crossplane/reference/version-matrix.hbs.md) for detailed information about versions of software comprising the Crossplane Package
-  - The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
-    - See [Crossplane Resolved Issues](./release-notes.hbs.md#1-6-0-crossplane-ri)
-  - The Crossplane Package now includes kapp wait rules which match on Healthy=True for the Providers, meaning that package installation will now wait for the Providers to become healthy before reporting success
-  - Added support for successful installation of Providers in environments which use custom CAs
-  - Added a new Package value to provide a lever to configure the behaviour of the Package during installation and uninstallation
-    - orphan_resources
-      - Optional, default true.
-      - Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled.
-      - WARNING: setting this value to false will result in all Crossplane CRDs, providers, and managed resources being deleted when the crossplane.tanzu.vmware.com Package is deleted, which in turn may lead to any existing service instances also being deleted
-      - See [How-to guide: Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
 
 ---
 
