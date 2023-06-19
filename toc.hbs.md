@@ -461,6 +461,7 @@ docs.vmware.com is built.
       - [Reference](namespace-provisioner/reference.hbs.md)
           - [Known limitations and issues](namespace-provisioner/issues-limitations.hbs.md)
           - [Default resources](namespace-provisioner/default-resources.hbs.md)
+          - [Parameters](namespace-provisioner/parameters.hbs.md)
     - [Service Bindings](service-bindings/about.hbs.md)
       - [Service Bindings overview](service-bindings/about.hbs.md)
       - [Install Service Bindings](service-bindings/install-service-bindings.hbs.md)

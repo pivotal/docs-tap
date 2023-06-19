@@ -11,7 +11,7 @@ example, gitops_install, or additional_sources . Reusing the same secret is not 
 limitation in kapp-controller.
 
 - Before performing any operations, such as uninstalling the provisioner or changing
-from the Controller mode to the GitOps mode, ensure that you edit the namespaces managed by the
+from Controller mode to GitOps mode, ensure that you edit the namespaces managed by the
 provisioner in the `namespace-provisioner.apps.tanzu.vmware.com/finalizer` finalizer.
 Either remove the label used to set the namespaces as managed or edit the namespace manifest and
 remove the finalizer entry. For more information, see
