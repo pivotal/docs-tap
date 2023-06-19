@@ -18,17 +18,29 @@ Different package customization options are available depending on what method y
 
    - `additional_sources` is an array of Git repository locations that contain Platform Operator
    templated resources to create in the provisioned namespaces, in addition to the default
-   resources. The format of the Git repository locations should follow the "fetch" section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification, and only the Git type fetch is supported.
-   - `additional_sources[].git` entry can include a secretRef specified for providing authentication details for connecting to a private Git repository. For more information, see [Git Authentication for Private repository](use-case3.hbs.md#git-private). The following parameters are available:
+   resources. The format of the Git repository locations should follow the "fetch" section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification, and
+   only the Git type fetch is supported.
+   - `additional_sources[].git` entry can include a secretRef specified for providing authentication
+   details for connecting to a private Git repository. For more information, see [Git Authentication for Private repository](use-case3.hbs.md#git-private). The following parameters are available:
 
      - `name`: The name of the secret to be imported and used as valuesFrom in kapp.
-     - `namespace`: namespace where the secret exists.
+     - `namespace`: The namespace where the secret exists.
      - `create_export`:  A Boolean flag that controls the creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, make sure it is exported to the `tap-namespace-provisioning` namespace.
-     - `path` (**Optional**) must start with the prefix `_ytt_lib/`.The Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib`  prefix can be any string value, and must be unique across all additional sources. If you do not provide a `path`, Namespace Provisioner generates a `path` using `url` and `subPath`.
+     - `path`: (**Optional**) This must start with the prefix `_ytt_lib/`. Namespace Provisioner
+     mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional
+     sources for all managed namespaces using the logic in the expansion template. The path after
+     the `_ytt_lib`  prefix can be any string value, and must be unique across all additional
+     sources. If you do not provide a `path`, Namespace Provisioner generates a `path` using `url`
+     and `subPath`.
     
-  If the additional sources contain a resource that is scoped to a specific namespace, it will be created in that namespace with a modified name that includes the developer namespace name. For example, the resource name will be "{resource name}-{developer namespace name}".
+  If the additional sources contain a resource that is scoped to a specific namespace, it will be
+  created in that namespace with a modified name that includes the developer namespace name.
+  For example, the resource name will be "{resource name}-{developer namespace name}".
 
-  In the case where the additional sources include resources without any specified namespaces, and these resources are not cluster-scoped, the Namespace Provisioner will create those resources in all the namespaces it manages. However, if the resource is cluster-scoped, only a single instance of the resource will be created.
+  If the additional sources include resources without any specified namespaces, and these resources
+  are not cluster-scoped, Namespace Provisioner creates those resources in all the namespaces it
+  manages. However, if the resource is cluster-scoped, only a single instance of the resource is
+  created.
 
 Sample TAP values configuration:
 
@@ -73,13 +85,18 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-In case a path is not specified in the additional sources configuration, Namespace Provisioner automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
+If a path is not specified in the additional sources configuration, Namespace Provisioner
+automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
 See [Git Authentication for Private repository](use-case3.md#git-private).
 
 ## Adjust sync period of Namespace Provisioner
 
-`sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.  It should be specified in the format of time + unit. The minimum allowed `sync_period` is `30 seconds`. If a value lower than `30 seconds` is specified in the TAP values, the Namespace Provisioner automatically sets the sync_period to `30s`. If no value is specified, the default sync_period is `1m0s`.
+`sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.  It
+should be specified in the format of time + unit. The minimum allowed `sync_period` is `30 seconds`.
+If a value lower than `30 seconds` is specified in the TAP values, Namespace Provisioner
+automatically sets the sync_period to `30s`. If no value is specified, the default sync_period is
+`1m0s`.
 
 Sample TAP values configuration:
 
@@ -106,10 +123,10 @@ Using GitOps
 
 ## Import user defined secrets in YAML format as ytt data.values
 
-The `import_data_values_secrets` is an array of additional secrets in YAML format that can be imported into the Namespace Provisioner as data.values under the `data.values.imported` key. The Namespace Provisioner package creates a SecretImport for each secret listed in the array in the `tap-namespace-provisioning` namespace. Alternatively, you can manually create a SecretExport for the same secrets and export them to the `tap-namespace-provisioning` namespace. The following parameters are available:
+The `import_data_values_secrets` is an array of additional secrets in YAML format that can be imported into the Namespace Provisioner as data.values under the `data.values.imported` key. Namespace Provisioner creates a SecretImport for each secret listed in the array in the `tap-namespace-provisioning` namespace. Alternatively, you can manually create a SecretExport for the same secrets and export them to the `tap-namespace-provisioning` namespace. The following parameters are available:
 
-- `name`: Name of the secret to be imported to use as valuesFrom in kapp.
-- `namespace`: Namespace where the secret exists.
+- `name`: The ame of the secret to be imported to use as valuesFrom in kapp.
+- `namespace`: The namespace where the secret exists.
 - `create_export`:  A boolean flag that determines whether a `SecretExport` resource should be created in the namespace. The default value is `false`. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
 
 >**Note** The `stringData` key of the secret must have .`yaml` or .`yml` suffix.
@@ -162,7 +179,9 @@ Using GitOps
 
 ## Use AWS IAM roles
 
-If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Services (EKS), you can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes Service Account used by the Workload and the Supply chain components.
+If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Services (EKS), you
+can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes Service Account
+used by the Workload and the Supply chain components.
    
 Sample TAP values configuration:
 
@@ -343,7 +362,7 @@ Options if using Controller
    ```
    **<a id='con-custom-label'></a>Customize the label and annotation prefixes that controller watches**
 
-   The `parameter_prefixes` is an array of label/annotation prefixes that the Namespace Provisioner controller uses to identify and include namespace-specific parameters in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap. These parameters can then be utilized as ytt data.values for templating both default and additional resources. 
+   The `parameter_prefixes` is an array of label/annotation prefixes that the Namespace Provisioner controller uses to identify and include namespace-specific parameters in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap. These parameters can then be used as ytt data.values for templating both default and additional resources. 
 
    For example, if the value `tap.tanzu.vmware.com` is specified in `parameter_prefixes`, the Namespace Provisioner controller searches for annotations or labels in a provisioned namespace that begin with the prefix `tap.tanzu.vmware.com/`. It extracts those annotations or labels and uses them as parameters for further configuration and customization.
 
