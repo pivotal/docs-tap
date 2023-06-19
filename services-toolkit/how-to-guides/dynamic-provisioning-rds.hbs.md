@@ -2,8 +2,7 @@
 
 This Services Toolkit topic tells you how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
 can set up dynamic provisioning.
-This enables app development teams to create self-serve AWS RDS service instances that are customized
-to meet their needs.
+This enables app development teams to self-serve AWS RDS service instances that are customized.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
@@ -94,6 +93,7 @@ Next you must create a `ProviderConfig` for the Providers. Refer to the sections
 > **Important** The Upbound documentation assumes Crossplane is installed in the `upbound-system` namespace.
 > However, when working with Crossplane on Tanzu Application Platform, it is installed to the `crossplane-system` namespace.
 > Ensure that you use the correct namespace when you create the `Secret` with credentials for the `Provider`.
+> **Note** Depending on the setup of your AWS account, you may also need to include `aws_session_token` in the `Secret`.
 
 ### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
