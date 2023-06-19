@@ -12,4 +12,4 @@ Select a secrets manager for external secret storage:
 - [AWS Secrets Manager](eso/aws-secrets-manager.hbs.md)
 - [HashiCorp Vault](eso/hashicorp-vault.hbs.md)
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
+>**Important** Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster.
