@@ -295,20 +295,20 @@ To configure the service account to work with private Git repositories, follow t
             - git
       ```
 
-* First additional source points to the location where the templated Git secret resides which will
-be created in all developer namespaces.
-* Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in
-`data.values.imported` by adding the secret to the `import_data_values_secrets`.
-* Add the secret to be added to the ServiceAccount in the `default_parameters`. For more
-information, see [Customize service accounts](use-case4.hbs.md#customize-sa).
+   - First additional source points to the location where the templated Git secret resides which will
+   be created in all developer namespaces.
+   - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in
+   `data.values.imported` by adding the secret to the `import_data_values_secrets`.
+   - Add the secret to be added to the ServiceAccount in the `default_parameters`. For more
+   information, see [Customize service accounts](use-case4.hbs.md#customize-sa).
 
->**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a
-SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace
-automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret
-named **git ** in all provisioned namespaces and also added to the default service account of those
-namespaces.
+   >**Note** `create_export` is set to `true` in `import_data_values_secrets`, as a result, a
+   SecretExport is created for the `workload-git-auth` secret in the tap-install namespace
+   automatically by Namespace Provisioner. After the changes are reconciled, the secret
+   named **git ** is in all provisioned namespaces and is also added to the default service account of
+   those namespaces.
 
-1. In your TAP values YAML file, within the `ootb_supply_chain_*.gitops.ssh_secret ` section, 
+4. In your TAP values YAML file, in the `ootb_supply_chain_*.gitops.ssh_secret ` section,
    specify the name of the Git secret that contains the credentials. This is necessary for the
    supply chain to include the `secretRef` when creating the Flux `GitRepository` resource.
    Here is an example:

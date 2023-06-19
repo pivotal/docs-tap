@@ -1,18 +1,20 @@
 # Namespace parameters
 
+This topic describes how to customize namespaces in controller mode.
+
 When managing multiple developer namespaces in a cluster, it is often necessary to customize each
-namespace individually. The Namespace Provisioner in controller mode, offers a feature that enables
-the addition of parameters through labels and annotations. In GitOps mode, you can configure
-these parameters in the GitOps file. For more detailed information, see
+namespace individually. To customize a namespace in controller mode, add parameters to a namespace
+through labels and annotations using either the default prefix or a custom-defined prefix.
+
+In GitOps mode, you can configure these parameters in the GitOps file. For more information, see
 [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
-To add a parameter to a specific namespace, you can label or annotate it using either the default
-prefix or a custom-defined prefix. The format for specifying the parameter is as follows:
- `<prefix>/<parameter-key>=<parameter-value>`.
-
 >**Caution** If a parameter is initially created through annotations and later a label with the same
-key is used, the annotation will be overwritten.
+key is used, the annotation is overwritten.
 
+## Parameter key
+
+- The format for specifying the parameter is: `<prefix>/<parameter-key>=<parameter-value>`.
 - The parameter key can be a single string or a pseudo JSON-path structure, for example,
 `kye1.inner-key1.inner-key3.inner-key4`.  This is translated into a structured format in the values.
 - The label value can only be a string.
@@ -42,7 +44,7 @@ Examples:
        - maven
    ```
 
-2. To add a list of objects
+2. To add a list of objects:
 
    ```bash
    kubectl annotate ns dev param.nsp.tap/volume.claims='[{"name": "logs", "mountPath": "/var/logs/app"}, {"name": "truststore", "mountPath": "/opt/app/ssl"}]
@@ -63,9 +65,9 @@ Examples:
        mountPath: /opt/app/ssl
    ```
 
-3. Simple key-value
+3. Simple key-value:
 
-   ```bash
+   ```console
    kubectl annotate ns dev param.nsp.tap/scanpolicy=relaxed
    ```
 
@@ -79,9 +81,9 @@ Examples:
      scanpolicy: relaxed
    ```
 
-4. Object as value
+4. Object as value:
 
-   ```bash
+   ```console
    kubectl annotate ns dev param.nsp.tap/maven.values='{"username":"user", "password":"my-pass","repo":"myrepo","version":"0.1.1-alpha.0"}'
    ```
 
