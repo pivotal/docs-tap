@@ -39,7 +39,7 @@ tailor the implementation of the PostgreSQL service to each of the clusters acco
 The `iterate` cluster has low level SLOs, so you want to offer an unmanaged PostgreSQL service backed by
 simple Helm chart.
 The `run-test` cluster has more robust requirements, so want to offer a PostgreSQL service backed
-by VMware Tanzu.
+by VMware SQL with Postgres for Kubernetes.
 The `run-production` cluster is critically important, so you want to use a fully managed,
 cloud-based PostgreSQL implementation there.
 
@@ -60,15 +60,15 @@ In this diagram:
 
 - There are three clusters: `iterate`, `run-test`, and `run-production`.
 - In each cluster, the service operator creates a `ClusterInstanceClass` called postgres.
-  - In the `iterate` cluster, this is a provisioner-based class that uses the pre-installed Bitnami
-    services to provision Helm instances of PostgreSQL.
-  - In the `run-test` cluster, this is a provisioner-based class that uses VMware Tanzu Postgres to
+  - In the `iterate` cluster, this is a provisioner-based class that uses the services available in
+    the Bitnami Services package to provision Helm instances of PostgreSQL.
+  - In the `run-test` cluster, this is a provisioner-based class that uses VMware SQL with Postgres for Kubernetes to
     provision instances of PostgreSQL.
   - In the `run-production` cluster, this is a provisioner-based class that uses Amazon RDS to provision
     instances running in Amazon AWS RDS.
 - The app operator creates a `ClassClaim`. This is applied with a consuming workload.
   - When it is applied in `iterate` it resolves to a Helm chart instance.
-  - When it is promoted to `run-test` it resolves to a VMware Tanzu Postgres instance.
+  - When it is promoted to `run-test` it resolves to a VMware Postgres instance.
   - When it is promoted to `run-production` it resolves to an Amazon AWS RDS instance.
 - The definition of the `ClassClaim` remains identical across the clusters, which is easier for
   the application development team.
@@ -93,9 +93,9 @@ differing implementations of PostgreSQL depending on the cluster it is in.
 
 ### <a id="set-up-run-test"></a> Step 1: Set up the run-test cluster
 
-Configure the `run-test` cluster for dynamic provisioning of VMware Tanzu Postgres
+Configure the `run-test` cluster for dynamic provisioning of VMware Postgres
 service instances. To do that, see
-[Configure dynamic provisioning of VMware Tanzu Postgres service instances](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md)
+[Configure dynamic provisioning of VMware SQL with Postgres for Kubernetes service instances](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md)
 and complete the steps in the following sections only:
 
 1. [Install the Tanzu VMware Postgres Operator](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md#install-postgres-operator)
