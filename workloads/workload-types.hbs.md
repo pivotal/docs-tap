@@ -1,6 +1,9 @@
 # Workload types
 
+This topic provides you with an overview of workload types.
+
 Tanzu Application Platform allows you to quickly build and test applications regardless of your familiarity with Kubernetes.
+
 You can turn source code into a workload that runs in a container with a URL.
 You can also use supply chains to build applications that process work from a message queue,
 or provide arbitrary network services.

@@ -1,6 +1,6 @@
 # Using worker workloads
 
-This topic describes how to create and install a supply chain for the `worker` workload type.
+This topic tells you how to create and install a supply chain for the `worker` workload type.
 
 ## <a id="overview"></a>Overview
 

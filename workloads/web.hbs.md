@@ -1,6 +1,6 @@
 # Using web workloads
 
-This topic describes how to use the `web` workload type.
+This topic tells you how to use the `web` workload type.
 
 ## <a id="overview"></a>Overview
 
