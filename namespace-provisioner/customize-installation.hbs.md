@@ -2,30 +2,36 @@
 
 Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 
-The Namespace Provisioner package is installed as part of all the standard installation profiles except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
+The Namespace Provisioner package is installed as part of all the standard installation profiles
+except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
 
-The default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster. For a list of what resources are created for different profile and supply chain combinations, see the [Default Resources](reference.hbs.md#default-resource) mapping table.
+The default set of resources provisioned in a namespace is based on a combination of the
+Tanzu Application Platform installation profile employed and the supply chain that is installed on
+the cluster. For a list of what resources are created for different profile and supply chain
+combinations, see the [Default Resources](reference.hbs.md#default-resource) mapping table.
 
 To see the Namespace Provisioner Package Schema for all configurable values, run:
 
-```shell
+```console
 tanzu package available get namespace-provisioner.apps.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
 ```
 
-Different package customization options are available depending on what method you use to manage the list of developer namespaces:
+Different package customization options are available depending on what method you use to manage
+the list of developer namespaces:
 
 ## Add additional resources to your namespaces from your GitOps repository
 
    - `additional_sources` is an array of Git repository locations that contain Platform Operator
    templated resources to create in the provisioned namespaces, in addition to the default
-   resources. The format of the Git repository locations should follow the "fetch" section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification, and
+   resources. The format of the Git repository locations must follow the "fetch" section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification, and
    only the Git type fetch is supported.
    - `additional_sources[].git` entry can include a secretRef specified for providing authentication
    details for connecting to a private Git repository. For more information, see [Git Authentication for Private repository](use-case3.hbs.md#git-private). The following parameters are available:
 
      - `name`: The name of the secret to be imported and used as valuesFrom in kapp.
      - `namespace`: The namespace where the secret exists.
-     - `create_export`:  A Boolean flag that controls the creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, make sure it is exported to the `tap-namespace-provisioning` namespace.
+     - `create_export`:  A Boolean flag that controls the creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, make sure that it
+     is exported to the `tap-namespace-provisioning` namespace.
      - `path`: (**Optional**) This must start with the prefix `_ytt_lib/`. Namespace Provisioner
      mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional
      sources for all managed namespaces using the logic in the expansion template. The path after
@@ -33,7 +39,7 @@ Different package customization options are available depending on what method y
      sources. If you do not provide a `path`, Namespace Provisioner generates a `path` using `url`
      and `subPath`.
     
-  If the additional sources contain a resource that is scoped to a specific namespace, it will be
+  If the additional sources contain a resource that is scoped to a specific namespace, it is
   created in that namespace with a modified name that includes the developer namespace name.
   For example, the resource name will be "{resource name}-{developer namespace name}".
 
@@ -93,7 +99,7 @@ See [Git Authentication for Private repository](use-case3.md#git-private).
 ## Adjust sync period of Namespace Provisioner
 
 `sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.  It
-should be specified in the format of time + unit. The minimum allowed `sync_period` is `30 seconds`.
+must be specified in the format of time + unit. The minimum allowed `sync_period` is `30 seconds`.
 If a value lower than `30 seconds` is specified in the TAP values, Namespace Provisioner
 automatically sets the sync_period to `30s`. If no value is specified, the default sync_period is
 `1m0s`.
@@ -123,11 +129,15 @@ Using GitOps
 
 ## Import user defined secrets in YAML format as ytt data.values
 
-The `import_data_values_secrets` is an array of additional secrets in YAML format that can be imported into the Namespace Provisioner as data.values under the `data.values.imported` key. Namespace Provisioner creates a SecretImport for each secret listed in the array in the `tap-namespace-provisioning` namespace. Alternatively, you can manually create a SecretExport for the same secrets and export them to the `tap-namespace-provisioning` namespace. The following parameters are available:
+The `import_data_values_secrets` is an array of additional secrets in YAML format that can be
+imported into the Namespace Provisioner as data.values under the `data.values.imported` key.
+Namespace Provisioner creates a SecretImport for each secret listed in the array in the `tap-namespace-provisioning` namespace. Alternatively, you can manually create a SecretExport for
+the same secrets and export them to the `tap-namespace-provisioning` namespace. 
+The following parameters are available:
 
-- `name`: The ame of the secret to be imported to use as valuesFrom in kapp.
+- `name`: The name of the secret to be imported to use as valuesFrom in kapp.
 - `namespace`: The namespace where the secret exists.
-- `create_export`:  A boolean flag that determines whether a `SecretExport` resource should be created in the namespace. The default value is `false`. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
+- `create_export`:  A Boolean flag that determines whether a `SecretExport` resource should be created in the namespace. The default value is `false`. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
 
 >**Note** The `stringData` key of the secret must have .`yaml` or .`yml` suffix.
 
@@ -209,7 +219,9 @@ Using GitOps
 
 ## Apply default parameters to all namespaces
 
-The `default_parameters` is an array of parameters that are applied to all namespaces. These parameters can be used as ytt (`data.values.default_parameters`) for templating default and additional resources.
+The `default_parameters` is an array of parameters that are applied to all namespaces. These
+parameters can be used as ytt (`data.values.default_parameters`) for templating default and
+additional resources.
 
 Sample TAP values configuration:
 
@@ -228,6 +240,7 @@ Using Namespace Provisioner Controller
           cpu: 100m
           memory: 1Gi
   ```
+
 Using GitOps
 : Use the `default_parameters` with the desired parameter.
 
@@ -344,7 +357,8 @@ Options if using Controller
 
    To set the maximum CPU and memory limits for the controllers, edit the `controller_resources.resources.limits.cpu` and `controller_resources.resources.limits.memory` values.
 
-   Similarly, you can configure the minimum CPU capacity and memory requests for the controllers by adjusting the `controller_resources.resources.requests.cpu` and `controller_resources.resources.requests.memory` settings.
+   Similarly, you can configure the minimum CPU capacity and memory requests for the controllers by
+   adjusting the `controller_resources.resources.requests.cpu` and `controller_resources.resources.requests.memory` settings.
 
    Sample TAP values configuration:
 
@@ -362,9 +376,14 @@ Options if using Controller
    ```
    **<a id='con-custom-label'></a>Customize the label and annotation prefixes that controller watches**
 
-   The `parameter_prefixes` is an array of label/annotation prefixes that the Namespace Provisioner controller uses to identify and include namespace-specific parameters in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap. These parameters can then be used as ytt data.values for templating both default and additional resources. 
+   The `parameter_prefixes` is an array of label/annotation prefixes that the Namespace Provisioner
+   controller uses to identify and include namespace-specific parameters in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap. These parameters can then be used as ytt data.values for templating
+   both default and additional resources.
 
-   For example, if the value `tap.tanzu.vmware.com` is specified in `parameter_prefixes`, the Namespace Provisioner controller searches for annotations or labels in a provisioned namespace that begin with the prefix `tap.tanzu.vmware.com/`. It extracts those annotations or labels and uses them as parameters for further configuration and customization.
+   For example, if the value `tap.tanzu.vmware.com` is specified in `parameter_prefixes`, the 
+   Namespace Provisioner controller searches for annotations or labels in a provisioned namespace
+   that begin with the prefix `tap.tanzu.vmware.com/`. It extracts those annotations or labels and
+   uses them as parameters for further configuration and customization.
 
    Sample TAP values configuration:
 
@@ -377,13 +396,16 @@ Options if using Controller
    ```
 
 Options if using GitOps
-: If you are using GitOps to manage the list of developer namespaces, you have the following customization option:
+: If you are using GitOps to manage the list of developer namespaces, you have the following
+customization option:
 
    **<a id ='git-install'></a>Use GitOps to manage developer namespaces list**
 
    `gitops_install` is a Git repository configuration with the list of namespaces to be provisioned.
 
-   The gitops_install section should only be used when `controller: false` is set. If this section is used in conjunction with `controller: true`, the Namespace Provisioner package fails to reconcile, resulting in an error message stating `controller: false when using 'gitops_install' in provided values`.
+   The gitops_install section should only be used when `controller: false` is set. If this section
+   is used in conjunction with `controller: true`, the Namespace Provisioner package fails to
+   reconcile, resulting in an error message stating `controller: false when using 'gitops_install' in provided values`.
 
    Files in the Git repository must have a .`yaml` or .`yml` extension.
 
@@ -422,7 +444,8 @@ Options if using GitOps
    #@ end
    ```
 
-   This file in the sample repository creates the namespaces in the namespaces list so no manual intervention is required.
+   This file in the sample repository creates the namespaces in the namespaces list so no manual
+   intervention is required.
 
    Sample TAP values configuration:
 
