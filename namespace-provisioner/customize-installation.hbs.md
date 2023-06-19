@@ -98,10 +98,10 @@ See [Git Authentication for Private repository](use-case3.md#git-private).
 
 ## Adjust sync period of Namespace Provisioner
 
-`sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.  It
-must be specified in the format of time + unit. The minimum allowed `sync_period` is `30 seconds`.
-If a value lower than `30 seconds` is specified in the TAP values, Namespace Provisioner
-automatically sets the sync_period to `30s`. If no value is specified, the default sync_period is
+The `sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.
+It must be specified in the format of time + unit. The minimum allowed `sync_period` is 30 seconds.
+If a value lower than 30 seconds is specified in the TAP values, Namespace Provisioner
+automatically sets the `sync_period` to 30 seconds. If no value is specified, the default `sync_period` is
 `1m0s`.
 
 Sample TAP values configuration:
