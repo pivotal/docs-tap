@@ -1,6 +1,7 @@
-# Using functions (Beta)
+# Use functions (Beta)
 
-This topic describes how to create and deploy an HTTP function from an application accelerator starter template.
+This topic tells you how to create and deploy an HTTP or CloudEvent function from an
+Application Accelerator starter template in an online or air-gapped environment.
 
 ## <a id="overview"></a> Overview
 

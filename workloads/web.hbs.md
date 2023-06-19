@@ -1,6 +1,6 @@
 # Using web workloads
 
-The `web` workload type allows you to deploy web applications on Tanzu Application Platform. Using an application workload specification, you can turn source code into a scalable, stateless application that runs in a container with an automatically-assigned URL.
+This topic tells you how to use the `web` workload type.
 
 The `web` workload is a good match for modern web applications that store state in external databases and follow the [12-factor principles](https://12factor.net).
 
