@@ -1,6 +1,6 @@
 # Use server workloads
 
-This topic describes how to use the `server` workload type.
+This topic describes tells you how to use the `server` workload type.
 
 ## <a id="overview"></a>Overview
 
