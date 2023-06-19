@@ -2,7 +2,7 @@
 
 In this Services Toolkit tutorial you learn how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
 can set up a new, self-serve, and customized service for Tanzu Application Platform (commonly known as TAP).
-The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any
+The example uses VMware RabbitMQ for Kubernetes, but the steps and learnings can apply to almost any
 other service.
 
 ## <a id="about"></a> About this tutorial
@@ -10,7 +10,7 @@ other service.
 **Target user role**:       Service Operator<br />
 **Complexity**:             Advanced<br />
 **Estimated time**:         60 minutes<br />
-**Topics covered**:         Dynamic Provisioning, Crossplane, Tanzu RabbitMQ Cluster Kubernetes
+**Topics covered**:         Dynamic Provisioning, Crossplane, VMware RabbitMQ for Kubernetes
 operator<br />
 **Learning outcomes**:      Ability to offer new, on-demand, and customized services in your
 Tanzu Application Platform clusters<br />
