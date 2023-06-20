@@ -320,6 +320,15 @@ For Azure, the default settings create a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
 following to your `tap-values.yaml`:
 
+```yaml
+contour:
+  infrastructure_provider: azure
+  envoy:
+    service:
+      azure:
+        LBType: nlb
+```
+
 
 > **Important** Installing Grype by using `tap-values.yaml` as follows is 
 > deprecated in v1.6 and will be removed in v1.8:
