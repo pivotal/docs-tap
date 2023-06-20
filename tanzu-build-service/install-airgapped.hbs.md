@@ -3,15 +3,13 @@
 This topic describes how to install Tanzu Build Service on a Kubernetes cluster
 and registry that are air-gapped from external traffic.
 
+## Before you begin
+
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
 Tanzu Build Service.
+
 The Full, Iterate, and Build profiles include Tanzu Build Service.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
-
-To install Tanzu Build Service on an air-gapped environment, you must:
-
-1. [Install the Tanzu Build Service package](#tbs-offline-install-package)
-1. [Install the Tanzu Build Service dependencies](#tbs-offline-install-deps)
 
 ## <a id='tbs-prereqs'></a> Prerequisites
 
@@ -73,7 +71,7 @@ To install the Tanzu Build Service package on an air-gapped environment:
    - `SECRET_NAMESPACE` is the namespace of the secret containing credentials that can write to `REPO-NAME`.
    - `CA-CERT-CONTENTS` are the contents of the PEM-encoded CA certificate for the internal registry.
 
-2. Install the package by running:
+1. Install the package by running:
 
     ```console
     tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
