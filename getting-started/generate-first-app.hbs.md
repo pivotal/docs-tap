@@ -141,9 +141,7 @@ Tanzu Application Platform GUI
   1. From Tanzu Application Platform GUI portal, click **Create** located on the
      left side of the navigation pane to see the list of available accelerators.
 
-      ![Screenshot of the Accelerators page showing list of available
-      accelerators in Tanzu Application Platform
-      GUI.](../images/getting-started-tap-gui-1.png)
+      ![Screenshot of the Accelerators page showing list of available accelerators in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1.png)
 
   1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
 
@@ -155,8 +153,7 @@ Tanzu Application Platform GUI
   [Installing   Tanzu Application Platform package and../install-online/install.hbs.md
   profiles](../install-online/profile.hbs.md#full-profile).
 
-      ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu
-      Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
+      ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
 
   1. Click **NEXT**.
 
