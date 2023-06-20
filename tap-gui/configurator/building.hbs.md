@@ -112,10 +112,9 @@ Where:
 - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image
   registry from which you installed Tanzu Application Platform
 
-> **Important** Image references for the default included Configurator images
-> by default are as follows:
-> 1.
-<!-- This seems unfinished -->
+> **Important** Depending on which supply chain you're using or how you've configured it, you may
+> need to add additional sections to your workload definition file to accommodate things such as
+> testing.
 
 For example:
 
@@ -137,8 +136,17 @@ spec:
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
         value:
-        YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogICAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
+        YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogI
+        CAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
   source:
     image: TDP-IMAGE-LOCATION
     subPath: builder
+```
+
+## Submit your workload
+
+Submit the workload definition file you created earlier by running:
+
+```bash
+tanzu apps workload create -f tdp-workload.yaml
 ```
