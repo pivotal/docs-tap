@@ -53,9 +53,9 @@ base64 -i tdp-config.yaml
 ```
 
 
-<h2> Preparing your Tanzu Developer Portal Configurator Workload Definition File</h2>
+<h2>Preparing your Tanzu Developer Portal Configurator Workload Definition File</h2>
 
-1. Create a file called `tdp-workload.yaml` with the following contents:
+1. <a id="workload"></a>Create a file called `tdp-workload.yaml` with the following contents:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -90,6 +90,8 @@ Where:
 >**Important**: Image references for the default included Tanzu Developer Portal Configurator images by default are as follows:
 >| 1. 
 
+>**Important**: Depending on which supply chain you're using or how you've configured it, you may need to add additional sections to your workload definition file to accomadate things like testing.
+
 For example:
 
 ```yaml
@@ -110,8 +112,17 @@ spec:
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
         value:
-        YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogICAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
+        YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogI
+        CAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
   source:
     image: TDP-IMAGE-LOCATION
     subPath: builder
 ```
+<h2>Submitting Your Workload</h2>
+
+You can submit the workload definition file you created in the [previous step](#workload) using the command:
+
+```bash
+tanzu apps workload create -f tdp-workload.yaml
+```
+
