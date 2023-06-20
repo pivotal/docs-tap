@@ -14,9 +14,10 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 ## <a id="create-workload"></a>Create a workload from Git
 
-To create a workload from Git through https, follow these steps:
+To create a workload from Git through HTTPS, follow these steps:
 
-1. Create a secret in your developer namespace with the caFile that matches the `gitops_ssh_secret` name in tap_values:
+1. Create a secret in your developer namespace with the `caFile` that matches the `gitops_ssh_secret`
+   name in the `tap_values.yaml` file:
 
     ```console
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
@@ -127,7 +128,7 @@ spec:
               cd `mktemp -d`
 ```
 
-Where `MY-REGISTRY` is your own container image registry. Relocate all the images given in the pipeline YAML to your private container registry.
+Where `MY-REGISTRY` is your container image registry. Relocate all the images given in the pipeline YAML to your private container registry.
 
 Create the workload by running:
 

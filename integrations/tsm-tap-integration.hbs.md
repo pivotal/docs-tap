@@ -421,7 +421,7 @@ ytt -f ingress.yaml -v workloadNamespace=WORKLOAD-NAMESPACE -v domainName=DOMAIN
 
 Where:
 
-- `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed
+- `WORKLOAD-NAMESPACE` is the namespace where the workload is deployed
 - `DOMAIN-NAME` is the public domain that will host your application
 
 For example:
@@ -686,13 +686,13 @@ Deploy the gateway and applicable routes by running:
 ytt -f scgInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE
 ```
 
-Where `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+Where `WORKLOAD-NAMESPACE` is the namespace where the workload is deployed.
 
 ```console
 ytt -f scgRoutes.yaml -v workloadNamespace=WORKLOAD-NAMESPACE
 ```
 
-Where `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+Where `WORKLOAD-NAMESPACE` is the namespace where the workload is deployed.
 
 For example:
 
