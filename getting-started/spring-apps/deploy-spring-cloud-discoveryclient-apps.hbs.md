@@ -130,7 +130,7 @@ The `ConfigurationSlice` object you created in the previous section is a
 [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service).
 You can use a `ResourceClaim` to claim it within the `my-apps` namespace.
 You then supply the resource claim in the `serviceClaims` list in the `Workload` object to provide
-the configuration inside the workload's runtime environment.
+the configuration inside the runtime environment of the workload.
 
 The `SPRING_CONFIG_IMPORT` variable passes this configuration to Spring.
 If your application already uses that variable to apply other Spring configuration, use the

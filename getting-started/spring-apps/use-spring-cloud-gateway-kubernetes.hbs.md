@@ -8,7 +8,7 @@ the Spring ecosystem.
 The open source library is a foundational component of VMware Spring Cloud Gateway for Kubernetes and
 Spring Cloud Gateway for VMware Tanzu Application Service commercial offerings
 with commercial-only capabilities and platform-integrated operator experiences.
-You can use the open source and commercial offerings as a reverse proxy with additional API Gateway
+You can use the open source and commercial offerings as a reverse proxy with extra API Gateway
 functions to handle request and response to upstream application services.
 
 Spring Cloud Gateway for Kubernetes is included with Tanzu Application Platform v1.5 and later.

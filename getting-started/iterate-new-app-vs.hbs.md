@@ -112,7 +112,7 @@ Apply the workload to see your application running on the cluster:
       > necessary to authenticate and gain push access.
       >
       > For example, if you use Docker, see the [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/),
-      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/) and so on.
+      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. Click the **OK** button.
 
@@ -128,7 +128,7 @@ To enable Live Update for your application:
 
 1. In **Solution Explorer**, right-click any file under the application name and click **Tanzu** > **Start Live Update**.
 
-1. Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+1. Live update can take up to three minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >
@@ -165,7 +165,7 @@ To start debugging the cluster:
 
 To stop debugging the cluster:
 
-1. In main main, click **Debug** > **Detach All**
+1. In main, click **Debug** > **Detach All**
 
 ## <a id="delete-your-app"></a>Delete your application from the cluster
 
