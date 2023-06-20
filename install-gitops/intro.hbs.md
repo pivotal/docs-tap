@@ -1,8 +1,24 @@
 # Install Tanzu Application Platform (GitOps)
 
-GitOps is an operational framework that uses Git repositories as a single source of truth.
-Under GitOps, you describe the desired state of a Tanzu Application Platform (commonly known as TAP) 
-configuration by using a declarative specification and place it in your Git repository.
+GitOps is a set of practices and principles to manage Kubernetes infrastructure and application deployments using Git as the single source of truth. It promotes declarative configurations and automated workflows to ensure consistency, reliability, and traceability in the deployment process.
+ 
+Some of the key components involved in GitOps with Kubernetes:
+
+- **Git as the Single Source of Truth**: The desired state is stored in a Git repository. Whenever the cluster state needs to be changed, instead of modifying it directly on the cluster, it has to be changed in the git repository.
+- **Declarative Configuration**: GitOps follows a declarative approach, where the desired state is defined in declarative configuration files.
+- **Pull-based Synchronization**: GitOps follows a pull-based model. Kubernetes cluster periodically pulls the desired state from the Git repository. This approach ensures that the cluster is always in sync with the desired configuration.
+
+## How Tanzu RI supports GitOps
+
+Tanzu GitOps RI is based on the same packaging API as the Tanzu Application Platform (i.e. Carvel). Carvel Packaging APIs support all the above characteristics which we have defined earlier and thus can enable GitOps flow natively.
+- All the packaging APIs are declarative in nature.
+- Among many options to fetch the manifest which needs to be deployed, it can also pull the content from the git thus making git the source of truth.
+- Packages installed get reconciled every time after the syncPeriod is expired (by default it is 10 min). As part of the reconciliation, it will again get the manifest from the git repository and in case the desired state is different from the actual state on Kubernetes, it will converge the resources to their desired state declared in git.
+ 
+## GitOps benefits:
+- **Compliance and Auditing Capabilities**: In GitOps, git is the only source of truth. Thus an auditor can get the audit trail of every configuration change.
+- **Disaster Recovery**: Disaster recovery is an organization's method of regaining access and functionality to its IT infrastructure after a natural or human disaster. Since all the configurations were stored in Git, disaster recovery becomes as simple as reapplying the desired configuration version.
+- **Repeatable**: No need to run individual Tanzu CLI commands with environment variables/configuration files locally on a machine. All configuration/service accounts required for access are all configured together in a shared git repository. Any operator can edit a file and the behavior of the system is not dependent on their local environment.
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
