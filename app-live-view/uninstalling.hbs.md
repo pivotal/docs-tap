@@ -1,6 +1,7 @@
 # Uninstalling Application Live View for VMware Tanzu
 
-This topic describes how to uninstall Application Live View for VMware Tanzu in Tanzu Application Platform.
+This topic tells you how to uninstall Application Live View from Tanzu Application Platform
+(commonly known as TAP).
 
 To uninstall the Application Live View Backend, Application Live View Connector and Application Live View convention server, run:
 

@@ -1,6 +1,7 @@
 # Deploy your first air-gapped workload (beta)
 
-This how-to guide walks developers through deploying your first workload on Tanzu Application Platform in an air-gapped environment.
+This topic for developers guides you through deploying your first workload on Tanzu Application Platform
+(commonly known as TAP) in an air-gapped environment.
 
 For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment (beta)](../install-offline/profile.hbs.md).
 

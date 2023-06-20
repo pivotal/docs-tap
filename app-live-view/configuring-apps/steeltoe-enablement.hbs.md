@@ -1,7 +1,7 @@
 # Enabling Steeltoe apps for Application Live View (beta)
 
 This topic tells you how developers can extend .NET Core Apps to Steeltoe apps and enable
-Application Live View on Steeltoe workloads within Tanzu Application Platform.
+Application Live View on Steeltoe workloads within Tanzu Application Platform (commonly known as TAP).
 
 >**Caution:** Enabling Steeltoe apps for Application Live View is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 

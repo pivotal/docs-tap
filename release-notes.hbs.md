@@ -1,6 +1,7 @@
 # Tanzu Application Platform release notes
 
-This topic contains release notes for Tanzu Application Platform v1.2.
+This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
+v{{ vars.url_version }}.
 
 {{#unless vars.hide_content}}
 ## <a id='1-2-3'></a> v1.2.3

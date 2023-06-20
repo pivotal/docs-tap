@@ -1,6 +1,6 @@
 # Supply Chain Security Tools - Scan
 
-This topic describes overview information, such as, use cases, features, and CVEs for Supply Chain Security Tools - Scan.
+This topic gives you an overview of use cases, features, and CVEs for Supply Chain Security Tools (SCST) - Scan.
 
 ## <a id="overview"></a>Overview
 

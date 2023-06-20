@@ -1,6 +1,7 @@
-# Air-gapped environment requirements
+# Air-gapped environment requirements for Learning Center
 
-This topic includes the list of required configurations needed for Learning Center to properly function in an air-gapped environment.
+This topic gives you the list of configurations required for Learning Center to properly
+function in an air-gapped environment.
 
 Learning Center can run in an air-gapped environment but workshops do not have this capability by default. Users must therefore take the following steps to ensure Learning Center functions as expected.
 

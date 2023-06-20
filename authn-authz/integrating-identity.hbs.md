@@ -1,4 +1,4 @@
-# Set up authentication for your Tanzu Application Platform
+# Set up authentication for your Tanzu Application Platform deployment
 
 There are multiple ways to set up authentication for your Tanzu Application Platform 
 (commonly known as TAP) deployment.
