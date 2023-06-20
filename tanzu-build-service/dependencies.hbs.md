@@ -1,16 +1,16 @@
-# Dependencies
+# Tanzu Build Service Dependencies
+
+This topic tells you about Tanzu Build Service dependencies.
 
 > **Important** Ubuntu Bionic will stop receiving support in April 2023.
 > The Bionic stack for Tanzu Build Service is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
 > For how to migrate builds, see [Use Jammy stacks for a workload](#using-jammy).
 
-This topic describes how Tanzu Build Service uses and installs dependencies.
-
-Tanzu Build Service requires dependencies in the form of Cloud Native
-[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and
-[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
-to build OCI images.
+To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
+[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
+[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
 
 ## <a id="install"></a> How dependencies are installed
 

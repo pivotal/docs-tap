@@ -1,12 +1,8 @@
 # Create a signed container image with Tanzu Build Service
 
-This topic describes how to create a Tanzu Build Service
-[image](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-images.html)
+This topic tells you how to create a Tanzu Build Service image
 resource that builds a container image from source code signed with
-[Cosign](https://github.com/sigstore/cosign).
-
-This topic builds upon the steps in the
-[kpack tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md).
+Cosign.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -24,6 +20,8 @@ resource configured.
 - Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-images.html)
 resource configured.
 
+- Review the [kpack tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md). This topic builds upon the steps in this tutorial.
+
 ## <a id="sign-image-builds"></a> Configure Tanzu Build Service to sign your image builds
 
 To configure Tanzu Build Service to sign your image builds:
@@ -33,7 +31,7 @@ create and edit secret and service account resources.
 
 1. Generate a Cosign keypair and store it as a Kubernetes secret by running:
 
-    ```bash
+    ```console
     cosign generate-key-pair k8s://NAMESPACE/COSIGN-KEYPAIR-NAME
     ```
 
@@ -44,14 +42,14 @@ create and edit secret and service account resources.
 
     For example:
 
-    ```bash
+    ```console
     cosign generate-key-pair k8s://default/tutorial-cosign-key-pair
     ```
 
 1. Enter a password for the private key. Enter any password you want.
 After the command has completed, you will see the following output:
 
-    ```bash
+    ```console
     Successfully created secret tutorial-cosign-key-pair in namespace default
     Public key written to cosign.pub
     ```
@@ -109,11 +107,11 @@ image or default if there isn't one. The default is the default service account 
 
 1. Apply the service account resource to the cluster by running:
 
-    ```bash
+    ```console
     kubectl apply -f cosign-service-account.yaml
     ```
 
-2. Create an image resource file named `image-cosign.yaml`. For example:
+1. Create an image resource file named `image-cosign.yaml`. For example:
 
     ```yaml
     apiVersion: kpack.io/v1alpha2
@@ -142,7 +140,7 @@ image or default if there isn't one. The default is the default service account 
       - Docker Hub has the form `"my-dockerhub-user/my-repo"` or `"index.docker.io/my-user/my-repo"`
       - Google Cloud Registry has the form `"gcr.io/my-project/my-repo"`
 
-3. If you are using Out of the Box Supply Chains, edit the respective `ClusterImageTemplate`
+1. If you are using Out of the Box Supply Chains, edit the respective `ClusterImageTemplate`
 to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
 
     > **Important** VMware discourages referencing the service account using the `service_account` value
@@ -151,26 +149,26 @@ to enable signing in your supply chain. For more information, see [Authoring sup
 
 1. Apply the image resource to the cluster by running:
 
-    ```bash
+    ```console
     kubectl apply -f image-cosign.yaml
     ```
 
-2. After the image resource finishes building, you can get the fully resolved and built OCI image by running:
+1. After the image resource finishes building, you can get the fully resolved and built OCI image by running:
 
-    ```bash
+    ```console
     kubectl -n default get image tutorial-cosign-image
     ```
 
     Example output:
 
-    ```bash
+    ```console
     NAME                  LATESTIMAGE                                        READY
     tutorial-cosign-image index.docker.io/your-project/app@sha256:6744b...   True
     ```
 
-3. Verify image signature by running:
+1. Verify image signature by running:
 
-    ```bash
+    ```console
     cosign verify --key cosign.pub LATEST-IMAGE-WITH-DIGEST
     ```
 
@@ -179,7 +177,7 @@ to enable signing in your supply chain. For more information, see [Authoring sup
 
     The expected output is similar to the following:
 
-    ```bash
+    ```console
     Verification for index.docker.io/your-project/app@sha256:6744b... --
     The following checks were performed on each of these signatures:
     - The cosign claims were validated
@@ -187,6 +185,6 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     - Any certificates were verified against the Fulcio roots.
     ```
 
-4. Configure Supply Chain Security Tools for VMware Tanzu - Policy Controller
+1. Configure Supply Chain Security Tools for VMware Tanzu - Policy Controller
 to ensure that only signed images are allowed in your cluster.
 For more information, see the [Supply Chain Security Tools for VMware Tanzu - Policy Controller](../scst-policy/overview.md) documentation.
