@@ -17,8 +17,7 @@ the workloads use the service instance.
 
 The following diagram depicts a summary of what this tutorial covers.
 
-![In the default namespace there are two app workloads, each connected to a service binding.
-The service bindings refer to one class claim.](../images/getting-started-stk-1.png)
+![In the default namespace there are two app workloads, each connected to a service binding. The service bindings refer to one class claim.](../images/getting-started-stk-1.png)
 
 Bear the following observations in mind as you work through this guide:
 
