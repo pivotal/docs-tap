@@ -1,8 +1,11 @@
-# Consume services on Tanzu Application Platform
+# About consuming services on Tanzu Application Platform
 
-As part of Tanzu Application Platform, you can work with backing services such as
-RabbitMQ, PostgreSQL, and MySQL among others. Binding application workloads to service instances
-is the most common use of services.
+This topic describes the key concepts and terms you need to know about consuming services on
+Tanzu Application Platform (commonly known as TAP).
+
+As part of Tanzu Application Platform, you can work with backing services such
+as RabbitMQ, PostgreSQL, and MySQL among others.
+The most common use of services is binding an application workload to a service instance.
 
 ## <a id="stk-concepts"></a> Key concepts
 

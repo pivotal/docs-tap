@@ -1,20 +1,34 @@
 # Supply chains on Tanzu Application Platform
 
-Supply chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment.
+This topic describes the key concepts you need to know about supply chains and
+Continuous Integration/Continuous Delivery (CI/CD) on Tanzu Application Platform (commonly known as TAP).
 
-CI/CD is the method used by supply chains to deliver applications through automation. Tanzu Application Platform supply chains allow you to use CI/CD and add any other steps necessary for an application to reach production or a different environment, such as staging.
+Supply chains provide a way of codifying all of the steps of your path to production, more commonly
+known as CI/CD.
+CI/CD is a method to frequently deliver applications by introducing automation into the stages of
+application development.
+The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous
+deployment.
 
-![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](../images/path-to-production-new.png)
+CI/CD is the method used by supply chains to deliver applications through automation.
+Tanzu Application Platform supply chains allow you to use CI/CD and add any other steps necessary for
+an application to reach production or a different environment, such as staging.
+
+![A simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](../images/path-to-production-new.png)
 
 ## <a id="path-to-prod"></a>A path to production
 
 A path to production allows users to create a unified access point for all of the tools required
 for their applications to reach a customer-facing environment.
 Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction. The path to production can be automated and repeatable between teams for applications at scale.
+all four tools in a single, unified layer of abstraction. The path to production can be automated and
+repeatable between teams for applications at scale.
 
-Typically tools cannot integrate with one another without additional scripting or
-webhooks. Whereas with a path to production, there is a unified automation tool to codify all the interactions between each of the tools. Supply chains used to codify the organization's path to production are configurable, allowing their authors to add all of the steps of their application's path to production.
+Typically tools cannot integrate with one another without scripting or webhooks.
+Whereas with a path to production, there is a unified automation tool to codify all the interactions
+between each of the tools.
+Supply chains that are used to codify the path to production for an organization are configurable.
+This allows their authors to add all of the steps of the path to production for their applications.
 
 ## <a id="avail-supply-chains"></a>Available Supply Chains
 
@@ -30,7 +44,7 @@ work with the Tanzu Application Platform components. They include:
 The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
 The following table and diagrams provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
 
-![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
+![The Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -87,7 +101,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain.
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
+![The Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -130,7 +144,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
+![The Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
 
 <table>
   <tr>
