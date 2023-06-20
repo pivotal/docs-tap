@@ -646,7 +646,7 @@ docs.vmware.com is built.
       - [Work with Tanzu Buildpacks](tanzu-build-service/tbs-buildpacks.hbs.md)
       - [Configure Tanzu Build Service properties on a workload](tanzu-build-service/tbs-workload-config.hbs.md)
       - [Create a signed container image with Tanzu Build Service](tanzu-build-service/tbs-image-signing.hbs.md)
-      - [Dependencies](tanzu-build-service/dependencies.hbs.md)
+      - [Tanzu Build Service Dependencies](tanzu-build-service/dependencies.hbs.md)
       - [Security Context Constraint for OpenShift](tanzu-build-service/openshift.hbs.md)
       - [Troubleshoot Tanzu Build Service](tanzu-build-service/troubleshooting.hbs.md)
       - [Create a GitHub Action](tanzu-build-service/build-image-action.hbs.md)

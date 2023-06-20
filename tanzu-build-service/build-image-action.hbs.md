@@ -1,6 +1,6 @@
 # Create a GitHub build action (Alpha)
 
-Use this GitHub Action to create a Tanzu Build Service build on a cluster.
+This topic tells you how to use a GitHub action to create a Tanzu Build Service build on a cluster.
 
 > **Important** Alpha features are experimental and are not ready for production use. Configuration
 > and behavior is likely to change, and functionality might be removed in a future release.

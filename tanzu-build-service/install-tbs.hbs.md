@@ -3,9 +3,10 @@
 This topic describes how to install Tanzu Build Service from the Tanzu Application Platform
 package repository by using the Tanzu CLI.
 
+## Before you begin
+
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
-Tanzu Build Service.
-The Full, Iterate, and Build profiles include Tanzu Build Service.
+Tanzu Build Service. The Full, Iterate, and Build profiles include Tanzu Build Service.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 The following procedure might not include some configurations required for your environment.

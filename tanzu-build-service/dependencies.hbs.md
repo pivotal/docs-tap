@@ -1,12 +1,12 @@
-# Dependencies
+# Tanzu Build Service Dependencies
+
+This topic tells you about Tanzu Build Service dependencies.
 
 > **Important** Ubuntu Bionic will stop receiving support in April 2023. The
 > Bionic stack is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
 >For Tanzu Application Platform v1.5 and later, the default stack for Tanzu
 > Build Service is Jammy.
-
-This topic describes how Tanzu Build Service uses and installs dependencies.
 
 To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
@@ -25,7 +25,6 @@ workload images to rebuild.
 To ensure dependency compatibility, Tanzu Build Service only releases patches for
 dependencies in patch versions of Tanzu Application Platform.
 For upgrade instructions, see [Upgrade the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
-
 
 By default, Tanzu Build Service is installed with the `lite` set of dependencies,
 which are smaller-footprint and contain a subset of the buildpacks and stacks in
