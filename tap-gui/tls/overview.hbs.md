@@ -38,4 +38,4 @@ The following topics describe different ways to configure TLS:
 
 - [Configuring a TLS certificate by using an existing certificate](enable-tls-existing-cert.hbs.md)
 - [Configuring a TLS certificate by using a self-signed certificate](enable-self-signed-cert.hbs.md)
-- [Configuring a TLS certificate by using cert-manager and a ClusterIssuer](cert-manager-clusterissuer.hbs.md)
+- [Configuring a TLS certificate by using cert-manager and a ClusterIssuer](cert-mngr-ext-clusterissuer.hbs.md)
