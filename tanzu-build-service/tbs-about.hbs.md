@@ -1,5 +1,7 @@
 # Tanzu Build Service
 
+This topic provides you with an overview of Tanzu Build Service.
+
 VMware Tanzu Build Service automates container creation, management, and governance at enterprise scale.
 Tanzu Build Service uses the open-source [Cloud Native Buildpacks](https://buildpacks.io/)
 project to turn application source code into container images.

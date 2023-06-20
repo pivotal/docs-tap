@@ -1,6 +1,6 @@
-# Dependencies
+# Tanzu Build Service Dependencies
 
-This topic describes how Tanzu Build Service uses and installs dependencies.
+This topic tells you about Tanzu Build Service dependencies.
 
 Tanzu Build Service requires dependencies in the form of Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and

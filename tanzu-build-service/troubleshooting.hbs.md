@@ -1,6 +1,6 @@
 # Troubleshooting Tanzu Build Service
 
-This topic provides information to help troubleshoot Tanzu Build Service when used with
+This topic tells you how to troubleshoot Tanzu Build Service when used with
 Tanzu Application Platform.
 
 ## <a id="tbs-1-2-breaking-change"></a> Builds fail after upgrading to Tanzu Application Platform v1.2

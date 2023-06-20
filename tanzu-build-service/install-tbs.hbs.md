@@ -1,4 +1,4 @@
-# Installing Tanzu Build Service
+# Install Tanzu Build Service
 
 This topic describes how to install Tanzu Build Service from the Tanzu Application Platform
 package repository by using the Tanzu CLI.

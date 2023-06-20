@@ -1,12 +1,8 @@
-# Creating a signed container image with Tanzu Build Service
+# Create a signed container image with Tanzu Build Service
 
-This topic describes how to create a Tanzu Build Service
-[image](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html)
-resource that builds a container image from source code signed with
-[Cosign](https://github.com/sigstore/cosign).
-
-This topic builds upon the steps in the
-[kpack tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md).
+This topic tells you how to create a Tanzu Build Service
+image resource that builds a container image from source code signed with
+Cosign.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -24,6 +20,7 @@ resource configured.
 - Have an [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html)
 resource configured.
 
+- Review [kpack tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md), this topic builds on the steps in this tutorial.
 ## <a id="sign-image-builds"></a> Configure Tanzu Build Service to sign your image builds
 
 To configure Tanzu Build Service to sign your image builds:
