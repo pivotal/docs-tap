@@ -482,7 +482,7 @@ docs.vmware.com is built.
       - [How-to guides](services-toolkit/how-to-guides/index.hbs.md)
           - [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md)
           - [Configure dynamic provisioning of AWS RDS service instances](services-toolkit/how-to-guides/dynamic-provisioning-rds.hbs.md)
-          - [Configure dynamic provisioning of VMware Tanzu Postgres service instances](services-toolkit/how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md)
+          - [Configure dynamic provisioning of VMware SQL with Postgres for Kubernetes service instances](services-toolkit/how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md)
           - [Troubleshooting](services-toolkit/how-to-guides/troubleshooting.hbs.md)
       - [Reference](services-toolkit/reference/index.hbs.md)
           - [API Documentation](services-toolkit/reference/api/index.hbs.md)
