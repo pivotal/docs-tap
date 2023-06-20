@@ -1,6 +1,6 @@
 # Parameter reference
 
-This topic tells you about the  `workload.spec.params` parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that are configured in the deliverable object.
+This topic tells you about the `workload.spec.params` parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that are configured in the deliverable object.
 
 ## <a id="workload-parameter"></a> Workload Parameter Reference
 
