@@ -643,7 +643,6 @@ docs.vmware.com is built.
       - [Tanzu Build Service overview](tanzu-build-service/tbs-about.hbs.md)
       - [Install Tanzu Build Service](tanzu-build-service/install-tbs.hbs.md)
       - [Install Tanzu Build Service (air-gapped)](tanzu-build-service/install-airgapped.hbs.md)
-      - [Work with Tanzu Buildpacks](tanzu-build-service/tbs-buildpacks.hbs.md)
       - [Configure Tanzu Build Service properties on a workload](tanzu-build-service/tbs-workload-config.hbs.md)
       - [Create a signed container image with Tanzu Build Service](tanzu-build-service/tbs-image-signing.hbs.md)
       - [Tanzu Build Service Dependencies](tanzu-build-service/dependencies.hbs.md)
