@@ -82,7 +82,7 @@ The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
 
 - The Crossplane package now more gracefully handles situations in which Crossplane is already
   installed to a cluster by using another method, for example, Helm install.
-  For more information, see [Crossplane Resolved Issues](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+  For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
 
 - Includes kapp wait rules that match on `Healthy=True` for the Providers.
   This means that package installation now waits for the Providers to become healthy before reporting
@@ -202,10 +202,6 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-6-0-COMPONENT-NAME-bc'></a> COMPONENT-NAME
-
-- Breaking change description.
-
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
 - The recommendation is to consume AppSSO service offerings via `ClassClaim`
@@ -246,34 +242,47 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-0-COMPONENT-NAME-ri'></a> COMPONENT-NAME
-
-- Resolved issue description.
-
-#### <a id='1-6-0-stk-ri'></a> Services Toolkit (STK)
-
-- Resolved an issue which prevented the default cluster-admin IAM role on GKE clusters from claiming any of the Bitnami Services
-  - Previously, if a user with cluster-admin on a GKE cluster attempted to claim any of the bitnami services, they would be met with a validation error
-  - This issue has now been resolved
-- Resolved an issue affecting the dynamic provisioning flow when attempting to use a CompositeResourceDefinition which specified a schema which only defined .status without also defining .spec
-  - Previously, if attempting to create a ClassClaim for a ClusterInstanceClass which referred to such a CompositeResourceDefinition, the ClassClaim would not transition into Ready=True and would instead report, "unexpected end of JSON input"
-  - This issue has now been resolved and thus it is now possible to use CompositeResourceDefinitions which only specify .status in their schemas
-
 #### <a id='1-6-0-crossplane-ri'></a> Crossplane
 
-- The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
-  - Previously the Crossplane Package (which ships as part of the Full, Iterate and Run TAP profiles) assumed that Crossplane was not already installed on the cluster, which is not always guaranteed to be true
-  - Rather than fail installation, the Package installation would move ahead and try to succeed, which would result in non-deterministic behaviour
-  - Now, any attempt to install or upgrade to the Crossplane Package on a cluster which already has Crossplane installed will fail the installation with the following error, "Resource already exists. Consider excluding package in tap-values."
-  - In such cases, the operator then has two options
-    - 1). Exclude the crossplane Package in the tap-values file
-    - 2). Choose to set the crossplane Package's adopt_resources value to true
+- The Crossplane package now more gracefully handles situations in which Crossplane is already
+  installed to a cluster by using another method, for example, Helm install.
+
+  Previously the Crossplane Package assumed that Crossplane was not already installed on the cluster,
+  which is not always true.
+  Rather than fail, the package completed installing, which caused non-deterministic behavior.
+
+  Now, if you attempt to install or upgrade the Crossplane package on a cluster that has
+  Crossplane installed by other means, it fails with the error `Resource already exists`.
+  In such cases, you can either exclude the Crossplane package from the Tanzu Application Platform
+  installation, or set `adopt_resources` to true in the Crossplane package to adopt resources from
+  your existing installation.
+  For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+
+#### <a id='1-6-0-stk-ri'></a> Services Toolkit
+
+- Resolved an issue that prevented the default cluster-admin IAM role on GKE clusters from claiming
+  any of the Bitnami services.
+
+  Previously, if a user with the cluster-admin role on a GKE cluster attempted to claim any of the
+  Bitnami services, they received a validation error.
+
+- Resolved an issue affecting the dynamic provisioning flow if you used a CompositeResourceDefinition
+  that specified a schema that defined `.status` without also defining `.spec`.
+  You can now use a CompositeResourceDefinition which only specifies `.status` in the schema.
+
+  Previously, if you attempted to create a ClassClaim for a ClusterInstanceClass that referred to
+  such a CompositeResourceDefinition, the ClassClaim did not transition into `Ready=True` and
+  instead reported `unexpected end of JSON input`.
 
 ---
 
 ### <a id='1-6-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by component and area.
+
+#### <a id='1-6-0-scc-ki'></a> Supply Chain Choreographer
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
 #### <a id='1-6-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
@@ -283,9 +292,6 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-6-0-scc-ki'></a> Supply Chain Choreographer
-
-- If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 ---
 
 <h2 id='1-6-deprecations'>Deprecations</h2>
@@ -305,7 +311,28 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   `post` and `basic` are deprecated and marked for removal in Tanzu Application
   Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
 
-### <a id="1-6-0-stk-deprecations"></a> Services Toolkit
+### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
+
+- Deprecations for the `GitRepository` API:
+
+    - `spec.gitImplementation` is deprecated.
+    `GitImplementation` defines the Git client library implementation.
+    `go-git` is the default and only supported implementation. `libgit2`
+    is no longer supported.
+    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
+    Control List for enabling cross-namespace references to this object, was never
+    implemented.
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+    defined in the observed artifact content config within the status.
+    - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
+    - `status.url` is deprecated in favor of `status.artifact.url`.
+
+- Deprecations for the `OCIRepository` API:
+
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+    defined in the observed artifact content config within the status.
+
+### <a id="1-6-stk-deprecations"></a> Services Toolkit
 
 - The `tanzu services claims` CLI plug-in command is now deprecated. It is
   hidden from help text output, but continues to work until officially removed
@@ -354,26 +381,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.6.0. Use the command `tanzu apps workload apply` instead.
 
-### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
-
-- Deprecations for the `GitRepository` API:
-
-    - `spec.gitImplementation` is deprecated.
-    `GitImplementation` defines the Git client library implementation.
-    `go-git` is the default and only supported implementation. `libgit2`
-    is no longer supported.
-    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
-    Control List for enabling cross-namespace references to this object, was never
-    implemented.
-    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
-    defined in the observed artifact content config within the status.
-    - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
-    - `status.url` is deprecated in favor of `status.artifact.url`.
-
-- Deprecations for the `OCIRepository` API:
-
-    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
-    defined in the observed artifact content config within the status.
 
 ### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
 

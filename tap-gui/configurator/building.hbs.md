@@ -1,19 +1,18 @@
-# Building your Customized Tanzu Developer Portal with the Configurator
+# Build your Customized Tanzu Developer Portal with Configurator
 
-This topic tells you how to build your customized Tanzu Developer Portal with the Configurator.
+This topic tells you how to build your customized Tanzu Developer Portal with Configurator.
 
 ## <a id="prereqs"></a> Prerequisites
 
 Meet the following prerequisites:
 
-- Ensure that Tanzu Developer Portal Configurator has a running and operating Tanzu Application Platform
-  instance to build the customized portal and run the resulting customized image.
-  You can use a `full` profile for everything or you can use a `build` profile for customizing the
-  portal and a `view` profile for running the customized portal.
-  For more information, see
+- Ensure that Configurator has a running and operating Tanzu Application Platform instance to build
+  the customized portal and run the resulting customized image. You can use a `full` profile for
+  everything or you can use a `build` profile for customizing the portal and a `view` profile for
+  running the customized portal. For more information, see
   [Components and installation profiles for Tanzu Application Platform](../../about-package-profiles.hbs.md).
 
-- Ensure your instance of Tanzu Application Platform has a working supplychain that can build the
+- Ensure that your instance of Tanzu Application Platform has a working supplychain that can build the
   Tanzu Developer Portal bundle. It doesn't need to be able to deliver it because currently
   an overlay is used to place the built image on the cluster where the pre-built Tanzu Developer
   Portal resides.
@@ -25,50 +24,50 @@ Meet the following prerequisites:
   [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md),
   you likely have everything you need.
 
-- Ensure your additional plug-ins are in an NPM registry. This registry can be your own
+- Ensure that your additional plug-ins are in an NPM registry. This registry can be your own
   private registry or a plug-in registry if you intend to use a third-party or community plug-in.
 
 > **Important** Tanzu Application Platform plug-ins cannot be removed from customized portals.
 > However, if you decide you want to hide them, you can use the
 > [runtime configuration](concepts.hbs.md#runtime) options in your `tap-values.yaml` file.
 
-## <a id="prep-config-file"></a> Prepare your Tanzu Developer Portal Configurator configuration file
+## <a id="prep-config-file"></a> Prepare your Configurator configuration file
 
-To prepare your Tanzu Developer Portal Configurator configuration file:
+To prepare your Configurator configuration file:
 
-1. Create a new file called `tdp-config.yaml` by using the template below:
+1. Create a new file called `tdp-config.yaml` by using the following template:
 
-   ```yaml
-   app:
-     plugins:
-       - name: 'NPM-PLUGIN-FRONTEND'
-         version: 'NPM-PLUGIN-FRONTEND-VERSION'
-   backend:
-     plugins:
-       - name: 'NPM-PLUGIN-BACKEND'
-         version: 'NPM-PLUGIN-BACKEND-VERSION'
-   ```
+    ```yaml
+    app:
+      plugins:
+        - name: 'NPM-PLUGIN-FRONTEND'
+          version: 'NPM-PLUGIN-FRONTEND-VERSION'
+    backend:
+      plugins:
+        - name: 'NPM-PLUGIN-BACKEND'
+          version: 'NPM-PLUGIN-BACKEND-VERSION'
+    ```
 
-   Where:
+    Where:
 
-   - `NPM-PLUGIN-FRONTEND` is the NPM registry and module name of the front-end plug-in
-   - `NPM-PLUGIN-FRONTEND-VERSION` is the version of your desired front-end plug-in that exists in
-     the NPM registry
-   - `NPM-PLUGIN-BACKEND` is the NPM registry and module name of your desired back-end plug-in
-   - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists on the
-     NPM registry
+    - `NPM-PLUGIN-FRONTEND` is the NPM registry and module name of the front-end plug-in
+    - `NPM-PLUGIN-FRONTEND-VERSION` is the version of your desired front-end plug-in that exists in
+      the NPM registry
+    - `NPM-PLUGIN-BACKEND` is the NPM registry and module name of your desired back-end plug-in
+    - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
+      NPM registry
 
-   The following example adds the sample `hello-world` plug-in that is available in the internal
-   package's registry:
+    The following example adds the sample `hello-world` plug-in that is available in the internal
+    package's registry:
 
-   ```yaml
-   app:
-     plugins:
-       - name: '@tpb/plugin-hello-world'
-   backend:
-     plugins:
-       - name: '@tpb/plugin-hello-world-backend'
-   ```
+    ```yaml
+    app:
+      plugins:
+        - name: '@tpb/plugin-hello-world'
+    backend:
+      plugins:
+        - name: '@tpb/plugin-hello-world-backend'
+    ```
 
 2. To later embed `tdp-config.yaml` in the workload definition file, encode the file in base64 by
    running:
@@ -77,7 +76,7 @@ To prepare your Tanzu Developer Portal Configurator configuration file:
    base64 -i tdp-config.yaml
    ```
 
-## <a id="prep-def-file"></a> Prepare your Tanzu Developer Portal Configurator workload definition file
+## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
 Create a file called `tdp-workload.yaml` with the following content:
 
@@ -109,11 +108,11 @@ spec:
 Where:
 
 - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
-- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value performed earlier
-- `TDP-IMAGE-LOCATION` is the location of the Tanzu Developer Portal Configurator image on the image
-  registry you installed Tanzu Application Platform from
+- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value that you encoded earlier
+- `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image
+  registry from which you installed Tanzu Application Platform
 
-> **Important** Image references for the default included Tanzu Developer Portal Configurator images
+> **Important** Image references for the default included Configurator images
 > by default are as follows:
 > 1.
 <!-- This seems unfinished -->

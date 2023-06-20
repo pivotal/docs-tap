@@ -1,47 +1,51 @@
 # Tanzu Developer Portal Configurator Concepts
 
-This topic tells you about the concepts that illustrate the design and purpose of
-Tanzu Developer Portal Configurator.
+This topic gives you conceptual overviews of how Tanzu Developer Portal Configurator works.
 
-## Tanzu Developer Portal Configurator Customization Process
+## <a id="customize"></a> Overview of how to customize your portal
 
-![Tanzu Developer Portal Customization Process Flowchart](./images/tdp-install-flowchart.jpg)
+![Tanzu Developer Portal customization flowchart, starting from installing Tanzu Application Platform and finishing with deploying a customized Tanzu Developer Portal.](images/tdp-install-flowchart.jpg)
 
-1. Install and validate that you have a working installation of Tanzu Application Platform with a
-   working instance of the pre-built Tanzu Developer Portal.
-2. Prepare your Tanzu Developer Portal Configurator's buildtime configuration file.
-3. Prepare your Tanzu Developer Portal Configurator Workload definition YAML.
-4. Submit your Tanzu Developer Portal Configurator Workload definition YAML to your supplychain
-5. After the image has been built, you'll retrieve you customized Tanzu Developer Portal image from
-   your supplychain deliverables.
-6. To run your customized portal, you'll need to prepare a [`ytt`](https://carvel.dev/ytt/)
-   overlay to replace the pre-built Tanzu Developer Portal in Tanzu Application Platform with your
-   customized version.
-7. You'll apply this [`ytt`](https://carvel.dev/ytt/) overlay to your cluster.
-8. You can now use your customized portal with all the runtime configuration values used in your
-   pre-built version.
+To use your customized portal with all the runtime configuration values used in your pre-built
+version:
 
-## Buildtime Configuration versus Runtime Configuration
+1. Install a working installation of Tanzu Application Platform with a working instance of the
+   pre-built Tanzu Developer Portal.
+2. Prepare your Configurator buildtime configuration file.
+3. Prepare your Configurator workload definition YAML.
+4. Submit your Configurator workload definition YAML to your supplychain.
+5. After the image is built, retrieve your customized Tanzu Developer Portal image from your
+   supplychain deliverables.
+6. To run your customized portal, prepare a ytt overlay to replace the pre-built Tanzu Developer Portal
+   in Tanzu Application Platform with your customized version. For more information about ytt, see the
+   [Carvel documentation](https://carvel.dev/ytt/).
+7. Apply the ytt overlay to your cluster.
 
-### Buildime Configuration
+## <a id="buildtime-and-runtime"></a> Overviews of buildtime configuration and runtime configuration
 
-Buildtime configuration refers to the customization of how plugins are included in the
+The following sections describe the differences between buildtime configuration and runtime
+configuration.
+
+### <a id="buildtime"></a> Buildtime configuration
+
+Buildtime configuration refers to the customization of how plug-ins are included in the
 Tanzu Developer Portal image that you run on your Tanzu Application Platform cluster.
 
-This buildtime configuration is read by the Tanzu Developer Portal Configurator and results in your
-built customized instance of Tanzu Developer Portal. These values can include:
+Configurator reads this buildtime configuration to help build your customized instance of
+Tanzu Developer Portal. Buildtime configuration values can include:
 
 - Which plug-ins are included in your portal
 - How plug-ins are linked on the sidebar for your portal
-- Which cards are available and how they appear in the Software Catalog
+- Which cards are available and how they appear in the software catalog
 
-### <a id=runtime></a> Runtime Configuration
+### <a id="runtime"></a> Runtime configuration
 
-Runtime configuration refers to the values that you're used to configuring and providing in your
-`tap-values.yaml` file when your install and run your Tanzu Developer Portal. This can include:
+Runtime configuration refers to the values that you use to configure the portal. You provide them in
+your `tap-values.yaml` file when you install and run your portal. Runtime configuration values can
+include:
 
 - The name of your portal
-- Integrations (GitHub/Gitlab keys, Identity provider configuration, etc.)
-- The locations of any catalogs on Git
+- Integrations (GitHub or GitLab keys, identity provider configuration, and so on)
+- The locations of any catalogs on GitHub or GitLab
 - Security overrides
-- Showing/Hiding the included Tanzu Application Platform plugins
+- Showing or hiding the included Tanzu Application Platform plug-ins
