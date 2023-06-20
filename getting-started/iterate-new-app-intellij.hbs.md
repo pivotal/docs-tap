@@ -44,7 +44,7 @@ Tanzu Live Update uses [Tilt](https://tilt.dev/). This requires a suitable
 supported, but each requires a `Tiltfile` specific to that type of project.
 
 The Tanzu Java Web App accelerator allows you to choose between Maven and Gradle and includes a `Tiltfile`.
-If you used the accelerator then your project is already set up correctly.
+If you used the accelerator, your project is already set up correctly.
 
 To verify your project is set up correctly, review the following requirements depending on your chosen
 build system.
@@ -166,7 +166,7 @@ Apply the workload to see your application running on the cluster:
       > necessary to authenticate and gain push access.
       >
       > For example, if you use Docker, see the [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/),
-      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/) and so on.
+      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. In the **Local Path** text box, provide the path to the directory containing the Tanzu Java Web App.
       The current directory is the default.
@@ -188,7 +188,7 @@ The `apply workload` command can take a few minutes to deploy your application o
 You can also use the  **Tanzu Panel** to monitor your application as it's being deployed to the cluster.
 The **Tanzu Panel** shows information about the workloads in the namespace associated with your
 current Kubernetes context.
-On the left side it shows the workloads in the namespace, and in the center it shows the details of
+On the left side, it shows the workloads in the namespace. In the center, it shows the details of
 the Kubernetes resources for the running workloads.
 
 ## <a id="live-update-your-app"></a>Enable Live Update for your application
@@ -227,7 +227,7 @@ To enable Live Update for your application:
       >
       > For example, if you use Docker, see the
       > [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/), or
-      > if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/) and so on.
+      > if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. Click **Apply**, and then click the **OK** button.
 
@@ -245,7 +245,7 @@ To enable Live Update for your application:
 
    On the **Tanzu Panel** tab, the status of Live Update is reflected under the
    `tanzu-java-web-app` workload entry.
-   Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+   Live update can take up to three minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >
@@ -315,11 +315,10 @@ To debug the cluster:
       > For example, if you use Docker, see the
       > [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/), or
       > if you use Harbor, see the
-      > [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/)
-      > and so on.
+      > [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. (Optional) In the **Namespace** text box, provide the namespace to be associated with the workload
-      on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](#prepare-to-iterate)
+      on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](#prepare-to-iterate),
       you do not need to enter a namespace because IntelliJ uses the namespace you associated with
       your context.
 
