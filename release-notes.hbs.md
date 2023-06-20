@@ -226,6 +226,15 @@ This release includes the following changes, listed by component and area.
 - The full dependencies package repository is tagged with the Tanzu Application Platform package version instead of the Tanzu Build Service package version.
 - The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
 
+#### <a id='1-6-0-developer-tools-for-intellij'></a> Tanzu Developer Tools for IntelliJ
+- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image configuration for rapid iteration in inner loop
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
+
+#### <a id='1-6-0-developer-tools-for-vscode'></a> Tanzu Developer Tools for Visual Studio Code
+- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
