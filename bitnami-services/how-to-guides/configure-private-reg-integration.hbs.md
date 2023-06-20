@@ -18,8 +18,10 @@ For how to obtain both of these prerequisites for VAC integration, see
 
 ## <a id="procedure"></a>Procedure
 
-1. Create two Kubernetes `Secrets`, one with credentials to pull Helm charts and the other with credentials to pull images.
-The following examples put these in the `default` namespace, but you can choose to place them in any namespace you prefer.
+1. Create two Kubernetes `Secrets`, one with credentials to pull Helm charts and the other with
+   credentials to pull images.
+   The following examples put these in the `default` namespace, but you can choose to place them in any
+   namespace you prefer.
 
     ```console
     $ kubectl create secret generic vac-chart-pull \
@@ -82,8 +84,9 @@ The following examples put these in the `default` namespace, but you can choose 
             tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
             ```
 
-1. If your VAC instance does not have the default version of a given chart, configure the version for
-the chart by updating the `helm_chart.version` value for the service. For example:
+1. If your VAC instance does not have the default version of a given chart or you want to use a
+   different version, configure the version for the chart by updating the `helm_chart.version` value
+   for the service. For example:
 
     ```yaml
     bitnami_services:
