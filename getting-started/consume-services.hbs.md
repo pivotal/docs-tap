@@ -22,7 +22,7 @@ The service bindings refer to one class claim.](../images/getting-started-stk-1.
 
 Bear the following observations in mind as you work through this guide:
 
-1. There are a set of four service classes preinstalled on the cluster.
+1. There is a set of four service classes preinstalled on the cluster.
 
 1. Service operators do not need to configure or setup these four services.
 

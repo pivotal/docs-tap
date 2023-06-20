@@ -17,7 +17,7 @@ provides a brief overview of each of these key concepts.
 
 A **service instance** is a logical grouping of one or more Kubernetes resources
 that together expose a known capability through a well-defined interface. For
-example, a theoretical "MySQL" service instance might consist of a
+example, a theoretical MySQL service instance might consist of a
 `MySQLDatabase` and a `MySQLUser` resource. When considering compatibility of
 service instances for Tanzu Application Platform, one of the resources of a
 service instance must adhere to the [Service Binding for
