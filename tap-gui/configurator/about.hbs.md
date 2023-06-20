@@ -36,8 +36,8 @@ Your VMware Tanzu Application Platform comes with a pre-built Tanzu Developer Po
 the necessary functionality to give you the best user experience with the core Backstage
 functionality and with the Tanzu Application Platform capabilities.
 
-Should you decide to add additional functionality to your developer portal, you would need to follow
-the steps described [here](link-to-section).
+To add extra functions to your developer portal, see .
+<!-- insert xref -->
 
 ### <a id="how-does-it-work"></a>How does the configurator work?
 
