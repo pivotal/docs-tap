@@ -1,19 +1,16 @@
 # Iterating on your function
 
-This topic provides instructions about how to iterate on your function using the
+This topic tells you how to iterate on your function using the
 VMware Tanzu Developer Tools extension for Visual Studio Code.
-This extension enables live updates of your application while running on the
-cluster, and allows you to debug your application directly on the cluster.
 
 ## <a id="prereqs"></a> Prerequisites
 
 Before you can iterate on your function, you must have:
 
-- [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md)
-- [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
+- [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md). This extension enables live updates of your application while running on the cluster, and allows you to debug your application directly on the cluster.
+- [Tilt](https://docs.tilt.dev/install.html) v0.30.12 or later.
 
-> **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
-
+> **Important** The Tanzu Developer Tools extension currently only supports Java Functions.
 ## <a id="configuration"></a> Configure the Tanzu Developer Tools extension
 
 Before iterating on your application, you must configure the Tanzu Developer Tools extension as follows:
