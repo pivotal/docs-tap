@@ -232,19 +232,16 @@ accelerator.
 
 1. Navigate to your organization's instance of Tanzu Application Platform GUI.
 
-    ![Home screen image of Tanzu Application Platform
-    GUI.](../images/app-accelerator/getting-started-1-1.png)
+    ![Home screen image of Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-1.png)
 
 2. On the left navigation pane, click **Create**.
 
-    ![Image of highlighting the Create button in Tanzu Application Platform
-    GUI.](../images/app-accelerator/getting-started-1-2.png)
+    ![Image of highlighting the Create button in Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-2.png)
 
 3. Using the search bar near the left side of the page, search for `simple accelerator`. After
    you've found it, click **Choose** on the accelerator card.
 
-    ![Image of searching for the accelerator in Tanzu Application Platform
-    GUI.](../images/app-accelerator/getting-started-1-3.png)
+    ![Image of searching for the accelerator in Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-3.png)
 
 4. Configure the project by filling in the parameters in the form.
 
@@ -252,8 +249,7 @@ accelerator.
    `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` might be hidden
    depending on whether the check box is selected.
 
-   ![Image of the configuration page in Tanzu Application Platform
-   GUI.](../images/app-accelerator/getting-started-1-4.png)
+   ![Image of the configuration page in Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-4.png)
 
 5. After configuration is complete, click **Next**.
 
@@ -265,8 +261,7 @@ accelerator.
 7. Explore the ZIP file of the configured project and verify that the project is generated with the
    parameters you provided during configuration.
 
-    ![Image of explore page showing changed
-    parameters.](../images/app-accelerator/getting-started-1-5.png)
+    ![Image of explore page showing changed parameters.](../images/app-accelerator/getting-started-1-5.png)
 
 ## Learn more about Application Accelerator
 
