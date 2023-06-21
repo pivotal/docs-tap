@@ -68,7 +68,7 @@ In this diagram:
     instances running in Amazon AWS RDS.
 - The app operator creates a `ClassClaim`. This is applied with a consuming workload.
   - When it is applied in `iterate` it resolves to a Helm chart instance.
-  - When it is promoted to `run-test` it resolves to a VMware Postgres instance.
+  - When it is promoted to `run-test` it resolves to a VMware PostgreSQL instance.
   - When it is promoted to `run-production` it resolves to an Amazon AWS RDS instance.
 - The definition of the `ClassClaim` remains identical across the clusters, which is easier for
   the application development team.
@@ -93,7 +93,7 @@ differing implementations of PostgreSQL depending on the cluster it is in.
 
 ### <a id="set-up-run-test"></a> Step 1: Set up the run-test cluster
 
-Configure the `run-test` cluster for dynamic provisioning of VMware Postgres
+Configure the `run-test` cluster for dynamic provisioning of VMware PostgreSQL
 service instances. To do that, see
 [Configure dynamic provisioning of VMware SQL with Postgres for Kubernetes service instances](../how-to-guides/dynamic-provisioning-tanzu-postgresql.hbs.md)
 and complete the steps in the following sections only:
