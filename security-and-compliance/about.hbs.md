@@ -1,4 +1,4 @@
-# Security and compliance
+# Security and compliance Overview
 
 Security is the foremost concern of Tanzu Application Platform. This section describes:
 

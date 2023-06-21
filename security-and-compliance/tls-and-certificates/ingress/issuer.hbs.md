@@ -1,9 +1,9 @@
 # Shared ingress issuer
 
-The Tanzu Application Platform shared ingress issuer is an on-platform
-representation of a certificate authority. It provides a method to set up TLS
-for the entire platform. All participating components get their ingress
-certificates issued by it.
+This topic tells you about the Tanzu Application Platform (commonly known as TAP) shared ingress issuer.
+
+The shared ingress issuer is an on-platform representation of a certificate authority.
+It provides a method to set up TLS for the entire platform. All participating components get their ingress certificates issued by it.
 
 This is the recommended best practice for issuing ingress certificates on Tanzu
 Application Platform. Learn about its [prerequisites](#prerequisites).
