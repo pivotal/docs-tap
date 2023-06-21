@@ -160,6 +160,8 @@ To install the Self-Guided Tour Training Portal and Workshop:
     NAME                       URL                                           ADMINUSERNAME         ADMINPASSWORD                      STATUS
         learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
     ```
+  
+1. Open the URL on a browser and uses the ADMINUSERNAME and ADMINPASSWORD to login.
 
 ## <a id='support-lc-values'></a> Supported Learning Center Values Configuration
 
@@ -225,6 +227,13 @@ network:
   blockCIDRs:
   - 169.254.169.254/32
   - fd00:ec2::254/128
+
+#! The security policy enforcement used by Learning Center. For pod security policies and pod security standards, these both 
+#! need to be enabled in the Kubernetes cluster at the time the cluster is created, it is not something that can be 
+#! enabled afterwards. Values: pod-security-policies, pod-security-standards, security-context-constraints or 
+#! security-context-constraints-v2
+clusterSecurity:
+  policyEngine: pod-security-policies
 ```
 
 See [Restricting Network Access](./runtime-environment/system-profile.md#restrict-network-access) for more information on blocking CIDRs.
