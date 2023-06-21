@@ -4,7 +4,7 @@ Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project b
 foundation of Kubernetes.
 Tanzu Application Platform (commonly known as TAP) uses Crossplane to power a number of capabilities, such as dynamic
 provisioning of services instances with [Services Toolkit](../services-toolkit/about.hbs.md) and
-the pre-installed [Bitnami Services](../bitnami-services/about.hbs.md).
+the [Bitnami Services](../bitnami-services/about.hbs.md).
 
 ## <a id="crossplane"></a> Crossplane with Tanzu Application Platform
 

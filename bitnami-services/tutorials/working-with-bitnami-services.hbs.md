@@ -3,7 +3,8 @@
 In this tutorial you learn how [application operators](../../services-toolkit/reference/terminology-and-user-roles.hbs.md#ao)
 can discover, claim, and bind services to application workloads.
 
-Tanzu Application Platform has four pre-installed services, which are MySQL, PostgreSQL, RabbitMQ, and Redis.
+Tanzu Application Platform has four services that are available in the Bitnami Services package.
+These are MySQL, PostgreSQL, RabbitMQ, and Redis.
 The corresponding Bitnami Helm Chart backs each of these services.
 
 ## <a id="about"></a> About this tutorial
@@ -26,7 +27,7 @@ To follow this tutorial, you must have:
 The following diagram provides an overview of the elements you will use during this tutorial and
 how they all fit together.
 
-![Diagram shows a high-level overview of the pre-installed Bitnami Services.](../../images/stk-dynamic-provisioning-bitnami-services.png)
+![Diagram shows a high-level overview of the Bitnami Services that are available in the Bitnami services package.](../../images/stk-dynamic-provisioning-bitnami-services.png)
 
 In this diagram:
 
@@ -62,7 +63,7 @@ The expected output is similar to the following:
   redis-unmanaged       Redis by Bitnami
 ```
 
-Here the output shows 4 classes. These are the four pre-installed Bitnami Services.
+Here the output shows four classes. These are the four Bitnami Services available in the Bitnami services package.
 You can see from the names and descriptions that they are all _unmanaged_ services.
 This implies that the resulting service instances run on cluster, that is, they are not a managed
 service running in the cloud.
@@ -98,7 +99,7 @@ in which case the default value of `1` is used.
 ## <a id="claiming"></a> Step 2: Claim services
 
 In this example, you have an application workload that requires a PostgreSQL database to function correctly.
-You can claim the pre-installed Bitnami PostgreSQL service to obtain such a database.
+You can claim the PostgreSQL Bitnami Service to obtain such a database.
 
 To create the claim in a namespace named `dev-team-1`, you must first create
 the namespace by running:

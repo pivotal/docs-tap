@@ -277,7 +277,7 @@ This release includes the following platform-wide enhancements.
 
 - [Crossplane](crossplane/about.hbs.md) is a new component that powers a number of capabilities,
   such as dynamic provisioning of service instances with Services Toolkit and the
-  pre-installed Bitnami Services. It is part of the iterate, run, and full profiles.
+  Bitnami Services. It is part of the iterate, run, and full profiles.
 
 - [Bitnami Services](bitnami-services/about.hbs.md) is a new component that includes a set of
   backing services for Tanzu Application Platform.
@@ -461,7 +461,7 @@ This release includes the following changes, listed by component and area.
    For more information about these commands, see [Tanzu Service CLI Plug-In](services-toolkit/reference/tanzu-service-cli.hbs.md#stk-cli-class-claim).
 
 - Integrates with the new component [Bitnami Services](bitnami-services/about.hbs.md),
-  which provides pre-installed dynamic provisioning support for the following Helm charts:
+  which provides dynamic provisioning support for the following Helm charts:
    - PostgreSQL
    - MySQL
    - Redis
