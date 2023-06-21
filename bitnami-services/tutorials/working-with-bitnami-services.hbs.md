@@ -3,7 +3,7 @@
 In this tutorial you learn how [application operators](../../services-toolkit/reference/terminology-and-user-roles.hbs.md#ao)
 can discover, claim, and bind services to application workloads.
 
-Tanzu Application Platform has six services that are available in the Bitnami services package.
+Tanzu Application Platform has six services that are available in the Bitnami Services package.
 These are MySQL, PostgreSQL, RabbitMQ, Redis, MongoDB, and Kafka.
 The corresponding Bitnami Helm Chart backs each of these services.
 
