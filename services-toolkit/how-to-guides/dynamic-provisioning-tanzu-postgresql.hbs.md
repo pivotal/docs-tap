@@ -1,9 +1,9 @@
-# Configure dynamic provisioning of VMware Tanzu Postgres service instances
+# Configure dynamic provisioning of VMware SQL with Postgres for Kubernetes service instances
 
 This Services Toolkit topic tells you how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
 can set up dynamic provisioning.
-This enables app development teams to create self-serve VMware Tanzu Postgres service instances that
-are customized to meet their needs.
+This enables app development teams to create self-serve VMware SQL with Postgres for Kubernetes
+service instances that are customized to meet their needs.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
@@ -19,9 +19,9 @@ Before you configure dynamic provisioning, you must have:
 
 ## <a id="config-dynamic-provisioning"></a> Configure dynamic provisioning
 
-To configure dynamic provisioning for VMware Tanzu Postgres services instances, you must:
+To configure dynamic provisioning for VMware SQL with Postgres for Kubernetes services instances, you must:
 
-1. [Install the Tanzu VMware Postgres Operator](#install-postgres-operator)
+1. [Install the VMware Postgres Operator](#install-postgres-operator)
 2. [Set up the namespace](#set-up-namespace)
 3. [Create a CompositeResourceDefinition](#compositeresourcedef)
 4. [Create a Composition](#create-composition)
@@ -29,14 +29,14 @@ To configure dynamic provisioning for VMware Tanzu Postgres services instances, 
 6. [Configure RBAC](#configure-rbac)
 7. [Verify your configuration](#verify)
 
-### <a id="install-postgres-operator"></a> Install the Tanzu VMware Postgres Operator
+### <a id="install-postgres-operator"></a> Install the VMware Postgres Operator
 
-Install the Tanzu VMware Postgres Operator by following the steps in
+Install the VMware Postgres Operator by following the steps in
 [Installing a VMware Postgres Operator](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/2.0/vmware-postgres-k8s/GUID-install-operator.html).
 
 ### <a id="set-up-namespace"></a> Set up the namespace
 
-This topic configures dynamic provisioning to provision all Tanzu Postgres service instances into the
+This topic configures dynamic provisioning to provision all PostgreSQL service instances into the
 same namespace. This namespace is named `tanzu-psql-service-instances`.
 
 To set up the namespace:
@@ -47,8 +47,8 @@ To set up the namespace:
     kubectl create namespace tanzu-psql-service-instances
     ```
 
-1. The Tanzu Postgres Operator also requires that a secret holding registry credentials exists in the
-   same namespace that the service instances will be created in.
+1. The VMware Postgres Operator also requires that a secret holding registry credentials
+   exists in the same namespace that the service instances will be created in.
    Ensure that the secret exists in the namespace by running:
 
     ```console
@@ -322,7 +322,7 @@ To make the service discoverable to application teams:
       name: tanzu-psql
     spec:
       description:
-        short: VMware Tanzu Postgres
+        short: VMware SQL with Postgres
       provisioner:
         crossplane:
           compositeResourceDefinition: xpostgresqlinstances.database.tanzu.example.org
@@ -396,7 +396,7 @@ To configure access control with RBAC:
 
 ### <a id="verify"></a> Verify your configuration
 
-To verify your configuration, create a claim for a Tanzu Postgres service instance by running:
+To verify your configuration, create a claim for a PostgreSQL service instance by running:
 
 ```console
 tanzu service class-claim create tanzu-psql-1 --class tanzu-psql -p storageGB=5
