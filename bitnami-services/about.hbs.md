@@ -1,4 +1,4 @@
-# Bitnami Services
+# Overview of Bitnami Services
 
 Bitnami Services provides a set of backing services for Tanzu Application Platform
 (commonly known as TAP).
