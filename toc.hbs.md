@@ -632,7 +632,7 @@ docs.vmware.com is built.
          - [Overview of enabling TLS](tap-gui/tls/overview.hbs.md)
          - [Configure by using an existing certificate](tap-gui/tls/enable-tls-existing-cert.hbs.md)
          - [Configure by using a self-signed certificate](tap-gui/tls/enable-self-signed-cert.hbs.md)
-         - [Configure by using cert-manager and external ClusterIssuer](tap-gui/tls/cert-mngr-ext-clusterissuer.hbs.md)
+         - [Configure by using cert-manager and a ClusterIssuer](tap-gui/tls/cert-mngr-ext-clusterissuer.hbs.md)
       - [Upgrade Tanzu Application Platform GUI](tap-gui/upgrades.hbs.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.hbs.md)
     - [Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)
