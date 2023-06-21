@@ -1,4 +1,4 @@
-# Learning Center for Tanzu Application Platform
+# Overview of Learning Center for Tanzu Application Platform
 
 Learning Center provides a platform for creating and self-hosting workshops.
 It allows you to create workshops from markdown files that are displayed to the learner in a terminal
