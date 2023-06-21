@@ -466,7 +466,7 @@ docs.vmware.com is built.
       - [Service Bindings overview](service-bindings/about.hbs.md)
       - [Install Service Bindings](service-bindings/install-service-bindings.hbs.md)
       - [Troubleshoot Service Bindings](service-bindings/troubleshooting.hbs.md)
-      - [Resources](service-bindings/resources.hbs.md)
+      - [Service Bindings resource specification](service-bindings/resources.hbs.md)
     - [Services Toolkit](services-toolkit/about.hbs.md)
       - [Services Toolkit overview](services-toolkit/about.hbs.md)
       - [Install Services Toolkit](services-toolkit/install-services-toolkit.hbs.md)
