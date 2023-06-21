@@ -60,8 +60,8 @@ In this diagram:
 
 - There are three clusters: `iterate`, `run-test`, and `run-production`.
 - In each cluster, the service operator creates a `ClusterInstanceClass` called postgres.
-  - In the `iterate` cluster, this is a provisioner-based class that uses the services available in
-    the Bitnami Services package to provision Helm instances of PostgreSQL.
+  - In the `iterate` cluster, this is a provisioner-based class that uses Bitnami Services
+    to provision Helm instances of PostgreSQL.
   - In the `run-test` cluster, this is a provisioner-based class that uses VMware SQL with Postgres for Kubernetes to
     provision instances of PostgreSQL.
   - In the `run-production` cluster, this is a provisioner-based class that uses Amazon RDS to provision
