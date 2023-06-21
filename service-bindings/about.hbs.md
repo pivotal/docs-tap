@@ -7,7 +7,7 @@ This topic tells you about using Service Bindings in Tanzu Application Platform 
 Service Bindings packages the [Service Binding for Kubernetes](https://servicebinding.io/) open
 source project.
 
-It implements the (Service Binding Specification for Kubernetes v1.0)[https://servicebinding.io/spec/core/1.0.0/].
+It implements the [Service Binding Specification for Kubernetes v1.0](https://servicebinding.io/spec/core/1.0.0/).
 
 This implementation provides support for:
 
