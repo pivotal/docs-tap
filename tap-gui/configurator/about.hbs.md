@@ -17,7 +17,7 @@ please refer to [Backstage documentation](https://backstage.io/docs/overview/wha
 
 The operator may choose to use the pre-built Tanzu Developer Portal that includes all the core
 functionality of Backstage as well as all the integrations with the Tanzu Application Platform.
-Alternatively, the operator may choose to create as many Customized Portals as needed by leveraging
+Alternatively, the operator may choose to make as many customizations to the Tanzu Developer Portal as needed by leveraging
 the Configurator tool.
 
 Customized Portal can include additional portal functionality that we shall refer to as "plugins".
@@ -54,7 +54,7 @@ Learn more about:
 
 - [Tanzu Developer Portal Configurator Concepts](concepts.hbs.md)
 - [Building your Customized Tanzu Developer Portal with the Configurator](building.hbs.md)
-- [Running](running.hbs.md)
+- [Running your Customized Tanzu Developer Portal](running.hbs.md)
 - [External-plugins](external-plugins.hbs.md)
 - [Surface API reference](surface-api-reference.hbs.md)
 - [Troubleshooting](troubleshooting.hbs.md)
