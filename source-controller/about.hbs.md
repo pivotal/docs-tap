@@ -1,4 +1,4 @@
-# Source Controller
+# Overview of Source Controller
 
 Tanzu Source Controller provides a standard interface for artifact acquisition.
 It supports two resource types:

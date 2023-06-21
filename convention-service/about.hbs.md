@@ -1,4 +1,4 @@
-# Convention Service 
+# Overview of Convention Service
 
 >**Caution:** This component is being deprecated in favor of [Cartographer Conventions](../cartographer-conventions/about.md).
 
