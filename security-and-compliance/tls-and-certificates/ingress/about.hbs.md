@@ -1,5 +1,7 @@
 # Ingress certificates
 
+This topic tells you how to secure exposes ingress endpoints with TLS.
+
 Tanzu Application Platform exposes ingress endpoints so that:
 
 - Platform operators and application developers can interact with the platform.

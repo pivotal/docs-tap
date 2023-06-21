@@ -1,4 +1,6 @@
-# TLS and certificates
+# TLS and certificates overview
+
+This topic provides you with information about certificate requirements for ingress and egress communication in Tanzu Application Platform (commonly known as TAP).
 
 Ingress communication uses TLS by default. Platform operators can control
 certificates and how they are used by components. For more information, see
