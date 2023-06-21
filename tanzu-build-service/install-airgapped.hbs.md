@@ -1,6 +1,6 @@
 # Install Tanzu Build Service on an air-gapped environment
 
-This topic describes how to install Tanzu Build Service on a Kubernetes cluster
+This topic tells you how to install Tanzu Build Service on a Kubernetes cluster
 and registry that are air-gapped from external traffic.
 
 ## Before you begin
