@@ -1,4 +1,4 @@
-# Crossplane
+# Overview of Crossplane
 
 Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
 foundation of Kubernetes.
