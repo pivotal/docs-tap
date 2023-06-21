@@ -42,9 +42,9 @@ To set up the External Secrets Operator integration with HashiCorp Vault:
 
 1. Create a `SecretStore` resource referencing the `vault-token` secret. For example:
 
-    >**Caution** When creating the `SecretStore`, ensure that you match the Vault KV secret engine version.
-    This is either `v1` or `v2`. The default is `v2`. For more information, see
-    Vault [KV Secrets Engine documentation](https://developer.hashicorp.com/vault/docs/secrets/kv).
+    > **Caution** When creating the `SecretStore`, ensure that you match the Vault KV secret engine version.
+    > This is either `v1` or `v2`. The default is `v2`. For more information, see
+    > Vault [KV Secrets Engine documentation](https://developer.hashicorp.com/vault/docs/secrets/kv).
 
     ```console
     VAULT_SERVER="http://my.vault.server:8200"
