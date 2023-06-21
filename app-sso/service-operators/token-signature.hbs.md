@@ -195,10 +195,9 @@ You can generate an RSA key yourself using OpenSSL. Here are the steps:
 
    > More [OpenSSL key generation examples here](https://www.openssl.org/docs/man1.1.1/man1/openssl-genpkey.html).
 
-2. Create a Secret resource by using the key generated earlier in this procedure:
+2. Create a secret resource by using the key generated earlier in this procedure:
 
    ```shell
-   # Create Secret resource
    kubectl create secret generic my-key \
     --from-file=key.pem=privatekey.pem \
     --from-file=pub.pem=publickey.pem \
