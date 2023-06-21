@@ -65,7 +65,7 @@ The expected output is similar to the following:
   redis-unmanaged       Redis by Bitnami
 ```
 
-Here the output shows six classes. These are the six Bitnami services available in the Bitnami Services package.
+Here the output shows six classes. These are the six services available in the Bitnami Services package.
 You can see from the names and descriptions that they are all _unmanaged_ services.
 This implies that the resulting service instances run on cluster, that is, they are not a managed
 service running in the cloud.
