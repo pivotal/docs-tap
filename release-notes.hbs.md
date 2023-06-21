@@ -339,6 +339,10 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
 
+### <a id='1-6-0-scc-deprecations'></a> Supply Chain Choreographer
+
+- The `git_implementation` field is no longer used. The `go-git` implementation will be assumed now that `libgit2` is no longer supported.
+
 ### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 
 - The `docker` field and related sub-fields used in SCST -

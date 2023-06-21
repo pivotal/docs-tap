@@ -31,7 +31,6 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
-- `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### <a id='source-url-image-provider'></a> image-provider
 
@@ -89,7 +88,6 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
-- `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### <a id='source-test-source-tester'></a> source-tester
 
@@ -155,7 +153,6 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
-- `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### <a id='source-test-scan-source-tester'></a> source-tester
 
@@ -363,7 +360,6 @@ Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
-- `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### <a id='source-package-image-provider'></a> image-provider
 
