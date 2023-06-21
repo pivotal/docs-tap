@@ -1,8 +1,8 @@
 # NIST 800-53 Moderate Assessment
 
-The following table provides an assessment of Tanzu Application Platform against the
-NIST SP 800-53 Revision 4 Moderate baseline. This translates to FISMA Moderate and CNSSI 1253 Mod/Mod/Mod for
-use in US Federal systems accreditation. The Moderate baseline applies to only technical controls.
+This topic provides you with an assessment of Tanzu Application Platform (commonly known as TAP) against the NIST SP 800-53 Revision 4 Moderate baseline  controls. This translates to FISMA Moderate and CNSSI 1253 Mod/Mod/Mod for use in US Federal systems accreditation.
+
+The Moderate baseline applies to only technical controls.
 Organizational policy controls, physical security, media policies, and similar
 are excluded as they are not applicable to Tanzu Application Platform. These excluded
 controls are still relevant to the system at large and must be inherited from existing accreditations
