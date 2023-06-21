@@ -1,6 +1,8 @@
-# Service Bindings for Kubernetes
+# Overview of Service Bindings
 
-Service Bindings for Kubernetes implements the Service Binding Specification for Kubernetes v1.0.
+This topic tells you about using Service Bindings in Tanzu Application Platform (commonly know as TAP).
+
+## Supported service binding specifications
 
 Service Bindings for Kubernetes is an open-source product. For more information, see the [Service Binding for Kubernetes readme](https://github.com/servicebinding/spec) and the [Service Binding for Kubernetes community website](https://servicebinding.io/).
 
