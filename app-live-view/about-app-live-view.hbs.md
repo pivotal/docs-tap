@@ -1,4 +1,4 @@
-# Application Live View
+# Overview of Application Live View
 
 Application Live View is a lightweight insights and troubleshooting tool for app developers and
 app operators that helps you to look inside running applications.
