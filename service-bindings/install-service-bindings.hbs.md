@@ -1,7 +1,7 @@
 # Install Service Bindings
 
-This document describes how to install Service Bindings
-from the Tanzu Application Platform package repository.
+This topic tells you how to install Service Bindings
+from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > Service Bindings.
@@ -12,7 +12,7 @@ from the Tanzu Application Platform package repository.
 
 Before installing Service Bindings:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform (commonly knows as TAP). For more information, see [Prerequisites](../prerequisites.md).
 
 ## <a id='install-service-bindings'></a> Install Service Bindings
 
@@ -72,7 +72,7 @@ Use the following procedure to install Service Bindings:
     USEFUL-ERROR-MESSAGE:
     ```
 
-1.  Run the following command:
+1. Run the following command:
 
     ```console
     kubectl get pods -n service-bindings
