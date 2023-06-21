@@ -14,7 +14,7 @@ There is one exception to this rule, which is that by default, users with the `a
 user role are authorized to create claims for the provisioner-based classes that are part of the
 [Bitnami Services](../../bitnami-services/about.hbs.md) package.
 For how-to deactivate this default behavior, see
-[Revoke default authorization for claiming from the Bitnami services classes](#bitnami-services)
+[Revoke default authorization for claiming from the Bitnami Services classes](#bitnami-services)
 later in this topic.
 
 Access control is implemented through standard Kubernetes Role-Based Access Control (RBAC) with
@@ -106,7 +106,7 @@ The YAML also creates a `RoleBinding` in the `dev-team-1` namespace that binds t
 The result is that `alice@example.com` is now authorized to create claims for the
 `bigcorp-rabbitmq` class in the `dev-team-1` namespace on the cluster.
 
-## <a id="bitnami-services"></a> Revoke default authorization for claiming from the Bitnami services classes
+## <a id="bitnami-services"></a> Revoke default authorization for claiming from the Bitnami Services classes
 
 By default, users with the `app-operator` user role are authorized to create claims for the
 provisioner-based classes which are part of the [Bitnami Services](../../bitnami-services/about.hbs.md) package.
