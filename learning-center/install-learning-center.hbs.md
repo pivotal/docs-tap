@@ -23,7 +23,7 @@ Before installing Learning Center:
 
 - Any ingress routes created use the default ingress class if you have multiple ingress class types available and you must override which is used.
 
-### <a id='install'></a>Install
+## <a id='install'></a>Install Learning Center
 
 To install Learning Center:
 
@@ -131,7 +131,7 @@ If you have multiple ingress class types available, and you need to override whi
 
     The pod for the operator should be marked as running.
 
-## <a id='install-portal-proc'></a> Procedure to install the Self-Guided Tour Training Portal and Workshop
+## <a id='install-portal-proc'></a> Install the Self-Guided Tour Training Portal and Workshop
 
 To install the Self-Guided Tour Training Portal and Workshop:
 
