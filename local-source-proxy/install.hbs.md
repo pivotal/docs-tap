@@ -92,7 +92,7 @@ source-controller to pull source artifacts for deployment.
 You can configure specific Local Source Proxy resources using the following properties in
 `tap-values.yaml`:
 
-### Override default RBAC permissions to access Proxy service
+### <a id="override-dflt-rbac"></a> Override default RBAC permissions to access the proxy service
 
 When this section is not provided, the default behavior is to employ the system:authenticated group
 as the chosen option.
@@ -114,7 +114,7 @@ To grant access for a specific user or group to push images through Local Source
   `apiGroup` associated with the specified kind.
 
 For more information about RoleBinding, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-binding-examples).
-These settings enable you to customize RBAC permissions for accessing the Proxy service according to
+These settings enable you to customize RBAC permissions for accessing the proxy service according to
 your specific user or group requirements.
 
 > **Important** If you define the `rbac_subjects_for_proxy_access` configuration in the
