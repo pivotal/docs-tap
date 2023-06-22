@@ -6,23 +6,27 @@ This topic describes how you can deploy and configure your Kubernetes cluster fo
 
 The installation creates the following in your Kubernetes cluster:
 
-- Two components — an API back end and a database.
-  Each component includes:
-    - service
-    - deployment
-    - replicaset
-    - Pod
-- Persistent volume claim
-- External IP address (based on a deployment configuration set to use `LoadBalancer`).
-- A Kubernetes secret to allow pulling SCST - Store images from a registry.
+- Four components:
+    - metadata-store API backend 
+    - database
+    - AMR API backend (If AMR is deployed, see [Deploying AMR](#amr))
+    - AMR CloudEvent Handler (If AMR is deployed, see [Deploying AMR](#amr))
+- Services for each of the four components, named:
+    - `metadata-store-app`
+    - `metadata-store-db`
+    - `amr-persister` (If AMR is deployed, see [Deploying AMR](#amr))
+    - `artifact-metadata-repository-app` (If AMR is deployed, see [Deploying AMR](#amr))
 - A namespace called `metadata-store`.
-- A service account with read-write privileges named `metadata-store-read-write-client`, and a corresponding secret for the service account. It's bound to a ClusterRole named `metadata-store-read-write`.
-- A read-only ClusterRole named `metadata-store-read-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
+- Persistent volume claim `postgres-db-pv-claim` in the `metadata-store` namespace.
+- A Kubernetes secret in the namespace tap is installed to allow pulling SCST - Store images from a registry.
+- Two ClusterRoles:
+    - `metadata-store-read-write-client` is bound to a service account by default, giving the service account read and write privileges
+    - `metadata-store-read-only` isn't bound to any service accounts, but is available for the user to bound it if needed. See [Service Accounts](#service-accounts).
 - (Optional) An HTTPProxy object for ingress support.
 
 ## <a id='configuration'></a> Deployment configuration
 
-All configurations are nested inside of `metadata_store` in your tap values deployment YAML.
+All configurations are nested inside of `metadata_store` in your tap values deployment YAML. For AMR specific configurations, they are nested under `amr` inside of the `metadata_store` section.
 
 ### Supported Network Configurations
 
@@ -35,30 +39,58 @@ The following connection methods are recommended based on Tanzu Application Plat
 
 For a production environment, VMware recommends that you install SCST - Store with ingress enabled.
 
+#### <a id='amr'></a>Deploying AMR
+>**Note** The AMR is an alpha feature and should not be used in production.
+
+By default, AMR is not deployed with the Store. There is an `amr` section inside `metadata-store`. The `deploy` property under `amr` must be set to `true` to deploy AMR.
+
+```yaml
+metadata_store:
+  amr:
+    deploy: true
+```
+
+>**Note** The `deploy` property expects a Boolean value of `true` or `false`, not a string value.
+
 #### <a id='appserv-type'></a>App service type
+This configuration is available under two places:
+- `metadata_store` for configuring the app service type of the metadata store
+- `amr` within the `metadata_store` section, for configuring the app service type of the AMR
 
 Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. The
 `app_service_type` is set to `LoadBalancer` by default. If your environment does
-not support `LoadBalancer`, and you want to use `ClusterIP`, configure the
-`app_service_type` property in your deployment YAML:
+not support `LoadBalancer`, configure the
+`app_service_type` property to use `ClusterIP` in your deployment YAML:
 
+For the metadata-store:
 ```yaml
-app_service_type: "ClusterIP"
+metadata_store:
+  app_service_type: "ClusterIP"
 ```
-
+For AMR:
+```yaml
+metadata_store:
+  amr:
+    deploy: true
+    app_service_type: "ClusterIP"
+```
 If you set the `ingress_enabled` to `"true"`, VMware recommends setting
-the `app_service_type` property to `"ClusterIP"`.
+the `app_service_type` property to `"ClusterIP"`. 
+
+>**Note** The `app_service_type` is set to `ClusterIP` by default when shared ingress is enabled
 
 #### <a id='ingress'></a>Ingress support
 
 SCST - Store's values file allows you to enable ingress support and to configure
 a custom domain name to use Contour to provide external access to SCST - Store's
-API. For example:
+API. These ingress configurations are shared for the metadata store and AMR, enabling ingress for store will enable it for both. 
+For example:
 
 ```yaml
-ingress_enabled: "true"
-ingress_domain: "example.com"
-app_service_type: "ClusterIP" # recommended setting
+metadata_store: 
+  ingress_enabled: "true"
+  ingress_domain: "example.com"
+  app_service_type: "ClusterIP" # recommended setting when ingress is enabled
 ```
 
 An HTTPProxy object is installed with `metadata-store.example.com` as the
@@ -86,10 +118,20 @@ See [Use external postgres database](use-external-database.hbs.md).
 #### <a id='cust-data-pass'></a>Custom database password
 
 By default, a database password is generated upon deployment. To configure a
-custom password, use the `db_password` property in the deployment YAML.
+custom password, use the `db_password` property in the deployment YAML. 
+The `db_password` property is available in two place, one under `metadata_store` and one under `amr` inside `metadata_store`.
 
+To configure a custom database password for the store:
 ```yaml
-db_password: "PASSWORD-0123"
+metadata_store:
+  db_password: "PASSWORD-0123"
+```
+To configure a custom database password for AMR:
+```yaml
+metadata_store:
+  amr:
+    deploy: true
+    db_password: "PASSWORD-0123"
 ```
 
 Where `PASSWORD-0123` is the same password used between deployments.
