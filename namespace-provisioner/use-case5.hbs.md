@@ -1,10 +1,12 @@
 # Install multiple scanners in the developer namespace
 
-This topic shows how you can automate multiple scanner installations in the developer namespace. By default, Grype scanner is installed Out-of-the-box in all namespaces managed by Namespace Provisioner.
+This topic tells you how to automate multiple scanner installations in the developer namespace. 
+
+Grype scanner is installed by default in all namespaces managed by Namespace Provisioner.
 
 The following step describe how to install Snyk scanner and Grype in the developer namespace and use both together in the supply chain. Grype is used for Source scans and Snyk is used for Image scans.
 
-To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.md).
+For information about, how to create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
 1. Create a secret in the `tap-install` namespace or any namespace of your preference that contains the Snyk token in the YAML format **(must have .yaml or .yml in the key)** as shown below:
 

@@ -1,8 +1,10 @@
 # Customize Installation of Namespace Provisioner
 
-Namespace Provisioner is packaged and distributed using a set of Carvel tools.
+This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Manager (commonly known as TAP).
 
-The Namespace Provisioner package is installed as part of all the standard installation profiles except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
+Namespace Provisioner is packaged and distributed using a set of Carvel tools.
+The Namespace Provisioner package is installed as part of all the standard installation profiles
+except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
 
 The default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster. For a list of what resources are created for different profile and supply chain combinations, see the [Default Resources](reference.md#default-resource) mapping table.
 

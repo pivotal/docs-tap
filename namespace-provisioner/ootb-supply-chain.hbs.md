@@ -1,12 +1,13 @@
-# Setup for OOTB Supply Chains
+# Set up for Out of the Box Supply Chains
 
-This topic describes how to set up Namespace Provisioner for OOTB supply chains.
+This topic tells you how to set up Namespace Provisioner to automate the creation of resources
+that are needed for workloads to run on Out of the Box Supply Chain Basic and Out of the Box Supply Chain with Testing.
 
-## Basic Supply Chain
+## Out of the Box Supply Chain Basic
 
 To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.md).
 
-Namespace Provisioner creates a set of [default resources](reference.md#default-resources) in all managed namespaces which are sufficient to run a workload through the Basic supply chain.
+Namespace Provisioner creates a set of [default resources](reference.hbs.md#default-resources) in all managed namespaces which are sufficient to run a workload through the Out of the Box Supply Chain Basic.
 
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
@@ -44,9 +45,9 @@ Using workload yaml
           url: https://github.com/sample-accelerators/tanzu-java-web-app
     ```
 
-## Testing Supply Chain
+## Out of the Box Supply Chain with Testing
 
-The Testing supply chain adds the **source-tester** step in the supply chain which tests the source code pulled by the supply chain. For source code testing to work in the supply chain, a Tekton Pipeline must exist in the same namespace as the Workload so that, at the right moment, the Tekton PipelineRun object that is created to run the tests can reference the developer-provided Pipeline.
+The Out of the Box Supply Chain with Testing adds the **source-tester** step in the supply chain which tests the source code pulled by the supply chain. For source code testing to work in the supply chain, a Tekton Pipeline must exist in the same namespace as the Workload so that, at the right moment, the Tekton PipelineRun object that is created to run the tests can reference the developer-provided Pipeline.
 
 By default, the workload is matched to the corresponding pipeline to run using labels. Pipelines must have the label `apps.tanzu.vmware.com/pipeline: test` at a minimum. This provides a default match if no other labels are provided, but you can add additional labels for granularity. The pipeline expects two parameters:
 
@@ -90,7 +91,7 @@ spec:
 
 To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on a Testing supply chain. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.md).
+Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on an Out of the Box Supply Chain with Testing. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 Add the following configuration to your TAP values to add [this sample java pipeline](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-supplychain/tekton-pipeline-java.yaml) to your developer namespace:
 
@@ -141,7 +142,6 @@ The sample pipeline resource has the following ytt logic which creates this pipe
 
 After adding the additional source to your TAP values, you can see the `tekton-pipeline-java` created in your developer namespace. Run the following command to see if the pipeline is created correctly.
 
-
 ```shell
 kubectl get pipeline.tekton.dev -n YOUR-NEW-DEVELOPER-NAMESPACE
 ```
@@ -184,26 +184,26 @@ Using workload yaml
           url: https://github.com/sample-accelerators/tanzu-java-web-app
     ```
 
-## <a id='test-scan'></a>Testing & Scanning Supply Chain
+## <a id='test-scan'></a>Out of the Box Supply Chain with Testing and Scanning
 
-The Testing Scanning supply chain adds the `source-tester`, `source-scanner`, and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain and scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, the following additional resources must exist in the same namespace as the workload.
+The Out of the Box Supply Chain with Testing and Scanning adds the `source-tester`, `source-scanner`, and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain and scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, the following additional resources must exist in the same namespace as the workload.
 
 - `Pipeline:` defines how to run the tests on the source code pulled by the supply chain and which image to use that has the tools to run those tests.
-- `ScanTemplate`: defines how to run a scan, you can change how the scan is run, either for images or source code. 
+- `ScanTemplate`: defines how to run a scan, you can change how the scan is run, either for images or source code.
 
   - A ScanTemplate defines the PodTemplateSpec used by a Job to run a particular scan (image or source). When the supply chain initiates an ImageScan or SourceScan, they reference these templates which must be in the same namespace as the workload.
 
   - Although you can customize the templates, VMware recommends that you follow what is provided in the installation of the `grype.scanning.apps.tanzu.vmware.com` package. This is automatically created in all the namespaces managed by Namespace Provisioner. For more information, see [About Source and Image Scans](../scst-scan/explanation.hbs.md#about-src-and-image-scans).
 
 - `ScanPolicy`: define how to evaluate whether the artifacts scanned are compliant. For example, allowing one to be either very strict, or restrictive about particular vulnerabilities found.
-  - When an ImageScan or a SourceScan is created to run a scan, they reference a policy, the policy name must match the following [sample ScanPolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-scanning-supplychain/scanpolicy-grype.yaml). 
+  - When an ImageScan or a SourceScan is created to run a scan, they reference a policy, the policy name must match the following [sample ScanPolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-scanning-supplychain/scanpolicy-grype.yaml).
   - See [Writing Policy Templates](../scst-scan/policies.hbs.md#writing-a-policy-template).
 
 ### Add a Java Tekton Pipeline & Grype Scan Policy to your developer namespace
 
 To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on a Testing & Scanning supply chain. Create a sample Pipeline and a ScanPolicy in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.md) for more details.
+Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on an Out of the Box Supply Chain with Testing and Scanning. Create a sample Pipeline and a ScanPolicy in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) for more details.
 
 Add the following configuration to your TAP values to add the [sample java pipeline and grype scan policy ](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain)to your developer namespace:
 

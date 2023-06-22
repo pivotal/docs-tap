@@ -16,7 +16,7 @@ docs.vmware.com is built.
       - [View package config settings](install-online/view-package-config.hbs.md)
       - [Install individual packages](install-online/components.hbs.md)
       - [Set up namespaces](install-online/set-up-namespaces.hbs.md)
-        - [Legacy namespace setup](namespace-provisioner/legacy-manual-namespace-setup.hbs.md)
+        - [Provision namespaces manually](namespace-provisioner/legacy-manual-namespace-setup.hbs.md)
       - [Install Tanzu Developer Tools for your VS Code](install-online/vscode-install.hbs.md)
   - [Air-gapped install](install-offline/intro.hbs.md)
       - [Install overview](install-offline/intro.hbs.md)

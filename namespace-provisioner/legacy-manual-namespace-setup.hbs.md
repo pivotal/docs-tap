@@ -1,4 +1,6 @@
-# Legacy manual developer namespace setup instructions
+# Provision namespaces manually
+
+This topic tells you how to provision namespaces manually in Tanzu Application Platform (commonly known as TAP).
 
 Using [Namespace Provisioner](about.hbs.md) is the recommended best practice for setting up
 developer namespaces on Tanzu Application Platform.
