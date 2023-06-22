@@ -1,6 +1,6 @@
 # Default resources
 
-This topic describes the resources that are templated in the default-resources secret for the
+This topic tells you about the resources that are templated in the default-resources secret for the
 different installation profile and supply chain value combinations.
 
 Namespace Provisioner is installed as part of the standard installation profile. The default set of

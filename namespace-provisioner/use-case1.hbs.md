@@ -1,8 +1,8 @@
 # Multiple Tekton pipelines and Scan policies in the same namespace
 
-Refer to the [Provision Developer Namespaces](provision-developer-ns.hbs.md) section to create a developer namespace.
+This topic tells you how to configure developer namespaces to include more than one Tekton pipelines and ScanPolices in Tanzu Application Platform (commonly known as TAP).
 
-Configure developer namespace to include more than one Tekton pipelines and ScanPolices.
+For information about, how to create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
 This [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-polyglot) has a Java, Python and a Golang testing pipeline as well as a Strict and a Lax grype ScanPolicy.
 

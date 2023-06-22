@@ -1,6 +1,6 @@
 # Customize OOTB default resources
 
-This topic describes how to deactivate Grype and how to configure the `default` service account to
+This topic tells you how to deactivate Grype and how to configure the `default` service account to
 work with private Git repositories.
 
 ## <a id='deactivate-grype'></a>Deactivate Grype install
