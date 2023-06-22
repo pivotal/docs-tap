@@ -41,8 +41,6 @@ To install Out of the Box Supply Chain Basic:
     registry.server                        Name of the registry server where application images should be pushed to
                                            (required).
 
-    git_implementation                     Determines which git client library to use. The only valid choice is
-                                           go-git.
 
     gitops.server_address                  Default server address to be used for forming Git URLs for pushing
                                            Kubernetes configuration produced by the supply chain. This must

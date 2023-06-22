@@ -135,7 +135,6 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      namespace: <build-cluster-ns>
    spec:
      url: # GitOps repo URL
-     gitImplementation: go-git
      ignore: |
        !.git
      interval: 30s
