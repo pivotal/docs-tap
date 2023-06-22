@@ -119,7 +119,7 @@ use SSH.
 >**Important** To use the pull request feature, you must use
 HTTP or HTTPS authentication with an access token.
 
-1. To provide the credentials for any Git operations with SHH,
+1. To provide the credentials for any Git operations with SSH,
 create the Kubernetes secret as follows:
 
     ```yaml
@@ -140,7 +140,7 @@ create the Kubernetes secret as follows:
 1. Generate a new SSH keypair: `identity` and `identity.pub`.
 
     ```console
-    ssh-keygen -t ecdsa -b 521 -C "" -f "identity" -N ""
+    ssh-keygen -t ecdsa -b 512 -C "" -f "identity" -N ""
     ```
 
 1. Go to your Git provider and add the `identity.pub` as a deployment key for

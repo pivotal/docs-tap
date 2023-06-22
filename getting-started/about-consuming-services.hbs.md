@@ -1,8 +1,11 @@
-# Consume services on Tanzu Application Platform
+# About consuming services on Tanzu Application Platform
+
+This topic describes the key concepts and terms you need to know about consuming services on
+Tanzu Application Platform (commonly known as TAP).
 
 As part of Tanzu Application Platform, you can work with backing services such
-as RabbitMQ, PostgreSQL, and MySQL among others. Binding application workloads
-to service instances is the most common use of services.
+as RabbitMQ, PostgreSQL, and MySQL among others.
+The most common use of services is binding an application workload to a service instance.
 
 ## <a id="stk-concepts"></a> Key concepts
 
@@ -14,7 +17,7 @@ provides a brief overview of each of these key concepts.
 
 A **service instance** is a logical grouping of one or more Kubernetes resources
 that together expose a known capability through a well-defined interface. For
-example, a theoretical "MySQL" service instance might consist of a
+example, a theoretical MySQL service instance might consist of a
 `MySQLDatabase` and a `MySQLUser` resource. When considering compatibility of
 service instances for Tanzu Application Platform, one of the resources of a
 service instance must adhere to the [Service Binding for
@@ -23,8 +26,8 @@ Kubernetes](https://servicebinding.io/) specification.
 ### <a id="service-bindings"></a>Service bindings
 
 **Service binding** refers to a mechanism in which connectivity information,
-such as service instance credentials and connectivity information (host, port,
-and so on), are automatically communicated to application workloads. Tanzu
+such as service instance credentials, and connectivity information, such as host and port,
+are automatically communicated to application workloads. Tanzu
 Application Platform uses a standard named [Service Binding for
 Kubernetes](https://servicebinding.io/) to implement this mechanism. See this
 standard to fully understand the services aspect of Tanzu Application Platform.
@@ -34,7 +37,7 @@ standard to fully understand the services aspect of Tanzu Application Platform.
 **Resource claims** are inspired in part by Persistent Volume Claims. For more
 information, see the [Kubernetes
 documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
-Resource claims provide a mechanism for users to "claim" service instances on a
+Resource claims provide a mechanism for users to claim service instances on a
 cluster, while also decoupling the life cycle of application workloads and
 service instances.
 
@@ -43,7 +46,7 @@ service instances.
 The following list of Kubernetes operators expose APIs that integrate well with
 Tanzu Application Platform:
 
-1. [RabbitMQ Cluster Operator for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
+1. [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 2. [VMware SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/index.html).
 3. [VMware SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/index.html).
 

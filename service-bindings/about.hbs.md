@@ -1,11 +1,13 @@
-# Service Bindings
+# Overview of Service Bindings
 
-Service Bindings is a Tanzu Application Platform packages.
+This topic tells you about using Service Bindings in Tanzu Application Platform (commonly know as TAP).
+
+## Supported service binding specifications
 
 Service Bindings packages the [Service Binding for Kubernetes](https://servicebinding.io/) open
 source project.
 
-It implements the (Service Binding Specification for Kubernetes v1.0)[https://servicebinding.io/spec/core/1.0.0/].
+It implements the [Service Binding Specification for Kubernetes v1.0](https://servicebinding.io/spec/core/1.0.0/).
 
 This implementation provides support for:
 

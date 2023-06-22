@@ -10,7 +10,7 @@ supply chain to sign and verify your image builds.
 
 ## <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign and verify your image builds
 
-1. Use cosign to configure Tanzu Build Service to sign your container image builds. For instructions, see [Configure Tanzu Build Service to sign your image builds](../tanzu-build-service/tbs-image-signing.md).
+1. Use Cosign to configure Tanzu Build Service to sign your container image builds. For instructions, see [Configure Tanzu Build Service to sign your image builds](../tanzu-build-service/tbs-image-signing.md).
 
 2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
@@ -45,7 +45,7 @@ supply chain to sign and verify your image builds.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
     - Add any unsigned image that must run in your namespace to the previous policy.
-      For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
+      For example, if you add a Tekton pipeline that runs a Gradle image for testing, you need
       to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` in the preceding code.
 
     - Replace `registry.example.org/myproject/*` with your target registry for your

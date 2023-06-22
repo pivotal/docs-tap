@@ -8,8 +8,9 @@ You can configure this globally for all services, or on a per-service basis.
 
 Before you integrate Bitnami Services with a private registry or VAC, you must:
 
-- Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`
-  - Some VAC instances append the operating system to the repository URL, in which case you'll need the URL in the format `oci://REPOSITORY-NAME/charts/centos-7`, for example
+- Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`.
+  Some VAC instances append the operating system to the repository URL, in which case, use
+  the URL format `oci://REPOSITORY-NAME/charts/centos-7`.
 - Have the credentials to access the private registry.
 
 For how to obtain both of these prerequisites for VAC integration, see
@@ -17,8 +18,10 @@ For how to obtain both of these prerequisites for VAC integration, see
 
 ## <a id="procedure"></a>Procedure
 
-1. Create two Kubernetes `Secrets`, one with credentials to pull Helm charts and the other with credentials to pull images.
-The following examples put these in the `default` namespace, but you can choose to place them in any namespace you prefer.
+1. Create two Kubernetes `Secrets`, one with credentials to pull Helm charts and the other with
+   credentials to pull images.
+   The following examples put these in the `default` namespace, but you can choose to place them in any
+   namespace you prefer.
 
     ```console
     $ kubectl create secret generic vac-chart-pull \
@@ -43,7 +46,7 @@ The following examples put these in the `default` namespace, but you can choose 
             bitnami_services:
               globals:
                 helm_chart:
-                  repo: oci://REPOSITORY-NAME/charts # update this
+                  repo: oci://REPOSITORY-NAME/charts # Update this value.
                   chart_pull_secret_ref:
                     name: vac-chart-pull
                     namespace: default
@@ -64,9 +67,9 @@ The following examples put these in the `default` namespace, but you can choose 
 
             ```yaml
             bitnami_services:
-              mysql: # choose from 'mysql', 'postgresql', 'rabbitmq', 'redis', 'mongodb' and 'kafka'
+              mysql: # Choose from mysql, postgresql, rabbitmq, redis, mongodb, and kafka.
                 helm_chart:
-                  repo: oci://REPOSITORY-NAME/charts # update this
+                  repo: oci://REPOSITORY-NAME/charts # Update this value.
                   chart_pull_secret_ref:
                     name: vac-chart-pull
                     namespace: default
@@ -81,17 +84,16 @@ The following examples put these in the `default` namespace, but you can choose 
             tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
             ```
 
-1. Configure versions for charts
-Each service has a `helm_chart.version` value, for example:
+1. If your VAC instance does not have the default version of a given chart or you want to use a
+   different version, configure the version for the chart by updating the `helm_chart.version` value
+   for the service. For example:
 
-```yaml
-bitnami_services:
-  mysql: # choose from 'mysql', 'postgresql', 'rabbitmq', 'redis', 'mongodb' and 'kafka'
-    helm_chart:
-      version: <version>
-```
-
-It's possible that your VAC instance may not have the default version of a given chart, in which case you will need to configure the version value specifically here.
+    ```yaml
+    bitnami_services:
+      mysql: # Choose from mysql, postgresql, rabbitmq, redis, mongodb, and kafka.
+        helm_chart:
+          version: VERSION
+    ```
 
 ## Known issue
 

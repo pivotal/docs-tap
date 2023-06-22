@@ -2,7 +2,7 @@
 
 In this Services Toolkit tutorial you learn how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
 can set up a new, self-serve, and customized service for Tanzu Application Platform (commonly known as TAP).
-The example uses Tanzu RabbitMQ the service, but the steps and learnings can apply to almost any
+The example uses VMware RabbitMQ for Kubernetes, but the steps and learnings can apply to almost any
 other service.
 
 ## <a id="about"></a> About this tutorial
@@ -10,7 +10,7 @@ other service.
 **Target user role**:       Service Operator<br />
 **Complexity**:             Advanced<br />
 **Estimated time**:         60 minutes<br />
-**Topics covered**:         Dynamic Provisioning, Crossplane, Tanzu RabbitMQ Cluster Kubernetes
+**Topics covered**:         Dynamic Provisioning, Crossplane, VMware RabbitMQ for Kubernetes
 operator<br />
 **Learning outcomes**:      Ability to offer new, on-demand, and customized services in your
 Tanzu Application Platform clusters<br />
@@ -27,7 +27,7 @@ The tutorial is centered around the following hypothetical, but somewhat realist
 
 You work at BigCorp and are tasked to provide an on-demand, self-serve RabbitMQ service for BigCorp's
 development teams who are working with Tanzu Application Platform.
-You have already reviewed the pre-installed offering for RabbitMQ, but have discovered
+You have already reviewed the RabbitMQ offering that is available with Bitnami Services, but have discovered
 that while it is an excellent service for testing and for quickly getting started,
 it is not quite suitable for BigCorp's stringent and specific needs.
 
@@ -214,7 +214,7 @@ If successful, the `xrabbitmqclusters.messaging.bigcorp.org` is listed with `EST
 
 You might see some other XRDs listed as well. These are the `*.bitnami.*.tanzu.vmware.com` XRDs.
 These are part of the `bitnami.services.tanzu.vmware.com` package with Tanzu Application Platform and
-serve as the basis of the pre-installed services.
+serve as the basis of the Bitnami Services.
 You can ignore these other XRDs for now, but if you want to see how they are used in practice, see
 [Claim services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md) and
 [Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md)
@@ -440,7 +440,7 @@ To visualize how these pieces fit together, see the diagram in the [Concepts](#c
 The `.spec.resources` section is where you specify the managed resources to be created.
 Managed resources are tied to Crossplane's `Providers`, with each `Provider` defining a set of managed
 resources which can then be used in compositions.
-Tanzu Application Platform includes two pre-installed `Providers`:
+Tanzu Application Platform includes two `Providers` with the Crossplane package:
 [provider-helm](https://github.com/crossplane-contrib/provider-helm) and
 [provider-kubernetes](https://github.com/crossplane-contrib/provider-kubernetes).
 This makes a `Release` managed resource available, which is used to manage Helm

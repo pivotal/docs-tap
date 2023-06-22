@@ -14,73 +14,74 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 ## <a id="create-workload"></a>Create a workload from Git
 
-To create a workload from Git through https, follow these steps:
+To create a workload from Git through HTTPS, follow these steps:
 
-1. Create a secret in your developer namespace with the caFile that matches the `gitops_ssh_secret` name in tap_values:
+1. Create a secret in your developer namespace with the `caFile` that matches the `gitops_ssh_secret`
+   name in the `tap_values.yaml` file:
 
-   ```console
-   kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
-   ```
+    ```console
+    kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
+    ```
 
 2. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA) certificate, create a file called `git-credentials.yaml`. For example:
 
-   ```yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: git-ca
-     # namespace: default
-   type: Opaque
-   stringData:
-     username: USERNAME
-     password: PASSWORD
-     caFile: |
-       CADATA
-   ```
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: git-ca
+      # namespace: default
+    type: Opaque
+    stringData:
+      username: USERNAME
+      password: PASSWORD
+      caFile: |
+        CADATA
+    ```
 
-   Where:
+    Where:
 
-   - `USERNAME` is the username.
-   - `PASSWORD` is the password.
-   - `CADATA` is the PEM-encoded CA certificate for the Git repository.
+    - `USERNAME` is the user name.
+    - `PASSWORD` is the password.
+    - `CADATA` is the PEM-encoded CA certificate for the Git repository.
 
 3. To pass in a custom settings.xml for Java, create a file called `settings-xml.yaml`. For example:
 
-   ```yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: settings-xml
-   type: service.binding/maven
-   stringData:
-     type: maven
-     provider: sample
-     settings.xml: |
-       <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-           <mirrors>
-               <mirror>
-                   <id>reposilite</id>
-                   <name>Tanzu seal Internal Repo</name>
-                   <url>https://reposilite.tap-trust.cf-app.com/releases</url>
-                   <mirrorOf>*</mirrorOf>
-               </mirror>
-           </mirrors>
-           <servers>
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: settings-xml
+    type: service.binding/maven
+    stringData:
+      type: maven
+      provider: sample
+      settings.xml: |
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <mirrors>
+                <mirror>
+                    <id>reposilite</id>
+                    <name>Tanzu seal Internal Repo</name>
+                    <url>https://reposilite.tap-trust.cf-app.com/releases</url>
+                    <mirrorOf>*</mirrorOf>
+                </mirror>
+            </mirrors>
+            <servers>
                 <server>
-                   <id>reposilite</id>
-                   <username>USERNAME</username>
-                   <password>PASSWORD</password>
+                    <id>reposilite</id>
+                    <username>USERNAME</username>
+                    <password>PASSWORD</password>
                 </server>
-           </servers>
-       </settings>
-   ```
+            </servers>
+        </settings>
+    ```
 
 4. Apply the file:
 
-   ```console
-   kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
-   ```
+    ```console
+    kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
+    ```
 
 ## <a id="create-basic-wkload"></a>Create a basic supply chain workload
 
@@ -127,7 +128,7 @@ spec:
               cd `mktemp -d`
 ```
 
-Where `MY-REGISTRY` is your own container image registry. Relocate all the images given in the pipeline YAML to your private container registry.
+Where `MY-REGISTRY` is your container image registry. Relocate all the images given in the pipeline YAML to your private container registry.
 
 Create the workload by running:
 
@@ -158,3 +159,4 @@ To instead pass the CA certificate when you create the workload, run:
 
 ```console
 tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca"
+```

@@ -4,14 +4,14 @@ To view possible configuration settings for a package, run:
 tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
 
->**Note** The `tap.tanzu.vmware.com` package does not show all configuration settings 
-> for packages it plans to install. The package only shows top-level keys. 
-> You can view individual package configuration settings with the same 
+>**Note** The `tap.tanzu.vmware.com` package does not show all configuration settings
+> for packages it plans to install. The package only shows top-level keys.
+> You can view individual package configuration settings with the same
 > `tanzu package available get` command.
-> For example, to find the keys for Cloud Native Runtimes, you must first identify 
-> the version of the package with `tanzu package installed list -n tap-install`, 
-> which lists all the installed packages versions. Then run the command 
-> `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/CNRS-VERSION --values-schema` 
+> For example, to find the keys for Cloud Native Runtimes, you must first identify
+> the version of the package with `tanzu package installed list -n tap-install`,
+> which lists all the installed packages versions. Then run the command
+> `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/CNRS-VERSION --values-schema`
 > by using the package version listed for Cloud Native Runtimes.
 
 ```yaml
@@ -33,12 +33,12 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
-Shared Keys define values that configure multiple packages. 
+Shared Keys define values that configure multiple packages.
 These keys are defined under the `shared` Top-level Key, as summarized in the following table:
 
 |Shared Key|Description|Optional|
 |----|----|----|
-|`ca_cert_data`|PEM-encoded certificate data to trust TLS connections with a private CA. This shared key is used by `convention_controller`, `scanning` and `source_controller`|Yes|
+|`ca_cert_data`|PEM-encoded certificate data to trust TLS connections with a private CA. This shared key is used by `convention_controller`, `scanning` and the Tanzu `source_controller` (not the FluxCD Source Controller).|Yes|
 |`ingress_domain`|Domain name to be used in service routes and host names for instances of Tanzu Application Platform components.|Yes|
 |`ingress_issuer`|A `cert-manager.io/v1/ClusterIssuer` for issuing TLS certificates to Tanzu Application Platform components. Default value: `tap-ingress-selfsigned`|Yes|
 |`kubernetes_distribution`|Type of Kubernetes infrastructure being used. You can use this shared key in coordination with the `kubernetes_version` key. Supported value: `openshift`.|Yes|

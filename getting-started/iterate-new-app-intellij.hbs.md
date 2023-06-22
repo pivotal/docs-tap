@@ -9,15 +9,16 @@ You deployed the app in the previous how-to [Deploy your first application](depl
 - Prepare to iterate on your application.
   - Prepare your project to support Live Update.
   - Prepare your IDE to iterate on your application.
+- Apply your application to the cluster.
 - Live update your application to view code changes updating live on the cluster.
 - Debug your application.
-- Monitor your running application on the Application Live View UI.
+- Delete your application from the cluster.
 
 ## <a id="prepare-to-iterate"></a>Prepare to iterate on your application
 
 In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.hbs.md),
 you deployed your first application on Tanzu Application Platform.
-Now that you have a skeleton workload developed, you are ready to begin to iterate on your new
+Now that you have developed a skeleton workload, you are ready to begin to iterate on your new
 application and test code changes on the cluster.
 
 Tanzu Developer Tools for IntelliJ is VMware Tanzu’s official IDE extension for IntelliJ.
@@ -43,7 +44,7 @@ Tanzu Live Update uses [Tilt](https://tilt.dev/). This requires a suitable
 supported, but each requires a `Tiltfile` specific to that type of project.
 
 The Tanzu Java Web App accelerator allows you to choose between Maven and Gradle and includes a `Tiltfile`.
-If you used the accelerator then your project is already set up correctly.
+If you used the accelerator, your project is already set up correctly.
 
 To verify your project is set up correctly, review the following requirements depending on your chosen
 build system.
@@ -165,7 +166,7 @@ Apply the workload to see your application running on the cluster:
       > necessary to authenticate and gain push access.
       >
       > For example, if you use Docker, see the [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/),
-      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/) and so on.
+      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. In the **Local Path** text box, provide the path to the directory containing the Tanzu Java Web App.
       The current directory is the default.
@@ -187,7 +188,7 @@ The `apply workload` command can take a few minutes to deploy your application o
 You can also use the  **Tanzu Panel** to monitor your application as it's being deployed to the cluster.
 The **Tanzu Panel** shows information about the workloads in the namespace associated with your
 current Kubernetes context.
-On the left side it shows the workloads in the namespace, and in the center it shows the details of
+On the left side, it shows the workloads in the namespace. In the center, it shows the details of
 the Kubernetes resources for the running workloads.
 
 ## <a id="live-update-your-app"></a>Enable Live Update for your application
@@ -195,7 +196,7 @@ the Kubernetes resources for the running workloads.
 Live Update allows you to save changes to your code and see those changes reflected within seconds
 in the workload running on the cluster.
 
-The following steps enable Live Update for your application:
+To enable Live Update for your application:
 
 1. Create a Run Configuration.
    1. In IntelliJ, select the **Edit Run/Debug configurations** drop-down menu at the top-right corner.
@@ -226,7 +227,7 @@ The following steps enable Live Update for your application:
       >
       > For example, if you use Docker, see the
       > [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/), or
-      > if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/) and so on.
+      > if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. Click **Apply**, and then click the **OK** button.
 
@@ -244,7 +245,7 @@ The following steps enable Live Update for your application:
 
    On the **Tanzu Panel** tab, the status of Live Update is reflected under the
    `tanzu-java-web-app` workload entry.
-   Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+   Live update can take up to three minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >
@@ -314,11 +315,10 @@ To debug the cluster:
       > For example, if you use Docker, see the
       > [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/), or
       > if you use Harbor, see the
-      > [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/)
-      > and so on.
+      > [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
    1. (Optional) In the **Namespace** text box, provide the namespace to be associated with the workload
-      on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](#prepare-to-iterate)
+      on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](#prepare-to-iterate),
       you do not need to enter a namespace because IntelliJ uses the namespace you associated with
       your context.
 

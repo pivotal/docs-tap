@@ -1,6 +1,6 @@
-# Resources
+# Service Bindings resource specification
 
-## <a id="sb-resources"></a> ServiceBinding (servicebinding.io/v1alpha3)
+This topic tells you about the Service Bindings resource specification.
 
 The `ServiceBinding` resource shape and behavior is defined by the following specification:
 

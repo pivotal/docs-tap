@@ -1,6 +1,6 @@
-# Using functions (Beta)
+# Use functions (Beta)
 
-This topic describes how to create and deploy an HTTP or CloudEvent function from an
+This topic tells you how to create and deploy an HTTP or CloudEvent function from an
 Application Accelerator starter template in an online or air-gapped environment.
 
 ## <a id="overview"></a> Overview
@@ -74,11 +74,11 @@ To create a function project from an accelerator:
 1. Click **NEXT STEP**, verify the
    provided information, and then click **CREATE**.
 
-    ![Screenshot of the Generate Accelerators page in Tanzu Application Platform GUI. It shows a Python function buildpacks accelerator with App accelerator input fields including Name, Default function name, Event type, Git repository URL, and Git repository branch.](images/generate-accelerators.png)
+    ![Generate Accelerators page in Tanzu Application Platform GUI showing a Python function buildpacks accelerator with App accelerator input fields.](images/generate-accelerators.png)
 
-1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+2. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
-1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred
+3. After downloading the ZIP file, expand it in a workspace directory and follow your preferred
    procedure for uploading the generated project files to a Git repository for your new project.
 
 ## <a id="create-function-proj-cli"></a> Create a function project using the Tanzu CLI

@@ -1,6 +1,8 @@
-# Security and compliance
+# Security and compliance overview
 
-Security is the foremost concern of Tanzu Application Platform. This section describes:
+Security is a primary focus for Tanzu Application Platform (commonly known as TAP).
+
+This section describes:
 
 [TLS and certificates](./tls-and-certificates/about.hbs.md)
 

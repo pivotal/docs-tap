@@ -19,7 +19,7 @@ You deployed the app in the previous how-to [Deploy your first application](depl
 
 In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.hbs.md),
 you deployed your first application on Tanzu Application Platform.
-Now that you have a skeleton workload developed, you are ready to begin to iterate on your new
+Now that you have developed a skeleton workload, you are ready to begin to iterate on your new
 application and test code changes on the cluster.
 
 Tanzu Developer Tools for VS Code is VMware Tanzu’s official IDE extension for VS Code.
@@ -44,7 +44,7 @@ Tanzu Live Update uses [Tilt](https://tilt.dev/). This requires a suitable
 supported, but each requires a `Tiltfile` specific to that type of project.
 
 The Tanzu Java Web App accelerator allows you to choose between Maven and Gradle and includes a `Tiltfile`.
-If you used the accelerator then your project is already set up correctly.
+If you used the accelerator, your project is already set up correctly.
 
 To verify your project is set up correctly, review the following requirements depending on your chosen
 build system.
@@ -142,7 +142,7 @@ support, you are ready to set up your development environment.
       >
       > For example, if you use Docker, see the
       > [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/), or
-      > if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/) and so on.
+      > if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
       >
       > For troubleshooting failed registry authentication, see
       > [Troubleshoot using Tanzu Application Platform](../troubleshooting-tap/troubleshoot-using-tap.md)
@@ -202,7 +202,7 @@ view in the left Side Bar.
 Live Update allows you to save changes to your code and see those changes reflected within seconds
 in the workload running on the cluster.
 
-The following steps enable Live Update for your application:
+To enable Live Update for your application:
 
 1. To begin Live Updating the workload on the cluster, do one of the following:
 
@@ -220,7 +220,7 @@ The following steps enable Live Update for your application:
 
    The status of Live Update is reflected in the **TANZU WORKLOADS** view under the `tanzu-java-web-app`
    workload entry. You can also see `Live Update starting...` in the status bar at the bottom right.
-   Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+   Live update can take up to three minutes while the workload deploys and the Knative service becomes available.
 
    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
    >

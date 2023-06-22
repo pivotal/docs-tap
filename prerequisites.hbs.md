@@ -39,7 +39,7 @@ Tanzu Application Platform to store images.
 
 There are some optional but recommended DNS records you must allocate if you decide to use these particular components:
 
-- Cloud Native Runtimes (knative): Allocate a wildcard subdomain for your developer's applications. This is specified in the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Access with the shared Ingress method](tap-gui/accessing-tap-gui.html#ingress-method) for more information about `tanzu-system-ingress`.
+- Cloud Native Runtimes (Knative): Allocate a wildcard subdomain for your developer's applications. This is specified in the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Access with the shared Ingress method](tap-gui/accessing-tap-gui.html#ingress-method) for more information about `tanzu-system-ingress`.
 
 - Tanzu Learning Center: Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is also specified by the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 
@@ -97,22 +97,10 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.11 or v4.12.
+- Red Hat OpenShift Container Platform v4.12 or v4.13.
     - vSphere
     - Baremetal
-- Tanzu Kubernetes Grid multicloud.
-- vSphere with Tanzu v7.0 U3f or later.<br>
-For vSphere with Tanzu, you must configure pod security policies so Tanzu Application Platform controller pods can run as root.
-For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
-
-    To set the pod security policies, run:
-
-    ```console
-    kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
-    ```
-
-    For more information about pod security policies on Tanzu for vSphere, see
-    [VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
+- Tanzu Kubernetes Grid (commonly called TKG) multicloud. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 
 ## <a id="resource-requirements"></a>Resource requirements
 
@@ -130,7 +118,10 @@ For more information, see [Kubernetes documentation](https://kubernetes.io/docs/
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
-
+- To deploy Tanzu Application Platform packages view profile, your cluster must have at least:
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 8&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
 - For the [full profile](install-online/profile.hbs.md#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:

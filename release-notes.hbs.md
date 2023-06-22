@@ -13,7 +13,7 @@ In release notes, this condition hides content that describes an unreleased patc
 
 ## <a id='1-6-0'></a> v1.6.0
 
-**Release Date**: 11 July 2023
+**Release Date**: 27 July 2023
 
 ### <a id='1-6-0-whats-new'></a> What's new in Tanzu Application Platform
 
@@ -21,8 +21,7 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-platform-features'></a> New platform-wide features
 
-- New out of the box Bitnami Service - MongoDB
-- New out of the box Bitnami Service - Kafka
+- New services available with the Bitnami Service package: MongoDB and Kafka.
 
 #### <a id='1-6-0-new-components'></a> New components
 
@@ -33,6 +32,71 @@ This release includes the following platform-wide enhancements.
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
+
+- Incorporate the token expiry settings into the `AuthServer` resource. Service
+  operators can customize the expiry settings of access, refresh or identity
+  token. For more information, see [Token
+  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
+- Enable the capability to:
+    - Map custom user attributes or claims from upstream identity providers,
+      such as OpenID, LDAP, and SAML.
+    - Configure the internal unsafe provider with custom claims out of the box.
+      For more information, see [identity
+      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
+- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
+  ready-to-claim AppSSO service offering
+- `WorkloadRegistration` is portable client registration which templates
+  redirect URIs
+- `XWorkloadRegistration` is an XRD and an integration API between Services
+  Toolkit, Crossplane and AppSSO
+
+#### <a id='1-6-0-bitnami-services'></a> Bitnami Services
+
+The `bitnami.services.tanzu.vmware.com` package v0.2.0 includes the following:
+
+- New services available: MongoDB and Kafka
+
+#### <a id='1-6-0-crossplane'></a> Crossplane
+
+The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
+
+- Includes updates to the following software components:
+
+  - Updates Universal Crossplane (UXP) to v1.12.1-up.1, which includes new Crossplane features such
+    as ObserveOnly resources, Composition Validation, and Pluggable Secret Stores.
+    For the full release notes, see
+    [universal-crossplane releases](https://github.com/upbound/universal-crossplane/releases/tag/v1.12.1-up.1)
+    in GitHub.
+  - Updates provider-helm to v0.15.0. For the full release notes, see
+    [provider-helm releases](https://github.com/crossplane-contrib/provider-helm/releases/tag/v0.15.0)
+    in GitHub.
+  - Updates provider-kubernetes to v0.8.0. For the full release notes, see
+    [provider-kubernetes releases](https://github.com/crossplane-contrib/provider-kubernetes/releases/tag/v0.8.0)
+    in GitHub.
+
+  For more information about versions of software comprising the Crossplane package, See
+  [Version matrix for Crossplane](./crossplane/reference/version-matrix.hbs.md).
+
+- The Crossplane package now more gracefully handles situations in which Crossplane is already
+  installed to a cluster by using another method, for example, Helm install.
+  For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+
+- Includes kapp wait rules that match on `Healthy=True` for the Providers.
+  This means that package installation now waits for the Providers to become healthy before reporting
+  success.
+
+- Adds support for installing Providers in environments that use custom CA certificates.
+
+- Adds the `orphan_resources` package value to allow you to configure whether to orphan all Crossplane
+  CRDs, providers, and managed resources when the package is uninstalled. Optional, defaults to `true`.
+
+  **Caution**: setting this value to `false` causes all Crossplane CRDs, providers, and managed
+  resources to be deleted when the `crossplane.tanzu.vmware.com` package is uninstalled.
+  This might also cause any existing service instances also being deleted.
+  For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
 
 #### <a id='1-6-0-flux-sc'></a> FluxCD Source Controller
 
@@ -86,39 +150,33 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
     - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
-#### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
+#### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
-- Incorporate the token expiry settings into the `AuthServer` resource. Service
-  operators can customize the expiry settings of access, refresh or identity
-  token. For more information, see [Token
-  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
-- Enable the capability to:
-    - Map custom user attributes or claims from upstream identity providers,
-      such as OpenID, LDAP, and SAML.
-    - Configure the internal unsafe provider with custom claims out of the box.
-      For more information, see [identity
-      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
-- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
-  ready-to-claim AppSSO service offering
-- `WorkloadRegistration` is portable client registration which templates
-  redirect URIs
-- `XWorkloadRegistration` is an XRD and an integration API between Services
-  Toolkit, Crossplane and AppSSO
+The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
+
+- Adds Kubernetes events to make debugging easier:
+  - Normal events: CreatedCompositeResource, DeletedCompositeResource, ClaimableInstanceFound, NoClaimableInstancesFound
+  - Warning events: ParametersValidationFailed, CompositeResourceDeletionFailed
+- Updates reconciler-runtime to v0.11.1.
+
+The Tanzu Service CLI plug-in v0.7.0 includes the following:
+
+- The Tanzu Service plug-in is now compiled using the new tanzu CLI runtime (v0.90.0).
+- No new features or changes to existing commands.
 
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
 
-#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store 
+#### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
 - New report feature that links all packages, vulnerabilities, and ratings
   associated from a specific vulnerability scan SBOM to a Store report. When
   querying a report, it returns information linked to the original SBOM report
   instead of returning the aggregated data of all reports for the linked image
-  or source. 
+  or source.
   - `POST /api/v1/images` and `POST /api/v1/sources` APIs updated
-    - New optional header request fields: 
+    - New optional header request fields:
       - `Report-UID`: A unique identifier to assign to the report. If omitted, a
         unique identifier is randomly generated for the report. Supported
         characters: ALPHA DIGIT "-" / "." / "_" / "~".
@@ -138,50 +196,11 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
 
-#### <a id='1-6-0-stk'></a> Services Toolkit (STK)
-
-- Bump the services-toolkit.tanzu.vmware.com Package to v0.11.0
-  - Add Kubernetes events to improve debuggability
-    - Normal events: CreatedCompositeResource, DeletedCompositeResource, ClaimableInstanceFound, NoClaimableInstancesFound
-    - Warning events: ParametersValidationFailed, CompositeResourceDeletionFailed
-  - Bump reconciler-runtime to v0.11.1
-- Bump the tanzu services CLI plug-in to v0.7.0
-  - The tanzu services plug-in is now compiled using the new tanzu CLI runtime (v0.90.0)
-  - No new features or changes to existing commands
-
-#### <a id='1-6-0-bitnami-services'></a> Bitnami Services
-
-- Bump the bitnami.services.tanzu.vmware.com Package to v0.2.0
-  - New service MongoDB
-  - New service Kafka
-
-#### <a id='1-6-0-crossplane'></a> Crossplane
-
-- Bump the crossplane.tanzu.vmware.com Package to v0.2.0
-  - Bump Universal Crossplane (UXP) to v1.12.1-up.1, which brings with it new Crossplane features such as ObserveOnly resources, Composition Validation, and Pluggable Secret Stores
-    - See [here](https://github.com/upbound/universal-crossplane/releases/tag/v1.12.1-up.1) for the full set of release notes
-  - Bump provider-helm to v0.15.0
-    - See [here](https://github.com/crossplane-contrib/provider-helm/releases/tag/v0.15.0) for the full set of release notes
-  - Bump provider-kubernetes to v0.8.0
-    - See [here](https://github.com/crossplane-contrib/provider-kubernetes/releases/tag/v0.8.0) for the full set of release notes
-  - The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
-    - See [Crossplane Resolved Issues](./release-notes.hbs.md#1-6-0-crossplane-ri)
-  - Added a new Package value to provide a lever to configure the behaviour of the Package during installation and uninstallation
-    - orphan_resources
-      - Optional, default true.
-      - Whether or not to orphan all Crossplane CRDs, providers, and managed resources when the package is being uninstalled.
-      - WARNING: setting this value to false will result in all Crossplane CRDs, providers, and managed resources being deleted when the crossplane.tanzu.vmware.com Package is deleted, which in turn may lead to any existing service instances also being deleted
-      - See [How-to guide: Delete all Crossplane resources upon deletion of Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
-
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
 
 This release includes the following changes, listed by component and area.
-
-#### <a id='1-6-0-COMPONENT-NAME-bc'></a> COMPONENT-NAME
-
-- Breaking change description.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
@@ -207,6 +226,15 @@ This release includes the following changes, listed by component and area.
 - The full dependencies package repository is tagged with the Tanzu Application Platform package version instead of the Tanzu Build Service package version.
 - The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
 
+#### <a id='1-6-0-developer-tools-for-intellij'></a> Tanzu Developer Tools for IntelliJ
+- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image configuration for rapid iteration in inner loop
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
+
+#### <a id='1-6-0-developer-tools-for-vscode'></a> Tanzu Developer Tools for Visual Studio Code
+- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
@@ -223,34 +251,56 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-0-COMPONENT-NAME-ri'></a> COMPONENT-NAME
-
-- Resolved issue description.
-
-#### <a id='1-6-0-stk-ri'></a> Services Toolkit (STK)
-
-- Resolved an issue which prevented the default cluster-admin IAM role on GKE clusters from claiming any of the Bitnami Services
-  - Previously, if a user with cluster-admin on a GKE cluster attempted to claim any of the bitnami services, they would be met with a validation error
-  - This issue has now been resolved
-- Resolved an issue affecting the dynamic provisioning flow when attempting to use a CompositeResourceDefinition which specified a schema which only defined .status without also defining .spec
-  - Previously, if attempting to create a ClassClaim for a ClusterInstanceClass which referred to such a CompositeResourceDefinition, the ClassClaim would not transition into Ready=True and would instead report, "unexpected end of JSON input"
-  - This issue has now been resolved and thus it is now possible to use CompositeResourceDefinitions which only specify .status in their schemas
-
 #### <a id='1-6-0-crossplane-ri'></a> Crossplane
 
-- The Crossplane Package will now more gracefully handle situations in which Crossplane is already installed to a cluster via some out of band mechanism (e.g. Helm install)
-  - Previously the Crossplane Package (which ships as part of the Full, Iterate and Run TAP profiles) assumed that Crossplane was not already installed on the cluster, which is not always guaranteed to be true
-  - Rather than fail installation, the Package installation would move ahead and try to succeed, which would result in non-deterministic behaviour
-  - Now, any attempt to install or upgrade to the Crossplane Package on a cluster which already has Crossplane installed will fail the installation with the following error, "Resource already exists. Consider excluding package in tap-values."
-  - In such cases, the operator then has two options
-    - 1). Exclude the crossplane Package in the tap-values file
-    - 2). Choose to set the crossplane Package's adopt_resources value to true
+- The Crossplane package now more gracefully handles situations in which Crossplane is already
+  installed to a cluster by using another method, for example, Helm install.
+
+  Previously the Crossplane Package assumed that Crossplane was not already installed on the cluster,
+  which is not always true.
+  Rather than fail, the package completed installing, which caused non-deterministic behavior.
+
+  Now, if you attempt to install or upgrade the Crossplane package on a cluster that has
+  Crossplane installed by other means, it fails with the error `Resource already exists`.
+  In such cases, you can either exclude the Crossplane package from the Tanzu Application Platform
+  installation, or set `adopt_resources` to true in the Crossplane package to adopt resources from
+  your existing installation.
+  For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+
+#### <a id='1-6-0-stk-ri'></a> Services Toolkit
+
+- Resolved an issue that prevented the default cluster-admin IAM role on GKE clusters from claiming
+  any of the Bitnami services.
+
+  Previously, if a user with the cluster-admin role on a GKE cluster attempted to claim any of the
+  Bitnami services, they received a validation error.
+
+- Resolved an issue affecting the dynamic provisioning flow if you used a CompositeResourceDefinition
+  that specified a schema that defined `.status` without also defining `.spec`.
+  You can now use a CompositeResourceDefinition which only specifies `.status` in the schema.
+
+  Previously, if you attempted to create a ClassClaim for a ClusterInstanceClass that referred to
+  such a CompositeResourceDefinition, the ClassClaim did not transition into `Ready=True` and
+  instead reported `unexpected end of JSON input`.
+
+#### <a id='1-6-0-intellij-plugin-ri'></a> Tanzu Developer Tools for IntelliJ
+
+- Resolved the issue that `apply` action stores the workload file path when using the action for the first
+  time, but doesn't provide a way of modifying it afterwards. Resolution: this information is no longer
+  stored but either computed or obtained by prompting the user as needed.
+
+- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of 
+  type `Runnable` was incorrectly categorized as **Unknown**.
 
 ---
 
 ### <a id='1-6-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by component and area.
+
+#### <a id='1-6-0-scc-ki'></a> Supply Chain Choreographer
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
 #### <a id='1-6-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
@@ -260,12 +310,37 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-6-0-scc-ki'></a> Supply Chain Choreographer
 
-- If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+#### <a id='1-6-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in the
+  error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  To resolve this, delete the Tilt lock file. The default location for the file is
+  `~/.tilt-dev/config.lock`.
+
+- On Windows, workload actions do not work when in a project with spaces in the name such as
+  `my-app project`. For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a 
+  notification with a message similar to: 
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`. 
+  This is due to a UI liveness check that detected something affecting more time than it should on the UI 
+  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen 
+  especially when starting IntelliJ, as some initialization processes are still running. 
+  This problem has also been reported by users with large projects. This issue will be fixed 
+  in the next release. If slow startup processes cause it, it is minor and ignorable. 
+  If many files in the project cause it, it may annoy depending on the UI freeze severity. 
+  Unfortunately, there is no workaround currently other than trying to reduce the number 
+  of files in your project, though that may not always be practical.
+
 ---
 
-## <a id='1-6-deprecations'></a> Deprecations
+<h2 id='1-6-deprecations'>Deprecations</h2>
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
@@ -282,7 +357,28 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   `post` and `basic` are deprecated and marked for removal in Tanzu Application
   Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
 
-### <a id="1-6-0-stk-deprecations"></a> Services Toolkit
+### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
+
+- Deprecations for the `GitRepository` API:
+
+    - `spec.gitImplementation` is deprecated.
+    `GitImplementation` defines the Git client library implementation.
+    `go-git` is the default and only supported implementation. `libgit2`
+    is no longer supported.
+    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
+    Control List for enabling cross-namespace references to this object, was never
+    implemented.
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+    defined in the observed artifact content config within the status.
+    - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
+    - `status.url` is deprecated in favor of `status.artifact.url`.
+
+- Deprecations for the `OCIRepository` API:
+
+    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
+    defined in the observed artifact content config within the status.
+
+### <a id="1-6-stk-deprecations"></a> Services Toolkit
 
 - The `tanzu services claims` CLI plug-in command is now deprecated. It is
   hidden from help text output, but continues to work until officially removed
@@ -331,26 +427,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.6.0. Use the command `tanzu apps workload apply` instead.
 
-### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
-
-- Deprecations for the `GitRepository` API:
-
-    - `spec.gitImplementation` is deprecated.
-    `GitImplementation` defines the Git client library implementation.
-    `go-git` is the default and only supported implementation. `libgit2`
-    is no longer supported.
-    - `spec.accessFrom` is deprecated. `AccessFrom`, which defines an Access
-    Control List for enabling cross-namespace references to this object, was never
-    implemented.
-    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
-    defined in the observed artifact content config within the status.
-    - `status.artifact.checksum` is deprecated in favor of `status.artifact.digest`.
-    - `status.url` is deprecated in favor of `status.artifact.url`.
-
-- Deprecations for the `OCIRepository` API:
-
-    - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
-    defined in the observed artifact content config within the status.
 
 ### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
 

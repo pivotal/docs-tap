@@ -1,5 +1,6 @@
 # Troubleshoot Service Bindings
 
+This topic tells you how to troubleshoot Service Bindings in Tanzu Application Platform (commonly known as TAP).
 ## <a id="collect-logs"></a> Collect logs
 
 To help identify issues when troubleshooting, you can retrieve and examine logs from the service binding manager.
