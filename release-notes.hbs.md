@@ -343,7 +343,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - The `git_implementation` field is no longer used. The `go-git` implementation will be assumed now that `libgit2` is no longer supported.
   - FluxCD no longer honors the `spec.gitImplementation field` [as of version 0.33.0](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330)
-  - Existing references to `git_implementation` field will be ignored, references to `libgit2` will not cause failures
+  - Existing references to `git_implementation` field will be ignored, references to `libgit2` will not cause failures, this is assured up to TAP v1.9.0
   - Azure DevOps works without specifying `git_implementation` in TAP v1.6.0
 
 ### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
