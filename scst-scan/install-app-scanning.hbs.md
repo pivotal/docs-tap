@@ -103,6 +103,12 @@ To install SCST - Scan 2.0:
         'PackageInstall' resource install status: ReconcileSucceeded
     ```
 
+1. (Optional) If you have Artifact Metadata Repository Observer installed, you will need to restart it to observe the new ImageVulerabilityScan Custom Resource that was installed with SCST - Scan 2.0
+
+    ```console
+    kubectl -n amr-observer-system rollout restart deployment amr-observer-controller-manager
+    ```
+
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
 
 >**Note:** If you used the Namespace Provisioner to provision your developer namespace, the following section has already been completed and you can proceed to [scanning integration](./integrate-app-scanning.hbs.md). For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
