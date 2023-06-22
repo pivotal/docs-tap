@@ -100,7 +100,3 @@ Your kubeconfig file (`~/.kube/config`) is malformed.
 ### Solution
 
 Fix your kubeconfig file.
-
-## <a id="cnfg-writer-pull-request"></a> `config-writer-pull-requester` is categorized as Unknown
-
-{{> 'partials/ide-extensions/ki-config-writer-pull-requester' }}

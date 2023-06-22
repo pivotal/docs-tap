@@ -146,7 +146,3 @@ Restart IntelliJ to properly detect the context change.
 ## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
 
 {{> 'partials/ide-extensions/ki-projects-with-spaces' }}
-
-## <a id="cnfg-writer-pull-request"></a> `config-writer-pull-requester` is categorized as Unknown
-
-{{> 'partials/ide-extensions/ki-config-writer-pull-requester' }}
