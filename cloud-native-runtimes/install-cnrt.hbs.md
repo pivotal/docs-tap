@@ -10,7 +10,7 @@ from the Tanzu Application Platform package repository.
 Before installing Cloud Native Runtimes:
 
 - Complete all prerequisites to install Tanzu Application Platform. See [Prerequisites](../prerequisites.hbs.md).
-- Ensure that Contour v1.22.0 or later is installed. Tanzu Application Platform includes a correctly versioned package of Contour if you do not have it installed already.
+- Ensure that Contour v1.24.4 or later is installed. Tanzu Application Platform includes a correctly versioned package of Contour if you do not have it installed already.
 
 ## <a id='cnr-install'></a> Install
 
