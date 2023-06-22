@@ -1,4 +1,4 @@
-# External Secrets Operator (alpha)
+# Overview of External Secrets Operator (alpha)
 
 The [External Secrets Operator](https://external-secrets.io) is a Kubernetes
 operator that integrates with external secret management systems, for example,
