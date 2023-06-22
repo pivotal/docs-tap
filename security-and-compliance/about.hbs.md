@@ -1,6 +1,6 @@
-# Security and compliance Overview
+# Security and compliance overview
 
-Security a primary focus for Tanzu Application Platform (commonly known as TAP).
+Security is a primary focus for Tanzu Application Platform (commonly known as TAP).
 
 This section describes:
 
