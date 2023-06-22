@@ -9,4 +9,3 @@ This section describes:
 [Ingress certificates](ingress-certificates.hbs.md)
 
 [NIST controls](tap-nist-matrix.hbs.md)
-

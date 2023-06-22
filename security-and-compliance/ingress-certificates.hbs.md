@@ -1,5 +1,7 @@
 # Ingress certificates
 
+This topic tells you about securing ingress communication in Tanzu Application Platform (commonly known as TAP).
+
 By default, Tanzu Application Platform installs and uses a self-signed CA for issuing TLS
 certificates to components for the purpose of securing ingress communication.
 
