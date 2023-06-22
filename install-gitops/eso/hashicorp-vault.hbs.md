@@ -207,7 +207,7 @@ Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing
 To configure Kubernetes authentication for Vault, you can create a new Kubernetes authentication engine instance on Vault and two IAM Roles by using the supplied script:
 
 ```console
-tanzu-sync/scripts/vault/setup/create-kubernetes-auth.sh
+tanzu-sync/scripts/setup/create-kubernetes-auth.sh
 ```
 
 This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
@@ -232,14 +232,14 @@ Follow these step to configure Roles in Vault:
 Tanzu Application Platform installation secrets by using the supplied script:
 
     ```console
-    tanzu-sync/scripts/vault/setup/create-policies.sh
+    tanzu-sync/scripts/setup/create-policies.sh
     ```
 
 2. Create two Roles, one to read the Tanzu Sync secrets and another to read the 
 Tanzu Application Platform installation secrets by using the supplied script:
 
     ```console
-    tanzu-sync/scripts/vault/setup/create-roles.sh
+    tanzu-sync/scripts/setup/create-roles.sh
     ```
 
 ### <a id='generate-default-configuration'></a>Generate default configuration
