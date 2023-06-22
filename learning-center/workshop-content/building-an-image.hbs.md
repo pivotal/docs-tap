@@ -18,21 +18,35 @@ RUN fix-permissions /home/eduk8s
 
 The default `Dockerfile` action is to:
 
-  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the base environment image according to the TAP version. To get the image ID you should use the command:
+- Copy all files from a registry to the `/home/eduk8s` directory.
 
-  ```text
-  kubectl get ds -n learningcenter learningcenter-prepull -o=jsonpath="{.spec.template.spec.initContainers[0].image}"
-  ```
+  - You must build the custom workshop images on the base environment image according to the version
+    of Tanzu Application Platform. To get the image ID, run:
 
-  - That command will retrive the image id, E.g: `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4`.
+      ```console
+      kubectl get ds -n learningcenter learningcenter-prepull -o=jsonpath="{.spec.template.spec.initContainers[0].image}"
+      ```
 
-   You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group.
-  - The `workshop` subdirectory is moved to `/opt/workshop` so that it is not visible to the user. This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`.
+      Example image ID:
+
+      ```console
+      registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4
+      ```
+
+  - You can build the workshop images directly on the base environment image, or you can create an
+    intermediate base image to install extra packages required by a number of different workshops.
+
+  - The `--chown=1001:0` option ensures that files are owned by the appropriate user and group.
+
+- The `workshop` subdirectory is moved to `/opt/workshop` so that it is not visible to the user.
+  This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`.
 
 To customize your `Dockerfile`:
 
-  - You can ignore other files or directories from the repository, by listing them in the `.dockerignore` file.
-  - You can include `RUN` statements in the `Dockerfile` to run custom-build steps, but the `USER` inherited from the base image has user ID `1001` and is not the `root` user.
+- You can ignore other files or directories from the repository, by listing them in the `.dockerignore` file.
+
+- You can include `RUN` statements in the `Dockerfile` to run custom-build steps, but the `USER` inherited
+  from the base image has user ID `1001` and is not the `root` user.
 
 ## <a id="custom-workshop-base-imgs"></a>Custom workshop base images
 
