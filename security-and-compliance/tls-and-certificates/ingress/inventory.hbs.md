@@ -1,6 +1,6 @@
 # Ingress certificates inventory
 
-This topic tells you how to plan for TLS certificates.
+This topic tells you how to plan for TLS certificates in Tanzu Application Platform (commonly known as TAP).
 
 The effective number of ingress endpoints can vary widely, depending on the
 installation profile, excluded packages, and end-user-facing resources such as
