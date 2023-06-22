@@ -445,7 +445,7 @@ docs.vmware.com is built.
           - [Session management](learning-center/portal-rest-api/session-management.hbs.md)
           - [Client authentication](learning-center/portal-rest-api/client-authentication.hbs.md)
       - [Troubleshoot Learning Center](learning-center/troubleshoot-learning-center.hbs.md)
-    - [Local Source Proxy](local-source-proxy/overview.hbd.md)
+    - [Local Source Proxy](local-source-proxy/about.hbd.md)
       - [Overview](local-source-proxy/about.hbs.md)
       - [Design](local-source-proxy/design.hbs.md)
       - [Prerequisites](local-source-proxy/prereqs.hbs.md)
