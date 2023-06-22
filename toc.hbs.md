@@ -445,6 +445,13 @@ docs.vmware.com is built.
           - [Session management](learning-center/portal-rest-api/session-management.hbs.md)
           - [Client authentication](learning-center/portal-rest-api/client-authentication.hbs.md)
       - [Troubleshoot Learning Center](learning-center/troubleshoot-learning-center.hbs.md)
+    - [Local Source Proxy](local-source-proxy/overview.hbd.md)
+      - [Overview](local-source-proxy/about.hbs.md)
+      - [Design](local-source-proxy/design.hbs.md)
+      - [Prerequisites](local-source-proxy/prereqs.hbs.md)
+      - [Install](local-source-proxy/install.hbs.md)
+      <!-- - [Reference](local-source-proxy/reference.hbs.md) -->
+      <!-- - [Troubleshoot](local-source-proxy/troubleshoot.hbs.md) -->
     - [Namespace Provisioner](namespace-provisioner/about.hbs.md)
       - [Namespace Provisioner overview](namespace-provisioner/about.hbs.md)
       - [Getting Started](namespace-provisioner/getting-started.hbs.md)
