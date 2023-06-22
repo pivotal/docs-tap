@@ -2,7 +2,8 @@
 
 This topic tells you how to create your own ClusterImageTemplate and customize the embedded ImageVulnerabilityScan to use the scanner of your choice.
 
-- A prerequisite is that you have [created your own ImageVulnerabilityScan](./app-scanning-alpha.hbs.md#integrate-your-own-scanner) or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
+- A prerequisite is that you have created your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
+  <!-- xref needed for creating your own ImageVulnerabilityScan -->
 
 ## <a id='create-clusterimagetemplate'></a> Create a ClusterImageTemplate
 
