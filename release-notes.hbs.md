@@ -35,23 +35,28 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
-- Incorporate the token expiry settings into the `AuthServer` resource. Service
-  operators can customize the expiry settings of access, refresh or identity
-  token. For more information, see [Token
-  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
-- Enable the capability to:
-    - Map custom user attributes or claims from upstream identity providers,
-      such as OpenID, LDAP, and SAML.
-    - Configure the internal unsafe provider with custom claims out of the box.
-      For more information, see [identity
-      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
-- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
-  ready-to-claim AppSSO service offering
-- `WorkloadRegistration` is portable client registration which templates
-  redirect URIs
-- `XWorkloadRegistration` is an XRD and an integration API between Services
-  Toolkit, Crossplane and AppSSO
+- Incorporates the token expiry settings into the `AuthServer` resource. Service
+  operators can customize the expiry settings of access, refresh, or identity
+  tokens. For more information, see
+  [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
+- Enables the ability to:
+  - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
+  - Configure the internal unsafe provider with custom claims out of the box <!-- cannot use out of the box. what to replace with -->.
+    For more information, see
+    [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+<!-- Are the following items classes/XRDs new to this version of TAP? -->
+- Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
+  use to get started with Application Single Sign-On in non-production environments.
+  It is not safe for production.
+  For more information, see [ClusterUnsafeTestLogin API](app-sso/reference/api/clusterunsafetestlogin.hbs.md).
+- Adds `ClusterWorkloadRegistrationClass`, which exposes an `AuthServer` as a ready-to-claim AppSSO
+  service offering.
+  For more information, see [ClusterWorkloadRegistrationClass API](app-sso/reference/api/clusterworkloadregistrationclass.hbs.md).
+- Adds `WorkloadRegistration`, which is a portable client registration which templates redirect URIs.
+  For more information, see [WorkloadRegistration API](app-sso/reference/api/workloadregistration.hbs.md).
+- Adds `XWorkloadRegistration`, which is an XRD and an integration API between Services Toolkit,
+  Crossplane and AppSSO.
+  For more information, see [XWorkloadRegistration API](app-sso/reference/api/xworkloadregistration.hbs.md).
 
 #### <a id='1-6-0-bitnami-services'></a> Bitnami Services
 
@@ -204,12 +209,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
-- The recommendation is to consume AppSSO service offerings via `ClassClaim`
-  instead of the lower-level `WorkloadRegistration` or `ClientRegistration`.
-- Crossplane is an installation- and runtime dependency of AppSSO
-- The field `AuthServer.spec.tls.disabled` is removed. Use
-  `AuthServer.spec.tls.deactivated` instead.
-- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to
+- Consume AppSSO service offerings using `ClassClaim` instead of the lower-level `WorkloadRegistration`
+  or `ClientRegistration`.
+- Crossplane is an installation and runtime dependency of AppSSO.
+- The field `AuthServer.spec.tls.disabled` is removed. Use `AuthServer.spec.tls.deactivated` instead.
+- The field `ClientRegistration.spec.redirectURIs` no longer defaults to
   `["http://127.0.0.0:8080"]`.
 
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
@@ -228,12 +232,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-developer-tools-for-intellij'></a> Tanzu Developer Tools for IntelliJ
 - Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image configuration for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
 - Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
 
 #### <a id='1-6-0-developer-tools-for-vscode'></a> Tanzu Developer Tools for Visual Studio Code
 - Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
 - Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
 ---
 
@@ -289,7 +293,7 @@ The following issues, listed by component and area, are resolved in this release
   time, but doesn't provide a way of modifying it afterwards. Resolution: this information is no longer
   stored but either computed or obtained by prompting the user as needed.
 
-- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of 
+- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of
   type `Runnable` was incorrectly categorized as **Unknown**.
 
 ---
@@ -326,16 +330,16 @@ This release has the following known issues, listed by component and area.
 - On Windows, workload actions do not work when in a project with spaces in the name such as
   `my-app project`. For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a 
-  notification with a message similar to: 
-  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`. 
-  This is due to a UI liveness check that detected something affecting more time than it should on the UI 
-  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen 
-  especially when starting IntelliJ, as some initialization processes are still running. 
-  This problem has also been reported by users with large projects. This issue will be fixed 
-  in the next release. If slow startup processes cause it, it is minor and ignorable. 
-  If many files in the project cause it, it may annoy depending on the UI freeze severity. 
-  Unfortunately, there is no workaround currently other than trying to reduce the number 
+- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a
+  notification with a message similar to:
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  This is due to a UI liveness check that detected something affecting more time than it should on the UI
+  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen
+  especially when starting IntelliJ, as some initialization processes are still running.
+  This problem has also been reported by users with large projects. This issue will be fixed
+  in the next release. If slow startup processes cause it, it is minor and ignorable.
+  If many files in the project cause it, it may annoy depending on the UI freeze severity.
+  Unfortunately, there is no workaround currently other than trying to reduce the number
   of files in your project, though that may not always be practical.
 
 ---

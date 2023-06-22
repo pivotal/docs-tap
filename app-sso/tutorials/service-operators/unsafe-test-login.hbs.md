@@ -1,14 +1,21 @@
-# Unsafe test login
+# Configure an unsafe test login
 
-To get started in a non-production environment, `ClusterUnsafeTestLogin` is a
-zero-config API which produces an unsafe, ready-to-claim AppSSO service
-offering. 
+This topic for service operators describes how you can get started with Application Single Sign-On for
+VMware Tanzu (commonly known as AppSSO) in a non-production environment by using `ClusterUnsafeTestLogin`.
 
-When creating a `ClusterUnsafeTestLogin` you will get a simple `AuthServer` and
-a `ClusterWorkloadRegistrationClass` for it. The `AuthServer` has a single
-login `user:password` and is configured to "just work".
+`ClusterUnsafeTestLogin` is a zero-config API that produces an unsafe, ready-to-claim AppSSO service offering.
+When you create a `ClusterUnsafeTestLogin`, you get a simple `AuthServer` and
+a `ClusterWorkloadRegistrationClass` for it.
+The `AuthServer` has a single login `user:password` and is configured to work without extra configuration.
 
-It takes zero configuration, but a name:
+> **Caution** `ClusterUnsafeTestLogin` is not safe for production. For production, use `AuthServer`
+> and `ClusterWorkloadRegistrationClass`.
+
+## <a id="configure"></a> Configure a `ClusterUnsafeTestLogin`
+
+The `ClusterUnsafeTestLogin` resource takes zero configuration except a `name`.
+
+To configure a `ClusterUnsafeTestLogin` create a YAML file as follows:
 
 ```yaml
 ---
@@ -18,15 +25,20 @@ metadata:
   name: demo
 ```
 
-After applying this resource, _application operators_ can discover and claim
-credentials for it:
+## <a id="use"></a> Use the unsafe test login
 
-```plain
-❯ tanzu services classes list
-  NAME  DESCRIPTION
-  demo  Login by AppSSO - user:password - UNSAFE FOR PRODUCTION!
+After applying the `ClusterUnsafeTestLogin` resource, application operators can discover and claim
+credentials for it by running:
+
+```console
+tanzu services classes list
 ```
 
-Keep in mind that this is not safe for production. For production you will want
-to use `AuthServer` and `ClusterWorkloadRegistrationClass`.
+Example output:
 
+```console
+NAME  DESCRIPTION
+demo  Login by AppSSO - user:password - UNSAFE FOR PRODUCTION!
+```
+
+<!-- does the above command both discover and claim resources? -->

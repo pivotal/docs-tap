@@ -316,6 +316,7 @@ docs.vmware.com is built.
                 - [Scale AuthServer](app-sso/tutorials/service-operators/scale.hbs.md)
                 - [AuthServer audit logs](app-sso/tutorials/service-operators/audit-logs.hbs.md)
                 - [Curate an AppSSO service offering](app-sso/tutorials/service-operators/curate-service-offering.hbs.md)
+                - [Configure an unsafe test login](app-sso/tutorials/service-operators/unsafe-test-login.hbs.md)
             - [AppSSO for app operators](app-sso/tutorials/app-operators/index.hbs.md)
                 - [Discover AppSSO services](app-sso/tutorials/app-operators/discover-service-offering.hbs.md)
                 - [Claim credentials for an AppSSO service](app-sso/tutorials/app-operators/claim-credentials.hbs.md)
