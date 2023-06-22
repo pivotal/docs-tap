@@ -1,5 +1,8 @@
 # Custom CA certificates
 
+This topic tells you about configuring custom CA certificates in Tanzu Application Platform
+(commonly known as TAP).
+
 You configure trust for custom CAs. This is helpful if any Tanzu Application Platforms components
 are connecting to services that serve certificates issued by private certificate authorities.
 
