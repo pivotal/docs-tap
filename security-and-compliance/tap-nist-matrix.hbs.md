@@ -1,6 +1,7 @@
 # NIST controls
 
-This topic tells you about Tanzu Application Platform (commonly known as TAP) security control standards.
+This topic tells you about Tanzu Application Platform (commonly known as TAP) security control standard.
+
 ## <a id="controls"></a> Assessment of Tanzu Application Platform controls
 
 Many organizations are required to reference a standardized control framework when assessing the security and compliance of their information systems.
