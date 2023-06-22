@@ -283,6 +283,15 @@ The following issues, listed by component and area, are resolved in this release
   such a CompositeResourceDefinition, the ClassClaim did not transition into `Ready=True` and
   instead reported `unexpected end of JSON input`.
 
+#### <a id='1-6-0-intellij-plugin-ri'></a> Tanzu Developer Tools for IntelliJ
+
+- Resolved the issue that `apply` action stores the workload file path when using the action for the first
+  time, but doesn't provide a way of modifying it afterwards. Resolution: this information is no longer
+  stored but either computed or obtained by prompting the user as needed.
+
+- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of 
+  type `Runnable` was incorrectly categorized as **Unknown**.
+
 ---
 
 ### <a id='1-6-0-known-issues'></a> Known issues
@@ -300,6 +309,34 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+
+#### <a id='1-6-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in the
+  error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  To resolve this, delete the Tilt lock file. The default location for the file is
+  `~/.tilt-dev/config.lock`.
+
+- On Windows, workload actions do not work when in a project with spaces in the name such as
+  `my-app project`. For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a 
+  notification with a message similar to: 
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`. 
+  This is due to a UI liveness check that detected something affecting more time than it should on the UI 
+  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen 
+  especially when starting IntelliJ, as some initialization processes are still running. 
+  This problem has also been reported by users with large projects. This issue will be fixed 
+  in the next release. If slow startup processes cause it, it is minor and ignorable. 
+  If many files in the project cause it, it may annoy depending on the UI freeze severity. 
+  Unfortunately, there is no workaround currently other than trying to reduce the number 
+  of files in your project, though that may not always be practical.
 
 ---
 

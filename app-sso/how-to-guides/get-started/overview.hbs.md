@@ -1,4 +1,4 @@
-# Overview
+# Overview of AppSSO
 
 This topic tells you about concepts important to getting started with Application 
 Single Sign-On (commonly called AppSSO).

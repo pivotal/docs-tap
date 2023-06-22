@@ -11,7 +11,7 @@ To install the package without the predefined profiles of Tanzu Application Plat
 
 For information about API portal for VMware Tanzu, see [API portal for VMware Tanzu](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/index.html).
 
-For information about configuring the package, see [API portal for VMware Tanzu docs](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/1.2/api-portal/GUID-configuring-k8s.html).
+For information about configuring the package, see Operator Guide > Kubernetes > Configuration in [API portal for VMware Tanzu](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/index.html).
 
 API portal for VMware Tanzu supports:
 
