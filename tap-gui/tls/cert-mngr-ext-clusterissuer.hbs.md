@@ -1,4 +1,4 @@
-# Configuring a TLS certificate by using cert-manager and an external ClusterIssuer
+# Configuring a TLS certificate by using cert-manager and a ClusterIssuer
 
 This topic tells you how to use cert-manager to create a certificate issuer and then generate a
 certificate for Tanzu Application Platform GUI (commonly called TAP GUI) to use based on that issuer.
