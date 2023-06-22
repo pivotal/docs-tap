@@ -450,8 +450,8 @@ docs.vmware.com is built.
       - [Design](local-source-proxy/design.hbs.md)
       - [Prerequisites](local-source-proxy/prereqs.hbs.md)
       - [Install](local-source-proxy/install.hbs.md)
+      - [Troubleshoot](local-source-proxy/troubleshoot.hbs.md)
       <!-- - [Reference](local-source-proxy/reference.hbs.md) -->
-      <!-- - [Troubleshoot](local-source-proxy/troubleshoot.hbs.md) -->
     - [Namespace Provisioner](namespace-provisioner/about.hbs.md)
       - [Namespace Provisioner overview](namespace-provisioner/about.hbs.md)
       - [Getting Started](namespace-provisioner/getting-started.hbs.md)
