@@ -71,57 +71,57 @@ kubectl label namespaces my-apps apps.tanzu.vmware.com/tap-ns=""
 For more information about provisioning namespaces for running `Workloads`,
 see [Set up developer namespaces](../../install-online/set-up-namespaces.hbs.md).
 
-## <a id='credentials'></a> Claim client credentials
+## <a id='credentials'></a> Claim the client credentials
 
-Claim credentials for an AppSSO service so that you can secure your workload.
+Follow these steps to claim the credentials for an Application Single Sign-On service so that you can secure your workload:
 
-Discover the available AppSSO services with the `tanzu` CLI:
+1. Discover the available Application Single Sign-On services with the `tanzu` CLI:
 
-```console
-❯ tanzu services classes list
-  NAME      DESCRIPTION
-  sso       Login by AppSSO
-```
+    ```console
+    ❯ tanzu services classes list
+      NAME      DESCRIPTION
+      sso       Login by AppSSO
+    ```
 
-In your case, the actual names of your AppSSO services might be different. We
-assume that there's one AppSSO service with the name `sso`.
+    The actual names of your Application Single Sign-On services might be different. 
+    VMWare assumes that there's one Application Single Sign-On service with the name `sso`.
 
-Then, claim credentials for that service by creating a `ClassClaim` named
+1. Claim the credentials for that service by creating a `ClassClaim` named
 `angular-frontend` in the `my-apps` namespace.
 
-```yaml
----
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ClassClaim
-metadata:
-  name: angular-frontend
-  namespace: my-apps
-spec:
-  classRef:
-    name: sso
-  parameters:
-    workloadRef:
+    ```yaml
+    ---
+    apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+    kind: ClassClaim
+    metadata:
       name: angular-frontend
-    redirectPaths:
-      - /user-profile
-      - /customer-profiles/list
-      - /
-    scopes:
-      - name: openid
-      - name: email
-      - name: profile
-      - name: message.read
-      - name: message.write
-    authorizationGrantTypes:
-      - authorization_code
-    clientAuthenticationMethod: none
-```
+      namespace: my-apps
+    spec:
+      classRef:
+        name: sso
+      parameters:
+        workloadRef:
+          name: angular-frontend
+        redirectPaths:
+          - /user-profile
+          - /customer-profiles/list
+          - /
+        scopes:
+          - name: openid
+          - name: email
+          - name: profile
+          - name: message.read
+          - name: message.write
+        authorizationGrantTypes:
+          - authorization_code
+        clientAuthenticationMethod: none
+    ```
 
-Apply the `ClassClaim` and verify the status is `Ready` by running:
+1. Apply the `ClassClaim` and verify the status is `Ready` by running:
 
-```shell
-kubectl get classclaim angular-frontend --namespace my-apps
-```
+    ```shell
+    kubectl get classclaim angular-frontend --namespace my-apps
+    ```
 
 ## <a id="auth-settings"></a> Verify application authentication settings
 
@@ -132,8 +132,8 @@ Open the file and verify that it adheres to the following structure:
 
 ```json
 {
-  "authority": "<ISSUER_URI>",
-  "clientId": "<CLIENT_ID>",
+  "authority": "ISSUER-URI",
+  "clientId": "CLIENT-ID",
   "scope": [ "openid", "profile", "email", "message.read", "message.write" ]
 }
 ```

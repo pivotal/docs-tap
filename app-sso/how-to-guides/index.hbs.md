@@ -1,4 +1,4 @@
-# AppSSO how-to guides
+# Application Single Sign-On how-to guides
 
 This topic describes the how-to guides you can use for Application Single Sign-On 
 (commonly called AppSSO):

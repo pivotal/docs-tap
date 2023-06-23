@@ -1,20 +1,23 @@
-# Discover AppSSO service offerings
+# Discover Application Single Sign-On service offerings
 
-The recommendation is to consume AppSSO with 
-[Services Toolkit](../../../services-toolkit/about.hbs.md) by claiming credentials for an
-AppSSO service. Curation of service offerings is the purview of 
-[service operators](../../tutorials/service-operators/index.hbs.md).
-You can discover the available service offerings with the `tanzu` CLI:
+This topic tells you about the recommended method for discovering Application Single Sign-On service
+offerings.
 
-```shell
+VMware recommends that you consume Application Single Sign-On by claiming credentials for an
+Application Single Sign-On service using [Services Toolkit](../../../services-toolkit/about.hbs.md).
+[Service operators](../../tutorials/service-operators/index.hbs.md) are responsible for curating
+service offerings.
+
+You can discover the available service offerings with the Tanzu Services CLI:
+
+```console
 tanzu services classes list
 ```
 
-You will be presented list of services you can claim credentials for. The
-output may look something like this:
+The output contains a list of services you can claim credentials for, for example:
 
 ```plain
-❯ tanzu services classes list
+$ tanzu services classes list
   NAME                  DESCRIPTION
   mysql-unmanaged       MySQL by Bitnami
   postgresql-unmanaged  PostgreSQL by Bitnami
@@ -24,6 +27,5 @@ output may look something like this:
   sso-demo              Login by AppSSO - user:password - UNSAFE FOR PRODUCTION!
 ```
 
-By looking at the `DESCRIPTION` we can identify two of the services as AppSSO;
-`sso` and `sso-demo`.
-
+By looking at the `DESCRIPTION` you can identify two of the services as being for
+Application Single Sign-On: `sso` and `sso-demo`.

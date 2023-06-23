@@ -1,7 +1,7 @@
 # Configure an unsafe test login
 
 This topic for service operators describes how you can get started with Application Single Sign-On for
-VMware Tanzu (commonly known as AppSSO) in a non-production environment by using `ClusterUnsafeTestLogin`.
+VMware Tanzu (commonly called AppSSO) in a non-production environment by using `ClusterUnsafeTestLogin`.
 
 `ClusterUnsafeTestLogin` is a zero-config API that produces an unsafe, ready-to-claim AppSSO service offering.
 When you create a `ClusterUnsafeTestLogin`, you get a simple `AuthServer` and

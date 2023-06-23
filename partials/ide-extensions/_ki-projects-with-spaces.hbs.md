@@ -1,15 +1,16 @@
 ### Symptom
 
-Workload actions do not work. The console displays an error message similar to the following:
+Workload actions and live update do not work. The console displays an error message similar to the following:
 
 ```console
-Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1
+Error: unknown command "projects/my-app" for "apps workload apply". Process finished with exit code 1
 ```
 
 ### Cause
 
-On Windows, workload actions do not work when in a project with spaces in the name, such as
-`my-app project`.
+Improper handling of paths that contain spaces in them causes commands such as `tanzu workload apply ...`
+to be interpreted incorrectly by the shell. This causes anything executing those commands to fail
+when either the name of a project or any parts of its path on disk contains spaces.
 
 ### Solution
 

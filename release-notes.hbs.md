@@ -201,6 +201,9 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
 
+#### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
+- **New `default_external_scheme` config option**:
+  - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with default scheme to use for Knative Service URLs. Supported values are either "http" or "https". Cannot be set along with `default_tls_secret` option.
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -239,6 +242,10 @@ This release includes the following changes, listed by component and area.
 - Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
 - Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
 - Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
+
+#### <a id='1-6-0-cnrs-bc'></a> Cloud Native Runtimes
+- **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
+  As part of this release, the option has been removed completely.
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
@@ -296,6 +303,15 @@ The following issues, listed by component and area, are resolved in this release
 - Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of
   type `Runnable` was incorrectly categorized as **Unknown**.
 
+#### <a id='1-6-0-cnrs-ri'></a> Cloud Native Runtimes
+
+- New toggle feature for how to make ConfigMap updates
+
+For some ConfigMaps in CNRs (Ex: config-features), the option to update using an overlay was not taking effect. This bug has been fixed. With this version, the legacy behavior will remain the same, but we introduce a configuration to opt-in into the ability to update ConfigMaps using overlays in CNRs, as it is for all TAP components. To configure this option, edit your cnr-values.yml file to change the following configuration:
+`allow_manual_configmap_update: false`.
+
+In a future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
+
 ---
 
 ### <a id='1-6-0-known-issues'></a> Known issues
@@ -327,8 +343,9 @@ This release has the following known issues, listed by component and area.
   To resolve this, delete the Tilt lock file. The default location for the file is
   `~/.tilt-dev/config.lock`.
 
-- On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+- Workload actions and Live Update do not work when in a project with spaces in its name (such as
+  `my app`) or its path (such as `C:\Users\My User\my-app`). 
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
 - An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a
   notification with a message similar to:
@@ -342,6 +359,8 @@ This release has the following known issues, listed by component and area.
   Unfortunately, there is no workaround currently other than trying to reduce the number
   of files in your project, though that may not always be practical.
 
+#### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
+- Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 ---
 
 <h2 id='1-6-deprecations'>Deprecations</h2>

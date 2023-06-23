@@ -14,11 +14,11 @@ Follow these steps to deploy a sample Spring Boot `Workload`:
 
 ## <a id='sample-app'></a> Get the sample application
 
-Follow these steps to fetch the AppSSO Spring Boot application source code:
+Follow these steps to fetch the Application Single Sign-On Spring Boot application source code:
 
-1. Download the AppSSO Starter Java accelerator from the TAP GUI accelerators located on your TAP cluster:
+1. Download the Application Single Sign-On Starter Java accelerator from the TAP GUI accelerators located on your Tanzu Application Platform cluster:
 
-    - Option 1: Use the TAP GUI dashboard through browser.
+    - Option 1: Use the Tanzu Application Platform GUI dashboard through browser.
 
         Navigate to Application Accelerators and download the "AppSSO Starter Java" accelerator.
 
@@ -52,53 +52,53 @@ For more information about provisioning namespaces for workloads, see [Set up de
 
 ## <a id='credentials'></a> Claim client credentials
 
-Claim credentials for an AppSSO service so that you can secure your workload.
+Follow these steps to claim credentials for an Application Single Sign-On service so that you can secure your workload:
 
-Discover the available AppSSO services with the `tanzu` CLI:
+1. Discover the available Application Single Sign-On services with the `tanzu` CLI:
 
-```console
-❯ tanzu services classes list
-  NAME      DESCRIPTION
-  sso       Login by AppSSO
-```
+  ```console
+  ❯ tanzu services classes list
+    NAME      DESCRIPTION
+    sso       Login by AppSSO
+  ```
 
-In your case, the actual names of your AppSSO services might be different. We
-assume that there's one AppSSO service with the name `sso`.
+    The actual names of your AppSSO services might be different. VMware
+    assumes that there's one AppSSO service with the name `sso`.
 
-Then, claim credentials for that service by creating a `ClassClaim` named
+1. Claim credentials for that service by creating a `ClassClaim` named
 `appsso-starter-java` in the `my-apps` namespace.
 
-```yaml
----
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ClassClaim
-metadata:
-  name: appsso-starter-java
-  namespace: my-apps
-spec:
-  classRef:
-    name: sso
-  parameters:
-    workloadRef:
+    ```yaml
+    ---
+    apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+    kind: ClassClaim
+    metadata:
       name: appsso-starter-java
-    redirectPaths:
-      - /login/oauth2/code/appsso-starter-java
-    scopes:
-      - name: openid
-    authorizationGrantTypes:
-      - authorization_code
-    clientAuthenticationMethod: client_secret_basic
-```
+      namespace: my-apps
+    spec:
+      classRef:
+        name: sso
+      parameters:
+        workloadRef:
+          name: appsso-starter-java
+        redirectPaths:
+          - /login/oauth2/code/appsso-starter-java
+        scopes:
+          - name: openid
+        authorizationGrantTypes:
+          - authorization_code
+        clientAuthenticationMethod: client_secret_basic
+    ```
 
-Apply the `ClassClaim` and verify its status by running:
+1. Apply the `ClassClaim` and verify its status by running:
 
-```shell
-kubectl get classclaim appsso-starter-java --namespace my-apps
-```
+    ```shell
+    kubectl get classclaim appsso-starter-java --namespace my-apps
+    ```
 
 ## <a id="trust-authserver"></a> Ensure `Workload` trusts `AuthServer`
 
-For TAP cluster with a custom or self-signed CA certificate,
+For Tanzu Application Platform cluster with a custom or self-signed CA certificate,
 see [Configure workloads to trust a custom Certificate Authority (CA)](../tutorials/service-operators/workload-trust-custom-ca.hbs.md).
 
 ## <a id="deploy-workload"></a> Deploy the `Workload`
@@ -120,8 +120,7 @@ Follow these steps to deploy the `Workload`:
         --live-update
     ```
 
-    > **Important** Although you can assign any name to the `ClassClaim`, the `Workload`'s service reference name
-    > must match the `ClassClaim`'s name.
+    > **Important** Although you can assign any name to the `ClassClaim`, the `Workload`'s service reference name must match the `ClassClaim`'s name.
     >
     > ```console
     > --service-ref "**appsso-starter-java**=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:appsso-starter-java"
@@ -170,4 +169,3 @@ Delete the running application by running the following commands:
     ```shell
     tanzu service class-claims delete appsso-starter-java --namespace my-apps
     ```
-
