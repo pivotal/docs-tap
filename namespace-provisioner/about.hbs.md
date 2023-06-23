@@ -2,7 +2,7 @@
 
 Namespace Provisioner provides a secure, automated way for you to provision
 namespaces with the resources and namespace-level privileges required for your workloads to
-function as intended.
+function as intended in Tanzu Application Platform (commonly known as TAP).
 
 ## Description
 
