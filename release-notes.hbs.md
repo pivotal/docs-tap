@@ -343,8 +343,9 @@ This release has the following known issues, listed by component and area.
   To resolve this, delete the Tilt lock file. The default location for the file is
   `~/.tilt-dev/config.lock`.
 
-- On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+- Workload actions and Live Update do not work when in a project with spaces in its name (such as
+  `my app`) or its path (such as `C:\Users\My User\my-app`). 
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
 - An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a
   notification with a message similar to:
