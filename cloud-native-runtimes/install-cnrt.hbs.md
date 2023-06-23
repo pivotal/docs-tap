@@ -26,9 +26,9 @@ To install Cloud Native Runtimes:
 
     ```console
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
-  
+
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  2.3.1    2023-06-05 19:00:00 -0500 -05 
+      cnrs.tanzu.vmware.com  2.3.1    2023-06-05 19:00:00 -0500 -05
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -43,8 +43,8 @@ To install Cloud Native Runtimes:
 
         ```console
         $ tanzu package available get cnrs.tanzu.vmware.com/2.3.1 --values-schema -n tap-install
-       
-        KEY                            DEFAULT                               TYPE     DESCRIPTION                                                                       
+
+        KEY                            DEFAULT                               TYPE     DESCRIPTION
         domain_config                  <nil>                                 <nil>    Optional. Overrides the Knative Serving "config-domain" ConfigMap, allowing you to map Knative Services to specific domains. Must be valid YAML and conform to the "config-domain" specification.
         namespace_selector                                                   string   Specifies a LabelSelector which determines which namespaces should have a wildcard certificate provisioned. Set this property only if the Cluster issuer is type DNS-01 challenge.
         pdb.enable                     true                                  <nil>    Optional. Set to true to enable a PodDisruptionBudget for the Knative Serving activator and webhook deployments.
@@ -52,7 +52,7 @@ To install Cloud Native Runtimes:
         ingress.external.namespace     tanzu-system-ingress                  string   Required. Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for external services.
         ingress.internal.namespace     tanzu-system-ingress                  string   Required. Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for internal services.
         lite.enable                    false                                 <nil>    Optional. Set to "true" to enable lite mode. Reduces CPU and Memory resource requests for all cnrs Deployments, Daemonsets, and StatefulSets by half. Not recommended for production.
-        domain_template                {{.Name}}.{{.Namespace}}.{{.Domain}}  string   Optional. Specifies the golang text template string to use when constructing the DNS name for a Knative Service.
+        domain_template                \{{.Name}}.\{{.Namespace}}.\{{.Domain}}  string   Optional. Specifies the golang text template string to use when constructing the DNS name for a Knative Service.
         kubernetes_distribution        <nil>                                 <nil>    Optional. Type of K8s infrastructure being used. Supported Values: openshift
         kubernetes_version             0.0.0                                 <nil>    Optional. Version of K8s infrastructure being used. Supported Values: valid Kubernetes major.minor.patch versions
         allow_manual_configmap_update  true                                  boolean  Specifies how updates to some CNRs ConfigMaps can be made. Set to True, CNRs allows updates to those ConfigMaps to be made only manually. Set to False, updates to those CNRs ConfigMaps can be made only using overlays. Supported Values: True, False.
