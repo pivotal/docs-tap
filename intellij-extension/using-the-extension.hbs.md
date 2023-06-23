@@ -71,7 +71,7 @@ To start debugging on the cluster:
 
    - **Source Image:** This is the registry location for publishing local source code.
      For example, `registry.io/yourapp-source`.
-     It must include both a registry and a project name.
+     Optional when Local Source Proxy is configured.
    - **Local Path:** This is the path on the local file system to a directory of source code to build.
    - **Namespace:** This is the namespace that workloads are deployed into.
 
@@ -109,7 +109,7 @@ To start Live Update:
 2. Ensure that the configuration parameters are set:
 
    - **Source Image:** This is the registry location for publishing local source code.
-     For example, `registry.io/yourapp-source`. It must include both a registry and a project name.
+     For example, `registry.io/yourapp-source`. It must include both a registry and a project name. Optional when Local Source Proxy is configured.
    - **Local Path:** This is the path on the local file system to a directory of source code to build.
    - **Namespace:** This is the namespace that workloads are deployed into.
 

@@ -6,7 +6,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 [Install Tanzu Developer Tools for Visual Studio](install.hbs.md).
 
-## <a id="config-src-img-registry"/> Configure source image registry
+## <a id="config-src-img-registry"/> Configure Local Source Proxy, source image registry optional
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 

@@ -1,3 +1,6 @@
+Please configure Local Source Proxy following these [instructions](../../local-source-proxy/about.hbs.md)
+
+If Local Source Proxy cannot be configured, then use a source image registry.
 Before deploying a workload, you must authenticate with an image registry to store your source code.
 You can use the Docker CLI to authenticate or you can set environment variables that the Tanzu CLI
 can use to authenticate.
