@@ -1,6 +1,7 @@
 # Namespace Provisioner Reference Guide
 
-This topic describes known limitations and default resource mapping.
+This topic tells you about the known limitations and default resource mapping for the Namespace
+Provisioner component in Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="known-limitations"></a>Known Limitations
 

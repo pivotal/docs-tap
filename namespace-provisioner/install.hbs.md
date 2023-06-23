@@ -1,8 +1,8 @@
 # Install Namespace Provisioner
 
-Namespace Provisioner is packaged and distributed using the Carvel set of tools.
+This topic tells you how to install Namespace Provisioner using a profile, and how to customize a standard installation Namespace Provisioner in Tanzu Application Manager (commonly known as TAP).
 
-The Namespace Provisioner Carvel package is  published to the Tanzu Application Platform package
+Namespace Provisioner is packaged and distributed using the Carvel set of tools. The Namespace Provisioner Carvel package is  published to the Tanzu Application Platform package
 repository and two installation approaches are supported:
 
 - [Install Namespace Provisioner](#install-namespace-provisioner)

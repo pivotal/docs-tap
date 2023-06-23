@@ -1,5 +1,8 @@
 # Provision namespace resources
 
+This topic tells you how to use Namespace Provisioner to provision namespace-scoped resources in
+Tanzu Application Platform (commonly known as TAP).
+
 There are two approaches to provisioning namespace-scoped resources supported:
 
 [Using Namespace Provisioner Controller](#controller-ns-provision) is recommended for Tanzu

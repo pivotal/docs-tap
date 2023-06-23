@@ -1,6 +1,7 @@
 # Customize Namespace Provisioner
 
-This topic describes advanced use cases associated with Namespace Provisioner.
+This topic describes advanced use cases associated with Namespace Provisioner in Tanzu Application 
+Platform (commonly known as TAP).
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
