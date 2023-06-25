@@ -29,6 +29,7 @@ PARAMETERS:
   KEY                         DESCRIPTION  TYPE     DEFAULT               REQUIRED
   authorizationGrantTypes     [...]        array    [authorization_code]  false
   clientAuthenticationMethod  [...]        string   client_secret_basic   false
+  displayName                 [...]        string   <nil>                 false
   redirectPaths               [...]        array    <nil>                 false
   requireUserConsent          [...]        boolean  true                  false
   scopes                      [...]        array    [map[...]]            false
@@ -50,6 +51,7 @@ tanzu services class-claims create <my-claim-name> \
   --class <service-name> \
   --namespace <my-namespace> \
   --parameter workloadRef.name=my-workload \
+  --parameter displayName='My sample app' \
   --parameter redirectPaths='["/login/oauth2/code/sso"]' \
   --parameter authorizationGrantTypes='["client_credentials", "authorization_code"]' \
   --parameter requireUserConsent=false
@@ -70,6 +72,7 @@ spec:
   parameters:
     workloadRef:
       name: my-workload
+    displayName: "My sample app"
     redirectPaths:
       - /login/oauth2/code/sso
     authorizationGrantTypes:

@@ -35,9 +35,7 @@ spec:
   scopes: #! optional
     - name: "" #! required
       description: "" #! optional
-  scopes: #! optional
-    - name: "" #! required
-      description: "" #! optional
+  displayName: "" #! optional
   authorizationGrantTypes: #! optional
     - "" #! must be one of "authorization_code", "client_credentials" or "refresh_token"
   clientAuthenticationMethod: "" #! optional, must be one of "client_secret_post", "client_secret_basic" or "none"
@@ -86,6 +84,7 @@ spec:
   redirectPaths:
     - /redirect/uri/1
     - /redirect/uri/2
+  displayName: "Full sample app"
   scopes:
     - name: openid
     - name: email

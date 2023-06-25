@@ -26,6 +26,7 @@ spec:
   scopes: # optional
     - name: ""
       description: ""
+  displayName: "" # optional, must be between 2 and 32 chars in length
   authorizationGrantTypes: # optional
     - client_credentials
     - authorization_code
@@ -163,6 +164,7 @@ metadata:
   name: my-client-registration
   namespace: app-team
 spec:
+  displayName: "My sample app"
   authServerSelector:
     matchLabels:
       for: app-team
@@ -173,7 +175,7 @@ spec:
   requireUserConsent: false
   clientAuthenticationMethod: client_secret_basic
   authorizationGrantTypes:
-    - "client_credentials"
+    - "authorization_code"
     - "refresh_token"
   scopes:
     - name: "openid"

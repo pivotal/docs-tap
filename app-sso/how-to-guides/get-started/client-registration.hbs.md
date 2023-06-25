@@ -33,6 +33,7 @@ spec:
       matchLabels:
          name: my-first-auth-server
          env: tutorial
+   displayName: "My sample app"
    redirectURIs:
       - "http://test-app.example.com/oauth2/callback"
    requireUserConsent: false

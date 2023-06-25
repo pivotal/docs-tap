@@ -70,6 +70,7 @@ spec:
     namespace: "" #! required
   authServerSelector:
     matchLabels: {} #! required
+  displayName: "" #! optional, must be between 2 and 32 chars in length
   redirectPaths: #! optional
     - "" #! must be an absolute path
   scopes: #! optional
@@ -153,6 +154,7 @@ spec:
     matchLabels:
       name: authserver-sample
       sample: "true"
+  displayName: "Full sample app"
   redirectPaths:
     - /redirect/uri/1
     - /redirect/uri/2

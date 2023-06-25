@@ -55,6 +55,7 @@ PARAMETERS:
   KEY                         DESCRIPTION  TYPE     DEFAULT               REQUIRED
   authorizationGrantTypes     [...]        array    [authorization_code]  false
   clientAuthenticationMethod  [...]        string   client_secret_basic   false
+  displayName                 [...]        string   <nil>                 false
   redirectPaths               [...]        array    <nil>                 false
   requireUserConsent          [...]        boolean  true                  false
   scopes                      [...]        array    [map[...]]            false
