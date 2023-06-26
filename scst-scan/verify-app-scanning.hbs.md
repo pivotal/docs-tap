@@ -1,4 +1,4 @@
-# <a id="verifying-integration"></a> Verifying Scanning without Supply Chain Integration
+# Verifying Scanning without Supply Chain Integration
 
 Once you have built an ImageVulnerabilityScan template to bring your own scanner, it is important to validate the functionality to verify the integration is working correctly.
 
