@@ -56,6 +56,8 @@ To retrieve a vulnerability report:
 
 After retrieving the scan results, the scan results must be validated to be in a format that downstream Tanzu Application Platform services such as AMR observer support.  The recommended way to validate the scan results is via this CycloneDX tool, [sbom-utility](https://github.com/CycloneDX/sbom-utility). This tool is designed to validate CycloneDX and SPDX BOMs against versioned schemas.
 
+***Note***: The output of the scan should be valid per SPDX/CycloneDX spec, and if not, although it may be parsed correctly, VMware cannot ensure that the information will be parsed correctly, and results may not be displayed accurately in TAP GUI and TAP CLI.
+
 1. Setup and install using the instructions [here](https://github.com/CycloneDX/sbom-utility#installation).
 2. To see what supported formats, schemas, and versions are available for validation use the `schema` command to list them out:
     ```console
