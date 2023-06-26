@@ -45,8 +45,7 @@ The configurator tools takes the list of the Backstage plugins that you prefer t
 your Tanzu Developer Portal. With that plugin list, the tool generates a customized developer portal
 to your specifications.
 
-For more information on the steps to use the configurator tool, please refer to
-[Building your Customized Tanzu Developer Portal with the Configurator](building.hbs.md).
+For more information on the steps to use the configurator tool, you can start with [Tanzu Developer Portal Configurator Concepts](concepts.hbs.md) or move directly to [Building your Customized Tanzu Developer Portal with the Configurator](building.hbs.md).
 
 ## <a id="next-steps"></a>Next steps
 
