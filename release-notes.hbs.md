@@ -201,13 +201,13 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
 - Artifact Metadata Repository Observer (alpha). For more information, see the [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
-  - Observe ImageVulnerabilityScan CustomResources from app-scanning package
+  - Observe ImageVulnerabilityScan CustomResources from [SCST - Scan 2.0 package](scst-scan/app-scanning-beta.hbs.md)
   - Observe workload ReplicaSets which are ReplicaSets that have a container named workload as it is produced by the Out of the Box SupplyChains.
   - Registers the cluster's location using user defined labels and the kube-system UID as the reference
-  - Sends CloudEvents for observed events to AMR CloudEvent Handler
+  - Sends CloudEvents for observed events to the Artifact Metadata Repository CloudEvent Handler
 
 - Artifact Metadata Repository CloudEvent Handler (alpha). For more information, see the [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
-  - AMR Persister naming is being deprecated in favor of AMR CloudEvent Handler
+  - AMR Persister naming is being deprecated in favor of Artifact Metadata Repository CloudEvent Handler
   - Handles ImageVulnerabilityScan configured CloudEvents
   - Handles Location configured CloudEvents
   - Handles ReplicaSet configured CloudEvents
