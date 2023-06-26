@@ -1,4 +1,4 @@
-# <a id="installing"></a> Installing SCST - Scan 2.0 in a cluster
+# Installing SCST - Scan 2.0 in a cluster
 
 The following sections describe how to install SCST - Scan 2.0. Since SCST-Scan 2.0 is in beta, it is not currently installed with any profiles and must be installed following these directions.
 
