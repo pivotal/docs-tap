@@ -80,7 +80,7 @@ The following table describes the resource limit changes that are required for c
  Build Service/kpack controller | 20m/100m | 1Gi/2Gi || Yes | No | Yes | tap-values |
 | Scanning/scan-link | 200m/500m | 1Gi/3Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
 | Cartographer| 3/4 (Concurrency 25) | 10Gi/10Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
-| Cartographer conventions|  | 1.4Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
+| Cartographer conventions|  | 1.8Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
 | Namespace provisioner | 100m/500m | 500Mi/2Gi | | Yes | Yes | Yes | tap-values |
 | Cnrs/knative-controller  | 100m/1 vCPU | 512Mi/2Gi | | No | Yes | Yes | overlay |
 | Cnrs/net-contour | 40m/400m | 512Mi/2Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
