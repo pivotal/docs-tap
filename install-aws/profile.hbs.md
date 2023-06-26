@@ -234,6 +234,8 @@ ootb_templates:
 
 tap_gui:
   app_config:
+    auth:
+      allowGuestAccess: true  #This will allow unauthenticated users to login to your portal. If you want to disable, make sure you configure an alternate auth provider.
     catalog:
       locations:
         - type: url
