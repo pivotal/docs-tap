@@ -71,11 +71,11 @@ To start debugging on the cluster:
 
    - **Source Image:** This is the registry location for publishing local source code.
      For example, `registry.io/yourapp-source`.
-     It must include both a registry and a project name.
+     Optional when Local Source Proxy is configured.
    - **Local Path:** This is the path on the local file system to a directory of source code to build.
    - **Namespace:** This is the namespace that workloads are deployed into.
 
-    ![Create Run Configuration window showing populated configuration parameter text boxes.](../images/intellij-config.png)
+   ![Create Run Configuration window showing populated configuration parameter text boxes.](../images/intellij-config.png)
 
    You can also manually create Tanzu Debug configurations by using the **Edit Configurations**
    IntelliJ UI.
@@ -109,7 +109,7 @@ To start Live Update:
 2. Ensure that the configuration parameters are set:
 
    - **Source Image:** This is the registry location for publishing local source code.
-     For example, `registry.io/yourapp-source`. It must include both a registry and a project name.
+     For example, `registry.io/yourapp-source`. It must include both a registry and a project name. Optional when Local Source Proxy is configured.
    - **Local Path:** This is the path on the local file system to a directory of source code to build.
    - **Namespace:** This is the namespace that workloads are deployed into.
 
@@ -144,6 +144,8 @@ To add a namespace:
    ```console
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
+
+3. If you are using the `KUBECONFIG` env variable to organize access to different clusters on macOS, make sure that you launch the IDE using the command line instead of Dock or Spotlight. More [info](troubleshooting.hbs.md#panel-empty-kubeconfig).
 
 To add additional namespaces to your Workloads panel:
 

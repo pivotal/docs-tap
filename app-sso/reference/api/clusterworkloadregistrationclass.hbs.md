@@ -1,4 +1,4 @@
-# ClusterWorkloadRegistrationClass API for AppSSO
+# ClusterWorkloadRegistrationClass API for Application Single Sign-On
 
 In Application Single Sign-On (commonly called AppSSO), `ClusterWorkloadRegistrationClass` 
 represents the request to expose an `AuthServer` as a claimable service offering. 
@@ -78,7 +78,7 @@ metadata:
   name: "" #! required
 spec:
   description:
-    short: "" #! required, default "Login by AppSSO"
+    short: "" #! required, default to "Login by AppSSO"
   base:
     metadata:
       labels: {} #! optional

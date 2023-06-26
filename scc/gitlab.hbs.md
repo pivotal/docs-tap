@@ -56,7 +56,7 @@ The following example uses the GitLab Git repository:
 
 1. Set the `gitops_server_kind` workload parameters to `gitlab`.
 
-  ```yaml
+```yaml
   apiVersion: carto.run/v1alpha1
   kind: Workload
   metadata:
@@ -66,23 +66,23 @@ The following example uses the GitLab Git repository:
       - name: gitops_server_kind
         value: gitlab
       ...
-  ```
+```
 
 1. Set other GitOps values in either `tap-values` or in the workload parameters.
 
   By using tap-values:
 
-    ```yaml
+```yaml
     ootb_supply_chain_testing_scanning:
       gitops:
         server_address: https://gitlab.example.com
         repository_owner: my-org
         repository_name: repository
-    ```
+```
 
   By using the workload parameters:
 
-    ```yaml
+```yaml
     apiVersion: carto.run/v1alpha1
     kind: Workload
     metadata:
@@ -96,7 +96,7 @@ The following example uses the GitLab Git repository:
         - name: gitops_repository_name
           value: repository
         ...
-    ```
+```
 
 ### <a id="gitops-read-ex"></a> GitLab read example
 
@@ -132,7 +132,7 @@ secret both in `tap-values` and the Git secret used by the GitRepository.
 1. Set the [shared.ca_cert_data](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
  in `tap-values.yaml`. You must set the Git secret in the `caFile` field.
 
-   ```yaml
+```yaml
   apiVersion: v1
   kind: Secret
   metadata:
@@ -147,7 +147,7 @@ secret both in `tap-values` and the Git secret used by the GitRepository.
      -----BEGIN CERTIFICATE-----
      ...
      -----END CERTIFICATE-----
-   ```
+```
 
 1. Associate the secret with the `ServiceAccount`.
 

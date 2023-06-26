@@ -1,4 +1,4 @@
-# AppSSO concepts
+# Application Single Sign-On concepts
 
 This topic tells you about the following concepts about Application Single Sign-On 
 (commonly called AppSSO):

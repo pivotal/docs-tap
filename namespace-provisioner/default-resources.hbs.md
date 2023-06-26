@@ -1,7 +1,8 @@
 # Default resources
 
-This topic describes the resources that are templated in the default-resources secret for the
-different installation profile and supply chain value combinations.
+This topic tells you about the resources that are templated in the default-resources secret for the
+different installation profile and supply chain value combinations in Tanzu Application Platform
+(commonly known as TAP).
 
 Namespace Provisioner is installed as part of the standard installation profile. The default set of
 resources provisioned in a namespace is based on a combination of the installation profile employed

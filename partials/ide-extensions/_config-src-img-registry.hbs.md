@@ -1,3 +1,6 @@
+Please configure Local Source Proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md)
+
+If Local Source Proxy cannot be configured, then use a source image registry.
 Before deploying a workload, you must authenticate with an image registry to store your source code.
 You can use the Docker CLI to authenticate or you can set environment variables that the Tanzu CLI
 can use to authenticate.
@@ -21,4 +24,4 @@ Tanzu CLI
   `CA_CERT` is only needed for a custom or private registry.
 
 For more information, see
-[Workload creation fails due to authentication failure in Docker Registry](../troubleshooting-tap/troubleshoot-using-tap.hbs.md#workload-fails-docker-auth)
+[Workload creation fails due to authentication failure in Docker Registry](/docs-tap/troubleshooting-tap/troubleshoot-using-tap.hbs.md#workload-fails-docker-auth)

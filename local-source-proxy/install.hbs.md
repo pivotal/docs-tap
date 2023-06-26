@@ -2,99 +2,122 @@
 
 This topic tells you how to install and customize Local Source Proxy.
 
-## Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Meet the [prerequisites](prereqs.hbs.md) before attempting to install Local Source Proxy.
 
-## Install
+## <a id="install"></a> Install
 
-To install Local Source Proxy:
-
-Update your TAP installation values file with the following details:
+To install Local Source Proxy, update `tap-values.yaml` with the following details:
 
 ```yaml
 local_source_proxy:
-  # (Required) This is the repository where all your source code will be uploaded
   repository: gcr.io/tap-dev-framework/lsp
 
-  # (Required) Push secret reference which has the permission to push artifacts to the repository mentioned in local_source_proxy.repository
   push_secret:
    name: lsp-push-credentials
    namespace: tap-install
-   # NOTE: create_export is false by default. Setting it to true tells Local source proxy to create a SecretExport for the referred secret and own it. If you are reusing the secret that already existed in your cluster, you should make sure it's not exported by any other process, or set this flag to false and make sure it is exportable to the tap-local-source-system namespace via a SecretExport resource.
    create_export: true
 
-  # (Optional) Highly recommended for Production use
   pull_secret:
-   # Use the credential that has pull permissions. You can re-use the lsp-push-credentials that have pull access if you chose not to create a separate request for pull.
    name: lsp-pull-credentials
    namespace: tap-install
-   # NOTE: create_export is false by default. Setting it to true tells Local source proxy to create a SecretExport for the referred secret and own it. If you are reusing the secret that already existed in your cluster, you should make sure it's not exported by any other process, or set this flag to false and make sure it is exportable to developer namespaces via a SecretExport resource.
    create_export: true
 ```
 
-[Optional] If you see the `create_export` to false in the above `tap-values.yaml`, apply below YAML
-to create the `SecretExport` resource.
+Where:
 
-push-secret
-: Use this YAML for `push-secret`
+- `local_source_proxy.repository` is the repository where all your source code will be uploaded.
+  This value is required.
 
-    ```yaml
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretExport
-    metadata:
-      name: lsp-push-credentials
-      namespace: tap-install
-    spec:
-      toNamespace: tap-local-source-system
-    ```
+- `push_secret` is the push secret reference that has the permission to push artifacts to the
+  repository mentioned in `local_source_proxy.repository`. These values are required.
 
-pull-secret
-: Use this YAML for `pull-secret`
+- `push_secret.create_export` is `false` by default. Set it as `true` to tell Local Source Proxy to
+  create a `SecretExport` for the referred secret and own it. If you are reusing the secret that
+  already existed in your cluster, do one of the following:
 
-    ```yaml
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretExport
-    metadata:
-      name: lsp-pull-credentials
-      namespace: tap-install
-    spec:
-      toNamespace: *
-    ```
+  - Ensure that it's not exported by any other process
+  - Set this flag to `false` and make sure it is exportable to the `tap-local-source-system` namespace
+    by using a `SecretExport` resource.
 
-Additional details:
+- `pull_secret` is optional, but recommended for production. Use the credential that has pull
+  permissions. You can re-use the `lsp-push-credentials` that have pull access if you chose not to
+  create a separate request for pull.
 
-- repository: REGISTRY-SERVER/BASE-PATH `Example: gcr.io/my-project/source`
-  Take caution to avoid conflicts with other registry credentials used elsewhere in TAP when
-  specifying the push_secret and pull_secret.
+- `pull_secret.create_export` is `false` by default. Set it as `true` to tell Local Source Proxy to
+  create a SecretExport for the referenced secret and own it.
 
-- push_secret:
-  - Docker registry credentials secret referenced by name and namespace
-  - create_export: Set this value to true if a SecretExport resource needs to be created in its
-    namespace, allowing the secret to be imported into the Local Source Proxy's
-    tap-local-source-system namespace.
+  If you are reusing the secret that already existed in your cluster, do one of the following:
 
-In a production installation of TAP, the registry secret with write access should not be shared
-across developer namespaces. Instead, it is preferred to distribute a separate registry secret with
-only read access. In such cases, the `pull_secret`   can be specified, which is used by the
-source-controller to pull source artifacts for deployment.
+  - Ensure that it's not exported by any other process
+  - Set this flag to `false` and make sure it is exportable to developer namespaces by using a
+    `SecretExport` resource
 
-- pull_secret:
-  - Docker registry credentials secret referenced by `name` and `namespace`
-  - create_export: Set this value to true if a SecretExport resource needs to be created in its
-    namespace, allowing the secret to be imported into developer namespaces using the Namespace
-    provisioner or other means.
+### <a id="create-secretexport-rsrc"></a> (Optional) Create the SecretExport resource
 
-## Customize the installation
+If you set the `create_export` to `false` in the above `tap-values.yaml`, apply the following YAML to
+create the SecretExport resource:
 
-You can configure specific Local Source Proxy resources using the following properties in
+Use this YAML for `push-secret`:
+
+```yaml
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  name: lsp-push-credentials
+  namespace: tap-install
+spec:
+  toNamespace: tap-local-source-system
+```
+
+Use this YAML for `pull-secret`:
+
+```yaml
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  name: lsp-pull-credentials
+  namespace: tap-install
+spec:
+  toNamespace: *
+```
+
+Where:
+
+- `repository: REGISTRY-SERVER/BASE-PATH` could be, for example, `gcr.io/my-project/source`.
+  Be careful to avoid conflicts with other registry credentials used elsewhere in
+  Tanzu Application Platform when specifying the `push_secret` and `pull_secret`.
+  <!-- Missing from the example? -->
+
+- `push_secret` has the Docker registry credentials secret referenced by name and namespace
+
+- `push_secret.create_export` must be `true` if a SecretExport resource must be created in its
+    namespace to allow the secret to be imported into the Local Source Proxy's
+    `tap-local-source-system` namespace.
+
+In a production installation of Tanzu Application Platform, do not share the registry secret that has
+write access across developer namespaces. Instead, distribute a separate registry secret that only has
+read access.
+
+In such cases, the `pull_secret` can be specified, and `source-controller` uses the `pull_secret`
+to pull source artifacts for deployment.
+
+`pull_secret` uses Docker registry credentials secret referenced by `name` and `namespace`.
+Set `pull_secret.create_export` as `true` if a `SecretExport` resource needs to be created in its
+namespace to allow the secret to be imported into developer namespaces by using the namespace
+provisioner or other means.
+
+## <a id="customize-install"></a> Customize the installation
+
+You can configure specific Local Source Proxy resources by using the following properties in
 `tap-values.yaml`:
 
-### Override default RBAC permissions to access Proxy service
+### <a id="override-dflt-rbac"></a> Override default RBAC permissions to access the proxy service
 
-When this section is not provided, the default behavior is to employ the system:authenticated group
+When this section is not provided, the default behavior is to employ the `system:authenticated` group
 as the chosen option.
 
 ```yaml
@@ -113,8 +136,9 @@ To grant access for a specific user or group to push images through Local Source
 - Set `rbac_subjects_for_proxy_access.apiGroup` to either `rbac.authorization.k8s.io` or the custom
   `apiGroup` associated with the specified kind.
 
-For more information about RoleBinding, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-binding-examples).
-These settings enable you to customize RBAC permissions for accessing the Proxy service according to
+For more information about RoleBinding, see the
+[Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-binding-examples).
+These settings enable you to customize RBAC permissions for accessing the proxy service according to
 your specific user or group requirements.
 
 > **Important** If you define the `rbac_subjects_for_proxy_access` configuration in the
@@ -130,7 +154,7 @@ local_source_proxy:
     apiGroup: "rbac.authorization.k8s.io"
 ```
 
-### Override default CPU and memory limits for controller pods
+### <a id="override-dflt-cpu"></a> Override default CPU and memory limits for controller pods
 
 To configure the compute resource limits for the Local Source Proxy server, you can utilize the
 `proxy_configuration` section within the `local_source_proxy` configuration in `tap-values.yaml`.
@@ -149,13 +173,13 @@ local_source_proxy:
       memory: 100Mi
 ```
 
-### Use AWS IAM roles for ECR
+### <a id="use-aws-iam-roles"></a> Use AWS IAM roles for ECR
 
-In the case of TAP installation on AWS with Amazon EKS that is utilizing the AWS Elastic Container
-Registry (ECR) for storing local source code, you can specify the IAM Role that has push and pull
-permissions in aws_iam_role_arn to assign it to the Kubernetes Service Account used by the Local
-Source Proxy server. This allows the Local Source Proxy server to handle incoming image push
-requests with the appropriate IAM Role-based permissions.
+In the case of Tanzu Application Platform installation on AWS with Amazon EKS that is utilizing the
+AWS Elastic Container Registry (ECR) for storing local source code, you can specify the IAM Role that
+has push and pull permissions in `aws_iam_role_arn` to assign it to the Kubernetes Service Account
+used by the Local Source Proxy server. This allows the Local Source Proxy server to handle incoming
+image push requests with the appropriate IAM Role-based permissions.
 
 ```yaml
 local_source_proxy:
@@ -163,10 +187,10 @@ local_source_proxy:
     aws_iam_role_arn: "arn:aws:iam::123456789012:role/EKSIAMRole"
 ```
 
-### Increase number of replicas
+### <a id="increase-replicas"></a> Increase number of replicas
 
-By default, the Local Source Proxy instance is configured with 1 replica in the deployment. However,
-you can modify this behavior by adjusting the proxy_configuration.replicas setting to increase or
+By default, the Local Source Proxy instance is configured with one replica in the deployment. However,
+you can modify this behavior by adjusting the `proxy_configuration.replicas` setting to increase or
 decrease the number of replicas according to your requirements.
 
 ```yaml
@@ -175,12 +199,15 @@ local_source_proxy:
     Replicas: 3
 ```
 
-### Specifying CA Cert data for Registries using self-signed certificates
+### <a id="spec-ca-cert"></a> Specifying CA Cert data for registries using self-signed certificates
 
-If your registry server is signed with a custom TLS certificate or a self-signed certificate using a
-private certificate authority, you can configure the public CA certificate data by specifying it
-under `local_source_proxy.ca_cert_data` in the `tap.values.yaml` file. This allows you to provide the
-necessary certificate information for secure communication with the registry server.
+If your registry server is signed with a custom TLS certificate or a self-signed certificate that
+uses a private certificate authority, you can configure the public CA certificate data by specifying
+it under `local_source_proxy.ca_cert_data` in the `tap.values.yaml` file.
+<!-- Do both certificates use a private certificate authority or only the latter? -->
+
+This allows you to provide the necessary certificate information for secure communication with the
+registry server.
 
 ```yaml
 local_source_proxy:
@@ -190,5 +217,5 @@ local_source_proxy:
     -----END CERTIFICATE-----
 ```
 
-> **Note** If `shared.ca_cert_data` is provided in `tap-values.yaml`, Local Source Proxy respects
+> **Note** If `shared.ca_cert_data` is provided in `tap-values.yaml`, Local Source Proxy detects
 > that and imports the CA certificate data from that key.

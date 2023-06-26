@@ -1,4 +1,4 @@
-# ClusterUnsafeTestLogin API for AppSSO
+# ClusterUnsafeTestLogin API for Application Single Sign-On
 
 `ClusterUnsafeTestLogin` is the recommended way to get started with Application 
 Single Sign-On (commonly called AppSSO) in non-production environments and it is 
@@ -13,8 +13,8 @@ Its `AuthServer` is `http` only, which allows all CORS origins and runs with a
 single replica. Its name is prefixed with `unsafe-`. Its issuer URI resembles
 `http://unsafe-demo.appsso.example.com`.
 
-There's a single `user:password` login. That user has roles `user` and `test`
-as well as claims `first_name=First-Name`, `last_name=Last-Name` and
+There is a single `user:password` login. That user has roles `user` and `test` 
+and claims `first_name=First-Name`, `last_name=Last-Name` and
 `email=user@example.com`.
 
 Its `ClusterWorkloadRegistrationClass` templates `WorkloadRegistration` with

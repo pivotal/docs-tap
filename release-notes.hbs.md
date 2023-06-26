@@ -35,23 +35,28 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
-- Incorporate the token expiry settings into the `AuthServer` resource. Service
-  operators can customize the expiry settings of access, refresh or identity
-  token. For more information, see [Token
-  settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
-- Enable the capability to:
-    - Map custom user attributes or claims from upstream identity providers,
-      such as OpenID, LDAP, and SAML.
-    - Configure the internal unsafe provider with custom claims out of the box.
-      For more information, see [identity
-      providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-- `ClusterUnsafeTestLogin` is an unsafe, ready-to-claim AppSSO service offering
-- `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a
-  ready-to-claim AppSSO service offering
-- `WorkloadRegistration` is portable client registration which templates
-  redirect URIs
-- `XWorkloadRegistration` is an XRD and an integration API between Services
-  Toolkit, Crossplane and AppSSO
+- Incorporates the token expiry settings into the `AuthServer` resource. Service
+  operators can customize the expiry settings of access, refresh, or identity
+  tokens. For more information, see
+  [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
+- Enables the ability to:
+  - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
+  - Configure the internal unsafe provider with custom claims out of the box <!-- cannot use out of the box. what to replace with -->.
+    For more information, see
+    [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+<!-- Are the following items classes/XRDs new to this version of TAP? -->
+- Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
+  use to get started with Application Single Sign-On in non-production environments.
+  It is not safe for production.
+  For more information, see [ClusterUnsafeTestLogin API](app-sso/reference/api/clusterunsafetestlogin.hbs.md).
+- Adds `ClusterWorkloadRegistrationClass`, which exposes an `AuthServer` as a ready-to-claim AppSSO
+  service offering.
+  For more information, see [ClusterWorkloadRegistrationClass API](app-sso/reference/api/clusterworkloadregistrationclass.hbs.md).
+- Adds `WorkloadRegistration`, which is a portable client registration which templates redirect URIs.
+  For more information, see [WorkloadRegistration API](app-sso/reference/api/workloadregistration.hbs.md).
+- Adds `XWorkloadRegistration`, which is an XRD and an integration API between Services Toolkit,
+  Crossplane and AppSSO.
+  For more information, see [XWorkloadRegistration API](app-sso/reference/api/xworkloadregistration.hbs.md).
 
 #### <a id='1-6-0-bitnami-services'></a> Bitnami Services
 
@@ -207,6 +212,13 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   - Handles Location configured CloudEvents
   - Handles ReplicaSet configured CloudEvents
 
+#### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
+- **New `default_external_scheme` config option**:
+  - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with default scheme to use for Knative Service URLs. Supported values are either "http" or "https". Cannot be set along with `default_tls_secret` option.
+
+#### <a id='1-6-0-contour'></a> Contour
+- New parameters added to specify `contour` and `envoy` resources requests and limits for cpu and memory. See [Contour installation section](./contour/install.hbs.md) for details.
+- More information on the new features available in v1.24.4 check the [release notes in Project Contour](https://github.com/projectcontour/contour/releases/tag/v1.24.4).
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -215,12 +227,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
-- The recommendation is to consume AppSSO service offerings via `ClassClaim`
-  instead of the lower-level `WorkloadRegistration` or `ClientRegistration`.
-- Crossplane is an installation- and runtime dependency of AppSSO
-- The field `AuthServer.spec.tls.disabled` is removed. Use
-  `AuthServer.spec.tls.deactivated` instead.
-- The field `ClientRegistration.spec.redirectURIs` is no longer defaulted to
+- Consume AppSSO service offerings using `ClassClaim` instead of the lower-level `WorkloadRegistration`
+  or `ClientRegistration`.
+- Crossplane is an installation and runtime dependency of AppSSO.
+- The field `AuthServer.spec.tls.disabled` is removed. Use `AuthServer.spec.tls.deactivated` instead.
+- The field `ClientRegistration.spec.redirectURIs` no longer defaults to
   `["http://127.0.0.0:8080"]`.
 
 #### <a id='1-6-0-flux-sc-bc'></a> FluxCD Source Controller
@@ -239,13 +250,17 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-developer-tools-for-intellij'></a> Tanzu Developer Tools for IntelliJ
 - Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image configuration for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
 - Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
 
 #### <a id='1-6-0-developer-tools-for-vscode'></a> Tanzu Developer Tools for Visual Studio Code
 - Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image 
+- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
 - Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
+
+#### <a id='1-6-0-cnrs-bc'></a> Cloud Native Runtimes
+- **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
+  As part of this release, the option has been removed completely.
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
@@ -300,8 +315,17 @@ The following issues, listed by component and area, are resolved in this release
   time, but doesn't provide a way of modifying it afterwards. Resolution: this information is no longer
   stored but either computed or obtained by prompting the user as needed.
 
-- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of 
+- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of
   type `Runnable` was incorrectly categorized as **Unknown**.
+
+#### <a id='1-6-0-cnrs-ri'></a> Cloud Native Runtimes
+
+- New toggle feature for how to make ConfigMap updates
+
+For some ConfigMaps in CNRs (Ex: config-features), the option to update using an overlay was not taking effect. This bug has been fixed. With this version, the legacy behavior will remain the same, but we introduce a configuration to opt-in into the ability to update ConfigMaps using overlays in CNRs, as it is for all TAP components. To configure this option, edit your cnr-values.yml file to change the following configuration:
+`allow_manual_configmap_update: false`.
+
+In a future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
 
 ---
 
@@ -334,27 +358,75 @@ This release has the following known issues, listed by component and area.
   To resolve this, delete the Tilt lock file. The default location for the file is
   `~/.tilt-dev/config.lock`.
 
-- On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+- Workload actions and Live Update do not work when in a project with spaces in its name (such as
+  `my app`) or its path (such as `C:\Users\My User\my-app`).
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a 
-  notification with a message similar to: 
-  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`. 
-  This is due to a UI liveness check that detected something affecting more time than it should on the UI 
-  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen 
-  especially when starting IntelliJ, as some initialization processes are still running. 
-  This problem has also been reported by users with large projects. This issue will be fixed 
-  in the next release. If slow startup processes cause it, it is minor and ignorable. 
-  If many files in the project cause it, it may annoy depending on the UI freeze severity. 
-  Unfortunately, there is no workaround currently other than trying to reduce the number 
+- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a
+  notification with a message similar to:
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  This is due to a UI liveness check that detected something affecting more time than it should on the UI
+  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen
+  especially when starting IntelliJ, as some initialization processes are still running.
+  This problem has also been reported by users with large projects. This issue will be fixed
+  in the next release. If slow startup processes cause it, it is minor and ignorable.
+  If many files in the project cause it, it may annoy depending on the UI freeze severity.
+  Unfortunately, there is no workaround currently other than trying to reduce the number
   of files in your project, though that may not always be practical.
 
 #### <a id='1-6-0-amr-observer-cloudevent-handler'></a> Artifact Metadata Repository Observer and CloudEvent Handler
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful. For more information, see the [Artifact Metadata Repository Overview - Known Issues](./scst-store/amr/overview.hbs.md#known-issues)
 
+#### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
+- Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
 ---
 
-<h2 id='1-6-deprecations'>Deprecations</h2>
+### <a id="1-6-0-components"></a> Component versions
+
+The following table provides version information for Tanzu Application Platform components.
+
+| Component Name                                  | Version |
+| ----------------------------------------------- | ------- |
+| API Auto Registration                           |         |
+| API portal                                      |         |
+| API Scoring and Validation                      |         |
+| Application Accelerator                         |         |
+| Application Configuration Service               |         |
+| Application Live View                           |         |
+| Application Single Sign-On                      |         |
+| Bitnami Services                                | 0.2.0   |
+| Cartographer Conventions                        |         |
+| cert-manager                                    |         |
+| Cloud Native Runtimes                           |         |
+| Contour                                         |         |
+| Crossplane                                      | 0.2.1   |
+| Developer Conventions                           |         |
+| Eventing                                        |         |
+| FluxCD Source Controller                        |         |
+| Learning Center                                 |         |
+| Namespace Provisioner                           |         |
+| Service Bindings                                |         |
+| Services Toolkit                                | 0.11.0  |
+| Spring Boot conventions                         |         |
+| Spring Cloud Gateway                            |         |
+| Supply Chain Choreographer                      |         |
+| Supply Chain Security Tools - Policy Controller |         |
+| Supply Chain Security tools for Tanzu - Scan    |         |
+| Supply Chain Security Tools - Sign (Deprecated) |         |
+| Supply Chain Security Tools - Store             |         |
+| Tanzu Application Platform GUI                  |         |
+| Tanzu Application Platform Telemetry            |         |
+| Tanzu Build Service                             |         |
+| Tanzu Developer Tools for IntelliJ              |         |
+| Tanzu Developer Tools for Visual Studio         |         |
+| Tanzu Developer Tools for Visual Studio Code    |         |
+| Tanzu Service CLI plug-in                       | 0.7.0   |
+| Tekton Pipelines                                |         |
+
+---
+
+## <a id="1-6-deprecations"></a> Deprecations
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.

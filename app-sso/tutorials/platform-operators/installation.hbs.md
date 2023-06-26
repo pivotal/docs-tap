@@ -1,12 +1,12 @@
 # Install Application Single Sign-On
 
-This topic tells you how to install Application Single Sign-On (commonly called AppSSO) 
+This topic tells you how to install Application Single Sign-On for VMware Tanzu (commonly called AppSSO)
 from the Tanzu Application Platform package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
 For more information about profiles, see [Components and installation profiles](../../../about-package-profiles.hbs.md).
 
-## What's inside
+## <a id="whats-inside"></a> What's inside
 
 The AppSSO package installs the following resources:
 
@@ -14,59 +14,61 @@ The AppSSO package installs the following resources:
 - [RBAC](../../reference/rbac.hbs.md)
 - [APIs](../../reference/api/index.hbs.md)
 
-## Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
-Before installing AppSSO, please ensure you have Tanzu Application Platform
+Before installing Application Single Sign-On, ensure that you have Tanzu Application Platform
 installed on your Kubernetes cluster.
 
-In particular, the `sso.apps.tanzu.vmware.com` package has these dependencies:
+The `sso.apps.tanzu.vmware.com` package has these dependencies:
 
-* `cert-manager.tanzu.vmware.com` (installation-time and runtime)
-* `crossplane.tanzu.vmware.com` (installation-time and runtime)
-* `service-bindings.tanzu.vmware.com` (runtime)
+- `cert-manager.tanzu.vmware.com`: Required at installation-time and runtime.
+  For more information see, [Install cert-manager](../../../cert-manager/install.hbs.md).
 
-> **Note**
-> - Installation-time dependencies are expected to present on the cluster at
->   the moment the AppSSO package is being applied.
-> - Runtime dependencies don't have to be present at the moment the AppSSO
->   package is being applied, but they are required eventually and needed to
->   function fully.
+- `crossplane.tanzu.vmware.com`: Required at installation-time and runtime.
+  For more information see, [Install Crossplane](../../../crossplane/install-crossplane.hbs.md).
 
-## Installation
+- `service-bindings.tanzu.vmware.com`: Required at runtime.
+  For more information see, [Install Service Bindings](../../../service-bindings/install-service-bindings.hbs.md).
 
-1. Learn more about the AppSSO package:
+> **Important** **Installation-time dependencies** must be present on the cluster at the time the
+> Application Single Sign-On package is being applied.
+>
+> **Runtime dependencies** don't have to be present when the Application Single Sign-On package is
+> being applied, but they are required eventually for it to function fully.
 
-   ```shell
+## <a id="install"></a> Install Application Single Sign-On for VMware Tanzu
+
+1. Learn more about the AppSSO package by running:
+
+   ```console
    tanzu package available get sso.apps.tanzu.vmware.com --namespace tap-install
    ```
 
-1. Install the AppSSO package:
+1. Install the AppSSO package by running:
 
-   ```shell
+   ```console
    tanzu package install appsso \
      --namespace tap-install \
      --package-name sso.apps.tanzu.vmware.com \
      --version {{ vars.app-sso.version }}
    ```
 
-1. Confirm the package has reconciled successfully:
+1. Confirm the package has reconciled by running:
 
-   ```shell
+   ```console
    tanzu package installed get appsso --namespace tap-install
    ```
 
-## Configuration
+## <a id="configure"></a> Configure Application Single Sign-On for VMware Tanzu
 
-For the AppSSO package to meet your needs, refer to the [package configuration
-reference](../../reference/package-configuration.hbs.md).
+To configure the Application Single Sign-On package to meet your needs, see
+[Package configuration for Application Single Sign-On](../../reference/package-configuration.hbs.md).
 
-## Upgrades
+## <a id="upgrade"></a> Upgrading Application Single Sign-On for VMware Tanzu
 
-To successfully upgrade to a newer version of the package, refer to the
-[upgrades reference](../../reference/upgrades.hbs.md).
+To upgrade to a later version of the package, see [Upgrade Application Single Sign-On](../../reference/upgrades.hbs.md).
 
-## OpenShift
+## <a id="openshift"></a> About installing on OpenShift
 
-When deployed on an _OpenShift_ cluster, [additional _OpenShift_-specific
-resources](../../reference/openshift.hbs.md) are being installed.
-
+When deployed on an OpenShift cluster, additional OpenShift-specific resources are installed.
+For more information, see [Application Single Sign-On for OpenShift clusters](../../reference/openshift.hbs.md).

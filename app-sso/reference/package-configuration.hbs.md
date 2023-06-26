@@ -1,9 +1,9 @@
-# Package configuration for AppSSO
+# Package configuration for Application Single Sign-On
 
-In most cases, the Application Single Sign-on (commonly called AppSSO) package 
-installation is configured by using the meta package installation of Tanzu 
-Application Platform (commonly called TAP). 
-The Tanzu Application Platform package has a `shared` top-level configuration key 
+In most cases, the Application Single Sign-on (commonly called AppSSO) package
+installation is configured by using the meta package installation of Tanzu
+Application Platform (commonly called TAP).
+The Tanzu Application Platform package has a `shared` top-level configuration key
 for sharing common configuration between the packages it installs.
 
 AppSSO inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data,
@@ -153,7 +153,7 @@ This is used as the value for `\{{.Domain}}` in
 
 ### replicas
 
-The controller will be run with this many replicas. 
+The controller will be run with this many replicas.
 
 The default is `1`.
 

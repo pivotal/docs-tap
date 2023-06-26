@@ -1,10 +1,10 @@
 # Work with private Git Repositories
 
-This topic describes how to work with private Git repositories.
+This topic tells you how to use private Git repositories for storing your GitOps based installation files, and the additional platform operator templated resources that you want to create in your developer namespace.
 
 ## <a id= 'git-private'></a>Git Authentication for using a private Git repository
 
-Namespaces Provisioner enables you to use private Git repositories for storing your GitOps based installation files, and additional platform operator templated resources that you want to create in your developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources. For more details, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
+Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources. For more details, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 ### Create the Git Authentication secret in tap-namespace-provisioning namespace
 

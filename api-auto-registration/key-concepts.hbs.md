@@ -120,3 +120,16 @@ To use an Ingress instead, here is an example from which your controller reads t
         jsonPath: "{.spec.rules[1].host}"
         namespace: my-namespace # optional
 ```
+
+### <a id='status-fields'></a>APIDescriptor Status Fields
+
+When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`, which provide information useful for troubleshooting. The conditions are explained in the [Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
+
+In addition to `conditions` the `status` contains a couple of other useful fields. Below you will find a listing of these fields along with a brief explanation of what they contain.
+
+```yaml
+status:
+  registeredEntityURL:   # Url of the corresponding API Entity in TAP GUI
+  registeredTapUID:      # Unique identifier for the corresponding API Entity in TAP GUI
+  resolvedAPISpec:       # Full API Spec as retrieved by Api Auto Registration
+```

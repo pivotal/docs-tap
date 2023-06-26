@@ -75,22 +75,26 @@ Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
 
 The following table describes the resource limit changes that are required for components to support the scale configuration described in the previous table.
 
-|**Controller/Pod**|**CPU**|**Memory**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
+|**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- Build Service/kpack controller | 20m/100m | 1Gi/2Gi || Yes | No | Yes | tap-values |
-| Scanning/scan-link | 200m/500m | 1Gi/3Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
-| Cartographer| 3/4 (Concurrency 25) | 10Gi/10Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
-| Cartographer conventions|  | 1.4Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
-| Namespace provisioner | 100m/500m | 500Mi/2Gi | | Yes | Yes | Yes | tap-values |
-| Cnrs/knative-controller  | 100m/1 vCPU | 512Mi/2Gi | | No | Yes | Yes | overlay |
-| Cnrs/net-contour | 40m/400m | 512Mi/2Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
-| Cnrs/activator | 300m/1000m | 5Gi/5Gi |  | No | Yes | No | overlay |
-| Cnrs/autoscaler  | 100m/1000m | 2Gi/2Gi |  | No | Yes | No | overlay |
+ Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | 1&nbsp;Gi/2&nbsp;Gi || Yes | No | Yes | tap-values |
+| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | 1&nbsp;Gi/3&nbsp;Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
+| Cartographer| 3&nbsp;vCPUs/4&nbsp;vCPU | 10&nbsp;Gi/10&nbsp;Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
+| Cartographer conventions|  | 1.8&nbsp;Gi  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
+| Namespace Provisioner | 100&nbsp;vCPUm/500m | 500&nbsp;Mi/2&nbsp;Gi | | Yes | Yes | Yes | tap-values |
+| Cnrs/knative-controller  | 100&nbsp;m/1&nbsp;vCPU | 512&nbsp;Mi/2&nbsp;Gi | | No | Yes | Yes | overlay |
+| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | 512&nbsp;Mi/2&nbsp;Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
+| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | 5&nbsp;Gi/5&nbsp;Gi |  | No | Yes | No | overlay |
+| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | 2&nbsp;Gi/2&nbsp;Gi |  | No | Yes | No | overlay |
 | Eventing/vmware-sources |  | YTD | | No  | Yes | No | YTD |
-| Eventing/triggermesh | | 100Mi/800Mi | | No | Yes | Yes| overlay |
-| tap-telemetry/tap-telemetry-informer | 2GiB | YTD | | Yes| No | Yes| tap-values |
+| Eventing/triggermesh | | 100&nbsp;Mi - 800&nbsp;Mi | | No | Yes | Yes| overlay |
+| tap-telemetry/tap-telemetry-informer | 2&nbsp;Gi | YTD | | Yes| No | Yes| tap-values |
 
-* Only when there is issue with scan pods getting deleted before Vartographer can process it
+- CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
+- Memory is measured Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
+
+* Only when there is issue with scan pods getting deleted before Cartographer can process it
+
 ## Example resource limit changes
 
 The following section provides examples of the changes required to the default limits to achieve scalability:

@@ -9,7 +9,7 @@ image name for the one running the pre-built Tanzu Developer Portal on your clus
 
 ## Identifying the Customized Image Reference
 
-### Through the Kubernetes CLI
+### Option 1: Through the Kubernetes CLI
 
 ```bash
 kubectl -n DEVELOPER-NAMESPACE get images.kpack.io WORKLOAD-NAME -o jsonpath={.status.latestImage}
@@ -27,7 +27,7 @@ For example:
 > kapplegate.azurecr.io/demo/workloads/tpb-workload-default@sha256:bae710386f7d81a725ce5ab15d76a3dd4f6ea79804ae0a475cf98f5e3dd6cf82
 ```
 
-### Through the Tanzu Developer Portal GUI
+### Option 2: Through the Tanzu Developer Portal GUI
 
 1. Find your workload in the Supply Chain view.
    ![Supply Chain Plugin](./images/supply-chain-plugin.png)

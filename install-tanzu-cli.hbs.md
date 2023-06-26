@@ -132,7 +132,7 @@ Install using a package manager
          sudo apt-get update
          sudo apt-get install -y ca-certificates curl gpg
          curl -fsSL https://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub | sudo gpg --dearmor -o /etc/apt/keyrings/tanzu-archive-keyring.gpg
-         echo "deb [signed-by=/etc/apt/keyrings/tanzu-archive-keyring.gpg] https://storage.googleapis.com/tanzu-cli-os-packages/apt tanzu-cli-jessie main" | sudo tee /etc/apt/sources.list.d/tanzu.list
+         echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/tanzu-archive-keyring.gpg] https://storage.googleapis.com/tanzu-cli-os-packages/apt tanzu-cli-jessie main" | sudo tee /etc/apt/sources.list.d/tanzu.list
          sudo apt-get update
          sudo apt-get install -y tanzu-cli
 
@@ -232,7 +232,7 @@ Install from a binary release
 Run the following command to install the CLI plugins required for Tanzu Application Platform:
 
    ```console
-   tanzu plugin install --plugin-group vmware-tap/default
+   tanzu plugin install --group vmware-tap/default
    ```
 
 For more information about the latest `tanzu plugin` features and sub-commands, see the [tanzu plugin](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.version }}/tanzu-cli/tanzu-plugin.html) topic in the VMware Tanzu CLI documentation.

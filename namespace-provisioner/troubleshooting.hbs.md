@@ -1,6 +1,8 @@
 # Troubleshooting
 
-This topic provides information to help troubleshoot Namespace Provisioner.
+This topic tells you how to troubleshoot Namespace Provisioner in Tanzu Application Platform
+(commonly known as TAP).
+
 ## View controller logs
 
 To get the logs when using the [controller](about.hbs.md#nsp-controller) workflow, run the following kubectl command:
