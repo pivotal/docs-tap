@@ -16,11 +16,11 @@ To customize a package that was installed manually:
    apiVersion: v1
    kind: Secret
    metadata:
-   name: tap-overlay
-   namespace: tap-install
+     name: tap-overlay
+     namespace: tap-install
    stringData:
-   custom-package-overlay.yml: |
-     CUSTOM-OVERLAY
+     custom-package-overlay.yml: |
+       CUSTOM-OVERLAY
    ```
 
    For more information about ytt overlays, see the
@@ -40,10 +40,10 @@ To customize a package that was installed manually:
    apiVersion: packaging.carvel.dev/v1alpha1
    kind: PackageInstall
    metadata:
-   name: PACKAGE-NAME
-   namespace: tap-install
-   annotations:
-     ext.packaging.carvel.dev/ytt-paths-from-secret-name: tap-overlay
+     name: PACKAGE-NAME
+     namespace: tap-install
+     annotations:
+       ext.packaging.carvel.dev/ytt-paths-from-secret-name: tap-overlay
    ...
    ```
 
