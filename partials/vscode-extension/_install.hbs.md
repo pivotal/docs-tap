@@ -58,8 +58,8 @@ set the following:
     - **Enable Live Hover**: For more information, see
     [Integrating Live Hover by using Spring Boot Tools](/docs-tap/vscode-extension/live-hover.hbs.md).
     Reload VS Code for this change to take effect.
-    - **Source Image**: (Required) The registry location for publishing local source code. For example,
-    `registry.io/yourapp-source`. This must include both a registry and a project name.
+    - **Source Image**: (Optional) The registry location for publishing local source code. For example,
+    `registry.io/yourapp-source`. This must include both a registry and a project name. Optional when Local Source Proxy is configured.
     - **Local Path**: (Optional) The path on the local file system to a directory of source code to
     build. This is the current directory by default.
     - **Namespace**: (Optional) This is the namespace that workloads are deployed into.

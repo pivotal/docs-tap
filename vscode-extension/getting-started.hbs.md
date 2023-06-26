@@ -7,7 +7,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 [Install VMware Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.hbs.md).
 
-## <a id="config-src-img-registry"></a> Configure source image registry
+## <a id="config-src-img-registry"></a> Configure Local Source Proxy, source image registry optional
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
@@ -133,7 +133,6 @@ The Tanzu Developer Tools extension requires only one **Tiltfile** per project.
 Before beginning to write your Tiltfile file, ensure that you know:
 
 - The name of your application. For example, `my app`.
-- The value of the source image. For example, `docker.io/mycompany/myapp`.
 - Whether you want to compile the source image from a local directory other than the project directory
   or otherwise leave the `local path` value unchanged. For more information, see local path in the glossary.
 - The path to your `workload.yaml` file. For example, `config/workload.yaml`.
@@ -167,7 +166,6 @@ Manual
 : To create a Tiltfile file manually, follow this example:
 
     ```text
-    SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='SOURCE-IMAGE')
     LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
     NAMESPACE = os.getenv("NAMESPACE", default='default')
 
@@ -175,7 +173,6 @@ Manual
        'APP-NAME',
        apply_cmd="tanzu apps workload apply -f PATH-TO-WORKLOAD-YAML --live-update" +
            " --local-path " + LOCAL_PATH +
-           " --SOURCE-IMAGE " + SOURCE_IMAGE +
            " --namespace " + NAMESPACE +
            " --yes >/dev/null" +
            " && kubectl get workload APP-NAME --namespace " + NAMESPACE + " -o yaml",
@@ -194,7 +191,6 @@ Manual
 
     Where:
 
-    - `SOURCE-IMAGE` is the value of source image.
     - `APP-NAME` is the name of your application.
     - `PATH-TO-WORKLOAD-YAML` is the local file system path to `workload.yaml`. For example, `config/workload.yaml`.
     - `CONTEXT-NAME` is the name of your current
