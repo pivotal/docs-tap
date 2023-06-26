@@ -599,7 +599,7 @@ docs.vmware.com is built.
               - [Using App-Scanning in Supply Chains](scst-scan/integrate-app-scanning.hbs.md)
               - [Bring your own scanner](scst-scan/bring-your-own-scanner.hbs.md)
                 - [Creating an ImageVulnerabilityScan template](scst-scan/ivs-create-your-own.hbs.md)
-                - [Verifying an ImageVulnerabilityScan template](scst-scan/Users/ryanba/repos/docs-tap/scst-scan/verify-app-scanning.hbs.md)
+                - [Verifying an ImageVulnerabilityScan template](scst-scan/verify-app-scanning.hbs.md)
                 - [Authoring a ClusterImageTemplate](scst-scan/clusterimagetemplates.hbs.md)
                 - [Sample ImageVulnerabilityScan Templates](scst-scan/ivs-custom-samples.hbs.md)
                   - [Carbon Black IVS sample](scst-scan/ivs-carbon-black.hbs.md)
