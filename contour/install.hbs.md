@@ -19,9 +19,8 @@ To install Contour from the Tanzu Application Platform package repository withou
 
     ```console
     $  tanzu package available list contour.tanzu.vmware.com -n tap-install
-    - Retrieving package versions for contour.tanzu.vmware.com...
       NAME                      VERSION       RELEASED-AT
-      contour.tanzu.vmware.com  1.22.0+tap.8  2022-12-05 19:00:00 -0500 EST
+      contour.tanzu.vmware.com  1.24.4        2023-05-22 19:00:00 -0500 -05
     ```
 
 2. Create a file named `contour-rbac.yaml` by using the following sample and apply the configuration:
@@ -92,40 +91,79 @@ To install Contour from the Tanzu Application Platform package repository withou
     1. Gather values schema by running:
 
         ```console
-        tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.8 --values-schema -n tap-install
+        tanzu package available get contour.tanzu.vmware.com/1.24.4 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.8 --values-schema -n tap-install
+        $ tanzu package available get contour.tanzu.vmware.com/1.24.4 --values-schema -n tap-install
 
-          KEY                                  DEFAULT               TYPE     DESCRIPTION
-          kubernetes_version                   0.0.0                 string   Optional. Version of K8s infrastructure being used. Supported Values: valid Kubernetes major.minor.patch versions
-          namespace                            tanzu-system-ingress  string   The namespace in which to deploy Contour and Envoy.
-          certificates.duration                8760h                 string   If using cert-manager, how long the certificates should be valid for. If useCertManager is false, this field is ignored.
-          certificates.renewBefore             360h                  string   If using cert-manager, how long before expiration the certificates should be renewed. If useCertManager is false, this field is ignored.
-          contour.configFileContents           <nil>                 <nil>    The YAML contents of the Contour config file. See https://projectcontour.io/docs/v1.22.0/configuration/#configuration-file for more information.
-          contour.logLevel                     info                  string   The Contour log level. Valid options are 'info' and 'debug'.
-          contour.replicas                     2                     integer  How many Contour pod replicas to have.
-          contour.useProxyProtocol             false                 boolean  Whether to enable PROXY protocol for all Envoy listeners.
-          envoy.terminationGracePeriodSeconds  300                   integer  The termination grace period, in seconds, for the Envoy pods.
-          envoy.workload.replicas              2                     integer  The number of Envoy replicas to deploy when 'type' is set to 'Deployment'. If not specified, it will default to '2'.
-          envoy.workload.type                  DaemonSet             string   The type of Kubernetes workload Envoy is deployed as. Options are 'Deployment' or 'DaemonSet'. If not specified, will default to 'DaemonSet'.
-          envoy.hostNetwork                    false                 boolean  Whether to enable host networking for the Envoy pods.
-          envoy.hostPorts.enable               true                  boolean  Whether to enable host ports. If false, http & https are ignored.
-          envoy.hostPorts.http                 80                    integer  If enable == true, the host port number to expose Envoy's HTTP listener on.
-          envoy.hostPorts.https                443                   integer  If enable == true, the host port number to expose Envoy's HTTPS listener on.
-          envoy.logLevel                       info                  string   The Envoy log level.
-          envoy.service.nodePorts.https        0                     integer  The node port number to expose Envoy's HTTPS listener on. If not specified, a node port will be auto-assigned by Kubernetes.
-          envoy.service.nodePorts.http         0                     integer  The node port number to expose Envoy's HTTP listener on. If not specified, a node port will be auto-assigned by Kubernetes.
-          envoy.service.type                                         string   The type of Kubernetes service to provision for Envoy. If not specified, will default to 'NodePort' for docker and vsphere and 'LoadBalancer' for others.
-          envoy.service.annotations            <nil>                 <nil>    Annotations to set on the Envoy service.
-          envoy.service.aws.LBType             classic               string   AWS loadbalancer type.
-          envoy.service.externalTrafficPolicy                        string   The external traffic policy for the Envoy service. If type is 'ClusterIP', this field is ignored. Otherwise, defaults to 'Cluster' for vsphere and 'Local' for others.
-          envoy.service.loadBalancerIP                               string   The desired load balancer IP. If type is not 'LoadBalancer', this field is ignored. It is up to the cloud provider whether to honor this request. If not specified, then load balancer IP will be assigned by the cloud provider.
-          infrastructure_provider              vsphere               string   The underlying infrastructure provider. Valid values are `vsphere`, `aws` and `azure`.
-          kubernetes_distribution                                    string   Kubernetes distribution that this package is being installed on. Supported values: ['','openshift']
+          KEY                                                       DEFAULT                   TYPE     DESCRIPTION                                                                       
+          kubernetes_distribution                                                             string   The distribution of Kubernetes, used to determine if distribution-specific        
+                                                                                                       configurations need to be applied. Options are empty and openshift. If running    
+                                                                                                       on an Openshift cluster, this must be set to openshift. When set to openshift,    
+                                                                                                       a Role and RoleBinding are created to associate Contour's controllers with the    
+                                                                                                       appropriate Openshift Security Context Constraint resource.                       
+          kubernetes_version                                        0.0.0                     string   The version of Kubernetes being used, for enabling version-specific behaviors.    
+                                                                                                       Accept any valid major.minor.patch version of Kubernetes. This field is           
+                                                                                                       optional. Currently only has effect when kubernetes_distribution is set to        
+                                                                                                       openshift.                                                                        
+          namespace                                                 tanzu-system-ingress      string   The namespace in which to deploy Contour and Envoy.                               
+          registry_secret_names                                     [contour-reg-creds]       array    The names of the placeholder secrets that will contain registry credentials to    
+                                                                                                       pull the Contour and Envoy images.                                                
+          certificates.duration                                     8760h                     string   How long the certificates should be valid for.                                    
+          certificates.renewBefore                                  360h                      string   How long before expiration the certificates should be renewed.                    
+          contour.pspNames                                          vmware-system-restricted  string   Pod security policy names to apply to Contour.                                    
+          contour.replicas                                          2                         integer  How many Contour pod replicas to have.                                            
+          contour.resources.contour.requests.memory                                           string   Memory request to apply to the contour container.                                 
+          contour.resources.contour.requests.cpu                                              string   CPU request to apply to the contour container.                                    
+          contour.resources.contour.limits.cpu                                                string   CPU limit to apply to the contour container.                                      
+          contour.resources.contour.limits.memory                                             string   Memory limit to apply to the contour container.                                   
+          contour.useProxyProtocol                                  false                     boolean  Whether to enable PROXY protocol for all Envoy listeners.                         
+          contour.configFileContents                                <nil>                     <nil>    The YAML contents of the Contour config file. See                                 
+                                                                                                       https://projectcontour.io/docs/1.24/configuration/#configuration-file for more    
+                                                                                                       information.                                                                      
+          contour.logLevel                                          info                      string   The Contour log level. Valid options are 'info' and 'debug'.                      
+          envoy.pspNames                                                                      string   Pod security policy names to apply to Envoy.                                      
+          envoy.service.externalTrafficPolicy                                                 string   The external traffic policy for the Envoy service. If type is 'ClusterIP', this   
+                                                                                                       field is ignored. Otherwise, defaults to 'Cluster' for vsphere and 'Local' for    
+                                                                                                       others.                                                                           
+          envoy.service.loadBalancerIP                                                        string   The desired load balancer IP. If type is not 'LoadBalancer', this field is        
+                                                                                                       ignored. It is up to the cloud provider whether to honor this request. If not     
+                                                                                                       specified, then load balancer IP will be assigned by the cloud provider.          
+          envoy.service.nodePorts.http                              0                         integer  The node port number to expose Envoy's HTTP listener on. If not specified, a      
+                                                                                                       node port will be auto-assigned by Kubernetes.                                    
+          envoy.service.nodePorts.https                             0                         integer  The node port number to expose Envoy's HTTPS listener on. If not specified, a     
+                                                                                                       node port will be auto-assigned by Kubernetes.                                    
+          envoy.service.type                                                                  string   The type of Kubernetes service to provision for Envoy. Valid values are           
+                                                                                                       'LoadBalancer', 'NodePort', and 'ClusterIP'. If not specified, will default to    
+                                                                                                       'NodePort' for vsphere and 'LoadBalancer' for others.                             
+          envoy.service.annotations                                 <nil>                     <nil>    Annotations to set on the Envoy service.                                          
+          envoy.service.aws.LBType                                  classic                   string   The type of AWS load balancer to provision. Options are 'classic' and 'nlb'.      
+          envoy.service.disableWait                                 false                     boolean  This setting is no longer supported and is included in the schema for backwards   
+                                                                                                       compatibility only.                                                               
+          envoy.terminationGracePeriodSeconds                       300                       integer  The termination grace period, in seconds, for the Envoy pods.                     
+          envoy.workload.replicas                                   2                         integer  The number of Envoy replicas to deploy when 'type' is set to 'Deployment'. If     
+                                                                                                       not specified, it will default to '2'.                                            
+          envoy.workload.resources.envoy.limits.cpu                                           string   CPU limit to apply to the envoy container.                                        
+          envoy.workload.resources.envoy.limits.memory                                        string   Memory limit to apply to the envoy container.                                     
+          envoy.workload.resources.envoy.requests.cpu                                         string   CPU request to apply to the envoy container.                                      
+          envoy.workload.resources.envoy.requests.memory                                      string   Memory request to apply to the envoy container.                                   
+          envoy.workload.resources.shutdownManager.limits.cpu                                 string   CPU limit to apply to the shutdown-manager container.                             
+          envoy.workload.resources.shutdownManager.limits.memory                              string   Memory limit to apply to the shutdown-manager container.                          
+          envoy.workload.resources.shutdownManager.requests.cpu                               string   CPU request to apply to the shutdown-manager container.                           
+          envoy.workload.resources.shutdownManager.requests.memory                            string   Memory request to apply to the shutdown-manager container.                        
+          envoy.workload.type                                       DaemonSet                 string   The type of Kubernetes workload Envoy is deployed as. Options are 'Deployment'    
+                                                                                                       or 'DaemonSet'. If not specified, will default to 'DaemonSet'.                    
+          envoy.hostNetwork                                         false                     boolean  Whether to enable host networking for the Envoy pods.                             
+          envoy.hostPorts.https                                     443                       integer  If enable == true, the host port number to expose Envoy's HTTPS listener on.      
+          envoy.hostPorts.enable                                    true                      boolean  Whether to enable host ports. If false, http & https are ignored.                 
+          envoy.hostPorts.http                                      80                        integer  If enable == true, the host port number to expose Envoy's HTTP listener on.       
+          envoy.logLevel                                            info                      string   The Envoy log level.                                                              
+          infrastructure_provider                                   vsphere                   string   The underlying infrastructure provider. Options are vsphere, aws, and azure.      
+                                                                                               This field is not required, but enables better validation and defaulting if       
+                                                                                               provided.                                                                         
         ```
 
     2. Create a `contour-install.yaml` file by using the following sample as a guide:
@@ -143,7 +181,7 @@ To install Contour from the Tanzu Application Platform package repository withou
           packageRef:
             refName: contour.tanzu.vmware.com
             versionSelection:
-              constraints: 1.22.0+tap.8
+              constraints: 1.24.4
               prereleases: {}
           values:
           - secretRef:
@@ -202,10 +240,10 @@ To install Contour from the Tanzu Application Platform package repository withou
 
     ```console
     $ tanzu package installed get contour -n tap-install
-    / Retrieving installation details for contour...
+
     NAME:                    contour
     PACKAGE-NAME:            contour.tanzu.vmware.com
-    PACKAGE-VERSION:         1.22.0+tap.8
+    PACKAGE-VERSION:         1.24.4
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -224,10 +262,14 @@ To install Contour from the Tanzu Application Platform package repository withou
     ```console
     $  kubectl get po -n tanzu-system-ingress
     NAME                       READY   STATUS    RESTARTS   AGE
-    contour-857d46c845-4r6c5   1/1     Running   1          18d
-    contour-857d46c845-p6bbq   1/1     Running   1          18d
-    envoy-mxkjk                2/2     Running   2          18d
-    envoy-qlg8l                2/2     Running   2          18d
+    contour-689789679f-cl8cg   1/1     Running   0          6d16h
+    contour-689789679f-g2xjn   1/1     Running   0          6d16h
+    envoy-2blkl                2/2     Running   0          6d16h
+    envoy-2rjtb                2/2     Running   0          6d16h
+    envoy-9sljz                2/2     Running   0          6d16h
+    envoy-cv5fc                2/2     Running   0          6d16h
+    envoy-gvtlf                2/2     Running   0          6d16h
+    envoy-qtrxd                2/2     Running   0          6d16h
     ```
 
     Ensure that all pods are `Running` with all containers ready.
