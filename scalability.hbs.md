@@ -79,13 +79,13 @@ The following table describes the resource limit changes that are required for c
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
  Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | 1&nbsp;Gi/2&nbsp;Gi || Yes | No | Yes | tap-values |
 | Scanning/scan-link | 200&nbsp;m/500&nbsp;m | 1&nbsp;Gi/3&nbsp;Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
-| Cartographer| 3&nbsp;vCPUs/4&nbsp;vCPU | 10&nbsp;Gi - 10&nbsp;Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
+| Cartographer| 3&nbsp;vCPUs/4&nbsp;vCPU | 10&nbsp;Gi/10&nbsp;Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
 | Cartographer conventions|  | 1.8&nbsp;Gi  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
-| Namespace Provisioner | 100&nbsp;vCPUm/500m | 500&nbsp;Mi - 2&nbsp;Gi | | Yes | Yes | Yes | tap-values |
-| Cnrs/knative-controller  | 100&nbsp;m/1&nbsp;vCPU | 512&nbsp;Mi - 2&nbsp;Gi | | No | Yes | Yes | overlay |
-| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | 512&nbsp;Mi- 2&nbsp;Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
-| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | 5&nbsp;Gi - 5&nbsp;Gi |  | No | Yes | No | overlay |
-| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | 2&nbsp;Gi - 2&nbsp;Gi |  | No | Yes | No | overlay |
+| Namespace Provisioner | 100&nbsp;vCPUm/500m | 500&nbsp;Mi/2&nbsp;Gi | | Yes | Yes | Yes | tap-values |
+| Cnrs/knative-controller  | 100&nbsp;m/1&nbsp;vCPU | 512&nbsp;Mi/2&nbsp;Gi | | No | Yes | Yes | overlay |
+| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | 512&nbsp;Mi/2&nbsp;Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
+| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | 5&nbsp;Gi/5&nbsp;Gi |  | No | Yes | No | overlay |
+| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | 2&nbsp;Gi/2&nbsp;Gi |  | No | Yes | No | overlay |
 | Eventing/vmware-sources |  | YTD | | No  | Yes | No | YTD |
 | Eventing/triggermesh | | 100&nbsp;Mi - 800&nbsp;Mi | | No | Yes | Yes| overlay |
 | tap-telemetry/tap-telemetry-informer | 2&nbsp;Gi | YTD | | Yes| No | Yes| tap-values |
