@@ -246,6 +246,20 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-0-cnrs-bc'></a> Cloud Native Runtimes
 - **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
   As part of this release, the option has been removed completely.
+
+#### <a id='1-6-0-tap-gui-bc'></a> Tanzu Application Platform GUI (Tanzu Developer Portal)
+- **`allowGuestAccess` config option**: Previously this was not needed in the configuration and would default to allow users to login without credentials. In 1.6.x+ this has been changed to require explicitly allowing guest users. The recommended values files in the installation sections have been updated to include this setting.
+
+  Add the following lines to your `tap-values.yaml` in order to enable guest access explicitly:
+
+  ```yaml
+  #Existing tap-values.yaml settings
+  tap_gui:
+    app_config:
+      auth:
+        allowGuestAccess: true  #This will allow unauthenticated users to login to your portal. If you want to disable, make sure you configure an alternate auth provider.
+  ```
+
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes

@@ -294,6 +294,8 @@ buildservice:
 tap_gui:
   metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
   app_config:
+    auth:
+      allowGuestAccess: true  #This will allow unauthenticated users to login to your portal. If you want to disable, make sure you configure an alternate auth provider.
     catalog:
       locations:
         - type: url

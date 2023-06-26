@@ -43,7 +43,7 @@ spec:
       - name: source-revision
         type: string
       steps:
-      - image:  harbor-repo.vmware.com/dockerhub-proxy-cache/library/bash
+      - image:  bash
         name: noop
         resources: {}
         script: |
