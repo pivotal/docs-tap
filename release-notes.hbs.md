@@ -348,7 +348,7 @@ This release has the following known issues, listed by component and area.
   `~/.tilt-dev/config.lock`.
 
 - Workload actions and Live Update do not work when in a project with spaces in its name (such as
-  `my app`) or its path (such as `C:\Users\My User\my-app`). 
+  `my app`) or its path (such as `C:\Users\My User\my-app`).
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
 - An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a
@@ -365,9 +365,54 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
 - Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
 ---
 
-<h2 id='1-6-deprecations'>Deprecations</h2>
+### <a id="1-6-0-components"></a> Component versions
+
+The following table provides version information for Tanzu Application Platform components.
+
+| Component Name                                  | Version |
+| ----------------------------------------------- | ------- |
+| API Auto Registration                           |         |
+| API portal                                      |         |
+| API Scoring and Validation                      |         |
+| Application Accelerator                         |         |
+| Application Configuration Service               |         |
+| Application Live View                           |         |
+| Application Single Sign-On                      |         |
+| Bitnami Services                                | 0.2.0   |
+| Cartographer Conventions                        |         |
+| cert-manager                                    |         |
+| Cloud Native Runtimes                           |         |
+| Contour                                         |         |
+| Crossplane                                      | 0.2.1   |
+| Developer Conventions                           |         |
+| Eventing                                        |         |
+| FluxCD Source Controller                        |         |
+| Learning Center                                 |         |
+| Namespace Provisioner                           |         |
+| Service Bindings                                |         |
+| Services Toolkit                                | 0.11.0  |
+| Spring Boot conventions                         |         |
+| Spring Cloud Gateway                            |         |
+| Supply Chain Choreographer                      |         |
+| Supply Chain Security Tools - Policy Controller |         |
+| Supply Chain Security tools for Tanzu - Scan    |         |
+| Supply Chain Security Tools - Sign (Deprecated) |         |
+| Supply Chain Security Tools - Store             |         |
+| Tanzu Application Platform GUI                  |         |
+| Tanzu Application Platform Telemetry            |         |
+| Tanzu Build Service                             |         |
+| Tanzu Developer Tools for IntelliJ              |         |
+| Tanzu Developer Tools for Visual Studio         |         |
+| Tanzu Developer Tools for Visual Studio Code    |         |
+| Tanzu Service CLI plug-in                       | 0.7.0   |
+| Tekton Pipelines                                |         |
+
+---
+
+## <a id="1-6-deprecations"></a> Deprecations
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
