@@ -2,14 +2,14 @@
 
 The following sections describe how to install SCST - Scan 2.0. Since SCST-Scan 2.0 is in beta, it is not currently installed with any profiles and must be installed following these directions.
 
-## <a id='scst-app-scanning-prereqs'></a> Prerequisites
+## <a id="scst-app-scanning-prereqs"></a> Prerequisites
 
 SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton will already be installed if you installed TAP via a profile based installation in both the Full and Build Profiles.
 
-## <a id='configure-app-scanning'></a> Configure properties
+## <a id="configure-app-scanning"></a> Configure properties
 
 When you install SCST - Scan 2.0, you can configure the following optional properties:
 
@@ -21,7 +21,7 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 | workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
 | workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
 
-## <a id='install-scst-app-scanning'></a> Install
+## <a id="install-scst-app-scanning"></a> Install
 
 To install SCST - Scan 2.0:
 
