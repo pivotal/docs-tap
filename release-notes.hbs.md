@@ -204,10 +204,6 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
 - **New `default_external_scheme` config option**:
   - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with default scheme to use for Knative Service URLs. Supported values are either "http" or "https". Cannot be set along with `default_tls_secret` option.
-
-#### <a id='1-6-0-contour'></a> Contour
-- New parameters added to specify `contour` and `envoy` resources requests and limits for cpu and memory. See [Contour installation section](./contour/install.hbs.md) for details.
-- More information on the new features available in v1.24.4 check the [release notes in Project Contour](https://github.com/projectcontour/contour/releases/tag/v1.24.4).
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -368,9 +364,9 @@ This release has the following known issues, listed by component and area.
 
 ---
 
-### <a id="1-6-0-components"></a> Component versions
+### <a id="1-6-components"></a> Component versions
 
-The following table provides version information for Tanzu Application Platform components.
+The following table provides component version information for this Tanzu Application Platform release.
 
 | Component Name                                  | Version |
 | ----------------------------------------------- | ------- |
