@@ -8,12 +8,9 @@ If Artifact Metadata Repository CloudEvent Handler is installed on a separate cl
 # Switch context to view profile cluster
 kubectl config use-context VIEW-CLUSTER-NAME
 
-# get current install values for tap package
-tanzu package installed get tap --values-file tap-values.yaml -n tap-install
-
 # update the tap-values in an editor according to the desired configuration
 
-# update the installeds tap package on the cluster
+# update the installed TAP package on the cluster
 tanzu package installed update tap --values-file tap-values.yaml -n tap-install
 ```
 

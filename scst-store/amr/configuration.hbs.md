@@ -9,7 +9,8 @@ The TAP Values schema can be obtained with the following command:
 tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --values-schema --namespace tap-install
 ```
 
-**Note:** The AMR Observer TAP Values are not under the metadata_store root key. It is in the amr root key.
+**Note:** The AMR Observer TAP Values are not under the `metadata_store` root key. It is in the `amr` root key.
+**Note:** If AMR Observer is being deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) and not through TAP package, the values file for a standalone package installation does not have the TAP value root keys of `amr`, `amr.observer`, or `amr.deploy_observer`.
 
 A template of the AMR Observer TAP values.
 
@@ -31,7 +32,6 @@ amr:
       Custom CA certificate for AMR CloudEvent Handler's HTTPProxy with custom TLS certs
       -----END CERTIFICATE-----
 ```
-
 
 * `amr.deploy_observer`
 	* Default: False

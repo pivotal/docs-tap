@@ -12,6 +12,20 @@ metadata_store:
 
 Alternatively, AMR and AMR CloudEvent Handler must be deployed and accessible by the cluster where AMR Observer is to be deployed.
 
+## Switching Context
+
+If Artifact Metadata Repository Observer is installed on a separate cluster from AMR CloudEvent Handler, it is important that the correct cluster is targeted when updating the installation.
+
+```bash
+# Switch context to cluster with AMR Observer
+kubectl config use-context OBSERVER-CLUSTER-NAME
+
+# update the tap-values in an editor according to the desired configuration
+
+# update the installed TAP package on the cluster
+tanzu package installed update tap --values-file tap-values.yaml -n tap-install
+```
+
 ## Install
 To deploy AMR Observer on a Full, Build, or Run TAP profile, the TAP values must be updated with:
 
@@ -33,3 +47,36 @@ kubectl -n amr-observer-system rollout restart deployment amr-observer-controlle
 ```
 
 See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer) for more information.
+
+## Installing Artifact Metadata Repository Observer Standalone
+
+1. To install AMR Observer standalone from a TAP profile, determine the available version for installation:
+  ```bash
+  $ tanzu package available list amr-observer.apps.tanzu.vmware.com -n tap-install
+
+    NAME                                VERSION        RELEASED-AT
+    amr-observer.apps.tanzu.vmware.com  0.1.0-alpha.8  2023-06-08 16:17:22 -0400 EDT
+  ```
+
+2. Get the values-schema to create the desire values file
+  ```bash
+  $ tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --values-schema --namespace tap-install
+
+    KEY                                   DEFAULT  TYPE     DESCRIPTION
+    ca_cert_data                                   string   ca_cert_data is used to add certificates to the truststore that is used by the amr-observer.
+    eventhandler.endpoint                          string   The URL of the cloudevent handler endpoint.
+    eventhandler.liveness_period_seconds           integer  The period in seconds between executed health checks to the cloudevent handler endpoint.
+    location                                       string   location is the multiline string configuration for the location.conf content.
+    resync_period                                  string   resync_period determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
+  ```
+
+3. A sample `values-file.yaml` for installing AMR Observer standalone where AMR CloudEvent Handler is also deployed.
+
+```yaml
+eventhandler:
+  endpoint: http://amr-persister.metadata-store.svc.cluster.local
+```
+
+It is important to note that the values file for a standalone package installation does not have the TAP value root key of `amr`, `amr.observer`, or `amr.deploy_observer`.
+
+For more information, see [Configuration](./configuration.hbs.md#Configuration).
