@@ -1,6 +1,8 @@
 # Using Custom Types
 
-You can declare new `types` in `accelerator.yaml`. These can be used for options declaration,
+This topic tells you how to declare new `types` in `accelerator.yaml`
+
+These can be used for options declaration,
 in addition to the built-in types `string`, `number`, and `boolean`.
 
 In `accelerator.yaml`, use the `types` entry (inside the top-level

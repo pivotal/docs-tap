@@ -1,7 +1,7 @@
 # Testing accelerators
 
-This topic describes how to test an updated accelerator (or fragment) that is not registered in
-your Tanzu Application Platform cluster.
+This topic tells you how to test an updated accelerator, or fragment that is not registered in
+your Tanzu Application Platform (commonly known as TAP) cluster.
 
 ## <a id="accel-rapid-iteration"></a>Generating a project from local sources
 

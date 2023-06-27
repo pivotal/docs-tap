@@ -1,5 +1,7 @@
 # Include transform
 
+This topic tells you about the Application Accelerator `Include` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `Include` transform retains files based on their `path`, letting in _only_ those files
 whose path matches at least one of the configured `patterns`.
 The contents of files, and any of their other characteristics, are unaffected.
