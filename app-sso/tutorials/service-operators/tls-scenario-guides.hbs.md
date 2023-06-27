@@ -1,6 +1,6 @@
 # TLS scenario guides for AppSSO
 
-This topic tells you how to obtain a TLS certificate in difference scenatios 
+This topic tells you how to obtain a TLS certificate in different scenarios 
 for Application Single Sign-On (commonly called AppSSO). 
 
 ## Overview
