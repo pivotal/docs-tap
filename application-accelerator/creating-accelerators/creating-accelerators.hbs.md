@@ -1,7 +1,8 @@
 # Creating accelerators
 
-This topic describes how to create an accelerator in Tanzu Application Platform GUI. An accelerator
-contains your conforming code and configurations that developers can use to create new
+This topic tells you how to create an accelerator in Tanzu Application Platform GUI.
+
+An accelerator contains your conforming code and configurations that developers can use to create new
 projects that by default follow the standards defined in your accelerators.
 
 ## <a id="creating-acc-prereqs"></a>Prerequisites

@@ -1,5 +1,7 @@
 # ReplaceText transform
 
+This topic tells you about the Application Accelerator `ReplaceText` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `ReplaceText` transform allows replacing one or several text tokens in files as
 they are being copied to their destination. The replacement values are the result
 of dynamic evaluation of [SpEL expressions](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions).

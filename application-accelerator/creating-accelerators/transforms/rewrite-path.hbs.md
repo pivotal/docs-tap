@@ -1,5 +1,7 @@
 # RewritePath transform
 
+This topic tells you about the Application Accelerator `RewritePath` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `RewritePath` transform allows you to change the name and path of files without affecting their content.
 
 ## <a id="syntax-ref"></a>Syntax reference

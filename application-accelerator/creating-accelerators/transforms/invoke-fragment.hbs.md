@@ -1,8 +1,9 @@
 # InvokeFragment transform
 
-The `InvokeFragment` performs transformations defined in an imported *Fragment*,
-allowing re-use across accelerators.
+This topic tells you about the Application Accelerator `InvokeFragment` transform in Tanzu Application Platform (commonly known as TAP).
 
+The `InvokeFragment` performs transformations defined in an imported Fragment,
+allowing re-use across accelerators.
 
 ## <a id="syntax-ref"></a>Syntax reference
 

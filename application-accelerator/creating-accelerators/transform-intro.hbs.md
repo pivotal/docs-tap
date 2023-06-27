@@ -1,5 +1,7 @@
 # Introduction to transforms
 
+This topic tells you about using transforms with Application Accelerator.
+
 When the accelerator engine executes the accelerator, it produces
 a ZIP file containing a set of files. The purpose of the `engine` section is to describe
 precisely how the contents of that ZIP file is created.

@@ -1,8 +1,6 @@
 # Configure Application Accelerator
 
-This topic describes advanced configuration options available for Application Accelerator. This
-includes configuring Git-Ops style deployments of accelerators and configurations for use with
-non-public repositories and in air-gapped environments.
+This topic tells you about advanced configuration options available for Application Accelerator. This includes configuring Git-Ops style deployments of accelerators and configurations for use with non-public repositories and in air-gapped environments.
 
 ## Overview
 

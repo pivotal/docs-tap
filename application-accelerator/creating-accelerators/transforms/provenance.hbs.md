@@ -1,5 +1,7 @@
 # Provenance transform
 
+This topic tells you about the Application Accelerator `Provenance` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `Provenance` transform is a special transform used to generate a file that
 provides details of the accelerator engine transform.
 

@@ -1,6 +1,6 @@
 # Sample accelerator.yaml
 
-The following commented accelerator.yaml should help you get started writing your own accelerators.
+This topic provides you with a sample accelerator file that you can use to help you get started writing your own accelerators in Tanzu Application Platform (commonly known as TAP).
 
 ```yaml
 accelerator:

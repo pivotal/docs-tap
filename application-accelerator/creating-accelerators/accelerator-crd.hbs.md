@@ -1,6 +1,6 @@
 # Accelerator custom resource definition
 
-This topic describes the Application Accelerator custom resource definition.
+This topic tells you about the Application Accelerator custom resource definition.
 
 ## Overview
 
