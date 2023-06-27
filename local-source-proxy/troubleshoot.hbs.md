@@ -1,4 +1,6 @@
-# Troubleshoot
+# Troubleshoot Local Source Proxy
+
+This topic helps you troubleshoot issues you might encounter with Local Source Proxy.
 
 ## <a id="view-lsp-server-logs"></a> View Local Source Proxy server logs
 
@@ -20,8 +22,8 @@ Use `-f` to follow the log output.
 
 ### Symptom
 
-You need to investigate an error by reading the Apps CLI health messages to assess the status of
-Local Source Proxy and its connectivity with the upstream repository.
+You need to read the Apps CLI health messages to assess the status of Local Source Proxy and its
+connectivity with the upstream repository.
 
 ### Solution
 
@@ -70,12 +72,12 @@ message: |-
 
 ### Cause
 
-Typically, this situation arises when a custom user/group is specified within the
+Typically, this situation arises when a custom user or group is specified within the
 `rbac_subjects_for_proxy_access` section of `tap-values.yaml`.
 
 ### Solution
 
-Ensure that the user/group listed is valid. For more information about overriding default RBAC
+Ensure that the user or group listed is valid. For more information about overriding default RBAC
 permissions to access the proxy service, see
 [Override default RBAC permissions to access the proxy service](install.hbs.md#override-dflt-rbac).
 
