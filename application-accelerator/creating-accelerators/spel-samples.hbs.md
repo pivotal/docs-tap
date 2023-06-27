@@ -1,8 +1,8 @@
 # SpEL samples
 
-This document shows some common [Spring Expression Language](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions)
-(SpEL) use cases for the `accelerator.yaml` file.
+This topic shows you some common Spring Expression Language (SpEL) use cases for the `accelerator.yaml` file.
 
+For more information, see [Spring Expression Language](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) documentation.
 ## <a id="variables"></a>Variables
 
 You can reference all the values added as options in the `accelerator` section from the YAML file as variables in the `engine` section. You can access the value using the syntax 

@@ -1,5 +1,7 @@
 # UseEncoding transform
 
+This topic tells you about the Application Accelerator `UseEncoding` transform in Tanzu Application Platform (commonly known as TAP).
+
 When considering files in textual form, for example, when doing text replacement with the [ReplaceText transform](replace-text.md),
 the engine must decide which [encoding](https://en.wikipedia.org/wiki/Character_encoding) to use.
 

@@ -1,5 +1,7 @@
 # Let transform
 
+This topic tells you about the Application Accelerator `Let` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `Let` transform wraps another transform, creating a new scope
 that extends the existing scope.
 
