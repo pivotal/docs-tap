@@ -1,8 +1,6 @@
 # Configure Application Accelerator
 
-This topic describes advanced configuration options available for Application Accelerator. This
-includes configuring Git-Ops style deployments of accelerators and configurations for use with
-non-public repositories and in air-gapped environments.
+This topic tells you about advanced configuration options available for Application Accelerator. This includes configuring Git-Ops style deployments of accelerators and configurations for use with non-public repositories and in air-gapped environments.
 
 Accelerators are created either using the Tanzu CLI or by applying a YAML manifest using kubectl.
 Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).

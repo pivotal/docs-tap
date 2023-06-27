@@ -1,5 +1,7 @@
 # UniquePath transform
 
+This topic tells you about the Application Accelerator `UniquePath` transform in Tanzu Application Platform (commonly known as TAP).
+
 You can use the `UniquePath` transform to ensure there are no `path` conflicts between files transformed.
 You can often use this at the tail of a [Chain](chain.md).
 

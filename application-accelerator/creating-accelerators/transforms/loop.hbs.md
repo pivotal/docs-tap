@@ -1,5 +1,7 @@
 # Loop transform
 
+This topic tells you about the Application Accelerator `Loop` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `Loop` transform iterates over elements in a list and applies the provided transform for every
 element in that list.
 

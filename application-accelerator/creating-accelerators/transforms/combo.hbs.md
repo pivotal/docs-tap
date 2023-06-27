@@ -1,13 +1,9 @@
 # Combo transform
 
-The `Combo` transform is the Swiss army knife of transforms.
-You might use it without even realizing it.
-Whenever you author a node in the transform tree without specifying `type: x`,
-you're using `Combo`.
+This topic tells you about the Application Accelerator `Combo` transform in Tanzu Application Platform (commonly known as TAP).
 
-`Combo` combines the behaviors of [Include](include.md), [Exclude](exclude.md),
-[Merge](merge.md), [Chain](chain.md), [UniquePath](unique-path.md), and [Let](let.md)
-in a way that feels natural.
+The  `Combo` transform combines the behaviors of [Include](include.md), [Exclude](exclude.md),
+[Merge](merge.md), [Chain](chain.md), [UniquePath](unique-path.md), and [Let](let.md).
 
 ## <a id="syntax-referance"></a>Syntax reference
 
@@ -37,11 +33,7 @@ onConflict: <conflict resolution> # See UniquePath.
 
 ## <a id="behavior"></a>Behavior
 
-A few things to know about properties of the `Combo` transform:
-
-- They all have default properties.
-- They are all optional.
-- You must use at least one. An empty, unconfigured `Combo` serves no purpose.
+The `Combo` transform  properties have default values, are optional, and you must use at least one property.
 
 When you configure the `Combo` transform with all properties, it behaves as follows:
 

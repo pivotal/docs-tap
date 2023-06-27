@@ -1,6 +1,7 @@
 # Creating an accelerator.yaml file
 
-This topic describes how to create an accelerator.yaml file.
+This topic tells you how to create an accelerator.yaml file.
+
 By including an `accelerator.yaml` file in your Accelerator repository, you can declare input options
 that users fill in using a form in the UI.
 Those option values control processing by the template engine before it returns the zipped output files.
