@@ -2,20 +2,19 @@
 
 This Services Toolkit topic tells you how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
 can set up dynamic provisioning.
-This enables app development teams to create self-serve AWS RDS service instances that are customized
-to meet their needs.
+This enables app development teams to self-serve AWS RDS service instances that are customized.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
-[Set up dynamic provisioning of service instances](../tutorials/setup-dynamic-provisioning.hbs.md).
-might be help you understand the steps presented in this topic.
+[Set up dynamic provisioning of service instances](../tutorials/setup-dynamic-provisioning.hbs.md)
+might help you to better understand the steps presented in this topic.
 
 ## <a id="prereqs"></a> Prerequisites
 
 Before you configure dynamic provisioning, you must have:
 
-- Access to a Tanzu Application Platform cluster v1.5.0 or later.
-- The Tanzu services CLI plug-in v0.6.0 or later.
+- Access to a Tanzu Application Platform cluster v1.6.0 or later.
+- The Tanzu services CLI plug-in v0.7.0 or later.
 - Access to AWS.
 
 ## <a id="config-dynamic-provisioning"></a> Configure dynamic provisioning
@@ -33,23 +32,68 @@ To configure dynamic provisioning for AWS RDS service instances, you must:
 
 The first step is to install the AWS `Provider` for Crossplane.
 
-There are two variants of the `Provider`:
+There are a few differnt variants of the AWS `Provider`:
 
 - [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/)
 - [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/)
+- [upbound/provider-family-aws](https://marketplace.upbound.io/providers/upbound/provider-family-aws/)
 
-VMware recommends that you install the official Upbound variant.
-To install the `Provider` and to create a corresponding `ProviderConfig`, see the
-[Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/docs/quickstart).
+VMware recommends that you use the [upbound/provider-family-aws](https://marketplace.upbound.io/providers/upbound/provider-family-aws/) variant. This variant is both fully supported by Upbound and also allows for much more granular control over installation of APIs. This helps to alleviate performance issues often associated with with the more monolithic [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/). Refer to [Solving the Crossplane Provider CRD Scaling Problem with Provider Families](https://blog.crossplane.io/crd-scaling-provider-families/) to learn more.
 
-> **Important** The official documentation for the `Provider` includes a step to "Install Universal Crossplane".
-> You can skip this step because Crossplane is already installed as part of Tanzu Application Platform.
->
-> The documentation also assumes Crossplane is installed in the `upbound-system` namespace.
-> However, when working with Crossplane on Tanzu Application Platform, it is installed to the
-> `crossplane-system` namespace by default.
-> Ensure that you use the correct namespace when you create the `Secret` and the `ProviderConfig`
-> with credentials for the `Provider`.
+You will need to install both the top-level "family" Provider as well as the provider-aws-rds Provider.
+
+1. Create a file named `provider-family-aws.yaml` and copy in the
+   following contents:
+
+    ```yaml
+    # provider-family-aws.yaml
+
+    ---
+    # The AWS "family" Provider - manages the ProviderConfig for all other Providers in the same family.
+    # Does not have to be created explicitly, if not created explicitly it will be installed by the first Provider created
+    # in the family.
+    apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    metadata:
+      name: upbound-provider-family-aws
+    spec:
+      package: xpkg.upbound.io/upbound/provider-family-aws:v0.36.0
+      controllerConfigRef:
+        name: upbound-provider-family-aws
+    ---
+    # The AWS RDS Provider - just one of the many Providers in the AWS family.
+    # You can add as few or as many additional Providers in the same family as you wish.
+    apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    metadata:
+      name: upbound-provider-aws-rds
+    spec:
+      package: xpkg.upbound.io/upbound/provider-aws-rds:v0.36.0
+      controllerConfigRef:
+        name: upbound-provider-family-aws
+    ---
+    # The ControllerConfig applies settings to a Provider Pod.
+    # With family Providers each Provider is a unique Pod running in the cluster.
+    apiVersion: pkg.crossplane.io/v1alpha1
+    kind: ControllerConfig
+    metadata:
+      name: upbound-provider-family-aws
+    ```
+
+1. Apply the file to the Tanzu Application Platform cluster by running:
+
+    ```console
+    kubectl apply -f provider-family-aws.yaml
+    ```
+
+1. Confirm that both Providers have been installed successfully by running `kubectl get providers` and checking for INSTALLED=True and HEALTHY=TRUE.
+
+Next you must create a `ProviderConfig` for the Providers. Refer to the sections titled "Create a Kubernetes secret for AWS" and "Create a ProviderConfig" in the [Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/v0.36.0/docs/quickstart).
+
+> **Important** The Upbound documentation assumes Crossplane is installed in the `upbound-system` namespace.
+> However, when working with Crossplane on Tanzu Application Platform, it is installed to the `crossplane-system` namespace.
+> Ensure that you use the correct namespace when you create the `Secret` with credentials for the `Provider`.
+> **Note** Depending on the setup of your AWS account, you may also need to include `aws_session_token` in the `Secret`.
 
 ### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
@@ -134,19 +178,23 @@ To create the composition:
         name: default
       resources:
       - base:
-          apiVersion: database.aws.crossplane.io/v1beta1
-          kind: RDSInstance
+          apiVersion: rds.aws.upbound.io/v1beta1
+          kind: Instance
           spec:
             forProvider:
               # NOTE: configure this section to your specific requirements
-              dbInstanceClass: db.t2.micro
+              instanceClass: db.t3.micro
+              autoGeneratePassword: true
+              passwordSecretRef:
+                key: password
+                namespace: crossplane-system
               engine: postgres
-              dbName: postgres
-              engineVersion: "12"
-              masterUsername: masteruser
+              engineVersion: "13.7"
+              name: postgres
+              username: masteruser
               publiclyAccessible: true                # <---- DANGER
               region: us-east-1
-              skipFinalSnapshotBeforeDeletion: true
+              skipFinalSnapshot: true
             writeConnectionSecretToRef:
               namespace: crossplane-system
         connectionDetails:
@@ -161,8 +209,16 @@ To create the composition:
         - name: host
           fromConnectionSecretKey: endpoint
         - fromConnectionSecretKey: port
-        name: rdsinstance
+        name: instance
         patches:
+        - fromFieldPath: metadata.uid
+          toFieldPath: spec.forProvider.passwordSecretRef.name
+          transforms:
+          - string:
+              fmt: '%s-postgresql-pw'
+              type: Format
+            type: string
+          type: FromCompositeFieldPath
         - fromFieldPath: metadata.uid
           toFieldPath: spec.writeConnectionSecretToRef.name
           transforms:
@@ -178,14 +234,19 @@ To create the composition:
 
 1. Configure the Composition you just copied to your specific requirements.
 
-    In particular, you can deactivate the `publiclyAccessible: true` setting.
-    When set to `true`, this setting opens up public access to all dynamically provisioned RDS databases.
-    When set to `false`, only internal connectivity is allowed.
+    The above Composition ensures that all RDS PostgreSQL instances are placed in the us-east-1 region and
+    use the default VPC for the respective AWS account. It also configures all instances to be
+    publicly accessible over the Internet. If this is acceptable for your particular use case, you will need to
+    add an appropriate inbound rule for TCP on port 5432 to the security group of the default VPC before you will
+    be able to connect to the instances.
 
-    To help you configure the Composition, see this example in the
-    [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/latest/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
-    The example defines a composition that creates a separate VPC for each RDS PostgreSQL instance and
-    automatically configures inbound rules.
+    If you do not want the RDS PostgreSQL instances to be publicly accessible over the Internet, then you will need
+    to modify the above composition suit your needs. Specific requirements will vary, however you will likely need to
+    compose some combination of VPCs, Subnets, SubnetGroups, Routes, SecurityGroups, SecurityGroupRules, etc. The specifics
+    for doing this are outside the scope of this particular guide, however you can
+    refer to Compositions that are available online for inspiration and guidance. For example the [getting-started-with-aws-with-vpc](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/v1.12.2/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance) from the Upbound documentation. This example defines a composition that creates a separate VPC for each RDS PostgreSQL instance and
+    automatically configures inbound rules. Note that you may need to install additional Providers from the AWS Provider Family if choosing to
+    do something like this (in particular [upbound/provider-aws-ec2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v0.36.0)).
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 
