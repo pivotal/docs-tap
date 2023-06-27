@@ -1,12 +1,14 @@
-
 # Composition
+
+This topic tells you how to use fragments in Application Accelerator.
+
 ## <a id="composition-intro"></a> Introduction
 
 Despite their benefits, writing and maintaining accelerators can become repetitive and
 verbose as new accelerators are added: some create a project different from the next but
 with similar aspects, which requires some form of copy-paste.
 
-To alleviate this concern, Application Accelerators support a feature named _Composition_
+To alleviate this concern, Application Accelerators support a feature named Composition
 that allows the re-use of parts of an accelerator, called **fragments**.
 
 ## <a id="introducting-fragments"></a> Introducing fragments

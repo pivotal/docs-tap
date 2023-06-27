@@ -1,6 +1,6 @@
 # Best practices for using Fragments
 
-This topic outlines the benefits, and design considerations for Fragments.
+This topic tells you about the benefits, and design considerations for fragments.
 
 ## Benefits of using Fragment
 

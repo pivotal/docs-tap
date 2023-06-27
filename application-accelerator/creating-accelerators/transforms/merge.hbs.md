@@ -1,7 +1,9 @@
 # Merge transform
 
+This topic tells you about the Application Accelerator `Merge` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `Merge` transform feeds a copy of its input to several other transforms and
-_merges_ the results together using set union.
+merges the results together using set union.
 
 A `Merge` of **T1**, **T2**, and **T3** applied to input **I** results in **T1(I) ∪ T2(I) ∪ T3(I)**.
 

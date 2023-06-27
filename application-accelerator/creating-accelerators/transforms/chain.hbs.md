@@ -1,5 +1,7 @@
 # Chain transform
 
+This topic tells you about the Application Accelerator `Chain` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `Chain` transform uses function composition to produce its final output.
 
 A chain of **T1** then **T2** then **T3** first applies transform **T1**.

@@ -1,5 +1,7 @@
 # OpenRewriteRecipe transform
 
+This topic tells you about the Application Accelerator `OpenRewriteRecipe` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https://docs.openrewrite.org/)
 **Recipe** to a set of files and gather the results.
 

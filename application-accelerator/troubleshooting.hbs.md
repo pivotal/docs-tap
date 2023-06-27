@@ -1,10 +1,6 @@
 # Troubleshooting Application Accelerator for VMware Tanzu
 
-This topic has troubleshooting steps for:
-
-- [Development issues](#dev-issues)
-- [Accelerator authorship issues](#authorship-issues)
-- [Operations issues](#ops-issues)
+This topic provides troubleshooting steps for development, accelerator authorship, and operations issues in Application Accelerator.
 
 ## <a id="dev-issues"></a> Development issues
 

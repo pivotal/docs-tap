@@ -1,5 +1,7 @@
 # YTT transform
 
+This topic tells you about the Application Accelerator `YTT` transform in Tanzu Application Platform (commonly known as TAP).
+
 The `YTT` transform starts the [YTT](https://carvel.dev/ytt/) template engine as
 an external process.
 
