@@ -69,15 +69,16 @@ Where:
 
 ### Apply the overal secret to your `tap-values.yaml`
 
-Here you'll need to modify the `tap-values.yaml` file you used to install Tanzu Application Platform. Add the following to the root of the tap-values file:
+Here you'll need to modify the `tap-values.yaml` file you used to install Tanzu Application Platform. Update your values file with the following:
 
 ```yaml
-#Top of the tap-values.yaml file
+profile: full
+tap_gui:
+  ...
 package_overlays:
-  - name: tap-gui
-    secrets:
-      - name: tdp-app-image-overlay-secret
-#Your remaining tap-values.yaml file is below
+- name: tap-gui
+  secrets:
+  - name: tpb-app-image-overlay-secret
 ```
 
 Depending on your installation method (GitOps or Online/Offline install) you'll need to then update your installation to use this modified values file. For example, the steps for doing this in an online installation are [here](../../install-online/profile.hbs.md#install-your-tanzu-application-platform-package).
