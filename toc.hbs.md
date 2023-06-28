@@ -85,7 +85,6 @@ docs.vmware.com is built.
   - [Parameter reference](workloads/spec-reference.hbs.md)
   - [Functions (Beta)](workloads/using-functions.hbs.md)
       - [Using functions](workloads/using-functions.hbs.md)
-      - [Iterate on your function](workloads/iterate-functions.hbs.md)
 - [Troubleshoot](troubleshooting.hbs.md)
   - [Troubleshoot overview](troubleshooting.hbs.md)
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.hbs.md)
