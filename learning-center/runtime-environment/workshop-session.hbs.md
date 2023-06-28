@@ -1,6 +1,7 @@
-# WorkshopSession resource
+# Configure the WorkshopSession resource
 
-The `WorkshopSession` custom resource defines a workshop session.
+This topic describes how you configure the `WorkshopSession` custom resource, which defines a
+Learning Center workshop session.
 
 ## <a id="specify-session-id"></a> Specifying the session identity
 

@@ -1,7 +1,7 @@
-# Session management
+# Use session management for Learning Center workshops
 
-
-The REST API endpoints for session management allow you to request that a workshop session be allocated.
+This topic describes how you use the REST API endpoints for session management, which allow you to
+request a workshop session to be allocated.
 
 ## <a id="deactivate-portal-user-reg"></a>Deactivating portal user registration
 

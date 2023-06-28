@@ -1,8 +1,8 @@
 # Authorize users and groups to claim from provisioner-based classes
 
-This Services Toolkit topic tells you how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
-can configure access control so that the required users
-and groups have authorization to claim from provisioner-based classes.
+This Services Toolkit topic for [service operators](../reference/terminology-and-user-roles.hbs.md#so)
+explains how you configure access control so that the required users and groups have authorization to
+claim from provisioner-based classes.
 
 By default, only users with `cluster-admin` privileges are authorized to create claims for
 provisioner-based classes.
