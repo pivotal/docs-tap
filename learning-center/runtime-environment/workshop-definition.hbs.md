@@ -1,6 +1,7 @@
-# Workshop resource
+# Configure the Workshop resource
 
-The `Workshop` custom resource defines a workshop.
+This topic describes how you configure the `Workshop` custom resource, which defines a Learning Center
+workshop.
 
 ## <a id="workshop-title-desc"></a> Workshop title and description
 
