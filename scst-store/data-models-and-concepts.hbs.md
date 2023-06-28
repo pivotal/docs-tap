@@ -8,7 +8,7 @@ The diagram below shows an overall view of the SCST - Store data models and thei
 
 ![Screenshot of a SCST -Store Data Model Overview.](images/scst-store-data-model-overview.jpg)
 
-It includes the relations of the following concepts:
+This page covers the following concepts:
 * Software Bill of Material per Build
 
 ## <a id='sbom-per-build'></a> Software Bill of Material per Build
