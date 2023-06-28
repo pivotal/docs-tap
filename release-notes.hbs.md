@@ -37,6 +37,27 @@ a registry and provide their credentials on their local systems for iterative in
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-6-0-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
+
+- Integrated with Local Source Proxy for seamless iterative inner-loop development using the CLI or IDE plugins.
+  - `tanzu apps workload apply` and `tanzu apps workload create` can now seamlessly create a workload from 
+    local source using just the `--local-path` flag.
+  - `--source-image` flag is now optional. if `--source-image` flag is used along with `--local-path`, the 
+    Local source proxy is not used and bypassed for backward compatibility.
+  - Introducing a new command, `tanzu apps lsp health` which allows users to verify the status of the Local 
+    Source Proxy. This command performs several checks, including:
+    - Verifying whether the developer has RBAC permissions to access the Local Source Proxy using their `kubeconfig`.
+    - Checking if the Local Source Proxy is installed on the cluster.
+    - Ensuring that the Local Source Proxy deployment is healthy and accessible.
+    - Verifying that the Local Source Proxy is correctly configured and able to access the registry using the 
+      credentials set up by the operator during TAP installation.
+- Implemented `autocompletion` functionality for workload types. Additionally, the default workload type has been 
+  set to `web`, making the `--type` flag optional. The flag is only required if the type is something other than `web`.
+- Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
+- Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section. 
+  This addition provides a quick reference to the Git revision associated with the workload.
+
+
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
 - Incorporates the token expiry settings into the `AuthServer` resource. Service
@@ -220,6 +241,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-6-0-apps-cli-plugin-bc'></a> Apps plug-in for Tanzu CLI
+
+- The deprecated `tanzu apps workload update` command is removed from the CLI. 
+  Use the command `tanzu apps workload apply` instead.
+
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
 - Consume AppSSO service offerings using `ClassClaim` instead of the lower-level `WorkloadRegistration`
@@ -285,6 +311,15 @@ This release has the following security fixes, listed by component and area.
 ### <a id='1-6-0-resolved-issues'></a> Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
+
+#### <a id='1-6-0-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
+
+- Implemented validations to prevent the inclusion of multiple sources through flags in the `workload create` 
+  and `workload apply` commands.
+- Modified the behavior of the commands when waiting to apply workload changes. If the workload was previously 
+  in a failed state, it will no longer immediately fail. When the `--wait` flag is used, the command will continue 
+  to wait until the workload either succeeds or fails again. When the `--tail` flag is used, the command will keep 
+  tailing logs from the Supply chain steps that were impacted by the workload update.
 
 #### <a id='1-6-0-crossplane-ri'></a> Crossplane
 
@@ -443,6 +478,11 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
+
+#### <a id='1-6-0-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
+
+- The default value for the `--update-strategy` flag will change from merge to replace in 
+  Tanzu Application Platform v1.7.0
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
 
