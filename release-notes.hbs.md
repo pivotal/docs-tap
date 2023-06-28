@@ -204,8 +204,9 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       vulnerability scan report, if provided, and SCST - Store.
 
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
-- **New `default_external_scheme` config option**:
-  - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with default scheme to use for Knative Service URLs. Supported values are either "http" or "https". Cannot be set along with `default_tls_secret` option.
+
+- **New `default_external_scheme` configuration option**:
+  - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with a default scheme you can use for Knative Service URLs. Supported values are either `http` or `https`. You cannot set this option at the same time as the `default_tls_secret` option.
 
 #### <a id='1-6-0-contour'></a> Contour
 
@@ -328,11 +329,13 @@ The following issues, listed by component and area, are resolved in this release
 
 - New toggle feature for how to make ConfigMap updates
 
-For some ConfigMaps in CNRs (Ex: config-features), the option to update using an overlay was not taking effect. This bug has been fixed. With this version, the legacy behavior will remain the same, but we introduce a configuration to opt-in into the ability to update ConfigMaps using overlays in CNRs, as it is for all TAP components. To configure this option, edit your cnr-values.yml file to change the following configuration:
-`allow_manual_configmap_update: false`.
+For some ConfigMaps in CNRs, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in CNRs, as it is for all Tanzu Application Platform components. To configure this option, edit your cnr-values.yaml file to change the following configuration:
 
-In a future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
+```console
+allow_manual_configmap_update: false
+```
 
+In a planned future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
 ---
 
 ### <a id='1-6-0-known-issues'></a> Known issues
