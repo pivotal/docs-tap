@@ -450,4 +450,3 @@ docs.vmware.com is built.
   - [Queues (Beta)](workloads/queue.hbs.md)
   - [Functions (Beta)](workloads/using-functions.hbs.md)
       - [Using functions](workloads/using-functions.hbs.md)
-      - [Iterating on your function](workloads/iterate-functions.hbs.md)
