@@ -476,10 +476,10 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 ### <a id='1-6-0-scc-deprecations'></a> Supply Chain Choreographer
 
-- The `git_implementation` field is no longer used. The `go-git` implementation will be assumed now that `libgit2` is no longer supported.
-  - FluxCD no longer honors the `spec.gitImplementation field` [as of version 0.33.0](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330)
-  - Existing references to `git_implementation` field will be ignored, references to `libgit2` will not cause failures, this is assured up to TAP v1.9.0
-  - Azure DevOps works without specifying `git_implementation` in TAP v1.6.0
+- Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation now assumes that `libgit2` is not supported.
+  - FluxCD no longer supports the `spec.gitImplementation field` [as of version 0.33.0](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330)
+  - Existing references to `git_implementation` field are ignored and references to `libgit2` do not cause failures. This is assured up to Tanzu Application Platform v1.9.0
+  - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.6.0
 
 ### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 
