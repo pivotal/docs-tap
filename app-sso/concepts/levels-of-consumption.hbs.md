@@ -33,12 +33,12 @@ only for the tasks within their domain:
 
 ## <a id="level-1"></a> Level 1: ClientRegistration
 
-The lowest-level and most-general client API AppSSO has to offer is
-`ClientRegistration`. It can hold all relevant OAuth2 client configurations.
-However, it requires fully-qualified redirect URIs and it targets its host
-`AuthServer` by label selector.
+The lowest-level and most general client API Application Single Sign-On offers is
+`ClientRegistration`. It holds all relevant OAuth2 client configurations.
+However, it requires fully qualified redirect URIs and targets its host
+`AuthServer` by using a label selector.
 
-Here's a hypothetical, fully-configured `ClientRegistration`:
+A hypothetical, fully-configured `ClientRegistration` is provided as follows:
 
 ```yaml
 ---
@@ -71,49 +71,49 @@ spec:
   requireUserConsent: true
 ```
 
-To be able to specify redirect URIs for an application running on TAP, you need
-to be able to know its scheme and FQDN in advance. For example, you must be
-able to say that your redirect URI is `https://profile.shop.example.com/login`.
-However, the different parts of such a redirect URI are controlled by multiple
-personas; the _platform operator_ and the _application operator_.
+To specify redirect URIs for an application running on Tanzu Application Platform, 
+you must know its scheme and FQDN in advance. For example, your redirect URI must 
+be `https://profile.shop.example.com/login`.
+However, the various components of a redirect URI are controlled by multiple
+personas such as platform operators and application operators.
 
-Usually, the _platform operator_ controls how FQDNs are templated and whether
-TLS is used. In the case of our redirect URI they control everything in
-`https://profile.shop.example.com`, i.e. they configure TLS, the template for
-domain names and the top-level ingress domain. Furthermore, they will configure
-things differently on different environments. That means on another environment
-`https://profile.shop.staging.example.com` could be the right thing to set.
+In most cases, platform operators control how FQDNs are templated and whether
+TLS is used. For the redirect URI, platform operators have full control over all 
+the elements in `https://profile.shop.example.com`, which include TLS, the domain 
+name template and the top-level ingress domain. These configurations can vary 
+across different environments. Therefore, in an alternative environment, 
+setting `https://profile.shop.staging.example.com` can be the appropriate choice.
 
-The _application operator_ on the other hand is in control of the application's
-code and its paths. In case of our redirect URI they control `/login`. This
-path is unlikely to change and will be the same regardless of the target
-environment.
+Application operators control the application's code and its paths. 
+Specifically, they are responsible for managing the `/login` path within the redirect URI. 
+This path is unlikely to change and remains the same regardless of the target environment.
 
-As a result, for a given environment the _application operator_ might not know
-the FQDN and scheme. They would have to ask their _platform operator_. On the
-other hand, the _platform operator_ would like to change settings without being
-coupled to every _application operators_' configuration.
+As a result, in a given environment, application operators might not know
+the FQDN and scheme. In such cases, they must seek assistance from platform 
+operators to obtain this information. On the other hand, platform operators aim 
+to change settings without being coupled to the application operator's configuration.
 
-Furthermore, a `ClientRegistration` needs to uniquely identify an `AuthServer`
-by label selector. _Service operators_ are in charge of `AuthServer`. The
-labels for a resource don't have to be stable across environments. In this
-case, yet again, it complicates things for the _application operator_. That is
-because label selectors are more advanced concept and they don't necessarily
-know the labels of their desired `AuthServers`. Maybe _application operators_
-shouldn't even be able to see `AuthServers` since it is the purview of _service
-operators_.
+A `ClientRegistration` must uniquely identify an `AuthServer`
+by using a label selector. Service operators are in charge of managing `AuthServer`. 
+The labels for a resource is not required to be consistent across environments. 
+However, this can create complications for application operators. Label selectors 
+are considered an advanced concept, and application operators might not be familiar 
+with the specific labels associated with their desired `AuthServers`. It might be 
+worth considering restricting the visibility of `AuthServers` to application operators 
+because it falls within the domain of service operators.
 
-All of this makes it hard for _application operators_ to use the same
+All these factors make it challenging for application operators to use the same
 `ClientRegistration` across different environments.
 
 ![Diagram shows level 1 of AppSSO consumption with ClientRegistration.](../../images/app-sso/level-1-clientregistration.png)
 
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMFgNkDk=/)
 
-In summary, `ClientRegistration` is flexible but complex and not easily
-portable across environments. It mixes the concerns of personas.
+In conclusion, although `ClientRegistration` offers flexibility, it is also complex 
+and not easily transferable between different environments. It combines the 
+responsibilities of multiple personas, making it a less straightforward solution.
 
-## <a id="level-2"></a> Level 2 - WorkloadRegistration
+## <a id="level-2"></a> Level 2: WorkloadRegistration
 
 A higher-level abstraction over `ClientRegistration` is `WorkloadRegistration`.
 It is similar to `ClientRegistration` except for one major difference: it
@@ -186,7 +186,7 @@ In summary, `WorkloadRegistration` is less flexible but when redirect URIs can
 be templated it is portable across environments. However, it still mixes the
 concerns of personas.
 
-## <a id="level-3"></a> Level 3 - ClassClaim (recommended)
+## <a id="level-3"></a> Level 3: ClassClaim (recommended)
 
 The final level is to obtain client credentials by claiming them from an AppSSO
 service. While the previous levels interacted directly with `AuthServer`
