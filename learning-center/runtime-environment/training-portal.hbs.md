@@ -1,6 +1,7 @@
-# TrainingPortal resource
+# Configure the TrainingPortal resource
 
-The `TrainingPortal` custom resource triggers the deployment of a set of workshop environments and a set number of workshop instances.
+This topic describes how you configure the `TrainingPortal` custom resource, which triggers the
+deployment of a set of Learning Center workshop environments and a set number of workshop instances.
 
 ## <a id="specify-workshop-defs"></a> Specifying the workshop definitions
 
