@@ -281,10 +281,6 @@ For more information, see
 Debug your workloads.
 For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-extension/about.md).
 
-#### <a id="functions-features"></a> Functions (beta)
-
-- Live Update and Debug your Java functions. For more information, see [Iterate on your function](workloads/iterate-functions.md).
-
 #### <a id="tbs-features"></a> Tanzu Build Service
 
 - Updates to dependencies are now provided as part of Tanzu Application Platform patches.
