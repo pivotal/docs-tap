@@ -1,6 +1,6 @@
 # Best practices for using Accelerators
 
-This topic outlines the benefits, and design considerations for accelerators.
+This topic tells you about the benefits, and design considerations for accelerators.
 
 ## <a id="accelerator-benefits"></a> Benefits of using an accelerator
 

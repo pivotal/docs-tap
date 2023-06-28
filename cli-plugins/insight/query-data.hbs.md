@@ -21,7 +21,7 @@ There are four commands for querying and adding data.
 - `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilities.
 - `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
-Use `tanzu insight -h` or for more information see [Tanzu Insight Details](cli-docs/insight.md).
+<!--Use `tanzu insight -h` or for more information see [Tanzu Insight Details](cli-docs/insight.md).-->
 
 ## <a id='example1'></a>Example #1: What packages & CVEs does a specific image contain?
 

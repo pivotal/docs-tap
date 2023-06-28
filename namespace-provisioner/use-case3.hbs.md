@@ -305,8 +305,7 @@ To configure the service account to work with private Git repositories, follow t
    >**Note** `create_export` is set to `true` in `import_data_values_secrets`, as a result, a
    SecretExport is created for the `workload-git-auth` secret in the tap-install namespace
    automatically by Namespace Provisioner. After the changes are reconciled, the secret
-   named **git ** is in all provisioned namespaces and is also added to the default service account of
-   those namespaces.
+   named **git ** is in all provisioned namespaces and is also added to the default service account of those namespaces.
 
 4. In your TAP values YAML file, in the `ootb_supply_chain_*.gitops.ssh_secret ` section,
    specify the name of the Git secret that contains the credentials. This is necessary for the

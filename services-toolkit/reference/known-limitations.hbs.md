@@ -54,6 +54,11 @@ For the number of CRDs installed with these `Providers`, see:
 You must ensure that your cluster has sufficient resource to support this number of additional CRDs
 if you choose to install them.
 
+**Workaround:**
+
+To address this issue, Upbound have released a new feature named Provider Families.
+For more information, see the [Crossplane blog](https://blog.crossplane.io/crd-scaling-provider-families/).
+
 ## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
 
 **Description:**

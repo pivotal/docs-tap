@@ -27,7 +27,6 @@ Refers to [delivery-source-template](ootb-template-reference.hbs.md#delivery-sou
 Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by deliverable.
-- `gitImplementation` from tap-value `git_implementation`. Not overridable by deliverable.
 
 #### <a id='deployer'></a> Deployer
 

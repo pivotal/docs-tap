@@ -89,7 +89,6 @@ cannot be used to build PHP workloads.
 
 The `lite` dependencies contain the following stacks:
 
-- `base` (Ubuntu Bionic)
 - `base-jammy` (Ubuntu Jammy)
 - `default` (identical to `base-jammy`)
 
@@ -98,27 +97,25 @@ in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="lite-buildpacks"></a> Lite dependencies: buildpacks
 
-The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.5:
+The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.6:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu (Lite) | 8.8.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu (Lite) | 6.42.3 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu (Lite) | 2.3.0 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu (Lite) | 2.3.3 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu (Lite) | 2.0.8 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu (Lite) | 0.8.0 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
-| Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu (Lite) | 9.0.4 | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu (Lite) | 7.0.4 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu (Lite) | 2.6.2 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu (Lite) | 2.2.3 | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu (Lite) | 2.3.8 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu (Lite) | 2.1.4 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu (Lite) | 0.13.1 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu (Lite) | 2.5.2 | Bionic, Jammy |
 
 And the following components:
 
 | Component | Version | Supported Stacks |
 |-----------|---------|------------------|
 | CNB Lifecycle | 0.16.0 | Bionic, Jammy |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.41 | Jammy |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -137,9 +134,6 @@ For instructions for installing `full` dependencies, see [Install Tanzu Build Se
 
 The `full` dependencies contain the following stacks, which support different use cases:
 
-- `base` (Ubuntu Bionic)
-- `full` (Ubuntu Bionic)
-- `tiny` (Ubuntu Bionic)
 - `base-jammy` (Ubuntu Jammy)
 - `full-jammy` (Ubuntu Jammy)
 - `tiny-jammy` (Ubuntu Jammy)
@@ -150,32 +144,29 @@ in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="full-buildpacks"></a> Full dependencies: buildpacks
 
-The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.5:
+The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.6:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu | 8.8.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu | 6.42.3 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu | 2.3.0 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu | 2.1.0 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu | 2.3.3 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu | 2.1.0 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu | 2.0.8 | Bionic, Jammy |
-| PHP Buildpack for VMware Tanzu | 2.0.0 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu | 0.8.0 | Bionic, Jammy |
-| Procfile Buildpack for VMware Tanzu | 5.4.0 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu | 9.0.4 | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu | 7.0.4 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu | 2.6.2 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu | 2.2.3 | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu | 2.3.8 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu | 2.5.2 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu | 2.1.4 | Bionic, Jammy |
+| PHP Buildpack for VMware Tanzu | 2.3.3 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu | 0.13.1 | Bionic, Jammy |
+| Procfile Buildpack for VMware Tanzu | 5.6.1 | Bionic, Jammy |
 
 And the following components:
 
 | Component | Version | Supported Stacks |
 |-----------|---------|------------------|
 | CNB Lifecycle | 0.16.0 | Bionic, Jammy |
-| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.99 | Bionic |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
-| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.141 | Bionic |
-| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.26 | Jammy |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
-| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.54 | Jammy |
+| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.43 | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.41 | Jammy |
+| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.70 | Jammy |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 

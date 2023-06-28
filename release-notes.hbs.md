@@ -25,7 +25,8 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-components'></a> New components
 
-- [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
+- [Local Source Proxy](local-source-proxy/about.hbs.md) is a secure and convenient means for you to
+  interact with external registries without providing a lot of registry details.
 
 ---
 
@@ -172,6 +173,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
+- Supply Chain Security Tools - Scan 2.0 is promoted from `alpha` to `beta` with the ability to enable Supply Chain Security Tools - Scan 2.0 in the out-of-the-box test and scan supply chain.
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
@@ -217,8 +219,9 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with default scheme to use for Knative Service URLs. Supported values are either "http" or "https". Cannot be set along with `default_tls_secret` option.
 
 #### <a id='1-6-0-contour'></a> Contour
-- New parameters added to specify `contour` and `envoy` resources requests and limits for cpu and memory. See [Contour installation section](./contour/install.hbs.md) for details.
-- More information on the new features available in v1.24.4 check the [release notes in Project Contour](https://github.com/projectcontour/contour/releases/tag/v1.24.4).
+
+- Add new parameters to specify `contour` and `envoy` resources requests and limits for CPU and memory. For more information, see [Install Contour](contour/install.hbs.md).
+- For more information about the new features in v1.24.4, see [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.24.4) in GitHub.
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -261,6 +264,20 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-0-cnrs-bc'></a> Cloud Native Runtimes
 - **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
   As part of this release, the option has been removed completely.
+
+#### <a id='1-6-0-tap-gui-bc'></a> Tanzu Application Platform GUI (Tanzu Developer Portal)
+- **`allowGuestAccess` config option**: Previously this was not needed in the configuration and would default to allow users to login without credentials. In 1.6.x+ this has been changed to require explicitly allowing guest users. The recommended values files in the installation sections have been updated to include this setting.
+
+  Add the following lines to your `tap-values.yaml` in order to enable guest access explicitly:
+
+  ```yaml
+  #Existing tap-values.yaml settings
+  tap_gui:
+    app_config:
+      auth:
+        allowGuestAccess: true  #This will allow unauthenticated users to login to your portal. If you want to disable, make sure you configure an alternate auth provider.
+  ```
+
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
@@ -384,9 +401,9 @@ This release has the following known issues, listed by component and area.
 
 ---
 
-### <a id="1-6-0-components"></a> Component versions
+### <a id="1-6-components"></a> Component versions
 
-The following table provides version information for Tanzu Application Platform components.
+The following table lists the supported component versions for this Tanzu Application Platform release.
 
 | Component Name                                  | Version |
 | ----------------------------------------------- | ------- |
@@ -472,6 +489,13 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   hidden from help text output, but continues to work until officially removed
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
+
+### <a id='1-6-0-scc-deprecations'></a> Supply Chain Choreographer
+
+- Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation now assumes that `libgit2` is not supported.
+  - FluxCD no longer supports the `spec.gitImplementation field` [as of version 0.33.0](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330)
+  - Existing references to `git_implementation` field are ignored and references to `libgit2` do not cause failures. This is assured up to Tanzu Application Platform v1.9.0
+  - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.6.0
 
 ### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 

@@ -222,6 +222,14 @@ Verify these possible reasons why the vulnerability database is not valid:
 3. The `url` that you modified to point at an internal endpoint is not reachable
    from within the cluster. For information about verifying connectivity, see
    [Debug Grype database in a cluster](#debug-grype-database-in-a-cluster).
+4. Run the following to check for syntax errors in the listing.json:
+    ```console
+    grype db check
+    ```
+5. Run the following to validate the configured listing.json:
+    ```console
+    grype db list -o raw
+    ```
 
 #### Debug Grype database in a cluster
 

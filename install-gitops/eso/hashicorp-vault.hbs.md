@@ -258,7 +258,7 @@ values to suit your specific needs.
 
 Configuration for Tanzu is stored in two locations:
 
-- Sensitive configuration is stored in AWS Secrets Manager.
+- Sensitive configuration is stored in Vault.
 - Non-sensitive configuration are stored in YAML files in the Git repository.
 
 Follow these steps to create the sensitive configuration and review the non-sensitive configuration:
@@ -283,7 +283,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
         created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
 
         ```console
-        echo -n "$(cat <<EOF
+        printf '%s\n'  "$(cat <<EOF
         {
             "privatekey": "$(cat $GIT_SSH_PRIVATE_KEY_FILE | awk '{printf "%s\\n", $0}')",
             "knownhosts": "$(echo $GIT_KNOWN_HOSTS | awk '{printf "%s\\n", $0}')"
@@ -340,7 +340,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
     For example:
 
     ```console
-    echo -n "$(cat <<EOF
+    printf '%s\n'  "$(cat <<EOF
     {
       "auths": {
           "${INSTALL_REGISTRY_HOSTNAME}": {
@@ -383,7 +383,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     ```console
     ...
-    wrote ESO configuration for Tanzu Sync to: tanzu-sync/app/values/tanzu-sync-eso.yaml
+    wrote ESO configuration for Tanzu Sync to: tanzu-sync/app/values/tanzu-sync-vault-values.yaml
     ...
     ```
 
@@ -412,7 +412,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     - `kubernetes.role` is the IAM role that grants permission to Tanzu Application Platform installation to read its associated secrets. This role was created in the
     [Grant read access to secret data](#grant-read-access-to-secret-data) section.
-    - `install_registry_dockerconfig` contains the AWS Secrets Manager secret name that contains the Docker config authentication to 
+    - `install_registry_dockerconfig` contains the Vault secret name that contains the Docker config authentication to 
     the OCI registry hosting the Tanzu Application Platform images created earlier.
 
 1. Replace any `TO DO` sections from line 12 in the earlier example with the relevant values.
@@ -433,10 +433,10 @@ Follow these steps to create the sensitive configuration and review the non-sens
         sync_git:
           ssh:
             private_key:
-              key: secret/dev/iterate-green/tanzu-sync/sync-git/ssh"
+              key: secret/dev/iterate-green/tanzu-sync/sync-git/ssh
               property: privatekey
             known_hosts:
-              key: secret/dev/iterate-green/tanzu-sync/sync-git/ssh"
+              key: secret/dev/iterate-green/tanzu-sync/sync-git/ssh
               property: knownhosts
         install_registry_dockerconfig:
           dockerconfigjson:
@@ -459,10 +459,10 @@ Follow these steps to create the sensitive configuration and review the non-sens
         sync_git:
           basic_auth:
             username:
-              key: secret/dev/iterate-green/tanzu-sync/sync-git/basic_auth"
+              key: secret/dev/iterate-green/tanzu-sync/sync-git/basic_auth
               property: username
             password:
-              key: secret/dev/iterate-green/tanzu-sync/sync-git/basic_auth"
+              key: secret/dev/iterate-green/tanzu-sync/sync-git/basic_auth
               property: password
         install_registry_dockerconfig:
           dockerconfigjson:
@@ -491,7 +491,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 stores the sensitive data such as username, password, private key from the `tap-values.yaml` file:
 
     ```console
-    echo -n "$(cat <<EOF
+    printf '%s\n'  "$(cat <<EOF
     ---
     # this document is intentionally initially blank.
     EOF
@@ -507,12 +507,11 @@ stores the sensitive data such as username, password, private key from the `tap-
 
     ```console
     ...
-    wrote ESO configuration for TAP Install to: cluster-config/values/tap-install-vault-values.yaml
+    wrote Vault configuration for TAP Install to: cluster-config/values/tap-install-vault-values.yaml
     ...
     ```
 
-    For example, for the `iterate-green` cluster, if the AWS account is `665100000000`,
-    `tap-install-vault-values.yaml` contains the following information:
+    For example, for the `iterate-green` cluster `tap-install-vault-values.yaml` contains the following information:
 
     ```yaml
     ---
@@ -536,7 +535,7 @@ stores the sensitive data such as username, password, private key from the `tap-
     - `kubernetes.role` is the IAM role that grants permission to Tanzu Application Platform
     installation to read its associated secrets. This role was created in the
     [Grant read access to secret data](#grant-read-access-to-secret-data) section.
-    - `sensitive_tap_values_yaml.key` is the AWS Secrets Manager secret name that
+    - `sensitive_tap_values_yaml.key` is the Vault secret name that
     contains the sensitive data from the `tap-values.yaml` file for this cluster in a YAML format.
 
 1. Commit the Tanzu Application Platform installation configuration.
