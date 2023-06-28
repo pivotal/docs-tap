@@ -1,36 +1,37 @@
-# The three levels of AppSSO consumption
+# Levels of consumption for Application Single Sign-On 
 
-This topic describes the different levels of consuming AppSSO services and
-explains when and why you might choose to use one level over another.
+This topic tells you about the three levels of consuming Application Single Sign-On 
+(commonly called AppSSO) services and explains the when and why for selecting a specific level over another.
 
-Generally, the recommendation is to consume an AppSSO service via `ClassClaim`
-but there can be situations where the lower level `WorkloadRegistration` or
+VMware recommends using `ClassClaim` to consume an Application Single Sign-On service.
+However there might be situations where the lower level `WorkloadRegistration` or
 `ClientRegistration` are a better fit.
 
-At its core consumption of AppSSO is about obtaining client credentials for an
-authorization server and loading them into a running workload. In particular,
-it breaks down into the following steps:
+At its core, the process of consuming Application Single Sign-On involves obtaining 
+client credentials for an authorization server and loading them into a running workload. 
+This process consists of the following steps:
 
-1. Define your environment-independent OAuth2 client configurations, e.g. client
-   authentication method, scopes, ...
+1. Define your environment-independent OAuth2 client configurations, for example, client
+   authentication method, scopes and so on.
 
-1. Define your OAuth2 client's redirect URIs
+1. Define your OAuth2 client's redirect URIs.
 
-1. Specify the authorization server that you want credentials for
+1. Specify the authorization server that you want credentials for.
 
-1. Create a resource that expresses your configuration
+1. Create a resource that expresses your configuration.
 
-1. Mount the client credentials into a workload
+1. Mount the client credentials into a workload.
 
 Each of the following levels gradually takes away some of these steps
-by distributing them across APIs, so that eventually, each persona
-is only concerned with what's in their purview:
+by distributing them across APIs. As a result, each persona becomes responsible 
+only for the tasks within their domain:
 
-* _Platform operators_ manage the TAP (and AppSSO) installations
-* _Service operators_ curate and manage AppSSO services
-* _Application operators_ consume AppSSO services from their workloads
+- **Platform operators** manage the installations of Tanzu Application Platform 
+  and Application Single Sign-On.
+- **Service operators** curate and manage Application Single Sign-On services.
+- **Application operators** consume Application Single Sign-On services from their workloads.
 
-## Level 1 - ClientRegistration
+## <a id="level-1"></a> Level 1: ClientRegistration
 
 The lowest-level and most-general client API AppSSO has to offer is
 `ClientRegistration`. It can hold all relevant OAuth2 client configurations.
@@ -105,15 +106,14 @@ operators_.
 All of this makes it hard for _application operators_ to use the same
 `ClientRegistration` across different environments.
 
-![Diagram shows level 1 of AppSSO consumption with
-ClientRegistration.](../../images/app-sso/level-1-clientregistration.png)
+![Diagram shows level 1 of AppSSO consumption with ClientRegistration.](../../images/app-sso/level-1-clientregistration.png)
 
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMFgNkDk=/)
 
 In summary, `ClientRegistration` is flexible but complex and not easily
 portable across environments. It mixes the concerns of personas.
 
-## Level 2 - WorkloadRegistration
+## <a id="level-2"></a> Level 2 - WorkloadRegistration
 
 A higher-level abstraction over `ClientRegistration` is `WorkloadRegistration`.
 It is similar to `ClientRegistration` except for one major difference: it
@@ -178,8 +178,7 @@ However, `WorkloadRegistration` still requires matching an `AuthServer` by
 label selector. That means _application operators_ and _service operators_ are
 still coupled.
 
-![Diagram shows level 2 of AppSSO consumption with
-WorkloadRegistration.](../../images/app-sso/level-2-workloadregistration.png)
+![Diagram shows level 2 of AppSSO consumption with WorkloadRegistration.](../../images/app-sso/level-2-workloadregistration.png)
 
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMFgNkDk=/)
 
@@ -187,7 +186,7 @@ In summary, `WorkloadRegistration` is less flexible but when redirect URIs can
 be templated it is portable across environments. However, it still mixes the
 concerns of personas.
 
-## Level 3 - ClassClaim (recommended)
+## <a id="level-3"></a> Level 3 - ClassClaim (recommended)
 
 The final level is to obtain client credentials by claiming them from an AppSSO
 service. While the previous levels interacted directly with `AuthServer`
@@ -254,8 +253,7 @@ spec:
 This last level completely decouples all three personas by providing them with
 APIs to fulfill their jobs.
 
-![Diagram shows level 3 of AppSSO consumption with
-WorkloadRegistration.](../../images/app-sso/level-3-classclaim.png)
+![Diagram shows level 3 of AppSSO consumption with WorkloadRegistration.](../../images/app-sso/level-3-classclaim.png)
 
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMFgNkDk=/)
 
@@ -264,7 +262,7 @@ templated it is portable across environments. Furthermore, it completely
 decouples the concerns of personas. Additionally, it's only a single resource
 for _application operators_ to manage.
 
-## Summary
+## <a id="summary"></a> Summary
 
 When you are an _application operator_ and your workload and its supporting
 resources are propagating through different environments, then `ClassClaim`
@@ -285,4 +283,3 @@ Depending on your setup consuming AppSSO requires multiple resource, a
 `ClientRegistration` and a `ResourceClaim`, in this case.
 
 In conclusion, use `ClassClaim` when possible.
-

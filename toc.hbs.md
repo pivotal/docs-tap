@@ -326,7 +326,7 @@ docs.vmware.com is built.
                 - [Claim credentials for an AppSSO service](app-sso/tutorials/app-operators/claim-credentials.hbs.md)
                 - [Secure a workload](app-sso/tutorials/app-operators/secure-workload.hbs.md)
         - [Concepts](app-sso/concepts/index.hbs.md)
-            - [The three levels of AppSSO consumption](app-sso/concepts/levels-of-consumption.hbs.md)
+            - [Levels of consumption](app-sso/concepts/levels-of-consumption.hbs.md)
             - [Grant types](app-sso/concepts/grant-types.hbs.md)
         - [Reference](app-sso/reference/index.hbs.md)
             - [API](app-sso/reference/api/index.hbs.md)
