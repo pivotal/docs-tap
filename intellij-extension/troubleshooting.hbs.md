@@ -2,23 +2,6 @@
 
 This topic helps you troubleshoot issues with Tanzu Developer Tools for IntelliJ.
 
-## <a id="debug-reapplies-apply"></a> Tanzu Debug re-applies the workload when namespace field is empty
-
-### Symptoms
-
-If the `namespace` field of the debug launch configuration is empty, the workload is re-applied even
-if it exists on the cluster.
-
-### Cause
-
-Internally, workloads are gathered in the cluster in the current namespace and compared with the
-information that you specify.
-If the `namespace` field is empty, it is considered `null` and the internal checks fail.
-
-### Solution
-
-Do not leave the `namespace` field blank.
-
 ## <a id="debug-confg-from-dropdown"></a> Workload is wrongly re-applied because of debug configuration selected from the launch configuration drop-down menu
 
 ### Symptoms
