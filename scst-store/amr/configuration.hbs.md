@@ -10,7 +10,7 @@ tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --v
 ```
 
 **Note:** The AMR Observer TAP Values are not under the `metadata_store` root key. It is in the `amr` root key.
-**Note:** If AMR Observer is being deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) and not through TAP package, the values file for a standalone package installation does not have the TAP value root keys of `amr`, `amr.observer`, or `amr.deploy_observer`.
+**Note:** If AMR Observer is being deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) and not through TAP package, the values file for a standalone package installation does not have the TAP value root keys of `amr.observer` or `amr.deploy_observer`.
 
 A template of the AMR Observer TAP values.
 
@@ -34,8 +34,8 @@ amr:
 ```
 
 * `amr.deploy_observer`
-	* Default: False
-  * If deployed on a full profile TAP cluster and `metadata-store.amr.deploy` is false, this will override `amr.deploy_observer` to be false.
+	* Default: `false`
+  * If deployed on a full profile TAP cluster and `metadata-store.amr.deploy` is `false`, this will override `amr.deploy_observer` to be `false`.
 
 * `amr.observer.location`
 	* Default: ""
@@ -55,10 +55,10 @@ amr:
     kubectl -n metadata-store get secrets/amr-persister-ingress-cert -o jsonpath='{.data."crt.ca"}' | base64 -d
     ```
 
-* `amr.observer.eventhander.endpoint`
+* `amr.observer.eventhandler.endpoint`
 	* Default: ""
   * The URL of the CloudEvent handler endpoint.
-  * On the view or full profile cluster, obtain the AMR CloudEvent Handler ingress address. The following command can be used to obtain the FQDN of the AMR CloudEvent Handler:
+  * On the view or full TAP profile cluster, obtain the AMR CloudEvent Handler ingress address. The following command can be used to obtain the FQDN of the AMR CloudEvent Handler:
     ```bash
     kubectl -n metadata-store get httpproxies.projectcontour.io amr-persister-ingress -o jsonpath='{.spec.virtualhost.fqdn}'
     ```
@@ -66,4 +66,4 @@ amr:
 
 * `amr.observer.eventhandler.liveness_period_seconds`
 	* Default: 25
-  * The period in seconds between executed health checks to the CloudEvent Handler endpoint.
+  * The period in seconds between executed health checks to the Artifact Metadata Repository CloudEvent Handler endpoint.

@@ -14,15 +14,15 @@ Alternatively, AMR and AMR CloudEvent Handler must be deployed and accessible by
 
 ## Switching Context
 
-If Artifact Metadata Repository Observer is installed on a separate cluster from AMR CloudEvent Handler, it is important that the correct cluster is targeted when updating the installation.
+If Artifact Metadata Repository Observer is installed on a separate cluster from AMR CloudEvent Handler, it is important that the correct cluster is targeted when updating the installation. Ensure the correct cluster is targetted before updating package values.
 
 ```bash
-# Switch context to cluster with AMR Observer
+# 1. Switch context to cluster with AMR Observer
 kubectl config use-context OBSERVER-CLUSTER-NAME
 
-# update the tap-values in an editor according to the desired configuration
+# 2. Update the tap-values.yaml in an editor according to the desired configuration
 
-# update the installed TAP package on the cluster
+# 3. Update the installed TAP package on the cluster
 tanzu package installed update tap --values-file tap-values.yaml -n tap-install
 ```
 
@@ -34,7 +34,7 @@ amr:
   deploy_observer: true
 ```
 
-**Note:** If deployed on a full profile TAP cluster and metadata-store.amr.deploy is false, this will override amr.deploy_observer to be false.
+**Note:** If deployed on a full profile TAP cluster and `metadata-store.amr.deploy` is `false`, this will override `amr.deploy_observer` to be `false`.
 
 When AMR Observer is being installed on a different cluster from AMR and AMR CloudEvent Handler, additional values will be required.
 * `amr.observer.eventhandler.endpoint` is required for the Observer to send to the AMR CloudEvent Handler.
@@ -45,6 +45,13 @@ When AMR Observer is being installed on a different cluster from AMR and AMR Clo
 ```bash
 kubectl -n amr-observer-system rollout restart deployment amr-observer-controller-manager
 ```
+
+The following log should appear if the AMR Observer is observing the ImageVulnerabilityScan Custom Resource:
+```log
+2023-06-28T17:56:43Z	INFO	Starting Controller	{"controller": "imagevulnerabilityscan", "controllerGroup": "app-scanning.apps.tanzu.vmware.com", "controllerKind": "ImageVulnerabilityScan"}
+```
+
+See [Troubleshoot - AMR Observer Logs](./troubleshooting.hbs.md#amr-observer-logs) for more information on logging.
 
 See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer) for more information.
 
@@ -70,13 +77,13 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer) for more
     resync_period                                  string   resync_period determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
   ```
 
-3. A sample `values-file.yaml` for installing AMR Observer standalone where AMR CloudEvent Handler is also deployed.
+3. A sample `values-file.yaml` for installing AMR Observer standalone on a cluster where AMR CloudEvent Handler is also present.
 
 ```yaml
 eventhandler:
   endpoint: http://amr-persister.metadata-store.svc.cluster.local
 ```
 
-It is important to note that the values file for a standalone package installation does not have the TAP value root key of `amr`, `amr.observer`, or `amr.deploy_observer`.
+It is important to note that the values file for a standalone package installation does not have the TAP value root key of `amr.observer` or `amr.deploy_observer`.
 
 For more information, see [Configuration](./configuration.hbs.md#Configuration).

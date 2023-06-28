@@ -71,9 +71,57 @@ Sample log in AMR CloudEvent Handler:
 ```json
 {"level":"error","ts":"2023-06-20T20:13:15.689628865Z","caller":"amr-persister/main.go:102","msg":"MDS is unavailable: Get \"https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/health\": dial tcp 10.28.122.145:8443: connect: connection refused","stacktrace":"..."}
 ```
+---
 
-[//]: # (TODO(dhoang): add an example of http/https misconfiguration, or lack of protocol for eventhandler.endpoint)
+Unsupported protocol is used for the `amr.observer.eventhandler.endpoint`.
+```log
+2023-06-28T18:48:31Z	ERROR	httpclient	error sending request to AMR CloudEvent Handler	{"error": "Get \"amr-persister.example.com/healthz\": unsupported protocol scheme \"\""}
 
+...
+
+2023-06-28T18:48:31Z	ERROR	setup	unable to registry location	{"error": "failed to send, Post \"amr-persister.example.com\": unsupported protocol scheme \"\""}
+
+...
+
+2023-06-28T18:48:31Z	ERROR	httpclient.circuitbreaker	error contacting event handler	{"error": "Get \"amr-persister.example.com/healthz\": unsupported protocol scheme \"\""}
+```
+
+The correct fix is to use the appropriate `https://` or `http://` prepended protocol.
+
+---
+
+If the logs only contains:
+```log
+2023/06/28 19:09:06 No certs appended, using system certs only
+2023-06-28T19:09:06Z	INFO	controller-runtime.metrics	Metrics server is starting to listen	{"addr": "127.0.0.1:8080"}
+2023-06-28T19:09:06Z	INFO	setup	Establishing	{"locationId": "d9fa1ee9-ba42-4262-aaf6-4128f99096b9"}
+```
+
+And if the following describe on the pod shows:
+
+```bash
+$ kubectl -n amr-observer-system describe pods "<amr-observer-controller-manager-...>"
+```
+
+has an output similar to:
+```
+...
+
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+...
+
+  Warning  Unhealthy  3m35s (x3 over 4m15s)  kubelet            Liveness probe failed: Get "http://192.168.45.78:8081/healthz": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+
+...
+
+  Warning  Unhealthy  3m5s (x10 over 4m25s)  kubelet            Readiness probe failed: Get "http://192.168.45.78:8081/readyz": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+```
+
+This is a symptom of a wrong protocol for `amr.observer.eventhandler.endpoint`. The fix is to use the appropriate `https://` or `http://` prepended protocol dependent on the TLS configuration.
+
+---
 
 ## AMR Observer Logs
 
@@ -82,9 +130,15 @@ kubectl -n amr-observer-system logs deployments/amr-observer-controller-manager
 ```
 ---
 
-The AMR observer starts up only if the `ImageVulnerabilityScan` CRD is installed. 
+The AMR Observer is not observing `ImageVulnerabilityScan` CRD. 
 ```log
 2023-06-20T15:47:09Z	INFO	ivs.SetupWithManager	Not registering ImageVulnerabilityScans Controller: customresourcedefinitions.apiextensions.k8s.io "imagevulnerabilityscans.app-scanning.apps.tanzu.vmware.com" not found"
+```
+---
+
+The AMR Observer is observing `ImageVulnerabilityScan` CRD if it is installed.
+```log
+2023-06-28T17:56:43Z	INFO	Starting Controller	{"controller": "imagevulnerabilityscan", "controllerGroup": "app-scanning.apps.tanzu.vmware.com", "controllerKind": "ImageVulnerabilityScan"}
 ```
 ---
 
@@ -103,7 +157,12 @@ Information on what CA certificates were added to the Observer's HTTP client.
 ```log
 2023-06-20T15:47:05Z	INFO	setup	No additional certs read from configured path, continuing with system truststore"	{"path": "/truststore/ca.crt"}
 ```
-[//]: # (TODO(dhoang): Add an invalid ca_cert_data log example)
+---
+
+No valid CA certificates were found.
+```log
+2023/06/28 18:41:04 No certs appended, using system certs only
+```
 ---
 
 When the ReplicaSet is observed to be deleted, it will attempt to send the result to AMR CloudEvent Handler. 

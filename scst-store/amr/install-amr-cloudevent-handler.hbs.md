@@ -2,15 +2,15 @@
 
 ## Switching Context
 
-If Artifact Metadata Repository CloudEvent Handler is installed on a separate cluster, such as with a view profile cluster, it is important that the correct cluster is targeted when updating the installation.
+If Artifact Metadata Repository CloudEvent Handler is installed on a separate cluster, such as with a view profile cluster, it is important that the correct cluster is targeted when updating the installation. Ensure the correct cluster is targetted before updating package values.
 
 ```bash
-# Switch context to view profile cluster
+# 1. Switch context to view profile cluster
 kubectl config use-context VIEW-CLUSTER-NAME
 
-# update the tap-values in an editor according to the desired configuration
+# 2. Update the tap-values.yaml in an editor according to the desired configuration
 
-# update the installed TAP package on the cluster
+# 3. Update the installed TAP package on the cluster
 tanzu package installed update tap --values-file tap-values.yaml -n tap-install
 ```
 
