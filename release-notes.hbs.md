@@ -477,7 +477,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Learning Center                                 |         |
 | Local Source Proxy                              | 0.1.0   |
 | Namespace Provisioner                           | 0.4.0   |
-| Service Bindings                                |         |
+| Service Bindings                                | 0.9.1   |
 | Services Toolkit                                | 0.11.0  |
 | Spring Boot conventions                         |         |
 | Spring Cloud Gateway                            |         |
