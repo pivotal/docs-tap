@@ -1,6 +1,7 @@
-# Workshop catalog
+# Use the Learning Center workshop catalog
 
-A single training portal can host one or more workshops. The REST API endpoints for the workshops catalog provide a means to list the available workshops and get information about them.
+A single training portal can host one or more workshops. This topic describes how you use the
+workshop catalog to list the available workshops and get information about them using the REST API.
 
 ## <a id="list-available-workshops"></a>Listing available workshops
 
