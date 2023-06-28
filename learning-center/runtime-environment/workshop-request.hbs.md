@@ -1,6 +1,7 @@
-# WorkshopRequest resource
+# Configure the WorkshopRequest resource
 
-The `WorkshopRequest` custom resource defines a workshop request.
+This topic describes how you configure the `WorkshopRequest` custom resource, which defines a
+Learning Center workshop request.
 
 ## <a id="specify-workshop-env"></a> Specifying workshop environment
 

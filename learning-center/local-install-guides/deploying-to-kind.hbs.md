@@ -1,7 +1,6 @@
 # Install Learning Center on Kind
 
-This topic gives you the instructions you need to install Learning Center on you local
-machine with Kind.
+This topic describes how you install Learning Center on your local machine with Kind.
 
 Kind was developed as a means to support development and testing of Kubernetes. Though it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 

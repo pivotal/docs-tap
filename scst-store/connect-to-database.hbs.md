@@ -18,7 +18,7 @@ Connect to the PostgreSQL database:
     db_name=$(kubectl get secret postgres-db-secret -n metadata-store -o json | jq -r '.data.POSTGRES_DB' | base64 -d)
     db_username=$(kubectl get secret postgres-db-secret -n metadata-store -o json | jq -r '.data.POSTGRES_USER' | base64 -d)
     db_password=$(kubectl get secret postgres-db-secret -n metadata-store -o json | jq -r '.data.POSTGRES_PASSWORD' | base64 -d)
-   
+
     db_ca_dir=$(mktemp -d -t ca-cert-XXXX)
     db_ca_path="$db_ca_dir/ca.crt"
     kubectl get secrets postgres-db-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > $db_ca_path
@@ -37,14 +37,14 @@ Connect to the PostgreSQL database:
     ```
 
 3. Set the database host and port values on the first terminal:
-    
+
     ```console
     db_host="localhost"
     db_port=5432
     ```
-  
+
 4. To port forward to a different local port number, use the following command template:
-    
+
     ```console
     kubectl port-forward service/metadata-store-db <LOCAL_PORT>:5432 -n metadata-store
     ```
