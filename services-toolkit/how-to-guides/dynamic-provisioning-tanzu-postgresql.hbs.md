@@ -1,7 +1,7 @@
 # Configure dynamic provisioning of VMware SQL with Postgres for Kubernetes service instances
 
-This Services Toolkit topic tells you how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
-can set up dynamic provisioning.
+This Services Toolkit topic for [service operators](../reference/terminology-and-user-roles.hbs.md#so)
+explains how you set up dynamic provisioning.
 This enables app development teams to create self-serve VMware SQL with Postgres for Kubernetes
 service instances that are customized to meet their needs.
 

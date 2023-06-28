@@ -390,7 +390,7 @@ This release has the following known issues, listed by component and area.
 
 ### <a id="1-6-components"></a> Component versions
 
-The following table provides component version information for this Tanzu Application Platform release.
+The following table lists the supported component versions for this Tanzu Application Platform release.
 
 | Component Name                                  | Version |
 | ----------------------------------------------- | ------- |

@@ -1,8 +1,12 @@
-# Anonymous access
+# Enable anonymous access to a Learning Center training portal
 
-The REST API with client authentication provides a means to have the portal create and manage workshop sessions on your behalf but allow a separate system handle user authentication.
+This topic describes how you enable anonymous access to a Learning Center training portal.
+The REST API with client authentication provides a means to have the portal create and manage workshop
+sessions on your behalf but allow a separate system handle user authentication.
 
-If you do not need to authenticate users but still want to provide your own front end from which users select a workshop, such as when integrating workshops into an existing web property, you can enable anonymous mode and redirect users to a URL for workshop session creation.
+If you do not need to authenticate users but still want to provide your own front end from which users
+select a workshop, such as when integrating workshops into an existing web property, you can enable
+anonymous mode and redirect users to a URL for workshop session creation.
 
 >**Note** Anonymous mode is only recommended for temporary deployments and not for a permanent web site providing access to workshops.
 

@@ -1,13 +1,13 @@
 # Configure dynamic provisioning of AWS RDS service instances
 
-This Services Toolkit topic tells you how [service operators](../reference/terminology-and-user-roles.hbs.md#so)
-can set up dynamic provisioning.
+This Services Toolkit topic for [service operators](../reference/terminology-and-user-roles.hbs.md#so)
+explains how you set up dynamic provisioning.
 This enables app development teams to self-serve AWS RDS service instances that are customized.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
 [Set up dynamic provisioning of service instances](../tutorials/setup-dynamic-provisioning.hbs.md)
-might help you to better understand the steps presented in this topic.
+might help you to understand the steps presented in this topic.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -32,18 +32,23 @@ To configure dynamic provisioning for AWS RDS service instances, you must:
 
 The first step is to install the AWS `Provider` for Crossplane.
 
-There are a few differnt variants of the AWS `Provider`:
+The following variants of AWS `Provider` are available:
 
 - [crossplane-contrib/provider-aws](https://marketplace.upbound.io/providers/crossplane-contrib/provider-aws/)
 - [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/)
 - [upbound/provider-family-aws](https://marketplace.upbound.io/providers/upbound/provider-family-aws/)
 
-VMware recommends that you use the [upbound/provider-family-aws](https://marketplace.upbound.io/providers/upbound/provider-family-aws/) variant. This variant is both fully supported by Upbound and also allows for much more granular control over installation of APIs. This helps to alleviate performance issues often associated with with the more monolithic [upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/). Refer to [Solving the Crossplane Provider CRD Scaling Problem with Provider Families](https://blog.crossplane.io/crd-scaling-provider-families/) to learn more.
+VMware recommends that you use the [upbound/provider-family-aws](https://marketplace.upbound.io/providers/upbound/provider-family-aws/).
+This variant is both fully supported by Upbound and also gives you more control when installing APIs.
+This helps to improve performance issues often associated with the more monolithic
+[upbound/provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/).
+For more information about how Crossplane is resolving the Provider CRD scaling problem, see the
+[Crossplane Blog](https://blog.crossplane.io/crd-scaling-provider-families/).
 
-You will need to install both the top-level "family" Provider as well as the provider-aws-rds Provider.
+You must install both the top-level family Provider and the `provider-aws-rds` Provider. To do so:
 
-1. Create a file named `provider-family-aws.yaml` and copy in the
-   following contents:
+1. Create a file named `provider-family-aws.yaml` and copy in the following contents, which configures
+   both Providers:
 
     ```yaml
     # provider-family-aws.yaml
@@ -86,14 +91,22 @@ You will need to install both the top-level "family" Provider as well as the pro
     kubectl apply -f provider-family-aws.yaml
     ```
 
-1. Confirm that both Providers have been installed successfully by running `kubectl get providers` and checking for INSTALLED=True and HEALTHY=TRUE.
+1. Verify that both Providers are installed by running:
 
-Next you must create a `ProviderConfig` for the Providers. Refer to the sections titled "Create a Kubernetes secret for AWS" and "Create a ProviderConfig" in the [Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/v0.36.0/docs/quickstart).
+    ```console
+    kubectl get providers
+    ```
 
-> **Important** The Upbound documentation assumes Crossplane is installed in the `upbound-system` namespace.
-> However, when working with Crossplane on Tanzu Application Platform, it is installed to the `crossplane-system` namespace.
-> Ensure that you use the correct namespace when you create the `Secret` with credentials for the `Provider`.
-> **Note** Depending on the setup of your AWS account, you may also need to include `aws_session_token` in the `Secret`.
+    From the output, confirm that `INSTALLED=True` and `HEALTHY=TRUE`.
+
+1. Create a `ProviderConfig` for the Providers. For instructions, see the sections
+   _Create a Kubernetes secret for AWS_ and _Create a ProviderConfig_ in the
+   [Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-aws/v0.36.0/docs/quickstart).
+
+    > **Important** The Upbound documentation assumes Crossplane is installed in the `upbound-system` namespace.
+    > However, when working with Crossplane on Tanzu Application Platform, it is installed to the `crossplane-system` namespace.
+    > Ensure that you use the correct namespace when you create the `Secret` with credentials for the `Provider`.
+    > **Note** Depending on the setup of your AWS account, you might also need to include `aws_session_token` in the `Secret`.
 
 ### <a id="compositeresourcedef"></a> Create a CompositeResourceDefinition
 
@@ -232,21 +245,29 @@ To create the composition:
           type: FromCompositeFieldPath
     ```
 
+    This Composition configures all RDS PostgreSQL instances as follows:
+
+    - All instances are placed in the `us-east-1` region.
+    - All instances use the default Virtual Private Cloud (VPC) for the respective AWS account.
+    - All instances are publicly accessible over the Internet.
+
+    > **Note** If you want to keep the instances publicly accessible over the Internet and use the
+    > default VPC, you must add an inbound rule for TCP on port 5432 to the security group of the
+    > default VPC to allow connection to the instances.
+
 1. Configure the Composition you just copied to your specific requirements.
 
-    The above Composition ensures that all RDS PostgreSQL instances are placed in the us-east-1 region and
-    use the default VPC for the respective AWS account. It also configures all instances to be
-    publicly accessible over the Internet. If this is acceptable for your particular use case, you will need to
-    add an appropriate inbound rule for TCP on port 5432 to the security group of the default VPC before you will
-    be able to connect to the instances.
-
-    If you do not want the RDS PostgreSQL instances to be publicly accessible over the Internet, then you will need
-    to modify the above composition suit your needs. Specific requirements will vary, however you will likely need to
-    compose some combination of VPCs, Subnets, SubnetGroups, Routes, SecurityGroups, SecurityGroupRules, etc. The specifics
-    for doing this are outside the scope of this particular guide, however you can
-    refer to Compositions that are available online for inspiration and guidance. For example the [getting-started-with-aws-with-vpc](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/v1.12.2/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance) from the Upbound documentation. This example defines a composition that creates a separate VPC for each RDS PostgreSQL instance and
-    automatically configures inbound rules. Note that you may need to install additional Providers from the AWS Provider Family if choosing to
-    do something like this (in particular [upbound/provider-aws-ec2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v0.36.0)).
+    If you do not want the RDS PostgreSQL instances to be publicly accessible over the Internet,
+    edit the Composition as required.
+    Specific requirements vary, but this might include composing a combination of VPCs,
+    Subnets, SubnetGroups, Routes, SecurityGroups, and SecurityGroupRules.
+    Refer to Compositions that are available online for inspiration and guidance.
+    For example, see `getting-started-with-aws-with-vpc` in the [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/v1.12.2/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
+    This example defines a Composition that creates a separate VPC for each RDS PostgreSQL instance
+    and automatically configures inbound rules.
+    If you want to follow this example, you might need to install additional Providers from the
+    AWS Provider Family, such as
+    [upbound/provider-aws-ec2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v0.36.0).
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 

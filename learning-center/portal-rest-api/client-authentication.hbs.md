@@ -1,8 +1,15 @@
-# Client authentication
+# Use client authentication for Learning Center
 
-The training portal web interface is a quick way of providing access to a set of workshops when running a supervised training workshop. For integrating access to workshops into an existing website or for creating a custom web interface for accessing workshops hosted across one or more training portals, you can use can use the portal REST API.
+This topic describes how you can use the portal REST API to integrate access to workshops into an
+existing website or to create a custom web interface for accessing workshops hosted across one or
+more training portals.
 
-The REST API gives you access to the list of workshops hosted by a training portal instance and allow you to request and access workshop sessions. This bypasses the training portal's own user registration and log in so you can implement whatever access controls you need. This can include anonymous access or access integrated into an organization's single sign-on system.
+The training portal web interface is a quick way of providing access to a set of workshops when
+running a supervised training workshop.
+The REST API gives you access to the list of workshops hosted by a training portal instance and allow
+you to request and access workshop sessions. This bypasses the training portal's own user registration
+and log in so you can implement whatever access controls you need.
+This can include anonymous access or access integrated into an organization's single sign-on system.
 
 ## <a id="querying-credentials"></a>Querying the credentials
 
