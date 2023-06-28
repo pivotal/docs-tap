@@ -33,42 +33,42 @@ Declarative syntax
       .dockerconfigjson: BASE64-ENCODED-DOCKER-CONFIG-JSON
     ```
 
-`dockerconfigjson` structure is as follows:
+    `dockerconfigjson` structure is as follows:
 
-```json
-{"auths":{"REGISTRY-SERVER":{"username":"USERNAME-VALUE","password": "PASSWORD-VALUE"}}}
-```
+    ```json
+    {"auths":{"REGISTRY-SERVER":{"username":"USERNAME-VALUE","password": "PASSWORD-VALUE"}}}
+    ```
 
-If you are using TAP GitOps installer using SOPS, you can put this secret in the
-`clusters/CLUSTER-NAME/cluster-config/config/lsp` folder in your GitOps repository, after encrypting
-the secret in the format specified above using the `sops` CLI.
+    If you are using TAP GitOps installer using SOPS, you can put this secret in the
+    `clusters/CLUSTER-NAME/cluster-config/config/lsp` folder in your GitOps repository, after encrypting
+    the secret in the format specified above using the `sops` CLI.
 
-If you are using TAP GitOps installer using ESO, you can create a secret as follows:
+    If you are using TAP GitOps installer using ESO, you can create a secret as follows:
 
-```json
-#@ load("@ytt:data", "data")
-#@ load("@ytt:json", "json")
+    ```json
+    #@ load("@ytt:data", "data")
+    #@ load("@ytt:json", "json")
 
-#@ def config():
-#@  return {
-#@    "auths": {
-#@      data.values.tap_value.{path-to-registry-host}: {
-#@       "username": data.values.tap_values.{path-to-registry-username},
-#@       "password": data.values.tap_values.{path-to-registry-password}
-#@      }
-#@    }
-#@  }
-#@ end
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: lsp-push-credentials
-  namespace: tap-install
-type: kubernetes.io/dockerconfigjson
-stringData:
-  .dockerconfigjson: #@ json.encode(config())
-```
+    #@ def config():
+    #@  return {
+    #@    "auths": {
+    #@      data.values.tap_value.{path-to-registry-host}: {
+    #@       "username": data.values.tap_values.{path-to-registry-username},
+    #@       "password": data.values.tap_values.{path-to-registry-password}
+    #@      }
+    #@    }
+    #@  }
+    #@ end
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: lsp-push-credentials
+      namespace: tap-install
+    type: kubernetes.io/dockerconfigjson
+    stringData:
+      .dockerconfigjson: #@ json.encode(config())
+    ```
 
 For example:
 

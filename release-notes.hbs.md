@@ -25,8 +25,11 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-components'></a> New components
 
-- [Local Source Proxy](local-source-proxy/about.hbs.md) is a secure and convenient means for you to
-  interact with external registries without providing a lot of registry details.
+- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers with a secure and 
+user-friendly solution that enables them to effortlessly upload their local source code to a registry, 
+which is pre-configured by an Operator during the installation of Tanzu Application Platform. 
+This component effectively eliminates the obstacles faced by developers when they had to manually specify 
+a registry and provide their credentials on their local systems for iterative inner loop workflows.
 
 ---
 
@@ -408,6 +411,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Eventing                                        |         |
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
+| Local Source Proxy                              | 0.1.0   |
 | Namespace Provisioner                           |         |
 | Service Bindings                                |         |
 | Services Toolkit                                | 0.11.0  |
