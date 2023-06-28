@@ -180,6 +180,24 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
     - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
+#### <a id='1-6-0-namespace-provisioner-new-features'></a> Namespace Provisioner
+
+- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner, 
+  providing greater flexibility for customization.
+  - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install) 
+    by utilizing the `default_parameters` in the `tap-values.yaml` file or by utilizing namespace parameters.
+  - Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains 
+    and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters. 
+    See [Customization Documentation](namespace-provisioner/use-case4.hbs.md#customize-service-accounts) for more information.
+  - Introduced the option to [disable the creation of the LimitRange](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup) 
+    object out of the box in `full`, `iterate`, and `run` profile clusters.
+- Added support for passing lists or objects via annotations for complex namespace parameters, simplifying the 
+  configuration process. More details on how to utilize this feature can be found in 
+  the [Reference Documentation](namespace-provisioner/parameters.hbs.md).
+- The `path` value in `additional_sources` is now automatically generated, eliminating the need for users to 
+  provide it manually. This simplifies the configuration of external sources.
+
+
 #### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
 The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
@@ -337,6 +355,17 @@ The following issues, listed by component and area, are resolved in this release
   your existing installation.
   For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
 
+#### <a id='1-6-0-namespace-provisioner-ri'></a> Namespace Provisioner
+
+- Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service 
+  accounts utilized by Supply chains and Delivery components.
+- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret 
+  was used multiple times within the `additional_sources` section of the `tap-values.yaml` file. 
+  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
+- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in 
+  the `Terminating` phase during deletion if it contained a workload. 
+  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
+
 #### <a id='1-6-0-stk-ri'></a> Services Toolkit
 
 - Resolved an issue that prevented the default cluster-admin IAM role on GKE clusters from claiming
@@ -447,7 +476,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
 | Local Source Proxy                              | 0.1.0   |
-| Namespace Provisioner                           |         |
+| Namespace Provisioner                           | 0.4.0   |
 | Service Bindings                                |         |
 | Services Toolkit                                | 0.11.0  |
 | Spring Boot conventions                         |         |
