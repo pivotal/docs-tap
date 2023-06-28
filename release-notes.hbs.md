@@ -25,7 +25,8 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-components'></a> New components
 
-- [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
+- [Local Source Proxy](local-source-proxy/about.hbs.md) is a secure and convenient means for you to
+  interact with external registries without providing a lot of registry details.
 
 ---
 
