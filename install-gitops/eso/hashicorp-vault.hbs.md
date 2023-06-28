@@ -383,7 +383,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     ```console
     ...
-    wrote ESO configuration for Tanzu Sync to: tanzu-sync/app/values/tanzu-sync-eso.yaml
+    wrote ESO configuration for Tanzu Sync to: tanzu-sync/app/values/tanzu-sync-vault-values.yaml
     ...
     ```
 
@@ -507,7 +507,7 @@ stores the sensitive data such as username, password, private key from the `tap-
 
     ```console
     ...
-    wrote ESO configuration for TAP Install to: cluster-config/values/tap-install-vault-values.yaml
+    wrote Vault configuration for TAP Install to: cluster-config/values/tap-install-vault-values.yaml
     ...
     ```
 
