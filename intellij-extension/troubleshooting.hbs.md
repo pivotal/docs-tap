@@ -2,22 +2,6 @@
 
 This topic helps you troubleshoot issues with Tanzu Developer Tools for IntelliJ.
 
-## <a id="debug-confg-from-dropdown"></a> Workload is wrongly re-applied because of debug configuration selected from the launch configuration drop-down menu
-
-### Symptoms
-
-If your debug configuration is created from the launch configuration drop-down menu, it re-applies
-the workload even if the workload already exists on the cluster.
-
-### Cause
-
-There is internal logic that is not run when debug configuration is created from the drop-down menu.
-However, the logic is run when debug configuration is selected from the right-click pop-up menu.
-
-### Solution
-
-Select debug configuration from the right-click pop-up menu.
-
 ## <a id="cannot-view-workloads"></a> Unable to view workloads on the panel when connected to GKE cluster
 
 {{> 'partials/ide-extensions/ki-cannot-view-workloads' }}
