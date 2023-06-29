@@ -73,7 +73,7 @@ following:
 ### Tanzu Application Platform GUI to Remote Kubernetes Cluster Authentication
 
 Several plugins within the Tanzu Application Platform GUI, such as the Runtime Resource Viewer,
-Supply Chain Visualization, and Security Analyst GUI require authentication to remote Kubernetes
+Supply Chain Visualization, and Security Analysis GUI require authentication to remote Kubernetes
 clusters to query Kubernetes resources.
 
 To do so, the plugins must authenticate to the Kubernetes API on remote clusters.
