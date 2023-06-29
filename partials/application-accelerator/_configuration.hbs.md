@@ -86,7 +86,7 @@ under the sub-path `spring-cloud-serverless`. For example:
 accelerator:
   displayName: Spring Cloud Serverless
   description: A simple Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags:
   - java
   - spring
@@ -125,7 +125,7 @@ metadata:
 spec:
   displayName: My Spring Cloud Serverless
   description: My own Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags:
     - spring
     - cloud
@@ -151,7 +151,7 @@ To use the Tanzu CLI, run:
 tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --git-sub-path spring-cloud-serverless \
   --description "My own Spring Cloud Function serverless app" \
   --display-name "My Spring Cloud Serverless" \
-  --icon-url https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png \
+  --icon-url https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png \
   --tags "spring,cloud,function,serverless"
 ```
 
