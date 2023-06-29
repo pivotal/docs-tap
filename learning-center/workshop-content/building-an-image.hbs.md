@@ -1,7 +1,8 @@
-# Build an image for Learning Center
+# Build an image for your Learning Center workshop
 
 This topic describes how you include an extra system, third-party tool, or configuration in your image
 by bundling workshop content from the Learning Center workshop base image.
+
 The following sample workshop template provides a `Dockerfile`.
 
 ## <a id="structure-of-dockerfile"></a>Structure of the Dockerfile
