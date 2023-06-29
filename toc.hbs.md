@@ -417,7 +417,7 @@ docs.vmware.com is built.
       - [Portal Rest API](learning-center/portal-rest-api/anonymous-access.hbs.md)
           - [Enable anonymous access](learning-center/portal-rest-api/anonymous-access.hbs.md)
           - [Use the workshop catalog](learning-center/portal-rest-api/workshops-catalog.hbs.md)
-          - [Use ession management](learning-center/portal-rest-api/session-management.hbs.md)
+          - [Use session management](learning-center/portal-rest-api/session-management.hbs.md)
           - [Use client authentication](learning-center/portal-rest-api/client-authentication.hbs.md)
       - [Troubleshoot Learning Center](learning-center/troubleshoot-learning-center.hbs.md)
     - [Namespace Provisioner](namespace-provisioner/about.hbs.md)
