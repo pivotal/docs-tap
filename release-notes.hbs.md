@@ -25,14 +25,38 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-components'></a> New components
 
-- [Local Source Proxy](local-source-proxy/about.hbs.md) is a secure and convenient means for you to
-  interact with external registries without providing a lot of registry details.
+- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers with a secure and 
+user-friendly solution that enables them to effortlessly upload their local source code to a registry, 
+which is pre-configured by an Operator during the installation of Tanzu Application Platform. 
+This component effectively eliminates the obstacles faced by developers when they had to manually specify 
+a registry and provide their credentials on their local systems for iterative inner loop workflows.
 
 ---
 
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-6-0-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
+
+- Integrated with Local Source Proxy for seamless iterative inner-loop development using the CLI or IDE plugins.
+  - `tanzu apps workload apply` and `tanzu apps workload create` can now seamlessly create a workload from 
+    local source using just the `--local-path` flag.
+  - `--source-image` flag is now optional. if `--source-image` flag is used along with `--local-path`, the 
+    Local source proxy is not used and bypassed for backward compatibility.
+  - Introducing a new command, `tanzu apps lsp health` which allows users to verify the status of the Local 
+    Source Proxy. This command performs several checks, including:
+    - Verifying whether the developer has RBAC permissions to access the Local Source Proxy using their `kubeconfig`.
+    - Checking if the Local Source Proxy is installed on the cluster.
+    - Ensuring that the Local Source Proxy deployment is healthy and accessible.
+    - Verifying that the Local Source Proxy is correctly configured and able to access the registry using the 
+      credentials set up by the operator during TAP installation.
+- Implemented `autocompletion` functionality for workload types. Additionally, the default workload type has been 
+  set to `web`, making the `--type` flag optional. The flag is only required if the type is something other than `web`.
+- Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
+- Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section. 
+  This addition provides a quick reference to the Git revision associated with the workload.
+
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
@@ -156,6 +180,24 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
     - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
+#### <a id='1-6-0-namespace-provisioner-new-features'></a> Namespace Provisioner
+
+- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner, 
+  providing greater flexibility for customization.
+  - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install) 
+    by utilizing the `default_parameters` in the `tap-values.yaml` file or by utilizing namespace parameters.
+  - Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains 
+    and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters. 
+    See [Customization Documentation](namespace-provisioner/use-case4.hbs.md#customize-service-accounts) for more information.
+  - Introduced the option to [disable the creation of the LimitRange](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup) 
+    object out of the box in `full`, `iterate`, and `run` profile clusters.
+- Added support for passing lists or objects via annotations for complex namespace parameters, simplifying the 
+  configuration process. More details on how to utilize this feature can be found in 
+  the [Reference Documentation](namespace-provisioner/parameters.hbs.md).
+- The `path` value in `additional_sources` is now automatically generated, eliminating the need for users to 
+  provide it manually. This simplifies the configuration of external sources.
+
+
 #### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
 The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
@@ -217,6 +259,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-6-0-apps-cli-plugin-bc'></a> Apps plug-in for Tanzu CLI
+
+- The deprecated `tanzu apps workload update` command is removed from the CLI. 
+  Use the command `tanzu apps workload apply` instead.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
@@ -284,6 +331,15 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
+#### <a id='1-6-0-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
+
+- Implemented validations to prevent the inclusion of multiple sources through flags in the `workload create` 
+  and `workload apply` commands.
+- Modified the behavior of the commands when waiting to apply workload changes. If the workload was previously 
+  in a failed state, it will no longer immediately fail. When the `--wait` flag is used, the command will continue 
+  to wait until the workload either succeeds or fails again. When the `--tail` flag is used, the command will keep 
+  tailing logs from the Supply chain steps that were impacted by the workload update.
+
 #### <a id='1-6-0-crossplane-ri'></a> Crossplane
 
 - The Crossplane package now more gracefully handles situations in which Crossplane is already
@@ -299,6 +355,17 @@ The following issues, listed by component and area, are resolved in this release
   installation, or set `adopt_resources` to true in the Crossplane package to adopt resources from
   your existing installation.
   For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+
+#### <a id='1-6-0-namespace-provisioner-ri'></a> Namespace Provisioner
+
+- Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service 
+  accounts utilized by Supply chains and Delivery components.
+- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret 
+  was used multiple times within the `additional_sources` section of the `tap-values.yaml` file. 
+  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
+- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in 
+  the `Terminating` phase during deletion if it contained a workload. 
+  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
 
 #### <a id='1-6-0-stk-ri'></a> Services Toolkit
 
@@ -412,9 +479,9 @@ The following table lists the supported component versions for this Tanzu Applic
 | Eventing                                        |         |
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
-| Local Source Proxy                              |         |
-| Namespace Provisioner                           |         |
-| Service Bindings                                |         |
+| Local Source Proxy                              | 0.1.0   |
+| Namespace Provisioner                           | 0.4.0   |
+| Service Bindings                                | 0.9.1   |
 | Services Toolkit                                | 0.11.0  |
 | Source Controller                               |         |
 | Spring Boot conventions                         |         |
@@ -446,6 +513,11 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
+
+#### <a id='1-6-0-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
+
+- The default value for the `--update-strategy` flag will change from merge to replace in 
+  Tanzu Application Platform v1.7.0
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
 

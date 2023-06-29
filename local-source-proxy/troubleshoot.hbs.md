@@ -148,13 +148,21 @@ message: |-
 
 Potential causes include:
 
-- The secret was not exported to the Local Source Proxy namespace
-- Credentials for the `push_registry` do not match the host in the secret
-- `push_registry` information is missing in `tap-values.yaml`
+- Missing registry secret. Neither of below entries are found in `tap-values.yaml`:
+  - `push_secret` information is not available in `local_source_proxy` section
+  - `image_registry.secret` information is not available in `shared` section
+- If `push_secret` is used, the secret was not exported to the Local Source Proxy namespace.
+The credentials used in the secret do not match the configured external registry.
+
 
 ### Solution
 
-<!-- Missing -->
+- Ensure that at least one of the following entries is found in the `tap-values.yaml` file:
+  - `push_secret` information in the `local_source_proxy` section
+  - `image_registry.secret` information in the `shared` section
+- If the `push_secret` is used, make sure that it can be exported to the Local Source Proxy namespace.
+- Verify that the credentials used in the secret match the configured external registry.
+
 
 ## <a id="invalid-creds"></a> Invalid credentials
 
@@ -200,4 +208,4 @@ The cause is the use of invalid credentials.
 
 ### Solution
 
-<!-- Missing -->
+Verify that the credentials used in the secret match the configured external registry.
