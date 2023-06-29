@@ -55,8 +55,6 @@ spec:
         users:
           - username: "user"
             password: "password"
-            email: "user@example.com"
-            emailVerified: true
             roles:
               - "user"
   tokenSignature:
@@ -206,7 +204,6 @@ spec:
         users:
           - username: "user"
             password: "password"
-            email: "user@example.com"
             roles:
               - "user"
 ```
