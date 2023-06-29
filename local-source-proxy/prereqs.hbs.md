@@ -81,6 +81,7 @@ For example:
  --server gcr.io/ \
  --namespace tap-install --yes
 ```
+<!-- gcr.io is named Artifact Registry now, it seems. Should we say that instead? -->
 
 - **AWS**:
 
