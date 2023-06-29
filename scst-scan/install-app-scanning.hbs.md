@@ -1,13 +1,13 @@
-# Installing SCST - Scan 2.0 in a cluster
+# Install Supply Chain Security Tools - Scan 2.0 in a cluster
 
-The following sections describe how to install SCST - Scan 2.0. Since SCST-Scan 2.0 is in beta, it is not currently installed with any profiles and must be installed following these directions.
+The following sections describe how to install Supply Chain Security Tools (SCST) - Scan 2.0. SCST-Scan 2.0 is in beta and is not installed with any profiles and must be installed following these directions.
 
 ## <a id="scst-app-scanning-prereqs"></a> Prerequisites
 
 SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton will already be installed if you installed TAP via a profile based installation in both the Full and Build Profiles.
+- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is alreadu installed if you installed Tanzu Application Platform by using a profile based installation in both the Full and Build Profiles.
 
 ## <a id="configure-app-scanning"></a> Configure properties
 
@@ -66,14 +66,15 @@ To install SCST - Scan 2.0:
                                                                used by tekton pipelineruns
       caCertData                                      string   The custom certificates to be trusted by the scan's connections
     ```
-    To modify any of the default installation settings, create an `app-scanning-values-file.yaml` and append the key-value pairs to be modified to the file. For example:
+    
+    To edit any of the default installation settings, create an `app-scanning-values-file.yaml` and append the key-value pairs to be modified to the file. For example:
 
     ```yaml
     scans:
       workspace:
         storageSize: 200Mi
     ```
-1. Install the package by running the following command. If you did not modify the default installation settings, you do not need to specify the `--values-file` flag:
+2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
@@ -103,7 +104,7 @@ To install SCST - Scan 2.0:
         'PackageInstall' resource install status: ReconcileSucceeded
     ```
 
-1. (Optional) If you have Artifact Metadata Repository (AMR) Observer installed, you must to restart it to observe the new ImageVulerabilityScan Custom Resource (CR) that is installed with SCST - Scan 2.0.
+3. (Optional) If you have Artifact Metadata Repository (AMR) Observer installed, you must to restart it to observe the new ImageVulerabilityScan Custom Resource (CR) that is installed with SCST - Scan 2.0.
 
     ```console
     kubectl -n amr-observer-system rollout restart deployment amr-observer-controller-manager
@@ -111,7 +112,7 @@ To install SCST - Scan 2.0:
 
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
 
->**Note:** If you used the Namespace Provisioner to provision your developer namespace, the following section has already been completed and you can proceed to [scanning integration](./integrate-app-scanning.hbs.md). For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
+>**Note** If you used the Namespace Provisioner to provision your developer namespace, the following section has already been completed and you can proceed to [scanning integration](./integrate-app-scanning.hbs.md). For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
 
 The following section describes how to configure service accounts and registry credentials. SCST - Scan 2.0 requires the following access:
 
@@ -134,7 +135,7 @@ The following section describes how to configure service accounts and registry c
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
-1. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
+2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install-online/profile.hbs.md#full-profile).
 
@@ -147,7 +148,7 @@ The following section describes how to configure service accounts and registry c
       -n DEV-NAMESPACE
     ```
 
-1. Create a secret `write-creds` with write access to the registry for the scanner to upload the scan results to.
+3. Create a secret `write-creds` with write access to the registry for the scanner to upload the scan results to.
 
     ```console
     read -s WRITE_PASSWORD
@@ -158,7 +159,7 @@ The following section describes how to configure service accounts and registry c
       -n DEV-NAMESPACE
     ```
 
-1. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to scan. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
+4. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to scan. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -177,7 +178,7 @@ The following section describes how to configure service accounts and registry c
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is required if the image you are scanning is private.
 
-1. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
+5. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
 
     ```yaml
     apiVersion: v1

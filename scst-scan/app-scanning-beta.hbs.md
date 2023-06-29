@@ -1,6 +1,6 @@
 # Supply Chain Security Tools - Scan 2.0 (beta)
 
-This topic describes how you can install and configure Supply Chain Security Tools - Scan 2.0.
+This topic tells you how to install and configure Supply Chain Security Tools (SCST) - Scan 2.0. SCST - Scan 2.0 supersedes the [SCST - Scan component](overview.hbs.md).
 
 >**Important** SCST - Scan 2.0 is in beta, which means that it is still in
 >active development by VMware and might be subject to change at any point. Users
@@ -14,7 +14,7 @@ SCST - Scan 2.0 is responsible for providing the framework to scan applications
 for their security posture. Scanning container images for known Common
 Vulnerabilities and Exposures (CVEs) implements this framework. This framework
 simplifies integration for new plug-ins by allowing users to integrate new scan
-engines by minimizing the scope of the scan engine to only scan and push results
+engines and minimize the scope of the scan engine to only scan and push results
 to an OCI compliant registry.
 
 During scanning:
@@ -23,8 +23,6 @@ During scanning:
 - Each Task contains steps which execute commands to achieve the goal of the Task.
 - The PipelineRun creates corresponding TaskRuns for every Task in the Pipeline and executes them.
 - A Tekton Sidecar as a [no-op sidecar](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) triggers Tekton's injected sidecar cleanup.
-
->**Note** SCST - Scan 2.0 is in beta and supersedes the [SCST - Scan component](overview.hbs.md).
 
 ## <a id="features"></a>Features
 
