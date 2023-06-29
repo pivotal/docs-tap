@@ -71,9 +71,9 @@ Version support implemented in the following order:
 
 2. `RELEASE` - metaversion defined in `maven-metadata.xml (versioning/release)`.
 
-3. `*-SNAPSHOT` - the newest artifact for a snapshot version. Support is planned for a future release.
+3. `*-SNAPSHOT` - the newest artifact for a snapshot version.
 
-4. `LATEST` - metaversion defined in `maven-metadata.xml (versioning/latest)`. Support is planned for a future release.
+4. `LATEST` - metaversion defined in `maven-metadata.xml (versioning/latest)`. 
 
 5. Version ranges - <https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html>. Support is planned for a future release.
 
