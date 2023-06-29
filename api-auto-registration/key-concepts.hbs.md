@@ -4,14 +4,14 @@ This topic explains key concepts you use with API Auto Registration.
 
 ## <a id='architecture'></a>API Auto Registration Architecture
 
-Users can leverage the potential of Tanzu Application Platform and its API Auto Registration component by using a distributed environment like the one shown in the following diagram:
+You can use the full potential of API Auto Registration by using a distributed environment, like the one in this diagram:
 
 ![API Auto Registration Architecture Diagram](./images/arch.png)
 
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
-The information from this custom resource is then used to construct an API entity in Tanzu Application Platform GUI.
+The information from this custom resource is used to construct an API entity in Tanzu Application Platform GUI.
 
 This custom resource exposes the following text boxes:
 
@@ -37,10 +37,10 @@ spec:
         namespace:
 ```
 
-Many of the earlier text boxes cause specific behavior in Tanzu Application Platform GUI.
+The text boxes cause specific behavior in Tanzu Application Platform GUI:
 
 - The system and owner are copied to the API entity. You might have to separately create and add the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind to the catalog.
-- The namespace where the APIDescriptor CR is applied is used as the namespace for API entity in Tanzu Application Platform GUI. This causes the API entity's name, system, and owner to all be under that namespace.
+- Tanzu Application Platform GUI uses the namespace for the API entity where the APIDescriptor CR is applied. This causes the API entity's name, system, and owner to all be in that namespace.
 - To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
 - If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
 
@@ -66,11 +66,11 @@ spec:
 
 ## <a id='with-ref'></a>With an Object Ref
 
-You can use an object reference instead of hard coding the URL. This can point to a HTTPProxy, Knative Service, or Ingress.
+You can use an object reference, instead of hard coding the URL, to point to a HTTPProxy, Knative Service, or Ingress.
 
 ### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
 
-Below is an example YAML that points to an HTTPProxy from which the controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
+This section includes an example YAML that points to an HTTPProxy from which the controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -94,7 +94,7 @@ spec:
 
 ### <a id='with-knative-ref'></a>With a Knative Service Object Ref
 
-To use a Knative Service instead, here is an example from which your controller reads the `status.url` as the baseURL.
+To use a Knative Service, your controller reads the `status.url` as the baseURL. For example:
 
 ```yaml
 # all other fields similar to the above example
@@ -108,7 +108,7 @@ To use a Knative Service instead, here is an example from which your controller 
 
 ### <a id='with-ingress-ref'></a>With an Ingress Object Ref
 
-To use an Ingress instead, here is an example from which your controller reads the URL from the jsonPath specified. When jsonPath is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL.
+To use an Ingress instead, your controller reads the URL from the jsonPath specified. When jsonPath is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. For example:
 
 ```yaml
 # all other fields similar to the above example
@@ -125,7 +125,7 @@ To use an Ingress instead, here is an example from which your controller reads t
 
 When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`, which provide information useful for troubleshooting. The conditions are explained in the [Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
 
-In addition to `conditions` the `status` contains a couple of other useful fields. Below you will find a listing of these fields along with a brief explanation of what they contain.
+In addition to `conditions` the `status` contains a couple of other useful fields. The following is a list of these fields with a brief explanation of what they contain.
 
 ```yaml
 status:
