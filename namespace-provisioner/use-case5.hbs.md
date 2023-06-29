@@ -25,10 +25,10 @@ For information about, how to create a developer namespace, see [Provision Devel
     EOF
     ```
 
-2. Add the following configuration to your TAP values to create the supply-chain and scanners:
+2. Add the following configuration to your `tap-values.yaml` file to create the supply-chain and scanners:
 
 Using Namespace Provisioner Controller
-: Add the following configuration to your TAP values
+: Add the following configuration to your `tap-values.yaml` file:
 
     ```yaml
     namespace_provisioner:
@@ -45,7 +45,7 @@ Using Namespace Provisioner Controller
     ```
 
 Using GitOps
-: Add the following configuration to your TAP values
+: Add the following configuration to your `tap-values.yaml` file:
 
     ```yaml
     namespace_provisioner:

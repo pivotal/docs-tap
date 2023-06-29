@@ -91,12 +91,12 @@ spec:
 
 To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on an Out of the Box Supply Chain with Testing. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
+Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on an Out of the Box Supply Chain with Testing. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in `tap-values.yaml`. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
-Add the following configuration to your TAP values to add [this sample java pipeline](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-supplychain/tekton-pipeline-java.yaml) to your developer namespace:
+Add the following configuration to `tap-values.yaml` to add [this sample java pipeline](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-supplychain/tekton-pipeline-java.yaml) to your developer namespace:
 
 Using Namespace Provisioner Controller
-: Sample TAP values configuration:
+: Sample `tap-values.yaml` configuration:
 
     ```yaml
     namespace_provisioner:
@@ -109,7 +109,7 @@ Using Namespace Provisioner Controller
     ```
 
 Using GitOps
-: Sample TAP values configuration:
+: Sample `tap-values.yaml` configuration:
 
     ```yaml
     namespace_provisioner:
@@ -128,8 +128,8 @@ Using GitOps
 <br>
 The sample pipeline resource has the following ytt logic which creates this pipeline only if the following conditions are met:
 
-- `supply_chain` in your TAP values is either `testing` or `testing_scanning`
-- `profile` in your TAP values is either `full, iterate`, or `build`.
+- `supply_chain` in your `tap-values.yaml` file is either `testing` or `testing_scanning`
+- `profile` in your `tap-values.yaml` file is either `full, iterate`, or `build`.
 
 ```shell
 #@ load("@ytt:data", "data")
@@ -139,7 +139,7 @@ The sample pipeline resource has the following ytt logic which creates this pipe
 #@ if/end in_list('supply_chain', ['testing', 'testing_scanning']) and in_list('profile', ['full', 'iterate', 'build']):
 ```
 
-After adding the additional source to your TAP values, you can see the `tekton-pipeline-java` created in your developer namespace. Run the following command to see if the pipeline is created correctly.
+After adding the additional source to your `tap-values.yaml` file, you can see the `tekton-pipeline-java` created in your developer namespace. Run the following command to see if the pipeline is created correctly.
 
 ```shell
 kubectl get pipeline.tekton.dev -n YOUR-NEW-DEVELOPER-NAMESPACE
@@ -202,12 +202,12 @@ The Out of the Box Supply Chain with Testing and Scanning adds the `source-teste
 
 To create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on an Out of the Box Supply Chain with Testing and Scanning. Create a sample Pipeline and a ScanPolicy in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) for more details.
+Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on an Out of the Box Supply Chain with Testing and Scanning. Create a sample Pipeline and a ScanPolicy in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in `tap-values.yaml`. See [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) for more details.
 
-Add the following configuration to your TAP values to add the [sample java pipeline and grype scan policy ](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain)to your developer namespace:
+Add the following configuration to your `tap-values.yaml` file to add the [sample java pipeline and grype scan policy ](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain)to your developer namespace:
 
 Using Namespace Provisioner Controller
-: Sample TAP values configuration:
+: Sample `tap-values.yaml` configuration:
 
     ```yaml
     namespace_provisioner:
@@ -220,7 +220,7 @@ Using Namespace Provisioner Controller
     ```
 
 Using GitOps
-: Sample TAP values configuration:
+: Sample `tap-values.yaml` configuration:
 
     ```yaml
     namespace_provisioner:
@@ -238,8 +238,8 @@ Using GitOps
 
 The sample Pipeline resource have the following ytt logic which creates this pipeline only if
 
-- `supply_chain` in your TAP values is either `testing` or `testing_scanning`
-- `profile` in your TAP values is either `full, iterate`, or `build`.
+- `supply_chain` in your `tap-values.yaml` file is either `testing` or `testing_scanning`
+- `profile` in your `tap-values.yaml` file is either `full, iterate`, or `build`.
 
 ```shell
 #@ load("@ytt:data", "data")
@@ -251,10 +251,10 @@ The sample Pipeline resource have the following ytt logic which creates this pip
 
 The sample ScanPolicy resource have the following ytt logic which creates this pipeline only if
 
-- `supply_chain` in your TAP values is `testing_scanning`
-- `profile` in your TAP values is either `full` or `build`.
+- `supply_chain` in your `tap-values.yaml` file is `testing_scanning`
+- `profile` in your `tap-values.yaml`  file is either `full` or `build`.
 
-After adding the additional source to your TAP values, you can see the `tekton-pipeline-java and scan-policy` created in your developer namespace. Run the following command to see if the pipeline is created correctly.
+After adding the additional source to your `tap-values.yaml` file, you can see the `tekton-pipeline-java and scan-policy` created in your developer namespace. Run the following command to see if the pipeline is created correctly.
 
 ```shell
 kubectl get pipeline.tekton.dev,scanpolicies -n YOUR-NEW-DEVELOPER-NAMESPACE
