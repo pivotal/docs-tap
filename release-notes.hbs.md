@@ -395,12 +395,13 @@ The following table lists the supported component versions for this Tanzu Applic
 | Component Name                                  | Version |
 | ----------------------------------------------- | ------- |
 | API Auto Registration                           |         |
-| API portal                                      |         |
+| API portal for VMware Tanzu                     |         |
 | API Scoring and Validation                      |         |
 | Application Accelerator                         |         |
 | Application Configuration Service               |         |
 | Application Live View                           |         |
 | Application Single Sign-On                      |         |
+| Authentication and authorization                |         |
 | Bitnami Services                                | 0.2.0   |
 | Cartographer Conventions                        |         |
 | cert-manager                                    |         |
@@ -411,9 +412,11 @@ The following table lists the supported component versions for this Tanzu Applic
 | Eventing                                        |         |
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
+| Local Source Proxy                              |         |
 | Namespace Provisioner                           |         |
 | Service Bindings                                |         |
 | Services Toolkit                                | 0.11.0  |
+| Source Controller                               |         |
 | Spring Boot conventions                         |         |
 | Spring Cloud Gateway                            |         |
 | Supply Chain Choreographer                      |         |
@@ -424,6 +427,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Application Platform GUI                  |         |
 | Tanzu Application Platform Telemetry            |         |
 | Tanzu Build Service                             |         |
+| Tanzu CLI plug-in                               |         |
 | Tanzu Developer Tools for IntelliJ              |         |
 | Tanzu Developer Tools for Visual Studio         |         |
 | Tanzu Developer Tools for Visual Studio Code    |         |
