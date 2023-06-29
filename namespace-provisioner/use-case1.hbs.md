@@ -7,7 +7,7 @@ For information about, how to create a developer namespace, see [Provision Devel
 This [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-polyglot) has a Java, Python and a Golang testing pipeline as well as a Strict and a Lax grype ScanPolicy.
 
 Using Namespace Provisioner Controller
-: Add the following configuration to your TAP values to add multiple tekton pipelines and scan policies to your developer namespace:
+: Add the following configuration to your `tap-values.yaml` file to add multiple tekton pipelines and scan policies to your developer namespace:
 
   ```yaml
   namespace_provisioner:
@@ -20,7 +20,7 @@ Using Namespace Provisioner Controller
   ```
 
 Using GitOps
-: Add the following configuration to your TAP values to add multiple tekton pipelines and scan policies to your developer namespace:
+: Add the following configuration to your `tap-values.yaml` file to add multiple tekton pipelines and scan policies to your developer namespace:
 
   ```yaml
   namespace_provisioner:
@@ -38,8 +38,8 @@ Using GitOps
 
 The sample Pipeline resource have the following ytt logic which creates this pipeline only if
 
-* `supply_chain` in your TAP values is either `testing` or `testing_scanning`
-* `profile` in your TAP values is either `full, iterate` or `build`.
+- `supply_chain` in your `tap-values.yaml` file is either `testing` or `testing_scanning`
+- `profile` in your `tap-values.yaml` file is either `full, iterate` or `build`.
 
 ```shell
 #@ load("@ytt:data", "data")
@@ -53,14 +53,14 @@ All pipelines have an additional label `apps.tanzu.vmware.com/language` to diffe
 
 The sample ScanPolicy resource have the following ytt logic which creates this pipeline only if
 
-- `supply_chain` in your TAP values is `testing_scanning`
-- `profile` in your TAP values is either `full` or `build`.
+- `supply_chain` in your `tap-values.yaml` file is `testing_scanning`
+- `profile` in your `tap-values.yaml` file is either `full` or `build`.
 
 The [strict ScanPolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-scanning-supplychain-polyglot/scanpolicy-grype.yaml) does not allow any workloads that have Critical and High vulnerabilities to pass through the supply chain whereas [the lax ScanPolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-scanning-supplychain-polyglot/scanpolicy-grype-lax.yaml) allows the workloads to pass regardless of CVEs detected. The allowed severity level is configured using the `notAllowedSeverities := []` part of the rego file section of ScanPolicy.
 
 >**Caution** The lax ScanPolicy is just added for tutorial purposes but it is not advised to use such a policy in Production workloads.
 
-After adding the additional source to your TAP values, you should be able to see the `tekton-pipeline-java, tekton-pipeline-golang, tekton-pipeline-python`, `scan-policy` and `lax-scan-policy` created in your developer namespace. Run the following command to see if the pipelines are created correctly.
+After adding the additional source to your `tap-values.yaml` file, you should be able to see the `tekton-pipeline-java, tekton-pipeline-golang, tekton-pipeline-python`, `scan-policy` and `lax-scan-policy` created in your developer namespace. Run the following command to see if the pipelines are created correctly.
 
 ```shell
 kubectl get pipeline.tekton.dev,scanpolicies -n YOUR-NEW-DEVELOPER-NAMESPACE

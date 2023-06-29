@@ -1,4 +1,4 @@
-# Workshop instructions
+# Writing Learning Center workshop instructions
 
 Individual module files making up the workshop instructions can use either [Markdown](https://github.github.com/gfm/) or [AsciiDoc](http://asciidoc.org/) markup formats. The extension used on the file should be `.md` or `.adoc`, corresponding to which formatting markup style you use.
 

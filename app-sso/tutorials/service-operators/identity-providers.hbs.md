@@ -89,6 +89,7 @@ Where:
 - `.openID.authorizationUri` (optional): The URI for performing an authorization request and obtaining an `authorization_code`.
 - `.openID.tokenUri` (optional): The URI for performing a token request and obtaining a token.
 - `.openID.jwksUri` (optional): The JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures.
+- `.openID.userinfoUri` (optional): The URI for obtaining the additional identity claims from the upstream IdP (identity provider).
 - `.openID.roles.fromUpstream.claim` (optional): Selects which claim in the `id_token` contains the `roles` of
   the user. `roles` is not a standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope, it  populates the `roles` claim in the `id_token` issued by the `AuthServer`. 
   For more information, see [OpenID external groups mapping](#openid-external-groups-mapping).
@@ -97,6 +98,8 @@ Where:
   authorization server. See [Identity token claims mapping](#id-token-claims-mapping) for more details.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and select `my-oidc-provider`.
+
+You can find the `authorizationUri`, `tokenUri`, `jwksUri`, and `userinfoUri` properties in  `<issuerUri>/.well-known/openid-configuration`.
 
 ### <a id='openid-external-groups-mapping'></a> OpenID external groups mapping
 
