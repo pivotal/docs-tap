@@ -1,14 +1,17 @@
 # Install multiple scanners in the developer namespace
 
-This topic tells you how to automate multiple scanner installations in the developer namespace. 
+This topic tells you how to automate multiple scanner installations in the developer namespace.
 
 Grype scanner is installed by default in all namespaces managed by Namespace Provisioner.
 
-The following step describe how to install Snyk scanner and Grype in the developer namespace and use both together in the supply chain. Grype is used for Source scans and Snyk is used for Image scans.
+The following steps describe how to install Snyk scanner and Grype in the developer namespace and
+use both together in the supply chain. Grype is used for Source scans and Snyk is used for
+Image scans.
 
 For information about, how to create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 
-1. Create a secret in the `tap-install` namespace or any namespace of your preference that contains the Snyk token in the YAML format **(must have .yaml or .yml in the key)** as shown below:
+1. Create a secret in the `tap-install` namespace or any namespace of your preference that contains
+the Snyk token in YAML format. It must have .yaml or .yml in the key as shown here:
 
     ```yaml
     cat << EOF | kubectl apply -f -
@@ -65,14 +68,15 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-Additional source points to the location of the [sample GitOps repo](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-multiple-scanners) where we have the following custom resources:
+Additional source points to the location of the [sample GitOps repo](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-multiple-scanners) which has the following custom resources:
 
-- `tekton-pipeline-java.yaml` - For creating a Tekton pipeline for running tests on our Java workload
-- `scanpolicy-grype.yaml and scanpolicy-snyk.yaml `- For creating a Scan policies to be used by Grype and Snyk scanners
-- `snyk-token-secret.yaml` -is a Snyk token secret that needs to be created in our developer namespace. Instead of putting the actual snyk token in the secret in our Git repository, we will put the reference to the values in the scanner-auth secret created in Step 1 by using the `data.values.imported` keys.
-- `snyk-scanner-install.yaml` - contains the PackageInstall for installing the Snyk package for our developer namespace. One particular thing to note on this file is that we have mentioned the namespace: tap-install in the PackageInstall resource. This signals the Namespace Provisioner to create a PackageInstall resource for all provisioned namespaces in the same namespace (in our case tap-install) and add` -{namespace}` as the suffix in the name to avoid name collisions.
+- `tekton-pipeline-java.yaml`: Use this to create a Tekton pipeline for running tests on the Java workload.
+- `scanpolicy-grype.yaml and scanpolicy-snyk.yaml`: Use to create Scan policies for Grype and Snyk scanners.
+- `snyk-token-secret.yaml`: This is a Snyk token secret that must be created in the developer namespace. Instead of putting the actual Snyk token in the secret in the Git repository, put the reference to the values in the scanner-auth secret created in Step 1 by using the `data.values.imported` keys.
+- `snyk-scanner-install.yaml`: This contains the PackageInstall for installing the Snyk package for the developer namespace. The namespace `tap-install` is mentioned in the PackageInstall resource. This causes Namespace Provisioner to create a PackageInstall resource for all provisioned namespaces in the same namespace and add` -{namespace}` as the suffix in the name to avoid name collisions.
 
-Our setup is complete. Run the following Tanzu CLI command to apply a workload in your developer namespace that uses Grype for source scan and Snyk for Image scan:
+Run the following command to apply a workload in your developer namespace that uses Grype for source
+scan and Snyk for Image scan:
 
 Using Tanzu CLI
 : Create workload using tanzu apps CLI command
@@ -91,7 +95,8 @@ Using Tanzu CLI
   ```
 
 Using workload yaml
-: Create a workload.yaml file with the details as below.
+: Create a `workload.yaml` file:
+
   ```yaml
   ---
   apiVersion: carto.run/v1alpha1
