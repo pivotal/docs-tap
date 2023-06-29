@@ -395,7 +395,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Component Name                                  | Version |
 | ----------------------------------------------- | ------- |
 | API Auto Registration                           |         |
-| API portal for VMware Tanzu                     |         |
+| API portal                                      |         |
 | API Scoring and Validation                      |         |
 | Application Accelerator                         |         |
 | Application Configuration Service               |         |
@@ -421,7 +421,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Spring Cloud Gateway                            |         |
 | Supply Chain Choreographer                      |         |
 | Supply Chain Security Tools - Policy Controller |         |
-| Supply Chain Security tools for Tanzu - Scan    |         |
+| Supply Chain Security Tools - Scan              |         |
 | Supply Chain Security Tools - Sign (Deprecated) |         |
 | Supply Chain Security Tools - Store             |         |
 | Tanzu Application Platform GUI                  |         |
@@ -430,7 +430,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu CLI plug-in                               |         |
 | Tanzu Developer Tools for IntelliJ              |         |
 | Tanzu Developer Tools for Visual Studio         |         |
-| Tanzu Developer Tools for Visual Studio Code    |         |
+| Tanzu Developer Tools for VS Code               |         |
 | Tanzu Service CLI plug-in                       | 0.7.0   |
 | Tekton Pipelines                                |         |
 
