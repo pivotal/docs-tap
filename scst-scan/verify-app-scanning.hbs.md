@@ -2,7 +2,7 @@
 
 Once you have built an ImageVulnerabilityScan template to bring your own scanner, it is important to validate the functionality to verify the integration is working correctly.
 
-In order to ensure the scan integration is working correctly so that downstream servers such as AMR observer, TAP GUI, and the insight CLI can use scan results, follow these steps:
+In order to ensure the scan integration is working correctly so that downstream servers such as AMR Observer, TAP GUI, and the insight CLI can use scan results, follow these steps:
 
 1.  Verify that a triggered scan is completed successfully
 2.  Retrieve the scan results from the registry
