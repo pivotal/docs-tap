@@ -492,7 +492,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Contour                                         |         |
 | Crossplane                                      | 0.2.1   |
 | Developer Conventions                           |         |
-| Eventing                                        |         |
+| Eventing                                        | 2.2.3   |
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
 | Local Source Proxy                              | 0.1.0   |
