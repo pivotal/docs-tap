@@ -166,7 +166,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 <ul>
 
 <li>The application is tested using the provided Tekton pipeline.
-<li>The application source code is scanned for vulnerabilities.
+<li>(Optional) The application source code is scanned for vulnerabilities.  See [here](../scst-scan/scan-types.hbs.md#adding-source-scan-to-the-test-and-scan-supply-chain) to opt-in.
 
 <li>A new image is created.
 <li>The image is scanned for vulnerabilities.
