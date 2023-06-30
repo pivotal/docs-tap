@@ -2,25 +2,26 @@
 
 1. Create a sample workload with a pre-built image by using the `tanzu apps workload create` command:
 
-  ```console
-  tanzu apps workload create WORKLOAD-NAME \
-    --app APP-NAME \
-    --type TYPE \
-    --image IMAGE \
-    --namespace DEV-NAMESPACE
-  ```
+    ```console
+    tanzu apps workload create WORKLOAD-NAME \
+      --app APP-NAME \
+      --git-repo GIT-REPO \
+      --git-branch GIT-BRANCH \
+      --type TYPE \
+      --namespace DEV-NAMESPACE
+    ```
 
-Where:
+    Where:
 
-- `WORKLOAD-NAME` is the name you choose for your workload.
-- `APP-NAME` is the name of your app.
-- `TYPE` is the type of your app.
-- `IMAGE` is the container image that contains the app you want to deploy.
-- `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
+    - `WORKLOAD-NAME` is the name you choose for your workload.
+    - `APP-NAME` is the name of your app.
+    - `GIT-REPO` is the Git repository from which the workload is created.
+    - `GIT-BRANCH` is the branch in a Git repository from where the workload is created.
+    - `TYPE` is the type of your app.
+    - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
 **Note**:
 - For more info on how to use the Tanzu CLI workload creation see [Create a Workload](../cli-plugins/apps/create-workload.hbs.md) documentation.
-- Specifying the `--image` flag sets the `spec.image` of the workload so that it is taken up by the `scanning-image-scan-to-url` supply chain. Currently SCST - Scan 2.0 only performs image scanning. There are specific requirements for pre-built images. For more details see [Configure your workload to use a prebuilt image](../scc/pre-built-image.hbs.md)
 
 ## <a id="retrieve-scan-results"></a> Retrieve scan results
 

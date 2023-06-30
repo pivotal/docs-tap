@@ -15,7 +15,7 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
     apiVersion: carto.run/v1alpha1
     kind: ClusterImageTemplate
     metadata:
-      name: image-vulnerability-scan-custom # input name of your ClusterImageTemplate
+      name: IMAGE-VULNERABILITY-SCAN-CUSTOM-NAME
     spec:
       imagePath: .status.scannedImage
       retentionPolicy:
@@ -52,9 +52,9 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
         - name: trivy_java_db_repository
           default: ghcr.io/aquasecurity/trivy-java-db
         - name: registry-server
-          default: my-registry.io    # input your registry server
+          default: MY-REGISTRY
         - name: registry-repository
-          default: my-registry-repository    # input your registry repository
+          default: MY-REGISTRY-REPOSITORY
 
       ytt: |
         #@ load("@ytt:data", "data")
@@ -98,7 +98,7 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
             publisher: #@ data.values.params.image_scanning_service_account_publisher
           steps:
           - name: trivy-generate-report
-            image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
+            image: TRIVY-SCANNER-IMAGE
             env:
             - name: TRIVY_DB_REPOSITORY
               value: #@ data.values.params.trivy_db_repository
@@ -119,7 +119,7 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
             - --format=cyclonedx
             - --output=scan.cdx.json
           - name: trivy-display-report
-            image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
+            image: TRIVY-SCANNER-IMAGE
             env:
             - name: TRIVY_DB_REPOSITORY
               value: #@ data.values.params.trivy_db_repository
@@ -144,14 +144,10 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
 
   Where:
 
-  - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-  - `registry-server` is the registry server.
-  - `registry-repository` is the registry repository.
-
-1. Modify the following in your `custom-ivs-template.yaml` file for your own use case:
-   - `.metadata.name` is the name of your ClusterImageTemplate
-   - `registry-server` and `registry-repository` refer to your registry
-   - location of your Trivy scanner image
+  - `IMAGE-VULNERABILITY-SCAN-CUSTOM-NAME` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
+  - `MY-REGISTRY` is your registry server.
+  - `MY-REGISTRY-REPOSITORY` is your registry repository.
+  - `TRIVY-SCANNER-IMAGE` is the location of your trivy scanner image.
 
 1. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan as shown below:
     ```yaml
@@ -170,10 +166,10 @@ The below steps describe how to create a ClusterImageTemplate using an ImageVuln
         publisher: #@ data.values.params.image_scanning_service_account_publisher
     ```
 
-1. Create the ClusterImageTemplate:
+2. Create the ClusterImageTemplate:
 
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-1. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
+3. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
