@@ -33,6 +33,13 @@ This release includes the following platform-wide enhancements.
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+#### <a id='1-6-0-appacc'></a> Application Accelerator 
+- The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
+
+
+#### <a id='1-6-0-alv'></a> Application Live View
+- Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [w](./app-live-view/improved-security-and-access-control.hbs.md)
+- Developers can view the live information of natively compiled Spring applications via Application Live View for lightweight troubleshooting. The pages and metrics currently unavailable for natively compiled Spring applications include threads, heapdump, memory graphs, cache manager, conditions, schedules tasks and actuator information. For more information, see [Enable Spring Native apps for Application Live View]()
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
