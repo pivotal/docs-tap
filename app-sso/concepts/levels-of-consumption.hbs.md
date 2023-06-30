@@ -120,13 +120,13 @@ It is similar to `ClientRegistration` except for one major difference: it
 templates redirect URIs.
 
 Instead of providing full redirect URIs, a `WorkloadRegistration` receives
-absolute redirect paths. The template for redirect URIs will be configured by
-the _platform operator_ when they install TAP (including AppSSO). They will
-configure this template to match the template for workload domains.
+absolute redirect paths. Platform operators configure the template for redirect 
+URIs while installing Tanzu Application Platform, which includes Application Single 
+Sign-On. They configure this template to match the template for workload domains.
 
-Here's a hypothetical `WorkloadRegistration`. It is similar to the
-`ClientRegistration` we saw above, but only specifies redirect paths. In its
-truncated `status` you can see how its redirect URIs are templated.
+The following is a hypothetical `WorkloadRegistration` example. 
+It is similar to the earlier `ClientRegistration` example, except that it specifies 
+the redirect paths. In its truncated `status`, you can observe the templated redirect URIs.
 
 ```yaml
 ---
@@ -164,61 +164,59 @@ status:
     - https://my-workload.my-namespace.example.com/login
 ```
 
-The additional `spec.workloadRef` is provided so that redirect URIs can be
-templated. This provides the values for the template.
+The additional `spec.workloadRef` provides templates for the redirect URIs. 
 
-Templating redirect URIs template decouples the _application operator_ from the
-_platform operator_. Now the _application operator_ only has to provide
-absolute redirect paths and these are stable across environments. The _platform
-operator_ on the other hand can configure domain templates, ingress domains and
+Templating redirect URIs template decouples the application operators from the
+platform operators. Now the application operator only needs to provide the
+absolute redirect paths, which are consistent across environments. The platform
+operators can configure domain templates, ingress domains and
 TLS as they see fit and rest assured that settings are updated without
 interruption.
 
-However, `WorkloadRegistration` still requires matching an `AuthServer` by
-label selector. That means _application operators_ and _service operators_ are
+However, `WorkloadRegistration` still requires matching an `AuthServer` by the
+label selector. That means application operators and service operators are
 still coupled.
 
 ![Diagram shows level 2 of AppSSO consumption with WorkloadRegistration.](../../images/app-sso/level-2-workloadregistration.png)
 
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMFgNkDk=/)
 
-In summary, `WorkloadRegistration` is less flexible but when redirect URIs can
-be templated it is portable across environments. However, it still mixes the
+In summary, `WorkloadRegistration` is less flexible, but it is portable across 
+environments when redirect URIs can be templated. However, it still mixes the
 concerns of personas.
 
 ## <a id="level-3"></a> Level 3: ClassClaim (recommended)
 
-The final level is to obtain client credentials by claiming them from an AppSSO
-service. While the previous levels interacted directly with `AuthServer`
-resources, this level abstract this part away with [Services Toolkit's
-APIs](../../services-toolkit/about.hbs.md). This breaks the last remaining
-coupling of personas; the one between _application operators_ and _service
-operators_.
+The final level is to obtain client credentials by claiming them from an 
+Application Single Sign-On service. Unlike the previous levels that directly interacted 
+with `AuthServer` resources, this level abstract this part away with [Services Toolkit's
+APIs](../../services-toolkit/about.hbs.md). This eliminates the last remaining 
+coupling between application operators and service operators.
 
-AppSSO's `ClusterWorkloadRegistrationClass` can be paired with an `AuthServer`
-to provide it as a claimable service offering. These two APIs are designed for
-the _service operator_ to manage the complete life-cycle of an AppSSO service
+You can pair Application Single Sign-On's `ClusterWorkloadRegistrationClass` with 
+an `AuthServer` as a claimable service. These two APIs allow the service 
+operators to manage the entire life cycle of an Application Single Sign-On service 
 offering.
 
 A `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a claimable
-service by creating a Services Toolkit `ClusterInstanceClass` for it and by
-defining a blueprint `WorkloadRegistration`. This blueprint allows the _service
-operator_ to record the correct label selector for the `AuthServer`. As a
-result, it eliminates this concern for _application operators_.
+service by creating a Services Toolkit `ClusterInstanceClass` and defining a 
+blueprint `WorkloadRegistration`. This blueprint allows service
+operators to record the correct label selector for the `AuthServer`, which 
+eliminates application operators' concerns.
 
-Credentials for a service are requested through Services Toolkit's
-general-purpose `ClassClaim` API. A `ClassClaim` identifies a
-`ClusterInstanceClass` and it carries parameters which further describe the
-request. In the case of an AppSSO service the parameters are essentially the
-trimmed `spec` of a `WorkloadRegistration`.
+Credentials for a service are requested by using Services Toolkit's general-purpose 
+`ClassClaim` API. A `ClassClaim` identifies a `ClusterInstanceClass` and it carries 
+parameters that further describe the request. For Application Single Sign-On services, 
+the parameters are essentially the trimmed `spec` of a `WorkloadRegistration`.
 
-With the `tanzu services` CLI, _application operators_ can discover and consume
-services in a self-service style. Commonly, this is how _service operators_
+With the `tanzu services` CLI, application operators can discover and consume
+services in a self-service style. Commonly, this is how service operators
 provide all the services required for application teams to run their
-applications. This includes databases, queues, in-memory stores and, of course,
-single sign-on by AppSSO.
+applications. This includes databases, queues, in-memory stores and single sign-on 
+by Application Single Sign-On.
 
-Here's a hypothetical `ClassClaim` for an AppSSO service called `sso`:
+The following is a hypothetical `ClassClaim` for an Application Single Sign-On service 
+called `sso`:
 
 ```yaml
 ---
@@ -250,36 +248,36 @@ spec:
     requireUserConsent: true
 ```
 
-This last level completely decouples all three personas by providing them with
-APIs to fulfill their jobs.
+This level completely decouples all three personas by providing them with APIs to 
+fulfill their jobs.
 
 ![Diagram shows level 3 of AppSSO consumption with WorkloadRegistration.](../../images/app-sso/level-3-classclaim.png)
 
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMFgNkDk=/)
 
-In summary, `ClassClaim` is less flexible but when redirect URIs can be
-templated it is portable across environments. Furthermore, it completely
-decouples the concerns of personas. Additionally, it's only a single resource
-for _application operators_ to manage.
+In summary, `ClassClaim` is less flexible but it is portable across environments 
+when the redirect URIs can be templated. It completely decouples the concerns of personas. 
+Additionally, offering a single resource for application operators to manage.
 
 ## <a id="summary"></a> Summary
 
-When you are an _application operator_ and your workload and its supporting
-resources are propagating through different environments, then `ClassClaim`
-gives you the highest degree of portability as long as redirect URIs for your
-workload can be templated. Consuming an AppSSO service only requires a single
-resource, a `ClassClaim`, in this case.
+As an application operator, if your workload and its associated resources must be 
+deployed across multiple environments, `ClassClaim` offers you the highest degree 
+of portability, as long as the redirect URIs of your workload can be templated. 
+In this case, consuming an Application Single Sign-On service only requires a 
+single resource, a `ClassClaim`.
 
-When your workload's redirect URIs can be templated but you want control over
-the template, then `WorkloadRegistration` provides the flexibility you need. It
-does, however, come at the cost of matching an `AuthServer` with a label
-selector. Depending on your setup consuming AppSSO requires multiple resource,
-a `WorkloadRegistration` and a `ResourceClaim`, in this case.
+If you require control over the template for your workload's redirect URIs, 
+`WorkloadRegistration` offers the desired flexibility. However, this flexibility 
+comes with the cost of matching an `AuthServer` with a label selector. 
+In situations where you want to consume the Application Single Sign-On service 
+with such a setup, it requires multiple resources: a `WorkloadRegistration` and 
+a `ResourceClaim`.
 
-When your workload's redirect URIs cannot be templated and portability is not a
-concern, then `ClientRegistration` provides the flexibility you need. It does,
-however, come at the cost of matching an `AuthServer` with a label selector.
-Depending on your setup consuming AppSSO requires multiple resource, a
-`ClientRegistration` and a `ResourceClaim`, in this case.
+If your workload's redirect URIs cannot be templated and portability is not a
+concern, `ClientRegistration` offers the necessary flexibility. However, this 
+flexibility comes at the cost of having to match an `AuthServer` with a label selector.
+Depending on your setup, consuming AppSSO requires multiple resources: 
+a `ClientRegistration` and a `ResourceClaim`.
 
-In conclusion, use `ClassClaim` when possible.
+In conclusion, VMware recommend to use `ClassClaim` whenever possible.
