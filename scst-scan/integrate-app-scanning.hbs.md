@@ -13,7 +13,7 @@ Before you can integrate Supply Chain Security Tools - Scan 2.0 with the out of 
 
     ```yaml
     ootb_supply_chain_testing_scanning:
-      image_scanner_template_name: scanning_image_template_grype
+      image_scanner_template_name: image-vulnerability-scan-grype
     ```
 
 1. Update your Tanzu Application Platform installation by running:
