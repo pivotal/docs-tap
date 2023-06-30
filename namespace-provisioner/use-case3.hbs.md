@@ -4,15 +4,13 @@ This topic tells you how to use private Git repositories for storing your GitOps
 
 ## <a id= 'git-private'></a>Git Authentication for using a private Git repository
 
-Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources. For more details, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
+Authentication is provided using a secret in the `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the `additional_sources`. For more details, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 ### Create the Git Authentication secret in tap-namespace-provisioning namespace
 
-The secrets for Git authentication allow the following keys: ssh-privatekey, ssh-knownhosts, username, and password.
+The secrets for Git authentication allow the following keys: ssh-privatekey, ssh-knownhosts, username, and password. If ssh-knownhosts is not specified, Git does not perform strict host checking.
 
->**Note**  if ssh-knownhosts is not specified, Git does not perform strict host checking.
-
-1. Create the Git secret.
+1. Create the Git secret:
 
     Using HTTP(s) based Authentication
     : If you are using Username and Password for authentication:
@@ -50,7 +48,7 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
       EOF
       ```
 
-2. Add the `secretRef` section to the `additional_sources` and the `gitops_install` section of the Namespace Provisioner configuration in your TAP values:
+2. Add the `secretRef` section to the `additional_sources` and the `gitops_install` section of your `tap-values.yaml` file:
 
     Using Namespace Provisioner Controller
     : Description
@@ -71,7 +69,7 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
     Using GitOps
     : Description
 
-      **Caution** There is a current limitation in kapp-controller which does not allow the users to
+      **Caution** There is a current limitation in kapp-controller which does not allow you to
       re-use the same Git secret multiple times. If you have multiple additional sources using private
       repositories with the same credentials, you must create different secrets with the same
       authentication details for each of them.
@@ -101,10 +99,10 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
 ### Import from another namespace
 
 If you already have a Git secret created in a namespace other than `tap-namespace-provisioning`
-namespace and you want to refer to that, the secretRef section should have the namespace
-mentioned with the ` create_export` flag. The default value for `create_export` is false
-as it assumes the Secret is already exported for tap-namespace-provisioning namespace,
-but allows the user to specify if they want the Namespace Provisioner to create a
+namespace and you want to refer to that, the `secretRef` section should have the namespace
+mentioned with the `create_export` flag. The default value for `create_export` is false
+as it assumes the Secret is already exported for `tap-namespace-provisioning` namespace,
+but allows you to specify if you want the Namespace Provisioner to create a
 `Carvel SecretExport` for that secret.
 
 The example refers to `git-auth` secret from `tap-install` in the secretRef section.
@@ -160,7 +158,7 @@ Using GitOps
 After reconciling, Namespace Provisioner creates:
 
 - [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace (tap-install in the above example) to the Namespace Provisioner namespace.
-- [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in Namespace Provisioning namespace (tap-namespace-provisioning) so Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) can create the required secret for the Provisioner to connect to the Private Git Repository.
+- [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in Namespace Provisioning namespace (tap-namespace-provisioning) so Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) can create the required secret for the Namespace Provisioner to connect to the private Git repository.
 
 ## Git Authentication for Private Repository for Workloads and Supply chain
 
@@ -173,12 +171,12 @@ This section provides instructions on how to configure the `default` service acc
 
 To configure the service account to work with private Git repositories, follow the steps below:
 
-1. Create a secret in the `tap-install` namespace or any namespace of your preference, that contains the Git credentials in the YAML format.
+1. Create a secret in the `tap-install` namespace or any namespace of your preference, that contains the Git credentials in YAML format.
 
    - `host`, `username`, and `password`, or `personal access token` values for HTTP based Git Authentication.
    - `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
-    >**Note** stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
+    >**Note** The `stringData` key of the secret must have **.yaml** or **.yml** suffix at the end.
 
     Using HTTP(s) based Authentication
     : If using Username and Password for authentication.
@@ -202,7 +200,7 @@ To configure the service account to work with private Git repositories, follow t
       ```
 
     Using SSH based Authentication
-    : If using SSH private key for authentication, create the Git secret with authentication details as follows:
+    : If you are using SSH private key for authentication, create the Git secret with authentication details as follows:
 
       ```yaml
       cat << EOF | kubectl apply -f -
@@ -230,7 +228,7 @@ To configure the service account to work with private Git repositories, follow t
 
     This secret represents the actual Git secret that will be created by the Namespace Provisioner
     in each managed namespace. It should be included in your Git repository linked in the
-    `additional_sources` section of TAP values mentioned in Step 4.
+    `additional_sources` section of `tap-values.yaml` mentioned in Step 4.
 
     ```yaml
     #@ load("@ytt:data", "data")
@@ -247,10 +245,10 @@ To configure the service account to work with private Git repositories, follow t
       password: #@ data.values.imported.git.password
     ```
 
-3. Put all this together in Namespace Provisioner configuration in TAP values as follows:
+3. Combine this `tap-values.yaml`:
 
     Using Namespace Provisioner Controller
-    : Add the following configuration to your TAP values
+    : Add the following configuration to `tap-values.yaml`:
 
       ```yaml
       namespace_provisioner:
@@ -271,7 +269,7 @@ To configure the service account to work with private Git repositories, follow t
       ```
 
     Using GitOps
-    : Add the following configuration to your TAP values
+    : Add the following configuration to `tap-values.yaml`:
 
       ```yaml
       namespace_provisioner:
@@ -303,11 +301,11 @@ To configure the service account to work with private Git repositories, follow t
    information, see [Customize service accounts](use-case4.hbs.md#customize-sa).
 
    >**Note** `create_export` is set to `true` in `import_data_values_secrets`, as a result, a
-   SecretExport is created for the `workload-git-auth` secret in the tap-install namespace
+   SecretExport is created for the `workload-git-auth` secret in the `tap-install` namespace
    automatically by Namespace Provisioner. After the changes are reconciled, the secret
    named **git ** is in all provisioned namespaces and is also added to the default service account of those namespaces.
 
-4. In your TAP values YAML file, in the `ootb_supply_chain_*.gitops.ssh_secret ` section,
+4. In your `tap-values.yaml` file, in the `ootb_supply_chain_*.gitops.ssh_secret ` section,
    specify the name of the Git secret that contains the credentials. This is necessary for the
    supply chain to include the `secretRef` when creating the Flux `GitRepository` resource.
    Here is an example:

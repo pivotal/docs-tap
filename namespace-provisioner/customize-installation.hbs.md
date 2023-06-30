@@ -92,7 +92,7 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-If a path is not specified in the additional sources configuration, Namespace Provisioner
+If a path is not specified in the `additional_sources` configuration, Namespace Provisioner
 automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
 See [Git Authentication for Private repository](use-case3.md#git-private).
