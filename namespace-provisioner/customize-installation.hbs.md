@@ -48,7 +48,7 @@ the list of developer namespaces:
   manages. However, if the resource is cluster-scoped, only a single instance of the resource is
   created.
 
-Sample TAP values configuration:
+Sample `tap-values.yaml` configuration:
 
 Using Namespace Provisioner Controller
 : The Git repository is configured under `additional_sources`.
@@ -92,7 +92,7 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-If a path is not specified in the additional sources configuration, Namespace Provisioner
+If a path is not specified in the `additional_sources` configuration, Namespace Provisioner
 automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
 See [Git Authentication for Private repository](use-case3.md#git-private).
@@ -101,10 +101,10 @@ See [Git Authentication for Private repository](use-case3.md#git-private).
 
 The `sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.
 It must be specified in the format of time + unit. The minimum allowed `sync_period` is 30 seconds.
-If a value lower than 30 seconds is specified in the TAP values, Namespace Provisioner
+If a value lower than 30 seconds is specified in the `tap-values.yaml` file, Namespace Provisioner
 automatically sets the `sync_period` to 30 seconds. If no value is specified, the default `sync_period` is `1m0s`.
 
-Sample TAP values configuration:
+Sample `tap-values.yaml` configuration:
 
 Using Namespace Provisioner Controller
 : Use the `sync_period` key.
@@ -157,7 +157,7 @@ stringData:
     key2: value2
 ```
 
-Sample TAP values configuration:
+Sample `tap-values.yaml` configuration:
 
 Using Namespace Provisioner Controller
 : The list of secrets are imported under `import_data_values_secrets`.
@@ -193,7 +193,7 @@ If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Se
 can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes Service Account
 used by the Workload and the Supply chain components.
 
-Sample TAP values configuration:
+Sample `tap-values.yaml` configuration:
 
 Using Namespace Provisioner Controller
 : Add the AWS IAM Role to `aws_iam_role_arn`.
@@ -223,7 +223,7 @@ The `default_parameters` is an array of parameters that are applied to all names
 parameters can be used as ytt (`data.values.default_parameters`) for templating default and
 additional resources.
 
-Sample TAP values configuration:
+Sample `tap-values.yaml` configuration:
 
 Using Namespace Provisioner Controller
 : Use the `default_parameters` with the desired parameter.
@@ -298,7 +298,7 @@ Sample secret with overlay to be used:
   EOF
   ```
 
-Sample TAP values configuration:
+Sample `tap-values.yaml` configuration:
 
 Using Namespace Provisioner Controller
 : The list of secrets with the overlay are set under `overlay_secrets`.
@@ -340,7 +340,7 @@ Options if using Controller
 
    The `namespace_selector` specifies the [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) used by the [controller](about.hbs.md#nsp-controller) to identify the namespaces that should be included in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
 
-   Sample TAP values configuration:
+   Sample `tap-values.yaml` configuration:
 
    ```yaml
    namespace_provisioner:
@@ -353,14 +353,14 @@ Options if using Controller
 
    **<a id='con-override-cpu'></a>Override the default CPU and memory limits for controller pods**
 
-   To configure the compute resources for the Namespace Provisioner controllers, you can utilize the `controller_resources` section in the Namespace Provisioner configuration in TAP values.
+   To configure the compute resources for the Namespace Provisioner controllers, you can utilize the `controller_resources` section in the Namespace Provisioner configuration in `tap-values.yaml`.
 
    To set the maximum CPU and memory limits for the controllers, edit the `controller_resources.resources.limits.cpu` and `controller_resources.resources.limits.memory` values.
 
    Similarly, you can configure the minimum CPU capacity and memory requests for the controllers by
    adjusting the `controller_resources.resources.requests.cpu` and `controller_resources.resources.requests.memory` settings.
 
-   Sample TAP values configuration:
+   Sample `tap-values.yaml` configuration:
 
    ```yaml
    namespace_provisioner:
@@ -383,7 +383,7 @@ Options if using Controller
    that begin with the prefix `tap.tanzu.vmware.com/`. It extracts those annotations or labels and
    uses them as parameters for further configuration and customization.
 
-   Sample TAP values configuration:
+   Sample `tap-values.yaml` configuration:
 
    ```yaml
    namespace_provisioner:
@@ -445,7 +445,7 @@ customization option:
    This file in the sample repository creates the namespaces in the namespaces list so no manual
    intervention is required.
 
-   Sample TAP values configuration:
+   Sample `tap-values.yaml` configuration:
 
    ```yaml
    namespace_provisioner:

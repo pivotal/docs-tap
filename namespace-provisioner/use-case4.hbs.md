@@ -5,11 +5,11 @@ work with private Git repositories.
 
 ## <a id='deactivate-grype'></a>Deactivate Grype install
 
-Grype is installed by Namespace Provisioner by default. If you prefer to use a different scanner for namespaces instead of Grype, you can deactivate the installation of the default Grype scanner.
+Grype is installed with Namespace Provisioner by default. If you prefer to use a different scanner for namespaces instead of Grype, you can deactivate the installation of the default Grype scanner.
 
 ### Deactivate Grype for all namespaces
 
-To deactivate the default installation of Grype for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
+To deactivate the default installation of Grype for all namespaces managed by the Namespace Provisioner, set the `skip_grype` parameter to `true` in the `default_parameters` section of the `tap-values.yaml`:
 
 ```yaml
 namespace_provisioner:
@@ -17,13 +17,13 @@ namespace_provisioner:
     skip_grype: true
 ```
 
-By enabling the `skip_grype: true` setting, the PackageInstall and the Secret `grype-scanner-{namespace}` are not generated in the `tap-install` namespace for any namespaces that are managed by the Namespace Provisioner.
+By enabling the `skip_grype: true` setting, the PackageInstall and the secret `grype-scanner-{namespace}` are not generated in the `tap-install` namespace for any namespaces that are managed by the Namespace Provisioner.
 
 ### Deactivate Grype for a specific namespace
 
 Using Namespace Provisioner Controller
 : To deactivate the installation of Grype for a specific namespace, annotate or label the namespace
-by setting the reserved [parameter](parameters.hbs.md#namespace-parameters) `skip_grype` to `true`. Use the default or customized `parameter_prefixes`, for more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
+by setting the reserved [parameter](parameters.hbs.md#namespace-parameters) `skip_grype` to `true`. Use the default or customized `parameter_prefixes`. For more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
     ```console
     kubectl annotate ns YOUR-NEW-DEVELOPER-NAMESPACE param.nsp.tap/skip_grype=true
@@ -106,7 +106,8 @@ as described in the following sections.
 
 ### Update ServiceAccount for all namespaces
 
-To customize the SupplyChain ServiceAccount by adding additional `secrets` or `imagePullSecrets` for all namespaces managed by the Namespace Provisioner, modify the `supply_chain_service_account` [parameter](parameters.hbs.md#namespace-parameters) within the `default_parameters` section of the TAP values in the `namespace_provisioner` configuration. If you have a separate Service Account for delivery purposes, configure it using the `delivery_service_account` parameter. Refer to the example below for guidance:
+Customize the SupplyChain ServiceAccount by adding additional `secrets` or `imagePullSecrets` for all namespaces managed by the Namespace Provisioner. Edit the `supply_chain_service_account` [parameter](parameters.hbs.md#namespace-parameters) in the `default_parameters` section of
+the `tap-values.yaml` file. If you have a separate Service Account for delivery purposes, configure it using the `delivery_service_account` parameter. For example:
 
 ```yaml
 namespace_provisioner:
@@ -130,21 +131,20 @@ namespace_provisioner:
       imagePullSecrets: [] #! optional
 ```
 
-This adds the secret `git` to the Service Account mentioned
+- This adds the  `git` secret to the Service Account mentioned
 in `ootb_supply_chain_*.service_account`. If not specified, it takes the `default` service account.
-
 - `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
 - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 - Add the secret to be added to the ServiceAccount in the `default_parameters`
 
 ### Update ServiceAccount for a specific namespace
 
-To customize the SupplyChain ServiceAccount for a specific namespace managed by the Namespace Provisioner and include additional `secrets` or `imagePullSecrets`, use the `supply_chain_service_account` parameter. This [parameter](parameters.hbs.md#namespace-parameters) allows you to modify the ServiceAccount and add any required `secrets` or `imagePullSecrets`.
+To customize the SupplyChain ServiceAccount for a specific namespace managed by the Namespace Provisioner and include additional `secrets` or `imagePullSecrets`, use the `supply_chain_service_account` parameter. This [parameter](parameters.hbs.md#namespace-parameters) allows you to edit the ServiceAccount and add any required `secrets` or `imagePullSecrets`.
 
 If you have a separate ServiceAccount for delivery purposes, you can also configure it using the `delivery_service_account` parameter.
 
 Using Namespace Provisioner Controller
-: Add the following configuration to your TAP values
+: Add the following configuration to your `tap-values.yaml` file:
 
     ```yaml
     namespace_provisioner:
@@ -203,7 +203,7 @@ Using Namespace Provisioner Controller
     ```
 
 Using GitOps
-: Add the following configuration to your TAP values
+: Add the following configuration to your `tap-values.yaml` file:
 
     ```yaml
     namespace_provisioner:
@@ -224,7 +224,7 @@ Using GitOps
     ```
 
     - `additional_sources` points to the location where the templated Git secret resides which will be created in all developer namespaces.
-    - Configure the desired namespaces yaml in the GitOps repository with the [parameter](parameters.hbs.md#namespace-parameters) in the namespace. Check the sample [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-params-sa/desired-namespaces.yaml) where we are adding the `git` secret to the supply chain service account.
+    - Configure the desired namespaces yaml in the GitOps repository with the [parameter](parameters.hbs.md#namespace-parameters) in the namespace. Check the sample [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-params-sa/desired-namespaces.yaml) where you are adding the `git` secret to the supply chain service account.
     - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
 >**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a
@@ -255,7 +255,7 @@ limits:
 
 ### <a id='update-lr'></a>Set or Update LimitRange defaults for all namespaces
 
-To update the values in LimitRange for all Namespace Provisioner managed namespaces, specify  the `default_parameters` configuration in Namespace Provisioner TAP values as follows:
+To update the values in LimitRange for all Namespace Provisioner managed namespaces, specify  the `default_parameters` configuration in `tap-values.yaml` as follows:
 
 ```yaml
 namespace_provisioner:
@@ -290,12 +290,12 @@ YAML path to CPU or memory limits as follows:
     ```
 
     * The controller detects the annotations and labels with the `param.nsp.tap/` prefix, and adds the keys and values in the desired-namespace ConfigMaps as parameters for that namespace.
-    * If you want the controller to search for a custom prefix, instead of  the default `param.nsp.tap`, prefix, use the `parameter_prefixes` configuration option in the Namespace Provisioner TAP values values. For more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
+    * If you want the controller to search for a custom prefix, instead of  the default `param.nsp.tap`, prefix, use the `parameter_prefixes` configuration option in the tap-values.yaml file. For more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
     >**Note** Labels take precedence over annotations if the same key is provided in both.
 
 Using GitOps
-: Add the following configuration to your TAP values to add parameterized limits to your developer namespace:
+: Add the following configuration to your `tap-values.yaml` file to add parameterized limits to your developer namespace:
 
     ```yaml
     namespace_provisioner:
@@ -344,11 +344,11 @@ Using GitOps
 ## <a id='deactivate-lr'></a>Deactivate LimitRange Setup
 
 The Namespace Provisioner generates a Kubernetes LimitRange object as a
-[default resource](default-resources.hbs.md) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. If you wish to deactivate the installation of the default LimitRange object, the Namespace Provisioner provides the following options:
+[default resource](default-resources.hbs.md) in the namespaces it manages within the Run profile clusters. Additionally, the Namespace Provisioner offers the capability for Platform operators to enable LimitRange object stamping in Full and Iterate profile clusters using namespace parameters. The following options are available to deactivate the installation of the default LimitRange object:
 
 ### Deactivate for all namespaces
 
-To exclude the installation of the default LimitRange, set the `skip_limit_range` [parameter](parameters.hbs.md#namespace-parameters) to `true` in the `default_parameters` section of the TAP values within the `namespace_provisioner` configuration section as shown below.
+To exclude the installation of the default LimitRange, set the `skip_limit_range` [parameter](parameters.hbs.md#namespace-parameters) to `true` in the `default_parameters` section of the `tap-values.yaml` file as shown here:
 
 ```yaml
 namespace_provisioner:

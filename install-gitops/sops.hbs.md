@@ -342,13 +342,13 @@ Follow these steps to prepare the sensitive Tanzu Sync values:
 1. Move the encrypted sensitive Tanzu Application Platform values into the Tanzu Sync config:
 
     ```console
-    mv tanzu-sync-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    mv tanzu-sync-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
     Example:
 
     ```console
-    mv tanzu-sync-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    mv tanzu-sync-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
 ## <a id='update-sensitive-tanzu-sync-values'></a> Update the sensitive Tanzu Sync values
@@ -358,13 +358,13 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
 1. Open an editor and use SOPS to edit the encrypted sensitive values file:
 
     ```console
-    sops <<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    sops <<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
     Example:
 
     ```console
-    sops $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/sensitive-values/tanzu-sync-values.sops.yaml
+    sops $HOME/tap-gitops/clusters/full-tap-cluster/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
 1. Add the sensitive values:
@@ -404,7 +404,7 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
     - `MY-GIT-USERNAME` is the user with read access to your Git repository. Only applies when you use `basic_auth`.
     - `MY-GIT-PASSWORD` is the password or personal access token for `MY-GIT-USERNAME`. Only applies when you use `basic_auth`.
 
-    You can find the schema for Tanzu Sync credentials in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/.tanzu-managed/schema--sops.yaml`
+    You can find the schema for Tanzu Sync credentials in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/config/.tanzu-managed/schema--sops.yaml`
 
 ## <a id='generate-tap-config'></a>Generate Tanzu Application Platform installation and Tanzu Sync configuration
 

@@ -434,6 +434,7 @@ spec:
         authorizationUri: https://dev-xxxxxx.okta.com/oauth2/v1/authorize
         tokenUri: https://dev-xxxxxx.okta.com/oauth2/v1/token
         jwksUri: https://dev-xxxxxx.okta.com/oauth2/v1/keys
+        userinfoUri: https://dev-xxxxxx.okta.com/oauth2/v1/userinfo
         scopes:
           - openid
         roles:

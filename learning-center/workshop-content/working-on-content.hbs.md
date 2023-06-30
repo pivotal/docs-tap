@@ -1,4 +1,4 @@
-# Workshop content
+# Working on your Learning Center workshop content
 
 Workshop content is either embedded in a custom workshop image or downloaded from
 a Git repository or web server when the workshop session is created.

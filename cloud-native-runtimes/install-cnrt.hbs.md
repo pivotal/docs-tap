@@ -3,14 +3,14 @@
 This topic describes how you can install Cloud Native Runtimes
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Cloud Native Runtimes. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Cloud Native Runtimes. For information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
 Before installing Cloud Native Runtimes:
 
-- Complete all prerequisites to install Tanzu Application Platform. See [Prerequisites](../prerequisites.hbs.md).
-- Ensure that Contour v1.24.4 or later is installed. Tanzu Application Platform includes a correctly versioned package of Contour if you do not have it installed already.
+- Complete all prerequisites for  Tanzu Application Platform. See [Prerequisites](../prerequisites.hbs.md).
+- Ensure that Contour v1.24.4 or later is installed. Tanzu Application Platform includes a correctly versioned package of Contour.
 
 ## <a id='cnr-install'></a> Install
 
@@ -82,7 +82,7 @@ To install Cloud Native Runtimes:
 
         Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
 
-        If your environment has Contour installed already, and it is not the Tanzu Application Platform provided Contour, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/contour.html) in the Cloud Native Runtimes documentation.
+        If your environment has Contour installed already, and it is not provided by Tanzu Application Platform, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/contour.html) in the Cloud Native Runtimes documentation.
 
 2. Install the package by running:
 
@@ -153,7 +153,7 @@ To install Cloud Native Runtimes:
         ```
 
     2. After you create a `pull-secret` secret in the same namespace as the service account,
-    run the following command to add the secret to the service account:
+    run the following to add the secret to the service account:
 
         ```console
         kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'

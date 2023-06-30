@@ -16,7 +16,7 @@ accelerator:
   description: Simple Hello World Rest Service based on Spring Boot
 
   # iconUrl: Optional, a nice colorful, icon for your accelerator to make it stand out visually.
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
 
   # tags: A list of classification tags. The UI allows users to search for accelerators based on tags
   tags:

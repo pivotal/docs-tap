@@ -36,10 +36,6 @@ To install Out of the Box Delivery Basic:
     service_account      default  string  Name of the service account in the
                                           namespace where the Deliverable is
                                           submitted to.
-
-
-    git_implementation   go-git   string  Which git client library to use.
-                                          The only valid choice is go-git.
     ```
 
 1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the

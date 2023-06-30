@@ -7,10 +7,10 @@ For information about, how to create a developer namespace, see [Provision Devel
 
 This use case looks at the pipelines and ScanPolicies in this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-parameterized).
 
-Using Namespace Provisioner Controller
-: When using the Namespace Provisioner controller, pass the parameters to a namespace via labels and annotations on the namespace. To enable this, set the `parameter_prefixes` in TAP configuration for Namespace Provisioner so the controller will look for labels/annotations starting with that prefix to populate parameters for a given namespace. See Controller section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) guide for more information.
+Using Namespace Provisioner controller
+: Use controller to pass the parameters to a namespace via labels and annotations on the namespace. To enable this, set the `parameter_prefixes` in `tap-values.yaml`. The controller looks for labels and annotations starting with that prefix to populate parameters for a given namespace. For more information, see [Customize the label and annotation prefixes that controller watches](customize-installation.hbs.md#con-custom-label).
 
-    Add the following configuration to your TAP values to add parameterized tekton pipelines and scan policies to your developer namespace:
+    Add the following configuration to your `tap-values.yaml` file to add parameterized Tekton pipelines and scan policies to your developer namespace:
 
     ```yaml
     namespace_provisioner:
@@ -23,12 +23,12 @@ Using Namespace Provisioner Controller
       parameter_prefixes:
       - tap.tanzu.vmware.com
     ```
-    >**Note** We added `tap.tanzu.vmware.com` as a parameter_prefixes in Namespace Provisioner configuration. This tells the Namespace Provisioner controller to look for the annotations/labels on a provisioned namespace that start with the prefix `tap.tanzu.vmware.com/` and use those as parameters.
+    >**Note** This example adds `tap.tanzu.vmware.com` as a parameter_prefixes in Namespace Provisioner configuration. This tells the Namespace Provisioner controller to look for the annotations and labels on a provisioned namespace that start with the prefix `tap.tanzu.vmware.com` and use those as parameters.
 
     The sample pipelines have the following ytt logic which creates this pipeline only if
 
-    - `supply_chain` in your TAP values is either `testing` or `testing_scanning`
-    - `profile` in your TAP values is either` full, iterate` or `build`.
+    - `supply_chain` in your `tap-values.yaml` file is either `testing` or `testing_scanning`
+    - `profile` in your `tap-values.yaml` file is either` full, iterate` or `build`.
      `pipeline` parameter that matches the language for which the pipeline is for.
 
     ```shell
@@ -41,8 +41,8 @@ Using Namespace Provisioner Controller
 
     The sample ScanPolicy resource have the following ytt logic which creates this pipeline only if
 
-    * `supply_chain` in your TAP values is `testing_scanning`
-    * `profile` in your TAP values is either `full` or `build`.
+    * `supply_chain` in your `tap-values.yaml` file is `testing_scanning`
+    * `profile` in your `tap-values.yaml` file is either `full` or `build`.
     * `scanpolicy `parameter matches either `strict` or `lax`
 
     ```shell
@@ -64,9 +64,9 @@ Using Namespace Provisioner Controller
     ```
 
 Using GitOps
-: When using GitOps, pass the parameters to a namespace by adding them to the data.values file located in our GitOps repo. Take a look at [this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-with-params/desired-namespaces.yaml#L7-L8) for an example.
+: Pass the parameters to a namespace by adding them to the `data.values` file located in the GitOps repository. Use [this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install-with-params/desired-namespaces.yaml#L7-L8) as an example.
 
-    Add the following configuration to your TAP values to add parameterized tekton pipelines and scan policies to your developer namespace:
+    Add the following configuration to your `tap-values.yaml` file to add parameterized Tekton pipelines and scan policies to your developer namespace:
 
     ```yaml
     namespace_provisioner:
@@ -82,7 +82,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-    **Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md) guide for more information.
+    `gitops_install` uses this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. For more information, see GitOps section of [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
     Sample of `gitops_install` files:
 
@@ -111,10 +111,10 @@ Using GitOps
     #@ end
     ```
 
-    The sample pipelines have the following ytt logic which creates this pipeline only if
+    The sample pipelines have the following ytt logic which creates this pipeline only if the following conditions are met:
 
-    * `supply_chain` in your TAP values is either `testing` or `testing_scanning`
-    * `profile` in your TAP values is either` full, iterate` or `build`.
+    * `supply_chain` in your `tap-values.yaml` file is either `testing` or `testing_scanning`
+    * `profile` in your `tap-values.yaml` file is either` full, iterate` or `build`.
     * `pipeline` parameter that matches the language for which the pipeline is for.
 
     ```shell
@@ -125,10 +125,10 @@ Using GitOps
     #@ if/end in_list('supply_chain', ['testing', 'testing_scanning']) and in_list('profile', ['full', 'iterate', 'build']) and hasattr(data.values, 'pipeline') and data.values.pipeline == 'java':
     ```
 
-    The sample ScanPolicy resource have the following ytt logic which creates this pipeline only if
+    The sample ScanPolicy resource have the following ytt logic which creates this pipeline only if the following conditions are me:
 
-    * `supply_chain` in your TAP values is `testing_scanning`
-    * `profile` in your TAP values is either `full` or `build`.
+    * `supply_chain` in your `tap-values.yaml` file is `testing_scanning`
+    * `profile` in your `tap-values.yaml` file is either `full` or `build`.
     * `scanpolicy `parameter matches either `strict` or `lax`
 
     ```shell
@@ -142,8 +142,9 @@ Using GitOps
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
 Using Tanzu CLI
-: Create workload using tanzu apps CLI command
-  ```shell
+: Create a workload using Tanzu Apps CLI command
+
+  ```console
   tanzu apps workload apply tanzu-java-web-app \
   --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
   --git-branch main \
@@ -157,6 +158,7 @@ Using Tanzu CLI
 
 Using workload yaml
 : Create a workload.yaml file with the details as below.
+
   ```yaml
   ---
   apiVersion: carto.run/v1alpha1
@@ -176,9 +178,8 @@ Using workload yaml
         url: https://github.com/sample-accelerators/tanzu-java-web-app
   ```
 
-Run the following command to verify the resources have been created in the namespace: \
+Run the following command to verify the resources have been created in the namespace:
 
 ```shell
 kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange,pipeline,scanpolicies -n YOUR-NEW-DEVELOPER-NAMESPACE
 ```
-

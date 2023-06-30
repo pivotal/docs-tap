@@ -21,7 +21,7 @@ For example:
 accelerator:
   displayName: Hello Fun
   description: A simple Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags:
   - java
   - spring
@@ -199,7 +199,7 @@ You can also see the GitHub sample
 accelerator:
   displayName: Demo Input Types
   description: "Accelerator with options for each inputType"
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags: ["demo", "options"]
 
   options:

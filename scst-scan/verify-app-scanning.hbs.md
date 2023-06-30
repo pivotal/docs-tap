@@ -2,7 +2,7 @@
 
 Once you have built an ImageVulnerabilityScan template to bring your own scanner, it is important to validate the functionality to verify the integration is working correctly.
 
-In order to ensure the scan integration is working correctly so that downstream servers such as AMR observer, TAP GUI, and the insight CLI can use scan results, follow these steps:
+In order to ensure the scan integration is working correctly so that downstream servers such as AMR Observer, TAP GUI, and the insight CLI can use scan results, follow these steps:
 
 1.  Verify that a triggered scan is completed successfully
 2.  Retrieve the scan results from the registry
@@ -50,4 +50,54 @@ To retrieve a vulnerability report:
    ```console
    imgpkg pull -b $SCAN_RESULT_URL -o scan-results/
    ls scan-results/
+   ```
+
+## <a id="validating-scan-format"></a> Validating Scan Format
+
+After retrieving the scan results, the scan results must be validated to be in a format that downstream Tanzu Application Platform services such as AMR observer support.
+
+
+<table>
+  <caption>AMR Observer Supported SBOM Format/Versions</caption>
+  <tr>
+   <td><strong>SBOM Formats</strong></td>
+   <td><strong>Versions</strong></td>
+  </tr>
+  <tr>
+   <td>CycloneDX</td>
+   <td>1.2, 1.3, 1.4</td>
+  </tr>
+  <tr>
+   <td>SPDX</td>
+   <td>2.2</td>
+  </tr>
+</table>
+
+The recommended way to validate the scan results is via this CycloneDX tool, [sbom-utility](https://github.com/CycloneDX/sbom-utility). This tool is designed to validate CycloneDX and SPDX BOMs against versioned schemas.
+
+***Note***: The output of the scan should be valid per SPDX/CycloneDX spec, and if not, although it may be parsed correctly, VMware cannot ensure that the information will be parsed correctly, and results may not be displayed accurately in TAP GUI and TAP CLI.
+
+1. Setup and install using the instructions [here](https://github.com/CycloneDX/sbom-utility#installation).
+2. Run the `sbom-utility` CLI with the subcommand [validate](https://github.com/CycloneDX/sbom-utility#validate) to validate the scan report against its declared format (e.g., SPDX, CycloneDX) and version (e.g., "1.4", "2.2", etc.).
+   ```console
+   ./sbom-utility validate -i SCAN-REPORT-FILE-NAME
+   ```
+   Where `SCAN-REPORT-FILE-NAME` is the name of the scan report.
+
+   For example:
+   ```console
+    sbom-utility-v0.11.0-darwin-amd64 % ./sbom-utility validate -i scan-results/scan.json
+    Welcome to the sbom-utility! Version `v0.11.0` (sbom-utility) (darwin/amd64)
+    ============================================================================
+    [INFO] Loading license policy config file: `license.json`...
+    [WARN] Invalid flag for command: `output-file` (`o`). Ignoring...
+    [INFO] Attempting to load and unmarshal file `/Users/lrobin/go/src/gitlab/app-scanning/scan-results-grype-cyclonedx-json/scan.json`...
+    [INFO] Successfully unmarshalled data from: `/Users/lrobin/go/src/gitlab/app-scanning/scan-results-grype-cyclonedx-json/scan.json`
+    [INFO] Determining file's SBOM format and version...
+    [INFO] Determined SBOM format, version (variant): `CycloneDX`, `1.4` (latest)
+    [INFO] Matching SBOM schema (for validation): schema/cyclonedx/1.4/bom-1.4.schema.json
+    [INFO] Loading schema `schema/cyclonedx/1.4/bom-1.4.schema.json`...
+    [INFO] Schema `schema/cyclonedx/1.4/bom-1.4.schema.json` loaded.
+    [INFO] Validating `/Users/lrobin/go/src/gitlab/app-scanning/scan-results-grype-cyclonedx-json/scan.json`...
+    [INFO] SBOM valid against JSON schema: `true`
    ```
