@@ -4,7 +4,7 @@ This topic gives you an overview of Supply Chain Security Tools (SCST) – Artif
 
 ## AMR Observer
 
-AMR Observer is a set of managed controllers that will watch for relevant updates on resources of interest. When relevant events are observed, a CloudEvent will be generated and sent to AMR CloudEvent-Handler to be relayed for storage in the Metadata Store. For more information on CloudEvents, see [CloudEvent JSON Specification](./cloudevents.hbs.mds)
+AMR Observer is a set of managed controllers that will watch for relevant updates on resources of interest. When relevant events are observed, a CloudEvent will be generated and sent to AMR CloudEvent-Handler to be relayed for storage in the Metadata Store. For more information on CloudEvents, see [CloudEvent JSON Specification](./cloudevents.hbs.md)
 
 ## AMR CloudEvent Handler
 
