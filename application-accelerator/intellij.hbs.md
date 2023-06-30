@@ -18,7 +18,7 @@ Use the following steps to install the Application Accelerator IntelliJ plug-in:
 
 2. Open IntelliJ
 
-   1. From the `Plugins` section, select the Gear button and select **Install Plugin from Disk...**
+   1. From the `Plugins` section, click the Gear button and select **Install Plugin from Disk...**
 
       ![Install Plugin from Disk menu action.](../images/app-accelerator/intellij/app-accelerators-intellij-install-from-disk.png)
 
@@ -30,17 +30,19 @@ Before using the plug-in, you must enter the Tanzu Application Platform GUI URL 
 
 1. Go to the IntelliJ menu, select **IntelliJ IDEA > Preferences** > **Tools** > **Tanzu Application Accelerator**.
 
-2. Add the Tanzu Application Platform GUI URL. For example, `https://tap-gui.myclusterdomain.myorg.com`. If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application Platform GUI, run the following command to determine the fully-qualified domain name:
+2. Add the Tanzu Application Platform GUI URL. For example, `https://tap-gui.myclusterdomain.myorg.com`.
+If you have access to the Tanzu Application Platform cluster that is running the
+Tanzu Application Platform GUI, run the following command to determine the fully-qualified domain name:
 
-```console
-kubectl get httpproxy tap-gui -n tap-gui
-```
+    ```console
+    kubectl get httpproxy tap-gui -n tap-gui
+    ```
 
-![Tanzu Application Accelerator preferences.](../images/app-accelerator/intellij/app-accelerators-intellij-preferences.png)
+    ![Tanzu Application Accelerator preferences.](../images/app-accelerator/intellij/app-accelerators-intellij-preferences.png)
 
 3. Click **Apply** and **OK**.
 
-## <a id="intellij-using-the-plugin"></a> Using the plug-in
+## <a id="intellij-using-the-plugin"></a> Use the plug-in
 
 After adding the Tanzu Application Platform GUI URL, you can explore the defined accelerators:
 
@@ -58,12 +60,13 @@ After adding the Tanzu Application Platform GUI URL, you can explore the defined
 
    ![Review page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
 
-4. Fill the fields required to create the git repository, a personal access token from the git
-   provider is required, this will be stored in a secured location for future usage, click `Next` to go to the review step.
+4. Fill the fields required to create the Git repository, a personal access token from the Git
+provider is required, this will be stored in a secured location for future use, click `Next` to
+go to the review step.
 
    ![Git repository creation.](../images/app-accelerator/intellij/app-accelerators-intellij-git-repo-creation.png)
 
-   > Note: this an optional step, the values can be left blank if a repository isn't required.
+   > Note: This is an optional step, the values can be left blank if a repository isn't required.
 
 5. Click `Next` to download the project. If the project is downloaded successfully, the
    `Create` button is enabled and you can now create and open the project.
@@ -88,13 +91,17 @@ tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Vali
 
 ## <a id="dl-ins-ss-certs"></a>Download and Install Self-Signed Certificates
 
-To enable communication between the Application Accelerator plug-in and a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
+To enable communication between the Application Accelerator plug-in and a Tanzu Application Platform
+GUI instance that is secured using TLS, you must download and install the certificates locally.
 
 ### Prerequisites
 
 [yq](https://github.com/mikefarah/yq) is required to process the YAML output.
 
-1.  Find the name of the Tanzu Application Platform GUI certificate. The name of the certificate might look different to the following example.
+### Procedure
+
+1. Find the name of the Tanzu Application Platform GUI certificate. The name of the certificate
+might look different to the following example.
 
     ```console
     kubectl get secret -n cert-manager
@@ -109,31 +116,31 @@ To enable communication between the Application Accelerator plug-in and a Tanzu 
     tap-ingress-selfsigned-root-ca                 kubernetes.io/tls                3      18d <------- This is the certificate that is needed
     ```
 
-2.  Download the certificate:
+2. Download the certificate:
 
     ```console
     kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
     ```
 
-3.  Install the certificate on your local system and fully restart any applications that use
-    the certificate. After restarting, the application uses the certificate
-    to communicate with the endpoints using TLS.
+3. Install the certificate on your local system and restart any applications that use
+the certificate. After restarting, the application uses the certificate
+to communicate with the endpoints using TLS.
 
-        macOS
-        : Run:
+  macOS
+  : Run:
 
-          ```console
-          sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
-          ```
+  ```console
+  sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
+  ```
 
-          For more information, see [Installing a root CA certificate in the trust store](https://ubuntu.com/server/docs/security-trust-store) in the Ubuntu documentation.
+  For more information, see [Installing a root CA certificate in the trust store](https://ubuntu.com/server/docs/security-trust-store) in the Ubuntu documentation.
 
-        Windows
-        : Complete the following steps:
+  Windows
+  : Complete the following steps:
 
-          1. Use Windows Explorer to navigate to the directory where the certificate was downloaded and click on the certificate.
-          2. In the Certificate window, click **Install Certificate...**.
-          3. Change the **Store Location** from **Current User** to **Local Machine**. Click **Next**.
-          4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**
-          5. Click **Finish**.
-          6. A pop-up window stating **The import was successful.** is displayed.
+    1. Use Windows Explorer to navigate to the directory where the certificate was downloaded and select the certificate.
+    2. In the Certificate window, click **Install Certificate...**.
+    3. Change the **Store Location** from **Current User** to **Local Machine**. Click **Next**.
+    4. Select **Place all certificates in the following store**, click **Browse**, and select **Trusted Root Certification Authorities**
+    5. Click **Finish**.
+    6. A pop-up window stating **The import was successful.** is displayed.
