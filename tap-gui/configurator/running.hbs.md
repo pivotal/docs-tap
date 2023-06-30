@@ -46,12 +46,12 @@ Create a file called `tdp-overlay-secret.yaml` with the following contents:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: tdp-app-image-overlay-secret
+  name: tpb-app-image-overlay-secret
   namespace: tap-install
 stringData:
-  tdp-app-image-overlay.yaml: |
+  tpb-app-image-overlay.yaml: |
     #@ load("@ytt:overlay", "overlay")
-
+​
     #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
     #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
     ---
@@ -61,13 +61,54 @@ stringData:
           containers:
             #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
             #@overlay/match-child-defaults missing_ok=True
-            - image: IMAGE-REFERENCE 
+            - image: IMAGE-REFERENCE        
+            #@overlay/replace
+              args:
+              - -c
+              - |
+                export KUBERNETES_SERVICE_ACCOUNT_TOKEN="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
+                exec /layers/tanzu-buildpacks_node-engine-lite/node/bin/node portal/dist/packages/backend  \
+                --config=portal/app-config.yaml \
+                --config=portal/runtime-config.yaml \
+                --config=portal/app-config.pack.yaml \
+                --config=/etc/app-config/app-config.yaml
+              #@overlay/replace
+              ports:
+                - containerPort: 7007
+              #@overlay/replace
+              livenessProbe:
+                httpGet:
+                  port: 7007
+              #@overlay/replace
+              readinessProbe:
+                httpGet:
+                  port: 7007
+    
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
+    ---
+    spec:
+    #@overlay/replace
+      ports:
+      - protocol: TCP
+        targetPort: 7007
+        port: 7000
 ```
 Where:
 
 - `IMAGE-REFERENCE` is the customized image you retrived during the [previous steps](#identify)
 
-### Apply the overal secret to your `tap-values.yaml`
+
+### Apply the secret
+
+Using the `kubectl` CLI, you can apply the above secret:
+
+```bash
+kubectl apply -f tdp-overlay-secret.yaml
+```
+
+
+### Add the secret to your `tap-values.yaml`
 
 Here you'll need to modify the `tap-values.yaml` file you used to install Tanzu Application Platform. Update your values file with the following:
 
