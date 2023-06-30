@@ -1,6 +1,6 @@
 # Discover Application Single Sign-On service offerings
 
-This topic tells you about the recommended method for discovering Application Single Sign-On service
+This topic describes the recommended method for you to discover Application Single Sign-On service
 offerings.
 
 VMware recommends that you consume Application Single Sign-On by claiming credentials for an

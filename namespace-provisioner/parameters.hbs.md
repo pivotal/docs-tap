@@ -105,8 +105,7 @@ Examples:
 ## Reserved Namespace Parameters
 
 Namespace Provisioner reserves certain parameters for its use. The following is a list of parameters
-used by the Namespace Provisioner, which apply to both the `default_parameters` in TAP values and
-the namespace parameters through labels and annotations:
+used by the Namespace Provisioner, which apply to both the `default_parameters` in `tap-values.yaml` and the namespace parameters through labels and annotations:
 
 - `limits` (object): Use to configure the LimitRange. For more information, see
 [Deactivate LimitRange Setup](use-case4.hbs.md#custom-lr).

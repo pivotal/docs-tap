@@ -1,8 +1,8 @@
-# Troubleshooting
+# Troubleshooting Supply Chain Security Tools - Scan 2.0
 
-This topic provides information to help troubleshoot Supply Chain Security Tools - Scan 2.0.
+This topic helps you troubleshoot Supply Chain Security Tools (SCST) - Scan 2.0.
 
-# <a id="debugging-commands"></a> Debugging commands
+## <a id="debugging-commands"></a> Debugging commands
 
 The following sections describe commands you run to get logs and details about scanning errors.
 
@@ -24,53 +24,57 @@ Where:
 
 ## <a id="debugging-scan-pods"></a> Debugging scan pods
 
-To get error logs from a pod when scan pods fail:
+You can use the following methods to debug scan pods:
 
-```console
-kubectl logs SCAN-POD-NAME -n DEV-NAMESPACE
-```
+- To get error logs from a pod when scan pods fail:
 
-Where `SCAN-POD-NAME` is the name of the scan pod.
+    ```console
+    kubectl logs SCAN-POD-NAME -n DEV-NAMESPACE
+    ```
 
-For information
-about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
+    Where `SCAN-POD-NAME` is the name of the scan pod.
 
-A scan run that has an error means that one of the following step containers has a failure:
+    For information
+    about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
 
-- `step-write-certs`
-- `step-cred-helper`
-- `step-publisher`
-- `sidecar-sleep`
-- `working-dir-initializer`
+    A scan run that has an error means that one of the following step containers has a failure:
 
-To determine which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
+    - `step-write-certs`
+    - `step-cred-helper`
+    - `step-publisher`
+    - `sidecar-sleep`
+    - `working-dir-initializer`
 
-```
-kubectl get taskrun TASKRUN-NAME -o json | jq .status
-```
+- To determine which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
 
-Where `TASKRUN-NAME` is the name of the TaskRun.
+    ```console
+    kubectl get taskrun TASKRUN-NAME -o json | jq .status
+    ```
 
-To inspect a specific step container in a pod:
+    Where `TASKRUN-NAME` is the name of the TaskRun.
 
-```console
-kubectl logs scan-pod-name -n DEV-NAMESPACE -c step-container-name
-```
+- To inspect a specific step container in a pod:
 
-Where `DEV-NAMESPACE` is your developer namespace.
+    ```console
+    kubectl logs scan-pod-name -n DEV-NAMESPACE -c step-container-name
+    ```
 
-For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
+    Where `DEV-NAMESPACE` is your developer namespace.
 
-### <a id="scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
+    For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
 
-To retrieve scan-controller manager logs:
+### <a id="controller-mngr-logs"></a> Viewing the Scan-Controller manager logs
 
-```console
-kubectl logs deployment/app-scanning-controller-manager -n app-scanning-system
-```
+You can run the following commands to view the Scan-Controller manager logs:
 
-To tail scan-controller manager logs:
+- Retrieve scan-controller manager logs:
 
-```console
-kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
-```
+    ```console
+    kubectl logs deployment/app-scanning-controller-manager -n app-scanning-system
+    ```
+
+- Tail scan-controller manager logs:
+
+    ```console
+    kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
+    ```

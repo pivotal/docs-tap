@@ -1,33 +1,37 @@
-# Observability
+# Supply Chain Security Tools - Scan 2.0 Observability
 
-This topic guides you through observing Supply Chain Security Tools - Scan 2.0. This will help a user understand the each step of the scanning process.
+This topic guides you through observing Supply Chain Security Tools (SCST) - Scan 2.0. This helps you understand each step of scanning.
 
-To watch the status of the scanning custom resources and child resources:
+## <a id="steps"></a> Scanning Steps
 
-```console
-kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod
-```
+This section describes each of the scanning steps and corresponding observability methods.
 
-View the status, reason, and urls:
+- To watch the status of the scanning custom resources and child resources:
 
-```console
-kubectl get imagevulnerabilityscan -o wide
-```
+    ```console
+    kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod
+    ```
 
-View the complete status and events of scanning custom resources:
+- View the status, reason, and urls:
 
-```console
-kubectl describe imagevulnerabilityscan
-```
+    ```console
+    kubectl get imagevulnerabilityscan -o wide
+    ```
 
-List the child resources of a scan:
+- View the complete status and events of scanning custom resources:
 
-```console
-kubectl get -l imagevulnerabilityscan=$NAME pipelinerun,taskrun,pod
-```
+    ```console
+    kubectl describe imagevulnerabilityscan
+    ```
 
-Get the logs of the controller:
+- List the child resources of a scan:
 
-```console
-kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
-```
+    ```console
+    kubectl get -l imagevulnerabilityscan=$NAME pipelinerun,taskrun,pod
+    ```
+
+- Get the logs of the controller:
+
+    ```console
+    kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
+    ```

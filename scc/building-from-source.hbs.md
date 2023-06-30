@@ -314,7 +314,6 @@ when installing supply chains by using Tanzu Application Platform profiles,
 or `ootb-supply-chain-*-values.yml` when installing the OOTB packages
 individually):
 
-- `git_implementation`: the same as `gitImplementation` workload parameter
 - `gitops.ssh_secret`: the same as `gitops_ssh_secret` workload parameter
 
 ## <a id="local-source"></a>Local source

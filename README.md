@@ -56,7 +56,6 @@ stored in dedicated repositories.
 |cert-manager|cert-manager|
 |Cloud Native Runtimes for VMware Tanzu|Cloud Native Runtimes|
 |Contour|Contour|
-|Convention Service for VMware Tanzu|Convention Service|
 |Developer Conventions|Developer Conventions|
 |Eventing|Eventing|
 |FluxCD Source Controller|FluxCD Source Controller|

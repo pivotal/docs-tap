@@ -1,6 +1,6 @@
-# Get started with Learning Center Workshops
+# Get started with Learning Center workshops
 
-This topic helps you get started working with Learning Center workshops.
+This topic helps you to get started working with Learning Center workshops.
 Workshops are where you create your content. You can create a workshop for individual use or group
 multiple workshops together with a [Training Portal](training-portal.hbs.md).
 

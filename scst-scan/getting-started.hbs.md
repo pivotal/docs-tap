@@ -1,6 +1,6 @@
-# Getting Started
+# Getting Started with Supply Chain Security Tools - Scan 2.0
 
-The getting started guide contains the following topics:
+You can get started with Supply Chain Security Tools (SCST) - Scan 2.0 with the following topics:
 
 [Installing SCST - Scan 2.0](./install-app-scanning.hbs.md)
 

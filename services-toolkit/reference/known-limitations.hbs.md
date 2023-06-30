@@ -56,7 +56,8 @@ if you choose to install them.
 
 **Workaround:**
 
-Upbound have released a new feature named "Provider Families" which aims to address this issue. Refer to [Solving the Crossplane Provider CRD Scaling Problem with Provider Families](https://blog.crossplane.io/crd-scaling-provider-families/) to learn more.
+To address this issue, Upbound have released a new feature named Provider Families.
+For more information, see the [Crossplane blog](https://blog.crossplane.io/crd-scaling-provider-families/).
 
 ## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
 

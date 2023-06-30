@@ -1,6 +1,11 @@
-# Custom resources
+# Define custom resources for Learning Center
 
-You can deploy workshop images directly to a container runtime. Learning Center Operator enables managing the deployments into a Kubernetes cluster. A set of Kubernetes custom resource definitions (CRDs) controls the operation of the Learning Center Operator.
+This topic describes how you define custom resources for Learning Center workshops and training portals.
+
+You can deploy workshop images directly to a container runtime. The Learning Center Operator enables
+managing the deployments into a Kubernetes cluster.
+A set of Kubernetes custom resource definitions (CRDs) controls the operation of the Learning Center
+Operator.
 
 >**Note** The examples do not show all the possible fields of each custom resource type.
 Later documentation may go in-depth on possible fields and their definitions.

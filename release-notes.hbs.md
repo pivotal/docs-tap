@@ -25,14 +25,38 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-components'></a> New components
 
-- [Local Source Proxy](local-source-proxy/about.hbs.md) is a secure and convenient means for you to
-  interact with external registries without providing a lot of registry details.
+- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers with a secure and
+user-friendly solution that enables them to effortlessly upload their local source code to a registry,
+which is pre-configured by an Operator during the installation of Tanzu Application Platform.
+This component effectively eliminates the obstacles faced by developers when they had to manually specify
+a registry and provide their credentials on their local systems for iterative inner loop workflows.
 
 ---
 
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-6-0-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
+
+- Integrated with Local Source Proxy for seamless iterative inner-loop development using the CLI or IDE plugins.
+  - `tanzu apps workload apply` and `tanzu apps workload create` can now seamlessly create a workload from
+    local source using just the `--local-path` flag.
+  - `--source-image` flag is now optional. if `--source-image` flag is used along with `--local-path`, the
+    Local source proxy is not used and bypassed for backward compatibility.
+  - Introducing a new command, `tanzu apps lsp health` which allows users to verify the status of the Local
+    Source Proxy. This command performs several checks, including:
+    - Verifying whether the developer has RBAC permissions to access the Local Source Proxy using their `kubeconfig`.
+    - Checking if the Local Source Proxy is installed on the cluster.
+    - Ensuring that the Local Source Proxy deployment is healthy and accessible.
+    - Verifying that the Local Source Proxy is correctly configured and able to access the registry using the
+      credentials set up by the operator during TAP installation.
+- Implemented `autocompletion` functionality for workload types. Additionally, the default workload type has been
+  set to `web`, making the `--type` flag optional. The flag is only required if the type is something other than `web`.
+- Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
+- Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
+  This addition provides a quick reference to the Git revision associated with the workload.
+
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
 
@@ -156,6 +180,24 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
     - Add the new field `status.observedIgnore` which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
+#### <a id='1-6-0-namespace-provisioner-new-features'></a> Namespace Provisioner
+
+- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner,
+  providing greater flexibility for customization.
+  - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install)
+    by utilizing the `default_parameters` in the `tap-values.yaml` file or by utilizing namespace parameters.
+  - Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains
+    and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters.
+    See [Customization Documentation](namespace-provisioner/use-case4.hbs.md#customize-service-accounts) for more information.
+  - Introduced the option to [disable the creation of the LimitRange](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup)
+    object out of the box in `full`, `iterate`, and `run` profile clusters.
+- Added support for passing lists or objects via annotations for complex namespace parameters, simplifying the
+  configuration process. More details on how to utilize this feature can be found in
+  the [Reference Documentation](namespace-provisioner/parameters.hbs.md).
+- The `path` value in `additional_sources` is now automatically generated, eliminating the need for users to
+  provide it manually. This simplifies the configuration of external sources.
+
+
 #### <a id='1-6-0-stk'></a> Services Toolkit (STK)
 
 The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
@@ -173,6 +215,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
+- Supply Chain Security Tools - Scan 2.0 is promoted from `alpha` to `beta` with the ability to enable Supply Chain Security Tools - Scan 2.0 in the out-of-the-box test and scan supply chain.
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
@@ -201,10 +244,22 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       set to the date of the original vulnerability scan SBOM. In addition, the
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
+- Artifact Metadata Repository Observer (alpha). For more information, see the [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
+  - Registers the cluster's location using user defined labels and the kube-system UID as the reference
+  - Observe ImageVulnerabilityScan CustomResources from [SCST - Scan 2.0 package](scst-scan/app-scanning-beta.hbs.md)
+  - Observe workload ReplicaSets which are ReplicaSets that have a container named workload as it is produced by the Out of the Box SupplyChains.
+  - Sends CloudEvents for observed resources to the Artifact Metadata Repository CloudEvent Handler
+
+- Artifact Metadata Repository CloudEvent Handler (alpha). For more information, see the [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
+  - Artifact Metadata Repository Persister naming is being deprecated in favor of Artifact Metadata Repository CloudEvent Handler
+  - Handles ImageVulnerabilityScan configured CloudEvents from the Artifact Metadata Repository Observer
+  - Handles Location configured CloudEvents from the Artifact Metadata Repository Observer
+  - Handles ReplicaSet configured CloudEvents from the Artifact Metadata Repository Observer
 
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
-- **New `default_external_scheme` config option**:
-  - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with default scheme to use for Knative Service URLs. Supported values are either "http" or "https". Cannot be set along with `default_tls_secret` option.
+
+- **New `default_external_scheme` configuration option**:
+  - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with a default scheme you can use for Knative Service URLs. Supported values are either `http` or `https`. You cannot set this option at the same time as the `default_tls_secret` option.
 
 #### <a id='1-6-0-contour'></a> Contour
 
@@ -215,6 +270,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-6-0-apps-cli-plugin-bc'></a> Apps plug-in for Tanzu CLI
+
+- The deprecated `tanzu apps workload update` command is removed from the CLI.
+  Use the command `tanzu apps workload apply` instead.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
 
@@ -282,6 +342,15 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
+#### <a id='1-6-0-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
+
+- Implemented validations to prevent the inclusion of multiple sources through flags in the `workload create`
+  and `workload apply` commands.
+- Modified the behavior of the commands when waiting to apply workload changes. If the workload was previously
+  in a failed state, it will no longer immediately fail. When the `--wait` flag is used, the command will continue
+  to wait until the workload either succeeds or fails again. When the `--tail` flag is used, the command will keep
+  tailing logs from the Supply chain steps that were impacted by the workload update.
+
 #### <a id='1-6-0-crossplane-ri'></a> Crossplane
 
 - The Crossplane package now more gracefully handles situations in which Crossplane is already
@@ -297,6 +366,17 @@ The following issues, listed by component and area, are resolved in this release
   installation, or set `adopt_resources` to true in the Crossplane package to adopt resources from
   your existing installation.
   For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
+
+#### <a id='1-6-0-namespace-provisioner-ri'></a> Namespace Provisioner
+
+- Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service
+  accounts utilized by Supply chains and Delivery components.
+- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret
+  was used multiple times within the `additional_sources` section of the `tap-values.yaml` file.
+  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
+- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in
+  the `Terminating` phase during deletion if it contained a workload.
+  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
 
 #### <a id='1-6-0-stk-ri'></a> Services Toolkit
 
@@ -327,10 +407,13 @@ The following issues, listed by component and area, are resolved in this release
 
 - New toggle feature for how to make ConfigMap updates
 
-For some ConfigMaps in CNRs (Ex: config-features), the option to update using an overlay was not taking effect. This bug has been fixed. With this version, the legacy behavior will remain the same, but we introduce a configuration to opt-in into the ability to update ConfigMaps using overlays in CNRs, as it is for all TAP components. To configure this option, edit your cnr-values.yml file to change the following configuration:
-`allow_manual_configmap_update: false`.
+For some ConfigMaps in CNRs, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in CNRs, as it is for all Tanzu Application Platform components. To configure this option, edit your cnr-values.yaml file to change the following configuration:
 
-In a future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
+```console
+allow_manual_configmap_update: false
+```
+
+In a planned future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
 
 ---
 
@@ -379,6 +462,11 @@ This release has the following known issues, listed by component and area.
   Unfortunately, there is no workaround currently other than trying to reduce the number
   of files in your project, though that may not always be practical.
 
+#### <a id='1-6-0-amr-observer-cloudevent-handler'></a> Artifact Metadata Repository Observer and CloudEvent Handler
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful.
+- ReplicaSet status in Artifact Metadata Repository only has two states, `created` and `deleted`. There is a known issue where the `available` and `unavailable` state is not showing. The workaround is that this information can be interpolated from the `instances` metadata in the AMR for the ReplicaSet.
+- For more information, see the [Artifact Metadata Repository Overview - Known Issues](./scst-store/amr/overview.hbs.md#known-issues)
+
 #### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
 - Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
@@ -386,7 +474,7 @@ This release has the following known issues, listed by component and area.
 
 ### <a id="1-6-components"></a> Component versions
 
-The following table provides component version information for this Tanzu Application Platform release.
+The following table lists the supported component versions for this Tanzu Application Platform release.
 
 | Component Name                                  | Version |
 | ----------------------------------------------- | ------- |
@@ -397,6 +485,7 @@ The following table provides component version information for this Tanzu Applic
 | Application Configuration Service               |         |
 | Application Live View                           |         |
 | Application Single Sign-On                      |         |
+| Authentication and authorization                |         |
 | Bitnami Services                                | 0.2.0   |
 | Cartographer Conventions                        |         |
 | cert-manager                                    |         |
@@ -404,25 +493,28 @@ The following table provides component version information for this Tanzu Applic
 | Contour                                         |         |
 | Crossplane                                      | 0.2.1   |
 | Developer Conventions                           |         |
-| Eventing                                        |         |
+| Eventing                                        | 2.2.3   |
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
-| Namespace Provisioner                           |         |
-| Service Bindings                                |         |
+| Local Source Proxy                              | 0.1.0   |
+| Namespace Provisioner                           | 0.4.0   |
+| Service Bindings                                | 0.9.1   |
 | Services Toolkit                                | 0.11.0  |
+| Source Controller                               |         |
 | Spring Boot conventions                         |         |
 | Spring Cloud Gateway                            |         |
 | Supply Chain Choreographer                      |         |
 | Supply Chain Security Tools - Policy Controller |         |
-| Supply Chain Security tools for Tanzu - Scan    |         |
+| Supply Chain Security Tools - Scan              |         |
 | Supply Chain Security Tools - Sign (Deprecated) |         |
 | Supply Chain Security Tools - Store             |         |
 | Tanzu Application Platform GUI                  |         |
 | Tanzu Application Platform Telemetry            |         |
 | Tanzu Build Service                             |         |
+| Tanzu CLI plug-in                               |         |
 | Tanzu Developer Tools for IntelliJ              |         |
 | Tanzu Developer Tools for Visual Studio         |         |
-| Tanzu Developer Tools for Visual Studio Code    |         |
+| Tanzu Developer Tools for VS Code               |         |
 | Tanzu Service CLI plug-in                       | 0.7.0   |
 | Tekton Pipelines                                |         |
 
@@ -438,6 +530,11 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
+
+#### <a id='1-6-0-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
+
+- The default value for the `--update-strategy` flag will change from merge to replace in
+  Tanzu Application Platform v1.7.0
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
 
@@ -472,6 +569,13 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   hidden from help text output, but continues to work until officially removed
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
+
+### <a id='1-6-0-scc-deprecations'></a> Supply Chain Choreographer
+
+- Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation now assumes that `libgit2` is not supported.
+  - FluxCD no longer supports the `spec.gitImplementation field` [as of version 0.33.0](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330)
+  - Existing references to `git_implementation` field are ignored and references to `libgit2` do not cause failures. This is assured up to Tanzu Application Platform v1.9.0
+  - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.6.0
 
 ### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 

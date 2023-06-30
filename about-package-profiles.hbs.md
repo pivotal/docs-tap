@@ -141,6 +141,18 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   you can use it to host training for other purposes as well. For example, you can use it to train
   users on web-based applications, use of databases, or programming languages.
 
+- **[Local Source Proxy](local-source-proxy/about.hbs.md)**
+
+  Local Source Proxy is a secure and convenient means for you to interact with external registries
+  without providing a lot of registry details.
+
+  With Local Source Proxy, developers can interact with external registries without needing to know
+  registry specifics, such as endpoints, credentials, and certificates. This eliminates the burden
+  of platform and app operators having to distribute registry credentials to developer workstations.
+
+  Developers can also seamlessly deploy their applications without managing registry credentials on
+  their local machines or keeping track of where their local source is uploaded.
+
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
   Namespace Provisioner provides an easy, secure, automated way for Platform Operators to provision
@@ -229,7 +241,8 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
   remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
   installation is that VMware can provide your organization with use reports about Tanzu Application
-  Platform. For information about enrolling in telemetry reports, see [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports).
+  Platform. For information about enrolling in telemetry reports, see
+  [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports).
 
   >**Note** You can opt out of telemetry collection by following the
   >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).

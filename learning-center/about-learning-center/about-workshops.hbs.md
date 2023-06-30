@@ -1,4 +1,4 @@
-# Learning Center workshops
+# About Learning Center workshops
 
 This topic gives you an overview of Learning Center workshops.
 

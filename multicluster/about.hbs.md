@@ -18,7 +18,7 @@ Each cluster adopts one of following multicluster-aligned profiles:
 
 The following diagram illustrates this topology.
 
-![Diagram showing the multicluster topology that includes View, Build, and Run cluster.](../images/multicluster-diagram.jpg)
+![Diagram showing the multicluster topology that includes View, Build, and Run cluster.](../images/multicluster-diagram.png)
 
 ## Next steps
 

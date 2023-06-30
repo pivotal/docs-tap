@@ -1,8 +1,7 @@
-# WorkshopEnvironment resource
+# Configure the WorkshopEnvironment resource
 
-
-The `WorkshopEnvironment` custom resource defines a workshop environment.
-
+This topic describes how you configure the `WorkshopEnvironment` custom resource, which defines a
+Learning Center workshop environment.
 
 ## <a id="spec-workshop-definition"></a>Specifying the workshop definition
 

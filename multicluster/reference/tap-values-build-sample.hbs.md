@@ -43,14 +43,6 @@ ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys 
     repository: "REPO-NAME"
   gitops:
     ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
-metadataStore:
-  url: METADATA-STORE-URL-ON-VIEW-CLUSTER
-  caSecret:
-      name: store-ca-cert
-      importFromNamespace: metadata-store-secrets
-  authSecret:
-      name: store-auth-token
-      importFromNamespace: metadata-store-secrets
 scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
