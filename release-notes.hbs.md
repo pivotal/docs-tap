@@ -33,7 +33,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-5-3-COMPONENT-NAME-ki'></a> COMPONENT-NAME
 
-- Known issue description with link to workaround.  
+- Known issue description with link to workaround.
 
 ---
 
@@ -546,7 +546,7 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
 
 #### <a id="tap-gui-plug-in-features"></a> Tanzu Application Platform GUI plug-ins
 
-- **Supply Chain Plug-in:**
+- **Application Live View plug-in:**
   - When `alvToken` has expired, the logic to fetch a new token and the API call are both retried.
   - Actions are deactivated and a message is displayed when sensitive operations are deactivated for
     the app.
@@ -561,7 +561,7 @@ For more information, see [Configure properties](./scst-scan/install-scst-scan.h
   - The fetch token for the `logLevelsPanelToggle` component is now loaded from the workload plug-in
     PodLogs page.
 
-- **Security Analysis GUI Plug-in:**
+- **Security Analysis GUI plug-in:**
   - **CVE Details:** Added Impacted Workloads widget to the CVE Details page.
   - **CVE Details:** Display and navigate to latest source SHA or image digest in the Workload Builds
     table.
@@ -733,12 +733,12 @@ HTTPProxy resources.
 
 #### <a id="1-5-0-tap-gui-plug-in-ri"></a>Tanzu Application Platform GUI plug-ins
 
-- **App Accelerator Plug-in:**
+- **Application Accelerator plug-in:**
 
   - Fixed JSON schema for Git repository creation.
   - Added missing query string parameters to accelerator provenance.
 
-- **Supply Chain Plug-in:**
+- **Application Live View plug-in:**
 
   - Fixed CPU stats in App Live View Steeltoe Threads and Memory pages.
   - The App Live View Details page now shows the correct boot version instead of **UNKNOWN**.
