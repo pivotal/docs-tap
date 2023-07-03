@@ -73,19 +73,15 @@ This file location is temporary and will change in a future version.
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
 > might fail to attach.
 
-## <a id="extension-log"/> Access the extension log
+## <a id="extension-log"/> Access the extension logs
 
-The extension creates log entries in a file named `tanzu-dev-tools.log`.
-This file is in the directory where Visual Studio Installer installed the extension.
+The extension creates log entries in two files named `tanzu-dev-tools-{GUID}.log` and `tanzu-language-server-{GUID}.log`.
+These files are in the directory where Visual Studio Installer installed the extension.
 
-To find the log file, run:
+To find the log files, run:
 
 ```console
-C:> dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\tanzu-dev-tools.log
-
-    Directory: C:\Users\...
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a---           3/31/2023  1:07 PM           1668 tanzu-dev-tools.log
+C:> dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\Logs\tanzu-*.log
 ```
+
+The log file paths can be overridden by setting the environment variables `TANZU_DT_LOG` and `TANZU_LS_LOG`.
