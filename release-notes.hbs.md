@@ -182,7 +182,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 #### <a id='1-6-0-namespace-provisioner-new-features'></a> Namespace Provisioner
 
-- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace Provisioner, 
+- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner, 
   providing greater flexibility for customization.
   - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install) 
     by utilizing the `default_parameters` in the `tap-values.yaml` file or by utilizing namespace parameters.
@@ -371,10 +371,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service 
   accounts utilized by Supply chains and Delivery components.
-- Fixed a behavior where the Namespace Provisioner would encounter failure if the same git secret 
+- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret 
   was used multiple times within the `additional_sources` section of the `tap-values.yaml` file. 
   **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
-- Resolved an issue where a Namespace managed by the Namespace Provisioner would become stuck in 
+- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in 
   the `Terminating` phase during deletion if it contained a workload. 
   **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
 
@@ -592,9 +592,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   `grype.targetImagePullSecret`, are deprecated and marked for removal in Tanzu
   Application Platform v1.8.0.
 
-   VMware recommends using the Namespace Provisioner to populate namespaces with
-   all the required resources, including the Grype installation. For
-   information about how to use Namespace Provisioner to populate a namespace
+   VMware recommends using the namespace provisioner to populate namespaces with
+   all the required resources, including the Grype installation.  For
+   information about how to use namespace provisioner to populate a namespace
    with SCST - SCST scan, see [Setup for OOTB Supply
    Chains](namespace-provisioner/ootb-supply-chain.hbs.md#test-scan).
 
