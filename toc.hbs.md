@@ -618,6 +618,7 @@ docs.vmware.com is built.
     - [Supply Chain Security Tools - Sign](scst-sign/overview.hbs.md)
     - [Supply Chain Security Tools – Store](scst-store/overview.hbs.md)
       - [Overview](scst-store/overview.hbs.md)
+      - [Data models and concepts](scst-store/data-models-and-concepts.hbs.md)
       - [Configure target endpoint and certificate](scst-store/using-encrypted-connection.hbs.md)
       - [Configure access tokens](scst-store/configure-access-token.hbs.md)
       - [Security details](scst-store/security.hbs.md)
