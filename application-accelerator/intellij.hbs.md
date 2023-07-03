@@ -61,7 +61,7 @@ After adding the Tanzu Application Platform GUI URL, you can explore the defined
    ![Review page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
 
 4. Fill the fields required to create the Git repository, a personal access token from the Git
-provider is required, this will be stored in a secured location for future use, click `Next` to
+provider is required, is stored in a secured location for future use, click `Next` to
 go to the review step.
 
    ![Git repository creation.](../images/app-accelerator/intellij/app-accelerators-intellij-git-repo-creation.png)
