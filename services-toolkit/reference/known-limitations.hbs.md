@@ -47,9 +47,9 @@ Some of these `Providers` install hundreds of additional CRDs into the cluster.
 This is particularly true of the `Providers` for AWS, Azure, and GCP.
 For the number of CRDs installed with these `Providers`, see:
 
-- [provider-aws CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/crds)
-- [provider-azure CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/crds)
-- [provider-gcp CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/crds)
+- [provider-aws CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/managed-resources)
+- [provider-azure CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/managed-resources)
+- [provider-gcp CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/managed-resources)
 
 You must ensure that your cluster has sufficient resource to support this number of additional CRDs
 if you choose to install them.
