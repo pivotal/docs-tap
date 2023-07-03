@@ -98,7 +98,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
     - **For a multi-cluster deployment:**
 
         You must reapply the SecretExport by changing the `toNamespace: scan-link-system` to
-        `Namespace: DEV-NAMESPACE`
+        `toNamespace: DEV-NAMESPACE`:
 
         ```yaml
         ---
@@ -121,7 +121,10 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
 2. Update your `tap-values.yaml` file.
 
-    The installation of the SCST - Scan and the Grype scanner have some changes. The connection to the SCST - Store component have moved to the Grype scanner package. To deactivate the connection from the SCST - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
+    The installation of the SCST - Scan and the Grype scanner have some changes.
+    The connection to the SCST - Store component have moved to the Grype scanner package.
+    To deactivate the connection from the SCST - Scan, which is still present for
+    backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
     ```yaml
     # Deactivate scan controller embedded Supply Chain Security Tools - Store integration
@@ -152,7 +155,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
     >corresponding exports. See [Install Supply Chain Security Tools - Scan (Grype
     >Scanner)](install-scst-scan.md#install-grype).
 
-    Now update Tanzu Application Platform to apply the changes:
+1. Update Tanzu Application Platform to apply the changes:
 
     ```console
     tanzu package installed update tap -f tap-values.yaml -n tap-install
@@ -227,13 +230,13 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
           scanPolicy: scan-policy
         ```
 
-    1. Deploy the resources
+    1. Deploy the resources:
 
         ```console
         kubectl apply -f verify-upgrade.yaml -n DEV-NAMESPACE
         ```
 
-    1. View the scan results
+    1. View the scan results:
 
         ```console
         kubectl describe imagescan sample-public-image-scan -n DEV-NAMESPACE
