@@ -1,5 +1,6 @@
 # Bring your own scanner using an ImageVulnerabilityScan template
 
+This topic tells you how to bring your own scanning using an `ImageVulnerabilityScan` template.
 An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a [Tekton step](https://tekton.dev/docs/pipelines/tasks/#defining-steps).
 
 ## <a id="sample-img-vuln"></a> Customize an ImageVulnerabilityScan
@@ -30,8 +31,9 @@ To customize an ImageVulnerabilityScan to use your scanner:
     ```
 
     Where:
+
     - `DEV-NAMESPACE` is the developer namespace where scanning occurs.
-    - `spec.image` is the image that you are scanning. **Note**: See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest)
+    - `spec.image` is the image that you are scanning. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest)
     - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
     - `serviceAccountNames` includes:
         - `scanner` is the service account that runs the scan. It must have read access to `image`.
@@ -39,8 +41,10 @@ To customize an ImageVulnerabilityScan to use your scanner:
     - `SCANNER-IMAGE` is the image containing the scanner of your choice.
     - `SCANNER-CLI-COMMAND` is the scanner's CLI command.
 
-    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names are already used in steps during scanning.
-2. Configure the `scan` step. You will need to input your scanner specific `image`, `command`, and `args`. Below is an example:
+    **Note** Do not define `write-certs` or `cred-helper` as step names. These names are already used during scanning.
+
+2. Configure the `scan` step. You must input your scanner specific `image`, `command`, and `args`. For example:
+    
     ```yaml
     - name: scan
       image: anchore/grype:latest
@@ -52,6 +56,7 @@ To customize an ImageVulnerabilityScan to use your scanner:
       - --file
       - $(params.scan-results-path)/scan.cdx
     ```
+    
     To pass `spec.image` and `scanResults.location` to `args`, you can use `$(params.image)` and `$(params.scan-results-path)`.
 
 ## <a id="img-vuln-config-options"></a> Configuration options
@@ -68,7 +73,7 @@ Required fields:
 
 Optional fields:
 
-- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
+- `activeKeychains` is an array of enabled credential helpers to authenticate against registries using workload identity mechansims.
 
   ```yaml
   activeKeychains:
@@ -103,7 +108,7 @@ Optional fields:
 
 ## <a id="default-env"></a> Default environment
 
-**Tekton Workspaces**:
+**Tekton workspaces**:
 
 - `/home/app-scanning`: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
 - `/cred-helper`: a memory-backed EmptyDir mount containing:
@@ -112,7 +117,7 @@ Optional fields:
 - `/workspace`: a PersistentVolumeClaim to hold scan artifacts and results
   - The working directory for all Steps is by default located at `/workspace/scan-results`
 
-**Environment Variables**:
+**Environment variables**:
 If undefined by your `step` definition the environment uses the following default variables:
 
 - HOME=/home/app-scanning
@@ -121,7 +126,7 @@ If undefined by your `step` definition the environment uses the following defaul
 - TMPDIR=/workspace/tmp
 - SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
 
-**Tekton Pipeline Parameters**:
+**Tekton pipeline parameters**:
 
 These parameters are populated after creating the GrypeImageVulnerabilityScan. For information about parameters, see the [Tekton documentation](https://tekton.dev/docs/pipelines/pipelines/#specifying-parameters).
 
