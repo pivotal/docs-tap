@@ -1,6 +1,6 @@
 # Troubleshoot Local Source Proxy
 
-This topic helps you troubleshoot issues you might encounter with Local Source Proxy.
+This topic helps you troubleshoot issues you might encounter with Local Source Proxy (LSP).
 
 ## <a id="view-lsp-server-logs"></a> View Local Source Proxy server logs
 
@@ -154,7 +154,6 @@ Potential causes include:
 - If `push_secret` is used, the secret was not exported to the Local Source Proxy namespace.
 The credentials used in the secret do not match the configured external registry.
 
-
 ### Solution
 
 - Ensure that at least one of the following entries is found in the `tap-values.yaml` file:
@@ -162,7 +161,6 @@ The credentials used in the secret do not match the configured external registry
   - `image_registry.secret` information in the `shared` section
 - If the `push_secret` is used, make sure that it can be exported to the Local Source Proxy namespace.
 - Verify that the credentials used in the secret match the configured external registry.
-
 
 ## <a id="invalid-creds"></a> Invalid credentials
 

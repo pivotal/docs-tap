@@ -1,11 +1,11 @@
 # Reference for Local Source Proxy
 
-This topic gives you reference information for Local Source Proxy.
+This topic gives you reference information for Local Source Proxy (LSP).
 
 ## <a id="default-resources"></a> Default resources
 
-Local Source Proxy is automatically installed when using the standard Iterate and Full installation
-profiles. The default set of resources provisioned in a namespace is mostly predefined.
+Local Source Proxy is automatically installed when using the standard `iterate` and `full`
+installation profiles. The default set of resources provisioned in a namespace is mostly predefined.
 However, certain resources are defined based on the configuration entries in `tap-values.yaml`
 under the `local_source_proxy` section.
 
