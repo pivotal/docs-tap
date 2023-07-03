@@ -98,7 +98,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
     - **For a multi-cluster deployment:**
 
         You must reapply the SecretExport by changing the `toNamespace: scan-link-system` to
-        `Namespace: DEV-NAMESPACE`
+        `toNamespace: DEV-NAMESPACE`:
 
         ```yaml
         ---
@@ -230,13 +230,13 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
           scanPolicy: scan-policy
         ```
 
-    1. Deploy the resources
+    1. Deploy the resources:
 
         ```console
         kubectl apply -f verify-upgrade.yaml -n DEV-NAMESPACE
         ```
 
-    1. View the scan results
+    1. View the scan results:
 
         ```console
         kubectl describe imagescan sample-public-image-scan -n DEV-NAMESPACE
