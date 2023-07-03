@@ -2,7 +2,7 @@
 
 This topic tells you what scan types you can use with SCST - Scan. The out-of-box test and scan supply chain supports the Source and Image scan types.
 
-## Source Scan
+## <a id="source-scan"></a> Source Scan
 
 The source scan step in the test and scan supply chain performs a Software Composition Analysis (SCA) scan to inspect the open source dependencies of an application for vulnerabilities.  This is typically performed by inspecting the file that the language uses for dependency declaration.  For example:
 
@@ -17,7 +17,7 @@ Rather than declare specific dependency versions, some languages such as Spring,
 
 Due to this, in Tanzu Application Platform 1.6, the source scan step is moved to an opt-in step in the supply chain. To add source scan to the supply chain, follow the steps below.
 
-### Adding Source Scan to the Test and Scan Supply Chain
+### <a id="add-source-scan"></a>Adding Source Scan to the Test and Scan Supply Chain
 
 In order to add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install values.yaml.  This overlay will add the required resources to the supply chain in the correct location to opt-in to source scanning.
 
