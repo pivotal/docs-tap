@@ -6,7 +6,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 [Install Tanzu Developer Tools for Visual Studio](install.hbs.md).
 
-## <a id="config-src-img-registry"/> Configure Local Source Proxy, source image registry optional
+## <a id="config-src-img-registry"/> Configure Local Source Proxy
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
@@ -133,7 +133,6 @@ k8s_custom_deploy(
    'APP-NAME',
    apply_cmd="tanzu apps workload apply -f Config/workload.yaml --live-update" +
        " --local-path " + LOCAL_PATH +
-       " --source-image " + SOURCE_IMAGE +
        " --build-env BP_DEBUG_ENABLED=true" +
        " --namespace " + NAMESPACE +
        " --output yaml" +
@@ -153,7 +152,6 @@ allow_k8s_contexts('CONTEXT-NAME')
 
 Where:
 
-- `SOURCE-IMAGE-VALUE` is your source image
 - `APP-NAME` is the name of your application
 
 If your Tanzu Application Platform-enabled Kubernetes cluster is running on your local machine, you
