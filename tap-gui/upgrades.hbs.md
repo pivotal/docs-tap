@@ -1,6 +1,6 @@
-# Upgrade Tanzu Application Platform GUI
+# Upgrade Tanzu Developer Portal
 
-This topic tells you how to upgrade Tanzu Application Platform GUI (commonly called TAP GUI) outside
+This topic tells you how to upgrade Tanzu Developer Portal (commonly called TAP GUI) outside
 of a Tanzu Application Platform profile installation.
 If you installed Tanzu Application Platform through a profile, see
 [Upgrading Tanzu Application Platform](../upgrading.hbs.md) instead.
@@ -9,7 +9,7 @@ If you installed Tanzu Application Platform through a profile, see
 
 As part of the upgrade, Tanzu Application Platform updates its container with the new version.
 
-As a result, if you installed Tanzu Application Platform GUI without the support of a backing
+As a result, if you installed Tanzu Developer Portal without the support of a backing
 [database](database.hbs.md), you lose your in-memory data for any manual component registrations
 when the container restarts.
 While the update is pulling the new pod from the registry, users might experience a short UI
@@ -17,15 +17,15 @@ interruption and might need to re-authenticate because the in-memory session dat
 
 ## <a id="upgrade-profile"></a> Upgrade within a Tanzu Application Platform profile
 
-If you installed Tanzu Application Platform GUI as part of a Tanzu Application Platform profile,
+If you installed Tanzu Developer Portal as part of a Tanzu Application Platform profile,
 see [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
 
-## <a id="upgrade-component"></a> Upgrade Tanzu Application Platform GUI individually
+## <a id="upgrade-component"></a> Upgrade Tanzu Developer Portal individually
 
-These steps only apply to installing Tanzu Application Platform GUI individually, not as part of a
+These steps only apply to installing Tanzu Developer Portal individually, not as part of a
 Tanzu Application Platform profile.
 
-To upgrade Tanzu Application Platform GUI outside of a Tanzu Application Platform profile:
+To upgrade Tanzu Developer Portal outside of a Tanzu Application Platform profile:
 
 1. Ensure that your repository has access to the new version of the package by running:
 
@@ -52,9 +52,9 @@ To upgrade Tanzu Application Platform GUI outside of a Tanzu Application Platfor
 
     Where:
 
-    - `VERSION` is the target version of Tanzu Application Platform GUI that you want.
+    - `VERSION` is the target version of Tanzu Developer Portal that you want.
     - `TAP-GUI-VALUES` is the configuration values file that contains the configuration used when you
-      installed Tanzu Application Platform GUI.
+      installed Tanzu Developer Portal.
 
 3. Verify that you upgraded your application by running:
 

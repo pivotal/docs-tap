@@ -1,7 +1,7 @@
 # Generate and publish TechDocs
 
 This topic tells you how to generate and publish TechDocs for catalogs as part of
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Developer Portal (commonly called TAP GUI).
 For more information about TechDocs, see the
 [Backstage.io documentation](https://backstage.io/docs/features/techdocs/).
 
@@ -68,7 +68,7 @@ To configure Amazon S3 access:
 TechDocs are generated for catalogs that have markdown source files for TechDocs.
 To find the catalog locations and their entities' namespace/kind/name:
 
-1. The catalogs appearing in Tanzu Application Platform GUI are listed in the config values under
+1. The catalogs appearing in Tanzu Developer Portal are listed in the config values under
    `app_config.catalog.locations`.
 1. For a given catalog, clone the catalog's repository to the local file system.
 1. Find the `mkdocs.yml` that is at the root of the catalog. There is a YAML file describing the
@@ -157,7 +157,7 @@ published TechDocs files:
 
 2. Update your installation from the Tanzu CLI.
 
-  - If you installed Tanzu Application Platform GUI as part of the Tanzu Application Platform
+  - If you installed Tanzu Developer Portal as part of the Tanzu Application Platform
     package (in other words, if you installed it by running `tanzu package install tap ...`) then
     run:
 
@@ -172,7 +172,7 @@ published TechDocs files:
       - `PACKAGE-VERSION` is your package version
       - `VALUES-FILE` is your values file
 
-  - If you installed Tanzu Application Platform GUI as its own package (in other words, if you
+  - If you installed Tanzu Developer Portal as its own package (in other words, if you
     installed it by running `tanzu package install tap-gui ...`) then run:
 
       ```console

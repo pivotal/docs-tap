@@ -1,9 +1,9 @@
-# Configure custom certificate authorities for Tanzu Application Platform GUI
+# Configure custom certificate authorities for Tanzu Developer Portal
 
-This topic tells you how to configure your Tanzu Application Platform GUI (commonly known as TAP GUI) 
+This topic tells you how to configure your Tanzu Developer Portal (commonly known as TAP GUI)
 to trust unusual certificate authorities (CA) when making outbound connections.
 
-Tanzu Application Platform GUI might require custom certificates when connecting 
+Tanzu Developer Portal might require custom certificates when connecting
 to persistent databases or custom catalog locations that require SSL.
 You use overlays with PackageInstalls to make this possible. There are two ways to implement this
 workaround: you can add a custom CA or you can deactivate all SSL verification.
@@ -30,9 +30,9 @@ Add a custom CA
       # ...
     ```
 
-  Tanzu Application Platform GUI also inherits `shared.ca_cert_data` from your `tap-values.yaml` file.
+  Tanzu Developer Portal also inherits `shared.ca_cert_data` from your `tap-values.yaml` file.
   `shared.ca_cert_data` is newline-concatenated with `ca_certs` given directly to
-  Tanzu Application Platform GUI.
+  Tanzu Developer Portal.
 
     ```yaml
     shared:
@@ -50,13 +50,13 @@ Add a custom CA
         # ...
     ```
 
-  To verify that Tanzu Application Platform GUI has processed the custom CA certificates, check that
+  To verify that Tanzu Developer Portal has processed the custom CA certificates, check that
   the `ca-certs-data` volume with mount path `/etc/custom-ca-certs-data` is mounted in the
-  Tanzu Application Platform GUI server pod.
+  Tanzu Developer Portal server pod.
 
 Deactivate all SSL verification
 : To deactivate SSL verification to allow for self-signed certificates, set the
-  Tanzu Application Platform GUI pod's environment variable as `NODE_TLS_REJECT_UNAUTHORIZED=0`.
+  Tanzu Developer Portal pod's environment variable as `NODE_TLS_REJECT_UNAUTHORIZED=0`.
   When the value equals `0`, certificate validation is deactivated for TLS connections.
 
   To do this, use the `package_overlays` key in the Tanzu Application Platform values file.
@@ -86,7 +86,7 @@ Deactivate all SSL verification
                     value: "0"
     ```
 
-  Where `NAMESPACE` is the namespace in which your Tanzu Application Platform GUI instance is
+  Where `NAMESPACE` is the namespace in which your Tanzu Developer Portal instance is
   deployed. For example, `tap-gui`.
 
 ## <a id='next-steps'></a>Next steps

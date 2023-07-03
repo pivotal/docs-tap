@@ -299,7 +299,7 @@ scanning:
     url: "" # Configuration is moved, so set this string to empty.
 ```
 
-> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml
@@ -516,13 +516,13 @@ To install the `full` dependencies package:
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
-## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Developer Portal, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Developer Portal, see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
-You're now ready to start using Tanzu Application Platform GUI.
+You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
+[Tanzu Developer Portal - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 

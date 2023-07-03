@@ -72,5 +72,5 @@ The following table summarizes the top-level keys used for package-specific conf
 |Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
 |Supply Chain Security Tools - Store|`metadata_store`|
 |Build Service|`buildservice`|
-|Tanzu Application Platform GUI|`tap_gui`|
+|Tanzu Developer Portal|`tap_gui`|
 |Learning Center|`learningcenter`|

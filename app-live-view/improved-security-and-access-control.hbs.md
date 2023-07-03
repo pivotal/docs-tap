@@ -22,22 +22,22 @@ requesting the actuator data.
 The Application Live View connector verifies this token by calling the Application Live View APIServer
 and proxies the actuator data only if the token is valid.
 
-The Application Live View UI plug-in part of The Tanzu Application Platform GUI uses the preceding
+The Application Live View UI plug-in part of The Tanzu Developer Portal uses the preceding
 approach to securely query for the actuator data for a pod.
 It requests a token from Application Live View APIServer and passes it in the subsequent calls to the
 back end. This ensures that actuator data from the running application is fetched only if the user is
 authorized to see the live information for the pod.
 
-The Application Live View UI plug-in relies on Tanzu Application Platform GUI authentication and
+The Application Live View UI plug-in relies on Tanzu Developer Portal authentication and
 authorization to access the Application Live View APIServer and fetch the Application Live View tokens.
 
-The Tanzu Application Platform GUI controls the access to Kubernetes resources based on user roles
+The Tanzu Developer Portal controls the access to Kubernetes resources based on user roles
 and permissions for each of the remote clusters.
 For more information, see
 [View runtime resources on authorization-enabled clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
 
 For more information about how to set up unrestricted remote cluster visibility, see
-[Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.hbs.md).
+[Viewing resources on multiple clusters in Tanzu Developer Portal](../tap-gui/cluster-view-setup.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -50,7 +50,7 @@ For more information about how to set up unrestricted remote cluster visibility,
    [Assign roles and permissions on Kubernetes clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
 
 For example: If you are using Service Account to view resources on a cluster in
-Tanzu Application Platform GUI, verify that the `ClusterRole` has rules to
+Tanzu Developer Portal, verify that the `ClusterRole` has rules to
 access and request tokens from the Application Live View APIServer.
 
 ```yaml
@@ -200,7 +200,7 @@ following steps.
 
 ### <a id='app-live-view-ui-plugin'></a> Application Live View UI plug-in
 
-The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
+The Application Live View UI plug-in is part of Tanzu Developer Portal.
 To override the default security settings for the Application Live View UI
 plug-in, take the following steps.
 
@@ -236,9 +236,9 @@ plug-in, take the following steps.
       `tanzu-shared-ingress` service's External IP address.
     - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog
       definition file from either the included Blank catalog (provided as an
-      additional download named "Blank Tanzu Application Platform GUI Catalog")
+      additional download named "Blank Tanzu Developer Portal Catalog")
       or a Backstage-compliant catalog that you've already built and posted on
-      the Git infrastructure specified in [Add Tanzu Application Platform GUI
+      the Git infrastructure specified in [Add Tanzu Developer Portal
       integrations](../tap-gui/integrations.hbs.md).
 
 1. Install the package by running:
@@ -289,7 +289,7 @@ plug-in, take the following steps.
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-1. To access Tanzu Application Platform GUI, use the service you exposed in the
+1. To access Tanzu Developer Portal, use the service you exposed in the
 `service_type` field in the values file.
 
 ## <a id='access-control'></a> Authorize a user to execute sensitive operations
@@ -329,7 +329,7 @@ resource and a corresponding `RoleBinding` to bind it to a user:
       apiGroup: rbac.authorization.k8s.io
     ```
 
-1. If you are using service account to view resources on a cluster in Tanzu Application Platform GUI,
+1. If you are using service account to view resources on a cluster in Tanzu Developer Portal,
 create a `ClusterRole` with a rule that specifies the `execute` verb for the `SensitiveOperationsAccess`
 resource and a corresponding `RoleBinding` to bind it to the `tap-gui` service account:
 

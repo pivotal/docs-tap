@@ -1,16 +1,16 @@
 # Get started with multicluster Tanzu Application Platform
 
-This topic tells you how to validate the implementation of a multicluster topology 
-by taking a sample workload and passing it by using the supply chains on the Build 
-and Run clusters. 
+This topic tells you how to validate the implementation of a multicluster topology
+by taking a sample workload and passing it by using the supply chains on the Build
+and Run clusters.
 
-Use this topic to build an application on the Build profile clusters and run the 
-application on the Run profile clusters. 
+Use this topic to build an application on the Build profile clusters and run the
+application on the Run profile clusters.
 
-You can view the workload and associated objects from Tanzu Application Platform GUI 
+You can view the workload and associated objects from Tanzu Developer Portal
 (commonly known as TAP GUI) interface on the View profile cluster.
 
-You can take various approaches to configuring the supply chain in this topology, 
+You can take various approaches to configuring the supply chain in this topology,
 but the following procedures validate the most basic capabilities.
 
 ## <a id='prerequisites'></a> Prerequisites
@@ -134,4 +134,4 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and enter it into a browser. Expect to see the message "Greetings from Spring Boot + Tanzu!".
 
-1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
+1. View the component in Tanzu Developer Portal, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.

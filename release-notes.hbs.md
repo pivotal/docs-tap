@@ -36,7 +36,7 @@ a registry and provide their credentials on their local systems for iterative in
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
-#### <a id='1-6-0-appacc'></a> Application Accelerator 
+#### <a id='1-6-0-appacc'></a> Application Accelerator
 - The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
 
 
@@ -320,7 +320,7 @@ This release includes the following changes, listed by component and area.
 - **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
   As part of this release, the option has been removed completely.
 
-#### <a id='1-6-0-tap-gui-bc'></a> Tanzu Application Platform GUI (Tanzu Developer Portal)
+#### <a id='1-6-0-tap-gui-bc'></a> Tanzu Developer Portal (Tanzu Developer Portal)
 - **`allowGuestAccess` config option**: Previously this was not needed in the configuration and would default to allow users to login without credentials. In 1.6.x+ this has been changed to require explicitly allowing guest users. The recommended values files in the installation sections have been updated to include this setting.
 
   Add the following lines to your `tap-values.yaml` in order to enable guest access explicitly:
@@ -432,12 +432,12 @@ This release has the following known issues, listed by component and area.
 
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Application Platform GUI
+#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Developer Portal
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
-  and restrict access to all or parts of Tanzu Application Platform GUI.
+  and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
 
@@ -515,7 +515,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Scan              |         |
 | Supply Chain Security Tools - Sign (Deprecated) |         |
 | Supply Chain Security Tools - Store             |         |
-| Tanzu Application Platform GUI                  |         |
+| Tanzu Developer Portal                  |         |
 | Tanzu Application Platform Telemetry            |         |
 | Tanzu Build Service                             |         |
 | Tanzu CLI plug-in                               |         |

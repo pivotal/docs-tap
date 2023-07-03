@@ -321,12 +321,12 @@ metadata_store:
   app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
 ```
 
-> **Important** 
+> **Important**
 >
 > - Tanzu Build Service is installed by default with `lite` depndencies.
 > When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because > they require Internet access. You must install the `full` dependencies by setting `exclude_dependencies` to `true`. The existing ClusterStore instances will not be updated if you switch from `lite` dependencies to `full` dependencies after the initial installation completes.
 >
-> - Installing Grype by using `tap-values.yaml` as follows is 
+> - Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 >    ```yaml

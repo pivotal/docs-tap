@@ -1,12 +1,12 @@
 # Configure a TLS certificate by using a self-signed certificate
 
 This topic tells you how to use cert-manager to create a self-signed certificate issuer and then
-generate a certificate for Tanzu Application Platform GUI to use based on that issuer.
+generate a certificate for Tanzu Developer Portal to use based on that issuer.
 
 Some browsers and corporate policies do not allow you to visit webpages that have self-signed
 certificates. You might need to navigate through a series of error messages to visit the page.
 
-![TLS diagram showing the relationships between Tanzu Application Platform GUI, cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
+![TLS diagram showing the relationships between Tanzu Developer Portal, cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
 
 ## <a id="prereq"></a> Prerequisite
 
@@ -19,7 +19,7 @@ kubectl get ns
 
 ## <a id="procedure"></a> Procedure
 
-To configure a self-signed TLS certificate for Tanzu Application Platform GUI:
+To configure a self-signed TLS certificate for Tanzu Developer Portal:
 
 1. Create a `certificate.yaml` file that defines an issuer and a certificate. For example:
 
@@ -54,7 +54,7 @@ To configure a self-signed TLS certificate for Tanzu Application Platform GUI:
    kubectl apply -f certificate.yaml
    ```
 
-3. Configure Tanzu Application Platform GUI to use the newly created certificate.
+3. Configure Tanzu Developer Portal to use the newly created certificate.
    Update the `tap-values.yaml` file used during installation to include the following under the
    `tap-gui` section:
 

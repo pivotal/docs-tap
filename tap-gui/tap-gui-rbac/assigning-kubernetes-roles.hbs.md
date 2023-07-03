@@ -14,7 +14,7 @@ The steps to define and assign roles are:
 
 ## <a id="create-roles"></a> Create roles
 
-To control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based on users'
+To control the access to Kubernetes runtime resources on Tanzu Developer Portal based on users'
 roles and permissions for each of visible remote clusters, VMware recommends two role types:
 
 - [Cluster-scoped roles](#cluster-scoped-roles)

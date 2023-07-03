@@ -1,6 +1,6 @@
-# Tanzu Application Platform GUI plug-ins
+# Tanzu Developer Portal plug-ins
 
-Tanzu Application Platform GUI (commonly called TAP GUI) has many pre-integrated plug-ins.
+Tanzu Developer Portal (commonly called TAP GUI) has many pre-integrated plug-ins.
 You need not configure the plug-ins. To use a plug-in, you must install the relevant
 Tanzu Application Platform component.
 

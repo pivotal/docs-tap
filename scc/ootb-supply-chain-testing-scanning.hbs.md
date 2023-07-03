@@ -34,9 +34,9 @@ perform the following:
 
 To use this supply chain, verify that:
 
-- Tanzu Application Platform GUI is configured to
+- Tanzu Developer Portal is configured to
   [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
-  This configuration enables the Supply Chain Choreographer Tanzu Application Platform GUI plug-in to
+  This configuration enables the Supply Chain Choreographer Tanzu Developer Portal plug-in to
   retrieve metadata about project packages and their vulnerabilities.
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.

@@ -1,4 +1,4 @@
-# Runtime resources visibility in Tanzu Application Platform GUI
+# Runtime resources visibility in Tanzu Developer Portal
 
 This topic tells you about runtime resources visibility.
 
@@ -11,7 +11,7 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 
 - [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
 - [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
-  install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
+  install [Tanzu Developer Portal separately](../install-tap-gui.md)
 - Review the section [If you have a metrics server](#metrics-server)
 
 ## <a id="metrics-server"></a> If you have a metrics server
@@ -61,12 +61,12 @@ Where ID is the secret name from the first step.
 > Tanzu Application Platform web interface users see an error notifying them that there is a
 > problem connecting to the back end.
 
-## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
+## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Developer Portal
 
-In order to view your applications on Tanzu Application Platform GUI, use the following steps:
+In order to view your applications on Tanzu Developer Portal, use the following steps:
 
 1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
-1. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started/deploy-first-app.md#add-app-to-gui-cat)
+1. [Add your application to Tanzu Developer Portal Software Catalog](../../getting-started/deploy-first-app.md#add-app-to-gui-cat)
 
 ## <a id="nav-rr-vis-screen"></a> Navigate to the **Runtime Resources Visibility** screen
 
@@ -103,7 +103,7 @@ Supply Chain, including:
 - Knative Services, Configurations, Revisions, and Routes
 
 For more information, see
-[Supply Chain Choreographer in Tanzu Application Platform GUI](scc-tap-gui.md).
+[Supply Chain Choreographer in Tanzu Developer Portal](scc-tap-gui.md).
 
 CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
 resources even further down the chain.
@@ -189,7 +189,7 @@ user-configured resource limits on the pod, defined in accordance with the
 
 For applications built using Spring Boot, you can also monitor the actual
 real-time resource use using
-[Screenshot of Application Live View for Spring Boot Applications in Tanzu Application Platform GUI.](app-live-view-springboot.md).
+[Screenshot of Application Live View for Spring Boot Applications in Tanzu Developer Portal.](app-live-view-springboot.md).
 
 Metrics and limits are also displayed for each container on a pod details page.
 If a particular container's current limit conflicts with a namespace-level

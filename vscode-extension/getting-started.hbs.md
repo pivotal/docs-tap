@@ -78,7 +78,7 @@ Manual
 ### <a id="catalog-info-yaml-file"></a> Create the `catalog-info.yaml` file
 
 `catalog-info.yaml` enables the workloads of this project to appear in
-[Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
+[Tanzu Developer Portal](../tap-gui/about.hbs.md).
 
 Before beginning to write your `catalog-info.yaml` file, ensure that you:
 
