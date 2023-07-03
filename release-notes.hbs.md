@@ -222,7 +222,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
-- Supply Chain Security Tools - Scan 2.0 is promoted from `alpha` to `beta` with the ability to enable Supply Chain Security Tools - Scan 2.0 in the out-of-the-box test and scan supply chain.
+- Supply Chain Security Tools (SCST) - Scan 2.0 is promoted from `alpha` to `beta` and can enable SCST - Scan 2.0 in the out-of-the-box test and scan supply chain.
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
