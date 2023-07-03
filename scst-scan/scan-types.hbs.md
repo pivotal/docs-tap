@@ -11,7 +11,7 @@ The source scan step in the test and scan supply chain performs a Software Compo
 | Spring | pom.xml |
 | .Net | deps.json |
 | Node.JS | packages.json |
-| Python | requirements.txt| 
+| Python | requirements.txt|
 
 Rather than declare specific dependency versions, some languages such as Spring, Java, and .Net resolve dependency versions at build time. For these languages, performing a SCA scan on the declaration file stored in the source code does not produce meaningful results, often creating false positives or false negatives.
 
@@ -83,5 +83,6 @@ To add source scanning to the default out-of-the-box test and scan supply chain,
     tanzu package installed update tap -p tap.tanzu.vmware.com -v {{ vars.tap_version }}  --values-file tap-values.yaml -n tap-install
     ```
 
-For a multi-cluster installation, this only needs to be applied to the build build profile, as that is where the scan components run.  For information about Tanzu Application Platform profiles, see
-[Installing Tanzu Application Platform package and profiles](install-online/profile.hbs.md). 
+For a multi-cluster installation, this only needs to be applied to the build build profile, as that
+is where the scan components run. For information about Tanzu Application Platform profiles, see
+[Installing Tanzu Application Platform package and profiles](../install-online/profile.hbs.md).
