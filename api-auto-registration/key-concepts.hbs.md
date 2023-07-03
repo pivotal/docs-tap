@@ -11,7 +11,8 @@ You can use the full potential of API Auto Registration by using a distributed e
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
-The information from this custom resource is used to construct an API entity in Tanzu Developer Portal.
+The information from this custom resource is used to construct an API entity in Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI).
 
 This custom resource exposes the following text boxes:
 
@@ -130,7 +131,7 @@ In addition to `conditions` the `status` contains a couple of other useful field
 
 ```yaml
 status:
-  registeredEntityURL:   # Url of the corresponding API Entity in TAP GUI
-  registeredTapUID:      # Unique identifier for the corresponding API Entity in TAP GUI
+  registeredEntityURL:   # Url of the corresponding API Entity in Tanzu Developer Portal
+  registeredTapUID:      # Unique identifier for the corresponding API Entity in Tanzu Developer Portal
   resolvedAPISpec:       # Full API Spec as retrieved by Api Auto Registration
 ```

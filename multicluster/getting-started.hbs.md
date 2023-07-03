@@ -8,7 +8,7 @@ Use this topic to build an application on the Build profile clusters and run the
 application on the Run profile clusters.
 
 You can view the workload and associated objects from Tanzu Developer Portal
-(commonly known as TAP GUI) interface on the View profile cluster.
+(formerly named Tanzu Application Platform GUI) interface on the View profile cluster.
 
 You can take various approaches to configuring the supply chain in this topology,
 but the following procedures validate the most basic capabilities.

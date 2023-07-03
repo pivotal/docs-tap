@@ -58,27 +58,27 @@ for your environment:
 
 To create a function project from an accelerator:
 
-1. From the Tanzu Developer Portal portal, click **Create** on the left navigation bar to see
-   the list of available accelerators.
+1. From the Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) portal, click
+   **Create** on the left navigation bar to see the list of available accelerators.
 
    ![Screenshot of Tanzu Developer Portal. The create button in the left navigation menu has been selected.](images/create-accelerator.png)
 
-1. Locate the function accelerator in the language or framework of your choice and click **CHOOSE**.
+2. Locate the function accelerator in the language or framework of your choice and click **CHOOSE**.
 
-1. Provide a name for your function project and your function.
+3. Provide a name for your function project and your function.
 
-1. If you are creating a Java function, select a project type.
+4. If you are creating a Java function, select a project type.
 
-1. Provide a Git repository to store the files for the accelerator.
+5. Provide a Git repository to store the files for the accelerator.
 
-1. Click **NEXT STEP**, verify the
+6. Click **NEXT STEP**, verify the
    provided information, and then click **CREATE**.
 
     ![Generate Accelerators page in Tanzu Developer Portal showing a Python function buildpacks accelerator with App accelerator input fields.](images/generate-accelerators.png)
 
-2. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+7. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
-3. After downloading the ZIP file, expand it in a workspace directory and follow your preferred
+8. After downloading the ZIP file, expand it in a workspace directory and follow your preferred
    procedure for uploading the generated project files to a Git repository for your new project.
 
 ## <a id="create-function-proj-cli"></a> Create a function project using the Tanzu CLI

@@ -19,7 +19,9 @@ The installation order is flexible given the ability to update the installation 
   3. [Install Run profile cluster](#install-run).
   4. [Install Iterate profile cluster](#install-iterate).
   5. [Add Build, Run and Iterate clusters to Tanzu Developer Portal](#add-view).
-  6. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Developer Portal:
+  6. Update the View cluster's installation values file with the previous information and run the
+     following command to pass the updated config values to Tanzu Developer Portal
+     (formerly named Tanzu Application Platform GUI):
 
     ```shell
     tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install

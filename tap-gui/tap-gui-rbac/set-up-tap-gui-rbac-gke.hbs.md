@@ -7,7 +7,7 @@ cluster:
 - [Leveraging Google's OIDC provider](#google-oidc-provider)
 
 After the authorization is enabled, you can view your runtime resources on a remote cluster in
-Tanzu Developer Portal. For more information, see
+Tanzu Developer Portal (formerly named Tanzu Application Platform GUI). For more information, see
 [View runtime resources on remote clusters](view-resources-rbac.md).
 
 ## <a id="external-oidc-provider"></a> Leverage an external OIDC provider

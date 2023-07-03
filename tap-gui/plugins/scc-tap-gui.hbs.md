@@ -1,7 +1,7 @@
 # Supply Chain Choreographer in Tanzu Developer Portal
 
 This topic tells you about Supply Chain Choreographer in Tanzu Developer Portal
-(commonly called TAP GUI).
+(formerly called Tanzu Application Platform GUI).
 
 ## <a id="overview"></a> Overview
 

@@ -133,7 +133,9 @@ Expression evaluation errors include:
 
 ### <a id="clean-up-accelerators"></a>Accelerator persists in Tanzu Developer Portal after deletion
 
-If an accelerator still displays in the Tanzu Developer Portal after it is deleted using the `tanzu accelerator delete` command, complete the following steps to delete:
+If an accelerator still displays in the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) after it is deleted using the `tanzu accelerator delete`
+command, complete the following steps to delete:
 
 1. Navigate to your instance of the Tanzu Developer Portal.
 

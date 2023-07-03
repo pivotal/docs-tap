@@ -1,6 +1,7 @@
 # Tanzu Developer Portal Configurator Concepts
 
-This topic gives you conceptual overviews of how Tanzu Developer Portal Configurator works.
+This topic gives you conceptual overviews of how Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) Configurator works.
 
 ## <a id="customize"></a> Overview of how to customize your portal
 

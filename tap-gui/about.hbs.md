@@ -1,6 +1,6 @@
 # Overview of Tanzu Developer Portal
 
-Tanzu Developer Portal (commonly called TAP GUI) is a tool for your developers to view your
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) is a tool for your developers to view your
 applications and services running for your organization.
 This portal provides a central location in which you can view dependencies, relationships, technical
 documentation, and the service status.

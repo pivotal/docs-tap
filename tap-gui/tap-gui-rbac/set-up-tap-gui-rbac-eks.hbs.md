@@ -1,7 +1,7 @@
 # View resources on remote EKS clusters
 
 This topic tells you how to view your runtime resources on a remote EKS cluster in
-Tanzu Developer Portal (commonly called TAP GUI). For more information, see
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). For more information, see
 [View runtime resources on remote clusters](view-resources-rbac.md).
 
 ## <a id="set-up-oidc-provider"></a> Set up the OIDC provider

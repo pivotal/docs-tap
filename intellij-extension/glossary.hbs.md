@@ -46,7 +46,7 @@ specify the details of an application including its name, type, and source code 
 ## <a id="catalog-info-yaml"></a> catalog-info.yaml file
 
 The catalog-info YAML file enables the workloads created with the Tanzu Developer Tools for IntelliJ
-extension to be visible in the [Tanzu Developer Portal](../tap-gui/about.hbs.md).
+extension to be visible in [Tanzu Developer Portal](../tap-gui/about.hbs.md).
 
 ## <a id="code-snippet"></a> Code snippet
 

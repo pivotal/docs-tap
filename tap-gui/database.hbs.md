@@ -1,7 +1,7 @@
 # Configure the Tanzu Developer Portal database
 
-The Tanzu Developer Portal (commonly called TAP GUI) catalog gives you two approaches for
-storing catalog information:
+The Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) catalog gives you two
+approaches for storing catalog information:
 
 - **In-memory database:**
 

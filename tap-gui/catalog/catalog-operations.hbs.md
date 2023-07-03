@@ -18,8 +18,8 @@ For information about all types of entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
 You can use the example blank catalog described in the Tanzu Developer Portal
-[prerequisites](../../prerequisites.md#tap-gui) as a foundation for creating user, group, system,
-and main component YAML files.
+(formerly named Tanzu Application Platform GUI) [prerequisites](../../prerequisites.md#tap-gui) as a
+foundation for creating user, group, system, and main component YAML files.
 
 Relationship Diagram:
 ![Relationships box-and-line diagram. User 1 is within Group 1, which is within Organization. Component 2 is within System. User 1 owns Component 2. Group 1 owns System.](../images/tap-gui-relationships.jpg)

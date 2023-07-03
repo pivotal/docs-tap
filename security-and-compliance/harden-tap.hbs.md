@@ -38,7 +38,7 @@ configuring the Tanzu Application Platform, there are several areas where user i
 configuration should be considered. Currently the Tanzu Application Platform has three different
 areas where users have identities.
 
-1. Tanzu Developer Portal
+1. Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 2. Tanzu Developer Portal Authentication to Remote Clusters
 3. The Kubernetes cluster that the Tanzu Application Platform components are installed on
 

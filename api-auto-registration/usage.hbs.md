@@ -33,7 +33,7 @@ To create APIDescriptor Custom Resource:
 
 To configure:
 
-- [CORS for viewing OpenAPI Spec in TAP GUI](#cors)
+- [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
 
 ## <a id='generate-openapi'></a>Generate OpenAPI Spec
 

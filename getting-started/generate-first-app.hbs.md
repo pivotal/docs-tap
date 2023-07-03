@@ -14,7 +14,7 @@ There are multiple interfaces that you can use to generate a new project. The op
 
 - Application Accelerator extension for VS Code
 - Application Accelerator plug-in for IntelliJ
-- Tanzu Developer Portal
+- Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 Choose one of the following tabs for how to generate and deploy applications using your selected interface.
 If you have already generated a project and want to skip this step, you can go to

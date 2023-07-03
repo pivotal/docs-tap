@@ -34,7 +34,7 @@ perform the following:
 
 To use this supply chain, verify that:
 
-- Tanzu Developer Portal is configured to
+- Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) is configured to
   [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
   This configuration enables the Supply Chain Choreographer Tanzu Developer Portal plug-in to
   retrieve metadata about project packages and their vulnerabilities.

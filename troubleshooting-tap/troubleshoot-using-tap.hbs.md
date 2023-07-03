@@ -53,7 +53,7 @@ kubectl get build.kpack.io -o yaml
 You can see the "Builder default is not ready" message in two places:
 
 1. The "Messages" section of the `tanzu apps workload get my-app` command.
-2. The Supply Chain section of Tanzu Developer Portal.
+2. The Supply Chain section of Tanzu Developer Portal (formerly named Tanzu Application Platform GUI).
 
 This message indicates there is something wrong with the Builder (the component that builds the
 container image for your workload).

@@ -8,12 +8,22 @@ You can perform a fresh install of Tanzu Application Platform by following the i
 
 Before you upgrade Tanzu Application Platform:
 
-- Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
-- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install-online/profile.hbs.md#install-profile).
-- Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform version. For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.hbs.md#cli-and-plugin).
-- For information about Tanzu Developer Portal considerations, see [Tanzu Developer Portal Considerations](tap-gui/upgrades.md#considerations).
+- Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application
+  Platform version. If the target Tanzu Application Platform version does not support your existing
+  Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the
+  upgrade.
+- For information about installing your Tanzu Application Platform, see
+  [Install your Tanzu Application Platform profile](install-online/profile.hbs.md#install-profile).
+- Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform
+  version. For information about installing or updating the Tanzu CLI and plug-ins, see
+  [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.hbs.md#cli-and-plugin).
+- For information about Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+  considerations, see [Tanzu Developer Portal Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
-- To avoid the temporary warning state that is described in [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials v{{ vars.url_version }}. See [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade) for more information about the upgrade procedures.
+- To avoid the temporary warning state that is described in
+  [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials
+  v{{ vars.url_version }}. For more information about the upgrade procedures, see the
+  [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
 

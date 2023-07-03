@@ -1,7 +1,7 @@
 # Get started with the API documentation plug-in
 
 This topic tells you how to get started with the API documentation plug-in in
-Tanzu Developer Portal (commonly called TAP GUI).
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="dev-first-app"></a> API entries
 

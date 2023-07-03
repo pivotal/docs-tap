@@ -8,8 +8,9 @@ a predefined group of packages.
 
 - **[API Auto Registration](api-auto-registration/about.md)**
 
-  When users deploy a [workload](workloads/workload-types.hbs.md) that exposes an API, they want that API to automatically show in
-  Tanzu Developer Portal without requiring any added manual steps.
+  When users deploy a [workload](workloads/workload-types.hbs.md) that exposes an API, they want
+  that API to automatically show in Tanzu Developer Portal
+  (formerly named Tanzu Application Platform GUI) without requiring any added manual steps.
 
   API Auto Registration is an automated workflow that can use a supply chain to create and manage a
   Kubernetes Custom Resource (CR) of type `APIDescriptor`. A Kubernetes controller reconciles the CR

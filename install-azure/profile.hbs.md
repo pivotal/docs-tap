@@ -428,7 +428,8 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Developer Portal, you can use the host name that you configured earlier.
+To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the host
+name that you configured earlier.
 This host name is pointed at the shared ingress.
 To configure LoadBalancer for Tanzu Developer Portal,
 see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.hbs.md).

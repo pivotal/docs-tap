@@ -69,7 +69,7 @@ You must include a file named `catalog-info.yaml` in your project.
 For example, `my-project/catalog/catalog-info.yaml`.
 
 `catalog-info.yaml` enables the workloads created with Tanzu Developer Tools for IntelliJ to be
-visible in Tanzu Developer Portal.
+visible in Tanzu Developer Portal (formerly named Tanzu Application Platform GUI).
 For more information, see [Overview of Tanzu Developer Portal](../tap-gui/about.hbs.md).
 
 To create a `catalog-info.yaml` file by using the code snippets:

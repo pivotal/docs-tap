@@ -1,7 +1,8 @@
 # Configure a TLS certificate by using a self-signed certificate
 
 This topic tells you how to use cert-manager to create a self-signed certificate issuer and then
-generate a certificate for Tanzu Developer Portal to use based on that issuer.
+generate a certificate for Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) to
+use based on that issuer.
 
 Some browsers and corporate policies do not allow you to visit webpages that have self-signed
 certificates. You might need to navigate through a series of error messages to visit the page.

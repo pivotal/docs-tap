@@ -1,6 +1,6 @@
 # Set up authentication for Tanzu Developer Portal
 
-Tanzu Developer Portal (commonly called TAP GUI) extends the current Backstage
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) extends the current Backstage
 authentication plug-in so that you can see a login page based on the authentication providers
 configured at installation. This feature is a work in progress.
 
@@ -55,7 +55,7 @@ Configure a supported authentication provider or a custom OIDC provider:
     # ... any existing values
 
     tap_gui:
-      # ... any other TAP GUI values
+      # ... any other Tanzu Developer Portal values
       app_config:
         auth:
           environment: development

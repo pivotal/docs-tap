@@ -1,7 +1,8 @@
 # Configure a TLS certificate by using cert-manager and a ClusterIssuer
 
 This topic tells you how to use cert-manager to create a certificate issuer and then generate a
-certificate for Tanzu Developer Portal (commonly called TAP GUI) to use based on that issuer.
+certificate for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) to use based
+on that issuer.
 
 This topic uses the free certificate issuer [Let's Encrypt](https://letsencrypt.org).
 You can use other certificate issuers compatible with cert-manager in a similar fashion.

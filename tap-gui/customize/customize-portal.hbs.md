@@ -1,6 +1,7 @@
 # Customize the Tanzu Developer Portal portal
 
-This section describes how to customize the Tanzu Developer Portal portal.
+This section describes how to customize the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) portal.
 
 ## <a id="brand-customizing"></a> Customize branding
 

@@ -262,7 +262,8 @@ To troubleshoot or confirm that any modifications made to the rego file in the p
 
 ## <a id="gui-view-scan-policy"></a>Enable Tanzu Developer Portal to view ScanPolicy Resource
 
-For the Tanzu Developer Portal to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
+For the Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) to view the ScanPolicy
+resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
 
 The following example is portion of a ScanPolicy that is viewable by the Tanzu Developer Portal:
 

@@ -6,7 +6,8 @@ explore and generate projects from the defined accelerators in Tanzu Application
 
 ## <a id="dependencies"></a> Dependencies
 
-The plug-in must have access to the Tanzu Developer Portal URL.
+The plug-in must have access to the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) URL.
 For information about how to retrieve the Tanzu Developer Portal URL, see
 [Retrieving the URL for the Tanzu Developer Portal](#fqdn-tap-gui-url).
 

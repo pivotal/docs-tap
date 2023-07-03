@@ -31,7 +31,7 @@ Package name | Ingress purpose | Supports ingress issuer | Supports wildcards | 
 
 *The SANs is configurable for components in the following two ways:
 
-- components that install a single ingress resource in the form of `COMPONENT.DOMAIN-NAME`, for example, TAP GUI
+- components that install a single ingress resource in the form of `COMPONENT.DOMAIN-NAME`, for example, Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 - components that install an ingress resource per API instance that gets templated from a `domain_template` feeding `DOMAIN-NAME`, for example, `cnrs.tanzu.vmware.com` and `sso.apps.tanzu.vmware.com`
 
 ** Only supports wildcards

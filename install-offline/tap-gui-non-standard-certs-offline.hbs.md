@@ -1,6 +1,6 @@
 # Configure custom certificate authorities for Tanzu Developer Portal
 
-This topic tells you how to configure your Tanzu Developer Portal (commonly known as TAP GUI)
+This topic tells you how to configure your Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 to trust unusual certificate authorities (CA) when making outbound connections.
 
 Tanzu Developer Portal might require custom certificates when connecting

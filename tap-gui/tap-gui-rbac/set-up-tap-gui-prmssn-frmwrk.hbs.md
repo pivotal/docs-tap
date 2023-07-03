@@ -1,7 +1,7 @@
 # Set up permission framework for your Tanzu Developer Portal
 
 This topic gives you an overview of the Backstage permission framework and tells you how to enable
-it for Tanzu Developer Portal (commonly called TAP GUI). For more information, see the
+it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). For more information, see the
 [Backstage documentation](https://backstage.io/docs/permissions/overview/).
 
 > **Caution** The permission framework functions are in alpha. It is not recommended for use in

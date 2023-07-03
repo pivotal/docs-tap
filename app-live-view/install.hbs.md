@@ -11,7 +11,7 @@ profiles:
 - For the `view` profile, Application Live View installs Application Live View
   back-end package (`backend.appliveview.tanzu.vmware.com`). This installs the
   Application Live View back-end component with Tanzu Developer Portal
-  in `app-live-view` namespace.
+  (formerly named Tanzu Application Platform GUI) in `app-live-view` namespace.
 
 - For the `run` profile, Application Live View installs Application Live View
   APIServer package (`apiserver.appliveview.tanzu.vmware.com`) in

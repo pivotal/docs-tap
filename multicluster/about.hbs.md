@@ -14,7 +14,8 @@ Each cluster adopts one of following multicluster-aligned profiles:
 
 - **Run:** Transforms workload revisions to running pods; specifically, hosting deliveries and deliverables.
 
-- **View:** For applications related to centralized developer experiences; specifically, Tanzu Developer Portal and metadata store.
+- **View:** For applications related to centralized developer experiences; specifically,
+  Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) and metadata store.
 
 The following diagram illustrates this topology.
 

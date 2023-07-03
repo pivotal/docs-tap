@@ -1,8 +1,8 @@
 # Add Tanzu Developer Portal integrations
 
-You can integrate Tanzu Developer Portal (commonly called TAP GUI) with several Git providers.
-To use an integration, you must enable it and provide the necessary token or credentials in
-`tap-values.yaml`.
+You can integrate Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) with several
+Git providers. To use an integration, you must enable it and provide the necessary token or credentials
+in `tap-values.yaml`.
 
 ## <a id="add-github-integration"></a> Add a GitHub provider integration
 

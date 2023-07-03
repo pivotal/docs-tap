@@ -1,7 +1,7 @@
 # Troubleshoot Tanzu Developer Portal
 
 This topic tells you how to troubleshoot issues encountered when installing
-Tanzu Developer Portal (commonly called TAP GUI).
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id='port-range-invalid'></a> Tanzu Developer Portal reports that the port range is not valid
 

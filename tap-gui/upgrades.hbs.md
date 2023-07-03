@@ -1,8 +1,8 @@
 # Upgrade Tanzu Developer Portal
 
-This topic tells you how to upgrade Tanzu Developer Portal (commonly called TAP GUI) outside
-of a Tanzu Application Platform profile installation.
-If you installed Tanzu Application Platform through a profile, see
+This topic tells you how to upgrade Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI) outside of a Tanzu Application Platform profile
+installation. If you installed Tanzu Application Platform through a profile, see
 [Upgrading Tanzu Application Platform](../upgrading.hbs.md) instead.
 
 ## <a id="considerations"></a> Considerations

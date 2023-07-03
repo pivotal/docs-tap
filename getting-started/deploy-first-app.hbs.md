@@ -2,7 +2,7 @@
 
 This topic guides you through deploying your first application on Tanzu Application Platform
 (commonly known as TAP) by using the Tanzu CLI, and optionally adding your application to the
-Tanzu Developer Portal software catalog.
+Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) software catalog.
 
 This guide is a continuation from the previous step,
 [Generate an application with Application Accelerator](./generate-first-app.hbs.md).

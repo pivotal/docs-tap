@@ -1,7 +1,7 @@
 # Access Tanzu Developer Portal
 
-This topic tells you how to access Tanzu Developer Portal (commonly called TAP GUI) by using
-one of the following methods:
+This topic tells you how to access Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI) by using one of the following methods:
 
 - Access with the LoadBalancer method (default)
 - Access with the shared Ingress method

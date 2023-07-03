@@ -22,8 +22,9 @@ requesting the actuator data.
 The Application Live View connector verifies this token by calling the Application Live View APIServer
 and proxies the actuator data only if the token is valid.
 
-The Application Live View UI plug-in part of The Tanzu Developer Portal uses the preceding
-approach to securely query for the actuator data for a pod.
+The Application Live View UI plug-in part of Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) uses the preceding approach to securely query for the
+actuator data for a pod.
 It requests a token from Application Live View APIServer and passes it in the subsequent calls to the
 back end. This ensures that actuator data from the running application is fetched only if the user is
 authorized to see the live information for the pod.

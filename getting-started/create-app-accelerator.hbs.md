@@ -15,7 +15,8 @@ This topic guides you through creating an accelerator and registering it in a Ta
 - Test your accelerator locally using the Tanzu CLI `generate-from-local` command.
 - Create a new Git repository for the project and push the project to it.
 - Register the accelerator in a Tanzu Application Platform instance.
-- Verify project generation with the new accelerator by using Tanzu Developer Portal.
+- Verify project generation with the new accelerator by using Tanzu Developer Portal
+  (formerly named Tanzu Application Platform GUI).
 
 ## <a id="ide-set-up-for-authoring"></a>Set up Visual Studio Code
 
