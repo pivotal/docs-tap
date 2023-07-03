@@ -73,6 +73,12 @@ This file location is temporary and will change in a future version.
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
 > might fail to attach.
 
+## <a id="workload-panel"></a> Tanzu Workloads panel
+
+{{> 'partials/ide-extensions/workload-panel-intro' }}
+
+![Screenshot of the Tanzu Workloads panel.](../images/vs-workloads-panel-context-menu.png)
+
 ## <a id="extension-log"/> Access the extension logs
 
 The extension creates log entries in two files named `tanzu-dev-tools-{GUID}.log` and `tanzu-language-server-{GUID}.log`.
