@@ -1,4 +1,4 @@
-# Use Gitops Delivery with FluxCD (alpha)
+# Use Gitops delivery with FluxCD (alpha)
 
 This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
@@ -18,7 +18,7 @@ To use Gitops Delivery with FluxCD, you must complete the following prerequisite
   regular Kubernetes clusters, but they must have kapp-controller and Contour
   installed. See the [Carvel documentation](https://carvel.dev/kapp-controller/)
   and the [Contour documentation](https://projectcontour.io/).
-- If you want to use a build cluster to control the deployment on all the run
+- To use a build cluster to control the deployment on all the run
   clusters, you must create a build cluster that has network access to your run
   clusters. You must also ensure that you installed FluxCD Kustomize Controller.
   See the [Flux documentation](https://fluxcd.io/flux/installation/#dev-install)
@@ -88,7 +88,7 @@ app.default.tap/
 
    > **Note** You can skip this step to use the default parameter values.
 
-2. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
+1. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
 
    ```yaml
    ---
@@ -107,14 +107,19 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
-   > **Note** To continuously deploy the latest version of your `Package`, you can set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, you need to update the `versionSelection.constraints:` field and add below annotation to the PackageInstall like mentioned [here](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading)
-    annotations:
-      packaging.carvel.dev/downgradable: ""
+  To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
+
+  ```console
+  packaging.carvel.dev/downgradable: ""
+  ```
+
+  See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
+
    > **Note** If you skipped creation of the `Secret`, omit the `values` key.
 
-3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
+1. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create-flux"></a> Create FluxCD GitRepository and FluxCD Kustomizations on the Build Cluster
+## <a id="create-flux"></a> Create FluxCD GitRepository and FluxCD Kustomizations on the build cluster
 
 Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each of your run clusters.
 
@@ -221,7 +226,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      serviceAccountName: <run-cluster-ns-sa>
    ```
 
-## <a id="verify-install"></a> Verifying Installation
+## <a id="verify-install"></a> Verify installation
 
 To verify your installation:
 
