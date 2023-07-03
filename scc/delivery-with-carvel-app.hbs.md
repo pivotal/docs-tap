@@ -117,8 +117,9 @@ app.default.tap/
    - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
    - `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
   
-   > **Note** To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`.
-
+   > **Note** To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, you need to update the `versionSelection.constraints:` field and add below annotation to the PackageInstall like mentioned [here](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading)
+   annotations:
+    packaging.carvel.dev/downgradable: ""
    > **Important** If you skipped creation of the `Secret`, omit the `values` key.
 
 2. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.

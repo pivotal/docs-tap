@@ -25,10 +25,10 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-6-0-new-components'></a> New components
 
-- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers with a secure and 
-user-friendly solution that enables them to effortlessly upload their local source code to a registry, 
-which is pre-configured by an Operator during the installation of Tanzu Application Platform. 
-This component effectively eliminates the obstacles faced by developers when they had to manually specify 
+- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers with a secure and
+user-friendly solution that enables them to effortlessly upload their local source code to a registry,
+which is pre-configured by an Operator during the installation of Tanzu Application Platform.
+This component effectively eliminates the obstacles faced by developers when they had to manually specify
 a registry and provide their credentials on their local systems for iterative inner loop workflows.
 
 ---
@@ -36,25 +36,32 @@ a registry and provide their credentials on their local systems for iterative in
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+#### <a id='1-6-0-appacc'></a> Application Accelerator 
+- The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
+
+
+#### <a id='1-6-0-alv'></a> Application Live View
+- Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [w](./app-live-view/improved-security-and-access-control.hbs.md)
+- Developers can view the live information of natively compiled Spring applications via Application Live View for lightweight troubleshooting. The pages and metrics currently unavailable for natively compiled Spring applications include threads, heapdump, memory graphs, cache manager, conditions, schedules tasks and actuator information. For more information, see [Enable Spring Native apps for Application Live View]()
 
 #### <a id='1-6-0-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
 
 - Integrated with Local Source Proxy for seamless iterative inner-loop development using the CLI or IDE plugins.
-  - `tanzu apps workload apply` and `tanzu apps workload create` can now seamlessly create a workload from 
+  - `tanzu apps workload apply` and `tanzu apps workload create` can now seamlessly create a workload from
     local source using just the `--local-path` flag.
-  - `--source-image` flag is now optional. if `--source-image` flag is used along with `--local-path`, the 
+  - `--source-image` flag is now optional. if `--source-image` flag is used along with `--local-path`, the
     Local source proxy is not used and bypassed for backward compatibility.
-  - Introducing a new command, `tanzu apps lsp health` which allows users to verify the status of the Local 
+  - Introducing a new command, `tanzu apps lsp health` which allows users to verify the status of the Local
     Source Proxy. This command performs several checks, including:
     - Verifying whether the developer has RBAC permissions to access the Local Source Proxy using their `kubeconfig`.
     - Checking if the Local Source Proxy is installed on the cluster.
     - Ensuring that the Local Source Proxy deployment is healthy and accessible.
-    - Verifying that the Local Source Proxy is correctly configured and able to access the registry using the 
+    - Verifying that the Local Source Proxy is correctly configured and able to access the registry using the
       credentials set up by the operator during TAP installation.
-- Implemented `autocompletion` functionality for workload types. Additionally, the default workload type has been 
+- Implemented `autocompletion` functionality for workload types. Additionally, the default workload type has been
   set to `web`, making the `--type` flag optional. The flag is only required if the type is something other than `web`.
 - Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
-- Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section. 
+- Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
   This addition provides a quick reference to the Git revision associated with the workload.
 
 
@@ -182,19 +189,19 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 #### <a id='1-6-0-namespace-provisioner-new-features'></a> Namespace Provisioner
 
-- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner, 
+- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner,
   providing greater flexibility for customization.
-  - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install) 
+  - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install)
     by utilizing the `default_parameters` in the `tap-values.yaml` file or by utilizing namespace parameters.
-  - Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains 
-    and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters. 
+  - Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains
+    and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters.
     See [Customization Documentation](namespace-provisioner/use-case4.hbs.md#customize-service-accounts) for more information.
-  - Introduced the option to [disable the creation of the LimitRange](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup) 
+  - Introduced the option to [disable the creation of the LimitRange](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup)
     object out of the box in `full`, `iterate`, and `run` profile clusters.
-- Added support for passing lists or objects via annotations for complex namespace parameters, simplifying the 
-  configuration process. More details on how to utilize this feature can be found in 
+- Added support for passing lists or objects via annotations for complex namespace parameters, simplifying the
+  configuration process. More details on how to utilize this feature can be found in
   the [Reference Documentation](namespace-provisioner/parameters.hbs.md).
-- The `path` value in `additional_sources` is now automatically generated, eliminating the need for users to 
+- The `path` value in `additional_sources` is now automatically generated, eliminating the need for users to
   provide it manually. This simplifies the configuration of external sources.
 
 
@@ -273,7 +280,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-0-apps-cli-plugin-bc'></a> Apps plug-in for Tanzu CLI
 
-- The deprecated `tanzu apps workload update` command is removed from the CLI. 
+- The deprecated `tanzu apps workload update` command is removed from the CLI.
   Use the command `tanzu apps workload apply` instead.
 
 #### <a id='1-6-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
@@ -344,11 +351,11 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-0-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
 
-- Implemented validations to prevent the inclusion of multiple sources through flags in the `workload create` 
+- Implemented validations to prevent the inclusion of multiple sources through flags in the `workload create`
   and `workload apply` commands.
-- Modified the behavior of the commands when waiting to apply workload changes. If the workload was previously 
-  in a failed state, it will no longer immediately fail. When the `--wait` flag is used, the command will continue 
-  to wait until the workload either succeeds or fails again. When the `--tail` flag is used, the command will keep 
+- Modified the behavior of the commands when waiting to apply workload changes. If the workload was previously
+  in a failed state, it will no longer immediately fail. When the `--wait` flag is used, the command will continue
+  to wait until the workload either succeeds or fails again. When the `--tail` flag is used, the command will keep
   tailing logs from the Supply chain steps that were impacted by the workload update.
 
 #### <a id='1-6-0-crossplane-ri'></a> Crossplane
@@ -369,13 +376,13 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-0-namespace-provisioner-ri'></a> Namespace Provisioner
 
-- Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service 
+- Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service
   accounts utilized by Supply chains and Delivery components.
-- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret 
-  was used multiple times within the `additional_sources` section of the `tap-values.yaml` file. 
+- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret
+  was used multiple times within the `additional_sources` section of the `tap-values.yaml` file.
   **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
-- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in 
-  the `Terminating` phase during deletion if it contained a workload. 
+- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in
+  the `Terminating` phase during deletion if it contained a workload.
   **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
 
 #### <a id='1-6-0-stk-ri'></a> Services Toolkit
@@ -414,6 +421,7 @@ allow_manual_configmap_update: false
 ```
 
 In a planned future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
+
 ---
 
 ### <a id='1-6-0-known-issues'></a> Known issues
@@ -462,8 +470,8 @@ This release has the following known issues, listed by component and area.
   of files in your project, though that may not always be practical.
 
 #### <a id='1-6-0-amr-observer-cloudevent-handler'></a> Artifact Metadata Repository Observer and CloudEvent Handler
-- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful. 
-- ReplicaSet status in Artifact Metadata Repository only has two states, `created` and `deleted`. There is a known issue where the `available` and `unavailable` state is not showing. The workaround is that this information can be interpolated from the `instances` metadata in the AMR for the ReplicaSet. 
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful.
+- ReplicaSet status in Artifact Metadata Repository only has two states, `created` and `deleted`. There is a known issue where the `available` and `unavailable` state is not showing. The workaround is that this information can be interpolated from the `instances` metadata in the AMR for the ReplicaSet.
 - For more information, see the [Artifact Metadata Repository Overview - Known Issues](./scst-store/amr/overview.hbs.md#known-issues)
 
 #### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
@@ -492,7 +500,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Contour                                         |         |
 | Crossplane                                      | 0.2.1   |
 | Developer Conventions                           |         |
-| Eventing                                        |         |
+| Eventing                                        | 2.2.3   |
 | FluxCD Source Controller                        |         |
 | Learning Center                                 |         |
 | Local Source Proxy                              | 0.1.0   |
@@ -532,7 +540,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id='1-6-0-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
 
-- The default value for the `--update-strategy` flag will change from merge to replace in 
+- The default value for the `--update-strategy` flag will change from merge to replace in
   Tanzu Application Platform v1.7.0
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)

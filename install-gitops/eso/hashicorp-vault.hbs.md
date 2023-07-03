@@ -210,7 +210,7 @@ To configure Kubernetes authentication for Vault, you can create a new Kubernete
 tanzu-sync/scripts/setup/create-kubernetes-auth.sh
 ```
 
->**Note** If you are using an Enterprise Vault Server with namespaces, please ensure you have running the following before this script: `export VAULT_NAMESPACE=MY-VAULT-NAMESPACE`.
+>**Important** If you use an Enterprise Vault Server with namespaces, run `export VAULT_NAMESPACE=MY-VAULT-NAMESPACE` before using the script.
 
 This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
 
@@ -265,7 +265,7 @@ Configuration for Tanzu is stored in two locations:
 
 Follow these steps to create the sensitive configuration and review the non-sensitive configuration:
 
->**Note** Please ensure you have a key-value secret engine enabled named `secret`.
+>**Important** You must enable a key-value secret engine named `secret`.
 
 1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository. There are two supported authentication methods:
 
@@ -505,7 +505,8 @@ stores the sensitive data such as username, password, private key from the `tap-
     You can start with an empty document and edit it later on as described in
     the [Configure and push the Tanzu Application Platform values](#configure-and-push-tap-values) section.
 
-   **Note** Vault does not support storing YAML files, all secrets must be in `key-value` format. For the purposes of storage, please convert your sensitive-values yaml file to `json` prior to storage.
+    Vault does not support storing YAML files, all secrets must be in `key-value` format. 
+    You must convert your sensitive-values YAML file to `json` before storage.
 
 1. Review the integration with External Secrets Operator.
 

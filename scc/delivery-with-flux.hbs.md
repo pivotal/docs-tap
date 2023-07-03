@@ -107,7 +107,9 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
-   > **Note** To continuously deploy the latest version of your `Package`, you can set `versionSelection.constraints: >=0.0.0`
+   > **Note** To continuously deploy the latest version of your `Package`, you can set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, you need to update the `versionSelection.constraints:` field and add below annotation to the PackageInstall like mentioned [here](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading)
+    annotations:
+      packaging.carvel.dev/downgradable: ""
    > **Note** If you skipped creation of the `Secret`, omit the `values` key.
 
 3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
