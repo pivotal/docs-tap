@@ -9,11 +9,11 @@ a predefined group of packages.
 - **[API Auto Registration](api-auto-registration/about.md)**
 
   When users deploy a [workload](workloads/workload-types.hbs.md) that exposes an API, they want that API to automatically show in
-  Tanzu Application Platform GUI without requiring any added manual steps.
+  Tanzu Developer Portal without requiring any added manual steps.
 
   API Auto Registration is an automated workflow that can use a supply chain to create and manage a
   Kubernetes Custom Resource (CR) of type `APIDescriptor`. A Kubernetes controller reconciles the CR
-  and updates the API entity in Tanzu Application Platform GUI to achieve automated API registration
+  and updates the API entity in Tanzu Developer Portal to achieve automated API registration
   from workloads. You can also use API Auto Registration without supply chains by directly applying
   an `APIDescriptor` CR to the cluster.
 
@@ -106,7 +106,7 @@ a predefined group of packages.
 and service accounts including workload and deliverable. These roles are available to help
 operators limit permissions a user or service account requires on a cluster that runs Tanzu
 Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
-access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
+access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Developer Portal support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
 
 - **[Developer Conventions](developer-conventions/about.hbs.md)**
 
@@ -227,12 +227,12 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   It integrates with SCST - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **[Tanzu Application Platform GUI](tap-gui/about.md)**
+- **[Tanzu Developer Portal](tap-gui/about.md)**
 
-  Tanzu Application Platform GUI lets your developers view your organization's running applications
+  Tanzu Developer Portal lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
   documentation, and even service status.
-  Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project
+  Tanzu Developer Portal is built from the Cloud Native Computing Foundation's project
   Backstage.
 
 - **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
@@ -311,7 +311,7 @@ The following profiles are available in Tanzu Application Platform:
 
 - **View** (`view`):
   Intended for instances of applications related to centralized developer experiences. Specifically,
-  Tanzu Application Platform GUI and Metadata Store.
+  Tanzu Developer Portal and Metadata Store.
 
 The following table lists the packages contained in each profile:
 
@@ -780,7 +780,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Tanzu Application Platform GUI
+   <td>Tanzu Developer Portal
    </td>
    <td>&check;
    </td>

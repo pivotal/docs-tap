@@ -15,7 +15,7 @@ This topic guides you through creating an accelerator and registering it in a Ta
 - Test your accelerator locally using the Tanzu CLI `generate-from-local` command.
 - Create a new Git repository for the project and push the project to it.
 - Register the accelerator in a Tanzu Application Platform instance.
-- Verify project generation with the new accelerator by using Tanzu Application Platform GUI.
+- Verify project generation with the new accelerator by using Tanzu Developer Portal.
 
 ## <a id="ide-set-up-for-authoring"></a>Set up Visual Studio Code
 
@@ -195,7 +195,7 @@ that the resulting project is generated as expected.
 
 ## <a id="upload-to-git-repo"></a>Upload the project to a Git repository
 
-The Application Accelerator system and Tanzu Application Platform GUI depend on an accelerator
+The Application Accelerator system and Tanzu Developer Portal depend on an accelerator
 project residing inside a Git repository. For this example, [GitHub](https://github.com/) is used.
 
 1. [Create a new repository in
@@ -210,11 +210,11 @@ project residing inside a Git repository. For this example, [GitHub](https://git
 ## <a id="register-accelerator"></a>Register the accelerator to the Tanzu Application Platform and verify project generation output
 
 Now that the accelerator is committed to its own repository, the accelerator can be registered to
-Tanzu Application Platform GUI for developers to generate projects from the newly created
+Tanzu Developer Portal for developers to generate projects from the newly created
 accelerator.
 
 1. **Using the URL of the Git repository and branch name created earlier**, run the following
-   command using the Tanzu CLI to register the accelerator to Tanzu Application Platform GUI.
+   command using the Tanzu CLI to register the accelerator to Tanzu Developer Portal.
 
     > **Note** `tanzu accelerator create` works with monorepositories as well. Add the
     > `--git-sub-path` parameter with the desired subpath to fetch the accelerator project in that
@@ -226,22 +226,22 @@ accelerator.
     ```
 
     The accelerator can take time to reconcile. After it has reconciled, it is available for use in
-    Tanzu Application Platform GUI and the Application Accelerator extension for Visual Studio Code.
+    Tanzu Developer Portal and the Application Accelerator extension for Visual Studio Code.
 
-## Verify project generation output by using Tanzu Application Platform GUI
+## Verify project generation output by using Tanzu Developer Portal
 
-1. Navigate to your organization's instance of Tanzu Application Platform GUI.
+1. Navigate to your organization's instance of Tanzu Developer Portal.
 
-    ![Home screen image of Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-1.png)
+    ![Home screen image of Tanzu Developer Portal.](../images/app-accelerator/getting-started-1-1.png)
 
 2. On the left navigation pane, click **Create**.
 
-    ![Image of highlighting the Create button in Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-2.png)
+    ![Image of highlighting the Create button in Tanzu Developer Portal.](../images/app-accelerator/getting-started-1-2.png)
 
 3. Using the search bar near the left side of the page, search for `simple accelerator`. After
    you've found it, click **Choose** on the accelerator card.
 
-    ![Image of searching for the accelerator in Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-3.png)
+    ![Image of searching for the accelerator in Tanzu Developer Portal.](../images/app-accelerator/getting-started-1-3.png)
 
 4. Configure the project by filling in the parameters in the form.
 
@@ -249,7 +249,7 @@ accelerator.
    `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` might be hidden
    depending on whether the check box is selected.
 
-   ![Image of the configuration page in Tanzu Application Platform GUI.](../images/app-accelerator/getting-started-1-4.png)
+   ![Image of the configuration page in Tanzu Developer Portal.](../images/app-accelerator/getting-started-1-4.png)
 
 5. After configuration is complete, click **Next**.
 

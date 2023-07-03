@@ -112,7 +112,7 @@ To add the Tanzu Application Platform package repository to your cluster:
         --password ${INSTALL_REGISTRY_PASSWORD} \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -200,7 +200,7 @@ To add the Tanzu Application Platform package repository to your cluster:
       sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu
       tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform
       tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
-      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry
+      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Platform Telemetry
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
                                                                                                                                      case.
       tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
@@ -292,7 +292,7 @@ buildservice:
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
 tap_gui:
-  metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
+  metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Developer Portal and SCST - Store.
   app_config:
     auth:
       allowGuestAccess: true  #This will allow unauthenticated users to login to your portal. If you want to disable, make sure you configure an alternate auth provider.
@@ -316,7 +316,7 @@ tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
 ```
 
-> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml
@@ -485,7 +485,7 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
       exclude_dependencies: true
     ...
     ```
- 
+
 1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
@@ -526,13 +526,13 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
 For more information about the differences between `lite` and `full` dependencies, see
 [About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
-## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Developer Portal, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Developer Portal, see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
-You're now ready to start using Tanzu Application Platform GUI.
+You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
+[Tanzu Developer Portal - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 

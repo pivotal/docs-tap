@@ -260,11 +260,11 @@ spec:
 
 To troubleshoot or confirm that any modifications made to the rego file in the provided sample scan policy are functioning as intended, see [Troubleshooting Rego Files](./troubleshoot-rego.hbs.md).
 
-## <a id="gui-view-scan-policy"></a>Enable Tanzu Application Platform GUI to view ScanPolicy Resource
+## <a id="gui-view-scan-policy"></a>Enable Tanzu Developer Portal to view ScanPolicy Resource
 
-For the Tanzu Application Platform GUI to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
+For the Tanzu Developer Portal to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
 
-The following example is portion of a ScanPolicy that is viewable by the Tanzu Application Platform GUI:
+The following example is portion of a ScanPolicy that is viewable by the Tanzu Developer Portal:
 
 ```yaml
 ---

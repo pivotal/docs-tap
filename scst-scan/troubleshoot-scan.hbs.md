@@ -337,7 +337,7 @@ Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see
 the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
-### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
+### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Developer Portal
 
 If you encounter `No policy has been defined`, it might be because the Tanzu Application Platform
 GUI is unable to view the Scan Policy resource.

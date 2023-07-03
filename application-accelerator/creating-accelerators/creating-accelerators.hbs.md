@@ -1,6 +1,6 @@
 # Creating accelerators
 
-This topic tells you how to create an accelerator in Tanzu Application Platform GUI.
+This topic tells you how to create an accelerator in Tanzu Developer Portal.
 
 An accelerator contains your conforming code and configurations that developers can use to create new
 projects that by default follow the standards defined in your accelerators.
@@ -11,10 +11,10 @@ The following prerequisites are required to create an accelerator:
 
 - Application Accelerator is installed. For information about installing Application Accelerator,
     see [Installing Application Accelerator for VMware Tanzu](../install-app-acc.md).
-- You can access Tanzu Application Platform GUI from a browser or use the Application
+- You can access Tanzu Developer Portal from a browser or use the Application
     Accelerator extension for VS Code.
-  - For more information about Tanzu Application Platform GUI, see
-    [Overview of Tanzu Application Platform GUI](../../tap-gui/about.hbs.md).
+  - For more information about Tanzu Developer Portal, see
+    [Overview of Tanzu Developer Portal](../../tap-gui/about.hbs.md).
   - For more information about Application Accelerator extension for VS Code, see
     [Application Accelerator  Visual Studio Code extension](../vscode.md).
 - kubectl is installed and authenticated with admin rights for your target cluster.
@@ -62,11 +62,11 @@ Use the following procedure to create an accelerator based on this Git repositor
     - `GIT-REPOSITORY-URL` is the URL for your Git repository where the accelerator is located.
     - `GIT-REPOSITORY-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
-2. Refresh Tanzu Application Platform GUI or the Application Accelerator extension in VS Code to
+2. Refresh Tanzu Developer Portal or the Application Accelerator extension in VS Code to
    reveal the newly published accelerator. It might take a few seconds to refresh the catalog and
    add an entry for your new accelerator.
 
-    ![Screenshot showing the new Simple Accelerator included in Tanzu Application Platform GUI.](../images/new-accelerator-deployed-v1-1.png)
+    ![Screenshot showing the new Simple Accelerator included in Tanzu Developer Portal.](../images/new-accelerator-deployed-v1-1.png)
 
 Alternatively, use the Tanzu CLI to create a separate manifest file and apply it to
 the cluster.

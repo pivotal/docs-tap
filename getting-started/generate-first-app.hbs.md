@@ -14,7 +14,7 @@ There are multiple interfaces that you can use to generate a new project. The op
 
 - Application Accelerator extension for VS Code
 - Application Accelerator plug-in for IntelliJ
-- Tanzu Application Platform GUI
+- Tanzu Developer Portal
 
 Choose one of the following tabs for how to generate and deploy applications using your selected interface.
 If you have already generated a project and want to skip this step, you can go to
@@ -125,10 +125,10 @@ IntelliJ
 
   1. When opened, the project is ready for development.
 
-Tanzu Application Platform GUI
+Tanzu Developer Portal
 : In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use
-  Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI,
-  see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+  Tanzu Developer Portal. For information about connecting to Tanzu Developer Portal,
+  see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
   **What you will do:**
 
@@ -138,10 +138,10 @@ Tanzu Application Platform GUI
 
   **To generate a new project using an Application Accelerator:**
 
-  1. From Tanzu Application Platform GUI portal, click **Create** located on the
+  1. From Tanzu Developer Portal portal, click **Create** located on the
      left side of the navigation pane to see the list of available accelerators.
 
-      ![Screenshot of the Accelerators page showing list of available accelerators in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1.png)
+      ![Screenshot of the Accelerators page showing list of available accelerators in Tanzu Developer Portal.](../images/getting-started-tap-gui-1.png)
 
   1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
 
@@ -153,7 +153,7 @@ Tanzu Application Platform GUI
   [Installing   Tanzu Application Platform package and../install-online/install.hbs.md
   profiles](../install-online/profile.hbs.md#full-profile).
 
-      ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
+      ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu Developer Portal.](../images/getting-started-tap-gui-1-1.png)
 
   1. Click **NEXT**.
 
@@ -167,7 +167,7 @@ Tanzu Application Platform GUI
       1. Select the host Git repository provider from the **Host** drop-down menu. For example, `github.com`.
       1. Populate the **Owner** and **Repository** text boxes.
 
-          ![Screenshot of the git repository creation form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-2.png)
+          ![Screenshot of the git repository creation form in Tanzu Developer Portal.](../images/getting-started-tap-gui-1-2.png)
 
       1. While you are populating the form, a dialog box appears asking for permission to provision
          Git repositories. Follow the prompts and continue.

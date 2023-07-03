@@ -18,8 +18,8 @@ The installation order is flexible given the ability to update the installation 
   2. [Install Build profile cluster](#install-build).
   3. [Install Run profile cluster](#install-run).
   4. [Install Iterate profile cluster](#install-iterate).
-  5. [Add Build, Run and Iterate clusters to Tanzu Application Platform GUI](#add-view).
-  6. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
+  5. [Add Build, Run and Iterate clusters to Tanzu Developer Portal](#add-view).
+  6. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Developer Portal:
 
     ```shell
     tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
@@ -34,7 +34,7 @@ Install the View profile cluster first, because some components must exist befor
 To install the View cluster:
 
 1. Follow the steps described in [Installing the Tanzu Application Platform package and profiles](../install-online/profile.hbs.md) by using a reduced values file as shown in [View profile](reference/tap-values-view-sample.md).
-2. Verify that you can access Tanzu Application Platform GUI by using the ingress that you set up. The address must follow this format: `https://tap-gui.INGRESS-DOMAIN`, where `INGRESS-DOMAIN` is the DNS domain you set in `shared.ingress_domain` which points to the shared Contour installation in the `tanzu-system-ingress` namespace with the service `envoy`.
+2. Verify that you can access Tanzu Developer Portal by using the ingress that you set up. The address must follow this format: `https://tap-gui.INGRESS-DOMAIN`, where `INGRESS-DOMAIN` is the DNS domain you set in `shared.ingress_domain` which points to the shared Contour installation in the `tanzu-system-ingress` namespace with the service `envoy`.
 3. Deploy Supply Chain Security Tools (SCST) - Store. See [Multicluster setup](../scst-store/multicluster-setup.hbs.md) for more information.
 
 ## <a id='install-build'></a> Install Build clusters
@@ -54,11 +54,11 @@ To install the Run profile cluster:
 
 To install the Iterate profile cluster, follow the steps described in [Install the Tanzu Application Platform package and profiles](../install-online/profile.hbs.md) by using a reduced values file as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
 
-## <a id='add-view'></a> Add Build, Run and Iterate clusters to Tanzu Application Platform GUI
+## <a id='add-view'></a> Add Build, Run and Iterate clusters to Tanzu Developer Portal
 
-After installing the Build, Run and Iterate clusters, follow the steps in [View resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md) to:
+After installing the Build, Run and Iterate clusters, follow the steps in [View resources on multiple clusters in Tanzu Developer Portal](../tap-gui/cluster-view-setup.md) to:
 
-1. Create the `Service Accounts` that Tanzu Application Platform GUI uses to read objects from the clusters.
+1. Create the `Service Accounts` that Tanzu Developer Portal uses to read objects from the clusters.
 1. Add a remote cluster.
 
 These steps create the necessary RBAC elements allowing you to pull the URL and token from the Build, Run and Iterate clusters that allows them come back and add to the View cluster's values file.

@@ -53,7 +53,7 @@ kubectl get build.kpack.io -o yaml
 You can see the "Builder default is not ready" message in two places:
 
 1. The "Messages" section of the `tanzu apps workload get my-app` command.
-2. The Supply Chain section of Tanzu Application Platform GUI.
+2. The Supply Chain section of Tanzu Developer Portal.
 
 This message indicates there is something wrong with the Builder (the component that builds the
 container image for your workload).
@@ -140,7 +140,7 @@ This type of error frequently occurs when the URL set for `source image` (IDE) o
 
 2. Verify your `--source-image` URL is compliant with Docker.
 
-    The URL in this example `index.docker.io/shaileshp2922/build-service/tanzu-java-web-app` includes nesting. 
+    The URL in this example `index.docker.io/shaileshp2922/build-service/tanzu-java-web-app` includes nesting.
     Docker registry, unlike many other registry solutions, does not support nesting.
 
 3. To resolve this issue, you must provide an unnested URL. For example, `index.docker.io/shaileshp2922/tanzu-java-web-app`
@@ -216,7 +216,7 @@ chmod +x ./mvnw
 
 ## <a id='no-live-information'></a> "No live information for pod with ID" error
 
-After deploying Tanzu Application Platform workloads, Tanzu Application Platform GUI shows a "No
+After deploying Tanzu Application Platform workloads, Tanzu Developer Portal shows a "No
 live information for pod with ID" error.
 
 ### Explanation
@@ -601,7 +601,7 @@ Do not append "/" to the end of the string.
 
 ### Explanation
 
-Tanzu Application Platform v1.4 introduces [Shared Ingress Issuer](../release-notes.hbs.md#1-4-0-tap-new-features) to secure ingress communication by default. 
+Tanzu Application Platform v1.4 introduces [Shared Ingress Issuer](../release-notes.hbs.md#1-4-0-tap-new-features) to secure ingress communication by default.
 The Certificate Authority for Shared Ingress Issuer is generated as self-signed. As a result, you might see one of the following errors:
 
 - `connection refused`
@@ -617,16 +617,16 @@ You can choose one of the following options to mitigate the issue:
 
 Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in Tanzu Application Platform:
 
-1. Extract the ClusterIssuer's Certificate Authority. 
+1. Extract the ClusterIssuer's Certificate Authority.
 
-    For default installations where `ingress_issuer` is not set in `tap_values.yml`, 
+    For default installations where `ingress_issuer` is not set in `tap_values.yml`,
     you can extract the ClusterIssuer's Certificate Authority from cert-manager:
 
     ```console
     kubectl get secret tap-ingress-selfsigned-root-ca -n cert-manager -o yaml | yq .data | cut -d' ' -f2 | head -1 | base64 -d
     ```
 
-    If you overrode the default `ingress_issuer` while installing Tanzu Application Platform, 
+    If you overrode the default `ingress_issuer` while installing Tanzu Application Platform,
     you must refer to your issuer's documentation to extract your ClusterIssuer's Certificate Authority instead of using the command above.
 
 1. Add the certificate to the list of trusted certificate authorities by appending the certificate authority to the `shared.ca_cert_data` field in your `tap-values.yml`.
@@ -641,7 +641,7 @@ Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in
 
 >**Important** This option is recommended for testing purposes only.
 
-Follow these steps to deactivate TLS for Cloud Native Runtimes, AppSSO and Tanzu Application Platform GUI:
+Follow these steps to deactivate TLS for Cloud Native Runtimes, AppSSO and Tanzu Developer Portal:
 
 1. Set `shared.ingress_issuer` to `""` in your `tap-values.yml`:
 

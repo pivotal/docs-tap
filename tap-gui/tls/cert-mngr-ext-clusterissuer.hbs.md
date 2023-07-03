@@ -1,12 +1,12 @@
 # Configure a TLS certificate by using cert-manager and a ClusterIssuer
 
 This topic tells you how to use cert-manager to create a certificate issuer and then generate a
-certificate for Tanzu Application Platform GUI (commonly called TAP GUI) to use based on that issuer.
+certificate for Tanzu Developer Portal (commonly called TAP GUI) to use based on that issuer.
 
 This topic uses the free certificate issuer [Let's Encrypt](https://letsencrypt.org).
 You can use other certificate issuers compatible with cert-manager in a similar fashion.
 
-![TLS diagram showing the relationships between Tanzu Application Platform GUI, cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
+![TLS diagram showing the relationships between Tanzu Developer Portal, cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -21,7 +21,7 @@ Fulfil these prerequisites:
 
 - Obtain a domain name that you control or own and have proof that you control or own it.
   In most cases, this domain name is the one you used for the `INGRESS-DOMAIN` values when you
-  installed Tanzu Application Platform and Tanzu Application Platform GUI.
+  installed Tanzu Application Platform and Tanzu Developer Portal.
 - If cert-manager cannot perform the challenge to verify your domain's compatibility, you must do so
   manually. For more information, see [How It Works](https://letsencrypt.org/how-it-works/) and
   [Getting Started](https://letsencrypt.org/getting-started/) in the Let's Encrypt documentation.
@@ -34,7 +34,7 @@ Fulfil these prerequisites:
 
 ## <a id="procedure"></a> Procedure
 
-To configure a self-signed TLS certificate for Tanzu Application Platform GUI:
+To configure a self-signed TLS certificate for Tanzu Developer Portal:
 
 1. Create a `certificate.yaml` file that defines an issuer and a certificate. For example:
 
@@ -95,7 +95,7 @@ To configure a self-signed TLS certificate for Tanzu Application Platform GUI:
 
    Wait a few moments for this to take place, if need be.
 
-1. Configure Tanzu Application Platform GUI to use the newly created certificate.
+1. Configure Tanzu Developer Portal to use the newly created certificate.
    To do so, update the `tap-values.yaml` file that you used during installation to include the
    following items under the `tap-gui` section:
 

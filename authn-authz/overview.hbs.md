@@ -40,5 +40,5 @@ For more information about working with roles, see [Bind a user or group to a de
 
 ## <a id="disclaimer"></a> Disclaimer
 
-[Tanzu Application Platform GUI](../tap-gui/about.md) does not make use of the described roles.
+[Tanzu Developer Portal](../tap-gui/about.md) does not make use of the described roles.
 Instead, it provides the user with view access for each cluster.

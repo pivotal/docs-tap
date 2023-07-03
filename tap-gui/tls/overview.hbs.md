@@ -1,6 +1,6 @@
-# Overview of enabling TLS for Tanzu Application Platform GUI
+# Overview of enabling TLS for Tanzu Developer Portal
 
-Many users want inbound traffic to Tanzu Application Platform GUI (commonly called TAP GUI) to be
+Many users want inbound traffic to Tanzu Developer Portal (commonly called TAP GUI) to be
 properly encrypted. These topics tell you how to enable TLS encryption either with an existing
 certificate or by using the included cert-manager instance.
 
@@ -11,18 +11,18 @@ certificates, and ClusterIssuers.
 
 ### <a id="cert-delegation"></a> Certificate delegation
 
-Tanzu Application Platform GUI uses the established shared Contour ingress for TLS termination.
+Tanzu Developer Portal uses the established shared Contour ingress for TLS termination.
 
 This enables you to store the certificate in a Kubernetes `secret` and then pass that `secret` and
 `namespace` to the `httpProxy` that was created during installation.
 To do this, see
 [Configuring a TLS certificate by using an existing certificate](enable-tls-existing-cert.hbs.md).
 
-![TLS diagram showing the relationships between Tanzu Application Platform GUI, the certificate, and Contour Shared Ingress.](images/TAP-GUI-TLS.png)
+![TLS diagram showing the relationships between Tanzu Developer Portal, the certificate, and Contour Shared Ingress.](images/TAP-GUI-TLS.png)
 
 ### <a id="cert-mngr-certs-clustiss"></a> cert-manager, certificates, and ClusterIssuers
 
-Tanzu Application Platform GUI can also use the `cert-manager` package that is installed when
+Tanzu Developer Portal can also use the `cert-manager` package that is installed when
 the profile was installed.
 
 This tool allows cert-manager to automatically acquire a certificate from a `clusterIssuer` entity.
@@ -30,7 +30,7 @@ This tool allows cert-manager to automatically acquire a certificate from a `clu
 This external entity can be an external certificate authority, such as Let's Encrypt, or a
 self-signed certificate.
 
-![TLS diagram showing the relationships between Tanzu Application Platform GUI, the cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
+![TLS diagram showing the relationships between Tanzu Developer Portal, the cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
 
 ## <a id="guides"></a> Guides
 

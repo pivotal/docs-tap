@@ -1,16 +1,16 @@
 # View resources on remote EKS clusters
 
 This topic tells you how to view your runtime resources on a remote EKS cluster in
-Tanzu Application Platform GUI (commonly called TAP GUI). For more information, see
+Tanzu Developer Portal (commonly called TAP GUI). For more information, see
 [View runtime resources on remote clusters](view-resources-rbac.md).
 
 ## <a id="set-up-oidc-provider"></a> Set up the OIDC provider
 
 You must set up the OIDC provider to enable RBAC visibility of remote EKS clusters.
 You can see the list of supported OIDC providers in
-[Setting up a Tanzu Application Platform GUI authentication provider](../auth.md).
+[Setting up a Tanzu Developer Portal authentication provider](../auth.md).
 
-Tanzu Application Platform GUI supports multiple OIDC providers.
+Tanzu Developer Portal supports multiple OIDC providers.
 Auth0 is used here as an example.
 
 1. Log in to the Auth0 dashboard.
@@ -24,7 +24,7 @@ choice.
     https://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
     ```
 
-    Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
+    Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Developer Portal in
     [Installing the Tanzu Application Platform package and profiles](../../install-online/profile.hbs.md).
 
 1. Click **Save Changes**.
@@ -86,9 +86,9 @@ This content applies to EKS clusters.
 
     Verify that the output shows `ACTIVE` in the `STATUS` column.
 
-## <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
+## <a id="configure-tap-gui"></a> Configure the Tanzu Developer Portal
 
-Configure visibility of the remote cluster in Tanzu Application Platform GUI:
+Configure visibility of the remote cluster in Tanzu Developer Portal:
 
 1. Obtain your cluster's URL by running:
 
@@ -102,7 +102,7 @@ Configure visibility of the remote cluster in Tanzu Application Platform GUI:
     To view other clusters one by one, edit the number in `.clusters[0].cluster.server` or edit the
     command to view all the configured clusters.
 
-2. Ensure you have an `auth` section in the `app_config` section that Tanzu Application Platform GUI
+2. Ensure you have an `auth` section in the `app_config` section that Tanzu Developer Portal
    uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     ```yaml
@@ -123,7 +123,7 @@ Configure visibility of the remote cluster in Tanzu Application Platform GUI:
     - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider.
       For Auth0, it is only `AUTH0_DOMAIN`.
 
-3. Add a `kubernetes` section to the `app_config` section that Tanzu Application Platform GUI
+3. Add a `kubernetes` section to the `app_config` section that Tanzu Developer Portal
    uses. This section must have an entry for each cluster that has resources to view.
    To do so, copy this YAML content into `tap-values.yaml`:
 
@@ -146,12 +146,12 @@ Configure visibility of the remote cluster in Tanzu Application Platform GUI:
 
     - `CLUSTER-NAME-UNCONSTRAINED` is the cluster name of your choice for your EKS cluster
     - `CLUSTER-URL` is the URL for the remote cluster you are connecting to
-    Tanzu Application Platform GUI. You obtained this earlier in the procedure.
+    Tanzu Developer Portal. You obtained this earlier in the procedure.
 
-    If there are any other clusters that you want to make visible in Tanzu Application Platform GUI,
+    If there are any other clusters that you want to make visible in Tanzu Developer Portal,
     add their entries to `clusters` as well.
 
-## <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Application Platform GUI package
+## <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Developer Portal package
 
 After the new configuration file is ready, update the `tap` package:
 

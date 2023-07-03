@@ -4,7 +4,7 @@ This topic describes how to customize the support menu.
 
 ## <a id="overview"></a> Overview
 
-Many important pages of Tanzu Application Platform GUI have a **Support** button that displays a
+Many important pages of Tanzu Developer Portal have a **Support** button that displays a
 pop-out menu.
 This menu contains a one-line description of the page the user is looking at, and a list of support
 item groupings. For example, the default menu on the Catalog page looks similar to the following image:

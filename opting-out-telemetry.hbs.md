@@ -3,11 +3,11 @@
 This topic tells you how to opt out of the VMware Customer Experience Improvement Program (CEIP) and
 out of Pendo telemetry on an organizational level.
 
-There are two components for telemetry collection in Tanzu Application Platform 
+There are two components for telemetry collection in Tanzu Application Platform
 (commonly known as TAP) under the VMware Customer Experience Improvement Program (CEIP):
 
 1. The standard CEIP telemetry collection
-2. Pendo telemetry from Tanzu Application Platform GUI
+2. Pendo telemetry from Tanzu Developer Portal
 
 Each telemetry component has its own opt-in and opt-out process.
 The CEIP telemetry opt-out decision can be made at an organizational level, whereas the
@@ -26,7 +26,7 @@ the topic.
 
 > **Note** If you decide to opt in to Pendo telemetry collection, each user is given the option to
 > opt in or opt out. For more information, see
-> [Opt in or opt out of Pendo telemetry for Tanzu Application Platform GUI](tap-portal-telemetry.hbs.md).
+> [Opt in or opt out of Pendo telemetry for Tanzu Developer Portal](tap-portal-telemetry.hbs.md).
 
 To turn off CEIP telemetry collection, follow these instructions:
 

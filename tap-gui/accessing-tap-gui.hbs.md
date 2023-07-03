@@ -1,6 +1,6 @@
-# Access Tanzu Application Platform GUI
+# Access Tanzu Developer Portal
 
-This topic tells you how to access Tanzu Application Platform GUI (commonly called TAP GUI) by using
+This topic tells you how to access Tanzu Developer Portal (commonly called TAP GUI) by using
 one of the following methods:
 
 - Access with the LoadBalancer method (default)
@@ -8,7 +8,7 @@ one of the following methods:
 
 ## <a id="lb-method"></a> Access with the LoadBalancer method (default)
 
-1. Verify that you specified the `service_type` for Tanzu Application Platform GUI in
+1. Verify that you specified the `service_type` for Tanzu Developer Portal in
 `tap-values.yaml`, as in this example:
 
     ```yaml
@@ -22,7 +22,7 @@ one of the following methods:
     kubectl get svc -n tap-gui
     ```
 
-1. Access Tanzu Application Platform GUI by using the external IP address with the default port of 7000.
+1. Access Tanzu Developer Portal by using the external IP address with the default port of 7000.
 It has the following form:
 
     ```text
@@ -33,7 +33,7 @@ It has the following form:
 
 ## <a id="ingress-method"></a> Access with the shared Ingress method
 
-The Ingress method of access for Tanzu Application Platform GUI uses the shared
+The Ingress method of access for Tanzu Developer Portal uses the shared
 `tanzu-system-ingress` instance of Contour that is installed as part of the Profile installation.
 
 1. The Ingress method of access requires that you have a DNS host name that you can point at the
@@ -53,7 +53,7 @@ Retrieve this IP address by running:
     ```
 
     The IP address in the `EXTERNAL-IP` field is the one that you point a DNS host record to.
-    Tanzu Application Platform GUI prepends `tap-gui` to your provided subdomain.
+    Tanzu Developer Portal prepends `tap-gui` to your provided subdomain.
     This makes the final host name `tap-gui.YOUR-SUBDOMAIN`.
     You use this host name in the appropriate fields in the `tap-values.yaml` file mentioned later.
 
@@ -99,4 +99,4 @@ name. For example:
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-1. Use a web browser to access Tanzu Application Platform GUI at the host name that you provided.
+1. Use a web browser to access Tanzu Developer Portal at the host name that you provided.

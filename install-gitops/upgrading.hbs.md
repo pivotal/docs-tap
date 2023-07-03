@@ -1,11 +1,11 @@
 # Upgrade your Tanzu Application Platform by using GitOps
 
-This document tells you how to upgrade your Tanzu Application Platform 
+This document tells you how to upgrade your Tanzu Application Platform
 (commonly known as TAP) by using GitOps.
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-You can perform a fresh install of Tanzu Application Platform by following the 
+You can perform a fresh install of Tanzu Application Platform by following the
 instructions in [Installing Tanzu Application Platform](intro.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
@@ -14,7 +14,7 @@ Before you upgrade your Tanzu Application Platform:
 
 - Verify that you meet all the [prerequisites](../prerequisites.hbs.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
 - For information about installing your Tanzu Application Platform, see [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](sops.hbs.md) or [Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](eso.hbs.md).
-- For information about Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](../tap-gui/upgrades.hbs.md#considerations).
+- For information about Tanzu Developer Portal considerations, see [Tanzu Developer Portal Considerations](../tap-gui/upgrades.hbs.md#considerations).
 - Verify all packages are reconciled by running `kubectl get packageinstall --namespace tap-install`.
 
 ## <a id="relocate-images"></a> Relocate Tanzu Application Platform images to a registry
@@ -81,7 +81,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id="upgrading-sops"></a> Upgrade the existing SOPs based installation
 
-In previous versions of Tanzu GitOps RI, sensitive values were provided to Tanzu Sync by using the command line and environment variables. This is replaced by a SOPs encrypted file that is committed to the repository. 
+In previous versions of Tanzu GitOps RI, sensitive values were provided to Tanzu Sync by using the command line and environment variables. This is replaced by a SOPs encrypted file that is committed to the repository.
 
 Follow these steps to upgrade the existing SOPs based installation:
 

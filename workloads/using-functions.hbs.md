@@ -58,10 +58,10 @@ for your environment:
 
 To create a function project from an accelerator:
 
-1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see
+1. From the Tanzu Developer Portal portal, click **Create** on the left navigation bar to see
    the list of available accelerators.
 
-   ![Screenshot of Tanzu Application Platform GUI. The create button in the left navigation menu has been selected.](images/create-accelerator.png)
+   ![Screenshot of Tanzu Developer Portal. The create button in the left navigation menu has been selected.](images/create-accelerator.png)
 
 1. Locate the function accelerator in the language or framework of your choice and click **CHOOSE**.
 
@@ -74,7 +74,7 @@ To create a function project from an accelerator:
 1. Click **NEXT STEP**, verify the
    provided information, and then click **CREATE**.
 
-    ![Generate Accelerators page in Tanzu Application Platform GUI showing a Python function buildpacks accelerator with App accelerator input fields.](images/generate-accelerators.png)
+    ![Generate Accelerators page in Tanzu Developer Portal showing a Python function buildpacks accelerator with App accelerator input fields.](images/generate-accelerators.png)
 
 2. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
