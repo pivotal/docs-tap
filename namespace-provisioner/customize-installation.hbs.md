@@ -220,7 +220,7 @@ Using GitOps
 ## Apply default parameters to all namespaces
 
 The `default_parameters` is an array of parameters that are applied to all namespaces. These
-parameters can be used as ytt (`data.values.default_parameters`) for templating default and
+parameters can be used as ytt, such as  `data.values.default_parameters` for templating default and
 additional resources.
 
 Sample `tap-values.yaml` configuration:
