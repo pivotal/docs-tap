@@ -111,3 +111,36 @@ The cause of the issue is related to the fact that the Providers are installed b
 **Workaround:**
 
 You can work around the issue by creating a `ConfigMap` with your CA cert pem, and then setting `crossplane.registryCaBundleConfig` to refer to said `ConfigMap` in tap-values.yaml. Starting from TAP 1.6, the Crossplane Package will inherit the data configured via `shared_cert_data` and this temporary workaround will no longer be needed.
+
+## <a id="crossplane-providers-custom-cert-inject"></a>Crossplane Providers are not able to communicate with systems that use a custom CA
+
+**Description:**
+
+A known issue exists for Crossplane Providers when they need to communicate with systems that are set up with a custom CA. A prime example for that is the Crossplane Helm Provider trying to pull a helm chart from a registry which uses a custom CA, by using a `releases.helm.crossplane.io`. In such a case you will see that:
+- the `releases.helm.crossplane.io` never reports the status condition Ready=True
+- shows a certificate verification error
+   - in the Reason for the status condition of type Synced
+   - as an event on the `release.helm.crossplane.io`
+
+You can check the status by running `kubectl get releases.helm.crossplane.io`
+
+```console
+NAME                CHART   VERSION   SYNCED   READY   STATE   REVISION   DESCRIPTION   AGE
+wordpress-example           15.2.5    False    False                                    7m37s
+```
+
+And you can dig into the reason with e.g. `kubectl get event --namespace default --field-selector involvedObject.name=wordpress-example,involvedObject.kind=Release,type!=Normal | grep -e 'LAST SEEN' -e 'failed to login'`
+
+```console
+LAST SEEN   TYPE      REASON                            OBJECT                      MESSAGE
+3m41s       Warning   CannotCreateExternalResource      release/wordpress-example   failed to install release: failed to login to registry: Get "https://insecure-registry:443/v2/": tls: failed to verify certificate: x509: certificate signed by unknown authority
+```
+
+The cause of the issue is related to the fact that the Providers are installed by Crossplane itself rather than directly via the [Crossplane Package](../../crossplane/about.hbs.md). CA certificate data configured via the tap-values.yaml file is not currently passed down to Crossplane Providers, and therefore the Providers themselves are unable to successfully connect to the systems they need to communicate with (e.g. for the Helm Provider a registry hosting the helm charts, for the Kubernetes Provider a Kubernetes APIServer).
+
+**Workaround:**
+
+You need to use some sort of admission control which allows to mutate object, in this specific case Pods, and inject the appropriate CA certificate(s). An example for such a system is [Kyverno], specifically [this example][CaInjectExample]. However, any system which can mutate objects at admission time can be used to mutate the Crossplane Provider Pods. Starting from TAP 1.7, the Crossplane Package will inherit the data configured via `shared_cert_data` and configure the Crossplane Providers accordingly, thus this temporary workaround will no longer be needed.
+
+[Kyverno]: https://kyverno.io/
+[CaInjectExample]: https://kyverno.io/policies/other/add-certificates-volume/add-certificates-volume/
