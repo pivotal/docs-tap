@@ -89,3 +89,25 @@ Error: exit status 1
 Explicitly create a ClusterRoleBinding for your user or group to the corresponding
 `app-operator-claim-class-SERVICE` ClusterRole, where `SERVICE` is one of `mysql`, `postgresql`,
 `rabbitmq`, or `redis`.
+
+## <a id="crossplane-providers-custom-cert"></a>Crossplane Providers do not transition to HEALTHY=True if using a custom cert for your registry
+
+**Description:**
+
+A known issue exists relating to the installation and configuration of the Crossplane Providers when using a custom certificate for your registry. This prevents ClassClaims used for dynamic provisioning from reconciling successfully. A common symptom of this issue is ClassClaims indefinitely reporting a status condition of ResourceMatched=False with Reason=ResourceNotReady.
+
+You can confirm the current status of the Crossplane Providers by running `kubectl get providers`:
+
+```console
+NAME                  INSTALLED   HEALTHY   PACKAGE                                                                                                                             AGE
+provider-helm                               registry.example.com/tap/tap-packages:provider-helm@sha256:a3a14b07b79a8983257d1a2cc0449a4806753868178055554cfa38de7b649467         3d5h
+provider-kubernetes                         registry.example.com/tap/tap-packages:provider-kubernetes@sha256:8039f7e56376b46532e3ce0eb7fc4a4501f2d85decf4912bb5952083abb41b7b   3d5h
+```
+
+The Providers here are not reporting INSTALLED=True or HEALTH=True, and thus may be effected by this issue.
+
+The cause of the issue is related to the fact that the Providers are installed by Crossplane itself rather than directly via the [Crossplane Package](../../crossplane/about.hbs.md). CA certificate data configured via the tap-values.yaml file is not currently passed down to Crossplane, and therefore it is unable to successfully pull the Provider images.
+
+**Workaround:**
+
+You can work around the issue by creating a `ConfigMap` with your CA cert pem, and then setting `crossplane.registryCaBundleConfig` to refer to said `ConfigMap` in tap-values.yaml. Starting from TAP 1.6, the Crossplane Package will inherit the data configured via `shared_cert_data` and this temporary workaround will no longer be needed.
