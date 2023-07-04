@@ -135,3 +135,39 @@ Restart IntelliJ to properly detect the context change.
 ## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
 
 {{> 'partials/ide-extensions/ki-projects-with-spaces' }}
+
+## <a id="lock-prevents-live-update"></a> A lock wrongly prevents Live Update from starting again
+
+### Symptom
+
+A lock incorrectly shows that Live Update is still running and prevents Live Update from starting again.
+
+### Cause
+
+Restarting your computer while running Live Update without terminating the Tilt process beforehand.
+
+### Solution
+
+Delete the Tilt lock file. The default location for the file is `~/.tilt-dev/config.lock`.
+
+## <a id="ui-liveness-check-error"></a> UI liveness check causes an EDT Thread Exception error
+
+### Symptom
+
+An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+`"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+
+### Cause
+
+A UI liveness check detected something taking more time than planned on the UI thread and
+freezing the UI. You might experience a brief UI freeze at the same time.
+This happens more commonly when starting IntelliJ because some initialization processes are still
+running. This issue is also commonly reported by users with large projects.
+
+If slow startup processes cause the issue, the UI freeze is likely to be brief.
+If a large number of files causes the issue, the UI freeze is likely to be more severe.
+
+### Solution
+
+There is no workaround currently other than trying to reduce the number of files in your project,
+though that might not be practical in some cases. A fix is planned for the next release.
