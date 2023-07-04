@@ -1,12 +1,14 @@
-# Supply Chain Security Tools for Tanzu – Artifact Metadata Repository (AMR)
+# Supply Chain Security Tools for Tanzu – Artifact Metadata Repository (AMR) (alpha/beta)
 
 This topic gives you an overview of Supply Chain Security Tools (SCST) – Artifact Metadata Repository (AMR).
 
-## AMR Observer
+**Important:** SCST - Artifact Metadata Repository (AMR) have components with alpha and beta statuses, which means that it is still in active development by VMware and might be subject to change at any point. Users might encounter unexpected behavior. This is an opt-in component to gather early feedback from alpha and beta testers and is not installed by default with any profile.
+
+## AMR Observer (alpha)
 
 AMR Observer is a set of managed controllers that will watch for relevant updates on resources of interest. When relevant events are observed, a CloudEvent will be generated and sent to AMR CloudEvent-Handler to be relayed for storage in the Metadata Store. For more information on CloudEvents, see [CloudEvent JSON Specification](./cloudevents.hbs.md)
 
-## AMR CloudEvent Handler
+## AMR CloudEvent Handler (beta)
 
 AMR CloudEvent Handler receives CloudEvents from other sources, such as the AMR Observer, and stores relevant information into the Artifact Metadata Repository or Metadata Store.
 
