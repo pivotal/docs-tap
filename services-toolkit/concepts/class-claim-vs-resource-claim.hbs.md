@@ -20,7 +20,7 @@ They are also used as the trigger mechanism for dynamic provisioning of service 
   After using either a `ClassClaim` or a `ResourceClaim` to claim a service instance,
   no other `ClassClaim` or a `ResourceClaim` can claim that same service instance.
 
-## <a id="resourceclaim"></a> `ResourceClaim`
+## <a id="resourceclaim"></a> Using a `ResourceClaim`
 
 A `ResourceClaim` targets a specific resource in the Kubernetes cluster.  To
 target that resource, the `ResourceClaim` needs the name, namespace, kind, and
@@ -32,7 +32,7 @@ For example, if the application must connect to the exact same database instance
 through development, test, and production environments.
 If if you do not need this guarantee VMware recommends that you use the `ClassClaim` API instead.
 
-## <a id="classclaim"></a> `ClassClaim`
+## <a id="classclaim"></a> Using a `ClassClaim`
 
 A `ClassClaim` targets a `ClusterInstanceClass` in the Kubernetes cluster.
 To target this class, the `ClassClaim` only requires the name of the `ClusterInstanceClass`.
