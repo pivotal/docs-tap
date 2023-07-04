@@ -6,10 +6,11 @@ Application Platform (commonly called TAP).
 The Tanzu Application Platform package has a `shared` top-level configuration key
 for sharing common configuration between the packages it installs.
 
-AppSSO inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data,
-kubernetes_distribution}` configuration values from TAP. These values can be
-overridden with AppSSO-specific values under `appsso`. AppSSO-specific
-configuration has precedence over the shared values of TAP.
+Application Single Sign-on inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data,
+kubernetes_distribution}` configuration values from Tanzu Application Platform. 
+You can override these values with Application Single Sign-On specific values under `appsso`. 
+Application Single Sign-On specific configuration has precedence over the shared 
+values of Tanzu Application Platform.
 
 For example:
 
@@ -23,14 +24,17 @@ appsso:
 # AppSSO-specific configuration goes here.
 ```
 
-## Values
+## <a id="values"></a>Configuration values
 
-### <a id="ca"></a>ca_cert_data
+The package installation of `sso.apps.tanzu.vmware.com` has the following
+configuration values:
+
+### <a id="ca"></a> `ca_cert_data`
 
 You can configure trust for custom CAs by providing their certificates as a PEM
 bundle to `ca_cert_data`. As a result, all `AuthServer`s trust your custom CAs.
 
-This is useful if you have [identity
+This is useful if you have [Identity
 providers](../tutorials/service-operators/identity-providers.hbs.md) serving certificates
 from a custom CA and [configuring AuthServer
 storage](../tutorials/service-operators/storage.hbs.md).
@@ -38,148 +42,143 @@ storage](../tutorials/service-operators/storage.hbs.md).
 Alternatively, you can [configure trust for a single
 AuthServer](../tutorials/service-operators/ca-certs.hbs.md).
 
->**Note** AppSSO-specific `ca_cert_data` is concatenated with
+>**Note** Application Single Sign-on specific `ca_cert_data` is concatenated with
 >`shared.ca_cert_data`. The resulting PEM bundle contains both.
 
-### cluster_resource_namespace
+### <a id="cluster-resource-namespace"></a> `cluster_resource_namespace`
 
-This setting designates the target namespace for when cluster-scoped APIs
+This setting designates the target namespace when the cluster-scoped APIs
 reconcile into namespace-scoped resources.
 
 In particular, the cluster-scoped
 [ClusterUnsafeTestLogin](./api/clusterunsafetestlogin.hbs.md) reconciles into
-namespace-scoped resources; an `AuthServer` amongst others. These resources
-will be placed in the `cluster_resource_namespace`.o
+namespace-scoped resources such as an `AuthServer`. These resources
+are placed in the `cluster_resource_namespace`.
 
-The default is `appsso`.
+The default value of `cluster_resource_namespace` is `appsso`.
 
 >**Note** Updating the `cluster_resource_namespace` of an existing package
->installation will delete-create namespace-scoped resources in the new
->namespace. This causes downtime of the impacted resources momentarily.
+>installation delete or create namespace-scoped resources in the new
+>namespace. This causes downtime for the impacted resources momentarily.
 
-### <a id="default_authserver_clusterissuer"></a> default_authserver_clusterissuer
+### <a id="authserver-clusterissuer"></a> `default_authserver_clusterissuer`
 
 You can denote a `cert-manager.io/v1/ClusterIssuer` as a default issuer for
 `AuthServer.spec.tls.issuerRef` and omit `AuthServer.spec.tls`. When the value
 of `AuthServer.spec.tls.issuerRef` is the empty string `""`, no default issuer
-is assumed and `AuthServer.spec.tls` is required.
+is assumed and no `AuthServer.spec.tls` is required.
 
 If you configured `shared.ingress_issuer` and omitted
 `default_authserver_clusterissuer` while installing Tanzu Application Platform,
-AppSSO uses the ingress issuer of Tanzu Application Platform and sets
-`default_authserver_clusterissuer` to `shared.ingress_issuer`.
+Application Single Sign-on uses the ingress issuer of Tanzu Application Platform 
+and sets `default_authserver_clusterissuer` to `shared.ingress_issuer`.
 
-### <a id="default_workload_domain_template"></a>default_workload_domain_template
+### <a id="workload-domain-template"></a> `default_workload_domain_template`
 
 This is the default template from which
 [WorkloadRegistration](./api/workloadregistration.hbs.md) render redirect URIs.
 It is used when `WorkloadRegistration.spec.workloadDomainTemplate` is omitted.
 
-This is a Golang [text/template](https://pkg.go.dev/text/template). The default
+This is a golang [text/template](https://pkg.go.dev/text/template). The default
 is `"\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"`.
 
-The domain template will be applied with the configured `workload_domain_name`
-as well as the name and namespace specified in
-`WorkloadRegistration.spec.workloadRef`. Refer to [redirect URI
-templating](./api/workloadregistration.hbs.md#redirect-uri-templating).
+The domain template is applied with the configured `workload_domain_name`
+and the name and namespace specified in `WorkloadRegistration.spec.workloadRef`. 
+For more information, see [Redirect URI templating](./api/workloadregistration.hbs.md#redirect-uri-templating).
 
->**Note** Usually, you will want this to be same as
->[CNRs](../../cloud-native-runtimes/about.hbs.md)' `domain_template`.
+In most cases, the value of `default_workload_domain_template` matches the value 
+of [Cloud Native Runtimes](../../cloud-native-runtimes/about.hbs.md)' `domain_template`.
 
-### domain_name
+### <a id="domain-name"></a> `domain_name`
 
-The AppSSO package has one required configuration value, its `domain_name`. It
-is used for templating the issuer URI for `AuthServer`. `domain_name` must be
-the shared ingress domain of your TAP package installation. If your TAP
-installation is configured with `shared.ingress_domain`, then AppSSO will
-inherit the correct configuration.
+The Application Single Sign-on package has one required configuration value, 
+its `domain_name`. It templates the issuer URI for `AuthServer`. `domain_name` must be
+the shared ingress domain of your Tanzu Application Platform package installation. 
+If your Tanzu Application Platform installation is configured with `shared.ingress_domain`, 
+Application Single Sign-on inherits the correct configuration.
 
->**Note** If omitted, `domain_name` is set to `shared.ingress_domain`.
+If omitted, `domain_name` is set to `shared.ingress_domain`.
 
-### domain_template
+### <a id="domain-template"></a> `domain_template`
 
-You can customize how AppSSO template's issuerURIs with the `domain_template`
-configuration. This is a Golang
-[text/template](https://pkg.go.dev/text/template). The default is
+You can customize how Application Single Sign-on template's `issuerURIs` with 
+the `domain_template` configuration. This is a golang
+[text/template](https://pkg.go.dev/text/template). The default value is
 `"\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"`.
 
-The domain template will be applied with the given `domain_name` and the
+The domain template is applied with the given `domain_name` and the
 `AuthServer`'s name and namespace:
 
-- `\{{.Domain}}` will evaluate to the configured `domain_name`
-- `\{{.Name}}` will evaluate to `AuthServer.metadata.name`
-- `\{{.Namespace}}` will evaluate to `AuthServer.metadata.namespace`
+- `\{{.Domain}}` evaluates to the configured `domain_name`
+- `\{{.Name}}` evaluates to `AuthServer.metadata.name`
+- `\{{.Namespace}}` evaluates to `AuthServer.metadata.namespace`
 
-To be able to use a wild-card certificate, consider
-`"\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"`.
+To use a wild-card certificate, consider `"\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"`.
 
-It is strongly recommended to keep the name and namespace part of the template
+VMware recommends to keep the name and namespace sections of the template
 to avoid domain name collisions.
 
-### kubernetes_distribution
+### <a id="kubernetes-distribution"></a> `kubernetes_distribution`
 
 This setting toggles behavior for specific Kubernetes distributions. Currently,
 the only supported values are `""` and `openshift`.
 
 It is processed in combination with `kubernetes_version`.
 
-AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
+Application Single Sign-On installs OpenShift specific RBAC and resources. 
+For more information, see [Application Single Sign-On for OpenShift clusters](openshift.md).
 
->**Note** If omitted, `kubernetes_distribution` is set to
->`shared.kubernetes_distribution`.
+If omitted, `kubernetes_distribution` is set to `shared.kubernetes_distribution`.
 
-### kubernetes_version
+### <a id="kubernetes-version"></a> `kubernetes_version`
 
 This setting toggles behavior for specific Kubernetes distributions. Currently,
-the only supported values are `""` and or semantic versions in the form of
+the only supported values are `""` or semantic versions in the form of
 `\d*\.\d*\.\d*`.
 
 It is processed in combination with `kubernetes_distribution`.
 
-AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
+Application Single Sign-On installs OpenShift specific RBAC and resources. 
+For more information, see [Application Single Sign-On for OpenShift clusters](openshift.md).
 
->**Note** If omitted, `kubernetes_version` is set to
->`shared.kubernetes_version`.
+If omitted, `kubernetes_version` is set to `shared.kubernetes_version`.
 
-### workload_domain_name
+### <a id="workload-domain-name"></a>`workload_domain_name`
 
 This is used as the value for `\{{.Domain}}` in
 [WorkloadRegistration](./api/workloadregistration.hbs.md)'s domain template.
 
 `workload_domain_name` defaults to the value of `domain_name`.
 
->**Note** Usually, you will want this to be same as
->[CNRs](../../cloud-native-runtimes/about.hbs.md)' `domain_name`.
+In most cases, the value of `workload_domain_name` matches the value 
+of [Cloud Native Runtimes](../../cloud-native-runtimes/about.hbs.md)' `domain_name`.
 
-### replicas
+### <a id="replicas"></a> `replicas`
 
-The controller will be run with this many replicas.
+The controller is run with this many replicas. The default value is `1`.
 
-The default is `1`.
+The controller uses leader election so that there is only a single
+active replica at a time. Increasing this value does not improve the
+controller's performance.
 
->**Note** The controller uses leader election so that there's only a single
->active replica at a time. Increasing this value does not improve the
->controller's performance.
-
-### resources
+### <a id="resources"></a> `resources`
 
 This is the value for the controller's
 `Deployment.spec.template.spec.containers[0].resources`.
 
-See [the schema](#schema) for its structure and defaults.
+See [Configuration schema](#schema) for more information about its structure and 
+default values.
 
-### resync_period
+### <a id="resync-period"></a>`resync_period`
 
-This is the duration after which the controller re-synchronizes _all_
-resources. That means that every instance of a AppSSO API is reconciled at this
-point.
+This is the duration after which the controller re-synchronizes all resources. 
+That means that every instance of a Application Single Sign-On API is reconciled at this point.
 
-The default is `2h`.
+The default value is `2h`.
 
->**Note** There's no benefit to customizing this value in all practical
->scenarios.
+VMware does not recommend customizing this value in all practical scenarios.
 
-## Schema
+## <a id="schema"></a> Configuration schema
 
 The package installation of `sso.apps.tanzu.vmware.com` has the following
 configuration schema:
@@ -200,43 +199,43 @@ kubernetes_distribution: ""
 #@schema/desc "Optional: Kubernetes platform version that this package is being installed on. Accepted format: ['x.x.x']"
 kubernetes_version: ""
 
-#@schema/desc "Domain name for AuthServers"
+#@schema/desc "Domain name for AuthServers."
 domain_name: "example.com"
 
-#@schema/desc "Optional: Golang template/text string for constructing AuthServer FQDNs"
+#@schema/desc "Optional: Golang template/text string for constructing AuthServer FQDNs."
 domain_template: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"
 
-#@schema/desc "Optional: A cert-manager.io/v1/ClusterIssuer for defaulting AuthServer TLS"
+#@schema/desc "Optional: A cert-manager.io/v1/ClusterIssuer for defaulting AuthServer TLS."
 default_authserver_clusterissuer: ""
 
-#@schema/desc "Optional: Domain name for Workloads. Defaults to the value of domain_name"
+#@schema/desc "Optional: Domain name for Workloads. Defaults to the value of domain_name."
 workload_domain_name: ""
 
-#@schema/desc "Optional: Golang template/text string for defaulting Workload FQDNs templating"
+#@schema/desc "Optional: Golang template/text string for defaulting Workload FQDNs templating."
 default_workload_domain_template: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"
 
-#@schema/desc "The namespace which children of cluster-scoped resources are located in"
+#@schema/desc "The namespace which children of cluster-scoped resources are located in."
 cluster_resource_namespace: "appsso"
 
-#@schema/desc "Optional: PEM-encoded certificate data for AuthServers to trust TLS connections with a custom CA"
+#@schema/desc "Optional: PEM-encoded certificate data for AuthServers to trust TLS connections with a custom CA."
 ca_cert_data: ""
 
-#@schema/desc "Optional: Interval at which the controller will re-synchronize applied resources"
+#@schema/desc "Optional: Interval at which the controller will re-synchronize applied resources."
 resync_period: "2h"
 
-#@schema/desc "Optional: Number of controller replicas to deploy"
+#@schema/desc "Optional: Number of controller replicas to deploy."
 replicas: 1
 
-#@schema/desc "Optional: Resource requirements the controller deployment"
+#@schema/desc "Optional: Resource requirements of the controller deployment."
 resources:
   requests:
-    #@schema/desc "CPU request of the controller"
+    #@schema/desc "CPU request of the controller."
     cpu: "20m"
-    #@schema/desc "Memory request of the controller"
+    #@schema/desc "Memory request of the controller."
     memory: "100Mi"
   limits:
-    #@schema/desc "CPU limit of the controller"
+    #@schema/desc "CPU limit of the controller."
     cpu: "500m"
-    #@schema/desc "Memory limit of the controller"
+    #@schema/desc "Memory limit of the controller."
     memory: "500Mi"
 ```
