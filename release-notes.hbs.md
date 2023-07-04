@@ -263,6 +263,26 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   - Handles Location configured CloudEvents from the Artifact Metadata Repository Observer
   - Handles ReplicaSet configured CloudEvents from the Artifact Metadata Repository Observer
 
+#### <a id='1-6-0-intellij-ext'></a> Tanzu Developer Tools for IntelliJ
+
+- Added support for Local Source Proxy that eliminates the need to provide source image configuration
+  for rapid iteration in the inner loop
+- Tanzu Developer Tools for IntelliJ can now be used to rapidly iterate on Spring-native applications.
+  Developers can Live Update and debug spring-native applications non-natively and then deploy
+  to a cluster as a native image.
+- Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
+  projects in their preferred IDE
+
+#### <a id='1-6-0-vscode-ext'></a> Tanzu Developer Tools for VS Code
+
+- Added support for Local Source Proxy that eliminates the need to provide source image configuration
+  for rapid iteration in the inner loop
+- Tanzu Developer Tools for IntelliJ can now be used to rapidly iterate on Spring-native applications.
+  Developers can Live Update and debug spring-native applications non-natively and then deploy
+  to a cluster as a native image.
+- Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
+  projects in their preferred IDE
+
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
 
 - **New `default_external_scheme` configuration option**:
@@ -305,16 +325,6 @@ This release includes the following changes, listed by component and area.
   - You must provide the tap-values file during the full dependencies package installation.
 - The full dependencies package repository is tagged with the Tanzu Application Platform package version instead of the Tanzu Build Service package version.
 - The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
-
-#### <a id='1-6-0-developer-tools-for-intellij'></a> Tanzu Developer Tools for IntelliJ
-- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image configuration for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
-- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
-
-#### <a id='1-6-0-developer-tools-for-vscode'></a> Tanzu Developer Tools for Visual Studio Code
-- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
-- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
 
 #### <a id='1-6-0-cnrs-bc'></a> Cloud Native Runtimes
 - **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
