@@ -150,9 +150,7 @@ k8s_resource('APP-NAME', port_forwards=["8080:8080"],
 allow_k8s_contexts('CONTEXT-NAME')
 ```
 
-Where:
-
-- `APP-NAME` is the name of your application
+Where `APP-NAME` is the name of your application
 
 If your Tanzu Application Platform-enabled Kubernetes cluster is running on your local machine, you
 can remove the entire `allow_k8s_contexts` line.
