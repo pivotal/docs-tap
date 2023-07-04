@@ -88,23 +88,25 @@ Open IntelliJ from the CLI. Example command:
 open /Applications/IntelliJ\ IDEA.app
 ```
 
-## <a id="panel-empty-kubeconfig"></a> Tanzu Panel empty when context is set using KUBECONFIG env variable
+## <a id="panel-empty-kubeconfig"></a> Tanzu Panel is empty when the context is set by using the `KUBECONFIG` environment variable
 
 ### Symptom
 
-On macOS, the Tanzu Panel doesn't display workloads or any other resources when setting Kubernetes context via KUBECONFIG env variable.
+On macOS, the Tanzu Panel doesn't display workloads or any other resources when setting the Kubernetes
+context by using a `KUBECONFIG` environment variable.
 Other tools, such as the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.hbs.md), display
 resources correctly.
 
 ### Cause
 
-When starting IntelliJ from Dock or Spotlight, environment variables set by using
-`.profile`, `.bash_profile`, or `.zshrc` are not available, this causes the panels to be empty because the extension can't find the right Kubernetes context. For more information, see this
-[YouTrack issue](https://youtrack.jetbrains.com/issue/IDEA-99154).
+When starting IntelliJ from Dock or Spotlight, environment variables set by using `.profile`,
+`.bash_profile`, or `.zshrc` are not available.
+This causes the panels to be empty because the extension can't find the right Kubernetes context.
+For more information, see this [YouTrack issue](https://youtrack.jetbrains.com/issue/IDEA-99154).
 
 ### Solution
 
-Open IntelliJ from the CLI. Example command:
+Open IntelliJ from the CLI. For example:
 
 ```console
 open /Applications/IntelliJ\ IDEA.app
