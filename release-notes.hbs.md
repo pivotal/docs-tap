@@ -73,10 +73,8 @@ This release includes the following changes, listed by component and area.
   [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enables the ability to:
   - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
-  - Configure the internal unsafe provider with custom claims out of the box <!-- cannot use out of the box. what to replace with -->.
-    For more information, see
-    [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-<!-- Are the following items classes/XRDs new to this version of TAP? -->
+  - Configure the internal unsafe provider with custom claims.
+    For more information, see [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
   use to get started with Application Single Sign-On in non-production environments.
   It is not safe for production.
