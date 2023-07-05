@@ -293,7 +293,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
 
-- **New `default_external_scheme` configuration option**:
+- New `default_external_scheme` configuration option:
   - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with a default scheme you can use for Knative Service URLs. Supported values are either `http` or `https`. You cannot set this option at the same time as the `default_tls_secret` option.
 
 #### <a id='1-6-0-contour'></a> Contour
@@ -430,14 +430,11 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-0-cnrs-ri'></a> Cloud Native Runtimes
 
 - New toggle feature for how to make ConfigMap updates
+  - For some ConfigMaps in Cloud Native Runtimes, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in Cloud Native Runtimes. To configure this option, edit your `cnr-values.yaml` file to change the following configuration:
 
-For some ConfigMaps in CNRs, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in CNRs, as it is for all Tanzu Application Platform components. To configure this option, edit your cnr-values.yaml file to change the following configuration:
-
-```console
+```yaml
 allow_manual_configmap_update: false
 ```
-
-In a planned future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
 
 ---
 
