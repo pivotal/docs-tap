@@ -48,7 +48,7 @@ include:
 - The name of your portal
 - Integrations (GitHub or GitLab keys, identity provider configuration, and so on)
 - The locations of any catalogs on GitHub or GitLab
-- Security overrides
+- Security credentials
 - Showing or hiding the included Tanzu Application Platform plug-ins
 
 ## <a id="foundation"></a> Tanzu Developer Portal Configurator Foundation and Plugins
