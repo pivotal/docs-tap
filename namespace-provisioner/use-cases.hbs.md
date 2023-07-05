@@ -9,3 +9,5 @@ Review the following uses cases:
 [Customize OOTB default resources](use-case4.hbs.md)
 
 [Install multiple scanners in the developer namespace](use-case5.hbs.md)
+
+[Apply Scan Templates overlays from Grype package install on AirGap](use-case6.hbs.md)

@@ -260,8 +260,7 @@ Using GitOps
       subPath: ns-provisioner-samples/gitops-install
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
-
-## Import overlay secrets
+## <a id='import-overlay-secrets'></a> Import overlay secrets
 
 The `overlay_secrets` is a list of secrets that contains [Carvel ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) definitions. These overlays are applied to the resources created by the Namespace Provisioner. If the secrets are located in a different namespace, they are imported to the `namespace-provisioner` namespace.
 
