@@ -222,7 +222,17 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
-- Supply Chain Security Tools (SCST) - Scan 2.0 is promoted from `alpha` to `beta` and can enable SCST - Scan 2.0 in the out-of-the-box test and scan supply chain.
+- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md) is promoted from `alpha` to `beta`.  This promotion primarily includes capabilities to integrate the SCST-Scan 2.0 component with other components of the Tanzu Application Platform, including: 
+  - The ability to [enable](scst-scan/integrate-app-scanning.hbs.md#adding-app-scanning-to-default-test-and-scan-supply-chain) Supply Chain Security Tools - Scan 2.0 in the out-of-the-box test and scan supply chain
+  - [AMR Observer (Alpha)](scst-store/amr/overview.hbs.md#amr-observer) observes scan results from Supply Chain Security Tools - Scan 2.0 and archives them to the [AMR (beta)](scst-store/amr/architecture.hbs.md) for long term storage and reporting, as well as use by other Tanzu Application Platform Components
+  - Results from image scans with Supply Chain Security Tools - Scan 2.0 are now available within the [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.hbs.md) and [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md) plugins for the Tanzu Developer Portal
+  - [Sample scan templates](scst-scan/ivs-custom-samples.hbs.md) have been created to help users get started with examples of how to "bring your own scanner"
+    - [Carbon Black](scst-scan/ivs-carbon-black.hbs.md)
+    - [Snyk](scst-scan/ivs-snyk.hbs.md)
+    - [Prisma](scst-scan/ivs-prisma.hbs.md)
+    - [Trivy](scst-scan/ivs-trivy.hbs.md)
+    - [Grype](scst-scan/ivs-grype.hbs.md)
+  - VMware  continues to encourage feedback on the Supply Chain Security Tools - Scan 2.0 component. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform)
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
