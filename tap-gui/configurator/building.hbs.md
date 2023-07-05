@@ -18,12 +18,12 @@ Meet the following prerequisites:
   an overlay is used to place the built image on the cluster where the pre-built Tanzu Developer
   Portal resides.
 
-- Gain access to an installation registry (where the source Tanzu Application bundles are
-  located) and a build registry (where your built images are staged). If you have a working
+- Your developer namespace must have access to your installation registry (where the source Tanzu Application bundles are
+  located) **and** your build registry (where your built images are staged). It's best to validate that you have a working
   Tanzu Application Platform installation and can build a sample application, such as
   `Tanzu-Java-Web-App` in
-  [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md),
-  you likely have everything you need.
+  [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md)
+  prior to beginning the customization process.
 
 - Ensure that your additional plug-ins are in an NPM registry. This registry can be your own
   private registry or a plug-in registry if you intend to use a third-party or community plug-in.
