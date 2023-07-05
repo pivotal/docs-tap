@@ -179,6 +179,7 @@ docs.vmware.com is built.
                 - [Configure the Tanzu Insight CLI plug-in](cli-plugins/insight/cli-configuration.hbs.md)
                 - [Query data](cli-plugins/insight/query-data.hbs.md)
                 - [Add data](cli-plugins/insight/add-data.hbs.md)
+                - [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md)
                 - [Command reference](cli-plugins/insight/cli-docs/tanzu_insight.hbs.md)
                     - [Overview](cli-plugins/insight/cli-docs/tanzu_insight.hbs.md)
                     - [tanzu insight config](cli-plugins/insight/cli-docs/tanzu_insight_config.hbs.md)

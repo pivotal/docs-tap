@@ -13,6 +13,8 @@ decisions about when and how to mitigate them. The current implementation of tri
 [CycloneDX's Vulnerability Exploitability eXchange (VEX)](https://cyclonedx.org/capabilities/vex/)
 specification, and is designed specifically to work with Tanzu workloads.
 
+You can find some more details about this feature in the [SCST - Store data model definition](../../scst-store/data-models-and-concepts.md).
+
 ## <a id='prerequisites'></a>Prerequisites
 
 Previous to triage, you need to [install the Tanzu Insight CLI plug-in](cli-installation.md) and
