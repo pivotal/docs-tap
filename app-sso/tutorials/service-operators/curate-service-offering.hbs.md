@@ -1,15 +1,15 @@
-# Curating a service offering
+# Curate a service offering
 
 Assuming that you have an `AuthServer` which is configured to your needs after
 the previous sections, here is how you expose it as a ready-to-claim service
 offering.
 
-`ClusterWorkloadRegistrationClass` creates resources so that _application
-operators_ can discover and claim credentials for an AppSSO service offering.
+`ClusterWorkloadRegistrationClass` creates resources so that application
+operators can discover and claim credentials for an AppSSO service offering.
 
-A `ClusterWorkloadRegistrationClass` has a description which will be shown when
-it gets discovered with `tanzu services classes list`. This allows you identity
-the offering as an AppSSO service and say more about it if you like.
+A `ClusterWorkloadRegistrationClass` has a description which is shown when
+it gets discovered with `tanzu services classes list`. This allows you identify
+the offering as an AppSSO service.
 
 Furthermore, `ClusterWorkloadRegistrationClass` carries a base
 `WorkloadRegistration` which is the blueprint for claims against this service.
@@ -17,7 +17,15 @@ This base selects the target `AuthServer`. It can optionally receive a custom
 domain template, labels and annotations which all `WorkloadRegistration` will
 inherit.
 
-Say, we have an `AuthServer` with the following labels:
+## <a id="prerequisites"></a>Prerequisites
+
+Before you create a service offering, you must create and configure an `AuthServer`.
+For instructions, see []().
+<!-- there are many topics for configuring an AuthServer. work out how to link. should it be a subsection? -->
+
+## <a id="create"></a>Create a `ClusterWorkloadRegistrationClass`
+
+For an `AuthServer` with the following labels:
 
 ```yaml
 ---
@@ -30,8 +38,8 @@ metadata:
 #! ...
 ```
 
-We can expose it as a claimable service offering with the following
-`ClusterWorkloadRegistrationClass`:
+You can expose it as a claimable service offering with a `ClusterWorkloadRegistrationClass`
+with configured:
 
 ```yaml
 apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
@@ -46,10 +54,10 @@ spec:
         sso.apps.tanzu.vmware.com/ldap: ""
 ```
 
-After applying this resource, _application operators_ can discover it like so:
+After applying this resource, application operators can discover it by running:
 
-```plain
-❯ tanzu services classes list
+```console
+$ tanzu services classes list
   NAME  DESCRIPTION
   demo  Login by AppSSO
 ```
@@ -60,23 +68,25 @@ services class-claims create` or with a `ClassClaim` resource.
 When a claim is created, a `WorkloadRegistration` gets stamped out from the
 base and it will target our `AuthServer`.
 
+## Customize the `ClusterWorkloadRegistrationClass`
+
 Each `WorkloadRegistration` gets `https://` redirect URIs templated. The
 default template is configured with
 [default_workload_domain_template](../../reference/package-configuration.hbs.md#default_workload_domain_template)
 If omitted the default template is used. Otherwise it can be customized by
 setting a template on the base.
 
-It is possible to further customize each minted `WorkloadRegistration` by
+You can further customize each `WorkloadRegistration` created by
 setting labels and annotations for them.
 
 The default description of an AppSSO service offering is `"Login by AppSSO"`.
-This can be customized. Consider good [names and
-descriptions](#names-and-descriptions).
+This can be customized. Consider using a good name and description.
+For more information, see [Names and descriptions](#names-and-descriptions) later in this topic.
 
-For example, if you would like for `WorkloadRegistration` to template redirect
+For example, if you want the `WorkloadRegistration` to template redirect
 URIs from a custom template and with both `https://` and `http://`, _and_ you
-would like to say that in the service's description, then you modify the
-`ClusterWorkloadRegistrationClass` like so:
+want to say that in the service's description, modify the
+`ClusterWorkloadRegistrationClass` as follows:
 
 ```yaml
 apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
@@ -98,16 +108,16 @@ spec:
           sso.apps.tanzu.vmware.com/ldap: ""
 ```
 
-## Names and descriptions
+## <a id="name-and-desc"></a>Names and descriptions
 
 When choosing a name and a description for a `ClusterWorkloadRegistrationClass`
 consider the following:
 
-* When names of a service are stable across environments (say, from dev to
+- When names of a service are stable across environments (say, from dev to
   production), then _application operators_ can use the same `ClassClaim` in
   all environments.
 
-* The description of a service should clearly communicate its flavour and
+- The description of a service must clearly communicate its flavor and
   provider. The default description of a `ClusterWorkloadRegistrationClass` is
   `"Login by AppSSO"`.
 
@@ -117,4 +127,3 @@ consider the following:
   If you would like to customize your `ClusterWorkloadRegistrationClass`'s
   description consider prefixing it with `"Login by AppSSO - "`, e.g. `"Login
   by AppSSO - LDAP and GitHub`.
-
