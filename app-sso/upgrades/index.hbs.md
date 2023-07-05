@@ -15,9 +15,9 @@ tanzu package installed update PACKAGE-INSTALLATION-NAME -p sso.apps.tanzu.vmwar
 
 >**Note** You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
 
-## <a id="migration-guides"></a>Migration guides
+## <a id="migration-guides"></a> Migration guides
 
-### <a id="v3-to-v3_1">`v3.0.0` to `v3.1.0`
+### <a id="v3-to-v3_1"></a> `v3.0.0` to `v3.1.0`
 
 VMware recommends that you recreate your `AuthServers` after upgrading your AppSSO to `v3.1.0` 
 with the following changes:
@@ -37,14 +37,14 @@ the following migration tasks in your existing `ClientRegistration` resources:
 - Migrate `.spec.clientAuthenticationMethod` values. 
 - Migrate existing value `post` to `client_secret_post` or migrate existing value `basic` to `client_secret_basic`. 
 
-### <a id="v2-to-v3">`v2.0.0` to `v3.0.0`
+### <a id="v2-to-v3"></a> `v2.0.0` to `v3.0.0`
 
 VMware recommends that you recreate your `AuthServers` after upgrading your AppSSO to `v3.0.0`
 with the following changes:
 
 - Migrate field `.spec.tls.disabled` to `.spec.tls.deactivated`.
 
-### <a id="v1-to-v2">`v1.0.0` to `v2.0.0`
+### <a id="v1-to-v2"></a> `v1.0.0` to `v2.0.0`
 
 VMware recommends that you recreate your `AuthServers` after upgrading your AppSSO to `v2.0.0`
 with the following changes:
