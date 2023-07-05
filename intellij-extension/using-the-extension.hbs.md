@@ -145,16 +145,18 @@ To add a namespace:
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-3. If you are using the `KUBECONFIG` env variable to organize access to different clusters on macOS, make sure that you launch the IDE using the command line instead of Dock or Spotlight. More [info](troubleshooting.hbs.md#panel-empty-kubeconfig).
+3. If you are using the `KUBECONFIG` environment variable to organize access to different clusters on
+   macOS, use the CLI to run the IDE instead of Dock or Spotlight.
+   For why, see [Troubleshooting](troubleshooting.hbs.md#panel-empty-kubeconfig).
 
 To add additional namespaces to your Workloads panel:
 
 1. Click on the gear icon in the upper right corner of the Workloads panel
    ![Screenshot of the Tanzu Workloads panel namespace selection.](../images/intellij-namespace-selection-1.png)
 
-1. Click on **Select Namespaces...**
+2. Click on **Select Namespaces...**
 
-1. Select the checkboxes of the namespaces that you want to add to your panel.
+3. Select the checkboxes of the namespaces that you want to add to your panel.
 
 ## <a id="mono-repo"></a> Working with microservices in a monorepo
 

@@ -1,7 +1,7 @@
-# Application Live View for Spring Cloud Gateway Applications in Tanzu Application Platform GUI
+# Application Live View for Spring Cloud Gateway Applications in Tanzu Developer Portal
 
 This topic tells you about the Application Live View pages for Spring Cloud Gateway Applications in
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="api-success-rate-page"></a> API Success Rate page
 

@@ -88,23 +88,25 @@ Open IntelliJ from the CLI. Example command:
 open /Applications/IntelliJ\ IDEA.app
 ```
 
-## <a id="panel-empty-kubeconfig"></a> Tanzu Panel empty when context is set using KUBECONFIG env variable
+## <a id="panel-empty-kubeconfig"></a> Tanzu Panel is empty when the context is set by using the `KUBECONFIG` environment variable
 
 ### Symptom
 
-On macOS, the Tanzu Panel doesn't display workloads or any other resources when setting Kubernetes context via KUBECONFIG env variable.
+On macOS, the Tanzu Panel doesn't display workloads or any other resources when setting the Kubernetes
+context by using a `KUBECONFIG` environment variable.
 Other tools, such as the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.hbs.md), display
 resources correctly.
 
 ### Cause
 
-When starting IntelliJ from Dock or Spotlight, environment variables set by using
-`.profile`, `.bash_profile`, or `.zshrc` are not available, this causes the panels to be empty because the extension can't find the right Kubernetes context. For more information, see this
-[YouTrack issue](https://youtrack.jetbrains.com/issue/IDEA-99154).
+When starting IntelliJ from Dock or Spotlight, environment variables set by using `.profile`,
+`.bash_profile`, or `.zshrc` are not available.
+This causes the panels to be empty because the extension can't find the right Kubernetes context.
+For more information, see this [YouTrack issue](https://youtrack.jetbrains.com/issue/IDEA-99154).
 
 ### Solution
 
-Open IntelliJ from the CLI. Example command:
+Open IntelliJ from the CLI. For example:
 
 ```console
 open /Applications/IntelliJ\ IDEA.app
@@ -135,3 +137,39 @@ Restart IntelliJ to properly detect the context change.
 ## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
 
 {{> 'partials/ide-extensions/ki-projects-with-spaces' }}
+
+## <a id="lock-prevents-live-update"></a> A lock wrongly prevents Live Update from starting again
+
+### Symptom
+
+A lock incorrectly shows that Live Update is still running and prevents Live Update from starting again.
+
+### Cause
+
+Restarting your computer while running Live Update without terminating the Tilt process beforehand.
+
+### Solution
+
+Delete the Tilt lock file. The default location for the file is `~/.tilt-dev/config.lock`.
+
+## <a id="ui-liveness-check-error"></a> UI liveness check causes an EDT Thread Exception error
+
+### Symptom
+
+An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+`"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+
+### Cause
+
+A UI liveness check detected something taking more time than planned on the UI thread and
+freezing the UI. You might experience a brief UI freeze at the same time.
+This happens more commonly when starting IntelliJ because some initialization processes are still
+running. This issue is also commonly reported by users with large projects.
+
+If slow startup processes cause the issue, the UI freeze is likely to be brief.
+If a large number of files causes the issue, the UI freeze is likely to be more severe.
+
+### Solution
+
+There is no workaround currently other than trying to reduce the number of files in your project,
+though that might not be practical in some cases. A fix is planned for the next release.

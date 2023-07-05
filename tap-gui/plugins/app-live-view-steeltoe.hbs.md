@@ -1,7 +1,7 @@
-# Application Live View for Steeltoe Applications in Tanzu Application Platform GUI
+# Application Live View for Steeltoe Applications in Tanzu Developer Portal
 
 This topic tells you about the Application Live View pages for Steeltoe Applications in
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="details-page"></a> Details page
 

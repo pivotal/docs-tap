@@ -1,6 +1,7 @@
-# Customize the Tanzu Application Platform GUI portal
+# Customize the Tanzu Developer Portal portal
 
-This section describes how to customize the Tanzu Application Platform GUI portal.
+This section describes how to customize the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) portal.
 
 ## <a id="brand-customizing"></a> Customize branding
 
@@ -23,24 +24,24 @@ To make these customizations:
     image with a transparent background is optimal.
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
-2. Reinstall your Tanzu Application Platform GUI package by following steps in
+2. Reinstall your Tanzu Developer Portal package by following steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Application Platform GUI,
+After the updated values configuration file is applied in Tanzu Developer Portal,
 you see the customized version of your portal.
 
 If there is an error in any of the supplied images encoded in base64 or in your choice of portal name,
-Tanzu Application Platform GUI reverts to the original branding template.
+Tanzu Developer Portal reverts to the original branding template.
 
-![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
+![Screenshot displaying the custom branding within the Tanzu Developer Portal portal](../images/customized-branding.png)
 
 ## <a id="customize-catalog-page"></a> Customize the Software Catalog page
 
 You can customize the name of your organization on the Software Catalog page of
-Tanzu Application Platform GUI portal.
+Tanzu Developer Portal portal.
 By default, the portal displays **Your Organization** next to **Catalog** and in the selection box.
 
-![Screenshot displaying the default Software Catalog naming in the Tanzu Application Platform GUI portal. The words Your Organization are framed.](../images/standard-catalog.png)
+![Screenshot displaying the default Software Catalog naming in the Tanzu Developer Portal portal. The words Your Organization are framed.](../images/standard-catalog.png)
 
 ### <a id="catalog-name-customize"></a> Customize the name of the organization
 
@@ -59,16 +60,16 @@ file:
     Where `ORG-NAME` is the name of your organization for the software catalog, such as
     `Our Organization Name`. You don't need to add `Catalog` to the `ORG-NAME`.
 
-1. Reinstall your Tanzu Application Platform GUI package by following the steps in
+1. Reinstall your Tanzu Developer Portal package by following the steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Application Platform GUI, you see
+After the updated values configuration file is applied in Tanzu Developer Portal, you see
 the customized version of your portal.
 
-If there is an error in the provided configuration parameters, Tanzu Application Platform GUI
+If there is an error in the provided configuration parameters, Tanzu Developer Portal
 reverts to the original organization name.
 
-![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal](../images/customized-catalog-name.png)
+![Screenshot displaying the custom Software Catalog naming within the Tanzu Developer Portal portal](../images/customized-catalog-name.png)
 
 ### <a id="prevent-changes"></a> Prevent changes to the software catalog
 
@@ -86,7 +87,7 @@ tap_gui:
 ## <a id="customize-auth-page"></a> Customize the Authentication page
 
 To customize the portal name on the **Authentication** page and the name of the browser tab
-for Tanzu Application Platform GUI:
+for Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
 file:
@@ -101,16 +102,16 @@ file:
     Where `CUSTOM-TAB-NAME` is the name on the Authentication page and the browser tab of your
     portal, such as `Our Organization Full Name`.
 
-1. Reinstall your Tanzu Application Platform GUI package by following the steps in
+1. Reinstall your Tanzu Developer Portal package by following the steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Application Platform GUI,
+After the updated values configuration file is applied in Tanzu Developer Portal,
 you see the customized version of your portal.
 
 ## <a id="customize-default-view"></a> Customize the default view
 
 You can set your default route when the user is accessing your portal.
-Without this customization, when the user accesses the Tanzu Application Platform GUI URL,
+Without this customization, when the user accesses the Tanzu Developer Portal URL,
 it displays the list of owned components of the software catalog.
 
 To change the default view:
@@ -130,19 +131,19 @@ file:
     all components of the software catalog instead of defaulting to owned components.
     As another example, you can type `/create` to show Application Accelerator when the portal starts.
 
-    > **Caution** Tanzu Application Platform GUI redirects you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`
+    > **Caution** Tanzu Developer Portal redirects you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`
     > even if there is an error in `YOUR-PREFERRED-ROUTE`.
 
-1. Reinstall your Tanzu Application Platform GUI package by following the steps in
+1. Reinstall your Tanzu Developer Portal package by following the steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Application Platform GUI,
+After the updated values configuration file is applied in Tanzu Developer Portal,
 you see the customized version of your portal.
 
 ## <a id="cust-security-banners"></a> Customize security banners
 
-You can instruct Tanzu Application Platform GUI to create security banners on the top and bottom of
-the page. To add security banners to Tanzu Application Platform GUI:
+You can instruct Tanzu Developer Portal to create security banners on the top and bottom of
+the page. To add security banners to Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
    file, as in the following example:
@@ -169,8 +170,8 @@ the page. To add security banners to Tanzu Application Platform GUI:
       It accepts CSS colors, such as `#ffffff`. The default color is `#C23B2E`
     - `OPTIONAL-LINK` is the link to which your text redirects. Setting this is optional.
 
-1. Reinstall your Tanzu Application Platform GUI package by following the steps in
+1. Reinstall your Tanzu Developer Portal package by following the steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Application Platform GUI,
+After the updated values configuration file is applied in Tanzu Developer Portal,
 the customized version of your portal is displayed.

@@ -1,7 +1,7 @@
 # Running your Customized Tanzu Developer Portal
 
 At this stage, you should have completed the building of your customized Tanzu Developer Portal
-image in the [previous](building.hbs.md) section.
+(formerly named Tanzu Application Platform GUI) image in the [previous](building.hbs.md) section.
 
 After the build has completed successfully you need to retrieve the image reference of the built
 portal. You then use that and perform a [`ytt`](https://carvel.dev/ytt/) overlay to substitute that
@@ -61,7 +61,7 @@ stringData:
           containers:
             #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
             #@overlay/match-child-defaults missing_ok=True
-            - image: IMAGE-REFERENCE        
+            - image: IMAGE-REFERENCE
             #@overlay/replace
               args:
               - -c
@@ -83,7 +83,7 @@ stringData:
               readinessProbe:
                 httpGet:
                   port: 7007
-    
+
     #@ load("@ytt:overlay", "overlay")
     #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
     ---

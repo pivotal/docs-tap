@@ -1,6 +1,6 @@
 # Customize Installation of Namespace Provisioner
 
-This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Manager (commonly known as TAP).
+This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Platform (commonly known as TAP).
 
 Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 The Namespace Provisioner package is installed as part of all the standard installation profiles

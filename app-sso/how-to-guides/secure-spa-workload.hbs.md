@@ -1,7 +1,7 @@
 # Secure a single-page app workload
 
-This topic tells you how to to secure a sample single-page Angular app `Workload` 
-with Application Single Sign-On (commonly called AppSSO), which runs on 
+This topic tells you how to to secure a sample single-page Angular app `Workload`
+with Application Single Sign-On (commonly called AppSSO), which runs on
 Tanzu Application Platform (commonly known as TAP).
 
 Follow these steps to deploy a sample single-page app `Workload`:
@@ -17,9 +17,9 @@ Follow these steps to deploy a sample single-page app `Workload`:
 
 Follow these steps to fetch the single-page Angular app source code:
 
-1. Download the Angular Frontend accelerator from the Tanzu Application Platform GUI accelerators located on your Tanzu Application Platform cluster:
+1. Download the Angular Frontend accelerator from the Tanzu Developer Portal accelerators located on your Tanzu Application Platform cluster:
 
-    - Option 1: Use the Tanzu Application Platform GUI dashboard by using a browser.
+    - Option 1: Use the Tanzu Developer Portal dashboard by using a browser.
 
         Navigate to Application Accelerators and choose the **Angular Frontend** accelerator and then select the **Single Sign-on** option.
 
@@ -83,7 +83,7 @@ Follow these steps to claim the credentials for an Application Single Sign-On se
       sso       Login by AppSSO
     ```
 
-    The actual names of your Application Single Sign-On services might be different. 
+    The actual names of your Application Single Sign-On services might be different.
     VMWare assumes that there's one Application Single Sign-On service with the name `sso`.
 
 1. Claim the credentials for that service by creating a `ClassClaim` named

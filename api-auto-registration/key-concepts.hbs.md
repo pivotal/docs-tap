@@ -11,7 +11,8 @@ You can use the full potential of API Auto Registration by using a distributed e
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
-The information from this custom resource is used to construct an API entity in Tanzu Application Platform GUI.
+The information from this custom resource is used to construct an API entity in Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI).
 
 This custom resource exposes the following text boxes:
 
@@ -37,10 +38,11 @@ spec:
         namespace:
 ```
 
-The text boxes cause specific behavior in Tanzu Application Platform GUI:
+The text boxes cause specific behavior in Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI):
 
 - The system and owner are copied to the API entity. You might have to separately create and add the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind to the catalog.
-- Tanzu Application Platform GUI uses the namespace for the API entity where the APIDescriptor CR is applied. This causes the API entity's name, system, and owner to all be in that namespace.
+- Tanzu Developer Portal uses the namespace for the API entity where the APIDescriptor CR is applied. This causes the API entity's name, system, and owner to all be in that namespace.
 - To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
 - If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
 
@@ -129,7 +131,7 @@ In addition to `conditions` the `status` contains a couple of other useful field
 
 ```yaml
 status:
-  registeredEntityURL:   # Url of the corresponding API Entity in TAP GUI
-  registeredTapUID:      # Unique identifier for the corresponding API Entity in TAP GUI
+  registeredEntityURL:   # Url of the corresponding API Entity in Tanzu Developer Portal
+  registeredTapUID:      # Unique identifier for the corresponding API Entity in Tanzu Developer Portal
   resolvedAPISpec:       # Full API Spec as retrieved by Api Auto Registration
 ```

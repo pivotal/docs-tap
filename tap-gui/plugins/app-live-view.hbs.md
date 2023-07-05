@@ -1,7 +1,7 @@
-# Application Live View in Tanzu Application Platform GUI
+# Application Live View in Tanzu Developer Portal
 
-This topic tells you about Application Live View in Tanzu Application Platform GUI
-(commonly called TAP GUI).
+This topic tells you about Application Live View in Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI).
 
 ## <a id="overview"></a> Overview
 
@@ -28,10 +28,10 @@ without a restart (where the Spring Boot application, for example, supports that
 
 ## <a id="plug-in-entry-point"></a> Entry point to Application Live View plug-in
 
-The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
+The Application Live View UI plug-in is part of Tanzu Developer Portal.
 To use the Application Live View plug-in:
 
-1. Select the relevant component under the **Organization Catalog** in Tanzu Application Platform GUI.
+1. Select the relevant component under the **Organization Catalog** in Tanzu Developer Portal.
 1. Select the desired service under the **Runtime Resources** tab.
 1. Select the desired pod from the **Pods** section under the **Runtime Resources** tab.
 1. You can now see all the details, do some lightweight troubleshooting, and interact with the application within certain boundaries under the **Live View** section.

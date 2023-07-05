@@ -30,10 +30,10 @@ If you used the default profiles provided in [Installing the Tanzu Application P
 - **Set up a developer namespace to accommodate the developer workload**<br>
 See [Set up developer namespaces to use your installed packages](install-online/set-up-namespaces.hbs.md).
 
-- **Installed Tanzu Application Platform GUI**<br>
-See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
+- **Installed Tanzu Developer Portal**<br>
+See [Install Tanzu Developer Portal](tap-gui/install-tap-gui.md).
 If you used the Full or View profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md),
-you have already installed Tanzu Application Platform GUI.
+you have already installed Tanzu Developer Portal.
 
 - **Installed the VS Code Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.

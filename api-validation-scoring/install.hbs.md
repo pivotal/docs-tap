@@ -151,8 +151,8 @@ Follow these steps to install the API Validation and Scoring package:
     Where:
 
     - `HOST` is the hostname of the API Validation and Scoring GUI. It can be left empty `""` to use the default value.
-    - `BACKSTAGE-HOST` is the Tanzu Application Platform GUI or Backstage host that you want to point to. For example, `https://tap-gui.view-cluster.com`
-    - `BACKSTAGE-PORT` is the Tanzu Application Platform GUI or Backstage port that you want to point to. For example, `443`
+    - `BACKSTAGE-HOST` is the Tanzu Developer Portal or Backstage host that you want to point to. For example, `https://tap-gui.view-cluster.com`
+    - `BACKSTAGE-PORT` is the Tanzu Developer Portal or Backstage port that you want to point to. For example, `443`
 
 1. Install the API Validation and Scoring package using the Tanzu CLI by running:
 

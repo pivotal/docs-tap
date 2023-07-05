@@ -1,7 +1,7 @@
 # Configure a TLS certificate by using an existing certificate
 
 This topic tells you how to use the certificate information from your external certificate authority
-to encrypt inbound traffic to Tanzu Application Platform GUI (commonly called TAP GUI).
+to encrypt inbound traffic to Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -9,11 +9,11 @@ Your certificate authority gave you a certificate file, of the form `CERTIFICATE
 a signing key, of the form `KEY-FILE-NAME.key`.
 Ensure that these files are present on the host from which you run the CLI commands.
 
-![TLS diagram showing the relationships between Tanzu Application Platform GUI, the certificate, and Contour Shared Ingress.](images/TAP-GUI-TLS.png)
+![TLS diagram showing the relationships between Tanzu Developer Portal, the certificate, and Contour Shared Ingress.](images/TAP-GUI-TLS.png)
 
 ## <a id="procedure"></a> Procedure
 
-To configure Tanzu Application Platform GUI with an existing certificate:
+To configure Tanzu Developer Portal with an existing certificate:
 
 1. Create the Kubernetes secret by running:
 
@@ -26,7 +26,7 @@ To configure Tanzu Application Platform GUI with an existing certificate:
     - `KEY-FILE-NAME` is the name of the `key` file that your certificate issuer gave you
     - `CERTIFICATE-FILE-NAME` is the name of the `crt` file that your certificate issuer gave you
 
-2. Configure Tanzu Application Platform GUI to use the newly created secret.
+2. Configure Tanzu Developer Portal to use the newly created secret.
    Do so by editing the `tap-values.yaml` file that you used during installation to include the
    following under the `tap-gui` section:
 

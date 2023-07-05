@@ -4,7 +4,7 @@ This topic tells you how to use VMware Tanzu Developer Tools for Visual Studio.
 
 > **Note** This extension is in the beta stage of development.
 
-## <a id="prereqs"/> Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Ensure that you meet the following prerequisites:
 
@@ -16,7 +16,7 @@ Ensure that you meet the following prerequisites:
 - You have an image repository to which source code in the local file system can be uploaded before
   Build Service builds it.
 
-## <a id="settings"/> Configure Tanzu settings
+## <a id="settings"></a> Configure Tanzu settings
 
 To configure settings:
 
@@ -26,7 +26,7 @@ To configure settings:
 
    ![Screenshot of the Tanzu Settings window. A Save button is at the bottom right.](../images/vs-setting.png)
 
-## <a id="apply-workload"/> Apply a workload
+## <a id="apply-workload"></a> Apply a workload
 
 To apply a workload:
 
@@ -34,7 +34,7 @@ To apply a workload:
 2. Click **Tanzu: Apply Workload**.
 3. Output appears in the Tanzu Output pane of the Visual Studio Output tool window.
 
-## <a id="delete-workload"/> Delete a workload
+## <a id="delete-workload"></a> Delete a workload
 
 To delete a workload:
 
@@ -42,7 +42,7 @@ To delete a workload:
 1. Click **Tanzu: Delete Workload**.
 1. Output appears in the Tanzu Output pane of the Visual Studio Output tool window.
 
-## <a id="use-live-update"/> Use Live Update
+## <a id="use-live-update"></a> Use Live Update
 
 To use Live Update:
 
@@ -50,7 +50,7 @@ To use Live Update:
 1. To Start Live Update, click **Tanzu: Start Live Update**.
 1. To Stop Live Update, click **Tanzu: Stop Live Update**.
 
-## <a id="use-remote-debug"/> Use Remote Debug
+## <a id="use-remote-debug"></a> Use Remote Debug
 
 1. Deploy a workload using `Apply Workload` or `Live Update`.
 1. Right-click the Solution Explorer project.
@@ -73,19 +73,23 @@ This file location is temporary and will change in a future version.
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
 > might fail to attach.
 
-## <a id="extension-log"/> Access the extension log
+## <a id="workload-panel"></a> Tanzu Workloads panel
 
-The extension creates log entries in a file named `tanzu-dev-tools.log`.
-This file is in the directory where Visual Studio Installer installed the extension.
+{{> 'partials/ide-extensions/workload-panel-intro' }}
 
-To find the log file, run:
+![Tanzu Workloads panel with the context menu open on the selected sample app.](../images/vs-workloads-panel-context-menu.png)
+
+## <a id="extension-log"></a> Access the extension logs
+
+The extension creates log entries in two files named `tanzu-dev-tools-{GUID}.log` and
+`tanzu-language-server-{GUID}.log`.
+These files are in the directory where Visual Studio Installer installed the extension.
+
+To find the log files, run:
 
 ```console
-C:> dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\tanzu-dev-tools.log
-
-    Directory: C:\Users\...
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a---           3/31/2023  1:07 PM           1668 tanzu-dev-tools.log
+dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\Logs\tanzu-*.log
 ```
+
+You can override the log file paths by setting the environment variables `TANZU_DT_LOG` and
+`TANZU_LS_LOG`.

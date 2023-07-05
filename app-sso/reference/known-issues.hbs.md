@@ -1,29 +1,30 @@
-# Known Issues
+# Known issues for Application Single Sign-On
 
-As of {{ vars.app-sso.version}}, the following are known product limitations to
-be aware of.
+This topic describes known limitations and workarounds related to working with 
+Application Single Sign-On (commonly called AppSSO). For further troubleshooting 
+guidance, see [Troubleshoot Application Single Sign-on](../how-to-guides/troubleshoot.hbs.md).
 
-## Limited number of `ClientRegistrations` per `AuthServer`
+## <a id="clientregistrations"></a> Limited number of `ClientRegistrations` per `AuthServer`
 
 The number of `ClientRegistration` for an `AuthServer` is limited at
-**~2,000**. This is a soft limitation, and if you are attempting to apply more
-`ClientRegistration` resources than the limit, we cannot guarantee those
-clients applied past the limit to be in working order. This is subject to
+arond 2,000. This is a soft limitation. If you attempt to apply more
+`ClientRegistration` resources than the limit, VMware cannot ensure those
+clients applied past the limit to work as expected. This is subject to
 change in future product versions.
 
-## LetsEncrypt: domain name for Issuer URI limited to 64 characters maximum
+## <a id="letsencrypt"></a> LetsEncrypt: domain name for Issuer URI limited to 64 characters maximum
 
-If using LetsEncrypt to issue TLS certificates for an `AuthServer`, the domain
+If you use LetsEncrypt to issue TLS certificates for an `AuthServer`, the domain
 name for the Issuer URI (excluding the `http{s}` prefix) cannot exceed 64
-characters in length. If exceeded, you may receive a LetsEncrypt-specific error
-during Certificate issuance process. This limitation may be observed when your
+characters in length. If exceeded, you might receive a LetsEncrypt specific error
+during the certificate issuance process. You might observe this limitation when your
 base domain and subdomain joined together exceed the maximum limit.
 
-**Workaround** - if your default Issuer URI is too long, utilize the
-`domain_template` field in AppSSO values yaml to potentially shorten the
+If your default Issuer URI is too long, use the
+`domain_template` field in Application Single Sign-On values YAML to shorten the
 domain.
 
-For example, you may forgo the namespace in the Issuer URI like so:
+For example, you can forgo the namespace in the Issuer URI as follows:
 
 ```yaml
 domain_template: "\{{.Name}}.\{{.Domain}}"
@@ -46,7 +47,7 @@ authentication methods:
 The existing `post` and `basic` values do not work with Spring Boot 3 based
 `Workloads` with Spring Cloud Bindings and are deprecated.
 
-## `ClassClaim` credential propagation time
+## <a id='classclaim'></a> `ClassClaim` credential propagation time
 
-It can take up `~60-120s` for client credentials to propagate up into a
+It can take up 60 to 120 seconds for the client credentials to propagate up into a
 `ClassClaim`'s service binding secret.

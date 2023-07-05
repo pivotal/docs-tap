@@ -16,7 +16,7 @@ provided for specific options defined in the accelerator metadata.
 
 ## <a id="work-with-accelerators"></a>Working with accelerators
 
-The Application Accelerator plug-in for Tanzu Application Platform GUI helps you to discover accelerators
+The Application Accelerator plug-in for Tanzu Developer Portal helps you to discover accelerators
 and to enter extra information used for processing the files before downloading.
 As of Tanzu Application Platform v1.2, developers can also discover and work on accelerators right in
 Visual Studio Code with the Tanzu Application Accelerator for VS Code extension.

@@ -1,7 +1,7 @@
-# Supply Chain Choreographer in Tanzu Application Platform GUI
+# Supply Chain Choreographer in Tanzu Developer Portal
 
-This topic tells you about Supply Chain Choreographer in Tanzu Application Platform GUI
-(commonly called TAP GUI).
+This topic tells you about Supply Chain Choreographer in Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI).
 
 ## <a id="overview"></a> Overview
 
@@ -12,12 +12,12 @@ Tanzu Application Platform, see [Supply Chain Choreographer for Tanzu](../../scc
 
 ## <a id="prerequisites"></a> Prerequisites
 
-To use Supply Chain Choreographer in Tanzu Application Platform GUI you must have:
+To use Supply Chain Choreographer in Tanzu Developer Portal you must have:
 
 - One of the following installed on your cluster:
   - [Tanzu Application Platform Full profile](../../install-online/profile.hbs.md#install-profile)
   - [Tanzu Application Platform View profile](../../install-online/profile.hbs.md#install-profile)
-  - [Tanzu Application Platform GUI package](../install-tap-gui.hbs.md) and a metadata store package
+  - [Tanzu Developer Portal package](../install-tap-gui.hbs.md) and a metadata store package
 - One of the following installed on the target cluster where you want to deploy your workload:
   - [Tanzu Application Platform Run profile](../../install-online/profile.hbs.md#install-profile)
   - [Tanzu Application Platform Full profile](../../install-online/profile.hbs.md#install-profile)
@@ -26,15 +26,15 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 
 ## <a id="scan"></a> Enable CVE scan results
 
-To see CVE scan results within Tanzu Application Platform GUI, connect Tanzu Application Platform GUI
+To see CVE scan results within Tanzu Developer Portal, connect Tanzu Developer Portal
 to the Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
 
-### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to Metadata Store
+### <a id="scan-auto"></a> Automatically connect Tanzu Developer Portal to Metadata Store
 
-Tanzu Application Platform GUI has automation for enabling connection between
-Tanzu Application Platform GUI and SCST - Store. By default, this automation is active and requires
+Tanzu Developer Portal has automation for enabling connection between
+Tanzu Developer Portal and SCST - Store. By default, this automation is active and requires
 no configuration. To deactivate this automation, add the following block to the
-Tanzu Application Platform GUI section within your `tap-values.yaml` file:
+Tanzu Developer Portal section within your `tap-values.yaml` file:
 
 ```yaml
 # tap-values.yaml
@@ -47,8 +47,8 @@ tap_gui:
 
 This file change creates a service account for the connection with privileges scoped only to
 Metadata Store.
-In addition, it mounts the token of the service account into the Tanzu Application Platform GUI
-pod and produces for you the `app_config` section necessary for Tanzu Application Platform GUI to
+In addition, it mounts the token of the service account into the Tanzu Developer Portal
+pod and produces for you the `app_config` section necessary for Tanzu Developer Portal to
 communicate with SCST - Store.
 
 #### <a id="troubleshooting"></a> Troubleshooting
@@ -101,7 +101,7 @@ tap_gui:
         target: SOMETHING
 ```
 
-### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to Metadata Store
+### <a id="scan-manual"></a> Manually connect Tanzu Developer Portal to Metadata Store
 
 To manually enable CVE scan results:
 

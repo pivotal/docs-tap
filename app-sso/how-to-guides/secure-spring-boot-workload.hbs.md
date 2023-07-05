@@ -1,7 +1,7 @@
 # Secure a Spring Boot workload
 
-This topic tells you how to secure a sample Spring Boot `Workload` with 
-Application Single Sign-On (commonly called AppSSO), 
+This topic tells you how to secure a sample Spring Boot `Workload` with
+Application Single Sign-On (commonly called AppSSO),
 which runs on Tanzu Application Platform (commonly called TAP).
 
 Follow these steps to deploy a sample Spring Boot `Workload`:
@@ -16,9 +16,11 @@ Follow these steps to deploy a sample Spring Boot `Workload`:
 
 Follow these steps to fetch the Application Single Sign-On Spring Boot application source code:
 
-1. Download the Application Single Sign-On Starter Java accelerator from the TAP GUI accelerators located on your Tanzu Application Platform cluster:
+1. Download the Application Single Sign-On Starter Java accelerator from the Tanzu Developer Portal
+   (formerly named Tanzu Application Platform GUI) accelerators located on your
+   Tanzu Application Platform cluster:
 
-    - Option 1: Use the Tanzu Application Platform GUI dashboard through browser.
+    - Option 1: Use the Tanzu Developer Portal dashboard through browser.
 
         Navigate to Application Accelerators and download the "AppSSO Starter Java" accelerator.
 
@@ -30,13 +32,13 @@ Follow these steps to fetch the Application Single Sign-On Spring Boot applicati
         tanzu accelerator generate appsso-starter-java --server-url <TAP_GUI_SERVER_URL>
         ```
 
-1. Unzip the resulting `.zip` file into directory `appsso-starter-java` in your workspace.
+2. Unzip the resulting `.zip` file into directory `appsso-starter-java` in your workspace.
 
     ```shell
     unzip appsso-starter-java
     ```
 
-1. With the resulting project, create an accessible remote Git repository and push your accelerator to the Git remote repository.
+3. With the resulting project, create an accessible remote Git repository and push your accelerator to the Git remote repository.
 
 ## <a id='create-namespace'></a> Create a namespace for workloads
 

@@ -6,7 +6,9 @@ This topic tells you how to validate Scanning without Supply Chain integration.
 
 After you build an ImageVulnerabilityScan template to bring your own scanner, you van validate the capabilities to verify the integration is working correctly.
 
-To ensure that the scan integration is working correctly so that downstream servers such as AMR Observer, Tanzu Application Platform GUI, and the insight CLI can use scan results:
+To ensure that the scan integration is working correctly so that downstream servers such as AMR
+Observer, Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), and the insight
+CLI can use scan results:
 
 1. Verify that a triggered scan is completed.
 2. Retrieve the scan results from the registry
@@ -48,13 +50,13 @@ Scan results are uploaded to the container image registry as an [imgpkg](https:/
 To retrieve a vulnerability report:
 
 1. Retrieve the result location from the ImageVulnerabilityScan CR Status
-   
+
    ```console
    SCAN_RESULT_URL=$(kubectl get imagevulnerabilityscan my-scan -n DEV-NAMESPACE -o jsonpath='{.status.scanResult}')
    ```
 
 2. Download the bundle to a local directory and list the content
-   
+
    ```console
    imgpkg pull -b $SCAN_RESULT_URL -o scan-results/
    ls scan-results/
@@ -82,11 +84,11 @@ After retrieving the scan results, the scan results must be validated to be in a
 
 VMware reccomends validating the scan results by using this CycloneDX tool, [sbom-utility](https://github.com/CycloneDX/sbom-utility). This tool validates CycloneDX and SPDX BOMs against versioned schemas.
 
-***Note*** The output of the scan must be valid in accordance with SPDX or CycloneDX specifications. If not, although it might be parsed correctly, VMware cannot ensure that the information will be parsed correctly, and results might not be displayed accurately in Tanzu Application Platform GUI and Tanzu Application s CLI.
+***Note*** The output of the scan must be valid in accordance with SPDX or CycloneDX specifications. If not, although it might be parsed correctly, VMware cannot ensure that the information will be parsed correctly, and results might not be displayed accurately in Tanzu Developer Portal and Tanzu Application s CLI.
 
 1. Setup and install using the instructions [here](https://github.com/CycloneDX/sbom-utility#installation).
 2. Run the `sbom-utility` CLI with the subcommand [validate](https://github.com/CycloneDX/sbom-utility#validate) to validate the scan report against its declared format (e.g., SPDX, CycloneDX) and version (e.g., "1.4", "2.2", etc.).
-   
+
    ```console
    ./sbom-utility validate -i SCAN-REPORT-FILE-NAME
    ```
@@ -94,7 +96,7 @@ VMware reccomends validating the scan results by using this CycloneDX tool, [sbo
    Where `SCAN-REPORT-FILE-NAME` is the name of the scan report.
 
    For example:
-   
+
    ```console
     sbom-utility-v0.11.0-darwin-amd64 % ./sbom-utility validate -i scan-results/scan.json
     Welcome to the sbom-utility! Version `v0.11.0` (sbom-utility) (darwin/amd64)

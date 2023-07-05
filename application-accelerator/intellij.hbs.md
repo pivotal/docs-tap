@@ -6,9 +6,10 @@ explore and generate projects from the defined accelerators in Tanzu Application
 
 ## <a id="dependencies"></a> Dependencies
 
-The plug-in must have access to the Tanzu Application Platform GUI URL.
-For information about how to retrieve the Tanzu Application Platform GUI URL, see
-[Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url).
+The plug-in must have access to the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) URL.
+For information about how to retrieve the Tanzu Developer Portal URL, see
+[Retrieving the URL for the Tanzu Developer Portal](#fqdn-tap-gui-url).
 
 ## <a id="intellij-install"></a> Installation
 
@@ -26,13 +27,13 @@ Use the following steps to install the Application Accelerator IntelliJ plug-in:
 
 ## <a id="intellij-conf-plugin"></a> Configure the plug-in
 
-Before using the plug-in, you must enter the Tanzu Application Platform GUI URL in the IntelliJ Preferences:
+Before using the plug-in, you must enter the Tanzu Developer Portal URL in the IntelliJ Preferences:
 
 1. Go to the IntelliJ menu, select **IntelliJ IDEA > Preferences** > **Tools** > **Tanzu Application Accelerator**.
 
-2. Add the Tanzu Application Platform GUI URL. For example, `https://tap-gui.myclusterdomain.myorg.com`.
+2. Add the Tanzu Developer Portal URL. For example, `https://tap-gui.myclusterdomain.myorg.com`.
 If you have access to the Tanzu Application Platform cluster that is running the
-Tanzu Application Platform GUI, run the following command to determine the fully-qualified domain name:
+Tanzu Developer Portal, run the following command to determine the fully-qualified domain name:
 
     ```console
     kubectl get httpproxy tap-gui -n tap-gui
@@ -44,7 +45,7 @@ Tanzu Application Platform GUI, run the following command to determine the fully
 
 ## <a id="intellij-using-the-plugin"></a> Use the plug-in
 
-After adding the Tanzu Application Platform GUI URL, you can explore the defined accelerators:
+After adding the Tanzu Developer Portal URL, you can explore the defined accelerators:
 
 1. Select **New Project**, then select **Tanzu Application Accelerator**.
 
@@ -73,7 +74,7 @@ go to the review step.
 
 ![Download page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)
 
-## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Application Platform GUI
+## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Developer Portal
 
 If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application
 Platform GUI, run the following command to determine the fully-qualified domain name:
@@ -100,7 +101,7 @@ GUI instance that is secured using TLS, you must download and install the certif
 
 ### Procedure
 
-1. Find the name of the Tanzu Application Platform GUI certificate. The name of the certificate
+1. Find the name of the Tanzu Developer Portal certificate. The name of the certificate
 might look different to the following example.
 
     ```console

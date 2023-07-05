@@ -1,7 +1,7 @@
-# View resources on multiple clusters in Tanzu Application Platform GUI
+# View resources on multiple clusters in Tanzu Developer Portal
 
-You can configure Tanzu Application Platform GUI (commonly called TAP GUI) to retrieve Kubernetes
-object details from multiple clusters and then surface those details in the various Tanzu
+You can configure Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) to retrieve
+Kubernetes object details from multiple clusters and then surface those details in the various Tanzu
 Application Platform GUI plug-ins.
 
 > **Important** In this topic the terms `Build`, `Run`, and `View` describe the cluster's roles and
@@ -11,7 +11,7 @@ Application Platform GUI plug-ins.
 >
 > `Run` clusters are where the Tanzu Application Platform workloads themselves run.
 >
-> `View` clusters are where the Tanzu Application Platform GUI is run from.
+> `View` clusters are where the Tanzu Developer Portal is run from.
 >
 > In multicluster configurations, these can be separate clusters. However, in many configurations
 > these can also be the same cluster.
@@ -216,12 +216,12 @@ To set up a Service Account to view resources on a cluster:
     Where `CLUSTER-NAME` is your cluster name.
 
 5. Record the `Build` and `Run` clusters' `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
-   [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui)
+   [Update Tanzu Developer Portal to view resources on multiple clusters](#update-tap-gui)
    later.
 
-## <a id="update-tap-gui"></a> Update Tanzu Application Platform GUI to view resources on multiple clusters
+## <a id="update-tap-gui"></a> Update Tanzu Developer Portal to view resources on multiple clusters
 
-The clusters must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token
+The clusters must be identified to Tanzu Developer Portal with the `ServiceAccount` token
 and the cluster Kubernetes control plane URL.
 
 You must add a `kubernetes` section to the `app_config` section in the `tap-values.yaml` file that
@@ -264,7 +264,7 @@ To do so:
      - `CLUSTER-TOKEN` is the value you discovered earlier.
      - `CLUSTER-NAME` is a unique name of your choice.
 
-     If there are resources to view on the `View` cluster that hosts Tanzu Application Platform GUI, add an
+     If there are resources to view on the `View` cluster that hosts Tanzu Developer Portal, add an
      entry to `clusters` for it as well.
 
      If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's

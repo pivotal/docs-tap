@@ -1,6 +1,7 @@
 # Tanzu Developer Portal Configurator Concepts
 
-This topic gives you conceptual overviews of how Tanzu Developer Portal Configurator works.
+This topic gives you conceptual overviews of how Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) Configurator works.
 
 ## <a id="customize"></a> Overview of how to customize your portal
 
@@ -49,3 +50,36 @@ include:
 - The locations of any catalogs on GitHub or GitLab
 - Security overrides
 - Showing or hiding the included Tanzu Application Platform plug-ins
+
+## <a id="foundation"></a> Tanzu Developer Portal Configurator Foundation and Plugins
+
+The Tanzu Developer Portal Configurator Foundation is the image that contains everything necessary to build a customized version of Tanzu Developer Portal. This foundation includes the templated Tanzu Developer Portal, an internal registry of Tanzu Develoepr Portal plugins, as well as the necessary tooling to allow for the build process to incorporate external plugins.
+
+![Tanzu Developer Portal Foundation and inlcuded internal plugin registry and the customization process.](images/foundation-internal-external-plugins.jpg)
+
+### <a id="plugins"></a> Internal versus external plugins
+
+The following sections describe the differences between the **internal** plugins that are included as part of the Tanzu Develoepr Portal Configurator and the **external** plugins that are added in from external registries.
+
+- #### <a id="internal-plugins"></a> Internal plugins
+
+   Internal plugins are ones that are included inside the Tanzu Developer Portal Configurator Foundation image. These include Tanzu Application Platform Plugins as well as [Backstage](https://backstage.io) core plugins.
+
+- #### <a id="external-plugins"></a> External plugins
+
+   External plugins are any plugin that is **not** in the Tanzu Deverloper Portal Configurator Foundation image. These can include custom plugins as well as [3rd-party Backstage plugins](https://backstage.io/plugins)
+
+### <a id="plugin-surfaces-and-wrappers"></a> Plugin Surfaces and Wrappers
+
+![Tanzu Developer Portal Foundation and inlcuded internal plugin registry and the customization process.](images/plugin-surfaces-and-wrappers.jpg)
+
+#### <a id="plugin-surfaces"></a> Plugin Surfaces
+
+Tanzu Developer Portal Configurator introduces the idea of **Plugin Surfaces**. A Surface is a discreet capability that a plugin provides. This could include
+- The ability to show-up on the sidebar
+- The ability to be accessed by URL (e.g. https://YOUR_PORTAL_URL/plugin)
+- The ability to show-up as a Catalog Overview tab
+
+#### <a id="plugin-wrappers"></a> Plugin Wrappers
+
+Tanzu Developer Portal Configurator also introduces the idea of **Plugin Wrappers**. A Wrapper is a method of exposing a plugins's [surfaces](#plugin-surfaces) to the Tanzu Developer Portal Configurator so that that plugin can be integrated into a customized portal. These wrappers are in-fact plugins on their own but also `import` a reference to the actual underlying plugin itself.

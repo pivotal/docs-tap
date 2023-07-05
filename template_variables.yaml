@@ -7,4 +7,4 @@ template_variables:
   app-sso:
     version: 4.0
   tanzu-cli:
-    version: 0.90.0
+    version: 0.90.1

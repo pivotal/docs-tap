@@ -547,18 +547,19 @@ command and provide the name of the secret for that flag.
 
 ## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate
 
-If Tanzu Application Platform is configured to use an ingress for
-Tanzu Application Platform GUI and the Accelerator
-Server, then it might detect a timeout during accelerator generation. This can happen if the
-accelerator takes a longer time to generate than the default timeout. When this happens,
-Tanzu Application Platform GUI appears to continue to run for an indefinite period.
-In the IDE extension, it shows a `504` error. To mitigate this, you can increase the timeout value
-for the HTTPProxy resources used for the ingress by applying secrets with overlays to edit the
-HTTPProxy resources.
+If Tanzu Application Platform is configured to use an ingress for Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) and the Accelerator Server, then it might detect a
+timeout during accelerator generation.
+
+This can happen if the accelerator takes a longer time to generate than the default timeout. When
+this happens, Tanzu Developer Portal appears to continue to run for an indefinite period. In the IDE
+extension, it shows a `504` error. To mitigate this, you can increase the timeout value for the
+HTTPProxy resources used for the ingress by applying secrets with overlays to edit the HTTPProxy
+resources.
 
 ### <a id='timeout-secrets-created'></a>Configure an ingress timeout overlay secret for each HTTPProxy
 
-For Tanzu Application Platform GUI, create the following overlay secret in the `tap-install` namespace:
+For Tanzu Developer Portal, create the following overlay secret in the `tap-install` namespace:
 
 ```yaml
 apiVersion: v1
