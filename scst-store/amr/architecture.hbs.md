@@ -1,6 +1,6 @@
 # Supply Chain Security Tools - Artifact Metadata Repository Architecture
 
-This topic tells you about the architecture of Supply Chain Security Tools (SCST) - Artifact Metadata Repository (AMR).
+This topic describes architecture of Artifact Metadata Repository (AMR) (alpha/beta).
 
 >**Important** SCST - Artifact Metadata Repository (AMR) has components with alpha and beta statuses, meaning that it is still in active development and is subject to change at any point. Users might encounter unexpected behavior. This is an opt-in component to gather early feedback from alpha and beta testers and is not installed by default with any profile.
 

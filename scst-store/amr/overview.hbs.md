@@ -1,6 +1,6 @@
-# Supply Chain Security Tools for Tanzu – Artifact Metadata Repository (AMR) (alpha/beta)
+# Artifact Metadata Repository (AMR) (alpha/beta)
 
-This topic gives you an overview of Supply Chain Security Tools (SCST) – Artifact Metadata Repository (AMR).
+This topic gives you an overview of Artifact Metadata Repository (AMR).
 
 >**Important** SCST - Artifact Metadata Repository (AMR) has components with alpha and beta statuses, meaning that it is still in active development and is subject to change at any point. Users might encounter unexpected behavior. This is an opt-in component to gather early feedback from alpha and beta testers and is not installed by default with any profile.
 
