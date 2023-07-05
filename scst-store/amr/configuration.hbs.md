@@ -1,6 +1,6 @@
 # Configuration
 
-This topic describes the configuration options available for Supply Chain Security Tools (SCST) – Artifact Metadata Repository (AMR).
+This topic describes the configuration options available for Artifact Metadata Repository (AMR).
 
 ## AMR Observer
 

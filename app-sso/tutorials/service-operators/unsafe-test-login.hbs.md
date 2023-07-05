@@ -27,8 +27,8 @@ metadata:
 
 ## <a id="use"></a> Use the unsafe test login
 
-After applying the `ClusterUnsafeTestLogin` resource, application operators can discover and claim
-credentials for it by running:
+After applying the `ClusterUnsafeTestLogin` resource, application operators can discover credentials
+for it by running:
 
 ```console
 tanzu services classes list
@@ -41,4 +41,5 @@ NAME  DESCRIPTION
 demo  Login by AppSSO - user:password - UNSAFE FOR PRODUCTION!
 ```
 
-<!-- does the above command both discover and claim resources? -->
+For how to application operators can claim credentials, see
+[Claim credentials for an Application Single Sign-On service offering](../app-operators/claim-credentials.hbs.md).
