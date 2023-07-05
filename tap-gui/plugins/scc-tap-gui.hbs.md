@@ -29,11 +29,14 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 To see CVE scan results within Tanzu Developer Portal, connect Tanzu Developer Portal
 to the Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
 
-### <a id="scan-auto"></a> Automatically connect Tanzu Developer Portal to Metadata Store
+### <a id="scan-auto"></a> Automatically connect Tanzu Developer Portal to SCST - Store
 
 Tanzu Developer Portal has automation for enabling connection between
-Tanzu Developer Portal and SCST - Store. By default, this automation is active and requires
-no configuration. To deactivate this automation, add the following block to the
+Tanzu Developer Portal and [SCST - Store](../../scst-store/overview.hbs.md). By default, this automation is active and requires no configuration. 
+
+>***Note:*** There is a known issue with the automatic configuration breaking the SBOM download feature (new for TAP 1.6).  Update `tap-values.yaml` following [Tanzu Developer Portal troubleshooting](../../tap-gui/troubleshooting.hbs.md#sbom-not-working)
+
+To deactivate this automation, add the following block to the
 Tanzu Developer Portal section within your `tap-values.yaml` file:
 
 ```yaml
