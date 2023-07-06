@@ -12,5 +12,5 @@ Supply Chain Security Tools (SCST) - Scan 2.0 includes an integration with Grype
 You might have an existing investment in a scan solution that VMware does not have a published integration with, but Scan 2.0 makes building an integration to bring your own scanner easy. To bring your own scanner to the Tanzu Application Platform:
 
 1.  [Create an IVS Template](ivs-create-your-own.hbs.md): This step will walk you through how you can create an ImageVulnerabilityScan template that tells the Tanzu Application Platform how to execute your scanner
-2.  [Verifying your IVS Template](verify-app-scanning.hbs.md):  This step will walk you through how you can validate that your ImageVulnerabilityScan is working correctly so that downstream Tanzu Application Platform Servers will work correctly.
+2.  [Verifying your IVS Template](verify-app-scanning.hbs.md): This step will walk you through how you can validate that your ImageVulnerabilityScan is working correctly so that downstream Tanzu Application Platform Servers will work correctly.
 3.  [Wrapping your IVS Template in a ClusterImageTemplate](clusterimagetemplates.hbs.md): The ClusterImageTemplate wraps the ImageVulnerabilityScan template and allows the Tanzu Application Platform supply chain to invoke the scan job.
