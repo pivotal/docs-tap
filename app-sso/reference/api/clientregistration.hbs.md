@@ -77,15 +77,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 
 - `client_secret_basic`: HTTP header based client authentication (default).
 - `client_secret_post`: HTTP POST body based client authentication.
-- `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
-- `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
-- `none`: No client authentication. Required for public clients.
-For more information, see [Public clients and CORS](../../how-to-guides/service-operators/cors.md).
-
-> **Caution** When running workloads by using Spring Boot 3, you must use
-> `client_secret_basic` or `client_secret_post`. For more information, see
-> [Spring Boot 3 based Workloads and ClientRegistration
-> resources](../known-issues.hbs.md#boot3-clientreg).
+- `none`: No client authentication. Required for public clients. For more information, see [Public clients and CORS](../../how-to-guides/service-operators/cors.md).
 
 ## Status & conditions
 
@@ -202,7 +194,7 @@ data: # fields below are base64-decoded for display purposes only
   client-id: default_my-client-registration
   client-secret: c2VjcmV0 # auto-generated
   issuer-uri: https://appsso.example.com
-  client-authentication-method: basic
+  client-authentication-method: client_secret_basic
   scope: openid,email,profile
   authorization-grant-types: client_credentials,refresh_token
 ```
