@@ -1,4 +1,4 @@
-# Apply Scan Templates overlays from Grype package install on AirGap
+# Apply Scan Template overlays from Grype package install on AirGap
 
 The namespace provisioner includes pre-configured `grype-scanner` PackageInstall for each developer namespace, as described in the [Default resources]((namespace-provisioner/default-resources.hbs.md)) section of the documentation. If you require customization of the Scan Template created by the PackageInstall, it is important to note that the namespace provisioner does not directly create the Scan Template. Therefore, overlays should be applied to the Scan Template through package customization (For more information on how to customize a package installation, please refer to [Customize a package](customize-package-installation.hbs.md)).
 
