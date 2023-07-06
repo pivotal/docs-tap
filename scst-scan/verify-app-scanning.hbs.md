@@ -1,18 +1,18 @@
-# Verify Scanning without Supply Chain integration
+# Verify Scanning without Supply Chain Integration
 
-This topic tells you how to validate Scanning without Supply Chain integration.
+This topic tells you how to validate Scanning without Supply Chain Integration.
 
 ## <a id="overview"></a> Overview
 
-After you build an ImageVulnerabilityScan template to bring your own scanner, you van validate the capabilities to verify the integration is working correctly.
+After you build an ImageVulnerabilityScan template to bring your own scanner, you can validate the capabilities to verify the integration is working correctly.
 
 To ensure that the scan integration is working correctly so that downstream servers such as AMR
 Observer, Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), and the insight
 CLI can use scan results:
 
 1. Verify that a triggered scan is completed.
-2. Retrieve the scan results from the registry
-3. Verify that the scan results are in a supported format
+2. Retrieve the scan results from the registry.
+3. Verify that the scan results are in a supported format.
 
 ## <a id="trigger-observe-scanning"></a> Trigger and Observe Scanning
 

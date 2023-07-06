@@ -259,14 +259,13 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       set to the date of the original vulnerability scan SBOM. In addition, the
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
-- Artifact Metadata Repository Observer (alpha). For more information, see the [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
+- Artifact Metadata Repository Observer (alpha). See [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
   - Registers the cluster's location using user defined labels and the kube-system UID as the reference
   - Observe ImageVulnerabilityScan CustomResources from [SCST - Scan 2.0 package](scst-scan/app-scanning-beta.hbs.md)
-  - Observe workload ReplicaSets which are ReplicaSets that have a container named workload as it is produced by the Out of the Box SupplyChains.
+  - Observe workload ReplicaSets. These are ReplicaSets that have a container named workload as it is produced by the out of the box SupplyChains.
   - Sends CloudEvents for observed resources to the Artifact Metadata Repository CloudEvent Handler
-
-- Artifact Metadata Repository CloudEvent Handler (alpha). For more information, see the [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md)
-  - Artifact Metadata Repository Persister naming is being deprecated in favor of Artifact Metadata Repository CloudEvent Handler
+- Artifact Metadata Repository CloudEvent Handler (alpha). See [Artifact Metadata Repository Overview](./scst-store/amr/overview.hbs.md).
+  - Artifact Metadata Repository Persister naming is deprecated in favor of Artifact Metadata Repository CloudEvent Handler.
   - Handles ImageVulnerabilityScan configured CloudEvents from the Artifact Metadata Repository Observer
   - Handles Location configured CloudEvents from the Artifact Metadata Repository Observer
   - Handles ReplicaSet configured CloudEvents from the Artifact Metadata Repository Observer
@@ -366,6 +365,12 @@ This release has the following security fixes, listed by component and area.
 ### <a id='1-6-0-resolved-issues'></a> Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
+
+#### <a id='1-6-0-scst-store-ri'></a> Supply Chain Security Tools - Store
+- Implemented basic logging in the AMR database.
+- AMR database no longer creates a load balancer when enabling the shared ingress domain and ingress values in `tap-values.yaml`.
+- Modified the behavior of the `/v1/artifact-groups/vulnerabilities/_search` endpoint. It now returns a list of artifact groups affected by the vulnerability even if the images or sources in the query are not linked to them.
+  Previously the endpoint returned the list artifact group the images or sources were linked to, even if the artifact group was not affected by the vulnerability.
 
 #### <a id='1-6-0-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
 
