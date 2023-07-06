@@ -18,12 +18,12 @@ Meet the following prerequisites:
   an overlay is used to place the built image on the cluster where the pre-built Tanzu Developer
   Portal resides.
 
-- Gain access to:
+- Ensure that your developer namespace has access to both:
 
-  - The installation registry where the source Tanzu Application bundles are located
-  - The build registry where your built images are staged
+  - Your installation registry where the source Tanzu Application bundles are located
+  - Your build registry where your built images are staged
 
-  You likely already have both if you have a working Tanzu Application Platform installation and you
+  Verify that you have a working Tanzu Application Platform installation and you
   can build a sample application, such as `Tanzu-Java-Web-App` in
   [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md).
 
