@@ -1,10 +1,10 @@
-# Author a ClusterImageTemplate for Supply Chain Integration
+# Author a ClusterImageTemplate for Supply Chain integration
 
 This topic tells you how to create your own ClusterImageTemplate and customize the embedded ImageVulnerabilityScan to use the scanner of your choice.
 
 ## <a id='prerecs'></a> Prerequisites
 
-The following prerequisite is required to author a ClusterImageTemplate for Supply Chain Integration:
+The following prerequisite is required to author a ClusterImageTemplate for Supply Chain integration:
 
 - You create your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
 
@@ -187,7 +187,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
   - `registry-server` is the registry server.
   - `registry-repository` is the registry repository.
 
->**Note**: `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes) for more information.
+>**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes) for more information.
 
 1. Modify the following in your `custom-ivs-template.yaml` file for your own use case:
    - `.metadata.name` is the name of your ClusterImageTemplate

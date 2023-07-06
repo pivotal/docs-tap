@@ -1,4 +1,6 @@
-# Bring Your Own Scanner with Supply Chain Security Tools - Scan 2.0
+# Bring your own scanner with Supply Chain Security Tools - Scan 2.0
+
+This topic tells you how to bring your own scanner to use with Supply Chain Security Tools (SCST) - Scan 2.0.
 
 ## <a id="overview"></a>Overview
 
