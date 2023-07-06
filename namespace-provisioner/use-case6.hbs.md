@@ -1,10 +1,10 @@
-# Apply Scan Template overlays from Grype package install on AirGap
+# Apply scanner ScanTemplate overlays on Air-gapped environments
 
-The namespace provisioner includes pre-configured `grype-scanner` PackageInstall for each developer namespace, as described in the [Default resources]((namespace-provisioner/default-resources.hbs.md)) section of the documentation. If you require customization of the Scan Template created by the PackageInstall, it is important to note that the namespace provisioner does not directly create the Scan Template. Therefore, overlays should be applied to the Scan Template through package customization (For more information on how to customize a package installation, please refer to [Customize a package](customize-package-installation.hbs.md)).
+The namespace provisioner includes pre-configured `grype-scanner` PackageInstall for each developer namespace, as described in the [Default resources]((namespace-provisioner/default-resources.hbs.md)) section of the documentation. If you require customization of the ScanTemplate created by the PackageInstall, it is important to note that the namespace provisioner does not directly create the ScanTemplate. Therefore, overlays should be applied to the ScanTemplate through package customization (For more information on how to customize a package installation, please refer to [Customize a package](customize-package-installation.hbs.md)).
 
-This use case shows how you can apply the overlays to the Scan Templates from the Grype Package Install overlays applied via annotations
+This use case shows how you can apply the overlays to the ScanTemplates from the Grype Package Install overlays applied via annotations
 
-1. To enable updates to the Scan Templates, you can create an overlay specifically designed for this purpose. When the package is processed, the overlay will be applied to the Scan Template. It is done by the reference to this overlay in the annotation `ext.packaging.carvel.dev/ytt-paths-from-secret-name`:
+1. To enable updates to the ScanTemplates, you can create an overlay specifically designed for this purpose. When the package is processed, the overlay will be applied to the ScanTemplate. It is done by the reference to this overlay in the annotation `ext.packaging.carvel.dev/ytt-paths-from-secret-name`:
 
     ```yaml
     cat << EOF | kubectl apply -f -
