@@ -29,8 +29,6 @@ Using the Supply Chain Choreographer in Tanzu Developer Portal
 (formerly named Tanzu Application Platform GUI), you can visualize your supply chain.
 It uses to SCST - Store to show the packages and vulnerabilities in your source code and images.
 
-To enable this feature, see [Supply Chain Choreographer in Tanzu Developer Portal - Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
-
 ## <a id='additional-info'></a>Additional documentation
 
 [Additional documentation](additional.md) includes information about the API, deployment details and configuration, AWS RDS configuration, other database backup recommendations, known issues, and other topics.

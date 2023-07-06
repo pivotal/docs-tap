@@ -481,6 +481,9 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
 - Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
+
+#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Developer Portal
+- Tanzu Developer Portal will need some manual settings to support viewing ImageVulnerabilityScans from App Scanning 2.0 scans. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support).
 ---
 
 ### <a id="1-6-components"></a> Component versions
