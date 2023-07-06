@@ -73,10 +73,8 @@ This release includes the following changes, listed by component and area.
   [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enables the ability to:
   - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
-  - Configure the internal unsafe provider with custom claims out of the box <!-- cannot use out of the box. what to replace with -->.
-    For more information, see
-    [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-<!-- Are the following items classes/XRDs new to this version of TAP? -->
+  - Configure the internal unsafe provider with custom claims.
+    For more information, see [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
   use to get started with Application Single Sign-On in non-production environments.
   It is not safe for production.
@@ -222,7 +220,17 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
-- Supply Chain Security Tools (SCST) - Scan 2.0 is promoted from `alpha` to `beta` and can enable SCST - Scan 2.0 in the out-of-the-box test and scan supply chain.
+- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md) is promoted from `alpha` to `beta`.  This promotion primarily includes capabilities to integrate the SCST-Scan 2.0 component with other components of the Tanzu Application Platform, including: 
+  - The ability to [enable](scst-scan/integrate-app-scanning.hbs.md#adding-app-scanning-to-default-test-and-scan-supply-chain) Supply Chain Security Tools (SCST) - Scan 2.0 in the out-of-the-box test and scan supply chain.
+  - [AMR Observer (Alpha)](scst-store/amr/overview.hbs.md#amr-observer) observes scan results from SCST - Scan 2.0 and archives them to the [AMR (beta)](scst-store/amr/architecture.hbs.md) for long-term storage and reporting, and use by other Tanzu Application Platform Components.
+  - Results from image scans with SCST - Scan 2.0 are now available in [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.hbs.md) and [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md) plug-ins for the Tanzu Developer Portal.
+  - [Sample scan templates](scst-scan/ivs-custom-samples.hbs.md) are created to help users get started with examples of how to bring your own scanner.
+    - [Carbon Black](scst-scan/ivs-carbon-black.hbs.md)
+    - [Snyk](scst-scan/ivs-snyk.hbs.md)
+    - [Prisma](scst-scan/ivs-prisma.hbs.md)
+    - [Trivy](scst-scan/ivs-trivy.hbs.md)
+    - [Grype](scst-scan/ivs-grype.hbs.md)
+  - VMware encourages feedback about SCST - Scan 2.0. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
@@ -285,7 +293,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
 
-- **New `default_external_scheme` configuration option**:
+- New `default_external_scheme` configuration option:
   - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with a default scheme you can use for Knative Service URLs. Supported values are either `http` or `https`. You cannot set this option at the same time as the `default_tls_secret` option.
 
 #### <a id='1-6-0-contour'></a> Contour
@@ -422,14 +430,11 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-0-cnrs-ri'></a> Cloud Native Runtimes
 
 - New toggle feature for how to make ConfigMap updates
+  - For some ConfigMaps in Cloud Native Runtimes, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in Cloud Native Runtimes. To configure this option, edit your `cnr-values.yaml` file to change the following configuration:
 
-For some ConfigMaps in CNRs, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in CNRs, as it is for all Tanzu Application Platform components. To configure this option, edit your cnr-values.yaml file to change the following configuration:
-
-```console
+```yaml
 allow_manual_configmap_update: false
 ```
-
-In a planned future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
 
 ---
 

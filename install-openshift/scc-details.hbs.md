@@ -1,6 +1,6 @@
 # Custom Security Context Constraint details for Tanzu Application Platform
 
-Custom Security Context Constraint (commonly known as SCC) details for 
+Custom Security Context Constraint (commonly known as SCC) details for
 Tanzu Application Platform (commonly known as TAP) components are as follows:
 
 - [Application Accelerator on OpenShift cluster](#acc-scc)
@@ -44,4 +44,4 @@ Tanzu Application Platform (commonly known as TAP) components are as follows:
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/tanzu-build-service/_openshift-tbs' }}
+{{> 'partials/tanzu-build-service/openshift-tbs' }}
