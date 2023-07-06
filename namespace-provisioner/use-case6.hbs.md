@@ -2,7 +2,7 @@
 
 The namespace provisioner includes pre-configured `grype-scanner` PackageInstall for each developer namespace, as described in the [Default resources](namespace-provisioner/default-resources.hbs.md) section of the documentation. If you require customization of the ScanTemplate created by the PackageInstall, it is important to note that the namespace provisioner does not directly create the ScanTemplate. Therefore, overlays should be applied to the ScanTemplate through package customization (For more information on how to customize a package installation, please refer to [Customize a package](customize-package-installation.hbs.md)).
 
-Find in [Use Grype in offline and air-gapped environments](install-offline/grype-offline-airgap.hbs.md) documentation, possible customizations that can be applied to `grype-scanner` and some troubleshooting
+Please refer to the [Use Grype in offline and air-gapped environments](install-offline/grype-offline-airgap.hbs.md) for information on potential customizations that can be made to the `grype-scanner` as well as troubleshooting tips.
 
 This use case shows how you can apply the overlays to the ScanTemplates from the Grype Package Install overlays applied via annotations
 
