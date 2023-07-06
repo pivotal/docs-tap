@@ -41,7 +41,7 @@ This release includes the following changes, listed by component and area.
 
 
 #### <a id='1-6-0-alv'></a> Application Live View
-- Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [w](./app-live-view/improved-security-and-access-control.hbs.md)
+- Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [Improved Security and Access Control](./app-live-view/improved-security-and-access-control.hbs.md)
 - Developers can view the live information of natively compiled Spring applications via Application Live View for lightweight troubleshooting. The pages and metrics currently unavailable for natively compiled Spring applications include threads, heapdump, memory graphs, cache manager, conditions, schedules tasks and actuator information. For more information, see [Enable Spring Native apps for Application Live View]()
 
 #### <a id='1-6-0-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
@@ -63,6 +63,7 @@ This release includes the following changes, listed by component and area.
 - Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
 - Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
   This addition provides a quick reference to the Git revision associated with the workload.
+- Triage vulnerabilities with the `tanzu insight triage` command.  Learn more about [triaging CVEs with tanzu insight](./cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
 
 #### <a id='1-6-0-appsso'></a> Application Single Sign-On (AppSSO)
@@ -300,6 +301,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 - Add new parameters to specify `contour` and `envoy` resources requests and limits for CPU and memory. For more information, see [Install Contour](contour/install.hbs.md).
 - For more information about the new features in v1.24.4, see [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.24.4) in GitHub.
+
+#### <a id='1-6-0-tap-dev-portal'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+
+- Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.  Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
+
 ---
 
 ### <a id='1-6-0-breaking-changes'></a> Breaking changes
@@ -453,6 +459,11 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-6-0-supply-chain-plugin'></a> Tanzu Developer Portal - Supply Chain GUI Plug-in
+- Any workloads created using a Custom Resource Definition (CRD) may not work as expected.  Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
+- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the ImageVulnerabilityScanner CRD is not yet supported in the Supply Chain GUI
+- Downloading the SBOM from the a vulnerability scan requires additional configuration to the `tap-values.yaml`.  See [SBOMs do not download when automatically configuring Tanzu Developer Portal to SCST - Store](./tap-gui/troubleshooting.hbs.md#sbom-not-working)
 
 #### <a id='1-6-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
