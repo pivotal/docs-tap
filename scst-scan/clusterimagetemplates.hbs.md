@@ -1,10 +1,10 @@
-# Author a ClusterImageTemplate for Supply Chain integration
+# Author a ClusterImageTemplate for Supply Chain Integration
 
 This topic tells you how to create your own ClusterImageTemplate and customize the embedded ImageVulnerabilityScan to use the scanner of your choice.
 
 ## <a id='prerecs'></a> Prerequisites
 
-The following prerequisite is required to author a ClusterImageTemplate for Supply Chain integration:
+The following prerequisite is required to author a ClusterImageTemplate for Supply Chain Integration:
 
 - You create your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
 

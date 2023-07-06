@@ -89,7 +89,7 @@ To install SCST - Scan 2.0:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
-        --version 0.1.0-beta\
+        --version 0.1.0-beta \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
 

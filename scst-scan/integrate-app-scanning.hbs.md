@@ -1,4 +1,4 @@
-# Add App Scanning to default test and scan supply chains
+# Add App Scanning to Default Test and Scan Supply Chains
 
 The default configuration for Out of the Box Supply Chain - Testing and Scanning uses Supply Chain Security Tools - Scan 1.0. This topic describes how to enable Supply Chain Security Tools - Scan 2.0 and the included Grype Scanner with the out of the box test + scan supply chain.
 
