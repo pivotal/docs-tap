@@ -55,7 +55,7 @@ $ tanzu apps workload apply
 Error: Either Local Source Proxy is not installed on the Cluster or you don't have permissions to access it
 Reason: The current user does not have permission to access the local source proxy.
 Messages:
-- services "http:local-source-proxy:5001" is forbidden: User "adhol@vmware.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
+- services "http:local-source-proxy:5001" is forbidden: User "abc@example.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
 ```
 
 ```console
@@ -67,7 +67,7 @@ overall_health: false
 message: |-
   The current user does not have permission to access the local source proxy.
   Messages:
-  - services "http:local-source-proxy:5001" is forbidden: User "adhol@vmware.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
+  - services "http:local-source-proxy:5001" is forbidden: User "abc@example.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
 ```
 
 ### Cause
@@ -113,8 +113,7 @@ The cause might be that `tap-values.yaml` lacks a valid value for the repository
 
 ### Solution
 
-Add a valid repository value to `tap-values.yaml`.
-<!-- And restart? Needs more detail. -->
+Add a valid repository value to `tap-values.yaml` and wait for the app reconciliation to complete.
 
 ## <a id="miscofig-reg-secret"></a> Missing or misconfigured registry secret
 
@@ -127,7 +126,7 @@ $ tanzu apps workload apply
 Error: Local source proxy failed to upload source to the repository
 Reason: Local source proxy was unable to authenticate against the target registry.
 Messages:
-- GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+- GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
 ```
 
 ```console
@@ -139,7 +138,7 @@ overall_health: false
 message: |-
   Local source proxy was unable to authenticate against the target registry.
   Messages:
-  - GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the
+  - GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the
  needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https:/
 /cloud.google.com/container-registry/docs/advanced-authentication
 ```
@@ -173,7 +172,7 @@ $ tanzu apps workload apply
 Error: Local source proxy failed to upload source to the repository
 Reason: Local source proxy was unable to authenticate against the target registry.
 Messages:
-- GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
+- GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
 ```
 
 ```console
@@ -197,7 +196,7 @@ overall_health: false
 message: |-
   Local source proxy was unable to authenticate against the target registry.
   Messages:
-  - GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
+  - GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
 ```
 
 ### Cause

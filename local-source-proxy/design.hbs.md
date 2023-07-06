@@ -7,10 +7,6 @@ registry server, which is configured through the `tap-values.yaml` file.
 Local Source Proxy takes care of authentication and authorization against the external registry
 provider internally. This ensures that the external registry remains transparent to the user.
 
-A Kubernetes service is set up to access Local Source Proxy, and it can be reached by using an
-internal URL within the Kubernetes cluster.
-<!-- what is the it? -->
-
 By functioning as a proxy registry server, Local Source Proxy simplifies the process of
 interacting with external registry servers. Local Source Proxy provides a centralized and transparent
 approach for image push requests, handling authentication and authorization seamlessly.
