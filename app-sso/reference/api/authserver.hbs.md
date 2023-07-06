@@ -150,6 +150,7 @@ spec:
     - name: "" # must be unique
       openID:
         issuerURI: ""
+        displayName: "" # optional, must be between 2 and 32 characters in length
         clientID: ""
         clientSecretRef:
           name: ""
@@ -176,6 +177,7 @@ spec:
     - name: "" # must be unique
       saml:
         metadataURI: ""
+        displayName: "" # optional, must be between 2 and 32 characters in length
         roles: # optional
           fromUpstream:
             attribute: "" # required
@@ -428,6 +430,7 @@ spec:
     - name: okta
       openID:
         issuerURI: https://dev-xxxxxx.okta.com
+        displayName: "Okta"
         clientID: xxxxxxxxxxxxx
         clientSecretRef:
           name: okta-client-secret
