@@ -11,7 +11,13 @@ By functioning as a proxy registry server, Local Source Proxy simplifies the pro
 interacting with external registry servers. Local Source Proxy provides a centralized and transparent
 approach for image push requests, handling authentication and authorization seamlessly.
 
-![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster.](images/lsp-design.png)
+LSP Active
+:
+    ![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster.](images/lsp-design.png)
+
+LSP Inactive
+:
+    ![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster.](images/without-lsp-design.png)
 
 The Apps CLI generates requests that adhere to the OCI distribution standard to push
 artifacts to Local Source Proxy instances. User authentication and authorization are handled by the

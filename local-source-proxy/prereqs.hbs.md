@@ -4,6 +4,7 @@ You need the following prerequisites before you can install Local Source Proxy (
 
 - A registry server with a repository capable of accepting and hosting OCI artifacts, such as Google 
   Artifact Registry, Jfrog Artifactory, Harbor, and so on.
+  
 - A secret with sufficient privileges to push and pull artifacts from that repository
 
 The rest of this topic tells you how to obtain these prerequisites.
@@ -78,7 +79,7 @@ Declarative syntax
   repository. If such a role does not exist, you can create one by following the steps outlined in
   the documentation provided here.
 
-- **Optional**:
+- **A secret with pull privileges only**:
 
   This applies if you prefer to have a dedicated credential with a least-privilege policy,
   specifically for downloading artifacts, instead of reusing credentials with higher privileges. 
