@@ -1,4 +1,4 @@
-# Adding App-Scanning to Default Test and Scan Supply Chain
+# Add App Scanning to default test and scan supply chains
 
 The default configuration for Out of the Box Supply Chain - Testing and Scanning uses Supply Chain Security Tools - Scan 1.0. This topic describes how to enable Supply Chain Security Tools - Scan 2.0 and the included Grype Scanner with the out of the box test + scan supply chain.
 
@@ -7,7 +7,9 @@ The default configuration for Out of the Box Supply Chain - Testing and Scanning
 Before you can integrate Supply Chain Security Tools - Scan 2.0 with the out of the box supply chain:
 - Have [installed](./install-app-scanning.hbs.md) Scan 2.0.
 
-## <a id="integration-with-supply-chain"></a> Integration with OOTB Supply Chain
+## <a id="integration-supply-chain"></a> Integrate with OOTB Supply Chain
+
+To integrate App Scanning with an OOTB supply chain:
 
 1. After completing the prerequisites, update your `tap-values.yaml` file to specify the Grype ClusterImageTemplate. For example:
 

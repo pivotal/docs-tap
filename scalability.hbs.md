@@ -53,13 +53,13 @@ scalability best practices.
 
 **Number of applications deployed concurrently**: 50-55
 
-|  | **CPUs** | **Number of workload CRs** |**Workload Transactions per second**|
+|  | **CPU/Memory Range** | **Number of workload CRs in Iterate/BuildRun** |**Workload Transactions per second**|
 |:--- |:--- |:--- |:--- |
-|**Small** | 500m - 700m /3-5 GB /3-5 GB| 5 |10|
-|**Medium** | 700m - 1000m / 4-6 GB / 4-6 GB | 6 |20|
-|**Large** | 1000m - 1500m / 6-8 GB / 6-8 GB | 7 |40 |
+|**Small** | 500m - 700m / 3-5 GB | 4/5 | 4 |
+|**Medium** | 700m - 1000m / 4-6 GB | NA/6 | 4 |
+|**Large** | 1000m - 1500m / 6-8 GB | NA/7 | 4 |
 
-## Scale Configuration
+## Scale Configuration for workload deployments (Yet to arrive for updates)
 
 Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
 
@@ -77,23 +77,24 @@ The following table describes the resource limit changes that are required for c
 
 |**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | 1&nbsp;Gi/2&nbsp;Gi || Yes | No | Yes | tap-values |
-| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | 1&nbsp;Gi/3&nbsp;Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
-| Cartographer| 3&nbsp;vCPUs/4&nbsp;vCPU | 10&nbsp;Gi/10&nbsp;Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
-| Cartographer conventions|  | 1.8&nbsp;Gi  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
-| Namespace Provisioner | 100&nbsp;vCPUm/500m | 500&nbsp;Mi/2&nbsp;Gi | | Yes | Yes | Yes | tap-values |
-| Cnrs/knative-controller  | 100&nbsp;m/1&nbsp;vCPU | 512&nbsp;Mi/2&nbsp;Gi | | No | Yes | Yes | overlay |
-| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | 512&nbsp;Mi/2&nbsp;Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
-| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | 5&nbsp;Gi/5&nbsp;Gi |  | No | Yes | No | overlay |
-| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | 2&nbsp;Gi/2&nbsp;Gi |  | No | Yes | No | overlay |
-| Eventing/vmware-sources |  | YTD | | No  | Yes | No | YTD |
-| Eventing/triggermesh | | 100&nbsp;Mi - 800&nbsp;Mi | | No | Yes | Yes| overlay |
-| tap-telemetry/tap-telemetry-informer | 2&nbsp;Gi | YTD | | Yes| No | Yes| tap-values |
+ Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** || Yes | No | Yes | tap-values |
+| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
+| Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
+| Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
+| Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** | | Yes | Yes | Yes | tap-values |
+| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | | No | Yes | Yes | overlay |
+| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
+| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** |  | No | Yes | No | overlay |
+| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** |  | No | Yes | No | overlay |
+| Eventing/triggermesh | 50&nbsp;m/200&nbsp;m | **100&nbsp;Mi - 800&nbsp;Mi** | | No | Yes | Yes| overlay |
+| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | | Yes| No | Yes| tap-values |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
+- The changed values are marked in bold and the values in regular fonts are default ones set during regular TAP installation
+- In some of the above values, Request and Limits are set equally so that the pod is allocated in a node where the requested limit is available
 
-* Only when there is issue with scan pods getting deleted before Cartographer can process it
+\* Only when there is issue with scan pods getting deleted before Cartographer can process it
 
 ## Example resource limit changes
 
@@ -128,7 +129,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 1Gi
   requests:
     cpu: 500m
@@ -143,7 +144,7 @@ cartographer:
   cartographer:
     resources:
       limits:
-        cpu: "4"
+        cpu: 4
         memory: 10Gi
       requests:
         cpu: 3
@@ -154,7 +155,7 @@ cartographer:
   cartographer:
     resources:
       limits:
-        cpu: "4"
+        cpu: 4
         memory: 2Gi
       requests:
         cpu: 3
@@ -182,7 +183,7 @@ cartographer:
   conventions:
     resources:
       limits:
-        memory: 1.4Gi
+        memory: 1.8Gi
 ```
 
 ### Scan-link-controller
@@ -205,7 +206,7 @@ Edit `values.yaml` to scale resource limit:
 scanning:
   resources:
     limits:
-      cpu: "500m"
+      cpu: 500m
       memory: 3Gi
     requests:
       cpu: 200m
@@ -299,7 +300,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 1000Mi
   requests:
     cpu: 100m
@@ -393,7 +394,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 1000Mi
   requests:
     cpu: 100m
@@ -435,7 +436,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 600Mi
   requests:
     cpu: 300m
@@ -510,4 +511,25 @@ stringData:
                requests:
                  cpu: 50m
                  memory: 100Mi
+```
+
+### Tap Telemetry
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu: 1
+    memory: 1000Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+tap_telemetry:
+  limit_memory: 2Gi
 ```

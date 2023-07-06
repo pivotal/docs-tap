@@ -24,8 +24,9 @@ To confirm that Supply Chain failure is related to policy enforcement:
 The goal of triage is to analyze and prioritize the reported vulnerability data to discover the appropriate course of action to take at the remediation step. To remediate efficiently and appropriately, you need context on the vulnerabilities that are blocking your supply chain, the packages that are affected, and the impact they can have.
 
 During triage, review which packages are impacted by the CVEs that violated your scan policy.
-Enabling CVE scan causes Supply Chain Choreographer by using Tanzu Application Platform GUI to visualize your supply chain, including the scans, scan policy, and CVEs. See [Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
-You can also use the Tanzu Insight plug-in to query packages and CVEs using a CLI. See [Tanzu Insight plug-in](../cli-plugins/insight/cli-overview.hbs.md).
+Enabling CVE scan causes Supply Chain Choreographer by using Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI)to visualize your supply chain, including the scans, scan policy, and CVEs. See [Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+You can also use the Tanzu CLI Insight plug-in to query packages, vulnerabilities, and create vulnerability analysis. See [Tanzu CLI Insight plug-in](../cli-plugins/insight/cli-overview.hbs.md).
 
 During this stage, VMware recommends reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 

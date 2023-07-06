@@ -17,9 +17,9 @@ For each catalog entity kind you create, there is a file format you must follow.
 For information about all types of entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
-You can use the example blank catalog described in the Tanzu Application Platform GUI
-[prerequisites](../../prerequisites.md#tap-gui) as a foundation for creating user, group, system,
-and main component YAML files.
+You can use the example blank catalog described in the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) [prerequisites](../../prerequisites.md#tap-gui) as a
+foundation for creating user, group, system, and main component YAML files.
 
 Relationship Diagram:
 ![Relationships box-and-line diagram. User 1 is within Group 1, which is within Organization. Component 2 is within System. User 1 owns Component 2. Group 1 owns System.](../images/tap-gui-relationships.jpg)
@@ -90,7 +90,7 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: backstage
-  description: Tanzu Application Platform GUI System
+  description: Tanzu Developer Portal System
 spec:
   owner: default-team
 ```
@@ -113,7 +113,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: backstage-component
-  description: Tanzu Application Platform GUI Component
+  description: Tanzu Developer Portal Component
   annotations:
     'backstage.io/kubernetes-label-selector': 'app=backstage' #Identifies the Kubernetes objects that make up this component
     'backstage.io/techdocs-ref': dir:. #TechDocs label
@@ -210,7 +210,7 @@ Use GitLabDiscoveryProcessor
 
    2. Update the package to include the catalog:
 
-      - If you installed Tanzu Application Platform GUI by using a profile, run:
+      - If you installed Tanzu Developer Portal by using a profile, run:
 
         ```console
         tanzu package installed update tap \
@@ -220,7 +220,7 @@ Use GitLabDiscoveryProcessor
           --namespace tap-install
         ```
 
-      - If you installed Tanzu Application Platform GUI as an individual package, run:
+      - If you installed Tanzu Developer Portal as an individual package, run:
 
         ```console
         tanzu package installed update tap-gui \
@@ -257,5 +257,5 @@ Preserve the metadata labels on the Yelb application objects.
 
 1. From the
 [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
-page, click **tap-gui-catalogs-latest** > **Tanzu Application Platform GUI Yelb Catalog**.
+page, click **tap-gui-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
 1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.

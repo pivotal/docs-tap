@@ -1,6 +1,6 @@
 # Install Local Source Proxy
 
-This topic tells you how to install and customize Local Source Proxy.
+This topic tells you how to install and customize Local Source Proxy (LSP).
 
 ## <a id="prereqs"></a> Prerequisites
 

@@ -1,14 +1,14 @@
 # Design of Local Source Proxy
 
-Local Source Proxy serves as a proxy registry server with OCI (Open Container Initiative)
+Local Source Proxy (LSP) serves as a proxy registry server with OCI (Open Container Initiative)
 compatibility. Its main purpose is to handle image push requests by forwarding them to an external
 registry server, which is configured through the `tap-values.yaml` file.
 
 Local Source Proxy takes care of authentication and authorization against the external registry
 provider internally. This ensures that the external registry remains transparent to the user.
 
-A Kubernetes service is set up in order to access Local Source Proxy, and it can be reached by using
-an internal URL within the Kubernetes cluster.
+A Kubernetes service is set up to access Local Source Proxy, and it can be reached by using an
+internal URL within the Kubernetes cluster.
 <!-- what is the it? -->
 
 By functioning as a proxy registry server, Local Source Proxy simplifies the process of
@@ -17,7 +17,7 @@ approach for image push requests, handling authentication and authorization seam
 
 ![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster.](images/lsp-design.png)
 
-The Apps CLI generates requests that adhere to the OCI distribution standard in order to push
+The Apps CLI generates requests that adhere to the OCI distribution standard to push
 artifacts to Local Source Proxy instances. User authentication and authorization are handled by the
 Kubernetes API server.
 
@@ -36,9 +36,8 @@ The `local-source-proxy` mechanism is completely bypassed if either of the follo
 This ensures compatibility with existing workflows and allows developers to continue using their
 preferred methods for deployment.
 
-By default, the `iterate`, `light` and `full` OOTB (out-of-the-box) profiles include the
-installation of this package.
-If you want to suppress this behavior, you can exclude the package by adding
-`local-source-proxy.apps.tanzu.vmware.com` to the list of excluded packages.
+By default, the `iterate`, `light`, and `full` profiles include the installation of this package.
+To suppress this behavior, exclude the package by adding `local-source-proxy.apps.tanzu.vmware.com`
+to the list of excluded packages.
 For how to do so, see
 [Exclude packages from a Tanzu Application Platform profile](../install-online/profile.hbs.md#exclude-packages).

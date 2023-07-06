@@ -71,7 +71,7 @@ stored in dedicated repositories.
 |Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan (SCST - Tools)|
 |Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign (SCST - Sign)|
 |Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store (SCST - Store)|
-|Tanzu Application Platform GUI|Tanzu Application Platform GUI|
+|Tanzu Developer Portal|Tanzu Developer Portal|
 |Tanzu Application Platform Telemetry|Tanzu Application Platform Telemetry|
 |Tanzu Build Service|Tanzu Build Service|
 |VMware Tanzu Developer Tools for IntelliJ|Tanzu Developer Tools for IntelliJ|

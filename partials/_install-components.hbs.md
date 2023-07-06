@@ -1,4 +1,4 @@
-You can install Tanzu Application Platform (commonly known as TAP) through 
+You can install Tanzu Application Platform (commonly known as TAP) through
 predefined profiles or through individual packages.
 Use this topic to learn how to install each individual package.
 For more information about installing through profiles, see
@@ -40,7 +40,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Supply Chain Security Tools - Store](/docs-tap/scst-store/install-scst-store.hbs.md)
 - [Install Supply Chain Security Tools - Policy Controller](/docs-tap/scst-policy/install-scst-policy.hbs.md)
 - [Install Supply Chain Security Tools - Scan](/docs-tap/scst-scan/install-scst-scan.hbs.md)
-- [Install Tanzu Application Platform GUI](/docs-tap/tap-gui/install-tap-gui.hbs.md)
+- [Install Tanzu Developer Portal](/docs-tap/tap-gui/install-tap-gui.hbs.md)
 - [Install Tanzu Build Service](/docs-tap/tanzu-build-service/install-tbs.hbs.md)
 - [Install Tekton](/docs-tap/tekton/install-tekton.hbs.md)
 - [Install Telemetry](/docs-tap/telemetry/install-telemetry.hbs.md)

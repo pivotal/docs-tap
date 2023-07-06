@@ -33,7 +33,7 @@ To create APIDescriptor Custom Resource:
 
 To configure:
 
-- [CORS for viewing OpenAPI Spec in TAP GUI](#cors)
+- [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
 
 ## <a id='generate-openapi'></a>Generate OpenAPI Spec
 
@@ -69,10 +69,9 @@ spec:
 ### <a id='using-app-acc-template'></a>Using App Accelerator Template
 
 If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
-App Accelerator template to get a pre-built app that includes a
-`workload.yaml` with a basic REST API.
-From your Tanzu Application Platform GUI Accelerators tab, search for the accelerator and
-scaffold it according to your needs.
+App Accelerator template to get a pre-built app that includes a `workload.yaml` with a basic REST
+API. From your Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) Accelerators
+tab, search for the accelerator and scaffold it according to your needs.
 
 ### <a id='existing-spring-project'></a>Using an existing Spring Boot project using springdoc
 
@@ -195,17 +194,17 @@ protocol to verify whether the current origin uses an API.
 To use the "Try it out" feature for OpenAPI specifications from the API Documentation plug-in, you must
 configure CORS to allow successful requests.
 
-Your API must be configured to allow CORS Requests from Tanzu Application Platform GUI. How you
+Your API must be configured to allow CORS Requests from Tanzu Developer Portal. How you
 accomplish this varies based on the programming language and framework you are using.
 If you are using Spring, see [CORS support in spring framework](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
 
-At a high level, the Tanzu Application Platform GUI domain must be accepted as valid cross-origin by
+At a high level, the Tanzu Developer Portal domain must be accepted as valid cross-origin by
 your API.
 
 Verify the following:
 
 - **Origins allowed** header: `Access-Control-Allow-Origin`: A list of comma-separated values.
-This list must include your Tanzu Application Platform GUI host.
+This list must include your Tanzu Developer Portal host.
 - **Methods allowed** header: `Access-Control-Allow-Method`: Must allow the method used by your API.
 Also confirm that your API supports preflight requests, a valid response to the OPTIONS HTTP method.
 - **Headers allowed** header: `Access-Control-Allow-Headers`: If the API requires any header, you

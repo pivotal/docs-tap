@@ -1,7 +1,7 @@
-# Set up permission framework for your Tanzu Application Platform GUI
+# Set up permission framework for your Tanzu Developer Portal
 
 This topic gives you an overview of the Backstage permission framework and tells you how to enable
-it for Tanzu Application Platform GUI (commonly called TAP GUI). For more information, see the
+it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). For more information, see the
 [Backstage documentation](https://backstage.io/docs/permissions/overview/).
 
 > **Caution** The permission framework functions are in alpha. It is not recommended for use in
@@ -10,7 +10,7 @@ it for Tanzu Application Platform GUI (commonly called TAP GUI). For more inform
 ## <a id='permission-overview'></a> Overview of the permission framework
 
 The permission framework enables Tanzu Application Platform operators to enforce policies that limit
-visibility of certain parts of Tanzu Application Platform GUI.
+visibility of certain parts of Tanzu Developer Portal.
 
 The current release features the alpha version of this function and only applies to the
 Software Catalog entities. `owner-of` is the only policy available and it is embedded in the GUI.
@@ -53,10 +53,10 @@ For example:
 - group:test-namespace/operators
 ```
 
-After you have updated your configuration file, reinstall your Tanzu Application Platform GUI package
+After you have updated your configuration file, reinstall your Tanzu Developer Portal package
 by following the steps in [Upgrade Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Application Platform GUI, the
+After the updated values configuration file is applied in Tanzu Developer Portal, the
 permission framework is enabled.
 
 > **Important** After the permission framework is enabled, all Software Catalog entities without

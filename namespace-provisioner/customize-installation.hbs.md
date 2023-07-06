@@ -1,6 +1,6 @@
 # Customize Installation of Namespace Provisioner
 
-This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Manager (commonly known as TAP).
+This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Platform (commonly known as TAP).
 
 Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 The Namespace Provisioner package is installed as part of all the standard installation profiles
@@ -22,10 +22,10 @@ the list of developer namespaces:
 
 ## Add additional resources to your namespaces from your GitOps repository
 
-   - `additional_sources` is an array of Git repository locations that contain Platform Operator
+   - `additional_sources`: This is an array of Git repository locations that contain Platform Operator
    templated resources to create in the provisioned namespaces, in addition to the default
    resources. The format of the Git repository locations must follow the "fetch" section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification, and only the Git type fetch is supported.
-   - `additional_sources[].git` entry can include a secretRef specified for providing authentication
+   - `additional_sources[].git` This entry can include a secretRef specified for providing authentication
    details for connecting to a private Git repository. For more information, see [Git Authentication for Private repository](use-case3.hbs.md#git-private). The following parameters are available:
 
      - `name`: The name of the secret to be imported and used as valuesFrom in kapp.
@@ -95,7 +95,7 @@ Using GitOps
 If a path is not specified in the `additional_sources` configuration, Namespace Provisioner
 automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samples-git-ns-provisioner-samples-testing-scaning-supplychain-0`
 
-See [Git Authentication for Private repository](use-case3.md#git-private).
+For more information, see [Git Authentication for Private repository](use-case3.md#git-private).
 
 ## Adjust sync period of Namespace Provisioner
 
@@ -220,7 +220,7 @@ Using GitOps
 ## Apply default parameters to all namespaces
 
 The `default_parameters` is an array of parameters that are applied to all namespaces. These
-parameters can be used as ytt (`data.values.default_parameters`) for templating default and
+parameters can be used as ytt, such as  `data.values.default_parameters` for templating default and
 additional resources.
 
 Sample `tap-values.yaml` configuration:

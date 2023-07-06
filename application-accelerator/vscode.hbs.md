@@ -7,9 +7,10 @@ from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies
 
-- To use the VS Code extension, the extension must access the Tanzu Application Platform GUI URL.
-For information about how to retrieve the Tanzu Application Platform GUI URL, see
-[Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url).
+- To use the VS Code extension, the extension must access the Tanzu Developer Portal
+  (formerly named Tanzu Application Platform GUI) URL.
+  For information about how to retrieve the Tanzu Developer Portal URL, see
+  [Retrieving the URL for the Tanzu Developer Portal](#fqdn-tap-gui-url).
 
 - (Optionally) To use Git repository provisioning during project creation in the VS Code extension,
 you must enable GitHub repository creation in the Application Accelerator plug-in.
@@ -49,12 +50,12 @@ Before using the extension, you need follow the next steps:
 
 2. Look for the setting `Tap Gui Url`.
 
-3. Add the `Tanzu Application Platform GUI` URL.
+3. Add the Tanzu Application Platform GUI URL.
 
    ![The Server Configure Setting page is open with the acc server URL highlighted.](../images/app-accelerators-vscode-settings-tap-gui-url.png)
 
     An example URL: `https://tap-gui.myclusterdomain.myorg.com`. If you have access to the Tanzu
-    Application Platform cluster that is running the Tanzu Application Platform GUI, you can run the
+    Application Platform cluster that is running the Tanzu Developer Portal, you can run the
     following command to determine the fully-qualified domain name:
 
     ```console
@@ -72,7 +73,7 @@ Choose any of the defined accelerators, fill the options and click  the `generat
 
 ![The accelerator tab is open to the Hello Fun accelerator form. The text boxes display example text and the Generate Project button is highlighted.](../images/app-accelerators-vscode-form.png)
 
-## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Application Platform GUI
+## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Developer Portal
 
 If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application
 Platform GUI, you can run the following command to determine the fully-qualified domain name:
@@ -88,9 +89,9 @@ NAME      FQDN                                      TLS SECRET     STATUS   STAT
 tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
 ```
 
-## <a id="dl-inst-ss-certs"></a>Download and Install Self-Signed Certificates from the Tanzu Application Platform GUI
+## <a id="dl-inst-ss-certs"></a>Download and Install Self-Signed Certificates from the Tanzu Developer Portal
 
-To enable the Application Accelerator extension for VS Code to communicate with a Tanzu Application Platform GUI instance that is secured using TLS, you must download and install the certificates locally.
+To enable the Application Accelerator extension for VS Code to communicate with a Tanzu Developer Portal instance that is secured using TLS, you must download and install the certificates locally.
 
 ### Prerequisites
 
@@ -98,7 +99,7 @@ To enable the Application Accelerator extension for VS Code to communicate with 
 
 ### Procedure
 
-1. Find the name of the Tanzu Application Platform GUI certificate. The name of the certificate
+1. Find the name of the Tanzu Developer Portal certificate. The name of the certificate
 might look different to the following example.
 
     ```console

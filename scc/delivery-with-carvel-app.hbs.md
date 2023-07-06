@@ -1,4 +1,4 @@
-# Use Gitops Delivery with a Carvel App (alpha)
+# Use Gitops delivery with a Carvel app (alpha)
 
 This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
@@ -23,7 +23,7 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
   clusters. If you intend to deploy directly on the run cluster without using a
   build cluster, a build cluster is only necessary for building the package.
 
-## <a id="-set-up-run-cluster"></a> Set up Run cluster namespaces
+## <a id="-set-up-run-cluster"></a> Set up run cluster namespaces
 
 Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
 
@@ -81,6 +81,7 @@ app.default.tap/
    stringData:
      values.yaml: |
        ---
+       workload_name: app
        replicas: 2
        hostname: app.mycompany.com
    ```
@@ -117,15 +118,20 @@ app.default.tap/
    - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
    - `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
   
-   > **Note** To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`.
+  To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
 
+  ```console
+  packaging.carvel.dev/downgradable: ""
+  ```
+
+  See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
    > **Important** If you skipped creation of the `Secret`, omit the `values` key.
 
-2. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
+1. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create app"></a> Create an App
+## <a id="create app"></a> Create an app
 
-1. You must give the Build cluster access to the Run clusters. On the Build cluster, for each Run cluster, create a `Secret` containing the Run cluster's kubeconfig:
+1. You must give the build cluster access to the Run clusters. On the build cluster create a `Secret` containing the Run cluster's kubeconfig for each run cluster:
 
    ```console
    kubectl create secret generic RUN-CLUSTER-kubeconfig \
@@ -143,8 +149,8 @@ app.default.tap/
    `spec.serviceAccountName`, in the same namespace where the App CR is located
    on the Build cluster. Or specify a `Secret` with kubeconfig contents for a
    target destination Run cluster, by using
-   `spec.cluster.kubeconfigSecretRef.name`, to explicitly provide the needed
-   privileges for managing app resources. The example in this section uses a
+   `spec.cluster.kubeconfigSecretRef.name`, to explicitly provide the
+   privileges required for managing app resources. The example in this section uses a
    target Run cluster.
 
 3. The [Carvel App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/)
@@ -153,8 +159,8 @@ app.default.tap/
    Git repository branch where kapp-controller resources, such as
    `PackageRepository` and `Packages`, are defined. By default, an `App` custom
    resource syncs the cluster with its fetch source every 30 seconds to prevent
-   the cluster state from drifting from its source of truth, which is a Git
-   repository in this case. Create the following `App` on your Build cluster:
+   the cluster state from drifting from its source of truth.
+  Create the following `App` on your Build cluster:
 
    ```yaml
    ---
@@ -200,7 +206,7 @@ app.default.tap/
    - `PATH-FOR-PACKAGES` is the package path.
    - `BUILD-CLUSTER-NS` is the build cluster namespace.
 
-   > **Note** The fetch section can includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
+   > **Note** The fetch section includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 
 ## <a id="verify-app"></a> Verifying applications
 

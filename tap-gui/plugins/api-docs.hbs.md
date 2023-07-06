@@ -1,13 +1,13 @@
-# API documentation plug-in in Tanzu Application Platform GUI
+# API documentation plug-in in Tanzu Developer Portal
 
-This topic gives you an overview of the API documentation plug-in of Tanzu Application Platform GUI
-(commonly called TAP GUI). For more information, see
+This topic gives you an overview of the API documentation plug-in of Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI). For more information, see
 [Get started with the API documentation plug-in](api-docs-getting-started.hbs.md).
 
 ## <a id="overview"></a> Overview
 
 The API documentation plug-in provides a standalone list of APIs that can be connected to
-components and systems of the Tanzu Application Platform GUI software catalog.
+components and systems of the Tanzu Developer Portal software catalog.
 
 Each API entity can reflect the components that provide that API and the list of components
 that are consumers of that API.
@@ -43,10 +43,10 @@ in GitHub.
 
 ## <a id='use-api-docs-plug-in'></a> Use the API documentation plug-in
 
-The API documentation plug-in is part of Tanzu Application Platform GUI.
+The API documentation plug-in is part of Tanzu Developer Portal.
 
 The first way to use the API documentation plug-in is API-first.
-Click **APIs** in the left navigation pane of Tanzu Application Platform GUI.
+Click **APIs** in the left navigation pane of Tanzu Developer Portal.
 This opens the **API catalog page**.
 
 ![Screenshot of the API catalog page. The API named demo dash api is framed in red.](../images/api-plugin-1.png)
@@ -55,7 +55,7 @@ On that page, you can view all the APIs already registered in the catalog regard
 are associated with components or systems.
 
 The second way to use the API documentation plug-in is by using components and systems of the
-software catalog, listed on the home page of Tanzu Application Platform GUI.
+software catalog, listed on the home page of Tanzu Developer Portal.
 If there is an API entity associated with the selected component or system, the **VIEW API** icon
 is active.
 
@@ -95,7 +95,7 @@ Manually creating a new API entity is similar to registering any other software 
 To manually create a new API entity:
 
 1. Click the **Home** button on the left navigation pane to access the home page of
-   Tanzu Application Platform GUI.
+   Tanzu Developer Portal.
 
 2. Click **REGISTER ENTITY**.
 
@@ -112,7 +112,7 @@ To manually create a new API entity:
    kind: API
    metadata:
    name: demo-api
-   description: The demo API for Tanzu Application Platform GUI
+   description: The demo API for Tanzu Developer Portal
    links:
      - url: https://api.agify.io
        title: API Definition

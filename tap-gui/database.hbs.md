@@ -1,7 +1,7 @@
-# Configure the Tanzu Application Platform GUI database
+# Configure the Tanzu Developer Portal database
 
-The Tanzu Application Platform GUI (commonly called TAP GUI) catalog gives you two approaches for
-storing catalog information:
+The Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) catalog gives you two
+approaches for storing catalog information:
 
 - **In-memory database:**
 
@@ -14,7 +14,7 @@ storing catalog information:
   This can cause issues when you manually register entities by using the UI because they only exist
   in the database and are lost when that in-memory database is rebuilt.
   If you choose this method, you lose all user preferences and any manually registered entities when
-  the Tanzu Application Platform GUI server pod is re-created.
+  the Tanzu Developer Portal server pod is re-created.
 
 - **PostgreSQL database:**
 
@@ -27,7 +27,7 @@ For production or general-purpose use-cases, a PostgreSQL database is recommende
 
 ## <a id="config-postgresql"></a> Configure a PostgreSQL database
 
-See the following sections for configuring Tanzu Application Platform GUI to use a PostgreSQL database.
+See the following sections for configuring Tanzu Developer Portal to use a PostgreSQL database.
 
 ### <a id="postgresql-edit-values"></a> Edit `tap-values.yaml`
 
@@ -57,13 +57,13 @@ Where:
 
 #### <a id="config-extras"></a> (Optional) Configure extra parameters
 
-Beyond the minimum configuration options needed to make Tanzu Application Platform GUI work with the
+Beyond the minimum configuration options needed to make Tanzu Developer Portal work with the
 `pg` driver, there are many more configuration options for other purposes.
-For example, you can restrict Tanzu Application Platform GUI to a single database.
+For example, you can restrict Tanzu Developer Portal to a single database.
 For more information about this restriction, see the
 [Backstage documentation](https://backstage.io/docs/tutorials/switching-sqlite-postgres#using-a-single-database).
 
-By default, Tanzu Application Platform GUI creates a database for each plug-in, but you can configure
+By default, Tanzu Developer Portal creates a database for each plug-in, but you can configure
 it to divide plug-ins based on different PostgreSQL schemas and use a single specified database.
 
 See the following example of extra configuration parameters:
@@ -78,7 +78,7 @@ tap_gui:
       database:
         client: pg
 
-        # This parameter tells Tanzu Application Platform GUI to put plug-ins in their own schema instead
+        # This parameter tells Tanzu Developer Portal to put plug-ins in their own schema instead
         # of their own database.
         # default: database
         pluginDivisionMode: schema
@@ -88,7 +88,7 @@ tap_gui:
           database: PG-SQL-DATABASE
 ```
 
-Where `PG-SQL-DATABASE` is the database name for Tanzu Application Platform GUI to use
+Where `PG-SQL-DATABASE` is the database name for Tanzu Developer Portal to use
 
 For the complete list of these configuration options, see the
 [node-postgres documentation](https://node-postgres.com/apis/client).
@@ -96,7 +96,7 @@ For the complete list of these configuration options, see the
 ### <a id="update-package-profile"></a> Update the package profile
 
 You can apply your new configuration by updating Tanzu Application Platform with your modified values.
-Doing so updates Tanzu Application Platform GUI because it belongs to Tanzu Application Platform.
+Doing so updates Tanzu Developer Portal because it belongs to Tanzu Application Platform.
 
 To apply your new configuration, run:
 

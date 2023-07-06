@@ -1,32 +1,31 @@
-# Secure a Workload with AppSSO
+# Secure a workload with Application Single Sign-On
 
-This topic tells you how to secure a `Workload` running on TAP with
-Application Single Sign-On (commonly called AppSSO).
+This tutorial tells you how to secure a `Workload` running on Tanzu Application 
+Platform with Application Single Sign-On (commonly called AppSSO).
 
-For specific stack implementations such as _Spring Boot_ and single-page
-applications see the [how-to guides](../../how-to-guides/index.hbs.md).
+For specific stack implementations, see [Secure a single-page app workload](../../how-to-guides/secure-spa-workload.hbs.md) and [Secure a Spring Boot workload](../../how-to-guides/secure-spring-boot-workload.hbs.md).
 
-As we learned in the previous section, we can obtain OAuth2 client credentials
-for an authorization server by claiming them from an AppSSO service offering.
-This is done with the `tanzu service class-claims create` command or with a
-`ClassClaim` resource. In either case, we can customize our OAuth2 client
-settings by providing parameters with our claim. For our `Workload` to be
-secured successfully we have to provide the right parameters for the situation.
+The [Getting Started](../../how-to-guides/get-started/index.hbs.md) section 
+explains how to obtain OAuth2 client credentials for an authorization server by 
+claiming them from an Application Single Sign-On service offering.
+You can enable this by running the `tanzu service class-claims create` command or 
+by using a `ClassClaim` resource. In either case, you can customize your OAuth2 client
+settings by providing parameters within your claim. To secure your `Workload`, 
+you must provide the appropriate parameters relevant to the given situation.
 
-The following sections elaborate on each parameter in detail and, eventually, 
-how to load credentials into a `Workload`.
+The following sections elaborate on each parameter in details and guide the process 
+of loading credentials into a `Workload`.
 
-Here's a quick reminder that when iterating on your `ClassClaim` make sure to
-recreate it when you make changes. Updates to an existing `ClassClaim` [have no
-effect](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#classclaim)
+When editing your `ClassClaim`, you must recreate it in order for the changes to 
+take effect. Updating an existing `ClassClaim` does not produce any impact. 
+For more information, see [Using a `ClassClaim`](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#classclaim).
 
-## OAuth2 client parameters
+## <a id="oauth2"></a> OAuth2 client parameters
 
-A `ClassClaim` for an AppSSO service is the request for OAuth2 client
-credentials for an authorization server. Lets revisit the anatomy of a
-`ClassClaim` for an AppSSO service.
+A `ClassClaim` for an Application Single Sign-On service is the request for 
+OAuth2 client credentials for an authorization server. 
 
-The following is an example of claim for a service called `sso` which
+The following is an example of a claim for a service called `sso`, which
 customizes all available client parameters:
 
 ```yaml
@@ -65,30 +64,28 @@ To verify the status of this `ClassClaim`, run:
 kubectl get classclaim my-sso-client --namespace my-apps
 ```
 
-After a `ClassClaim` is applied and has status of `Ready`, it can be consumed
-by a `Workload`. When the credentials are loaded into a `Workload` your
+After a `ClassClaim` is applied and its status shows `Ready`, it can be consumed
+by a `Workload`. When the credentials are loaded into a `Workload`, your
 application code can use them to initiate OAuth2 flows.
 
-### <a id='redirect-paths'></a> Redirect paths
+### <a id='redirect-paths'></a> `redirectPaths`
 
-`redirectPaths` define the locations to where you application's end-users will
-be redirected to after authenticating. Getting this setting right is a critical
-part of your client parameters. Wrong redirect URIs are the most common source
-of error for clients. When they aren't configured correctly, your application
-will not be able to perform OAuth2 flows and error.
+As a critical part of your client parameters, `redirectPaths` define the locations 
+to which you application's end-users are redirected to after the authentication. 
+Incorrect redirect URIs often cause errors for clients and are the most common 
+source of such issues. When redirect URIs are not configured accurately, your 
+application encounter errors and can not perform OAuth2 flows.
 
 For servlet-based Spring Boot workloads using Spring Security OAuth 2 Client
-library, the default redirect path template looks like this:
+library, the default redirect path template looks as follows:
 
 ```plain
 /login/oauth2/code/{ClassClaim.metadata.name}`
 ```
 
-> **Note** For more information about the format, see [Spring's
-> documentation](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri).
+For more information about the format, see the [Spring documentation](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri).
 
-For example, in the case of our `ClassClaim` we configure a single redirect
-path:
+For example, configure a single redirect path in `ClassClaim`:
 
 ```yaml
 spec:
@@ -97,27 +94,29 @@ spec:
       - /login/oauth2/code/my-sso-client
 ```
 
-Behind the scenes your redirect paths will be templated into full redirect URIs
-including a scheme and fully-qualified domain name. In the case of our example,
-our actual redirect URI could look something like this:
+Behind the scenes your redirect paths are templated into the full redirect URIs
+including a scheme and fully-qualified domain name. For example, your actual 
+redirect URI might look as follows:
 
 ```plain
 https://my-workload.my-apps.example.com/login/oauth2/code/my-sso-client
 ```
 
-The choice of scheme (`https`, `http`), the template for the subdomain and the
-ingress domain are under the control of your _service operators_ and _platform
-operators_. Should you notice that your redirect URIs aren't templating according
-to your needs get in touch with them to adjust the templates.
+The choice of scheme (`https` or `http`), the template for the subdomain and the
+ingress domain are under the control of your service operators and platform
+operators. If your redirect URIs do not template according to your needs, 
+reach out to your service operators and platform operators and request adjustments 
+to the templates.
 
-Redirect paths are one of the values that go into templating redirect URIs.
-There's one more and that brings us to the next parameter.
+Redirect paths are one of the values for templating redirect URIs.
+However, there is another parameter that needs to be considered, 
+which leads us to the next parameter.
 
-### Workload ref
+### <a id="workload-ref"></a> `workloadRef`
 
-The `workloadRef.name` parameter should be the name of the workload which acts
-as the OAuth2 client. This value will be used when templating the
-fully-qualified domain name of your redirect URIs.
+`workloadRef.name` is the name of the workload which acts as the OAuth2 client. 
+You can use this value when templating the fully-qualified domain name of your 
+redirect URIs.
 
 ```yaml
 spec:
@@ -126,13 +125,13 @@ spec:
       name: my-workload
 ```
 
-Therefore, if you rename your workload from `my-workload` to something else,
-then this parameter needs to reflect the new name.
+Therefore, if you rename your workload from `my-workload` to a different name, 
+you must update this parameter to align with the new name.
 
-> **Note** `workloadRef` is not resolved to a actual `Workload` existing on the
-> cluster. That means them claim does not depend on the existence of a `Workload`.
+> **Note** `workloadRef` is not resolved to an actual `Workload` existing on the
+> cluster. This means that the claim does not depend on the existence of a `Workload`.
 
-### Authorization grant types
+### <a id='auth-grant-types'></a> `authorizationGrantTypes`
 
 In OAuth2 parlance a grant type is the way your application obtains token from
 authorization server. There are different grant types. Some of them allow your
@@ -179,7 +178,7 @@ AppSSO supports the following OAuth2 grant types:
     fetch new access tokens before older ones expire to continue accessing
     protected resources.
 
-### Client authentication method
+### <a id='client-auth-method'></a> Client authentication method
 
 The client authentication method defines how your application presents its credentials to the authorization server.
 
@@ -200,7 +199,7 @@ There are three different options:
 - `none`: Don't send client credentials. This is for browser-based single-page
   apps.
 
-### Scopes
+### <a id='scopes'></a> `scopes`
 
 The `scopes` field defines the OAuth2 scopes your application will request,
 including standard OpenID claims. 
@@ -223,7 +222,7 @@ include the `openid` scope.
 To activate fetching of user roles or groups, you must include the `roles`
 scope.
 
-### Requiring user consent
+### <a id='user-consent'></a> `requireUserConsent`
 
 The `requireUserConsent` field allows for toggling scopes approval by end-users. 
 
@@ -237,7 +236,7 @@ If activated, end-users are prompted to consent to or reject scopes that the
 client requests on behalf of them. If deactivated, all scopes that the client
 requests are auto-approved or consented to without prompt.
 
-## Behind the scenes
+## <a id='behind-scenes'></a> Behind the scenes
 
 When you create a `ClassClaim` for an AppSSO service a few resources are being
 created behind the scenes. Usually, you won't have to care, but when things go
@@ -253,7 +252,7 @@ wrong it can be helpful for debugging.
 1. The `ClientRegistration` receives client credentials and passes them up, all
    the way to your `ClassClaim`.
  
-## Loading client credentials into a `Workload`
+## <a id='load-credentials'></a> Loading client credentials into a `Workload`
 
 Now that you have a client credentials for our application, you can reference
 the `ClassClaim` from your `Workload`.
@@ -333,7 +332,7 @@ Given these auto-generated values, your `Workload` can now load them at runtime
 and bind to an AppSSO authorization server at start-up time. Reading the values
 from the file system is left to the implementer.
 
-## Trusting an authorization server
+## <a id='trust-auth'></a> Trusting an authorization server
 
 Your application will make request to the authorization server. The
 authorization server will serving traffic using TLS. It is possible that your
@@ -342,8 +341,7 @@ have to explicitly trust the authorization server or rather the certificate
 authority. See 
 [Configure Workloads to trust a custom certificate authority](../../tutorials/service-operators/workload-trust-custom-ca.hbs.md).
 
-## Summary
+## <a id='summary'></a> Summary
 
 Now you know how to claim client credentials for an AppSSO authorization server
 and how to secure a workload.
-

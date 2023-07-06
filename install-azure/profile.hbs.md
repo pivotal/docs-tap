@@ -37,20 +37,20 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
     export IMGPKG_REGISTRY_PASSWORD_1=REGISTRY-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REGISTRY_HOSTNAME=$REGISTRY_NAME.azurecr.io
-    export INSTALL_REPO=tapimages    
+    export INSTALL_REPO=tapimages
     ```
 
     Where:
 
     - `MY-AZURE-APP-ID` is the application ID you deploy Tanzu Application Platform in. Must be in UUID format.
-    - `AZURE-TENANT` is the tenant you deploy Tanzu Application Platform in. Must be in UUID format.    
-    - `MY-AZURE-SUBSCRIPTION-ID` is the Azure subscription ID you deploy Tanzu Application Platform in. Must be in UUID format.    
+    - `AZURE-TENANT` is the tenant you deploy Tanzu Application Platform in. Must be in UUID format.
+    - `MY-AZURE-SUBSCRIPTION-ID` is the Azure subscription ID you deploy Tanzu Application Platform in. Must be in UUID format.
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
-    - `TARGET-AZURE-REGION` is the region you deploy the Tanzu Application Platform to.      
+    - `TARGET-AZURE-REGION` is the region you deploy the Tanzu Application Platform to.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
-1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).  
+1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
 1. Relocate the images with the `imgpkg` CLI by running:
 
@@ -232,8 +232,8 @@ The `profile:` field takes `full` as the default value, but you can also set it 
 See [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) for more information.
 
 ```console
-cat << EOF > tap-values.yaml 
-ceip_policy_disclosed: true 
+cat << EOF > tap-values.yaml
+ceip_policy_disclosed: true
 profile: full # Can take iterate, build, run, view.
 
 supply_chain: basic # Can take testing, testing_scanning.
@@ -246,19 +246,19 @@ ootb_supply_chain_basic:
     server: ${KP_REGISTRY_HOSTNAME}
     repository: ${INSTALL_REPO}
   gitops:
-    ssh_secret: "" 
+    ssh_secret: ""
 
 contour:
   envoy:
     service:
-      type: LoadBalancer 
+      type: LoadBalancer
 
 buildservice:
   kp_default_repository: ${KP_REGISTRY_HOSTNAME}
   kp_default_repository_secret:
     name: registry-credentials
     namespace: "MY-DEV-NAMESPACE"
-  enable_automatic_dependency_updates: false          
+  enable_automatic_dependency_updates: false
 
 learningcenter:
   ingressDomain: learning-center.tap.com
@@ -297,7 +297,7 @@ accelerator:
 
 cnrs:
   domain_name: tap.com
-EOF 
+EOF
 ```
 
 Where:
@@ -330,7 +330,7 @@ contour:
 ```
 
 
-> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml
@@ -426,16 +426,17 @@ To install the `full` dependencies package:
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
-## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier.
+To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the host
+name that you configured earlier.
 This host name is pointed at the shared ingress.
-To configure LoadBalancer for Tanzu Application Platform GUI,
-see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.hbs.md).
+To configure LoadBalancer for Tanzu Developer Portal,
+see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.hbs.md).
 
-You're now ready to start using Tanzu Application Platform GUI.
+You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.hbs.md) topic.
+[Tanzu Developer Portal - Catalog Operations](../tap-gui/catalog/catalog-operations.hbs.md) topic.
 
 ## <a id='next-steps'></a>Next steps
 

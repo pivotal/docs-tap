@@ -2,7 +2,7 @@
 
 This topic guides you through deploying your first application on Tanzu Application Platform
 (commonly known as TAP) by using the Tanzu CLI, and optionally adding your application to the
-Tanzu Application Platform GUI software catalog.
+Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) software catalog.
 
 This guide is a continuation from the previous step,
 [Generate an application with Application Accelerator](./generate-first-app.hbs.md).
@@ -22,7 +22,7 @@ Before you start, you must have:
 - Deploy an app using the Tanzu CLI.
 - View the build and runtime logs for your app.
 - View the web app in your browser.
-- (Optional) Add your application to Tanzu Application Platform GUI software catalog.
+- (Optional) Add your application to Tanzu Developer Portal software catalog.
 
 ## <a id="deploy-your-app"></a>Deploy your application using the Tanzu CLI
 
@@ -189,14 +189,14 @@ and then update the `workload.yaml` with the repository URL and branch.
 
     ![Screenshot of the Tanzu Java Web App default screen in a browser.](../images/getting-started-tap-gui-8.png)
 
-## <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI software catalog
+## <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Developer Portal software catalog
 
-1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**,
+1. Navigate to the home page of Tanzu Developer Portal and click **Home**,
    located on the left navigation pane.
 
 1. Click **REGISTER ENTITY**.
 
-    ![Screenshot of Tanzu Application Platform GUI Home page, with REGISTER Entity button highlighted.](../images/getting-started-tap-gui-5.png)
+    ![Screenshot of Tanzu Developer Portal Home page, with REGISTER Entity button highlighted.](../images/getting-started-tap-gui-5.png)
 
     Alternatively, you can add a link for the `catalog-info.yaml` to the `tap-values.yaml` configuration
     file in the `tap_gui.app_config.catalog.locations` section.
@@ -217,7 +217,7 @@ and then update the `workload.yaml` with the repository URL and branch.
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
->**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md)
+>**Note** If your Tanzu Developer Portal instance does not have a [PostgreSQL](../tap-gui/database.md)
 >database configured, you must re-register the `catalog-info.yaml` location after the instance is
 >restarted or upgraded.
 

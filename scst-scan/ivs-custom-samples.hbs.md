@@ -1,10 +1,10 @@
-# Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan<!--฿ |Supply Chain Security Tools (SCST) - Scan| on first use. |SCST - Scan| thereafter. ฿-->
+# Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan
 
-This topic provides you with sample ImageVulnerabilityScans for various scanners, and their associated secrets if required.
+This topic gives you a sample ImageVulnerabilityScans for various scanners, and any associated secrets.
 
 ## <a id="overview"></a> ImageVulnerabilityScan samples
 
-This section includes ImageVulnerabilityScans (IVS) for various scanners. To use them, copy the YAML content and follow the instructions in the following section.
+This section includes ImageVulnerabilityScans (IVS) for various scanners. To use them, copy the YAML content and use the following sections:
 
 - [Carbon Black](./ivs-carbon-black.hbs.md)
 - [Snyk](./ivs-snyk.hbs.md)
@@ -18,7 +18,7 @@ To use a custom ImageVulnerabilityScan sample:
 
 1. Copy the sample YAML into a file named `custom-ivs.yaml`. Some scanners, such as Carbon Black, Snyk, and Prisma Scanner, require specific credentials that you must specifiy in the secret.
 2. Obtain the one or more necessary images. For example, an image containing the scanner.
-3. Edit these common fields of your ImageVulnerabilityScan:
+3. Edit these fields of your ImageVulnerabilityScan:
 
    - `spec.image` is the image that you are scanning. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
    - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.

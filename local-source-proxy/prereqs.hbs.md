@@ -1,6 +1,6 @@
 # Prerequisites for Local Source Proxy
 
-You need the following prerequisites before you can install Local Source Proxy:
+You need the following prerequisites before you can install Local Source Proxy (LSP):
 
 - A registry server with a repository capable of accepting and hosting OCI artifacts, such as gcr.io,
   Harbor, and so on.

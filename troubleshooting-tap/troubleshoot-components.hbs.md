@@ -2,7 +2,7 @@
 
 For component-level troubleshooting, see these topics:
 
-- [Troubleshoot Tanzu Application Platform GUI](../tap-gui/troubleshooting.md)
+- [Troubleshoot Tanzu Developer Portal](../tap-gui/troubleshooting.md)
 - [Troubleshoot Learning Center](../learning-center/troubleshoot-learning-center.md)
 - [Troubleshoot Service Bindings](../service-bindings/troubleshooting.md)
 - [Troubleshoot Source Controller](../source-controller/troubleshooting.md)

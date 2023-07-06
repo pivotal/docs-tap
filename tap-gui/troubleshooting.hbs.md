@@ -1,9 +1,9 @@
-# Troubleshoot Tanzu Application Platform GUI
+# Troubleshoot Tanzu Developer Portal
 
 This topic tells you how to troubleshoot issues encountered when installing
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
-## <a id='port-range-invalid'></a> Tanzu Application Platform GUI reports that the port range is not valid
+## <a id='port-range-invalid'></a> Tanzu Developer Portal reports that the port range is not valid
 
 ### Symptom
 
@@ -26,7 +26,7 @@ Backend failed to start up, Error: Port range is not valid: //gitlab.example.com
 
 ### Cause
 
-Tanzu Application Platform GUI expects a host name to be passed into the field
+Tanzu Developer Portal expects a host name to be passed into the field
 `backend.reading.allow[].host`.
 
 ### Solution
@@ -43,11 +43,11 @@ tap_gui:
             paths: ['/some-group/some-repo/']
 ```
 
-## <a id='catalog-not-loading'></a> Tanzu Application Platform GUI does not load the catalog
+## <a id='catalog-not-loading'></a> Tanzu Developer Portal does not load the catalog
 
 ### Symptom
 
-You are able to visit Tanzu Application Platform GUI, but it does not load the catalog and you see
+You are able to visit Tanzu Developer Portal, but it does not load the catalog and you see
 the following error message.
 
 ```console
@@ -68,19 +68,19 @@ Firefox
 
 ### Cause
 
-As of Tanzu Application Platform v1.5, Tanzu Application Platform GUI provides TLS connections by
-default. Because of this, if you visit a Tanzu Application Platform GUI site your connection is
+As of Tanzu Application Platform v1.5, Tanzu Developer Portal provides TLS connections by
+default. Because of this, if you visit a Tanzu Developer Portal site your connection is
 automatically upgraded to https.
 
 You might have manually set the fields `app.baseUrl`, `backend.baseUrl`, and
 `backend.cors.origin` in your `tap-values.yaml` file.
-Tanzu Application Platform GUI uses the `baseUrl` to determine how to create links to fetch from its
+Tanzu Developer Portal uses the `baseUrl` to determine how to create links to fetch from its
 APIs. The combination of these two factors causes your browser to attempt to fetch mixed content.
 
 ### Solution
 
 The solution is to delete these fields or update your values in `tap-values.yaml` to reflect that your
-Tanzu Application Platform GUI instance is serving https, as in the following example:
+Tanzu Developer Portal instance is serving https, as in the following example:
 
 ```yaml
 tap_gui:
@@ -113,7 +113,7 @@ Recreate the same workload to execute through the new or updated supply chain.
 
 ### Symptom
 
-When you pull up Tanzu Application Platform GUI, you get the error `Catalog Not Found`.
+When you pull up Tanzu Developer Portal, you get the error `Catalog Not Found`.
 
 ### Cause
 
@@ -122,13 +122,13 @@ The catalog plug-in can't read the Git location of your catalog definition files
 ### Solution
 
 1. Ensure you have built your own [Backstage](https://backstage.io/)-compatible catalog or that
-   you have downloaded one of the Tanzu Application Platform GUI catalogs from VMware Tanzu
+   you have downloaded one of the Tanzu Developer Portal catalogs from VMware Tanzu
    Network.
 2. Ensure you defined the catalog in the values file that you input as part of installation.
    To update this location, change the definition file:
 
       - Change the Tanzu Application Platform profile file if installed by using a profile.
-      - Change the standalone Tanzu Application Platform GUI values file if you're only installing
+      - Change the standalone Tanzu Developer Portal values file if you're only installing
         that package on its own.
 
     ```yaml
@@ -163,7 +163,7 @@ You can substitute for other integrations as defined in the
 
 ### Symptom
 
-After updating the configuration of Tanzu Application Platform GUI, either by using a profile
+After updating the configuration of Tanzu Developer Portal, either by using a profile
 or as a standalone package installation, you don't know whether the configuration has reloaded.
 
 ### Solution
@@ -202,7 +202,7 @@ or as a standalone package installation, you don't know whether the configuratio
    > the pod might cause the loss of user preferences and manually registered entities.
    > If you have configured an external PostgreSQL database, `tap-gui` pods are not stateful.
    > In most cases, state is held in ConfigMaps, Secrets, or the database.
-   > For more information, see [Configuring the Tanzu Application Platform GUI database](database.md)
+   > For more information, see [Configuring the Tanzu Developer Portal database](database.md)
    > and [Register components](catalog/catalog-operations.md#register-comp).
 
    To delete and re-instantiate the pod, run:
@@ -211,11 +211,11 @@ or as a standalone package installation, you don't know whether the configuratio
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
-## <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
+## <a id='tap-gui-logs'></a> Pull logs from Tanzu Developer Portal
 
 ### Symptom
 
-You have a problem with Tanzu Application Platform GUI, such as `Catalog: Not Found`, and don't have
+You have a problem with Tanzu Developer Portal, such as `Catalog: Not Found`, and don't have
 enough information to diagnose it.
 
 ### Solution
@@ -236,7 +236,7 @@ Get timestamped logs from the running pod and review the logs:
 
 One or both of the following is true:
 
-- You cannot access some, or all, of Tanzu Application Platform GUI.
+- You cannot access some, or all, of Tanzu Developer Portal.
 - Telemetry collection within the VMware
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   is failing.
@@ -247,7 +247,7 @@ Your ad-blocking browser extension or standalone ad-blocking software is causing
 
 ### Solution
 
-Add Tanzu Application Platform GUI to your ad-blocking allowlist.
+Add Tanzu Developer Portal to your ad-blocking allowlist.
 Alternatively, deactivate the ad-blocking software or
 [turn off Pendo telemetry collection](../opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
@@ -316,7 +316,7 @@ You might receive the following error messages:
   - **Solution:** If the cluster is the same where **Tanzu Application Platform** is running, review
     the version installed to confirm it contains the desired resource.
     If the error is in a watched cluster, review the process to grant access to it in
-    [Viewing resources on multiple clusters in Tanzu Application Platform GUI](cluster-view-setup.md).
+    [Viewing resources on multiple clusters in Tanzu Developer Portal](cluster-view-setup.md).
 
 - `Knative is not installed on CLUSTER_NAME (status: 404). Contact your administrator.`
   - **Cause:** The cluster does not have Cloud Native Runtimes installed.
@@ -341,7 +341,7 @@ during the `tap-gui` package installation, there are no accelerators on the **Ac
 #### Cause
 
 This section in `tap-values.yaml` overrides the default configuration that gives
-Tanzu Application Platform GUI access to the accelerators.
+Tanzu Developer Portal access to the accelerators.
 
 #### Solution
 
@@ -356,6 +356,150 @@ app_config:
       allow:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
+
+## <a id='ivs-support'></a> Supporting ImageVulnerabilityScans
+
+#### Symptom
+
+App Scanning 2.0 has been enabled and there is no vulnerability data on the Security Analysis plug-in page or the Supply Chain Choreographer plug-in page
+
+#### Cause
+
+This is caused because Tanzu Developer Portal needs to be configured to know about the new ImageVulnerabilityScan Custom Resource.
+
+#### Solution
+
+1. Get the TAP values
+  ```console
+  tanzu package installed get tap --values-file-output tap-values.yaml -n tap-install
+  ```
+
+2. Modify tap-values.yaml to inform Tanzu Developer Portal about the new ImageVulnerabilityScan resource. Note, you will need to list out all existing resources as well so it is best to add in the section below.
+  ```yaml
+  tap_gui:
+  app_config:
+    kubernetes:
+      customResources:
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'configurations'
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'revisions'
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'routes'
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'services'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterconfigtemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterdeliveries'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterdeploymenttemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterimagetemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterruntemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clustersourcetemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clustersupplychains'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clustertemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'deliverables'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'runnables'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'workloads'
+        - group: 'source.toolkit.fluxcd.io'
+          apiVersion: 'v1beta1'
+          plural: 'gitrepositories'
+        - group: 'conventions.carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'podintents'
+        - group: 'kpack.io'
+          apiVersion: 'v1alpha2'
+          plural: 'images'
+        - group: 'kpack.io'
+          apiVersion: 'v1alpha2'
+          plural: 'builds'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'sourcescans'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'scanpolicies'
+        - group: 'source.apps.tanzu.vmware.com'
+          apiVersion: 'v1alpha1'
+          plural: 'imagerepositories'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'imagescans'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'scantemplates'
+        - group: 'tekton.dev'
+          apiVersion: 'v1beta1'
+          plural: 'pipelineruns'
+        - group: 'tekton.dev'
+          apiVersion: 'v1beta1'
+          plural: 'taskruns'
+        - group: 'kappctrl.k14s.io'
+          apiVersion: 'v1alpha1'
+          plural: 'apps'
+        - group: 'networking.internal.knative.dev'
+          apiVersion: 'v1alpha1'
+          plural: 'serverlessservices'
+        - group: 'autoscaling.internal.knative.dev'
+          apiVersion: 'v1alpha1'
+          plural: 'podautoscalers'
+        - group: 'source.apps.tanzu.vmware.com'
+          apiVersion: 'v1alpha1'
+          plural: 'mavenartifacts'
+        - group: 'app-scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1alpha1'
+          plural: 'imagevulnerabilityscans'
+  ```
+
+3. Update Tanzu Developer Portal with the new TAP values
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -n tap-install --values-file tap-values.yaml
+  ```
+
+4. Pause the reconciliation of Tanzu Developer Portal so edits to the ClusterRole will not get reverted.
+  ```console
+  kctrl package installed pause -i tap-gui -n tap-install
+  ```
+
+5. Edit the k8s-reader ClusterRole to give it permission to access the ImageVulnerabilityScan Custom Resource
+  ```console
+  kubectl edit clusterrole k8s-reader
+  ```
+  Add the following yaml to the ClusterRole
+  ```yaml
+  - apiGroups:
+    - app-scanning.apps.tanzu.vmware.com
+  resources:
+    - imagevulnerabilityscans
+  verbs:
+    - get
+    - watch
+    - list
+  ```
 
 ## Security Analysis plug-in
 
@@ -374,7 +518,7 @@ The relevant CVE belongs to a workload that has only completed one type of vulne
 
 #### Solution
 
-A fix is planned for Tanzu Application Platform GUI v1.5.1.
+A fix is planned for Tanzu Developer Portal v1.5.1.
 
 ## Supply Chain Choreographer plug-in
 

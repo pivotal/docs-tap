@@ -72,13 +72,13 @@ To install the API Auto Registration package:
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
-2. Locate the Tanzu Application Platform GUI URL.
+2. Locate the Tanzu Developer Portal (formerly Tanzu Application Platform GUI) URL.
 
-    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Application Platform GUI URL is sufficient. You can edit this to match the externally available FQDN of Tanzu Application Platform GUI to display the entity URL in the externally accessible APIDescriptor status.
+    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Developer Portal URL is sufficient. You can edit this to match the externally available FQDN of Tanzu Developer Portal to display the entity URL in the externally accessible APIDescriptor status.
 
-    When installed in a run cluster or with a profile where Tanzu Application Platform GUI is not installed in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity registration with Tanzu Application Platform GUI.
+    When installed in a run cluster or with a profile where Tanzu Developer Portal is not installed in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity registration with Tanzu Developer Portal.
 
-    You can locate the `tap_gui_url` by going to the view cluster with the Tanzu Application Platform GUI you want to register the entity with:
+    You can locate the `tap_gui_url` by going to the view cluster with the Tanzu Developer Portal you want to register the entity with:
 
     ```console
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
@@ -158,5 +158,5 @@ To install the API Auto Registration package:
     kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'
     ```
 
-    Verify that the entity is created in your Tanzu Application Platform GUI:
+    Verify that the entity is created in your Tanzu Developer Portal:
     `TAP-GUI-URL/catalog/default/api/sample-api-descriptor-with-absolute-url`

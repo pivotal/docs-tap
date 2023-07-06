@@ -38,20 +38,20 @@ configuring the Tanzu Application Platform, there are several areas where user i
 configuration should be considered. Currently the Tanzu Application Platform has three different
 areas where users have identities.
 
-1. Tanzu Application Platform GUI
-2. Tanzu Application Platform GUI Authentication to Remote Clusters
+1. Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+2. Tanzu Developer Portal Authentication to Remote Clusters
 3. The Kubernetes cluster that the Tanzu Application Platform components are installed on
 
 It is recommended to use the same identity provider for each of these components so that a common
 identity is shared across the entire Tanzu Application Platform. To facilitate this, components are
 able to use common OIDC providers.  Below is the configuration for each component:
 
-### Tanzu Application Platform GUI
+### Tanzu Developer Portal
 
-The Tanzu Application Platform GUI is based on the Backstage open source project and has a variety
+The Tanzu Developer Portal is based on the Backstage open source project and has a variety
 of OIDC providers that you are able to configure as an identity provider.
 
-In order to configure authentication for the Tanzu Application Platform GUI, VMware suggests the
+In order to configure authentication for the Tanzu Developer Portal, VMware suggests the
 following:
 
 1. Enable user authentication using one of the
@@ -70,9 +70,9 @@ following:
          allowGuestAccess: false
    ```
 
-### Tanzu Application Platform GUI to Remote Kubernetes Cluster Authentication
+### Tanzu Developer Portal to Remote Kubernetes Cluster Authentication
 
-Several plugins within the Tanzu Application Platform GUI, such as the Runtime Resource Viewer,
+Several plugins within the Tanzu Developer Portal, such as the Runtime Resource Viewer,
 Supply Chain Visualization, and Security Analysis GUI require authentication to remote Kubernetes
 clusters to query Kubernetes resources.
 
@@ -83,7 +83,7 @@ remote cluster.  As best security practice, VMware recommends setting up a remot
 provider for the Kubernetes cluster.
 
 For more information, see
-[Update Tanzu Application Platform GUI to view resources on multiple clusters](../tap-gui/cluster-view-setup.hbs.md#update-tap-gui).
+[Update Tanzu Developer Portal to view resources on multiple clusters](../tap-gui/cluster-view-setup.hbs.md#update-tap-gui).
 
 As best practice, the users on the Kubernetes clusters that are used for remote authentication
 should be assigned to Kubernetes roles that limit access in a least privilege model.  More
@@ -100,8 +100,8 @@ API, VMware supports the [Pinniped project](https://pinniped.dev/) and has
 [documented](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-integrating-identity.html)
 the process of setting it up as part of the Tanzu Application Platform documentation.
 
-By configuring this to use the same identify provider as the Tanzu Application Platform GUI, users
-can have a common identity across the Kubernetes clusters and the Tanzu Application Platform GUI.
+By configuring this to use the same identify provider as the Tanzu Developer Portal, users
+can have a common identity across the Kubernetes clusters and the Tanzu Developer Portal.
 Because the Tanzu CLI is making Kubernetes API calls, this configuration will also be enabled for
 the Tanzu CLI.
 

@@ -36,6 +36,13 @@ a registry and provide their credentials on their local systems for iterative in
 ### <a id='1-6-0-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+#### <a id='1-6-0-appacc'></a> Application Accelerator
+- The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
+
+
+#### <a id='1-6-0-alv'></a> Application Live View
+- Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [w](./app-live-view/improved-security-and-access-control.hbs.md)
+- Developers can view the live information of natively compiled Spring applications via Application Live View for lightweight troubleshooting. The pages and metrics currently unavailable for natively compiled Spring applications include threads, heapdump, memory graphs, cache manager, conditions, schedules tasks and actuator information. For more information, see [Enable Spring Native apps for Application Live View]()
 
 #### <a id='1-6-0-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
 
@@ -66,10 +73,8 @@ This release includes the following changes, listed by component and area.
   [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enables the ability to:
   - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
-  - Configure the internal unsafe provider with custom claims out of the box <!-- cannot use out of the box. what to replace with -->.
-    For more information, see
-    [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
-<!-- Are the following items classes/XRDs new to this version of TAP? -->
+  - Configure the internal unsafe provider with custom claims.
+    For more information, see [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
   use to get started with Application Single Sign-On in non-production environments.
   It is not safe for production.
@@ -215,7 +220,17 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
-- Supply Chain Security Tools - Scan 2.0 is promoted from `alpha` to `beta` with the ability to enable Supply Chain Security Tools - Scan 2.0 in the out-of-the-box test and scan supply chain.
+- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md) is promoted from `alpha` to `beta`.  This promotion primarily includes capabilities to integrate the SCST-Scan 2.0 component with other components of the Tanzu Application Platform, including: 
+  - The ability to [enable](scst-scan/integrate-app-scanning.hbs.md#adding-app-scanning-to-default-test-and-scan-supply-chain) Supply Chain Security Tools (SCST) - Scan 2.0 in the out-of-the-box test and scan supply chain.
+  - [AMR Observer (Alpha)](scst-store/amr/overview.hbs.md#amr-observer) observes scan results from SCST - Scan 2.0 and archives them to the [AMR (beta)](scst-store/amr/architecture.hbs.md) for long-term storage and reporting, and use by other Tanzu Application Platform Components.
+  - Results from image scans with SCST - Scan 2.0 are now available in [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.hbs.md) and [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md) plug-ins for the Tanzu Developer Portal.
+  - [Sample scan templates](scst-scan/ivs-custom-samples.hbs.md) are created to help users get started with examples of how to bring your own scanner.
+    - [Carbon Black](scst-scan/ivs-carbon-black.hbs.md)
+    - [Snyk](scst-scan/ivs-snyk.hbs.md)
+    - [Prisma](scst-scan/ivs-prisma.hbs.md)
+    - [Trivy](scst-scan/ivs-trivy.hbs.md)
+    - [Grype](scst-scan/ivs-grype.hbs.md)
+  - VMware encourages feedback about SCST - Scan 2.0. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-6-0-scst-store'></a> Supply Chain Security Tools - Store
 
@@ -256,9 +271,29 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   - Handles Location configured CloudEvents from the Artifact Metadata Repository Observer
   - Handles ReplicaSet configured CloudEvents from the Artifact Metadata Repository Observer
 
+#### <a id='1-6-0-intellij-ext'></a> Tanzu Developer Tools for IntelliJ
+
+- Added support for Local Source Proxy that eliminates the need to provide source image configuration
+  for rapid iteration in the inner loop
+- Tanzu Developer Tools for IntelliJ can now be used to rapidly iterate on Spring-native applications.
+  Developers can Live Update and debug spring-native applications non-natively and then deploy
+  to a cluster as a native image.
+- Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
+  projects in their preferred IDE
+
+#### <a id='1-6-0-vscode-ext'></a> Tanzu Developer Tools for VS Code
+
+- Added support for Local Source Proxy that eliminates the need to provide source image configuration
+  for rapid iteration in the inner loop
+- Tanzu Developer Tools for IntelliJ can now be used to rapidly iterate on Spring-native applications.
+  Developers can Live Update and debug spring-native applications non-natively and then deploy
+  to a cluster as a native image.
+- Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
+  projects in their preferred IDE
+
 #### <a id='1-6-0-cnrs'></a> Cloud Native Runtimes
 
-- **New `default_external_scheme` configuration option**:
+- New `default_external_scheme` configuration option:
   - Configures `default-external-scheme` on Knative's `config-network` ConfigMap with a default scheme you can use for Knative Service URLs. Supported values are either `http` or `https`. You cannot set this option at the same time as the `default_tls_secret` option.
 
 #### <a id='1-6-0-contour'></a> Contour
@@ -299,21 +334,11 @@ This release includes the following changes, listed by component and area.
 - The full dependencies package repository is tagged with the Tanzu Application Platform package version instead of the Tanzu Build Service package version.
 - The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
 
-#### <a id='1-6-0-developer-tools-for-intellij'></a> Tanzu Developer Tools for IntelliJ
-- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image configuration for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
-- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
-
-#### <a id='1-6-0-developer-tools-for-vscode'></a> Tanzu Developer Tools for Visual Studio Code
-- Tanzu Developer tools has added support for local source proxy which eliminates the need to provide source image for rapid iteration in inner loop
-- Tanzu Developer tools can be used to rapidly iterate on Spring native applications, enabling developers to live update and debug spring native applications non-natively and then deploy to cluster as a native image
-- Developers can now rapidly iterate and build Gradle projects in their preferred IDE using Tanzu Developer tools
-
 #### <a id='1-6-0-cnrs-bc'></a> Cloud Native Runtimes
 - **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
   As part of this release, the option has been removed completely.
 
-#### <a id='1-6-0-tap-gui-bc'></a> Tanzu Application Platform GUI (Tanzu Developer Portal)
+#### <a id='1-6-0-tap-gui-bc'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 - **`allowGuestAccess` config option**: Previously this was not needed in the configuration and would default to allow users to login without credentials. In 1.6.x+ this has been changed to require explicitly allowing guest users. The recommended values files in the installation sections have been updated to include this setting.
 
   Add the following lines to your `tap-values.yaml` in order to enable guest access explicitly:
@@ -396,24 +421,20 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-0-intellij-plugin-ri'></a> Tanzu Developer Tools for IntelliJ
 
-- Resolved the issue that `apply` action stores the workload file path when using the action for the first
-  time, but doesn't provide a way of modifying it afterwards. Resolution: this information is no longer
-  stored but either computed or obtained by prompting the user as needed.
+- The `apply` action no longer stores the workload file path, which prevented modifying the workload
+  file path later. Now this information is either computed or obtained by prompting the user as needed.
 
-- Resolved an issue in the Tanzu Activity Panel that the `config-writer-pull-requester` of
-  type `Runnable` was incorrectly categorized as **Unknown**.
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of the type `Runnable` is no longer
+  incorrectly categorized as **Unknown**.
 
 #### <a id='1-6-0-cnrs-ri'></a> Cloud Native Runtimes
 
 - New toggle feature for how to make ConfigMap updates
+  - For some ConfigMaps in Cloud Native Runtimes, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in Cloud Native Runtimes. To configure this option, edit your `cnr-values.yaml` file to change the following configuration:
 
-For some ConfigMaps in CNRs, such as config-features, the option to update using an overlay was not taking effect. This issue is fixed. With this version, the legacy behavior remains the same, but VMware introduced a configuration to opt-in into updating ConfigMaps using overlays in CNRs, as it is for all Tanzu Application Platform components. To configure this option, edit your cnr-values.yaml file to change the following configuration:
-
-```console
+```yaml
 allow_manual_configmap_update: false
 ```
-
-In a planned future release of CNRs, `false` will be the default configuration. At some point after that, CNRs will be released without the option to switch and `false` will be the permanent behavior.
 
 ---
 
@@ -425,42 +446,33 @@ This release has the following known issues, listed by component and area.
 
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Application Platform GUI
+#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
-  and restrict access to all or parts of Tanzu Application Platform GUI.
+  and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
-
 
 #### <a id='1-6-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
-- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in the
-  error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
   plug-in.
 
 - If you restart your computer while running Live Update without terminating the Tilt
   process beforehand, there is a lock that incorrectly shows that Live Update is still running and
   prevents it from starting again.
-  To resolve this, delete the Tilt lock file. The default location for the file is
-  `~/.tilt-dev/config.lock`.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
 
-- Workload actions and Live Update do not work when in a project with spaces in its name (such as
-  `my app`) or its path (such as `C:\Users\My User\my-app`).
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- An **EDT Thread Exception** is raised and logged: An error is logged and/or reported as a
-  notification with a message similar to:
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
   `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
-  This is due to a UI liveness check that detected something affecting more time than it should on the UI
-  thread and freezing the UI. You may also experience a brief UI freeze at the same time. This may happen
-  especially when starting IntelliJ, as some initialization processes are still running.
-  This problem has also been reported by users with large projects. This issue will be fixed
-  in the next release. If slow startup processes cause it, it is minor and ignorable.
-  If many files in the project cause it, it may annoy depending on the UI freeze severity.
-  Unfortunately, there is no workaround currently other than trying to reduce the number
-  of files in your project, though that may not always be practical.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
 
 #### <a id='1-6-0-amr-observer-cloudevent-handler'></a> Artifact Metadata Repository Observer and CloudEvent Handler
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful.
@@ -470,6 +482,9 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
 - Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
+
+#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Developer Portal
+- Tanzu Developer Portal will need some manual settings to support viewing ImageVulnerabilityScans from App Scanning 2.0 scans. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support).
 ---
 
 ### <a id="1-6-components"></a> Component versions
@@ -508,7 +523,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Scan              |         |
 | Supply Chain Security Tools - Sign (Deprecated) |         |
 | Supply Chain Security Tools - Store             |         |
-| Tanzu Application Platform GUI                  |         |
+| Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)                  |         |
 | Tanzu Application Platform Telemetry            |         |
 | Tanzu Build Service                             |         |
 | Tanzu CLI plug-in                               |         |

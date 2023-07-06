@@ -10,4 +10,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Configure custom CAs for Tanzu Application Platform GUI](tap-gui-non-standard-certs-offline.hbs.md)
+- [Configure custom CAs for Tanzu Developer Portal](tap-gui-non-standard-certs-offline.hbs.md)
