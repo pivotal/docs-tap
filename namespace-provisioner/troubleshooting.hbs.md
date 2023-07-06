@@ -5,7 +5,7 @@ This topic tells you how to troubleshoot Namespace Provisioner in Tanzu Applicat
 
 ## Airgap installation
 
-In airgap environments where a custom CA cert is needed, it is important to configure kapp-controller with the specified CA cert. This ensures that X.508/X.509 certificate errors are avoided during operation. PLease refer to [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.6/cluster-essentials/deploy.html#deploy-onto-cluster-5)
+In airgap environments where a custom CA cert is needed, it is important to configure kapp-controller with the specified CA cert. This ensures that X.508/X.509 certificate errors are avoided during operation. PLease refer to [Deploying Cluster Essentials](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5)
 
 ## View controller logs
 

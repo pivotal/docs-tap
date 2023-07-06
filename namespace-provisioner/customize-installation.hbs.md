@@ -39,7 +39,7 @@ the list of developer namespaces:
      sources. If you do not provide a `path`, Namespace Provisioner generates a `path` using `url`
      and `subPath`.
 
->**Important** In airgap environments where a custom CA cert is needed, it is important to configure kapp-controller with the specified CA cert. This ensures that X.508/X.509 certificate errors are avoided during operation. PLease refer to [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.6/cluster-essentials/deploy.html#deploy-onto-cluster-5)
+>**Important** In airgap environments where a custom CA cert is needed, it is important to configure kapp-controller with the specified CA cert. This ensures that X.508/X.509 certificate errors are avoided during operation. PLease refer to [Deploying Cluster Essentials](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5)
 
   If the additional sources contain a resource that is scoped to a specific namespace, it is
   created in that namespace with a modified name that includes the developer namespace name.
