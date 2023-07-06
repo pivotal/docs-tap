@@ -373,7 +373,8 @@ This is caused because Tanzu Developer Portal needs to be configured to know abo
   ```console
   tanzu package installed get tap --values-file-output tap-values.yaml -n tap-install
   ```
-1. Modify tap-values.yaml to inform Tanzu Developer Portal about the new ImageVulnerabilityScan resource. Note, you will need to list out all existing resources as well so it is best to add in the section below.
+
+2. Modify tap-values.yaml to inform Tanzu Developer Portal about the new ImageVulnerabilityScan resource. Note, you will need to list out all existing resources as well so it is best to add in the section below.
   ```yaml
   tap_gui:
   app_config:
@@ -473,15 +474,18 @@ This is caused because Tanzu Developer Portal needs to be configured to know abo
           apiVersion: 'v1alpha1'
           plural: 'imagevulnerabilityscans'
   ```
-1. Update Tanzu Developer Portal with the new TAP values
+
+3. Update Tanzu Developer Portal with the new TAP values
   ```console
   tanzu package installed update tap -p tap.tanzu.vmware.com -n tap-install --values-file tap-values.yaml
   ```
-1. Pause the reconciliation of Tanzu Developer Portal so edits to the ClusterRole will not get reverted.
+
+4. Pause the reconciliation of Tanzu Developer Portal so edits to the ClusterRole will not get reverted.
   ```console
   kctrl package installed pause -i tap-gui -n tap-install
   ```
-1. Edit the k8s-reader ClusterRole to give it permission to access the ImageVulnerabilityScan Custom Resource
+
+5. Edit the k8s-reader ClusterRole to give it permission to access the ImageVulnerabilityScan Custom Resource
   ```console
   kubectl edit clusterrole k8s-reader
   ```
