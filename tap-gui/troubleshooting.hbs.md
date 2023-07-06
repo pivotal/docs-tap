@@ -357,6 +357,150 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
+## <a id='ivs-support'></a> Supporting ImageVulnerabilityScans
+
+#### Symptom
+
+App Scanning 2.0 has been enabled and there is no vulnerability data on the Security Analysis plug-in page or the Supply Chain Choreographer plug-in page
+
+#### Cause
+
+This is caused because Tanzu Developer Portal needs to be configured to know about the new ImageVulnerabilityScan Custom Resource.
+
+#### Solution
+
+1. Get the TAP values
+  ```console
+  tanzu package installed get tap --values-file-output tap-values.yaml -n tap-install
+  ```
+
+1. Modify tap-values.yaml to inform Tanzu Developer Portal about the new ImageVulnerabilityScan resource. Note, you will need to list out all existing resources as well so it is best to add in the section below.
+  ```yaml
+  tap_gui:
+  app_config:
+    kubernetes:
+      customResources:
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'configurations'
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'revisions'
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'routes'
+        - group: 'serving.knative.dev'
+          apiVersion: 'v1'
+          plural: 'services'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterconfigtemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterdeliveries'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterdeploymenttemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterimagetemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clusterruntemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clustersourcetemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clustersupplychains'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'clustertemplates'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'deliverables'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'runnables'
+        - group: 'carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'workloads'
+        - group: 'source.toolkit.fluxcd.io'
+          apiVersion: 'v1beta1'
+          plural: 'gitrepositories'
+        - group: 'conventions.carto.run'
+          apiVersion: 'v1alpha1'
+          plural: 'podintents'
+        - group: 'kpack.io'
+          apiVersion: 'v1alpha2'
+          plural: 'images'
+        - group: 'kpack.io'
+          apiVersion: 'v1alpha2'
+          plural: 'builds'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'sourcescans'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'scanpolicies'
+        - group: 'source.apps.tanzu.vmware.com'
+          apiVersion: 'v1alpha1'
+          plural: 'imagerepositories'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'imagescans'
+        - group: 'scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1beta1'
+          plural: 'scantemplates'
+        - group: 'tekton.dev'
+          apiVersion: 'v1beta1'
+          plural: 'pipelineruns'
+        - group: 'tekton.dev'
+          apiVersion: 'v1beta1'
+          plural: 'taskruns'
+        - group: 'kappctrl.k14s.io'
+          apiVersion: 'v1alpha1'
+          plural: 'apps'
+        - group: 'networking.internal.knative.dev'
+          apiVersion: 'v1alpha1'
+          plural: 'serverlessservices'
+        - group: 'autoscaling.internal.knative.dev'
+          apiVersion: 'v1alpha1'
+          plural: 'podautoscalers'
+        - group: 'source.apps.tanzu.vmware.com'
+          apiVersion: 'v1alpha1'
+          plural: 'mavenartifacts'
+        - group: 'app-scanning.apps.tanzu.vmware.com'
+          apiVersion: 'v1alpha1'
+          plural: 'imagevulnerabilityscans'
+  ```
+
+1. Update Tanzu Developer Portal with the new TAP values
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -n tap-install --values-file tap-values.yaml
+  ```
+
+1. Pause the reconciliation of Tanzu Developer Portal so edits to the ClusterRole will not get reverted.
+  ```console
+  kctrl package installed pause -i tap-gui -n tap-install
+  ```
+
+1. Edit the k8s-reader ClusterRole to give it permission to access the ImageVulnerabilityScan Custom Resource
+  ```console
+  kubectl edit clusterrole k8s-reader
+  ```
+  Add the following yaml to the ClusterRole
+  ```yaml
+  - apiGroups:
+    - app-scanning.apps.tanzu.vmware.com
+  resources:
+    - imagevulnerabilityscans
+  verbs:
+    - get
+    - watch
+    - list
+  ```
+
 ## Security Analysis plug-in
 
 These are troubleshooting issues for the [Security Analysis plug-in](plugins/sa-tap-gui.hbs.md).
