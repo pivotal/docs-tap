@@ -4,8 +4,8 @@ You can get started with Supply Chain Security Tools (SCST) - Scan 2.0 with the 
 
 [Installing SCST - Scan 2.0](./install-app-scanning.hbs.md)
 
-[Integrating the Grype Scanner](./integrate-app-scanning.hbs.md)
+[Using Scan 2.0 in Supply Chains](./integrate-app-scanning.hbs.md)
 
-[Integrating other Scanners](./bring-your-own-scanner.hbs.md)
+[Using Scan 2.0 with other Scanners in Supply Chains](./bring-your-own-scanner.hbs.md)
 
 [Verify Scan 2.0](./verify-app-scanning-supply-chain.hbs.md)
