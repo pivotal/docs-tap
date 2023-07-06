@@ -1,31 +1,31 @@
-# Secure a Workload with AppSSO
+# Secure a workload with Application Single Sign-On
 
 This tutorial tells you how to secure a `Workload` running on Tanzu Application 
 Platform with Application Single Sign-On (commonly called AppSSO).
 
 For specific stack implementations, see [Secure a single-page app workload](../../how-to-guides/secure-spa-workload.hbs.md) and [Secure a Spring Boot workload](../../how-to-guides/secure-spring-boot-workload.hbs.md).
 
-As we learned in the previous section, we can obtain OAuth2 client credentials
-for an authorization server by claiming them from an AppSSO service offering.
-This is done with the `tanzu service class-claims create` command or with a
-`ClassClaim` resource. In either case, we can customize our OAuth2 client
-settings by providing parameters with our claim. For our `Workload` to be
-secured successfully we have to provide the right parameters for the situation.
+The [Getting Started](../../how-to-guides/get-started/index.hbs.md) section 
+explains how to obtain OAuth2 client credentials for an authorization server by 
+claiming them from an Application Single Sign-On service offering.
+You can enable this by running the `tanzu service class-claims create` command or 
+by using a `ClassClaim` resource. In either case, you can customize your OAuth2 client
+settings by providing parameters within your claim. To secure your `Workload`, 
+you must provide the appropriate parameters relevant to the given situation.
 
-The following sections elaborate on each parameter in detail and, eventually, 
-how to load credentials into a `Workload`.
+The following sections elaborate on each parameter in details and guide the process 
+of loading credentials into a `Workload`.
 
-Here's a quick reminder that when iterating on your `ClassClaim` make sure to
-recreate it when you make changes. Updates to an existing `ClassClaim` [have no
-effect](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#classclaim)
+When editing your `ClassClaim`, you must recreate it in order for the changes to 
+take effect. Updating an existing `ClassClaim` does not produce any impact. 
+For more information, see [Using a `ClassClaim`](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#classclaim).
 
 ## <a id="oauth2"></a> OAuth2 client parameters
 
-A `ClassClaim` for an AppSSO service is the request for OAuth2 client
-credentials for an authorization server. Lets revisit the anatomy of a
-`ClassClaim` for an AppSSO service.
+A `ClassClaim` for an Application Single Sign-On service is the request for 
+OAuth2 client credentials for an authorization server. 
 
-The following is an example of claim for a service called `sso` which
+The following is an example of a claim for a service called `sso`, which
 customizes all available client parameters:
 
 ```yaml
@@ -64,8 +64,8 @@ To verify the status of this `ClassClaim`, run:
 kubectl get classclaim my-sso-client --namespace my-apps
 ```
 
-After a `ClassClaim` is applied and has status of `Ready`, it can be consumed
-by a `Workload`. When the credentials are loaded into a `Workload` your
+After a `ClassClaim` is applied and its status shows `Ready`, it can be consumed
+by a `Workload`. When the credentials are loaded into a `Workload`, your
 application code can use them to initiate OAuth2 flows.
 
 ### <a id='redirect-paths'></a> `redirectPaths`

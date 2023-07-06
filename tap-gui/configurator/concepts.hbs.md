@@ -5,22 +5,22 @@ This topic gives you conceptual overviews of how Tanzu Developer Portal
 
 ## <a id="customize"></a> Overview of how to customize your portal
 
-![Tanzu Developer Portal customization flowchart, starting from installing Tanzu Application Platform and finishing with deploying a customized Tanzu Developer Portal.](images/tdp-install-flowchart.jpg)
+![Tanzu Developer Portal customization flowchart, starting from installing Tanzu Application Platform and finishing with deploying a customized Tanzu Developer Portal.](images/tdp-install-flowchart.png)
 
 To use your customized portal with all the runtime configuration values used in your pre-built
 version:
 
 1. Install a working installation of Tanzu Application Platform with a working instance of the
    pre-built Tanzu Developer Portal.
-2. Prepare your Configurator buildtime configuration file.
-3. Prepare your Configurator workload definition YAML.
-4. Submit your Configurator workload definition YAML to your supplychain.
-5. After the image is built, retrieve your customized Tanzu Developer Portal image from your
+1. Prepare your Configurator buildtime configuration file.
+1. Prepare your Configurator workload definition YAML.
+1. Submit your Configurator workload definition YAML to your supplychain.
+1. After the image is built, retrieve your customized Tanzu Developer Portal image from your
    supplychain deliverables.
-6. To run your customized portal, prepare a ytt overlay to replace the pre-built Tanzu Developer Portal
+1. To run your customized portal, prepare a ytt overlay to replace the pre-built Tanzu Developer Portal
    in Tanzu Application Platform with your customized version. For more information about ytt, see the
    [Carvel documentation](https://carvel.dev/ytt/).
-7. Apply the ytt overlay to your cluster.
+1. Apply the ytt overlay to your cluster.
 
 ## <a id="buildtime-and-runtime"></a> Overviews of buildtime configuration and runtime configuration
 
@@ -41,8 +41,8 @@ Tanzu Developer Portal. Buildtime configuration values can include:
 
 ### <a id="runtime"></a> Runtime configuration
 
-Runtime configuration refers to the values that you use to configure the portal. You provide them in
-your `tap-values.yaml` file when you install and run your portal. Runtime configuration values can
+Runtime configuration refers to the values that you use to configure the portal. You provide these
+values in `tap-values.yaml` when you install and run your portal. Runtime configuration values can
 include:
 
 - The name of your portal
@@ -51,35 +51,41 @@ include:
 - Security overrides
 - Showing or hiding the included Tanzu Application Platform plug-ins
 
-## <a id="foundation"></a> Tanzu Developer Portal Configurator Foundation and Plugins
+## <a id="foundation"></a> Tanzu Developer Portal Configurator Foundation
 
-The Tanzu Developer Portal Configurator Foundation is the image that contains everything necessary to build a customized version of Tanzu Developer Portal. This foundation includes the templated Tanzu Developer Portal, an internal registry of Tanzu Develoepr Portal plugins, as well as the necessary tooling to allow for the build process to incorporate external plugins.
+The Tanzu Developer Portal Configurator Foundation is the image that contains everything necessary
+to build a customized version of Tanzu Developer Portal. Foundation includes the templated
+Tanzu Developer Portal, an internal registry of Tanzu Developer Portal plug-ins, and tools to enable
+the build process to incorporate external plug-ins.
 
-![Tanzu Developer Portal Foundation and inlcuded internal plugin registry and the customization process.](images/foundation-internal-external-plugins.jpg)
+![Diagram of Tanzu Developer Portal Foundation, the included internal plug-in registry, and the customization process.](images/foundation-internal-external-plugins.png)
 
-### <a id="plugins"></a> Internal versus external plugins
+## <a id="plug-ins"></a> Internal plug-ins and external plug-ins
 
-The following sections describe the differences between the **internal** plugins that are included as part of the Tanzu Develoepr Portal Configurator and the **external** plugins that are added in from external registries.
+Internal plug-ins are included inside the Tanzu Developer Portal Configurator Foundation image.
+These include Tanzu Application Platform plug-ins as well as [Backstage](https://backstage.io) core
+plug-ins.
 
-- #### <a id="internal-plugins"></a> Internal plugins
+External plug-ins are not in the Tanzu Developer Portal Configurator Foundation image. They are added
+from external registries. They can include custom plug-ins as well as
+[third-party Backstage plug-ins](https://backstage.io/plugins/).
 
-   Internal plugins are ones that are included inside the Tanzu Developer Portal Configurator Foundation image. These include Tanzu Application Platform Plugins as well as [Backstage](https://backstage.io) core plugins.
+### <a id="surfaces-and-wrappers"></a> Plug-in surfaces and wrappers
 
-- #### <a id="external-plugins"></a> External plugins
+Tanzu Developer Portal Configurator introduces plug-in surfaces and plug-in wrappers.
 
-   External plugins are any plugin that is **not** in the Tanzu Deverloper Portal Configurator Foundation image. These can include custom plugins as well as [3rd-party Backstage plugins](https://backstage.io/plugins)
+#### <a id="surfaces"></a> Plug-in surfaces
 
-### <a id="plugin-surfaces-and-wrappers"></a> Plugin Surfaces and Wrappers
+A surface is a discrete capability that a plug-in provides. This can include:
 
-![Tanzu Developer Portal Foundation and inlcuded internal plugin registry and the customization process.](images/plugin-surfaces-and-wrappers.jpg)
+- The ability to show up on the sidebar
+- The ability to be accessed at a URL, such as `https://YOUR_PORTAL_URL/plugin`
+- The ability to show up as a Catalog Overview tab
 
-#### <a id="plugin-surfaces"></a> Plugin Surfaces
+#### <a id="wrappers"></a> Plug-in wrappers
 
-Tanzu Developer Portal Configurator introduces the idea of **Plugin Surfaces**. A Surface is a discreet capability that a plugin provides. This could include
-- The ability to show-up on the sidebar
-- The ability to be accessed by URL (e.g. https://YOUR_PORTAL_URL/plugin)
-- The ability to show-up as a Catalog Overview tab
+A wrapper is a method of exposing a plug-in's surfaces to the Tanzu Developer Portal Configurator so
+that the plug-in can be integrated into a customized portal. A wrapper imports a reference to the
+underlying plug-in. A wrapper is also, in fact, a plug-in itself.
 
-#### <a id="plugin-wrappers"></a> Plugin Wrappers
-
-Tanzu Developer Portal Configurator also introduces the idea of **Plugin Wrappers**. A Wrapper is a method of exposing a plugins's [surfaces](#plugin-surfaces) to the Tanzu Developer Portal Configurator so that that plugin can be integrated into a customized portal. These wrappers are in-fact plugins on their own but also `import` a reference to the actual underlying plugin itself.
+![Diagram showing that the source code for a plug-in is associated with the wrapper for that plug-in.](images/plugin-surfaces-and-wrappers.png)
