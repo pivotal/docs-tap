@@ -63,6 +63,8 @@ This release includes the following changes, listed by component and area.
 - Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
 - Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
   This addition provides a quick reference to the Git revision associated with the workload.
+
+#### <a id='1-6-0-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
 - Triage vulnerabilities with the `tanzu insight triage` command.  Learn more about [triaging CVEs with tanzu insight](./cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
 
