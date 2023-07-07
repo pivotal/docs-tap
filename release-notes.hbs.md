@@ -220,7 +220,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 #### <a id='1-6-0-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
-- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md) is promoted from `alpha` to `beta`.  This promotion primarily includes capabilities to integrate the SCST-Scan 2.0 component with other components of the Tanzu Application Platform, including: 
+- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md) is promoted from `alpha` to `beta`.  This promotion primarily includes capabilities to integrate the SCST-Scan 2.0 component with other components of the Tanzu Application Platform, including:
   - The ability to [enable](scst-scan/integrate-app-scanning.hbs.md#adding-app-scanning-to-default-test-and-scan-supply-chain) Supply Chain Security Tools (SCST) - Scan 2.0 in the out-of-the-box test and scan supply chain.
   - [AMR Observer (Alpha)](scst-store/amr/overview.hbs.md#amr-observer) observes scan results from SCST - Scan 2.0 and archives them to the [AMR (beta)](scst-store/amr/architecture.hbs.md) for long-term storage and reporting, and use by other Tanzu Application Platform Components.
   - Results from image scans with SCST - Scan 2.0 are now available in [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.hbs.md) and [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md) plug-ins for the Tanzu Developer Portal.
@@ -338,16 +338,21 @@ This release includes the following changes, listed by component and area.
   As part of this release, the option has been removed completely.
 
 #### <a id='1-6-0-tap-gui-bc'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
-- **`allowGuestAccess` config option**: Previously this was not needed in the configuration and would default to allow users to login without credentials. In 1.6.x+ this has been changed to require explicitly allowing guest users. The recommended values files in the installation sections have been updated to include this setting.
 
-  Add the following lines to your `tap-values.yaml` in order to enable guest access explicitly:
+- **`allowGuestAccess` config option**:
+
+  Previously this was not needed in the configuration because
+  users were permitted to log in without credentials by default. In v1.6 and later, guest users must
+  be permitted explicitly.
+  The recommended values files in the installation sections are updated to include this setting.
+  Add the following lines to `tap-values.yaml` to enable guest access explicitly:
 
   ```yaml
-  #Existing tap-values.yaml settings
+  # Existing tap-values.yaml settings
   tap_gui:
     app_config:
       auth:
-        allowGuestAccess: true  #This will allow unauthenticated users to login to your portal. If you want to disable, make sure you configure an alternate auth provider.
+        allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate, make sure you configure an alternative auth provider.
   ```
 
 ---
