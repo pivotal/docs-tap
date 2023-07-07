@@ -1,4 +1,4 @@
-# Artifact Metadata Repository (AMR) (alpha/beta)
+# Artifact Metadata Repository (alpha/beta)
 
 This topic gives you an overview of Artifact Metadata Repository (AMR).
 
