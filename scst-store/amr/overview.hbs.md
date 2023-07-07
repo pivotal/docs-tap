@@ -17,4 +17,10 @@ AMR CloudEvent Handler receives CloudEvents from other sources, such as the AMR 
 The following known issues are associated with SCST - AMR:
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans that you can ignore if the previous submission was successful.
-- ReplicaSet status in Artifact Metadata Repository only has two states, `created`, and `deleted`. There is a known issue where the `available` and `unavailable` state is not showing. The workaround is that you can  interpolate information from the `instances` metadata in the AMR for the ReplicaSet. 
+- ReplicaSet status in Artifact Metadata Repository only has two states: `created` and `deleted`. There is a known issue where the `available` and `unavailable` states are not showing. The workaround is that you can interpolate information from the `instances` metadata in the AMR for the ReplicaSet. 
+
+## Additional Resources
+
+- [AMR Configuration](configuration.hbs.md)
+- [AMR Data Models](data-model-and-concepts.hbs.md)
+- [AMR GraphQL Query](graphql-query.hbs.md)
