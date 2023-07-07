@@ -5,11 +5,7 @@ Configurator.
 
 ## Symptom
 
-You see the error message:
-
-```console
-No Supplychain Found on tdp-workload.yaml
-```
+No supplychain is found in `tdp-workload.yaml`
 
 ## Cause
 
