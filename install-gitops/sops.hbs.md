@@ -89,9 +89,9 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
+    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH as well as Basic Authentication.
 
-1. Initialize a new Git repository:
+2. Initialize a new Git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -101,9 +101,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
+3. For authentication with SSH, create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
 
     The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+
+4. For Basic Authentication, have a username with read access to the Git repository and password or personal access token for the same user.
+
+>**Important** Only use one of `ssh` or `Basic Authentication`, not both.
 
 ## <a id='download-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
