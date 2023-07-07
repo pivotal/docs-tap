@@ -86,9 +86,9 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
+    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH as well as Basic Authentication.
 
-1. Initialize a new Git repository:
+2. Initialize a new Git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -98,9 +98,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
+3. For authentication with SSH, create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
 
     The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+
+4. For Basic Authentication, have a username with read access to the Git repository and password or personal access token for the same user.
+
+>**Important** Only use one of `ssh` or `Basic Authentication`, not both.
 
 ## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
@@ -210,7 +214,7 @@ To configure Kubernetes authentication for Vault, you can create a new Kubernete
 tanzu-sync/scripts/setup/create-kubernetes-auth.sh
 ```
 
->**Important** If you use an Enterprise Vault Server with namespaces, run `export VAULT_NAMESPACE=MY-VAULT-NAMESPACE` before using the script.
+>**Important** If you use an Enterprise Vault Server with namespaces, run `export VAULT_NAMESPACE=MY-VAULT-NAMESPACE` before using the script. Also, if you are using token to access server, run `export VAULT_TOKEN=MY-VAULT-TOKEN` before using the script.
 
 This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
 
@@ -287,10 +291,12 @@ Follow these steps to create the sensitive configuration and review the non-sens
         created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
 
         ```console
+        export GIT_SSH_PRIVATE_KEY_FILE=~/.ssh/id_ed25519
+        export GIT_KNOWN_HOSTS=$(ssh-keyscan github.com)
         printf '%s\n'  "$(cat <<EOF
         {
-            "privatekey": "$(cat $GIT_SSH_PRIVATE_KEY_FILE | awk '{printf "%s\\n", $0}')",
-            "knownhosts": "$(echo $GIT_KNOWN_HOSTS | awk '{printf "%s\\n", $0}')"
+            "privatekey": "$(cat $GIT_SSH_PRIVATE_KEY_FILE | awk '{printf "%s\\\\n", $0}')",
+            "knownhosts": "$(echo $GIT_KNOWN_HOSTS | awk '{printf "%s\\\\n", $0}')"
         }
         EOF
         )" | vault kv put secret/dev/${CLUSTER_NAME}/tanzu-sync/sync-git/ssh -
@@ -300,7 +306,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
         - The content of `~/.ssh/id_ed25519` is the private portion of the SSH key.
         - `ssh-keyscan` obtains the public keys for the SSH host.
-        - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
+        - `awk '{printf "%s\\\\n", $0}'` converts a multiline string into a single-line
         string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
     1. Basic Authentication
@@ -400,10 +406,11 @@ Follow these steps to create the sensitive configuration and review the non-sens
      eso:
       vault:
         server: https://vault.example.com
+        namespace: ""
         auth:
           kubernetes:
             mountPath: iterate-green
-            role: iterate-green--tap-install-secrets
+            role: iterate-green--tanzu-sync-secrets
       remote_refs:
         sync_git:
         # TO DO: Fill in your configuration for ssh or basic authentication here. See tanzu-sync/app/config/.tanzu-managed/schema--eso.yaml for details.
@@ -429,10 +436,11 @@ Follow these steps to create the sensitive configuration and review the non-sens
      eso:
       vault:
         server: https://vault.example.com
+        namespace: ""
         auth:
           kubernetes:
             mountPath: iterate-green
-            role: iterate-green--tap-install-secrets
+            role: iterate-green--tanzu-sync-secrets
       remote_refs:
         sync_git:
           ssh:
@@ -455,10 +463,11 @@ Follow these steps to create the sensitive configuration and review the non-sens
      eso:
       vault:
         server: https://vault.example.com
+        namespace: ""
         auth:
           kubernetes:
             mountPath: iterate-green
-            role: iterate-green--tap-install-secrets
+            role: iterate-green--tanzu-sync-secrets
       remote_refs:
         sync_git:
           basic_auth:
@@ -527,6 +536,7 @@ stores the sensitive data such as username, password, private key from the `tap-
        eso:
         vault:
           server: https://vault.example.com
+          namespace: ""
           auth:
             kubernetes:
               mountPath: iterate-green
