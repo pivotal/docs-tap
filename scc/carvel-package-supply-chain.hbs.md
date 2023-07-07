@@ -123,7 +123,7 @@ For the `server` workload type, the default parameters are:
 - `replicas`: Number of pods that you want for the `apps/v1 Deployment`. Default is `1`.
 - `hostname`: Host name for the `networking.k8s.io/v1 Ingress`. If you don't need ingress, leave host name as an empty string. If host name is not in the file, you see an error.
 - `port`: Port for the `networking.k8s.io/v1 Ingress`. Default is `8080`.
-- `cluster_issuer`: CertManager Issuer to use to generate certificate for K8s `Ingress`. Default is `"tap-ingress-selfsigned"`.
+- `cluster_issuer`: CertManager Issuer to use to generate certificate for Kubernetes `Ingress`. Default is `"tap-ingress-selfsigned"`.
 
 For the `web` workload type, the default parameters are:
 
@@ -197,9 +197,9 @@ In `tap-values`, configure the [Out of the Box Basic Supply Chain](ootb-supply-c
         openapiv3_enabled: true
     ```
 
-    If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3 KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-0-tap-gui-ki).
+    If the size of the resulting OpenAPIv3 specification exceeds roughly 3KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-0-tap-gui-ki).
 
-1. (Optional) Configure the [Out of the Box Templates](ootb-templates.hbs.md) with custom Carvel Package parameters. See [Template reference](ootb-template-reference.hbs.md#carvel).
+2. (Optional) Configure the [Out of the Box Templates](ootb-templates.hbs.md) with custom Carvel Package parameters. See [Template reference](ootb-template-reference.hbs.md#carvel).
 
   - Packages created by the Carvel Package Supply Chains contain the [YTT
     Schema](https://carvel.dev/ytt/docs/v0.44.0/how-to-write-schema/) and [YTT
@@ -249,11 +249,11 @@ In `tap-values`, configure the [Out of the Box Basic Supply Chain](ootb-supply-c
         # copy the existing parameters for worker + web here
     ```
 
-2. Configure the [Out of the Box Basic Supply
+3. Configure the [Out of the Box Basic Supply
    Chain](ootb-supply-chain-basic.hbs.md) package with your GitOps parameters.
    See [GitOps versus RegistryOps](gitops-vs-regops.hbs.md#gitops).
 
-3. Install the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package.
+4. Install the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package.
 
 ### <a id="verifying"></a> Verifying the Carvel Package Supply Chains are Installed
 
