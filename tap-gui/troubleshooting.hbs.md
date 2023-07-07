@@ -398,8 +398,15 @@ Edit your `tap-values.yaml` file so that `allowedHeaders` and the accompanying v
 
 ```yaml
 tap_gui:
-    app_config:
-        proxy:
-            /metadata-store:
-                allowedHeaders: ['Accept', 'Report-Type-Format']
+  app_config:
+    proxy:
+      /metadata-store:
+        target: https://metadata-store-app.metadata-store:8443/api/v1
+        changeOrigin: true
+        secure: false
+        allowedHeaders: ['Accept', 'Report-Type-Format']
+        headers:
+          Authorization: "Bearer ACCESS-TOKEN"
+          X-Custom-Source: project-star
 ```
+Where `ACCESS-TOKEN` is the token you obtained after creating a read-write service account (See [Manually connect Tanzu Developer Portal to Metadata Store](../tap-gui/plugins/scc-tap-gui.hbs.md#scan-manual))
