@@ -128,6 +128,10 @@ To set up a Service Account to view resources on a cluster:
       - scanpolicies
       - scantemplates
       verbs: ['get', 'watch', 'list']
+    - apiGroups: ['app-scanning.apps.tanzu.vmware.com']
+      resources:
+      - imagevulnerabilityscans
+      verbs: ['get', 'watch', 'list']
     - apiGroups: ['tekton.dev']
       resources:
       - taskruns
