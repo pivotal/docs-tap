@@ -1,6 +1,6 @@
 # Scan Types for Supply Chain Security Tools - Scan
 
-This topic tells you what scan types you can use with SCST - Scan. The out-of-box test and scan supply chain supports the Source and Image scan types.
+This topic tells you what scan types you can use with SCST - Scan. The out-of-box test and scan supply chain supports the Source and container image scan types.
 
 ## <a id="source-scan"></a> Source Scan
 
@@ -86,3 +86,9 @@ To add source scanning to the default out-of-the-box test and scan supply chain,
 For a multi-cluster installation, this only needs to be applied to the build build profile, as that
 is where the scan components run. For information about Tanzu Application Platform profiles, see
 [Installing Tanzu Application Platform package and profiles](../install-online/profile.hbs.md).
+
+## <a id="image-scan"></a> Container Image Scan
+
+A container image scan inspects the contents of a built container image for vulnerabilities.  This scan is commonly performed on the container image once it is uploaded to the container registry, and on periodic intervals after initial upload.  Many of the popular container registries such as [Harbor](https://goharbor.io/docs/2.8.0/administration/vulnerability-scanning/) and[Docker Hub](https://docs.docker.com/docker-hub/vulnerability-scanning/) include this capability in the registry.
+
+The Tanzu Application Platform enables the capability to scan container images for vulnerabilities as part of your supply chain, allowing you to prevent deployment of a container image if vulnerabilities are discovered that exceed your security policy.
