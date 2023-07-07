@@ -89,6 +89,6 @@ is where the scan components run. For information about Tanzu Application Platfo
 
 ## <a id="image-scan"></a> Container Image Scan
 
-A container image scan inspects the contents of a built container image for vulnerabilities.  This scan is commonly performed on the container image once it is uploaded to the container registry, and on periodic intervals after initial upload.  Many of the popular container registries such as [Harbor](https://goharbor.io/docs/2.8.0/administration/vulnerability-scanning/) and[Docker Hub](https://docs.docker.com/docker-hub/vulnerability-scanning/) include this capability in the registry.
+A container image scan inspects the contents of a built container image for vulnerabilities.  This scan is commonly performed on the container image once it is uploaded to the container registry, and on periodic intervals after initial upload.  Many of the popular container registries such as [Harbor](https://goharbor.io/docs/2.8.0/administration/vulnerability-scanning/) and [Docker Hub](https://docs.docker.com/docker-hub/vulnerability-scanning/) include this capability in the registry.
 
 The Tanzu Application Platform enables the capability to scan container images for vulnerabilities as part of your supply chain, allowing you to prevent deployment of a container image if vulnerabilities are discovered that exceed your security policy.
