@@ -1,4 +1,4 @@
-# Add external plug-ins to your Tanzu Developer Portal
+# Add external plug-ins to Tanzu Developer Portal
 
 This topic tells you how to add external plug-ins to Tanzu Developer Portal
 (formerly Tanzu Application Platform GUI).
