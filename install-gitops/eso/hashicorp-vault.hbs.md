@@ -314,7 +314,6 @@ Follow these steps to create the sensitive configuration and review the non-sens
         string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
     Basic Authentication
-
     : Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
     the following information as plaintext:
 
