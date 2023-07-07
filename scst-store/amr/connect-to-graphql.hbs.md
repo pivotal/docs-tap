@@ -1,1 +1,1 @@
-# Connecting to AMR GraphQL
+# Connect to AMR GraphQL

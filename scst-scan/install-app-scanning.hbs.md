@@ -77,7 +77,7 @@ To install SCST - Scan 2.0:
 2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
-    tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
+    tanzu package install app-scanning-beta --package-name app-scanning.apps.tanzu.vmware.com \
         --version VERSION \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
@@ -89,7 +89,7 @@ To install SCST - Scan 2.0:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
-        --version 0.1.0-beta\
+        --version 0.1.0-beta \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
 
@@ -193,5 +193,6 @@ The following section describes how to configure service accounts and registry c
     ```
 
     Where:
+
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to publish the scan results.

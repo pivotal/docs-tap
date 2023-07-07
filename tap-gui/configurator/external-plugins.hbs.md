@@ -1,4 +1,7 @@
-# Adding External Plugins to your Tanzu Developer Portal via the Customizer
+# Add external plug-ins to your Tanzu Developer Portal
+
+This topic tells you how to add external plug-ins to Tanzu Developer Portal
+(formerly Tanzu Application Platform GUI).
 
 ## External Plugin Requirements Review
 As discussed in [Build your Customized Tanzu Developer Portal with Configurator](./building.hbs.md#prereqs), you'll need the following in order to include any type of external plugin:

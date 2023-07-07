@@ -10,6 +10,7 @@ This section describes each of the scanning steps and corresponding observabilit
 
     ```console
     kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod
+    kubectl get imagevulnerabilityscan
     ```
 
 - View the status, reason, and urls:
@@ -21,8 +22,10 @@ This section describes each of the scanning steps and corresponding observabilit
 - View the complete status and events of scanning custom resources:
 
     ```console
-    kubectl describe imagevulnerabilityscan
+    kubectl describe imagevulnerabilityscan IMAGE-VULNERABILITY-SCAN-NAME
     ```
+
+    Where `IMAGE-VULNERABILITY-SCAN-NAME` is the name of an ImageVulnerabilityScan resource you want to inspect.
 
 - List the child resources of a scan:
 

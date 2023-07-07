@@ -5,7 +5,7 @@ This topic gives you conceptual overviews of how Tanzu Developer Portal
 
 ## <a id="customize"></a> Overview of how to customize your portal
 
-![Tanzu Developer Portal customization flowchart, starting from installing Tanzu Application Platform and finishing with deploying a customized Tanzu Developer Portal.](images/tdp-install-flowchart.png)
+![Tanzu Developer Portal customization flowchart. It starts with installing Tanzu Application Platform and finishes with portal deployment.](images/tdp-install-flowchart.png)
 
 To use your customized portal with all the runtime configuration values used in your pre-built
 version:
