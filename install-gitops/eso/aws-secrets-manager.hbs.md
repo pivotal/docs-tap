@@ -91,9 +91,9 @@ Follow these steps to create a new Git repository:
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
+    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH as well as Basic Authentication.
 
-1. Initialize a new Git repository:
+2. Initialize a new Git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -103,9 +103,13 @@ Follow these steps to create a new Git repository:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
+3. For authentication with SSH, create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
 
     The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+
+4. For Basic Authentication, have a username with read access to the Git repository and password or personal access token for the same user.
+
+>**Important** Only use one of `ssh` or `Basic Authentication`, not both.
 
 ## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
@@ -221,14 +225,14 @@ Follow these step to configure the [IAM Role for a Service Account](https://docs
 and another to read the Tanzu Application Platform installation secrets by using the supplied script:
 
     ```console
-    tanzu-sync/scripts/aws/setup/create-policies.sh
+    tanzu-sync/scripts/setup/create-policies.sh
     ```
 
 1. Create two IAM Role-to-Service Account pairs for your cluster, one for Tanzu Sync
 and another for the Tanzu Application Platform installation by using the supplied script:
 
     ```console
-    tanzu-sync/scripts/aws/setup/create-irsa.sh
+    tanzu-sync/scripts/setup/create-irsa.sh
     ```
 
     For example, if the name of the EKS cluster is `iterate-green` using the defaults,
@@ -324,7 +328,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
         - `username` is the username of a user account with read access to the Git repository.
         - `password` is the password or personal access token for the user.
     
-1. To securely store the authentication credentials required for accessing the OCI registry that hosts the Tanzu Application Platform images, create a secret called `dev/EKS-CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig`. This secret contains the following information in plaintext:
+1. To securely store the authentication credentials required for accessing the OCI registry that hosts the Tanzu Application Platform images, create a secret called `dev/CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig`. This secret contains the following information in plaintext:
 
     ```json
     {
@@ -339,7 +343,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     Where:
 
-    - `EKS-CLUSTER-NAME` is the name as it appears in `eksctl get clusters`
+    - `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is the container registry where the Tanzu Application Platform images are located.
@@ -348,7 +352,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     ```console
     aws secretsmanager create-secret \
-       --name dev/${EKS_CLUSTER_NAME}/tanzu-sync/install-registry-dockerconfig \
+       --name dev/${CLUSTER_NAME}/tanzu-sync/install-registry-dockerconfig \
        --secret-string "$(cat <<EOF
     {
      "auths": {
