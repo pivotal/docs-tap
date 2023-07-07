@@ -54,10 +54,10 @@ an app to a later version while both are running. For information about setting
 up blue-green deployment, see [Use blue-green deployment with Contour and
 PackageInstall (alpha)](blue-green-with-packageinstall.hbs.md).
 
-## <a id="config-canary"></a> Configuring Canary deployment
+## <a id="config-canary"></a> Configuring canary deployment
 
-You can use canary deployment to gradually shift traffic from one version of
-an application to a later version, and at the same time, perform analysis to determine if
-the later version will be either promoted or rolled back. For information about setting
-up canary deployments, see [Use Canary deployment with Contour and Carvel Packages
-for Supply Chain Choreographer (alpha)](canary-deployment.hbs.md).
+You can use canary deployment to gradually shift traffic from one version of an
+application to a later version, and at the same time, perform analysis to verify
+if the later version is either promoted or rolled back. For information about
+setting up canary deployments, see [Use canary deployment with Contour and
+Carvel packages for Supply Chain Choreographer](canary-deployment.hbs.md).

@@ -1,8 +1,8 @@
-# Use Canary deployment with Contour and Carvel Packages for Supply Chain Choreographer (alpha)
+# Use canary deployment with Contour and Carvel packages for Supply Chain Choreographer (alpha)
 
-Canary deployment is an incremental approach to releasing an application where traffic is divided between the existing deployed version and a new version.
-It involves introducing the new version to a smaller group of users before extending it to the entire user base.
-This topic outlines how to automate canary releases using Contour ingress controller and Flagger with Packages and PackageInstalls.
+This topic tells you how to automate canary releases using Contour ingress controller and Flagger with Packages and PackageInstalls.
+
+Canary deployment is an incremental approach to releasing an application where traffic is divided between the existing deployed version and a new version. It introduces the new version to a smaller group of users before extending it to the entire user base.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -18,13 +18,16 @@ To use canary deployment, you must complete the following prerequisites:
 
 ## <a id="instructions"></a> How to use Contour ingress controller and Flagger to create a canary release
 
-Flagger is a tool that facilitates a controlled process of shifting traffic to a canary deployment while monitoring essential performance metrics
-such as the success rate of HTTP requests, average request duration, and the health of the application's pods.
-By analyzing these key indicators, Flagger determines whether to promote the canary deployment to a wider audience or
-abort it if any issues arise.
+Flagger is a tool that facilitates a controlled process of shifting traffic to a
+canary deployment while monitoring essential performance metrics, such as the
+success rate of HTTP requests, average request duration, and the health of the
+application's pods. By analyzing these key indicators, Flagger decides whether
+to promote the canary deployment to a wider audience or abort it if any issues
+arise.
 
-For creating canary releases, you can refer to the guide available at [Contour Canary Deployments](https://docs.flagger.app/tutorials/contour-progressive-delivery).
-In summary, the process explained in the guide above involves the following steps:
+For information about creating canary releases, see [Contour canary Deployments](https://docs.flagger.app/tutorials/contour-progressive-delivery) in the Flagger documentation.
+
+Using Contour ingress controller and Flagger to create a canary release involves the following steps:
 
 1. Install Flagger on your Kubernetes cluster.
 
@@ -33,25 +36,25 @@ In summary, the process explained in the guide above involves the following step
     The target deployment must have a single label selector in the format `app: <DEPLOYMENT-NAME>`.
     In addition to `app`, Flagger supports `name` and `app.kubernetes.io/name` selectors.
     
-    > **Note** You can use `tanzu apps workload apply <WORKLOAD-NAME> --label "app.kubernetes.io/name=<WORKLOAD-NAME>"` to modify an existing workload and add the required label.
+    > **Note** You can use `tanzu apps workload apply <WORKLOAD-NAME> --label "app.kubernetes.io/name=<WORKLOAD-NAME>"` to edit an existing workload and add the required label.
 
-3. Create a Canary resource that defines a canary release with progressive traffic shifting.
+3. Create a canary resource that defines a canary release with progressive traffic shifting.
     
-    To configure the Canary resource, you need to specify the Kubernetes Deployment that corresponds to your Workload.
-    Ensure that you set `spec.targetRef.name` to match the name of your TAP Workload, which is the same as its Kubernetes Deployment name.
+    To configure the canary resource, you must specify the Kubernetes Deployment that corresponds to your Workload.
+    Ensure that you set `spec.targetRef.name` to match the name of your Tanzu Application Platform Workload, which is the same as its Kubernetes Deployment name.
 
-    Flagger will generate some Kubernetes objects. The primary deployment represents the stable release of your application.
+    Flagger generates some Kubernetes objects. The primary deployment represents the stable release of your application.
     It receives all incoming traffic while the target deployment is scaled down to zero.
-    Flagger actively monitors changes in the target deployment, including secrets and configmaps.
-    Prior to promoting the new version as the primary release, Flagger conducts a thorough canary analysis to ensure its stability and performance.
+    Flagger monitors changes in the target deployment, including secrets and configmaps.
+    Before promoting the new version as the primary release, Flagger conducts a thorough canary analysis to ensure its stability and performance.
 
-    Within the Canary resource, you have the ability to define the canary analysis. This analysis definition is used by Flagger
-    to determine the duration of the canary phase, which runs periodically until it reaches the maximum traffic weight or the specified number of iterations.
+    In the canary resource, you can define the canary analysis. Flagger uses this analysis definition
+    to verify the duration of the canary phase, which runs periodically until it reaches the maximum traffic weight or the specified number of iterations.
     During each iteration, Flagger executes webhooks, evaluates metrics, and checks for any exceeded failed checks threshold.
     If the threshold is surpassed, indicating potential issues, Flagger takes immediate action to halt the analysis and roll back the canary.
-    In case where the no potential issues are found, Flagger rolls out the new version as the primary release.
+    If no issues are found, Flagger rolls out the new version as the primary release.
 
-    You can find a sample of a Canary resource created for a workload called `tanzu-java-web-app`, deployed in the namespace `dev-namespace`. You should replace `myapps.tanzu.biz` with your own domain:
+    An example of a canary resource created for a workload, called `tanzu-java-web-app`, is deployed in the namespace `dev-namespace`. Replace `myapps.tanzu.biz` with your own domain:
 
     ```yaml
     apiVersion: flagger.app/v1beta1
@@ -122,24 +125,25 @@ In summary, the process explained in the guide above involves the following step
               cmd: "hey -z 1m -q 10 -c 2 -host tanzu-java-web-app.myapps.tanzu.biz http://envoy.tanzu-system-ingress"
     ```
 
-   Save the above resource as canary.yaml and then apply it to your cluster:
+   Save the resource you created as `canary.yaml` and apply it to your cluster:
 
-    ```shell
+    ```console
     export WORKLOAD_NAMESPACE=dev-namespace
     kubectl apply -n $WORKLOAD_NAMESPACE -f canary.yaml
     ```
-   
-    **Note**: In the example above, we also make use of the load testing service `flagger-loadtester` to generate traffic during the canary analysis.
-    You can install it using the commands below:
-    
-    ```shell
+  
+  In the earlier example, you use the load testing service `flagger-loadtester` to generate traffic during the canary analysis.
+  
+  To install the load testing service:
+
+    ```console
     kubectl create ns test
     kubectl apply -k https://github.com/fluxcd/flagger//kustomize/tester?ref=main
     ```
 
-4. Add an HTTPProxy to include the proxy generated by Flagger.
+1. Add an HTTPProxy to include the proxy generated by Flagger.
 
-    You can find a sample of an HTTPProxy resource below. It references `tanzu-java-web-app-flagger-service` and is
+    The following example HTTPProxy resource references `tanzu-java-web-app-flagger-service` and is
     deployed in the namespace `dev-namespace`:
 
     ```yaml
@@ -158,34 +162,38 @@ In summary, the process explained in the guide above involves the following step
           - prefix: /
     ```
 
-    Save the above resource as httpproxy.yaml and then apply it to your cluster:
+    Save the resource you created as `httpproxy.yaml` and then apply it to your cluster:
 
-    ```shell
+    ```console
     export WORKLOAD_NAMESPACE=dev-namespace
     kubectl apply -n $WORKLOAD_NAMESPACE -f httpproxy.yaml
     ```
-   
+ 
     Confirm the HTTPProxy created by Contour has `Valid` status:
 
-    ```shell
+    ```console
     kubectl get httpproxies -n $WORKLOAD_NAMESPACE
     ```
 
-5. Make changes to GitOps repository and observe the progressive delivery in action
+2. Make changes to GitOps repository and observe the progressive delivery in action
    
-    As changes are made to your GitOps repository, the GitOps tools in place in your environment, such as FluxCD and ArgoCD,
-    will deploy the new `Package`s onto your clusters. Flagger will detect any changes to the target deployment (including secrets and configmaps)
-    and will start a new rollout. The new version will be either promoted or rolled back.
+    As changes are made to your GitOps repository, the GitOps tools in place in your environment, such as FluxCD and ArgoCD, deploy the new `Package`s onto your clusters. Flagger detects any changes to the target deployment, including secrets and configmaps,
+    and starts a new rollout. The new version is either promoted or rolled back.
 
    You can monitor the traffic shifting with:
 
-    ```shell
+    ```console
     watch kubectl get canary -n $WORKLOAD_NAMESPACE
-    kubectl describe canary <CANARY-RESOURCE-NAME> -n $WORKLOAD_NAMESPACE
+    kubectl describe canary 
+    CANARY-RESOURCE-NAME -n $WORKLOAD_NAMESPACE
     ```
+
+    Where `CANARY-RESOURCE-NAME` is the name of the canary resource you want to use.
 
 ## <a id="canary-references"></a> References and further reading
 
-* [Deployment Strategies](https://docs.flagger.app/usage/deployment-strategies)
-* [Contour Canary Deployments](https://docs.flagger.app/tutorials/contour-progressive-delivery)
-* [Flagger - How it works](https://docs.flagger.app/usage/how-it-works)
+The following topics give you more information about canary:
+
+- [Deployment Strategies](https://docs.flagger.app/usage/deployment-strategies)
+- [Contour canary Deployments](https://docs.flagger.app/tutorials/contour-progressive-delivery)
+- [Flagger - How it works](https://docs.flagger.app/usage/how-it-works)
