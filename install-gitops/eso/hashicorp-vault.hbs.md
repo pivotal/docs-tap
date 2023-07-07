@@ -278,10 +278,9 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
 1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository. There are two supported authentication methods:
 
-    1. SSH
-
-        Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
-        the following information as plaintext:
+    SSH
+    : Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
+    the following information as plaintext:
 
         ```json
         {
@@ -314,23 +313,23 @@ Follow these steps to create the sensitive configuration and review the non-sens
         - `awk '{printf "%s\\\\n", $0}'` converts a multiline string into a single-line
         string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
-    1. Basic Authentication
+    Basic Authentication
 
-          Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
-          the following information as plaintext:
+    : Create a secret named `secret/dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
+    the following information as plaintext:
 
-          ```json
-          {
-            "username": "... (username) ...",
-            "password": "... (password) ..."
-          }
-          ```
+        ```json
+        {
+          "username": "... (username) ...",
+          "password": "... (password) ..."
+        }
+        ```
 
-          Where:
+        Where:
 
-          - `CLUSTER-NAME` is the name of your cluster.
-          - `username` is the username of a user account with read access to the Git repository.
-          - `password` is the password or personal access token for the user.
+        - `CLUSTER-NAME` is the name of your cluster.
+        - `username` is the username of a user account with read access to the Git repository.
+        - `password` is the password or personal access token for the user.
 
 1. To securely store the authentication credentials required for accessing the OCI registry hosting the Tanzu Application Platform images, create a secret called `dev/CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig`. This secret contains the following information in plaintext:
 
