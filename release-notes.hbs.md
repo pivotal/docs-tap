@@ -479,6 +479,8 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- If SCST - Scan 2.0 is enabled, Tanzu Developer Portal requires a workaround to support viewing ImageVulnerabilityScans results in the Security Analysis and Supply Chain Choreographer dashboards. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support) to apply the workarounds.
+
 #### <a id='1-6-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
@@ -507,9 +509,6 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-0-cnrs-ki'></a> Cloud Native Runtimes
 - Knative Serving: Certain app name, namespace, and domain combinations produce Knative Services with status `CertificateNotReady`. See [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
-
-#### <a id='1-6-0-tap-gui-ki'></a> Tanzu Developer Portal
-- Tanzu Developer Portal will need some manual settings to support viewing ImageVulnerabilityScans from App Scanning 2.0 scans. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support).
 ---
 
 ### <a id="1-6-components"></a> Component versions

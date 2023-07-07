@@ -361,13 +361,15 @@ app_config:
 
 #### Symptom
 
-App Scanning 2.0 has been enabled and there is no vulnerability data on the Security Analysis plug-in page or the Supply Chain Choreographer plug-in page
+SCST-Scan 2.0 has been enabled and there is no vulnerability data on the Security Analysis and Supply Chain Choreographer dashboards.
 
 #### Cause
 
-This is caused because Tanzu Developer Portal needs to be configured to know about the new ImageVulnerabilityScan Custom Resource.
+The Tanzu Developer Portal lacks the required configuration and access to know about the new ImageVulnerabilityScan custom resource.
 
 #### Solution
+
+As a workaround, you can update the Tanzu Developer Portal to monitor the ImageVulnerabilityScan resource, and apply a YTT overlay to add permisions to the Kubernetes role used to access the ImageVulnerabilityScan resource.  See [here](../customize-package-installation.hbs.md) for more detailed information on how overlays work with the Tanzu Application Platform.
 
 1. Get the TAP values
   ```console
@@ -475,30 +477,52 @@ This is caused because Tanzu Developer Portal needs to be configured to know abo
           plural: 'imagevulnerabilityscans'
   ```
 
-3. Update Tanzu Developer Portal with the new TAP values
+3. Create a `secret.yml` file with a `Secret` that contains your ytt overlay. For example:
+
+   ```yaml
+  kind: Secret
+  metadata:
+    name: add-tap-portal-ivs-permissions
+    namespace: tap-install
+    annotations:
+      kapp.k14s.io/change-group: "tap-overlays"
+  type: Opaque
+  stringData:
+    add-tap-portal-ivs-permissions.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+      #@overlay/match by=overlay.subset({"metadata":{"name":"k8s-reader"}, "kind": "ClusterRole"})
+      ---
+      rules:
+        #@overlay/append
+          - apiGroups:
+            - app-scanning.apps.tanzu.vmware.com
+            resources:
+            - imagevulnerabilityscans
+            verbs:
+            - get
+            - watch
+            - list
+   ```
+
+2. Apply the `Secret` to your cluster by running:
+
+   ```console
+   kubectl apply -f secret.yml
+   ```
+
+3. Update your values file to include a `package_overlays` field:
+
+    ```yaml
+    package_overlays:
+    - name: tap-gui
+    secrets:
+    - name: add-tap-portal-ivs-permissions
+    ```
+
+
+4. Update Tanzu Developer Portal with the new TAP values
   ```console
   tanzu package installed update tap -p tap.tanzu.vmware.com -n tap-install --values-file tap-values.yaml
-  ```
-
-4. Pause the reconciliation of Tanzu Developer Portal so edits to the ClusterRole will not get reverted.
-  ```console
-  kctrl package installed pause -i tap-gui -n tap-install
-  ```
-
-5. Edit the k8s-reader ClusterRole to give it permission to access the ImageVulnerabilityScan Custom Resource
-  ```console
-  kubectl edit clusterrole k8s-reader
-  ```
-  Add the following yaml to the ClusterRole
-  ```yaml
-  - apiGroups:
-    - app-scanning.apps.tanzu.vmware.com
-  resources:
-    - imagevulnerabilityscans
-  verbs:
-    - get
-    - watch
-    - list
   ```
 
 ## Security Analysis plug-in
