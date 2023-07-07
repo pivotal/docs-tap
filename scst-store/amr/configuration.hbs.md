@@ -1,6 +1,6 @@
 # Configure Artifact Metadata Repository
 
-This tells you how to configure Supply Chain Security Tools (SCST) - Artifact Metadata Repository (AMR).
+This tells you how to configure Artifact Metadata Repository (AMR).
 
 ## <a id='amr-observer'></a> AMR Observer
 

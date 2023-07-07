@@ -395,7 +395,7 @@ The following issues, listed by component and area, are resolved in this release
 - Implemented basic logging in the AMR database.
 - AMR database no longer creates a load balancer when enabling the shared ingress domain and ingress values in `tap-values.yaml`.
 - Modified the behavior of the `/v1/artifact-groups/vulnerabilities/_search` endpoint. It now returns a list of artifact groups affected by the vulnerability even if the images or sources in the query are not linked to them.
-  Previously the endpoint returned the list artifact group the images or sources were linked to, even if the artifact group was not affected by the vulnerability.
+  - Previously the endpoint returned the list artifact group the images or sources were linked to, even if the artifact group was not affected by the vulnerability.
 
 #### <a id='1-6-0-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
 
