@@ -361,11 +361,11 @@ app_config:
 
 #### Symptom
 
-SCST-Scan 2.0 has been enabled and there is no vulnerability data on the Security Analysis dashboard and the Supply Chain Choreographer dashboard.
+SCST-Scan 2.0 has been enabled and there is no vulnerability data on the Security Analysis and Supply Chain Choreographer dashboards.
 
 #### Cause
 
-The Tanzu Developer Portal lacks the required configuration and access to know about the new ImageVulnerabilityScan custom sesource.
+The Tanzu Developer Portal lacks the required configuration and access to know about the new ImageVulnerabilityScan custom resource.
 
 #### Solution
 
