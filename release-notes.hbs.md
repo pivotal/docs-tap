@@ -484,7 +484,9 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-- If SCST - Scan 2.0 is enabled, Tanzu Developer Portal requires a workaround to support viewing ImageVulnerabilityScans results in the Security Analysis and Supply Chain Choreographer dashboards. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support) to apply the workarounds.
+- If SCST - Scan 2.0 is enabled, Tanzu Developer Portal requires a workaround to support viewing
+  `ImageVulnerabilityScans` results in the Security Analysis and Supply Chain Choreographer
+  dashboards. To apply the workarounds, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support) .
 
 #### <a id='1-6-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
