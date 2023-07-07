@@ -91,9 +91,9 @@ Follow these steps to create a new Git repository:
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH as well as Basic Authentication.
+    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH and Basic Authentication.
 
-2. Initialize a new Git repository:
+1. Initialize a new Git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -103,13 +103,15 @@ Follow these steps to create a new Git repository:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-3. For authentication with SSH, create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
+1. Set up the authentication method:
 
-    The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+    SSH
+    : Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository. The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
 
-4. For Basic Authentication, have a username with read access to the Git repository and password or personal access token for the same user.
+    Basic Authentication
+    : Have a user name with read access to the Git repository and password or personal access token for the same user.
 
->**Important** Only use one of `ssh` or `Basic Authentication`, not both.
+    >**Important** Only use one of `ssh` or `Basic Authentication`, not both.
 
 ## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
@@ -272,48 +274,46 @@ Configuration for Tanzu is stored in two locations:
 
 Follow these steps to create the sensitive configuration and review the non-sensitive configuration:
 
-1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository. There are two supported authentication methods:
+1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository.
 
-    1. SSH
+    SSH
+    : Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
+    the following information as plaintext:
 
-      Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
-      the following information as plaintext:
+        ```json
+        {
+          "privatekey": "... (private key portion here) ...",
+          "knownhosts": "... (known_hosts for git host here) ..."
+        }
+        ```
 
-      ```json
-      {
-        "privatekey": "... (private key portion here) ...",
-        "knownhosts": "... (known_hosts for git host here) ..."
-      }
-      ```
+        Where `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`.
 
-      Where `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`.
+        For example, if the Git repository is hosted on GitHub, and the private key
+        created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
 
-      For example, if the Git repository is hosted on GitHub, and the private key
-      created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
+        ```console
+        aws secretsmanager create-secret \
+          --name dev/${CLUSTER_NAME}/tanzu-sync/sync-git/ssh \
+          --secret-string "$(cat <<EOF
+        {
+          "privatekey": "$(cat ~/.ssh/id_ed25519 | awk '{printf "%s\\\\n", $0}')",
+          "knownhosts": "$(ssh-keyscan github.com | awk '{printf "%s\\\\n", $0}')"
+        }
+        EOF
+        )"
+        ```
 
-      ```console
-      aws secretsmanager create-secret \
-        --name dev/${CLUSTER_NAME}/tanzu-sync/sync-git/ssh \
-        --secret-string "$(cat <<EOF
-      {
-        "privatekey": "$(cat ~/.ssh/id_ed25519 | awk '{printf "%s\\\\n", $0}')",
-        "knownhosts": "$(ssh-keyscan github.com | awk '{printf "%s\\\\n", $0}')"
-      }
-      EOF
-      )"
-      ```
+        Where:
 
-      Where:
+        - The content of `~/.ssh/id_ed25519` is the private portion of the SSH key.
+        - `ssh-keyscan` obtains the public keys for the SSH host.
+        - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
+        string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
-      - The content of `~/.ssh/id_ed25519` is the private portion of the SSH key.
-      - `ssh-keyscan` obtains the public keys for the SSH host.
-      - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
-      string with embedded newline chars (`\n`). JSON does not support multiline strings.
-
-    1. Basic Authentication
-
-        Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
-        the following information as plaintext:
+    Basic Authentication
+    : Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
+    the following information as plaintext:
 
         ```json
         {
