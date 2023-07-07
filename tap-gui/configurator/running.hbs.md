@@ -35,16 +35,16 @@ kubectl
 Tanzu Developer Portal GUI
 : Within the Tanzu Developer Portal GUI:
 
-    1. Find your workload in the Supply Chain view.
-       ![Supply Chain Plugin](./images/supply-chain-plugin.png)
-    2. Fine the Artifact Detail for the Image Provider step. You'll see the Image value located there.
-       ![Supply Chain Plugin Artifact Detail](./images/supply-chain-artifact.png)
+    1. Select your workload in the Supply Chain view.
+       ![Workloads table displayed in the Tanzu Developer Portal supply chain view.](images/supply-chain-plugin.png)
+    2. Record the Artifact Detail image value you see in the detailed view of the workload.
+       ![Detailed view of one of the workloads in Tanzu Developer Portal. It includes the Artifact Detail image value.](images/supply-chain-artifact.png)
 
 ## <a id="prepare"></a> Prepare to overlay your customized image onto the currently running instance
 
 To prepare to overlay your customized image onto the currently running instance:
 
-1. Create the [`ytt`](https://carvel.dev/ytt/) overlay secret.
+1. Create the [ytt](https://carvel.dev/ytt/) overlay secret.
 
 1. Create a file called `tdp-overlay-secret.yaml` with the following content:
 

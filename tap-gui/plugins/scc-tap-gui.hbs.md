@@ -121,6 +121,7 @@ To manually enable CVE scan results:
             target: https://metadata-store-app.metadata-store:8443/api/v1
             changeOrigin: true
             secure: false
+            allowedHeaders: ['Accept', 'Report-Type-Format']
             headers:
               Authorization: "Bearer ACCESS-TOKEN"
               X-Custom-Source: project-star

@@ -70,24 +70,22 @@ application code can use them to initiate OAuth2 flows.
 
 ### <a id='redirect-paths'></a> `redirectPaths`
 
-`redirectPaths` define the locations to where you application's end-users will
-be redirected to after authenticating. Getting this setting right is a critical
-part of your client parameters. Wrong redirect URIs are the most common source
-of error for clients. When they aren't configured correctly, your application
-will not be able to perform OAuth2 flows and error.
+As a critical part of your client parameters, `redirectPaths` define the locations 
+to which you application's end-users are redirected to after the authentication. 
+Incorrect redirect URIs often cause errors for clients and are the most common 
+source of such issues. When redirect URIs are not configured accurately, your 
+application encounter errors and can not perform OAuth2 flows.
 
 For servlet-based Spring Boot workloads using Spring Security OAuth 2 Client
-library, the default redirect path template looks like this:
+library, the default redirect path template looks as follows:
 
 ```plain
 /login/oauth2/code/{ClassClaim.metadata.name}`
 ```
 
-> **Note** For more information about the format, see [Spring's
-> documentation](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri).
+For more information about the format, see the [Spring documentation](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri).
 
-For example, in the case of our `ClassClaim` we configure a single redirect
-path:
+For example, configure a single redirect path in `ClassClaim`:
 
 ```yaml
 spec:
@@ -96,27 +94,29 @@ spec:
       - /login/oauth2/code/my-sso-client
 ```
 
-Behind the scenes your redirect paths will be templated into full redirect URIs
-including a scheme and fully-qualified domain name. In the case of our example,
-our actual redirect URI could look something like this:
+Behind the scenes your redirect paths are templated into the full redirect URIs
+including a scheme and fully-qualified domain name. For example, your actual 
+redirect URI might look as follows:
 
 ```plain
 https://my-workload.my-apps.example.com/login/oauth2/code/my-sso-client
 ```
 
-The choice of scheme (`https`, `http`), the template for the subdomain and the
+The choice of scheme (`https` or `http`), the template for the subdomain and the
 ingress domain are under the control of your service operators and platform
-operators. Should you notice that your redirect URIs aren't templating according
-to your needs get in touch with them to adjust the templates.
+operators. If your redirect URIs do not template according to your needs, 
+reach out to your service operators and platform operators and request adjustments 
+to the templates.
 
-Redirect paths are one of the values that go into templating redirect URIs.
-There's one more and that brings us to the next parameter.
+Redirect paths are one of the values for templating redirect URIs.
+However, there is another parameter that needs to be considered, 
+which leads us to the next parameter.
 
 ### <a id="workload-ref"></a> `workloadRef`
 
-The `workloadRef.name` parameter should be the name of the workload which acts
-as the OAuth2 client. This value will be used when templating the
-fully-qualified domain name of your redirect URIs.
+`workloadRef.name` is the name of the workload which acts as the OAuth2 client. 
+You can use this value when templating the fully-qualified domain name of your 
+redirect URIs.
 
 ```yaml
 spec:
@@ -125,11 +125,11 @@ spec:
       name: my-workload
 ```
 
-Therefore, if you rename your workload from `my-workload` to something else,
-then this parameter needs to reflect the new name.
+Therefore, if you rename your workload from `my-workload` to a different name, 
+you must update this parameter to align with the new name.
 
-> **Note** `workloadRef` is not resolved to a actual `Workload` existing on the
-> cluster. That means them claim does not depend on the existence of a `Workload`.
+> **Note** `workloadRef` is not resolved to an actual `Workload` existing on the
+> cluster. This means that the claim does not depend on the existence of a `Workload`.
 
 ### <a id='auth-grant-types'></a> `authorizationGrantTypes`
 
