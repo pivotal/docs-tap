@@ -573,6 +573,7 @@ docs.vmware.com is built.
       - [Configure Supply Chain Security Tools - Policy Controller](scst-policy/configuring.hbs.md)
     - [Supply Chain Security Tools – Scan](scst-scan/overview.hbs.md)
         - [Overview](scst-scan/overview.hbs.md)
+        - [Types of Vulnerability Scans](scst-scan/scan-types.hbs.md)
         - [Install Supply Chain Security Tools - Scan](scst-scan/install-scst-scan.hbs.md)
         - [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.hbs.md)
         - [Install another Scanner](scst-scan/install-scanners.hbs.md)
