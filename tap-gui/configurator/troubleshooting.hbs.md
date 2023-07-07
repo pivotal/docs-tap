@@ -54,7 +54,7 @@ spec:
       - name: source-revision
         type: string
       steps:
-      - image:  bash
+      - image: bash
         name: noop
         resources: {}
         script: |

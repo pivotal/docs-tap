@@ -352,7 +352,7 @@ This release includes the following changes, listed by component and area.
   tap_gui:
     app_config:
       auth:
-        allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate, make sure you configure an alternative auth provider.
+        allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate it, make sure you configure an alternative auth provider.
   ```
 
 ---
