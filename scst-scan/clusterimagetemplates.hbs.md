@@ -187,14 +187,14 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
   - `registry-server` is the registry server.
   - `registry-repository` is the registry repository.
 
->**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes) for more information.
+>**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes).
 
-1. Modify the following in your `custom-ivs-template.yaml` file for your own use case:
-   - `.metadata.name` is the name of your ClusterImageTemplate
-   - `registry-server` and `registry-repository` refer to your registry
-   - the location of your Trivy scanner image
+1. Edit the following in your `custom-ivs-template.yaml` file:
+   - `.metadata.name` is the name of your ClusterImageTemplate.
+   - `registry-server` and `registry-repository` refer to your registry.
+   - The location of your Trivy scanner image
 
-1. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
+2. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
 
     ```yaml
     metadata:
@@ -212,10 +212,10 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
         publisher: #@ data.values.params.image_scanning_service_account_publisher
     ```
 
-1. Create the ClusterImageTemplate:
+3. Create the ClusterImageTemplate:
 
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-1. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
+4. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
