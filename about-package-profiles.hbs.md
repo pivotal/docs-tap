@@ -260,6 +260,12 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
+- **[Tanzu Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)**
+
+  Tanzu Buildpacks provide framework and runtime support for applications. Buildpacks typically examine your applications to determine what dependencies to download and how to configure the apps to communicate with bound services.
+
+  Tanzu Buildpacks leverage open-source [Paketo Buildpacks](https://paketo.io/) to allow Tanzu Application Platform users to easily turn their application source code into container images easily. From Tanzu Application Platform version 1.6, builders, stacks, and buildpacks are packages in the build profile provided separately from Tanzu Build Service, and all follow the package name `*.buildpacks.tanzu.vmware.com`.
+
 - **[Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)**
 
   Tanzu Developer Tools for IntelliJ is the official VMware Tanzu IDE extension for IntelliJ IDEA
