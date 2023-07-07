@@ -1,10 +1,13 @@
-# Adding External Plugins to your Tanzu Developer Portal via the Customizer
+# Add external plug-ins to Tanzu Developer Portal
 
-## External Plugin Requirements Review
-As discussed in [Build your Customized Tanzu Developer Portal with Configurator](./building.hbs.md#prereqs), you'll need the following in order to include any type of external plugin:
+This topic tells you how to add external plug-ins to Tanzu Developer Portal
+(formerly Tanzu Application Platform GUI).
 
-- Ensure that your additional plug-ins are in an NPM registry. This registry can be your own
-  private registry or a plug-in registry if you intend to use a third-party or community plug-in.
+## <a id="prereqs"></a> External plug-in prerequisite
+
+As mentioned in [Build your Customized Tanzu Developer Portal with Configurator](building.hbs.md#prereqs),
+to use any type of external plug-in, ensure that it is in an npm registry. This registry can be your
+own private registry or a plug-in registry if you intend to use a third-party or community plug-in.
 
 > **Important** Tanzu Application Platform plug-ins cannot be removed from customized portals.
 > However, if you decide you want to hide them, you can use the

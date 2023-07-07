@@ -1,18 +1,20 @@
-# Configuration
+# Configure Artifact Metadata Repository
 
-This topic describes the configuration options available for Artifact Metadata Repository (AMR).
+This tells you how to configure Artifact Metadata Repository (AMR).
 
-## AMR Observer
+## <a id='amr-observer'></a> AMR Observer
 
-The TAP Values schema can be obtained with the following command:
-```bash
+You can obtain the Tanzu Application Platform values schema with the following command:
+
+```console
 tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --values-schema --namespace tap-install
 ```
 
-**Note:** The AMR Observer TAP Values are not under the `metadata_store` root key. It is in the `amr` root key.
-**Note:** If AMR Observer is being deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) and not through TAP package, the values file for a standalone package installation does not have the TAP value root keys of `amr.observer` or `amr.deploy_observer`.
+Values are under the `amr` root key, not under the `metadata_store` root key. 
 
-A template of the AMR Observer TAP values.
+>**Note** If AMR Observer is deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) and not through Tanzu Application Platform package, the values file for a standalone package installation does not have the Tanzu Application Platform value root keys of `amr.observer` or `amr.deploy_observer`.
+
+A template of the AMR Observer Tanzu Application Platform values:
 
 ```yaml
 amr: 
@@ -33,37 +35,42 @@ amr:
       -----END CERTIFICATE-----
 ```
 
-* `amr.deploy_observer`
-	* Default: `false`
-  * If deployed on a full profile TAP cluster and `metadata-store.amr.deploy` is `false`, this will override `amr.deploy_observer` to be `false`.
+Configuration options:
 
-* `amr.observer.location`
-	* Default: ""
-  * Location is the multiline string configuration for the location.conf content.
-  * The YAML string can contain additional fields:
-    * `alias`: An alias for the cluster's location. If no alias is specified, the reference of the `kube-system` namespace UID will be used.
-    * `labels`: Consists of an array for key and value pairing. Useful for adding searchable and identifiable metadata.
+- `amr.deploy_observer`
+  - Default: `false`
+  - If deployed on a full profile Tanzu Application Platform cluster and `metadata-store.amr.deploy` is `false`, this overrides `amr.deploy_observer` to be `false`.
 
-* `amr.observer.resync_period`
-	* Default: "10h"
-  * Determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing.
+- `amr.observer.location`
+  - Default: ""
+  - Location is the multiline string configuration for the location.conf content.
+  - The YAML string can contain additional fields:
+    - `alias`: An alias for the cluster's location. If no alias is specified, the reference of the `kube-system` namespace UID is used.
+    - `labels`: Consists of an array for key and value pairing. Useful for adding searchable and identifiable metadata.
 
-* `amr.observer.ca_cert_data` or `shared.ca_cert_data`
-	* Default: ""
-  * Used to add certificates to the truststore that is used by the AMR Observer. The CA Certificate can be obtained with the following command on the cluster running AMR CloudEvent Handler. 
-    ```bash
+- `amr.observer.resync_period`
+  - Default: "10h"
+  - Determines the minimum frequency at which watched resources are reconciled. A lower period corrects entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing.
+
+- `amr.observer.ca_cert_data` or `shared.ca_cert_data`
+  - Default: ""
+  - The AMR Observer uses the truststore to add certificates. You can get the CA Certificate on the cluster running AMR CloudEvent Handler:
+ 
+    ```console
     kubectl -n metadata-store get secrets/amr-persister-ingress-cert -o jsonpath='{.data."crt.ca"}' | base64 -d
     ```
 
-* `amr.observer.eventhandler.endpoint`
-	* Default: ""
-  * The URL of the CloudEvent handler endpoint.
-  * On the view or full TAP profile cluster, obtain the AMR CloudEvent Handler ingress address. The following command can be used to obtain the FQDN of the AMR CloudEvent Handler:
-    ```bash
+- `amr.observer.eventhandler.endpoint`
+  - Default: ""
+  - The URL of the CloudEvent handler endpoint.
+  - On the view or full Tanzu Application Platform profile cluster, obtain the AMR CloudEvent Handler ingress address. Obtain the FQDN of the AMR CloudEvent Handler:
+    
+    ```console
     kubectl -n metadata-store get httpproxies.projectcontour.io amr-persister-ingress -o jsonpath='{.spec.virtualhost.fqdn}'
     ```
-  **Note:** Ensure that the correct protocol is set. If there is TLS, `https://` needs to be prepended. If there is no TLS, `http://` needs to be prepended.
 
-* `amr.observer.eventhandler.liveness_period_seconds`
-	* Default: 25
-  * The period in seconds between executed health checks to the Artifact Metadata Repository CloudEvent Handler endpoint.
+  >**Note** Ensure that the correct protocol is set. If there is TLS, `https://` must be prepended. If there is no TLS, `http://` must be prepended.
+
+- `amr.observer.eventhandler.liveness_period_seconds`
+  - Default: 25
+  - The period in seconds between executed health checks to the Artifact Metadata Repository CloudEvent Handler endpoint.

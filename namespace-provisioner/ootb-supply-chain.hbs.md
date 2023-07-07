@@ -185,7 +185,7 @@ Using workload yaml
 
 ## <a id='test-scan'></a>Out of the Box Supply Chain with Testing and Scanning
 
-The Out of the Box Supply Chain with Testing and Scanning adds the `source-tester`, `source-scanner`, and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain and scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, the following additional resources must exist in the same namespace as the workload.
+The Out of the Box Supply Chain with Testing and Scanning adds the `source-tester`, `source-scanner` ([optional](../scst-scan/scan-types.hbs.md#source-scan)), and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain and scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, the following additional resources must exist in the same namespace as the workload.
 
 - `Pipeline:` defines how to run the tests on the source code pulled by the supply chain and which image to use that has the tools to run those tests.
 - `ScanTemplate`: defines how to run a scan, you can change how the scan is run, either for images or source code.

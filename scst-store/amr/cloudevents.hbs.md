@@ -1,6 +1,10 @@
-# CloudEvent JSON Specification
+# CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata Repository
 
-Artifact Metadata Repository Observer utilizes CloudEvents to describe events and sends them to Artifact Metadata Repository CloudEvent Handler. The CloudEvent JSON specification for an ImageVulnerabilityScan is described below.
+This topic tells you how Artifact Metadata Repository (AMR) Observer uses CloudEvents to describe events and send them to AMR CloudEvent Handler.
+
+## <a id='required-attributes'></a> JSON specification
+
+You can use the following CloudEvent JSON specification for an ImageVulnerabilityScan:
 
 ```json
 {
@@ -24,81 +28,76 @@ Artifact Metadata Repository Observer utilizes CloudEvents to describe events an
 }
 ```
 
-## CloudEvent Required Attributes
+## <a id='required-attributes'></a> Required CloudEvent attributes
 
-CloudEvents have [required](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#required-attributes) attributes that must be defined.
+CloudEvents have the following required attributes. See [required attributes](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#required-attributes) in GitHub.
 
-* `id`
-  * The combination of `source` and `id` must be unique for each distinct CloudEvent
-	Therefore, we can utilize the resourceVersion and scanResult filename as an identifier
-* `source` 
-  * Use UID of kube-system namespace resource where the Observer is deployed
-* specversion
-  * MUST use a value of 1.0 when referring to this version of the specification
-* `type`
-  * Must be defined. AMR Observer and CloudEvent Handler support the usage of:
-    * `vmware.tanzu.apps.image.sbom.pushed.v1`
-      * Contains the ImageVulnerabilityScan report
-      * Submits image scan reports to Metadata Store 
-    * `vmware.tanzu.apps.image.sbom.pushed.v1alpha1`
-      * Contains the ImageVulnerabilityScan report
-      * Submits image scan reports to Metadata Store 
-      * Submits artifact groups containing workload correlation to image scan reports to Metadata Store
-    * `vmware.tanzu.apps.location.created.v1`
-      * Contains cluster kube-system namespace UID and user defined labels for location
-      * Submits cluster location to Artifact Metadata Repository
-    * `dev.knative.apiserver.resource.add`
-      * Backwards compatibility with Knative APIServerSource in Resource mode
-      * AMR CloudEvent Handler supports ReplicaSets with workload named container
-      * Submits ReplicaSet status to Artifact Metadata Repository
-    * `dev.knative.apiserver.resource.updated`
-      * Backwards compatibility with Knative APIServerSource in Resource mode
-      * AMR CloudEvent Handler supports ReplicaSets with workload named container
-      * Submits ReplicaSet status to Artifact Metadata Repository
-    * `dev.knative.apiserver.resource.delete`
-      * Backwards compatibility with Knative APIServerSource in Resource mode
-      * AMR CloudEvent Handler supports ReplicaSets with workload named container
-      * Submits ReplicaSet status to Artifact Metadata Repository* 
+- `id`
+  - The combination of `source` and `id` must be unique for each distinct CloudEvent. You can use the resourceVersion and scanResult filename as an identifier.
+- `source` 
+  - Use UID of kube-system namespace resource where the Observer is deployed.
+- `specversion`
+  - Must use a value of 1.0 when referring to this version of the specification.
+- `type`
+  - Must be defined. AMR Observer and CloudEvent Handler supports the use of:
+    - `vmware.tanzu.apps.image.sbom.pushed.v1`
+      - Contains the ImageVulnerabilityScan report
+      - Submits image scan reports to Metadata Store 
+    - `vmware.tanzu.apps.image.sbom.pushed.v1alpha1`
+      - Contains the ImageVulnerabilityScan report
+      - Submits image scan reports to Metadata Store 
+      - Submits artifact groups containing workload correlation to image scan reports to Metadata Store
+    - `vmware.tanzu.apps.location.created.v1`
+      - Contains cluster kube-system namespace UID and user defined labels for location
+      - Submits cluster location to Artifact Metadata Repository
+    - `dev.knative.apiserver.resource.add`
+      - Backwards compatibility with Knative APIServerSource in Resource mode
+      - AMR CloudEvent Handler supports ReplicaSets with workload named container
+      - Submits ReplicaSet status to Artifact Metadata Repository
+    - `dev.knative.apiserver.resource.updated`
+      - Backwards compatibility with Knative APIServerSource in Resource mode
+      - AMR CloudEvent Handler supports ReplicaSets with workload named container
+      - Submits ReplicaSet status to Artifact Metadata Repository
+    - `dev.knative.apiserver.resource.delete`
+      - Backwards compatibility with Knative APIServerSource in Resource mode
+      - AMR CloudEvent Handler supports ReplicaSets with workload named container
+      - Submits ReplicaSet status to Artifact Metadata Repository 
 
-## CloudEvent Optional Attributes
+## <a id='optional-attributes'></a> Optional CloudEvent attributes
 
-CloudEvents have [optional](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#optional-attributes) attributes that can be defined.
+You can define the following CloudEvents optional attributes. See [optional attributes](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#optional-attributes) in GitHub.
 
-* `subject`
-  * `/apis/<group>/<version>/namespace/<namespace-name>/<kind>/<name>`
-* `datacontenttype`
-  * Contains the metadata for the type of data in the data field. We can specify which XML data the scan results are with `application/vnd.cyclonedx+xml` or `application/spdx+json` such that the AMR CloudEvent-Handler knows which unmarshaller to use.
-* `data`
-  * Contains the scan result file content
-* `time`
-  * timestamp from the observed resource
+- `subject`
+  - `/apis/<group>/<version>/namespace/<namespace-name>/<kind>/<name>`
+- `datacontenttype`
+  - Contains the metadata for the type of data in the data field. You can specify which XML data the scan results are with `application/vnd.cyclonedx+xml` or `application/spdx+json` so the AMR CloudEvent-Handler knows which unmarshaller to use.
+- `data`
+  - Contains the scan result file content
+- `time`
+  - Timestamp from the observed resource
 
-## CloudEvent Extension Attributes
+## <a id='extension-attributes'></a> CloudEvent extension attributes
 
-Fields that are not part of the required and optional attributes for CloudEvents will be considered an [extension context attribute](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#extension-context-attributes).
+Fields that are not part of the required and optional attributes for CloudEvents are considered extension context attributes. See [extension context attributes](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#extension-context-attributes) in GitHub.
 
-* `correlationid`
-  * Optional
-  * Contains the metadata of the mapping to the source of the resource being scanned.
-* `image`
-  * Required for `vmware.tanzu.apps.image.sbom.pushed.*` types
-  * Contains the scanned image and digest
-* `scanresults`
-  * Required for `vmware.tanzu.apps.image.sbom.pushed.*` types
-  * Contains the ScanResult OCI location such that AMR can reference where the original scan results are located when results are normalized.
-* `file`
-  * Required for `vmware.tanzu.apps.image.sbom.pushed.*` types
-  * Scan result filename
-* `workloaduid`
-  * Optional
-  * Contains the workload UID. Utilized for associating artifact-groups in Metadata Store
-* `workloadname`
-  * Optional
-  * Contains the workload name. Utilized for associating artifact-groups in Metadata Store
-* `workloadnamespace`
-  * Optional
-  * Contains the workload namespace. Utilized for associating artifact-groups in Metadata Store
+- (Optional) `correlationid`
+  - Contains the metadata of the mapping to the source of the resource being scanned.
+- `image`
+  - Required for `vmware.tanzu.apps.image.sbom.pushed.*` types
+  - Contains the scanned image and digest
+- `scanresults`
+  - Required for `vmware.tanzu.apps.image.sbom.pushed.*` types
+  - Contains the ScanResult OCI location so that AMR can reference where the original scan results are located when results are normalized.
+- `file`
+  - Required for `vmware.tanzu.apps.image.sbom.pushed.*` types
+  - Scan result filename
+- (Optional) `workloaduid`
+  - Contains the workload UID. Utilized for associating artifact-groups in Metadata Store
+- (Optional) `workloadname`
+  - Contains the workload name. Utilized for associating artifact-groups in Metadata Store
+- (Optional) `workloadnamespace`
+  - Contains the workload namespace. Utilized for associating artifact-groups in Metadata Store
 
-## Batch CloudEvents
+## <a id='batch'></a> Batch CloudEvents
 
-CloudEvents sent to AMR CloudEvent-Handler can be a batch of CloudEvents by using CloudEvent [JSON batch format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format). 
+CloudEvents sent to AMR CloudEvent-Handler can in batch format if you use CloudEvent [JSON batch format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format). 

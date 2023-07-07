@@ -82,6 +82,7 @@ For each run cluster:
    stringData:
      values.yaml: |
        ---
+       workload_name: app
        replicas: 2
        hostname: app.mycompany.com
    ```

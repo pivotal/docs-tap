@@ -187,6 +187,10 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
+### <a id="source-scan-missing"></a> Source Scan Missing in Supply Chain
+
+The source scan step was made opt-in in Tanzu Application Platform 1.6 to better support languages that resolve dependencies at build time.  See [here](scan-types.hbs.md#source-scan) for more information and how to opt-in to source scanning in the out-of-the-box test and scan supply chain.
+
 ### <a id="troubleshoot-grype-airgap"></a> Troubleshooting Grype in air gap Environments
 
 For information about issues with Grype in air gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).

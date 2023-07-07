@@ -83,11 +83,47 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
       #@   ]) + ":" + data.values.workload.metadata.uid
       #@ end
 
+      #@ def param(key):
+      #@   if not key in data.values.params:
+      #@     return None
+      #@   end
+      #@   return data.values.params[key]
+      #@ end
+
+      #@ def maven_param(key):
+      #@   if not key in data.values.params["maven"]:
+      #@     return None
+      #@   end
+      #@   return data.values.params["maven"][key]
+      #@ end
+
+      #@ def correlationId():
+      #@   if hasattr(data.values.workload, "annotations") and hasattr(data.values.workload.annotations, "apps.tanzu.vmware.com/correlationid"):
+      #@     return data.values.workload.annotations["apps.tanzu.vmware.com/correlationid"]
+      #@   end
+      #@   if not hasattr(data.values.workload.spec, "source"):
+      #@     return ""
+      #@   end
+      #@   url = ""
+      #@   if hasattr(data.values.workload.spec.source, "git"):
+      #@     url = data.values.workload.spec.source.git.url
+      #@   end
+      #@   if hasattr(data.values.workload.spec.source, "image"):
+      #@     url = data.values.workload.spec.source.image.split("@")[0]
+      #@   end
+      #@   if param("maven"):
+      #@     url = param("maven_repository_url") + "/" + maven_param("groupId").replace(".", "/") + "/" + maven_param("artifactId")
+      #@   end
+      #@   return url + "?sub_path=" + getattr(data.values.workload.spec.source, "subPath", "/")
+      #@ end
+
       ---
       apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
       kind: ImageVulnerabilityScan
       metadata:
         labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
+        annotations:
+          apps.tanzu.vmware.com/correlationid: #@ correlationId()
         generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
       spec:
         image: #@ data.values.image
@@ -151,33 +187,35 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
   - `registry-server` is the registry server.
   - `registry-repository` is the registry repository.
 
+>**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes).
+
 1. Edit the following in your `custom-ivs-template.yaml` file:
-   - `.metadata.name` is the name of your ClusterImageTemplate
-   - `registry-server` and `registry-repository` refer to your registry
-   - the location of your Trivy scanner image
+   - `.metadata.name` is the name of your ClusterImageTemplate.
+   - `registry-server` and `registry-repository` refer to your registry.
+   - The location of your Trivy scanner image
 
-1. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
+2. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
 
-  ```yaml
-  metadata:
-    labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
-    generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
-  spec:
-    image: #@ data.values.image
-    activeKeychains: #@ data.values.params.image_scanning_active_keychains
-    scanResults:
-      location: #@ scanResultsLocation()
-    workspace:
-      size: #@ data.values.params.image_scanning_workspace_size
-    serviceAccountNames:
-      scanner: #@ data.values.params.image_scanning_service_account_scanner
-      publisher: #@ data.values.params.image_scanning_service_account_publisher
-  ```
+    ```yaml
+    metadata:
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
+      generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
+    spec:
+      image: #@ data.values.image
+      activeKeychains: #@ data.values.params.image_scanning_active_keychains
+      scanResults:
+        location: #@ scanResultsLocation()
+      workspace:
+        size: #@ data.values.params.image_scanning_workspace_size
+      serviceAccountNames:
+        scanner: #@ data.values.params.image_scanning_service_account_scanner
+        publisher: #@ data.values.params.image_scanning_service_account_publisher
+    ```
 
-1. Create the ClusterImageTemplate:
+3. Create the ClusterImageTemplate:
 
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-1. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
+4. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
