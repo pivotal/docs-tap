@@ -26,4 +26,8 @@ To integrate App Scanning with an OOTB supply chain:
 
   Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
+1.  Downstream Tanzu Application Platform services such as Tanzu Developer Portal and Tanzu CLI are dependent on scan results being stored in the SCST - Store component to display them correctly.  To do this, AMR (beta) and AMR Observer (alpha) components are used and must be enabled.  To do so, see the [AMR documentation](scst-store/amr/install-amr-observer.hbs.md).
+
+1. In order to display scan results correctly in the Tanzu Developer Portal, additional configurations must be applied.  See [Tanzu Developer Portal troubleshooting guide](../tap-gui/troubleshooting.hbs.md#supporting-imagevulnerabilityscans) for more information.
+
 1. [Verify](./verify-app-scanning-supply-chain.hbs.md) the new scanner.
