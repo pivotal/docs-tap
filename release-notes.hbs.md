@@ -509,7 +509,7 @@ This release has the following known issues, listed by component and area.
 
 
 #### <a id='1-6-0-tap-gui-ki'></a> Tanzu Developer Portal
-- Tanzu Developer Portal will need some manual settings to support viewing ImageVulnerabilityScans from App Scanning 2.0 scans. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support).
+- If SCST - Scan 2.0 is enabled, Tanzu Developer Portal requires a workaround to support viewing ImageVulnerabilityScans results in the Security Analysis and Supply Chain Choreographer dashboards. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#ivs-support) to apply the workarounds.
 ---
 
 ### <a id="1-6-components"></a> Component versions
