@@ -558,3 +558,32 @@ A fix is planned for Tanzu Developer Portal v1.5.1.
 These are troubleshooting issues for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
 
 {{> 'partials/tap-gui/ts-err-load-metadata-store' }}
+
+## <a id='sbom-not-working'></a> SBOMs do not download when automatically configuring Tanzu Developer Portal to SCST - Store
+
+### Symptom
+
+The auto configuration between Tanzu Developer Portal and SCST - Store results in the SBOM feature not working (new as of TAP 1.6).
+
+### Cause
+
+Backstage expects `allowedHeaders` values for the SCST - Store to reply with proper XML and JSON SBOM responses.
+
+### Solution
+
+Edit your `tap-values.yaml` file so that `allowedHeaders` and the accompanying values are included.
+
+```yaml
+tap_gui:
+  app_config:
+    proxy:
+      /metadata-store:
+        target: https://metadata-store-app.metadata-store:8443/api/v1
+        changeOrigin: true
+        secure: false
+        allowedHeaders: ['Accept', 'Report-Type-Format']
+        headers:
+          Authorization: "Bearer ACCESS-TOKEN"
+          X-Custom-Source: project-star
+```
+Where `ACCESS-TOKEN` is the token you obtained after creating a read-write service account (See [Manually connect Tanzu Developer Portal to Metadata Store](../tap-gui/plugins/scc-tap-gui.hbs.md#scan-manual))
