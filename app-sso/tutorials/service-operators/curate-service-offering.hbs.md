@@ -1,21 +1,19 @@
 # Curate a service offering
 
-Assuming that you have an `AuthServer` which is configured to your needs after
-the previous sections, here is how you expose it as a ready-to-claim service
-offering.
+This topic describes how you expose an `AuthServer` as a ready-to-claim service
+offering using a `ClusterWorkloadRegistrationClass`.
 
 `ClusterWorkloadRegistrationClass` creates resources so that application
-operators can discover and claim credentials for an AppSSO service offering.
+operators can discover and claim credentials for an Application Single Sign-On service offering.
 
-A `ClusterWorkloadRegistrationClass` has a description which is shown when
-it gets discovered with `tanzu services classes list`. This allows you identify
-the offering as an AppSSO service.
+A `ClusterWorkloadRegistrationClass` has a description that is shown
+when application operators discover services by running `tanzu services classes list`.
+This allows you identify the offering as an Application Single Sign-On service.
 
 Furthermore, `ClusterWorkloadRegistrationClass` carries a base
-`WorkloadRegistration` which is the blueprint for claims against this service.
+`WorkloadRegistration`, which is the blueprint for claims against this service.
 This base selects the target `AuthServer`. It can optionally receive a custom
-domain template, labels and annotations which all `WorkloadRegistration` will
-inherit.
+domain template, labels, and annotations that all `WorkloadRegistration` inherit.
 
 ## <a id="prerequisites"></a>Prerequisites
 
@@ -61,31 +59,31 @@ $ tanzu services classes list
   NAME  DESCRIPTION
   demo  Login by AppSSO
 ```
-
-Credentials for this service can be claimed either with the command `tanzu
+<!--฿ Use the dollar sign only inside example terminal code, not in commands to run. ฿-->
+Credentials for this service can be<!--฿ Consider switching to active voice. ฿--> claimed either with the command `tanzu
 services class-claims create` or with a `ClassClaim` resource.
 
-When a claim is created, a `WorkloadRegistration` gets stamped out from the
-base and it will target our `AuthServer`.
+When a claim is created, a `WorkloadRegistration` gets<!--฿ There is likely a more precise and formal word to use here than |gets|. ฿--> stamped out from the
+base and it will<!--฿ Avoid |will|: present tense is preferred. ฿--> target our `AuthServer`.
 
-## Customize the `ClusterWorkloadRegistrationClass`
+## <a id="customize"></a>Customize the `ClusterWorkloadRegistrationClass`
 
-Each `WorkloadRegistration` gets `https://` redirect URIs templated. The
+Each `WorkloadRegistration` gets<!--฿ There is likely a more precise and formal word to use here than |gets|. ฿--> `https://` redirect URIs templated. The
 default template is configured with
 [default_workload_domain_template](../../reference/package-configuration.hbs.md#default_workload_domain_template)
-If omitted the default template is used. Otherwise it can be customized by
+If omitted the default template is used. Otherwise you can customize it by
 setting a template on the base.
 
 You can further customize each `WorkloadRegistration` created by
 setting labels and annotations for them.
 
-The default description of an AppSSO service offering is `"Login by AppSSO"`.
-This can be customized. Consider using a good name and description.
+The default description of an Application Single Sign-On service offering is `"Login by AppSSO"`,
+but you can customize this. Consider using a good name and description.
 For more information, see [Names and descriptions](#names-and-descriptions) later in this topic.
 
 For example, if you want the `WorkloadRegistration` to template redirect
 URIs from a custom template and with both `https://` and `http://`, _and_ you
-want to say that in the service's description, modify the
+want to say that in the service's description, modify<!--฿ |edit| is preferred. ฿--> the
 `ClusterWorkloadRegistrationClass` as follows:
 
 ```yaml
@@ -113,17 +111,14 @@ spec:
 When choosing a name and a description for a `ClusterWorkloadRegistrationClass`
 consider the following:
 
-- When names of a service are stable across environments (say, from dev to
-  production), then _application operators_ can use the same `ClassClaim` in
-  all environments.
+- When the name of a service is stable across environments, for example, from dev to
+  production, application operators can use the same `ClassClaim` in all environments.
 
-- The description of a service must clearly communicate its flavor and
-  provider. The default description of a `ClusterWorkloadRegistrationClass` is
-  `"Login by AppSSO"`.
+- The description of a service must clearly communicate its flavor and provider.
+  The default description of a `ClusterWorkloadRegistrationClass` is `"Login by AppSSO"`.
 
-  If there is a single AppSSO service offering the default description is
+  If there is a single Application Single Sign-On service offering the default description is
   usually good enough.
 
-  If you would like to customize your `ClusterWorkloadRegistrationClass`'s
-  description consider prefixing it with `"Login by AppSSO - "`, e.g. `"Login
-  by AppSSO - LDAP and GitHub`.
+  If you want to customize the description for your `ClusterWorkloadRegistrationClass`,
+  consider prefixing it with `"Login by AppSSO - "`, for example, `"Login by AppSSO - LDAP and GitHub`.
