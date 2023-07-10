@@ -44,7 +44,7 @@ the list of developer namespaces:
   For example, the resource name will be "{resource name}-{developer namespace name}".
 
   If the additional sources include resources without any specified namespaces, and these resources
-  are not cluster-scoped, Namespace Provisioner creates those resources in all the namespaces it
+  are not cluster-scoped, Namespace Provisioner creates those resources in all of the namespaces it
   manages. However, if the resource is cluster-scoped, only a single instance of the resource is
   created.
 
@@ -172,7 +172,7 @@ Using Namespace Provisioner Controller
   ```
 
 Using GitOps
-:  The list of secrets are imported under `import_data_values_secrets`.
+: The list of secrets are imported under `import_data_values_secrets`.
 
   ```yaml
   namespace_provisioner:
@@ -189,7 +189,7 @@ Using GitOps
 
 ## Use AWS IAM roles
 
-If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Services (EKS), you
+If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Service (EKS), you
 can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes Service Account
 used by the Workload and the Supply chain components.
 
@@ -327,7 +327,7 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-Furthermore, you have the following options for customization: 
+Furthermore, you have the following options for customization:
 
 Options if using Controller
 : If you are using the controller to manage the list of developer namespaces, you have the following additional customization options available:
