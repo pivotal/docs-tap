@@ -90,7 +90,7 @@ The following table describes the resource limit changes that are required for c
 | tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | | Yes| No | Yes| tap-values |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
-- Memory is measured Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
+- Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
 - The changed values are marked in bold and the values in regular fonts are default ones set during regular TAP installation
 - In some of the above values, Request and Limits are set equally so that the pod is allocated in a node where the requested limit is available
 
