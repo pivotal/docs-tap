@@ -3,13 +3,13 @@
 <!-- Mention the create with Local Source section from tutorials -->
 
 There's a method for creating and updating workloads to push local source code to a registry 
-specified by utilizing the [Local Source Proxy package](../../../local-source-proxy/about.hbs.md)
+specified by utilizing the [Local Source Proxy package](/local-source-proxy/about.hbs.md)
 bundled with TAP.
 
 The installation and health of this package can be checked with the 
 `tanzu apps local-source-proxy health` command.
 
-## LSP Integration Health
+## Local Source Proxy Integration Health
 
 The `tanzu apps local-source-proxy health` command provides a user-friendly overview of the overall
 health of the Local Source Proxy. This information is obtained directly from the Local Source Proxy 
@@ -21,54 +21,68 @@ including `yaml` (default), `yml`, and `json`, which can be specified using the 
 When executing this command, the API is called at the `/health` endpoint, and the CLI output can fall
 into one of five possible scenarios based on the response received:
 
-```yaml
-# --output/-o yaml (Default)
-# When all checks pass
-user_has_permission: true
-reachable: true
-upstream_authenticated: true
-overall_health: true
-message: "All health checks passed"
+- When all checks pass (`--output/-o yaml`)
 
-# When user does not have permission to list the service - Maybe: 403 from the Kube API Server
-user_has_permission: false
-reachable: false
-upstream_authenticated: false
-overall_health: false
-message: "The current user does not have permission to access the local source proxy"
+  ```yaml
+  user_has_permission: true
+  reachable: true
+  upstream_authenticated: true
+  overall_health: true
+  message: "All health checks passed"
+  ```
 
-# When user can list the services, but its not there - Maybe: 404 from the Kube API Server
-user_has_permission: true
-reachable: false
-upstream_authenticated: false
-overall_health: false
-message: "Local source proxy is not installed on the cluster"
+- When user does not have permission to list the service - Maybe: 403 from the Kube API Server
 
-# if /health from LSP return a 5xx
-user_has_permission: true
-reachable: true
-upstream_authenticated: false
-overall_health: false
-message: "Local source proxy is not healthy. Error: <error>"
+  ```yaml
+  user_has_permission: false
+  reachable: false
+  upstream_authenticated: false
+  overall_health: false
+  message: "The current user does not have permission to access the local source proxy"
+  ```
 
-# if /health from upstream return a non-2xx, 4xx, 5xx. /health from LSP will still be 2xx
-user_has_permission: true
-reachable: true
-upstream_authenticated: false
-overall_health: false
-message: "Local source proxy was unable to authenticate against the target registry. Error: <error>"
-```
+- When user can list the services, but its not there - Maybe: 404 from the Kube API Server
 
-```json
-// --output/-o json
-{
-  "user_has_permission": true
-  "reachable": true
-  "upstream_authenticated": true
-  "overall_health": true
-  "message": ""
-}
-```
+  ```yaml
+  user_has_permission: true
+  reachable: false
+  upstream_authenticated: false
+  overall_health: false
+  message: "Local source proxy is not installed on the cluster"
+  ```
+
+- if `/health` from Local Source Proxy returns a 5xx
+
+  ```yaml
+  user_has_permission: true
+  reachable: true
+  upstream_authenticated: false
+  overall_health: false
+  message: "Local source proxy is not healthy. Error: <error>"
+  ```
+
+- if `/health` from upstream returns a non-2xx, 4xx, 5xx. `/health` from Local Source Proxy will still
+  be 2xx
+
+  ```yaml
+  user_has_permission: true
+  reachable: true
+  upstream_authenticated: false
+  overall_health: false
+  message: "Local source proxy was unable to authenticate against the target registry. Error: <error>"
+  ```
+
+- When all checks pass (`--output/-o json`)
+
+  ```json
+  {
+    "user_has_permission": true
+    "reachable": true
+    "upstream_authenticated": true
+    "overall_health": true
+    "message": ""
+  }
+  ```
 
 ## Update Local Source workloads
 
@@ -78,7 +92,7 @@ the `--source-image` flag to specify a desired registry. In the case of the latt
 authenticated to access the registry.
 
 To distinguish whether a workload was created with the Local Source Proxy or a source image, users 
-can check if the workload contains the l`ocal-source-proxy.apps.tanzu.vmware.com` annotation. 
+can check if the workload contains the `local-source-proxy.apps.tanzu.vmware.com` annotation. 
 This annotation serves as an indicator of the method used to create the workload, providing clarity 
 on whether it originated from the Local Source Proxy or a specified source image.
 <!-- Point to Create workload from local source in Tutorials section -->
@@ -115,8 +129,8 @@ Publishing source in "." to "my-registry.io/my-project/java-app"...
 To see logs:   "tanzu apps workload tail java-web-app --timestamp --since 1h"
 To get status: "tanzu apps workload get java-web-app"
 
-# update the workload and check the source image is not changed to use LSP
-tanzu apps workload apply java-web-app --label hello=world                                         
+# update the workload and check the source image is not changed to use Local Source Proxy
+tanzu apps workload apply java-web-app --label hello=world
 🔎 Update workload:
 ...
   3,  3   |kind: Workload
@@ -164,7 +178,7 @@ Publishing source in "." to "local-source-proxy.tap-local-source-system.svc.clus
 To see logs:   "tanzu apps workload tail java-web-app --timestamp --since 1h"
 To get status: "tanzu apps workload get java-web-app"
 
-# update to use a source image and see how the LSP annotation is removed
+# update to use a source image and see how the Local Source Proxy annotation is removed
 # and the `spec.source.image` field also changes
 tanzu apps workload apply java-web-app --local-path . -s my-registry.io/my-project/java-web-app                      
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
