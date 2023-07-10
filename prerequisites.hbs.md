@@ -101,7 +101,7 @@ providers:
 - Red Hat OpenShift Container Platform v4.12 or v4.13.
     - vSphere
     - Baremetal
-- Tanzu Kubernetes Grid (commonly called TKG) multicloud. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
+- Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 
 ## <a id="resource-requirements"></a>Resource requirements
 
