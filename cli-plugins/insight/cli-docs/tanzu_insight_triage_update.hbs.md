@@ -11,7 +11,7 @@ for impact analysis, and you will find flag options for each of the CycloneDX's
 VEX fields, as well as support for only their predefined values. Here is a
 description of the fields and their supported options:
 
-*Impact Analysis States (\-\-state)*
+Impact Analysis States (\-\-state)
 
 Declares the current state of an occurrence of a vulnerability, after automated
 or manual analysis.
@@ -27,7 +27,7 @@ or manual analysis.
 - not_affected = the component or service is not affected by the vulnerability.
   --justification should be specified for all not_affected cases.
 
-*Impact Analysis Justifications (\-\-justification)*
+Impact Analysis Justifications (\-\-justification)
 
 The rationale of why the impact analysis state was asserted
 
@@ -46,7 +46,7 @@ The rationale of why the impact analysis state was asserted
 - protected_by_mitigating_control = preventative measures have been implemented
   that reduce the likelihood and/or impact of the vulnerability.
 
-*Impact Analysis Responses (\-\-response)*
+Impact Analysis Responses (\-\-response)
 
 A response to the vulnerability by the manufacturer, supplier, or project
 responsible for the affected component or service.  More than one response is
@@ -103,4 +103,3 @@ insight triage update --cveid CVE-2020-1034 --pkg-name libssl --pkg-version 1.3.
 ## <a id='see-also'></a>See also
 
 * [tanzu insight triage](tanzu_insight_triage.hbs.md)	 - Vulnerability analysis commands
-
