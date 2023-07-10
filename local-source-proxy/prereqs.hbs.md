@@ -2,9 +2,9 @@
 
 You need the following prerequisites before you can install Local Source Proxy (LSP):
 
-- A registry server with a repository capable of accepting and hosting OCI artifacts, such as gcr.io,
-  Harbor, and so on.
-  <!-- gcr.io is named Artifact Registry now, it seems. Should we say that instead? -->
+- A registry server with a repository capable of accepting and hosting OCI artifacts, such as Google 
+  Artifact Registry, Jfrog Artifactory, Harbor, and so on.
+  
 - A secret with sufficient privileges to push and pull artifacts from that repository
 
 The rest of this topic tells you how to obtain these prerequisites.
@@ -72,17 +72,6 @@ Declarative syntax
       .dockerconfigjson: #@ json.encode(config())
     ```
 
-For example:
-
-```console
-# gcr.io example
- tanzu secret registry add lsp-push-credentials \
- --username _json_key --password 'PASTED-CONTENT-OF-JSON-KEY-FILE' \
- --server gcr.io/ \
- --namespace tap-install --yes
-```
-<!-- gcr.io is named Artifact Registry now, it seems. Should we say that instead? -->
-
 - **AWS**:
 
   If you're using ECR (Elastic Container Registry) as your registry, you require an
@@ -90,21 +79,19 @@ For example:
   repository. If such a role does not exist, you can create one by following the steps outlined in
   the documentation provided here.
 
-- **Optional**:
+- **A secret with pull privileges only**:
 
   This applies if you prefer to have a dedicated credential with a least-privilege policy,
-  specifically for downloading artifacts, instead of reusing credentials with higher privileges.
+  specifically for downloading artifacts, instead of reusing credentials with higher privileges. 
+  The secret containing this credential is distributed across developer namespaces using Secretgen’s
+  SecretExport resource. Namespace Provisioner automatically imports it to the developer namespace.
+  However, for development purposes, you have the option to skip this step and use the same secret
+  for both pushing and pulling artifacts.
 
-The secret containing this credential is distributed across developer namespaces using Secretgen’s
-SecretExport resource. Namespace Provisioner automatically imports it to the developer namespace.
-However, for development purposes, you have the option to skip this step and use the same secret
-for both pushing and pulling artifacts.
-
-```console
-# For all registries except ECR
-tanzu secret registry add lsp-pull-credentials \
- --username USERNAME-VALUE --password 'PASSWORD-VALUE' \
- --server REGISTRY-SERVER \
- --namespace tap-install --yes
-```
-<!-- How do we introduce this code? What does it do? Is it mandatory? -->
+  ```console
+  # For all registries except ECR
+  tanzu secret registry add lsp-pull-credentials \
+  --username USERNAME-VALUE --password 'PASSWORD-VALUE' \
+  --server REGISTRY-SERVER \
+  --namespace tap-install --yes
+  ```
