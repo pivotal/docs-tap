@@ -128,8 +128,8 @@ Before using Remote Debug, ensure that you have the following prerequisites:
 
 To run a workload in Tanzu Application Platform:
 
-1. Generate a "Steeltoe Weather Project" using
-[Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md).
+1. Generate a Steeltoe Weather Project by using
+   [Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md).
 1. Right-click on the project node and then click **Tanzu: Apply Workload**.
    For more information, see
    [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
