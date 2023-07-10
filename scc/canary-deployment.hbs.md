@@ -40,19 +40,17 @@ Using Contour ingress controller and Flagger to create a canary release involves
 
 3. Create a canary resource that defines a canary release with progressive traffic shifting.
     
-    To configure the canary resource, you must specify the Kubernetes Deployment that corresponds to your Workload.
+    - To configure the canary resource, you must specify the Kubernetes Deployment that corresponds to your Workload.
     Ensure that you set `spec.targetRef.name` to match the name of your Tanzu Application Platform Workload, which is the same as its Kubernetes Deployment name.
 
-    Flagger generates some Kubernetes objects. The primary deployment represents the stable release of your application.
+    - Flagger generates some Kubernetes objects. The primary deployment represents the stable release of your application.
     It receives all incoming traffic while the target deployment is scaled down to zero.
     Flagger monitors changes in the target deployment, including secrets and configmaps.
-    Before promoting the new version as the primary release, Flagger conducts a thorough canary analysis to ensure its stability and performance.
+    Before promoting the new version as the primary release, Flagger conducts a thorough canary analysis to ensure that it is stabile.
 
-    In the canary resource, you can define the canary analysis. Flagger uses this analysis definition
+    - In the canary resource, you can define the canary analysis. Flagger uses this analysis definition
     to verify the duration of the canary phase, which runs periodically until it reaches the maximum traffic weight or the specified number of iterations.
-    During each iteration, Flagger executes webhooks, evaluates metrics, and checks for any exceeded failed checks threshold.
-    If the threshold is surpassed, indicating potential issues, Flagger takes immediate action to halt the analysis and roll back the canary.
-    If no issues are found, Flagger rolls out the new version as the primary release.
+    - During each iteration, Flagger executes webhooks, evaluates metrics, and checks for any exceeded failed checks threshold. If the threshold is surpassed, indicating potential issues, Flagger takes immediate action to halt the analysis and roll back the canary. If no issues are found, Flagger rolls out the new version as the primary release.
 
     An example of a canary resource created for a workload, called `tanzu-java-web-app`, is deployed in the namespace `dev-namespace`. Replace `myapps.tanzu.biz` with your own domain:
 
@@ -125,16 +123,16 @@ Using Contour ingress controller and Flagger to create a canary release involves
               cmd: "hey -z 1m -q 10 -c 2 -host tanzu-java-web-app.myapps.tanzu.biz http://envoy.tanzu-system-ingress"
     ```
 
-   Save the resource you created as `canary.yaml` and apply it to your cluster:
+   - Save the resource you created as `canary.yaml` and apply it to your cluster:
 
     ```console
     export WORKLOAD_NAMESPACE=dev-namespace
     kubectl apply -n $WORKLOAD_NAMESPACE -f canary.yaml
     ```
   
-  In the earlier example, you use the load testing service `flagger-loadtester` to generate traffic during the canary analysis.
+  - In the earlier example, you use the load testing service `flagger-loadtester` to generate traffic during the canary analysis.
   
-  To install the load testing service:
+  - To install the load testing service:
 
     ```console
     kubectl create ns test
