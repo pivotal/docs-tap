@@ -36,13 +36,30 @@ a registry and provide their credentials on their local systems for iterative in
 ### <a id='1-6-1-new-features'></a> New features by component and area
 
 This release includes the following changes, listed by component and area.
+
 #### <a id='1-6-1-appacc'></a> Application Accelerator
+
 - The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
 
 
 #### <a id='1-6-1-alv'></a> Application Live View
+
 - Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [Improved Security and Access Control](./app-live-view/improved-security-and-access-control.hbs.md)
 - Developers can view the live information of natively compiled Spring applications via Application Live View for lightweight troubleshooting. The pages and metrics currently unavailable for natively compiled Spring applications include threads, heapdump, memory graphs, cache manager, conditions, schedules tasks and actuator information. For more information, see [Enable Spring Native apps for Application Live View]()
+
+#### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
+
+This TAP release debuts the new Tanzu CLI Core v0.90.1 which provides:
+- Backward compatability guarantees with previously released versions of Tanzu CLI plugins
+- Installation via package manager ([CLI installation docs](install-tanzu-cli.html#install-the-tanzu-cli-4))
+- Support for installation of plugins from the new centralized plugin repository via "plugin groups" ([plugin installation docs](install-tanzu-cli.html#install-tanzu-cli-plugins-5))
+  - For internet-restricted environments, plugins (and plugin groups) can be migrated to, and installed from, internal registries.
+- Newly published [Tanzu CLI documentation site](https://docs-staging.vmware.com/en/VMware-Tanzu-CLI/index.html)
+  - Review the docs for more detailed information about the new CLI architecture, the centralized plugin repository, plugin groups, support internet restricted environments and more.
+
+See the [Tanzu CLI v0.90.x release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/release-notes.html) for the comprehensive list what's new in this release of Tanzu CLI.
+
+Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug reports via the open source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
 
 #### <a id='1-6-1-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
 
@@ -63,9 +80,10 @@ This release includes the following changes, listed by component and area.
 - Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
 - Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
   This addition provides a quick reference to the Git revision associated with the workload.
-- Triage vulnerabilities with the `tanzu insight triage` command.  Learn more about [triaging CVEs with tanzu insight](./cli-plugins/insight/triaging-vulnerabilities.hbs.md).
+  
 
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
+
 - Triage vulnerabilities with the `tanzu insight triage` command.  Learn more about [triaging CVEs with tanzu insight](./cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
 
