@@ -163,14 +163,32 @@ Install using a package manager
       ```
 
 Install from a binary release
-: You can download the Tanzu CLI binary from VMware Customer Connect or GitHub.
+: You can download the Tanzu CLI binary from the following locations:
+  
+  * **VMware Tanzu Network**
+    
+    1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/)
+    2. Choose the TAP 1.6.0 release from the select dropdown menu
+    3. Click the tanzu-cli-tap-1.6.0 item from the result set
+    4. Click the CLI download link for your operating system
+    5. Follow [the binary installation instructions](#binary-installation-instructions)
+       
+  * **VMware Customer Connect**
+    
+    1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431)
+    2. Click to download the Tanzu CLI binary for your operating system
+    3. Follow [the binary installation instructions](#binary-installation-instructions)
+       
+  * **GitHub**
+    
+    1. Go to [Tanzu CLI release v{{ vars.tanzu-cli.version }} on GitHub](https://github.com/vmware-tanzu/tanzu-cli/releases/tag/v{{ vars.tanzu-cli.version }})
+    2. Click to download the Tanzu CLI binary for your operating system (for example: `tanzu-cli-windows-amd64.tar.gz`)
+    3. Follow [the binary installation instructions](#binary-installation-instructions)
+ 
+  
+  <a id='binary-installation-instructions'></a>**Binary installation instructions:**
 
-  To download a binary release of the Tanzu CLI from Customer Connect and then install it:
-
-  1. Download and unpack the Tanzu CLI binary:
-
-     1. Download the Tanzu CLI binary for your operating system from
-        [Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
+  1. Unpack the Tanzu CLI binary:
      1. Use an extraction tool to unpack the binary file, for example, on Linux or macOS, you can
      use the `tar` command.
 
@@ -190,7 +208,7 @@ Install from a binary release
 
            Use the Windows extractor tool to unzip `tanzu-cli-windows-amd64.zip`.
 
-  3. Make the CLI available to the system:
+  2. Make the CLI available to the system:
 
      * **macOS:**
 
@@ -229,13 +247,17 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plugins
 
-Run the following command to install the CLI plugins required for Tanzu Application Platform:
+**Online installation:**
+
+* Run the following command to install the CLI plugins required for Tanzu Application Platform:
 
    ```console
-   tanzu plugin install --group vmware-tap/default:v1.6.1
+   tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
    ```
 
-For more information about the latest `tanzu plugin` features and sub-commands, see the [tanzu plugin](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.version }}/tanzu-cli/tanzu-plugin.html) topic in the VMware Tanzu CLI documentation.
+**Airgapped installation:**
+
+* See the "Installing the Tanzu CLI/plugins in Internet-Restricted Environments" section of the [Tanzu CLI Core/plugin installation docs](https://docs-staging.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html)
 
 ## Next steps
 
