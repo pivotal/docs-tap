@@ -44,7 +44,7 @@ There are some optional but recommended DNS records you must allocate if you dec
 - Tanzu Learning Center: Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is also specified by the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 
 - Tanzu Developer Portal (formerly named Tanzu Application Platform GUI): If you decide to implement
-  the shared ingress and include Tanzu Developer Portal , allocate a fully Qualified Domain Name
+  the shared ingress and include Tanzu Developer Portal, allocate a fully Qualified Domain Name
   (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists
   of `tap-gui` and the `shared.ingress_domain` value. For example, `tap-gui.example.com`.
 
@@ -87,7 +87,7 @@ providers:
 - Azure Kubernetes Service.
 - Amazon Elastic Kubernetes Service.
     - containerd must be used as the Container Runtime Interface (CRI). Some versions of EKS default to Docker as the container runtime and must be changed to containerd.
-    - EKS clusters on Kubernetes version 1.23 and above require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to the [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes version 1.23 and above.
+    - EKS clusters on Kubernetes version 1.23 and above require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes version 1.23 and above.
         - Users currently on EKS Kubernetes version 1.22 must install the Amazon EBS CSI Driver before upgrading to Kubernetes version 1.23 and above. See [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi-migration-faq.html) for more information.
     - AWS Fargate is not supported.
 - Google Kubernetes Engine.
