@@ -60,16 +60,6 @@ This release introduces no new known issues.
 
 ---
 
-### <a id='1-5-3-known-issues'></a> Known issues
-
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-5-3-COMPONENT-NAME-ki'></a> COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
----
-
 ## <a id='1-5-2'></a> v1.5.2
 
 **Release Date**: 13 June 2023
