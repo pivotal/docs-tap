@@ -1,4 +1,4 @@
-# Tanzu apps workload get
+# tanzu apps workload get
 
 The `tanzu apps workload get` command retrieves information and status about a workload.
 

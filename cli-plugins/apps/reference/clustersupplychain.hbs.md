@@ -2,16 +2,22 @@
 
 This command provides details about the cluster supply chain.
 
-## Tanzu apps cluster supply chain list
+## tanzu apps clustersupplychain list
 
-The `tanzu apps clustersupplychain list` command lists the available supply chains installed in the
-cluster (supported clustersupplychain alias is `csc`).
+The `cluster-supply-chain` command provides details about the cluster supply chain(s) installed in the
+target cluster.
+
+The following aliases are supported:
+
+- `csc`
+- `cluster-supply-chains`
+- `clustersupplychains`
 
 Run the following command to view more detailed information about the selectors and conditions that
 must be met for a workload to be selected by a certain supply chain:
 
 ```console
-tanzu apps clustersupplychain get SUPPLYCHAIN-NAME`.
+tanzu apps cluster-supply-chain get SUPPLYCHAIN-NAME
 ```
 
 ## Default view
@@ -31,9 +37,9 @@ To view details: "tanzu apps cluster-supply-chain get <name>"
 
 ```
 
-## Tanzu apps cluster supply chain get
+## tanzu apps cluster-supply-chain get
 
-The `tanzu apps clustersupplychain get` command gets detailed information of the cluster supply chain.
+The `tanzu apps cluster-supply-chain get` command gets detailed information of the cluster supply chain.
 
 ### Default view
 
