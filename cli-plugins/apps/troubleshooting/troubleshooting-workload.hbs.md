@@ -38,9 +38,13 @@ view it. The URL can also be copy pasted into a web browser to see the applicati
 
 ## <a id="common-workload-errors"></a> Common workload errors
 
-A workload can either be ready, on error or with an unknown status.
+A workload can either be ready, be in an error state, or have an unknown status.
 
-There are known errors that cause the workload to enter an error or unknown status. The most common are:
+There are known errors that cause the workload to enter an error or unknown status.
+Look at the supply chain or delivery steps for status and review the messages section for clues when
+the workload appears to be having issues.
+
+Below are some of the most common issues with an explanation of the possible cause:
 
 ### Local Path Development Error Cases
 
@@ -96,7 +100,7 @@ There are known errors that cause the workload to enter an error or unknown stat
 
   - **Possible Cause**: The namespace is missing the Git secret for communicating with the private repository
 
-    **Resolution**: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
+    **Resolution**: For more information, see [Git authentication](/scc/git-auth.hbs.md)
 
 ### TemplateRejectedByAPIServer
 
@@ -110,7 +114,7 @@ There are known errors that cause the workload to enter an error or unknown stat
     to create objects that are stamped out by the supply chain.
 
     **Resolution**: Set up the
-    [Set up developer namespaces to use your installed packages](../../scst-store/developer-namespace-setup.hbs.md)
+    [Set up developer namespaces to use your installed packages](/scst-store/developer-namespace-setup.hbs.md)
     with the required service account and permissions.
 
 ## <a id="steps-failure"></a> Review supply chain steps
@@ -180,12 +184,6 @@ For example, a message similar to the following is shown:
 
 This might mean that the commit does not belong to the specified branch or does not exist in the repository.
 
-## <a id="lsp-troubleshooting"></a> Local Source Proxy integration
-
-<!-- Add a reference to the how to guides related to LSP integration -->
-
-Check the [LSP troubleshoot](../../../local-source-proxy/troubleshoot.hbs.md) section for more information.
-
 ## <a id="additional-tsg"></a>Additional Troubleshooting References
 
-For more workload troubleshooting tips, see [Troubleshoot using Tanzu Application Platform page](../../../troubleshooting-tap/troubleshoot-using-tap.hbs.md).
+For more workload troubleshooting tips, see [Troubleshoot using Tanzu Application Platform page](/troubleshooting-tap/troubleshoot-using-tap.hbs.md).
