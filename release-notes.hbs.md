@@ -277,8 +277,8 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   data for vulnerabilities detected in their workloads. The vulnerability analysis
   data allows you to record the impact of a particular vulnerability,
   to discover an effective remediation plan.
-  - New [triage API](scst-store/api.hbs.md#v1triage) supports the creation, update, and search of vulnerability analysis
-  - A new set of [triage subcommands](cli-plugins/insight/triaging-vulnerabilities.hbs.md) for the Tanzu CLI Insight plug-in to interact with the triage API.
+  - New [triage API](scst-store/api.hbs.md#v1triage) supports the creating, updating, and searching vulnerability analysis.
+  - New [triage subcommands](cli-plugins/insight/triaging-vulnerabilities.hbs.md) for the Tanzu CLI Insight plug-in enable interaction with the triage API.
 
 #### <a id='1-6-1-intellij-ext'></a> Tanzu Developer Tools for IntelliJ
 
