@@ -61,6 +61,12 @@ See the [Tanzu CLI v0.90.x release notes](https://docs.vmware.com/en/VMware-Tanz
 
 Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug reports via the open source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
 
+#### <a id='1-6-1-tanzu-cli-plugins'></a> Tanzu CLI plugin distribution change
+- Tanzu CLI plugins are no longer distributed as part of the TAP bundle on Tanzu Network (the Tanzu CLI core is still included in the bundle).
+- The plugins are now installable via direct Tanzu CLI command, without manual download of the plugin binaries to the local filesystem.
+- Air-gapped customers can follow the instructions provided for [installing the Tanzu CLI and plugins in internet-restricted environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3).
+
+
 #### <a id='1-6-1-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
 
 - Integrated with Local Source Proxy for seamless iterative inner-loop development using the CLI or IDE plugins.
