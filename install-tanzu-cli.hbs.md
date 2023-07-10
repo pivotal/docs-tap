@@ -257,7 +257,7 @@ Install from a binary release
 
 **Airgapped installation:**
 
-* See the "Installing the Tanzu CLI/plugins in Internet-Restricted Environments" section of the [Tanzu CLI Core/plugin installation docs](https://docs-staging.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html)
+* See the [Installing the Tanzu CLI/plugins in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
 
 ## Next steps
 
