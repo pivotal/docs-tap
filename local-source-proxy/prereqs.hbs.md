@@ -74,7 +74,7 @@ Declarative syntax
 
 For example:
 
-```json
+```console
 # gcr.io example
  tanzu secret registry add lsp-push-credentials \
  --username _json_key --password 'PASTED-CONTENT-OF-JSON-KEY-FILE' \
