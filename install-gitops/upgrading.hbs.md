@@ -187,7 +187,7 @@ Your output is similar, but probably not identical, to the following example out
   services-toolkit                    services-toolkit.tanzu.vmware.com                    0.8.0            Reconcile succeeded
   source-controller                   controller.source.apps.tanzu.vmware.com              0.5.0            Reconcile succeeded
   spring-boot-conventions             spring-boot-conventions.tanzu.vmware.com             0.5.0            Reconcile succeeded
-  tap                                 tap.tanzu.vmware.com                                 1.6.0            Reconcile succeeded
+  tap                                 tap.tanzu.vmware.com                                 1.6.1            Reconcile succeeded
   tap-auth                            tap-auth.tanzu.vmware.com                            1.1.0            Reconcile succeeded
   tap-gui                             tap-gui.tanzu.vmware.com                             1.3.0            Reconcile succeeded
   tap-telemetry                       tap-telemetry.tanzu.vmware.com                       0.3.1            Reconcile succeeded

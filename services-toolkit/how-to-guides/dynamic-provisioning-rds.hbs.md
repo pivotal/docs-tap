@@ -13,7 +13,7 @@ might help you to understand the steps presented in this topic.
 
 Before you configure dynamic provisioning, you must have:
 
-- Access to a Tanzu Application Platform cluster v1.6.0 or later.
+- Access to a Tanzu Application Platform cluster v1.6.1 or later.
 - The Tanzu services CLI plug-in v0.7.0 or later.
 - Access to AWS.
 

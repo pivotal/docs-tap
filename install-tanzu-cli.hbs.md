@@ -232,7 +232,7 @@ Install from a binary release
 Run the following command to install the CLI plugins required for Tanzu Application Platform:
 
    ```console
-   tanzu plugin install --group vmware-tap/default:v1.6.0
+   tanzu plugin install --group vmware-tap/default:v1.6.1
    ```
 
 For more information about the latest `tanzu plugin` features and sub-commands, see the [tanzu plugin](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.version }}/tanzu-cli/tanzu-plugin.html) topic in the VMware Tanzu CLI documentation.

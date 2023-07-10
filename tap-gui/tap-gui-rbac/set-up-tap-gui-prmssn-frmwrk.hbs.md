@@ -119,4 +119,4 @@ a member of another group.
 > Registration <!-- link to component description --> no longer works due to the lack of user
 > identities.
 > Requests against the Catalog API will no longer work as before. For more information, see the
-> [known issues in the release notes](../../release-notes.hbs.md#1-6-0-tap-gui-ki).
+> [known issues in the release notes](../../release-notes.hbs.md#1-6-1-tap-gui-ki).

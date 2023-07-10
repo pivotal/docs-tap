@@ -105,7 +105,7 @@ If you installed the [full dependencies package](install-online/profile.hbs.md#t
 you can upgrade the package by following these steps:
 
 1. (Optional) If you have an existing installation of the full dependencies from a version earlier
-than TAP v1.6.0, you must uninstall the full dependencies package and remove the package repository.
+than TAP v1.6.1, you must uninstall the full dependencies package and remove the package repository.
 Subsequent upgrades will not require a removal:
 
   Uninstall the package

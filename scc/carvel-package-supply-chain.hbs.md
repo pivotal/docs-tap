@@ -197,7 +197,7 @@ In `tap-values`, configure the [Out of the Box Basic Supply Chain](ootb-supply-c
         openapiv3_enabled: true
     ```
 
-    If the size of the resulting OpenAPIv3 specification exceeds roughly 3KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-0-tap-gui-ki).
+    If the size of the resulting OpenAPIv3 specification exceeds roughly 3KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-1-tap-gui-ki).
 
 2. (Optional) Configure the [Out of the Box Templates](ootb-templates.hbs.md) with custom Carvel Package parameters. See [Template reference](ootb-template-reference.hbs.md#carvel).
 

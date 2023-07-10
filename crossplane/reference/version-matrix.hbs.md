@@ -26,7 +26,7 @@ used in UXP, provider-helm, and provider-kubernetes.
         <td>commit SHA 725baeed</td>
     </tr>
     <tr>
-        <td>1.6.0</td>
+        <td>1.6.1</td>
         <td>0.2.1</td>
         <td>1.12.1-up.1</td>
         <td>1.12.1-up.2</td>

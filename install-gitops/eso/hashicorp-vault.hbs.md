@@ -564,7 +564,7 @@ stores the sensitive data such as username, password, private key from the `tap-
 
     ```console
     git add cluster-config/
-    git commit -m 'Configure installer for TAP 1.6.0 on "iterate-green"'
+    git commit -m 'Configure installer for TAP 1.6.1 on "iterate-green"'
     ```
 
 ## <a id='configure-and-push-tap-values'></a>Configure and push the Tanzu Application Platform values
@@ -649,7 +649,7 @@ the Vault secret created in the [Review and store Tanzu Application Platform ins
 
     ```console
     git add cluster-config/
-    git commit -m "Configure initial values for TAP 1.6.0"
+    git commit -m "Configure initial values for TAP 1.6.1"
     git push
     ```
 

@@ -456,7 +456,7 @@ Follow these steps to generate the Tanzu Application Platform installation and T
 
     ```console
     git add cluster-config/ tanzu-sync/
-    git commit -m "Configure install of TAP 1.6.0"
+    git commit -m "Configure install of TAP 1.6.1"
     git push
     ```
 
