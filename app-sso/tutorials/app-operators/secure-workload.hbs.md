@@ -133,12 +133,12 @@ you must update this parameter to align with the new name.
 
 ### <a id='auth-grant-types'></a> `authorizationGrantTypes`
 
-In OAuth2 parlance a grant type is the way your application obtains token from
+In OAuth2, a grant type is the way your application obtains token from the
 authorization server. There are different grant types. Some of them allow your
-application to act on behalf of an end-users others don't.
+application to act on behalf of an end user, but others do not.
 
 The `authorizationGrantTypes` parameter denotes all the grant types your
-application will be able to make use of:
+application can use:
 
 ```yaml
 spec:
@@ -149,38 +149,38 @@ spec:
       - refresh_token
 ```
 
-AppSSO supports the following OAuth2 grant types:
+Application Single Sign-On supports the following OAuth2 grant types:
 
 - Authorization Code: `authorization_code`
 
-    This grant type is used by applications seeking to authenticate and
-    authorize end-users. An `AuthServer` issues identity and access tokens to
-    applications to identify end users' identity and the level of access they
-    have to protected resources.
+    Applications use this grant type to authenticate and authorize end users. 
+    An `AuthServer` issues identity and access tokens to applications to identify 
+    end users' identities and their level of access to the protected resources.
 
 - Client Credentials: `client_credentials`
 
-    This grant type is used by applications seeking to communicate directly to
-    other protected applications, by using a client identifier and client
-    secret, for example, service-to-service communication. An `AuthServer`
+    Applications use this grant type to communicate directly to other protected 
+    applications throuhg a client identifier and a client secret. 
+    For example, in service-to-service communication, an `AuthServer`
     issues access tokens that define the level of access that the requesting
     service has to the protected service they seek to communicate with.
 
-    > **Note** Use cases for grant types `authorization_code` and
+    > **Note** Use cases for the grant type `authorization_code` and
     > `client_credentials` are typically different, so VMware recommends
     > creating separate client registrations for each grant type.
 
 - Refresh Token: `refresh_token`
 
-    This grant type is used by applications seeking to obtain access tokens. If
-    `refresh_token` grant type is included, on every access token issue by an
-    `AuthServer`, a refresh token is included. You can use the refresh token to
-    fetch new access tokens before older ones expire to continue accessing
-    protected resources.
+    Applications use this grant type to obtain access tokens. If the
+    `refresh_token` grant type is included, a refresh token is attached to every 
+    access token issued by an `AuthServer`. You can use the refresh token to
+    fetch the new access tokens before the older ones expire to continue accessing
+    the rotected resources.
 
 ### <a id='client-auth-method'></a> Client authentication method
 
-The client authentication method defines how your application presents its credentials to the authorization server.
+A client authentication method defines how your application presents its 
+credentials to the authorization server.
 
 ```yaml
 spec:
@@ -188,43 +188,43 @@ spec:
     clientAuthenticationMethod: client_secret_basic
 ```
 
-There are three different options:
+There are three client authentication methods:
 
-- `client_secret_basic`(default): Send client credentials using the HTTP
+- `client_secret_basic`(default): Send the client credentials by using the HTTP
   "Basic" authentication scheme. This is the recommended method for
   authenticating server-based applications such as Spring Boot or .NET Core
   apps (confidential clients).
-- `client_secret_post`: Send client credentials in the body of an HTTP POST
+- `client_secret_post`: Send the client credentials in the body of an HTTP POST
   request.
-- `none`: Don't send client credentials. This is for browser-based single-page
+- `none`: Do not send the client credentials. This is for browser-based single-page
   apps.
 
 ### <a id='scopes'></a> `scopes`
 
-The `scopes` field defines the OAuth2 scopes your application will request,
-including standard OpenID claims. 
+The `scopes` field defines the OAuth2 scopes requested by your application,
+including the standard OpenID claims. 
 
 ```yaml
 spec:
   parameters:
     scopes:
-      - name: openid # standard OpenID scope, containing claims "sub" (subject), "aud" (audience), etc.
-      - name: email # standard OpenID scope, containing claims "email" and "email_verified"
-      - name: profile # standard OpenID scope, containing claims "name", "given_name", "family_name", etc.
-      - name: roles # AppSSO special scope, requesting user roles/groups be populated in "roles" claim.
-      - name: coffee.make # custom authorization scope
-        description: bestows the ultimate power # with a custom description
+      - name: openid # Standard OpenID scope, containing claims "sub" (subject), "aud" (audience) and so on.
+      - name: email # Standard OpenID scope, containing claims "email" and "email_verified".
+      - name: profile # Standard OpenID scope, containing claims "name", "given_name", "family_name" and so on.
+      - name: roles # AppSSO special scope, requesting the user roles or groups be populated in the "roles" claim.
+      - name: coffee.make # Custom the authorization scope.
+        description: bestows the ultimate power # With a custom description.
 ```
 
-To activate issuance of users identity tokens and authentication, you must
+To activate the issuance of the users' identity tokens and authentication, you must
 include the `openid` scope.
 
-To activate fetching of user roles or groups, you must include the `roles`
+To activate fetching of the user roles or groups, you must include the `roles`
 scope.
 
 ### <a id='user-consent'></a> `requireUserConsent`
 
-The `requireUserConsent` field allows for toggling scopes approval by end-users. 
+The `requireUserConsent` field defines the toggling scopes approved by the end users. 
 
 ```yaml
 spec:
@@ -232,32 +232,33 @@ spec:
     requireUserConsent: true
 ```
 
-If activated, end-users are prompted to consent to or reject scopes that the
+If activated, the end users are prompted to consent to or reject the scopes that the
 client requests on behalf of them. If deactivated, all scopes that the client
-requests are auto-approved or consented to without prompt.
+requests are auto-approved or consented to without prompting.
 
 ## <a id='behind-scenes'></a> Behind the scenes
 
-When you create a `ClassClaim` for an AppSSO service a few resources are being
-created behind the scenes. Usually, you won't have to care, but when things go
-wrong it can be helpful for debugging.
+When you create a `ClassClaim` for an Application Single Sign-On service, several 
+resources are created behind the scenes. These resources can be helpful for 
+debugging purposes.
 
-1. You create a `ClassClaim` for an AppSSO service with your parameters.
-1. An `XWorkloadRegistration` with your parameters will be created in the same
-   namespace.
-1. A `WorkloadRegistration` with your parameters will be created in the same
-   namespace. The `WorkloadRegistration` will template your redirect URIs.
-1. A `ClientRegistration` with your parameters and the templated redirect URIs
-   will be created in the same namespace.
-1. The `ClientRegistration` receives client credentials and passes them up, all
+- You create a `ClassClaim` for an Application Single Sign-On service with your 
+  parameters.
+- An `XWorkloadRegistration` with your parameters are created in the same
+  namespace.
+- A `WorkloadRegistration` with your parameters are created in the same namespace. 
+  The `WorkloadRegistration` templates your redirect URIs.
+- A `ClientRegistration` with your parameters and the templated redirect URIs
+   are created in the same namespace.
+- The `ClientRegistration` receives the client credentials and passes them all
    the way to your `ClassClaim`.
  
 ## <a id='load-credentials'></a> Loading client credentials into a `Workload`
 
-Now that you have a client credentials for our application, you can reference
+Now that you have a client credentials for your application, you can reference
 the `ClassClaim` from your `Workload`.
 
-**Example:** An example `Workload` in `my-apps` namespace.
+An example `Workload` in `my-apps` namespace is as follows:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -289,22 +290,23 @@ tanzu apps workload create my-workload \
 >**Important** The service ref name must match the name of the referenced
 >`ClassClaim`.
 
-Thanks to service bindings, your credentials will now be provided to your
+Thanks to service bindings, your credentials are provided to your
 `Workload`'s `Pod` (one or more) by mounting a volume containing your client
 credentials.
 
 The credentials provided by the claim are:
 
-- `client-id`: the identifier of your `Workload` that AppSSO is registered
-  with. This is a unique identifier.
-- `client-secret`: secret string value used by AppSSO to verify your client.
-  Keep this value secret.
-- `issuer-uri`: web address of AppSSO `AuthServer` and the primary location
-  that your `Workload` navigates to when interacting with AppSSO.
-- `authorization-grant-types`: list of the desired OAuth 2 grant types.
-- `client-authentication-method`: method in which the client is authenticated
+- `client-id`: The identifier of your `Workload` that Application Single Sign-On 
+  is registered with. This is a unique identifier.
+- `client-secret`: The secret string value used by Application Single Sign-On to 
+  verify your client. Keep this value secret.
+- `issuer-uri`: The web address of the Application Single Sign-On `AuthServer` and 
+  the primary location that your `Workload` goes to when interacting with 
+  Application Single Sign-On.
+- `authorization-grant-types`: A list of the desired OAuth 2 grant types.
+- `client-authentication-method`: The method in which the client is authenticated
   when requesting an identity or access token.
-- `scope`: list of the desired scopes that your application's users have access
+- `scope`: A list of the desired scopes that your application's users have access
   to.
 
 These credentials are mounted onto your `Workload`'s `Pod`(one or more) as
@@ -329,19 +331,18 @@ on every `Pod` at:
 ```
 
 Given these auto-generated values, your `Workload` can now load them at runtime
-and bind to an AppSSO authorization server at start-up time. Reading the values
-from the file system is left to the implementer.
+and bind to an Application Single Sign-On authorization server at startup time. 
+Reading the values from the file system is left to the implementer.
 
 ## <a id='trust-auth'></a> Trusting an authorization server
 
-Your application will make request to the authorization server. The
-authorization server will serving traffic using TLS. It is possible that your
-company is using non-public certificate authority (CA). In that case you will
-have to explicitly trust the authorization server or rather the certificate
-authority. See 
+Your application makes request to the authorization server. The authorization server 
+serves traffic using TLS. If your company uses non-public certificate authority (CA), 
+you must explicitly trust the authorization server or rather the certificate
+authority. For more information, see 
 [Configure Workloads to trust a custom certificate authority](../../tutorials/service-operators/workload-trust-custom-ca.hbs.md).
 
 ## <a id='summary'></a> Summary
 
-Now you know how to claim client credentials for an AppSSO authorization server
-and how to secure a workload.
+This concludes the tutorial explaining how to claim the client credentials for an 
+Application Single Sign-On authorization server and how to secure a workload.
