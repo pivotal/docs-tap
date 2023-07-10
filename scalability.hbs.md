@@ -53,11 +53,11 @@ scalability best practices.
 
 **Number of applications deployed concurrently**: 50-55
 
-|  | **CPU/Memory Range** | **Number of workload CRs in Iterate/BuildRun** |**Workload Transactions per second**|
-|:--- |:--- |:--- |:--- |
-|**Small** | 500m - 700m / 3-5 GB | 4/5 | 4 |
-|**Medium** | 700m - 1000m / 4-6 GB | NA/6 | 4 |
-|**Large** | 1000m - 1500m / 6-8 GB | NA/7 | 4 |
+|  | **CPU** |**Memory Range**| **Workload CRs in Iterate** |**Workload CRs in Build+Run**|**Workload Transactions per second**|
+|:--- |:--- |:--- |:--- |:--- |:--- |
+|**Small** | 500m - 700m |3-5 GB| 4 |5| 4 |
+|**Medium** | 700m - 1000m |4-6 GB| NA |6|4 |
+|**Large** | 1000m - 1500m |6-8 GB| NA |7|4 |
 
 ## Scale Configuration for workload deployments (Yet to arrive for updates)
 
@@ -91,8 +91,8 @@ The following table describes the resource limit changes that are required for c
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
-- The changed values are marked in bold and the values in regular fonts are default ones set during regular TAP installation
-- In some of the above values, Request and Limits are set equally so that the pod is allocated in a node where the requested limit is available
+- In the CPU Requests/Limits column, the changed values are bolded. Non bolded values in are the default ones set during a Tanzu Application Platform installation.
+- In the CPU Requests/Limits column, some of the request and limits values are set equally so that the pod is allocated in a node where the requested limit is available.
 
 \* Only when there is issue with scan pods getting deleted before Cartographer can process it
 
