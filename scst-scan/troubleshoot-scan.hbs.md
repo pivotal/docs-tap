@@ -1,6 +1,6 @@
 # Troubleshoot Supply Chain Security Tools - Scan
 
-This topic describes troubleshooting methods you can use with SCST - Scan.
+This topic describes troubleshooting methods you can use with Supply Chain Security Tools (SCST) - Scan.
 
 ## <a id="debugging-commands"></a> Debugging commands
 
@@ -187,9 +187,9 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
-### <a id="source-scan-missing"></a> Source Scan Missing in Supply Chain
+### <a id="source-scan-missing"></a> Source scan missing in supply chain
 
-The source scan step was made opt-in in Tanzu Application Platform 1.6 to better support languages that resolve dependencies at build time.  See [here](scan-types.hbs.md#source-scan) for more information and how to opt-in to source scanning in the out-of-the-box test and scan supply chain.
+The source scan step is opt-in in Tanzu Application Platform 1.6 to better support languages that resolve dependencies at build time. For information and how to opt-in to source scanning in the out-of-the-box test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scan-types.hbs.md#source-scan).
 
 ### <a id="troubleshoot-grype-airgap"></a> Troubleshooting Grype in air gap Environments
 
@@ -251,9 +251,9 @@ you must edit the configurations to deactivate the Store:
   by the installed `grype-scanner`. There are two different methods to resolve this incompatibility
   issue:
 
-  - (Preferred method) Install a version of [Tanzu Build
+  - Install a version of [Tanzu Build
     Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft
-    Schema Version.
+    Schema Version. This is the method VMware reccomends.
   - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security
     Tools - Scan](install-scst-scan.md). Although this change bypasses the check on Syft Schema
     Version, it does not resolve the incompatibility issue and produces a partial scanning result.

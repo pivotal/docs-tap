@@ -1,10 +1,15 @@
 # Scan Types for Supply Chain Security Tools - Scan
 
-This topic tells you what scan types you can use with SCST - Scan. The out-of-box test and scan supply chain supports the Source and container image scan types.
+This topic tells you what scan types you can use with Scan Types for Supply
+Chain Security Tools - Scan (SCST) - Scan. The out-of-box test and scan supply
+chain supports the Source and container image scan types.
 
-## <a id="source-scan"></a> Source Scan
+## <a id="source-scan"></a> Source scan
 
-The source scan step in the test and scan supply chain performs a Software Composition Analysis (SCA) scan to inspect the open source dependencies of an application for vulnerabilities.  This is typically performed by inspecting the file that the language uses for dependency declaration.  For example:
+The source scan step in the test and scan supply chain performs a Software
+Composition Analysis (SCA) scan to inspect the open source dependencies of an
+application for vulnerabilities.  This is performed by inspecting the file that
+the language uses for dependency declaration. For example:
 
 | Language | Dependency File |
 | ---- | ---- |
@@ -13,17 +18,20 @@ The source scan step in the test and scan supply chain performs a Software Compo
 | Node.JS | packages.json |
 | Python | requirements.txt|
 
-Rather than declare specific dependency versions, some languages such as Spring, Java, and .Net resolve dependency versions at build time. For these languages, performing a SCA scan on the declaration file stored in the source code does not produce meaningful results, often creating false positives or false negatives.
+Rather than declare specific dependency versions, some languages such as Spring,
+Java, and .Net resolve dependency versions at build time. For these languages,
+performing a SCA scan on the declaration file stored in the source code does not
+produce meaningful results, often creating false positives or false negatives.
 
-Due to this, in Tanzu Application Platform 1.6, the source scan step is moved to an opt-in step in the supply chain. To add source scan to the supply chain, follow the steps below.
+Due to this, in Tanzu Application Platform 1.6, the source scan step is moved to an opt-in step in the supply chain.
 
 ### <a id="add-source-scan"></a>Adding Source Scan to the Test and Scan Supply Chain
 
-In order to add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install values.yaml.  This overlay will add the required resources to the supply chain in the correct location to opt-in to source scanning.
+In order to add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install `values.yaml`.  This overlay adds the required resources to the supply chain in the correct location to opt-in to source scanning.
 
-See [here](../customize-package-installation.hbs.md) for more detailed information on how overlays work with the Tanzu Application Platform.
+For information about how overlays work with Tanzu Application Platform, see [Customize your package installation](../customize-package-installation.hbs.md). 
 
-To add source scanning to the default out-of-the-box test and scan supply chain, do the following steps.
+To add source scanning to the default out-of-the-box test and scan supply chain:
 
 1. Create a `secret.yml` file with a `Secret` that contains your ytt overlay. For example:
 
@@ -77,18 +85,28 @@ To add source scanning to the default out-of-the-box test and scan supply chain,
     secrets:
     - name: ootb-supply-chain-testing-scanning-add-source-scanner
     ```
-3. Update Tanzu Application Platform by running:
+
+4. Update Tanzu Application Platform by running:
 
     ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v {{ vars.tap_version }}  --values-file tap-values.yaml -n tap-install
     ```
 
-For a multi-cluster installation, this only needs to be applied to the build build profile, as that
+For a multicluster installation, you must apply this to the build build profile, as that
 is where the scan components run. For information about Tanzu Application Platform profiles, see
 [Installing Tanzu Application Platform package and profiles](../install-online/profile.hbs.md).
 
-## <a id="image-scan"></a> Container Image Scan
+## <a id="image-scan"></a> Container image scan
 
-A container image scan inspects the contents of a built container image for vulnerabilities.  This scan is commonly performed on the container image once it is uploaded to the container registry, and on periodic intervals after initial upload.  Many of the popular container registries such as [Harbor](https://goharbor.io/docs/2.8.0/administration/vulnerability-scanning/) and [Docker Hub](https://docs.docker.com/docker-hub/vulnerability-scanning/) include this capability in the registry.
+A container image scan inspects the contents of a built container image for
+vulnerabilities. This scan is performed on the container image after it is
+uploaded to the container image registry and on periodic intervals after initial
+upload. Many container registries, such as
+[Harbor](https://goharbor.io/docs/2.8.0/administration/vulnerability-scanning/)
+and [Docker Hub](https://docs.docker.com/docker-hub/vulnerability-scanning/)
+include this capability.
 
-The Tanzu Application Platform enables the capability to scan container images for vulnerabilities as part of your supply chain, allowing you to prevent deployment of a container image if vulnerabilities are discovered that exceed your security policy.
+The Tanzu Application Platform enables scanning container images for
+vulnerabilities as part of your supply chain, allowing you to prevent deployment
+of a container image if vulnerabilities are discovered that exceed your security
+policy.
