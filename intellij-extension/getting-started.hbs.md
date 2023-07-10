@@ -6,7 +6,7 @@ This topic guides you through getting started with Tanzu Developer Tools for Int
 
 [Install Tanzu Developer Tools for IntelliJ](install.hbs.md).
 
-## <a id="config-src-img-registry"></a> Configuring Local Source Proxy, source image registry optional
+## <a id="config-src-img-registry"></a> Configure Local Source Proxy or use a source image registry
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
