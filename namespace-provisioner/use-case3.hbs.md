@@ -215,6 +215,7 @@ To configure the service account to work with private Git repositories, follow t
       stringData:
         content.yaml: |
           git:
+            host: GIT-SERVER
             #! For SSH Auth
             ssh_privatekey: SSH-PRIVATE-KEY
             identity: SSH-PRIVATE-KEY
@@ -232,20 +233,43 @@ To configure the service account to work with private Git repositories, follow t
     in each managed namespace. It should be included in your Git repository linked in the
     `additional_sources` section of `tap-values.yaml` mentioned in Step 4.
 
-    ```yaml
-    #@ load("@ytt:data", "data")
-    ---
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: git
-      annotations:
-        tekton.dev/git-0: #@ data.values.imported.git.host
-    type: kubernetes.io/basic-auth
-    stringData:
-      username: #@ data.values.imported.git.username
-      password: #@ data.values.imported.git.password
-    ```
+    Using HTTP(s) based Authentication
+    : If using Username and Password for authentication.
+
+      ```yaml
+      #@ load("@ytt:data", "data")
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: git
+        annotations:
+          tekton.dev/git-0: #@ data.values.imported.git.host
+      type: kubernetes.io/basic-auth
+      stringData:
+        username: #@ data.values.imported.git.username
+        password: #@ data.values.imported.git.token
+      ```
+
+    Using SSH based Authentication
+    : If using SSH private key for authentication:
+
+      ```yaml
+      #@ load("@ytt:data", "data")
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: git
+        annotations:
+          tekton.dev/git-0: #@ data.values.imported.git.host
+      type: kubernetes.io/basic-auth
+      stringData:
+        identity: #@ data.values.imported.git.identity
+        identity.pub: #@ data.values.imported.git.identity_pub
+        known_hosts: #@ data.values.imported.git.known_hosts
+        ssh-privatekey: #@ data.values.imported.git.ssh_privatekey
+      ```
 
 3. Combine this `tap-values.yaml`:
 
