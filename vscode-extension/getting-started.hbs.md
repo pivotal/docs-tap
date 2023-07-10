@@ -7,7 +7,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 [Install VMware Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.hbs.md).
 
-## <a id="config-src-img-registry"></a> Configure Local Source Proxy, source image registry optional
+## <a id="config-src-img-registry"></a> Configure Local Source Proxy or use a source image registry
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
