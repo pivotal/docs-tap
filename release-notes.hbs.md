@@ -594,7 +594,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 
-#### <a id='1-6-1-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
+#### <a id='1-6-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
 
 - The default value for the `--update-strategy` flag will change from merge to replace in
   Tanzu Application Platform v1.7.0
@@ -633,7 +633,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
 
-### <a id='1-6-1-scc-deprecations'></a> Supply Chain Choreographer
+### <a id='1-6-scc-deprecations'></a> Supply Chain Choreographer
 
 - Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation now assumes that `libgit2` is not supported.
   - FluxCD no longer supports the `spec.gitImplementation field` [as of version 0.33.0](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330)
