@@ -60,7 +60,7 @@ To configure VMware Tanzu Developer Tools for VS Code:
      Reload VS Code for this change to take effect.
    - **Source Image**: The registry location for publishing local source code. For example,
      `registry.io/yourapp-source`. This must include both a registry and a project name. A source
-     image is optional when Local Source Proxy is configured.
+     image registry location is optional when Local Source Proxy is configured.
    - **Local Path**: (Optional) The path on the local file system to a directory of source code to
      build. This is the current directory by default.
    - **Namespace**: (Optional) This is the namespace that workloads are deployed into. The namespace
