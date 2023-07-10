@@ -24,11 +24,7 @@ tanzu accelerator push --local-path <local path> --source-image <image>
       --source-image string   name of the source image for the accelerator
 ```
 
-> **Note**  `--source-image` is only required if the registry being used is not handled by Local Source Proxy when running the command:
-
-```console
-`tanzu accelerator push --local-path <local path> --source-image <image>`
-```
+> **Note**  When you run the `tanzu accelerator push` command, `--source-image` is only required if the registry being used is not handled by Local Source Proxy.
 
 ## <a id="config-src-img-registry"></a> Configure Local Source Proxy
 
