@@ -38,7 +38,7 @@ Meet the following prerequisites:
 
 To prepare your Configurator configuration file:
 
-1. Create a new file called `tdp-config.yaml` by using the following template:
+1. Create a new file called `tpb-config.yaml` by using the following template:
 
     ```yaml
     app:
@@ -60,19 +60,21 @@ To prepare your Configurator configuration file:
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
       npm registry
 
-    The following example adds the sample `hello-world` plug-in that is available in the internal
-    package's registry:
+    The following example adds the sample `hello-world` plug-in and the `plugin-gitlab-loblaw` plug-in that are
+    available in the internal package's registry:
 
     ```yaml
     app:
       plugins:
         - name: '@tpb/plugin-hello-world'
+        - name: '@tpb/plugin-gitlab-loblaw'
+          version: '^0.0.18'
     backend:
       plugins:
         - name: '@tpb/plugin-hello-world-backend'
     ```
 
-2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
+2. Encode the file in base64, to later embed `tpb-config.yaml` in the workload definition file, by
    running:
 
    ```console
