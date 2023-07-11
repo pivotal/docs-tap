@@ -89,10 +89,10 @@ Where:
 
 - `repository:` is `REGISTRY-SERVER/BASE-PATH`. For example, `gcr.io/my-project/source`.
 
-> **Important** Ensure that the references used in `push_secret` and `pull_secret` don't conflict
-> with an existing Tanzu Application Platform `SecretExport`-affected secret in another namespace.
-
 - `push_secret` has the Docker registry credentials secret referenced by name and namespace.
+
+  > **Important** Ensure that the references used in `push_secret` and `pull_secret` don't conflict
+  > with an existing Tanzu Application Platform `SecretExport`-affected secret in another namespace.
 
 - `push_secret.create_export` must be `true` if a `SecretExport` resource must be created in its
   namespace to allow the secret to be exported to the Local Source Proxy `tap-local-source-system`

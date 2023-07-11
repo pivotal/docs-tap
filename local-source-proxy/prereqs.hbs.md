@@ -72,21 +72,25 @@ Declarative syntax
       .dockerconfigjson: #@ json.encode(config())
     ```
 
+The steps to obtain a secret with sufficient privileges depends on whether your registry is
+Elastic Container Registry (ECR) or something else.
+
 Using AWS
-: If you're using ECR (Elastic Container Registry) as your registry, you require an AWS IAM role ARN
+: If you're using Elastic Container Registry as your registry, you require an AWS IAM role ARN
   that possesses the necessary privileges to push and pull artifacts to the ECR repository. If such
   a role does not exist, you can create one by following the steps in this topic.
 
 Using a secret with pull privileges only
-: This applies if you prefer to have a dedicated credential with a least-privilege policy,
-  specifically for downloading artifacts instead of reusing credentials with higher privileges.
+: You can use a secret with only pull privileges if you prefer to have a dedicated credential with a
+  least-privilege policy, specifically for downloading artifacts instead of reusing credentials with
+  higher privileges.
 
   The secret containing this credential is distributed across developer namespaces by using the
   Secretgen `SecretExport` resource. Namespace Provisioner automatically imports it to the developer
   namespace. However, for development purposes, you can skip this step and use the same secret for
   both pushing and pulling artifacts.
 
-  To use a secret with pull privileges only, for a registry that isn't ECR, run:
+  To use a secret with pull privileges only, run:
 
     ```console
     # For all registries except ECR

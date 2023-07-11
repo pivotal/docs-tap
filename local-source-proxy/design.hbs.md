@@ -14,25 +14,24 @@ approach for image push requests, handling authentication and authorization seam
 ![Box-and-line diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster with Local Source Proxy.](images/lsp-design.png)
 
 If you don't use Local Source Proxy, your developer workstation requires more configuration, and the
-process process of interacting with external registry servers is more complicated.
+process of interacting with external registry servers is more complicated.
 
 ![Box-and-line diagram showing the relationship of an external registry, a developer workstation, and a Kubernetes cluster without Local Source Proxy.](images/without-lsp-design.png)
 
 The Apps CLI generates requests that adhere to the OCI distribution standard to push artifacts to
-Local Source Proxy instances. User authentication and authorization are handled by the Kubernetes
-API server.
+Local Source Proxy instances. The Kubernetes API server handles user authentication and authorization.
 
 Consequently this default mechanism becomes the primary way to push a developer's local source code
-to the Tanzu Application Platform cluster. This renders the `--source-image` flag optional. By
-leveraging Local Source Proxy, developers can seamlessly deploy their code without explicitly
+to the Tanzu Application Platform cluster. This renders the `--source-image` flag optional.
+By leveraging Local Source Proxy, developers can seamlessly deploy their code without explicitly
 specifying the source image.
 
 However, the system remains backward-compatible to accommodate different scenarios.
 
 The `local-source-proxy` mechanism is completely bypassed if either of the following is true:
 
-- the `--source-image` flag is provided
-- the workload has a defined source image that Local Source Proxy didn't set
+- The `--source-image` flag is provided
+- The workload has a defined source image that Local Source Proxy didn't set
 
 This ensures compatibility with existing workflows and allows developers to continue using their
 preferred methods for deployment.
