@@ -3,7 +3,7 @@
 <!-- Mention the create with Local Source section from tutorials -->
 
 There's a method for creating and updating workloads to push local source code to a registry 
-specified by utilizing the [Local Source Proxy package](/local-source-proxy/about.hbs.md)
+specified by utilizing the [Local Source Proxy package](../../../local-source-proxy/about.hbs.md)
 bundled with TAP.
 
 The installation and health of this package can be checked with the 

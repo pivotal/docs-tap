@@ -1,7 +1,7 @@
 # Bind a service to a workload
 
 Tanzu Application Platform supports creating a workload with binding to multiple
-services ([ServiceBinding](/service-bindings/about.hbs.md)).
+services. For more information, see [Overview of Service Bindings](../../../service-bindings/about.hbs.md).
 The cluster supply chain is in charge of provisioning those services.
 
 The purpose of these bindings is to provide information from a service resource to an application.
