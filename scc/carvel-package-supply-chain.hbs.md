@@ -12,7 +12,7 @@ Packages.
 
 ## Overview of the Carvel Package Supply Chains
 
-The traditional Out of the Box Supply Chain Basic Supply Chains outputs a
+The out of the box Basic Supply Chain outputs a
 `Deliverable` object. These `Deliverable`s are deployed to a cluster by the Out
 of the Box Delivery Supply Chain. The Carvel Package Supply Chains output a
 Carvel `Package` object to a GitOps repository. These `Packages` have
