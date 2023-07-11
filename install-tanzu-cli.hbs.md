@@ -168,8 +168,8 @@ Install from a binary release
   * **VMware Tanzu Network**
     
     1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
-    2. Choose the 1.6.0 release from the Release dropdown menu.
-    3. Click the tanzu-cli-tap-1.6.0 item from the result set.
+    2. Choose the {{ vars.tap_version }} release from the Release dropdown menu.
+    3. Click the tanzu-cli-tap-{{ vars.tap_version }} item from the result set.
     4. Download the Tanzu CLI for your operating system.
     5. Follow [the binary installation instructions](#binary-installation-instructions)
        
