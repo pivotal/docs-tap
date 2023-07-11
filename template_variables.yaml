@@ -8,3 +8,4 @@ template_variables:
     version: 4.0
   tanzu-cli:
     version: 0.90.1
+    url_version: 0.90.0
