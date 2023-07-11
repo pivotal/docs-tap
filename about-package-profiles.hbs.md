@@ -266,10 +266,11 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Buildpacks typically examine your applications to work out what dependencies to download and how
   to configure the apps to communicate with bound services.
 
-  Tanzu Buildpacks leverage open-source [Paketo Buildpacks](https://paketo.io/) to allow
+  Tanzu Buildpacks use open-source [Paketo Buildpacks](https://paketo.io/) to allow
   Tanzu Application Platform users to turn their application source code into container images.
-  In Tanzu Application Platform v1.6 and later, builders, stacks, and buildpacks are packages in the
-  build profile provided separately from Tanzu Build Service.
+  From Tanzu Application Platform v1.6, builders, stacks, and buildpacks are packaged separately from
+  Tanzu Build Service, but are included in the same Tanzu Application Platform profiles as
+  Tanzu Build Service.
   All buildpacks follow the package name format `*.buildpacks.tanzu.vmware.com`.
 
 - **[Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)**
