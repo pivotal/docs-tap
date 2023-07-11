@@ -215,6 +215,7 @@ cat << EOF > build-service-policy.json
                 "ecr:SetRepositoryPolicy"
             ],
             "Resource": [
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tbs-full-deps",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-build-service",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-images"
             ],
