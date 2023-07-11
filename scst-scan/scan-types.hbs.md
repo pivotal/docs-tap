@@ -8,7 +8,7 @@ chain supports the Source and container image scan types.
 
 The source scan step in the test and scan supply chain performs a Software
 Composition Analysis (SCA) scan to inspect the open source dependencies of an
-application for vulnerabilities.  This is performed by inspecting the file that
+application for vulnerabilities. You perform this by inspecting the file that
 the language uses for dependency declaration. For example:
 
 | Language | Dependency File |
@@ -27,7 +27,7 @@ Due to this, in Tanzu Application Platform 1.6, the source scan step is moved to
 
 ### <a id="add-source-scan"></a>Adding Source Scan to the Test and Scan Supply Chain
 
-In order to add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install `values.yaml`.  This overlay adds the required resources to the supply chain in the correct location to opt-in to source scanning.
+To add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install `values.yaml`.  This overlay adds the required resources to the supply chain in the correct location to opt-in to source scanning.
 
 For information about how overlays work with Tanzu Application Platform, see [Customize your package installation](../customize-package-installation.hbs.md). 
 
@@ -68,10 +68,10 @@ To add source scanning to the default out-of-the-box test and scan supply chain:
                  name: source-scanner-template
    ```
 
-   For more information about ytt overlays, see the
+   For information about ytt overlays, see the
    [Carvel documentation](https://carvel.dev/ytt/docs/v0.43.0/ytt-overlays/).
 
-2. Apply the `Secret` to your cluster by running:
+2. Apply the `Secret` to your cluster:
 
    ```console
    kubectl apply -f secret.yml
@@ -86,13 +86,13 @@ To add source scanning to the default out-of-the-box test and scan supply chain:
     - name: ootb-supply-chain-testing-scanning-add-source-scanner
     ```
 
-4. Update Tanzu Application Platform by running:
+4. Update Tanzu Application Platform:
 
     ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v {{ vars.tap_version }}  --values-file tap-values.yaml -n tap-install
     ```
 
-For a multicluster installation, you must apply this to the build build profile, as that
+For a multicluster installation, you must apply this to the build build profile, because that
 is where the scan components run. For information about Tanzu Application Platform profiles, see
 [Installing Tanzu Application Platform package and profiles](../install-online/profile.hbs.md).
 
