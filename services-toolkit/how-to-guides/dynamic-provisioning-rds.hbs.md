@@ -251,23 +251,23 @@ To create the composition:
     - All instances use the default Virtual Private Cloud (VPC) for the respective AWS account.
     - All instances are publicly accessible over the Internet.
 
-    > **Note** If you want to keep the instances publicly accessible over the Internet and use the
-    > default VPC, you must add an inbound rule for TCP on port 5432 to the security group of the
-    > default VPC to allow connection to the instances.
+1. If you want to keep the instances publicly accessible over the Internet and use the default VPC,
+   add an inbound rule for TCP on port 5432 to the security group of the default VPC to allow connection
+   to the instances.
 
-1. Configure the Composition you just copied to your specific requirements.
+1. If you do not want the instances to be publicly accessible over the Internet, edit the Composition
+   as required.
+   Specific requirements vary, but this might include composing a combination of VPCs, Subnets, SubnetGroups,
+   Routes, SecurityGroups, and SecurityGroupRules.
+   Refer to Compositions that are available online for inspiration and guidance.
+   For example, see `getting-started-with-aws-with-vpc` in the [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/v1.12.2/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
+   This example defines a Composition that creates a separate VPC for each RDS PostgreSQL instance
+   and automatically configures inbound rules.
+   If you want to follow this example, you might need to install additional Providers from the
+   AWS Provider Family, such as
+   [upbound/provider-aws-ec2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v0.36.0).
 
-    If you do not want the RDS PostgreSQL instances to be publicly accessible over the Internet,
-    edit the Composition as required.
-    Specific requirements vary, but this might include composing a combination of VPCs,
-    Subnets, SubnetGroups, Routes, SecurityGroups, and SecurityGroupRules.
-    Refer to Compositions that are available online for inspiration and guidance.
-    For example, see `getting-started-with-aws-with-vpc` in the [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/v1.12.2/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
-    This example defines a Composition that creates a separate VPC for each RDS PostgreSQL instance
-    and automatically configures inbound rules.
-    If you want to follow this example, you might need to install additional Providers from the
-    AWS Provider Family, such as
-    [upbound/provider-aws-ec2](https://marketplace.upbound.io/providers/upbound/provider-aws-ec2/v0.36.0).
+1. Make any other configuration changes to the Composition so that it meets your specific requirements.
 
 1. Apply the file to the Tanzu Application Platform cluster by running:
 
