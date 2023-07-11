@@ -28,7 +28,11 @@ local_source_proxy:
 Where:
 
 - `local_source_proxy.repository` is required. This is the repository where all your source code
-  will be uploaded.
+  will be uploaded. Examples:
+  - Harbor has the form `my-harbor.io/my-project/local-source`.
+  - Docker Hub has the form `my-dockerhub-user/local-source` or `index.docker.io/my-user/local-source`.
+  - Google Artifact Registry has the form `MY-REGISTRY-REGION-docker.pkg.dev/my-project/local-source/image`.
+  - Google Cloud Registry has the form `gcr.io/my-project/local-source`.
 
 - `push_secret` is required. This is the push secret reference that has the permission to push
   artifacts to the repository mentioned in `local_source_proxy.repository`.
@@ -190,12 +194,14 @@ then write the IAM role that has push and pull permissions for `aws_iam_role_arn
 
 ```yaml
 local_source_proxy:
+  repository: 123456789012.dkr.ecr.us-east-1.amazonaws.com/local-source
   push_secret:
-    aws_iam_role_arn: "arn:aws:iam::123456789012:role/EKSIAMRole"
+    aws_iam_role_arn: arn:aws:iam::123456789012:role/tap-local-source-proxy
 ```
 
 You specify this IAM role in `aws_iam_role_arn` to assign it to the Kubernetes service account that
-the Local Source Proxy server uses.
+the Local Source Proxy server uses. See [Pre-Requisites](./prereqs.hbs.md#prerequisites-for-local-source-proxy)
+for steps to create IAM role and add the ARN to the Kubernetes service account used by Local Source Proxy.
 
 Doing this allows the Local Source Proxy server to handle incoming image push requests with the
 appropriate IAM role-based permissions.
