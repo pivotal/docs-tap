@@ -72,8 +72,8 @@ Declarative syntax
       .dockerconfigjson: #@ json.encode(config())
     ```
 
-The steps to obtain a secret with sufficient privileges depends on whether your registry is
-Elastic Container Registry (ECR) or something else.
+The procedure you use to obtain a secret with sufficient privileges depends on whether your registry
+is Elastic Container Registry (ECR) or something else.
 
 Using AWS
 : If you're using Elastic Container Registry as your registry, you require an AWS IAM role ARN
