@@ -56,7 +56,7 @@ Where:
 To create an EKS cluster in the specified region, run:
 
 ```console
-eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.xlarge --version 1.24 --with-oidc -N 5
+eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.xlarge --version 1.25 --with-oidc -N 5
 ```
 
 Creating the control plane and node group can take anywhere from 30-60 minutes.
@@ -85,7 +85,7 @@ Name the repositories any name you want, but remember the names for when you lat
 
 ## <a id='create-workload-container-repos'></a>Create the workload container repositories
 
-Similar to the two repositories created earlier for the platform, you must create repositories for each workload that Tanzu Applicatoin Platform creates before creating any workloads so that a repository is available to upload container images and workload bundles. This is because AWS ECR does not support automatically creating container repositories on initial push. For more information, see the [AWS repository](https://github.com/aws/containers-roadmap/issues/853) in GitHub.
+Similar to the two repositories created earlier for the platform, you must create repositories for each workload that Tanzu Application Platform creates before creating any workloads so that a repository is available to upload container images and workload bundles. This is because AWS ECR does not support automatically creating container repositories on initial push. For more information, see the [AWS repository](https://github.com/aws/containers-roadmap/issues/853) in GitHub.
 
 When installing Tanzu Application Platform, you must specify a prefix for all workload registries. This topic uses `tanzu-application-platform` as the default value, but you can customize this value in the profile configuration created in [Install Tanzu Application Platform package and profiles on AWS](profile.hbs.md).
 
