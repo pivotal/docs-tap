@@ -89,8 +89,8 @@ Where:
 
 - `repository:` is `REGISTRY-SERVER/BASE-PATH`. For example, `gcr.io/my-project/source`.
 
-> **Important** Ensure the references used in `push_secret` and `pull_secret` does not conflict
-> with an existing Tanzu Application Platform `SecretExport`ed secret in another namespace.
+> **Important** Ensure that the references used in `push_secret` and `pull_secret` don't conflict
+> with an existing Tanzu Application Platform `SecretExport`-affected secret in another namespace.
 
 - `push_secret` has the Docker registry credentials secret referenced by name and namespace.
 
@@ -105,10 +105,13 @@ read access.
 In such cases, `pull_secret` can be specified, and `source-controller` uses the `pull_secret`
 to pull source artifacts for deployment.
 
-The `pull_secret` utilizes a Docker registry credentials secret referenced by its `name` and `namespace`. 
-To enable the automatic creation of a `SecretExport` resource by the tap installer in the specified 
-`namespace` for exporting the secret to developer namespaces, set `pull_secret.create_export` to `true`. 
-Alternatively, if `create_export` is set to `false`, you will need to manually create the `SecretExport` 
+The `pull_secret` uses a Docker registry credentials secret referenced by its `name` and `namespace`.
+
+To enable the Tanzu Application Platform installer to automatically create a `SecretExport` resource
+in the specified `namespace` for exporting the secret to developer namespaces, set
+`pull_secret.create_export` to `true`.
+
+Alternatively, if `create_export` is set to `false`, you must manually create the `SecretExport`
 resource in the referenced `namespace`.
 
 ## <a id="customize-install"></a> Customize the installation
@@ -213,7 +216,9 @@ local_source_proxy:
 
 ### <a id="spec-ca-cert"></a> Specify CA certificate data for registries that use self-signed certificates
 
-If you have a custom TLS certificate or a self-signed certificate for your registry server, both of which utilize a private certificate authority, you can set up the public CA certificate data by providing the necessary configuration under `local_source_proxy.ca_cert_data` in the `tap.values.yaml` file.
+If you have a custom TLS certificate or a self-signed certificate for your registry server, and it
+uses a private certificate authority, you can set up the public CA certificate data by providing the
+necessary configuration under `local_source_proxy.ca_cert_data` in the `tap.values.yaml` file.
 
 This allows you to provide the necessary certificate information for secure communication with the
 registry server. For example:

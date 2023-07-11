@@ -13,15 +13,15 @@ approach for image push requests, handling authentication and authorization seam
 
 Using LSP
 :
-    ![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster with LSP.](images/lsp-design.png)
+    ![Box-and-line diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster with Local Source Proxy.](images/lsp-design.png)
 
 Not using LSP
 :
-    ![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster without LSP.](images/without-lsp-design.png)
+    ![Box-and-line diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster without Local Source Proxy.](images/without-lsp-design.png)
 
-The Apps CLI generates requests that adhere to the OCI distribution standard to push
-artifacts to Local Source Proxy instances. User authentication and authorization are handled by the
-Kubernetes API server.
+The Apps CLI generates requests that adhere to the OCI distribution standard to push artifacts to
+Local Source Proxy instances. User authentication and authorization are handled by the Kubernetes
+API server.
 
 Consequently this default mechanism becomes the primary way to push a developer's local source code
 to the Tanzu Application Platform cluster. This renders the `--source-image` flag optional. By
