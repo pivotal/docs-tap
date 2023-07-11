@@ -520,7 +520,7 @@ earlier than Tanzu Application Platform v1.6.1, you must uninstall the full depe
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --data-values-file <path to tap-values.yaml>
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file <path to tap-values.yaml>
     ```
 
 For more information about the differences between `lite` and `full` dependencies, see
