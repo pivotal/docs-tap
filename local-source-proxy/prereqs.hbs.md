@@ -3,7 +3,7 @@
 You need the following prerequisites before you can install Local Source Proxy (LSP):
 
 - A registry server with a repository capable of accepting and hosting OCI artifacts, such as Google
-  Artifact Registry, Jfrog Artifactory, Harbor, and so on.
+  Artifact Registry, JFrog Artifactory, Harbor, and so on.
 
 - A secret with sufficient privileges to push and pull artifacts from that repository
 
