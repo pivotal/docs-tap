@@ -44,11 +44,17 @@ This release includes the following changes, listed by component and area.
 
 - The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
 
-
 #### <a id='1-6-1-alv'></a> Application Live View
 
-- Application Live View supports secure access to sensitive operations that can be executed on a running application using the actuator endpoints at the user level. For more information, see [Improved Security and Access Control](./app-live-view/improved-security-and-access-control.hbs.md)
-- Developers can view the live information of natively compiled Spring applications via Application Live View for lightweight troubleshooting. The pages and metrics currently unavailable for natively compiled Spring applications include threads, heapdump, memory graphs, cache manager, conditions, schedules tasks and actuator information. For more information, see [Enable Spring Native apps for Application Live View]()
+- Application Live View supports secure access to sensitive operations that can be executed on a
+  running application using the actuator endpoints at the user level. For more information, see
+  [Configure security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md#improved-security)
+
+- Developers can view the live information of natively compiled Spring applications by using
+  Application Live View for lightweight troubleshooting.
+  The pages and metrics currently unavailable for natively compiled Spring applications include
+  threads, heapdump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
+  For more information, see [Enable Spring Native apps for Application Live View]().
 
 #### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
 
@@ -90,11 +96,10 @@ Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug
 - Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
   This addition provides a quick reference to the Git revision associated with the workload.
 
-
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
 
-- Triage vulnerabilities with the `tanzu insight triage` command.  Learn more about [triaging CVEs with tanzu insight](./cli-plugins/insight/triaging-vulnerabilities.hbs.md).
-
+- Triage vulnerabilities with the `tanzu insight triage` command. For more information, see
+  [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
 #### <a id='1-6-1-appsso'></a> Application Single Sign-On (AppSSO)
 
@@ -339,7 +344,8 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 #### <a id='1-6-1-tap-dev-portal'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
-- Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.  Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
+- Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.
+  Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
 
 ---
 
@@ -526,10 +532,15 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-6-1-supply-chain-plugin'></a> Tanzu Developer Portal - Supply Chain GUI Plug-in
-- Any workloads created using a Custom Resource Definition (CRD) may not work as expected.  Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
-- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the ImageVulnerabilityScanner CRD is not yet supported in the Supply Chain GUI
-- Downloading the SBOM from the a vulnerability scan requires additional configuration to the `tap-values.yaml`.  See [SBOMs do not download when automatically configuring Tanzu Developer Portal to SCST - Store](./tap-gui/troubleshooting.hbs.md#sbom-not-working)
+#### <a id='1-6-1-supply-chain-plugin'></a> Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Any workloads created by using a Custom Resource Definition (CRD) might not work as expected.
+  Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
+- [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
+  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI
+- Downloading the SBOM from a vulnerability scan requires additional configuration in
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
 #### <a id='1-6-1-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
