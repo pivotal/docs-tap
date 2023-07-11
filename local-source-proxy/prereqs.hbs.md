@@ -34,7 +34,7 @@ Declarative syntax
       .dockerconfigjson: BASE64-ENCODED-DOCKER-CONFIG-JSON
     ```
 
-    `dockerconfigjson` structure is as follows:
+    The `dockerconfigjson` structure is as follows:
 
     ```json
     {"auths":{"REGISTRY-SERVER":{"username":"USERNAME-VALUE","password": "PASSWORD-VALUE"}}}

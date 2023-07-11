@@ -147,19 +147,21 @@ message: |-
 
 Potential causes include:
 
-- Missing registry secret. Neither of below entries are found in `tap-values.yaml`:
-  - `push_secret` information is not available in `local_source_proxy` section
-  - `image_registry.secret` information is not available in `shared` section
+- A missing registry secret:
+  - `push_secret` information is not available in the `local_source_proxy` section of `tap-values.yaml`.
+  - `image_registry.secret` information is not available in the `shared` section of `tap-values.yaml`.
 - If `push_secret` is used, the secret was not exported to the Local Source Proxy namespace.
-The credentials used in the secret do not match the configured external registry.
+  The credentials used in the secret do not match the configured external registry.
 
 ### Solution
 
-- Ensure that at least one of the following entries is found in the `tap-values.yaml` file:
-  - `push_secret` information in the `local_source_proxy` section
-  - `image_registry.secret` information in the `shared` section
-- If the `push_secret` is used, make sure that it can be exported to the Local Source Proxy namespace.
-- Verify that the credentials used in the secret match the configured external registry.
+1. Ensure that at least one of the following entries is found in `tap-values.yaml`:
+
+   - `push_secret` information in the `local_source_proxy` section
+   - `image_registry.secret` information in the `shared` section
+
+1. If `push_secret` is used, make sure that it can be exported to the Local Source Proxy namespace.
+1. Ensure that the credentials used in the secret match the configured external registry.
 
 ## <a id="invalid-creds"></a> Invalid credentials
 
@@ -205,4 +207,4 @@ The cause is the use of invalid credentials.
 
 ### Solution
 
-Verify that the credentials used in the secret match the configured external registry.
+Change the credentials used in the secret to match those in the configured external registry.
