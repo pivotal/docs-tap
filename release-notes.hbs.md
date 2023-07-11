@@ -3,6 +3,40 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
+## <a id='1-3-11'></a> v1.3.11 
+ 
+**Release Date**: 15 August 2023 
+ 
+### <a id='1-3-11-security-fixes'></a> Security fixes 
+ 
+This release has the following security fixes, listed by component and area. 
+ 
+#### <a id='1-3-11-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
+ 
+- Security fix description.
+ 
+---
+ 
+### <a id='1-3-11-resolved-issues'></a> Resolved issues 
+ 
+The following issues, listed by component and area, are resolved in this release. 
+ 
+#### <a id='1-3-11-COMPONENT-NAME-ri'></a> COMPONENT-NAME
+ 
+- Resolved issue description.
+ 
+---
+ 
+### <a id='1-3-11-known-issues'></a> Known issues 
+ 
+This release has the following known issues, listed by component and area. 
+ 
+#### <a id='1-3-11-COMPONENT-NAME-ki'></a> COMPONENT-NAME
+ 
+- Known issue description with link to workaround.  
+ 
+---
+
 ## <a id='1-3-10'></a> v1.3.10
 
 **Release Date**: 11 July 2023
