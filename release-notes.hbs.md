@@ -19,17 +19,20 @@ In release notes, this condition hides content that describes an unreleased patc
 
 This release includes the following platform-wide enhancements.
 
-#### <a id='1-6-1-new-platform-features'></a> New platform-wide features
+#### <a id='1-6-1-new-platform-feats'></a> New platform-wide features
 
 - New services available with the Bitnami Service package: MongoDB and Kafka.
 
 #### <a id='1-6-1-new-components'></a> New components
 
-- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers with a secure and
-user-friendly solution that enables them to effortlessly upload their local source code to a registry,
-which is pre-configured by an Operator during the installation of Tanzu Application Platform.
-This component effectively eliminates the obstacles faced by developers when they had to manually specify
-a registry and provide their credentials on their local systems for iterative inner loop workflows.
+- [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers a secure and user-friendly
+  approach to seamlessly upload their local source code to a Tanzu Application Platform cluster.
+  This enables developers to navigate their code smoothly through a predefined production pathway
+  using supply chains.
+
+  This component reduces the obstacles faced by developers who would otherwise need to manually
+  specify a registry and provide their credentials on their local systems for iterative inner loop
+  workflows.
 
 ---
 
@@ -86,7 +89,7 @@ Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug
 - Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
 - Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
   This addition provides a quick reference to the Git revision associated with the workload.
-  
+
 
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
 
