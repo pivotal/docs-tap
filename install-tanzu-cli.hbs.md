@@ -167,30 +167,28 @@ Install from a binary release
   
   * **VMware Tanzu Network**
     
-    1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/)
-    2. Choose the TAP 1.6.0 release from the select dropdown menu
-    3. Click the tanzu-cli-tap-1.6.0 item from the result set
-    4. Click the CLI download link for your operating system
+    1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
+    2. Choose the 1.6.0 release from the Release dropdown menu.
+    3. Click the tanzu-cli-tap-1.6.0 item from the result set.
+    4. Download the Tanzu CLI for your operating system.
     5. Follow [the binary installation instructions](#binary-installation-instructions)
        
   * **VMware Customer Connect**
     
-    1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431)
-    2. Click to download the Tanzu CLI binary for your operating system
-    3. Follow [the binary installation instructions](#binary-installation-instructions)
+    1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
+    2. Download the Tanzu CLI binary for your operating system.
+    3. Follow [the binary installation instructions](#binary-installation-instructions).
        
   * **GitHub**
     
     1. Go to [Tanzu CLI release v{{ vars.tanzu-cli.version }} on GitHub](https://github.com/vmware-tanzu/tanzu-cli/releases/tag/v{{ vars.tanzu-cli.version }})
-    2. Click to download the Tanzu CLI binary for your operating system (for example: `tanzu-cli-windows-amd64.tar.gz`)
+    2. Download the Tanzu CLI binary for your operating system, for example, `tanzu-cli-windows-amd64.tar.gz`.
     3. Follow [the binary installation instructions](#binary-installation-instructions)
  
   
   <a id='binary-installation-instructions'></a>**Binary installation instructions:**
 
-  1. Unpack the Tanzu CLI binary:
-     1. Use an extraction tool to unpack the binary file, for example, on Linux or macOS, you can
-     use the `tar` command.
+  1. Use an extraction tool to unpack the binary file:
 
         * **macOS:**
 
@@ -257,7 +255,7 @@ Install from a binary release
 
 **Airgapped installation:**
 
-* See the [Installing the Tanzu CLI/plugins in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
+* See the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
 
 ## Next steps
 
