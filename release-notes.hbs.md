@@ -46,15 +46,15 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-1-alv'></a> Application Live View
 
-- Application Live View supports secure access to sensitive operations that can be executed on a
-  running application using the actuator endpoints at the user level. For more information, see
-  [Configure security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md#improved-security)
+- Application Live View supports securing access, at the user level, to sensitive operations
+  that can be executed on a running application using the actuator endpoints. For more information, see
+  [Authorize a user to execute sensitive operations](app-live-view/improved-security-and-access-control.hbs.md#access-control).
 
 - Developers can view the live information of natively compiled Spring applications by using
   Application Live View for lightweight troubleshooting.
-  The pages and metrics currently unavailable for natively compiled Spring applications include
+  The pages and metrics that are currently unavailable for natively compiled Spring applications include
   threads, heapdump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
-  For more information, see [Enable Spring Native apps for Application Live View]().
+  For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md).
 
 #### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
 

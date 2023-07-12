@@ -29,14 +29,21 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
     export AZURE_ACCOUNT_ID=MY-AZURE-ACCOUNT-ID
     export AZURE_REGION=TARGET-AZURE-REGION
     export AKS_CLUSTER_NAME=tap-on-azure
+
+     # Set tanzunet as the source registry to copy the TAP packages from
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # User’s registry where TAP packages will be copied to
     export IMGPKG_REGISTRY_HOSTNAME_1=$INSTALL_REGISTRY_HOSTNAME
     export IMGPKG_REGISTRY_USERNAME_1=$REGISTRY_NAME
     export IMGPKG_REGISTRY_PASSWORD_1=REGISTRY-PASSWORD
-    export TAP_VERSION=VERSION-NUMBER
+    # Note: Above IMGPKG_* envs are being used by imgpkg command only
+
+    # Registry to fetch TAP Packages from
     export INSTALL_REGISTRY_HOSTNAME=$REGISTRY_NAME.azurecr.io
+    export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=tapimages
     ```
 
