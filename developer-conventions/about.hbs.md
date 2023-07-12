@@ -16,7 +16,7 @@ Developer Conventions modifies your workload to enable live updates in either of
 
 - You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--live-update=true`.
   For more information about how to deploy a workload with the CLI, see
-  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+  [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 - You deploy a workload by using the `Tanzu: Live Update Start` option through the
 Tanzu Developer Tools for VS Code extension. For more information about live updating with the
 extension, see [Overview of Tanzu Developer Tools for Visual Studio Code](../vscode-extension/about.md).
@@ -39,7 +39,7 @@ Developer Conventions modifies your workload to enable debugging in either of th
 
 - You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--debug=true`.
   For more information about how to deploy a workload with the CLI, see
-  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+  [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 - You deploy a workload by using the `Tanzu Java Debug Start` option through the
   Tanzu Developer Tools for VS Code extension. For more information about debugging with the extension,
   see [Overview of Tanzu Developer Tools for Visual Studio Code](../vscode-extension/about.md).

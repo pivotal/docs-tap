@@ -10,7 +10,7 @@ Ensure that you meet the following prerequisites:
 
 - The Tanzu CLI is installed in a location in your `PATH` environment variable.
 - A valid `workload.yaml` file is in the project. For more information, see the specification for
-  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+  [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 - You have a functional Tanzu Application Platform environment.
 - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
 - You have an image repository to which source code in the local file system can be uploaded before

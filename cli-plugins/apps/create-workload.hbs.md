@@ -264,7 +264,7 @@ You can verify workload details and status, add environment variables, export de
     tanzu apps workload get pet-clinic --export
     ```
 
-4. To bind a service to a workload, see the [--service-ref flag](command-reference/workload_create_update_apply.hbs.md#service-ref).
+4. To bind a service to a workload, see the [--service-ref flag](reference/workload-create-apply.hbs.md#service-ref).
 
 5. To see flags available for the workload commands, run:
 

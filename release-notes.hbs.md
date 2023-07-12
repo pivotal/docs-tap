@@ -715,7 +715,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 ### <a id="1-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
 - The default value for the
-  [--update-strategy](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
+  [--update-strategy](./cli-plugins/apps/reference/workload-create-apply.hbs.md#update-strategy)
   flag will change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
 
 ### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
