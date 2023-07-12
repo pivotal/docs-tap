@@ -10,6 +10,8 @@ Authentication is provided using a secret in the `tap-namespace-provisioning` na
 
 The secrets for Git authentication allow the following keys: ssh-privatekey, ssh-knownhosts, username, and password. If ssh-knownhosts is not specified, Git does not perform strict host checking.
 
+>**Important** The Namespace Provisioner relies on kapp-controller for any tasks involving communication with external services, such as registries or Git repositories. When operating in Air-gapped environments or other scenarios where external services are secured by a Custom CA certificate, it is necessary to configure kapp-controller with the CA certificate data to prevent X.508/X.509 certificate errors. Detailed instructions on how to accomplish this can be found in the [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5) section of the Deploying Cluster Essentials documentation.
+
 1. Create the Git secret:
 
     Using HTTP(s) based Authentication
@@ -213,6 +215,7 @@ To configure the service account to work with private Git repositories, follow t
       stringData:
         content.yaml: |
           git:
+            host: GIT-SERVER
             #! For SSH Auth
             ssh_privatekey: SSH-PRIVATE-KEY
             identity: SSH-PRIVATE-KEY
@@ -230,20 +233,43 @@ To configure the service account to work with private Git repositories, follow t
     in each managed namespace. It should be included in your Git repository linked in the
     `additional_sources` section of `tap-values.yaml` mentioned in Step 4.
 
-    ```yaml
-    #@ load("@ytt:data", "data")
-    ---
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: git
-      annotations:
-        tekton.dev/git-0: #@ data.values.imported.git.host
-    type: kubernetes.io/basic-auth
-    stringData:
-      username: #@ data.values.imported.git.username
-      password: #@ data.values.imported.git.password
-    ```
+    Using HTTP(s) based Authentication
+    : If using Username and Password for authentication.
+
+      ```yaml
+      #@ load("@ytt:data", "data")
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: git
+        annotations:
+          tekton.dev/git-0: #@ data.values.imported.git.host
+      type: kubernetes.io/basic-auth
+      stringData:
+        username: #@ data.values.imported.git.username
+        password: #@ data.values.imported.git.token
+      ```
+
+    Using SSH based Authentication
+    : If using SSH private key for authentication:
+
+      ```yaml
+      #@ load("@ytt:data", "data")
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: git
+        annotations:
+          tekton.dev/git-0: #@ data.values.imported.git.host
+      type: kubernetes.io/basic-auth
+      stringData:
+        identity: #@ data.values.imported.git.identity
+        identity.pub: #@ data.values.imported.git.identity_pub
+        known_hosts: #@ data.values.imported.git.known_hosts
+        ssh-privatekey: #@ data.values.imported.git.ssh_privatekey
+      ```
 
 3. Combine this `tap-values.yaml`:
 

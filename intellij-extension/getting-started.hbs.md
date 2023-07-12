@@ -61,7 +61,7 @@ Where:
 
 Alternatively you can use the Tanzu CLI to create a `workload.yaml` file.
 For more information about the relevant Tanzu CLI command, see
-[Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+[Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 
 ## <a id="create-catalog-info-yaml"></a> Create the `catalog-info.yaml` file
 

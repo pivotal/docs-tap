@@ -1,16 +1,16 @@
 # Create AWS Resources for Tanzu Application Platform
 
-To install Tanzu Application Platform (commonly known as TAP) within the Amazon 
-Web Services (AWS) Ecosystem, you must create several AWS resources. 
+To install Tanzu Application Platform (commonly known as TAP) within the Amazon
+Web Services (AWS) Ecosystem, you must create several AWS resources.
 Use this topic to learn how to create:
 
 - An Amazon Elastic Kubernetes Service (EKS) cluster to install Tanzu Application Platform.
 - Identity and Access Management (IAM) roles to allow authentication and authorization to read and write from Amazon Elastic Container Registry (ECR).
 - ECR Repositories for the Tanzu Application Platform container images.
 
-Creating these resources enables Tanzu Application Platform to use an IAM role 
-bound to a Kubernetes service account for authentication, rather than the typical 
-username and password stored in a Kubernetes secret strategy. 
+Creating these resources enables Tanzu Application Platform to use an IAM role
+bound to a Kubernetes service account for authentication, rather than the typical
+username and password stored in a Kubernetes secret strategy.
 For more information, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 
 This is important when using ECR because authenticating to ECR is a two-step process:
@@ -215,6 +215,7 @@ cat << EOF > build-service-policy.json
                 "ecr:SetRepositoryPolicy"
             ],
             "Resource": [
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tbs-full-deps",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-build-service",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-images"
             ],
@@ -326,4 +327,82 @@ aws iam put-role-policy --role-name tap-build-service --policy-name tapBuildServ
 aws iam create-role --role-name tap-workload --assume-role-policy-document file://workload-trust-policy.json
 # Attach the Policy to the Workload Role
 aws iam put-role-policy --role-name tap-workload --policy-name tapWorkload --policy-document file://workload-policy.json
+```
+
+If [Local Source Proxy](../local-source-proxy/about.hbs.md) is enabled in this installation, run the
+script below to create an IAM role and add the Amazon Resource Name (ARN) to the Kubernetes service
+account that Local Source Proxy uses.
+
+```console
+export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+
+cat << EOF > local-source-proxy-trust-policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${OIDCPROVIDER}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "${OIDCPROVIDER}:aud": "sts.amazonaws.com"
+                },
+                "StringLike": {
+                    "${OIDCPROVIDER}:sub": [
+                        "system:serviceaccount:tap-local-source-system:proxy-manager"
+                    ]
+                }
+            }
+        }
+    ]
+}
+EOF
+
+cat << EOF > local-source-proxy-policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*",
+            "Effect": "Allow",
+            "Sid": "TAPLSPGlobal"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/local-source"
+            ],
+            "Sid": "TAPLSPScoped"
+        }
+    ]
+}
+EOF
+
+# Create the TAP Local Source Proxy Role
+aws iam create-role --role-name tap-local-source-proxy --assume-role-policy-document file://local-source-proxy-trust-policy.json
+# Attach the Policy to the tap-local-source-proxy Role created above
+aws iam put-role-policy --role-name tap-local-source-proxy --policy-name tapLocalSourcePolicy --policy-document file://local-source-proxy-policy.json
 ```

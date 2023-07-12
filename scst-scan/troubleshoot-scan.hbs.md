@@ -95,7 +95,7 @@ the keyword "Error" to investigate issues.
 
 ### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
 
-See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and
+See [here](../cli-plugins/apps/troubleshooting/troubleshooting.hbs.md) for Tanzu workload commands for tailing build and
 runtime logs and getting workload status and details.
 
 ### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs

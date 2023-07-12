@@ -208,3 +208,18 @@ The cause is the use of invalid credentials.
 ### Solution
 
 Change the credentials used in the secret to match those in the configured external registry.
+
+## <a id="podspec-changes"></a> Local Source Proxy doesn't automatically detect changes to `podspec`
+
+### Symptom
+
+Local Source Proxy doesn't automatically detect changes to `podspec`.
+
+### Cause
+
+AWS Elastic Container Registry (ECR) is configured as the external registry in `tap-values.yaml`.
+
+### Solution
+
+Delete the old pods so that the new pods can mount the expected `podspec`, enabling access to the
+registry through the IAM role ARN.

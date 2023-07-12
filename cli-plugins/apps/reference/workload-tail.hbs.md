@@ -39,7 +39,9 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail command should stream the logs. The values that the flag can take depend on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and, `config-writer`
+Set the component from which the tail command should stream the logs. The values that the flag can 
+take depend on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, 
+`run` and, `config-writer`
 
 ```bash
 tanzu apps workload tail pet-clinic --component build
@@ -82,7 +84,14 @@ pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.231  
 
 ### <a id="tail-since"></a> `--since`
 
-Sets the time duration to start reading logs from, this is set in seconds (`s`), minutes(`m`) or hours (`h`) in the format `0h0m0s`. You do not need to indicate a `0` duration, for example, 1 hour, 0 minutes and 1 seconds is `1h1s`. The default value is 1 second `1s`
+Sets the time duration to start reading logs from.
+
+The unit value can be set in seconds (`s`), minutes(`m`) or 
+hours (`h`) in the format `0h0m0s`. You do not need to indicate a `0` duration for a unit
+that is not being expressed (e.g. 1 hour, 0 minutes and 1 seconds should be expressed as
+`1h1s`).
+
+The default value is 1 second `1s`
 
 ```bash
 tanzu apps workload tail pet-clinic --since 1h1s

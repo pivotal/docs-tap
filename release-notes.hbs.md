@@ -46,15 +46,15 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-1-alv'></a> Application Live View
 
-- Application Live View supports secure access to sensitive operations that can be executed on a
-  running application using the actuator endpoints at the user level. For more information, see
-  [Configure security and access control in Application Live View](app-live-view/improved-security-and-access-control.hbs.md#improved-security)
+- Application Live View supports securing access, at the user level, to sensitive operations
+  that can be executed on a running application using the actuator endpoints. For more information, see
+  [Authorize a user to execute sensitive operations](app-live-view/improved-security-and-access-control.hbs.md#access-control).
 
 - Developers can view the live information of natively compiled Spring applications by using
   Application Live View for lightweight troubleshooting.
-  The pages and metrics currently unavailable for natively compiled Spring applications include
+  The pages and metrics that are currently unavailable for natively compiled Spring applications include
   threads, heapdump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
-  For more information, see [Enable Spring Native apps for Application Live View]().
+  For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md).
 
 #### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
 
@@ -536,8 +536,10 @@ This release has the following known issues, listed by component and area.
 
 - Any workloads created by using a Custom Resource Definition (CRD) might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
+
 - [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
-  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI
+  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI.
+
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
   `tap-values.yaml`. For more information, see
   [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
@@ -713,12 +715,8 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 ### <a id="1-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
 - The default value for the
-  [--update-strategy](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
+  [--update-strategy](./cli-plugins/apps/reference/workload-create-apply.hbs.md#update-strategy)
   flag will change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
-
-- The `tanzu apps workload update` command is deprecated and marked for removal
-  in Tanzu Application Platform v1.6.1. Use the command `tanzu apps workload apply` instead.
-
 
 ### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
 
