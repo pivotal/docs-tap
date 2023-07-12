@@ -334,7 +334,7 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-Tanzu Application Platform v1.6.1 supports building applications with Ubuntu v22.04 (Jammy).
+Tanzu Application Platform v{{ vars.tap_version }} supports building applications with Ubuntu v22.04 (Jammy).
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
@@ -386,7 +386,7 @@ you must install the `full` dependencies package.
     ```
 
 1. (Optional) If you have an existing installation of the full dependencies package from a version
-earlier than Tanzu Application Platform v1.6.1, you must uninstall the full dependencies package and remove the package repository:
+earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninstall the full dependencies package and remove the package repository:
 
     Uninstall the package:
 
@@ -444,7 +444,7 @@ earlier than Tanzu Application Platform v1.6.1, you must uninstall the full depe
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file <path to tap-values.yaml>
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES
     ```
 
 For more information about the differences between `lite` and `full` dependencies, see
