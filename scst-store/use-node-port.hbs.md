@@ -1,4 +1,4 @@
-# Use Your NodePort with Supply Chain Security Tools - Store
+# Use your NodePort with Supply Chain Security Tools - Store
 
 This topic describes how you can use your NodePort with Supply Chain Security Tools (SCST) - Store.
 
