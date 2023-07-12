@@ -88,9 +88,9 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 <summary>If you do not want to relocate images</summary>
 
-[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+<p><a href="#relocate-images">Relocate images to a registry</a> is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:</p>
 
-```console
+<pre><code class="lang-console">
 # Registry to fetch TAP Packages from.
 export INSTALL_REGISTRY_USERNAME=TANZUNET_REGISTRY_USERNAME
 export INSTALL_REGISTRY_PASSWORD=TANZUNET_REGISTRY_PASSWORD
@@ -103,13 +103,16 @@ export MY_REGISTRY_USERNAME=MY-REGISTRY-USER
 export MY_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
 export MY_REGISTRY_HOSTNAME=MY-REGISTRY
 ```
-Where:
+</code></pre>
 
-- `TANZUNET_REGISTRY_USERNAME` and `TANZUNET_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
-- `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
-- `MY_REGISTRY_HOSTNAME` is your own container registry.
-- `MY_REGISTRY_USERNAME` is the user with write access to `MY_REGISTRY_HOSTNAME`.
-- `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USERNAME`.
+<p>Where:</p>
+<ul>
+<li><code>TANZUNET_REGISTRY_USERNAME</code> and <code>TANZUNET_REGISTRY_PASSWORD</code> are the credentials to the VMware Tanzu Network registry <code>registry.tanzu.vmware.com</code></li>
+<li><code>VERSION-NUMBER</code> is your Tanzu Application Platform version. For example, <code>{{ vars.tap_version }}</code></li>
+<li><code>MY_REGISTRY_HOSTNAME</code> is your own container registry.</li>
+<li><code>MY_REGISTRY_USERNAME</code> is the user with write access to <code>MY_REGISTRY_HOSTNAME</code>.</li>
+<li><code>MY_REGISTRY_PASSWORD</code> is the password for <code>MY_REGISTRY_USERNAME</code>.</li>
+</ul>
 
 </details>
 
