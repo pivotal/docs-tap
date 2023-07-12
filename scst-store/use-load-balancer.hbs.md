@@ -1,4 +1,4 @@
-# Use Your LoadBalancer with Supply Chain Security Tools - Store
+# Use your LoadBalancer with Supply Chain Security Tools - Store
 
 This topic describes how to use your LoadBalancer with Supply Chain Security Tools (SCST) - Store. 
 
