@@ -80,7 +80,7 @@ Using AWS
   that possesses the necessary privileges to push and pull artifacts to the ECR repository. If such
   a role does not exist, create one:
 
-    1. Export the variables by running:
+  1. Export the variables by running:
 
     ```console
     export AWS_ACCOUNT_ID=012345678901  # Your AWS account ID
@@ -88,7 +88,7 @@ Using AWS
     export EKS_CLUSTER_NAME=tap-on-aws  # The name of your EKS Cluster
     ```
 
-    2. Output the files, and then use the policy documents to create the IAM roles, by running:
+  1. Output the files, and then use the policy documents to create the IAM roles, by running:
 
     ```console
     export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION \
