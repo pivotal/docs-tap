@@ -2,6 +2,15 @@
 
 This topic gives you reference information for Local Source Proxy (LSP).
 
+## <a id="known-issues"></a> Known limitations and issues
+
+This topic tells you about the known issues and limitations for Local Source Proxy in Tanzu Application Platform (commonly known as TAP).
+
+- If you are configuring AWS Elastic Container Registry (ECR) as the external registry in `tap-values.yaml`, 
+  please note that changes to the `podspec` will not be automatically detected by the Local Source Proxy. 
+  To address this issue, you can use the following workaround: kill the old pod(s) so that the new pod(s) 
+  can mount the expected podspec, allowing access to the registry through the IAM role ARN.
+
 ## <a id="default-resources"></a> Default resources
 
 Local Source Proxy is automatically installed when using the standard `iterate` and `full`

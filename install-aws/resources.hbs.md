@@ -327,3 +327,80 @@ aws iam create-role --role-name tap-workload --assume-role-policy-document file:
 # Attach the Policy to the Workload Role
 aws iam put-role-policy --role-name tap-workload --policy-name tapWorkload --policy-document file://workload-policy.json
 ```
+
+If [Local Source Proxy](../local-source-proxy/about.hbs.md) is enabled in this installation, run the script below to create
+an IAM role and add the ARN to the Kubernetes service account used by the Local Source Proxy.
+
+```console
+export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+
+cat << EOF > local-source-proxy-trust-policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${OIDCPROVIDER}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "${OIDCPROVIDER}:aud": "sts.amazonaws.com"
+                },
+                "StringLike": {
+                    "${OIDCPROVIDER}:sub": [
+                        "system:serviceaccount:tap-local-source-system:proxy-manager"
+                    ]
+                }
+            }
+        }
+    ]
+}
+EOF
+
+cat << EOF > local-source-proxy-policy.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*",
+            "Effect": "Allow",
+            "Sid": "TAPLSPGlobal"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload",
+                "ecr:PutImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/local-source"
+            ],
+            "Sid": "TAPLSPScoped"
+        }
+    ]
+}
+EOF
+
+# Create the TAP Local Source Proxy Role
+aws iam create-role --role-name tap-local-source-proxy --assume-role-policy-document file://local-source-proxy-trust-policy.json
+# Attach the Policy to the tap-local-source-proxy Role created above
+aws iam put-role-policy --role-name tap-local-source-proxy --policy-name tapLocalSourcePolicy --policy-document file://local-source-proxy-policy.json
+```
