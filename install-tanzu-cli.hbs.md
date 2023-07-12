@@ -170,7 +170,7 @@ Install from a binary release
     1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
     2. Choose the {{ vars.tap_version }} release from the Release dropdown menu.
     3. Click the tanzu-cli-tap-{{ vars.tap_version }} item from the result set.
-    4. Download the Tanzu CLI for your operating system.
+    4. Download the Tanzu CLI binary for your operating system.
     5. Follow [the binary installation instructions](#binary-installation-instructions)
        
   * **VMware Customer Connect**
@@ -245,15 +245,15 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plugins
 
-**Online installation:**
+#### Online installation:
 
-* Run the following command to install the CLI plugins required for Tanzu Application Platform:
+Run the following command to install the CLI plugins required for Tanzu Application Platform:
 
    ```console
    tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
    ```
 
-**Airgapped installation:**
+**Air-gapped installation:**
 
 * See the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
 
