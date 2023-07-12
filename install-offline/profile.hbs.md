@@ -16,12 +16,12 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 1. Set up environment variables for installation use by running:
 
     ```console
-    # Set tanzunet as the source registry to copy the TAP packages from
+    # Set tanzunet as the source registry to copy the Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
 
-    # User’s registry where TAP packages will be copied to
+    # The user’s registry for copying the Tanzu Application Platform package to.
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
     export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
@@ -76,7 +76,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
-1. Create a secret for accessing user’s registry by running:
+1. Create a secret for accessing the user’s registry by running:
 
     ```console
     tanzu secret registry add registry-credentials \

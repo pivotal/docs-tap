@@ -42,18 +42,18 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 1. Set up environment variables for installation use by running:
 
     ```console
-    # Set tanzunet as the source registry to copy the TAP packages from
+    # Set tanzunet as the source registry to copy the Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
 
-    # User’s registry where TAP packages will be copied to
+    # The user’s registry for copying the Tanzu Application Platform package to.
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
     export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
-    # Note: Above IMGPKG_* envs are being used by imgpkg command only
+    # These environment variables starting with IMGPKG_* are used by the imgpkg command only.
 
-    # Registry to fetch TAP Packages from
+    # The registry from which the Tanzu Application Platform package is retrieved.
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
