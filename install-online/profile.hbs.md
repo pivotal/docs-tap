@@ -87,6 +87,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 <details>
 
 <summary>If you do not want to relocate images</summary>
+
 [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
 
 ```console
@@ -109,6 +110,7 @@ Where:
 - `MY_REGISTRY_HOSTNAME` is your own container registry.
 - `MY_REGISTRY_USERNAME` is the user with write access to `MY_REGISTRY_HOSTNAME`.
 - `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USERNAME`.
+
 </details>
 
 ## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
