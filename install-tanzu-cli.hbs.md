@@ -245,17 +245,17 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plugins
 
-#### Online installation:
+**Online installation:**
 
 Run the following command to install the CLI plugins required for Tanzu Application Platform:
 
-   ```console
-   tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
-   ```
+```console
+tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
+```
 
 **Air-gapped installation:**
 
-* See the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
+See the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
 
 ## Next steps
 
