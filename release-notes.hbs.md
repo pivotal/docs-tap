@@ -718,10 +718,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   [--update-strategy](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
   flag will change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
 
-- The `tanzu apps workload update` command is deprecated and marked for removal
-  in Tanzu Application Platform v1.6.1. Use the command `tanzu apps workload apply` instead.
-
-
 ### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
 
 - The Tanzu Source Controller `ImageRepository` API is deprecated and is marked for
