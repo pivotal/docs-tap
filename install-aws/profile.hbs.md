@@ -27,14 +27,21 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     ```console
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     export AWS_REGION=TARGET-AWS-REGION
+
+    # Set tanzunet as the source registry to copy the TAP packages from
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # User’s registry where TAP packages will be copied to
     export IMGPKG_REGISTRY_HOSTNAME_1=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
     export IMGPKG_REGISTRY_USERNAME_1=AWS
     export IMGPKG_REGISTRY_PASSWORD_1=`aws ecr get-login-password --region $AWS_REGION`
-    export TAP_VERSION=VERSION-NUMBER
+    # Note: Above IMGPKG_* envs are being used by imgpkg command only
+
+    # Registry to fetch TAP Packages from
     export INSTALL_REGISTRY_HOSTNAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+    export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=tap-images
     ```
 
