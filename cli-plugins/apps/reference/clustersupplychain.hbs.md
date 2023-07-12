@@ -1,10 +1,10 @@
 # Tanzu Apps Cluster Supply Chain
 
-This command provides details about the cluster supply chain.
+This topic tells you about the `cluster-supply-chain` command.
 
 ## tanzu apps clustersupplychain list
 
-The `cluster-supply-chain` command provides details about the cluster supply chain(s) installed in the
+The `cluster-supply-chain` command provides details about the cluster supply chain installed in the
 target cluster.
 
 The following aliases are supported:

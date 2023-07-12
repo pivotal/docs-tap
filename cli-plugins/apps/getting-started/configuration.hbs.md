@@ -1,4 +1,6 @@
-# Configuration
+# Configure the Apps CLI plug-in
+
+This topic tells you how to configure the Apps CLI plug-in.
 
 ## <a id='changing-clusters'></a>Changing clusters with --context
 
@@ -30,21 +32,20 @@ There are two approaches to overriding the default kubeconfig:
    continue to use the default context set in the kubeconfig.
 
 For more information about kubeconfig, see 
-[Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 in the Kubernetes documentation.
 
 ## Suppressing color with --no-color flag
 
-Most of Tanzu Apps Plug-in commands have emojis and colored output with the intention to be more user-friendly.
+Most Tanzu Apps Plug-in commands have emojis and colored output. In some cases, color, emojis,
+and other characters are not needed, such as for automated scripting, or where the misinterpretation
+of these features by a terminal could result in a poor user experience. Use the `--no-color` flag
+to suppress color, emojis, and animation.
 
-When color, emojis and other characters are unnecessary (e.g. automated scripting) or in cases where
-the misinterpretation of these features by a terminal results in a sub-optimal user experience, these
-features can be suppressed by using the `--no-color` flag.
+The following example creates a workload with code from `--local-path`, the `--no-color`
+flag is used to suppress the emojis and animated upload progress bar:
 
-As an example, a workload created via code from local path typically shows emojis and an animated upload
-progress bar, these special features can be suppressed via `--no-color`.
-
-```bash
+```console
 tanzu apps workload apply my-workload --local-path path/to/my/source --type web --no-color
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
 Publishing source in "path/to/my/source" to "local-source-proxy.tap-local-source-system.svc.cluster.local/source:default-my-workload""...
@@ -67,7 +68,7 @@ Create workload:
 ? Do you want to create this workload? [yN]:
 ```
 
-The suppression of color, emojis, and animation can be persisted across commands by setting the 
+Persist the suppression of color, emojis, and animation across commands by setting the
 `NO_COLOR` environment variable.
 
 ```bash
@@ -76,21 +77,21 @@ export NO_COLOR=true
 
 ## .tanzuignore file
 
-The optional `.tanzuignore` file at the root of your project directory can be used to indicate which
-files and/or directories in your project are not required to build or run your application (e.g.
+Use the optional `.tanzuignore` file at the root of your project directory to indicate which
+files or directories in your project are not required to build or run your application (e.g.
 README.md, .git, docs, etc...). Including such files in your .`tanzuignore` can provide the following
 benefits:
 
-1. Items included in .tanzuignore will not be uploaded when you upload your source code (thereby avoiding
-  unnecessary consumption of resources).
-2. When iterating on code with the --live-update flag enabled, changes to directories or files listed
-  in .tanzuignore will not trigger the automatic re-deployment of source code.
+1. Items included in the `.tanzuignore` file are not uploaded when you upload your source code. This
+helps to avoid unnecessary consumption of resources.
+2. When iterating on code with the `--live-update` flag enabled, changes to directories or files listed
+  in the `.tanzuignore` file do not trigger the automatic re-deployment of source code.
 
 The following are some guidelines for the `.tanzuignore` file:
 
 - The `.tanzuignore` file should include a reference to itself, as it provides no value when deployed.
 - Directories must not end with the system separator `/`, or `\`.
-- Comments using hashtag `#` can be included.
+- Add comments using hashtag `#`.
 - If the `.tanzuignore` file contains files or directories that are not found in the source code,
   they are ignored.
 
@@ -120,7 +121,7 @@ Below is a list of each of the flags with their environment variable equivalent 
 
 For example:
 
-```bash
+```console
 tanzu apps workload apply WORKLOAD \
 --local-path PATH-TO-REPO --source-image registry.url.nip.io/PACKAGE/IMAGE \
 --type web --registry-ca-cert path/to/ca/cert.nip.io.crt \
@@ -128,7 +129,7 @@ tanzu apps workload apply WORKLOAD \
 --registry-password PASSWORD
 ```
 
-Alternatively, the same command can be run as:
+Alternatively, run as:
 
 ```bash
 export TANZU_APPS_REGISTRY_CA_CERT=path/to/ca/cert.nip.io.crt
@@ -140,8 +141,8 @@ tanzu apps workload apply WORKLOAD \
 --source-image registry.url.nip.io/PACKAGE/IMAGE
 ```
 
-`--type` is a flag which specifies the type of workload that's being created. The workload type value
-can be persisted across commands by setting the `TANZU_APPS_TYPE` environment variable. The default 
+Use the `--type` flag to specify the type of workload. Persist the workload type value
+across commands by setting the `TANZU_APPS_TYPE` environment variable. The default 
 value of `web` is set automatically if no `--type` flag or `TANZU_APPS_TYPE` value is provided.
 
 ```bash
