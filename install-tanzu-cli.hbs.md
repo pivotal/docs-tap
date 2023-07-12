@@ -183,7 +183,7 @@ Install from a binary release
        2. Download the Tanzu CLI binary for your operating system, for example, `tanzu-cli-windows-amd64.tar.gz`.
        3. Follow [the binary installation instructions](#binary-installation-instructions)
 
-   2. Use an extraction tool to unpack the binary file:
+  2. Use an extraction tool to unpack the binary file:
 
         * **macOS:**
 
@@ -201,7 +201,7 @@ Install from a binary release
 
            Use the Windows extractor tool to unzip `tanzu-cli-windows-amd64.zip`.
 
-   3. Make the CLI available to the system:
+  3. Make the CLI available to the system:
 
         * **macOS:**
 
@@ -230,7 +230,7 @@ Install from a binary release
            7. Select the `Path` row under **System variables**, and click **Edit**.
            8. Click **New** to add a new row and enter the path to the `tanzu` CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
 
-   4. Check that the correct version of the CLI is properly installed.
+  4. Check that the correct version of the CLI is properly installed.
 
         ```console
         tanzu version
