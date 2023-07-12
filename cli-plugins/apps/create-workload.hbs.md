@@ -9,11 +9,11 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install [kubectl](https://kubernetes.io/docs/tasks/tools/).
 - Install Tanzu Application Platform components on a Kubernetes cluster. See [Installing Tanzu
   Application Platform](../../install-intro.hbs.md).
-- [Set your kubeconfig context](tutorials.hbs.md#changing-clusters) to the prepared cluster `kubectl
+- [Set your kubeconfig context](./getting-started/configuration.hbs.md#changing-clusters) to the prepared cluster `kubectl
   config use-context CONTEXT_NAME`.
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and
   plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
-- Install the Apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
+- Install the Apps plug-in. See the [Install Apps plug-in](./getting-started/installation.hbs.md).
 - [Set up developer namespaces to use your installed packages](../../install-online/set-up-namespaces.hbs.md).
 - For more information about the values you can provide when creating and managing the life cycle of
   workloads, see [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/)
@@ -250,7 +250,7 @@ You can verify workload details and status, add environment variables, export de
 
    To get workload logs, use `tanzu apps workload tail`.
 
-   For more information, see [debug workload section](debug-workload.hbs.md).
+   For more information, see [debug workload section](./troubleshooting/troubleshooting.hbs.md).
 
 2. To add environment variables, run:
 

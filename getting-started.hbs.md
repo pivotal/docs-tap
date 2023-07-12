@@ -15,7 +15,7 @@ See [Installing Tanzu Application Platform](install-intro.md).
 See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md).
 
 - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
-See [Changing clusters](cli-plugins/apps/tutorials.hbs.md#changing-clusters).
+See [Changing clusters](cli-plugins/apps/getting-started/configuration.hbs.md#changing-clusters).
 
 - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
 See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
