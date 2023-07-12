@@ -240,7 +240,7 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plugins
 
-For online installation, rRun the following command to install the CLI plugins required
+For online installation, run the following command to install the CLI plugins required
 for Tanzu Application Platform:
 
 ```console
