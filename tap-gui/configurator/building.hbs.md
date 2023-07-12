@@ -60,8 +60,8 @@ To prepare your Configurator configuration file:
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
       npm registry
 
-    The following example adds the sample `hello-world` plug-in and the `plugin-gitlab-loblaw` plug-in that are
-    available in the internal package's registry:
+    The following example adds the sample `hello-world` plug-in and the `plugin-gitlab-loblaw` plug-in.
+    Both are available in the internal package's registry:
 
     ```yaml
     app:
