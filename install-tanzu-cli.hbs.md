@@ -160,7 +160,7 @@ Install using a package manager
       ```
 
 Install from a binary release
-: You can download the Tanzu CLI binary from the following locations:
+: Complete the following steps:
   
   1. Download the Tanzu CLI binary from one of the following locations:
      * **VMware Tanzu Network**
@@ -230,7 +230,7 @@ Install from a binary release
            7. Select the `Path` row under **System variables**, and click **Edit**.
            8. Click **New** to add a new row and enter the path to the `tanzu` CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
 
-  4. Check that the correct version of the CLI is properly installed.
+  4. Check that the correct version of the CLI is properly installed:
 
         ```console
         tanzu version
@@ -240,17 +240,15 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plugins
 
-**Online installation:**
-
-Run the following command to install the CLI plugins required for Tanzu Application Platform:
+For online installation, rRun the following command to install the CLI plugins required
+for Tanzu Application Platform:
 
 ```console
 tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
 ```
 
-**Air-gapped installation:**
-
-See the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI documentation.
+For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI
+documentation.
 
 ## Next steps
 
