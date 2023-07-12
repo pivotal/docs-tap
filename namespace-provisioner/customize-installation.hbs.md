@@ -39,6 +39,8 @@ the list of developer namespaces:
      sources. If you do not provide a `path`, Namespace Provisioner generates a `path` using `url`
      and `subPath`.
 
+>**Important** The Namespace Provisioner relies on kapp-controller for any tasks involving communication with external services, such as registries or Git repositories. When operating in Air-gapped environments or other scenarios where external services are secured by a Custom CA certificate, it is necessary to configure kapp-controller with the CA certificate data to prevent X.508/X.509 certificate errors. Detailed instructions on how to accomplish this can be found in the [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5) section of the Deploying Cluster Essentials documentation.
+
   If the additional sources contain a resource that is scoped to a specific namespace, it is
   created in that namespace with a modified name that includes the developer namespace name.
   For example, the resource name will be "{resource name}-{developer namespace name}".
@@ -260,8 +262,7 @@ Using GitOps
       subPath: ns-provisioner-samples/gitops-install
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
-
-## Import overlay secrets
+## <a id='import-overlay-secrets'></a> Import overlay secrets
 
 The `overlay_secrets` is a list of secrets that contains [Carvel ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) definitions. These overlays are applied to the resources created by the Namespace Provisioner. If the secrets are located in a different namespace, they are imported to the `namespace-provisioner` namespace.
 

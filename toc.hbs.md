@@ -482,6 +482,7 @@ docs.vmware.com is built.
           - [Work with Private Git Repositories](namespace-provisioner/use-case3.hbs.md)
           - [Customize default resources](namespace-provisioner/use-case4.hbs.md)
           - [Install multiple scanners in the developer namespace](namespace-provisioner/use-case5.hbs.md)
+          - [Apply scanner ScanTemplate overlays on Air-gapped environments](namespace-provisioner/use-case6.hbs.md)
       - [Troubleshoot Namespace Provisioner](namespace-provisioner/troubleshooting.hbs.md)
       - [Reference](namespace-provisioner/reference.hbs.md)
           - [Known limitations and issues](namespace-provisioner/issues-limitations.hbs.md)

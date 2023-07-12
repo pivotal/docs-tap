@@ -3,6 +3,10 @@
 This topic tells you how to troubleshoot Namespace Provisioner in Tanzu Application Platform
 (commonly known as TAP).
 
+## Air-gapped installation
+
+The Namespace Provisioner relies on kapp-controller for any tasks involving communication with external services, such as registries or Git repositories. When operating in Air-gapped environments or other scenarios where external services are secured by a Custom CA certificate, it is necessary to configure kapp-controller with the CA certificate data to prevent X.508/X.509 certificate errors. Detailed instructions on how to accomplish this can be found in the [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5) section of the Deploying Cluster Essentials documentation.
+
 ## View controller logs
 
 To get the logs when using the [controller](about.hbs.md#nsp-controller) workflow, run the following kubectl command:
