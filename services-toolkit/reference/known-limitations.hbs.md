@@ -94,7 +94,7 @@ Explicitly create a ClusterRoleBinding for your user or group to the correspondi
 
 **Description:**
 
-A known issue exists when you install and configure Crossplane Providers while using a custom certificate
+A known issue occurs when you install and configure Crossplane Providers while using a custom certificate
 for your registry.
 The issue prevents the class claims used for dynamic provisioning from reconciling.
 A common symptom of this issue is that class claims indefinitely report a status condition of
@@ -118,26 +118,26 @@ In this example, the Providers are not reporting `INSTALLED=True` or `HEALTHY=Tr
 Therefore, they might be affected by this issue.
 
 This issue occurs because the Providers are installed by Crossplane itself rather than directly by the
-[Crossplane Package](../../crossplane/about.hbs.md).
+Tanzu Application Platform [Crossplane Package](../../crossplane/about.hbs.md).
 CA certificate data configured through the `tap-values.yaml` file is not passed down to Crossplane,
 and therefore it is unable to pull the Provider images.
 
 **Workaround:**
 
-Create a `ConfigMap` with your CA certificate PEM <!-- pem what? -->, and then set `crossplane.registryCaBundleConfig`
-to refer to the `ConfigMap` in `tap-values.yaml`.
-From Tanzu Application Platform v1.6, the Crossplane Package inherits the data configured in
-`shared_cert_data` and this temporary workaround will no longer be needed.
-<!-- should this be shared.ca_cert_data in the tap-values.yaml? -->
+Create a `ConfigMap` with the PEM encoded certificate data for your CA certificate, and then set
+`crossplane.registryCaBundleConfig` to refer to the `ConfigMap` in `tap-values.yaml`.
+
+> **Note** From Tanzu Application Platform v1.6, the Crossplane Package inherits the data configured
+> in `shared.ca_cert_data` of `tap-values.yaml` and this workaround will no longer be needed.
 
 ## <a id="cp-custom-cert-inject"></a>Crossplane Providers cannot communicate with systems using a custom CA
 
 **Description:**
 
-A known issue exists for Crossplane Providers when they need to communicate with systems that
-are set up with a custom CA.
-For example, when the Crossplane Helm Provider uses `releases.helm.crossplane.io` and is trying to pull a
-Helm chart from a registry that uses a custom CA, <!-- clarify if rewording is correct --> you see that:
+A known issue occurs when a Crossplane Provider needs to communicate with systems that are set up
+with a custom CA.
+For example, when the Crossplane Helm Provider uses `releases.helm.crossplane.io` to try to pull a
+Helm chart from a registry that uses a custom CA, you see that:
 
 - The `releases.helm.crossplane.io` never reports the status condition `Ready=True`.
 - The `releases.helm.crossplane.io` shows a certificate verification error for either:
@@ -159,7 +159,7 @@ To confirm whether you are affected by this issue:
     wordpress-example           15.2.5    False    False                                    7m37s
     ```
 
-- Find out more about the reason by running the following command or similar:
+- Find out more about the reason by running the following command, or similar:
 
     ```console
     kubectl get event --namespace default --field-selector involvedObject.name=wordpress-example,involvedObject.kind=Release,type!=Normal | grep -e 'LAST SEEN' -e 'failed to login'
@@ -173,11 +173,11 @@ To confirm whether you are affected by this issue:
     ```
 
 This issue occurs because the Providers are installed by Crossplane itself rather than directly by the
-[Crossplane Package](../../crossplane/about.hbs.md).
+Tanzu Application Platform [Crossplane Package](../../crossplane/about.hbs.md).
 CA certificate data configured through the `tap-values.yaml` file is not passed down to Crossplane
 Providers. Therefore, the Providers are unable to connect to the systems they need to communicate with,
 such as, the Helm Provider connecting to a registry hosting the Helm charts or the Kubernetes Provider
-connecting to a Kubernetes APIServer.
+connecting to a Kubernetes APIServer. This issue might be resolved in a later release.
 
 **Workaround:**
 
@@ -185,11 +185,5 @@ Use admission control that allows you to mutate objects, in this case pods, and 
 CA certificates.
 You can use any system that can mutate objects at admission to mutate the Crossplane Provider pods.
 For example, to inject CA certificates you can use this sample in the [Kyverno documentation].
-
-<!-- From Tanzu Application Platform v1.7, the Crossplane Package will inherit the data configured
-through `shared_cert_data` and configure the Crossplane Providers accordingly.
-<!-- should this be shared.ca_cert_data in the tap-values.yaml?
-This workaround will no longer be needed.
-promising the future? -->
 
 [CaInjectExample]: https://kyverno.io/policies/other/add-certificates-volume/add-certificates-volume/
