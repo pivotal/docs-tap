@@ -3,7 +3,7 @@
 ## Prerequisites
 
 Ensure that you installed or updated the core Tanzu CLI. For more information, see
-[Install Tanzu CLI](/install-tanzu-cli.hbs.md#cli-and-plug-ins).
+[Install Tanzu CLI](/install-tanzu-cli.hbs.md#cli-and-plugin).
 
 ## Install Apps CLI Plug-in
 

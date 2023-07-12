@@ -293,7 +293,7 @@ Platform cluster.
 Using Local Source Proxy
 : The new Local Source Proxy component for TAP allows developers to push their local source code to 
   the registry configured by the Platform operators during TAP installation.
-    Check the Local Source Proxy installation instructions in [install LSP section](/local-source-proxy/install.hbs.md)
+    Check the Local Source Proxy installation instructions in [install LSP section](../../../local-source-proxy/install.hbs.md)
     To create a workload that pushes to an already configured registry through Local Source Proxy, 
     use `--local-path` flag without `--source-image`, like the following example:
 

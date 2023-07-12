@@ -100,7 +100,7 @@ Below are some of the most common issues with an explanation of the possible cau
 
   - **Possible Cause**: The namespace is missing the Git secret for communicating with the private repository
 
-    **Resolution**: For more information, see [Git authentication](/scc/../../../scc/git-auth.hbs.md)
+    **Resolution**: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
 
 ### TemplateRejectedByAPIServer
 
