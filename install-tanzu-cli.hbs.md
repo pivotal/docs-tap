@@ -1,6 +1,6 @@
 # Accept Tanzu Application Platform EULAs and installing Tanzu CLI
 
-This topic describes how to install Tanzu CLI and plugins.
+This topic describes how to install Tanzu CLI and plug-ins.
 
 ## <a id='accept-eulas'></a>Accept the End User License Agreements
 
@@ -72,7 +72,7 @@ To set the Kubernetes cluster context:
 The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
- From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plugins
+ From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plug-ins
 required to interact with Tanzu Application Platform are released and distributed independently
 from Tanzu Application Platform itself.
 
@@ -84,10 +84,10 @@ package manager such as Chocolatey, Homebrew, APT, YUM, and DNF, or it can be in
 binary release.
 
 Basic installation instructions are provided below. For more information including how to install
-the Tanzu CLI and CLI plugins in Internet-restricted environments,
+the Tanzu CLI and CLI plug-ins in Internet-restricted environments,
 see the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html) documentation.
 
-> **Note** If you want to retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` or `C:\Program Files\tanzu` on Windows to a different location before following
+> **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` or `C:\Program Files\tanzu` on Windows to a different location before following
 the steps below.
 
 Install using a package manager
@@ -108,7 +108,7 @@ Install using a package manager
          choco install tanzu-cli
          ```
 
-         The `tanzu-cli` package is part of the main [Chocolatey Community Repository](https://community.chocolatey.org/packages). When a new `tanzu-cli` version is released, it may not be available immediately. If the above command fails, run:
+         The `tanzu-cli` package is part of the main [Chocolatey Community Repository](https://community.chocolatey.org/packages). When a new `tanzu-cli` version is released, it might not be available immediately. If the above command fails, run:
 
 
          ```console
@@ -228,7 +228,7 @@ Install from a binary release
            5. Use Windows Search to search for `env`.
            6. Select **Edit the system environment variables** and click the **Environment Variables** button.
            7. Select the `Path` row under **System variables**, and click **Edit**.
-           8. Click **New** to add a new row and enter the path to the `tanzu` CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
+           8. Click **New** to add a new row and enter the path to the Tanzu CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
 
   4. Check that the correct version of the CLI is properly installed:
 
@@ -238,9 +238,9 @@ Install from a binary release
         ...
         ```
 
-### <a id="install-plugins"></a> Install Tanzu CLI Plugins
+### <a id="install-plugins"></a> Install Tanzu CLI Plug-ins
 
-For online installation, run the following command to install the CLI plugins required
+For online installation, run the following command to install the CLI plug-ins required
 for Tanzu Application Platform:
 
 ```console
