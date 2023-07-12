@@ -100,7 +100,7 @@ Below are some of the most common issues with an explanation of the possible cau
 
   - **Possible Cause**: The namespace is missing the Git secret for communicating with the private repository
 
-    **Resolution**: For more information, see [Git authentication](/scc/git-auth.hbs.md)
+    **Resolution**: For more information, see [Git authentication](/scc/../../../scc/git-auth.hbs.md)
 
 ### TemplateRejectedByAPIServer
 
@@ -114,7 +114,7 @@ Below are some of the most common issues with an explanation of the possible cau
     to create objects that are stamped out by the supply chain.
 
     **Resolution**: Set up the
-    [Set up developer namespaces to use your installed packages](/scst-store/developer-namespace-setup.hbs.md)
+    [Set up developer namespaces to use your installed packages](../../../scst-store/developer-namespace-setup.hbs.md)
     with the required service account and permissions.
 
 ## <a id="steps-failure"></a> Review supply chain steps
@@ -186,4 +186,4 @@ This might mean that the commit does not belong to the specified branch or does 
 
 ## <a id="additional-tsg"></a>Additional Troubleshooting References
 
-For more workload troubleshooting tips, see [Troubleshoot using Tanzu Application Platform page](/troubleshooting-tap/troubleshoot-using-tap.hbs.md).
+For more workload troubleshooting tips, see [Troubleshoot using Tanzu Application Platform page](../../../troubleshooting-tap/troubleshoot-using-tap.hbs.md).

@@ -1,6 +1,6 @@
 # Create/Update a Workload
 
-Refer to the [Supply Chain How-to-guides](/scc/scc-how-to.hbs.md) for different type of 
+Refer to the [Supply Chain How-to-guides](../../../scc/scc-how-to.hbs.md) for different type of 
 workload creation.
 
 ## <a id='create-yaml-url'></a> Create workload from a workload.yaml file or from a URL
@@ -113,7 +113,7 @@ tanzu apps workload create --file https://raw.githubusercontent.com/vmware-tanzu
 ## <a id='create-workload-git'></a> Create workload from Git source
 
 Use the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit` flags to create a 
-workload from an existing Git repository. This allows the [supply chain](/scc/about.hbs.md) 
+workload from an existing Git repository. This allows the [supply chain](../../../scc/about.hbs.md) 
 to get the source from the given repository to deploy the application.
 
 To create a named workload and specify a Git source code location, run:
@@ -333,7 +333,7 @@ Using Source Image
      Both the cluster and the developer’s machine must be configured to properly provide credentials
      for accessing the container image registry where the local source code is published to. More
      information on authentication requirements can be found in the Supply chain documentation for 
-     [Building from Local Source](/scc/building-from-source.hbs.md#authentication)
+     [Building from Local Source](../../../scc/building-from-source.hbs.md#authentication)
      To create a workload using a source image, use `--local-path` flag alongside `--source-image`,
      like the following example:
 
@@ -496,7 +496,7 @@ To get status: "tanzu apps workload get tanzu-java-web-app"
 ## <a id='create-workload-image'></a> Create workload from Pre-built image
 
 Create a workload from an existing registry image by providing the reference to that image through
-the `--image` flag. The [supply chain](/scc/about.hbs.md) references the provided registry
+the `--image` flag. The [supply chain](../../../scc/about.hbs.md) references the provided registry
 image when the workload is deployed.
 
 For example:
@@ -518,15 +518,15 @@ tanzu apps workload create petclinic-image --image springcommunity/spring-framew
 ```
 
 Check the requirements to use a pre-built image in supply chain
-[pre-built images requirements](/scc/pre-built-image.hbs.md#requirements-for-prebuilt-images)
-and how to [configure the workload](/scc/pre-built-image.hbs.md#configure-your-workload-to-use-a-prebuilt-image)
+[pre-built images requirements](../../../scc/pre-built-image.hbs.md#requirements-for-prebuilt-images)
+and how to [configure the workload](../../../scc/pre-built-image.hbs.md#configure-your-workload-to-use-a-prebuilt-image)
 in order to use it.
 
 ### <a id="create-workload-maven"></a> Create a workload from Maven repository artifact
 
 Create a workload from a Maven repository
-artifact ([Source-Controller](/source-controller/about.hbs.md)) by setting some
-specific properties as YAML parameters in the workload when using the [supply chain](/scc/about.hbs.md).
+artifact ([Source-Controller](../../../source-controller/about.hbs.md)) by setting some
+specific properties as YAML parameters in the workload when using the [supply chain](../../../scc/about.hbs.md).
 
 The Maven repository URL is set when the supply chain is created.
 
@@ -563,7 +563,7 @@ tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"he
 ```
 
 To configure the credentials that the MavenArtifact expects for authentication,
-check the [Maven Repository Secret](/scc/building-from-source.hbs.md#maven-repository-secret)
+check the [Maven Repository Secret](../../../scc/building-from-source.hbs.md#maven-repository-secret)
 section in supply chain guide.
 
 ### <a id="create-workload-dockerfile"></a> Create a workload from Dockerfile
@@ -572,4 +572,4 @@ For any source-based supply chains, when you specify the new dockerfile paramete
 the builds switch from using Kpack to using Kaniko. Source-based supply chains are supply chains that
 don’t take a pre-built image. Kaniko is an open-source tool for building container images from a 
 Dockerfile without running Docker inside a container. For more information, refer to the 
-Supply chain documentation on [Dockerfile-based builds](/scc/dockerfile-based-builds.hbs.md).
+Supply chain documentation on [Dockerfile-based builds](../../../scc/dockerfile-based-builds.hbs.md).
