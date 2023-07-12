@@ -1,6 +1,6 @@
-# Use External PostgreSQL database for Supply Chain Security Tools - Store
+# Use external PostgreSQL database for Supply Chain Security Tools - Store
 
-This topic describes how you can configure and use your External PostgreSQL database for Supply Chain Security Tools (SCST) - Store.
+This topic describes how you can configure and use your external PostgreSQL database for Supply Chain Security Tools (SCST) - Store.
 
 ## <a id='prereqExtrenalDB'></a>Prerequisites
 

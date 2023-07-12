@@ -1,4 +1,4 @@
-# Supply Chain Security Tools for Tanzu – Store
+# Overview of Supply Chain Security Tools for Tanzu – Store
 
 This topic gives you an overview of Supply Chain Security Tools (SCST) – Store.
 
