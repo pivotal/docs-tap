@@ -29,17 +29,28 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 1. Set up environment variables for installation use by running:
 
     ```console
+    # Set tanzunet as the source registry to copy the TAP packages from
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # User’s registry where TAP packages will be copied to
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
     export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
-    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
+    # Note: Above IMGPKG_* envs are being used by imgpkg command only
+
+    # Registry to fetch TAP Packages from
+    export INSTALL_REGISTRY_USERNAME=”${IMPKG_REGISTRY_USERNAME_1}”
+    export INSTALL_REGISTRY_PASSWORD=”${IMPKG_REGISTRY_PASSWORD_1}”
+    export INSTALL_REGISTRY_HOSTNAME=”${IMPKG_REGISTRY_HOSTNAME_1}”
     export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=TARGET-REPOSITORY
+
+    # User’s registry where TAP will store built images and as well as the tanzu build -service dependencies. Ensure these credentials have write permission.
+    export MY_REGISTRY_USERNAME=”${IMPKG_REGISTRY_USERNAME_1}” 
+    export MY_REGISTRY_PASSWORD=”${IMPKG_REGISTRY_PASSWORD_1}” 
+    export MY_REGISTRY_HOSTNAME=”${IMPKG_REGISTRY_HOSTNAME_1}”
     ```
 
     Where:
@@ -73,16 +84,36 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
+<details>
+
+<summary>If you do not want to relocate images</summary>
+[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+
+```console
+# Registry to fetch TAP Packages from.
+export INSTALL_REGISTRY_USERNAME=TANZUNET_REGISTRY_USERNAME
+export INSTALL_REGISTRY_PASSWORD=TANZUNET_REGISTRY_PASSWORD
+export INSTALL_REGISTRY_HOSTNAME=”registry.tanzu.vmware.com”
+export TAP_VERSION=VERSION-NUMBER
+export INSTALL_REPO="tanzu-application-platform"
+
+# User’s registry where TAP will store built images and as well as the tanzu build -service dependencies. Ensure these credentials have write permission.
+export MY_REGISTRY_USERNAME=MY-REGISTRY-USER
+export MY_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+export MY_REGISTRY_HOSTNAME=MY-REGISTRY
+```
+Where:
+
+- `TANZUNET_REGISTRY_USERNAME` and `TANZUNET_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+- `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+- `MY_REGISTRY_HOSTNAME` is your own container registry.
+- `MY_REGISTRY_USERNAME` is the user with write access to `MY_REGISTRY_HOSTNAME`.
+- `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USERNAME`.
+</details>
+
 ## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
 
 Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
-
-[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
-
-- `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
-- `INSTALL_REPO` is `tanzu-application-platform`
-- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
-- `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
 
@@ -103,13 +134,13 @@ To add the Tanzu Application Platform package repository to your cluster:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. Create a internal registry secret by running:
+1. Create a secret for accessing user’s registry by running:
 
     ```console
     tanzu secret registry add registry-credentials \
-        --server   ${INSTALL_REGISTRY_HOSTNAME} \
-        --username ${INSTALL_REGISTRY_USERNAME} \
-        --password ${INSTALL_REGISTRY_PASSWORD} \
+        --server   ${MY_REGISTRY_HOSTNAME} \
+        --username ${MY_REGISTRY_USERNAME} \
+        --password ${MY_REGISTRY_PASSWORD} \
         --namespace tap-install \
         --export-to-all-namespaces \
         --yes
