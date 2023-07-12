@@ -29,6 +29,7 @@ Where:
 
 - `local_source_proxy.repository` is required. This is the repository where all your source code
   will be uploaded. Examples:
+
   - Harbor has the form `my-harbor.io/my-project/local-source`.
   - Docker Hub has the form `my-dockerhub-user/local-source` or `index.docker.io/my-user/local-source`.
   - Google Artifact Registry has the form `MY-REGISTRY-REGION-docker.pkg.dev/my-project/local-source/image`.
@@ -200,8 +201,9 @@ local_source_proxy:
 ```
 
 You specify this IAM role in `aws_iam_role_arn` to assign it to the Kubernetes service account that
-the Local Source Proxy server uses. See [Pre-Requisites](./prereqs.hbs.md#prerequisites-for-local-source-proxy)
-for steps to create IAM role and add the ARN to the Kubernetes service account used by Local Source Proxy.
+the Local Source Proxy server uses. For the steps to create an IAM role and add the ARN to the
+Kubernetes service account used by Local Source Proxy, see
+[Prerequisites for Local Source Proxy](prereqs.hbs.md).
 
 Doing this allows the Local Source Proxy server to handle incoming image push requests with the
 appropriate IAM role-based permissions.

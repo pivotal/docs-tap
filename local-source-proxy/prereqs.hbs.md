@@ -78,9 +78,9 @@ is Elastic Container Registry (ECR) or something else.
 Using AWS
 : If you're using Elastic Container Registry as your registry, you require an AWS IAM role ARN
   that possesses the necessary privileges to push and pull artifacts to the ECR repository. If such
-  a role does not exist, you can create one by running:
+  a role does not exist, create one:
 
-    Export these variables:
+    1. Export the variables by running:
 
     ```console
     export AWS_ACCOUNT_ID=012345678901  # Your AWS account ID
@@ -88,10 +88,11 @@ Using AWS
     export EKS_CLUSTER_NAME=tap-on-aws  # The name of your EKS Cluster
     ```
 
-    This script outputs the files and then creates the IAM roles by using the policy documents:
+    2. Output the files, and then use the policy documents to create the IAM roles, by running:
 
     ```console
-    export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+    export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION \
+    --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
 
     cat << EOF > local-source-proxy-trust-policy.json
     {
@@ -159,9 +160,11 @@ Using AWS
     EOF
 
     # Create the TAP Local Source Proxy Role
-    aws iam create-role --role-name tap-local-source-proxy --assume-role-policy-document file://local-source-proxy-trust-policy.json
+    aws iam create-role --role-name tap-local-source-proxy --assume-role-policy-document \
+    file://local-source-proxy-trust-policy.json
     # Attach the Policy to the tap-local-source-proxy Role created above
-    aws iam put-role-policy --role-name tap-local-source-proxy --policy-name tapLocalSourcePolicy --policy-document file://local-source-proxy-policy.json
+    aws iam put-role-policy --role-name tap-local-source-proxy --policy-name tapLocalSourcePolicy \
+    --policy-document file://local-source-proxy-policy.json
     ```
 
 Using a secret with pull privileges only

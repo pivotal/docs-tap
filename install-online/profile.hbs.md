@@ -292,13 +292,13 @@ buildservice:
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
 local_source_proxy:
-  # Takes the value from the `project_path` under `image_registry` section of `shared` by default, but can be overridden by setting a different value.
+  # Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
   repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
   push_secret:
-    # Takes the value from the `secret` section under `image_registry` of `shared` by default, but can be overridden by setting a different value.
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
     name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
     namespace: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE"
-    # When set to `true`, the secret mentioned in this section is automatically exported to local source proxy's namespace.
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
     create_export: true
 
 tap_gui:
@@ -340,38 +340,95 @@ tap_telemetry:
 Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address. It is not required to know the External IP address or set up the DNS record while installing. Installing the Tanzu Application Platform package creates the `tanzu-shared-ingress` and its External IP address. You can create the DNS record after completing the installation.
-- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
-    - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
-    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
-- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
-- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if the distribution is OpenShift and must be used in coordination with `kubernetes_version`. Supported value: `openshift`.
-- `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
-- `SERVER-NAME` is the host name of the registry server. Examples:
-    - Harbor has the form `server: "my-harbor.io"`.
-    - Docker Hub has the form `server: "index.docker.io"`.
-    - Google Cloud Registry has the form `server: "gcr.io"`.
-- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
-Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    - Harbor has the form `repository: "my-project/supply-chain"`.
-    - Docker Hub has the form `repository: "my-dockerhub-user"`.
-    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where developer's local source is uploaded when using Local source proxy for workload creation via Tanzu CLI. If an AWS ECR registry is being used, it is crucial to ensure that the repository already exists, as AWS ECR expects the repository path to be pre-created. This destination is represented as <registry-server>/<repository-path>. For more information, see [Local Source Proxy](../local-source-proxy/install.hbs.md).
-- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow writing/pushing to the `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` repository.
-- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. For more information, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
-- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
-credentials to pull an image from the registry for scanning.
-- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See  [Locating the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565) for more information about identifying the Entitlement Account Number.
+  service's External IP address. It is not required to know the External IP address or set up the
+  DNS record while installing. Installing the Tanzu Application Platform package creates the
+  `tanzu-shared-ingress` and its External IP address. You can create the DNS record after completing
+  the installation.
 
-If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are
+  written to this location. Examples:
+
+  - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+  - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or
+    `kp_default_repository: "index.docker.io/my-user/build-service"`.
+  - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+
+- `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`.
+  You can `docker push` to this location with this credential.
+
+  - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+  - You must create the secret before the installation. For example, you can use the
+    `registry-credentials` secret created earlier.
+
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
+- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if
+  the distribution is OpenShift and must be used in coordination with `kubernetes_version`.
+  Supported value: `openshift`.
+
+- `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in
+  coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes
+  patch version.
+
+- `SERVER-NAME` is the host name of the registry server. Examples:
+
+  - Harbor has the form `server: "my-harbor.io"`.
+  - Docker Hub has the form `server: "index.docker.io"`.
+  - Google Cloud Registry has the form `server: "gcr.io"`.
+
+- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the
+  shared section earlier and AWS ECR registry is used, you must ensure that the
+  `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects
+  the paths to be pre-created. Images are written to `SERVER-NAME/REPO-NAME/workload-name`.
+  Examples:
+
+  - Harbor has the form `repository: "my-project/supply-chain"`.
+  - Docker Hub has the form `repository: "my-dockerhub-user"`.
+  - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where the developer's local source is uploaded when using
+  Tanzu CLI to use Local Source Proxy for workload creation.
+
+  If an AWS ECR registry is being used, ensure that the repository already exists.
+  AWS ECR expects the repository path to already exist. This destination is represented as
+  `REGISTRY-SERVER/REPOSITORY-PATH`. For more information, see
+  [Install Local Source Proxy](../local-source-proxy/install.hbs.md).
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow
+  pushing to the `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` repository.
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
+  `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
+
+- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch
+  source code from and push configuration to. This field is only required if you use a private
+  repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more
+  information.
+
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download
+  either a blank or populated catalog file from the
+  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
+  Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git
+  infrastructure.
+
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the
+  namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to
+  run in this namespace. If there are multiple developer namespaces, use
+  `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To
+  install Grype in multiple namespaces, use a namespace provisioner. For more information, see
+  [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to
+  pull an image from the registry for scanning.
+
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN),
+  which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry
+  uses this number to identify data that belongs to a particular customers and prepare usage
+  reports. For more information about identifying the Entitlement Account Number, see
+  [Locating the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565).
+
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under
+the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform
+component packages inherit that value by default.
 
 If you use AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
