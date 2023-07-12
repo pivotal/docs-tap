@@ -536,8 +536,10 @@ This release has the following known issues, listed by component and area.
 
 - Any workloads created by using a Custom Resource Definition (CRD) might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
+
 - [Supply Chain Security Tools - Scan 2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
-  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI
+  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI.
+
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
   `tap-values.yaml`. For more information, see
   [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
