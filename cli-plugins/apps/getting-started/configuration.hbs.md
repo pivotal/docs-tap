@@ -5,8 +5,8 @@ This topic tells you how to configure the Apps CLI plug-in.
 ## <a id='changing-clusters'></a>Changing clusters with --context
 
 The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
-When you run a `tanzu apps` command, the plug-in uses the default context that is defined in that
-kubeconfig file (located by default at `HOME/.kube/config`).
+When you run a `tanzu apps` command, the Apps CLI plug-in uses the default context.
+The default context is defined in the kubeconfig file located by default in: `HOME/.kube/config`.
 
 There are two ways to change the target cluster:
 
@@ -22,18 +22,17 @@ There are two ways to change the target cluster:
 
 There are two approaches to overriding the default kubeconfig:
 
-1. Set the environment variable `KUBECONFIG=PATH` to change the kubeconfig the Apps CLI plug-in will
-   reference. All subsequent `tanzu apps` commands reference the non-default kubeconfig assigned to 
-   the environment variable.
+1. To change the kubeconfig the Apps CLI plug-in will
+   reference, set the environment variable `KUBECONFIG=PATH` . All subsequent `tanzu apps` commands
+   reference the non-default kubeconfig assigned to the environment variable.
 
 2. Include the  `--kubeconfig path` flag when running any `tanzu apps` command.
 
    >**Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTEXT-NAME` flag
    continue to use the default context set in the kubeconfig.
 
-For more information about kubeconfig, see 
-[Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
-in the Kubernetes documentation.
+For more information about kubeconfig, see the
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 ## Suppressing color with --no-color flag
 
@@ -78,8 +77,8 @@ export NO_COLOR=true
 ## .tanzuignore file
 
 Use the optional `.tanzuignore` file at the root of your project directory to indicate which
-files or directories in your project are not required to build or run your application (e.g.
-README.md, .git, docs, etc...). Including such files in your .`tanzuignore` can provide the following
+files or directories in your project are not required to build or run your application such as
+`README.md`, .git, or docs. Including these files in your .`tanzuignore` provides the following
 benefits:
 
 1. Items included in the `.tanzuignore` file are not uploaded when you upload your source code. This
@@ -107,11 +106,11 @@ this-is-a-file.ext
 
 ## <a id='registry-flags-env-vars'></a> Registry flags and environment variables
 
-A user can either trust a custom certificate on their system or pass the path to the certificate via
-flags (environment variables can also be set to avoid having to pass the flags/values for every
-command incantation),
+You can either trust a custom certificate on a system or pass the path to the certificate via
+flags. Environment variables can also be set to avoid having to pass the flags and values for every
+command incantation.
 
-Below is a list of each of the flags with their environment variable equivalent in parenthesis:
+Below is a list of each of the flags with the corresponding environment variable equivalent in parenthesis:
 
 - `--registry-ca-cert`: This is the path of the self-signed certificate needed for the custom or 
   private registry (`TANZU_APPS_REGISTRY_CA_CERT`).

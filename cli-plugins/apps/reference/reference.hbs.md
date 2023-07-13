@@ -9,4 +9,4 @@ The reference section contains the following topics:
   - [tanzu apps workload list](./workload-list.hbs.md)
   - [tanzu apps workload tail](./workload-tail.hbs.md)
   - [tanzu apps workload delete](./workload-delete.hbs.md)
-  - [tanzu apps workload create (and) apply](./workload-create-apply.hbs.md)
+  - [tanzu apps workload create and apply](./workload-create-apply.hbs.md)
