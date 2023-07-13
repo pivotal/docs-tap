@@ -88,7 +88,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 <summary>If you do not want to relocate images</summary>
 
-<p><a href="#relocate-images">Relocate images to a registry</a> is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:</p>
+<p><a href="#relocate-images">Relocate images to a registry</a> is strongly recommended but not required for installation. If you skip that step, you can run the following commands to set Tanzu Network as the source of the OCI images:</p>
 
 <pre><code class="lang-console">
 # The registry from which the Tanzu Application Platform package is retrieved.
