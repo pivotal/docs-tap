@@ -1,20 +1,21 @@
 # Troubleshooting Workloads
 
+This topic tells you how to use the Apps CLI to troubleshoot workloads in Tanzu Application Platform (commonly known as TAP).
 ## <a id="check-build-logs"></a> Check build logs
 
-After a workload is created, users can tail the workload to view the build and runtime logs.
+After a workload is created, tail the workload to view the build and runtime logs.
 
-Logs can be checked by running:
+Run:
 
-```bash
-tanzu apps workload tail pet-clinic --since 10m --timestamp
+```console
+tanzu apps workload tail WORKLOAD --since 10m --timestamp
  ```
 
 Where:
 
-- `pet-clinic` is the name of the workload.
-- `--since` (optional) the amount of time to go back to begin streaming logs. The default is 1 second.
-- `--timestamp` (optional) prints the timestamp with each log entry.
+- `WORKLOAD` is the name of the workload.
+- `--since` is optional.The amount of time to go back to begin streaming logs. The default is 1 second.
+- `--timestamp` is optional. Prints the timestamp with each log entry.
 
 ## <a id="workload-status"></a> Get the workload status and details
 
@@ -22,19 +23,19 @@ After the workload build process is complete, a Knative service can be created t
 Workload details can be viewed at any time during the process. Some details, such as the workload
 URL, are only available after the workload is running.
 
-To check the workload details, run:
+Run:
 
-```bash
-tanzu apps workload get pet-clinic
+```console
+tanzu apps workload get WORKLOAD
 ```
 
 Where:
 
-`pet-clinic` is the name of the workload to be checked.
+`WORKLOAD` is the name of the workload to be checked.
 
 Now the workload should be in a running state. When the workload is created, `tanzu apps workload get`
-includes the URL for the running workload. Some terminals allow to `ctrl`+click the URL to
-view it. The URL can also be copy pasted into a web browser to see the application.
+includes the URL for the running workload. In some terminals, you can **Ctrl+click** the URL to
+view it. You can also copy the URL into a web browser to see the application.
 
 ## <a id="common-workload-errors"></a> Common workload errors
 
@@ -44,9 +45,9 @@ There are known errors that cause the workload to enter an error or unknown stat
 Look at the supply chain or delivery steps for status and review the messages section for clues when
 the workload appears to be having issues.
 
-Below are some of the most common issues with an explanation of the possible cause:
-
 ### Local Path Development Error Cases
+
+The section describes the cause and resolution for some of the most common issues.
 
 - **Message**: Writing `registry/project/repo/workload:latest`: Writing image: Unexpected status code
   *401 Unauthorized* (HEAD responses have no body, use GET for details)
@@ -78,7 +79,7 @@ Below are some of the most common issues with an explanation of the possible cau
     supply chain available on the cluster. Apply any missing labels to a workload by using
     `tanzu apps workload apply --label required-label-name=required-label-value`. For example:
 
-    ```bash
+    ```console
     tanzu apps workload apply workload-name —-type web
     # or
     tanzu apps workload apply workload-name --label apps.tanzu.vmware.com/workload-type=web
@@ -119,12 +120,12 @@ Below are some of the most common issues with an explanation of the possible cau
 
 ## <a id="steps-failure"></a> Review supply chain steps
 
-After a workload is created with the `tanzu apps workload create (or) apply` command,
-the `tanzu apps workload get` command can be run to display the current condition of each supply chain.
+After a workload is created with the `tanzu apps workload create ` or `tanzu apps workload apply`
+command, run the `tanzu apps workload get` command to display the current condition of each supply chain.
 
 For example:
 
-```bash
+```console
 ...
 📦 Supply Chain
    name:   source-to-url
@@ -152,32 +153,32 @@ For example:
 
 The `Supply Chain` section displays the supply chain steps associated with the workload.
 If a step fails, the `READY` column value is `Unknown` or `False`, and
-the `HEALTHY` column value is `False`. If there is a resource in `Unknown` or `False` status,
-it can be inspected with:
+the `HEALTHY` column value is `False`. If there a resource is in the `Unknown` or `False` status,
+inspect it with:
 
-```bash
+```console
 kubectl describe RESOURCE-NAME
 ```
 
-Where `RESOURCE-NAME` refers to the name of the stamped out resource, displayed in `RESOURCE` column.
+Where `RESOURCE-NAME` is the name of the stamped out resource, displayed in the `RESOURCE` column.
 
 For example, if `tanzu apps workload get` command returns this resource:
 
-```bash
+```console
 NAME               READY   HEALTHY   UPDATED   RESOURCE
 source-provider    False   False     3h12m     gitrepositories.source.toolkit.fluxcd.io/spring-petclinic
 ```
 
 The resource can be checked with:
 
-```bash
+```console
 kubectl describe gitrepositories.source.toolkit.fluxcd.io/spring-petclinic
 ```
 
-The `Messages` section might give a hint as to what went wrong in the process.
+The `Messages` section might give a hint about what went wrong in the process.
 For example, a message similar to the following is shown:
 
-```bash
+```console
 💬 Messages
    Workload [HealthyConditionRule]:   failed to checkout and determine revision: failed to resolve commit object for '425ae9a2a2f84d195a9f3862668e8b2abf81418a': object not found
 ```

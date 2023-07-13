@@ -143,7 +143,7 @@ docs.vmware.com is built.
                     - [Install Apps CLI plug-in](cli-plugins/apps/getting-started/installation.hbs.md)
                     - [Configure Apps CLI plug-in](cli-plugins/apps/getting-started/configuration.hbs.md)
                 - [Tutorials](cli-plugins/apps/tutorials/tutorials.hbs.md)
-                    - [Create/Update a workload](cli-plugins/apps/tutorials/create-update-workload.hbs.md)
+                    - [Create or update a workload](cli-plugins/apps/tutorials/create-update-workload.hbs.md)
                     - [Get Workload Status](cli-plugins/apps/tutorials/get-workload-status.hbs.md)
                     - [Delete a Workload](cli-plugins/apps/tutorials/delete-workload.hbs.md)
                 - [How-to-Guides](cli-plugins/apps/how-to-guides/how-to-guides.hbs.md)
