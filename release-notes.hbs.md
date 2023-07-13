@@ -42,7 +42,10 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-1-appacc'></a> Application Accelerator
 
-- The Application Accelerator plug-in for IntelliJ is now GA on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). The plug-in for IntelliJ now supports Git repo creation and dynamic options and embeds telemetry and bootstrapping provenance. For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
+- The Application Accelerator plug-in for IntelliJ has now reached general availability on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+  The plug-in for IntelliJ now supports Git repository creation and dynamic options and embeds telemetry
+  and bootstrapping provenance. <!-- clarify -->
+  For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
 
 #### <a id='1-6-1-alv'></a> Application Live View
 
