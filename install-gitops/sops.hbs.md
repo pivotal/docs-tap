@@ -99,7 +99,7 @@ Follow these steps to create a new Git repository:
 
     This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH.
 
-2. Initialize a new Git repository:
+1. Initialize a new Git repository:
 
     ```console
     mkdir -p $HOME/tap-gitops
@@ -109,10 +109,7 @@ Follow these steps to create a new Git repository:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-3. Set up the authentication method:
-
-    SSH
-    : Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository. The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository. The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
 
 ## <a id='download-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
