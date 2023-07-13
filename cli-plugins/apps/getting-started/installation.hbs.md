@@ -26,22 +26,23 @@ v0.12.1
 
 From GitHub release:
 : The latest release is in the GitHub repository releases page.
-    Each of these releases has the `Assets` section where the packages for each `system-architecture`
-    are placed.
 
-1. Download the binary executable file `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`:
+  Each of these releases has the `Assets` section where the packages for each `system-architecture`
+  are placed.
 
-    ```bash
-    tar -xvf tanzu-apps-plugin-darwin-amd64-v0.12.1.tar.gz
-    ```
+  1. Download the binary executable file `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`:
 
-2. Run on macOS with plug-in version `0.12.1`:
+       ```bash
+       tar -xvf tanzu-apps-plugin-darwin-amd64-v0.12.1.tar.gz
+       ```
 
-```console
-tanzu plugin install apps \
---local ./tanzu-apps-plugin-darwin-amd64-v0.12.1/darwin/amd64 \
---version v0.12.1
-```
+  2. Run on macOS with plug-in version `0.12.1`:
+
+        ```console
+        tanzu plugin install apps \
+        --local ./tanzu-apps-plugin-darwin-amd64-v0.12.1/darwin/amd64 \
+        --version v0.12.1
+        ```
 
 ## Uninstalling Apps CLI Plug-in
 
