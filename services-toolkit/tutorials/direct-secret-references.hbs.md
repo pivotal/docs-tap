@@ -75,6 +75,8 @@ Before you can follow this tutorial, you must have:
     kubectl apply -f external-azure-db-binding-compatible.yaml
     ```
 
+    If you are using a Multicluster Tanzu Application Platform topology, then you will need to apply the YAML file to all Run clusters.
+
 3. In a file named `stk-secret-reader.yaml`, grant sufficient Role-Based Access Control (RBAC)
    permissions to permit Services Toolkit to read the secrets specified by the class:
 
@@ -104,6 +106,8 @@ Before you can follow this tutorial, you must have:
     kubectl apply -f stk-secret-reader.yaml
     ```
 
+    If you are using a Multicluster Tanzu Application Platform topology, then you will need to apply the YAML file to all Run clusters.
+
 5. Create a claim for the newly created secret by running:
 
     ```console
@@ -112,6 +116,8 @@ Before you can follow this tutorial, you must have:
       --resource-kind Secret \
       --resource-api-version v1
     ```
+
+    If you are using a Multicluster Tanzu Application Platform topology, then you will need to create the claim on the Build cluster.
 
 6. Obtain the claim reference of the claim by running:
 
@@ -127,6 +133,8 @@ Before you can follow this tutorial, you must have:
     ```
 
     From the output, record the value of `CLAIM REF`.
+
+    If you are using a Multicluster Tanzu Application Platform topology, then you will need to obtain the claim reference on the Build cluster.
 
 7. Create an application workload by running a command similar to the following example:
 
@@ -147,3 +155,5 @@ Before you can follow this tutorial, you must have:
     - `WORKLOAD-NAME` is the name of the application workload. For example, `pet-clinic`.
     - `REFERENCE` is the value of the `CLAIM REF` for the newly created claim in the output of the
     last step.
+
+    If you are using a Multicluster Tanzu Application Platform topology, then you will need to create the application workload on the Build cluster.
