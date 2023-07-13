@@ -1,7 +1,7 @@
 # Install Application Single Sign-On
 
 This topic tells you how to install Application Single Sign-On (commonly called AppSSO) 
-from the Tanzu Application Platform package repository.
+from the Tanzu Application Platform (commonly called TAP) package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
 For more information about profiles, see [Components and installation profiles](../../about-package-profiles.hbs.md).
