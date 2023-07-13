@@ -78,3 +78,13 @@ You can run the following commands to view the Scan-Controller manager logs:
     ```console
     kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
     ```
+
+### <a id="volume-permission-errors"></a> Volume permission error
+
+If you encounter permission error for accessing, opening and writing to the files inside cluster volume such as:
+
+```Console
+unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-scanning": unable to open destination: open /home/app-scanning/.git-credentials: permission denied
+```
+
+Then check that the problamatic step is running with [proper user and group ids](#pod-template-security-context).

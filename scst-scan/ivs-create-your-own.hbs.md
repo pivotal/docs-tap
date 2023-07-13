@@ -44,7 +44,7 @@ To customize an ImageVulnerabilityScan to use your scanner:
     **Note** Do not define `write-certs` or `cred-helper` as step names. These names are already used during scanning.
 
 2. Configure the `scan` step. You must input your scanner specific `image`, `command`, and `args`. For example:
-    
+
     ```yaml
     - name: scan
       image: anchore/grype:latest
@@ -56,8 +56,16 @@ To customize an ImageVulnerabilityScan to use your scanner:
       - --file
       - $(params.scan-results-path)/scan.cdx
     ```
-    
+
     To pass `spec.image` and `scanResults.location` to `args`, you can use `$(params.image)` and `$(params.scan-results-path)`.
+
+    **Note** Since volumes on a tekton pipeline are shared amongst steps, files created by one step should be consumable by the other steps. Therefore the scan controller apply a security context of:
+    ```
+    runAsUser: 65534
+    fsGroup: 65534
+    runAsGroup: 65534
+    ```
+    to `pipelinerun.spec.podTemplate`. The `SCANNER-IMAGE` should be able to run and manipulate files with user and group ids of `65534`.
 
 ## <a id="img-vuln-config-options"></a> Configuration options
 
