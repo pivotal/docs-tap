@@ -3,8 +3,6 @@
 You can install Tanzu Application Platform (commonly known as TAP) on 
 [Amazon Elastic Kubernetes Services (EKS)](https://aws.amazon.com/eks/) by using 
 [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/).
-The outcome of this deployment is similar to the outcome of [Deploying Tanzu Application Platform through AWS Quick Start on Amazon EKS](https://aws.amazon.com/quickstart/architecture/vmware-tanzu-application-platform/), 
-but it provides added flexibility to customize your deployment.
 
 To install, take the following steps.
 
