@@ -134,8 +134,9 @@ To install the API Auto Registration package:
       system: test-installation
       owner: test-installation
       location:
-        path: "/api/v3/openapi.json"
-        baseURL:
+        apiSpec:
+          path: "/api/v3/openapi.json"
+        server:
           url: https://petstore3.swagger.io
     EOF
     ```
