@@ -336,7 +336,7 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2023-06-15T11:28:12.747417620-05:0
 
 ### Using --export flag
 
-A clean workload definition export can be committed to Github or applied to a 
+A clean workload definition export can be committed to GitHub or applied to a 
 different environment without having to make significant edits because the export will only include 
 the fields specified by the developer who created it (only the essence of the developer's intent will
 be preserved for portability).

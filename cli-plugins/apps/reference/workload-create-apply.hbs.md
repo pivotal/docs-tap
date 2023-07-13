@@ -1,15 +1,14 @@
 # tanzu apps workload apply
 
-`tanzu apps workload apply` is a command used to create and update workloads that are deployed in a
+Use the `tanzu apps workload apply` command to create and update workloads that are deployed in a
 cluster through a supply chain.
 
 The `tanzu apps workload apply` and `tanzu apps workload create` commands have the same behavior and
 flags with the following exceptions:
 
-- The `tanzu apps workload create` command fails if a workload with the same name preexists on the 
+- The `tanzu apps workload create` command fails if a workload with the same name preexists on the
   target cluster.
-- The `--update-strategy` flag is *only* supported by `tanzu apps workload apply` (because `create` 
-  doesn't support updating existing workloads).
+- The `--update-strategy` flag is only supported by `tanzu apps workload apply` because `tanzu apps workload create` doesn't support updating existing workloads.
 
 ## Default view
 
@@ -317,8 +316,8 @@ tanzu apps workload apply tanzu-java-web-app --env NAME-
 Sets the workload specification file to create the workload. This comes from any other workload
 specification passed by flags to the command set or overrides what is in the file. Another way to
 use this flag is by using `-` in the command to receive workload definition through stdin.
-<!-- Important: Point to tutorials section instead of create-workload file
-See [Working with YAML Files](../create-workload.hbs.md#yaml-files) for an example. -->
+
+For an example, see [Tutorials](../tutorials/tutorials.hbs.md).
 
 Example
 
@@ -354,18 +353,17 @@ tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-y
 
 ### <a id="apply-git-repo"></a> `--git-repo`
 
-The Git repository from which the workload is created. With this, either `--git-tag`, `--git-commit`,
-`--git-branch` or the three of them can be specified. When setting this flag to empty string, the whole
+The Git repository from which the workload is created. Specify one or more of the following:`--git-tag`, `--git-commit`, or `--git-branch`. If you set this flag to an empty string, the whole
 `spec.source.git` section is removed from workload definition.
 
-For Git source, if all the flags are specified (`--git-tag`, `--git-commit`,
-`--git-branch`) the revision to which the workload will checkout will entirely depend on the source controller.
+For Git source, if all the flags are specified,`--git-tag`, `--git-commit`, and`--git-branch`, the
+revision to which the workload checkouts depends on the source controller.
 
 ### <a id="apply-git-branch"></a> `--git-branch`
 
-The branch in a Git repository from where the workload is created. Commit and tag can also be 
-specified alongside this flag. 
-It can be unset by defining it as empty string when applying a workload (`--git-branch ""`).
+The branch in a Git repository from where the workload is created. You can specify `--git-commit` and
+`--git-tag` with this flag.
+To unset, define as an empty string when applying a workload:`--git-branch ""`.
 
 Example
 
@@ -392,14 +390,14 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 ### <a id="apply-git-tag"></a> `--git-tag`
 
-The tag in a Git repository from which the workload is created. Can be unset by defining it as empty
-string when applying a workload (`--git-tag ""`).
+The tag in a Git repository from which the workload is created.
+To unset, define as an empty string when applying a workload: `--git-tag ""`.
 
 ### <a id="apply-git-commit"></a> `--git-commit`
 
 Commit in Git repository from where the workload is resolved. Either `--git-branch` or `--git-tag`
 can be specified with it too.
-It can be unset by defining it as empty string when applying a workload (`--git-commit ""`).
+To unset, define as an empty string when applying a workload:`--git-commit ""`.
 
 Example
 
@@ -659,7 +657,7 @@ application source. The local path can be a directory, a JAR, a ZIP, or a WAR fi
 compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
 If Java/Spring compiled binary is passed instead of source code, the command takes
-less time to apply the workload since the build pack skips the compiling steps and start uploading
+less time to apply the workload because the build pack skips the compiling steps and start uploading
 the image.
 
 When working with local source code, you can exclude files from the source code to be uploaded within
@@ -764,10 +762,9 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 ### <a id="apply-output"></a> `--output`, `-o`
 
-This flag can be used to retrieve a workload right after it's applied in the specified format 
-(`yaml`, `yml`, `json`). If used with `--yes` flag, all prompts are skipped and it only returns the 
-workload definition. It can also be used with `--wait` or `--tail` flags in order to return the 
-workload with its status.
+Retrieves a workload after it's applied in the specified format; `yaml`, `yml`, `json`. If used with
+the `--yes` flag, all prompts are skipped and it only returns the
+workload definition. Use with the `--wait` or `--tail` flag to return the workload with its status.
 
 Example
 
@@ -830,7 +827,7 @@ status:
 
 ### <a id="apply-param"></a> `--param` / `-p`
 
-Additional parameters to be sent to the supply chain, the value is sent as a string. For complex YAML
+Additional parameters sent to the supply chain, the value is sent as a string. For complex YAML
 and JSON objects use `--param-yaml`.
 
 Example
@@ -1332,9 +1329,11 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 ### <a id="update-strategy-type"></a> `--update-strategy`
 
-Specifies whether the update from file should replace or merge the current workload. The default is merge.
+Specifies whether the update from file should replace or merge the current workload. The default is
+merge.
 
->**Note** This flag is only applicable to the `tanzu apps workload apply` command. It is not applicable to the `tanzu apps workload create` command.
+>**Note** This flag is only applicable to the `tanzu apps workload apply` command. It is not
+applicable to the `tanzu apps workload create` command.
 
 Example
 

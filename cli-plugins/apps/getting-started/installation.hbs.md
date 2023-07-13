@@ -1,4 +1,4 @@
-# Installation
+# Install the Apps CLI plug-in
 
 This topic tells you how to install the Apps CLI plug-in.
 
@@ -24,7 +24,7 @@ tanzu apps version
 v0.12.1
 ```
 
-From Github release:
+From GitHub release:
 : The latest release is in the GitHub repository releases page.
     Each of these releases has the `Assets` section where the packages for each `system-architecture`
     are placed.

@@ -1,10 +1,12 @@
 # tanzu apps workload tail
 
-`tanzu apps workload tail` checks the runtime logs of a workload.
+This topic tells you about the `tanzu apps workload tail` command.
+
+The `tanzu apps workload tail` checks the runtime logs of a workload.
 
 ## Default view
 
-Without timestamp set, workload tail will show the stage where it is and the related log.
+Without timestamp set, `tanzu apps workload tail` shows the stage where it is and the related log.
 
 ```bash
 + spring-pet-clinic-build-1-build-pod › prepare
@@ -35,15 +37,17 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 ...
 ```
 
-## >Workload Tail flags
+## tanzu apps workload tail flags
+
+This section describes the `tanzu apps workload tail` flags.
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail command should stream the logs. The values that the flag can 
-take depend on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, 
+Set the component from which the tail command should stream the logs. The values that the flag can
+take depend on the final deployed pods label `app.kubernetes.io/component`, for example, `build`,
 `run` and, `config-writer`
 
-```bash
+```console
 tanzu apps workload tail pet-clinic --component build
 
 pet-clinic-build-1-build-pod[export] Adding label 'io.buildpacks.project.metadata'
@@ -67,7 +71,7 @@ pet-clinic-build-1-build-pod[export] Adding cache layer 'cache.sbom'
 
 Specifies the namespace where the workload was deployed to get logs from.
 
-```bash
+```console
 tanzu apps workload tail pet-clinic -n development
 
 pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:52.684  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
@@ -86,14 +90,14 @@ pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.231  
 
 Sets the time duration to start reading logs from.
 
-The unit value can be set in seconds (`s`), minutes(`m`) or 
-hours (`h`) in the format `0h0m0s`. You do not need to indicate a `0` duration for a unit
-that is not being expressed (e.g. 1 hour, 0 minutes and 1 seconds should be expressed as
-`1h1s`).
+Set the unit value in seconds `s`, minutes `m` or
+hours `h` in the format `0h0m0s`. You do not need to indicate a `0` duration for a unit
+that is not being set. For example, 1 hour, 0 minutes and 1 seconds should be expressed as
+`1h1s`.
 
 The default value is 1 second `1s`
 
-```bash
+```console
 tanzu apps workload tail pet-clinic --since 1h1s
 
 pet-clinic-config-writer-9fbk6-pod[place-tools] 2022/06/14 16:28:04 Copied /ko-app/entrypoint to /tekton/bin/entrypoint
@@ -124,7 +128,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main]     carto.run/workload-name: pet-c
 
 Adds the timestamp to the beginning of each log message
 
-```bash
+```console
 tanzu apps workload tail pet-clinic -t
 
 pet-clinic-00002-deployment-5cc69cfdc8-t45sc[workload] 2022-06-09T18:10:07.645910625-05:00

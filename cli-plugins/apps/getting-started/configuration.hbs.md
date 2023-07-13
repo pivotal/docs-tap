@@ -42,8 +42,8 @@ and other characters are not needed, such as for automated scripting, or where t
 of these features by a terminal could result in a poor user experience. Use the `--no-color` flag
 to suppress color, emojis, and animation.
 
-The following example creates a workload with code from `--local-path`, the `--no-color`
-flag is used to suppress the emojis and animated upload progress bar:
+The following example creates a workload with code from `--local-path`. The `--no-color`
+flag suppresses the emojis and animated upload progress bar:
 
 ```console
 tanzu apps workload apply my-workload --local-path path/to/my/source --type web --no-color

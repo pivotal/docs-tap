@@ -1,6 +1,6 @@
 # Dependency Matrix
 
-This topic tells you what versions of the Apps CLI are supported for Tanzu Application Platform. 
+This topic tells you what versions of the Tanzu Apps CLI are supported in Tanzu Application Platform.
 
 | Tanzu Application Platform Version   | Apps CLI Version | Required Cartographer Version |
 | ------------- | -------------    | -------------                 |
@@ -11,7 +11,7 @@ This topic tells you what versions of the Apps CLI are supported for Tanzu Appli
 
 ## Check Cartographer version
 
-To see the Cartographer version installed in the cluster, check it with:
+To see the Cartographer version installed in the cluster, run:
 
 ```console
 kubectl get -n tap-install packageinstalls.packaging.carvel.dev cartographer
