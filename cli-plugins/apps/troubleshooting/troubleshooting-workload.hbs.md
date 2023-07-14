@@ -87,21 +87,21 @@ The section describes the cause and resolution for some of the most common issue
 
 ### MissingValueAtPath
 
-- **Message**: Waiting to read value `[.status.artifact.url]` from resource
-    gitrepository.source.toolkit.fluxcd.io  in namespace `[ns]`
+Message: Waiting to read value `[.status.artifact.url]` from resource 
+gitrepository.source.toolkit.fluxcd.io  in namespace `[ns]`
 
-  - **Possible Cause**: The Git `url/tag/branch/commit` parameters passed in the workload are not valid.
+Possible Cause 1: The Git `url/tag/branch/commit` parameters passed in the workload are not valid.
 
-    **Resolution**: Fix the invalid Git parameters by using `tanzu apps workload apply`
+Resolution 1: Fix the invalid Git parameters by using `tanzu apps workload apply`
 
-  - **Possible Cause**: The Git repository is not accessible from the cluster
+Possible Cause 2: The Git repository is not accessible from the cluster
 
-    **Resolution**: Configure the cluster networking or the Git repository networking so that they can
+Resolution 2: Configure the cluster networking or the Git repository networking so that they can
     communicate with each other.
 
-  - **Possible Cause**: The namespace is missing the Git secret for communicating with the private repository
+Possible Cause 3: The namespace is missing the Git secret for communicating with the private repository
 
-    **Resolution**: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
+Resolution 3: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
 
 ### TemplateRejectedByAPIServer
 

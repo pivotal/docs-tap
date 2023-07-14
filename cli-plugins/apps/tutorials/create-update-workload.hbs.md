@@ -7,6 +7,7 @@ For more information about the different types of workload creation, see [Supply
 ## <a id='create-yaml-url'></a> Create a workload from a `workload.yaml` file or from a URL
 
 You can create a workload from a `workload.yaml` file or from a URL.
+
 ### <a id='workload-from-yaml'></a> Create a workload from a YAML file
 
 In many cases, workload life cycles are managed through CLI commands. However, there might be cases
@@ -318,8 +319,8 @@ Using Local Source Proxy
   ❓ Do you want to create this workload? [yN]: 
   ```
 
-  >**Note** A workload created using Local Source Proxy is easily recognizable because it has the
-  > `local-source-proxy.apps.tanzu.vmware.com` annotation with a value the same as the `spec.source.image` field.
+    >**Note** A workload created using Local Source Proxy is easily recognizable because it has the
+    > `local-source-proxy.apps.tanzu.vmware.com` annotation with a value the same as the `spec.source.image` field.
 
 Using Source Image
 : If the Local Source Proxy component is not installed, upload your local source
@@ -330,27 +331,27 @@ Using Source Image
      To create a workload using a source image, use `--local-path` flag with `--source-image`,
      like the following example:
 
-```console
-tanzu apps workload create tanzu-java-web-app --local-path /path/to/java/app --source-image registry.io/path/to/project/image-name
+  ```console
+  tanzu apps workload create tanzu-java-web-app --local-path /path/to/java/app --source-image registry.io/path/to/project/image-name
 
-The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
-Publishing source in "." to "registry.io/path/to/project/image-name"...
-📥 Published source
+  The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
+  Publishing source in "." to "registry.io/path/to/project/image-name"...
+  📥 Published source
 
-🔎 Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: tanzu-java-web-app
-      8 + |  namespace: default
-      9 + |spec:
-     10 + |  source:
-     11 + |    image: registry.io/path/to/project/image-name:latest@sha256:447db92e289dbe3a6969521917496ff2b6b0a1d6fbff1beec3af726430ce8493
-❓ Do you want to create this workload? [yN]: 
-```
+  🔎 Create workload:
+        1 + |---
+        2 + |apiVersion: carto.run/v1alpha1
+        3 + |kind: Workload
+        4 + |metadata:
+        5 + |  labels:
+        6 + |    apps.tanzu.vmware.com/workload-type: web
+        7 + |  name: tanzu-java-web-app
+        8 + |  namespace: default
+        9 + |spec:
+      10 + |  source:
+      11 + |    image: registry.io/path/to/project/image-name:latest@sha256:447db92e289dbe3a6969521917496ff2b6b0a1d6fbff1beec3af726430ce8493
+  ❓ Do you want to create this workload? [yN]: 
+  ```
 
 ### <a id='wl-local-live-update'></a> `--live-update`
 

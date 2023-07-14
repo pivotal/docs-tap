@@ -25,7 +25,7 @@ From VMware Tanzu CLI
   ```
 
 From GitHub release:
-: The latest release is in the GitHub repository releases page.
+: The latest release is in the [GitHub repository releases page](https://github.com/vmware-tanzu/apps-cli-plugin/releases).
 
   Each of these releases has the `Assets` section where the packages for each `system-architecture`
   are placed.

@@ -1,18 +1,17 @@
 # Control Workload Merge Behavior
 
-When updating a workload from a file, the workload update behavior can be managed through the `--update-strategy`
-flag, which has two possible values: `merge` (default) or `replace` (overwrite).
+When updating a workload from a file, mange the workload update behavior with the `--update-strategy` flag. There are two possible values: `merge` or `replace`.
+The default value is `merge`.
 
-With the default `merge`:
+## `merge`
 
-If the `--file workload.yaml` deletes an existing on-cluster property or value, that property is not
+If the `--file workload.yaml` deletes an existing on-cluster property or value, it is not
 removed from the on-cluster definition.
 If the `--file workload.yaml` includes a new property or value, it is added to the on-cluster workload
-properties/values.
-If the `--file workload.yaml` updates an existing value for a property, that property's value
-on-cluster is updated.
+property value.
+If the `--file workload.yaml` updates an existing value for a property, it is updated on the on-cluster definition.
 
-With `replace`:
+## `replace`
 
 The on-cluster workload is updated to exactly what is specified in the `--file workload.yaml` definition.
 
@@ -22,10 +21,10 @@ properties from existing workloads.
 >**Note** The default value for the `--update-strategy flag` will change from merge to replace
 > in Tanzu Application Platform v1.7.0.
 
-Examples of the outcomes of both `merge` and `replace` update strategies are provided in the
+Examples of the outcomes of both the `merge` and `replace` values are provided in the
 following examples:
 
-- ```bash
+- ```console
   # Export workload if there is no previous yaml definition
   tanzu apps workload get spring-petclinic --export > spring-petclinic.yaml
 
@@ -55,13 +54,13 @@ following examples:
 
 After saving the file, to verify how both of the update strategy options behave, run:
 
-```bash
+```console
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy merge # if flag is not specified, merge is taken as default
 ```
 
 This produces the following output:
 
-```bash
+```console
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files
 will replace rather than merge existing configuration. The change will take place in the January 2024
 Tanzu Application Platform release (use "--update-strategy" to control strategy explicitly).
@@ -71,13 +70,13 @@ Workload is unchanged, skipping update
 
 By contrast, use `replace` as follows:
 
-```bash
+```console
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 ```
 
 This produces the following output:
 
-```bash
+```console
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files
 will replace rather than merge existing configuration. The change will take place in the January 2024
 Tanzu Application Platform release (use "--update-strategy" to control strategy explicitly).
