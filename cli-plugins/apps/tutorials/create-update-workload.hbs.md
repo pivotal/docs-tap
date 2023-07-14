@@ -137,7 +137,7 @@ Where:
 - `--type` distinguishes the workload type.
 
 This process can also be done with non-publicly accessible repositories. These require authentication
-using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials. For more information, see [Create a workload from a private Git repository](../how-to-guides/workload-from-private-git.hbs.md).
+using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials.
 
 View the full list of supported workload configuration options
 by running `tanzu apps workload apply --help`.

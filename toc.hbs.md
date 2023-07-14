@@ -147,8 +147,6 @@ docs.vmware.com is built.
                     - [Get Workload Status](cli-plugins/apps/tutorials/get-workload-status.hbs.md)
                     - [Delete a Workload](cli-plugins/apps/tutorials/delete-workload.hbs.md)
                 - [How-to-Guides](cli-plugins/apps/how-to-guides/how-to-guides.hbs.md)
-                    - [Create a workload from a private Git repository](cli-plugins/apps/how-to-guides/workload-from-private-git.hbs.md)
-                    - [Bind a service to a workload](cli-plugins/apps/how-to-guides/workload-bind-service.hbs.md)
                     - [Integrate with Local Source Proxy](cli-plugins/apps/how-to-guides/integrate-lsp.hbs.md)
                     - [Manage workload merge behavior](cli-plugins/apps/how-to-guides/workload-merge-behavior.hbs.md)
                 - [Troubleshoot](cli-plugins/apps/troubleshooting/troubleshooting.hbs.md)
