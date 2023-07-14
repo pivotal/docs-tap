@@ -49,74 +49,74 @@ the workload appears to be having issues.
 
 The section describes the cause and resolution for some of the most common issues.
 
-- **Message**: Writing `registry/project/repo/workload:latest`: Writing image: Unexpected status code
+**Message**: Writing `registry/project/repo/workload:latest`: Writing image: Unexpected status code
   *401 Unauthorized* (HEAD responses have no body, use GET for details)
-    
-    **Cause**: Apps plug-in cannot talk to the registry because the registry credentials are missing
-    or invalid.
 
-    **Resolution**: Run  `docker logout registry` and `docker login registry` commands and specify 
-    the valid credentials for the registry.
+**Cause**: Apps plug-in cannot talk to the registry because the registry credentials are missing
+or invalid.
 
-- **Message**: Writing `registry/project/workload:latest`: Writing image: HEAD Unexpected status code
-    *400 Bad Request* (HEAD responses have no body, use GET for details)
+**Resolution**: Run  `docker logout registry` and `docker login registry` commands and specify 
+the valid credentials for the registry.
 
-    **Cause**: Certain registries like Harbor or GCR have a concept of `Project`. A 400 Bad request 
-    is sent when either the project does not exist, the user does not have access to it, or the path
-    in the `-—source-image` flag is missing either project or repository.
+**Message**: Writing `registry/project/workload:latest`: Writing image: HEAD Unexpected status code
+*400 Bad Request* (HEAD responses have no body, use GET for details)
 
-    **Resolution**: Fix the path in the `—-source-image` flag value to point to a valid repository path.
+**Cause**: Certain registries like Harbor or GCR have a concept of `Project`. A 400 Bad request 
+is sent when either the project does not exist, the user does not have access to it, or the path
+in the `-—source-image` flag is missing either project or repository.
+
+**Resolution**: Fix the path in the `—-source-image` flag value to point to a valid repository path.
 
 ### WorkloadLabelsMissing/SupplyChainNotFound
 
-- **Message**: No supply chain found where full selector is satisfied by `labels: map[app.kubernetes.io/part-of:spring-petclinic]`
+**Message**: No supply chain found where full selector is satisfied by `labels: map[app.kubernetes.io/part-of:spring-petclinic]`
 
-    **Cause**: The labels and attributes in the workload object did not fully satisfy any installed supply
-    chain on the cluster.
+**Cause**: The labels and attributes in the workload object did not fully satisfy any installed supply
+chain on the cluster.
 
-    **Resolution**: Use the `tanzu apps cluster-supply-chain list` (alias `csc`) and
-    `tanzu apps csc get <supply-chain-name>` commands to see the workload selection criteria for the
-    supply chain available on the cluster. Apply any missing labels to a workload by using
-    `tanzu apps workload apply --label required-label-name=required-label-value`. For example:
+**Resolution**: Use the `tanzu apps cluster-supply-chain list` (alias `csc`) and
+`tanzu apps csc get <supply-chain-name>` commands to see the workload selection criteria for the
+supply chain available on the cluster. Apply any missing labels to a workload by using
+`tanzu apps workload apply --label required-label-name=required-label-value`. For example:
 
-    ```console
-    tanzu apps workload apply workload-name —-type web
-    # or
-    tanzu apps workload apply workload-name --label apps.tanzu.vmware.com/workload-type=web
-    ```
+```console
+tanzu apps workload apply workload-name —-type web
+# or
+tanzu apps workload apply workload-name --label apps.tanzu.vmware.com/workload-type=web
+```
 
 ### MissingValueAtPath
 
-Message: Waiting to read value `[.status.artifact.url]` from resource 
+**Message**: Waiting to read value `[.status.artifact.url]` from resource
 gitrepository.source.toolkit.fluxcd.io  in namespace `[ns]`
 
-Possible Cause 1: The Git `url/tag/branch/commit` parameters passed in the workload are not valid.
+**Possible Cause 1**: The Git `url/tag/branch/commit` parameters passed in the workload are not valid.
 
-Resolution 1: Fix the invalid Git parameters by using `tanzu apps workload apply`
+**Resolution 1**: Fix the invalid Git parameters by using `tanzu apps workload apply`
 
-Possible Cause 2: The Git repository is not accessible from the cluster
+**Possible Cause 2**: The Git repository is not accessible from the cluster
 
-Resolution 2: Configure the cluster networking or the Git repository networking so that they can
-    communicate with each other.
+**Resolution 2**: Configure the cluster networking or the Git repository networking so that they can
+communicate with each other.
 
-Possible Cause 3: The namespace is missing the Git secret for communicating with the private repository
+**Possible Cause 3**: The namespace is missing the Git secret for communicating with the private repository
 
-Resolution 3: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
+**Resolution 3**: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
 
 ### TemplateRejectedByAPIServer
 
-- **Message**: Unable to apply object `[ns/workload-name]` for resource `[source-provider]` in supply
-    chain `[source-to-url]`: failed to get unstructured `[ns/workload-name]` from API server:
-    imagerepositories.source.apps.tanzu.vmware.com "workload-name" is forbidden:
-    User "system:serviceaccount:ns:default" cannot get resource "imagerepositories" in API group
-    "source.apps.tanzu.vmware.com" in the namespace "ns"
+**Message**: Unable to apply object `[ns/workload-name]` for resource `[source-provider]` in supply
+chain `[source-to-url]`: failed to get unstructured `[ns/workload-name]` from API server:
+imagerepositories.source.apps.tanzu.vmware.com "workload-name" is forbidden:
+User "system:serviceaccount:ns:default" cannot get resource "imagerepositories" in API group
+"source.apps.tanzu.vmware.com" in the namespace "ns"
 
-    **Cause**: This error happens when the service account in the workload object does not have permission
-    to create objects that are stamped out by the supply chain.
+**Cause**: This error happens when the service account in the workload object does not have permission
+to create objects that are stamped out by the supply chain.
 
-    **Resolution**: Set up the
-    [Set up developer namespaces to use your installed packages](../../../scst-store/developer-namespace-setup.hbs.md)
-    with the required service account and permissions.
+**Resolution**: Set up the
+[Set up developer namespaces to use your installed packages](../../../scst-store/developer-namespace-setup.hbs.md)
+with the required service account and permissions.
 
 ## <a id="steps-failure"></a> Review supply chain steps
 

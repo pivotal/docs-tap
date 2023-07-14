@@ -58,7 +58,7 @@ tanzu apps workload delete spring-petclinic -n spring-petclinic-ns
 👍 Deleted workload "spring-petclinic"
 ```
 
-### <a id="delete-wait"></a> `wait`
+### <a id="delete-wait"></a> `--wait`
 
 Waits until workload is deleted.
 

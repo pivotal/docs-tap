@@ -74,7 +74,7 @@ Persist the suppression of color, emojis, and animation across commands by setti
 export NO_COLOR=true
 ```
 
-## .tanzuignore file
+## <a id="tanzuignore-file"></a> `tanzuignore` file
 
 Use the optional `.tanzuignore` file at the root of your project directory to indicate which
 files or directories in your project are not required to build or run your application such as

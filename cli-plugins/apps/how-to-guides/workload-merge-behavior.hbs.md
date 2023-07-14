@@ -100,5 +100,5 @@ Tanzu Application Platform release (use "--update-strategy" to control strategy 
 
 The lines that were deleted in the `yaml` file are deleted as well in the workload running in the
 cluster. The only text boxes that remain exactly as they were created are the system populated
-metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`,
-`deletionTimestamp`).
+metadata text boxes; `resourceVersion`, `uuid`, `generation`, `creationTimestamp`, and
+`deletionTimestamp`.

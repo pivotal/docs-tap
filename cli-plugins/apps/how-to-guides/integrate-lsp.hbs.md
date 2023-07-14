@@ -1,13 +1,11 @@
 # Integrate with Local Source Proxy
 
-<!-- Mention the create with Local Source section from tutorials -->
-
 This topic tells you how to integrate the Apps CLI with Local Source Proxy.
 
 You can configure workloads to push local source code to a registry that is predefined using
 the Local Source Proxy component.
 
-For more information about Local Source Proxy, see [Overview of Local Source Proxy](../../../local-source-proxy/about.hbs.md).
+For more information about Local Source Proxy, see [Overview of Local Source Proxy](../../../local-source-proxy/about.hbs.md) and [Create a workload from Local Source](../tutorials/create-update-workload.hbs.md#create-a-workload-from-local-source).
 
 ## Check Local Source Proxy health
 
@@ -102,9 +100,9 @@ the registry.
 
 To distinguish whether a workload was created with the Local Source Proxy or the `--source-image`
 flag, check if the workload contains the `local-source-proxy.apps.tanzu.vmware.com` annotation.
-This annotation indicates the method used to create the workload.
+This annotation indicates the method used to create the workload. 
 
-<!-- Point to Create workload from local source in Tutorials section -->
+For more information, see [Create a workload from Local Source](../tutorials/create-update-workload.hbs.md#create-a-workload-from-local-source).
 
 ### Use the `--source-image` flag
 

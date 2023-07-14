@@ -137,18 +137,14 @@ Where:
 - `--type` distinguishes the workload type.
 
 This process can also be done with non-publicly accessible repositories. These require authentication
-using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials.
-<!-- IMPORTANT: Point to the How-to-guide section Create a workload from a Private Git Repository
-that will be created in another PR -->
+using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials. For more information, see [Create a workload from a private Git repository](../how-to-guides/workload-from-private-git.hbs.md).
 
 View the full list of supported workload configuration options
 by running `tanzu apps workload apply --help`.
 
 ### <a id='unset-git-fields'></a> Unset Git fields
 
-There are various ways to update a workload. Use flags to change workload fields. Use a YAML file with the required changes, and run the  `tanzu apps workload apply` with  the `--update-strategy` set as `replace`.
-<!--IMPORTANT: add the following line and
-point to the How-to-guide section (check --update-strategy in the Control workload merge behavior section).-->
+There are various ways to update a workload. Use flags to change workload fields. Use a YAML file with the required changes, and run the  `tanzu apps workload apply` with  the `--update-strategy` set as `replace`. For more information, see [](../how-to-guides/workload-merge-behavior.hbs.md).
 
 To delete fields, set the `--git-*` flags as empty strings within the command. This removes
 the `workload.spec.source.git` fields.

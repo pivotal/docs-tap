@@ -317,9 +317,7 @@ Sets the workload specification file to create the workload. This comes from any
 specification passed by flags to the command set or overrides what is in the file. Another way to
 use this flag is by using `-` in the command to receive workload definition through stdin.
 
-For an example, see [Tutorials](../tutorials/tutorials.hbs.md).
-
-Example
+For an example, see [Create a workload from a `workload.yaml` file or from a URL](../tutorials/create-update-workload.hbs.md#create-yaml-url).
 
 ```console
 tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-yaml server=$'port: 9090\nmanagement-port: 9190'
