@@ -43,8 +43,8 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-1-appacc'></a> Application Accelerator
 
 - The Application Accelerator plug-in for IntelliJ has now reached general availability on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-  The plug-in for IntelliJ now supports Git repository creation and dynamic options and embeds telemetry
-  and bootstrapping provenance. <!-- clarify -->
+  The plug-in for IntelliJ now supports Git repository creation and dynamic options, and embeds telemetry
+  and bootstrapping provenance.
   For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
 
 #### <a id='1-6-1-alv'></a> Application Live View
@@ -56,12 +56,13 @@ This release includes the following changes, listed by component and area.
 - Developers can view the live information of natively compiled Spring applications by using
   Application Live View for lightweight troubleshooting.
   The pages and metrics that are currently unavailable for natively compiled Spring applications include
-  threads, heapdump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
+  threads, heap dump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
   For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md).
 
 #### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
 
-This TAP release debuts the new Tanzu CLI Core v0.90.1 which provides:
+This Tanzu Application Platform release debuts the new Tanzu CLI Core v0.90.1 which provides:
+
 - Backward compatability guarantees with previously released versions of Tanzu CLI plugins
 - Installation via package manager ([CLI installation docs](install-tanzu-cli.html#install-the-tanzu-cli-4))
 - Support for installation of plugins from the new centralized plugin repository via "plugin groups" ([plugin installation docs](install-tanzu-cli.html#install-tanzu-cli-plugins-5))
