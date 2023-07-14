@@ -1,5 +1,7 @@
 # tanzu apps workload list
 
+This topic tells you about the `tanzu apps workload list` Apps CLI command.
+
 `tanzu apps workload list` gets the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
 
 ## Default view
@@ -7,7 +9,8 @@
 The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the app it is related to, its status, and how long it's been in the cluster.
 
 For example, in the default namespace
-```bash
+
+```console
 tanzu apps workload list
 
 NAME                  TYPE      APP                  READY                   AGE
@@ -28,7 +31,7 @@ tanzu-java-web-app2   web       tanzu-java-web-app   Ready                   20m
 
 Shows workloads in all namespaces in cluster.
 
-```bash
+```console
 tanzu apps workload list -A
 
 NAMESPACE   TYPE   NAME                  APP                  READY                         AGE
@@ -49,7 +52,7 @@ nginx-ns    web    nginx4                <empty>              TemplateRejectedBy
 
 Shows workloads which app is the one specified in the command.
 
-```bash
+```console
 tanzu apps workload list --app spring-petclinic
 
 NAME                TYPE   READY     AGE
@@ -61,7 +64,7 @@ spring-petclinic3   web    Ready     29d
 
 Lists all the workloads present in the specified namespace.
 
-```bash
+```console
 tanzu apps workload list -n my-namespace
 
 NAME   TYPE   APP       READY                         AGE

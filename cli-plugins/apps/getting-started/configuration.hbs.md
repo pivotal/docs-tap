@@ -70,7 +70,7 @@ Create workload:
 Persist the suppression of color, emojis, and animation across commands by setting the
 `NO_COLOR` environment variable.
 
-```bash
+```console
 export NO_COLOR=true
 ```
 
@@ -130,7 +130,7 @@ tanzu apps workload apply WORKLOAD \
 
 Alternatively, run as:
 
-```bash
+```console
 export TANZU_APPS_REGISTRY_CA_CERT=path/to/ca/cert.nip.io.crt
 export TANZU_APPS_REGISTRY_PASSWORD=USERNAME
 export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
@@ -144,7 +144,7 @@ Use the `--type` flag to specify the type of workload. Persist the workload type
 across commands by setting the `TANZU_APPS_TYPE` environment variable. The default 
 value of `web` is set automatically if no `--type` flag or `TANZU_APPS_TYPE` value is provided.
 
-```bash
+```console
 export TANZU_APPS_TYPE=server
 ```
 
@@ -157,13 +157,13 @@ Add one of the following commands to the shell config file according to your set
 
 ### <a id='bash'></a>Bash
 
-```bash
+```console
 tanzu completion bash >  HOME/.tanzu/completion.bash.inc
 ```
 
 ### <a id='zsh'></a>Zsh
 
-```bash
+```console
 echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```

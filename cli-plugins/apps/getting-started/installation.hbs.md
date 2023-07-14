@@ -32,7 +32,7 @@ From GitHub release:
 
   1. Download the binary executable file `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`:
 
-       ```bash
+       ```console
        tar -xvf tanzu-apps-plugin-darwin-amd64-v0.12.1.tar.gz
        ```
 

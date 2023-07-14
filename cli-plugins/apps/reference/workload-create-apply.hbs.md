@@ -571,7 +571,7 @@ An example with a Spring Boot application:
 1. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
 1. At the very end of the file add:
 
-   ```bash
+   ```console
    allow_k8s_contexts('your-cluster-name')
    ```
 
@@ -612,7 +612,7 @@ An example with a Spring Boot application:
 
 1. Run Tilt to deploy the workload.
 
-    ```bash
+    ```console
     tilt up
 
     Tilt started on http://localhost:10350/
@@ -766,7 +766,7 @@ workload definition. Use with the `--wait` or `--tail` flag to return the worklo
 
 Example
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" --type web --output yaml
 🔎 Create workload:
       1 + |---

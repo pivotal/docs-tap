@@ -1,6 +1,6 @@
 # Create a workload
 
-This topic describes how to create a workload from example source code with Tanzu Application Platform.
+This topic describes how to use the Apps CLI to create a workload in Tanzu Application Platform.
 
 ## <a id='prerequisites'></a> Prerequisites
 
@@ -44,18 +44,19 @@ Where:
 - `tanzu-java-web-app` is the name of the workload.
 - `--git-repo` is the location of the code to build the workload from.
 - `--sub-path` is the relative path inside the repository to treat as application root.
-- `--git-tag` (optional) specifies which tag in the repository to pull the code from.
-- `--git-branch` (optional) specifies which branch in the repository to pull the code from.
+- `--git-tag` is optional, it specifies which tag in the repository to pull the code from.
+- `--git-branch` is optional, it specifies which branch in the repository to pull the code from.
 - `--type` distinguishes the workload type.
 
 This process can also be done with non-publicly accessible repositories. These require authentication
 using credentials stored in a Kubernetes secret. The supply chain is in charge of managing these credentials.
 
-Further information on how to set it up in
-[Out of the Box Supply Chain with private Git repos](../../scc/building-from-source.hbs.md#private-gitrepository),
-how the supply chain manages git repositories in [How it works](../../scc/building-from-source.hbs.md#how-it-works) section
-and how to override parameters to customize the behavior to manage them in
-[Workload parameters](../../scc/building-from-source.hbs.md#workload-parameters) section.
+For information about how to set it up in Out of the Box Supply Chain with a private Git repository, see [Private GitRepository](../../scc/building-from-source.hbs.md#private-gitrepository).
+
+For information about how the supply chain manages Git repositories, see[How it works](../../scc/building-from-source.hbs.md#how-it-works).
+
+For information about how to override parameters to customize the behavior to manage them, see
+[Workload parameters](../../scc/building-from-source.hbs.md#workload-parameters).
 
 View the full list of supported workload configuration options
 by running `tanzu apps workload apply --help`.
@@ -63,8 +64,7 @@ by running `tanzu apps workload apply --help`.
 ### <a id="workload-local-source"></a> Create a workload from local source code
 
 Use the `--local-path` and `--source-image` flags to create a workload from an existing local project.
-This allows the [supplychain](../../scc/about.hbs.md) to generate an image ([carvel-imgpkg](https://carvel.dev/imgpkg/))
-and push it to the given registry to be used in the workload.
+This allows the [Supply Chain](../../scc/about.hbs.md) to generate a [Carvel imgpkg](https://carvel.dev/imgpkg/) image and push it to the given registry to be used in the workload.
 
 To create a named workload and specify where the local source code is, run:
 
@@ -80,11 +80,13 @@ Where:
 - `--local-path` points to the directory where the source code is located.
 - `--source-image` is the registry path where the local source code is uploaded as an image.
 
-The cluster needs the correct credentials and access rights in order to push the source code to the image registry.
-More information on authentication to publish local source in supply chain
-[local source authentication](../../scc/building-from-source.hbs.md#auth) and a deeper explanation
-on how the supply chain manages this authentication in the local source
-[how it works](../../scc/building-from-source.hbs.md#how-it-works-1) section.
+The cluster needs the correct credentials and access rights to push the source code to the image registry.
+
+For more information about authentication to publish local source in Supply Chain, see
+[local source authentication](../../scc/building-from-source.hbs.md#auth).
+
+For more information about how Supply Chain manages this authentication in the local source, see
+[How it works](../../scc/building-from-source.hbs.md#how-it-works-2).
 
 #### Exclude Files
 
@@ -116,10 +118,10 @@ Respond `Y` to prompts to complete process.
 - `--image` is an existing image, pulled from a registry, that contains the source that the workload
   is going to use to create the application.
 
-Check the requirements to use a pre-built image in supply chain
-[pre-built images requirements](../../scc/pre-built-image.hbs.md#requirements-for-prebuilt-images)
-and how to [configure the workload](../../scc/pre-built-image.hbs.md#configure-your-workload-to-use-a-prebuilt-image)
-in order to use it.
+For information about the requirements to use a pre-built image in Supply Chain, see
+[Requirements for prebuilt images](../../scc/pre-built-image.hbs.md#requirements-for-prebuilt-images).
+
+For information about how to configure a workload, see [Configure your workload to use a prebuilt image(../../scc/pre-built-image.hbs.md#configure-your-workload-to-use-a-prebuilt-image).
 
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
@@ -159,9 +161,7 @@ tanzu apps workload create petclinic-image --param-yaml maven=$"artifactId:hello
 tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
 
-To configure the credentials that the MavenArtifact expects for authentication,
-check the [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-repository-secret)
-section in supply chain guide.
+For information about how to configure the credentials that the MavenArtifact expects for authentication, see the [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-repository-secret).
 
 ## <a id='yaml-files'></a> Working with YAML files
 

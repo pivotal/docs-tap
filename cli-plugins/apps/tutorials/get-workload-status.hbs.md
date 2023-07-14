@@ -12,7 +12,7 @@ formats are supported via the `--output` flag.
 
 Shows workloads in all namespaces in the cluster.
 
-```bash
+```console
 tanzu apps workload list -A
 
 NAMESPACE   TYPE   NAME                  APP                  READY                         AGE
@@ -27,7 +27,7 @@ nginx-ns    web    nginx2                <empty>              TemplateRejectedBy
 
 Shows workloads which app is the one specified in the command.
 
-```bash
+```console
 tanzu apps workload list --app spring-petclinic
 
 NAME                TYPE   READY     AGE
@@ -39,7 +39,7 @@ spring-petclinic3   web    Ready     29d
 
 Lists all the workloads present in the specified namespace.
 
-```bash
+```console
 tanzu apps workload list --namespace my-namespace
 
 NAME   TYPE   APP       READY                         AGE
@@ -54,7 +54,7 @@ Allows to list all workloads in the specified namespace in `yaml`, `yml` or `jso
 
 - yaml/yaml
 
-    ```bash
+    ```console
     # shorthand for --output is -o
     # alternatives are
     # tanzu apps workload list -o yaml / -o json
@@ -123,7 +123,7 @@ Allows to list all workloads in the specified namespace in `yaml`, `yml` or `jso
 
 - json
 
-    ```bash
+    ```console
     tanzu apps workload list --output json
     ```
 
@@ -195,7 +195,7 @@ whether those resources are present on the target cluster (e.g. If the target in
 components, there would be no `Delivery` resources available and therefore the `Delivery` section
 would not be included in the command output).
 
-```bash
+```console
 # --namespace flag shorthand is -n
 # An alternative way to use this command is 
 # tanzu apps workload get tanzu-java-web-app -n development
@@ -263,7 +263,7 @@ can also be filtered by a specific `--component`.
 To retrieve logs within a specific timeframe and display them with their `--timestamp`, 
 you can utilize the `--since` flag.
 
-```bash
+```console
 tanzu apps workload tail tanzu-java-web-app -n development --since 1h --component build --timestamp
 
 tanzu-java-web-app-build-1-build-pod[prepare] 2023-06-15T10:45:13.236584161-05:00 Build reason(s): CONFIG
@@ -289,7 +289,7 @@ You can tail a workload directly as part of the `tanzu apps workload create` or
 `tanzu apps workload apply` commands by providing the `--tail` flag and you can display timestamps for
 each log message by including the `--tail-timestamp` flag.
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-tag tap-1.6.0 --sub-path tanzu-java-web-app --tail --tail-timestamp
 🔎  Create workload:
       1 + |---
@@ -347,13 +347,13 @@ and `json` as values.
 
 For example, if a workload is created with:
 
-```bash
+```console
 tanzu apps workload apply tanzu-where-for-dinner --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --sub-path where-for-dinner
 ```
 
 When querying the workload with `--export`, the default export format in `yaml` is as follows:
 
-```bash
+```console
 # with yaml format
 tanzu apps workload get tanzu-where-for-dinner --export
 ```
@@ -376,7 +376,7 @@ spec:
     subPath: where-for-dinner
 ```
 
-```bash
+```console
 # with json format
 # shorthand for --output flag is -o
 # an alternative for this command would be
@@ -424,7 +424,7 @@ tanzu apps workload get rmq-sample-app --export --output json
 
 With this flag, workload can be retrieved with all the cluster-specifics.
 
-```bash
+```console
 # with json format
 tanzu apps workload get rmq-sample-app --output json # can also be used as tanzu apps workload get rmq-sample-app -ojson
 ```
@@ -487,7 +487,7 @@ tanzu apps workload get rmq-sample-app --output json # can also be used as tanzu
 }
 ```
 
-```bash
+```console
 ## with yaml format
 tanzu apps workload get rmq-sample-app --output yaml # can also be used as tanzu apps workload get rmq-sample-app -oyaml
 ```
@@ -551,7 +551,7 @@ By utilizing this flag, the workload can be promptly retrieved in the desired fo
 and only the workload definition is returned. Additionally, by using the `--wait` or `--tail` flags,
 the workload can be retrieved along with its current status.
 
-```bash
+```console
 tanzu apps workload create tanzu-where-for-dinner --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --sub-path where-for-dinner -oyaml
 🔎 Create workload:
       1 + |---
@@ -600,7 +600,7 @@ status:
 
 Using `--yes` flag with the command
 
-```bash
+```console
 tanzu apps workload create tanzu-where-for-dinner --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --sub-path where-for-dinner -ojson -y
 {
     "apiVersion": "carto.run/v1alpha1",

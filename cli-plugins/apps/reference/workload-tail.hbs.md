@@ -1,6 +1,6 @@
 # tanzu apps workload tail
 
-This topic tells you about the `tanzu apps workload tail` command.
+This topic tells you about the `tanzu apps workload tail` Apps CLI command.
 
 The `tanzu apps workload tail` checks the runtime logs of a workload.
 
@@ -8,7 +8,7 @@ The `tanzu apps workload tail` checks the runtime logs of a workload.
 
 Without timestamp set, `tanzu apps workload tail` shows the stage where it is and the related log.
 
-```bash
+```console
 + spring-pet-clinic-build-1-build-pod › prepare
 + spring-pet-clinic-build-1-build-pod › detect
 + spring-pet-clinic-build-1-build-pod › analyze
