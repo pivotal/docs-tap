@@ -2,26 +2,32 @@
 
 <!-- Mention the create with Local Source section from tutorials -->
 
-There's a method for creating and updating workloads to push local source code to a registry 
-specified by utilizing the [Local Source Proxy package](../../../local-source-proxy/about.hbs.md)
-bundled with TAP.
+This topic tells you how to integrate the Apps CLI with Local Source Proxy.
 
-The installation and health of this package can be checked with the 
-`tanzu apps local-source-proxy health` command.
+You can configure workloads to push local source code to a registry that is predefined using
+the Local Source Proxy component.
 
-## Local Source Proxy Integration Health
+For more information about Local Source Proxy, see [Overview of Local Source Proxy](../../../local-source-proxy/about.hbs.md).
 
-The `tanzu apps local-source-proxy health` command provides a user-friendly overview of the overall
-health of the Local Source Proxy. This information is obtained directly from the Local Source Proxy 
-itself. By using this command, users can examine the response body, which includes the status code 
-and message. This helps to identify and distinguish whether any failures originate from the 
-Local Source Proxy or the upstream registry. The command supports multiple output formats, 
-including `yaml` (default), `yml`, and `json`, which can be specified using the `--output` flag.
+## Check Local Source Proxy health
 
-When executing this command, the API is called at the `/health` endpoint, and the CLI output can fall
-into one of five possible scenarios based on the response received:
+To check the installation and health of Local Source Proxy and determine if failures originate from
+the Local Source Proxy or the upstream registry, run:
 
-- When all checks pass (`--output/-o yaml`)
+```console
+tanzu apps local-source-proxy health`
+```
+
+This returns an overview of the health of the Local Source Proxy. This information is obtained
+directly from the Local Source Proxy and provides a status code and message.
+
+Use the `--output` flag to specify one of the following formats: `yaml`, `yml`, and `json`. The default
+format is `yaml`.
+
+The API is called at the `/health` endpoint, and there are five possible outputs
+based on the response received:
+
+- All checks pass. Format is `yaml`.
 
   ```yaml
   user_has_permission: true
@@ -31,7 +37,8 @@ into one of five possible scenarios based on the response received:
   message: "All health checks passed"
   ```
 
-- When user does not have permission to list the service - Maybe: 403 from the Kube API Server
+- You do not have permission to list the service. The possible reason is a 403 error from the
+Kubernetes API Server. Format is `yaml`.
 
   ```yaml
   user_has_permission: false
@@ -41,7 +48,8 @@ into one of five possible scenarios based on the response received:
   message: "The current user does not have permission to access the local source proxy"
   ```
 
-- When user can list the services, but its not there - Maybe: 404 from the Kube API Server
+- You can list the services, but its not there. The possible reason is a 404 error from the Kubernetes
+API Server. Format is `yaml`.
 
   ```yaml
   user_has_permission: true
@@ -51,7 +59,7 @@ into one of five possible scenarios based on the response received:
   message: "Local source proxy is not installed on the cluster"
   ```
 
-- if `/health` from Local Source Proxy returns a 5xx
+- `/health` from Local Source Proxy returns a 5xx
 
   ```yaml
   user_has_permission: true
@@ -61,8 +69,8 @@ into one of five possible scenarios based on the response received:
   message: "Local source proxy is not healthy. Error: <error>"
   ```
 
-- if `/health` from upstream returns a non-2xx, 4xx, 5xx. `/health` from Local Source Proxy will still
-  be 2xx
+- `/health` from upstream returns a non-2xx, 4xx, 5xx. `/health` from Local Source Proxy will still
+  be 2xx. Format is `yaml`.
 
   ```yaml
   user_has_permission: true
@@ -72,7 +80,7 @@ into one of five possible scenarios based on the response received:
   message: "Local source proxy was unable to authenticate against the target registry. Error: <error>"
   ```
 
-- When all checks pass (`--output/-o json`)
+- All checks pass. Format is `json`.
 
   ```json
   {
@@ -84,26 +92,29 @@ into one of five possible scenarios based on the response received:
   }
   ```
 
-## Update Local Source workloads
+## Update the local source code for workloads
 
-To create a workload from local source code, there are two options available. The first is utilizing
-the Local Source Proxy, which automatically defaults to a predefined registry. The second is using 
-the `--source-image` flag to specify a desired registry. In the case of the latter, users must be 
-authenticated to access the registry.
+To create a workload from local source code, there are two options available:
 
-To distinguish whether a workload was created with the Local Source Proxy or a source image, users 
-can check if the workload contains the `local-source-proxy.apps.tanzu.vmware.com` annotation. 
-This annotation serves as an indicator of the method used to create the workload, providing clarity 
-on whether it originated from the Local Source Proxy or a specified source image.
+1. Use Local Source Proxy, which automatically defaults to a predefined registry.
+2. Use the `--source-image` flag to specify a registry. You must be authenticated to access
+the registry.
+
+To distinguish whether a workload was created with the Local Source Proxy or the `--source-image`
+flag, check if the workload contains the `local-source-proxy.apps.tanzu.vmware.com` annotation.
+This annotation indicates the method used to create the workload.
+
 <!-- Point to Create workload from local source in Tutorials section -->
 
-Once workloads have been created using a source image, it is not possible to update them to utilize 
-the Local Source Proxy. However, users are not required to repeatedly specify the source image during
-subsequent updates, as it will be retrieved from the existing workload specification within the cluster.
-Nevertheless, users do have the option to specify the `--source-image` flag again with a new value if
-they wish to modify the registry or storage location for the source code.
+### Use the `--source-image` flag
 
-```bash
+After a workload is created using the `--source-image` flag, it is not possible to update it
+to use Local Source Proxy.
+However, you do not need to repeatedly specify the `--source-image` flag during
+subsequent updates, as it is retrieved from the existing workload specification within the cluster.
+If you do want to change the registry or storage location for the source code, specify the `--source-image` flag again with a new value.
+
+```console
 # create a workload using source image
 # inside the local source code folder
 tanzu apps workload apply java-web-app --local-path . -s my-registry.io/my-project/java-app                                   
@@ -146,12 +157,13 @@ tanzu apps workload apply java-web-app --label hello=world
 ❓ Really update the workload "java-web-app"? [yN]:
 ```
 
-Conversely, in the case of a workload that was initially created using the Local Source Proxy, if it
-is subsequently updated with a command that employs the `--source-image` flag, the workload will
-transition to utilizing the specified source image. As a result, the annotation that establishes
-the connection between the workload and the Local Source Proxy will be removed.
+### Switch from Local Source Proxy to `--source-image` flag
 
-```bash
+If a workload was initially created using the Local Source Proxy, it can be updated to use the
+`--source-image` flag. The workload transitions to use the specified source image. As a result, the annotation that establishes the connection between the workload and the Local Source Proxy
+is removed.
+
+```console
 # inside the folder that contains the local source code
 tanzu apps workload apply java-web-app --local-path .                                              
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
