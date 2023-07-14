@@ -389,7 +389,7 @@ cat << EOF > local-source-proxy-policy.json
                 "ecr:PutImage"
             ],
             "Resource": [
-                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/local-source"
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-lsp"
             ],
             "Sid": "TAPLSPScoped"
         }
