@@ -12,17 +12,17 @@ Ensure that you installed or updated the core Tanzu CLI. For more information, s
 From VMware Tanzu CLI
 : Install Apps CLI plug-in:
 
-```console
-tanzu plugin install apps --group vmware-tap/default:VERSION
-```
+  ```console
+  tanzu plugin install apps --group vmware-tap/default:VERSION
+  ```
 
-Verify that the plug-in is installed correctly:
+  Verify that the plug-in is installed correctly:
 
-```console
-tanzu apps version
-# sample output
-v0.12.1
-```
+  ```console
+  tanzu apps version
+  # sample output
+  v0.12.1
+  ```
 
 From GitHub release:
 : The latest release is in the GitHub repository releases page.
