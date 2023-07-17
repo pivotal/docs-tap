@@ -247,7 +247,7 @@ for Tanzu Application Platform:
 tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
 ```
 
-For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI
+For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#internet-restricted-install) section of the Tanzu CLI
 documentation.
 
 ## Next steps
