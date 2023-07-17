@@ -244,7 +244,7 @@ For online installation, run the following command to install the CLI plug-ins r
 for Tanzu Application Platform:
 
 ```console
-tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
+tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
 ```
 
 For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI
