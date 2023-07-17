@@ -9,7 +9,7 @@ Before installing the packages, ensure you have:
 - Configured and verified the cluster.
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
 attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on

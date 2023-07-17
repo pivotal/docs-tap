@@ -143,7 +143,7 @@ To install Cloud Native Runtimes:
    Without these credentials, attempts to start a service fail with a timeout and the pods report that they are unable to pull the `queue-proxy` image.
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
-    secret mentioned in [Add the Tanzu Application Platform package repository](../install-online/profile.hbs.md#add-tap-package-repo).
+    secret mentioned in [Add the Tanzu Application Platform package repository](../install-online/profile.hbs.md#relocate-images).
        Run these commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 

@@ -9,7 +9,7 @@ Before installing the packages, ensure you have:
 - Configured and verified the cluster.
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
 attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
@@ -84,13 +84,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
-<details>
+## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
 
-<summary>If you do not want to relocate images</summary>
+Tanzu CLI packages are accessible through repositories. By adding the Tanzu Application Platform package repository, Tanzu Application Platform and its packages become available for installation.
 
-<p><a href="#relocate-images">Relocate images to a registry</a> is strongly recommended but not required for installation. If you skip that step, you can run the following commands to set Tanzu Network as the source of the OCI images:</p>
+[Relocate images to a registry](#relocate-images) is recommended but not required for installation. If you skip that step, you can run the following commands to set Tanzu Network as the source of the OCI images:
 
-<pre><code class="lang-console">
+```console
 # The registry from which the Tanzu Application Platform package is retrieved.
 export INSTALL_REGISTRY_USERNAME=TANZUNET_REGISTRY_USERNAME
 export INSTALL_REGISTRY_PASSWORD=TANZUNET_REGISTRY_PASSWORD
@@ -102,22 +102,15 @@ export INSTALL_REPO="tanzu-application-platform"
 export MY_REGISTRY_USERNAME=MY-REGISTRY-USER
 export MY_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
 export MY_REGISTRY_HOSTNAME=MY-REGISTRY
-</code></pre>
+```
 
-<p>Where:</p>
-<ul>
-<li><code>TANZUNET_REGISTRY_USERNAME</code> and <code>TANZUNET_REGISTRY_PASSWORD</code> are the credentials to the VMware Tanzu Network registry <code>registry.tanzu.vmware.com</code></li>
-<li><code>VERSION-NUMBER</code> is your Tanzu Application Platform version. For example, <code>{{ vars.tap_version }}</code></li>
-<li><code>MY_REGISTRY_HOSTNAME</code> is your own container registry.</li>
-<li><code>MY_REGISTRY_USERNAME</code> is the user with write access to <code>MY_REGISTRY_HOSTNAME</code>.</li>
-<li><code>MY_REGISTRY_PASSWORD</code> is the password for <code>MY_REGISTRY_USERNAME</code>.</li>
-</ul>
+Where:
 
-</details>
-
-## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
-
-Tanzu CLI packages are accessible through repositories. By adding the Tanzu Application Platform package repository, Tanzu Application Platform and its packages become available for installation.
+- `TANZUNET_REGISTRY_USERNAME` and `TANZUNET_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+- `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+- `MY_REGISTRY_HOSTNAME` is your own container registry.
+- `MY_REGISTRY_USERNAME` is the user with write access to `MY_REGISTRY_HOSTNAME`.
+- `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USERNAME`.
 
 To add the Tanzu Application Platform package repository to your cluster:
 
