@@ -1,6 +1,8 @@
-# Workshop runtime
+# Automate your Learning Center workshop runtime
 
 Your workshop content can script the steps a user must run for a workshop.
+This topic tells you how to set this up.
+
 In some cases, you must parameterize that content with information from the runtime environment.
 Data variables in workshop content allow this to a degree, but you can automate this by using scripts
 executed in the workshop container to set up configuration files.
