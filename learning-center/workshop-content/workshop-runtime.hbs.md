@@ -1,7 +1,9 @@
-# Workshop runtime
+# Automate your Learning Center workshop runtime
 
 Your workshop content can script the steps a user must run for a workshop.
-In some cases, you must parameterize that content with information from the runtime environment.
+This topic tells you how to do so.
+
+In some cases, you must parameterize the content with information from the runtime environment.
 Data variables in workshop content allow this to a degree, but you can automate this by using scripts
 executed in the workshop container to set up configuration files.
 
@@ -13,7 +15,7 @@ while a workshop is being run.
 
 When you create the workshop content, you can use data variables to automatically insert values corresponding to the specific workshop session or environment. For example: the name of the namespace used for the session and the ingress domain when creating an ingress route.
 
-These data variables can display a YAML/JSON resource file in the workshop content with values already filled out. You can have executable commands that have the data variables substituted with values given as arguments to the commands.
+These data variables can display a YAML or JSON resource file in the workshop content with values already filled out. You can have executable commands that have the data variables substituted with values given as arguments to the commands.
 
 For commands run in the shell environment, you can also reference a number of predefined environment variables.
 
@@ -22,7 +24,7 @@ Key environment variables are:
 * `WORKSHOP_NAMESPACE` - The name of the namespace used for the workshop environment.
 * `SESSION_NAMESPACE` - The name of the namespace the workshop instance is linked to and into which any deployed applications run.
 * `INGRESS_DOMAIN` - The host domain that must be used in any generated host name of ingress routes for exposing applications.
-* `INGRESS_PROTOCOL` - The protocol (http/https) used for ingress routes created for workshops.
+* `INGRESS_PROTOCOL` - The protocol (HTTP or HTTPS) used for ingress routes created for workshops.
 
 Instead of having an executable command in the workshop content, use:
 
@@ -44,7 +46,7 @@ The shell inserts the value of the environment variable.
 
 ## <a id="running-steps"></a> Running steps on container start
 
-To run a script that makes use of the earlier environment variables when the container is started, and to perform tasks such as pre-create YAML/JSON resource definitions with values filled out, you can add an executable shell script to the `workshop/setup.d` directory. The name of the executable shell script must have a `.sh` suffix to be recognized and run.
+To run a script that makes use of the earlier environment variables when the container is started, and to perform tasks such as pre-create YAML or JSON resource definitions with values filled out, you can add an executable shell script to the `workshop/setup.d` directory. The name of the executable shell script must have a `.sh` suffix to be recognized and run.
 
 If the container is restarted, the setup script runs again in the new container. If the shell script is performing actions against the Kubernetes REST API using kubectl or by using another means, the actions it performs must be tolerant of running more than once.
 
@@ -93,7 +95,7 @@ The user starts each terminal session by using the `bash` terminal shell. A term
 
 To specify the command to run for a terminal session, you can supply an executable shell script file in the `workshop/terminal` directory.
 
-The name of the shell script file for a terminal session must be of the form `<session>.sh`, where `<session>` is replaced with the name of the terminal session. The session names of the default terminals configured to be displayed with the dashboard are `1`, `2`, and `3`.
+The name of the shell script file for a terminal session must be of the form `SESSION.sh`, where `SESSION` is replaced with the name of the terminal session. The session names of the default terminals configured to be displayed with the dashboard are `1`, `2`, and `3`.
 
 The shell script file might be used to run a terminal-based application such as `k9s`, or to create an SSH session to a remote system.
 
