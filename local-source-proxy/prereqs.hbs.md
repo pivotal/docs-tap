@@ -77,16 +77,16 @@ is Elastic Container Registry (ECR) or something else.
 
 Using AWS
 : If you're using Elastic Container Registry as your registry, you need to create the container repository
-  ahead of time.  Additionally you require an AWS IAM role ARN
-  that possesses the necessary privileges to push and pull artifacts to the ECR repository.  This is limited 
-  in scope to the service account for local source proxy.
+  ahead of time.  Additionally you require an AWS Identity Access and Management (IAM) role
+  Amazon Resource Name (ARN) that possesses the necessary privileges to push and pull artifacts to
+  the ECR repository.  This is limited in scope to the service account for local source proxy.
 
   1. Export the variables by running:
 
     ```console
     export AWS_ACCOUNT_ID=012345678901  # Your AWS account ID
     export AWS_REGION=us-west-2         # The AWS region you are going to deploy to
-    export EKS_CLUSTER_NAME=tap-on-aws  # The name of your EKS Cluster
+    export EKS_CLUSTER_NAME=tap-on-aws  # The name of your Elastic Kubernetes Service Cluster
     ```
 
   1. To create the repository, run:

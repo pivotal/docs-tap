@@ -2,13 +2,17 @@
 
 This topic tells you how to install and customize Local Source Proxy (LSP).
 
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> Local Source Proxy. For more information about profiles, see
+> [Components and installation profiles](../about-package-profiles.hbs.md).
+
 ## <a id="prereqs"></a> Prerequisites
 
 Meet the [prerequisites](prereqs.hbs.md) before attempting to install Local Source Proxy.
 
 ## <a id="install"></a> Install
 
-To install Local Source Proxy, update `tap-values.yaml` with the following details:
+Install Local Source Proxy by updating `tap-values.yaml` with the following details:
 
 ```yaml
 local_source_proxy:
@@ -35,34 +39,51 @@ Where:
   - Google Artifact Registry has the form `MY-REGISTRY-REGION-docker.pkg.dev/my-project/local-source/image`.
   - Google Cloud Registry has the form `gcr.io/my-project/local-source`.
 
-- `push_secret` is required. This is the push secret reference that has the permission to push
-  artifacts to the repository mentioned in `local_source_proxy.repository`.
+- `local_source_proxy.push_secret` is required. This is the push secret reference that has the
+  permission to push artifacts to the repository mentioned in `local_source_proxy.repository`.
 
-- `push_secret.create_export` is `false` by default. Set it as `true` to tell Local Source Proxy to
-  create a `SecretExport` for the referenced secret and own it. Do one of the following if you're
-  reusing the secret that already existed in your cluster:
+- `local_source_proxy.push_secret.create_export` is `false` by default. Set it as `true` to tell
+  Local Source Proxy to create a `SecretExport` for the referenced secret and own it. Do one of the
+  following if you're reusing the secret that already existed in your cluster:
 
   - Ensure that it's not exported by any other process
   - Set this flag to `false` and ensure that it is exportable to the `tap-local-source-system`
     namespace by using a `SecretExport` resource
 
-- `pull_secret` is optional, but recommended for production. Use the credential that has pull
-  permissions. You can re-use `lsp-push-credentials` that have pull access if you chose not to
-  create a separate request for pulling.
+- `local_source_proxy.pull_secret` is optional, but recommended for production. Use the credential
+  that has pull permissions. You can re-use `lsp-push-credentials` that have pull access if you
+  chose not to create a separate request for pulling.
 
-- `pull_secret.create_export` is `false` by default. Set it as `true` to tell Local Source Proxy to
-  create a SecretExport for the referenced secret and own it.
+- `local_source_proxy.pull_secret.create_export` is `false` by default. Set it as `true` to tell
+  Local Source Proxy to create a SecretExport for the referenced secret and own it.
 
-  Do one of the following if you're reusing the secret that already existed in your cluster:
+In a production installation of Tanzu Application Platform, do not share the registry secret that has
+write access across developer namespaces. Instead, distribute a separate registry secret that only has
+read access.
 
-  - Ensure that it's not exported by any other process
-  - Set this flag to `false` and ensure that it is exportable to developer namespaces by using a
-    `SecretExport` resource
+In such cases, `pull_secret` can be specified, and `source-controller` uses the `pull_secret`
+to pull source artifacts for deployment.
 
-### <a id="create-secretexport-rsrc"></a> (Optional) Create the SecretExport resource
+The `pull_secret` uses a Docker registry credentials secret referenced by its `name` and `namespace`.
 
-If you set the `create_export` to `false` in `tap-values.yaml`, apply the following YAML to create
-the `SecretExport` resource:
+To enable the Tanzu Application Platform installer to automatically create a `SecretExport` resource
+in the specified `namespace` for exporting the secret to developer namespaces, set
+`pull_secret.create_export` to `true`.
+
+Alternatively, if `create_export` is set to `false`, you must manually create the `SecretExport`
+resource in the referenced `namespace`.
+
+Do one of the following if you're reusing the secret that already existed in your cluster:
+
+- Ensure that it's not exported by any other process
+- Set this flag to `false` and ensure that it is exportable to developer namespaces by using a
+  `SecretExport` resource
+
+### <a id="create-secretexport-rsrc"></a> Create the SecretExport resource
+
+If you left `create_export` as `true` in `tap-values.yaml`, skip this procedure. If you set the
+`create_export` to `false`, apply the following YAML in `tap-values.yaml` to create the `SecretExport`
+resource:
 
 Use this YAML for `push-secret`:
 
@@ -90,39 +111,10 @@ spec:
   toNamespace: *
 ```
 
-Where:
-
-- `repository:` is `REGISTRY-SERVER/BASE-PATH`. For example, `gcr.io/my-project/source`.
-
-- `push_secret` has the Docker registry credentials secret referenced by name and namespace.
-
-  > **Important** Ensure that the references used in `push_secret` and `pull_secret` don't conflict
-  > with an existing Tanzu Application Platform `SecretExport`-affected secret in another namespace.
-
-- `push_secret.create_export` must be `true` if a `SecretExport` resource must be created in its
-  namespace to allow the secret to be exported to the Local Source Proxy `tap-local-source-system`
-  namespace.
-
-In a production installation of Tanzu Application Platform, do not share the registry secret that has
-write access across developer namespaces. Instead, distribute a separate registry secret that only has
-read access.
-
-In such cases, `pull_secret` can be specified, and `source-controller` uses the `pull_secret`
-to pull source artifacts for deployment.
-
-The `pull_secret` uses a Docker registry credentials secret referenced by its `name` and `namespace`.
-
-To enable the Tanzu Application Platform installer to automatically create a `SecretExport` resource
-in the specified `namespace` for exporting the secret to developer namespaces, set
-`pull_secret.create_export` to `true`.
-
-Alternatively, if `create_export` is set to `false`, you must manually create the `SecretExport`
-resource in the referenced `namespace`.
-
 ## <a id="customize-install"></a> Customize the installation
 
 You can configure specific Local Source Proxy resources by using the following properties in
-`tap-values.yaml`, as described in the following sections:
+`tap-values.yaml`, as described in the following sections.
 
 ### <a id="override-dflt-rbac"></a> Override default RBAC permissions to access the proxy service
 
@@ -155,6 +147,8 @@ your specific user or group requirements.
 > one specified in `tap-values.yaml`. This allows platform operators to restrict access to the proxy
 > server exclusively to a predefined set of groups, users, or service accounts.
 
+For example:
+
 ```yaml
 local_source_proxy:
   rbac_subjects_for_proxy_access:
@@ -184,11 +178,11 @@ local_source_proxy:
       memory: 100Mi
 ```
 
-### <a id="use-aws-iam-roles"></a> Use AWS IAM roles for ECR
+### <a id="use-aws-iam-roles"></a> Use AWS Identity and Access Management (IAM) roles for ECR
 
 If your Tanzu Application Platform installation is both
 
-- On AWS with Amazon EKS
+- On AWS with Amazon Elastic Kubernetes Service (EKS)
 - Using the AWS Elastic Container Registry (ECR) for storing local source code
 
 then write the IAM role that has push and pull permissions for `aws_iam_role_arn`. For example:
@@ -201,8 +195,8 @@ local_source_proxy:
 ```
 
 You specify this IAM role in `aws_iam_role_arn` to assign it to the Kubernetes service account that
-the Local Source Proxy server uses. For the steps to create an IAM role and add the ARN to the
-Kubernetes service account used by Local Source Proxy, see
+the Local Source Proxy server uses. For the steps to create an IAM role and add the
+Amazon Resource Name (ARN) to the Kubernetes service account used by Local Source Proxy, see
 [Prerequisites for Local Source Proxy](prereqs.hbs.md).
 
 Doing this allows the Local Source Proxy server to handle incoming image push requests with the

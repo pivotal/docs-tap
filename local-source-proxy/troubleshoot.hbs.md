@@ -222,4 +222,4 @@ AWS Elastic Container Registry (ECR) is configured as the external registry in `
 ### Solution
 
 Delete the old pods so that the new pods can mount the expected `podspec`, enabling access to the
-registry through the IAM role ARN.
+registry through the Identity and Access Management (IAM) role Amazon Resource Name (ARN).
