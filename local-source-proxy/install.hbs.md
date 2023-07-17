@@ -2,10 +2,6 @@
 
 This topic tells you how to install and customize Local Source Proxy (LSP).
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install
-> Local Source Proxy. For more information about profiles, see
-> [Components and installation profiles](../about-package-profiles.hbs.md).
-
 ## <a id="prereqs"></a> Prerequisites
 
 Meet the [prerequisites](prereqs.hbs.md) before attempting to install Local Source Proxy.

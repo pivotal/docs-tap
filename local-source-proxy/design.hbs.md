@@ -36,7 +36,7 @@ The `local-source-proxy` mechanism is completely bypassed if either of the follo
 This ensures compatibility with existing workflows and allows developers to continue using their
 preferred methods for deployment.
 
-By default, the `iterate`, `light`, and `full` profiles include the installation of this package.
+By default, the `iterate` and `full` profiles include the installation of this package.
 To suppress this behavior, exclude the package by adding `local-source-proxy.apps.tanzu.vmware.com`
 to the list of excluded packages.
 For how to do so, see
