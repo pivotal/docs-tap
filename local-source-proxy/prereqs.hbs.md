@@ -3,9 +3,9 @@
 You need the following prerequisites before you can install Local Source Proxy (LSP):
 
 - A registry server with a repository capable of accepting and hosting OCI artifacts, such as Google
-  Artifact Registry, JFrog Artifactory, Harbor, and so on.
+  Artifact Registry, JFrog Artifactory, Harbor, Elastic Container Registry, and so on.
 
-- A secret with sufficient privileges to push and pull artifacts from that repository
+- Either IaaS specific trust for k8s service accounts to access the registry, or secret with sufficient privileges to push and pull artifacts from that repository
 
 The rest of this topic tells you how to obtain these prerequisites.
 
@@ -76,9 +76,10 @@ The procedure you use to obtain a secret with sufficient privileges depends on w
 is Elastic Container Registry (ECR) or something else.
 
 Using AWS
-: If you're using Elastic Container Registry as your registry, you require an AWS IAM role ARN
-  that possesses the necessary privileges to push and pull artifacts to the ECR repository. If such
-  a role does not exist, create one:
+: If you're using Elastic Container Registry as your registry, you need to create the container repository
+  ahead of time.  Additionally you require an AWS IAM role ARN
+  that possesses the necessary privileges to push and pull artifacts to the ECR repository.  This is limited 
+  in scope to the service account for local source proxy.
 
   1. Export the variables by running:
 
@@ -86,6 +87,12 @@ Using AWS
     export AWS_ACCOUNT_ID=012345678901  # Your AWS account ID
     export AWS_REGION=us-west-2         # The AWS region you are going to deploy to
     export EKS_CLUSTER_NAME=tap-on-aws  # The name of your EKS Cluster
+    ```
+
+  1. To create the repository, run:
+
+    ```console
+    aws ecr create-repository --repository-name tap-lsp --region $AWS_REGION
     ```
 
   1. Output the files, and then use the policy documents to create the IAM roles, by running:
@@ -151,7 +158,7 @@ Using AWS
                     "ecr:PutImage"
                 ],
                 "Resource": [
-                    "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/local-source"
+                    "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-lsp"
                 ],
                 "Sid": "TAPLSPScoped"
             }
