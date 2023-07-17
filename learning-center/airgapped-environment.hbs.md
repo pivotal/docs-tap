@@ -1,4 +1,4 @@
-# Air-gapped environment requirements for Learning Center
+# Requirements for Learning Center in an air-gapped environment
 
 This topic gives you the list of configurations required for Learning Center to properly
 function in an air-gapped environment.
