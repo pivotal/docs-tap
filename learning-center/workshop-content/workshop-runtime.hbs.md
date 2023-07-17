@@ -1,8 +1,13 @@
 # Workshop runtime
 
-Your workshop content can script the steps a user must run for a workshop. In some cases, you must parameterize that content with information from the runtime environment. Data variables in workshop content allow this to a degree, but you can automate this by using scripts executed in the workshop container to set up configuration files.
+Your workshop content can script the steps a user must run for a workshop.
+In some cases, you must parameterize that content with information from the runtime environment.
+Data variables in workshop content allow this to a degree, but you can automate this by using scripts
+executed in the workshop container to set up configuration files.
 
-Do this by supplying setup scripts that run when the container is started. You can also run persistent background processes in the container that perform extra work for you while a workshop is being run.
+Do this by supplying setup scripts that run when the container is started.
+You can also run persistent background processes in the container that perform extra work for you
+while a workshop is being run.
 
 ## <a id="env-variables"></a> Predefined environment variables
 
