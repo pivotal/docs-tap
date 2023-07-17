@@ -389,7 +389,7 @@ cat << EOF > local-source-proxy-policy.json
                 "ecr:PutImage"
             ],
             "Resource": [
-                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/local-source"
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-lsp"
             ],
             "Sid": "TAPLSPScoped"
         }
@@ -418,4 +418,6 @@ aws iam put-role-policy --role-name tap-local-source-proxy --policy-name tapLoca
 - [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform package and profiles on AWS](profile.hbs.md)
 
-* When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
+
+\* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
+Essentials because the contents of Cluster Essentials are already installed on your cluster._
