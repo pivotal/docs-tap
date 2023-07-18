@@ -105,11 +105,21 @@ Fix your kubeconfig file.
 
 ### Symptom
 
-When a user tries to Tanzu Debug on a new untracked Workload, they will see this error: `Error: unable to check if filepath "'<SOME_PATH>'" is a valid url.`
+When you try to run `Tanzu Debug` on a new untracked workload, you see an error message similar to
+the following:
+
+```console
+Error: unable to check if filepath "'FILE-PATH'" is a valid url.
+```
 
 ### Cause
-We added single quotes around the `--file` and `--local-path` arguments in an attempt to allow the app to work on path with spaces.
-Apparently, the this behavior is broken on vscode.PsuedoTerminal, but not in PowerShell. Tanzu Debug uses the PsuedoTerminal whereas Tanzu Apply uses PowerShell.
+
+Single quotes were introduced around the `--file` and `--local-path` arguments in an attempt to enable
+the app to work on paths with spaces. Reportedly, this behavior is broken on vscode.PsuedoTerminal,
+but not in PowerShell. `Tanzu Debug` uses the PsuedoTerminal whereas `Tanzu Apply` uses PowerShell.
+
 ### Solution
 
-First do Tanzu Apply. When the workload is ready, then do Tanzu Debug. Since the workload exists, Tanzu Debug will not try to re-apply.
+1. Run `Tanzu Apply`.
+2. Wait until the workload is ready.
+3. Run `Tanzu Debug`. Because the workload exists, `Tanzu Debug` does not try to re-apply.

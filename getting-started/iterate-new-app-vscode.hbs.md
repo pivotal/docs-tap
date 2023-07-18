@@ -129,11 +129,13 @@ support, you are ready to set up your development environment.
       your local file system to bring into the source image.
       For example, dot (`.`) uses the working directory, or you can specify a full file path.
 
-   1. Configure Local source proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md).
+   1. [Customize the installation](../local-source-proxy/install.hbs.md#customize-install) of
+      Local Source Proxy.
 
-      If not configured, you can optionally use the source image parameter. The source image value tells the Tanzu Developer Tools for VS Code extension where to publish
-      the container image with your uncompiled source code, and what to name that image.
-      The image must be published to a container image registry where you have write (push) access.
+      If you don't have Local Source Proxy configured, you can use the source image parameter instead.
+      The source image value tells the Tanzu Developer Tools for VS Code extension where to publish
+      the container image with your non-compiled source code, and what to name that image.
+      The image must be published to a container image registry where you have write access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
       > **Note** See the documentation for the registry you're using to find out which steps
@@ -152,7 +154,7 @@ support, you are ready to set up your development environment.
 
    1. Open the Terminal by clicking **View** > **Terminal**.
 
-   1. Ensure your current context has a default namespace by running:
+   2. Ensure your current context has a default namespace by running:
 
       ```console
       kubectl config get-contexts
@@ -162,7 +164,7 @@ support, you are ready to set up your development environment.
       of your current context.
       Verify that your current context has a namespace in the namespace column.
 
-   1. If your current context does not have a namespace in the namespace column, run:
+   3. If your current context does not have a namespace in the namespace column, run:
 
       ```console
       kubectl config set-context --current --namespace=YOUR-DEVELOPER-NAMESPACE
