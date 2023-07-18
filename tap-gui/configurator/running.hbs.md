@@ -46,7 +46,8 @@ To prepare to overlay your customized image onto the currently running instance:
 
 1. Create the [ytt](https://carvel.dev/ytt/) overlay secret.
 
-1. Create a file called `tdp-overlay-secret.yaml` with the following content (replacing `IMAGE-REFERENCE` with the customized image you retrieved earlier):
+2. Create a file called `tdp-overlay-secret.yaml` with the following content to replace
+   `IMAGE-REFERENCE` with the customized image you retrieved earlier:
 
     ```yaml
     apiVersion: v1
@@ -79,13 +80,13 @@ To prepare to overlay your customized image onto the currently running instance:
                     --config=/etc/app-config/app-config.yaml
     ```
 
-1. Apply the secret by running:
+3. Apply the secret by running:
 
    ```console
    kubectl apply -f tdp-overlay-secret.yaml
    ```
 
-1. Add the secret to `tap-values.yaml`, the file used to install Tanzu Application Platform.
+4. Add the secret to `tap-values.yaml`, the file used to install Tanzu Application Platform.
    For example:
 
     ```yaml
@@ -98,7 +99,7 @@ To prepare to overlay your customized image onto the currently running instance:
       - name: tpb-app-image-overlay-secret
     ```
 
-1. Update your installation to use the modified `tap-values.yaml` file. The exact steps vary depending
+5. Update your installation to use the modified `tap-values.yaml` file. The exact steps vary depending
    on your installation method (GitOps, online install, or offline install).
 
    For how to do so for an online installation, see
