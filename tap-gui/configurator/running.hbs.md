@@ -57,7 +57,7 @@ To prepare to overlay your customized image onto the currently running instance:
     stringData:
       tpb-app-image-overlay.yaml: |
         #@ load("@ytt:overlay", "overlay")
-   ​
+
         #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
         #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
         ---
