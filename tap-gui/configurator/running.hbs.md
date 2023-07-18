@@ -46,7 +46,7 @@ To prepare to overlay your customized image onto the currently running instance:
 
 1. Create the [ytt](https://carvel.dev/ytt/) overlay secret.
 
-1. Create a file called `tdp-overlay-secret.yaml` with the following content:
+1. Create a file called `tdp-overlay-secret.yaml` with the following content (replacing `IMAGE-REFERENCE` with the customized image you retrieved earlier):
 
     ```yaml
     apiVersion: v1
@@ -57,7 +57,7 @@ To prepare to overlay your customized image onto the currently running instance:
     stringData:
       tpb-app-image-overlay.yaml: |
         #@ load("@ytt:overlay", "overlay")
-   ​
+
         #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
         #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
         ---
@@ -76,32 +76,8 @@ To prepare to overlay your customized image onto the currently running instance:
                     exec /layers/tanzu-buildpacks_node-engine-lite/node/bin/node portal/dist/packages/backend  \
                     --config=portal/app-config.yaml \
                     --config=portal/runtime-config.yaml \
-                    --config=portal/app-config.pack.yaml \
                     --config=/etc/app-config/app-config.yaml
-                  #@overlay/replace
-                  ports:
-                    - containerPort: 7007
-                  #@overlay/replace
-                  livenessProbe:
-                    httpGet:
-                      port: 7007
-                  #@overlay/replace
-                  readinessProbe:
-                    httpGet:
-                      port: 7007
-
-        #@ load("@ytt:overlay", "overlay")
-        #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
-        ---
-        spec:
-        #@overlay/replace
-          ports:
-          - protocol: TCP
-            targetPort: 7007
-            port: 7000
     ```
-
-    Where `IMAGE-REFERENCE` is the customized image you retrieved earlier
 
 1. Apply the secret by running:
 
