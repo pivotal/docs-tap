@@ -194,7 +194,7 @@ and `pub.pem`. In this specific example, we are
 using [Secretgen-Controller](https://github.com/vmware-tanzu/carvel-secretgen-controller), a TAP dependency, to generate
 the key for us.
 
-Learn more about [Token Signatures](../how-to-guides/service-operators/token-signature.md).
+Learn more about [Token Signatures](../how-to-guides/service-operators/configure-token-signature.hbs.md).
 
 ### Identity providers
 

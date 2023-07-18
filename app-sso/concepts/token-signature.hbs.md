@@ -71,4 +71,4 @@ The `AuthServer` serves its public keys at `{spec.issuerURI}/oauth2/jwks`. For e
 >**Caution** Changes to `spec.tokenSignature.signAngVerifyKeyRef` have immediate effects.
 
 As a service operator, you have control over which keys are used for certain purposes.
-For more information, see [Manage token signature keys for Application Single Sign-On](../how-to-guides/service-operators/token-signature.hbs.md).
+For more information, see [Manage token signature keys for Application Single Sign-On](../how-to-guides/service-operators/configure-token-signature.hbs.md).

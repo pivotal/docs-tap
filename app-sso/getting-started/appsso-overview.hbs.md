@@ -10,7 +10,7 @@ Use this topic to learn how to:
 1. [Deploy an application](application.hbs.md) that uses the provisioned ClientRegistration to enable SSO.
 
 After completing these steps, you can proceed with
-[securing a Workload](../how-to-guides/secure-spring-boot-workload.hbs.md).
+[securing a Workload](../how-to-guides/app-operators/secure-spring-boot-workload.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
@@ -72,7 +72,7 @@ For more information about mapping for OpenID Connect, LDAP and SAML, see:
 - [LDAP external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
 - [SAML (experimental) external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
-ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../how-to-guides/service-operators/token-signature.md). Client
+ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../how-to-guides/service-operators/configure-token-signature.hbs.md). Client
 applications may verify their validity using the AuthServer's public keys.
 
 ## <a id='next-steps'></a> Next steps

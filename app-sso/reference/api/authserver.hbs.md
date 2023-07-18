@@ -18,7 +18,7 @@ You can view the issuer URI by running `kubectl get authserver -n authservers`.
 See [Issuer URI & TLS](../../how-to-guides/service-operators/issuer-uri-and-tls.md) for more information.
 
 Token signature keys are configured by using `spec.tokenSignature`. This is a required field. See
-[Token signatures](../../how-to-guides/service-operators/token-signature.md) for more context.
+[Token signatures](../../how-to-guides/service-operators/configure-token-signature.hbs.md) for more context.
 
 You can configure identity providers under `spec.identityProviders`. If there is none, end-users can not log in. 
 For more information about configuring identity providers, see [Identity providers](../../how-to-guides/service-operators/identity-providers.hbs.md).

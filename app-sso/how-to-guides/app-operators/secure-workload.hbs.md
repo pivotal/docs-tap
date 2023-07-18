@@ -3,9 +3,9 @@
 This tutorial tells you how to secure a `Workload` running on Tanzu Application
 Platform with Application Single Sign-On (commonly called AppSSO).
 
-For specific stack implementations, see [Secure a single-page app workload](../../how-to-guides/secure-spa-workload.hbs.md) and [Secure a Spring Boot workload](../../how-to-guides/secure-spring-boot-workload.hbs.md).
+For specific stack implementations, see [Secure a single-page app workload](../../how-to-guides/app-operators/secure-spa-workload.hbs.md) and [Secure a Spring Boot workload](../../how-to-guides/app-operators/secure-spring-boot-workload.hbs.md).
 
-The [Getting Started](../../get-started/index.hbs.md) section
+The [Getting Started](../../getting-started/index.hbs.md) section
 explains how to obtain OAuth2 client credentials for an authorization server by
 claiming them from an Application Single Sign-On service offering.
 You can enable this by running the `tanzu service class-claims create` command or
