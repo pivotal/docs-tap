@@ -4,7 +4,7 @@ This topic tells you how to configure the Apps CLI plug-in.
 
 ## <a id='changing-clusters'></a>Changing clusters with --context
 
-The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
+The Apps CLI plug-in references the default kubeconfig file to access a Kubernetes cluster.
 When you run a `tanzu apps` command, the Apps CLI plug-in uses the default context.
 The default context is defined in the kubeconfig file located by default in: `HOME/.kube/config`.
 
@@ -36,7 +36,7 @@ For more information about kubeconfig, see the
 
 ## Suppressing color with --no-color flag
 
-Most Tanzu Apps Plug-in commands have emojis and colored output. In some cases, color, emojis,
+Most Apps Plug-in commands have emojis and colored output. In some cases, color, emojis,
 and other characters are not needed, such as for automated scripting, or where the misinterpretation
 of these features by a terminal could result in a poor user experience. Use the `--no-color` flag
 to suppress color, emojis, and animation.

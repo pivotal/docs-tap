@@ -1,6 +1,7 @@
 # tanzu apps workload get
 
-The `tanzu apps workload get` command retrieves information and status about a workload.
+This topic tells you how to use the `tanzu apps workload get` command to
+retrieve information and status about a workload.
 
 Some of the workload details in the command output are as follows:
 

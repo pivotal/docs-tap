@@ -1,6 +1,6 @@
 # Integrate with Local Source Proxy
 
-This topic tells you how to integrate the Apps CLI with Local Source Proxy.
+This topic tells you how to integrate the Apps CLI plug-in with Local Source Proxy.
 
 You can configure workloads to push local source code to a registry that is predefined using
 the Local Source Proxy component.
@@ -46,8 +46,8 @@ Kubernetes API Server. Format is `yaml`.
   message: "The current user does not have permission to access the local source proxy"
   ```
 
-- You can list the services, but its not there. The possible reason is a 404 error from the Kubernetes
-API Server. Format is `yaml`.
+- You can list the services, but it's not there. The possible reason is a 404 error from the Kubernetes
+API Server. Format is [Source-Controller](../../../source-controller/about.hbs.md)
 
   ```yaml
   user_has_permission: true
@@ -57,7 +57,7 @@ API Server. Format is `yaml`.
   message: "Local source proxy is not installed on the cluster"
   ```
 
-- `/health` from Local Source Proxy returns a 5xx
+- `/health` from Local Source Proxy returns a 5xx. Format is `yaml`.
 
   ```yaml
   user_has_permission: true
