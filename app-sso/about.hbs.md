@@ -38,15 +38,15 @@ The following is a selection of useful topics on offer:
 
 **For application developers:**
 
-- How-to guide: [Secure an application with Application Single Sign-On](./tutorials/app-operators/index.hbs.md)
+- How-to guide: [Secure an application with Application Single Sign-On](./how-to-guides/app-operators/index.hbs.md)
 
 **For service operators:**
 
-- How-to guide: [Provide Application Single Sign-On services](./tutorials/service-operators/index.hbs.md)
+- How-to guide: [Provide Application Single Sign-On services](./how-to-guides/service-operators/index.hbs.md)
 
 **For platform operators:**
 
-- How-to guide: [Manage an Application Single Sign-On installation](./tutorials/platform-operators/index.hbs.md)
+- How-to guide: [Manage an Application Single Sign-On installation](./how-to-guides/platform-operators/index.hbs.md)
 
 **For everyone:**
 

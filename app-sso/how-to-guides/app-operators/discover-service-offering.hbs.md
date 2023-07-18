@@ -5,7 +5,7 @@ offerings.
 
 VMware recommends that you consume Application Single Sign-On by claiming credentials for an
 Application Single Sign-On service using [Services Toolkit](../../../services-toolkit/about.hbs.md).
-[Service operators](../../tutorials/service-operators/index.hbs.md) are responsible for curating
+[Service operators](../../how-to-guides/service-operators/index.hbs.md) are responsible for curating
 service offerings.
 
 You can discover the available service offerings with the Tanzu Services CLI:

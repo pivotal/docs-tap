@@ -101,7 +101,7 @@ Follow these steps to claim credentials for an Application Single Sign-On servic
 ## <a id="trust-authserver"></a> Ensure `Workload` trusts `AuthServer`
 
 For Tanzu Application Platform cluster with a custom or self-signed CA certificate,
-see [Configure workloads to trust a custom Certificate Authority (CA)](../tutorials/service-operators/workload-trust-custom-ca.hbs.md).
+see [Configure workloads to trust a custom Certificate Authority (CA)](../how-to-guides/service-operators/workload-trust-custom-ca.hbs.md).
 
 ## <a id="deploy-workload"></a> Deploy the `Workload`
 

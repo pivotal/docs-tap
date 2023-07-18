@@ -56,7 +56,7 @@ Application Single Sign-On to `v2.0.0` with the following changes:
 - Migrate from `.spec.issuerURI` to `.spec.tls`:
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See
-       [Issuer URI & TLS](../tutorials/service-operators/issuer-uri-and-tls.md) for more
+       [Issuer URI & TLS](../how-to-guides/service-operators/issuer-uri-and-tls.md) for more
        information.
     1. (Optional) Disable TLS with `.spec.tls.disabled`.
     1. Remove `.spec.issuerURI`.

@@ -110,11 +110,11 @@ Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug
 - Incorporates the token expiry settings into the `AuthServer` resource. Service
   operators can customize the expiry settings of access, refresh, or identity
   tokens. For more information, see
-  [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
+  [Token settings](./app-sso/how-to-guides/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enables the ability to:
   - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
   - Configure the internal unsafe provider with custom claims.
-    For more information, see [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+    For more information, see [Identity providers](./app-sso/how-to-guides/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
   use to get started with Application Single Sign-On in non-production environments.
   It is not safe for production.
