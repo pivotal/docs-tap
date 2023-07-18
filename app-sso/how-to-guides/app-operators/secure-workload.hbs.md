@@ -340,7 +340,7 @@ Your application makes request to the authorization server. The authorization se
 serves traffic using TLS. If your company uses non-public certificate authority (CA),
 you must explicitly trust the authorization server or rather the certificate
 authority. For more information, see
-[Configure Workloads to trust a custom certificate authority](../../how-to-guides/service-operators/workload-trust-custom-ca.hbs.md).
+[Configure Workloads to trust a custom certificate authority](../service-operators/workload-trust-custom-ca.hbs.md).
 
 ## <a id='summary'></a> Summary
 

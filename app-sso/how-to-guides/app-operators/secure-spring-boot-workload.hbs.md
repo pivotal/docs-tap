@@ -50,7 +50,7 @@ kubectl create namespace my-apps
 kubectl label namespaces my-apps apps.tanzu.vmware.com/tap-ns=""
 ```
 
-For more information about provisioning namespaces for workloads, see [Set up developer namespaces](../../install-online/set-up-namespaces.hbs.md).
+For more information about provisioning namespaces for workloads, see [Set up developer namespaces](../../../install-online/set-up-namespaces.hbs.md).
 
 ## <a id='credentials'></a> Claim client credentials
 
@@ -101,7 +101,7 @@ Follow these steps to claim credentials for an Application Single Sign-On servic
 ## <a id="trust-authserver"></a> Ensure `Workload` trusts `AuthServer`
 
 For Tanzu Application Platform cluster with a custom or self-signed CA certificate,
-see [Configure workloads to trust a custom Certificate Authority (CA)](../how-to-guides/service-operators/workload-trust-custom-ca.hbs.md).
+see [Configure workloads to trust a custom Certificate Authority (CA)](../service-operators/workload-trust-custom-ca.hbs.md).
 
 ## <a id="deploy-workload"></a> Deploy the `Workload`
 
