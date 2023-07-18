@@ -69,7 +69,7 @@ in the `-—source-image` flag is missing either project or repository.
 
 ### WorkloadLabelsMissing/SupplyChainNotFound
 
-**Message**: No supply chain found where full selector is satisfied by `labels: map[app.kubernetes.io/part-of:spring-petclinic]`
+**Message**: No supply chain found where full selector is satisfied by `labels: map[app.kubernetes.io/part-of:spring-petclinic]`.
 
 **Cause**: The labels and attributes in the workload object did not fully satisfy any installed supply
 chain on the cluster.
@@ -92,16 +92,16 @@ gitrepository.source.toolkit.fluxcd.io  in namespace `[ns]`
 
 **Possible Cause 1**: The Git `url/tag/branch/commit` parameters passed in the workload are not valid.
 
-**Resolution 1**: Fix the invalid Git parameters by using `tanzu apps workload apply`
+**Resolution 1**: Fix the invalid Git parameters by using `tanzu apps workload apply`.
 
-**Possible Cause 2**: The Git repository is not accessible from the cluster
+**Possible Cause 2**: The Git repository is not accessible from the cluster.
 
 **Resolution 2**: Configure the cluster networking or the Git repository networking so that they can
 communicate with each other.
 
-**Possible Cause 3**: The namespace is missing the Git secret for communicating with the private repository
+**Possible Cause 3**: The namespace is missing the Git secret for communicating with the private repository.
 
-**Resolution 3**: For more information, see [Git authentication](../../../scc/git-auth.hbs.md)
+**Resolution 3**: For more information, see [Git authentication](../../../scc/git-auth.hbs.md).
 
 ### TemplateRejectedByAPIServer
 
@@ -115,8 +115,7 @@ User "system:serviceaccount:ns:default" cannot get resource "imagerepositories" 
 to create objects that are stamped out by the supply chain.
 
 **Resolution**: Set up the
-[Set up developer namespaces to use your installed packages](../../../scst-store/developer-namespace-setup.hbs.md)
-with the required service account and permissions.
+Set up developer namespaces to use your installed packages with the required service account and permissions. For more information, see [Developer namespace setup for Supply Chain Security Tools - Store](../../../scst-store/developer-namespace-setup.hbs.md).
 
 ## <a id="steps-failure"></a> Review supply chain steps
 
@@ -153,7 +152,7 @@ For example:
 
 The `Supply Chain` section displays the supply chain steps associated with the workload.
 If a step fails, the `READY` column value is `Unknown` or `False`, and
-the `HEALTHY` column value is `False`. If there a resource is in the `Unknown` or `False` status,
+the `HEALTHY` column value is `False`. If a resource is in the `Unknown` or `False` status,
 inspect it with:
 
 ```console
