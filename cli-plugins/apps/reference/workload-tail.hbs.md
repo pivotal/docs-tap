@@ -37,11 +37,7 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 ...
 ```
 
-## tanzu apps workload tail flags
-
-This section describes the `tanzu apps workload tail` flags.
-
-### <a id="tail-component"></a> `--component`
+## <a id="tail-component"></a> `--component`
 
 Set the component from which the tail command should stream the logs. The values that the flag can
 take depend on the final deployed pods label `app.kubernetes.io/component`, for example, `build`,
@@ -67,7 +63,7 @@ pet-clinic-build-1-build-pod[export] Adding cache layer 'paketo-buildpacks/maven
 pet-clinic-build-1-build-pod[export] Adding cache layer 'cache.sbom'
 ```
 
-### <a id="tail-namespace"></a> `--namespace`, `-n`
+## <a id="tail-namespace"></a> `--namespace`, `-n`
 
 Specifies the namespace where the workload was deployed to get logs from.
 
@@ -86,7 +82,7 @@ pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.229  
 pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.231  INFO 1 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 ```
 
-### <a id="tail-since"></a> `--since`
+## <a id="tail-since"></a> `--since`
 
 Sets the time duration to start reading logs from.
 
@@ -124,7 +120,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main]     app.kubernetes.io/component: r
 pet-clinic-config-writer-9fbk6-pod[step-main]     carto.run/workload-name: pet-clinic
 ```
 
-### <a id="tail-timestamp"></a> `--timestamp`, `-t`
+## <a id="tail-timestamp"></a> `--timestamp`, `-t`
 
 Adds the timestamp to the beginning of each log message
 

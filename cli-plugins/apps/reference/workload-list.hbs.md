@@ -2,11 +2,11 @@
 
 This topic tells you about the `tanzu apps workload list` Apps CLI command.
 
-`tanzu apps workload list` gets the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
+The `tanzu apps workload list` command gets the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
 
 ## Default view
 
-The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the app it is related to, its status, and how long it's been in the cluster.
+The default view for `tanzu apps workload list` is a table with the workloads present in the cluster in the specified namespace. Each row displays the name of the workload, the application it is related to, its status, and how long it's been in the cluster.
 
 For example, in the default namespace
 
@@ -25,9 +25,7 @@ tanzu-java-web-app    web       tanzu-java-web-app   Ready                   40m
 tanzu-java-web-app2   web       tanzu-java-web-app   Ready                   20m
 ```
 
-## >Workload List flags
-
-### <a id="list-all-namespaces"></a> `--all-namespaces`, `-A`
+## <a id="list-all-namespaces"></a> `--all-namespaces`, `-A`
 
 Shows workloads in all namespaces in cluster.
 
@@ -48,9 +46,9 @@ nginx-ns    web    nginx2                <empty>              TemplateRejectedBy
 nginx-ns    web    nginx4                <empty>              TemplateRejectedByAPIServer   8d
 ```
 
-### <a id="list-app"></a> `--app`
+## <a id="list-app"></a> `--app`
 
-Shows workloads which app is the one specified in the command.
+Shows workloads which application is the one specified in the command.
 
 ```console
 tanzu apps workload list --app spring-petclinic
@@ -60,7 +58,7 @@ spring-petclinic2   web    Unknown   29d
 spring-petclinic3   web    Ready     29d
 ```
 
-### <a id="list-namespace"></a> `--namespace`, `-n`
+## <a id="list-namespace"></a> `--namespace`, `-n`
 
 Lists all the workloads present in the specified namespace.
 
@@ -73,11 +71,12 @@ app2   web    <empty>   Ready                         8d
 app3   web    <empty>   Unknown                       8d
 ```
 
-### <a id="list-output"></a> `--output`, `-o`
+## <a id="list-output"></a> `--output`, `-o`
 
-Allows to list all workloads in the specified namespace in yaml, yml or json format.
+Lists all workloads in the specified namespace in yaml, yml or json format.
 
 - yaml/yml
+
     ```yaml
     ---
     - apiVersion: carto.run/v1alpha1
@@ -138,6 +137,7 @@ Allows to list all workloads in the specified namespace in yaml, yml or json for
     ```
 
 - json
+
     ```json
     [
         {

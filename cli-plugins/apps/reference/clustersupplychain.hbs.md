@@ -39,7 +39,7 @@ To view details: "tanzu apps cluster-supply-chain get <name>"
 
 ## tanzu apps cluster-supply-chain get
 
-The `tanzu apps cluster-supply-chain get` command gets detailed information of the cluster supply chain.
+The `tanzu apps cluster-supply-chain get` command gets detailed information about the cluster supply chain.
 
 ### Default view
 

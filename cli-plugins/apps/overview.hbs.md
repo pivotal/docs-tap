@@ -14,4 +14,4 @@ Tanzu Application Platform can support a range of workloads, including a serverl
 starts on demand, a constellation of microservices that functions as a logical application, or
 a small hello-world test application.
 
-For information about installing the Apps CLI plug-in, see [Install Apps CLI plug-in](./getting-started/installation.hbs.md)
+For information about installing the Apps CLI plug-in, see [Install Apps CLI plug-in](./getting-started/installation.hbs.md).
