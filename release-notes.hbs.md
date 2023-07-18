@@ -527,6 +527,12 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-1-scc-ki'></a> Supply Chain Choreographer
 
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+- If a user attempts to update the `ootb_supply_chain_testing_scanning` field in their `tap-values.yaml` file to use a specified ClusterImageTemplate:
+  ```
+  ootb_supply_chain_testing_scanning:
+    image_scanner_template_name: CLUSTERIMAGETEMPLATE
+  ```
+  The ClusterSupplyChain `scanning-image-scan-to-url` cannot update because the ClusterSupplyChain is preset to `image-scanner-template`. The workaround is to create another ClusterSupplyChain that uses the intended ClusterImageTemplate.
 
 #### <a id='1-6-1-tap-gui-ki'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
