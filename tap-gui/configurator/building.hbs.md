@@ -98,7 +98,7 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-app-config,set-tpb-config,portal:pack'
+        value: 'set-tpb-config,portal:pack'
       - name: TPB_CONFIG
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
@@ -136,7 +136,7 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-app-config,set-tpb-config,portal:pack'
+        value: 'set-tpb-config,portal:pack'
       - name: TPB_CONFIG
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
