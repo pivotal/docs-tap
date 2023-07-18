@@ -5,14 +5,14 @@ of a workload.
 
 ## tanzu apps workload list
 
-`tanzu apps workload list` gets a list of the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
+The `tanzu apps workload list` command gets a list of the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
 
 Filter the list result by the `--namespace`, `--type` or `--app` flags.
 The `--output` flag supports the `yaml` and `json` formats.
 
 ### --all-namespaces, -A flag
 
-Shows workloads in all namespaces in the cluster.
+Show workloads in all namespaces in the cluster.
 
 ```console
 tanzu apps workload list -A
@@ -52,7 +52,7 @@ app3   web    <empty>   Unknown                       8d
 
 ### --output, -o flag
 
-Lists all workloads in the specified namespace in `yaml`, `yml` or `json` format.
+List all workloads in the specified namespace in `yaml`, `yml` or `json` format.
 
 - yaml/yaml
 
@@ -175,7 +175,7 @@ Lists all workloads in the specified namespace in `yaml`, `yml` or `json` format
 ## tanzu apps workload get
 
 The `tanzu apps workload get` command provides detailed information and status about a workload.
-Workloads can be filtered with the `--namespace` flag, which specifies the namespace where the workload
+Filter workloads with the `--namespace` flag, which specifies the namespace where the workload
 is deployed.
 
 There are multiple sections in the workload get command output. The following data is displayed:
@@ -261,8 +261,7 @@ To see logs: "tanzu apps workload tail tanzu-java-web-app --namespace developmen
 by the namespace it was created on by using the `--namespace` flag, and the workload logs
 can also be filtered by a specific `--component`. 
 
-To retrieve logs within a specific timeframe and display them with their `--timestamp`, 
-you can utilize the `--since` flag.
+Use the `--since` flag to retrieve logs within a specific time-frame and display them with their `--timestamp`.
 
 ```console
 tanzu apps workload tail tanzu-java-web-app -n development --since 1h --component build --timestamp
@@ -288,7 +287,7 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2023-06-15T10:45:13.238437378-05:0
 
 You can tail a workload directly as part of the `tanzu apps workload create` or
 `tanzu apps workload apply` commands by providing the `--tail` flag and you can display timestamps for
-each log message by including the `--tail-timestamp` flag.
+each log entry by including the `--tail-timestamp` flag.
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-tag tap-1.6.0 --sub-path tanzu-java-web-app --tail --tail-timestamp
@@ -335,13 +334,12 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2023-06-15T11:28:12.747417620-05:0
 
 ## --export flag
 
-A clean workload definition export can be committed to GitHub or applied to a 
-different environment without having to make significant edits because the export will only include 
-the fields specified by the developer who created it (only the essence of the developer's intent will
-be preserved for portability).
+A clean workload definition export can be committed to GitHub or applied to a
+different environment without having to make significant edits because the export only includes 
+the fields specified by the developer who created it.
 
 By default, the `--export` flag is configured to display the workload in `yaml` format. However, 
-the behavior can be modified by combining it with the `--output` flag, which accepts `yaml`, `yml` 
+the behavior can be modified by combining it with the `--output` flag, which accepts `yaml`, `yml`, 
 and `json` as values.
 
 For example, if a workload is created with:
@@ -543,10 +541,10 @@ status:
 
 ## --output flag with `tanzu apps workload apply` command
 
-By utilizing this flag, the workload can be promptly retrieved in the `yaml`, `yml`, or
+Use this flag to retrieve the workload in the `yaml`, `yml`, or
 `json` format after it is applied. When combined with the `--yes` flag, all prompts are bypassed,
-and only the workload definition is returned. Additionally, by using the `--wait` or `--tail` flags,
-the workload can be retrieved along with its current status.
+and only the workload definition is returned. Additionally, use the `--wait` or `--tail` flags,
+to retrieve the workload with its current status.
 
 ```console
 tanzu apps workload create tanzu-where-for-dinner --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --sub-path where-for-dinner -oyaml
