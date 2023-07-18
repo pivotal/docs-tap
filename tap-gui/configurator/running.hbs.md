@@ -46,7 +46,7 @@ To prepare to overlay your customized image onto the currently running instance:
 
 1. Create the [ytt](https://carvel.dev/ytt/) overlay secret.
 
-1. Create a file called `tdp-overlay-secret.yaml` with the following content:
+1. Create a file called `tdp-overlay-secret.yaml` with the following content (replacing `IMAGE-REFERENCE` with the customized image you retrieved earlier):
 
     ```yaml
     apiVersion: v1
@@ -78,8 +78,6 @@ To prepare to overlay your customized image onto the currently running instance:
                     --config=portal/runtime-config.yaml \
                     --config=/etc/app-config/app-config.yaml
     ```
-
-    Where `IMAGE-REFERENCE` is the customized image you retrieved earlier
 
 1. Apply the secret by running:
 
