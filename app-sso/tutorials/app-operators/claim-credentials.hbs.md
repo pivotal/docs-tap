@@ -1,28 +1,36 @@
-# Claim credentials for an AppSSO service offering
+# Claim credentials for an Application Single Sign-On service offering
 
-In the previous section we have seen how to discover the available AppSSO
-service offerings. The recommended way to consume such an AppSSO offering is by
-claiming credentials for it through a class claim. 
+This topic describes the recommended method for you to consume Application Single Sign-On
+service offerings, which is by using a class claim.
+
 <!--If you want to learn more
-about the different levels of AppSSO, see [The three levels of AppSSO
+about the different levels of Application Single Sign-On, see [The three levels of Application Single Sign-On
 consumption](../concepts/app-sso-consumption.hbs.md).-->
 
+When you create a claim for an Application Single Sign-On service, you receive your service
+credentials through [service bindings](https://servicebinding.io/).
+This makes it easier to load the credentials into a workload running on Tanzu Application Platform.
 
-When we create a claim for an AppSSO service, we will receive our service
-credentials through [service bindings](https://servicebinding.io/). This makes
-it easy to load the credentials into a workload running on TAP.
+## <a id="discover-params"></a> Discover available parameters
 
-To create a claim for an AppSSO service we have to target the specific service
-and provide a few required and optional parameters. These parameters allow us
-to configure our OAuth2 client according to our needs.
+To create a claim for an Application Single Sign-On service, target the specific service
+and provide the required and optional parameters.
+These parameters allow you to configure the OAuth2 client according to your needs.
+<!-- seems specific to OAuth2 - can this be made generic? -->
 
-Every service's parameter schema can be discovered. For an AppSSO service
-it will look something like this:
+To discover the parameter schema for a service, run:
 
 ```console
-❯ tanzu services classes get <name>
-NAME:           <name>
-DESCRIPTION:    <description>
+tanzu services classes get NAME
+```
+
+For an Application Single Sign-On service, the output looks similar to the following:
+
+```console
+$ tanzu services classes get sso
+
+NAME:           app-sso
+DESCRIPTION:    Login by AppSSO - OAuth2
 READY:          true
 
 PARAMETERS:
@@ -36,76 +44,100 @@ PARAMETERS:
 ```
 
 Here you can see all the parameters with a brief description, their types,
-defaults and whether they are required or not. The only required parameter is
-`workloadRef.name`. We will discuss the individual parameters in the next
-section.
+default values, and whether they are required or not. The only required parameter is `workloadRef.name`.
+<!-- is this statement about the required parameter true for something other than OAuth2? -->
 
-To claim credentials we can either use the `tanzu services class-claims create` command
+## <a id="claim-creds"></a>Claim credentials
+
+To claim credentials you can either use the `tanzu services class-claims create` command
 or create a `ClassClaim` directly.
 
-When using the `tanzu` CLI you could claim credentials like so:
+- **If using the Tanzu CLI,** claim credentials by running:
+
+    ```console
+    tanzu services class-claims create CLAIM-NAME \
+      --class SERVICE-NAME \
+      --namespace NAMESPACE \
+      --parameter workloadRef.name=WORKLOAD-NAME \
+      --parameter OPTIONAL-PARAMETER
+
+    Where:
+
+    - `CLAIM-NAME` is the you want for your claim.
+    - `SERVICE-NAME` is the name of the service that you want to claim.
+    - `NAMESPACE` is the namespace ... <!-- is this the namespace that your claim is in or your workload? -->
+    - `WORKLOAD-NAME` is the name of your workload.
+    - `OPTIONAL-PARAMETER` is an optional parameters that you choose.
+
+    <!-- confirm these placeholders. Also, would you be required to use different parameters if not using OAuth2? -->
+
+    For example:
+
+    ```console
+    $ tanzu services class-claims create my-class-claim \
+      --class app-sso \
+      --namespace my-namespace \
+      --parameter workloadRef.name=my-workload \
+      --parameter redirectPaths='["/login/oauth2/code/sso"]' \
+      --parameter authorizationGrantTypes='["client_credentials", "authorization_code"]' \
+      --parameter requireUserConsent=false
+    ```
+
+- **If using a `ClassClaim`,** create a YAML file similar to the following example:
+
+    ```yaml
+    ---
+    apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+    kind: ClassClaim
+    metadata:
+      name: my-class-claim
+      namespace: my-namespace
+    spec:
+      classRef:
+        name: app-sso
+      parameters:
+        workloadRef:
+          name: my-workload
+        redirectPaths:                        # Optional
+          - /login/oauth2/code/sso
+        authorizationGrantTypes:              # Optional
+          - client_credentials
+          - authorization_code
+        requireUserConsent: false             # Optional
+    ```
+
+> **Important** When iterating on your `ClassClaim`, you must recreate it when you make changes.
+> Updates to an existing `ClassClaim` have no effect.
+> For more information, see
+> [Class claims compared to resource claims](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#classclaim).
+
+## <a id="inspect"></a>Inspect the progress of your claim
+
+You can inspect the progress of you claim creation by running:
 
 ```console
-tanzu services class-claims create <my-claim-name> \
-  --class <service-name> \
-  --namespace <my-namespace> \
-  --parameter workloadRef.name=my-workload \
-  --parameter redirectPaths='["/login/oauth2/code/sso"]' \
-  --parameter authorizationGrantTypes='["client_credentials", "authorization_code"]' \
-  --parameter requireUserConsent=false
-```
-
-The following `ClassClaim` is synonymous with the command above:
-
-```yaml
----
-apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-kind: ClassClaim
-metadata:
-  name: <my-claim-name>
-  namespace: <my-namespace
-spec:
-  classRef:
-    name: <service-name>
-  parameters:
-    workloadRef:
-      name: my-workload
-    redirectPaths:
-      - /login/oauth2/code/sso
-    authorizationGrantTypes:
-      - client_credentials
-      - authorization_code
-    requireUserConsent: false
-```
-
-You can inspect the progress of you claim creation with:
-
-```console
-tanzu services class-claims get <my-claim-name> --namespace <my-namespace>
+tanzu services class-claims get MY-CLAIM-NAME --namespace MY-NAMESPACE
 ```
 
 or
 
 ```console
-kubectl get classclaim <my-claim-name> --namespace <my-namespace> --output yaml
+kubectl get classclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
 ```
 
->**Caution** It can take `~60-120s` for your AppSSO credentials to be
->propagated into your service bindings secret.
+> **Caution** It can take approximately 60 to 120 seconds for your Application Single Sign-On
+> credentials propagate into your service bindings secret.
 
-Now you have OAuth2 client credentials which you can use to secure your
-workload with SSO. Refer to [the how-to guides](../../how-to-guides/index.hbs.md)
-to learn how to secure specific types of workloads with AppSSO.
+## <a id="next-steps"></a>Next steps
 
-When iterating on your `ClassClaim` make sure to recreate it when you make
-changes. Updates to an existing `ClassClaim` [have no
-effect](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md#classclaim)
+You now have service credentials that you can use to secure your workload with SSO.
+To learn about the specific client settings and how you can use a claim to secure a workload with
+Application Single Sign-On, see [Secure a workload](secure-workload.hbs.md).
+To learn how to secure specific types of workloads with Application Single Sign-On, see [the how-to guides](../../how-to-guides/index.hbs.md). <!-- link to specific pages -->
 
-If you run into problems claiming credentials for an AppSSO service, learn how
-to [troubleshoot](../../how-to-guides/troubleshoot.hbs.md). For in-depth
-documentation on the `tanzu services` command, classes and claims, refer to
-[Services Toolkit](../../../services-toolkit/about.hbs.md).
+If you have problems claiming credentials for an Application Single Sign-On service, learn how
+to [troubleshoot](../../how-to-guides/troubleshoot.hbs.md).
+For more information about the `tanzu services` command, classes, and claims, see
+[Tanzu Service CLI plug-in](../../../services-toolkit/reference/tanzu-service-cli.hbs.md).
 
-In the next section you will learn more about the specific client settings and how
-you can use a claim to secure a `Workload` with AppSSO.
 

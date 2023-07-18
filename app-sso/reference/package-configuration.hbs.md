@@ -7,9 +7,9 @@ The Tanzu Application Platform package has a `shared` top-level configuration ke
 for sharing common configuration between the packages it installs.
 
 Application Single Sign-on inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data,
-kubernetes_distribution}` configuration values from Tanzu Application Platform. 
-You can override these values with Application Single Sign-On specific values under `appsso`. 
-Application Single Sign-On specific configuration has precedence over the shared 
+kubernetes_distribution}` configuration values from Tanzu Application Platform.
+You can override these values with Application Single Sign-On specific values under `appsso`.
+Application Single Sign-On specific configuration has precedence over the shared
 values of Tanzu Application Platform.
 
 For example:
@@ -70,38 +70,38 @@ is assumed and no `AuthServer.spec.tls` is required.
 
 If you configured `shared.ingress_issuer` and omitted
 `default_authserver_clusterissuer` while installing Tanzu Application Platform,
-Application Single Sign-on uses the ingress issuer of Tanzu Application Platform 
+Application Single Sign-on uses the ingress issuer of Tanzu Application Platform
 and sets `default_authserver_clusterissuer` to `shared.ingress_issuer`.
 
 ### <a id="workload-domain-template"></a> `default_workload_domain_template`
 
 This is the default template from which
-[WorkloadRegistration](./api/workloadregistration.hbs.md) render redirect URIs.
+[WorkloadRegistration](./api/workloadregistration.hbs.md) renders redirect URIs.
 It is used when `WorkloadRegistration.spec.workloadDomainTemplate` is omitted.
 
 This is a golang [text/template](https://pkg.go.dev/text/template). The default
 is `"\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"`.
 
 The domain template is applied with the configured `workload_domain_name`
-and the name and namespace specified in `WorkloadRegistration.spec.workloadRef`. 
+and the name and namespace specified in `WorkloadRegistration.spec.workloadRef`.
 For more information, see [Redirect URI templating](./api/workloadregistration.hbs.md#redirect-uri-templating).
 
-In most cases, the value of `default_workload_domain_template` matches the value 
+In most cases, the value of `default_workload_domain_template` matches the value
 of [Cloud Native Runtimes](../../cloud-native-runtimes/about.hbs.md)' `domain_template`.
 
 ### <a id="domain-name"></a> `domain_name`
 
-The Application Single Sign-on package has one required configuration value, 
+The Application Single Sign-on package has one required configuration value,
 its `domain_name`. It templates the issuer URI for `AuthServer`. `domain_name` must be
-the shared ingress domain of your Tanzu Application Platform package installation. 
-If your Tanzu Application Platform installation is configured with `shared.ingress_domain`, 
+the shared ingress domain of your Tanzu Application Platform package installation.
+If your Tanzu Application Platform installation is configured with `shared.ingress_domain`,
 Application Single Sign-on inherits the correct configuration.
 
 If omitted, `domain_name` is set to `shared.ingress_domain`.
 
 ### <a id="domain-template"></a> `domain_template`
 
-You can customize how Application Single Sign-on template's `issuerURIs` with 
+You can customize how Application Single Sign-on template's `issuerURIs` with
 the `domain_template` configuration. This is a golang
 [text/template](https://pkg.go.dev/text/template). The default value is
 `"\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"`.
@@ -125,7 +125,7 @@ the only supported values are `""` and `openshift`.
 
 It is processed in combination with `kubernetes_version`.
 
-Application Single Sign-On installs OpenShift specific RBAC and resources. 
+Application Single Sign-On installs OpenShift specific RBAC and resources.
 For more information, see [Application Single Sign-On for OpenShift clusters](openshift.md).
 
 If omitted, `kubernetes_distribution` is set to `shared.kubernetes_distribution`.
@@ -138,7 +138,7 @@ the only supported values are `""` or semantic versions in the form of
 
 It is processed in combination with `kubernetes_distribution`.
 
-Application Single Sign-On installs OpenShift specific RBAC and resources. 
+Application Single Sign-On installs OpenShift specific RBAC and resources.
 For more information, see [Application Single Sign-On for OpenShift clusters](openshift.md).
 
 If omitted, `kubernetes_version` is set to `shared.kubernetes_version`.
@@ -150,7 +150,7 @@ This is used as the value for `\{{.Domain}}` in
 
 `workload_domain_name` defaults to the value of `domain_name`.
 
-In most cases, the value of `workload_domain_name` matches the value 
+In most cases, the value of `workload_domain_name` matches the value
 of [Cloud Native Runtimes](../../cloud-native-runtimes/about.hbs.md)' `domain_name`.
 
 ### <a id="replicas"></a> `replicas`
@@ -166,12 +166,12 @@ controller's performance.
 This is the value for the controller's
 `Deployment.spec.template.spec.containers[0].resources`.
 
-See [Configuration schema](#schema) for more information about its structure and 
+See [Configuration schema](#schema) for more information about its structure and
 default values.
 
 ### <a id="resync-period"></a>`resync_period`
 
-This is the duration after which the controller re-synchronizes all resources. 
+This is the duration after which the controller re-synchronizes all resources.
 That means that every instance of a Application Single Sign-On API is reconciled at this point.
 
 The default value is `2h`.
