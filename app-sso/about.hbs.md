@@ -3,7 +3,7 @@
 Application Single Sign-On for VMware Tanzu® (AppSSO) provides APIs for curating and consuming a "Single
 Sign-On as a service" offering on Tanzu Application Platform.
 
-To get started with AppSSO, see [Get started with Application Single Sign-On](./how-to-guides/get-started/index.hbs.md).
+To get started with AppSSO, see [Get started with Application Single Sign-On](./get-started/index.hbs.md).
 
 With AppSSO, Service Operators can configure and deploy authorization servers. Application Operators can then
 secure their Workloads with these authorization servers to provide Single Sign-On to their end-users.
@@ -21,12 +21,12 @@ For more information, see [Spring documentation](https://spring.io/projects/spri
 
 ## <a id="doc-org"></a> Document organization
 
-The Application Single Sign-On component documentation consists of the following 
+The Application Single Sign-On component documentation consists of the following
 subsections that relate to what you want to achieve:
 
 - [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
   a specific problem acting as a certain user persona.
-- [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Application 
+- [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Application
   Single Sign-On.
 - [Reference](reference/index.hbs.md): To find specific information such as
   Application Single Sign-On's APIs.

@@ -1,9 +1,9 @@
 # Application Single Sign-On how-to guides
 
-This topic describes the how-to guides you can use for Application Single Sign-On 
+This subsection describes the how-to guides for specific persona working with Application Single Sign-On
 (commonly called AppSSO):
 
-- [Get started](./get-started/index.hbs.md)
-- [Secure a Spring Boot workload](./secure-spring-boot-workload.hbs.md)
-- [Secure a single-page app workload](./secure-spa-workload.hbs.md)
-- [Troubleshoot](troubleshoot.hbs.md)
+- [Platform operators](./platform-operators/index.hbs.md)
+- [Service operators](./service-operators/index.hbs.md)
+- [Application operators](./app-operators/index.hbs.md)
+- [Troubleshoot Application Single Sign-on](troubleshoot.hbs.md)
