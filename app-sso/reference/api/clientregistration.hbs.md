@@ -63,12 +63,12 @@ kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 The following scopes must be included for the issuance of identity tokens:
 
 - `openid` must be included for the identity tokens to be issued.
-- `profile` must be included so the custom-mapped claims are included in an issued identity token, for example, `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. For more information, see [Identity token claims mapping](../../tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+- `profile` must be included so the custom-mapped claims are included in an issued identity token, for example, `AuthServer.identityProviders[*].{openID,ldap,saml}.idToken.claims`. For more information, see [Identity token claims mapping](../../how-to-guides/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - `email` must be included to retain the `email` and `email_verified` claims.
 - `address` must be included to retain the `address` claim.
 - `phone` must be included to retain the `phone_number` and `phone_number_verified` claims.
 - `roles` must be included to retrieve the user role information from an upstream identity provider.
-  For more information, see [Configure authorization](../../tutorials/service-operators/configure-authorization.hbs.md).
+  For more information, see [Configure authorization](../../how-to-guides/service-operators/configure-authorization.hbs.md).
 
 ## <a id='client-auth-methods'></a> Client authentication methods
 
@@ -79,7 +79,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 - `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
 - `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
 - `none`: No client authentication. Required for public clients. 
-For more information, see [Public clients and CORS](../../tutorials/service-operators/cors.md).
+For more information, see [Public clients and CORS](../../how-to-guides/service-operators/cors.md).
 
 > **Caution** When running workloads by using Spring Boot 3, you must use
 > `client_secret_basic` or `client_secret_post`. For more information, see

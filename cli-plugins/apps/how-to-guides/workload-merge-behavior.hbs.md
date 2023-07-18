@@ -1,6 +1,9 @@
 # Control Workload Merge Behavior
 
-When updating a workload from a file, mange the workload update behavior with the `--update-strategy` flag. There are two possible values: `merge` or `replace`.
+This topic tells you how to manage control the workload update behavior with the
+`--update-strategy` flag.
+
+When updating a workload from a file, manage the workload update behavior with the `--update-strategy` flag. There are two possible values: `merge` or `replace`.
 The default value is `merge`.
 
 ## `merge`
@@ -15,7 +18,7 @@ If the `--file workload.yaml` updates an existing value for a property, it is up
 
 The on-cluster workload is updated to exactly what is specified in the `--file workload.yaml` definition.
 
-The intent of the current default merge strategy is to prevent unintentional deletions of critical
+The current default merge strategy intents to prevent unintentional deletions of critical
 properties from existing workloads.
 
 >**Note** The default value for the `--update-strategy flag` will change from merge to replace

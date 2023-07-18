@@ -1,6 +1,6 @@
 # Application Single Sign-On for Service Operators
 
-The following topics tell you how to configure a fully operational authorization 
+The following topics tell you how to configure a fully operational authorization
 server for Application Single Sign-On (commonly called AppSSO).
 
 `AuthServer` represents the request for an OIDC authorization server. It
@@ -28,19 +28,18 @@ reference](../../reference/api/index.hbs.md).
 The following sections outline the essential steps to configure a fully
 operational, ready-to-claim AppSSO service offering:
 
-- [Unsafe test login](./unsafe-test-login.hbs.md)
-- [Annotations and labels](./metadata.md)
-- [Issuer URI and TLS](./issuer-uri-and-tls.md)
-- [TLS scenario guides](./tls-scenario-guides.hbs.md)
-- [CA certificates](./ca-certs.md)
-- [Configure Workloads to trust a custom CA](./workload-trust-custom-ca.hbs.md)
-- [Identity providers](./identity-providers.md)
-- [Configure authorization](./configure-authorization.md)
-- [Public clients and CORS](./cors.md)
-- [Token settings](./token-settings.hbs.md)
-- [Token signatures](./token-signature.md)
-- [Storage](./storage.hbs.md)
-- [AuthServer readiness](./readiness.md)
-- [Scale AuthServer](./scale.md)
-- [AuthServer audit logs](./audit-logs.md)
-- [Curating a service offering](./curate-service-offering.hbs.md)
+- [Configure an unsafe test login](unsafe-test-login.hbs.md)
+- [Annotations and labels](metadata.hbs.md)
+- [Issuer URI and TLS](issuer-uri-and-tls.hbs.md)
+- [TLS scenario guides](tls-scenario-guides.hbs.md)
+- [CA certificates](ca-certs.hbs.md)
+- [Configure workloads to trust a custom CA](workload-trust-custom-ca.hbs.md)
+- [Identity providers](identity-providers.hbs.md)
+- [Configure authorization](configure-authorization.hbs.md)
+- [Public clients and CORS](cors.hbs.md)
+- [Token settings](token-settings.hbs.md)
+- [Token signatures](configure-token-signature.hbs.md)
+- [Storage](storage.hbs.md)
+- [AuthServer readiness](readiness.hbs.md)
+- [Scale AuthServer](scale.hbs.md)
+- [Curate an AppSSO service offering](curate-service-offering.hbs.md)

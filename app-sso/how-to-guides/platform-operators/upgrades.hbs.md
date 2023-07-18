@@ -16,7 +16,7 @@ tanzu package installed update PACKAGE-INSTALLATION-NAME -p sso.apps.tanzu.vmwar
 
 >**Note** You can also upgrade Application Single Sign-On as part of upgrading 
 > Tanzu Application Platform as a whole. See [Upgrade Tanzu Application
->Platform](../../upgrading.hbs.md) for more information.
+>Platform](../../../upgrading.hbs.md) for more information.
 
 ## <a id="migration-guides"></a> Migration guides
 
@@ -56,7 +56,7 @@ Application Single Sign-On to `v2.0.0` with the following changes:
 - Migrate from `.spec.issuerURI` to `.spec.tls`:
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See
-       [Issuer URI & TLS](../tutorials/service-operators/issuer-uri-and-tls.md) for more
+       [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.hbs.md) for more
        information.
     1. (Optional) Disable TLS with `.spec.tls.disabled`.
     1. Remove `.spec.issuerURI`.

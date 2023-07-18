@@ -154,12 +154,13 @@ Apply the workload to see your application running on the cluster:
 
 1. In the dialog box enter your **Source Image**, **Local Path**, and optionally a **Namespace**.
 
-   1. In the **Source Image** text box, provide the destination image repository to publish an
-      image containing your workload source code.
+   1. [Customize the installation](../local-source-proxy/install.hbs.md#customize-install) of
+      Local Source Proxy.
 
+      If you don't have Local Source Proxy configured, you can use the source image parameter instead.
       The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
-      the container image with your uncompiled source code, and what to name that image.
-      The image must be published to a container image registry where you have write (push) access.
+      the container image with your non-compiled source code, and what to name that image.
+      The image must be published to a container image registry where you have write access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
       > **Note** See the documentation for the registry you're using to find out which steps are
@@ -168,8 +169,8 @@ Apply the workload to see your application running on the cluster:
       > For example, if you use Docker, see the [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/),
       > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
-   1. In the **Local Path** text box, provide the path to the directory containing the Tanzu Java Web App.
-      The current directory is the default.
+   1. In the **Local Path** text box, provide the path to the directory containing the Tanzu Java
+      Web App. The current directory is the default.
 
       The local path value tells the Tanzu Developer Tools for IntelliJ extension which directory
       on your local file system to bring into the source image.
@@ -214,12 +215,14 @@ To enable Live Update for your application:
       your local file system to bring into the source image.
 
       For example, `/Users/developer/Documents/tanzu-java-web-app`.
-   1. In the **Source Image** text box, provide the destination image repository to publish an image
-      containing your workload source code.
 
+   1. [Customize the installation](../local-source-proxy/install.hbs.md#customize-install) of
+      Local Source Proxy.
+
+      If you don't have Local Source Proxy configured, you can use the source image parameter instead.
       The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
-      the container image with your uncompiled source code, and what to name that image.
-      The image must be published to a container image registry where you have write (push) access.
+      the container image with your non-compiled source code, and what to name that image.
+      The image must be published to a container image registry where you have write access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
       > **Note** See the documentation for the registry you're using to find out which steps
@@ -231,7 +234,7 @@ To enable Live Update for your application:
 
    1. Click **Apply**, and then click the **OK** button.
 
-1. Begin Live Updating the application on the cluster by doing one of the following:
+2. Begin Live Updating the application on the cluster by doing one of the following:
 
    - In the Project tab of IntelliJ, right-click the `Tiltfile` file under the application name
    `tanzu-java-web-app` and click **Run \'Tanzu Live Update - tanzu-java-web-app\'**.
@@ -256,21 +259,21 @@ To enable Live Update for your application:
    >
    >Follow the instructions and add the line, `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
 
-1. When the Live Update task in the **Run** tab is successful, it resolves to `Live Update Started`.
+3. When the Live Update task in the **Run** tab is successful, it resolves to `Live Update Started`.
    Use the hyperlink at the top of the Run output following the words **Tilt started on** to view
    your application in your browser.
 
-1. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the
+4. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the
    string returned to say `Hello!` and save.
 
-1. (Optional) Build your project by clicking **Build** > **Build Project** if you do not have
+5. (Optional) Build your project by clicking **Build** > **Build Project** if you do not have
    **Build project automatically** activated under **Preferences** > **Build, Execution, Deployment** > **Compiler**.
 
-1. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
+6. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 
-1. View the changes to your workload running on the cluster.
+7. View the changes to your workload running on the cluster.
 
-1. Either continue making changes, or stop the Live Update process when finished.
+8. Either continue making changes, or stop the Live Update process when finished.
    To stop Live Update navigate to the **Run** tab at the bottom left of the IntelliJ window and click
    the red stop icon on the left side of the screen.
 
@@ -293,20 +296,23 @@ To debug the cluster:
       Tanzu Java Web App project directory located at **Config** > **workload.yaml**.
    1. Select the folder icon on the right-side of the text box, navigate to the Tanzu Java Web App
       directory, select the `workload.yaml` file and click the **Open** button.
-      The `workload.yaml` provides configuration instructions about your application to the Tanzu Application Platform.
+      The `workload.yaml` provides configuration instructions about your application to the
+      Tanzu Application Platform.
 
-   1. In the **Local Path** text box, provide the path to the directory containing the Tanzu Java Web App.
+   1. In the **Local Path** text box, provide the path to the directory containing the
+      Tanzu Java Web App.
 
       The local path value tells the Tanzu Developer Tools for IntelliJ extension which directory on
       your local file system to bring into the source image.
       For example, `/Users/developer/Documents/tanzu-java-web-app`.
 
-   1. In the **Source Image** text box, provide the destination image repository to publish an image
-      containing your workload source code.
+   1. [Customize the installation](../local-source-proxy/install.hbs.md#customize-install) of
+      Local Source Proxy.
 
+      If you don't have Local Source Proxy configured, you can use the source image parameter instead.
       The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
-      the container image with your uncompiled source code, and what to name that image.
-      The image must be published to a container image registry where you have write (push) access.
+      the container image with your non-compiled source code, and what to name that image.
+      The image must be published to a container image registry where you have write access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
       > **Note** See the documentation for the registry you're using to find out which steps are
@@ -330,17 +336,17 @@ To debug the cluster:
    1. In the center panel of the **Tanzu Panel** go to
       **Workload/tanzu-java-web-app** > **Running Application** > **Service/tanzu-java-web-app**.
 
-   1. Right-click the `Service/tanzu-java-web-app` entry and select **Describe**.
+   2. Right-click the `Service/tanzu-java-web-app` entry and select **Describe**.
 
       ![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
 
-   1. In the resulting output, copy the value after **Status** > **URL:** that begins with
+   3. In the resulting output, copy the value after **Status** > **URL:** that begins with
       `https://tanzu-java-web-app...`. Make sure you copy the value from
       **Status** > **URL:** and *not* the value under **Status** > **Address** > **URL**.
 
       ![IntelliJ terminal showing the pod URL.](../images/getting-started-iterate-intellij-service-url.png)
 
-   1. Open your web browser and paste the URL you copied to access your workload.
+   4. Open your web browser and paste the URL you copied to access your workload.
 
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name
    `tanzu-java-web-app` and select **Run \'Tanzu Debug Workload - tanzu-java-web-app\'** to begin debugging

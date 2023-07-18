@@ -1,6 +1,7 @@
 # Create or Update a Workload
 
-This topic tells you how to create a workload form a `workload.yaml` file, a URL, a Git source, a local source, and a pre-built image.
+This topic tells you how to create a workload fr0m a `workload.yaml` file, a URL, a Git source,
+a local source, and a pre-built image.
 
 For more information about the different types of workload creation, see [Supply Chain How-to-guides](../../../scc/scc-how-to.hbs.md).
 
@@ -14,7 +15,7 @@ In many cases, workload life cycles are managed through CLI commands. However, t
 where managing the workload through direct interactions and edits of a `yaml` file is preferred.
 The Apps CLI plug-in supports using `yaml` files to meet the requirements.
 
-When a workload is managed using a `yaml` file, that file must **contain a single workload definition**.
+When a workload is managed using a `yaml` file, that file must contain a single workload definition.
 
 For example, a valid file looks similar to the following example:
 
@@ -144,7 +145,7 @@ by running `tanzu apps workload apply --help`.
 
 ### <a id='unset-git-fields'></a> Unset Git fields
 
-There are various ways to update a workload. Use flags to change workload fields. Use a YAML file with the required changes, and run the  `tanzu apps workload apply` with  the `--update-strategy` set as `replace`. For more information, see [](../how-to-guides/workload-merge-behavior.hbs.md).
+There are various ways to update a workload. Use flags to change workload fields. Use a YAML file with the required changes, and run the  `tanzu apps workload apply` with  the `--update-strategy` set as `replace`. For more information, see [Control Workload Merge Behavior](../how-to-guides/workload-merge-behavior.hbs.md).
 
 To delete fields, set the `--git-*` flags as empty strings within the command. This removes
 the `workload.spec.source.git` fields.
@@ -250,7 +251,7 @@ spec: {}
 
 ### <a id='workload-git-subpath'></a> Subpath
 
-Use the subpath flag to create workloads within a repository, where the repository, such as a monorepo, consists of multiple folders or projects.
+Use the `--subpath` flag to create workloads within a repository, where the repository, such as a monorepo, consists of multiple folders or projects.
 
 ```console
 # The Git repository for this sample contains several applications, each on its own folder
@@ -286,7 +287,7 @@ Platform cluster.
 Using Local Source Proxy
 : Use Local Source Proxy to push local source code to the registry configured during Tanzu Application Platform installation.
 
-  For more information, see [Install Local Source Proxy](../../../local-source-proxy/install.hbs.md)
+  For more information, see [Install Local Source Proxy](../../../local-source-proxy/install.hbs.md). 
   To create a workload that pushes to an already configured registry through Local Source Proxy, 
   use `--local-path` flag without `--source-image`, like the following example:
 
@@ -294,7 +295,7 @@ Using Local Source Proxy
   # Point the local path flag to the folder containing the source code
   tanzu apps workload create tanzu-java-web-app --local-path /path/to/java/app
 
-  The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
+  The files and/ directories listed in the .tanzuignore file are being excluded from the uploaded source code.
   Publishing source in "/path/to/java/app" to "local-source-proxy.tap-local-source-system.svc.cluster.local/source:default-tanzu-java-web-app"...
   📥 Published source
 
@@ -512,9 +513,8 @@ images in a supply chains, see
 
 ### <a id="create-workload-maven"></a> Create a workload from a Maven repository artifact
 
-Create a workload from a Maven repository
-artifact ([Source-Controller](../../../source-controller/about.hbs.md)) by setting some
-specific properties as YAML parameters in the workload when using the [supply chain](../../../scc/about.hbs.md).
+Create a workload from a Maven repository artifact by setting some
+specific properties as YAML parameters in the workload when using the [supply chain](../../../scc/about.hbs.md). For more information about Maven repository artifact, see [Source-Controller](../../../source-controller/about.hbs.md)
 
 The Maven repository URL is set when the supply chain is created.
 

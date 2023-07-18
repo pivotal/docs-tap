@@ -67,7 +67,7 @@ To configure the Application Single Sign-On package to meet your needs, see
 
 ## <a id="upgrade"></a> Upgrading Application Single Sign-On for VMware Tanzu
 
-To upgrade to a later version of the package, see [Upgrade Application Single Sign-On](../../reference/upgrades.hbs.md).
+To upgrade to a later version of the package, see [Upgrade Application Single Sign-On](upgrades.hbs.md).
 
 ## <a id="openshift"></a> About installing on OpenShift
 

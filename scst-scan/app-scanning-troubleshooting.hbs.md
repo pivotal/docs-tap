@@ -45,7 +45,7 @@ You can use the following methods to debug scan pods:
     - `sidecar-sleep`
     - `working-dir-initializer`
 
-- To determine which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
+- To verify which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
 
     ```console
     kubectl get taskrun TASKRUN-NAME -o json | jq .status
@@ -65,7 +65,7 @@ You can use the following methods to debug scan pods:
 
 ### <a id="controller-mngr-logs"></a> Viewing the Scan-Controller manager logs
 
-You can run the following commands to view the Scan-Controller manager logs:
+You can run these commands to view the Scan-Controller manager logs:
 
 - Retrieve scan-controller manager logs:
 
@@ -81,10 +81,10 @@ You can run the following commands to view the Scan-Controller manager logs:
 
 ### <a id="volume-permission-errors"></a> Volume permission error
 
-If you encounter permission error for accessing, opening and writing to the files inside cluster volume such as:
+If you encounter a permission error for accessing, opening, and writing to the files inside cluster volume, such as:
 
 ```Console
 unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-scanning": unable to open destination: open /home/app-scanning/.git-credentials: permission denied
 ```
 
-Then check that the problamatic step is running with [proper user and group ids](#pod-template-security-context).
+Ensure that the problematic step runs with [proper user and group ids](#pod-template-security-context).

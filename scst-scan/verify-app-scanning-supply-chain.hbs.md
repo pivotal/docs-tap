@@ -24,7 +24,8 @@ This topic tells you how to verify scanning with Supply Chains.
     - `TYPE` is the type of your app.
     - `DEV-NAMESPACE` is the name of the developer namespace where scanning occurs.
 
-**Note** For information about how to use the Tanzu CLI workload creation, see [Create a Workload](../cli-plugins/apps/create-workload.hbs.md).
+**Note** For information about how to use the Tanzu CLI workload creation, see
+[Create a Workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
 ## <a id="retrieve-scan-results"></a> Retrieve scan results
 

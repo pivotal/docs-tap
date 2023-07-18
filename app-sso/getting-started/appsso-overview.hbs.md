@@ -1,6 +1,6 @@
 # Overview of Application Single Sign-On
 
-This topic tells you about concepts important to getting started with Application 
+This topic tells you about concepts important to getting started with Application
 Single Sign-On (commonly called AppSSO).
 
 Use this topic to learn how to:
@@ -9,25 +9,25 @@ Use this topic to learn how to:
 1. [Provision a ClientRegistration](client-registration.hbs.md).
 1. [Deploy an application](application.hbs.md) that uses the provisioned ClientRegistration to enable SSO.
 
-After completing these steps, you can proceed with 
-[securing a Workload](../secure-spring-boot-workload.hbs.md).
+After completing these steps, you can proceed with
+[securing a Workload](../how-to-guides/app-operators/secure-spring-boot-workload.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
-You must install AppSSO on your Tanzu Application Platform cluster. 
-For more information, see [Install AppSSO](../../tutorials/platform-operators/installation.hbs.md).
+You must install AppSSO on your Tanzu Application Platform cluster.
+For more information, see [Install AppSSO](../how-to-guides/platform-operators/installation.hbs.md).
 
 ## <a id='concepts'></a>Key concepts
 
 At the core of AppSSO is the concept of an Authorization Server, outlined by
-the [AuthServer custom resource](../../reference/api/authserver.hbs.md). 
-Service Operators create those resources to provision running Authorization Servers, 
+the [AuthServer custom resource](../reference/api/authserver.hbs.md).
+Service Operators create those resources to provision running Authorization Servers,
 which are [OpenID Connect](https://openid.net/specs/openid-connect-core-1_0.html)
-Providers. They issue [ID Tokens](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) 
-to Client applications, which contain identity information about the end user 
+Providers. They issue [ID Tokens](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
+to Client applications, which contain identity information about the end user
 such as email, first name, last name and so on.
 
-![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../../images/app-sso/appsso-concepts.png)
+![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
 
 When a Client application uses an AuthServer to authenticate an End-User, the typical steps are:
 
@@ -65,14 +65,14 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 }
 ```
 
-`roles` claim can only be part of an `id_token` when user roles are mapped and 'roles' scope is requested. 
+`roles` claim can only be part of an `id_token` when user roles are mapped and 'roles' scope is requested.
 For more information about mapping for OpenID Connect, LDAP and SAML, see:
 
-- [OpenID external groups mapping](../../tutorials/service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
-- [LDAP external groups mapping](../../tutorials/service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
-- [SAML (experimental) external groups mapping](../../tutorials/service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
+- [OpenID external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
+- [LDAP external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
+- [SAML (experimental) external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
-ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../../tutorials/service-operators/token-signature.md). Client
+ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../how-to-guides/service-operators/configure-token-signature.hbs.md). Client
 applications may verify their validity using the AuthServer's public keys.
 
 ## <a id='next-steps'></a> Next steps

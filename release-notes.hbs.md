@@ -110,11 +110,11 @@ Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug
 - Incorporates the token expiry settings into the `AuthServer` resource. Service
   operators can customize the expiry settings of access, refresh, or identity
   tokens. For more information, see
-  [Token settings](./app-sso/tutorials/service-operators/token-settings.hbs.md#token-expiry-settings).
+  [Token settings](./app-sso/how-to-guides/service-operators/token-settings.hbs.md#token-expiry-settings).
 - Enables the ability to:
   - Map custom user attributes or claims from upstream identity providers, such as OpenID, LDAP, and SAML.
   - Configure the internal unsafe provider with custom claims.
-    For more information, see [Identity providers](./app-sso/tutorials/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
+    For more information, see [Identity providers](./app-sso/how-to-guides/service-operators/identity-providers.hbs.md#id-token-claims-mapping).
 - Adds `ClusterUnsafeTestLogin`, which is an unsafe, ready-to-claim AppSSO service offering you can
   use to get started with Application Single Sign-On in non-production environments.
   It is not safe for production.
@@ -567,6 +567,17 @@ This release has the following known issues, listed by component and area.
   `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-6-1-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
+
+- Tanzu Debug does not work on Windows for new workloads. When attempting to Tanzu Debug on Windows,
+  the user sees an error message similar to the following:
+
+  ```console
+  Error: unable to check if filepath "'FILE-PATH'" is a valid url.
+  ```
+
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
 
 #### <a id='1-6-1-amr-observer-cloudevent-handler'></a> Artifact Metadata Repository Observer and CloudEvent Handler
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful.
