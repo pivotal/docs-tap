@@ -19,18 +19,17 @@ configured secure storage, and client restrictions.
 AppSSO's authorization server is based off of Spring Authorization Server project.
 For more information, see [Spring documentation](https://spring.io/projects/spring-authorization-server).
 
-## How this documentation is organized
+## <a id="doc-org"></a> Document organization
 
-The AppSSO component documentation consists of the following sections that relate to what
-you want to achieve:
+The Application Single Sign-On component documentation consists of the following 
+subsections that relate to what you want to achieve:
 
 - [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
-  a specific problem.
-- [Tutorials](tutorials/index.hbs.md): To learn through following examples
-  acting as a certain user persona.
-- [Concepts](concepts/index.hbs.md): To gain a deeper understanding of AppSSO.
+  a specific problem acting as a certain user persona.
+- [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Application 
+  Single Sign-On.
 - [Reference](reference/index.hbs.md): To find specific information such as
-  AppSSO's APIs.
+  Application Single Sign-On's APIs.
 
 Tutorials and concepts are of most relevance when studying, while how-to guides
 and reference material are of most use while working.
@@ -39,16 +38,16 @@ The following is a selection of useful topics on offer:
 
 **For application developers:**
 
-- Tutorial: [Secure an application with AppSSO](./tutorials/app-operators/index.hbs.md)
+- How-to guide: [Secure an application with Application Single Sign-On](./tutorials/app-operators/index.hbs.md)
 
 **For service operators:**
 
-- Tutorial: [Provide AppSSO services](./tutorials/service-operators/index.hbs.md)
+- How-to guide: [Provide Application Single Sign-On services](./tutorials/service-operators/index.hbs.md)
 
 **For platform operators:**
 
-- Tutorial: [Manage an AppSSO installation](./tutorials/platform-operators/index.hbs.md)
+- How-to guide: [Manage an Application Single Sign-On installation](./tutorials/platform-operators/index.hbs.md)
 
 **For everyone:**
 
-- Concept: [The three levels of AppSSO consumption](./concepts/levels-of-consumption.hbs.md)
+- Concept: [The three levels of Application Single Sign-On consumption](./concepts/levels-of-consumption.hbs.md)
