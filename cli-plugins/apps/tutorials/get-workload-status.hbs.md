@@ -3,15 +3,14 @@
 This topic tells you about Apps CLI plug-in commands you can use to get information about the status
 of a workload.
 
-## Workload list
+## tanzu apps workload list
 
-`tanzu apps workload list` gets a list of the workloads present in the cluster, either in the current namespace,
-in another namespace, or all namespaces.
+`tanzu apps workload list` gets a list of the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
 
 Filter the list result by the `--namespace`, `--type` or `--app` flags.
 The `--output` flag supports the `yaml` and `json` formats.
 
-### Show all workloads in all namespaces (--all-namespaces, -A)
+### --all-namespaces, -A flag
 
 Shows workloads in all namespaces in the cluster.
 
@@ -26,9 +25,9 @@ default     web    tanzu-java-web-app    tanzu-java-web-app   Ready             
 nginx-ns    web    nginx2                <empty>              TemplateRejectedByAPIServer   8d
 ```
 
-### Filter workloads by app (--app)
+### --app flag
 
-Shows workloads for the application specified in the command.
+Filter workloads by application. Shows workloads for the application specified in the command.
 
 ```console
 tanzu apps workload list --app spring-petclinic
@@ -38,9 +37,9 @@ spring-petclinic2   web    Unknown   29d
 spring-petclinic3   web    Ready     29d
 ```
 
-### Filter workloads by namespace (--namespace, -n)
+### --namespace, -n flag
 
-Lists all the workloads present in the specified namespace.
+Filter workloads by namespace. Lists all the workloads present in the specified namespace.
 
 ```console
 tanzu apps workload list --namespace my-namespace
@@ -51,9 +50,9 @@ app2   web    <empty>   Ready                         8d
 app3   web    <empty>   Unknown                       8d
 ```
 
-### Output workloads (--output, -o)
+### --output, -o flag
 
-Allows to list all workloads in the specified namespace in `yaml`, `yml` or `json` format.
+Lists all workloads in the specified namespace in `yaml`, `yml` or `json` format.
 
 - yaml/yaml
 
@@ -173,7 +172,7 @@ Allows to list all workloads in the specified namespace in `yaml`, `yml` or `jso
     ]
     ```
 
-## Workload get
+## tanzu apps workload get
 
 The `tanzu apps workload get` command provides detailed information and status about a workload.
 Workloads can be filtered with the `--namespace` flag, which specifies the namespace where the workload
@@ -285,7 +284,7 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2023-06-15T10:45:13.238437378-05:0
 ...
 ```
 
-## tail a workload while creating or applying a workload
+### tail a workload while creating or applying a workload
 
 You can tail a workload directly as part of the `tanzu apps workload create` or
 `tanzu apps workload apply` commands by providing the `--tail` flag and you can display timestamps for
@@ -334,7 +333,7 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2023-06-15T11:28:12.747417620-05:0
 ...
 ```
 
-## Use the --export flag
+## --export flag
 
 A clean workload definition export can be committed to GitHub or applied to a 
 different environment without having to make significant edits because the export will only include 
