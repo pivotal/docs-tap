@@ -4,7 +4,7 @@
 <!-- Remember to [prettify the table](https://confluence.eng.vmware.com/display/MIX/Configuring+VS+Code) after adding to it. -->
 <!-- https://jira.eng.vmware.com/browse/TANZUSC-3902 is the Product issue -->
 
-## A
+## <a id="a"></a> A
 
 <table>
     <tr>
@@ -37,7 +37,9 @@
     </tr>
     <tr>
         <td>Application Configuration Service</td>
-        <td></td>
+        <td>This component provides a Kubernetes-native experience to enable the runtime configuration
+            of existing Spring applications that were previously leveraged by using Spring Cloud Config
+            Server.</td>
     </tr>
     <tr>
         <td>Application Live View</td>
@@ -61,7 +63,7 @@
     </tr>
 </table>
 
-## L
+## <a id="l"></a> L
 
 <table>
     <tr>
@@ -70,11 +72,13 @@
     </tr>
     <tr>
         <td>Local Source Proxy (LSP)</td>
-        <td></td>
+        <td>This component serves as a proxy registry server with Open Container Initiative (OCI)
+            compatibility. Its main purpose is to handle image push requests by forwarding them to an
+            external registry server, which is configured through <code>tap-values.yaml</code>.</td>
     </tr>
 </table>
 
-## T
+## <a id="t"></a> T
 
 <table>
     <tr>
@@ -89,22 +93,30 @@
     </tr>
     <tr>
         <td>Tanzu Developer Portal Configurator</td>
-        <td></td>
+        <td>This tool is used for customizing Tanzu Developer Portal with Backstage plug-ins.</td>
     </tr>
     <tr>
         <td>Tanzu Developer Tools for IntelliJ</td>
-        <td></td>
+        <td>This extension for IntelliJ IDEA helps you develop with Tanzu Application Platform and
+            enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
+            have Tanzu Application Platform installed.</td>
     </tr>
     <tr>
-        <td>Tanzu Developer Tools for Visual Studio Code</td>
-        <td></td>
+        <td>Tanzu Developer Tools for Visual Studio</td>
+        <td>This extension for Visual Studio helps you develop with Tanzu Application Platform and
+            enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
+            have Tanzu Application Platform installed.</td>
     </tr>
     <tr>
         <td>Tanzu Developer Tools for VS Code</td>
-        <td></td>
+        <td>This extension for Visual Studio Code helps you develop with Tanzu Application Platform
+            and enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
+            have Tanzu Application Platform installed.</td>
     </tr>
     <tr>
         <td>Tekton Pipelines</td>
-        <td></td>
+        <td>Tekton is a cloud-native, open-source framework for creating continuous integration/
+            continuous delivery systems. It allows developers to build, test, and deploy across cloud
+            providers and on-premise systems.</td>
     </tr>
 </table>
