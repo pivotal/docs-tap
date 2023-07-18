@@ -1,21 +1,21 @@
 # Provision a client registration
 
-This topic tells you how to provision a client registration for Application Single 
+This topic tells you how to provision a client registration for Application Single
 Sign-On (commonly called AppSSO). Use this topic to learn how to:
 
 1. Obtain credentials for the Authorization Server that you provisioned in
    [Provision your first AuthServer](provision-auth-server.hbs.md).
 2. Verify that the credentials are valid using client-credentials flow.
 
-![Diagram of AppSSO's components, with AuthServer and ClientRegistration highlighted](../../../images/app-sso/client-registration.png)
+![Diagram of AppSSO's components, with AuthServer and ClientRegistration highlighted](../../images/app-sso/client-registration.png)
 
 ## Prerequisites
 
-Complete the steps described in [Get started with Application Single Sign-On](./overview.hbs.md). 
+Complete the steps described in [Get started with Application Single Sign-On](./overview.hbs.md).
 
 ## Creating the ClientRegistration
 
-Assuming you have deployed the AuthServer as described previously, you can create and apply the following client 
+Assuming you have deployed the AuthServer as described previously, you can create and apply the following client
 registration:
 
 > **Note** AppSSO uses `test-app.example.com` for `ClientRegistration.spec.redirectURIs[0]`. You must customize the URL
@@ -57,7 +57,7 @@ kubectl get clientregistration my-client-registration -n default -o yaml
 # Check the authserver
 kubectl get authservers
 # NAME                    REPLICAS   ISSUER URI                     CLIENTS   TOKEN KEYS
-# my-authserver-example   1          http://authserver.example.com  1         1 
+# my-authserver-example   1          http://authserver.example.com  1         1
 #                                                                   ^
 #                                 the AuthServer now has one client ^
 ```
@@ -94,4 +94,4 @@ curl -XPOST "$ISSUER_URI/oauth2/token?grant_type=client_credentials&scope=messag
 
 You can decode the `access_token` using an online service, such as [JWT.io](https://jwt.io).
 
-To learn more about grant types, see [Grant Types](../../concepts/grant-types.hbs.md).
+To learn more about grant types, see [Grant Types](../concepts/grant-types.hbs.md).
