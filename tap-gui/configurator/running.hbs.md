@@ -76,7 +76,6 @@ To prepare to overlay your customized image onto the currently running instance:
                     exec /layers/tanzu-buildpacks_node-engine-lite/node/bin/node portal/dist/packages/backend  \
                     --config=portal/app-config.yaml \
                     --config=portal/runtime-config.yaml \
-                    --config=portal/app-config.pack.yaml \
                     --config=/etc/app-config/app-config.yaml
     ```
 
