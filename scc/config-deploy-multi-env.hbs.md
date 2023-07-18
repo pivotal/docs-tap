@@ -1,6 +1,6 @@
 # Configure and deploy to multiple environments with custom parameters
 
-This topic describes how to  use carvel packages, Git repositories, and FluxCD
+This topic describes how to use carvel packages, Git repositories, and FluxCD
 to deploy workloads to multiple environments with Supply Chain Choreographer. By using a continuous delivery
 (CD) tool, you can apply Carvel packages to a runtime. 
 
@@ -53,3 +53,11 @@ You can use blue-green deployment to transfer user traffic from one version of
 an app to a later version while both are running. For information about setting
 up blue-green deployment, see [Use blue-green deployment with Contour and
 PackageInstall (alpha)](blue-green-with-packageinstall.hbs.md).
+
+## <a id="config-canary"></a> Configuring canary deployment
+
+You can use canary deployment to gradually shift traffic from one version of an
+application to a later version, and at the same time, perform analysis to verify
+if the later version is either promoted or rolled back. For information about
+setting up canary deployments, see [Use canary deployment with Contour and
+Carvel packages for Supply Chain Choreographer](canary-deployment.hbs.md).

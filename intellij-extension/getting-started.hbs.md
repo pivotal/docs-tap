@@ -6,7 +6,7 @@ This topic guides you through getting started with Tanzu Developer Tools for Int
 
 [Install Tanzu Developer Tools for IntelliJ](install.hbs.md).
 
-## <a id="config-src-img-registry"></a> Configure source image registry
+## <a id="config-src-img-registry"></a> Configure Local Source Proxy or use a source image registry
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
@@ -61,7 +61,7 @@ Where:
 
 Alternatively you can use the Tanzu CLI to create a `workload.yaml` file.
 For more information about the relevant Tanzu CLI command, see
-[Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+[Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 
 ## <a id="create-catalog-info-yaml"></a> Create the `catalog-info.yaml` file
 
@@ -69,8 +69,8 @@ You must include a file named `catalog-info.yaml` in your project.
 For example, `my-project/catalog/catalog-info.yaml`.
 
 `catalog-info.yaml` enables the workloads created with Tanzu Developer Tools for IntelliJ to be
-visible in Tanzu Application Platform GUI.
-For more information, see [Overview of Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
+visible in Tanzu Developer Portal (formerly named Tanzu Application Platform GUI).
+For more information, see [Overview of Tanzu Developer Portal](../tap-gui/about.hbs.md).
 
 To create a `catalog-info.yaml` file by using the code snippets:
 
@@ -117,7 +117,6 @@ The Tanzu Developer Tools for IntelliJ extension requires only one Tiltfile per 
 The following is an example `Tiltfile`:
 
 ```Tiltfile
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='SOURCE-IMAGE-VALUE')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='default')
 
@@ -125,7 +124,6 @@ k8s_custom_deploy(
    'APP-NAME',
    apply_cmd="tanzu apps workload apply -f PATH-TO-WORKLOAD-YAMl --live-update" +
        " --local-path " + LOCAL_PATH +
-       " --source-image " + SOURCE_IMAGE +
        " --namespace " + NAMESPACE +
        " --yes >/dev/null" +
        " && kubectl get workload APP-NAME --namespace " + NAMESPACE + " -o yaml",
@@ -144,7 +142,6 @@ allow_k8s_contexts('CONTEXT-NAME')
 
 Where:
 
-- `SOURCE-IMAGE-VALUE` is your [source image](glossary.hbs.md#source-image).
 - `APP-NAME` is the name of your application.
 - `PATH-TO-WORKLOAD-YAML` is the local file system path to your `workload.yaml` file.
   For example, `config/workload.yaml`.

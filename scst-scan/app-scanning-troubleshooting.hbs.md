@@ -1,8 +1,8 @@
-# Troubleshooting
+# Troubleshooting Supply Chain Security Tools - Scan 2.0
 
-This topic provides information to help troubleshoot Supply Chain Security Tools - Scan 2.0.
+This topic helps you troubleshoot Supply Chain Security Tools (SCST) - Scan 2.0.
 
-# <a id="debugging-commands"></a> Debugging commands
+## <a id="debugging-commands"></a> Debugging commands
 
 The following sections describe commands you run to get logs and details about scanning errors.
 
@@ -24,53 +24,67 @@ Where:
 
 ## <a id="debugging-scan-pods"></a> Debugging scan pods
 
-To get error logs from a pod when scan pods fail:
+You can use the following methods to debug scan pods:
 
-```console
-kubectl logs SCAN-POD-NAME -n DEV-NAMESPACE
+- To get error logs from a pod when scan pods fail:
+
+    ```console
+    kubectl logs SCAN-POD-NAME -n DEV-NAMESPACE
+    ```
+
+    Where `SCAN-POD-NAME` is the name of the scan pod.
+
+    For information
+    about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
+
+    A scan run that has an error means that one of the following step containers has a failure:
+
+    - `step-write-certs`
+    - `step-cred-helper`
+    - `step-publisher`
+    - `sidecar-sleep`
+    - `working-dir-initializer`
+
+- To verify which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
+
+    ```console
+    kubectl get taskrun TASKRUN-NAME -o json | jq .status
+    ```
+
+    Where `TASKRUN-NAME` is the name of the TaskRun.
+
+- To inspect a specific step container in a pod:
+
+    ```console
+    kubectl logs scan-pod-name -n DEV-NAMESPACE -c step-container-name
+    ```
+
+    Where `DEV-NAMESPACE` is your developer namespace.
+
+    For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
+
+### <a id="controller-mngr-logs"></a> Viewing the Scan-Controller manager logs
+
+You can run these commands to view the Scan-Controller manager logs:
+
+- Retrieve scan-controller manager logs:
+
+    ```console
+    kubectl logs deployment/app-scanning-controller-manager -n app-scanning-system
+    ```
+
+- Tail scan-controller manager logs:
+
+    ```console
+    kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
+    ```
+
+### <a id="volume-permission-errors"></a> Volume permission error
+
+If you encounter a permission error for accessing, opening, and writing to the files inside cluster volume, such as:
+
+```Console
+unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-scanning": unable to open destination: open /home/app-scanning/.git-credentials: permission denied
 ```
 
-Where `SCAN-POD-NAME` is the name of the scan pod.
-
-For information
-about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
-
-A scan run that has an error means that one of the following step containers has a failure:
-
-- `step-write-certs`
-- `step-cred-helper`
-- `step-publisher`
-- `sidecar-sleep`
-- `working-dir-initializer`
-
-To determine which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
-
-```
-kubectl get taskrun TASKRUN-NAME -o json | jq .status
-```
-
-Where `TASKRUN-NAME` is the name of the TaskRun.
-
-To inspect a specific step container in a pod:
-
-```console
-kubectl logs scan-pod-name -n DEV-NAMESPACE -c step-container-name
-```
-
-Where `DEV-NAMESPACE` is your developer namespace.
-
-For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
-
-### <a id="scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
-
-To retrieve scan-controller manager logs:
-
-```console
-kubectl logs deployment/app-scanning-controller-manager -n app-scanning-system
-```
-
-To tail scan-controller manager logs:
-
-```console
-kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
-```
+Ensure that the problematic step runs with [proper user and group ids](#pod-template-security-context).

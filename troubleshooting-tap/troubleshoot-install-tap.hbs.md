@@ -88,7 +88,7 @@ The Tanzu Network credentials needed to access the package may be missing or inc
 To resolve this issue:
 
 1. Repeat the step to create a secret for the namespace. For instructions, see
-  [Add the Tanzu Application Platform Package Repository](../install-online/profile.hbs.md#add-tap-package-repo) in _Installing the Tanzu Application Platform Package and Profiles_.
+  [Add the Tanzu Application Platform Package Repository](../install-online/profile.hbs.md#relocate-images) in _Installing the Tanzu Application Platform Package and Profiles_.
   Ensure that you provide the correct credentials.
 
   When the secret has the correct credentials,

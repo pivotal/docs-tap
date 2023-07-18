@@ -9,16 +9,19 @@ Before installing the packages, ensure that you have completed the following tas
 - [Accept Tanzu Application Platform EULA and install Tanzu CLI](../install-tanzu-cli.html).
 - [Deploy Cluster Essentials](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html). This step is optional if you are using VMware Tanzu Kubernetes Grid cluster.
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a> Relocate images to a registry
 
 To relocate images from the VMware Tanzu Network registry to your air-gapped registry:
 
 1. Set up environment variables for installation use by running:
 
     ```console
+    # Set tanzunet as the source registry to copy the Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # The user’s registry for copying the Tanzu Application Platform package to.
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
     export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
@@ -73,7 +76,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --export-to-all-namespaces \
         --yes
     ```
-1. Create a internal registry secret by running:
+1. Create a secret for accessing the user’s registry by running:
 
     ```console
     tanzu secret registry add registry-credentials \
@@ -287,6 +290,8 @@ appliveview_connector:
 
 tap_gui:
   app_config:
+    auth:
+      allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate it, make sure you configure an alternative auth provider.
     kubernetes:
       serviceLocatorMethod:
         type: multiTenant
@@ -319,12 +324,12 @@ metadata_store:
   app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
 ```
 
-> **Important** 
+> **Important**
 >
 > - Tanzu Build Service is installed by default with `lite` depndencies.
 > When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because > they require Internet access. You must install the `full` dependencies by setting `exclude_dependencies` to `true`. The existing ClusterStore instances will not be updated if you switch from `lite` dependencies to `full` dependencies after the initial installation completes.
 >
-> - Installing Grype by using `tap-values.yaml` as follows is 
+> - Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 >    ```yaml

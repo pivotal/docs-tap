@@ -1,7 +1,8 @@
 # Overview of Local Source Proxy
 
-Local Source Proxy (LSP) is a secure and convenient means for you to interact with external registries
-without providing a lot of registry details.
+Local Source Proxy (LSP) offers developers a secure and user-friendly approach to seamlessly
+upload their local source code to a Tanzu Application Platform cluster. This enables developers to
+navigate their code smoothly through a predefined production pathway using supply chains.
 
 With Local Source Proxy, developers can:
 

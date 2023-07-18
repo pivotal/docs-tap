@@ -1,7 +1,7 @@
 # Create an Application Accelerator Git repository during project creation
 
 This topic tells you how to enable and use GitHub repository creation in the Application Accelerator
-plug-in of Tanzu Application Platform GUI (commonly called TAP GUI).
+plug-in of Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="overview"></a> Overview
 
@@ -67,7 +67,7 @@ app_config:
 
 To create a project:
 
-1. Go to Tanzu Application Platform GUI, access the Accelerators section, and then select an
+1. Go to Tanzu Developer Portal, access the Accelerators section, and then select an
    accelerator. The accelerator form now has a second step named **Git repository**.
 
 2. Fill in the accelerator options and click **Next**.

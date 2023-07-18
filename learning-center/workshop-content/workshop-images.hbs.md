@@ -1,6 +1,11 @@
-# Workshop images
+# Create the image for your Learning Center workshop
 
-The workshop environment for the Learning Center is packaged as a container image. You can execute the image with remote content pulled down from GitHub or a web server. Alternatively, you can bundle your workshop content, including any extra tools required, in a new container image derived from the workshop environment base image.
+The workshop environment for the Learning Center is packaged as a container image.
+This topic describes how you create the Learning Center workshop image.
+
+You can execute the image with remote content pulled down from GitHub or a web server.
+Alternatively, you can bundle your workshop content, including any extra tools required, in a new
+container image derived from the workshop environment base image.
 
 ## <a id="template-create-workshop"></a> Templates for creating a workshop
 

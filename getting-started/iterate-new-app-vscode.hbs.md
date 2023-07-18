@@ -129,10 +129,9 @@ support, you are ready to set up your development environment.
       your local file system to bring into the source image.
       For example, dot (`.`) uses the working directory, or you can specify a full file path.
 
-   1. In the **Source Image** text box, provide the destination image repository to publish an image
-      containing the workload source code.
+   1. Configure Local source proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md).
 
-      The source image value tells the Tanzu Developer Tools for VS Code extension where to publish
+      If not configured, you can optionally use the source image parameter. The source image value tells the Tanzu Developer Tools for VS Code extension where to publish
       the container image with your uncompiled source code, and what to name that image.
       The image must be published to a container image registry where you have write (push) access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
@@ -310,7 +309,8 @@ Use the following steps to diagnose Spring Boot-based applications by using Appl
 1. Confirm that the Application Live View components are installed.
    For instructions, see [Install Application Live View](../app-live-view/install.md#install-alv-connector).
 
-1. Access the Application Live View UI plug-in in Tanzu Application Platform GUI. For instructions, see
+1. Access the Application Live View UI plug-in in Tanzu Developer Portal
+   (formerly named Tanzu Application Platform GUI). For instructions, see
    [Entry point to Application Live View plug-in](../tap-gui/plugins/app-live-view.md#plug-in-entry-point).
 
 1. Select your running application to view the diagnostic options and inside the application.

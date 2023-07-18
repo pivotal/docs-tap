@@ -1,6 +1,6 @@
-# Configure Your AWS RDS postgres configuration
+# Configure your AWS RDS PostgreSQL configuration
 
-This topic describes how you can Configure Your AWS RDS postgres configuration for Supply Chain Security Tools (SCST) - Store.
+This topic describes how you can configure your AWS RDS PostgreSQL configuration for Supply Chain Security Tools (SCST) - Store.
 
 ## <a id='prereq'></a>Prerequisites
 
@@ -17,7 +17,7 @@ This topic describes how you can Configure Your AWS RDS postgres configuration f
    1. Master Username
    1. Master Password
    1. Database Name
-      > If the database name is "-" in the AWS RDS UI, the value is likely "postgres".
+      > **Note** If the database name is `-` in the AWS RDS UI, the value is likely `postgres`.
 
 3. Create a security group to allow inbound connections from the cluster to the Postgres DB
 

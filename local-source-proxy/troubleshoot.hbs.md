@@ -1,4 +1,6 @@
-# Troubleshoot
+# Troubleshoot Local Source Proxy
+
+This topic helps you troubleshoot issues you might encounter with Local Source Proxy (LSP).
 
 ## <a id="view-lsp-server-logs"></a> View Local Source Proxy server logs
 
@@ -20,8 +22,8 @@ Use `-f` to follow the log output.
 
 ### Symptom
 
-You need to investigate an error by reading the Apps CLI health messages to assess the status of
-Local Source Proxy and its connectivity with the upstream repository.
+You need to read the Apps CLI health messages to assess the status of Local Source Proxy and its
+connectivity with the upstream repository.
 
 ### Solution
 
@@ -53,7 +55,7 @@ $ tanzu apps workload apply
 Error: Either Local Source Proxy is not installed on the Cluster or you don't have permissions to access it
 Reason: The current user does not have permission to access the local source proxy.
 Messages:
-- services "http:local-source-proxy:5001" is forbidden: User "adhol@vmware.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
+- services "http:local-source-proxy:5001" is forbidden: User "abc@example.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
 ```
 
 ```console
@@ -65,17 +67,17 @@ overall_health: false
 message: |-
   The current user does not have permission to access the local source proxy.
   Messages:
-  - services "http:local-source-proxy:5001" is forbidden: User "adhol@vmware.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
+  - services "http:local-source-proxy:5001" is forbidden: User "abc@example.com" cannot get resource "services/proxy" in API group "" in the namespace "tap-local-source-system": requires one of ["container.services.proxy"] permission(s).
 ```
 
 ### Cause
 
-Typically, this situation arises when a custom user/group is specified within the
+Typically, this situation arises when a custom user or group is specified within the
 `rbac_subjects_for_proxy_access` section of `tap-values.yaml`.
 
 ### Solution
 
-Ensure that the user/group listed is valid. For more information about overriding default RBAC
+Ensure that the user or group listed is valid. For more information about overriding default RBAC
 permissions to access the proxy service, see
 [Override default RBAC permissions to access the proxy service](install.hbs.md#override-dflt-rbac).
 
@@ -111,8 +113,7 @@ The cause might be that `tap-values.yaml` lacks a valid value for the repository
 
 ### Solution
 
-Add a valid repository value to `tap-values.yaml`.
-<!-- And restart? Needs more detail. -->
+Add a valid repository value to `tap-values.yaml` and wait for the app reconciliation to complete.
 
 ## <a id="miscofig-reg-secret"></a> Missing or misconfigured registry secret
 
@@ -125,7 +126,7 @@ $ tanzu apps workload apply
 Error: Local source proxy failed to upload source to the repository
 Reason: Local source proxy was unable to authenticate against the target registry.
 Messages:
-- GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
+- GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https://cloud.google.com/container-registry/docs/advanced-authentication
 ```
 
 ```console
@@ -137,7 +138,7 @@ overall_health: false
 message: |-
   Local source proxy was unable to authenticate against the target registry.
   Messages:
-  - GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the
+  - GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: You don't have the
  needed permissions to perform this operation, and you may have invalid credentials. To authenticate your request, follow the steps in: https:/
 /cloud.google.com/container-registry/docs/advanced-authentication
 ```
@@ -146,13 +147,21 @@ message: |-
 
 Potential causes include:
 
-- The secret was not exported to the Local Source Proxy namespace
-- Credentials for the `push_registry` do not match the host in the secret
-- `push_registry` information is missing in `tap-values.yaml`
+- A missing registry secret:
+  - `push_secret` information is not available in the `local_source_proxy` section of `tap-values.yaml`.
+  - `image_registry.secret` information is not available in the `shared` section of `tap-values.yaml`.
+- If `push_secret` is used, the secret was not exported to the Local Source Proxy namespace.
+  The credentials used in the secret do not match the configured external registry.
 
 ### Solution
 
-<!-- Missing -->
+1. Ensure that at least one of the following entries is found in `tap-values.yaml`:
+
+   - `push_secret` information in the `local_source_proxy` section
+   - `image_registry.secret` information in the `shared` section
+
+1. If `push_secret` is used, make sure that it can be exported to the Local Source Proxy namespace.
+1. Ensure that the credentials used in the secret match the configured external registry.
 
 ## <a id="invalid-creds"></a> Invalid credentials
 
@@ -165,7 +174,7 @@ $ tanzu apps workload apply
 Error: Local source proxy failed to upload source to the repository
 Reason: Local source proxy was unable to authenticate against the target registry.
 Messages:
-- GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
+- GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
 ```
 
 ```console
@@ -189,7 +198,7 @@ overall_health: false
 message: |-
   Local source proxy was unable to authenticate against the target registry.
   Messages:
-  - GET https://gcr.io/v2/token?scope=repository:adhol-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
+  - GET https://gcr.io/v2/token?scope=repository:abc-playground/lsp-source:pull,push&service=gcr.io: UNAUTHORIZED: Not Authorized.
 ```
 
 ### Cause
@@ -198,4 +207,19 @@ The cause is the use of invalid credentials.
 
 ### Solution
 
-<!-- Missing -->
+Change the credentials used in the secret to match those in the configured external registry.
+
+## <a id="podspec-changes"></a> Local Source Proxy doesn't automatically detect changes to `podspec`
+
+### Symptom
+
+Local Source Proxy doesn't automatically detect changes to `podspec`.
+
+### Cause
+
+AWS Elastic Container Registry (ECR) is configured as the external registry in `tap-values.yaml`.
+
+### Solution
+
+Delete the old pods so that the new pods can mount the expected `podspec`, enabling access to the
+registry through the Identity and Access Management (IAM) role Amazon Resource Name (ARN).

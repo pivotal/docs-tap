@@ -1,7 +1,6 @@
 # Install Learning Center on Minikube
 
-This topic gives you the instructions you need to install Learning Center on you local
-machine with Minikube.
+This topic describes how you install Learning Center on your local machine with Minikube.
 
 Minikube enables local deployment of Kubernetes for developing workshop content or for self-learning when deploying other people's workshops.
 

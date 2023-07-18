@@ -1,6 +1,7 @@
 # Creating an accelerator.yaml file
 
-This topic describes how to create an accelerator.yaml file.
+This topic tells you how to create an accelerator.yaml file.
+
 By including an `accelerator.yaml` file in your Accelerator repository, you can declare input options
 that users fill in using a form in the UI.
 Those option values control processing by the template engine before it returns the zipped output files.
@@ -20,7 +21,7 @@ For example:
 accelerator:
   displayName: Hello Fun
   description: A simple Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags:
   - java
   - spring
@@ -198,7 +199,7 @@ You can also see the GitHub sample
 accelerator:
   displayName: Demo Input Types
   description: "Accelerator with options for each inputType"
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags: ["demo", "options"]
 
   options:

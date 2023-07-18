@@ -9,18 +9,18 @@ This repo contains the content for Tanzu Application Platform docs.
 | Branch | Staging | Production |
 |--------|---------|------------|
 | main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) (Pre-release v1.6 docs) | n/a |
-| 1-5-3  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.3/tap/overview.html) (Pre-release v1.5.3 docs) | n/a |
-| 1-5-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) |
+| 1-5-4  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.4/tap/overview.html) (Pre-release v1.5.4 docs) | n/a |
+| 1-5-3  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) |
+| 1-5-2  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-5-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-5-0  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-4-7  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.7/tap/overview.html) (Pre-release v1.4.7 docs) | n/a |
-| 1-4-6  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| 1-4-8  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.8/tap/overview.html) (Pre-release v1.4.8 docs) | n/a |
+| 1-4-7  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| 1-4-6  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-4-5  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-4-4  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-3-10  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.10/tap/overview.html) (Pre-release v1.3.10 docs) | n/a |
-| 1-3-9  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-11  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.11/tap/overview.html) (Pre-release v1.3.11 docs) | n/a |
+| 1-3-10  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-9  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-3-8  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-3-7  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-2-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) |
 | 1-1    | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) |
 | 1-0    | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) |
@@ -56,7 +56,6 @@ stored in dedicated repositories.
 |cert-manager|cert-manager|
 |Cloud Native Runtimes for VMware Tanzu|Cloud Native Runtimes|
 |Contour|Contour|
-|Convention Service for VMware Tanzu|Convention Service|
 |Developer Conventions|Developer Conventions|
 |Eventing|Eventing|
 |FluxCD Source Controller|FluxCD Source Controller|
@@ -72,7 +71,7 @@ stored in dedicated repositories.
 |Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan (SCST - Tools)|
 |Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign (SCST - Sign)|
 |Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store (SCST - Store)|
-|Tanzu Application Platform GUI|Tanzu Application Platform GUI|
+|Tanzu Developer Portal|Tanzu Developer Portal|
 |Tanzu Application Platform Telemetry|Tanzu Application Platform Telemetry|
 |Tanzu Build Service|Tanzu Build Service|
 |VMware Tanzu Developer Tools for IntelliJ|Tanzu Developer Tools for IntelliJ|
@@ -124,9 +123,9 @@ Top tips:
 - Writer headers in sentence case, not title case.
 - UI elements are bolded and the widget type not mentioned.
   For example, Click **NEXT STEPS**.
-- Outside of code, Kubernetes API objects are written in lowercase and the words are separated by
-  spaces, like for other common nouns. This is in contrast to the Kubernetes docs, where upper camel
-  case is sometimes used and sometimes not.
+- When writing about Kubernetes API objects in the abstract, use lowercase and separate the words with
+  spaces like you would for other common nouns. When referring to a specific instance of an object,
+  write it in upper camel case and use code tags so that it looks exactly how the reader sees it in their code.
 
 ## Autogenerated Docs
 

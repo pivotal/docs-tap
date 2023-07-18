@@ -159,7 +159,7 @@ To troubleshoot:
 
 **Symptom**
 
-In Tanzu Application Platform GUI, you receive the error `No live information for pod with id`.
+In Tanzu Developer Portal, you receive the error `No live information for pod with id`.
 
 **Cause**
 

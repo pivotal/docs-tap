@@ -1,8 +1,8 @@
-# Add Tanzu Application Platform GUI integrations
+# Add Tanzu Developer Portal integrations
 
-You can integrate Tanzu Application Platform GUI (commonly called TAP GUI) with several Git providers.
-To use an integration, you must enable it and provide the necessary token or credentials in
-`tap-values.yaml`.
+You can integrate Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) with several
+Git providers. To use an integration, you must enable it and provide the necessary token or credentials
+in `tap-values.yaml`.
 
 ## <a id="add-github-integration"></a> Add a GitHub provider integration
 
@@ -25,11 +25,11 @@ Where:
 - `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice. Ensure that
   `GITHUB-TOKEN` has the necessary read permissions for the catalog definition files you extracted
   from the blank software catalog introduced in the
-  [Tanzu Application Platform GUI prerequisites](../prerequisites.hbs.md#tap-gui).
+  [Tanzu Developer Portal prerequisites](../prerequisites.hbs.md#tap-gui).
 
 ## <a id="add-non-gh-integration"></a> Add a Git-based provider integration that isn't GitHub
 
-To enable Tanzu Application Platform GUI to read Git-based non-GitHub repositories containing
+To enable Tanzu Developer Portal to read Git-based non-GitHub repositories containing
 component information:
 
 1. Add the following YAML to `tap-values.yaml`:
@@ -45,7 +45,7 @@ component information:
    ```
 
    Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
-   Tanzu Application Platform GUI can read when registering new components.
+   Tanzu Developer Portal can read when registering new components.
    For example, `git.example.com.`
    For more information about registering new components, see
    [Adding catalog entities](catalog/catalog-operations.hbs.md#add-cat-entities).

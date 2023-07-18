@@ -1,9 +1,10 @@
-# Workshop content
+# Working on your Learning Center workshop content
+
+This topic tells you about the best practices for speeding up the iterative loop of editing
+and testing a Learning Center workshop when developing the content.
 
 Workshop content is either embedded in a custom workshop image or downloaded from
 a Git repository or web server when the workshop session is created.
-There are several best practices for speeding up the iterative loop of editing
-and testing a workshop when developing workshop content.
 
 ## <a id="deactivate-reserved-sessions"></a> Deactivating reserved sessions
 

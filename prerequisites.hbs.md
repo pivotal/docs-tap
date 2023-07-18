@@ -1,4 +1,4 @@
-# Prerequisites for installing Tanzu Application Platform 
+# Prerequisites for installing Tanzu Application Platform
 
 The following are required to install Tanzu Application Platform (commonly known as TAP):
 
@@ -43,28 +43,29 @@ There are some optional but recommended DNS records you must allocate if you dec
 
 - Tanzu Learning Center: Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is also specified by the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 
-- Tanzu Application Platform GUI: If you decide to implement the shared ingress and include Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
-The default host name consists of `tap-gui` and the `shared.ingress_domain` value. For example,
-`tap-gui.example.com`.
+- Tanzu Developer Portal (formerly named Tanzu Application Platform GUI): If you decide to implement
+  the shared ingress and include Tanzu Developer Portal, allocate a fully Qualified Domain Name
+  (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists
+  of `tap-gui` and the `shared.ingress_domain` value. For example, `tap-gui.example.com`.
 
-- Supply Chain Security Tools - Store: Similar to Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
+- Supply Chain Security Tools - Store: Similar to Tanzu Developer Portal, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
 
 - Application Live View: If you select the `ingressEnabled` option, allocate a corresponding fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `appliveview` and the `shared.ingress_domain` value. For example,
 `appliveview.example.com`.
 
-### <a id='tap-gui'></a>Tanzu Application Platform GUI
+### <a id='tap-gui'></a>Tanzu Developer Portal
 
-For Tanzu Application Platform GUI, you must have:
+For Tanzu Developer Portal, you must have:
 
-- Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
-- Git repository for Tanzu Application Platform GUI's software catalogs, with a token allowing read access. For more information about how to use your Git repository, see [Create an application accelerator](getting-started/create-app-accelerator.html#create-an-app-acc).
+- Latest version of Chrome, Firefox, or Edge. Tanzu Developer Portal currently does not support Safari browser.
+- Git repository for Tanzu Developer Portal's software catalogs, with a token allowing read access. For more information about how to use your Git repository, see [Create an application accelerator](getting-started/create-app-accelerator.html#create-an-app-acc).
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
-- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of VMware Tanzu Network.
-  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your organization's catalog inside Tanzu Application Platform GUI.
-- The Tanzu Application Platform GUI catalog allows for two approaches to store catalog information:
+- Tanzu Developer Portal Blank Catalog from the Tanzu Application section of VMware Tanzu Network.
+  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Developer Portal Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your organization's catalog inside Tanzu Developer Portal.
+- The Tanzu Developer Portal catalog allows for two approaches to store catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yaml` file.
           This data is temporary. Any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
@@ -75,7 +76,7 @@ For Tanzu Application Platform GUI, you must have:
           Tanzu Application Platform packaging.
           The PostgreSQL database stores all the catalog data persistently both from the Git locations
           and the UI manual entity registrations. For more information, see
-          [Configure the Tanzu Application Platform GUI database](tap-gui/database.md)
+          [Configure the Tanzu Developer Portal database](tap-gui/database.md)
 
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
@@ -86,7 +87,7 @@ providers:
 - Azure Kubernetes Service.
 - Amazon Elastic Kubernetes Service.
     - containerd must be used as the Container Runtime Interface (CRI). Some versions of EKS default to Docker as the container runtime and must be changed to containerd.
-    - EKS clusters on Kubernetes version 1.23 and above require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to the [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes version 1.23 and above.
+    - EKS clusters on Kubernetes version 1.23 and above require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes version 1.23 and above.
         - Users currently on EKS Kubernetes version 1.22 must install the Amazon EBS CSI Driver before upgrading to Kubernetes version 1.23 and above. See [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi-migration-faq.html) for more information.
     - AWS Fargate is not supported.
 - Google Kubernetes Engine.
@@ -100,7 +101,7 @@ providers:
 - Red Hat OpenShift Container Platform v4.12 or v4.13.
     - vSphere
     - Baremetal
-- Tanzu Kubernetes Grid (commonly called TKG) multicloud. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
+- Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 
 ## <a id="resource-requirements"></a>Resource requirements
 

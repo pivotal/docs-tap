@@ -10,7 +10,7 @@ Before installing the packages, ensure you have:
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
 attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
@@ -27,14 +27,21 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     ```console
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     export AWS_REGION=TARGET-AWS-REGION
+
+    # Set tanzunet as the source registry to copy the Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # The user’s registry for copying the Tanzu Application Platform package to.
     export IMGPKG_REGISTRY_HOSTNAME_1=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
     export IMGPKG_REGISTRY_USERNAME_1=AWS
     export IMGPKG_REGISTRY_PASSWORD_1=`aws ecr get-login-password --region $AWS_REGION`
-    export TAP_VERSION=VERSION-NUMBER
+    # These environment variables starting with IMGPKG_* are used by the imgpkg command only.
+
+    # The registry from which the Tanzu Application Platform package is retrieved.
     export INSTALL_REGISTRY_HOSTNAME=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+    export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=tap-images
     ```
 
@@ -54,6 +61,19 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     imgpkg copy --concurrency 1 -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}
     ```
 
+## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
+
+Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
+
+[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+
+- `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
+- `INSTALL_REPO` is `tanzu-application-platform`
+- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+- `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+
+To add the Tanzu Application Platform package repository to your cluster:
+
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
     ```console
@@ -66,7 +86,7 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
 
     ```console
     tanzu package repository add tanzu-tap-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}:${TAP_VERSION} \
       --namespace tap-install
     ```
 
@@ -89,9 +109,6 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     REASON:
     ```
 
-    > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
-    > Tanzu Application Platform v1.0.2 or earlier.
-
 1. List the available packages by running:
 
     ```console
@@ -102,56 +119,63 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
 
     ```console
     $ tanzu package available list --namespace tap-install
-    / Retrieving available packages...
-      NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
-      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
-      api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface for API discovery and exploration at scale.
-      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    A TAP component to automatically register API exposing workloads as API entities
-                                                                                                                                     in TAP GUI.
-      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
-      buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       Tanzu Build Service enables the building and automation of containerized
-                                                                                                                                     software workflows securely and at scale.
-      carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan                Default scan templates using VMware Carbon Black
-      cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
-      cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
-      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
-      controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime
-                                                                                                                                     configurations to fleets of workloads.
-      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
-      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server
-      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
-      eventing.tanzu.vmware.com                            Eventing                                                                  Eventing is an event-driven architecture platform based on Knative Eventing
-      external-secrets.apps.tanzu.vmware.com               External Secrets Operator                                                 External Secrets Operator is a Kubernetes operator that integrates external
-                                                                                                                                     secret management systems.
-      fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
-                                                                                                                                     acquisition from external sources such as Git, Helm repositories and S3 buckets.
-      grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
-      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
-      metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
-      namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     Automatic Provisioning of Developer Namespaces.
-      ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
-      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      Out of The Box Supply Chain Basic.
-      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  Out of The Box Supply Chain with Testing and Scanning.
-      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               Out of The Box Supply Chain with Testing.
-      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               Out of The Box Templates.
-      policy.apps.tanzu.vmware.com                         Supply Chain Security Tools - Policy Controller                           Policy Controller enables defining of a policy to restrict unsigned container
-                                                                                                                                     images.
-      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        Scan for vulnerabilities and enforce policies directly within Kubernetes native
-                                                                                                                                     Supply Chains.
-      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
-      services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and
-                                                                                                                                     connectivity of Service Resources (databases, message queues, DNS records,
-                                                                                                                                     etc.).
-      snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               Default scan templates using Snyk
-      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.
-      sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu
-      tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform
-      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
-      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry
-      tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
-                                                                                                                                     case.
-      tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
-      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
+      NAME                                                 DISPLAY-NAME                                                              
+      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  
+      amr-observer.apps.tanzu.vmware.com                   Supply Chain Security Tools - AMR Observer                                
+      api-portal.tanzu.vmware.com                          API portal                                                                
+      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    
+      apiserver.appliveview.tanzu.vmware.com               Application Live View ApiServer for VMware Tanzu                          
+      app-scanning.apps.tanzu.vmware.com                   Supply Chain Security Tools - App Scanning (Alpha)                        
+      application-configuration-service.tanzu.vmware.com   Application Configuration Service                                         
+      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    
+      base-jammy-builder-lite.buildpacks.tanzu.vmware.com  base-jammy-builder-lite                                                   
+      base-jammy-stack-lite.buildpacks.tanzu.vmware.com    base-jammy-stack                                                          
+      bitnami.services.tanzu.vmware.com                    bitnami-services                                                          
+      buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       
+      carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan                
+      cartographer.tanzu.vmware.com                        Cartographer                                                              
+      cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     
+      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          
+      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        
+      crossplane.tanzu.vmware.com                          crossplane                                                                
+      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  
+      dotnet-core-lite.buildpacks.tanzu.vmware.com         dotnet-core-lite                                                          
+      eventing.tanzu.vmware.com                            Eventing                                                                  
+      external-secrets.apps.tanzu.vmware.com               External Secrets Operator                                                 
+      fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    
+      go-lite.buildpacks.tanzu.vmware.com                  go-lite                                                                   
+      grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              
+      java-lite.buildpacks.tanzu.vmware.com                java-lite                                                                 
+      java-native-image-lite.buildpacks.tanzu.vmware.com   java-native-image-lite                                                    
+      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            
+      local-source-proxy.apps.tanzu.vmware.com             Local Source Proxy                                                        
+      metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       
+      namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     
+      nodejs-lite.buildpacks.tanzu.vmware.com              nodejs-lite                                                               
+      ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          
+      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      
+      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  
+      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               
+      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               
+      policy.apps.tanzu.vmware.com                         Supply Chain Security Tools - Policy Controller                           
+      python-lite.buildpacks.tanzu.vmware.com              python-lite                                                               
+      ruby-lite.buildpacks.tanzu.vmware.com                ruby-lite                                                                 
+      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        
+      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           
+      services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          
+      snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               
+      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      
+      spring-cloud-gateway.tanzu.vmware.com                Spring Cloud Gateway                                                      
+      sso.apps.tanzu.vmware.com                            AppSSO                                                                    
+      tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              
+      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            
+      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        
+      tap.tanzu.vmware.com                                 Tanzu Application Platform                                                
+      tekton.tanzu.vmware.com                              Tekton Pipelines                                                          
+      tpb.tanzu.vmware.com                                 Tanzu Portal Builder                                                      
+      web-servers-lite.buildpacks.tanzu.vmware.com         web-servers-lite                                                          
+      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial
     ```
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
@@ -195,7 +219,7 @@ shared:
 
 ceip_policy_disclosed: true
 
-#The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
+# The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
 
 # Below are the keys which may have default values set, but can be overridden.
 
@@ -234,6 +258,8 @@ ootb_templates:
 
 tap_gui:
   app_config:
+    auth:
+      allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate it, make sure you configure an alternative auth provider.
     catalog:
       locations:
         - type: url
@@ -274,8 +300,15 @@ contour:
         LBType: nlb
 ```
 
-### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
 
+The following tasks are optional during the Tanzu Application Platform installation process:
+
+- [(Optional) Configure your profile with full dependencies](#full-dependencies)
+- [(Optional) Configure your profile with the Jammy stack only](#jammy-only)
+
+#### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+  
 When you install a profile that includes Tanzu Build Service,
 Tanzu Application Platform is installed with the `lite` set of dependencies.
 These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
@@ -301,6 +334,8 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
+Tanzu Application Platform v{{ vars.tap_version }} supports building applications with Ubuntu v22.04 (Jammy).
+
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
@@ -308,7 +343,7 @@ Follow these steps to install the Tanzu Application Platform package:
 1. Install the package by running:
 
     ```console
-    tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yaml -n tap-install
+    tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yaml -n tap-install
     ```
 
 1. Verify the package install by running:
@@ -335,7 +370,7 @@ For instructions, see [Install Tanzu Developer Tools for your VS Code](../vscode
 >**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
 ```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
+tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
 ```
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
@@ -344,31 +379,47 @@ If you configured `full` dependencies in your `tap-values.yaml` file in
 [Configure your profile with full dependencies](#full-dependencies) earlier,
 you must install the `full` dependencies package.
 
-For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+1. Create an ECR repository for Tanzu Build Service full dependencies by running:
 
-To install the `full` dependencies package:
+    ```console
+    aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
+    ```
+
+1. (Optional) If you have an existing installation of the full dependencies package from a version
+earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninstall the full dependencies package and remove the package repository:
+
+    Uninstall the package:
+
+    ```console
+    tanzu package installed delete full-tbs-deps -n tap-install
+    ```
+
+    Remove the package repository:
+
+    ```console
+    tanzu package repository delete tbs-full-deps-repository -n tap-install
+    ```
 
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tap-values.yaml` file under the `buildservice` section. For example:
 
     ```yaml
     buildservice:
-      kp_default_repository: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/tap-build-service
+    ...
       exclude_dependencies: true
     ...
     ```
 
-1. Get the latest version of the `buildservice` package by running:
+1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    tanzu package installed update tap --namespace tap-install --values-file PATH-TO-UPDATED-VALUES
     ```
 
-1. Create an ECR repository for Tanzu Build Service full dependencies by running:
+1. Get the latest version of the `tap` package by running:
 
     ```console
-    aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
@@ -378,33 +429,37 @@ To install the `full` dependencies package:
       --to-repo ${INSTALL_REGISTRY_HOSTNAME}/tbs-full-deps
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
+    Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
 
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+    tanzu package repository add full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
       --namespace tap-install
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
-## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the host
+name that you configured earlier. This host name is pointed at the shared ingress.
+To configure LoadBalancer for Tanzu Developer Portal, see
+[Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
-You're now ready to start using Tanzu Application Platform GUI.
+You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
+[Tanzu Developer Portal - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 

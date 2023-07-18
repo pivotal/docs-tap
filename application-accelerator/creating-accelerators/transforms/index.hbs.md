@@ -1,8 +1,10 @@
 # Transforms reference
 
+This topic provides a list and brief description of the available Application Accelerator transforms in Tanzu Application Platform (commonly known as TAP).
+
 ## Available transforms
 
-Here is a list of available transforms and a brief description of their uses. You can use:
+You can use:
 
 - [Combo](combo.md) as a shortcut notation for many common operations. It combines the behaviors of many of the other transforms.
 - [Include](include.md) to select files to operate on.

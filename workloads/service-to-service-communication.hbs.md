@@ -32,3 +32,5 @@ workloads using curl. Specify the namespace for both, as follows:
 kubectl exec busybox -n dev-namespace -- curl server-workload.dev-namespace.svc.cluster.local -v
 kubectl exec busybox -n dev-namespace -- curl web-workload.dev-namespace.svc.cluster.local -v
 ```
+
+You can alternatively reference a web service as `workload-name.namespace`, or `web-workload.dev-namespace` in the following example. You can also reference a Server workload that lives in the same namespace as `workload-name`, or `server-workload`.

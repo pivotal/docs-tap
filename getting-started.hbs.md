@@ -15,7 +15,7 @@ See [Installing Tanzu Application Platform](install-intro.md).
 See [Installing the Tanzu CLI](install-tanzu-cli.md) and [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md).
 
 - **Set the default kubeconfig context to the target Kubernetes cluster**<br>
-See [Changing clusters](cli-plugins/apps/tutorials.hbs.md#changing-clusters).
+See [Changing clusters](cli-plugins/apps/getting-started/configuration.hbs.md#changing-clusters).
 
 - **Installed Out of The Box (OOTB) Supply Chain Basic**<br>
 See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
@@ -30,10 +30,10 @@ If you used the default profiles provided in [Installing the Tanzu Application P
 - **Set up a developer namespace to accommodate the developer workload**<br>
 See [Set up developer namespaces to use your installed packages](install-online/set-up-namespaces.hbs.md).
 
-- **Installed Tanzu Application Platform GUI**<br>
-See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
+- **Installed Tanzu Developer Portal**<br>
+See [Install Tanzu Developer Portal](tap-gui/install-tap-gui.md).
 If you used the Full or View profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install-online/profile.hbs.md),
-you have already installed Tanzu Application Platform GUI.
+you have already installed Tanzu Developer Portal.
 
 - **Installed the VS Code Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.

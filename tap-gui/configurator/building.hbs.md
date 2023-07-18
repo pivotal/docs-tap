@@ -1,6 +1,7 @@
 # Build your Customized Tanzu Developer Portal with Configurator
 
-This topic tells you how to build your customized Tanzu Developer Portal with Configurator.
+This topic tells you how to build your customized Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) with Configurator.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -12,20 +13,22 @@ Meet the following prerequisites:
   running the customized portal. For more information, see
   [Components and installation profiles for Tanzu Application Platform](../../about-package-profiles.hbs.md).
 
-- Ensure that your instance of Tanzu Application Platform has a working supplychain that can build the
-  Tanzu Developer Portal bundle. It doesn't need to be able to deliver it because currently
+- Ensure that your instance of Tanzu Application Platform has a working supplychain that can build
+  the Tanzu Developer Portal bundle. It doesn't need to be able to deliver it because currently
   an overlay is used to place the built image on the cluster where the pre-built Tanzu Developer
   Portal resides.
 
-- Gain access to an installation registry (where the source Tanzu Application bundles are
-  located) and a build registry (where your built images are staged). If you have a working
-  Tanzu Application Platform installation and can build a sample application, such as
-  `Tanzu-Java-Web-App` in
-  [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md),
-  you likely have everything you need.
+- Ensure that your developer namespace has access to both:
 
-- Ensure that your additional plug-ins are in an NPM registry. This registry can be your own
-  private registry or a plug-in registry if you intend to use a third-party or community plug-in.
+  - Your installation registry where the source Tanzu Application bundles are located
+  - Your build registry where your built images are staged
+
+  Verify that you have a working Tanzu Application Platform installation and you
+  can build a sample application, such as `Tanzu-Java-Web-App` in
+  [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md).
+
+- Ensure that your extra plug-ins are in an npm registry. This registry can be your own private
+  registry or a plug-in registry if you intend to use a third-party or community plug-in.
 
 > **Important** Tanzu Application Platform plug-ins cannot be removed from customized portals.
 > However, if you decide you want to hide them, you can use the
@@ -35,7 +38,7 @@ Meet the following prerequisites:
 
 To prepare your Configurator configuration file:
 
-1. Create a new file called `tdp-config.yaml` by using the following template:
+1. Create a new file called `tpb-config.yaml` by using the following template:
 
     ```yaml
     app:
@@ -50,26 +53,28 @@ To prepare your Configurator configuration file:
 
     Where:
 
-    - `NPM-PLUGIN-FRONTEND` is the NPM registry and module name of the front-end plug-in
+    - `NPM-PLUGIN-FRONTEND` is the npm registry and module name of the front-end plug-in
     - `NPM-PLUGIN-FRONTEND-VERSION` is the version of your desired front-end plug-in that exists in
-      the NPM registry
-    - `NPM-PLUGIN-BACKEND` is the NPM registry and module name of your desired back-end plug-in
+      the npm registry
+    - `NPM-PLUGIN-BACKEND` is the npm registry and module name of the back-end plug-in that you want
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
-      NPM registry
+      npm registry
 
-    The following example adds the sample `hello-world` plug-in that is available in the internal
-    package's registry:
+    The following example adds the sample `hello-world` plug-in and the `plugin-gitlab-loblaw` plug-in.
+    Both are available in the internal package's registry:
 
     ```yaml
     app:
       plugins:
         - name: '@tpb/plugin-hello-world'
+        - name: '@tpb/plugin-gitlab-loblaw'
+          version: '^0.0.18'
     backend:
       plugins:
         - name: '@tpb/plugin-hello-world-backend'
     ```
 
-2. To later embed `tdp-config.yaml` in the workload definition file, encode the file in base64 by
+2. Encode the file in base64, to later embed `tpb-config.yaml` in the workload definition file, by
    running:
 
    ```console
@@ -93,7 +98,7 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-app-config,set-tpb-config,portal:pack'
+        value: 'set-tpb-config,portal:pack'
       - name: TPB_CONFIG
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
@@ -112,8 +117,8 @@ Where:
 - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image
   registry from which you installed Tanzu Application Platform
 
-> **Important** Depending on which supply chain you're using or how you've configured it, you may
-> need to add additional sections to your workload definition file to accommodate things such as
+> **Important** Depending on which supply chain you're using or how you've configured it, you might
+> need to add extra sections to your workload definition file to accommodate activities such as
 > testing.
 
 For example:
@@ -131,7 +136,7 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-app-config,set-tpb-config,portal:pack'
+        value: 'set-tpb-config,portal:pack'
       - name: TPB_CONFIG
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
@@ -143,10 +148,10 @@ spec:
     subPath: builder
 ```
 
-## Submit your workload
+## <a id="submit-your-workload"></a> Submit your workload
 
 Submit the workload definition file you created earlier by running:
 
-```bash
+```console
 tanzu apps workload create -f tdp-workload.yaml
 ```

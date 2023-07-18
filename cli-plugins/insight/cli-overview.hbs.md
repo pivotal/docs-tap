@@ -13,3 +13,4 @@ Once `tanzu insight` CLI plug-in is set up:
 
 1. [Add data](add-data.md)
 1. [Query data](query-data.md)
+1. [Triage vulnerabilities](triaging-vulnerabilities.md)

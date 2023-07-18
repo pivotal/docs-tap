@@ -53,13 +53,13 @@ scalability best practices.
 
 **Number of applications deployed concurrently**: 50-55
 
-|  | **CPUs** | **Number of workload CRs** |**Workload Transactions per second**|
-|:--- |:--- |:--- |:--- |
-|**Small** | 500m - 700m /3-5 GB /3-5 GB| 5 |10|
-|**Medium** | 700m - 1000m / 4-6 GB / 4-6 GB | 6 |20|
-|**Large** | 1000m - 1500m / 6-8 GB / 6-8 GB | 7 |40 |
+|  | **CPU** |**Memory Range**| **Workload CRs in Iterate** |**Workload CRs in Build+Run**|**Workload Transactions per second**|
+|:--- |:--- |:--- |:--- |:--- |:--- |
+|**Small** | 500m - 700m |3-5 GB| 4 |5| 4 |
+|**Medium** | 700m - 1000m |4-6 GB| NA |6|4 |
+|**Large** | 1000m - 1500m |6-8 GB| NA |7|4 |
 
-## Scale Configuration
+## Scale Configuration for workload deployments (Yet to arrive for updates)
 
 Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
 
@@ -75,22 +75,27 @@ Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
 
 The following table describes the resource limit changes that are required for components to support the scale configuration described in the previous table.
 
-|**Controller/Pod**|**CPU**|**Memory**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
+|**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- Build Service/kpack controller | 20m/100m | 1Gi/2Gi || Yes | No | Yes | tap-values |
-| Scanning/scan-link | 200m/500m | 1Gi/3Gi| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
-| Cartographer| 3/4 (Concurrency 25) | 10Gi/10Gi | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
-| Cartographer conventions|  | 1.4Gi  | 950 Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
-| Namespace provisioner | 100m/500m | 500Mi/2Gi | | Yes | Yes | Yes | tap-values |
-| Cnrs/knative-controller  | 100m/1 vCPU | 512Mi/2Gi | | No | Yes | Yes | overlay |
-| Cnrs/net-contour | 40m/400m | 512Mi/2Gi | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
-| Cnrs/activator | 300m/1000m | 5Gi/5Gi |  | No | Yes | No | overlay |
-| Cnrs/autoscaler  | 100m/1000m | 2Gi/2Gi |  | No | Yes | No | overlay |
-| Eventing/vmware-sources |  | YTD | | No  | Yes | No | YTD |
-| Eventing/triggermesh | | 100Mi/800Mi | | No | Yes | Yes| overlay |
-| tap-telemetry/tap-telemetry-informer | 2GiB | YTD | | Yes| No | Yes| tap-values |
+ Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** || Yes | No | Yes | tap-values |
+| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
+| Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
+| Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
+| Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** | | Yes | Yes | Yes | tap-values |
+| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | | No | Yes | Yes | overlay |
+| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | Daemonset changed to Deployment with 3 replicas (set via tap-values) | No | Yes | Yes | overlay |
+| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** |  | No | Yes | No | overlay |
+| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** |  | No | Yes | No | overlay |
+| Eventing/triggermesh | 50&nbsp;m/200&nbsp;m | **100&nbsp;Mi - 800&nbsp;Mi** | | No | Yes | Yes| overlay |
+| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | | Yes| No | Yes| tap-values |
 
-* Only when there is issue with scan pods getting deleted before Vartographer can process it
+- CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
+- Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
+- In the CPU Requests/Limits column, the changed values are bolded. Non bolded values in are the default ones set during a Tanzu Application Platform installation.
+- In the CPU Requests/Limits column, some of the request and limits values are set equally so that the pod is allocated in a node where the requested limit is available.
+
+\* Only when there is issue with scan pods getting deleted before Cartographer can process it
+
 ## Example resource limit changes
 
 The following section provides examples of the changes required to the default limits to achieve scalability:
@@ -124,7 +129,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 1Gi
   requests:
     cpu: 500m
@@ -139,7 +144,7 @@ cartographer:
   cartographer:
     resources:
       limits:
-        cpu: "4"
+        cpu: 4
         memory: 10Gi
       requests:
         cpu: 3
@@ -150,7 +155,7 @@ cartographer:
   cartographer:
     resources:
       limits:
-        cpu: "4"
+        cpu: 4
         memory: 2Gi
       requests:
         cpu: 3
@@ -178,7 +183,7 @@ cartographer:
   conventions:
     resources:
       limits:
-        memory: 1.4Gi
+        memory: 1.8Gi
 ```
 
 ### Scan-link-controller
@@ -201,7 +206,7 @@ Edit `values.yaml` to scale resource limit:
 scanning:
   resources:
     limits:
-      cpu: "500m"
+      cpu: 500m
       memory: 3Gi
     requests:
       cpu: 200m
@@ -295,7 +300,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 1000Mi
   requests:
     cpu: 100m
@@ -389,7 +394,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 1000Mi
   requests:
     cpu: 100m
@@ -431,7 +436,7 @@ The default resource limits are:
 ```console
 resources:
   limits:
-    cpu: "1"
+    cpu: 1
     memory: 600Mi
   requests:
     cpu: 300m
@@ -506,4 +511,25 @@ stringData:
                requests:
                  cpu: 50m
                  memory: 100Mi
+```
+
+### Tap Telemetry
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu: 1
+    memory: 1000Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+tap_telemetry:
+  limit_memory: 2Gi
 ```

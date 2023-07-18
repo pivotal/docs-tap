@@ -17,6 +17,7 @@ The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here 
 
 - Accelerator: manage accelerator's in a Kubernetes cluster
 - Apps: manage application workloads running on workload clusters
+- Build Service: plugin to interact with tanzu build service (tbs) crds
 - Insight: post and query image, package, source, and vulnerability data
 - Package: package management
 - Secret: secret management
@@ -64,6 +65,7 @@ To install a Tanzu CLI plug-in that was not automatically downloaded when runnin
   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
   apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
   insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
+  build-service       plugin to interact with tanzu build service (tbs) crds             Standalone             v1.0.0   installed
    ```
 
 ## <a id="install-local"></a> Install Local Plugins
@@ -96,6 +98,6 @@ For example, the `tar -xvf` command.
   services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
   apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
-  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
-   ```
+  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed 
+  build-service       plugin to interact with tanzu build service (tbs) crds             Standalone             v1.0.0   installed
    ```

@@ -1,6 +1,8 @@
 # Configure an ImageVulnerabilityScan for Trivy
 
-To configure an ImageVulnerabilityScan for Trivy, use the following ImageVulnerabilityScan configuration:
+This topic tells you how to configure an ImageVulnerabilityScan for Trivy. 
+
+Use the following ImageVulnerabilityScan configuration:
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -29,6 +31,4 @@ spec:
     - $(params.image)
 ```
 
-Where:
-
-- `TRIVY-SCANNER-IMAGE` is the Trivy Scanner image used to run Trivy scans. For information about Trivy images, see [Trivy documentation](https://github.com/aquasecurity/trivy).
+Where `TRIVY-SCANNER-IMAGE` is the Trivy Scanner image used to run Trivy scans. For information about Trivy images, see [Trivy documentation](https://github.com/aquasecurity/trivy).

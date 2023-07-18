@@ -85,8 +85,8 @@ For information about the features supported by each implementation, see
 [Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux documentation.
 
 For information about how to create a workload that uses a GitHub
-repository as the provider of source code, see [Create a workload from GitHub
-repository](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
+repository as the provider of source code, see
+[Create a workload from GitHub repository](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-from-git-source).
 
 For more information about GitRepository objects, see
 [Git Repository](https://fluxcd.io/flux/components/source/gitrepositories/) in the Flux documentation.
@@ -97,8 +97,7 @@ Use the ImageRepository when fetching source code from container images. It
 makes the contents of the container image available as a tarball to further
 resources in the supply chain. The contents of the container image
 are fetched by using Git or Maven.
-For more information, see [Create a workload
-from local source code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
+For more information, see [Create a workload from local source code](../cli-plugins/apps/tutorials\create-update-workload.hbs.md#create-workload-local).
 
 Parameters:
 
@@ -132,7 +131,7 @@ configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-AC
 For information about custom resource details, see [ImageRepository](../source-controller/reference.hbs.md#imagerepository) reference topic.
 
 For information about how to use ImageRepository with the Tanzu
-CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plugins).
+CLI, see [Create a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-local).
 #### MavenArtifact
 
 When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to
@@ -174,8 +173,8 @@ custom resource, see [MavenArtifact reference
 docs](../source-controller/reference.hbs.md#mavenartifact).
 
 For information about how to use the custom resource with the `tanzu apps workload` CLI
-plug-in, see [Create a workload from Maven repository
-artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
+plug-in, see
+[Create a workload from Maven repository artifact](../cli-plugins/apps/reference/workload-create-apply.hbs.md#maven-artifact).
 
 ### <a id="source-tester"></a>source-tester
 
@@ -719,7 +718,7 @@ Parameters:
 </table>
 
 For an example, see
-[--service-ref](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+[--service-ref](../cli-plugins/apps/reference/workload-create-apply.hbs.md#apply-service-ref)
 in Tanzu CLI documentation.
 
 For an overview of the function, see [Consume services on
@@ -928,7 +927,8 @@ implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-im
 documentation.
 
 For information about how to create a workload that uses a GitHub repository as the provider
-of source code, see [Create a workload from GitHub repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+of source code, see
+[Create a workload from GitHub repository](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-from-git-source).
 
 For information about GitRepository objects, see [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
 

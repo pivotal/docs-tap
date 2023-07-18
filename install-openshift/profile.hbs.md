@@ -9,7 +9,7 @@ Before installing the packages, ensure you have:
 - Configured and verified the cluster.
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
 attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
@@ -29,12 +29,18 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 1. Set up environment variables for installation use by running:
 
     ```console
+    # Set tanzunet as the source registry to copy Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # The user’s registry for copying the Tanzu Application Platform package to.
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
     export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
+    # These environment variables starting with IMGPKG_* are used by the imgpkg command only.
+
+    # The registry from which the Tanzu Application Platform package is retrieved.
     export INSTALL_REGISTRY_USERNAME="${IMGPKG_REGISTRY_USERNAME_1}"
     export INSTALL_REGISTRY_PASSWORD="${IMGPKG_REGISTRY_PASSWORD_1}"
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
@@ -283,6 +289,8 @@ buildservice:
 
 tap_gui:
   app_config:
+    auth:
+      allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate it, make sure you configure an alternative auth provider.
     catalog:
       locations:
         - type: url
@@ -297,7 +305,7 @@ scanning:
     url: "" # Configuration is moved, so set this string to empty.
 ```
 
-> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml
@@ -514,13 +522,16 @@ To install the `full` dependencies package:
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
-## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the
+host name that you configured earlier. This host name is pointed at the shared ingress.
+To configure LoadBalancer for Tanzu Developer Portal, see
+[Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
-You're now ready to start using Tanzu Application Platform GUI.
+You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
+[Tanzu Developer Portal - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 

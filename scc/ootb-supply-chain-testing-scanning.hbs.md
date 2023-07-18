@@ -34,10 +34,6 @@ perform the following:
 
 To use this supply chain, verify that:
 
-- Tanzu Application Platform GUI is configured to
-  [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
-  This configuration enables the Supply Chain Choreographer Tanzu Application Platform GUI plug-in to
-  retrieve metadata about project packages and their vulnerabilities.
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
@@ -133,7 +129,7 @@ The names of the objects **must** match the names in the example with default in
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
 
 - To override through workload parameters, use the following commands.
-  For more information, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+  For more information, see [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 
     ```console
     tanzu apps workload apply WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE

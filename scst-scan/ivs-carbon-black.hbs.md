@@ -2,7 +2,7 @@
 
 To configure an ImageVulnerabilityScan for Carbon Black, use the following ImageVulnerabilityScan and secret configuration:
 
-- The Carbon Black CLI can be configured with CarbonBlack `cbctl-creds` secret and credentials via the `~/.cbctl/cbctl.yaml` config file. See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation for more info on configuration.
+- Configure Carbon Black CLI with CarbonBlack `cbctl-creds` secret and credentials by using the `~/.cbctl/cbctl.yaml` config file. See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
 
 ```yaml
 apiVersion: v1
@@ -55,4 +55,4 @@ Where:
 - `SAAS-URL` is the CBC Backend URL.
 - `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image.
 
-**Note**: The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
+**Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.

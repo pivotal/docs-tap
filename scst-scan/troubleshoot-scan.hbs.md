@@ -1,6 +1,6 @@
 # Troubleshoot Supply Chain Security Tools - Scan
 
-This topic describes troubleshooting methods you can use with SCST - Scan.
+This topic describes troubleshooting methods you can use with Supply Chain Security Tools (SCST) - Scan.
 
 ## <a id="debugging-commands"></a> Debugging commands
 
@@ -95,7 +95,7 @@ the keyword "Error" to investigate issues.
 
 ### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
 
-See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and
+See [here](../cli-plugins/apps/troubleshooting/troubleshooting.hbs.md) for Tanzu workload commands for tailing build and
 runtime logs and getting workload status and details.
 
 ### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
@@ -187,6 +187,10 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
+### <a id="source-scan-missing"></a> Source scan missing in supply chain
+
+The source scan step is opt-in in Tanzu Application Platform 1.6 to better support languages that resolve dependencies at build time. For information and how to opt-in to source scanning in the out-of-the-box test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scan-types.hbs.md#source-scan).
+
 ### <a id="troubleshoot-grype-airgap"></a> Troubleshooting Grype in air gap Environments
 
 For information about issues with Grype in air gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
@@ -247,9 +251,9 @@ you must edit the configurations to deactivate the Store:
   by the installed `grype-scanner`. There are two different methods to resolve this incompatibility
   issue:
 
-  - (Preferred method) Install a version of [Tanzu Build
+  - Install a version of [Tanzu Build
     Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft
-    Schema Version.
+    Schema Version. This is the method VMware reccomends.
   - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security
     Tools - Scan](install-scst-scan.md). Although this change bypasses the check on Syft Schema
     Version, it does not resolve the incompatibility issue and produces a partial scanning result.
@@ -337,7 +341,7 @@ Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see
 the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
-### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
+### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Developer Portal
 
 If you encounter `No policy has been defined`, it might be because the Tanzu Application Platform
 GUI is unable to view the Scan Policy resource.

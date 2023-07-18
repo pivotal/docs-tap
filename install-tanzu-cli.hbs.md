@@ -1,6 +1,6 @@
 # Accept Tanzu Application Platform EULAs and installing Tanzu CLI
 
-This topic describes how to install Tanzu CLI and plugins.
+This topic describes how to install Tanzu CLI and plug-ins.
 
 ## <a id='accept-eulas'></a>Accept the End User License Agreements
 
@@ -72,12 +72,9 @@ To set the Kubernetes cluster context:
 The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
- From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plugins
+ From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plug-ins
 required to interact with Tanzu Application Platform are released and distributed independently
 from Tanzu Application Platform itself.
-
-1. [Install the Tanzu CLI](#install-cli)
-1. [Install Tanzu CLI Plugins](#install-plugins)
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
@@ -87,10 +84,10 @@ package manager such as Chocolatey, Homebrew, APT, YUM, and DNF, or it can be in
 binary release.
 
 Basic installation instructions are provided below. For more information including how to install
-the Tanzu CLI and CLI plugins in Internet restricted environments,
+the Tanzu CLI and CLI plug-ins in Internet-restricted environments,
 see the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html) documentation.
 
-> **Note** If you want to retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` or `C:\Program Files\tanzu` on Windows to a different location before following
+> **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` or `C:\Program Files\tanzu` on Windows to a different location before following
 the steps below.
 
 Install using a package manager
@@ -111,7 +108,7 @@ Install using a package manager
          choco install tanzu-cli
          ```
 
-         The `tanzu-cli` package is part of the main [Chocolatey Community Repository](https://community.chocolatey.org/packages). When a new `tanzu-cli` version is released, it may not be available immediately. If the above command fails, run:
+         The `tanzu-cli` package is part of the main [Chocolatey Community Repository](https://community.chocolatey.org/packages). When a new `tanzu-cli` version is released, it might not be available immediately. If the above command fails, run:
 
 
          ```console
@@ -132,7 +129,7 @@ Install using a package manager
          sudo apt-get update
          sudo apt-get install -y ca-certificates curl gpg
          curl -fsSL https://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub | sudo gpg --dearmor -o /etc/apt/keyrings/tanzu-archive-keyring.gpg
-         echo "deb [signed-by=/etc/apt/keyrings/tanzu-archive-keyring.gpg] https://storage.googleapis.com/tanzu-cli-os-packages/apt tanzu-cli-jessie main" | sudo tee /etc/apt/sources.list.d/tanzu.list
+         echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/tanzu-archive-keyring.gpg] https://storage.googleapis.com/tanzu-cli-os-packages/apt tanzu-cli-jessie main" | sudo tee /etc/apt/sources.list.d/tanzu.list
          sudo apt-get update
          sudo apt-get install -y tanzu-cli
 
@@ -163,16 +160,30 @@ Install using a package manager
       ```
 
 Install from a binary release
-: You can download the Tanzu CLI binary from VMware Customer Connect or GitHub.
+: Complete the following steps:
+  
+  1. Download the Tanzu CLI binary from one of the following locations:
+     * **VMware Tanzu Network**
+       
+       1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
+       2. Choose the {{ vars.tap_version }} release from the Release dropdown menu.
+       3. Click the tanzu-cli-tap-{{ vars.tap_version }} item from the result set.
+       4. Download the Tanzu CLI binary for your operating system.
+       5. Follow [the binary installation instructions](#binary-installation-instructions)
 
-  To download a binary release of the Tanzu CLI from Customer Connect and then install it:
+     * **VMware Customer Connect**
 
-  1. Download and unpack the Tanzu CLI binary:
+       1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
+       2. Download the Tanzu CLI binary for your operating system.
+       3. Follow [the binary installation instructions](#binary-installation-instructions).
 
-     1. Download the Tanzu CLI binary for your operating system from
-        [Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
-     1. Use an extraction tool to unpack the binary file, for example, on Linux or macOS, you can
-     use the `tar` command.
+     * **GitHub**
+
+       1. Go to [Tanzu CLI release v{{ vars.tanzu-cli.version }} on GitHub](https://github.com/vmware-tanzu/tanzu-cli/releases/tag/v{{ vars.tanzu-cli.version }}).
+       2. Download the Tanzu CLI binary for your operating system, for example, `tanzu-cli-windows-amd64.tar.gz`.
+       3. Follow [the binary installation instructions](#binary-installation-instructions)
+
+  2. Use an extraction tool to unpack the binary file:
 
         * **macOS:**
 
@@ -192,69 +203,88 @@ Install from a binary release
 
   3. Make the CLI available to the system:
 
-     * **macOS:**
+        * **macOS:**
 
-        Install the binary to `/usr/local/bin`:
+           Install the binary to `/usr/local/bin`:
+
+           ```console
+           install tanzu-cli-darwin_amd64 /usr/local/bin/tanzu
+           ```
+
+        * **Linux:**
+
+           Install the binary to `/usr/local/bin`:
+
+           ```console
+           sudo install tanzu-cli-linux_amd64 /usr/local/bin/tanzu
+           ```
+
+        * **Windows:**
+
+           1. Create a new `Program Files\tanzu` folder.
+           2. Copy the `tanzu-cli-windows_amd64.exe` file into the new `Program Files\tanzu` folder.
+           3. Rename `tanzu-cli-windows_amd64.exe` to `tanzu.exe`.
+           4. Right-click the `tanzu` folder, select **Properties** > **Security**, and make sure that your user account has the **Full Control** permission.
+           5. Use Windows Search to search for `env`.
+           6. Select **Edit the system environment variables** and click the **Environment Variables** button.
+           7. Select the `Path` row under **System variables**, and click **Edit**.
+           8. Click **New** to add a new row and enter the path to the Tanzu CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
+
+  4. Check that the correct version of the CLI is properly installed:
 
         ```console
-        install tanzu-cli-darwin_amd64 /usr/local/bin/tanzu
+        tanzu version
+        version: v{{ vars.tanzu-cli.version }}
+        ...
         ```
 
-     * **Linux:**
+### <a id="install-plugins"></a> Install Tanzu CLI Plug-ins
 
-        Install the binary to `/usr/local/bin`:
+For online installation, run the following command to install the CLI plug-ins required
+for Tanzu Application Platform:
 
-        ```console
-        sudo install tanzu-cli-linux_amd64 /usr/local/bin/tanzu
-        ```
+```console
+tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.version }}
+```
 
-     * **Windows:**
-
-        1. Create a new `Program Files\tanzu` folder.
-        2. Copy the `tanzu-cli-windows_amd64.exe` file into the new `Program Files\tanzu` folder.
-        3. Rename `tanzu-cli-windows_amd64.exe` to `tanzu.exe`.
-        4. Right-click the `tanzu` folder, select **Properties** > **Security**, and make sure that your user account has the **Full Control** permission.
-        5. Use Windows Search to search for `env`.
-        6. Select **Edit the system environment variables** and click the **Environment Variables** button.
-        7. Select the `Path` row under **System variables**, and click **Edit**.
-        8. Click **New** to add a new row and enter the path to the `tanzu` CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
-
-  4. Check that the correct version of the CLI is properly installed.
-
-     ```console
-     tanzu version
-     version: v{{ vars.tanzu-cli.version }}
-     ...
-     ```
-
-### <a id="install-plugins"></a> Install Tanzu CLI Plugins
-
-Run the following command to install the CLI plugins required for Tanzu Application Platform:
-
-   ```console
-   tanzu plugin install --plugin-group vmware-tap/default
-   ```
-
-For more information about the latest `tanzu plugin` features and sub-commands, see the [tanzu plugin](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.version }}/tanzu-cli/tanzu-plugin.html) topic in the VMware Tanzu CLI documentation.
+For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3) section of the Tanzu CLI
+documentation.
 
 ## Next steps
 
 For online installation:
 
 - [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
-- [Install the Tanzu Application Platform package and profiles](install-online/profile.hbs.md)
+- [Install Tanzu Application Platform package and profiles](install-online/profile.hbs.md)
 
 For air-gapped installation:
 
 - [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
-- [Install Tanzu Application Platform in an air-gapped environment](install-offline/profile.hbs.md)
+- [Install Tanzu Application Platform in your air-gapped environment](install-offline/profile.hbs.md)
+
+For installation on AWS Cloud:
+
+- [Create AWS Resources for Tanzu Application Platform](install-aws/resources.hbs.md)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Install Tanzu Application Platform package and profiles on AWS](install-aws/profile.hbs.md)
+
+For installation on Azure Cloud:
+
+- [Create Azure Resources for Tanzu Application Platform](install-azure/resources.hbs.md)
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Install Tanzu Application Platform package and profiles on Azure](install-azure/profile.hbs.md)
+
+For installation on OpenShift clusters:
+
+- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Install the Tanzu Application Platform package and profiles](install-openshift/profile.hbs.md)
 
 For GitOps (beta) installation:
 
 - [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 
-- [Install Tanzu Application Platform through GitOps with ESO](install-gitops/eso.hbs.md)
-- [Install Tanzu Application Platform through Gitops with SOPS](install-gitops/sops.hbs.md)
+- [Install Tanzu Application Platform through GitOps with External Secrets Operator (ESO)](install-gitops/eso.hbs.md)
+- [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](install-gitops/sops.hbs.md)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
 Essentials because the contents of Cluster Essentials are already installed on your cluster._

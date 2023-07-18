@@ -91,7 +91,7 @@ Follow these steps to create a new Git repository:
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
+    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH and Basic Authentication.
 
 1. Initialize a new Git repository:
 
@@ -103,9 +103,15 @@ Follow these steps to create a new Git repository:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository.
+1. Set up the authentication method:
 
-    The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+    SSH
+    : Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository. The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+
+    Basic Authentication
+    : Have a user name with read access to the Git repository and password or personal access token for the same user.
+
+    >**Important** Only use one of `ssh` or `Basic Authentication`, not both.
 
 ## <a id='download-and-unpack-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
@@ -221,14 +227,14 @@ Follow these step to configure the [IAM Role for a Service Account](https://docs
 and another to read the Tanzu Application Platform installation secrets by using the supplied script:
 
     ```console
-    tanzu-sync/scripts/aws/setup/create-policies.sh
+    tanzu-sync/scripts/setup/create-policies.sh
     ```
 
 1. Create two IAM Role-to-Service Account pairs for your cluster, one for Tanzu Sync
 and another for the Tanzu Application Platform installation by using the supplied script:
 
     ```console
-    tanzu-sync/scripts/aws/setup/create-irsa.sh
+    tanzu-sync/scripts/setup/create-irsa.sh
     ```
 
     For example, if the name of the EKS cluster is `iterate-green` using the defaults,
@@ -268,48 +274,46 @@ Configuration for Tanzu is stored in two locations:
 
 Follow these steps to create the sensitive configuration and review the non-sensitive configuration:
 
-1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository. There are two supported authentication methods:
+1. Save the credentials that Tanzu Sync uses to authenticate with the Git repository.
 
-    1. SSH
+    SSH
+    : Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
+    the following information as plaintext:
 
-      Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/ssh` containing
-      the following information as plaintext:
+        ```json
+        {
+          "privatekey": "... (private key portion here) ...",
+          "knownhosts": "... (known_hosts for git host here) ..."
+        }
+        ```
 
-      ```json
-      {
-        "privatekey": "... (private key portion here) ...",
-        "knownhosts": "... (known_hosts for git host here) ..."
-      }
-      ```
+        Where `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`.
 
-      Where `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`.
+        For example, if the Git repository is hosted on GitHub, and the private key
+        created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
 
-      For example, if the Git repository is hosted on GitHub, and the private key
-      created in [Create a new Git repository](#create-a-new-git-repository) is stored in the file `~/.ssh/id_ed25519`:
+        ```console
+        aws secretsmanager create-secret \
+          --name dev/${CLUSTER_NAME}/tanzu-sync/sync-git/ssh \
+          --secret-string "$(cat <<EOF
+        {
+          "privatekey": "$(cat ~/.ssh/id_ed25519 | awk '{printf "%s\\\\n", $0}')",
+          "knownhosts": "$(ssh-keyscan github.com | awk '{printf "%s\\\\n", $0}')"
+        }
+        EOF
+        )"
+        ```
 
-      ```console
-      aws secretsmanager create-secret \
-        --name dev/${CLUSTER_NAME}/tanzu-sync/sync-git/ssh \
-        --secret-string "$(cat <<EOF
-      {
-        "privatekey": "$(cat ~/.ssh/id_ed25519 | awk '{printf "%s\\\\n", $0}')",
-        "knownhosts": "$(ssh-keyscan github.com | awk '{printf "%s\\\\n", $0}')"
-      }
-      EOF
-      )"
-      ```
+        Where:
 
-      Where:
+        - The content of `~/.ssh/id_ed25519` is the private portion of the SSH key.
+        - `ssh-keyscan` obtains the public keys for the SSH host.
+        - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
+        string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
-      - The content of `~/.ssh/id_ed25519` is the private portion of the SSH key.
-      - `ssh-keyscan` obtains the public keys for the SSH host.
-      - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line
-      string with embedded newline chars (`\n`). JSON does not support multiline strings.
-
-    1. Basic Authentication
-
-        Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
-        the following information as plaintext:
+    Basic Authentication
+    : Create a secret named `dev/CLUSTER-NAME/tanzu-sync/sync-git/basic_auth` containing
+    the following information as plaintext:
 
         ```json
         {
@@ -324,7 +328,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
         - `username` is the username of a user account with read access to the Git repository.
         - `password` is the password or personal access token for the user.
     
-1. To securely store the authentication credentials required for accessing the OCI registry that hosts the Tanzu Application Platform images, create a secret called `dev/EKS-CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig`. This secret contains the following information in plaintext:
+1. To securely store the authentication credentials required for accessing the OCI registry that hosts the Tanzu Application Platform images, create a secret called `dev/CLUSTER-NAME/tanzu-sync/install-registry-dockerconfig`. This secret contains the following information in plaintext:
 
     ```json
     {
@@ -339,7 +343,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     Where:
 
-    - `EKS-CLUSTER-NAME` is the name as it appears in `eksctl get clusters`
+    - `CLUSTER-NAME` is the name as it appears in `eksctl get clusters`
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is the container registry where the Tanzu Application Platform images are located.
@@ -348,7 +352,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     ```console
     aws secretsmanager create-secret \
-       --name dev/${EKS_CLUSTER_NAME}/tanzu-sync/install-registry-dockerconfig \
+       --name dev/${CLUSTER_NAME}/tanzu-sync/install-registry-dockerconfig \
        --secret-string "$(cat <<EOF
     {
      "auths": {
@@ -392,7 +396,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
     ```console
     ...
-    wrote ESO configuration for Tanzu Sync to: tanzu-sync/app/values/tanzu-sync-eso.yaml
+    wrote ESO configuration for Tanzu Sync to: tanzu-sync/app/values/tanzu-sync-aws-secrets-manager-values.yaml
     ...
     ```
 
@@ -515,7 +519,7 @@ stores the sensitive data such as username, password, private key from the `tap-
 
     ```console
     ...
-    wrote ESO configuration for TAP Install to: cluster-config/values/tap-install-aws-secrets-manager-values.yaml
+    wrote AWS Secrets Manager configuration for TAP Install to: cluster-config/values/tap-install-aws-secrets-manager-values.yaml
     ...
     ```
 
@@ -551,7 +555,7 @@ stores the sensitive data such as username, password, private key from the `tap-
 
     ```console
     git add cluster-config/
-    git commit -m 'Configure installer for TAP 1.6.0 on "iterate-green"'
+    git commit -m 'Configure installer for TAP 1.6.1 on "iterate-green"'
     ```
 
 ## <a id='configure-and-push-tap-values'></a>Configure and push the Tanzu Application Platform values
@@ -639,7 +643,7 @@ the AWS Secrets Store secret created in the [Review and store Tanzu Application 
 
     ```console
     git add cluster-config/
-    git commit -m "Configure initial values for TAP 1.6.0"
+    git commit -m "Configure initial values for TAP 1.6.1"
     git push
     ```
 

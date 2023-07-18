@@ -1,10 +1,6 @@
 # Troubleshooting Application Accelerator for VMware Tanzu
 
-This topic has troubleshooting steps for:
-
-- [Development issues](#dev-issues)
-- [Accelerator authorship issues](#authorship-issues)
-- [Operations issues](#ops-issues)
+This topic provides troubleshooting steps for development, accelerator authorship, and operations issues in Application Accelerator.
 
 ## <a id="dev-issues"></a> Development issues
 
@@ -135,17 +131,19 @@ Expression evaluation errors include:
 
 ## <a id="ops-issues"></a> Operations issues
 
-### <a id="clean-up-accelerators"></a>Accelerator persists in Tanzu Application Platform GUI after deletion
+### <a id="clean-up-accelerators"></a>Accelerator persists in Tanzu Developer Portal after deletion
 
-If an accelerator still displays in the Tanzu Application Platform GUI after it is deleted using the `tanzu accelerator delete` command, complete the following steps to delete:
+If an accelerator still displays in the Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI) after it is deleted using the `tanzu accelerator delete`
+command, complete the following steps to delete:
 
-1. Navigate to your instance of the Tanzu Application Platform GUI.
+1. Navigate to your instance of the Tanzu Developer Portal.
 
 2. Search for the accelerator which should be deleted and select it.
 
 3. On the top right of the window, click the three dots, and select **Unregister Template**.
 
-The accelerator is not longer displayed in the Tanzu Application Platform GUI Accelerator Catalog.
+The accelerator is not longer displayed in the Tanzu Developer Portal Accelerator Catalog.
 
 ### <a id="check-status"></a>Check status of accelerator resources
 

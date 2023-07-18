@@ -1,6 +1,6 @@
 # Conflict resolution
 
-This topic describes how to resolve conflicts that transforms might produce.
+This topic tells you how to resolve conflicts that Application Accelerator transforms in Tanzu Application Platform (commonly known as TAP) might produce.
 
 For example, if you're using [Merge](merge.md) (or [Combo](combo.md)'s `merge` syntax) or
 [RewritePath](rewrite-path.md), a transform can produce several files at the same `path`.

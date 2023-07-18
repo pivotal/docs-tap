@@ -6,7 +6,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 [Install Tanzu Developer Tools for Visual Studio](install.hbs.md).
 
-## <a id="config-src-img-registry"/> Configure source image registry
+## <a id="config-src-img-registry"/> Configure Local Source Proxy
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
@@ -62,7 +62,7 @@ Where:
 
 Alternatively, you can use the Tanzu CLI to create a `workload.yaml` file.
 For more information about the relevant Tanzu CLI command, see
-[Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+[Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 
 ## <a id="create-catalog-info-yaml"/> Create the `catalog-info.yaml` file
 
@@ -70,8 +70,8 @@ Your project must contain a file named `catalog-info.yaml`.
 For example, `MyApp\Catalog\catalog-info.yaml`.
 
 `catalog-info.yaml` enables the workloads created with Tanzu Developer Tools for Visual Studio to
-appear in Tanzu Application Platform GUI.
-For more information, see [Overview of Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
+appear in Tanzu Developer Portal (formerly named Tanzu Application Platform GUI).
+For more information, see [Overview of Tanzu Developer Portal](../tap-gui/about.hbs.md).
 
 To create a `catalog-info.yaml` file by using Visual Studio:
 
@@ -133,7 +133,6 @@ k8s_custom_deploy(
    'APP-NAME',
    apply_cmd="tanzu apps workload apply -f Config/workload.yaml --live-update" +
        " --local-path " + LOCAL_PATH +
-       " --source-image " + SOURCE_IMAGE +
        " --build-env BP_DEBUG_ENABLED=true" +
        " --namespace " + NAMESPACE +
        " --output yaml" +
@@ -151,10 +150,7 @@ k8s_resource('APP-NAME', port_forwards=["8080:8080"],
 allow_k8s_contexts('CONTEXT-NAME')
 ```
 
-Where:
-
-- `SOURCE-IMAGE-VALUE` is your source image
-- `APP-NAME` is the name of your application
+Where `APP-NAME` is the name of your application
 
 If your Tanzu Application Platform-enabled Kubernetes cluster is running on your local machine, you
 can remove the entire `allow_k8s_contexts` line.

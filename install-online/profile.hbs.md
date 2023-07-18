@@ -9,7 +9,7 @@ Before installing the packages, ensure you have:
 - Configured and verified the cluster.
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
 attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
@@ -29,17 +29,28 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 1. Set up environment variables for installation use by running:
 
     ```console
+    # Set tanzunet as the source registry to copy the Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
     export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+
+    # The user’s registry for copying the Tanzu Application Platform package to.
     export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
     export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
-    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
-    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
+    # These environment variables starting with IMGPKG_* are used by the imgpkg command only.
+
+    # The registry from which the Tanzu Application Platform package is retrieved.
+    export INSTALL_REGISTRY_USERNAME=”${IMPKG_REGISTRY_USERNAME_1}”
+    export INSTALL_REGISTRY_PASSWORD=”${IMPKG_REGISTRY_PASSWORD_1}”
+    export INSTALL_REGISTRY_HOSTNAME=”${IMPKG_REGISTRY_HOSTNAME_1}”
     export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=TARGET-REPOSITORY
+
+    # The user’s registry used by Tanzu Application Platform to store built images and the Tanzu Build Service dependencies. These credentials must have write permission.
+    export MY_REGISTRY_USERNAME=”${IMPKG_REGISTRY_USERNAME_1}” 
+    export MY_REGISTRY_PASSWORD=”${IMPKG_REGISTRY_PASSWORD_1}” 
+    export MY_REGISTRY_HOSTNAME=”${IMPKG_REGISTRY_HOSTNAME_1}”
     ```
 
     Where:
@@ -75,14 +86,31 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
 
-Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
+Tanzu CLI packages are accessible through repositories. By adding the Tanzu Application Platform package repository, Tanzu Application Platform and its packages become available for installation.
 
-[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+[Relocate images to a registry](#relocate-images) is recommended but not required for installation. If you skip that step, you can run the following commands to set Tanzu Network as the source of the OCI images:
 
-- `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
-- `INSTALL_REPO` is `tanzu-application-platform`
-- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
-- `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+```console
+# The registry from which the Tanzu Application Platform package is retrieved.
+export INSTALL_REGISTRY_USERNAME=TANZUNET_REGISTRY_USERNAME
+export INSTALL_REGISTRY_PASSWORD=TANZUNET_REGISTRY_PASSWORD
+export INSTALL_REGISTRY_HOSTNAME=”registry.tanzu.vmware.com”
+export TAP_VERSION=VERSION-NUMBER
+export INSTALL_REPO="tanzu-application-platform"
+
+# The user’s registry used by Tanzu Application Platform to store built images and the Tanzu Build Service dependencies. These credentials must have write permission.
+export MY_REGISTRY_USERNAME=MY-REGISTRY-USER
+export MY_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+export MY_REGISTRY_HOSTNAME=MY-REGISTRY
+```
+
+Where:
+
+- `TANZUNET_REGISTRY_USERNAME` and `TANZUNET_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+- `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+- `MY_REGISTRY_HOSTNAME` is your own container registry.
+- `MY_REGISTRY_USERNAME` is the user with write access to `MY_REGISTRY_HOSTNAME`.
+- `MY_REGISTRY_PASSWORD` is the password for `MY_REGISTRY_USERNAME`.
 
 To add the Tanzu Application Platform package repository to your cluster:
 
@@ -103,16 +131,16 @@ To add the Tanzu Application Platform package repository to your cluster:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. Create a internal registry secret by running:
+1. Create a secret for accessing the user’s registry by running:
 
     ```console
     tanzu secret registry add registry-credentials \
-        --server   ${INSTALL_REGISTRY_HOSTNAME} \
-        --username ${INSTALL_REGISTRY_USERNAME} \
-        --password ${INSTALL_REGISTRY_PASSWORD} \
+        --server   ${MY_REGISTRY_HOSTNAME} \
+        --username ${MY_REGISTRY_USERNAME} \
+        --password ${MY_REGISTRY_PASSWORD} \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -200,7 +228,7 @@ To add the Tanzu Application Platform package repository to your cluster:
       sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu
       tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform
       tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
-      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry
+      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Platform Telemetry
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
                                                                                                                                      case.
       tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
@@ -291,9 +319,21 @@ buildservice:
     name: "KP-DEFAULT-REPO-SECRET"
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
 
+local_source_proxy:
+  # Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
+  repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
+  push_secret:
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
+    name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
+    namespace: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE"
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
+    create_export: true
+
 tap_gui:
-  metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
+  metadataStoreAutoconfiguration: true # Creates a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Developer Portal and SCST - Store.
   app_config:
+    auth:
+      allowGuestAccess: true  # This allows unauthenticated users to log in to your portal. If you want to deactivate it, make sure you configure an alternative auth provider.
     catalog:
       locations:
         - type: url
@@ -314,7 +354,7 @@ tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
 ```
 
-> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml
@@ -328,35 +368,95 @@ tap_telemetry:
 Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address. It is not required to know the External IP address or set up the DNS record while installing. Installing the Tanzu Application Platform package creates the `tanzu-shared-ingress` and its External IP address. You can create the DNS record after completing the installation.
-- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
-    - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
-    - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
-- `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
-    - You must create the secret before the installation. For example, you can use the `registry-credentials` secret created earlier.
-- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
-- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if the distribution is OpenShift and must be used in coordination with `kubernetes_version`. Supported value: `openshift`.
-- `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
-- `SERVER-NAME` is the host name of the registry server. Examples:
-    - Harbor has the form `server: "my-harbor.io"`.
-    - Docker Hub has the form `server: "index.docker.io"`.
-    - Google Cloud Registry has the form `server: "gcr.io"`.
-- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
-Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    - Harbor has the form `repository: "my-project/supply-chain"`.
-    - Docker Hub has the form `repository: "my-dockerhub-user"`.
-    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. For more information, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
-- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
-credentials to pull an image from the registry for scanning.
-- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See  [Locating the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565) for more information about identifying the Entitlement Account Number.
+  service's External IP address. It is not required to know the External IP address or set up the
+  DNS record while installing. Installing the Tanzu Application Platform package creates the
+  `tanzu-shared-ingress` and its External IP address. You can create the DNS record after completing
+  the installation.
 
-If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are
+  written to this location. Examples:
+
+  - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+  - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or
+    `kp_default_repository: "index.docker.io/my-user/build-service"`.
+  - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+
+- `KP-DEFAULT-REPO-SECRET` is the secret with user credentials that can write to `KP-DEFAULT-REPO`.
+  You can `docker push` to this location with this credential.
+
+  - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
+  - You must create the secret before the installation. For example, you can use the
+    `registry-credentials` secret created earlier.
+
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace where `KP-DEFAULT-REPO-SECRET` is created.
+- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if
+  the distribution is OpenShift and must be used in coordination with `kubernetes_version`.
+  Supported value: `openshift`.
+
+- `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in
+  coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes
+  patch version.
+
+- `SERVER-NAME` is the host name of the registry server. Examples:
+
+  - Harbor has the form `server: "my-harbor.io"`.
+  - Docker Hub has the form `server: "index.docker.io"`.
+  - Google Cloud Registry has the form `server: "gcr.io"`.
+
+- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the
+  shared section earlier and AWS ECR registry is used, you must ensure that the
+  `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects
+  the paths to be pre-created. Images are written to `SERVER-NAME/REPO-NAME/workload-name`.
+  Examples:
+
+  - Harbor has the form `repository: "my-project/supply-chain"`.
+  - Docker Hub has the form `repository: "my-dockerhub-user"`.
+  - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where the developer's local source is uploaded when using
+  Tanzu CLI to use Local Source Proxy for workload creation.
+
+  If an AWS ECR registry is being used, ensure that the repository already exists.
+  AWS ECR expects the repository path to already exist. This destination is represented as
+  `REGISTRY-SERVER/REPOSITORY-PATH`. For more information, see
+  [Install Local Source Proxy](../local-source-proxy/install.hbs.md).
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow
+  pushing to the `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` repository.
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
+  `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
+
+- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch
+  source code from and push configuration to. This field is only required if you use a private
+  repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more
+  information.
+
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download
+  either a blank or populated catalog file from the
+  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
+  Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git
+  infrastructure.
+
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the
+  namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to
+  run in this namespace. If there are multiple developer namespaces, use
+  `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To
+  install Grype in multiple namespaces, use a namespace provisioner. For more information, see
+  [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to
+  pull an image from the registry for scanning.
+
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN),
+  which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry
+  uses this number to identify data that belongs to a particular customers and prepare usage
+  reports. For more information about identifying the Entitlement Account Number, see
+  [Locating the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565).
+
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under
+the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform
+component packages inherit that value by default.
 
 If you use AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
@@ -414,7 +514,7 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-Tanzu Application Platform v1.6.0 supports building applications with Ubuntu v22.04 (Jammy).
+Tanzu Application Platform v1.6.1 supports building applications with Ubuntu v22.04 (Jammy).
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
@@ -460,7 +560,7 @@ If you configured `full` dependencies in your `tap-values.yaml` file in
 you must install the `full` dependencies package.
 
 1. (Optional) If you have an existing installation of the full dependencies package from a version
-earlier than Tanzu Application Platform v1.6.0, you must uninstall the full dependencies package and remove the package repository:
+earlier than Tanzu Application Platform v1.6.1, you must uninstall the full dependencies package and remove the package repository:
 
     Uninstall the package:
 
@@ -483,7 +583,7 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
       exclude_dependencies: true
     ...
     ```
- 
+
 1. If you have not updated your Tanzu Application Platform package install after adding the `exclude_dependencies: true` to your values file, you must perform the update by running:
 
     ```console
@@ -518,19 +618,19 @@ earlier than Tanzu Application Platform v1.6.0, you must uninstall the full depe
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --data-values-file <path to tap-values.yaml>
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES
     ```
 
 For more information about the differences between `lite` and `full` dependencies, see
 [About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
-## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
+## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Developer Portal, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Developer Portal, see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
-You're now ready to start using Tanzu Application Platform GUI.
+You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
+[Tanzu Developer Portal - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 

@@ -1,7 +1,7 @@
 # Install Developer Conventions
 
-This document describes how to install Developer Conventions
-from the Tanzu Application Platform package repository.
+This document tells you how to install Developer Conventions
+from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > Developer Conventions. For more information about profiles, see [About Tanzu Application Platform

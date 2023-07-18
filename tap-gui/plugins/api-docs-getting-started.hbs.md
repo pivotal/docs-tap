@@ -1,7 +1,7 @@
 # Get started with the API documentation plug-in
 
 This topic tells you how to get started with the API documentation plug-in in
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="dev-first-app"></a> API entries
 
@@ -9,19 +9,19 @@ This section describes API entities, how to add them, and how to update them.
 
 ### <a id="about-app-accs"></a> About API entities
 
-The list of API entities is visible on the left side navigation pane of Tanzu Application Platform GUI.
+The list of API entities is visible on the left side navigation pane of Tanzu Developer Portal.
 It is also visible on the Overview page of specific components on the home page.
 APIs are a definition of the interface between components.
 
 Their definition is provided in raw machine-readable and human-readable formats.
 For more information, see the [API plug-in documentation](api-docs.hbs.md).
 
-### <a id="deploy-your-app"></a> Add a demo API entity to the Tanzu Application Platform GUI software catalog
+### <a id="deploy-your-app"></a> Add a demo API entity to the Tanzu Developer Portal software catalog
 
 To add a demo API entity and its related Catalog objects, follow the steps used for registering any
 other software catalog entity:
 
-1. Navigate to the Home page of Tanzu Application Platform GUI by clicking **Home** on the left-side
+1. Navigate to the Home page of Tanzu Developer Portal by clicking **Home** on the left-side
    navigation pane.
 
 1. Click **REGISTER ENTITY**.
@@ -108,7 +108,7 @@ other software catalog entity:
     kind: API
     metadata:
       name: demo-api
-      description: The demo API for Tanzu Application Platform GUI
+      description: The demo API for Tanzu Developer Portal
       links:
         - url: https://api.agify.io
           title: API Definition
@@ -165,12 +165,10 @@ To update your demo API entry:
 1. To update your demo API entity, click on **demo-api** from the list of available APIs in your
    software catalog and click the **Edit** icon on the Overview page.
 
-    ![Screenshot of the overview of demo dash api. The edit button on the card labeled About is framed in red.](../images/api-plugin-9.png)
-
     It opens the source `catalog-info.yaml` file that you can edit. For example, you can change the
     `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and then save your changes.
 
-   After making any edits, Tanzu Application Platform GUI re-renders the API entry with the next
+   After making any edits, Tanzu Developer Portal re-renders the API entry with the next
    refresh cycle.
 
 ## <a id="validation-api"></a> Validation Analysis of API specifications
@@ -232,7 +230,7 @@ To receive automatic validation analysis for OpenAPI specifications by using API
 1. [Install API Validation and Scoring](../../api-validation-scoring/install.hbs.md).
 2. Use [API Auto Registration](../../api-auto-registration/about.hbs.md) or
    API Validation Scoring Design GitOps to automatically generate the API entities in
-   Tanzu Application Platform GUI.
+   Tanzu Developer Portal.
 
 The automatic scoring cannot score or replace API entities created through other methods, such as
 regular GitOps or manual registration.

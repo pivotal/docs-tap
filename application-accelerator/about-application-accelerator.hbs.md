@@ -1,8 +1,7 @@
-# Application Accelerator for VMware Tanzu v{{ vars.url_version }}
+# Application Accelerator Overview
 
-This topic tells you about the Application Accelerator component.
-Use this topic to understand the Application Accelerator architecture.
-## <a id="overview"></a>Application Accelerator overview
+This topic tells you about the Application Accelerator component and architecture.
+## <a id="overview"></a>Overview
 
 Application Accelerator for VMware Tanzu helps you bootstrap developing your applications and
 deploying them in a discoverable and repeatable way.

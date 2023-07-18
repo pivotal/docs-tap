@@ -28,4 +28,5 @@ spec:
 ```
 
 Where:
-- `GRYPE-SCANNER-IMAGE` is the Grype scanner image. See [Grype documentation](https://github.com/anchore/grype#getting-started) for more details.
+
+- `GRYPE-SCANNER-IMAGE` is the Grype scanner image. See [Grype documentation](https://github.com/anchore/grype#getting-started). For example, `image: anchore/grype` references the publicly available grype image from [DockerHub](https://hub.docker.com/r/anchore/grype/tags).

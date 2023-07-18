@@ -22,35 +22,35 @@ phase of the pipeline.
 
 ### <a id="using-the-ootb-jenkins-task"></a> Using the Out of the Box Jenkins Task
 
-The intent of the Jenkins task provided via Out of the Box templates is to help 
-Tanzu Application Platform users to integrate with and make use of the modern application 
-deployment pipeline provided by our platform while maintaining their existing test suites on 
+The intent of the Jenkins task provided via Out of the Box templates is to help
+Tanzu Application Platform users to integrate with and make use of the modern application
+deployment pipeline provided by our platform while maintaining their existing test suites on
 their Jenkins services.
- 
-The Out of the Box Jenkins task makes use of an existing Jenkins Job to run test suites on source code. 
+
+The Out of the Box Jenkins task makes use of an existing Jenkins Job to run test suites on source code.
 
 
 #### 1. Configuring a Jenkins job in an existing Jenkins Pipeline
 
 This section of the guide shows how to configure a Jenkins job that can be kicked off by the
-Tanzu Application Platform Jenkins task. 
+Tanzu Application Platform Jenkins task.
 
 #### Example Jenkins Job
 
-Here is an example of a script that can be added to your pipeline that specifies source url and source revision 
+Here is an example of a script that can be added to your pipeline that specifies source url and source revision
 information for your source code target.
-This example uses a Jenkins instance that is deployed on a Kubernetes cluster although this is not the only possible 
-configuration for a Jenkins instance. 
+This example uses a Jenkins instance that is deployed on a Kubernetes cluster although this is not the only possible
+configuration for a Jenkins instance.
 
 ```groovy
 #!/bin/env groovy
 
 pipeline {
   agent {
-    // Use an agent that is appropriate 
-    // for your Jenkins installation. 
+    // Use an agent that is appropriate
+    // for your Jenkins installation.
     // This is only an example
-    kubernetes { 
+    kubernetes {
       label 'maven'
     }
   }
@@ -84,7 +84,7 @@ pipeline {
 }
 ```
 
-Where 
+Where
 - `SOURCE-URL` **string** The URL of the source code being tested.  The
   `source-provider` resource in the supply chain provides this code and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
@@ -101,7 +101,7 @@ Where
   Jenkins pipeline script must extract the commit SHA from the
   `SOURCE-REVISION` to be useful.
 
->**Caveat**: 
+>**Caveat**:
 >If you can't use the `SOURCE-URL` because your Jenkins service cannot
 >make requests into the Kubernetes cluster, then you can supply the source code
 >URL to the Jenkins job with other parameters instead.
@@ -131,7 +131,7 @@ tanzu apps workload create workload \
 The `Workload` is described in the later [Developer Workload](#developer-workload)
 section.
 
-#### 2. <a id="create-secret"></a> Create a secret with auth credentials 
+#### 2. <a id="create-secret"></a> Create a secret with auth credentials
 
 A secret must be created in the developer namespace to contain the credentials required to authenticate and interact with your Jenkins instance's builds. The following properties are required:
 
@@ -141,7 +141,7 @@ A secret must be created in the developer namespace to contain the credentials r
 - `password` **required**: Password of the user that has access to trigger a build on Jenkins.
 - `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.
 
-Use the Kubernetes CLI tool (kubectl) to create the above secret. You can provide the optional PEM-encoded CA certificate as a file using the `--from-file` flag as shown below:  
+Use the Kubernetes CLI tool (kubectl) to create the above secret. You can provide the optional PEM-encoded CA certificate as a file using the `--from-file` flag as shown below:
 
 ```bash
 kubectl create secret generic my-secret \
@@ -211,7 +211,7 @@ metadata:
 spec:
   results:
   - name: jenkins-job-url   #! To show the job URL on the
-    #! Tanzu Application Platform GUI
+    #! Tanzu Developer Portal
     value: $(tasks.jenkins-task.results.jenkins-job-url)
   params:
   - name: source-url        #! Required
@@ -237,7 +237,7 @@ spec:
         value: $(params.job-name)
       - name: job-params
         value: $(params.job-params)
-EOF 
+EOF
 ```
 
 #### <a id="patch-the-service-account"></a> 4. Patching the default Service Account
@@ -320,7 +320,7 @@ Where:
 - `GIT-URL` is the URL of your GitHub repository.
 - `GIT-BRANCH` is the branch you want to target.
 
-The value of the `job-params` parameter is a list of zero-or-more parameters 
+The value of the `job-params` parameter is a list of zero-or-more parameters
 that are sent to the Jenkins job.  The parameter is entered into the
 `Workload` as a list of name-value pairs as shown in the example above.
 

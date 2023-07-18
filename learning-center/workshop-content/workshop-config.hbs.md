@@ -1,6 +1,8 @@
-# Workshop configuration
+# Configure your Learning Center workshop
 
-There are two main parts to the configuration for a workshop. The first specifies the structure of the workshop content and the second defines the runtime requirements for deploying the workshop.
+This topic describes the two main steps required to configure your Learning Center workshop.
+The first specifies the structure of the workshop content and the second defines the runtime
+requirements for deploying the workshop.
 
 ## <a id="content-structure"></a> Specifying structure of the content
 
@@ -118,7 +120,7 @@ In this sample, a custom workshop image bundles the workshop content into its ow
   ```
 
   Where:
-  
+
   - `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 The difference is the use of the `content.files` setting.

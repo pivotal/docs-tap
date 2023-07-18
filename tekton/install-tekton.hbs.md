@@ -105,7 +105,7 @@ To configure a namespace to use Tekton Pipelines:
 
 1. Create an image pull secret in the current namespace and fill it from the `tap-registry` secret.
    For more information, see
-   [Relocate images to a registry](../install-online/profile.hbs.md#add-tap-package-repo).
+   [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images).
 
 2. Create an empty secret, and annotate it as a target of the secretgen controller, by running:
 

@@ -7,7 +7,7 @@ list must exist in the cluster. The provisioner application fails to reconcile i
 not exist on the cluster.
 
 - To use different private repositories, the secret used for each entry must be a unique name, for
-example, gitops_install, or additional_sources . Reusing the same secret is not supported due to a
+example, gitops_install, or additional_sources. Reusing the same secret is not supported due to a
 limitation in kapp-controller.
 
 - Before performing any operations, such as uninstalling the Namespace Provisioner or changing

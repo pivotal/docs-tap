@@ -1,4 +1,4 @@
-# Air-gapped environment requirements for Learning Center
+# Requirements for Learning Center in an air-gapped environment
 
 This topic gives you the list of configurations required for Learning Center to properly
 function in an air-gapped environment.
@@ -26,13 +26,13 @@ Air-gapped environments normally use private Certificate Authorities (CA) that m
 1. Setting the env variable NODE_EXTRA_CA_CERTS to the path of the file that contains one or more trusted certificates in PEM format.
 2. Add the following to your workshop definition:
 
-```bash
-spec:
-  session:
-    env:
-    - name: NODE_EXTRA_CA_CERTS
-      value: "$my-cert-pathway"
-```
+    ```bash
+    spec:
+      session:
+        env:
+        - name: NODE_EXTRA_CA_CERTS
+          value: "$my-cert-pathway"
+    ```
 
 ## <a id="internet-dependencies"></a>Internet dependencies
 

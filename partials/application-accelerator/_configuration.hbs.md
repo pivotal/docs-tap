@@ -86,7 +86,7 @@ under the sub-path `spring-cloud-serverless`. For example:
 accelerator:
   displayName: Spring Cloud Serverless
   description: A simple Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags:
   - java
   - spring
@@ -125,7 +125,7 @@ metadata:
 spec:
   displayName: My Spring Cloud Serverless
   description: My own Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
+  iconUrl: https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png
   tags:
     - spring
     - cloud
@@ -151,7 +151,7 @@ To use the Tanzu CLI, run:
 tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --git-sub-path spring-cloud-serverless \
   --description "My own Spring Cloud Function serverless app" \
   --display-name "My Spring Cloud Serverless" \
-  --icon-url https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png \
+  --icon-url https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/icons/icon-cloud.png \
   --tags "spring,cloud,function,serverless"
 ```
 
@@ -548,17 +548,17 @@ command and provide the name of the secret for that flag.
 ## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate
 
 If Tanzu Application Platform is configured to use an ingress for
-Tanzu Application Platform GUI and the Accelerator
+Tanzu Developer Portal and the Accelerator
 Server, then it might detect a timeout during accelerator generation. This can happen if the
 accelerator takes a longer time to generate than the default timeout. When this happens,
-Tanzu Application Platform GUI appears to continue to run for an indefinite period.
+Tanzu Developer Portal appears to continue to run for an indefinite period.
 In the IDE extension, it shows a `504` error. To mitigate this, you can increase the timeout value
 for the HTTPProxy resources used for the ingress by applying secrets with overlays to edit the
 HTTPProxy resources.
 
 ### <a id='timeout-secrets-created'></a>Configure an ingress timeout overlay secret for each HTTPProxy
 
-For Tanzu Application Platform GUI, create the following overlay secret in the `tap-install` namespace:
+For Tanzu Developer Portal, create the following overlay secret in the `tap-install` namespace:
 
 ```yaml
 apiVersion: v1

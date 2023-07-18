@@ -25,9 +25,9 @@ resources in ytt `additional_sources` from `data.values`.
 
 Examples:
 
-1. To define a list of tools used by the namespace
+1. To define a list of tools used by the namespace:
 
-   ```bash
+   ```console
    kubectl annotate ns dev param.nsp.tap/project.tools='["git", "maven"]'
    ```
 
@@ -46,7 +46,7 @@ Examples:
 
 2. To add a list of objects:
 
-   ```bash
+   ```console
    kubectl annotate ns dev param.nsp.tap/volume.claims='[{"name": "logs", "mountPath": "/var/logs/app"}, {"name": "truststore", "mountPath": "/opt/app/ssl"}]
    ```
 
@@ -105,16 +105,15 @@ Examples:
 ## Reserved Namespace Parameters
 
 Namespace Provisioner reserves certain parameters for its use. The following is a list of parameters
-used by the Namespace Provisioner, which apply to both the `default_parameters` in TAP values and
-the namespace parameters through labels and annotations:
+used by the Namespace Provisioner, which apply to both the `default_parameters` in `tap-values.yaml` and the namespace parameters through labels and annotations:
 
-- `limits` (*object*): Use to configure the LimitRange. For more information, see
+- `limits` (object): Use to configure the LimitRange. For more information, see
 [Deactivate LimitRange Setup](use-case4.hbs.md#custom-lr).
-- `skip_limit_range` (*boolean*): Use to determine if the LimitRange should be created. For more
+- `skip_limit_range` (boolean): Use to determine if the LimitRange should be created. For more
 information, see [Deactivate LimitRange Setup](use-case4.hbs.md#deactivate-lr).
-- `skip_grype` (*boolean*): Use to determine if Grype scanner resources are going to be created.
+- `skip_grype` (boolean): Use to determine if Grype scanner resources are going to be created.
 For more information, see [Deactivate Grype install](use-case4.hbs.md#deactivate-grype).
-- `supply_chain_service_account` (*object*): Contains the secrets and imagePullSecrets to be added
+- `supply_chain_service_account` (object): Contains the secrets and imagePullSecrets to be added
 to the Supply Chain ServiceAccount. For more information, see [Customize service accounts](use-case4.hbs.md#customize-sa).
-- `delivery_service_account` (*object*): Contains the secrets and imagePullSecrets to be added to
+- `delivery_service_account` (object): Contains the secrets and imagePullSecrets to be added to
 the delivery ServiceAccount. For more information, see [Customize service accounts](use-case4.hbs.md#customize-sa).

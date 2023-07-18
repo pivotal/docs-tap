@@ -10,8 +10,8 @@ profiles:
 
 - For the `view` profile, Application Live View installs Application Live View
   back-end package (`backend.appliveview.tanzu.vmware.com`). This installs the
-  Application Live View back-end component with Tanzu Application Platform GUI
-  in `app-live-view` namespace.
+  Application Live View back-end component with Tanzu Developer Portal
+  (formerly named Tanzu Application Platform GUI) in `app-live-view` namespace.
 
 - For the `run` profile, Application Live View installs Application Live View
   APIServer package (`apiserver.appliveview.tanzu.vmware.com`) in
@@ -34,13 +34,13 @@ profiles:
 
 The Application Live View back end (`backend.appliveview.tanzu.vmware.com`)
 provides a REST API that fetches the actuator data for the applications.
-The Application Live View UI plug-in as part of Tanzu Application Platform GUI
+The Application Live View UI plug-in as part of Tanzu Developer Portal
 queries this back-end REST API to get live actuator information for the pod.
 
 The Application Live View connector (`connector.appliveview.tanzu.vmware.com`) retrieves the actuator
 data from all the connected applications and returns it to the Application Live View back end.
 The actuator data is then displayed in the Application Live View UI plug-in as
-part of Tanzu Application Platform GUI.
+part of Tanzu Developer Portal.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to
 >install Application Live View. For more information about profiles, see [About
@@ -669,7 +669,7 @@ To install Application Live View APIServer:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
+The Application Live View UI plug-in is part of Tanzu Developer Portal.
 To access the Application Live View UI, see [Application Live View in Tanzu
 Application Platform GUI](../tap-gui/plugins/app-live-view.md).
 

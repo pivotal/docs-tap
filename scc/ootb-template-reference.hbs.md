@@ -78,8 +78,7 @@ cluster. Other resources in the supply chain can then access that code.
 ##### <a id='source-template-more-info'></a> More information
 
 For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
-see [Create a workload from GitHub
-repository](../cli-plugins/apps/create-workload.hbs.md#workload-git).
+see [Create a workload from GitHub repository](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-from-git-source).
 
 For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
@@ -123,9 +122,7 @@ For information about the ImageRepository resource, see the [ImageRepository ref
 documentation](../source-controller/reference.hbs.md#image-repository).
 
 For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository, see
-[Create a workload from local source
-code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
-
+[Create a workload from local source code](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-a-workload-from-local-source).
 #### <a id='maven-artifact'></a> MavenArtifact
 
 `MavenArtifact` makes a pre-built Java artifact available to as a tarball on the cluster.
@@ -189,8 +186,7 @@ parameters in the Workload.
 For information about the custom resource, see [MavenArtifact reference
 docs](../source-controller/reference.hbs.md#maven-artifact).
 
-For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository
-artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
+For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository artifact](../cli-plugins/apps/reference/workload-create-apply.hbs.md#apply-maven-artifact).
 
 ## <a id='testing-pipeline'></a> testing-pipeline
 
@@ -938,7 +934,7 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 ### <a id='service-bindings-more-info'></a> More information
 
 For an example, see
-[--service-ref](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+[--service-ref](../cli-plugins/apps/reference/workload-create-apply.hbs.md#apply-service-ref)
 in the Tanzu CLI documentation.
 
 For an overview of the function, see
@@ -1812,8 +1808,7 @@ cluster. Other resources in the supply chain can then access that code.
 ##### <a id='delivery-source-more-info'></a> More information
 
 For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
-see [Create a workload from GitHub
-repository](../cli-plugins/apps/create-workload.hbs.md).
+see [Create a workload from GitHub repository](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
 For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).

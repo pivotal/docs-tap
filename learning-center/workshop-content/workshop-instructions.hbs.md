@@ -1,10 +1,14 @@
-# Workshop instructions
+# Writing instructions for your Learning Center workshop
 
-Individual module files making up the workshop instructions can use either [Markdown](https://github.github.com/gfm/) or [AsciiDoc](http://asciidoc.org/) markup formats. The extension used on the file should be `.md` or `.adoc`, corresponding to which formatting markup style you use.
+This topic describes how you write and format the instructions for a Learning Center workshop.
+You can use either [Markdown](https://github.github.com/gfm/) with file extension `.md`
+or [AsciiDoc](http://asciidoc.org/) with file extension `.adoc` as the markup format for the
+individual module files that comprise the workshop instructions.
 
 ## <a id="annotation-of-executable"></a>Annotation of executable commands
 
-In conjunction with the standard Markdown and AsciiDoc, you can apply additional annotations to code blocks. The annotations indicate that a user can click the code block and have it copied to the terminal and executed.
+In conjunction with the standard Markdown and AsciiDoc, you can apply additional annotations to code blocks.
+The annotations indicate that a user can click the code block and have it copied to the terminal and executed.
 
 If using Markdown, to annotate a code block so it is copied to the terminal and executed, use:
 

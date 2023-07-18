@@ -1,10 +1,10 @@
-# Set up authentication for Tanzu Application Platform GUI
+# Set up authentication for Tanzu Developer Portal
 
-Tanzu Application Platform GUI (commonly called TAP GUI) extends the current Backstage
+Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) extends the current Backstage
 authentication plug-in so that you can see a login page based on the authentication providers
 configured at installation. This feature is a work in progress.
 
-Tanzu Application Platform GUI currently supports the following authentication providers:
+Tanzu Developer Portal currently supports the following authentication providers:
 
 - [Auth0](https://backstage.io/docs/auth/auth0/provider/)
 - [Azure](https://backstage.io/docs/auth/microsoft/provider/)
@@ -35,7 +35,7 @@ and, therefore, owns those references.
 To view your current Backstage identity, in the **Settings** section of the left side navigation
 pane click the **General** tab.
 
-  ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/backstage-identity.png)
+  ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Developer Portal.](images/backstage-identity.png)
 
 ## <a id='config-auth-prov'></a> Configure an authentication provider
 
@@ -55,7 +55,7 @@ Configure a supported authentication provider or a custom OIDC provider:
     # ... any existing values
 
     tap_gui:
-      # ... any other TAP GUI values
+      # ... any other Tanzu Developer Portal values
       app_config:
         auth:
           environment: development
@@ -74,10 +74,10 @@ Configure a supported authentication provider or a custom OIDC provider:
 
   Where `AUTH-OIDC-METADATA-URL` is a JSON file with generic OIDC provider configuration.
   It contains `authorizationUrl` and `tokenUrl`.
-  Tanzu Application Platform GUI reads these values from `metadataUrl`,
+  Tanzu Developer Portal reads these values from `metadataUrl`,
   so you must not specify these values explicitly in the earlier authentication configuration.
 
-  You must also the provide the redirect URI of the Tanzu Application Platform GUI instance to your
+  You must also the provide the redirect URI of the Tanzu Developer Portal instance to your
   identity provider.
   The redirect URI is sometimes called the redirect URL, the callback URL, or the callback URI.
   The redirect URI takes the following form:
@@ -89,7 +89,7 @@ Configure a supported authentication provider or a custom OIDC provider:
   Where:
 
   - `SCHEME` is the URI scheme, most commonly `http` or `https`
-  - `INGRESS-DOMAIN` is the host name you selected for your Tanzu Application Platform GUI instance
+  - `INGRESS-DOMAIN` is the host name you selected for your Tanzu Developer Portal instance
 
   When using `https` and `example.com` as examples for the two placeholders respectively, the
   redirect URI reads as follows:

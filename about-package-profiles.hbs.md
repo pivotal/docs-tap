@@ -8,12 +8,13 @@ a predefined group of packages.
 
 - **[API Auto Registration](api-auto-registration/about.md)**
 
-  When users deploy a [workload](workloads/workload-types.hbs.md) that exposes an API, they want that API to automatically show in
-  Tanzu Application Platform GUI without requiring any added manual steps.
+  When users deploy a [workload](workloads/workload-types.hbs.md) that exposes an API, they want
+  that API to automatically show in Tanzu Developer Portal
+  (formerly named Tanzu Application Platform GUI) without requiring any added manual steps.
 
   API Auto Registration is an automated workflow that can use a supply chain to create and manage a
   Kubernetes Custom Resource (CR) of type `APIDescriptor`. A Kubernetes controller reconciles the CR
-  and updates the API entity in Tanzu Application Platform GUI to achieve automated API registration
+  and updates the API entity in Tanzu Developer Portal to achieve automated API registration
   from workloads. You can also use API Auto Registration without supply chains by directly applying
   an `APIDescriptor` CR to the cluster.
 
@@ -98,7 +99,7 @@ a predefined group of packages.
 
   Contour is an ingress controller for Kubernetes that supports dynamic configuration updates and multi-team ingress
   delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
-  the [Contour documentation](https://projectcontour.io/docs/v1.22.0/).
+  the [Contour documentation](https://projectcontour.io/docs/1.24/).
 
 <!-- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
 
@@ -106,7 +107,7 @@ a predefined group of packages.
 and service accounts including workload and deliverable. These roles are available to help
 operators limit permissions a user or service account requires on a cluster that runs Tanzu
 Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
-access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
+access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Developer Portal support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
 
 - **[Developer Conventions](developer-conventions/about.hbs.md)**
 
@@ -140,6 +141,18 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
   you can use it to host training for other purposes as well. For example, you can use it to train
   users on web-based applications, use of databases, or programming languages.
+
+- **[Local Source Proxy](local-source-proxy/about.hbs.md)**
+
+  Local Source Proxy is a secure and convenient means for you to interact with external registries
+  without providing a lot of registry details.
+
+  With Local Source Proxy, developers can interact with external registries without needing to know
+  registry specifics, such as endpoints, credentials, and certificates. This eliminates the burden
+  of platform and app operators having to distribute registry credentials to developer workstations.
+
+  Developers can also seamlessly deploy their applications without managing registry credentials on
+  their local machines or keeping track of where their local source is uploaded.
 
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
@@ -215,12 +228,12 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   It integrates with SCST - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **[Tanzu Application Platform GUI](tap-gui/about.md)**
+- **[Tanzu Developer Portal](tap-gui/about.md)**
 
-  Tanzu Application Platform GUI lets your developers view your organization's running applications
+  Tanzu Developer Portal lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
   documentation, and even service status.
-  Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project
+  Tanzu Developer Portal is built from the Cloud Native Computing Foundation's project
   Backstage.
 
 - **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
@@ -229,7 +242,8 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
   remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
   installation is that VMware can provide your organization with use reports about Tanzu Application
-  Platform. For information about enrolling in telemetry reports, see [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports).
+  Platform. For information about enrolling in telemetry reports, see
+  [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports).
 
   >**Note** You can opt out of telemetry collection by following the
   >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
@@ -245,6 +259,19 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
+
+- **[Tanzu Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)**
+
+  Tanzu Buildpacks provide framework and runtime support for applications.
+  Buildpacks typically examine your applications to work out what dependencies to download and how
+  to configure the apps to communicate with bound services.
+
+  Tanzu Buildpacks use open-source [Paketo Buildpacks](https://paketo.io/) to allow
+  Tanzu Application Platform users to turn their application source code into container images.
+  From Tanzu Application Platform v1.6, builders, stacks, and buildpacks are packaged separately from
+  Tanzu Build Service, but are included in the same Tanzu Application Platform profiles as
+  Tanzu Build Service.
+  All buildpacks follow the package name format `*.buildpacks.tanzu.vmware.com`.
 
 - **[Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)**
 
@@ -298,7 +325,7 @@ The following profiles are available in Tanzu Application Platform:
 
 - **View** (`view`):
   Intended for instances of applications related to centralized developer experiences. Specifically,
-  Tanzu Application Platform GUI and Metadata Store.
+  Tanzu Developer Portal and Metadata Store.
 
 The following table lists the packages contained in each profile:
 
@@ -767,7 +794,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Tanzu Application Platform GUI
+   <td>Tanzu Developer Portal
    </td>
    <td>&check;
    </td>
