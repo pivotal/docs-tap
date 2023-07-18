@@ -11,7 +11,7 @@ authenticate an end user, see the [Overview of AppSSO](./overview.md).
 
 ## Prerequisites
 
-You must complete the steps described in [Get started with Application Single Sign-On](./overview.hbs.md).
+You must complete the steps described in [Get started with Application Single Sign-On](./appsso-overview.hbs.md).
 If not, see [Provision a client registration](client-registration.hbs.md).
 
 ## Deploy a minimal application
