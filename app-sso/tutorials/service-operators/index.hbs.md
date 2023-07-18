@@ -1,6 +1,6 @@
 # Application Single Sign-On for Service Operators
 
-The following topics tell you how to configure a fully operational authorization 
+The following topics tell you how to configure a fully operational authorization
 server for Application Single Sign-On (commonly called AppSSO).
 
 `AuthServer` represents the request for an OIDC authorization server. It
