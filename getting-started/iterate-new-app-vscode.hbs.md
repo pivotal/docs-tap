@@ -129,10 +129,9 @@ support, you are ready to set up your development environment.
       your local file system to bring into the source image.
       For example, dot (`.`) uses the working directory, or you can specify a full file path.
 
-   1. In the **Source Image** text box, provide the destination image repository to publish an image
-      containing the workload source code.
+   1. Configure Local source proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md).
 
-      The source image value tells the Tanzu Developer Tools for VS Code extension where to publish
+      If not configured, you can optionally use the source image parameter. The source image value tells the Tanzu Developer Tools for VS Code extension where to publish
       the container image with your uncompiled source code, and what to name that image.
       The image must be published to a container image registry where you have write (push) access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
