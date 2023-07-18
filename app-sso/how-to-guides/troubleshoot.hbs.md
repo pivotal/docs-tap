@@ -76,7 +76,7 @@ You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signin
 ### Solution:
 
 The `redirectURIs` of a `ClientRegistration` must refer to the URI (one or more) of the registered `Workload`.
-It does not refer to the URI of the AuthServer. For more information, see [Redirect URIs](../tutorials/app-operators/secure-workload.hbs.md#redirect-paths).
+It does not refer to the URI of the AuthServer. For more information, see [Redirect URIs](../how-to-guides/app-operators/secure-workload.hbs.md#redirect-paths).
 
 ## Unsupported `id_token_signed_response_alg` with openid `identityProviders`
 

@@ -69,7 +69,7 @@ kubectl label namespaces my-apps apps.tanzu.vmware.com/tap-ns=""
 ```
 
 For more information about provisioning namespaces for running `Workloads`,
-see [Set up developer namespaces](../../install-online/set-up-namespaces.hbs.md).
+see [Set up developer namespaces](../../../install-online/set-up-namespaces.hbs.md).
 
 ## <a id='credentials'></a> Claim the client credentials
 

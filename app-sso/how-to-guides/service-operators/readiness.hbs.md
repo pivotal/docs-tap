@@ -12,7 +12,7 @@ You can verify your `AuthServer` by ensuring:
     ```
 
     The response body should yield at least one key in the list. If there are no keys,
-    please [apply a token signing key](token-signature.md)
+    please [apply a token signing key](configure-token-signature.hbs.md)
 
 - OpenID discovery endpoint is available.
 
@@ -35,7 +35,7 @@ Follow the steps below to ensure that your installation can:
 
 ### Prerequisites
 
-Ensure that you have successfully [applied a token signing key](token-signature.md) to your `AuthServer` before
+Ensure that you have successfully [applied a token signing key](configure-token-signature.hbs.md) to your `AuthServer` before
 proceeding.
 
 ### Define and apply a test client

@@ -11,7 +11,7 @@ Sign-On (commonly called AppSSO). Use this topic to learn how to:
 
 ## Prerequisites
 
-Complete the steps described in [Get started with Application Single Sign-On](./overview.hbs.md).
+Complete the steps described in [Get started with Application Single Sign-On](./appsso-overview.hbs.md).
 
 ## Creating the ClientRegistration
 
