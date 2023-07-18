@@ -59,7 +59,7 @@ To customize an ImageVulnerabilityScan to use your scanner:
 
     To pass `spec.image` and `scanResults.location` to `args`, you can use `$(params.image)` and `$(params.scan-results-path)`.
 
-### <a id="user-group-ids"></a> Security Context: User and Group IDs
+  ### <a id="user-group-ids"></a> Security Context: User and Group IDs
   Since volumes on a Tekton pipeline are shared amongst steps, files created by one step should be consumable by the other steps. Therefore the scan controller applies the following security context to `pipelinerun.spec.podTemplate`:
 
   ```
