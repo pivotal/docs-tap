@@ -57,7 +57,7 @@ To prepare to overlay your customized image onto the currently running instance:
     stringData:
       tpb-app-image-overlay.yaml: |
         #@ load("@ytt:overlay", "overlay")
-   ​
+
         #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
         #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
         ---
@@ -78,27 +78,6 @@ To prepare to overlay your customized image onto the currently running instance:
                     --config=portal/runtime-config.yaml \
                     --config=portal/app-config.pack.yaml \
                     --config=/etc/app-config/app-config.yaml
-                  #@overlay/replace
-                  ports:
-                    - containerPort: 7007
-                  #@overlay/replace
-                  livenessProbe:
-                    httpGet:
-                      port: 7007
-                  #@overlay/replace
-                  readinessProbe:
-                    httpGet:
-                      port: 7007
-
-        #@ load("@ytt:overlay", "overlay")
-        #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
-        ---
-        spec:
-        #@overlay/replace
-          ports:
-          - protocol: TCP
-            targetPort: 7007
-            port: 7000
     ```
 
     Where `IMAGE-REFERENCE` is the customized image you retrieved earlier
