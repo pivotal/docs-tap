@@ -154,10 +154,9 @@ Apply the workload to see your application running on the cluster:
 
 1. In the dialog box enter your **Source Image**, **Local Path**, and optionally a **Namespace**.
 
-   1. In the **Source Image** text box, provide the destination image repository to publish an
-      image containing your workload source code.
+   1. Configure Local source proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md).
 
-      The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
+      If not configured, you can optionally use the source image parameter. The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
       the container image with your uncompiled source code, and what to name that image.
       The image must be published to a container image registry where you have write (push) access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
@@ -214,10 +213,10 @@ To enable Live Update for your application:
       your local file system to bring into the source image.
 
       For example, `/Users/developer/Documents/tanzu-java-web-app`.
-   1. In the **Source Image** text box, provide the destination image repository to publish an image
-      containing your workload source code.
 
-      The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
+   1. Configure Local source proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md).
+
+      If not configured, you can optionally use the source image parameter. The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
       the container image with your uncompiled source code, and what to name that image.
       The image must be published to a container image registry where you have write (push) access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
@@ -301,10 +300,9 @@ To debug the cluster:
       your local file system to bring into the source image.
       For example, `/Users/developer/Documents/tanzu-java-web-app`.
 
-   1. In the **Source Image** text box, provide the destination image repository to publish an image
-      containing your workload source code.
+   1. Configure Local source proxy following these [instructions](/docs-tap/local-source-proxy/about.hbs.md).
 
-      The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
+      If not configured, you can optionally use the source image parameter. The source image value tells the Tanzu Developer Tools for IntelliJ extension where to publish
       the container image with your uncompiled source code, and what to name that image.
       The image must be published to a container image registry where you have write (push) access.
       For example, `gcr.io/myteam/tanzu-java-web-app-source`.
