@@ -67,21 +67,21 @@ When a claim is created, a `WorkloadRegistration` is created from the base and i
 
 ## <a id="customize"></a>Customize the `ClusterWorkloadRegistrationClass`
 
-Each `WorkloadRegistration` has `https://` redirect URIs templated. The
-default template is configured with
-[default_workload_domain_template](../../reference/package-configuration.hbs.md#default_workload_domain_template)
-If omitted the default template is used. Otherwise you can customize it by
-setting a template on the base.
+Each `WorkloadRegistration` has `https://` redirect URIs templated.
+The default template is configured with `default_workload_domain_template`.
+If `spec.workloadDomainTemplate` is omitted, the default template is used.
+For more information, see [default_workload_domain_template](../../reference/package-configuration.hbs.md#default_workload_domain_template).
+Otherwise, you can customize it by setting a template on the base, for example,
+`"\{{.Name}}-\{{.Namespace}}.demo.\{{.Domain}}"`.
 
-You can further customize each `WorkloadRegistration` created by
-setting labels and annotations for them.
+You can further customize each `WorkloadRegistration` by setting labels and annotations for them.
 
 The default description of an Application Single Sign-On service offering is `"Login by AppSSO"`,
 but you can customize this. Consider using a good name and description.
 For more information, see [Names and descriptions](#names-and-descriptions) later in this topic.
 
 For example, if you want the `WorkloadRegistration` to template redirect
-URIs from a custom template and with both `https://` and `http://`, _and_ you
+URIs from a custom template and with both `https://` and `http://`, and you
 want to say that in the service's description, edit the
 `ClusterWorkloadRegistrationClass` as follows:
 
