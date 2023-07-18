@@ -100,3 +100,16 @@ Your kubeconfig file (`~/.kube/config`) is malformed.
 ### Solution
 
 Fix your kubeconfig file.
+
+## <a id="windows-quotes-error"></a> Cannot Tanzu Debug on a new Workload in Windows
+
+### Symptom
+
+When a user tries to Tanzu Debug on a new untracked Workload, they will see this error: `Error: unable to check if filepath "'<SOME_PATH>'" is a valid url.`
+
+### Cause
+We added single quotes around the `--file` and `--local-path` arguments in an attempt to allow the app to work on path with spaces.
+Apparently, the this behavior is broken on vscode.PsuedoTerminal, but not in PowerShell. Tanzu Debug uses the PsuedoTerminal whereas Tanzu Apply uses PowerShell.
+### Solution
+
+First do Tanzu Apply. When the workload is ready, then do Tanzu Debug. Since the workload exists, Tanzu Debug will not try to re-apply.

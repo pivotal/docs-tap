@@ -568,6 +568,10 @@ This release has the following known issues, listed by component and area.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
 
+#### <a id='1-6-1-vscode-plugin-ki'></a> Tanzu Developer Tools for Visual Studio Code
+- Tanzu Debug does not work on Windows for new Workloads. When attempting to Tanzu Debug on Windows, the user will see the following error message: `Error: unable to check if filepath "'<SOME_PATH>'" is a valid url.` For more information, see
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
+
 #### <a id='1-6-1-amr-observer-cloudevent-handler'></a> Artifact Metadata Repository Observer and CloudEvent Handler
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans which can be ignored so long as the previous submission was successful.
 - ReplicaSet status in Artifact Metadata Repository only has two states, `created` and `deleted`. There is a known issue where the `available` and `unavailable` state is not showing. The workaround is that this information can be interpolated from the `instances` metadata in the AMR for the ReplicaSet.
