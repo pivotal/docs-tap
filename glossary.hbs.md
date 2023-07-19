@@ -29,7 +29,9 @@
     </tr>
     <tr>
         <td>API Scoring and Validation</td>
-        <td></td>
+        <td>This component focuses on scanning and validating OpenAPI specifications. 
+            It ensures your APIs are secure and robust by providing feedback and 
+            recommendations early on in the software development life cycle.</td>
     </tr>
     <tr>
         <td>Application Accelerator</td>
@@ -55,7 +57,8 @@
     </tr>
     <tr>
         <td>Application Single Sign-On (AppSSO)</td>
-        <td></td>
+        <td>This component provides APIs for curating and consuming a 
+            “Single Sign-On as a service” offering on Tanzu Application Platform.</td>
     </tr>
     <tr>
         <td>Artifact Metadata Repository (AMR)</td>
