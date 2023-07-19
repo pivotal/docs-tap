@@ -43,9 +43,8 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-1-appacc'></a> Application Accelerator
 
 - The Application Accelerator plug-in for IntelliJ has now reached general availability on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-  The plug-in for IntelliJ now supports Git repository creation and custom type declarations for options,
-  and embeds telemetry and bootstrapping provenance.
-  For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md)
+  The plug-in for IntelliJ now supports Git repository creation and custom type declarations for options, and embeds telemetry and bootstrapping provenance.
+  For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md).
 
 #### <a id='1-6-1-alv'></a> Application Live View
 
@@ -61,18 +60,14 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
 
-This Tanzu Application Platform release debuts the new Tanzu CLI Core v0.90.1 which provides:
-
-- Backward compatability guarantees with previously released versions of Tanzu CLI plugins
-- Installation via package manager ([CLI installation docs](install-tanzu-cli.html#install-the-tanzu-cli-4))
-- Support for installation of plugins from the new centralized plugin repository via "plugin groups" ([plugin installation docs](install-tanzu-cli.html#install-tanzu-cli-plugins-5))
-  - For internet-restricted environments, plugins (and plugin groups) can be migrated to, and installed from, internal registries.
-- Newly published [Tanzu CLI documentation site](https://docs-staging.vmware.com/en/VMware-Tanzu-CLI/index.html)
-  - Review the docs for more detailed information about the new CLI architecture, the centralized plugin repository, plugin groups, support internet restricted environments and more.
-
-See the [Tanzu CLI v0.90.x release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/release-notes.html) for the comprehensive list what's new in this release of Tanzu CLI.
-
-Issues? Questions? Suggestions? ==> submit feedback, feature requests and/or bug reports via the open source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
+- This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
+- Backward compatability with earlier versions of Tanzu CLI plug-ins is provided.
+- Install Tanzu CLI using a package manager. For more information, see [Install the Tanzu CLI](install-tanzu-cli.hbs.md#install-cli).
+- Install plug-ins from the new centralized plugin repository using plug-in groups. For more information, see [Install Tanzu CLI Plug-ins](install-tanzu-cli.hbs.md#install-plugins).
+- For internet-restricted environments, plug-ins and plug-in groups can be migrated to, and installed from internal registries.
+- There is now central Tanzu CLI documentation where more detailed information about the CLI architecture, the centralized plug-in repository, plug-in groups, and internet restricted environments is available. For more information, see [VMware Tanzu CLI Documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/index.html).
+- For the comprehensive list of what's new in this release of Tanzu CLI, see the [VMware Tanzu CLI v0.90.x release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/release-notes.html).
+- If you have any issues, questions, or suggestions, you can submit feedback, feature requests, or bug reports in the open source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
 
 #### <a id='1-6-1-tanzu-cli-plugins'></a> Tanzu CLI plugin distribution change
 - Tanzu CLI plugins are no longer distributed as part of the TAP bundle on Tanzu Network (the Tanzu CLI core is still included in the bundle).
