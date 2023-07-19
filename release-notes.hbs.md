@@ -472,10 +472,10 @@ the workload update.
 accounts used by Supply chains and Delivery components.
 - Fixed a behavior where the Namespace Provisioner fails if the same Git secret
 was used multiple times within the `additional_sources` section of the `tap-values.yaml` file.
-> **NOTE** This fix requires Cluster Essentials v1.6 or later installed on the cluster.
+This fix requires Cluster Essentials v1.6 or later installed on the cluster.
 - Resolved an issue where a namespace managed by the Namespace Provisioner became stuck in
 the `Terminating` phase during deletion if it contained a workload.
->**NOTE** This fix requires Cluster Essentials v1.6 or later installed on the cluster.
+This fix requires Cluster Essentials v1.6 or later installed on the cluster.
 
 #### <a id='1-6-1-stk-ri'></a> Services Toolkit
 
