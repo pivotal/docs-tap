@@ -513,7 +513,7 @@ docs.vmware.com is built.
               - [ResourceClaim and ResourceClaimPolicy](services-toolkit/reference/api/resourceclaim-and-resourceclaimpolicy.hbs.md)
               - [InstanceQuery](services-toolkit/reference/api/instancequery.hbs.md)
               - [RBAC](services-toolkit/reference/api/rbac.hbs.md)
-          - [Known limitations](services-toolkit/reference/known-limitations.hbs.md)
+          - [Known issues and limitations](services-toolkit/reference/known-limitations.hbs.md)
           - [Tanzu Service CLI plug-in](services-toolkit/reference/tanzu-service-cli.hbs.md)
           - [Terminology and user roles](services-toolkit/reference/terminology-and-user-roles.hbs.md)
     - [Source Controller](source-controller/about.hbs.md)
