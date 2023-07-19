@@ -61,39 +61,41 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-6-1-tanzu-cli-new-features'></a> Tanzu CLI
 
 - This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
-- Backward compatability with earlier versions of Tanzu CLI plug-ins is provided.
+- Backward compatibility with earlier versions of Tanzu CLI plug-ins is provided.
 - Install Tanzu CLI using a package manager. For more information, see [Install the Tanzu CLI](install-tanzu-cli.hbs.md#install-cli).
-- Install plug-ins from the new centralized plugin repository using plug-in groups. For more information, see [Install Tanzu CLI Plug-ins](install-tanzu-cli.hbs.md#install-plugins).
-- For internet-restricted environments, plug-ins and plug-in groups can be migrated to, and installed from internal registries.
-- There is now central Tanzu CLI documentation where more detailed information about the CLI architecture, the centralized plug-in repository, plug-in groups, and internet restricted environments is available. For more information, see [VMware Tanzu CLI Documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/index.html).
+- Install plug-ins from the new centralized plugin repository using plug-in groups. For more
+information, see [Install Tanzu CLI Plug-ins](install-tanzu-cli.hbs.md#install-plugins).
+- For internet-restricted environments, plug-ins and plug-in groups can be migrated to, and
+installed from internal registries.
+- There is now central Tanzu CLI documentation where more detailed information about the CLI
+architecture, the centralized plug-in repository, plug-in groups, and internet-restricted
+environments is available. For more information, see
+[VMware Tanzu CLI Documentation](https://docs.vmware.com/en/VMware-Tanzu-CLI/index.html).
 - For the comprehensive list of what's new in this release of Tanzu CLI, see the [VMware Tanzu CLI v0.90.x release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/release-notes.html).
-- If you have any issues, questions, or suggestions, you can submit feedback, feature requests, or bug reports in the open source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
+- If you have any issues, questions, or suggestions, you can submit feedback, feature requests, or
+bug reports in the open-source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
 
 #### <a id='1-6-1-tanzu-cli-plugins'></a> Tanzu CLI plugin distribution change
-- Tanzu CLI plugins are no longer distributed as part of the TAP bundle on Tanzu Network (the Tanzu CLI core is still included in the bundle).
-- The plugins are now installable via direct Tanzu CLI command, without manual download of the plugin binaries to the local filesystem.
-- Air-gapped customers can follow the instructions provided for [installing the Tanzu CLI and plugins in internet-restricted environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3).
 
+- Tanzu CLI plug-ins are no longer distributed as part of the Tanzu Application Platform bundle on
+Tanzu Network. The Tanzu CLI is still included in the bundle.
+- The plug-ins are now installed using Tanzu CLI commands. Manual download of the
+plug-in binaries to the local filesystem is no longer required.
+- For internet-restricted environments, see [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3).
 
 #### <a id='1-6-1-apps-cli-plugin-new-features'></a> Apps plug-in for Tanzu CLI
 
-- Integrated with Local Source Proxy for seamless iterative inner-loop development using the CLI or IDE plugins.
-  - `tanzu apps workload apply` and `tanzu apps workload create` can now seamlessly create a workload from
-    local source using just the `--local-path` flag.
-  - `--source-image` flag is now optional. if `--source-image` flag is used along with `--local-path`, the
-    Local source proxy is not used and bypassed for backward compatibility.
-  - Introducing a new command, `tanzu apps lsp health` which allows users to verify the status of the Local
-    Source Proxy. This command performs several checks, including:
-    - Verifying whether the developer has RBAC permissions to access the Local Source Proxy using their `kubeconfig`.
-    - Checking if the Local Source Proxy is installed on the cluster.
-    - Ensuring that the Local Source Proxy deployment is healthy and accessible.
-    - Verifying that the Local Source Proxy is correctly configured and able to access the registry using the
-      credentials set up by the operator during TAP installation.
-- Implemented `autocompletion` functionality for workload types. Additionally, the default workload type has been
-  set to `web`, making the `--type` flag optional. The flag is only required if the type is something other than `web`.
-- Introduced the shorthand option `-e` as a convenient alternative for the `--export` flag.
-- Enhanced the `tanzu apps workload get` command by including Git revision information in the overview section.
-  This addition provides a quick reference to the Git revision associated with the workload.
+- Apps plug-in is integrated with Local Source Proxy for seamless iterative inner-loop development using the Tanzu CLI or IDE plug-ins.
+- The `tanzu apps workload apply` and `tanzu apps workload create` commands can now seamlessly create a workload from local source using only the `--local-path` flag.
+- The `--source-image` flag is now optional. If `--source-image` flag is used with `--local-path`, the local source proxy is not used and bypassed for backward compatibility.
+- A new command, `tanzu apps lsp health` is available. It allows you to verify the status of the Local Source Proxy. This command performs several checks, including:
+    - Verifies whether the developer has RBAC permissions to access the Local Source Proxy using their kubeconfig.
+    - Checks if the Local Source Proxy is installed on the cluster.
+    - Ensures that the Local Source Proxy deployment is healthy and accessible.
+    - Verifies that the Local Source Proxy is correctly configured and can access the registry using the credentials set up by the operator during Tanzu Application Platform installation.
+- Auto-completion functionality for workload types is available. Additionally, the default workload type is set to `web`, making the `--type` flag optional. The flag is only required if the type is something other than `web`.
+- The shorthand option `-e` is available as a convenient alternative for the `--export` flag.
+- The `tanzu apps workload get` command is enhanced to include Git revision information in the overview section. This provides a quick reference to the Git revision associated with the workload.
 
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
 
@@ -222,20 +224,14 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 
 #### <a id='1-6-1-namespace-provisioner-new-features'></a> Namespace Provisioner
 
-- Implemented the capability to skip the creation of certain Out of the Box resources for the Namespace provisioner,
+- Implemented the capability to skip the creation of certain default resources for the Namespace Provisioner,
   providing greater flexibility for customization.
-  - Enabled [easy deactivation of the default installation of the Grype scanner](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install)
-    by utilizing the `default_parameters` in the `tap-values.yaml` file or by utilizing namespace parameters.
-  - Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains
-    and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters.
-    See [Customization Documentation](namespace-provisioner/use-case4.hbs.md#customize-service-accounts) for more information.
-  - Introduced the option to [disable the creation of the LimitRange](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup)
-    object out of the box in `full`, `iterate`, and `run` profile clusters.
-- Added support for passing lists or objects via annotations for complex namespace parameters, simplifying the
-  configuration process. More details on how to utilize this feature can be found in
-  the [Reference Documentation](namespace-provisioner/parameters.hbs.md).
-- The `path` value in `additional_sources` is now automatically generated, eliminating the need for users to
-  provide it manually. This simplifies the configuration of external sources.
+- Enabled deactivation of the default installation of the Grype scanner by using the `default_parameters` in the `tap-values.yaml` file or by using namespace parameters. For more information, see [Deactivate Grype install](namespace-provisioner/use-case4.hbs.md#deactivate-grype-install).
+- Enhanced support for adding `secrets` and `imagePullSecrets` to the service account used by the Supply chains and Delivery components. This can be achieved using either `default_parameters` or namespace-level parameters. For more information, see [Customize service accounts](namespace-provisioner/use-case4.hbs.md#customize-service-accounts).
+- Introduced the option to disable the creation of the LimitRange object in `full`, `iterate`, and `run` profile clusters. For more information, see [Deactivate LimitRange Setup](namespace-provisioner/use-case4.hbs.md#deactivate-limitrange-setup).
+- Added support for passing lists or objects with annotations for complex namespace parameters. This  simplifies the configuration process. For more information about how to use this feature, see
+[Namespace parameters](namespace-provisioner/parameters.hbs.md).
+- The `path` value in `additional_sources` is now automatically generated, eliminating the need for you to provide it manually. This simplifies the configuration of external sources.
 
 
 #### <a id='1-6-1-stk'></a> Services Toolkit (STK)
@@ -446,12 +442,13 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-1-apps-cli-plugin-ri'></a> Apps plug-in for Tanzu CLI
 
-- Implemented validations to prevent the inclusion of multiple sources through flags in the `workload create`
-  and `workload apply` commands.
-- Modified the behavior of the commands when waiting to apply workload changes. If the workload was previously
-  in a failed state, it will no longer immediately fail. When the `--wait` flag is used, the command will continue
-  to wait until the workload either succeeds or fails again. When the `--tail` flag is used, the command will keep
-  tailing logs from the Supply chain steps that were impacted by the workload update.
+- Implemented validations to prevent the inclusion of multiple sources through flags in the
+`workload create` and `workload apply` commands.
+- Modified the behavior of the commands when waiting to apply workload changes. If the workload was
+previously in a failed state, it no longer immediately fails. When the `--wait` flag is used, the
+command continues to wait until the workload either succeeds or fails again. When the `--tail`
+flag is used, the command continues tailing logs from the Supply chain steps that were impacted by
+the workload update.
 
 #### <a id='1-6-1-crossplane-ri'></a> Crossplane
 
@@ -472,13 +469,13 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-1-namespace-provisioner-ri'></a> Namespace Provisioner
 
 - Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service
-  accounts utilized by Supply chains and Delivery components.
-- Fixed a behavior where the Namespace provisioner would encounter failure if the same git secret
-  was used multiple times within the `additional_sources` section of the `tap-values.yaml` file.
-  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
-- Resolved an issue where a Namespace managed by the Namespace provisioner would become stuck in
-  the `Terminating` phase during deletion if it contained a workload.
-  **NOTE: This fix requires Cluster Essentials 1.6 or higher installed on the cluster.**
+accounts used by Supply chains and Delivery components.
+- Fixed a behavior where the Namespace Provisioner fails if the same Git secret
+was used multiple times within the `additional_sources` section of the `tap-values.yaml` file.
+> **NOTE** This fix requires Cluster Essentials v1.6 or later installed on the cluster.
+- Resolved an issue where a namespace managed by the Namespace Provisioner became stuck in
+the `Terminating` phase during deletion if it contained a workload.
+>**NOTE** This fix requires Cluster Essentials v1.6 or later installed on the cluster.
 
 #### <a id='1-6-1-stk-ri'></a> Services Toolkit
 
@@ -645,7 +642,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id='1-6-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
 
-- The default value for the `--update-strategy` flag will change from merge to replace in
+- The default value for the `--update-strategy` flag changes from merge to replace in
   Tanzu Application Platform v1.7.0
 
 ### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
