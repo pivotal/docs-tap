@@ -1,4 +1,4 @@
-# Tanzu Service CLI plug-in
+# Tanzu Service CLI plug-in reference
 
 This topic provides reference information about the `tanzu service` CLI plug-in for Services Toolkit.
 The main use for the plug-in is for

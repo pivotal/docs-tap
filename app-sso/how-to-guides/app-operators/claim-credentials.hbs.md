@@ -3,13 +3,12 @@
 This topic describes the recommended method for you to consume Application Single Sign-On
 service offerings, which is by using a class claim.
 
-<!--If you want to learn more
-about the different levels of Application Single Sign-On, see [The three levels of Application Single Sign-On
-consumption](../concepts/app-sso-consumption.hbs.md).-->
-
 When you create a claim for an Application Single Sign-On service, you receive your service
 credentials through [service bindings](https://servicebinding.io/).
 This makes it easier to load the credentials into a workload running on Tanzu Application Platform.
+
+To learn about the different levels of Application Single Sign-On service consumption, see
+[The three levels of Application Single Sign-On consumption](../../concepts/levels-of-consumption.hbs.md).
 
 ## <a id="discover-params"></a> Discover available parameters
 
@@ -24,7 +23,7 @@ To discover the parameter schema for a service, run:
 tanzu services classes get NAME
 ```
 
-For an Application Single Sign-On service, the output looks similar to the following:
+For example:
 
 ```console
 $ tanzu services classes get sso
@@ -59,15 +58,18 @@ or create a `ClassClaim` directly.
       --class SERVICE-NAME \
       --namespace NAMESPACE \
       --parameter workloadRef.name=WORKLOAD-NAME \
-      --parameter OPTIONAL-PARAMETER
+      --parameter PARAMETER
+    ```
 
     Where:
 
-    - `CLAIM-NAME` is the you want for your claim.
+    - `CLAIM-NAME` is a name you choose for your claim.
     - `SERVICE-NAME` is the name of the service that you want to claim.
     - `NAMESPACE` is the namespace ... <!-- is this the namespace that your claim is in or your workload? -->
     - `WORKLOAD-NAME` is the name of your workload.
-    - `OPTIONAL-PARAMETER` is an optional parameters that you choose.
+    - (Optional) `PARAMETER` is a parameter that you choose in the format `KEY=VALUE`.
+      You can add as many optional parameters as required.
+      For how to discover parameters you can add, see [Discover available parameters](#discover-params).
 
     <!-- confirm these placeholders. Also, would you be required to use different parameters if not using OAuth2? -->
 
@@ -133,11 +135,11 @@ kubectl get classclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
 You now have service credentials that you can use to secure your workload with SSO.
 To learn about the specific client settings and how you can use a claim to secure a workload with
 Application Single Sign-On, see [Secure a workload](secure-workload.hbs.md).
-To learn how to secure specific types of workloads with Application Single Sign-On, see [the how-to guides](../../how-to-guides/index.hbs.md). <!-- link to specific pages -->
+For tutorials that show how to secure specific types of workloads with Application Single Sign-On, see
+[Secure a single-page app workload](./secure-spa-workload.hbs.md) and
+[Secure a Spring Boot workload](./secure-spring-boot-workload.hbs.md).
 
 If you have problems claiming credentials for an Application Single Sign-On service, learn how
-to [troubleshoot](../../how-to-guides/troubleshoot.hbs.md).
-For more information about the `tanzu services` command, classes, and claims, see
-[Tanzu Service CLI plug-in](../../../services-toolkit/reference/tanzu-service-cli.hbs.md).
-
-
+to [troubleshoot](../troubleshoot.hbs.md).
+For more information about the `tanzu services` command, classes, and claims, see the
+[Tanzu Service CLI plug-in reference](../../../services-toolkit/reference/tanzu-service-cli.hbs.md).
