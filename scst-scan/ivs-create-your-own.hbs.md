@@ -1,8 +1,7 @@
 # Bring your own scanner using an ImageVulnerabilityScan
 
 This topic tells you how to bring your own scanning using an `ImageVulnerabilityScan`.
-An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a 
-[Tekton step](https://tekton.dev/docs/pipelines/tasks/#defining-steps).
+An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a [Tekton step](https://tekton.dev/docs/pipelines/tasks/#defining-steps).
 
 ## <a id="sample-img-vuln"></a> Customize an ImageVulnerabilityScan
 
@@ -60,15 +59,16 @@ To customize an ImageVulnerabilityScan to use your scanner:
 
     To pass `spec.image` and `scanResults.location` to `args`, you can use `$(params.image)` and `$(params.scan-results-path)`.
 
-    Since volumes on a Tekton pipeline are shared amongst steps, files created by one step should be consumable by the other steps. Therefore the scan controller applies the following security context to `pipelinerun.spec.podTemplate`:
+  ### <a id="user-group-ids"></a> Security Context: User and Group IDs
+  Since volumes on a Tekton pipeline are shared amongst steps, files created by one step should be consumable by the other steps. Therefore the scan controller applies the following security context to `pipelinerun.spec.podTemplate`:
 
-    ```
-    runAsUser: 65534
-    fsGroup: 65534
-    runAsGroup: 65534
-    ```
+  ```
+  runAsUser: 65534
+  fsGroup: 65534
+  runAsGroup: 65534
+  ```
 
-    The `SCANNER-IMAGE` runs and manipulates files with user and group ids of `65534`.
+  The `SCANNER-IMAGE` runs and manipulates files with user and group ids of `65534`.
 
 ## <a id="img-vuln-config-options"></a> Configuration options
 
