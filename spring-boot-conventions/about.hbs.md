@@ -1,4 +1,4 @@
-# Spring Boot conventions
+# Overview of Spring Boot conventions
 
 This topic tells you about the Spring Boot convention server.
 
