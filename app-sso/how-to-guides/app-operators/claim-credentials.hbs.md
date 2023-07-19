@@ -23,7 +23,7 @@ To discover the parameter schema for a service, run:
 tanzu services classes get NAME
 ```
 
-For an Application Single Sign-On service, the output looks similar to the following:
+For example:
 
 ```console
 $ tanzu services classes get sso
