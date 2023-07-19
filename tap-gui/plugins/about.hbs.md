@@ -1,4 +1,4 @@
-# Tanzu Developer Portal plug-ins
+# Overview of Tanzu Developer Portal plug-ins
 
 Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) has many pre-integrated
 plug-ins. You need not configure the plug-ins. To use a plug-in, you must install the relevant
