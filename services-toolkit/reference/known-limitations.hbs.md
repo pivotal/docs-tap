@@ -70,7 +70,7 @@ json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalPrope
 Rather than setting `additionalProperties: true`, you can set `additionalProperties: {}` instead.
 This has the same effect but does not cause unexpected errors.
 
-## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
+### <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
 
 **Description:**
 
