@@ -1,10 +1,17 @@
-# Known limitations for Services Toolkit
+# Known issues and limitations for services on Tanzu Application Platform
 
-This topic describes known limitations and workarounds related to working with services on
-Tanzu Application Platform (commonly known as TAP). For further troubleshooting guidance, see
+This topic describes known issues, limitations, and their workarounds related to working with services on
+Tanzu Application Platform (commonly known as TAP).
+This includes information related to Services Toolkit, Bitnami Services, and Crossplane.
+
+For further troubleshooting guidance, see
 [Troubleshoot Services Toolkit](../how-to-guides/troubleshooting.hbs.md).
 
-## <a id="multi-workloads"></a> Cannot claim and bind to the same service instance from across multiple namespaces
+## <a id="limitations"></a> Limitations
+
+This section details the limitations when using services on Tanzu Application Platform.
+
+### <a id="multi-workloads"></a> Cannot claim and bind to the same service instance from across multiple namespaces
 
 **Description:**
 
@@ -17,7 +24,29 @@ This limitation does not exist for two or more workloads located in the same nam
 In this case, the workloads can all still all bind to one claim.
 This is not possible across the namespace divide.
 
-## <a id="compositeresourcedef"></a> Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition
+### <a id="too-many-crds"></a> Cluster performance degradation due to large number of CRDs
+
+**Description:**
+
+While not strictly a limitation with Services Toolkit, take care before choosing to
+install additional Crossplane `Providers` into Tanzu Application Platform.
+Some of these `Providers` install hundreds of additional CRDs into the cluster.
+
+This is particularly true of the `Providers` for AWS, Azure, and GCP.
+For the number of CRDs installed with these `Providers`, see:
+
+- [provider-aws CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/managed-resources)
+- [provider-azure CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/managed-resources)
+- [provider-gcp CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/managed-resources)
+
+You must ensure that your cluster has sufficient resource to support this number of additional CRDs
+if you choose to install them.
+
+## <a id="known-issues"></a> Known issues
+
+This section details the known issues related to using services on Tanzu Application Platform.
+
+### <a id="compositeresourcedef"></a> Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition
 
 **Description:**
 
@@ -36,25 +65,7 @@ json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalPrope
 Rather than setting `additionalProperties: true`, you can set `additionalProperties: {}` instead.
 This has the same effect but does not cause unexpected errors.
 
-## <a id="too-many-crds"></a> Cluster performance degradation due to large number of CRDs
-
-**Description:**
-
-While not strictly a limitation with Services Toolkit, take care before choosing to
-install additional Crossplane `Providers` into Tanzu Application Platform.
-Some of these `Providers` install hundreds of additional CRDs into the cluster.
-
-This is particularly true of the `Providers` for AWS, Azure, and GCP.
-For the number of CRDs installed with these `Providers`, see:
-
-- [provider-aws CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/managed-resources)
-- [provider-azure CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/managed-resources)
-- [provider-gcp CRDs](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest/managed-resources)
-
-You must ensure that your cluster has sufficient resource to support this number of additional CRDs
-if you choose to install them.
-
-## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
+### <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
 
 **Description:**
 
@@ -71,7 +82,7 @@ updates.
 Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
 back online after having applied the updated registry configuration.
 
-## <a id="default-cluster-admin"></a>Default cluster-admin IAM roles on GKE do not allow claiming of Bitnami Services
+### <a id="default-cluster-admin"></a>Default cluster-admin IAM roles on GKE do not allow claiming of Bitnami Services
 
 **Description:**
 
@@ -90,7 +101,7 @@ Explicitly create a ClusterRoleBinding for your user or group to the correspondi
 `app-operator-claim-class-SERVICE` ClusterRole, where `SERVICE` is one of `mysql`, `postgresql`,
 `rabbitmq`, or `redis`.
 
-## <a id="cp-custom-cert"></a>Crossplane Providers do not transition to HEALTHY=True if using a custom certificate for your registry
+### <a id="cp-custom-cert"></a>Crossplane Providers do not transition to HEALTHY=True if using a custom certificate for your registry
 
 **Description:**
 
@@ -130,7 +141,7 @@ Create a `ConfigMap` with the PEM encoded certificate data for your CA certifica
 > **Note** From Tanzu Application Platform v1.6, the Crossplane Package inherits the data configured
 > in `shared.ca_cert_data` of `tap-values.yaml` and this workaround will no longer be needed.
 
-## <a id="cp-custom-cert-inject"></a>Crossplane Providers cannot communicate with systems using a custom CA
+### <a id="cp-custom-cert-inject"></a>Crossplane Providers cannot communicate with systems using a custom CA
 
 **Description:**
 
@@ -146,7 +157,7 @@ Helm chart from a registry that uses a custom CA, you see that:
 
 To confirm whether you are affected by this issue:
 
-- Verify the status by running:
+1. Verify the status by running:
 
     ```console
     kubectl get releases.helm.crossplane.io
@@ -159,7 +170,7 @@ To confirm whether you are affected by this issue:
     wordpress-example           15.2.5    False    False                                    7m37s
     ```
 
-- Find out more about the reason by running the following command, or similar:
+1. Find out more about the reason by running the following command, or similar:
 
     ```console
     kubectl get event --namespace default --field-selector involvedObject.name=wordpress-example,involvedObject.kind=Release,type!=Normal | grep -e 'LAST SEEN' -e 'failed to login'
@@ -184,6 +195,4 @@ connecting to a Kubernetes APIServer. This issue might be resolved in a later re
 Use admission control that allows you to mutate objects, in this case pods, and injects the appropriate
 CA certificates.
 You can use any system that can mutate objects at admission to mutate the Crossplane Provider pods.
-For example, to inject CA certificates you can use this sample in the [Kyverno documentation].
-
-[CaInjectExample]: https://kyverno.io/policies/other/add-certificates-volume/add-certificates-volume/
+For example, to inject CA certificates you can use this sample in the [Kyverno documentation](https://kyverno.io/policies/other/add-certificates-volume/add-certificates-volume/).

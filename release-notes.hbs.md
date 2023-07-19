@@ -837,7 +837,18 @@ This release has the following known issues, listed by area and component.
   after having already created a claim for one or more of the Bitnami services using the default
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
-  For a workaround, see [Troubleshooting and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md).
+  For a workaround, see [Known issues and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+- Default cluster-admin IAM roles on GKE do not allow claiming of Bitnami Services.
+  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#default-cluster-admin).
+
+#### <a id='1-5-0-crossplane-ki'></a> Crossplane
+
+- Crossplane Providers do not transition to `HEALTHY=True` if using a custom certificate for your registry.
+  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#cp-custom-cert).
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#cp-custom-cert-inject).
 
 #### <a id='1-5-0-eventing-ki'></a> Eventing
 
@@ -867,6 +878,11 @@ This release has the following known issues, listed by area and component.
   discourages committing binaries to source code repositories. The
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
+
+#### <a id='1-5-0-stk-ki'></a> Services Toolkit
+
+- Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#compositeresourcedef).
 
 #### <a id='1-5-0-scc-ki'></a> Supply Chain Choreographer
 
@@ -936,9 +952,6 @@ This release has the following known issues, listed by area and component.
 - In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
-#### <a id="1-5-0-external-secrets-ki"></a> External Secrets CLI (beta)
-
-- The external-secrets plug-in creating the `ExternalSecret` and `SecretStore` resources through stdin incorrectly confirms resource creation. Use `-f ` to create resources using a file instead of stdin.
 
 #### <a id='1-5-10-tanzu-source-controller-ki'></a> Tanzu Source Controller
 - **Issue:**
