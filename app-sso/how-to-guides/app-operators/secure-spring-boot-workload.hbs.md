@@ -1,6 +1,6 @@
 # Secure a Spring Boot workload
 
-This topic tells you how to secure a sample Spring Boot `Workload` with
+This tutorial tells you how to secure a sample Spring Boot `Workload` with
 Application Single Sign-On (commonly called AppSSO),
 which runs on Tanzu Application Platform (commonly called TAP).
 

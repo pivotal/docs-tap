@@ -1,6 +1,6 @@
 # Secure a single-page app workload
 
-This topic tells you how to to secure a sample single-page Angular app `Workload`
+This tutorial tells you how to secure a sample single-page Angular app `Workload`
 with Application Single Sign-On (commonly called AppSSO), which runs on
 Tanzu Application Platform (commonly known as TAP).
 
