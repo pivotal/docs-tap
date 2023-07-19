@@ -233,40 +233,40 @@ To configure the service account to work with private Git repositories, follow t
     Using HTTP(s) based Authentication
     : If using Username and Password for authentication.
 
-          ```yaml
-          #@ load("@ytt:data", "data")
-          ---
-          apiVersion: v1
-          kind: Secret
-          metadata:
-            name: git
-            annotations:
-              tekton.dev/git-0: #@ data.values.imported.git.host
-          type: kubernetes.io/basic-auth
-          stringData:
-            username: #@ data.values.imported.git.username
-            password: #@ data.values.imported.git.token
-          ```
+      ```yaml
+      #@ load("@ytt:data", "data")
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: git
+        annotations:
+          tekton.dev/git-0: #@ data.values.imported.git.host
+      type: kubernetes.io/basic-auth
+      stringData:
+        username: #@ data.values.imported.git.username
+        password: #@ data.values.imported.git.token
+      ```
 
-      Using SSH based Authentication
-      : If using SSH private key for authentication:
+    Using SSH based Authentication
+    : If using SSH private key for authentication:
 
-          ```yaml
-          #@ load("@ytt:data", "data")
-          ---
-          apiVersion: v1
-          kind: Secret
-          metadata:
-            name: git
-            annotations:
-              tekton.dev/git-0: #@ data.values.imported.git.host
-          type: kubernetes.io/basic-auth
-          stringData:
-            identity: #@ data.values.imported.git.identity
-            identity.pub: #@ data.values.imported.git.identity_pub
-            known_hosts: #@ data.values.imported.git.known_hosts
-            ssh-privatekey: #@ data.values.imported.git.ssh_privatekey
-          ```
+      ```yaml
+      #@ load("@ytt:data", "data")
+      ---
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: git
+        annotations:
+          tekton.dev/git-0: #@ data.values.imported.git.host
+      type: kubernetes.io/basic-auth
+      stringData:
+        identity: #@ data.values.imported.git.identity
+        identity.pub: #@ data.values.imported.git.identity_pub
+        known_hosts: #@ data.values.imported.git.known_hosts
+        ssh-privatekey: #@ data.values.imported.git.ssh_privatekey
+      ```
 
 3. Create a secret to specify an overlay to patch the default service account adding a reference to the secret **git**.
 
