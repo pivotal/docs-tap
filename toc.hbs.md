@@ -412,6 +412,7 @@ docs.vmware.com is built.
         - [Reference](crossplane/reference/index.hbs.md)
             - [Package values](crossplane/reference/package-values.hbs.md)
             - [Version matrix](crossplane/reference/version-matrix.hbs.md)
+            - [Known issues](crossplane/reference/known-issues.hbs.md)
     - [Developer Conventions](developer-conventions/about.hbs.md)
       - [Developer Conventions overview](developer-conventions/about.hbs.md)
       - [Install Developer Conventions](developer-conventions/install-dev-conventions.hbs.md)
