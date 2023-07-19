@@ -4,7 +4,7 @@ This topic tells you how to validate Scanning without Supply Chain integration.
 
 ## <a id="overview"></a> Overview
 
-After you build an ImageVulnerabilityScan template to bring your own scanner,
+After you build an ImageVulnerabilityScan to bring your own scanner,
 you can validate the capabilities to verify the integration.
 
 Ensure that the scan integration is working correctly so that downstream servers such as AMR
