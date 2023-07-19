@@ -25,7 +25,7 @@
     </tr>
     <tr>
         <td>API portal</td>
-        <td></td>
+        <td>This component enables API consumers to find APIs they can use in their own applications. </td>
     </tr>
     <tr>
         <td>API Scoring and Validation</td>
