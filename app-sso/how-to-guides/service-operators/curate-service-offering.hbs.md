@@ -17,7 +17,7 @@ domain template, labels, and annotations that all `WorkloadRegistration` inherit
 ## <a id="prerequisites"></a>Prerequisites
 
 Before you create a service offering, you must create and configure an `AuthServer`.
-For instructions, see []().
+For how to get started, see [Provision an AuthServer](../../getting-started/provision-auth-server.hbs.md).
 <!-- there are many topics for configuring an AuthServer. which ones are they? work out how to link to them. should it be a subsection? -->
 
 ## <a id="create"></a>Create a `ClusterWorkloadRegistrationClass`
