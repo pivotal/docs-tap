@@ -90,7 +90,7 @@
     </tr>
     <tr>
         <td>Tanzu Developer Portal</td>
-        <td>Formerly known as Tanzu Application Platform GUI, this is a tool for developers to view
+        <td>Formerly known as Tanzu Application Platform GUI, this component enables developers to view
             apps and services running for an organization, including dependencies, relationships,
             technical documentation, and the service status.</td>
     </tr>
