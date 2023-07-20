@@ -1,28 +1,27 @@
-## tanzu build-service clusterbuilder list
+# tanzu build-service clusterbuilder list
 
 List available cluster builders
 
-### Synopsis
+## Synopsis
 
-Prints a table of the most important information about the available cluster builders.
+This command prints a table of the most important information about the available cluster builders.
 
-```
+```console
 tanzu build-service clusterbuilder list [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service clusterbuilder list
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for list
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu build-service clusterbuilder](tanzu_build-service_clusterbuilder.md)	 - ClusterBuilder Commands
-
+* [tanzu build-service clusterbuilder](tanzu_build-service_clusterbuilder.md)	 - ClusterBuilder Command

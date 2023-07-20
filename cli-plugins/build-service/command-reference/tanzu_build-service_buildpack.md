@@ -1,10 +1,10 @@
-## tanzu build-service buildpack
+# tanzu build-service buildpack
 
 Buildpack Commands
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for buildpack
 ```
 

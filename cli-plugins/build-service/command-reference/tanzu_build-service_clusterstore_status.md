@@ -1,29 +1,28 @@
-## tanzu build-service clusterstore status
+# tanzu build-service clusterstore status
 
-Display cluster store status
+This command displays cluster store status.
 
-### Synopsis
+## Synopsis
 
 Prints information about the status of a specific cluster-scoped store.
 
-```
+```console
 tanzu build-service clusterstore status <store-name> [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service clusterstore status my-store
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help      help for status
   -v, --verbose   includes buildpacks and detection order
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu build-service clusterstore](tanzu_build-service_clusterstore.md)	 - ClusterStore Commands
-

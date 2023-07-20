@@ -1,28 +1,27 @@
-## tanzu build-service clusterstack list
+# tanzu build-service clusterstack list
 
-List cluster stacks
+This command lists cluster stacks.
 
-### Synopsis
+## Synopsis
 
 Prints a table of the most important information about cluster-scoped stacks in the cluster.
 
-```
+```console
 tanzu build-service clusterstack list [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service clusterstack list
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for list
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu build-service clusterstack](tanzu_build-service_clusterstack.md)	 - ClusterStack Commands
-

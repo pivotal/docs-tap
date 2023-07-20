@@ -1,28 +1,27 @@
-## tanzu build-service clusterstore list
+# tanzu build-service clusterstore list
 
-List cluster stores
+This command lists cluster stores.
 
-### Synopsis
+## Synopsis
 
 Prints a table of the most important information about cluster-scoped stores
 
-```
+```console
 tanzu build-service clusterstore list [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service clusterstore list
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for list
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu build-service clusterstore](tanzu_build-service_clusterstore.md)	 - ClusterStore Commands
-

@@ -1,29 +1,27 @@
-## tanzu build-service clusterbuildpack list
+# tanzu build-service clusterbuildpack list
 
-List available cluster buildpacks
+This command lists available cluster buildpacks.
 
-### Synopsis
+## Synopsis
 
 Prints a table of the most important information about the available cluster buildpacks in the provided namespace.
 
-
-```
+```console
 tanzu build-service clusterbuildpack list [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service clusterbuildpack list
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for list
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu build-service clusterbuildpack](tanzu_build-service_clusterbuildpack.md)	 - ClusterBuildpack Commands
-

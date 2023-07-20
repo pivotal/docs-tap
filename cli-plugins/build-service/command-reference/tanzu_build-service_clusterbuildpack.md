@@ -1,14 +1,14 @@
-## tanzu build-service clusterbuildpack
+# tanzu build-service clusterbuildpack
 
-ClusterBuildpack Commands
+This command lists ClusterBuildpack commands.
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for clusterbuildpack
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu build-service](tanzu_build-service.md)	 - plugin to interact with tanzu build service (tbs) crds
 * [tanzu build-service clusterbuildpack list](tanzu_build-service_clusterbuildpack_list.md)	 - List available cluster buildpacks
