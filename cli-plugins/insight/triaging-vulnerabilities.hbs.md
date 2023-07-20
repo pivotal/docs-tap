@@ -4,7 +4,7 @@ This topic tells you how to add analyze vulnerabilities associated with a worklo
 in the Supply Chain Security Tools (SCST) - Store. This is an experimental feature, and the
 API is prone to changes in subsequent releases.
 
-## <a id='triage-description'></a>What is triaging?
+## <a id='triage-description'></a>Triage
 
 Vulnerability analysis, or triage is the process of evaluating a reported vulnerability to
 decide an effective remediation plan. Triage helps application teams to
@@ -13,7 +13,7 @@ decisions about when and how to mitigate them. The current implementation of tri
 [CycloneDX's Vulnerability Exploitability eXchange (VEX)](https://cyclonedx.org/capabilities/vex/)
 specification, and is designed specifically to work with Tanzu workloads.
 
-For information about this feature, see [SCST - Store data model definition](../../scst-store/data-models-and-concepts.md).
+For information about this feature, see [Data models and concepts for SCST - Store](../../scst-store/data-models-and-concepts.md).
 
 ## <a id='prerequisites'></a>Prerequisites
 
@@ -28,12 +28,12 @@ For more information, see [Add data](add-data.hbs.md) and [Supply Chain Security
 
 A vulnerability analysis contains the following data:
 
-1. *state*: Declares the current state of an occurrence of a vulnerability, after automated or
+1. state: Declares the current state of an occurrence of a vulnerability, after automated or
    manual analysis.
-2. *justification*: The rationale of why the impact analysis state was asserted.
-3. *response*: A response to the vulnerability by the manufacturer, supplier, or project responsible
+2. justification: The rationale of why the impact analysis state was asserted.
+3. response: A response to the vulnerability by the manufacturer, supplier, or project responsible
    for the affected component or service.
-4. *comment*: Free form comments to provide additional details.
+4. comment: Free form comments to provide additional details.
 
 For more information about the supported values for each of these fields, see
 [tanzu insight triage update](./cli-docs/tanzu_insight_triage_update.hbs.md).
@@ -57,8 +57,7 @@ Where:
 - `PKG-NAME` and `PKG-VERSION` are the name and version of the Application and OS package affected
 by the vulnerability
 - `IMG-DIGEST` is the digest of the image that contains the affected Application and OS package
-- `AG-UID` is the unique identifier for the workload that contains the image
-  - If your workload was deployed with Tanzu CLI, you can find its unique identifier with the command:
+- `AG-UID` is the unique identifier for the workload that contains the image. If your workload was deployed with Tanzu CLI, you can find its unique identifier with the command:
     
     ```console
     kubectl get workload $MY_WORKLOAD_NAME --namespace $MY_WORKLOAD_NAMESPACE --output jsonpath='{.metadata.uid}'
@@ -99,6 +98,7 @@ tanzu insight triage copy \
 ```
 
 Where:
+
 - `TRIAGE-UID` is the uid of an existing analysis
 - `TARGET-IMAGE` is the digest of an image you want to copy the analysis to
 
