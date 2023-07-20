@@ -15,7 +15,6 @@ To learn about the different levels of Application Single Sign-On service consum
 To create a claim for an Application Single Sign-On service, target the specific service
 and provide the required and optional parameters.
 These parameters allow you to configure the OAuth2 client according to your needs.
-<!-- seems specific to OAuth2 - can this be made generic? -->
 
 To discover the parameter schema for a service, run:
 
@@ -44,7 +43,6 @@ PARAMETERS:
 
 Here you can see all the parameters with a brief description, their types,
 default values, and whether they are required or not. The only required parameter is `workloadRef.name`.
-<!-- is this statement about the required parameter true for something other than OAuth2? -->
 
 ## <a id="claim-creds"></a>Claim credentials
 
@@ -65,13 +63,11 @@ or create a `ClassClaim` directly.
 
     - `CLAIM-NAME` is a name you choose for your claim.
     - `SERVICE-NAME` is the name of the service that you want to claim.
-    - `NAMESPACE` is the namespace ... <!-- is this the namespace that your claim is in or your workload? -->
+    - `NAMESPACE` is the namespace the namespace your workload is in.
     - `WORKLOAD-NAME` is the name of your workload.
     - (Optional) `PARAMETER` is a parameter that you choose in the format `KEY=VALUE`.
-      You can add as many optional parameters as required.
+      You can add more than one optional parameter.
       For how to discover parameters you can add, see [Discover available parameters](#discover-params).
-
-    <!-- confirm these placeholders. Also, would you be required to use different parameters if not using OAuth2? -->
 
     For example:
 
