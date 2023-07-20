@@ -28,4 +28,4 @@ tanzu build-service builder list -n my-namespace
 
 ## SEE ALSO
 
-* [tanzu build-service builder](tanzu_build-service_builder.md)	 - Builder Commands
+* [tanzu build-service builder](tanzu_build-service_builder.hbs.md)	 - Builder Commands

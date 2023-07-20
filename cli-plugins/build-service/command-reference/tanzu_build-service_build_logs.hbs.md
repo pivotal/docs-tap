@@ -30,4 +30,4 @@ tanzu build-service build logs my-image -b 2 -n my-namespace
 
 ## SEE ALSO
 
-* [tanzu build-service build](tanzu_build-service_build.md)	 - Build Commands
+* [tanzu build-service build](tanzu_build-service_build.hbs.md)	 - Build Commands

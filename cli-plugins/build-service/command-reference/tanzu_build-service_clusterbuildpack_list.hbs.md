@@ -24,4 +24,4 @@ tanzu build-service clusterbuildpack list
 
 ## SEE ALSO
 
-* [tanzu build-service clusterbuildpack](tanzu_build-service_clusterbuildpack.md)	 - ClusterBuildpack Commands
+* [tanzu build-service clusterbuildpack](tanzu_build-service_clusterbuildpack.hbs.md)	 - ClusterBuildpack Commands

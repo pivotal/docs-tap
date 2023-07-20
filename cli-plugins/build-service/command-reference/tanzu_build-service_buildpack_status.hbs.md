@@ -28,4 +28,4 @@ tanzu build-service buildpack status -n my-namespace other-buildpack
 
 ## SEE ALSO
 
-* [tanzu build-service buildpack](tanzu_build-service_buildpack.md)	 - Buildpack Commands
+* [tanzu build-service buildpack](tanzu_build-service_buildpack.hbs.md)	 - Buildpack Commands

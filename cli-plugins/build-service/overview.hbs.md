@@ -4,4 +4,4 @@ Use the Build Service CLI plug-in to view all the Tanzu Build Service resources 
 
 ## <a id='command-reference'></a>Command reference
 
-For information about available commands, see [Command Reference](command-reference/tanzu_build-service.md).
+For information about available commands, see [Command Reference](command-reference/tanzu_build-service.hbs.md).

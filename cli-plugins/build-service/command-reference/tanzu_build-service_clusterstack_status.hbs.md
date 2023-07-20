@@ -25,4 +25,4 @@ tanzu build-service clusterstack status my-stack
 
 ### SEE ALSO
 
-* [tanzu build-service clusterstack](tanzu_build-service_clusterstack.md)	 - ClusterStack Commands
+* [tanzu build-service clusterstack](tanzu_build-service_clusterstack.hbs.md)	 - ClusterStack Commands

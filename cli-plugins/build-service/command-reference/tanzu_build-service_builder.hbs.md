@@ -10,6 +10,6 @@ Builder Commands
 
 ## SEE ALSO
 
-* [tanzu build-service](tanzu_build-service.md)	 - plugin to interact with tanzu build service (tbs) crds
-* [tanzu build-service builder list](tanzu_build-service_builder_list.md)	 - List available builders
-* [tanzu build-service builder status](tanzu_build-service_builder_status.md)	 - Display status of a builder
+* [tanzu build-service](tanzu_build-service.hbs.md)	 - plugin to interact with tanzu build service (tbs) crds
+* [tanzu build-service builder list](tanzu_build-service_builder_list.hbs.md)	 - List available builders
+* [tanzu build-service builder status](tanzu_build-service_builder_status.hbs.md)	 - Display status of a builder

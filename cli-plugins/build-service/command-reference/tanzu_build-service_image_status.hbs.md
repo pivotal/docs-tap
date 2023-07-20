@@ -28,4 +28,4 @@ tanzu build-service image status my-other-image -n my-namespace
 
 ## SEE ALSO
 
-* [tanzu build-service image](tanzu_build-service_image.md)	 - Image commands
+* [tanzu build-service image](tanzu_build-service_image.hbs.md)	 - Image commands

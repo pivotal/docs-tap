@@ -25,4 +25,4 @@ tanzu build-service clusterstore status my-store
 
 ## SEE ALSO
 
-* [tanzu build-service clusterstore](tanzu_build-service_clusterstore.md)	 - ClusterStore Commands
+* [tanzu build-service clusterstore](tanzu_build-service_clusterstore.hbs.md)	 - ClusterStore Commands

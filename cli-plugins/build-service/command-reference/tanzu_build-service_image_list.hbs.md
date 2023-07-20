@@ -38,4 +38,4 @@ tanzu build-service image list --filter ready=true --filter latest-reason=commit
 
 ### SEE ALSO
 
-* [tanzu build-service image](tanzu_build-service_image.md)	 - Image commands
+* [tanzu build-service image](tanzu_build-service_image.hbs.md)	 - Image commands

@@ -27,4 +27,4 @@ tanzu build-service clusterbuildpack status my-buildpack
 
 ## SEE ALSO
 
-* [tanzu build-service clusterbuildpack](tanzu_build-service_clusterbuildpack.md)	 - ClusterBuildpack Commands
+* [tanzu build-service clusterbuildpack](tanzu_build-service_clusterbuildpack.hbs.md)	 - ClusterBuildpack Commands

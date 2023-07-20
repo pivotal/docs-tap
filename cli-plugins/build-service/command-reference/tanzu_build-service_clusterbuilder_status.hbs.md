@@ -24,4 +24,4 @@ tanzu build-service clusterbuilder status my-builder
 
 ## SEE ALSO
 
-* [tanzu build-service clusterbuilder](tanzu_build-service_clusterbuilder.md)	 - ClusterBuilder Commands
+* [tanzu build-service clusterbuilder](tanzu_build-service_clusterbuilder.hbs.md)	 - ClusterBuilder Commands

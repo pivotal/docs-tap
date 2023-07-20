@@ -24,4 +24,4 @@ tanzu build-service clusterbuilder list
 
 ## SEE ALSO
 
-* [tanzu build-service clusterbuilder](tanzu_build-service_clusterbuilder.md)	 - ClusterBuilder Command
+* [tanzu build-service clusterbuilder](tanzu_build-service_clusterbuilder.hbs.md)	 - ClusterBuilder Command

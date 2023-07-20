@@ -27,4 +27,4 @@ tanzu build-service image trigger my-image
 
 ## SEE ALSO
 
-* [tanzu build-service image](tanzu_build-service_image.md)	 - Image commands
+* [tanzu build-service image](tanzu_build-service_image.hbs.md)	 - Image commands
