@@ -82,7 +82,7 @@ returned by providing the `--page` or `--limit` flags respectively. You can also
 results by image or source. For more information, use the `--help` flag or see
 [tanzu insight triage list](./cli-docs/tanzu_insight_triage_list.hbs.md).
 
-## <a id='copying-analysis'></a>Copying an analysis
+## <a id='copying-analysis'></a>Copy an analysis
 
 Sometimes, you might run into scenarios where an existing analysis might be shared between multiple
 images, for example, when a new version of an existing image is deployed by your workload and it
