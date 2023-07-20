@@ -54,10 +54,10 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
         default: ghcr.io/aquasecurity/trivy-db
       - name: trivy_java_db_repository
         default: ghcr.io/aquasecurity/trivy-java-db
-      - name: registry-server
-        default: my-registry.io    # input your registry server
-      - name: registry-repository
-        default: my-registry-repository    # input your registry repository
+      - name: registry
+        default:
+          server: my-registry.io    # input your registry server
+          repository: my-registry-repository    # input your registry repository
 
     ytt: |
       #@ load("@ytt:data", "data")
@@ -73,8 +73,8 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
 
       #@ def scanResultsLocation():
       #@   return "/".join([
-      #@    data.values.params.registry-server,
-      #@    data.values.params.registry-repository,
+      #@    data.values.params.registry.server,
+      #@    data.values.params.registry.repository,
       #@    "-".join([
       #@      data.values.workload.metadata.name,
       #@      data.values.workload.metadata.namespace,
