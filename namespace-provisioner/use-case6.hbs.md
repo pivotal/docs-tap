@@ -1,4 +1,4 @@
-# Apply scanner ScanTemplate overlays in air-gapped environments
+# Apply ScanTemplate overlays in air-gapped environments
 
 This topic tells you how to customize the ScanTemplates create by the `grype-scanner` PackageInstall in Namespace Provisioner. Use annotations to apply an overlay to the ScanTemplates.
 
