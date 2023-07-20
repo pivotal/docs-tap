@@ -78,7 +78,7 @@ The following table describes the resource limit changes that are required for c
 |**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
  Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** || Yes | No | Yes | tap-values |
-| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800* | Yes | No | No | tap-values |
+| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| | Yes | No | No | tap-values |
 | Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | Concurrency 25 | Yes| Partial (only CPU) | Yes  | tap-values |
 | Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
 | Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** | | Yes | Yes | Yes | tap-values |
@@ -211,31 +211,6 @@ scanning:
     requests:
       cpu: 200m
       memory: 1Gi
-```
-
-Use an overlay to make additional configuration change for SCAN_JOB_TTL_SECONDS_AFTER_FINISHED: 
-
-```console
-apiVersion: v1
-kind: Secret
-metadata:
-  name: scanning-patch-scanlink
-  namespace: tap-install
-stringData:
-  scanning-patch-scanlink.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"scan-link-controller-manager", "namespace": "scan-link-system"}})
-    ---
-    spec:
-      template:
-        spec:
-          containers:
-          #@overlay/match by="name"
-          - name: manager
-            env:
-            #@overlay/match by="name"
-            - name: "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED"
-              value: "10800"
 ```
 
 ### kpack-controller in build service

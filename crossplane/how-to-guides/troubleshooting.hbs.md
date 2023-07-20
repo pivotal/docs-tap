@@ -3,6 +3,10 @@
 This topic explains how you troubleshoot issues related to Crossplane on Tanzu Application Platform
 (commonly known as TAP).
 
+For more information about troubleshooting and limitations for services on Tanzu Application Platform, see
+[Known issues and limitations for services on Tanzu Application Platform](../../services-toolkit/reference/known-limitations.hbs.md) and [Troubleshoot Services Toolkit](../../services-toolkit/how-to-guides/troubleshooting.hbs.md)
+in the Services Toolkit component documentation.
+
 ## <a id=“resource-already-exists”></a> Resource already exists error when installing Crossplane
 
 **Symptom:**

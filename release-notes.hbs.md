@@ -516,6 +516,25 @@ allow_manual_configmap_update: false
 
 This release has the following known issues, listed by component and area.
 
+
+#### <a id='1-6-1-bitnami-services-ki'></a> Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Known issues and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-6-1-crossplane-ki'></a> Crossplane
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#cp-custom-cert-inject).
+
+#### <a id='1-6-1-stk-ki'></a> Services Toolkit
+
+- Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#compositeresourcedef).
+
 #### <a id='1-6-1-scc-ki'></a> Supply Chain Choreographer
 
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, roughly 3KB, the Supply Chain does not function. If the operator is using the default Carvel Package parameters, they are fine with this value enabled. If they use custom Carvel Package parameters, they might run into this size limit. If they exceed the size limit, they can either deactivate this feature, or use a workaround. The workaround requires enabling a Tekton feature flag. See the [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
