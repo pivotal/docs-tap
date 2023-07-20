@@ -3,36 +3,36 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-5-4'></a> v1.5.4 
- 
-**Release Date**: 15 August 2023 
- 
-### <a id='1-5-4-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-5-4'></a> v1.5.4
+
+**Release Date**: 15 August 2023
+
+### <a id='1-5-4-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-5-4-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 ---
- 
-### <a id='1-5-4-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-5-4-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-5-4-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-5-4-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-5-4-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-5-4-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.
 
 ---
@@ -291,6 +291,18 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
+#### <a id='1-5-1-scst-scan-ki'></a> Supply Chain Security Tools (SCST) - Scan
+
+- `TaskRuns` associated with scans are kept during the lifetime of the owner scan.
+  This can lead to Out of Memory restart problems in the SCST - Scan controller.
+
+- `ConfigMaps` used in `ScanTemplates` are not supported, whether introduced by overlays or in a
+  custom `ScanTemplate`. This is the error message you see:
+
+    ```console
+    The scan job could not be created. admission webhook "validation.webhook.pipeline.tekton.dev" denied the request: validation failed: expected exactly one, got neither: spec.workspaces[5].configmap, spec.workspaces[5].emptydir, spec.workspaces[5].persistentvolumeclaim, spec.workspaces[5].secret, spec.workspaces[5].volumeclaimtemplate
+    ```
+
 #### <a id='1-5-1-tap-gui-ki'></a> Tanzu Application Platform GUI
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
@@ -305,15 +317,6 @@ This release has the following known issues, listed by component and area.
   keyless access to ECR through AWS IAM role binding fails to authenticate (error code: 401).
   The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
   to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
-
-#### <a id='1-5-1-scst-scan-ki'></a> Supply Chain Security Tools (SCST) - Scan
-
-- `TaskRuns` associated with scans are kept during the lifetime of the owner scan. This can lead to Out of Memory restart problems in the SCST - Scan controller.
-- `ConfigMaps` used in `ScanTemplates` are not supported, whether introduced by overlays or in a custom `ScanTemplate`. This is the error message you see:
-
-    ```
-    The scan job could not be created. admission webhook "validation.webhook.pipeline.tekton.dev" denied the request: validation failed: expected exactly one, got neither: spec.workspaces[5].configmap, spec.workspaces[5].emptydir, spec.workspaces[5].persistentvolumeclaim, spec.workspaces[5].secret, spec.workspaces[5].volumeclaimtemplate
-    ```
 
 ---
 
@@ -886,9 +889,10 @@ This release has the following known issues, listed by area and component.
 
 #### <a id='1-5-0-scc-ki'></a> Supply Chain Choreographer
 
-- When using the Carvel Package Supply Chains, if the operator updates the parameter `carvel_package.
-  name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps repository that uses
-  the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`.
+  You can ignore or delete this package.
 
 #### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
@@ -937,7 +941,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
 
-- If a user restarts their computer while running Live Update, without terminating the Tilt
+- If you restart your computer while running Live Update without terminating the Tilt
   process beforehand, there is a lock that incorrectly shows that Live Update is still running and
   prevents it from starting again. Delete the Tilt lock file to resolve this.
   The default file location is `~/.tilt-dev/config.lock`.
@@ -952,12 +956,12 @@ This release has the following known issues, listed by area and component.
 - In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
+#### <a id='1-5-0-tanzu-source-controller-ki'></a> Tanzu Source Controller
 
-#### <a id='1-5-10-tanzu-source-controller-ki'></a> Tanzu Source Controller
-- **Issue:**
-On Version v0.7.0, when pulling image from ECR (Elastic Container Registry) Tanzu Source Controller keyless access to ECR  via AWS IAM role binding fails to authenticate (error code: 401).
-**Workaround:**
-Setup standard K8s secret with user-id and password to authenticate to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
+- In v0.7.0, when pulling images from Elastic Container Registry (ECR), Tanzu Source Controller
+  keyless access to ECR through AWS IAM role binding fails to authenticate (error code: 401).
+  The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
+  to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
 
 ---
 
