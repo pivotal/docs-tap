@@ -63,7 +63,7 @@ or create a `ClassClaim` directly.
 
     - `CLAIM-NAME` is a name you choose for your claim.
     - `SERVICE-NAME` is the name of the service that you want to claim.
-    - `NAMESPACE` is the namespace the namespace your workload is in.
+    - `NAMESPACE` is the namespace that your workload is in.
     - `WORKLOAD-NAME` is the name of your workload.
     - (Optional) `PARAMETER` is a parameter that you choose in the format `KEY=VALUE`.
       You can add more than one optional parameter.
