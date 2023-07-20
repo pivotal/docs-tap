@@ -181,11 +181,11 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
             - --no-progress
     ```
 
-  Where:
+    Where:
 
-  - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-  - `registry-server` is the registry server.
-  - `registry-repository` is the registry repository.
+    - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
+    - `registry-server` is the registry server.
+    - `registry-repository` is the registry repository.
 
 >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes).
 
