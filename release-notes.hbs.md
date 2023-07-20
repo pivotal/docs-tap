@@ -532,7 +532,7 @@ This release has the following known issues, listed by component and area.
   ootb_supply_chain_testing_scanning:
     image_scanner_template_name: CLUSTERIMAGETEMPLATE
   ```
-  The ClusterSupplyChain `scanning-image-scan-to-url` cannot update because the ClusterSupplyChain is preset to `image-scanner-template`. The workaround is to create another ClusterSupplyChain that uses the intended ClusterImageTemplate.
+  The ClusterSupplyChain `scanning-image-scan-to-url` will not update because the ClusterSupplyChain is preset to `image-scanner-template`. The workaround is to modify the Out of the Box Supply template following the steps [here](./scc/authoring-supply-chains.hbs.md#modifying-an-out-of-the-box-supply-template).
 
 #### <a id='1-6-1-tap-gui-ki'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
