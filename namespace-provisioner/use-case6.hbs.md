@@ -1,12 +1,21 @@
-# Apply scanner ScanTemplate overlays on Air-gapped environments
+# Apply ScanTemplate overlays in air-gapped environments
 
-The namespace provisioner includes pre-configured `grype-scanner` PackageInstall for each developer namespace, as described in the [Default resources](default-resources.hbs.md) section of the documentation. If you require customization of the ScanTemplate created by the PackageInstall, it is important to note that the namespace provisioner does not directly create the ScanTemplate. Therefore, overlays should be applied to the ScanTemplate through package customization (For more information on how to customize a package installation, please refer to [Customize a package](../customize-package-installation.hbs.md)).
+This topic tells you how to customize the ScanTemplates create by the `grype-scanner` PackageInstall in Namespace Provisioner. Use annotations to apply an overlay to the ScanTemplates.
 
-Please refer to the [Use Grype in offline and air-gapped environments](../install-offline/grype-offline-airgap.hbs.md) for information on potential customizations that can be made to the `grype-scanner` as well as troubleshooting tips.
+Namespace Provisioner includes a pre-configured `grype-scanner` PackageInstall for each developer
+namespace. For more information about default resources, see
+[Default resources](default-resources.hbs.md).
 
-This use case shows how you can apply the overlays to the ScanTemplates from the Grype Package Install overlays applied via annotations
+If you require customization of the ScanTemplate created by the PackageInstall, you must apply
+overlays to the ScanTemplate through package customization as Namespace Provisioner does not
+directly create the ScanTemplate. For more information on how to customize a package installation, see [Customize a package](../customize-package-installation.hbs.md).
 
-1. To enable updates to the ScanTemplates, you can create an overlay specifically designed for this purpose. When the package is processed, the overlay will be applied to the ScanTemplate. It is done by the reference to this overlay in the annotation `ext.packaging.carvel.dev/ytt-paths-from-secret-name`:
+For information about potential customizations of the `grype-scanner` and troubleshooting
+tips, see [Use Grype in offline and air-gapped environments](../install-offline/grype-offline-airgap.hbs.md).
+
+1. To enable updates to the ScanTemplates, create an overlay specifically designed for this
+purpose. When the package is processed, the overlay is applied to the ScanTemplate. It is done
+by the reference to this overlay in the annotation `ext.packaging.carvel.dev/ytt-paths-from-secret-name`:
 
     ```yaml
     cat << EOF | kubectl apply -f -
@@ -34,7 +43,7 @@ This use case shows how you can apply the overlays to the ScanTemplates from the
     EOF
     ```
 
-2. To enhance the functionality of the `grype-scanner` Package Install created by the namespace provisioner, you can create an overlay that adds the `ext.packaging.carvel.dev/ytt-paths-from-secret-name` annotation. This annotation enables the Package Install to retrieve information from the created secret with the overlay and apply it to the ScanTemplate.
+2. To enhance the functionality of the `grype-scanner` PackageInstall created by the Namespace Provisioner, create an overlay that adds the `ext.packaging.carvel.dev/ytt-paths-from-secret-name` annotation. This annotation enables the PackageInstall to retrieve information from the created secret with the overlay and apply it to the ScanTemplate.
 
     ```yaml
     cat << EOF | kubectl apply -f -
@@ -61,7 +70,8 @@ This use case shows how you can apply the overlays to the ScanTemplates from the
     EOF
     ```
 
-3. Update the TAP values as follows so the overlay is applied to the PackageInstall (see [Import overlay secrets](customize-installation.hbs.md#import-overlay-secrets))
+3. Update the `tap-values.yaml` file as follows so the overlay is applied to the PackageInstall. For
+more information, see [Import overlay secrets](customize-installation.hbs.md#import-overlay-secrets).
 
     ```yaml
     namespace_provisioner:

@@ -1,14 +1,14 @@
-## tanzu build-service
+# tanzu build-service
 
-plugin to interact with tanzu build service (tbs) crds
+The Build Service CLI plug-in is a plugin you use to interact with Tanzu Build Service CRDs.
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for build-service
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 <!-- * [tanzu](tanzu.md) -->
 <!-- * [tanzu build-service build](tanzu_build-service_build.md)	 - Build Commands -->
@@ -19,4 +19,3 @@ plugin to interact with tanzu build service (tbs) crds
 <!-- * [tanzu build-service clusterstack](tanzu_build-service_clusterstack.md)	 - ClusterStack Commands -->
 <!-- * [tanzu build-service clusterstore](tanzu_build-service_clusterstore.md)	 - ClusterStore Commands -->
 <!-- * [tanzu build-service image](tanzu_build-service_image.md)	 - Image commands -->
-

@@ -1,32 +1,31 @@
-## tanzu build-service image status
+# tanzu build-service image status
 
-Display status of an image resource
+This command display the status of an image resource.
 
-### Synopsis
+## Synopsis
 
 Prints detailed information about the status of a specific image resource in the provided namespace.
 
 The namespace defaults to the kubernetes current-context namespace.
 
-```
+```console
 tanzu build-service image status <name> [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service image status my-image
 tanzu build-service image status my-other-image -n my-namespace
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help               help for status
   -n, --namespace string   kubernetes namespace
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu build-service image](tanzu_build-service_image.md)	 - Image commands
-
+* [tanzu build-service image](tanzu_build-service_image.hbs.md)	 - Image commands

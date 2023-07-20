@@ -1,32 +1,31 @@
-## tanzu build-service builder list
+# tanzu build-service builder list
 
-List available builders
+This command list available builders.
 
-### Synopsis
+## Synopsis
 
 Prints a table of the most important information about the available builders in the provided namespace.
 
 The namespace defaults to the kubernetes current-context namespace.
 
-```
+```console
 tanzu build-service builder list [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu build-service builder list
 tanzu build-service builder list -n my-namespace
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help               help for list
   -n, --namespace string   kubernetes namespace
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu build-service builder](tanzu_build-service_builder.md)	 - Builder Commands
-
+* [tanzu build-service builder](tanzu_build-service_builder.hbs.md)	 - Builder Commands
