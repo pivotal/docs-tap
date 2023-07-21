@@ -1,6 +1,6 @@
-# Configure Contour
+# Configure Contour to suit your cluster size
 
-This topic tells you how to configure Contour to best suit your cluster.
+This topic tells you how to configure Contour to best suit your cluster size.
 
 By default, Contour installs with the Controllers as a `Deployment` and the Envoys 
 as a `DaemonSet`. In most cases, this is sufficient. However, VMware recommends 

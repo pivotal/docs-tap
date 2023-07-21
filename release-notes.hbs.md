@@ -548,7 +548,7 @@ This release has the following known issues, listed by component and area.
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane Package.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
-  `kubectl delete validatingwebhookconfiguration crossplane`
+  `kubectl delete validatingwebhookconfiguration crossplane`.
 
 #### <a id='1-6-1-stk-ki'></a> Services Toolkit
 
@@ -777,3 +777,10 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   The Flux Source Controller installation includes the `OCIRepository` API.
   For more information about the `OCIRepository` API, see the
   [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
+
+### <a id="1-6-tekton-pipelines-deprecations"></a> Tekton Pipelines
+
+- Tekton `ClusterTask`s have been deprecated and marked for removal in Tanzu Application 
+  Platform v1.9. Use the `Task` API instead.
+  For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
