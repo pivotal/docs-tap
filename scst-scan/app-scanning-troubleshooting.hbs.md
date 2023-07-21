@@ -87,5 +87,5 @@ If you encounter a permission error for accessing, opening, and writing to the f
 unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-scanning": unable to open destination: open /home/app-scanning/.git-credentials: permission denied
 ```
 
-Ensure that the problematic step runs with
+Ensure that the problematic step runs with the
 [proper user and group ids](./ivs-create-your-own.hbs.md#security-context-user-and-group-ids).
