@@ -1,6 +1,7 @@
 # Build Service CLI plug-in overview
 
-Use the Build Service CLI plug-in to view all the Tanzu Build Service resources on any Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service installed.
+Use the Build Service CLI plug-in to view all the Tanzu Build Service resources on any
+Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service installed.
 
 ## <a id='command-reference'></a>Command reference
 
@@ -8,7 +9,8 @@ For information about all available commands, see [Command Reference](command-re
 
 ### <a id='image-command'></a>Image Command
 
-Use the `image` command to interact with the kpack Image resource that is created by the supply chain.
+Use the `image` command to interact with the kpack image resource that is created by the supply
+chain.
 
 #### Image List
 
@@ -45,19 +47,17 @@ tanzu build-service build list IMAGE_NAME -n WORKLOAD-NAMESPACE
 
 #### Build Status
 
-To view more details about the latest build:
+To view more details about the latest build, run:
 
 ```console
 tanzu build-service build status IMAGE_NAME -n WORKLOAD-NAMESPACE
 ```
 
-or
+To view details about a particular build, run:
 
 ```console
 tanzu build-service build status IMAGE-NAME -n WORKLOAD-NAMESPACE --build BUILD-NUMBER
 ```
-
-for details about a particular build
 
 #### Build Logs
 
@@ -75,7 +75,7 @@ tanzu build-service build logs IMAGE-NAME -n WORKLOAD-NAMESPACE --build BUILD-NU
 
 ### <a id='clusterbuilder-command'></a>ClusterBuilder Command
 
-Use the `clusterbuilder` command can to list available builders and examine their contents.
+Use the `clusterbuilder` command to list available builders and examine their contents.
 
 #### ClusterBuilder List
 
@@ -97,13 +97,14 @@ Use the `clusterbuildpack` command to list information about available buildpack
 
 #### ClusterBuildpack List
 
-To list all language family ClusterBuildpacks:
+To list all language family ClusterBuildpacks, run:
 
 ```console
 tanzu build-service clusterbuildpack list
 ```
 
-To see a detailed view of a particular language family buildpack and see its component buildpack versions:
+To see a detailed view of a particular language family buildpack and see its component buildpack
+ versions, run:
 
 ```console
 tanzu build-service clusterbuildpack status CLUSTERBUILDPACK-NAME
