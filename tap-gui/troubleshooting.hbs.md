@@ -366,125 +366,16 @@ Supply Chain Choreographer dashboards.
 
 #### Cause
 
-Tanzu Developer Portal lacks the required configuration and access to detect the new
-`ImageVulnerabilityScan` custom resource.
+Tanzu Developer Portal lacks the required access to detect the new `ImageVulnerabilityScan`
+custom resource.
 
 #### Solution
 
-As a workaround, you can update Tanzu Developer Portal to monitor the `ImageVulnerabilityScan`
-resource, and apply a ytt overlay to add permissions to the Kubernetes role that is used to access
-the `ImageVulnerabilityScan` resource. For more information about how overlays work with
-Tanzu Application Platform, see
+As a workaround, you can apply a ytt overlay to add permissions to the Kubernetes role that
+is used to access the `ImageVulnerabilityScan` resource. For more information about how
+overlays work with Tanzu Application Platform, see
 [Customize your package installation](../customize-package-installation.hbs.md).
 
-1. Get the Tanzu Application Platform values by running:
-
-   ```console
-   tanzu package installed get tap --values-file-output tap-values.yaml -n tap-install
-   ```
-
-1. Inform Tanzu Developer Portal about the new `ImageVulnerabilityScan` resource, and other existing
-   resources, by adding the following YAML to `tap-values.yaml`:
-
-    ```yaml
-    tap_gui:
-    app_config:
-      kubernetes:
-        customResources:
-          - group: 'serving.knative.dev'
-            apiVersion: 'v1'
-            plural: 'configurations'
-          - group: 'serving.knative.dev'
-            apiVersion: 'v1'
-            plural: 'revisions'
-          - group: 'serving.knative.dev'
-            apiVersion: 'v1'
-            plural: 'routes'
-          - group: 'serving.knative.dev'
-            apiVersion: 'v1'
-            plural: 'services'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clusterconfigtemplates'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clusterdeliveries'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clusterdeploymenttemplates'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clusterimagetemplates'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clusterruntemplates'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clustersourcetemplates'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clustersupplychains'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'clustertemplates'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'deliverables'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'runnables'
-          - group: 'carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'workloads'
-          - group: 'source.toolkit.fluxcd.io'
-            apiVersion: 'v1beta1'
-            plural: 'gitrepositories'
-          - group: 'conventions.carto.run'
-            apiVersion: 'v1alpha1'
-            plural: 'podintents'
-          - group: 'kpack.io'
-            apiVersion: 'v1alpha2'
-            plural: 'images'
-          - group: 'kpack.io'
-            apiVersion: 'v1alpha2'
-            plural: 'builds'
-          - group: 'scanning.apps.tanzu.vmware.com'
-            apiVersion: 'v1beta1'
-            plural: 'sourcescans'
-          - group: 'scanning.apps.tanzu.vmware.com'
-            apiVersion: 'v1beta1'
-            plural: 'scanpolicies'
-          - group: 'source.apps.tanzu.vmware.com'
-            apiVersion: 'v1alpha1'
-            plural: 'imagerepositories'
-          - group: 'scanning.apps.tanzu.vmware.com'
-            apiVersion: 'v1beta1'
-            plural: 'imagescans'
-          - group: 'scanning.apps.tanzu.vmware.com'
-            apiVersion: 'v1beta1'
-            plural: 'scantemplates'
-          - group: 'tekton.dev'
-            apiVersion: 'v1beta1'
-            plural: 'pipelineruns'
-          - group: 'tekton.dev'
-            apiVersion: 'v1beta1'
-            plural: 'taskruns'
-          - group: 'kappctrl.k14s.io'
-            apiVersion: 'v1alpha1'
-            plural: 'apps'
-          - group: 'networking.internal.knative.dev'
-            apiVersion: 'v1alpha1'
-            plural: 'serverlessservices'
-          - group: 'autoscaling.internal.knative.dev'
-            apiVersion: 'v1alpha1'
-            plural: 'podautoscalers'
-          - group: 'source.apps.tanzu.vmware.com'
-            apiVersion: 'v1alpha1'
-            plural: 'mavenartifacts'
-          - group: 'app-scanning.apps.tanzu.vmware.com'
-            apiVersion: 'v1alpha1'
-            plural: 'imagevulnerabilityscans'
-    ```
 
 1. Create a `secret.yml` file with a `Secret` that contains your ytt overlay. For example:
 
