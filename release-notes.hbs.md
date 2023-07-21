@@ -99,12 +99,12 @@ plug-in binaries to the local filesystem is no longer required.
 
 #### <a id='1-6-1-tbs'></a> Build Service plug-in for Tanzu CLI
 
-- Added new a new Build Service plug-in that allows you to view all the Tanzu Build Service
+- Added a new Build Service plug-in that allows you to view all the Tanzu Build Service
 resources on any Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service
 installed. For more information, see [Build Service CLI plug-in overview](cli-plugins/build-service/overview.hbs.md).
 - Introduced a cluster buildpack resource to enable individually packaged dependencies
 and provide insights into installed buildpack versions.
-- Migrated to new full Tanzu Build Service dependencies package that utilizes Carvel packages
+- Migrated to a new full Tanzu Build Service dependencies package that utilizes Carvel packages
 to install dependencies.
 
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
