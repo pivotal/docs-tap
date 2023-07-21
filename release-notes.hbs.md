@@ -824,7 +824,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-5-0-api-auto-reg-ki"></a>API Auto Registration
 
-- Users cannot update their APIs through API Auto Registration due to a issue with the ID used to retrieve APIs.
+- Users cannot update their APIs through API Auto Registration due to an issue with the ID used to retrieve APIs.
   This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
 
 #### <a id='1-5-0-bitnami-services-ki'></a> Bitnami Services
