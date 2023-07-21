@@ -102,10 +102,6 @@ plug-in binaries to the local filesystem is no longer required.
 - Added a new Build Service plug-in that allows you to view all the Tanzu Build Service
 resources on any Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service
 installed. For more information, see [Build Service CLI plug-in overview](cli-plugins/build-service/overview.hbs.md).
-- Introduced a cluster buildpack resource to enable individually packaged dependencies
-and provide insights into installed buildpack versions.
-- Migrated to a new full Tanzu Build Service dependencies package that utilizes Carvel packages
-to install dependencies.
 
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
 
@@ -385,6 +381,8 @@ This release includes the following changes, listed by component and area.
   - You must provide the tap-values file during the full dependencies package installation.
 - The full dependencies package repository is tagged with the Tanzu Application Platform package version instead of the Tanzu Build Service package version.
 - The Ubuntu Bionic stack is no longer shipped in Tanzu Application Platform and the Full Dependencies Package Repository.
+- Introduced a cluster buildpack resource to enable individually packaged dependencies
+    and provide insights into installed buildpack versions.
 
 #### <a id='1-6-1-cnrs-bc'></a> Cloud Native Runtimes
 - **`provider` config option**: The deprecation of the `provider` configuration option has been announced in the [release notes of Cloud Native Runtimes 2.0](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html).
