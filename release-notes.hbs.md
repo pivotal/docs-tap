@@ -523,7 +523,7 @@ This release has the following known issues, listed by component and area.
   after having already created a claim for one or more of the Bitnami services using the default
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
-  For a workaround, see [Troubleshoot Bitnami Services](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
 #### <a id='1-6-1-crossplane-ki'></a> Crossplane
 
