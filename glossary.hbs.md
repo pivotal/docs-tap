@@ -89,6 +89,11 @@
         <th>Definition</th>
     </tr>
     <tr>
+        <td>Tanzu Application Platform Telemetry</td>
+        <td>This is a set of objects that collect data about the usage of Tanzu Application Platform 
+        and send it back to VMware for product improvements.</td>
+    </tr>
+    <tr>
         <td>Tanzu Developer Portal</td>
         <td>Formerly known as Tanzu Application Platform GUI, this component enables developers to view
             apps and services running for an organization, including dependencies, relationships,
