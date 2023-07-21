@@ -1,6 +1,6 @@
-## tanzu insight source get
+# tanzu insight source get
 
-Get sources by repository, commit or organization
+Use this command to get sources by repository, commit or organization.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -31,4 +31,3 @@ insight source get --org company --repo example-repo --commit b33dfee51
 ## <a id='see-also'></a>See also
 
 * [tanzu insight source](tanzu_insight_source.hbs.md)	 - Source commands
-

@@ -1,6 +1,6 @@
-## tanzu insight source vulnerabilities
+# tanzu insight source vulnerabilities
 
-Get source vulnerabilities
+Use this command to get source vulnerabilities.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -29,4 +29,3 @@ insight sources vulnerabilities --commit eb55fc13 --repo example-repo
 ## <a id='see-also'></a>See also
 
 * [tanzu insight source](tanzu_insight_source.hbs.md)	 - Source commands
-

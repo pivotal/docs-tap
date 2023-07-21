@@ -1,4 +1,4 @@
-## tanzu insight vulnerabilities sources
+# tanzu insight vulnerabilities sources
 
 Get sources with a given vulnerability.
 
@@ -27,5 +27,4 @@ insight vulnerabilities sources --cveid CVE-123123-2021
 
 ## <a id='see-also'></a>See also
 
-* [tanzu insight vulnerabilities](tanzu_insight_vulnerabilities.hbs.md)	 - Vulnerabilities commands
-
+* [tanzu insight vulnerabilities](tanzu_insight_vulnerabilities.hbs.md)	 - Vulnerabilities command

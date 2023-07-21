@@ -1,4 +1,4 @@
-## tanzu insight vulnerabilities packages
+# tanzu insight vulnerabilities packages
 
 Get packages with a given vulnerability.
 
@@ -28,4 +28,3 @@ insight vulnerabilities packages --cveid CVE-123123-2021
 ## <a id='see-also'></a>See also
 
 * [tanzu insight vulnerabilities](tanzu_insight_vulnerabilities.hbs.md)	 - Vulnerabilities commands
-

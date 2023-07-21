@@ -1,6 +1,6 @@
-## tanzu insight source add
+# tanzu insight source add
 
-Add a source report
+Use this command to add a source report.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -35,4 +35,3 @@ insight source add --input-format cyclonedx-xml --output-format text --path /pat
 ## <a id='see-also'></a>See also
 
 * [tanzu insight source](tanzu_insight_source.hbs.md)	 - Source commands
-

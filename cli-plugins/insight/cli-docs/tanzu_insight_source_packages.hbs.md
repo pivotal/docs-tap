@@ -1,6 +1,6 @@
-## tanzu insight source packages
+# tanzu insight source packages
 
-Get source packages
+Use this command to get source packages.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -29,4 +29,3 @@ insight sources packages --commit 0b1b659907 --repo example-repo
 ## <a id='see-also'></a>See also
 
 * [tanzu insight source](tanzu_insight_source.hbs.md)	 - Source commands
-

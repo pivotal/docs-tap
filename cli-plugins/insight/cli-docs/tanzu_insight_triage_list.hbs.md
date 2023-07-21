@@ -1,6 +1,6 @@
-## tanzu insight triage list
+# tanzu insight triage list
 
-Return the list of existing vulnerability triages
+Use this command to return the list of existing vulnerability triages.
 
 ```console
 tanzu insight triage list [flags]
@@ -34,4 +34,3 @@ insight triage list --page 5 --limit 20
 ## <a id='see-also'></a>See also
 
 * [tanzu insight triage](tanzu_insight_triage.hbs.md)	 - Vulnerability analysis commands
-

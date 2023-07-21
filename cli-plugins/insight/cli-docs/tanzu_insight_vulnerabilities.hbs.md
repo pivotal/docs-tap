@@ -1,4 +1,4 @@
-## tanzu insight vulnerabilities
+# tanzu insight vulnerabilities
 
 Vulnerabilities commands
 
@@ -15,4 +15,3 @@ Vulnerabilities commands
 * [tanzu insight vulnerabilities images](tanzu_insight_vulnerabilities_images.hbs.md)	 - Get images with a given vulnerability.
 * [tanzu insight vulnerabilities packages](tanzu_insight_vulnerabilities_packages.hbs.md)	 - Get packages with a given vulnerability.
 * [tanzu insight vulnerabilities sources](tanzu_insight_vulnerabilities_sources.hbs.md)	 - Get sources with a given vulnerability.
-

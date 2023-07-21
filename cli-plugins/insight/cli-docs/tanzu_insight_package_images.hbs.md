@@ -1,10 +1,10 @@
-## tanzu insight package images
+# tanzu insight package images
 
-Get images that contain the given package by name
+Use this command to get images that contain the given package by name.
 
 ## <a id='synopsis'></a>Synopsis
 
-Get images that contain the given package by name
+To get images that contain the given package by name.
 
 ```console
 tanzu insight package images --name <package name> [flags]
@@ -28,4 +28,3 @@ insight package images --name client
 ## <a id='see-also'></a>See also
 
 * [tanzu insight package](tanzu_insight_package.hbs.md)	 - Package commands
-

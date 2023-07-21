@@ -1,6 +1,6 @@
-## tanzu insight triage copy
+# tanzu insight triage copy
 
-Copy an existing analysis to a new image, source or artifact group
+Use this command to copy an existing analysis to a new image, source or artifact group.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -44,7 +44,7 @@ insight triage copy --triage-uid-to-copy BEC0F39C-FE99-4F18-A0AF-069A4AA8D71A --
 
 ## <a id='options'></a>Options inherited from parent commands
 
-```
+```console
       --output-format string   specify the response's format, options=[text, api-json] (default "text")
 ```
 

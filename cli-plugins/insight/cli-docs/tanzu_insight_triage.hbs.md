@@ -1,4 +1,4 @@
-## tanzu insight triage
+# tanzu insight triage
 
 Vulnerability analysis commands
 
@@ -15,4 +15,3 @@ Vulnerability analysis commands
 * [tanzu insight triage copy](tanzu_insight_triage_copy.hbs.md)	 - Copy an existing analysis to a new image, source or artifact group
 * [tanzu insight triage list](tanzu_insight_triage_list.hbs.md)	 - Return the list of existing vulnerability triages
 * [tanzu insight triage update](tanzu_insight_triage_update.hbs.md)	 - Create or update a vulnerability analysis
-

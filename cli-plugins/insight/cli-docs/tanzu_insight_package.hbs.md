@@ -1,4 +1,4 @@
-## tanzu insight package
+# tanzu insight package
 
 Package commands
 
@@ -15,4 +15,3 @@ Package commands
 * [tanzu insight package images](tanzu_insight_package_images.hbs.md)	 - Get images that contain the given package by name
 * [tanzu insight package sources](tanzu_insight_package_sources.hbs.md)	 - Get sources that contain the given package by name
 * [tanzu insight package vulnerabilities](tanzu_insight_package_vulnerabilities.hbs.md)	 - Get package vulnerabilities
-

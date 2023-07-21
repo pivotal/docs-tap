@@ -1,6 +1,6 @@
-## tanzu insight image packages
+# tanzu insight image packages
 
-Get image packages
+Use this command to get image packages.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -29,4 +29,3 @@ insight image packages --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288f
 ## <a id='see-also'></a>See also
 
 * [tanzu insight image](tanzu_insight_image.hbs.md)	 - Image commands
-

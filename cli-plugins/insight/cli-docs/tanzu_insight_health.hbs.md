@@ -1,6 +1,6 @@
-## tanzu insight health
+# tanzu insight health
 
-Checks if endpoint is reachable
+Use this command to checks if and endpoint is reachable.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -25,4 +25,3 @@ insight health
 ## <a id='see-also'></a>See also
 
 * [tanzu insight](tanzu_insight.hbs.md)	 - post & query image, package, source, and vulnerability data
-

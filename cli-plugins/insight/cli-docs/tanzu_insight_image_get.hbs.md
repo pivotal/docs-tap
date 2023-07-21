@@ -1,6 +1,6 @@
-## tanzu insight image get
+# tanzu insight image get
 
-Get image by digest
+Use this command to get an image by digest.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -29,4 +29,3 @@ insight image get --digest sha256:a86859ac1946065d93df9ecb5cb7060adeeb0288fad610
 ## <a id='see-also'></a>See also
 
 * [tanzu insight image](tanzu_insight_image.hbs.md)	 - Image commands
-

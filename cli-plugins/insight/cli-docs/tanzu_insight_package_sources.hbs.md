@@ -1,10 +1,10 @@
-## tanzu insight package sources
+# tanzu insight package sources
 
-Get sources that contain the given package by name
+Use this command to get sources that contain the given package by name.
 
 ## <a id='synopsis'></a>Synopsis
 
-Get sources that contain the given package by name
+To get sources that contain the given package by name, run:
 
 ```console
 tanzu insight package sources --name <package name> [flags]
@@ -28,4 +28,3 @@ insight package sources --name client
 ## <a id='see-also'></a>See also
 
 * [tanzu insight package](tanzu_insight_package.hbs.md)	 - Package commands
-

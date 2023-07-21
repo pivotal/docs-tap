@@ -1,6 +1,6 @@
-## tanzu insight package vulnerabilities
+# tanzu insight package vulnerabilities
 
-Get package vulnerabilities
+Use this command to get package vulnerabilities.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -28,4 +28,3 @@ insight package vulnerabilities --name client
 ## <a id='see-also'></a>See also
 
 * [tanzu insight package](tanzu_insight_package.hbs.md)	 - Package commands
-

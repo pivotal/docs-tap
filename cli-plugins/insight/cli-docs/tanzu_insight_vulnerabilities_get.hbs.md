@@ -1,13 +1,13 @@
-## tanzu insight vulnerabilities get
+# tanzu insight vulnerabilities get
 
-Get vulnerability by CVE id.
+Use this command to get a vulnerability by CVE ID.
 
 ## <a id='synopsis'></a>Synopsis
 
 Get vulnerability by CVE id.
 
 ```console
-tanzu insight vulnerabilities get --cveid <cve-id> [flags]
+tanzu insight vulnerabilities get --cveid CVE-ID [flags]
 ```
 
 ## <a id='examples'></a>Examples
@@ -28,4 +28,3 @@ insight vulnerabilities get --cveid CVE-123123-2021
 ## <a id='see-also'></a>See also
 
 * [tanzu insight vulnerabilities](tanzu_insight_vulnerabilities.hbs.md)	 - Vulnerabilities commands
-

@@ -1,6 +1,6 @@
-## tanzu insight image vulnerabilities
+# tanzu insight image vulnerabilities
 
-Get image vulnerabilities
+Use this command to get image vulnerabilities.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -28,4 +28,3 @@ insight image vulnerabilities --digest sha256:a86859ac1946065d93df9ecb5cb7060ade
 ## <a id='see-also'></a>See also
 
 * [tanzu insight image](tanzu_insight_image.hbs.md)	 - Image commands
-

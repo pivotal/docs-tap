@@ -1,6 +1,6 @@
-## tanzu insight vulnerabilities images
+# tanzu insight vulnerabilities images
 
-Get images with a given vulnerability.
+Use this command to Get images with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -28,4 +28,3 @@ insight vulnerabilities images --cveid CVE-123123-2021
 ## <a id='see-also'></a>See also
 
 * [tanzu insight vulnerabilities](tanzu_insight_vulnerabilities.hbs.md)	 - Vulnerabilities commands
-

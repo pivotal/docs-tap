@@ -1,6 +1,6 @@
-## tanzu insight image add
+# tanzu insight image add
 
-Add an image report
+Use this command to add an image report.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -35,4 +35,3 @@ insight image add --input-format cyclonedx-xml --output-format text --path /path
 ## <a id='see-also'></a>See also
 
 * [tanzu insight image](tanzu_insight_image.hbs.md)	 - Image commands
-

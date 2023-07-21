@@ -1,6 +1,6 @@
-## tanzu insight triage update
+# tanzu insight triage update
 
-Create or update a vulnerability analysis
+Use this command to create or update a vulnerability analysis.
 
 ## <a id='synopsis'></a>Synopsis
 

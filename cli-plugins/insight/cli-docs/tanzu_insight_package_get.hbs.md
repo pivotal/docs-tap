@@ -1,10 +1,10 @@
-## tanzu insight package get
+# tanzu insight package get
 
 Get package by name, version, and package manager
 
 ## <a id='synopsis'></a>Synopsis
 
-Get package by name, version, and package manager
+To get package by name, version, and package manager, run:
 
 ```console
 tanzu insight package get --name <package name> --version <package version> --pkgmngr Unknown [flags]
@@ -30,4 +30,3 @@ insight package get --name client --version 1.0.0a --pkgmngr Unknown
 ## <a id='see-also'></a>See also
 
 * [tanzu insight package](tanzu_insight_package.hbs.md)	 - Package commands
-

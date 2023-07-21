@@ -243,7 +243,6 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 [Namespace parameters](namespace-provisioner/parameters.hbs.md).
 - The `path` value in `additional_sources` is now automatically generated, eliminating the need for you to provide it manually. This simplifies the configuration of external sources.
 
-
 #### <a id='1-6-1-stk'></a> Services Toolkit (STK)
 
 The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:

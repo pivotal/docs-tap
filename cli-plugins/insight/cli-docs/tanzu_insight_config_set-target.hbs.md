@@ -1,10 +1,10 @@
-## tanzu insight config set-target
+# tanzu insight config set-target
 
-Set metadata store endpoint
+Use this command to set the metadata store endpoint.
 
 ## <a id='synopsis'></a>Synopsis
 
-Set the target endpoint for the metadata store
+To set the target endpoint for the metadata store, run@
 
 ```console
 tanzu insight config set-target <endpoint> [--ca-cert <ca certificate path to verify peer against>] [--access-token <kubernetes service account access token>] [flags]
@@ -27,4 +27,3 @@ insight config set-target https://localhost:8443 --ca-cert=/tmp/ca.crt --access-
 ## <a id='see-also'></a>See also
 
 * [tanzu insight config](tanzu_insight_config.hbs.md)	 - Config commands
-
