@@ -22,7 +22,7 @@ tanzu build-service image list -n WORKLOAD-NAMESPACE
 
 #### Image Status
 
-To get status about a particular image, run:
+To get the status of a specific image, run:
 
 ```console
 tanzu build-service image status IMAGE_NAME -n WORKLOAD-NAMESPACE
