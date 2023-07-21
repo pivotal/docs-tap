@@ -5,7 +5,8 @@ it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). 
 [Backstage documentation](https://backstage.io/docs/permissions/overview/).
 
 > **Caution** The permission framework functions are in alpha. It is not recommended for use in
-> production environment. For more information, see <!-- Insert xref -->.
+> production environment.
+> <!-- For more information, see xref -->.
 
 ## <a id='permission-overview'></a> Overview of the permission framework
 
@@ -20,8 +21,9 @@ of the Software Catalog entities. If a user is not listed as an admin or part of
 that user can see only the Software Catalog entities that are owned by their teams.
 
 > **Important** The permission framework is deactivated by default.
-
-> **Important** The built-in `owner-of` policy is primarily applied to the Component entities of the Software Catalog. Accelerators (templates) in the Application Accelerator would become invisible if the permission framework is enabled.
+> The built-in `owner-of` policy is primarily applied to the component entities of the software catalog.
+> Accelerators (templates) in Application Accelerator become invisible if the permission framework
+> is enabled.
 
 ## <a id='enable-permission'></a> Enable the permission framework
 
