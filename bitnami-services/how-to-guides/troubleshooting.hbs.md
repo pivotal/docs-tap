@@ -1,6 +1,22 @@
-# Troubleshooting and limitations for Bitnami Services
+# Troubleshoot Bitnami Services
 
-To see troubleshooting information and limitations for Bitnami Services, see
-[Troubleshoot Services Toolkit](../../services-toolkit/how-to-guides/troubleshooting.hbs.md)
-and [Known limitations for Services Toolkit](../../services-toolkit/reference/known-limitations.hbs.md)
-in the Services Toolkit component documentation.
+This topic explains how you troubleshoot issues related to Bitnami Services on Tanzu Application Platform
+(commonly known as TAP).
+
+## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
+
+**Symptom:**
+
+If you [configure private registry integration for the Bitnami services](../../bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
+after creating a claim for a Bitnami service using the default configuration,
+the updated private registry configuration does not appear to take effect.
+
+**Cause:**
+
+This is due to caching behavior in the system that is not accounted for during configuration
+updates.
+
+**Solution:**
+
+Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
+back online after having applied the updated registry configuration.

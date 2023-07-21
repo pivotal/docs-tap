@@ -311,13 +311,6 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Application Platform GUI.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-5-1-tnz-src-cntrllr-ki'></a> Tanzu Source Controller
-
-- In v0.7.0, when pulling images from Elastic Container Registry (ECR), Tanzu Source Controller
-  keyless access to ECR through AWS IAM role binding fails to authenticate (error code: 401).
-  The workaround is to set up a standard Kubernetes secret with a user-id and password to authenticate
-  to ECR, instead of binding Tanzu Source Controller to an AWS IAM role to pull images from ECR.
-
 ---
 
 ## <a id='1-5-0'></a> v1.5.0
@@ -840,18 +833,15 @@ This release has the following known issues, listed by area and component.
   after having already created a claim for one or more of the Bitnami services using the default
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
-  For a workaround, see [Known issues and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
-
-- Default cluster-admin IAM roles on GKE do not allow claiming of Bitnami Services.
-  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#default-cluster-admin).
+  For a workaround, see [Troubleshoot Bitnami Services](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
 
 #### <a id='1-5-0-crossplane-ki'></a> Crossplane
 
 - Crossplane Providers do not transition to `HEALTHY=True` if using a custom certificate for your registry.
-  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#cp-custom-cert).
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert).
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
-  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#cp-custom-cert-inject).
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
 
 #### <a id='1-5-0-eventing-ki'></a> Eventing
 
@@ -885,7 +875,10 @@ This release has the following known issues, listed by area and component.
 #### <a id='1-5-0-stk-ki'></a> Services Toolkit
 
 - Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition.
-  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#compositeresourcedef).
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+- Default cluster-admin IAM roles on GKE do not allow you to claim Bitnami Services.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#default-cluster-admin).
 
 #### <a id='1-5-0-scc-ki'></a> Supply Chain Choreographer
 

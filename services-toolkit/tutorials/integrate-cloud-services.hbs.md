@@ -59,7 +59,7 @@ three main cloud providers:
 
 > **Note** These cloud-based Providers often install many hundreds of additional CRDs onto the cluster,
 > which can have a negative impact on cluster performance.
-> For more information, see [Cluster performance degradation due to large number of CRDs](../reference/known-limitations.hbs.md#too-many-crds).
+> For more information, see [Cluster performance degradation due to large number of CRDs](../../crossplane/reference/known-limitations.hbs.md#too-many-crds).
 
 Choose the Provider you want, and then follow Upbound's official documentation to install the
 `Provider` and to create a corresponding `ProviderConfig`.

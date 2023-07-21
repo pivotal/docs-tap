@@ -3,11 +3,8 @@
 This topic explains how you can troubleshoot issues related to working with services on
 Tanzu Application Platform (commonly known as TAP).
 
-For known limitations and the corresponding workarounds, see [Known limitations for Services Toolkit](../reference/known-limitations.hbs.md).
-
-## <a id="prereq"></a> Prerequisites
-
-To follow the steps in this topic, you must have kubectl access to the cluster.
+For the limitations of services on Tanzu Application Platform, see
+[Services Toolkit limitations](../reference/known-limitations.hbs.md).
 
 ## <a id="debug-dynamic-provisioning"></a> Debug `ClassClaim` and provisioner-based `ClusterInstanceClass`
 
@@ -15,6 +12,10 @@ This section provides guidance on how to debug issues related to using `ClassCla
 and provisioner-based `ClusterInstanceClass`.
 The approach starts by inspecting a `ClassClaim` and tracing back through the chain of
 resources that are created when fulfilling the `ClassClaim`.
+
+### <a id="prereq"></a> Prerequisites
+
+To follow the steps in this section, you must have kubectl access to the cluster.
 
 ### <a id="inspect-class-claim"></a> Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass`, and `CompositeResourceDefinition`
 
@@ -140,5 +141,45 @@ From the output, check the following:
 
 ### <a id="contact-support"></a> Step 5: Contact support
 
-If you have followed the steps in this topic and are still unable to discover the cause of the issue,
+If you have followed the steps in this section and are still unable to discover the cause of the issue,
 contact VMware Support for further guidance and help to resolve the issue.
+
+## <a id="compositeresourcedef"></a> Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition
+
+**Symptom:**
+
+When creating a `CompositeResourceDefinition`, if you set `additionalProperties: true` in the
+`openAPIV3Schema` section, an error occurs during the validation step of the creation of any
+`ClassClaim` that refers to a class that refers to the `CompositeResourceDefinitions`.
+
+The error appears as follows:
+
+```console
+json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalProperties of type apiextensions.JSONSchemaPropsOrBool
+```
+
+**Solution:**
+
+Rather than setting `additionalProperties: true`, you can set `additionalProperties: {}`.
+This has the same effect, but does not cause unexpected errors.
+
+## <a id="default-cluster-admin"></a>Default cluster-admin IAM roles on GKE do not allow you to claim Bitnami Services
+
+**Symptom:**
+
+For Tanzu Application Platform installations on Google Kubernetes Engine (GKE) clusters,
+users with cluster-admin Role-Based Access Control (RBAC) permissions are not able to
+create class claims for any of the Bitnami Services.
+
+The following error occurs:
+
+```console
+Error: admission webhook "vclassclaim.validation.resourceclaims.services.apps.tanzu.vmware.com" denied the request: user 'user@example.com' cannot 'claim' from clusterinstanceclass 'mysql-unmanaged'
+Error: exit status 1
+```
+
+**Solution:**
+
+Explicitly create a ClusterRoleBinding for your user or group to the corresponding
+`app-operator-claim-class-SERVICE` ClusterRole, where `SERVICE` is one of `mysql`, `postgresql`,
+`rabbitmq`, or `redis`.
