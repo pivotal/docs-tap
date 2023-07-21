@@ -466,6 +466,11 @@ the workload update.
   your existing installation.
   For more information, see [Use your existing Crossplane installation](crossplane/how-to-guides/use-existing-crossplane.hbs.md).
 
+- Resoved an issue where Crossplane Providers did not transition to `HEALTHY=True` if using a custom
+  certificate for your registry.
+  This prevented the class claims used for dynamic provisioning from reconciling.
+  The Crossplane Package now inherits the data configured in `shared.ca_cert_data` of `tap-values.yaml`.
+
 #### <a id='1-6-1-namespace-provisioner-ri'></a> Namespace Provisioner
 
 - Resolved an issue that prevented updates to the AWS IAM role from reflecting in the Service
