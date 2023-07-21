@@ -12,8 +12,7 @@ Tanzu Application Platform workload to fail or become unresponsive indefinitely.
 
 ### Solution
 
-Do not click the button. Instead, in the top menu click **Debug** > **Detach All**.
-A fix for this issue is planned for a future release.
+To end a debugging session, in the top menu click **Debug** > **Detach All**.
 
 ## <a id="wait-lang-server"></a> The Tanzu Workloads panel shows `waiting on language server...`
 
