@@ -6,4 +6,4 @@ In this section:
 
 - [Package values](package-values.hbs.md)
 - [Version matrix](version-matrix.hbs.md)
-- [Known issues](known-issues.hbs.md)
+- [Crossplane limitations](known-limitations.hbs.md)
