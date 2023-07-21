@@ -327,6 +327,12 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
   projects in their preferred IDE
 
+#### <a id='1-6-1-tbs'></a> Tanzu Build Service
+
+- Added new [Build Service Tanzu plugin](cli-plugins/build-service/overview.hbs.md)
+- Introduce (Cluster)Buildpack resource to enable individually packaged dependencies adn better insight into installed buildpack versions .
+- Migrate to new Full TBS Dependencies package that utilizes Carvel packages to install dependencies.
+
 #### <a id='1-6-1-cnrs'></a> Cloud Native Runtimes
 
 - New `default_external_scheme` configuration option:
