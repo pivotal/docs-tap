@@ -664,7 +664,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 
-#### <a id='1-6-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
+### <a id='1-6-apps-cli-plugin-deprecations'></a> Apps plug-in for Tanzu CLI
 
 - The default value for the `--update-strategy` flag changes from merge to replace in
   Tanzu Application Platform v1.7.0
