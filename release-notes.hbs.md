@@ -24,7 +24,10 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-3-11-COMPONENT-NAME-ri'></a> COMPONENT-NAME
  
 - Resolved issue description.
- 
+
+#### <a id='1-3-11-api-auto-registration-ri'></a> API Auto Registration
+
+- Fixed an issue where names generated for API Entities for Tanzu Application Platform GUI exceeded 63 characters.
 ---
  
 ### <a id='1-3-11-known-issues'></a> Known issues 
