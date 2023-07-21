@@ -9,7 +9,9 @@ Tanzu Build Service uses the open-source [Cloud Native Buildpacks](https://build
 project to turn application source code into container images.
 It executes reproducible builds aligned with modern container standards and keeps images up to date.
 
-Check out the [CLI Docs](../cli-plugins/build-service/overview.hbs.md) for more info about the Build Service plugin for Tanzu CLI.
+Use the Build Service CLI plug-in to view all the Tanzu Build Service
+resources on any Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service
+installed. For more information, see [Build Service CLI plug-in overview](../cli-plugins/build-service/overview.hbs.md).
 
 For more information about Tanzu Build Service, see the
 [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
