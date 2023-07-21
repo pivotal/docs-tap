@@ -21,6 +21,8 @@ that user can see only the Software Catalog entities that are owned by their tea
 
 > **Important** The permission framework is deactivated by default.
 
+> **Important** The built-in `owner-of` policy is primarily applied to the Component entities of the Software Catalog. Accelerators (templates) in the Application Accelerator would become invisible if the permission framework is enabled.
+
 ## <a id='enable-permission'></a> Enable the permission framework
 
 To enable the permission framework and limit Software Catalog entities' visibility to owners,
