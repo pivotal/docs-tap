@@ -548,7 +548,7 @@ This release has the following known issues, listed by component and area.
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane Package.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
-  `kubectl delete validatingwebhookconfiguration crossplane`
+  `kubectl delete validatingwebhookconfiguration crossplane`.
 
 #### <a id='1-6-1-stk-ki'></a> Services Toolkit
 

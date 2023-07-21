@@ -8,4 +8,4 @@ In this section:
 - [Configure dynamic provisioning of AWS RDS service instances](dynamic-provisioning-rds.hbs.md)
 - [Configure dynamic provisioning of VMware SQL with Postgres for Kubernetes service instances](dynamic-provisioning-tanzu-postgresql.hbs.md)
 - [Configure private registry and VMware Application Catalog (VAC) integration for Bitnami Services](../../bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
-- [Troubleshooting and known limitations](troubleshooting.hbs.md)
+- [Troubleshoot Services Toolkit](troubleshooting.hbs.md)
