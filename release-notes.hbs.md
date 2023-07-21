@@ -97,6 +97,16 @@ plug-in binaries to the local filesystem is no longer required.
 - The shorthand option `-e` is available as a convenient alternative for the `--export` flag.
 - The `tanzu apps workload get` command is enhanced to include Git revision information in the overview section. This provides a quick reference to the Git revision associated with the workload.
 
+#### <a id='1-6-1-tbs'></a> Build Service plug-in for Tanzu CLI
+
+- Added new a new Build Service plug-in that allows you to view all the Tanzu Build Service
+resources on any Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service
+installed. For more information, see [Build Service CLI plug-in overview](cli-plugins/build-service/overview.hbs.md).
+- Introduced a cluster buildpack resource to enable individually packaged dependencies
+and provide insights into installed buildpack versions.
+- Migrated to new full Tanzu Build Service dependencies package that utilizes Carvel packages
+to install dependencies.
+
 #### <a id='1-6-1-insight-cli-plugin-new-features'></a> Insight plug-in for Tanzu CLI
 
 - Triage vulnerabilities with the `tanzu insight triage` command. For more information, see
@@ -326,12 +336,6 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   to a cluster as a native image.
 - Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
   projects in their preferred IDE
-
-#### <a id='1-6-1-tbs'></a> Tanzu Build Service
-
-- Added new [Build Service Tanzu plugin](cli-plugins/build-service/overview.hbs.md)
-- Introduce (Cluster)Buildpack resource to enable individually packaged dependencies adn better insight into installed buildpack versions .
-- Migrate to new Full TBS Dependencies package that utilizes Carvel packages to install dependencies.
 
 #### <a id='1-6-1-cnrs'></a> Cloud Native Runtimes
 
