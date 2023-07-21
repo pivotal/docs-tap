@@ -523,17 +523,22 @@ This release has the following known issues, listed by component and area.
   after having already created a claim for one or more of the Bitnami services using the default
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
-  For a workaround, see [Known issues and limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
+  For a workaround, see [Troubleshoot Bitnami Services](services-toolkit/how-to-guides/troubleshooting.hbs.md#private-reg).
 
 #### <a id='1-6-1-crossplane-ki'></a> Crossplane
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
-  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#cp-custom-cert-inject).
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane Package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`
 
 #### <a id='1-6-1-stk-ki'></a> Services Toolkit
 
 - Unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition.
-  For more information and a workaround, see [Known issues and limitations](./services-toolkit/reference/known-limitations.hbs.md#compositeresourcedef).
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
 
 #### <a id='1-6-1-scc-ki'></a> Supply Chain Choreographer
 
