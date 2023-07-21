@@ -429,7 +429,7 @@ docs.vmware.com is built.
       - [Contour overview](contour/about.hbs.md)
       - [Install Contour](contour/install.hbs.md)
       - [Configure Cipher Suites and TLS version in Contour](contour/configuring-cipher-suites-and-tls-version.hbs.md)
-      - [Configure Contour to best suit your cluster](contour/configuring-contour-to-fit-your-cluster.hbs.md)
+      - [Configure Contour to suit your cluster size](contour/configuring-contour-to-fit-your-cluster.hbs.md)
       - [Configure Contour to propagate header with Domain Mapping](contour/configuring-contour-with-domainmapping.hbs.md)
     - [Crossplane](crossplane/about.hbs.md)
         - [Overview](crossplane/about.hbs.md)
