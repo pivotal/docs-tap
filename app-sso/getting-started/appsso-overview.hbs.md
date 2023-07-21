@@ -5,9 +5,9 @@ Single Sign-On (commonly called AppSSO).
 
 Use this topic to learn how to:
 
-1. [Set up your first authorization server](provision-auth-server.hbs.md).
-1. [Provision a ClientRegistration](client-registration.hbs.md).
-1. [Deploy an application](application.hbs.md) that uses the provisioned ClientRegistration to enable SSO.
+1. [Set up your first simplistic authorization server](./provision-auth-server.hbs.md).
+1. [Claim credentials](./claim-credentials.hbs.md)
+1. [Deploy your workload](./application.hbs.md)
 
 After completing these steps, you can proceed with
 [securing a Workload](../how-to-guides/app-operators/secure-spring-boot-workload.hbs.md).
@@ -16,6 +16,8 @@ After completing these steps, you can proceed with
 
 You must install AppSSO on your Tanzu Application Platform cluster.
 For more information, see [Install AppSSO](../how-to-guides/platform-operators/installation.hbs.md).
+
+You must have the [Tanzu CLI](/install-tanzu-cli.hbs.md) installed on your machine and be connected to a Tanzu cluster.
 
 ## <a id='concepts'></a>Key concepts
 

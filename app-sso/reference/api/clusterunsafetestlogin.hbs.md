@@ -1,7 +1,7 @@
 # ClusterUnsafeTestLogin API for Application Single Sign-On
 
 `ClusterUnsafeTestLogin` is the recommended way to get started with Application 
-Single Sign-On (commonly called AppSSO) in non-production environments and it is 
+Single Sign-On (commonly called AppSSO) in non-production environments, and it is 
 not safe for production.
 
 `ClusterUnsafeTestLogin` represents the request for an unsafe, ready-to-claim
