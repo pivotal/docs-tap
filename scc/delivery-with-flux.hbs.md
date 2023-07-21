@@ -1,4 +1,4 @@
-# Use Gitops delivery with FluxCD (alpha)
+# Use Gitops delivery with FluxCD (beta)
 
 This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
