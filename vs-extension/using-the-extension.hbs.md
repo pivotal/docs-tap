@@ -64,10 +64,9 @@ in your workload's container.
 It is only needed to initiate remote debugging and can be safely deleted at any time.
 This file location is temporary and will change in a future version.
 
-> **Caution** Do not use the red square Stop button in the Visual Studio top toolbar.
-> Doing so causes the Tanzu Application Platform workload to fail or become unresponsive indefinitely.
+> **Caution** Do not use the red square Stop button to end your debugging session.
+> Doing so may cause the Tanzu Application Platform workload to fail.
 > Instead, in the top menu click **Debug** > **Detach All**.
-> A fix for this issue is planned for a future release.
 >
 > If the name of your running app process (the app DLL process), does not match the name
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
