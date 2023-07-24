@@ -24,7 +24,7 @@ or manual analysis.
 - in_triage = the vulnerability is being investigated.
 - false_positive = the vulnerability is not specific to the component or service
   and was falsely identified or associated.
-- not_affected = the component or service is not affected by the vulnerability.
+- not_affected = the component or service is not affected by the vulnerability.  
 
 ## Impact Analysis Justifications (\-\-justification)
 
@@ -45,7 +45,7 @@ The rationale of why the impact analysis state was asserted
 - protected_by_mitigating_control = preventative measures have been implemented
   that reduce the likelihood and/or impact of the vulnerability.
 
-  > **Note** When `--state` is set to `not_affected`, then `--justification` is required.
+> **Note** When `--state` is set to `not_affected`, then `--justification` is required.
 
 ## Impact Analysis Responses (\-\-response)
 
