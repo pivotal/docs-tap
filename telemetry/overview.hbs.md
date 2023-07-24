@@ -1,4 +1,4 @@
-# Tanzu Application Platform Telemetry
+# Overview of Tanzu Application Platform Telemetry
 
 Tanzu Application Platform Telemetry (commonly known as TAP Telemetry) is a set of 
 objects that collect data about the usage of Tanzu Application Platform (commonly known as TAP) 

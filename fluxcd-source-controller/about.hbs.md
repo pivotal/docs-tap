@@ -1,4 +1,4 @@
-# FluxCD Source Controller
+# Overview of FluxCD Source Controller
 
 FluxCD Source Controller provides you with APIs for acquiring resources such as Git, Helm 
 repositories and S3 buckets on the cluster.

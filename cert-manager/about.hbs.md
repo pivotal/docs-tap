@@ -1,4 +1,4 @@
-# cert-manager
+# Overview of cert-manager
 
 cert-manager adds certificates and certificate issuers as resource types to
 Kubernetes clusters. It also helps you to obtain, renew, and use those
