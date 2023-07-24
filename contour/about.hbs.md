@@ -1,4 +1,4 @@
-# Contour
+# Overview of Contour
 
 Contour is an ingress controller for Kubernetes that supports dynamic configuration 
 updates and multi-team ingress delegation. 
