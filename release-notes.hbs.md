@@ -649,12 +649,17 @@ The following table lists the supported component versions for this Tanzu Applic
 | Learning Center                                 |         |
 | Local Source Proxy                              | 0.1.0   |
 | Namespace Provisioner                           | 0.4.0   |
+| Out of the Box Delivery - Basic                 | 0.13.6  |
+| Out of the Box Supply Chain - Basic             | 0.13.6  |
+| Out of the Box Supply Chain - Testing           | 0.13.6  |
+| Out of the Box Supply Chain - Testing & Scanning | 0.13.6  |
+| Out of the Box Templates                        | 0.13.6  |
 | Service Bindings                                | 0.9.1   |
 | Services Toolkit                                | 0.11.0  |
 | Source Controller                               |         |
 | Spring Boot conventions                         |         |
 | Spring Cloud Gateway                            |         |
-| Supply Chain Choreographer                      |         |
+| Supply Chain Choreographer                      | 0.7.3   |
 | Supply Chain Security Tools - Policy Controller |         |
 | Supply Chain Security Tools - Scan              |         |
 | Supply Chain Security Tools - Sign (Deprecated) |         |
