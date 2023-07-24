@@ -32,7 +32,7 @@ configuration for each environment. For information about using Carvel, see
 
 You can deliver packages created by the Carvel package supply chain, and add
 them to clusters, by using a GitOps repository. For information about this
-delivery method, see [Use Gitops Delivery with Flux CD
+delivery method, see [Use Gitops Delivery with FluxCD
 (beta)](delivery-with-flux.hbs.md).
 
 ## <a id="using-app"></a> Using GitOps delivery with Carvel App

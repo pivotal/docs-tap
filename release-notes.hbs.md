@@ -343,7 +343,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The Tanzu Service CLI plug-in is now compiled using the new Tanzu CLI runtime (v0.90.0).
 - There are no new features or changes to existing commands.
 
-#### <a id='1-6-1-scc'></a> v1.6.1 features: Supply Chain Choreographer
+#### <a id='1-6-1-scc'></a> Supply Chain Choreographer
+
+- [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
+
+#### <a id='1-6-1-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
 
