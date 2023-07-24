@@ -341,10 +341,10 @@ installed. For more information, see [Build Service CLI plug-in overview](cli-pl
 
 - Added support for Local Source Proxy that eliminates the need to provide source image configuration
   for rapid iteration in the inner loop
-- Tanzu Developer Tools for IntelliJ can now be used to rapidly iterate on Spring-native applications.
+- Tanzu Developer Tools for VS Code can now be used to rapidly iterate on Spring-native applications.
   Developers can Live Update and debug spring-native applications non-natively and then deploy
   to a cluster as a native image.
-- Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
+- Developers can now use Tanzu Developer Tools for VS Code to rapidly iterate and build Gradle
   projects in their preferred IDE
 
 ---
