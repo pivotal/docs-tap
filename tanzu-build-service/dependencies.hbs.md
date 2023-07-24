@@ -11,7 +11,7 @@ This topic tells you about Tanzu Build Service dependencies.
 To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
-and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.11/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
 
 ## <a id="install"></a> How dependencies are installed
 
@@ -203,4 +203,4 @@ version of Tanzu Application Platform.
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
 Updating buildpack, and stack dependencies outside of upgrades to Tanzu Application Platform is possible but VMware does not recommend it, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform.
-For more information about updating a stack and a buildpack, see [Cluster stacks update](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) and [Cluster store update](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) in the Tanzu Build Service documentation. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
+For more information about updating a stack and a buildpack, see [Cluster stacks update](https://docs.vmware.com/en/Tanzu-Build-Service/1.11/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) and [Cluster store update](https://docs.vmware.com/en/Tanzu-Build-Service/1.11/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) in the Tanzu Build Service documentation. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
