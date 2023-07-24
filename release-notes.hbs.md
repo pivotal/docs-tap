@@ -1206,8 +1206,8 @@ VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
-VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
-and remove support in Tanzu Application Platform v1.6.
+VMware plans to deactivate this format by default in Tanzu Application Platform v1.6
+and remove support in Tanzu Application Platform v1.7.
 To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
 ##### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
