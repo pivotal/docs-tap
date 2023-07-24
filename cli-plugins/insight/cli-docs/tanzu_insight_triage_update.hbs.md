@@ -26,7 +26,7 @@ or manual analysis.
   and was falsely identified or associated.
 - not_affected = the component or service is not affected by the vulnerability.
 
-> **Note** When `--state` is set to `not_affected`, then `--justification` is required.  When `--state` is set to `exploitable` it is encouraged to also include `--justification` but not required per CycloneDX specification.
+> **Note** When `--state` is set to `not_affected`, then `--justification` is required.  When `--state` is set to `exploitable` it is encouraged to also include `--response` but not required per CycloneDX specification.
 
 ## Impact Analysis Justifications (\-\-justification)
 
@@ -50,8 +50,7 @@ The rationale of why the impact analysis state was asserted
 ## Impact Analysis Responses (\-\-response)
 
 A response to the vulnerability by the manufacturer, supplier, or project
-responsible for the affected component or service.  More than one response is
-allowed. Responses are strongly encouraged for vulnerabilities where the
+responsible for the affected component or service.  More than one response is allowed. Responses are strongly encouraged for vulnerabilities where the
 analysis state is exploitable
 
 - can_not_fix
@@ -59,6 +58,8 @@ analysis state is exploitable
 - update
 - rollback
 - workaround_available
+
+> **Note** When `--state` is set to `exploitable` it is encouraged to also include `--response`; however, this is not required per CycloneDX specification.
 
 ## Free form comments (\-\-comment) are also allowed.
 
