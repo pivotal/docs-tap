@@ -253,6 +253,10 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The Tanzu Service plug-in is now compiled using the new tanzu CLI runtime (v0.90.0).
 - No new features or changes to existing commands.
 
+#### <a id='1-6-1-scc'></a> Supply Chain Choreographer
+
+- [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
+
 #### <a id='1-6-1-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - The source scanning step is removed from the out-of-box test and scan supply chain. For information about how to add the source scanning step to the test and scan supply chain, see [Scan Types for Supply Chain Security Tools - Scan](scst-scan/scan-types.hbs.md#source-scan).
