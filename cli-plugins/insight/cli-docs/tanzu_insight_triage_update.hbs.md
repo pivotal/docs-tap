@@ -45,7 +45,7 @@ The rationale of why the impact analysis state was asserted
 - protected_by_mitigating_control = preventative measures have been implemented
   that reduce the likelihood and/or impact of the vulnerability.
 
-> **Note** When `--state` is set to `not_affected`, then `--justification` is required.
+> **Note** `--justification` is required when `--state` is set to `not_affected`
 
 ## Impact Analysis Responses (\-\-response)
 
@@ -59,7 +59,7 @@ analysis state is exploitable
 - rollback
 - workaround_available
 
-> **Note** When `--state` is set to `exploitable` it is encouraged to also include `--response`; however, this is not required per CycloneDX specification.
+> **Note** `--response` is highly encouraged when `--state` is set to `exploitable`; however, this is not required per CycloneDX specification.
 
 ## Free form comments (\-\-comment) are also allowed.
 
