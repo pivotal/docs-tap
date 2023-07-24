@@ -330,9 +330,6 @@ docs.vmware.com is built.
             - [About token signatures](app-sso/concepts/token-signature.hbs.md)
         - [Get started](app-sso/getting-started/index.hbs.md)
             - [Overview](app-sso/getting-started/appsso-overview.hbs.md)
-            - [Set up your first simplistic authorization server](app-sso/getting-started/provision-auth-server.hbs.md).
-            - [Claim the credentials to connect your workload](app-sso/getting-started/claim-credentials.hbs.md)
-            - [Deploy your workload, a.k.a application](app-sso/getting-started/application.hbs.md)
         - [How-to guides](app-sso/how-to-guides/index.hbs.md)
             - [AppSSO for platform operators](app-sso/how-to-guides/platform-operators/index.hbs.md)
                 - [AppSSO for platform operators overview](app-sso/how-to-guides/platform-operators/index.hbs.md)
