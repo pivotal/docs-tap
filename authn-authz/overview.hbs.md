@@ -1,4 +1,4 @@
-# Tanzu Application Platform authentication and authorization overview
+# Overview of Tanzu Application Platform authentication and authorization
 
 Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }} includes:
 
