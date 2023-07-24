@@ -11,7 +11,7 @@ for impact analysis, and you will find flag options for each of the CycloneDX's
 VEX fields, as well as support for only their predefined values. Here is a
 description of the fields and their supported options:
 
-Impact Analysis States (\-\-state)
+## Impact Analysis States (\-\-state)
 
 Declares the current state of an occurrence of a vulnerability, after automated
 or manual analysis.
@@ -25,9 +25,10 @@ or manual analysis.
 - false_positive = the vulnerability is not specific to the component or service
   and was falsely identified or associated.
 - not_affected = the component or service is not affected by the vulnerability.
-  --justification should be specified for all not_affected cases.
 
-Impact Analysis Justifications (\-\-justification)
+> **Note** When `--state` is set to `not_affected`, then `--justification` is required.  When `--state` is set to `exploitable` it is encouraged to also include `--justification` but not required per CycloneDX specification.
+
+## Impact Analysis Justifications (\-\-justification)
 
 The rationale of why the impact analysis state was asserted
 
@@ -46,7 +47,7 @@ The rationale of why the impact analysis state was asserted
 - protected_by_mitigating_control = preventative measures have been implemented
   that reduce the likelihood and/or impact of the vulnerability.
 
-Impact Analysis Responses (\-\-response)
+## Impact Analysis Responses (\-\-response)
 
 A response to the vulnerability by the manufacturer, supplier, or project
 responsible for the affected component or service.  More than one response is
@@ -59,7 +60,7 @@ analysis state is exploitable
 - rollback
 - workaround_available
 
-Free form comments (\-\-comment) are also allowed.
+## Free form comments (\-\-comment) are also allowed.
 
 ```console
 tanzu insight triage update --cveid <cve-id> --pkg-name <pkg-name> --pkg-version <pkg-version> --img-digest <digest> --artifact-group-uid <uid> [--state <state>] [--justification <justification>] [--response <response1,response2>] [--comment <comment>] [flags]
