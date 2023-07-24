@@ -24,9 +24,7 @@ or manual analysis.
 - in_triage = the vulnerability is being investigated.
 - false_positive = the vulnerability is not specific to the component or service
   and was falsely identified or associated.
-- not_affected = the component or service is not affected by the vulnerability.
-
-> **Note** When `--state` is set to `not_affected`, then `--justification` is required.  When `--state` is set to `exploitable` it is encouraged to also include `--response` but not required per CycloneDX specification.
+- not_affected = the component or service is not affected by the vulnerability.  
 
 ## Impact Analysis Justifications (\-\-justification)
 
@@ -47,6 +45,8 @@ The rationale of why the impact analysis state was asserted
 - protected_by_mitigating_control = preventative measures have been implemented
   that reduce the likelihood and/or impact of the vulnerability.
 
+> **Note** `--justification` is required when `--state` is set to `not_affected`
+
 ## Impact Analysis Responses (\-\-response)
 
 A response to the vulnerability by the manufacturer, supplier, or project
@@ -59,7 +59,7 @@ analysis state is exploitable
 - rollback
 - workaround_available
 
-> **Note** When `--state` is set to `exploitable` it is encouraged to also include `--response`; however, this is not required per CycloneDX specification.
+> **Note** `--response` is highly encouraged when `--state` is set to `exploitable`; however, this is not required per CycloneDX specification.
 
 ## Free form comments (\-\-comment) are also allowed.
 
