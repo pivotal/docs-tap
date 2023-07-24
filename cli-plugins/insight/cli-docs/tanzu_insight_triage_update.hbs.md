@@ -26,8 +26,6 @@ or manual analysis.
   and was falsely identified or associated.
 - not_affected = the component or service is not affected by the vulnerability.
 
-> **Note** When `--state` is set to `not_affected`, then `--justification` is required.  When `--state` is set to `exploitable` it is encouraged to also include `--response` but not required per CycloneDX specification.
-
 ## Impact Analysis Justifications (\-\-justification)
 
 The rationale of why the impact analysis state was asserted
@@ -46,6 +44,8 @@ The rationale of why the impact analysis state was asserted
   perimeter.
 - protected_by_mitigating_control = preventative measures have been implemented
   that reduce the likelihood and/or impact of the vulnerability.
+
+  > **Note** When `--state` is set to `not_affected`, then `--justification` is required.
 
 ## Impact Analysis Responses (\-\-response)
 
