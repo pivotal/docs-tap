@@ -1,6 +1,6 @@
 # tanzu insight vulnerabilities sources
 
-Get sources with a given vulnerability.
+Use this command to get sources with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 

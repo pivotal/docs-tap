@@ -1,6 +1,6 @@
 # tanzu insight vulnerabilities
 
-Vulnerabilities commands
+Use this command to get help for vulnerabilities commands.
 
 ## <a id='options'></a>Options
 

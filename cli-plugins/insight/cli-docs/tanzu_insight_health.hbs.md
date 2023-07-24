@@ -1,6 +1,6 @@
 # tanzu insight health
 
-Use this command to checks if and endpoint is reachable.
+Use this command to checks if an endpoint is reachable.
 
 ## <a id='synopsis'></a>Synopsis
 

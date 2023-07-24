@@ -1,6 +1,6 @@
 # tanzu insight config
 
-Config commands
+Use this command to get help for config commands.
 
 ## <a id='options'></a>Options
 

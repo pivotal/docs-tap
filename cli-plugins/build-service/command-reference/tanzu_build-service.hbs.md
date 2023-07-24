@@ -1,6 +1,6 @@
 # tanzu build-service
 
-The Build Service CLI plug-in is a plugin you use to interact with Tanzu Build Service CRDs.
+The Build Service CLI plug-in is a plug-in you use to interact with Tanzu Build Service CRDs.
 
 ## Options
 

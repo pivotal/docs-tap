@@ -1,6 +1,6 @@
 # tanzu insight package get
 
-Get package by name, version, and package manager
+Use this command to get package by name, version, and package manager.
 
 ## <a id='synopsis'></a>Synopsis
 

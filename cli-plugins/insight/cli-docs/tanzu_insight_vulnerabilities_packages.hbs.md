@@ -1,6 +1,6 @@
 # tanzu insight vulnerabilities packages
 
-Get packages with a given vulnerability.
+Use this command to get packages with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 

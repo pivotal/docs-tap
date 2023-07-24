@@ -1,6 +1,6 @@
 # tanzu insight vulnerabilities images
 
-Use this command to Get images with a given vulnerability.
+Use this command to get images with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 

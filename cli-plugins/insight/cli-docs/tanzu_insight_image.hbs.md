@@ -1,6 +1,6 @@
 # tanzu insight image
 
-Image commands
+Use this command to get help for image commands.
 
 ## <a id='options'></a>Options
 

@@ -1,6 +1,6 @@
 # tanzu insight package
 
-Package commands
+Use this command to get help for package commands.
 
 ## <a id='options'></a>Options
 

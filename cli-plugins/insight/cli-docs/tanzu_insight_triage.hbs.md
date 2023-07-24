@@ -1,6 +1,6 @@
 # tanzu insight triage
 
-Vulnerability analysis commands
+Use this command to to get help for vulnerability analysis commands.
 
 ## <a id='options'></a>Options
 
