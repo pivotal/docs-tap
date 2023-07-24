@@ -1,6 +1,6 @@
 # tanzu insight source
 
-Use this command to get for source commands.
+Use this command to get help for source commands.
 
 ## <a id='options'></a>Options
 

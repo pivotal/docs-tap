@@ -91,7 +91,7 @@ The following table describes the resource limit changes that are required for c
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
-- In the CPU Requests/Limits column, the changed values are bolded. Non bolded values in are the default ones set during a Tanzu Application Platform installation.
+- In the CPU Requests/Limits column, the changed values are bolded. Non bolded values are the default ones set during a Tanzu Application Platform installation.
 - In the CPU Requests/Limits column, some of the request and limits values are set equally so that the pod is allocated in a node where the requested limit is available.
 
 \* Only when there is issue with scan pods getting deleted before Cartographer can process it
