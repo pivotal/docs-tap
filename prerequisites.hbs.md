@@ -126,7 +126,7 @@ providers:
 - For the [full profile](install-online/profile.hbs.md#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
-    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-custom-stacks.html).
+    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.11/vmware-tanzu-build-service/managing-custom-stacks.html).
     - Supply Chain, in which Kaniko usage requires root privileges to build containers.
     - Tanzu Learning Center, which requires root privileges.
 

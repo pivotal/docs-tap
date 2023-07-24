@@ -1,4 +1,4 @@
-# API Validation and Scoring
+# Overview of API Validation and Scoring
 
 API Validation and Scoring focuses on scanning and validating an OpenAPI specification. 
 The API specification is generated from the [API Auto Registration](../api-auto-registration/about.hbs.md). 
