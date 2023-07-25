@@ -4,11 +4,11 @@ Use this command to create or update a vulnerability analysis.
 
 ## <a id='synopsis'></a>Synopsis
 
-Create or update a vulnerability impact analysis. For impact analysis, you need
-to target a specific OS/Application package, vulnerability and image or source
-belonging to a specific Artifact Group. This tool follows CycloneDX's VEX spec
-for impact analysis, and you will find flag options for each of the CycloneDX's
-VEX fields, as well as support for only their predefined values. Here is a
+Create or update a vulnerability impact analysis. For impact analysis, you must
+target a specific OS and application package, vulnerability, and image or source
+belonging to a specific Artifact Group. This tool follows CycloneDX's VEX specification
+for impact analysis, that includes flag options for each of the CycloneDX's
+VEX fields, and support for only their predefined values. Here is a
 description of the fields and their supported options:
 
 ## Impact Analysis States (\-\-state)
@@ -16,11 +16,11 @@ description of the fields and their supported options:
 Declares the current state of an occurrence of a vulnerability, after automated
 or manual analysis.
 
-- resolved = the vulnerability has been remediated.
-- resolved_with_pedigree = the vulnerability has been remediated and evidence of
+- resolved = the vulnerability is remediated.
+- resolved_with_pedigree = the vulnerability is remediated and evidence of
   the changes are provided in the affected components pedigree containing
-  verifiable commit history and/or diff(s).
-- exploitable = the vulnerability may be directly or indirectly exploitable.
+  verifiable commit history or diffs.
+- exploitable = the vulnerability might be directly or indirectly exploitable.
 - in_triage = the vulnerability is being investigated.
 - false_positive = the vulnerability is not specific to the component or service
   and was falsely identified or associated.
@@ -30,20 +30,20 @@ or manual analysis.
 
 The rationale of why the impact analysis state was asserted
 
-- code_not_present = the code has been removed or tree-shaked.
+- code_not_present = the code is removed or tree-shaked.
 - code_not_reachable = the vulnerable code is not invoked at runtime.
 - requires_configuration = exploitability requires a configurable option to be
-  set/unset.
+  set or unset.
 - requires_dependency = exploitability requires a dependency that is not present.
-- requires_environment = exploitability requires a certain environment which is
+- requires_environment = exploitability requires a certain environment that is
   not present.
 - protected_by_compiler = exploitability requires a compiler flag to be
-  set/unset.
+  set or unset.
 - protected_at_runtime = exploits are prevented at runtime.
 - protected_at_perimeter = attacks are blocked at physical, logical, or network
   perimeter.
 - protected_by_mitigating_control = preventative measures have been implemented
-  that reduce the likelihood and/or impact of the vulnerability.
+  that reduce the likelihood or impact of the vulnerability.
 
 > **Note** `--justification` is required when `--state` is set to `not_affected`
 
@@ -59,7 +59,7 @@ analysis state is exploitable
 - rollback
 - workaround_available
 
-> **Note** `--response` is highly encouraged when `--state` is set to `exploitable`; however, this is not required per CycloneDX specification.
+> **Note** `--response` is highly encouraged when `--state` is set to `exploitable`; however, CycloneDX specification does not require this.
 
 ## Free form comments (\-\-comment) are also allowed.
 
@@ -75,6 +75,8 @@ insight triage update --cveid CVE-2022-5089 --pkg-name google.golang.org/protobu
 insight triage update --cveid CVE-2020-1034 --pkg-name libssl --pkg-version 1.3.0-dev.35 --src-commit 5025112c8b1 --artifact-group-uid AG-00002
 insight triage update --cveid CVE-2020-1034 --pkg-name libssl --pkg-version 1.3.0-dev.35 --src-commit 5025112c8b1 --artifact-group-uid AG-00002 --state exploitable --response will_not_fix,update
 ```
+
+For more information, see the [NIST](https://nvd.nist.gov/) website. 
 
 ## <a id='options'></a>Options
 
