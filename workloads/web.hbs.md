@@ -1,6 +1,7 @@
 # Use web workloads
 
-This topic tells you how to use the `web` workload type.
+This topic tells you how to use the `web` workload type in Tanzu Application Platform
+(commonly known as TAP).
 
 ## <a id="overview"></a>Overview
 
