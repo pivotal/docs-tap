@@ -5,8 +5,7 @@ it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). 
 [Backstage documentation](https://backstage.io/docs/permissions/overview/).
 
 > **Caution** The permission framework functions are in alpha. It is not recommended for use in
-> production environment.
-> <!-- For more information, see xref -->.
+> production environment. <!-- For more information, see xref -->
 
 ## <a id='permission-overview'></a> Overview of the permission framework
 
