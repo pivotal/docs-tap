@@ -66,7 +66,7 @@ analysis state is exploitable
 Example:
 
 ```console
-tanzu insight triage update --cveid <cve-id> --pkg-name <pkg-name> --pkg-version <pkg-version> --img-digest <digest> --artifact-group-uid <uid> [--state <state>] [--justification <justification>] [--response <response1,response2>] [--comment <comment>] [flags]
+tanzu insight triage update --cveid CVE-ID --pkg-name PKG-NAME --pkg-version PKG-VERSION --img-digest DIGEST --artifact-group-uid UID [--state <state>] [--justification JUSTIFICATION] [--response RESPONSE1, RESPONSE2] [--comment COMMENT] [flags]
 ```
 
 ## <a id='examples'></a>Examples
