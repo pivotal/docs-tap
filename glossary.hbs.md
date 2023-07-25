@@ -29,8 +29,8 @@
     </tr>
     <tr>
         <td>API Scoring and Validation</td>
-        <td>This component focuses on scanning and validating OpenAPI specifications. 
-            It ensures your APIs are secure and robust by providing feedback and 
+        <td>This component focuses on scanning and validating OpenAPI specifications.
+            It ensures your APIs are secure and robust by providing feedback and
             recommendations early on in the software development life cycle.</td>
     </tr>
     <tr>
@@ -57,7 +57,7 @@
     </tr>
     <tr>
         <td>Application Single Sign-On (AppSSO)</td>
-        <td>This component provides APIs for curating and consuming a 
+        <td>This component provides APIs for curating and consuming a
             “Single Sign-On as a service” offering on Tanzu Application Platform.</td>
     </tr>
     <tr>
@@ -72,6 +72,10 @@
     <tr>
         <th>Term</th>
         <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Live Update</td>
+        <td></td>
     </tr>
     <tr>
         <td>Local Source Proxy (LSP)</td>
@@ -90,7 +94,7 @@
     </tr>
     <tr>
         <td>Tanzu Application Platform Telemetry</td>
-        <td>This is a set of objects that collect data about the usage of Tanzu Application Platform 
+        <td>This is a set of objects that collect data about the usage of Tanzu Application Platform
         and send it back to VMware for product improvements.</td>
     </tr>
     <tr>
