@@ -1,5 +1,7 @@
 # Install the Tanzu Build Service dependencies
 
+This topic tells you how to install the Tanzu Build Service full dependencies.
+
 <!-- The below partial is in the docs-tap/partials directory -->
 
 {{> 'partials/full-deps' find_tap_version="1. Get the latest version of the Tanzu Build Service package by running:
