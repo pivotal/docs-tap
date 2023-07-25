@@ -1,6 +1,7 @@
 # Use server workloads
 
-This topic tells you how to use the `server` workload type.
+This topic tells you how to use the `server` workload type in Tanzu Application Platform
+(commonly known as TAP).
 
 ## <a id="overview"></a>Overview
 

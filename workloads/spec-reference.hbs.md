@@ -1,6 +1,7 @@
 # Parameter reference
 
-This topic tells you about the `workload.spec.params` parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that are configured in the deliverable object.
+This topic tells you about the default supply chains and templates provided by Tanzu Application Platform (commonly known as TAP). It describes the `workload.spec.params` parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that are configured
+in the deliverable object.
 
 ## <a id="workload-parameter"></a> Workload Parameter Reference
 

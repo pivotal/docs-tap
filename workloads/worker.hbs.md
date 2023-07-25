@@ -1,6 +1,6 @@
 # Use worker workloads
 
-This topic tells you how to create and install a supply chain for the `worker` workload type.
+This topic tells you how to create and install a supply chain for the `worker` workload type in Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="overview"></a>Overview
 
