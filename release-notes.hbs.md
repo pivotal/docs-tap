@@ -364,7 +364,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   to the local file system is no longer required.
 
 - For Internet-restricted environments, see
-  [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#installing-the-tanzu-cli-in-internetrestricted-environments-3).
+  [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#internet-restricted-install).
 
 #### <a id='1-6-1-apps-cli-plugin'></a> Tanzu CLI Apps plug-in
 
