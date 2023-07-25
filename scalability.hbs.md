@@ -4,8 +4,7 @@ This topic describes the best practices required to build and deploy workloads a
 
 ## Sample application reference
 
-The following sections describe the configuration of the different-size applications used to derive
-scalability best practices.
+The following sections describe the configuration of the different-size applications used to derive scalability best practices.
 
 ### Small
 
@@ -59,7 +58,9 @@ scalability best practices.
 |**Medium** | 700m - 1000m |4-6&nbsp;GB| NA |6|4 |
 |**Large** | 1000m - 1500m |6-8&nbsp;GB| NA |7|4 |
 
-## Scale configuration for workload deployments (Yet to arrive for updates)
+## Scale configuration for workload deployments
+
+This section describes cluster sizes for deploying a 1K workload.
 
 Node configuration: 4 vCPUs, 16&nbsp;GB RAM, 120&nbsp;GB Disk size
 
@@ -83,7 +84,7 @@ The following table describes the resource limit changes that are required for c
 | Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | `tap-values.yaml` |
 | Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** |n/a | Yes | Yes | Yes | `tap-values.yaml` |
 | Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** |n/a | No | Yes | Yes | overlay |
-| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change deployment type from `Daemonset` to `Deployment`.| No | Yes | Yes | overlay |
+| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | overlay |
 | Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | overlay |
 | Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | overlay |
 | Eventing/triggermesh | 50&nbsp;m/200&nbsp;m | **100&nbsp;Mi - 800&nbsp;Mi** | n/a | No | Yes | Yes| overlay |
