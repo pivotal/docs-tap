@@ -55,7 +55,7 @@ In order to configure authentication for the Tanzu Developer Portal, VMware sugg
 following:
 
 1. Enable user authentication using one of the
-   [supported providers](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-gui-auth.html).
+   [supported providers](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/tap-gui-auth.html).
    Note that due to the limitations with the backstage authentication implementation, simply having
    authentication does [not guarantee full end-to-end security](https://backstage.io/docs/auth/#sign-in-configuration)
    as Backstage doesn’t currently support per-API authentication.
@@ -97,7 +97,7 @@ same identity provider that other components are using.
 
 While there are many options on how to enable OIDC providers for authentication with the Kubernetes
 API, VMware supports the [Pinniped project](https://pinniped.dev/) and has
-[documented](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-integrating-identity.html)
+[documented](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/authn-authz-integrating-identity.html)
 the process of setting it up as part of the Tanzu Application Platform documentation.
 
 By configuring this to use the same identify provider as the Tanzu Developer Portal, users
@@ -109,7 +109,7 @@ Using Pinniped will provide authentication for Kubernetes clusters but still req
 be bound to Kubernetes roles.  To provide a starting point, the Tanzu Application Platform provides
 six Kubernetes Roles as part of the installation that users can be bound to.  For more information
 around the roles used for authorization, refer to the
-[authentication and authorization documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-overview.html).
+[authentication and authorization documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/authn-authz-overview.html).
 
 ## Cryptographic Protections
 
@@ -215,7 +215,7 @@ Ensure that workloads only expose internal-only routes.
 
 All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-Tanzu Application Platform is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/integrations-tsm-tap-integration.html).
+Tanzu Application Platform is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/integrations-tsm-tap-integration.html).
 
 You must configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on Knative deployed services.
 For more information, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
@@ -229,7 +229,7 @@ Key management is the foundation of all data security. Data is encrypted and dec
 - If customers desire to store secrets in a Secret Management service (e.g. [Hashicorp Vault](https://www.vaultproject.io),
   [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/),
   [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/)) they can make
-  use of the [External Secrets Operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/external-secrets-about-external-secrets-operator.html)
+  use of the [External Secrets Operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/external-secrets-about-external-secrets-operator.html)
   to automate the lifecycle management (ALPHA).
 - 800-53 [Section AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
   related to safeguarding of sensitive information from exploitation, for example, Tanzu Application Platform values.

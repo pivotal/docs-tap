@@ -137,7 +137,7 @@ To install SCST - Scan (Scan controller):
     ```
 
     If your Grype Scanner version is earlier than v1.2.0, the scanning configuration must
-    configure the store parameters. See [v1.1 Install Supply Chain Security Tools - Scan](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html).
+    configure the store parameters. See [v1.1 Install Supply Chain Security Tools - Scan](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/scst-scan-install-scst-scan.html).
 
     Run to retrieve other configurable settings and append the key-value pair to the previous `scan-values.yaml` file:
 

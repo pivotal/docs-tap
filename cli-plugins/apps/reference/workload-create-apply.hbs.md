@@ -1096,7 +1096,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 Binds a service to a workload to provide the information from a service resource to an application.
 
-For more information, see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-getting-started-consume-services.html#stk-bind).
+For more information, see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/getting-started-consume-services.html#stk-bind).
 
 Example
 

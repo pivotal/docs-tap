@@ -299,4 +299,4 @@ Verify these possible reasons why the vulnerability database is not valid:
 
 If you used the Namespace Provisioner to provision a new developer namespace and
 want to apply a package overlay for Grype, see [Import overlay
-secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/namespace-provisioner-customize-installation.html).
+secrets](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/namespace-provisioner-customize-installation.html).
