@@ -28,7 +28,7 @@ or manual analysis.
 
 ## Impact Analysis Justifications \-\-justification
 
-The rationale of why the impact analysis state was asserted
+The rationale of why the impact analysis state was asserted is described here:
 
 - code_not_present = the code is removed or tree-shaked.
 - code_not_reachable = the vulnerable code is not invoked at runtime.
@@ -63,10 +63,10 @@ analysis state is exploitable
 
 ## Free form comments \-\-comment
 
-Example:
+Syntax:
 
 ```console
-tanzu insight triage update --cveid CVE-ID --pkg-name PKG-NAME --pkg-version PKG-VERSION --img-digest DIGEST --artifact-group-uid UID [--state <state>] [--justification JUSTIFICATION] [--response RESPONSE1, RESPONSE2] [--comment COMMENT] [flags]
+tanzu insight triage update --cveid CVE-ID --pkg-name PKG-NAME --pkg-version PKG-VERSION --img-digest DIGEST --artifact-group-uid UID [--state STATE] [--justification JUSTIFICATION] [--response RESPONSE1, RESPONSE2] [--comment COMMENT] [flags]
 ```
 
 ## <a id='examples'></a>Examples
