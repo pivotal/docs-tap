@@ -629,11 +629,20 @@ The following issues, listed by component and area, are resolved in this release
 - In the Tanzu Activity Panel, the `config-writer-pull-requester` of the type `Runnable` is no longer
   incorrectly categorized as **Unknown**.
 
+
+#### <a id='1-6-1-vscode-plugin-ri'></a> Tanzu Developer Tools for VS Code
+
+- Errors in the kubeconfig file `~/.kube/config` that are not related to the current context are now
+  ignored allowing you to work with tanzu panel without any issues.
+
 ---
 
 ### <a id='1-6-1-known-issues'></a> Known issues
 
 This release has the following known issues, listed by component and area.
+
+> **Note** Starting in this release, the release notes list known issues in each release until
+> they are resolved.
 
 #### <a id='1-6-1-amr-obs-ce-hndlr-ki'></a> Artifact Metadata Repository Observer and CloudEvent Handler
 
@@ -669,12 +678,40 @@ This release has the following known issues, listed by component and area.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
+#### <a id='1-6-1-eventing-ki'></a> Eventing
+
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
+  informers to alleviate load on the API server. This causes high memory utilization.
+
+#### <a id="1-6-1-grype-scan-ki"></a> Grype scanner
+
+- **Scanning Java source code that uses Gradle package manager might not reveal
+  vulnerabilities:**
+
+  For most languages, source code scanning only scans files present in the
+  source code repository. Except for support added for Java projects using
+  Maven, no network calls fetch dependencies. For languages using dependency
+  lock files, such as golang and Node.js, Grype uses the lock files to verify
+  dependencies for vulnerabilities.
+
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
+  dependencies present in the built binaries, such as `.jar` or `.war` files.
+
+  Grype fails to find vulnerabilities during a source scan because VMware
+  discourages committing binaries to source code repositories. The
+  vulnerabilities are still found during the image scan after the binaries are
+  built and packaged as images.
+
 #### <a id='1-6-1-stk-ki'></a> Services Toolkit
 
-- There is an unexpected error if `additionalProperties` is `true` in a CompositeResourceDefinition.
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
   For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
 
 #### <a id='1-6-1-scc-ki'></a> Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
 
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
   the Supply Chain does not function. If you use the default Carvel package parameters, you this
@@ -735,7 +772,15 @@ This release has the following known issues, listed by component and area.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
 
+#### <a id='1-5-0-vs-plugin-ki'></a> Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
 #### <a id='1-6-1-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
+
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. The correct category is **Supply Chain**.
 
 - Tanzu Debug does not work on Windows for new workloads. When attempting to Tanzu Debug on Windows,
   the user sees an error message similar to the following:
