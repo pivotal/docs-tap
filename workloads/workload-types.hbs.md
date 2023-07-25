@@ -1,6 +1,7 @@
 # Workload types
 
-This topic provides you with an overview of workload types.
+This topic provides you with an overview of workload types in Tanzu Application Platform (commonly
+known as TAP).
 
 ## Workload features
 
