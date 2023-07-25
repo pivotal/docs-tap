@@ -155,7 +155,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - `GitRepository` API:
 
   - `spec.ref.name` is the reference value for Git checkout. It takes precedence over Branch,
-  Tag and SemVer, It must be a valid
+  Tag, and SemVer. It must be a valid
   [Git reference](https://git-scm.com/docs/git-check-ref-format#_description).
 
       Examples:
@@ -256,7 +256,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   with other components of the Tanzu Application Platform, including:
 
   - The ability to enable Supply Chain Security Tools (SCST) - Scan 2.0 in the out-of-the-box test
-    and scan supply chain <!-- should this be Out of the Box Supply Chain - Testing and Scanning? -->. For more information, see
+    and scan supply chain.<!-- should this be Out of the Box Supply Chain - Testing and Scanning? --> For more information, see
     [Add app scanning to default test and scan supply chains](scst-scan/integrate-app-scanning.hbs.md#adding-app-scanning-to-default-test-and-scan-supply-chain).
   - [Artifact Metadata Repository (AMR) Observer (alpha)](scst-store/amr/overview.hbs.md#amr-observer)
     observes scan results from SCST - Scan 2.0 and archives them to the
@@ -272,7 +272,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       - [Prisma](scst-scan/ivs-prisma.hbs.md)
       - [Trivy](scst-scan/ivs-trivy.hbs.md)
       - [Grype](scst-scan/ivs-grype.hbs.md)
-  - VMware encourages feedback about SCST - Scan 2.0. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
+  - VMware encourages feedback about SCST - Scan 2.0. Email your VMware representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-6-1-scst-store'></a> Supply Chain Security Tools (SCST) - Store
 
@@ -633,7 +633,7 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-1-vscode-plugin-ri'></a> Tanzu Developer Tools for VS Code
 
 - Errors in the kubeconfig file `~/.kube/config` that are not related to the current context are now
-  ignored allowing you to work with tanzu panel without any issues.
+  ignored, allowing you to work with Tanzu panel without any issues.
 
 ---
 
@@ -681,7 +681,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-1-eventing-ki'></a> Eventing
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
-  informers to alleviate load on the API server. This causes high memory utilization.
+  informers to alleviate load on the API server. This causes high memory use.
 
 #### <a id="1-6-1-grype-scan-ki"></a> Grype scanner
 
@@ -891,6 +891,14 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
 
+### <a id="1-6-sc-deprecations"></a> Source Controller
+
+- The Source Controller `ImageRepository` API is deprecated and is marked for
+  removal in Tanzu Application Platform v1.9. Use the `OCIRepository` API instead.
+  The Flux Source Controller installation includes the `OCIRepository` API.
+  For more information about the `OCIRepository` API, see the
+  [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
+
 ### <a id='1-6-scc-deprecations'></a> Supply Chain Choreographer
 
 - Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation
@@ -938,14 +946,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - The default value for the
   [--update-strategy](./cli-plugins/apps/reference/workload-create-apply.hbs.md#update-strategy)
   flag is planned to change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
-
-### <a id="1-6-tanzu-sc-deprecations"></a> Tanzu Source Controller
-
-- The Tanzu Source Controller `ImageRepository` API is deprecated and is marked for
-  removal in Tanzu Application Platform v1.9. Use the `OCIRepository` API instead.
-  The Flux Source Controller installation includes the `OCIRepository` API.
-  For more information about the `OCIRepository` API, see the
-  [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
 
 ### <a id="1-6-tekton-deprecations"></a> Tekton Pipelines
 
