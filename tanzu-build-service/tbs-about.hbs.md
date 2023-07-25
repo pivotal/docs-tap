@@ -1,6 +1,7 @@
-# Tanzu Build Service
+# Overview of Tanzu Build Service
 
-This topic provides you with an overview of VMware Tanzu Build Service.
+This topic provides you with an overview of VMware Tanzu Build Service in Tanzu Application Platform
+(commonly known as TAP).
 
 ## Overview
 
