@@ -329,6 +329,10 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 - This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
 
+  > **Note:** Tanzu CLI v1.0 will be published as a fast-follow to the v0.90.x line in August 2023.<br/>
+  Version 1.0 of Tanzu CLI will provide backward compatibility guarantees for all CLI plugins required for TAP 1.6.1<br/>
+  Customers are strongly encouraged to upgrade to Tanzu CLI v1.0 when it becomes available.
+
 - Backward compatibility with earlier versions of Tanzu CLI plug-ins is provided.
 
 - Install Tanzu CLI using a package manager. For more information, see
