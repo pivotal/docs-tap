@@ -12,18 +12,18 @@ scalability best practices.
 This is the simplest configuration and consists of the following services and workloads:
 
 - API Gateway workload
-- Search workload (In memory database)
-- Search Processor workload
-- Availability workload (In memory database)
+- Search workload with in memory database
+- Search processor workload
+- Availability workload with in memory database
 - UI workload
-- 3 Node RabbitMQ Cluster
+- 3 Node RabbitMQ cluster
 
 ### Medium
 
 This includes all of the services of the small-size application and the following services and workloads:
 
 - Notify workload
-- Persistent Database (MySQL or Postgres)
+- Persistent Database, MySQL or Postgres
 - RabbitMQ Event Source
 - KNative Eventing broker
 - KNative triggers
@@ -59,7 +59,7 @@ scalability best practices.
 |**Medium** | 700m - 1000m |4-6&nbsp;GB| NA |6|4 |
 |**Large** | 1000m - 1500m |6-8&nbsp;GB| NA |7|4 |
 
-## Scale Configuration for workload deployments (Yet to arrive for updates)
+## Scale configuration for workload deployments (Yet to arrive for updates)
 
 Node configuration: 4 vCPUs, 16&nbsp;GB RAM, 120&nbsp;GB Disk size
 
