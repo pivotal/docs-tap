@@ -75,7 +75,9 @@
     </tr>
     <tr>
         <td>Live Update</td>
-        <td></td>
+        <td>Live Update, facilitated by the organization Tilt, enables you to deploy your workload
+            once, save changes to the code, and see those changes reflected in the workload running
+            on the cluster within seconds.</td>
     </tr>
     <tr>
         <td>Local Source Proxy (LSP)</td>
