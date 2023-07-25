@@ -8,7 +8,7 @@ cluster:
 
 After the authorization is enabled, you can view your runtime resources on a remote cluster in
 Tanzu Developer Portal (formerly named Tanzu Application Platform GUI). For more information, see
-[View runtime resources on remote clusters](view-resources-rbac.md).
+[View runtime resources on remote clusters](view-resources-rbac.hbs.md).
 
 ## <a id="external-oidc-provider"></a> Leverage an external OIDC provider
 
@@ -23,15 +23,14 @@ To leverage an external OIDC provider, such as Auth0:
 
 You must set up the OIDC provider to enable RBAC visibility of remote clusters.
 You can see the list of supported OIDC providers in
-[Setting up a Tanzu Developer Portal authentication provider](../auth.md).
+[Setting up a Tanzu Developer Portal authentication provider](../auth.hbs.md).
 
-Tanzu Developer Portal supports multiple OIDC providers.
-Auth0 is used here as an example.
+Tanzu Developer Portal supports multiple OIDC providers. Auth0 is used here as an example.
 
 1. Log in to the Auth0 dashboard.
 1. Go to **Applications**.
 1. Create an application of the type `Single Page Web Application` named `TAP-GUI` or a name of your
-choice.
+   choice.
 1. Click the **Settings** tab.
 1. Under **Application URIs** > **Allowed Callback URLs**, add
 
@@ -77,8 +76,8 @@ Configure visibility of the remote cluster in Tanzu Developer Portal:
     To view other clusters one by one, edit the number in `.clusters[0].cluster.server` or edit the
     command to view all the configured clusters.
 
-1. Ensure you have an `auth` section in the `app_config` section that Tanzu Developer Portal
-uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
+1. Ensure you have an `auth` section in the `app_config` section that Tanzu Developer Portal uses.
+   In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     ```yaml
     auth:
@@ -97,9 +96,9 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
     - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
     - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
 
-1. Add a `kubernetes` section to the `app_config` section that Tanzu Developer Portal
-uses. This section must have an entry for each cluster that has resources to view.
-To do so, copy this YAML content into `tap-values.yaml`:
+1. Add a `kubernetes` section to the `app_config` section that Tanzu Developer Portal uses. This
+   section must have an entry for each cluster that has resources to view. To do so, copy this YAML
+   content into `tap-values.yaml`:
 
     ```yaml
     kubernetes:
@@ -136,7 +135,7 @@ After the new configuration file is ready, update the `tap` package:
     ```
 
 1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
-`Reconcile succeeded` by running:
+   `Reconcile succeeded` by running:
 
     ```console
     tanzu package installed get tap-gui -n tap-install
@@ -170,10 +169,9 @@ Configure visibility of the remote GKE cluster in Tanzu Developer Portal:
     This command returns the URL of the first configured cluster in your `kubeconfig` file.
     To view other clusters one by one, edit the number in `.clusters[0].cluster.server` or edit the
     command to view all the configured clusters.
-    <!-- Ideally insert step below for how to obtain CA data -->
 
-1. Ensure you have an `auth` section in the `app_config` section that Tanzu Developer Portal
-uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
+2. Ensure you have an `auth` section in the `app_config` section that Tanzu Developer Portal uses.
+   In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     ```yaml
     auth:
@@ -190,9 +188,9 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
     - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
 
-1. Add a `kubernetes` section to the `app_config` section that Tanzu Developer Portal
-uses. This section must have an entry for each cluster that has resources to view.
-To do so, copy this YAML content into `tap-values.yaml`:
+3. Add a `kubernetes` section to the `app_config` section that Tanzu Developer Portal uses. This
+   section must have an entry for each cluster that has resources to view. To do so, copy this YAML
+   content into `tap-values.yaml`:
 
     ```yaml
     kubernetes:
@@ -226,7 +224,7 @@ After the new configuration file is ready, update the `tap` package:
     ```
 
 1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
-`Reconcile succeeded` by running:
+   `Reconcile succeeded` by running:
 
     ```console
     tanzu package installed get tap-gui -n tap-install
