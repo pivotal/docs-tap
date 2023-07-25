@@ -24,6 +24,7 @@ This release includes the following platform-wide enhancements.
 - New services available with the Bitnami Service package: MongoDB and Kafka.
 - Best practices required to build and deploy workloads at scale are now available
 in the documentation. For more information, see [Scale workloads](scalability.hbs.md).
+
 #### <a id='1-6-1-new-components'></a> New components
 
 - [Local Source Proxy](local-source-proxy/about.hbs.md) offers developers a secure and user-friendly
