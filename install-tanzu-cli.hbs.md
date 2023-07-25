@@ -1,6 +1,6 @@
-# Accept Tanzu Application Platform EULAs and installing Tanzu CLI
+# Install Tanzu CLI
 
-This topic describes how to install Tanzu CLI and plug-ins.
+This topic tells you how to accept the EULAs, and install the Tanzu CLI and plug-ins on Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='accept-eulas'></a>Accept the End User License Agreements
 
