@@ -1,7 +1,6 @@
 # Installing Tanzu Build Service
 
-This topic describes how to install Tanzu Build Service from the Tanzu Application Platform
-package repository by using the Tanzu CLI.
+This topic describes how to install Tanzu Build Service from the Tanzu Application Platform (commonly known as TAP) package repository by using the Tanzu CLI.
 
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
 Tanzu Build Service.
