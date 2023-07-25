@@ -1,11 +1,11 @@
 # Set up permission framework for your Tanzu Developer Portal
 
 This topic gives you an overview of the Backstage permission framework and tells you how to enable
-it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). For more information, see the
-[Backstage documentation](https://backstage.io/docs/permissions/overview/).
+it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). For more information,
+see the [Backstage documentation](https://backstage.io/docs/permissions/overview/).
 
 > **Caution** The permission framework functions are in alpha. It is not recommended for use in
-> production environment. <!-- For more information, see xref -->
+> production environment.
 
 ## <a id='permission-overview'></a> Overview of the permission framework
 
@@ -119,7 +119,6 @@ inherit the same access. But it does not work for nested group ownerships, when 
 a member of another group.
 
 > **Caution** When the permission plug-in is turned on with the default permission policy, API Auto
-> Registration <!-- link to component description --> no longer works due to the lack of user
-> identities.
+> Registration no longer works due to the lack of user identities.
 > Requests against the Catalog API will no longer work as before. For more information, see the
 > [known issues in the release notes](../../release-notes.hbs.md#1-6-1-tap-gui-ki).

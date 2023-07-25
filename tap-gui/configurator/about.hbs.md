@@ -3,17 +3,16 @@
 The Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) Configurator tool enables
 you to add functions (plug-ins) to Tanzu Developer Portal, turning it into a customized portal.
 
-> **Note** The Configurator tool is in beta as of this release. It is not recommended for use in
-> production environment.
+> **Note** The Configurator tool is in beta as of this release. Do not use in a production environment.
 
 ## <a id="diff"></a> Differences between the pre-built Tanzu Developer Portal and a customized portal
 
-Tanzu Application Platform comes with a pre-built version of Tanzu Developer Portal.
+Tanzu Application Platform has a pre-built version of Tanzu Developer Portal.
 The portal uses the Backstage open-source framework and includes the core capability of Backstage
 (Software Catalog, TechDocs, API Docs, Templates/Accelerators, and Kubernetes).
 
-The Backstage framework enables you to enhance your portal's capabilities by adding
-functions as plug-ins. For more information about Backstage, see the
+The Backstage framework enables you to enhance your portal's capabilities by adding functions as
+plug-ins. For more information about Backstage, see the
 [Backstage documentation](https://backstage.io/docs/overview/what-is-backstage/).
 
 Any portal owner can create two types of Backstage plug-ins:
