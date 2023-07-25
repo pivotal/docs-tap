@@ -169,19 +169,16 @@ Install from a binary release
        2. Choose the {{ vars.tap_version }} release from the Release dropdown menu.
        3. Click the tanzu-cli-tap-{{ vars.tap_version }} item from the result set.
        4. Download the Tanzu CLI binary for your operating system.
-       5. Follow [the binary installation instructions](#binary-installation-instructions)
 
      * **VMware Customer Connect**
 
        1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
        2. Download the Tanzu CLI binary for your operating system.
-       3. Follow [the binary installation instructions](#binary-installation-instructions).
 
      * **GitHub**
 
        1. Go to [Tanzu CLI release v{{ vars.tanzu-cli.version }} on GitHub](https://github.com/vmware-tanzu/tanzu-cli/releases/tag/v{{ vars.tanzu-cli.version }}).
        2. Download the Tanzu CLI binary for your operating system, for example, `tanzu-cli-windows-amd64.tar.gz`.
-       3. Follow [the binary installation instructions](#binary-installation-instructions)
 
   2. Use an extraction tool to unpack the binary file:
 
@@ -202,6 +199,8 @@ Install from a binary release
            Use the Windows extractor tool to unzip `tanzu-cli-windows-amd64.zip`.
 
   3. Make the CLI available to the system:
+
+        * cd to the directory containing the extracted CLI binary
 
         * **macOS:**
 
