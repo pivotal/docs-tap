@@ -1,8 +1,8 @@
-# Accepting Tanzu Application Platform EULAs and installing Tanzu CLI
+# Install Tanzu CLI
 
-This topic describes how to:
+This topic tells you how to accept the EULAs, and install the Tanzu CLI and plug-ins on Tanzu Application Platform (commonly known as TAP).
 
-- [Accepting Tanzu Application Platform EULAs and installing Tanzu CLI](#accepting-tanzu-application-platform-eulas-and-installing-tanzu-cli)
+- [Install Tanzu CLI](#install-tanzu-cli)
   - [ Accept the End User License Agreements](#-accept-the-end-user-license-agreements)
     - [ Example of accepting the Tanzu Application Platform EULA](#-example-of-accepting-the-tanzu-application-platform-eula)
   - [ Set the Kubernetes cluster context](#-set-the-kubernetes-cluster-context)

@@ -9,7 +9,7 @@ docs.vmware.com is built.
 - [Installation](install-intro.hbs.md)
   - [Introduction](install-intro.hbs.md)
   - [Prerequisites](prerequisites.hbs.md)
-  - [Accept EULAs and install Tanzu CLI](install-tanzu-cli.hbs.md)
+  - [Install Tanzu CLI](install-tanzu-cli.hbs.md)
   - [Online install](install-online/intro.hbs.md)
       - [Install overview](install-online/intro.hbs.md)
       - [Install packages and profiles](install-online/profile.hbs.md)
