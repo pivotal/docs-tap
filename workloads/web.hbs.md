@@ -1,6 +1,7 @@
 # Using web workloads
 
-This topic tells you how to use the `web` workload type.
+This topic tells you how to use the `web` workload type in Tanzu Application Platform
+(commonly known as TAP).
 
 The `web` workload is a good match for modern web applications that store state in external databases and follow the [12-factor principles](https://12factor.net).
 

@@ -1,7 +1,7 @@
 # Use functions (Beta)
 
-This topic tells you how to create and deploy an HTTP or CloudEvent function from an
-Application Accelerator starter template in an online or air-gapped environment.
+This topic tells you how to create and deploy a HTTP or CloudEvent function from an
+Application Accelerator starter template in an online or air-gapped environment on Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="overview"></a> Overview
 
