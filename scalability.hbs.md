@@ -51,17 +51,17 @@ scalability best practices.
 
 **Kubernetes Distribution**: Azure Kubernetes Service
 
-**Number of applications deployed concurrently**: 50-55
+**Number of applications deployed concurrently**: 50&ndash;55
 
 |  | **CPU** |**Memory Range**| **Workload CRs in Iterate** |**Workload CRs in Build+Run**|**Workload Transactions per second**|
 |:--- |:--- |:--- |:--- |:--- |:--- |
-|**Small** | 500m - 700m |3-5 GB| 4 |5| 4 |
-|**Medium** | 700m - 1000m |4-6 GB| NA |6|4 |
-|**Large** | 1000m - 1500m |6-8 GB| NA |7|4 |
+|**Small** | 500m - 700m |3-5&nbsp;GB| 4 |5| 4 |
+|**Medium** | 700m - 1000m |4-6&nbsp;GB| NA |6|4 |
+|**Large** | 1000m - 1500m |6-8&nbsp;GB| NA |7|4 |
 
 ## Scale Configuration for workload deployments (Yet to arrive for updates)
 
-Node configuration: 4 vCPUs, 16GB RAM, 120 GB Disk size
+Node configuration: 4 vCPUs, 16&nbsp;GB RAM, 120&nbsp;GB Disk size
 
 |**Cluster Type / Workload Details** |**Shared Iterate Cluster** | **Build Cluster** |**Run Cluster 1** |**Run Cluster 2**| **Run Cluster 3** |
 |:--- |:--- |:--- |:--- |:---|:--- |:--- |
@@ -77,25 +77,26 @@ The following table describes the resource limit changes that are required for c
 
 |**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** || Yes | No | Yes | tap-values |
-| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800*| Yes | No | No | tap-values |
-| Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | In `tap-values.yaml`, change `concurrency` to 25. | Yes| Partial (only CPU) | Yes  | tap-values |
-| Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | tap-values |
-| Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** | | Yes | Yes | Yes | tap-values |
-| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | | No | Yes | Yes | overlay |
+ Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** |n/a| Yes | No | Yes | `tap-values.yaml` |
+| Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800*| Yes | No | No | `tap-values.yaml` |
+| Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | In `tap-values.yaml`, change `concurrency` to 25. | Yes| Partial (only CPU) | Yes  | `tap-values.yaml` |
+| Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | 950&nbsp;Mi for concurrency - 25| Yes | Yes | Yes | `tap-values.yaml` |
+| Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** |n/a | Yes | Yes | Yes | `tap-values.yaml` |
+| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** |n/a | No | Yes | Yes | overlay |
 | Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change deployment type from `Daemonset` to `Deployment`.| No | Yes | Yes | overlay |
-| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** |  | No | Yes | No | overlay |
-| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** |  | No | Yes | No | overlay |
-| Eventing/triggermesh | 50&nbsp;m/200&nbsp;m | **100&nbsp;Mi - 800&nbsp;Mi** | | No | Yes | Yes| overlay |
-| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | | Yes| No | Yes| tap-values |
+| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | overlay |
+| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | overlay |
+| Eventing/triggermesh | 50&nbsp;m/200&nbsp;m | **100&nbsp;Mi - 800&nbsp;Mi** | n/a | No | Yes | Yes| overlay |
+| tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | n/a| Yes| No | Yes| `tap-values.yaml` |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
 - Memory is measured in Mebibyte and Gibibyte. Mi = Mebibyte. Gi = Gibibyte
 - In the CPU Requests/Limits column and the Memory Requests/Limits, the changed values are bolded.
-Non bolded values are the default ones set during a Tanzu Application Platform installation.
-- In the CPU Requests/Limits column, some of the request and limits values are set equally so that the pod is allocated in a node where the requested limit is available.
+Non-bolded values are the default ones set during a Tanzu Application Platform installation.
+- In the CPU Requests/Limits column, some of the request and limits values are set equally so that
+the pod is allocated in a node where the requested limit is available.
 
-\* Only when there is issue with scan pods getting deleted before Cartographer can process it
+\* Only when there is an issue with scan pods getting deleted before Cartographer can process it
 
 ## Example resource limit changes
 
@@ -114,7 +115,8 @@ cartographer:
       max_runnables: 2
 ```
 
-Edit `values.yaml` to scale Cartographer concurrency limits where node configuration is 4 vCPUs, 16GB RAM, 120 GB Disk size:
+Edit `values.yaml` to scale Cartographer concurrency limits. Configure the node with 4 vCPUs,
+16&nbsp;GB RAM, and 120&nbsp;GB disk size:
 
 ```console
 cartographer:
