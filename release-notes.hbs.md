@@ -158,12 +158,12 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
   Tag and SemVer, It must be a valid
   [Git reference](https://git-scm.com/docs/git-check-ref-format#_description).
 
-    Examples:
+      Examples:
 
-    - `"refs/heads/main"`
-    - `"refs/tags/v0.1.0"`
-    - `"refs/pull/420/head"`
-    - `"refs/merge-requests/1/head"`
+      - `"refs/heads/main"`
+      - `"refs/tags/v0.1.0"`
+      - `"refs/pull/420/head"`
+      - `"refs/merge-requests/1/head"`
 
   - `status.artifact.digest` represents the value of the file in the form of `ALGORITHM:CHECKSUM`.
   - `status.observedIgnore` represents the latest `spec.ignore` value. It indicates the ignore
@@ -267,11 +267,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
     [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md) plug-ins for the Tanzu Developer Portal.
   - [Sample scan templates](scst-scan/ivs-custom-samples.hbs.md) are created to help users get started
     with examples of how to bring your own scanner:
-    - [Carbon Black](scst-scan/ivs-carbon-black.hbs.md)
-    - [Snyk](scst-scan/ivs-snyk.hbs.md)
-    - [Prisma](scst-scan/ivs-prisma.hbs.md)
-    - [Trivy](scst-scan/ivs-trivy.hbs.md)
-    - [Grype](scst-scan/ivs-grype.hbs.md)
+      - [Carbon Black](scst-scan/ivs-carbon-black.hbs.md)
+      - [Snyk](scst-scan/ivs-snyk.hbs.md)
+      - [Prisma](scst-scan/ivs-prisma.hbs.md)
+      - [Trivy](scst-scan/ivs-trivy.hbs.md)
+      - [Grype](scst-scan/ivs-grype.hbs.md)
   - VMware encourages feedback about SCST - Scan 2.0. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-6-1-scst-store'></a> Supply Chain Security Tools (SCST) - Store
@@ -282,22 +282,22 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   instead of returning the aggregated data of all reports for the linked image
   or source.
   - Updates to the `POST /api/v1/images` and `POST /api/v1/sources` APIs:
-    - New optional header request fields:
-      - `Report-UID`: A unique identifier to assign to the report. If omitted, a
-        unique identifier is randomly generated for the report. Supported
-        characters: ALPHA DIGIT hyphen (`-`), period (`.`), underscore (`_`), and tilde (`~`).
-        <!-- is ALPHA DIGIT upper/lowercase letters (a-z) and (A-Z), numbers (0-9), special chars ("-" / "." / "_" / "~") -->
-      - `Original-Location`: The stored location of the original SBOM
-        vulnerability scan result used to create this report.
-    - New response field returned `ReportUID`, the report's unique identifier
+      - New optional header request fields:
+          - `Report-UID`: A unique identifier to assign to the report. If omitted, a
+            unique identifier is randomly generated for the report. Supported
+            characters: ALPHA DIGIT hyphen (`-`), period (`.`), underscore (`_`), and tilde (`~`).
+            <!-- is ALPHA DIGIT upper/lowercase letters (a-z) and (A-Z), numbers (0-9), special chars ("-" / "." / "_" / "~") -->
+          - `Original-Location`: The stored location of the original SBOM
+            vulnerability scan result used to create this report.
+      - New response field returned `ReportUID`, the report's unique identifier
       associated with the data submitted by this image.
   - Updates to the `POST /api/v1/artifact-groups` API:
-    - New `ReportUID` optional body payload field that links an existing
+      - New `ReportUID` optional body payload field that links an existing
       report, tagged by its UID, to this artifact group.
   - New `GET /api/v1/report/{ReportUID}` API gets a specific report by its unique identifier.
   - New `GET /api/v1/reports` API queries for a list of reports with specified
     image digest, source SHA, or original location.
-      > **Note**: When you request SPDX or CycloneDX format, the report date is
+      > **Note** When you request SPDX or CycloneDX format, the report date is
       set to the date of the original vulnerability scan SBOM. In addition, the
       tooling section includes the tool used to generate the original
       vulnerability scan report, if provided, and SCST - Store.
@@ -895,11 +895,11 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation
   now assumes that `libgit2` is not supported.
-  - FluxCD no longer supports the `spec.gitImplementation` field as of v0.33.0. For more information,
-  see the [fluxcd/source-controller Changelog](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330).
-  - Existing references to the `git_implementation` field are ignored and references to `libgit2`
-    do not cause failures. This is assured up to Tanzu Application Platform v1.9.0.
-  - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.6.1.
+    - FluxCD no longer supports the `spec.gitImplementation` field as of v0.33.0. For more information,
+    see the [fluxcd/source-controller Changelog](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330).
+    - Existing references to the `git_implementation` field are ignored and references to `libgit2`
+      do not cause failures. This is assured up to Tanzu Application Platform v1.9.0.
+    - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.6.1.
 
 ### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
 
