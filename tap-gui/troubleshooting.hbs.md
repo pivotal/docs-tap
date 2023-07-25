@@ -376,7 +376,6 @@ is used to access the `ImageVulnerabilityScan` resource. For more information ab
 overlays work with Tanzu Application Platform, see
 [Customize your package installation](../customize-package-installation.hbs.md).
 
-
 1. Create a `secret.yml` file with a `Secret` that contains your ytt overlay. For example:
 
     ```yaml
