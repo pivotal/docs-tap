@@ -1,6 +1,7 @@
 # Service Bindings resource specification
 
-This topic tells you about the Service Bindings resource specification.
+This topic tells you about the Service Bindings resource specification in Tanzu Application Platform
+(commonly known as TAP).
 
 The `ServiceBinding` resource shape and behavior is defined by the following specification:
 
