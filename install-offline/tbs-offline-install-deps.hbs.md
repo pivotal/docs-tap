@@ -1,6 +1,7 @@
 # Install the Tanzu Build Service dependencies
 
-This topic tells you how to install the Tanzu Build Service full dependencies.
+This topic tells you how to install the Tanzu Build Service (TBS) full dependencies
+on Tanzu Application Platform (commonly known as TAP).
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
