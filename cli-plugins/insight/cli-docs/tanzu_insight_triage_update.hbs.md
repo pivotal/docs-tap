@@ -11,7 +11,7 @@ for impact analysis, that includes flag options for each of the CycloneDX's
 VEX fields, and support for only their predefined values. Here is a
 description of the fields and their supported options:
 
-## Impact Analysis States (\-\-state)
+## Impact Analysis States \-\-state
 
 Declares the current state of an occurrence of a vulnerability, after automated
 or manual analysis.
@@ -26,7 +26,7 @@ or manual analysis.
   and was falsely identified or associated.
 - not_affected = the component or service is not affected by the vulnerability.  
 
-## Impact Analysis Justifications (\-\-justification)
+## Impact Analysis Justifications \-\-justification
 
 The rationale of why the impact analysis state was asserted
 
@@ -47,7 +47,7 @@ The rationale of why the impact analysis state was asserted
 
 > **Note** `--justification` is required when `--state` is set to `not_affected`
 
-## Impact Analysis Responses (\-\-response)
+## Impact Analysis Responses \-\-response
 
 A response to the vulnerability by the manufacturer, supplier, or project
 responsible for the affected component or service.  More than one response is allowed. Responses are strongly encouraged for vulnerabilities where the
@@ -61,13 +61,17 @@ analysis state is exploitable
 
 > **Note** `--response` is highly encouraged when `--state` is set to `exploitable`; however, CycloneDX specification does not require this.
 
-## Free form comments (\-\-comment) are also allowed.
+## Free form comments \-\-comment
+
+Example:
 
 ```console
 tanzu insight triage update --cveid <cve-id> --pkg-name <pkg-name> --pkg-version <pkg-version> --img-digest <digest> --artifact-group-uid <uid> [--state <state>] [--justification <justification>] [--response <response1,response2>] [--comment <comment>] [flags]
 ```
 
 ## <a id='examples'></a>Examples
+
+The following section shows more examples:
 
 ```console
 insight triage update --cveid CVE-2022-5089 --pkg-name google.golang.org/protobuf --pkg-version 1.23.2 --img-digest sha256:192369123812 --artifact-group-uid AG-00001 --state false_positive
@@ -79,6 +83,8 @@ insight triage update --cveid CVE-2020-1034 --pkg-name libssl --pkg-version 1.3.
 For more information, see the [NIST](https://nvd.nist.gov/) website. 
 
 ## <a id='options'></a>Options
+
+The following section shows options:
 
 ```console
   -a, --artifact-group-uid string   Artifact group uid
@@ -99,6 +105,8 @@ For more information, see the [NIST](https://nvd.nist.gov/) website.
 ```
 
 ## <a id='options'></a>Options inherited from parent commands
+
+The following section shows options inherited from parent commands:
 
 ```console
       --output-format string   specify the response's format, options=[text, api-json] (default "text")
