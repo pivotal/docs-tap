@@ -1,4 +1,4 @@
-# TLS and certificates overview
+# Overview of TLS and certificates
 
 This topic provides you with information about certificate requirements for ingress and egress communication in Tanzu Application Platform (commonly known as TAP).
 
