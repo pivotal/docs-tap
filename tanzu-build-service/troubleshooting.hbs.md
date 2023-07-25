@@ -1,7 +1,7 @@
 # Troubleshooting Tanzu Build Service
 
 This topic tells you how to troubleshoot Tanzu Build Service when used with
-Tanzu Application Platform.
+Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="tbs-1-2-breaking-change"></a> Builds fail after upgrading to Tanzu Application Platform v1.2
 
