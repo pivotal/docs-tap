@@ -1,4 +1,4 @@
-# Ingress certificates inventory
+# Ingress certificates inventory in Tanzu Application Platform
 
 This topic tells you how to plan for TLS certificates in Tanzu Application Platform (commonly known as TAP).
 

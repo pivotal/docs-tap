@@ -1,4 +1,4 @@
-# Shared ingress issuer
+# Shared Ingress issuer in Tanzu Application Platform
 
 This topic tells you about the Tanzu Application Platform (commonly known as TAP) shared ingress issuer.
 
