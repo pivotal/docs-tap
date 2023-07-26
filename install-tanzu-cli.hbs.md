@@ -126,7 +126,6 @@ Install using a package manager
       * **APT (Debian or Ubuntu):**
 
          ```console
-         sudo mkdir -p /etc/apt/keyrings/
          sudo apt-get update
          sudo apt-get install -y ca-certificates curl gpg
          curl -fsSL https://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub | sudo gpg --dearmor -o /etc/apt/keyrings/tanzu-archive-keyring.gpg
