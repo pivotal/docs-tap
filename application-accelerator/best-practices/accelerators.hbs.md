@@ -1,4 +1,4 @@
-# Best practices for using Accelerators
+# Best practices for using accelerators
 
 This topic tells you about the benefits, and design considerations for accelerators.
 

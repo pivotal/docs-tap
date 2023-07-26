@@ -1,4 +1,4 @@
-# Best practices for using Fragments
+# Best practices for using fragments
 
 This topic tells you about the benefits, and design considerations for fragments.
 
