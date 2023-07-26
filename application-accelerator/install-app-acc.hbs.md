@@ -1,6 +1,6 @@
 # Install Application Accelerator
 
-This topic describes how to install Application Accelerator
+This topic tells you how to install Application Accelerator
 from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install

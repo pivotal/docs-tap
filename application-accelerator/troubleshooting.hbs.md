@@ -1,4 +1,4 @@
-# Troubleshooting Application Accelerator for VMware Tanzu
+# Troubleshoot Application Accelerator
 
 This topic provides troubleshooting steps for development, accelerator authorship, and operations issues in Application Accelerator.
 

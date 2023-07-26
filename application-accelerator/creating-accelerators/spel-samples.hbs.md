@@ -1,4 +1,4 @@
-# SpEL samples
+# Use SpEL with Application Accelerator
 
 This topic tells you about some common Spring Expression Language (SpEL) use cases for the `accelerator.yaml` file.
 
