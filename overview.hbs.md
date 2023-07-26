@@ -64,6 +64,8 @@ staging and production on Kubernetes. This removes the pain points for both inne
 It also allows operators to customize the platform by replacing Tanzu Application Platform components
 with other products.
 
+The following diagram shows the layered API and capabilities of Tanzu Application Platform.
+
 ![Diagram depicting the layered structure of Tanzu Application Platform.](images/tap-layered-capabilities.png)
 
 For more information about Tanzu Application Platform components, see [Components and installation profiles](about-package-profiles.md).
