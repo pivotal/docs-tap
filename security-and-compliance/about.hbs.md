@@ -4,8 +4,8 @@ Security is a primary focus for Tanzu Application Platform (commonly known as TA
 
 This section describes:
 
-[Custom CA certificates](custom-ca-certificates.hbs.md)
+[Secure Ingress certificates in Tanzu Application Platform](ingress-certificates.hbs.md)
 
-[Ingress certificates](ingress-certificates.hbs.md)
+[Use custom CA certificates in Tanzu Application Platform(custom-ca-certificates.hbs.md)
 
-[NIST controls](tap-nist-matrix.hbs.md)
+[Assess Tanzu Application Platform against the NIST 800-53 Moderate Assessment](tap-nist-matrix.hbs.md)
