@@ -1,4 +1,4 @@
-# Application Accelerator IntelliJ Plug-in
+# Use the Application Accelerator IntelliJ Plug-in
 
 This topic tells you about the Application Accelerator IntelliJ plug-in. The plug-in is used to
 explore and generate projects from the defined accelerators in Tanzu Application Platform

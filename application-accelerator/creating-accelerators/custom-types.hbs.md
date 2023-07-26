@@ -1,4 +1,4 @@
-# Using Custom Types
+# Use Custom Types in Application Accelerator
 
 This topic tells you how to declare new `types` in `accelerator.yaml`
 
