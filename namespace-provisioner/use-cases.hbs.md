@@ -1,13 +1,13 @@
-Review the following uses cases:
+Review the following Namespace Provisioner uses cases:
 
-[Multiple Tekton pipelines and Scan policies in the same namespace](use-case1.hbs.md)
+[Use multiple tekton pipelines and Scan policies in the same namespace](use-case1.hbs.md)
 
-[Add Tekton pipelines and Scan policies using namespace parameters](use-case2.hbs.md)
+[Add Tekton pipelines and scan policies using namespace parameters](use-case2.hbs.md)
 
-[Working with Private Git Repositories](use-case3.hbs.md)
+[Working with private Git repositories](use-case3.hbs.md)
 
-[Customize OOTB default resources](use-case4.hbs.md)
+[Customize default resources](use-case4.hbs.md)
 
 [Install multiple scanners in the developer namespace](use-case5.hbs.md)
 
-[Apply ScanTemplate overlays in Air-gapped environments](use-case6.hbs.md)
+[Apply ScanTemplate overlays in air-gapped environments](use-case6.hbs.md)

@@ -1,7 +1,6 @@
 # Customize default resources
 
-This topic tells you how to deactivate Grype and how to configure the `default` service account to
-work with private Git repositories.
+This topic tells you how to deactivate Grype in Namespace Provisioner and how to configure the `default` service account to work with private Git repositories in Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='deactivate-grype'></a>Deactivate Grype install
 

@@ -1,7 +1,10 @@
-# Add Tekton pipelines and Scan policies using namespace parameters
+# Add Tekton pipelines and scan policies using namespace parameters
 
-This topic tells you how to parameterize your additional resources and pass those parameters to namespaces. Instead of creating all the pipelines in all provisioned namespaces,
-you can create a Tekton pipeline and ScanPolicy that is bespoke to namespaces that are running workloads using a specific language stack.
+This topic tells you how to use Namespace Provisioner to parameterize your additional resources and
+pass those parameters to namespaces in Tanzu Application Platform (commonly known as TAP).
+
+Instead of creating all the pipelines in all provisioned namespaces,
+create a Tekton pipeline and ScanPolicy that is bespoke to namespaces that are running workloads using a specific language stack.
 
 For information about, how to create a developer namespace, see [Provision Developer Namespaces](provision-developer-ns.hbs.md).
 

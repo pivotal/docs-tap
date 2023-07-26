@@ -1,6 +1,6 @@
 # Namespace parameters
 
-This topic tells you how to customize namespaces in controller mode in Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to use Namespace Provisioner to customize namespaces in controller mode in Tanzu Application Platform (commonly known as TAP).
 
 When managing multiple developer namespaces in a cluster, it is often necessary to customize each
 namespace individually. To customize a namespace in controller mode, add parameters to a namespace

@@ -1,6 +1,6 @@
 # Apply ScanTemplate overlays in air-gapped environments
 
-This topic tells you how to customize the ScanTemplates create by the `grype-scanner` PackageInstall in Namespace Provisioner. Use annotations to apply an overlay to the ScanTemplates.
+This topic tells you how to use Namespace Provisioner to customize the ScanTemplates created by the `grype-scanner` PackageInstall in Namespace Provisioner. Use annotations to apply an overlay to the ScanTemplates in Tanzu Application Platform (commonly known as TAP).
 
 Namespace Provisioner includes a pre-configured `grype-scanner` PackageInstall for each developer
 namespace. For more information about default resources, see
