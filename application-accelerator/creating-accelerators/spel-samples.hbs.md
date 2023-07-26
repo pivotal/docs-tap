@@ -1,6 +1,6 @@
 # Use SpEL with Application Accelerator
 
-This topic tells you about some common Spring Expression Language (SpEL) use cases for the `accelerator.yaml` file.
+This topic tells you about some common Spring Expression Language (SpEL) use cases for the `accelerator.yaml` file in Application Accelerator.
 
 For more information, see [Spring Expression Language](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) documentation.
 
