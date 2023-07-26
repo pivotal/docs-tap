@@ -854,6 +854,13 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
+
+### <a id="1-6-lc-deprecations"></a> Learning Center
+
+- `Learning Center` is deprecated and marked for removal in
+  Tanzu Application Platform v1.7.0.
+  Moving forward, please leverage [Tanzu Academy](https://tanzu.academy) for all Tanzu Application Platform learning and eduucation needs.
+  
 ### <a id="1-6-alv-deprecations"></a> Application Live View
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
