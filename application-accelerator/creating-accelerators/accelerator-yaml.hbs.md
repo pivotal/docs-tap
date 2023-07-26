@@ -1,4 +1,4 @@
-# Creating an accelerator.yaml file in Application Accelerator
+# Create an accelerator.yaml file in Application Accelerator
 
 This topic tells you how to use Application Accelerator to create an `accelerator.yaml` file in Tanzu
 Appplication Platform (commonly known as TAP).
