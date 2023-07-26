@@ -1,5 +1,5 @@
 
-# Composition
+# Use fragments in Application Accelerator
 
 This topic tells you how to use fragments in Application Accelerator.
 ## <a id="composition-intro"></a> Introduction
