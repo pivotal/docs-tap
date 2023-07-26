@@ -203,7 +203,7 @@ docs.vmware.com is built.
         - [Application Accelerator overview](application-accelerator/about-application-accelerator.hbs.md)
         - [Install Application Accelerator](application-accelerator/install-app-acc.hbs.md)
         - [Configure Application Accelerator](application-accelerator/configuration.hbs.md)
-        - [Creating accelerators](application-accelerator/creating-accelerators/creating-accelerators.hbs.md)
+        - [Create accelerators](application-accelerator/creating-accelerators/creating-accelerators.hbs.md)
             - [Create an accelerator.yaml file in Application Accelerator](application-accelerator/creating-accelerators/accelerator-yaml.hbs.md)
             - [Use transforms in Application Accelerators](application-accelerator/creating-accelerators/transform-intro.hbs.md)
             - [Use fragments in Application Accelerator](application-accelerator/creating-accelerators/composition.hbs.md)
