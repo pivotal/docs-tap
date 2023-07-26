@@ -60,7 +60,7 @@ Default values
 
     ```console
     tanzu package install spring-cloud-gateway \
-      --package-name spring-cloud-gateway.tanzu.vmware.com \
+      --package spring-cloud-gateway.tanzu.vmware.com \
       --version VERSION-NUMBER \
       --namespace tap-install
     ```
@@ -69,7 +69,7 @@ Default values
 
     ```console
     $ tanzu package install spring-cloud-gateway \
-        --package-name spring-cloud-gateway.tanzu.vmware.com \
+        --package spring-cloud-gateway.tanzu.vmware.com \
         --version 2.0.0 \
         --namespace tap-install
 
@@ -91,7 +91,7 @@ Overriding values
 
     ```console
     tanzu package install spring-cloud-gateway \
-      --package-name spring-cloud-gateway.tanzu.vmware.com \
+      --package spring-cloud-gateway.tanzu.vmware.com \
       --version VERSION-NUMBER \
       --namespace tap-install \
       --values-file values.yml
