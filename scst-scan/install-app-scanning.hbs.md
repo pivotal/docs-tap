@@ -77,7 +77,7 @@ To install SCST - Scan 2.0:
 2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
-    tanzu package install app-scanning-beta --package-name app-scanning.apps.tanzu.vmware.com \
+    tanzu package install app-scanning-beta --package app-scanning.apps.tanzu.vmware.com \
         --version VERSION \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
@@ -88,7 +88,7 @@ To install SCST - Scan 2.0:
     For example:
 
     ```console
-    tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
+    tanzu package install app-scanning-alpha --package app-scanning.apps.tanzu.vmware.com \
         --version 0.1.0-beta \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
