@@ -27,7 +27,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install default roles for Tanzu Application Platform](/docs-tap/authn-authz/install.hbs.md)
 - [Install Developer Conventions](/docs-tap/developer-conventions/install-dev-conventions.hbs.md)
 - [Install Eventing](/docs-tap/eventing/install-eventing.hbs.md)
-- [Install FluxCD Source Controller](/docs-tap/fluxcd-source-controller/install.hbs.md)
+- [Install Flux CD Source Controller](/docs-tap/fluxcd-source-controller/install.hbs.md)
 - [Install Learning Center for Tanzu Application Platform](/docs-tap/learning-center/install-learning-center.hbs.md)
 - [Install Out of the Box Templates](/docs-tap/scc/install-ootb-templates.hbs.md)
 - [Install Out of the Box Supply Chain with Testing](/docs-tap/scc/install-ootb-sc-wtest.hbs.md)

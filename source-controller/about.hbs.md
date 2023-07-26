@@ -1,7 +1,7 @@
 # Overview of Source Controller
 
 Tanzu Source Controller provides a standard interface for artifact acquisition and extends the
-function of [FluxCD Source Controller](../fluxcd-source-controller/about.hbs.md).
+function of [Flux CD Source Controller](../fluxcd-source-controller/about.hbs.md).
 
 Tanzu Source Controller supports the following two resource types:
 

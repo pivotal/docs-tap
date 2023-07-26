@@ -148,7 +148,7 @@ The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
   This might also cause any existing service instances also being deleted.
   For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
 
-#### <a id='1-6-1-flux-sc'></a> FluxCD Source Controller
+#### <a id='1-6-1-flux-sc'></a> Flux CD Source Controller
 
 Flux Source Controller v0.36.1-build.2 release includes the following API changes:
 
@@ -458,7 +458,7 @@ This release includes the following changes, listed by component and area.
  [Deprecation notice](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html#deprecation-notice-13)
  in the Cloud Native Runtimes v2.0 release notes.
 
-#### <a id='1-6-1-flux-sc-bc'></a> FluxCD Source Controller
+#### <a id='1-6-1-flux-sc-bc'></a> Flux CD Source Controller
 
 - The format of the `status.artifact.revision` value in the `GitRepository` resource's
   status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
@@ -818,7 +818,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Crossplane                                                       | 0.2.1   |
 | Developer Conventions                                            |         |
 | Eventing                                                         | 2.2.3   |
-| FluxCD Source Controller                                         |         |
+| Flux CD Source Controller                                         |         |
 | Learning Center                                                  |         |
 | Local Source Proxy                                               | 0.1.0   |
 | Namespace Provisioner                                            | 0.4.0   |
@@ -866,7 +866,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   `post` and `basic` are deprecated and marked for removal in Tanzu Application
   Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
 
-### <a id="1-6-flux-sc-deprecations"></a> FluxCD Source Controller
+### <a id="1-6-flux-sc-deprecations"></a> Flux CD Source Controller
 
 - Deprecations for the `GitRepository` API:
 
@@ -906,7 +906,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation
   now assumes that `libgit2` is not supported.
-    - FluxCD no longer supports the `spec.gitImplementation` field as of v0.33.0. For more information,
+    - Flux CD no longer supports the `spec.gitImplementation` field as of v0.33.0. For more information,
     see the [fluxcd/source-controller Changelog](https://github.com/fluxcd/source-controller/blob/main/CHANGELOG.md#0330).
     - Existing references to the `git_implementation` field are ignored and references to `libgit2`
       do not cause failures. This is assured up to Tanzu Application Platform v1.9.0.
