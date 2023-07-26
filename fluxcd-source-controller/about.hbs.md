@@ -1,4 +1,4 @@
-# Overview of FluxCD Source Controller
+# Overview of Flux CD Source Controller
 
 The fluxcd-source-controller is a Kubernetes Operator, specialised in artifacts acquisition
 from external sources such as Git, Helm repositories and S3 buckets.

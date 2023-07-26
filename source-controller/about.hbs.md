@@ -13,5 +13,5 @@ A `MavenArtifact` resource can resolve a binary artifact from a Maven repository
 
 >**Note** Fetching `RELEASE` version from GitHub packages is not currently supported. The metadata.xml in GitHub packages does not have the `release` tag that contains the released version number. For more information, see [Maven-metadata.xml is corrupted on upload to registry](https://github.community/t/maven-metadata-xml-is-corrupted-on-upload-to-registry/177725) on GitHub.
 
-Tanzu Source Controller extends the functionality. For more information about FluxCD Source Controller, see the
+Tanzu Source Controller extends the functionality. For more information about Flux CD Source Controller, see the
 [fluxcd/source-controller](https://github.com/fluxcd/source-controller) project on GitHub.

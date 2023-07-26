@@ -19,7 +19,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Application Accelerator](/docs-tap/application-accelerator/install-app-acc.hbs.md)
 - [Install Application Live View](/docs-tap/app-live-view/install.hbs.md)
 - [Install Application Single Sign-On](/docs-tap/app-sso/platform-operators/installation.hbs.md)
-- [Install cert-manager, Contour, and FluxCD](/docs-tap/cert-mgr-contour-fcd/install-cert-mgr.hbs.md)
+- [Install cert-manager, Contour, and Flux CD](/docs-tap/cert-mgr-contour-fcd/install-cert-mgr.hbs.md)
 - [Install Cloud Native Runtimes](/docs-tap/cloud-native-runtimes/install-cnrt.hbs.md)
 - [Install default roles for Tanzu Application Platform](/docs-tap/authn-authz/install.hbs.md)  
 - [Install Developer Conventions](/docs-tap/developer-conventions/install-dev-conventions.hbs.md)

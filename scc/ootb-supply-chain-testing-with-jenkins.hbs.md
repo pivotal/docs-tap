@@ -41,7 +41,7 @@ only pass these parameters if they are defined in the Jenkins job itself.
 
 - `SOURCE-REVISION` **string** The revision of the source code being tested.
   The format of this value can vary depending on the implementation of the
-  `source_provider` resource.  If the `source-provider` is the FluxCD
+  `source_provider` resource.  If the `source-provider` is the Flux CD
   `GitRepository` resource, then the value of the `SOURCE-REVISION` is the
   Git branch name followed by the commit SHA, both separated by a (`/`) slash
   character. For example: `main/2b1ed6c3c4f74f15b0e4de2732234eafd050eb1ca`. Your
