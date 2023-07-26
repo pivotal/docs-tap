@@ -24,7 +24,7 @@ Using an IAM role on a service account mitigates the need to retrieve the token 
 
 ## <a id='prereqs'></a>Prerequisites
 
-There are any numerous methods to manage AWS cloud resources and create EKS clusters. The method presented in the following guide was chosen for simplicity. Your preference might vary, however the resulting AWS cloud resources remain unchanged.
+There are numerous methods to manage AWS cloud resources and create EKS clusters. The method presented in the following guide was chosen for simplicity.
 
 Before installing Tanzu Application Platform on AWS, you need:
 
@@ -65,16 +65,16 @@ Creating the control plane and node group can take anywhere from 30-60 minutes.
 
 >**Note** This step is optional if you already have an existing EKS Cluster v1.23 or later with OpenID Connect (OIDC) authentication enabled. For more information about how to enable the OIDC provider, see [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
 
-## <a id='install-ebs-csi'></a>Install EBS CSI driver
+## <a id='install-ebs-csi'></a>Install the EBS CSI driver
 
-Tanzu Application Platform requires stateful services.  Starting from EKS 1.23, EBS CSI driver is no longer installed by default. For more information about how to install EBS CSI driver, see the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+Tanzu Application Platform requires stateful services. Starting from EKS v1.23, the EBS CSI driver is no longer installed by default. For more information about how to install the EBS CSI driver, see the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
 
 ## <a id='create-container-repos'></a>Create the platform container repositories
 
 ECR requires that the container repositories are already created for images to be pushed to them. For Tanzu Application Platform, you must create the following two repositories:
 
-- A repository to store the Tanzu Application Platform service container images.
-- A repository to store Tanzu Build Service generated Base OS and Builder container images.
+- A repository to store the Tanzu Application Platform service container images
+- A repository to store Tanzu Build Service generated Base OS and Builder container images
 
 To create these repositories, run:
 
@@ -83,11 +83,11 @@ aws ecr create-repository --repository-name tap-images --region $AWS_REGION
 aws ecr create-repository --repository-name tap-build-service --region $AWS_REGION
 ```
 
-Depending on your installation choices, you might also require the following additional system related repositories:
+Depending on your installation choices, you might also require the following additional system-related repositories:
 
-- A repository to store Tanzu Build Service full dependencies container images.
-- A repository to store Tanzu Application Platform's Local Source Proxy container images.
-- A repository to store Tanzu Cluster Essentials container images.
+- A repository to store Tanzu Build Service full dependencies container images
+- A repository to store Tanzu Application Platform's Local Source Proxy container images
+- A repository to store Tanzu Cluster Essentials container images
 
 To create these repositories, run:
 
@@ -101,7 +101,7 @@ Name the repositories any name you want, but remember the names for when you lat
 
 ## <a id='create-workload-container-repos'></a>Create the workload container repositories
 
-Similar to the repositories created earlier for the platform, you must create repositories for each workload that Tanzu Application Platform creates before creating any workloads so that a repository is available to upload container images and workload bundles.
+Similar to the platform container repositories, you must create repositories for each workload that Tanzu Application Platform creates before creating any workloads so that a repository is available to upload container images and workload bundles.
 
 When installing Tanzu Application Platform, you must specify a prefix for all workload registries. This topic uses `tanzu-application-platform` as the default value, but you can customize this value in the profile configuration created in [Install Tanzu Application Platform package and profiles on AWS](profile.hbs.md).
 
@@ -131,7 +131,7 @@ Create the following IAM Roles:
 
 - Tanzu Build Service: Gives write access to the repository to allow the service to automatically upload new images.  Also provides elevated batch read access to the `tap-images` and `tbs-full-deps` repositories.  This is limited in scope to the service account for `kpack` and the dependency updater.
 
-- Workload: Gives write access to the entire ECR registry with a prepended path.  Also provides elevated batch read access to the `tbs-full-deps` repository if you use Tanzu Build Service full dependencies. This prevents you from  updating the policy for each new workload created.
+- Workload: Gives write access to the entire ECR registry with a prepended path. Also provides elevated batch read access to the `tbs-full-deps` repository if you use Tanzu Build Service full dependencies. This prevents you from  updating the policy for each new workload created.
 
 - Local Source Proxy: Gives write access to the repository to allow the service to automatically upload new images.  This is limited in scope to the service account for Local Source Proxy.
 
@@ -415,8 +415,8 @@ aws iam put-role-policy --role-name tap-local-source-proxy --policy-name tapLoca
 
 ## <a id="next"></a> Next steps
 
-- [Deploy Cluster Essentials*](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
-- [Install Tanzu Application Platform package and profiles on AWS](profile.hbs.md)
+- [Deploy Cluster Essentials](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 
-\* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
-Essentials because the contents of Cluster Essentials are already installed on your cluster._
+    > **Important** When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster.
+
+- [Install Tanzu Application Platform package and profiles on AWS](profile.hbs.md)
