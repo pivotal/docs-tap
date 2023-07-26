@@ -1,7 +1,7 @@
 # Harden Tanzu Application Platform
 
 This topic provides you with installation and configuration guidance for Tanzu Application Platform
-(commonly known as TAP) to meet the NIST 800-53
+(commonly known as TAP) to comply with the NIST 800-53
 Security and Privacy Controls for Information Systems and Organizations.
 
 ## Objective

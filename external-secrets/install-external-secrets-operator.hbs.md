@@ -1,4 +1,4 @@
-# Install External Secrets Operator
+# Install External Secrets Operator in Tanzu Application Platform
 
 This topic tells you how to install the External Secrets Operator
 from the Tanzu Application Platform (commonly known as TAP) package repository.
