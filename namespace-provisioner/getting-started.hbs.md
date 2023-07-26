@@ -1,6 +1,6 @@
-# Getting Started
+# Get started with Namespace Provisioner
 
-The getting started guide contains the following topics:
+The get started guide contains the following topics:
 
 [Provision Developer Namespaces](provision-developer-ns.md)
 

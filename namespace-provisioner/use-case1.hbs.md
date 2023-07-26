@@ -1,4 +1,4 @@
-# Use multiple Tekton pipelines and scan policies in the same namespace
+# Use multiple Tekton pipelines and scan policies in the same namespace in Namespace Provisioner
 
 This topic tells you how to use Namespace Provisioner to configure developer namespaces to include multiple Tekton pipelines and ScanPolices in Tanzu Application Platform (commonly known as TAP).
 

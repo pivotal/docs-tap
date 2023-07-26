@@ -1,4 +1,4 @@
-# Add Tekton pipelines and scan policies using namespace parameters
+# Add Tekton pipelines and scan policies using namespace parameters in Namespace Provisioner
 
 This topic tells you how to use Namespace Provisioner to parameterize your additional resources and
 pass those parameters to namespaces in Tanzu Application Platform (commonly known as TAP).

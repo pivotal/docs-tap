@@ -1,4 +1,4 @@
-# Working with private Git Repositories
+# Work with private Git repositories in Namespace Provisioner
 
 This topic tells you how to configure Namespace Provisioner to use private Git repositories for
 storing  GitOps based installation files, and platform operator templated resources that you want to create in your developer namespace in Tanzu Application Platform (commonly known as TAP).

@@ -1,4 +1,4 @@
-# Install multiple scanners in the developer namespace
+# Install multiple scanners in the developer namespace in Namespace Provisioner
 
 This topic tells you how to use Namespace Provisioner to automate multiple scanner installations
 in the developer namespace in Tanzu Application Platform (commonly known as TAP).

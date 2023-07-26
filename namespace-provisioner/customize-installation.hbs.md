@@ -1,4 +1,4 @@
-# Customize Installation of Namespace Provisioner
+# Customize Namespace Provisioner installation
 
 This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Platform (commonly known as TAP).
 

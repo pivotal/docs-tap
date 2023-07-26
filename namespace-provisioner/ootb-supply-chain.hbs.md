@@ -1,4 +1,4 @@
-# Set up for Out of the Box Supply Chains
+# Set up Out of the Box Supply Chains in Namespace Provisioner
 
 This topic tells you how to set up Namespace Provisioner to automate the creation of resources
 that are needed for workloads to run on Out of the Box Supply Chain Basic and Out of the Box Supply Chain with Testing.
