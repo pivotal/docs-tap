@@ -1,6 +1,6 @@
 # Create or Update a Workload
 
-This topic tells you how to create a workload fr0m a `workload.yaml` file, a URL, a Git source,
+This topic tells you how to create a workload from a `workload.yaml` file, a URL, a Git source,
 a local source, and a pre-built image.
 
 For more information about the different types of workload creation, see [Supply Chain How-to-guides](../../../scc/scc-how-to.hbs.md).
@@ -117,7 +117,7 @@ tanzu apps workload create --file https://raw.githubusercontent.com/vmware-tanzu
 ## <a id='create-workload-git'></a> Create workload from Git source
 
 Use the `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit` flags to create a
-workload from an existing Git repository. This allows the [supply chain](../../../scc/about.hbs.md) 
+workload from an existing Git repository. This allows the [supply chain](../../../scc/about.hbs.md)
 to get the source from the given repository to deploy the application.
 
 To create a named workload and specify a Git source code location, run:
@@ -287,8 +287,8 @@ Platform cluster.
 Using Local Source Proxy
 : Use Local Source Proxy to push local source code to the registry configured during Tanzu Application Platform installation.
 
-  For more information, see [Install Local Source Proxy](../../../local-source-proxy/install.hbs.md). 
-  To create a workload that pushes to an already configured registry through Local Source Proxy, 
+  For more information, see [Install Local Source Proxy](../../../local-source-proxy/install.hbs.md).
+  To create a workload that pushes to an already configured registry through Local Source Proxy,
   use `--local-path` flag without `--source-image`, like the following example:
 
   ```console
@@ -313,7 +313,7 @@ Using Local Source Proxy
        11 + |spec:
        12 + |  source:
        13 + |    image: registry.io/project/source:default-tanzu-java-web-app@sha256:447db92e289dbe3a6969521917496ff2b6b0a1d6fbff1beec3af726430ce8493
-  ❓ Do you want to create this workload? [yN]: 
+  ❓ Do you want to create this workload? [yN]:
   ```
 
     >**Note** A workload created using Local Source Proxy is easily recognizable because it has the
@@ -347,7 +347,7 @@ Using Source Image
         9 + |spec:
       10 + |  source:
       11 + |    image: registry.io/path/to/project/image-name:latest@sha256:447db92e289dbe3a6969521917496ff2b6b0a1d6fbff1beec3af726430ce8493
-  ❓ Do you want to create this workload? [yN]: 
+  ❓ Do you want to create this workload? [yN]:
   ```
 
 ### <a id='wl-local-live-update'></a> `--live-update`
@@ -454,7 +454,7 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
 For local source workloads, specify a subpath. A subpath points to a specific subfolder within the root folder.
 
 ```console
-# After cloning repo in https://github.com/vmware-tanzu/application-accelerator-samples and install Local Source Proxy 
+# After cloning repo in https://github.com/vmware-tanzu/application-accelerator-samples and install Local Source Proxy
 
 cd application-accelerator-samples
 tanzu apps workload apply tanzu-java-web-app --local-path . --sub-path tanzu-java-web-app
@@ -504,7 +504,7 @@ tanzu apps workload create petclinic-image --image springcommunity/spring-framew
       8 + |  namespace: default
       9 + |spec:
      10 + |  image: springcommunity/spring-framework-petclinic
-❓ Do you want to create this workload? [yN]: 
+❓ Do you want to create this workload? [yN]:
 ```
 
 For information about requirements for prebuilt images and how to configure prebuilt
