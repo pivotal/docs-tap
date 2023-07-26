@@ -346,7 +346,7 @@ docs.vmware.com is built.
     - [Developer Conventions](developer-conventions/about.hbs.md)
       - [Developer Conventions overview](developer-conventions/about.hbs.md)
       - [Install Developer Conventions](developer-conventions/install-dev-conventions.hbs.md)
-      - [Developer Conventions for OpenShift cluster](developer-conventions/openshift.hbs.md)
+      - [Run Developer Conventions on an OpenShift cluster](developer-conventions/openshift.hbs.md)
     - [Learning Center](learning-center/about.hbs.md)
       - [Learning Center overview](learning-center/about.hbs.md)
       - [Install Learning Center](learning-center/install-learning-center.hbs.md)
