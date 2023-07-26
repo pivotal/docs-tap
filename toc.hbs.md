@@ -72,7 +72,7 @@ docs.vmware.com is built.
     - [Use External Secrets Operator in Tanzu Application Platform (beta)](external-secrets/about-external-secrets-operator.hbs.md)
           - [Install External Secrets Operator in Tanzu Application Platform](external-secrets/install-external-secrets-operator.hbs.md)
           - [Integrate External Secrets Operator with HashiCorp Vault in Tanzu Application Platform](external-secrets/vault-example.hbs.md)
-  - [NIST 800-53 Moderate Assessment](security-and-compliance/tap-nist-matrix.hbs.md)
+  - [Assess Tanzu Application Platform against the NIST 800-53 Moderate Assessment](security-and-compliance/tap-nist-matrix.hbs.md)
   - [Harden Tanzu Application Platform](security-and-compliance/harden-tap.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
   - [Multicluster overview](multicluster/about.hbs.md)
