@@ -80,7 +80,7 @@ a predefined group of packages.
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
-- **[FluxCD Source Controller](fluxcd-source-controller/about.hbs.md)**
+- **[Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)**
 
   The main role of this source management component is to provide a common interface for artifact
   acquisition.

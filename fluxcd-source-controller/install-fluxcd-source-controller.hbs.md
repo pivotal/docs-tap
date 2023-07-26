@@ -1,8 +1,8 @@
-# Install FluxCD Source Controller
+# Install Flux CD Source Controller
 
-This topic tells you how to install FluxCD Source Controller from the Tanzu Application Platform (commonly known as TAP) package repository.
+This topic tells you how to install Flux CD Source Controller from the Tanzu Application Platform (commonly known as TAP) package repository.
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install FluxCD Source Controller.
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Flux CD Source Controller.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
@@ -18,7 +18,7 @@ The Source Controller package has no configurable properties.
 
 ##  <a id="installation"></a> Installation
 
-To install FluxCD source-controller from the Tanzu Application Platform package repository:
+To install Flux CD source-controller from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
