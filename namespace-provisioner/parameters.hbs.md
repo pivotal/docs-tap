@@ -1,4 +1,4 @@
-# Namespace parameters
+# Customize namespaces in Namespace Provisioner
 
 This topic tells you how to use Namespace Provisioner to customize namespaces in controller mode in Tanzu Application Platform (commonly known as TAP).
 

@@ -1,4 +1,4 @@
-# Known limitations and issues
+# Known limitations and issues in Namespace Provisioner
 
 This topic tells you about the known issues and limitations for Namespace Provisioner in Tanzu Application Platform (commonly known as TAP).
 

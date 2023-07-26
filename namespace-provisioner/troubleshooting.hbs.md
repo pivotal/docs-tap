@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshoot Namespace Provisioner
 
 This topic tells you how to troubleshoot Namespace Provisioner in Tanzu Application Platform
 (commonly known as TAP).

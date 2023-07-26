@@ -1,4 +1,4 @@
-# Customize default resources
+# Customize default resources in Namespace Provisioner
 
 This topic tells you how to deactivate Grype in Namespace Provisioner and how to configure the `default` service account to work with private Git repositories in Tanzu Application Platform (commonly known as TAP).
 
