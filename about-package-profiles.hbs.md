@@ -124,7 +124,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   manage event-triggered systems through Knative Eventing. For information about Knative, see
   the [Knative documentation](https://knative.dev/docs/).
 
-- **[FluxCD Source Controller](fluxcd-source-controller/about.hbs.md)**
+- **[Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)**
 
   The main role of this source management component is to provide a common interface for artifact
   acquisition.

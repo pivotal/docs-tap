@@ -11,7 +11,7 @@ To use blue-green deployment, you must complete the following prerequisites:
 
 - Complete the prerequisites in [Configure and deploy to multiple environments with custom parameters](./config-deploy-multi-env.hbs.md).
 - Configure Carvel for your supply chain. See [Carvel Package Supply Chains (alpha)](./carvel-package-supply-chain.hbs.md).
-- Configure FluxCD for your supply chain. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
+- Configure Flux CD for your supply chain. See [Deploy Package and PackageInstall using Flux CD Kustomization](./delivery-with-flux.hbs.md).
 
 ## <a id="add-http"></a> Add HTTPProxy to the blue deployment
 

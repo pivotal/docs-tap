@@ -186,7 +186,7 @@ Verify that the `READY` status is `true` for all accelerators.
 
     Where `COMPONENT-NAME` is the component with no pods you retrieved in the previous step.
 
-    - If the log has the following error then the FluxCD source-controller is not installed:
+    - If the log has the following error then the Flux CD source-controller is not installed:
 
         ```console
         2021-11-18T20:55:18.963Z ERROR setup problem running manager {"error": "failed to wait for accelerator caches to sync: no matches for kind \"GitRepository\" in version \"source.toolkit.fluxcd.io/v1beta1\""}
