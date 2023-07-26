@@ -444,7 +444,7 @@ docs.vmware.com is built.
     - [Developer Conventions](developer-conventions/about.hbs.md)
       - [Developer Conventions overview](developer-conventions/about.hbs.md)
       - [Install Developer Conventions](developer-conventions/install-dev-conventions.hbs.md)
-      - [Developer Conventions for OpenShift cluster](developer-conventions/openshift.hbs.md)
+      - [Run Developer Conventions on an OpenShift cluster](developer-conventions/openshift.hbs.md)
     - [Eventing](eventing/about.hbs.md)
       - [Eventing overview](eventing/about.hbs.md)
       - [Install Eventing](eventing/install-eventing.hbs.md)
