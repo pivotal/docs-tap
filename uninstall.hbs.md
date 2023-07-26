@@ -111,15 +111,23 @@ To completely remove the Tanzu CLI, plug-ins, and associated files, run the scri
     ```console
     brew uninstall vmware-tanzu/tanzu/tanzu-cli
     ```
+
   + On Linux:
 
     ```console
-    sudo apt-get remove tanzu-cli
+    `sudo apt remove tanzu-cli`
     ```
+
+    ```console
+    sudo yum remove tanzu-cli
+    ```
+
   + On Windows:
+
     ```console
     choco uninstall tanzu-cli
     ```
+
 ## <a id='remove-ce'></a> Remove Cluster Essentials
 
 To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#uninstall).
