@@ -1,4 +1,4 @@
-# Ingress certificates
+# Secure Ingress certificates in Tanzu Application Platform
 
 This topic tells you about securing ingress communication in Tanzu Application Platform (commonly known as TAP).
 

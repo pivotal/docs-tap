@@ -48,7 +48,7 @@ docs.vmware.com is built.
 - [Security and compliance overview](security-and-compliance/about.hbs.md)
   - [Secure Ingress certificates in Tanzu Application Platform](security-and-compliance/ingress-certificates.hbs.md)
   - [Custom CA certificates in Tanzu Application Platform](security-and-compliance/custom-ca-certificates.hbs.md)
-  - [External Secrets Operator overview in Tanzu Application Platform (alpha)](external-secrets/about-external-secrets-operator.hbs.md)
+  - [Use External Secrets Operator in Tanzu Application Platform (alpha)](external-secrets/about-external-secrets-operator.hbs.md)
   - [NIST 800-53 Moderate Assessment](security-and-compliance/tap-nist-matrix.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
   - [Multicluster overview](multicluster/about.hbs.md)
