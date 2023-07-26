@@ -4,12 +4,12 @@ Security is a primary focus for Tanzu Application Platform (commonly known as TA
 
 This section describes:
 
-[TLS and certificates](./tls-and-certificates/about.hbs.md)
+[TLS and certificates in Tanzu Application Platform](./tls-and-certificates/about.hbs.md)
 
-[Custom CA certificates](./tls-and-certificates/custom-ca-certificates.hbs.md)
+[Use custom CA certificates in Tanzu Application Platform](./tls-and-certificates/custom-ca-certificates.hbs.md)
 
-[External Secrets Operator (beta)](../external-secrets/about-external-secrets-operator.hbs.md)
+[Use External Secrets Operator (beta) in Tanzu Application Platform](../external-secrets/about-external-secrets-operator.hbs.md)
 
-[NIST controls](tap-nist-matrix.hbs.md)
+[Assess Tanzu Application Platform against the NIST 800-53 Moderate Assessment ](tap-nist-matrix.hbs.md)
 
 [Harden Tanzu Application Platform](tap-nist-matrix.hbs.md)
