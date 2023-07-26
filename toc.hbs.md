@@ -191,7 +191,7 @@ docs.vmware.com is built.
                 - [Conflict resolution](application-accelerator/creating-accelerators/transforms/conflict-resolution.hbs.md)
             - [Use SpEL with Application Accelerator](application-accelerator/creating-accelerators/spel-samples.hbs.md)
             - [Accelerator custom resource definition](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
-        - [Use the Application Accelerator Visual Studio Code extension](application-accelerator/vscode.hbs.md))
+        - [Use the Application Accelerator Visual Studio Code extension](application-accelerator/vscode.hbs.md)
         - [Troubleshoot Application Accelerator](application-accelerator/troubleshooting.hbs.md)
     - [Application Live View](app-live-view/about-app-live-view.hbs.md)
         - [Overview Application Live View](app-live-view/about-app-live-view.hbs.md)
