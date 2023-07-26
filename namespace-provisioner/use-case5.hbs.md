@@ -1,6 +1,7 @@
 # Install multiple scanners in the developer namespace
 
-This topic tells you how to automate multiple scanner installations in the developer namespace. 
+This topic tells you how to use Namespace Provisioner to automate multiple scanner installations
+in the developer namespace in Tanzu Application Platform (commonly known as TAP).
 
 Grype scanner is installed by default in all namespaces managed by Namespace Provisioner.
 
