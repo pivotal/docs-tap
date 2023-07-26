@@ -1,4 +1,4 @@
-# Overview of External Secrets Operator (alpha)
+# Use External Secrets Operator in Tanzu Application Platform (beta)
 
 The [External Secrets Operator](https://external-secrets.io) is a Kubernetes
 operator that integrates with external secret management systems, for example,
