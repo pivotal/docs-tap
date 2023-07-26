@@ -1,4 +1,4 @@
-# Creating accelerators
+# Create accelerators
 
 This topic tells you how to create an accelerator in Tanzu Application Platform GUI.
 
