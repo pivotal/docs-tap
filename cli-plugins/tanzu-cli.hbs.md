@@ -1,6 +1,6 @@
 # Tanzu CLI Overview
 
-This topic provides an overview of the Tanzu command-line interface (CLI).
+This topic tells you about the Tanzu command-line interface (CLI).
 
 ## <a id="tanzu-cli"></a>Tanzu CLI
 

@@ -1,6 +1,6 @@
 ## tanzu accelerator fragment create
 
-Create a new accelerator fragment
+This command creates a new accelerator fragment.
 
 ### Synopsis
 

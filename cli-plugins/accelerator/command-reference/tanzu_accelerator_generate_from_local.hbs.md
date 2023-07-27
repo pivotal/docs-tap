@@ -1,6 +1,6 @@
 # Tanzu accelerator generate-from-local
 
-Generate a project from local files and registered accelerators or fragments.
+This command generates a project from a combination of registered and local artifacts.
 
 ## Synopsis
 
