@@ -1,6 +1,6 @@
-# Application Live View for Steeltoe Applications in Tanzu Developer Portal
+# Application Live View for Steeltoe applications in Tanzu Developer Portal
 
-This topic tells you about the Application Live View pages for Steeltoe Applications in
+This topic tells you about the Application Live View pages for Steeltoe applications in
 Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="details-page"></a> Details page
@@ -27,8 +27,8 @@ top right corner of the page.
 
 ## <a id="health-page"></a> Health page
 
-To access the health page, select the **Health** option from the
-**Information Category** drop-down menu.
+To access the health page, select the **Health** option from the **Information Category** drop-down
+menu.
 
 The health page provides detailed information about the health of the application.
 It lists all the components that make up the health of the application, such as readiness, liveness,

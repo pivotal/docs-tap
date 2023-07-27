@@ -1,6 +1,6 @@
-# Application Live View for Spring Cloud Gateway Applications in Tanzu Developer Portal
+# Application Live View for Spring Cloud Gateway applications in Tanzu Developer Portal
 
-This topic tells you about the Application Live View pages for Spring Cloud Gateway Applications in
+This topic tells you about the Application Live View pages for Spring Cloud Gateway applications in
 Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 ## <a id="api-success-rate-page"></a> API Success Rate page
@@ -37,8 +37,7 @@ The page also displays the success rate for each of the routes.
 
 ![API Authentications By Path Page in the UI. The table gives information including numbers for requests, successes, and forbidden errors.](images/api-authentications-by-path.png)
 
-> **Note** In addition to the preceding three pages, the Spring Boot actuator pages are
-> also displayed.
+> **Note** In addition to the preceding three pages, the Spring Boot actuator pages are also displayed.
 
 ## <a id="troubleshooting"></a> Troubleshooting
 

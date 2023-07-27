@@ -8,22 +8,22 @@ This topic tells you how to access Tanzu Developer Portal
 
 ## <a id="lb-method"></a> Access with the LoadBalancer method (default)
 
-1. Verify that you specified the `service_type` for Tanzu Developer Portal in
-`tap-values.yaml`, as in this example:
+1. Verify that you specified the `service_type` for Tanzu Developer Portal in `tap-values.yaml`, as
+   in this example:
 
     ```yaml
     tap_gui:
       service_type: LoadBalancer
     ```
 
-1. Obtain the external IP address of your LoadBalancer by running:
+2. Obtain the external IP address of your LoadBalancer by running:
 
     ```console
     kubectl get svc -n tap-gui
     ```
 
-1. Access Tanzu Developer Portal by using the external IP address with the default port of 7000.
-It has the following form:
+3. Access Tanzu Developer Portal by using the external IP address with the default port of 7000.
+   It has the following form:
 
     ```text
     http://EXTERNAL-IP:7000
@@ -33,12 +33,12 @@ It has the following form:
 
 ## <a id="ingress-method"></a> Access with the shared Ingress method
 
-The Ingress method of access for Tanzu Developer Portal uses the shared
-`tanzu-system-ingress` instance of Contour that is installed as part of the Profile installation.
+The Ingress method of access for Tanzu Developer Portal uses the shared `tanzu-system-ingress`
+instance of Contour that is installed as part of the Profile installation.
 
 1. The Ingress method of access requires that you have a DNS host name that you can point at the
-External IP address of the `envoy` service that the shared `tanzu-system-ingress` uses.
-Retrieve this IP address by running:
+   External IP address of the `envoy` service that the shared `tanzu-system-ingress` uses. Retrieve
+   this IP address by running:
 
     ```console
     kubectl get service envoy -n tanzu-system-ingress
@@ -65,7 +65,7 @@ Retrieve this IP address by running:
     ```
 
 1. Update your other host names in the `tap_gui` section of your `tap-values.yaml` with the new host
-name. For example:
+   name. For example:
 
     ```yaml
     shared:
@@ -97,6 +97,7 @@ name. For example:
     --values-file tap-values.yaml -n tap-install
     ```
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example,
+    `{{ vars.tap_version }}`.
 
 1. Use a web browser to access Tanzu Developer Portal at the host name that you provided.

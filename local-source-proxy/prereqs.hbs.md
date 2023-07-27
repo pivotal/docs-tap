@@ -44,8 +44,8 @@ Declarative syntax
     {"auths":{"REGISTRY-SERVER":{"username":"USERNAME-VALUE","password": "PASSWORD-VALUE"}}}
     ```
 
-    If you're using the Tanzu Application Platform GitOps installer using SOPS, after
-    using SOPS to encrypt the secret put the secret in the
+    If you're using the Tanzu Application Platform GitOps installer using Secrets OPerationS (SOPS),
+    after using SOPS to encrypt the secret put the secret in the
     `clusters/CLUSTER-NAME/cluster-config/config/lsp` directory in your GitOps repository.
 
     If you're using the Tanzu Application Platform GitOps installer using ESO, create a secret as
