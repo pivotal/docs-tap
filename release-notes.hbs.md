@@ -143,10 +143,10 @@ The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
   Custom Resource Definitions (CRDs), providers, and managed resources when the package is uninstalled.
   This setting is optional. The default is `true`.
 
-  **Caution**: setting this value to `false` causes all Crossplane CRDs, providers, and managed
-  resources to be deleted when the `crossplane.tanzu.vmware.com` package is uninstalled.
-  This might also cause any existing service instances also being deleted.
-  For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md)
+  > **Caution** setting this value to `false` causes all Crossplane CRDs, providers, and managed
+  > resources to be deleted when the `crossplane.tanzu.vmware.com` package is uninstalled.
+  > This might also cause any existing service instances also being deleted.
+  > For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md).
 
 #### <a id='1-6-1-flux-sc'></a> Flux CD Source Controller
 
@@ -329,9 +329,10 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 - This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
 
-  > **Note:** Tanzu CLI v1.0 will be published as a fast-follow to the v0.90.x line in August 2023.<br/>
-  Version 1.0 of Tanzu CLI will provide backward compatibility guarantees for all CLI plugins required for TAP 1.6.1<br/>
-  Customers are strongly encouraged to upgrade to Tanzu CLI v1.0 when it becomes available.
+  > **Note** Tanzu CLI v1.0 will be published soon.
+  > Tanzu CLI v1.0 will provide backward compatibility for all CLI plugins required for
+  > Tanzu Application Platform v1.6.1.
+  > VMware strongly encourages you to upgrade to Tanzu CLI v1.0 when it becomes available.
 
 - Backward compatibility with earlier versions of Tanzu CLI plug-ins is provided.
 
@@ -802,12 +803,14 @@ The following table lists the supported component versions for this Tanzu Applic
 
 | Component Name                                                   | Version |
 | ---------------------------------------------------------------- | ------- |
-| API Auto Registration                                            |         |
+| API Auto Registration                                            | 0.3.3   |
 | API portal                                                       | 1.4.0   |
-| API Scoring and Validation                                       |         |
 | Application Accelerator                                          | 1.6.1   |
 | Application Configuration Service                                | 2.1.0   |
-| Application Live View                                            | 1.6.1   |
+| Application Live View API Server                                 | 1.6.1   |
+| Application Live View Backend                                    | 1.6.1   |
+| Application Live View Connector                                  | 1.6.1   |
+| Application Live View Conventions                                | 1.6.1   |
 | Application Single Sign-On                                       | 4.0.0   |
 | Authentication and authorization                                 | 1.1.0   |
 | Bitnami Services                                                 | 0.2.0   |
@@ -819,7 +822,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Developer Conventions                                            | 0.11.0  |
 | Eventing                                                         | 2.2.3   |
 | Flux CD Source Controller                                        | 0.36.1  |
-| Learning Center <!-- should I also add workshops at 0.3.0? -->   | 0.3.1   |
+| Learning Center                                                  | 0.3.1   |
+| Learning Center workshops                                        | 0.3.0   |
 | Local Source Proxy                                               | 0.1.0   |
 | Namespace Provisioner                                            | 0.4.0   |
 | Out of the Box Delivery - Basic                                  | 0.13.6  |
@@ -833,17 +837,17 @@ The following table lists the supported component versions for this Tanzu Applic
 | Spring Boot conventions                                          | 1.6.1   |
 | Spring Cloud Gateway                                             | 2.0.3   |
 | Supply Chain Choreographer                                       | 0.7.3   |
-| Supply Chain Security Tools - Policy Controller                  |         |
-| Supply Chain Security Tools - Scan                               |         |
-| Supply Chain Security Tools - Sign (deprecated)                  |         |
-| Supply Chain Security Tools - Store                              |         |
+| Supply Chain Security Tools - Policy Controller                  | 1.4.0   |
+| Supply Chain Security Tools - Scan                               | 1.6.67  |
+| Supply Chain Security Tools - Store                              | 1.6.2   |
 | Tanzu Developer Portal (formerly Tanzu Application Platform GUI) | 1.6.3   |
 | Tanzu Application Platform Telemetry                             | 0.6.1   |
 | Tanzu Build Service                                              | 1.11.10 |
 | Tanzu CLI                                                        | 0.90.0  |
-| Tanzu Developer Tools for IntelliJ                               |         |
-| Tanzu Developer Tools for Visual Studio                          |         |
-| Tanzu Developer Tools for VS Code                                |         |
+| Tanzu CLI Application Accelerator plug-in                        | 1.6.0   |
+| Tanzu CLI Apps plug-in                                           | 0.12.1  |
+| Tanzu CLI Build Service plug-in                                  | 1.0.0   |
+| Tanzu CLI Insight plug-in                                        | 1.6.0   |
 | Tanzu Service CLI plug-in                                        | 0.7.0   |
 | Tekton Pipelines                                                 | 0.41.0  |
 
