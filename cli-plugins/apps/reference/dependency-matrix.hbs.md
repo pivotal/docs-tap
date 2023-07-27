@@ -1,4 +1,4 @@
-# Apps CLI dependency matrix
+# Apps CLI plug-in dependency matrix
 
 This topic tells you what versions of the Tanzu Apps CLI are supported in
 Tanzu Application Platform (commonly known as TAP).
