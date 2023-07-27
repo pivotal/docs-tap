@@ -1,6 +1,6 @@
 # tanzu accelerator list
 
-List accelerators.
+This command lists accelerators.
 
 ## Synopsis
 

@@ -1,6 +1,6 @@
 # tanzu accelerator fragment delete
 
-Delete an accelerator fragment.
+This command deletes an accelerator fragment.
 
 ## Synopsis
 
