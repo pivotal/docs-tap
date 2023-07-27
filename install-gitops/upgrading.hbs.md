@@ -80,6 +80,36 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
+## <a id='patch-upgrade'></a> Upgrading a patch version
+
+>**Caution** Tanzu Application Platform (GitOps) does not provide a separate artifact for each patch version within a minor line. For example Tanzu Application Platform 1.6.x will contain the gitops artifact with version 1.6.1 only. 
+
+To upgrade to the latest patch, please do the following:
+
+1. [Download and unpack the latest version of Tanzu GitOps RI](sops.hbs.md#download-tanzu-gitops-ri). In the case of 1.6.x, this will be version 1.6.1.
+
+1. Update the Tanzu Application Platform version in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-install-values.yaml`:
+
+    ```yaml
+    tap_install:
+        ...
+        version:
+            package_repo_bundle_tag: "1.6.1"
+            package_version: "1.6.1"
+    ```
+
+    Where:
+
+    - `package_repo_bundle_tag` is the version of Tanzu Application Platform you wish to upgrade to.
+    - `package_version` is the version of Tanzu Application Platform you wish to upgrade to. This version should match `package_repo_bundle_tag`.
+
+1. Commit:
+
+    ```console
+    git add . && git commit -m "Upgrade TAP to version 1.6.1"
+    git push
+    ```
+
 ## <a id="upgrading-sops"></a> Upgrade the existing SOPs based installation
 
 In previous versions of Tanzu GitOps RI, sensitive values were provided to Tanzu Sync by using the command line and environment variables. This is replaced by a SOPs encrypted file that is committed to the repository.
