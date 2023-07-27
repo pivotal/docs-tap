@@ -28,10 +28,12 @@ spec:
   system:                # system that the API is part of
   owner:                 # person/team that owns the API
   location:
-    path:                # sub-path where the API spec is available
-    baseURL:             # base URL object where the API spec is available. oneOf(url, ref)
-      url:               # static absolute base URL
-      ref:               # object ref to oneOf(HTTPProxy, Knative Service, Ingress)
+    apiSpec:
+      path:              # sub-path where the API spec is available (previously `location.path`)
+      url:               # (Optional) static absolute base URL for the API spec
+    server:             # base URL object where the API spec is available. oneOf(url, ref) (previously `location.baseURL`)
+      url:               # (Optional) static absolute base URL for the API server
+      ref:               # (Optional) object ref to oneOf(HTTPProxy, Knative Service, Ingress)
         apiVersion:
         kind:
         name:
@@ -45,6 +47,10 @@ The text boxes cause specific behavior in Tanzu Developer Portal
 - Tanzu Developer Portal uses the namespace for the API entity where the APIDescriptor CR is applied. This causes the API entity's name, system, and owner to all be in that namespace.
 - To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
 - If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
+
+
+❗ DEPRECATION WARNING: `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and `spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change is to support having different API server location from the spec location. These deprecated fields will be removed in TAP 1.10.
+
 
 ## <a id='absolute-url'></a>With an Absolute URL
 
@@ -61,8 +67,9 @@ spec:
   system: spring-petclinic
   owner: team-petclinic
   location:
-    path: "/v3/api-docs.yaml"
-    baseURL:
+    apiSpec:
+      path: "/v3/api-docs.yaml"
+    server:
       url: https://myservice.com
 ```
 
@@ -85,8 +92,9 @@ spec:
   system: spring-petclinic
   owner: team-petclinic
   location:
-    path: "/test/openapi"
-    baseURL:
+    apiSpec:
+      path: "/test/openapi"
+    server:
       ref:
         apiVersion: projectcontour.io/v1
         kind: HTTPProxy
