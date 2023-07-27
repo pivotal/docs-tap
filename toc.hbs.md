@@ -337,7 +337,7 @@ docs.vmware.com is built.
             - [AppSSO for platform operators](app-sso/how-to-guides/platform-operators/index.hbs.md)
                 - [AppSSO for platform operators overview](app-sso/how-to-guides/platform-operators/index.hbs.md)
                 - [Install AppSSO](app-sso/how-to-guides/platform-operators/installation.hbs.md)
-                - [Upgrades](app-sso/how-to-guides/platform-operators/upgrades.hbs.md)
+                - [Upgrade AppSSO](app-sso/how-to-guides/platform-operators/upgrades.hbs.md)
                 - [Uninstall AppSSO](app-sso/how-to-guides/platform-operators/uninstallation.hbs.md)
             - [AppSSO for service operators](app-sso/how-to-guides/service-operators/index.hbs.md)
                 - [AppSSO for service operators overview](app-sso/how-to-guides/service-operators/index.hbs.md)
