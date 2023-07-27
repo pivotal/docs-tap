@@ -1,6 +1,6 @@
 # ClientRegistration API for AppSSO
 
-In Application Single Sign-On (commonly called AppSSO), `ClientRegistration` is 
+In Application Single Sign-On (commonly called AppSSO), `ClientRegistration` is
 the request for client credentials for an [AuthServer](./authserver.hbs.md).
 
 It implements the [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
@@ -26,11 +26,12 @@ spec:
   scopes: # optional
     - name: ""
       description: ""
+  displayName: "" # optional, must be between 2 and 32 chars in length
   authorizationGrantTypes: # optional
     - client_credentials
     - authorization_code
     - refresh_token
-  clientAuthenticationMethod: "" # optional, values accepted are described in Client authentication methods section 
+  clientAuthenticationMethod: "" # optional, values accepted are described in Client authentication methods section
   requireUserConsent: false # optional
 status:
   authServerRef:
@@ -78,7 +79,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 - `client_secret_post`: HTTP POST body based client authentication.
 - `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
 - `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
-- `none`: No client authentication. Required for public clients. 
+- `none`: No client authentication. Required for public clients.
 For more information, see [Public clients and CORS](../../how-to-guides/service-operators/cors.md).
 
 > **Caution** When running workloads by using Spring Boot 3, you must use
@@ -163,6 +164,7 @@ metadata:
   name: my-client-registration
   namespace: app-team
 spec:
+  displayName: "My sample app"
   authServerSelector:
     matchLabels:
       for: app-team
@@ -173,7 +175,7 @@ spec:
   requireUserConsent: false
   clientAuthenticationMethod: client_secret_basic
   authorizationGrantTypes:
-    - "client_credentials"
+    - "authorization_code"
     - "refresh_token"
   scopes:
     - name: "openid"

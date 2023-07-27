@@ -1,14 +1,14 @@
 # ClusterWorkloadRegistrationClass API for Application Single Sign-On
 
-In Application Single Sign-On (commonly called AppSSO), `ClusterWorkloadRegistrationClass` 
-represents the request to expose an `AuthServer` as a claimable service offering. 
+In Application Single Sign-On (commonly called AppSSO), `ClusterWorkloadRegistrationClass`
+represents the request to expose an `AuthServer` as a claimable service offering.
 It is cluster-scoped and is identified by its short name `cwrc`.
 
 `ClusterWorkloadRegistrationClass` optionally receives a free-form description
 which explains the offering to those which discover it with the `tanzu` CLI. It
 also receives a base `WorkloadRegistration` section.
 
-`ClusterWorkloadRegistrationClass` reconciles into a Crossplane `Composition` and 
+`ClusterWorkloadRegistrationClass` reconciles into a Crossplane `Composition` and
 a Services Toolkit `ClusterInstanceClass`.
 
 The `Composition` defines how to create a `WorkloadRegistration` for an
@@ -20,7 +20,7 @@ the `Composition`. Instances of this class are claimed by using Services Toolkit
 `ClassClaim`. For more information, see [claims](#claims).
 
 The available parameters of the `ClusterInstanceClass` are those of
-`XWorkloadRegistration`. For more information about the fields, see 
+`XWorkloadRegistration`. For more information about the fields, see
 [XWorkloadRegistration](xworkloadregistration.hbs.md).
 
 The base `WorkloadRegistration` section is the blueprint for claims to this
@@ -31,8 +31,8 @@ on all claimed `WorkloadRegistration`. This is how they can match a certain
 
 The base is a partial projection of `WorkloadRegistration`'s specification. It is
 limited to the fields `metadata.labels`, `metadata.annotations`,
-`spec.workloadDomainTemplate` and `spec.authServerSelector`. 
-For more information about the fields, see 
+`spec.workloadDomainTemplate` and `spec.authServerSelector`.
+For more information about the fields, see
 [WorkloadRegistration](workloadregistration.hbs.md).
 
 After the offering is created, you can discover it with the `tanzu` CLI:
@@ -55,13 +55,14 @@ PARAMETERS:
   KEY                         DESCRIPTION  TYPE     DEFAULT               REQUIRED
   authorizationGrantTypes     [...]        array    [authorization_code]  false
   clientAuthenticationMethod  [...]        string   client_secret_basic   false
+  displayName                 [...]        string   <nil>                 false
   redirectPaths               [...]        array    <nil>                 false
   requireUserConsent          [...]        boolean  true                  false
   scopes                      [...]        array    [map[...]]            false
   workloadRef.name            [...]        string   <nil>                 true
 ```
 
-`ClusterWorkloadRegistrationClass` aggregates the readiness of its children. 
+`ClusterWorkloadRegistrationClass` aggregates the readiness of its children.
 It is not ready until its base's `authServerSelector` uniquely selects
 an `AuthServer`. When an `AuthServer` is matched, its reference is written to
 the status.
@@ -138,7 +139,7 @@ kind: ClusterWorkloadRegistrationClass
 metadata:
   name: sample-minimal
 spec:
-  base: 
+  base:
     spec:
       authServerSelector:
         matchLabels:
@@ -147,7 +148,7 @@ spec:
 
 This is a full example which selects an `AuthServer` that is uniquely identified
 by the label `sso.apps.tanzu.vmware.com/env=dev`. It sets a custom
-`workloadDomainTemplate` on the base, a label and an annotation. 
+`workloadDomainTemplate` on the base, a label and an annotation.
 The annotation causes in safe and unsafe redirect URI templating.
 
 ```yaml
@@ -159,7 +160,7 @@ metadata:
 spec:
   description:
     short: Login by AppSSO with a custom domain template
-  base: 
+  base:
     metadata:
       labels:
         app.kubernetes.io/part-of: service-claims
@@ -176,7 +177,7 @@ spec:
 
 Instances of this class are claimed by using Services Toolkit's `ClassClaim`.
 
-The class is identified by its name and the client registration's configuration 
+The class is identified by its name and the client registration's configuration
 is set as its parameters. The `spec` of parameters is the specification of
 [XWorkloadRegistration](xworkloadregistration.hbs.md).
 
@@ -186,7 +187,7 @@ You can set the propagation time of client credentials to the `ClassClaim` up to
 
 ### <a id="claims-spec"></a> Claims specification
 
-This is the specification of a `ClassClaim` for a `ClusterWorkloadRegistrationClass`, 
+This is the specification of a `ClassClaim` for a `ClusterWorkloadRegistrationClass`,
 not the specification of the `ClassClaim` API.
 
 ```yaml
@@ -276,11 +277,11 @@ spec:
 
 ### <a id="claims-updates"></a> Claims updates
 
-`ClassClaim` performs a point-in-time look-up, so updates to an existing 
-`ClassClaim.spec.parameters` have no effect. For more information, see 
+`ClassClaim` performs a point-in-time look-up, so updates to an existing
+`ClassClaim.spec.parameters` have no effect. For more information, see
 [Class claims compared to resource claims](../../../services-toolkit/concepts/class-claim-vs-resource-claim.hbs.md).
 
-When creating your `ClassClaim` with kapp, you can configure it to replace the 
+When creating your `ClassClaim` with kapp, you can configure it to replace the
 resource instead of updating it when it changes:
 
 ```yaml

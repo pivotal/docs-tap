@@ -1,44 +1,44 @@
 # WorkloadRegistration API for AppSSO
 
-In Application Single Sign-On (commonly called AppSSO), `WorkloadRegistration` 
-represents the request for client credentials for an [AuthServer](authserver.hbs.md). 
-It is a portable, higher-level abstraction over [ClientRegistration](clientregistration.hbs.md). 
+In Application Single Sign-On (commonly called AppSSO), `WorkloadRegistration`
+represents the request for client credentials for an [AuthServer](authserver.hbs.md).
+It is a portable, higher-level abstraction over [ClientRegistration](clientregistration.hbs.md).
 It is namespaced and is identified by its short name `workloadreg`.
 
 `WorkloadRegistration` templates redirect URIs and reconciles into a
-[ClientRegistration](clientregistration.hbs.md). For more information, 
+[ClientRegistration](clientregistration.hbs.md). For more information,
 see [Redirect URI templating](#redirect-uri).
 
 `WorkloadRegistration` exposes most of the fields of
 [ClientRegistration](clientregistration.hbs.md). The exceptions are
-`spec.redirectPaths` (instead of `spec.redirectURIs`), `spec.workloadDomainTemplate` 
+`spec.redirectPaths` (instead of `spec.redirectURIs`), `spec.workloadDomainTemplate`
 and `spec.workloadRef`.
 
 By templating redirect URIs, a `WorkloadRegistration` is decoupled from a client
 workload's specific FQDN. As a result, it is portable across environments.
 
 `spec.workloadDomainTemplate` is a golang
-[text/template](https://pkg.go.dev/text/template). It is optional with default value `\{{.Name}}.\{{.Namespace}}.\{{.Domain}}`. You can change the default value to the 
-[package configuration](../package-configuration.hbs.md) value 
+[text/template](https://pkg.go.dev/text/template). It is optional with default value `\{{.Name}}.\{{.Namespace}}.\{{.Domain}}`. You can change the default value to the
+[package configuration](../package-configuration.hbs.md) value
 `default_workload_domain_template`.
 
 The values for `\{{.Name}}` and `\{{.Namespace}}` are inherited from
 `spec.workloadRef`. The field `spec.workloadRef` is not resolved to an actual
-workload running on the cluster. It is a holder for template values which identify 
+workload running on the cluster. It is a holder for template values which identify
 a workload.
 
-The [package configuration](../package-configuration.hbs.md) value 
+The [package configuration](../package-configuration.hbs.md) value
 `workload_domain_name` defines the value for `\{{.Domain}}`.
 
-Similar to `ClientRegistration`: 
+Similar to `ClientRegistration`:
 
-- `WorkloadRegistration` is bindable. It implements the 
+- `WorkloadRegistration` is bindable. It implements the
   [Service Bindings](https://servicebinding.io/spec/core/1.0.0/)
   `ProvisionedService`. The credentials are returned as a [Service
   Bindings](https://servicebinding.io/spec/core/1.0.0/) `Secret`.
 
-- A `WorkloadRegistration` must uniquely identify an `AuthServer` by using 
-  `spec.authServerSelector`. If it matches none, too many or a disallowed `AuthServer`, 
+- A `WorkloadRegistration` must uniquely identify an `AuthServer` by using
+  `spec.authServerSelector`. If it matches none, too many or a disallowed `AuthServer`,
   it does not get credentials.
 
 `WorkloadRegistration` aggregates the readiness of its child `ClientRegistration`.
@@ -48,8 +48,8 @@ Similar to `ClientRegistration`:
 > incidental and accidental, because that API too is not opinionated as to what
 > specific resources consolidat a "workload".
 >
-> `WorkloadRegistration` represents the client registration of any "workload" 
-> whose redirect URIs can be templated. It must not be a `Workload` or even be 
+> `WorkloadRegistration` represents the client registration of any "workload"
+> whose redirect URIs can be templated. It must not be a `Workload` or even be
 > running on a Kubernetes cluster.
 
 ## <a id="spec"></a> Specification
@@ -70,6 +70,7 @@ spec:
     namespace: "" #! required
   authServerSelector:
     matchLabels: {} #! required
+  displayName: "" #! optional, must be between 2 and 32 chars in length
   redirectPaths: #! optional
     - "" #! must be an absolute path
   scopes: #! optional
@@ -153,6 +154,7 @@ spec:
     matchLabels:
       name: authserver-sample
       sample: "true"
+  displayName: "Full sample app"
   redirectPaths:
     - /redirect/uri/1
     - /redirect/uri/2

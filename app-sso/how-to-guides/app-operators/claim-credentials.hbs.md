@@ -35,6 +35,7 @@ PARAMETERS:
   KEY                         DESCRIPTION  TYPE     DEFAULT               REQUIRED
   authorizationGrantTypes     [...]        array    [authorization_code]  false
   clientAuthenticationMethod  [...]        string   client_secret_basic   false
+  displayName                 [...]        string   <nil>                 false
   redirectPaths               [...]        array    <nil>                 false
   requireUserConsent          [...]        boolean  true                  false
   scopes                      [...]        array    [map[...]]            false
@@ -76,6 +77,7 @@ or create a `ClassClaim` directly.
       --class app-sso \
       --namespace my-namespace \
       --parameter workloadRef.name=my-workload \
+      --parameter displayName='My sample app' \
       --parameter redirectPaths='["/login/oauth2/code/sso"]' \
       --parameter authorizationGrantTypes='["client_credentials", "authorization_code"]' \
       --parameter requireUserConsent=false
@@ -96,6 +98,7 @@ or create a `ClassClaim` directly.
       parameters:
         workloadRef:
           name: my-workload
+        displayName: "My sample app"
         redirectPaths:                        # Optional
           - /login/oauth2/code/sso
         authorizationGrantTypes:              # Optional
