@@ -162,7 +162,11 @@ When accessing the **Runtime Resource Visibility** tab, the system displays
 #### Symptom
 
 When accessing the **Runtime Resource Visibility** tab, the system displays
-`One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR".`
+
+```console
+One or more resources are missing. This could be due to a label mismatch. \
+Please make sure your resources have the label(s) "LABEL_SELECTOR".
+```
 
 #### Cause
 
@@ -173,9 +177,9 @@ No communications error has occurred, but no resources were found.
 Confirm that you are using the correct label:
 
 1. Verify the [Component definition](catalog/catalog-operations.md) includes the annotation
-`backstage.io/kubernetes-label-selector`.
+   `backstage.io/kubernetes-label-selector`.
 
-1. Confirm your Kubernetes resources correspond to that label drop-down menu.
+2. Confirm your Kubernetes resources correspond to that label drop-down menu.
 
 ### Errors retrieving resources
 
