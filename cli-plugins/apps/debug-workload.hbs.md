@@ -1,4 +1,4 @@
-# Debugging workloads
+# Debug workloads
 
 This topic describes steps you can take to debug workloads.
 

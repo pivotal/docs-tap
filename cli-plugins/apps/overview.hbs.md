@@ -1,7 +1,6 @@
 # Apps CLI plug-in overview
 
-Use the Apps CLI plug-in to create, view, update, and delete application workloads on a Kubernetes
-cluster that has Tanzu Application Platform installed.
+This topic gives you an overview of the Apps CLI plug-in. Use the Apps CLI plugin to create, view, update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application Platform (commonly known as TAP) components installed.
 
 ## <a id='about'></a>About workloads
 
