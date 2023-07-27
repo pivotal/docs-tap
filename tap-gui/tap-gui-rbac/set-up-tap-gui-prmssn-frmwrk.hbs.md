@@ -1,4 +1,4 @@
-# Set up permission framework for your Tanzu Developer Portal
+# Set up the permission framework for your Tanzu Developer Portal
 
 This topic gives you an overview of the Backstage permission framework and tells you how to enable
 it for Tanzu Developer Portal (formerly called Tanzu Application Platform GUI). For more information,
