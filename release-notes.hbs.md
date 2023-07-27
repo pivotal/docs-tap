@@ -803,23 +803,23 @@ The following table lists the supported component versions for this Tanzu Applic
 | Component Name                                                   | Version |
 | ---------------------------------------------------------------- | ------- |
 | API Auto Registration                                            |         |
-| API portal                                                       |         |
+| API portal                                                       | 1.4.0   |
 | API Scoring and Validation                                       |         |
-| Application Accelerator                                          |         |
-| Application Configuration Service                                |         |
-| Application Live View                                            |         |
-| Application Single Sign-On                                       |         |
-| Authentication and authorization                                 |         |
+| Application Accelerator                                          | 1.6.1   |
+| Application Configuration Service                                | 2.1.0   |
+| Application Live View                                            | 1.6.1   |
+| Application Single Sign-On                                       | 4.0.0   |
+| Authentication and authorization                                 | 1.1.0   |
 | Bitnami Services                                                 | 0.2.0   |
-| Cartographer Conventions                                         |         |
-| cert-manager                                                     |         |
-| Cloud Native Runtimes                                            |         |
-| Contour                                                          |         |
+| Cartographer Conventions                                         | 0.7.3   |
+| cert-manager                                                     | 2.3.1   |
+| Cloud Native Runtimes                                            | 2.3.1   |
+| Contour                                                          | 1.24.4  |
 | Crossplane                                                       | 0.2.1   |
-| Developer Conventions                                            |         |
+| Developer Conventions                                            | 0.11.0  |
 | Eventing                                                         | 2.2.3   |
-| Flux CD Source Controller                                         |         |
-| Learning Center                                                  |         |
+| Flux CD Source Controller                                        | 0.36.1  |
+| Learning Center <!-- should I also add workshops at 0.3.0? -->   | 0.3.1   |
 | Local Source Proxy                                               | 0.1.0   |
 | Namespace Provisioner                                            | 0.4.0   |
 | Out of the Box Delivery - Basic                                  | 0.13.6  |
@@ -829,23 +829,23 @@ The following table lists the supported component versions for this Tanzu Applic
 | Out of the Box Templates                                         | 0.13.6  |
 | Service Bindings                                                 | 0.9.1   |
 | Services Toolkit                                                 | 0.11.0  |
-| Source Controller                                                |         |
-| Spring Boot conventions                                          |         |
-| Spring Cloud Gateway                                             |         |
+| Source Controller                                                | 0.8.0   |
+| Spring Boot conventions                                          | 1.6.1   |
+| Spring Cloud Gateway                                             | 2.0.3   |
 | Supply Chain Choreographer                                       | 0.7.3   |
 | Supply Chain Security Tools - Policy Controller                  |         |
 | Supply Chain Security Tools - Scan                               |         |
 | Supply Chain Security Tools - Sign (deprecated)                  |         |
 | Supply Chain Security Tools - Store                              |         |
-| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
-| Tanzu Application Platform Telemetry                             |         |
-| Tanzu Build Service                                              |         |
-| Tanzu CLI plug-in                                                |         |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) | 1.6.3   |
+| Tanzu Application Platform Telemetry                             | 0.6.1   |
+| Tanzu Build Service                                              | 1.11.10 |
+| Tanzu CLI                                                        | 0.90.0  |
 | Tanzu Developer Tools for IntelliJ                               |         |
 | Tanzu Developer Tools for Visual Studio                          |         |
 | Tanzu Developer Tools for VS Code                                |         |
 | Tanzu Service CLI plug-in                                        | 0.7.0   |
-| Tekton Pipelines                                                 |         |
+| Tekton Pipelines                                                 | 0.41.0  |
 
 ---
 
