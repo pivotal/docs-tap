@@ -60,16 +60,12 @@ The `sso.apps.tanzu.vmware.com` package has these dependencies:
    tanzu package installed get appsso --namespace tap-install
    ```
 
-## <a id="configure"></a> Configure Application Single Sign-On for VMware Tanzu
+## <a id="see-also"></a> See also
 
-To configure the Application Single Sign-On package to meet your needs, see
+- To configure the Application Single Sign-On package to meet your needs, see
 [Package configuration for Application Single Sign-On](../../reference/package-configuration.hbs.md).
 
-## <a id="upgrade"></a> Upgrading Application Single Sign-On for VMware Tanzu
+- To upgrade to a later version of the package, see [Upgrade Application Single Sign-On](upgrades.hbs.md).
 
-To upgrade to a later version of the package, see [Upgrade Application Single Sign-On](upgrades.hbs.md).
-
-## <a id="openshift"></a> About installing on OpenShift
-
-When deployed on an OpenShift cluster, additional OpenShift-specific resources are installed.
+- When deployed on an OpenShift cluster, additional OpenShift-specific resources are installed.
 For more information, see [Application Single Sign-On for OpenShift clusters](../../reference/openshift.hbs.md).
