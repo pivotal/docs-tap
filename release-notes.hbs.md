@@ -3,13 +3,39 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-{{#unless vars.hide_content}}
-
-This Handlebars condition is used to hide content.
-
-In release notes, this condition hides content that describes an unreleased patch for a released minor.
-
-{{/unless}}
+## <a id='1-6-2'></a> v1.6.2 
+ 
+**Release Date**: 15 August 2023
+ 
+### <a id='1-6-2-security-fixes'></a> Security fixes 
+ 
+This release has the following security fixes, listed by component and area. 
+ 
+#### <a id='1-6-2-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
+ 
+- Security fix description.
+ 
+---
+ 
+### <a id='1-6-2-resolved-issues'></a> Resolved issues 
+ 
+The following issues, listed by component and area, are resolved in this release. 
+ 
+#### <a id='1-6-2-COMPONENT-NAME-ri'></a> COMPONENT-NAME
+ 
+- Resolved issue description.
+ 
+---
+ 
+### <a id='1-6-2-known-issues'></a> Known issues 
+ 
+This release has the following known issues, listed by component and area. 
+ 
+#### <a id='1-6-2-COMPONENT-NAME-ki'></a> COMPONENT-NAME
+ 
+- Known issue description with link to workaround.  
+ 
+---
 
 ## <a id='1-6-1'></a> v1.6.1
 
