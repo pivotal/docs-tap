@@ -1,8 +1,8 @@
-## tanzu accelerator fragment update
+# tanzu accelerator fragment update
 
-This command update an accelerator fragment.
+This command updates an accelerator fragment.
 
-### Synopsis
+## Synopsis
 
 Update an accelerator fragment resource with the specified name using the specified configuration.
 
@@ -17,13 +17,13 @@ with any changes made to the associated Git repository.
 tanzu accelerator fragment update [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu accelerator update <accelerator-name> --description "Lorem Ipsum"
 ```
 
-### Options
+## Options
 
 ```console
       --display-name string   display name for the accelerator fragment
@@ -38,13 +38,13 @@ tanzu accelerator update <accelerator-name> --description "Lorem Ipsum"
       --secret-ref string     name of secret containing credentials for private Git repository
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu accelerator fragment](tanzu_accelerator_fragment.md)	 - Fragment commands
