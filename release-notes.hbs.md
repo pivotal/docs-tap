@@ -822,8 +822,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Developer Conventions                                            | 0.11.0  |
 | Eventing                                                         | 2.2.3   |
 | Flux CD Source Controller                                        | 0.36.1  |
-| Learning Center                                                  | 0.3.1   |
-| Learning Center workshops                                        | 0.3.0   |
+| Learning Center (deprecated)                                     | 0.3.1   |
+| Learning Center workshops (deprecated)                           | 0.3.0   |
 | Local Source Proxy                                               | 0.1.0   |
 | Namespace Provisioner                                            | 0.4.0   |
 | Out of the Box Delivery - Basic                                  | 0.13.6  |
