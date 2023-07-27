@@ -1,6 +1,6 @@
-# Commands Details
+# Apps CLI plug-in commands
 
-The following topics describe the Tanzu CLI Apps plug-in.
+The following topics describe the Tanzu CLI Apps plug-in commands.
 
 - [tanzu apps clustersupplychain](./clustersupplychain.hbs.md) sub-commands and details.
 - `tanzu apps workload` sub-commands and flags usage for each:

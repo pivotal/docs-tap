@@ -1,4 +1,4 @@
-# Tanzu apps workload apply
+# tanzu apps workload apply
 
 This topic tells you about the Apps CLI `tanzu apps workload apply` command.
 
