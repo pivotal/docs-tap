@@ -260,6 +260,7 @@ To create the composition:
    Specific requirements vary, but this might include composing a combination of VPCs, Subnets, SubnetGroups,
    Routes, SecurityGroups, and SecurityGroupRules.
    Refer to Compositions that are available online for inspiration and guidance.
+
    For example, see `getting-started-with-aws-with-vpc` in the [Upbound documentation](https://marketplace.upbound.io/configurations/xp/getting-started-with-aws-with-vpc/v1.12.2/compositions/vpcpostgresqlinstances.aws.database.example.org/database.example.org/XPostgreSQLInstance).
    This example defines a Composition that creates a separate VPC for each RDS PostgreSQL instance
    and automatically configures inbound rules.
