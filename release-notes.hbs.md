@@ -409,8 +409,9 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 #### <a id='1-6-1-tap-dev-portal'></a> v1.6.1 features: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
-- Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.
-  Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
+- The component is renamed as as Tanzu Developer Portal to reflect that its application is broader than a Graphical User Interface (GUI) into the Tanzu Application Platform.
+- As of this release, the configurator tool is available as a beta version. Configurator enables integration of Backstage-compatible plugins to the Tanzu Developer Portal. For more information, please refer to [Tanzu Developer Portal Configurator](tap-gui/configurator/about.hbs.md) 
+- Permission framework is released as an alpha version. Permission framework allows the Platform Operator to evaluate the restriction of visibility of the Software Catalog entities based on ownership property. For more information, please refer to [Set up permission framework for your Tanzu Developer Portal](tap-gui/tap-gui-rbac/set-up-tap-gui-prmssn-frmwrk.hbs.md)
 
 #### <a id='1-6-1-intellij-ext'></a> v1.6.1 features: Tanzu Developer Tools for IntelliJ
 
@@ -840,7 +841,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Policy Controller                  | 1.4.0   |
 | Supply Chain Security Tools - Scan                               | 1.6.67  |
 | Supply Chain Security Tools - Store                              | 1.6.2   |
-| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) | 1.6.3   |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) | 1.6.4   |
 | Tanzu Application Platform Telemetry                             | 0.6.1   |
 | Tanzu Build Service                                              | 1.11.10 |
 | Tanzu CLI                                                        | 0.90.0  |
