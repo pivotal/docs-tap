@@ -134,4 +134,11 @@
             continuous delivery systems. It allows developers to build, test, and deploy across cloud
             providers and on-premise systems.</td>
     </tr>
+    <tr>
+        <td>Tiltfile</td>
+        <td>The Tiltfile is a file with no extension that is required for Tilt to enable the
+            Live Update feature. For more information, see the
+            [Tilt documentation](https://docs.tilt.dev/tiltfile_concepts.html).
+        </td>
+    </tr>
 </table>

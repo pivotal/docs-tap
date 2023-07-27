@@ -160,6 +160,6 @@ To manually create a new API entity:
 
 ### <a id='auto-create'></a> Automatically create a new API entry
 
-Tanzu Application Platform v1.3 introduces a feature called **API Auto Registration** that can
+Tanzu Application Platform v1.3 introduced a feature called **API Auto Registration** that can
 automatically register your APIs.
 For more information, see [API Auto Registration](../../api-auto-registration/about.hbs.md).

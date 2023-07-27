@@ -9,18 +9,11 @@ meaning outside of Tanzu Application Platform and are included here for clarific
 
 Live Update, facilitated by [Tilt](https://docs.tilt.dev/), enables you to deploy your workload
 once, save changes to the code, and see those changes reflected in the workload running on the
-cluster within seconds. In their own words:
-
-_“Tilt automates all the steps from a code change to a new process: watching files,
-building container images, and bringing your environment up-to-date.”_
-
-This means that while using Live Update, all you have to do is save your code changes to see them
-reflected in your application running on your cluster. No redeploy is necessary.
+cluster within seconds.
 
 ## <a id="tiltfile"></a> Tiltfile
 
-The Tiltfile is a file with no extension that is required for Tilt to enable the
-Live Update feature.
+The Tiltfile is a file with no extension that is required for Tilt to enable the Live Update feature.
 For more information about the Tiltfile, see the
 [Tilt documentation](https://docs.tilt.dev/tiltfile_concepts.html).
 
@@ -34,9 +27,8 @@ similar to production by debugging on your Tanzu Application Platform enabled Ku
 
 ## <a id="yaml-file-format"></a> YAML file format
 
-YAML _“is a human-readable data-serialization language.
-It is commonly used for configuration files…”_
-For more information see the [YAML Wikipedia entry](https://en.wikipedia.org/wiki/YAML).
+YAML is a human-readable data-serialization language. It is commonly used for configuration files.
+For more information, see the [YAML Wikipedia entry](https://en.wikipedia.org/wiki/YAML).
 
 ## <a id="workload-yaml"></a> workload.yaml file
 
@@ -51,35 +43,31 @@ extension to be visible in [Tanzu Developer Portal](../tap-gui/about.hbs.md).
 ## <a id="code-snippet"></a> Code snippet
 
 [Code snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
-enable you to quickly add project files that are necessary to develop
-using Tanzu Application Platform by creating a template in an empty file that you fill out
-with the required information.
+enable you to quickly add project files that are necessary to develop using Tanzu Application Platform
+by creating a template in an empty file that you fill out with the required information.
 
 ## <a id="source-image"></a> Source image
 
 The source image is the registry location to publish local source code, for example,
-`registry.io/yourapp-source`.
-This must include both a registry and a project name.
+`registry.io/yourapp-source`. This must include both a registry and a project name.
 
 ## <a id="local-path"></a> Local path
 
-The local Path value tells the Tanzu Developer Tools for IntelliJ extension which directory
+The local path value tells the Tanzu Developer Tools for IntelliJ extension which directory
 on your local file system to bring into the [source image](#source-image) container image.
-The default local path value is the current directory where you saved the files
-for your open IntelliJ project.
+The default local path value is the current directory where you saved the files for your open IntelliJ
+project.
 
 ## <a id="kubernetes-context"></a> Kubernetes context
 
-A Kubernetes Context is _“... a set of access parameters that contains a Kubernetes cluster,
-a user, and a namespace."_
-A Kubernetes context acts like a set of coordinates that describe the target of
-the Kubernetes commands that you run.
-For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+A Kubernetes context is a set of access parameters that contains a Kubernetes cluster, a user, and a
+namespace. A Kubernetes context acts like a set of coordinates that describe the target of the
+Kubernetes commands that you run. For more information, see the
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 ## <a id="kubernetes-namespace"></a>Kubernetes namespace
 
-As defined by the [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/):
-
-_“In Kubernetes, namespaces provide a mechanism for isolating groups of resources
-within a single cluster.
-Names of resources need to be unique within a namespace, but not across namespaces.”_
+As defined by the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/),
+in Kubernetes, namespaces provide a mechanism for isolating groups of resources within a single
+cluster. Names of resources need to be unique within a namespace, but not across namespaces.

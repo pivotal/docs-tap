@@ -71,7 +71,7 @@ spec:
   children: []
 ```
 
-More information about user entities and group entities is available in the
+For more information about user entities and group entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group).
 
 ### <a id='systems'></a> Systems
@@ -95,7 +95,7 @@ spec:
   owner: default-team
 ```
 
-More information about system entities is available in the
+For more information about system entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system).
 
 ### <a id='components'></a> Components
@@ -124,7 +124,7 @@ spec:
   system: backstage
 ```
 
-More information about component entities is available in the
+For more information about component entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component).
 
 ## <a id='update-catalogs'></a> Update software catalogs
@@ -249,13 +249,13 @@ Backstage components.
 #### <a id='install-yelb'></a> Install Yelb
 
 1. Download the appropriate file for running the Yelb application itself from
-[GitHub](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml).
-1. Install the application on the Kubernetes cluster that you used for Tanzu Application Platform.
-Preserve the metadata labels on the Yelb application objects.
+   [GitHub](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml).
+2. Install the application on the Kubernetes cluster that you used for Tanzu Application Platform.
+   Preserve the metadata labels on the Yelb application objects.
 
 #### <a id='install-yelb-cat'></a> Install the Yelb catalog
 
 1. From the
-[Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
-page, click **tap-gui-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
+   [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
+   page, click **tap-gui-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
 1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
