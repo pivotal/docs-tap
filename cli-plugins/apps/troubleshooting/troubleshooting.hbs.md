@@ -1,6 +1,6 @@
-# Troubleshooting in Apps CLI Plug-in
+# Troubleshoot Apps CLI plug-in
 
-The Troubleshooting section contains the following topics:
+The troubleshooting section contains the following topics:
 
 - [Troubleshooting workloads](troubleshooting-workload.hbs.md)
-- [Troubleshooting Local Source Proxy integration](troubleshooting-lsp.hbs.md)
+- [Troubleshooting local source proxy integration](troubleshooting-lsp.hbs.md)

@@ -1,4 +1,4 @@
-# Integrate with Local Source Proxy
+# Integrate with local source proxy
 
 This topic tells you how to integrate the Apps CLI plug-in with Local Source Proxy.
 

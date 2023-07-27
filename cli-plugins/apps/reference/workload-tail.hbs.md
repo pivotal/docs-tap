@@ -1,6 +1,6 @@
 # tanzu apps workload tail
 
-This topic tells you about the `tanzu apps workload tail` Apps CLI command.
+This topic tells you about the Apps CLI `tanzu apps workload tail`  command.
 
 The `tanzu apps workload tail` checks the runtime logs of a workload.
 

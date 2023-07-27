@@ -1,6 +1,7 @@
-# Dependency Matrix
+# Apps CLI dependency matrix
 
-This topic tells you what versions of the Tanzu Apps CLI are supported in Tanzu Application Platform.
+This topic tells you what versions of the Tanzu Apps CLI are supported in
+Tanzu Application Platform (commonly known as TAP).
 
 | Tanzu Application Platform Version   | Apps CLI Version | Required Cartographer Version |
 | ------------- | -------------    | -------------                 |

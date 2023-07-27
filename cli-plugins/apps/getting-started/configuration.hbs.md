@@ -1,6 +1,6 @@
 # Configure the Apps CLI plug-in
 
-This topic tells you how to configure the Apps CLI plug-in.
+This topic tells you how to configure the Apps CLI plug-in on Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='changing-clusters'></a>Changing clusters with --context
 

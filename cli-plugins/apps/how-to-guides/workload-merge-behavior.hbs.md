@@ -1,6 +1,6 @@
-# Control Workload Merge Behavior
+# Control workload merge behavior
 
-This topic tells you how to manage control the workload update behavior with the
+This topic tells you how to manage the workload update behavior with the Apps CLI
 `--update-strategy` flag.
 
 When updating a workload from a file, manage the workload update behavior with the `--update-strategy` flag. There are two possible values: `merge` or `replace`.

@@ -1,6 +1,6 @@
-# How-to-Guides
+# Apps CLI how-to-guides
 
-The How-to-Guides section contains the following topics:
+The how-to-guides section contains the following topics:
 
 - [Integrate with Local Source Proxy](integrate-lsp.hbs.md)
 - [Manage workload merge behavior](workload-merge-behavior.hbs.md)
