@@ -1,6 +1,6 @@
 # tanzu accelerator generate-from-local
 
-Generate project from a combination of registered and local artifacts.
+This command generates a project from a combination of registered and local artifacts.
 
 ## Synopsis
 

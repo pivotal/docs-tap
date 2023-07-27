@@ -1,6 +1,6 @@
 ## tanzu accelerator delete
 
-Delete an accelerator
+This command deletes an accelerator.
 
 ### Synopsis
 
