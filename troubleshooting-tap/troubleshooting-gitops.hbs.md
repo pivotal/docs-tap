@@ -72,3 +72,56 @@ tap_install:
   values:
     ingress_domain: example.vmware.com
 ```
+
+### <a id="external-secret-not-found"></a>ExternalSecret not found
+
+**Error:** Reconciliation of ExternalSecret fails with `secret not found`
+
+Example:
+
+```console
+kubectl describe ExternalSecret install-registry-dockerconfig -n tanzu-sync
+
+Status:
+  Conditions:
+    Last Transition Time:  2023-07-20T08:14:04Z
+    Message:               could not get secret data from provider
+    Reason:                SecretSyncedError
+    Status:                False
+    Type:                  Ready
+Events:
+  Type     Reason        Age                   From              Message
+  ----     ------        ----                  ----              -------
+  Warning  UpdateFailed  12s (x15 over 6m14s)  external-secrets  secret not found
+```
+
+**Problem 1:** The secret reference is incorrect.
+
+**Solution 1:** Ensure the references in `tanzu-sync/app/values/tanzu-sync-vault-values.yaml` and `cluster-config/values/tap-install-vault-values.yaml` are correct.
+
+**Problem 2:** The configuration of the secret engine for Vault is incorrect.
+
+**Solution 2:** Validate and update the version of the Vault secrets engine configuration to `v1` or `v2`. By default `v2` is chosen.
+
+Update `tanzu-sync/app/values/tanzu-sync-vault-values.yaml`:
+
+```yaml
+---
+secrets:
+  eso:
+    vault:
+      ...
+      version: "v1" # v1 or v2
+```
+
+Update `cluster-config/values/tap-install-vault-values.yaml`:
+
+```yaml
+---
+tap_install:
+  secrets:
+    eso:
+      vault:
+        ...
+        version: "v1" # v1 or v2
+```
