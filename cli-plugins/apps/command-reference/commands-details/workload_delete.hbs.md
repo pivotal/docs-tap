@@ -1,6 +1,6 @@
 # tanzu apps workload delete
 
-This command deletes workloads in a cluster. Deleting a workload does not mean the images published in the registry are deleted with it.
+This command deletes workloads in a cluster. Deleting a workload does not delete the images published in the registry.
 
 ## Default view
 

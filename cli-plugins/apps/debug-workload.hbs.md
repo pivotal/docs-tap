@@ -1,5 +1,6 @@
-# Debugging workloads
+# Debug workloads
 
+This topic tells you how to debug a workload in Tanzu Application Platform (commonly known as TAP).
 ## <a id="check-build-logs"></a> Check build logs
 
 After the workload is created, you can tail the workload to view the build and runtime logs. For more information about `tail` command, see [workload tail](command-reference/tanzu-apps-workload-tail.md).

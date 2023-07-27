@@ -1,6 +1,6 @@
 # Install Apps CLI plug-in
 
-This topic describes how to install the Apps CLI plug-in.
+This topic tells you how to install the Apps CLI plug-in on Tanzu Application Platform (commonly known as TAP).
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Apps CLI plug-in.
 > For more information about profiles, see [About Tanzu Application Platform components and

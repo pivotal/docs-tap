@@ -1,6 +1,6 @@
 # tanzu apps workload tail
 
-`tanzu apps workload tail` checks the runtime logs of a workload.
+The `tanzu apps workload tail` command checks the runtime logs of a workload.
 
 ## Default view
 
