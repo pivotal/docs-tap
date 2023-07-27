@@ -890,6 +890,11 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
     - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
     defined in the observed artifact content config within the status.
+ 
+ ### <a id="1-6-lc-deprecations"></a> Learning Center deprecations
+
+- `Learning Center` is deprecated and marked for removal in Tanzu Application Platform v1.7.0.
+  Use [Tanzu Academy](https://tanzu.academy) instead for all Tanzu Application Platform learning and education needs.
 
 ### <a id="1-6-stk-deprecations"></a> Services Toolkit deprecations
 
