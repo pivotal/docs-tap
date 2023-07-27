@@ -329,7 +329,7 @@ docs.vmware.com is built.
             - [About grant types](app-sso/concepts/grant-types.hbs.md)
             - [About token signatures](app-sso/concepts/token-signature.hbs.md)
         - [Get started](app-sso/getting-started/index.hbs.md)
-            - [Overview](app-sso/getting-started/appsso-overview.hbs.md)
+            - [Overview](app-sso/how-to-guides/getting-started.hbs.md)
         - [How-to guides](app-sso/how-to-guides/index.hbs.md)
             - [AppSSO for platform operators](app-sso/how-to-guides/platform-operators/index.hbs.md)
                 - [AppSSO for platform operators overview](app-sso/how-to-guides/platform-operators/index.hbs.md)

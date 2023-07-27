@@ -1,4 +1,4 @@
-# Overview of Application Single Sign-On
+# <a href='getting-started'></a> Getting Started with Application Single Sign-On
 
 This topic tells you about concepts important to getting started with Application
 Single Sign-On (commonly called AppSSO).
@@ -7,17 +7,17 @@ Use this topic to learn how to:
 
 1. [Set up your first simplistic authorization server](#provision-an-authserver).
 1. [Claim credentials](#claim-credentials)
-1. [Deploy your workload](#deploy-a-minimal-application)
+1. [Deploy your workload](#deploy-an-application-with-single-sign-on)
 
 After completing these steps, you can proceed with
-[securing a Workload](../how-to-guides/app-operators/secure-spring-boot-workload.hbs.md).
+[securing a Workload](app-operators/secure-spring-boot-workload.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
 You must install AppSSO on your Tanzu Application Platform cluster.
-For more information, see [Install AppSSO](../how-to-guides/platform-operators/installation.hbs.md).
+For more information, see [Install AppSSO](platform-operators/installation.hbs.md).
 
-You must have the [Tanzu CLI](/install-tanzu-cli.hbs.md) installed on your machine and be connected to a Tanzu cluster.
+You must have the [Tanzu CLI](../../install-tanzu-cli.hbs.md) installed on your machine and be connected to a Tanzu cluster.
 
 ## <a id='concepts'></a>Key concepts
 
@@ -70,27 +70,21 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 `roles` claim can only be part of an `id_token` when user roles are mapped and 'roles' scope is requested.
 For more information about mapping for OpenID Connect, LDAP and SAML, see:
 
-- [OpenID external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
-- [LDAP external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
-- [SAML (experimental) external groups mapping](../how-to-guides/service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
+- [OpenID external groups mapping](service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
+- [LDAP external groups mapping](service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
+- [SAML (experimental) external groups mapping](service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
-ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../how-to-guides/service-operators/configure-token-signature.hbs.md). Client
+ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](service-operators/configure-token-signature.hbs.md). Client
 applications may verify their validity using the AuthServer's public keys.
 
-## <a id='next-steps'></a> Next steps
-
-- [Provision an AuthServer](provision-auth-server.md)
-
-## Provision an AuthServer
+## <a href='provision-an-authserver'></a> Provision an AuthServer
 
 This topic tells you how to provision an AuthServer for Application Single
 Sign-On (commonly called AppSSO). Use this topic to learn how to:
 
 1. [Discover existing `AppSSO` service offerings in your cluster.](#discover-existing-appsso-service-offerings)
 1. [Set up your first `ClusterUnsafeTestLogin`.](#set-up-your-first-clusterunsafetestlogin)
-1. [Ensure it is running so that users can log in.](#Verify-that-your-AuthServer-is-running)
-
-![Diagram of AppSSO's components, with AuthServer and Identity Providers highlighted](../../images/app-sso/authserver-tutorial.png)
+1. [Ensure it is running so that users can log in.](#verify-that-your-AuthServer-is-running)
 
 ### Prerequisites
 
@@ -106,9 +100,9 @@ tanzu package installed list -A | grep "sso.apps.tanzu.vmware.com"
 ```
 
 For more information about the AppSSO installation,
-see [Install AppSSO](../how-to-guides/platform-operators/installation.md).
+see [Install AppSSO](./platform-operators/installation.md).
 
-### Discover Existing `AppSSO` Service Offerings
+### <a href='discover-existing-appsso-service-offerings'></a> Discover Existing `AppSSO` Service Offerings
 
 AppSSO Login servers are a consumable service offering in TAP. The `ClusterWorkloadRegistrationClass` represents
 these service offerings.
@@ -122,11 +116,11 @@ In your Kubernetes cluster, run the following command:
 Assuming there isn't already a Login Offering you want to connect to, you will want to create your own.
 
 > **Caution** This `AuthServer` example uses an unsafe testing-only identity provider. Never use it in
-production environments. For more information about identity providers, see [Identity providers](../how-to-guides/service-operators/identity-providers.md).
+production environments. For more information about identity providers, see [Identity providers](./service-operators/identity-providers.hbs.md).
 
-## Set Up Your First `ClusterUnsafeTestLogin`
+### <a href='set-up-your-first-clusterunsafetestlogin'></a> Set Up Your First `ClusterUnsafeTestLogin`
 
-In a non-poduction environment, [`ClusterUnsafeTestLogin`](../../reference/api/clusterunsafetestlogin.hbs.md) is the
+In a non-poduction environment, [`ClusterUnsafeTestLogin`](../reference/api/clusterunsafetestlogin.hbs.md) is the
 recommended way to get started with Application Single Sign-On (commonly called AppSSO).
 
 ```bash
@@ -138,7 +132,7 @@ metadata:
 EOF
 ```
 
-### Verify that your AuthServer is running
+### <a href='verify-that-your-AuthServer-is-running'></a> Verify that your AuthServer is running
 
 You can now see the service offering with:
 
@@ -181,7 +175,7 @@ If you want to see your `AuthServer`'s issuer URI, look at:
 kubectl get authserver -A
 ```
 
-## Claim Credentials
+## <a href='claim-credentials'></a> Claim Credentials
 
 Now that you have an `AppSSO` service offering, the next step is to create a `ClassClaim`.
 
@@ -214,7 +208,7 @@ Check the status of your ClassClaim with
 tanzu services class-claims list
 ```
 
-# Deploy an application with Application Single Sign-On
+## <a href='deploy-an-application-with-single-sign-on'></a> Deploy an application with Application Single Sign-On
 
 This topic tells you how to deploy a minimal Kubernetes application that is protected
 by Application Single Sign-On (commonly called AppSSO) by using the credentials
@@ -225,14 +219,14 @@ that [tanzu services class-claims](#claim-credentials) creates.
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMUY5O0I=/)
 
 For more information about how a Client application uses an AuthServer to
-authenticate an end user, see the [Overview of AppSSO](./appsso-overview.md).
+authenticate an end user, see the [Overview of AppSSO](#getting-started).
 
-## Prerequisites
+### Prerequisites
 
-- You must complete the steps described in [Get started with Application Single Sign-On](./appsso-overview.hbs.md).
+- You must complete the steps described in [Get started with Application Single Sign-On](#getting-started).
   If not, see [claim credentials](#claim-credentials).
 
-## Deploy a minimal application
+### Deploy a minimal application
 
 You are going to deploy a minimal Spring Boot application. When you run
 
@@ -283,4 +277,4 @@ spec:
 This will deploy your workload for you. Thanks to the ServiceClaim, your application will automatically connect to the
 `AppSSO AuthServer`.
 
-That's it! You can check the Workload section of the TAP Portal to find the URL for your workload at https://tap-gui.<your tap cluster domain>.
+That's it! You can check the Workload section of the TAP Portal to find the URL for your workload at `https://tap-gui.<your tap cluster domain>`.
