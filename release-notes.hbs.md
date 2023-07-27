@@ -412,6 +412,18 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.
   Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
 
+- The component is renamed as Tanzu Developer Portal to reflect that it's more than just a graphical
+  user interface (GUI) for Tanzu Application Platform.
+
+- As of this release, the tool Configurator is available in beta. Configurator enables
+  the integration of Backstage-compatible plug-ins in Tanzu Developer Portal. For more information,
+  see [Tanzu Developer Portal Configurator](tap-gui/configurator/about.hbs.md).
+
+- Permission framework is released in alpha. Permission framework enables the Platform
+  Operator to evaluate visibility restriction of the software catalog entities based on
+  ownership property. For more information, see
+  [Set up permission framework for your Tanzu Developer Portal](tap-gui/tap-gui-rbac/set-up-tap-gui-prmssn-frmwrk.hbs.md)
+
 #### <a id='1-6-1-intellij-ext'></a> v1.6.1 features: Tanzu Developer Tools for IntelliJ
 
 - Added support for Local Source Proxy that eliminates the need to provide source image configuration
