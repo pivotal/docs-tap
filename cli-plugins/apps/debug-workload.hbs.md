@@ -1,4 +1,4 @@
-# Debugging workloads
+# Debug workloads
 
 ## <a id="check-build-logs"></a> Verify build logs
 
