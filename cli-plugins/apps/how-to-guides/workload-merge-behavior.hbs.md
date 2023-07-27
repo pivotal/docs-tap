@@ -1,4 +1,4 @@
-# Control workload merge behavior
+# Manage workload merge behavior
 
 This topic tells you how to manage the workload update behavior with the Apps CLI
 `--update-strategy` flag.

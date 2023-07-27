@@ -1,6 +1,6 @@
-# Getting Started
+# Get started with Apps CLI plug-in
 
 The Getting Started section contains the following topics:
 
-- [Apps CLI Plug-in installation](installation.hbs.md)
-- [Apps CLI Plug-in configuration](configuration.hbs.md)
+- [Install the Apps CLI plug-in](installation.hbs.md)
+- [Configure the Apps CLI plug-in](configuration.hbs.md)
