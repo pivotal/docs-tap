@@ -551,22 +551,22 @@ stores the sensitive data such as username, password, private key from the `tap-
 
 1. (Optional) Update Tanzu Application Platform to use the latest patch:
 
-    Update the Tanzu Application Platform version in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-install-values.yaml`:
+    Update the Tanzu Application Platform version in `GIT-REPO-ROOT/clusters/CLUSTER-NAME/cluster-config/values/tap-install-values.yaml`:
 
     ```yaml
     tap_install:
         ...
         version:
-            package_repo_bundle_tag: "1.6.1" # Populate these values with the latest patch version
-            package_version: "1.6.1"
+            package_repo_bundle_tag: "{{ vars.tap_version }}" # Populate these values with the latest patch version.
+            package_version: "{{ vars.tap_version }}"
     ```
 
     Where:
 
-    - `package_repo_bundle_tag` is the version of Tanzu Application Platform you wish to upgrade to.
-    - `package_version` is the version of Tanzu Application Platform you wish to upgrade to. This version should match `package_repo_bundle_tag`.
+    - `package_repo_bundle_tag` is the version of Tanzu Application Platform you want to upgrade to.
+    - `package_version` is the version of Tanzu Application Platform you want to upgrade to. This version must match `package_repo_bundle_tag`.
 
-    >**Note** Tanzu GitOps RI does not provide a separate artifact for each patch version within a minor line. For example Tanzu Application Platform 1.6.x will contain the gitops artifact with version 1.6.1 only.
+    >**Note** Tanzu GitOps RI does not provide a separate artifact for each patch version within a minor line. For example, Tanzu Application Platform v1.6.x only contains the v1.6.1 GitOps artifact.
 
 1. Commit the Tanzu Application Platform installation configuration.
 

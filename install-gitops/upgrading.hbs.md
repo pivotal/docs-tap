@@ -82,28 +82,28 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='patch-upgrade'></a> Upgrading a patch version
 
->**Caution** Tanzu Application Platform (GitOps) does not provide a separate artifact for each patch version within a minor line. For example Tanzu Application Platform 1.6.x will contain the gitops artifact with version 1.6.1 only. 
+>**Caution** Tanzu Application Platform (GitOps) does not provide a separate artifact for each patch version within a minor line. For example, Tanzu Application Platform v1.6.x only contains the v1.6.1 GitOps artifact. 
 
-To upgrade to the latest patch, please do the following:
+Follow these steps to upgrade to the latest patch:
 
-1. [Download and unpack the latest version of Tanzu GitOps RI](sops.hbs.md#download-tanzu-gitops-ri). In the case of 1.6.x, this will be version 1.6.1.
+1. [Download and unpack the latest version of Tanzu GitOps RI](sops.hbs.md#download-tanzu-gitops-ri).
 
-1. Update the Tanzu Application Platform version in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-install-values.yaml`:
+1. Update the Tanzu Application Platform version in `GIT-REPO-ROOT/clusters/CLUSTER-NAME/cluster-config/values/tap-install-values.yaml`:
 
     ```yaml
     tap_install:
         ...
         version:
-            package_repo_bundle_tag: "1.6.1"
-            package_version: "1.6.1"
+            package_repo_bundle_tag: "{{ vars.tap_version }}"
+            package_version: "{{ vars.tap_version }}"
     ```
 
     Where:
 
-    - `package_repo_bundle_tag` is the version of Tanzu Application Platform you wish to upgrade to.
-    - `package_version` is the version of Tanzu Application Platform you wish to upgrade to. This version should match `package_repo_bundle_tag`.
+    - `package_repo_bundle_tag` is the version of Tanzu Application Platform you want to upgrade to.
+    - `package_version` is the version of Tanzu Application Platform you want to upgrade to. This version must match `package_repo_bundle_tag`.
 
-1. Commit:
+1. Commit the upgrade configurations:
 
     ```console
     git add . && git commit -m "Upgrade TAP to version 1.6.1"
