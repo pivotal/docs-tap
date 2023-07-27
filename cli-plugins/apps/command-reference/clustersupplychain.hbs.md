@@ -1,6 +1,6 @@
-# Tanzu Apps Cluster Supply Chain
+# tanzu apps cluster-supply-chain
 
-This command provides details about the cluster supply chain.
+This topic tells you about the Apps CLI `cluster-supply-chain` command.
 
 ## Tanzu apps cluster supply chain list
 

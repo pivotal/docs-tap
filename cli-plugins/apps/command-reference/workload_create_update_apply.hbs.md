@@ -1,6 +1,9 @@
 # Tanzu apps workload apply
 
-`tanzu apps workload apply` is a command used to create and update workloads that are deployed in a cluster through a supply chain.
+This topic tells you about the Apps CLI `tanzu apps workload apply` command.
+
+Use the `tanzu apps workload apply` command to create and update workloads that are deployed in a
+cluster through a supply chain.
 
 The `tanzu apps workload apply` and `tanzu apps workload create` commands have the same behavior and flags with the following exceptions:
 
