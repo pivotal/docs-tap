@@ -858,19 +858,19 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-### <a id="1-6-alv-deprecations"></a> Application Live View
+### <a id="1-6-alv-deprecations"></a> Application Live View deprecations
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
   Tanzu Application Platform v1.7.0.
   For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 
-### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO)
+### <a id='1-6-app-sso-deprecations'></a> Application Single Sign-On (AppSSO) deprecations
 
 - `ClientRegistration` resource `clientAuthenticationMethod` field values
   `post` and `basic` are deprecated and marked for removal in Tanzu Application
   Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
 
-### <a id="1-6-flux-sc-deprecations"></a> Flux CD Source Controller
+### <a id="1-6-flux-sc-deprecations"></a> Flux CD Source Controller deprecations
 
 - Deprecations for the `GitRepository` API:
 
@@ -891,14 +891,14 @@ Deprecated features will remain on this list until they are retired from Tanzu A
     - `status.contentConfigChecksum` is deprecated in favor of the explicit fields
     defined in the observed artifact content config within the status.
 
-### <a id="1-6-stk-deprecations"></a> Services Toolkit
+### <a id="1-6-stk-deprecations"></a> Services Toolkit deprecations
 
 - The `tanzu services claims` CLI plug-in command is now deprecated. It is
   hidden from help text output, but continues to work until officially removed
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same function.
 
-### <a id="1-6-sc-deprecations"></a> Source Controller
+### <a id="1-6-sc-deprecations"></a> Source Controller deprecations
 
 - The Source Controller `ImageRepository` API is deprecated and is marked for
   removal in Tanzu Application Platform v1.9. Use the `OCIRepository` API instead.
@@ -906,7 +906,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   For more information about the `OCIRepository` API, see the
   [Flux documentation](https://fluxcd.io/flux/components/source/ocirepositories/).
 
-### <a id='1-6-scc-deprecations'></a> Supply Chain Choreographer
+### <a id='1-6-scc-deprecations'></a> Supply Chain Choreographer deprecations
 
 - Supply Chain Choreographer no longer uses the `git_implementation` field. The `go-git` implementation
   now assumes that `libgit2` is not supported.
@@ -916,7 +916,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
       do not cause failures. This is assured up to Tanzu Application Platform v1.9.0.
     - Azure DevOps works without specifying `git_implementation` in Tanzu Application Platform v1.6.1.
 
-### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan
+### <a id="1-6-scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan deprecations
 
 - The `docker` field and related sub-fields used in SCST -
   Scan are deprecated and marked for removal in Tanzu Application Platform
@@ -937,7 +937,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
    information about how to use namespace provisioner to populate a namespace
    with SCST - SCST scan, see [Setup for OOTB Supply Chains](namespace-provisioner/ootb-supply-chain.hbs.md#test-scan).
 
-### <a id="1-6-tbs-deprecations"></a> Tanzu Build Service
+### <a id="1-6-tbs-deprecations"></a> Tanzu Build Service deprecations
 
 - The Ubuntu Bionic stack is deprecated: Ubuntu Bionic stops receiving support in April 2023.
   VMware recommends you migrate builds to Jammy stacks in advance.
@@ -948,13 +948,13 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   support in Tanzu Application Platform v1.7.0.
   To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
-### <a id="1-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+### <a id="1-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in deprecations
 
 - The default value for the
   [--update-strategy](./cli-plugins/apps/reference/workload-create-apply.hbs.md#update-strategy)
   flag is planned to change from `merge` to `replace` in Tanzu Application Platform v1.7.0.
 
-### <a id="1-6-tekton-deprecations"></a> Tekton Pipelines
+### <a id="1-6-tekton-deprecations"></a> Tekton Pipelines deprecations
 
 - Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application
   Platform v1.9. Use the `Task` API instead. For more information, see the
