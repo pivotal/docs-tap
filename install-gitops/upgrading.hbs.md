@@ -80,7 +80,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
-## <a id='patch-upgrade'></a> Upgrading a patch version
+## <a id='patch-upgrade'></a> Upgrade to a patch version
 
 >**Caution** Tanzu Application Platform (GitOps) does not provide a separate artifact for each patch version within a minor line. For example, Tanzu Application Platform v1.6.x only contains the v1.6.1 GitOps artifact. 
 
