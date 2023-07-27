@@ -1,8 +1,8 @@
-# Overview of FluxCD Source Controller
+# Overview of Flux CD Source Controller
 
-FluxCD Source Controller provides you with APIs for acquiring resources such as Git, Helm 
+Flux CD Source Controller provides you with APIs for acquiring resources such as Git, Helm 
 repositories and S3 buckets on the cluster.
-For more information, see [FluxCD Source Controller documentation](https://fluxcd.io/flux/components/source/). 
+For more information, see [Flux CD Source Controller documentation](https://fluxcd.io/flux/components/source/). 
 
 The source-controller implements the
 [source.toolkit.fluxcd.io](https://github.com/fluxcd/source-controller/tree/main/docs/spec/v1beta1) 

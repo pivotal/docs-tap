@@ -58,7 +58,7 @@ stored in dedicated repositories.
 |Contour|Contour|
 |Developer Conventions|Developer Conventions|
 |Eventing|Eventing|
-|FluxCD Source Controller|FluxCD Source Controller|
+|Flux CD Source Controller|Flux CD Source Controller|
 |Tanzu Learning Center|Learning Center|
 |Namespace Provisioner|Namespace Provisioner|
 |Service Bindings|Service Bindings|

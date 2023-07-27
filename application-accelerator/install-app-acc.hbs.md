@@ -1,6 +1,6 @@
 # Install Application Accelerator
 
-This topic describes how to install Application Accelerator
+This topic tells you how to install Application Accelerator
 from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
@@ -13,7 +13,7 @@ Before installing Application Accelerator:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
-- Install Flux SourceController on the cluster. See [Install FluxCD Source Controller](../fluxcd-source-controller/install.hbs.md).
+- Install Flux SourceController on the cluster. See [Install Flux CD Source Controller](../fluxcd-source-controller/install.hbs.md).
 
 - Install Source Controller on the cluster. See [Install Source Controller](../source-controller/install-source-controller.md).
 

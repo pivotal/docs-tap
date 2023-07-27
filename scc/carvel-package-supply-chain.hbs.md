@@ -17,7 +17,7 @@ The out of the box Basic Supply Chain outputs a
 of the Box Delivery Supply Chain. The Carvel Package Supply Chains output a
 Carvel `Package` object to a GitOps repository. These `Packages` have
 configurable parameters such as `hostname` and `replicas` that are configured
-per environment. GitOps tools such as FluxCD and ArgoCD can deploy the
+per environment. GitOps tools such as Flux CD and Argo CD can deploy the
 `Package`s onto multiple environments.
 
 > **Note** The underlying Kubernetes resources created for your `server`
@@ -143,8 +143,8 @@ Carvel `Package`. This definition is written to
 `<package_name>/packages/<package_id>.yaml` with a new `<package_id>`.
 
 The Carvel `Package` stored in GitOps repositories are deployed to multiple run
-clusters using GitOps tools, such as FluxCD or ArgoCD. See [Deploy Carvel
-Packages using FluxCD Kustomization](delivery-with-flux.hbs.md).
+clusters using GitOps tools, such as Flux CD or Argo CD. See [Deploy Carvel
+Packages using Flux CD Kustomization](delivery-with-flux.hbs.md).
 
 ## <a id='carvel-package-operator'></a> Installing the Carvel Package Supply Chains as an Operator
 
@@ -338,4 +338,4 @@ commit SHA of the source code used to the label `org.opencontainers.image.revisi
 
 ### Next Steps
 
-You can deploy the Carvel `Package` using tools such as FluxCD or ArgoCD. See [Deploy Carvel Packages using FluxCD Kustomization](delivery-with-flux.hbs.md).`
+You can deploy the Carvel `Package` using tools such as Flux CD or Argo CD. See [Deploy Carvel Packages using Flux CD Kustomization](delivery-with-flux.hbs.md).`

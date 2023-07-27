@@ -1,4 +1,4 @@
-# Custom CA certificates
+# Use custom CA certificates in Tanzu Application Platform
 
 This topic tells you about configuring custom CA certificates in Tanzu Application Platform
 (commonly known as TAP).
@@ -32,7 +32,7 @@ shared:
 ```
 
 Some Tanzu Application Platform components do not support the `shared.ca_cert_data` feature, such as
-FluxCD, Tekton, and the External Secrets operator.
+Flux CD, Tekton, and the External Secrets operator.
 Any custom CA certificates must be configured directly by those components.
 
 For information about using Git with a custom CA in supply chains and configuring the `caFile`

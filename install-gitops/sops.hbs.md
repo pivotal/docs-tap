@@ -91,13 +91,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
-## <a id='initialize-git-repository'></a>Create a new Git repository
+## <a id='create-a-new-git-repository'></a> Create a new Git repository
 
-Follow these steps to create a new Git repository:
+Follow these steps to create a new Git repository and set up the authentication:
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
 
-    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH.
+    This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH and Basic Authentication.
 
 1. Initialize a new Git repository:
 
@@ -109,7 +109,15 @@ Follow these steps to create a new Git repository:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-1. Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository. The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
+1. Set up the authentication method.
+
+    SSH
+    : Create a read-only deploy key for this new repository (recommended) or SSH key for an account with read access to this repository. The private portion of this key is called `GIT_SSH_PRIVATE_KEY`.
+
+    Basic Authentication
+    : Have a user name with read access to the Git repository and password or personal access token for the same user.
+
+    >**Important** Only use one of `ssh` or `Basic Authentication`, not both.
 
 ## <a id='download-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps Reference Implementation (RI)
 
@@ -375,7 +383,7 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
 
 1. Add the sensitive values:
 
-    Example of the container registry credentials using basic authentication:
+    Configuration example for the Git SSH authentication:
 
     ```yaml
     ---
@@ -395,6 +403,24 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
                         HOST-LIST
     ```
 
+    Configuration example for the Git basic authentication:
+
+    ```yaml
+    ---
+    secrets:
+        sops:
+            age_key: |
+                AGE-KEY
+            registry:
+                hostname: MY-REGISTRY
+                username: MY-REGISTRY-USER
+                password: MY-REGISTRY-PASSWORD
+            git:
+                basic_auth:
+                    username: MY-GIT-USERNAME
+                    password: MY-GIT-PASSWORD
+    ```
+
     Where:
 
     - `AGE-KEY` is the contents of the Age key generated earlier.
@@ -403,6 +429,8 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository. Only applies when you use `ssh`.
     - `HOST-LIST` is the list of known hosts for Git host service. Only applies when you use `ssh`.
+    - `MY-GIT-USERNAME` is the user with read access to your Git repository. Only applies when you use `basic authentication`.
+    - `MY-GIT-PASSWORD` is the password for `MY-GIT-USERNAME`. Only applies when you use `basic authentication`.
 
     You can find the schema for Tanzu Sync credentials in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/config/.tanzu-managed/schema--sops.yaml`
 

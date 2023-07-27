@@ -1,4 +1,4 @@
-# Testing accelerators
+# Test accelerators in Application Accelerator
 
 This topic tells you how to test an updated accelerator, or fragment that is not registered in
 your Tanzu Application Platform (commonly known as TAP) cluster.

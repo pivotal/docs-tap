@@ -12,8 +12,8 @@ To use canary deployment, you must complete the following prerequisites:
 - Configure your Supply Chain to output Carvel Packages. See [Output Carvel Packages from your Supply Chain](carvel-package-supply-chain.hbs.md).
 - Deploy Carvel Packages using the tool of your choice:
   - [Deploy Carvel Packages using Carvel App CR](delivery-with-carvel-app.hbs.md)
-  - [Deploy Carvel Packages using FluxCD Kustomization](delivery-with-flux.hbs.md)
-  - [Deploy Carvel Packages using ArgoCD](delivery-with-argo.hbs.md)
+  - [Deploy Carvel Packages using Flux CD Kustomization](delivery-with-flux.hbs.md)
+  - [Deploy Carvel Packages using Argo CD](delivery-with-argo.hbs.md)
 - Install Flagger on your Kubernetes cluster. See [Flagger Install on Kubernetes](https://docs.flagger.app/install/flagger-install-on-kubernetes).
 
 ## <a id="instructions"></a> How to use Contour ingress controller and Flagger to create a canary release
@@ -175,7 +175,7 @@ Using Contour ingress controller and Flagger to create a canary release involves
 
 2. Make changes to GitOps repository and observe the progressive delivery in action
    
-    As changes are made to your GitOps repository, the GitOps tools in place in your environment, such as FluxCD and ArgoCD, deploy the new `Package`s onto your clusters. Flagger detects any changes to the target deployment, including secrets and configmaps,
+    As changes are made to your GitOps repository, the GitOps tools in place in your environment, such as Flux CD and Argo CD, deploy the new `Package`s onto your clusters. Flagger detects any changes to the target deployment, including secrets and configmaps,
     and starts a new rollout. The new version is either promoted or rolled back.
 
    You can monitor the traffic shifting with:

@@ -1,4 +1,4 @@
-# Introduction to transforms
+# Use transforms in Application Accelerator
 
 This topic tells you about using transforms with Application Accelerator.
 

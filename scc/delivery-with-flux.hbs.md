@@ -1,12 +1,12 @@
-# Use Gitops delivery with FluxCD (beta)
+# Use Gitops delivery with Flux CD (beta)
 
 This topic explains how you can deliver Carvel `Packages`, created by the Carvel
 Package Supply Chains, from a GitOps repository to one or more run clusters
-using FluxCD and Supply Chain Choreographer.
+using Flux CD and Supply Chain Choreographer.
 
 ## <a id="prerecs"></a> Prerequisites
 
-To use Gitops Delivery with FluxCD, you must complete the following prerequisites:
+To use Gitops Delivery with Flux CD, you must complete the following prerequisites:
 
 - You must create a `Workload` that uses either the `source-to-url-package` or
   `basic-image-to-url-package` Carvel Package Supply Chain. See the [Carvel
@@ -20,7 +20,7 @@ To use Gitops Delivery with FluxCD, you must complete the following prerequisite
   and the [Contour documentation](https://projectcontour.io/).
 - To use a build cluster to control the deployment on all the run
   clusters, you must create a build cluster that has network access to your run
-  clusters. You must also ensure that you installed FluxCD Kustomize Controller.
+  clusters. You must also ensure that you installed Flux CD Kustomize Controller.
   See the [Flux documentation](https://fluxcd.io/flux/installation/#dev-install)
   for installation instructions. If you intend to deploy directly on the run
   cluster without a build cluster, a build cluster is only necessary for
@@ -55,7 +55,7 @@ rules:
 
 ## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
-For each Carvel `Package` and for each run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` is stored in your GitOps repository and deployed to run clusters by FluxCD.
+For each Carvel `Package` and for each run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` is stored in your GitOps repository and deployed to run clusters by Flux CD.
 
 The following example shows GitOps repository structure after completing this section:
 
@@ -120,9 +120,9 @@ app.default.tap/
 
 1. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create-flux"></a> Create FluxCD GitRepository and FluxCD Kustomizations on the build cluster
+## <a id="create-flux"></a> Create Flux CD GitRepository and Flux CD Kustomizations on the build cluster
 
-Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each of your run clusters.
+Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each of your run clusters.
 
 1. Give your Build cluster access to your run clusters. On the Build cluster, for each run cluster, create a `Secret` containing the run cluster's kubeconfig:
 
@@ -132,7 +132,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
        --from-file=value.yaml=<path-to-run-cluster-kubeconfig>
    ```
 
-2. Configure your Build cluster to clone the GitOps repository. On the Build cluster, create the following FluxCD `GitRepository`:
+2. Configure your Build cluster to clone the GitOps repository. On the Build cluster, create the following Flux CD `GitRepository`:
 
    ```yaml
    ---
@@ -168,7 +168,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      password: # base64 encoded GitHub (or other git remote) personal access token
    ```
 
-3. Configure your Build cluster to deploy your `Package` to the run clusters. For each run cluster, on the Build cluster, create the following FluxCD `Kustomization`:
+3. Configure your Build cluster to deploy your `Package` to the run clusters. For each run cluster, on the Build cluster, create the following Flux CD `Kustomization`:
 
    ```yaml
    ---
@@ -197,7 +197,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
      serviceAccountName: <run-cluster-ns-sa>
    ```
 
-4. Configure your Build cluster to deploy your `PackageInstalls` and `Secrets` to the run clusters. For each run cluster, on the Build cluster, create the following FluxCD `Kustomization`:
+4. Configure your Build cluster to deploy your `PackageInstalls` and `Secrets` to the run clusters. For each run cluster, on the Build cluster, create the following Flux CD `Kustomization`:
 
    ```yaml
    ---
@@ -231,7 +231,7 @@ Configure FluxCD on the Build cluster to deploy your `Packages`, `PackageInstall
 
 To verify your installation:
 
-1. On your Build cluster, confirm that your FluxCD GitRepository and Kustomizations are reconciling:
+1. On your Build cluster, confirm that your Flux CD GitRepository and Kustomizations are reconciling:
 
    ```console
    kubectl get gitrepositories,kustomizations -A

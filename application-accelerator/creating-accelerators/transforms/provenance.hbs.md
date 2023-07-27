@@ -5,8 +5,6 @@ This topic tells you about the Application Accelerator `Provenance` transform in
 The `Provenance` transform is a special transform used to generate a file that
 provides details of the accelerator engine transform.
 
-For more information, see [Application Bootstrapping Provenance](././provenance.hbs.md).
-
 ## <a id="syntax-reference"></a>Syntax reference
 
 ``` console

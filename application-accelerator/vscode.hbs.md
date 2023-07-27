@@ -1,8 +1,9 @@
-# Application Accelerator Visual Studio Code extension
+# Use the Application Accelerator Visual Studio Code extension
 
-This topic describes how to use the Application Accelerator Visual Studio Code extension to explore and generate projects from the defined accelerators in Tanzu Application Platform (commonly known as TAP) using VS Code.
+This topic describes how to use the Application Accelerator Visual Studio Code extension to explore
+and generate projects from the defined accelerators in Tanzu Application Platform (commonly known as TAP) using VS Code.
 
-The application Accelerator Visual Studio Code extension lets you explore and generate projects
+The Application Accelerator Visual Studio Code extension lets you explore and generate projects
 from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies

@@ -1,4 +1,4 @@
-# Use wildcard certificates
+# Use wildcard certificates in Tanzu Application Platform
 
 This topic tells you about using wildcard certificates in Tanzu Application Platform (commonly known as TAP) for components with a fixed or variable set of ingress endpoints.
 

@@ -1,6 +1,7 @@
-# Creating an accelerator.yaml file
+# Create an accelerator.yaml file in Application Accelerator
 
-This topic tells you how to create an accelerator.yaml file.
+This topic tells you how to use Application Accelerator to create an `accelerator.yaml` file in Tanzu
+Appplication Platform (commonly known as TAP).
 
 By including an `accelerator.yaml` file in your Accelerator repository, you can declare input options
 that users fill in using a form in the UI.

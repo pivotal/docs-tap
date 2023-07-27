@@ -1,4 +1,4 @@
-# Application Bootstrapping Provenance
+# Use the Provenance transform in Application Accelerator
 
 This topic tells you about the Application Accelerator `Provenance` transform in Tanzu Application Platform (commonly known as TAP).
 

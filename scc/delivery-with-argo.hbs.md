@@ -1,10 +1,10 @@
-# Use Gitops delivery with ArgoCD (beta)
+# Use Gitops delivery with Argo CD (beta)
 
-This topic explains how you can deliver Carvel `Packages`, created by the Carvel Package Supply Chains, from a GitOps repository to one or more run clusters using ArgoCD for Supply Chain Choreographer.
+This topic explains how you can deliver Carvel `Packages`, created by the Carvel Package Supply Chains, from a GitOps repository to one or more run clusters using Argo CD for Supply Chain Choreographer.
 
 ## <a id="prerecs"></a> Prerequisites
 
-To use Gitops Delivery with ArgoCD, you must complete the following prerequisites:
+To use Gitops Delivery with Argo CD, you must complete the following prerequisites:
 
 - Create a `Workload` that uses either the `source-to-url-package` or
   `basic-image-to-url-package` Carvel Package Supply Chain. See the [Carvel
@@ -18,7 +18,7 @@ To use Gitops Delivery with ArgoCD, you must complete the following prerequisite
   and the [Contour documentation](https://projectcontour.io/).
 - Create a build cluster that has network access to your run
   clusters to use a build cluster to control the deployment on all the run
-  clusters. You must also install ArgoCD.
+  clusters. You must also install Argo CD.
   If you intend to deploy directly on the run cluster without a build cluster,
   a build cluster is only necessary for building the package.
 
@@ -51,7 +51,7 @@ rules:
 
 ## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
-For each Carvel `Package` and run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` are stored in your GitOps repository and deployed to run clusters by FluxCD.
+For each Carvel `Package` and run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` are stored in your GitOps repository and deployed to run clusters by Flux CD.
 
 The following example shows a GitOps repository structure after completing this section:
 
@@ -112,9 +112,9 @@ For each run cluster:
 
 3. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create-argo"></a> Create an ArgoCD application on the Build cluster
+## <a id="create-argo"></a> Create an Argo CD application on the Build cluster
 
-Configure ArgoCD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each run cluster:
+Configure Argo CD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each run cluster:
 
 1. Register a cluster's credentials to Argo CD. Thi is only necessary when deploying to an external cluster.
   - First list all clusters contexts in your current kubeconfig:
@@ -188,7 +188,7 @@ Configure ArgoCD on the Build cluster to deploy your `Packages`, `PackageInstall
 
 To verify your installation:
 
-1. On your Build cluster, confirm that your FluxCD GitRepository and Kustomizations are reconciling:
+1. On your Build cluster, confirm that your Flux CD GitRepository and Kustomizations are reconciling:
 
    ```console
    kubectl get gitrepositories,kustomizations -A
