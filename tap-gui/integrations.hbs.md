@@ -29,8 +29,8 @@ Where:
 
 ## <a id="add-non-gh-integration"></a> Add a Git-based provider integration that isn't GitHub
 
-To enable Tanzu Developer Portal to read Git-based non-GitHub repositories containing
-component information:
+To enable Tanzu Developer Portal to read Git-based non-GitHub repositories containing component
+information:
 
 1. Add the following YAML to `tap-values.yaml`:
 

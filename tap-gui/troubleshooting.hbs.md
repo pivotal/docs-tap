@@ -1,7 +1,7 @@
 # Troubleshoot Tanzu Developer Portal
 
-This topic tells you how to troubleshoot issues encountered when installing
-Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
+This topic tells you how to troubleshoot issues encountered when installing Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI).
 
 ## <a id='port-range-invalid'></a> Tanzu Developer Portal reports that the port range is not valid
 
@@ -26,8 +26,7 @@ Backend failed to start up, Error: Port range is not valid: //gitlab.example.com
 
 ### Cause
 
-Tanzu Developer Portal expects a host name to be passed into the field
-`backend.reading.allow[].host`.
+Tanzu Developer Portal expects a host name to be passed into the field `backend.reading.allow[].host`.
 
 ### Solution
 
@@ -47,8 +46,8 @@ tap_gui:
 
 ### Symptom
 
-You are able to visit Tanzu Developer Portal, but it does not load the catalog and you see
-the following error message.
+You are able to visit Tanzu Developer Portal, but it does not load the catalog and you see the
+following error message.
 
 ```console
 > Error: Could not fetch catalog entities.
@@ -68,12 +67,12 @@ Firefox
 
 ### Cause
 
-As of Tanzu Application Platform v1.5, Tanzu Developer Portal provides TLS connections by
-default. Because of this, if you visit a Tanzu Developer Portal site your connection is
-automatically upgraded to https.
+As of Tanzu Application Platform v1.5, Tanzu Developer Portal provides TLS connections by default.
+Because of this, if you visit a Tanzu Developer Portal site your connection is automatically
+upgraded to https.
 
-You might have manually set the fields `app.baseUrl`, `backend.baseUrl`, and
-`backend.cors.origin` in your `tap-values.yaml` file.
+You might have manually set the fields `app.baseUrl`, `backend.baseUrl`, and `backend.cors.origin`
+in your `tap-values.yaml` file.
 Tanzu Developer Portal uses the `baseUrl` to determine how to create links to fetch from its
 APIs. The combination of these two factors causes your browser to attempt to fetch mixed content.
 
@@ -122,8 +121,7 @@ The catalog plug-in can't read the Git location of your catalog definition files
 ### Solution
 
 1. Ensure you have built your own [Backstage](https://backstage.io/)-compatible catalog or that
-   you have downloaded one of the Tanzu Developer Portal catalogs from VMware Tanzu
-   Network.
+   you have downloaded one of the Tanzu Developer Portal catalogs from VMware Tanzu Network.
 2. Ensure you defined the catalog in the values file that you input as part of installation.
    To update this location, change the definition file:
 
@@ -163,8 +161,8 @@ You can substitute for other integrations as defined in the
 
 ### Symptom
 
-After updating the configuration of Tanzu Developer Portal, either by using a profile
-or as a standalone package installation, you don't know whether the configuration has reloaded.
+After updating the configuration of Tanzu Developer Portal, either by using a profile or as a
+standalone package installation, you don't know whether the configuration has reloaded.
 
 ### Solution
 
@@ -278,7 +276,11 @@ When accessing the **Runtime Resource Visibility** tab, the system displays
 #### Symptom
 
 When accessing the **Runtime Resource Visibility** tab, the system displays
-`One or more resources are missing. This could be due to a label mismatch. Please make sure your resources have the label(s) "LABEL_SELECTOR".`
+
+```console
+One or more resources are missing. This could be due to a label mismatch. \
+Please make sure your resources have the label(s) "LABEL_SELECTOR".
+```
 
 #### Cause
 
@@ -289,9 +291,9 @@ No communications error has occurred, but no resources were found.
 Confirm that you are using the correct label:
 
 1. Verify the [Component definition](catalog/catalog-operations.md) includes the annotation
-`backstage.io/kubernetes-label-selector`.
+   `backstage.io/kubernetes-label-selector`.
 
-1. Confirm your Kubernetes resources correspond to that label drop-down menu.
+2. Confirm your Kubernetes resources correspond to that label drop-down menu.
 
 ### Errors retrieving resources
 

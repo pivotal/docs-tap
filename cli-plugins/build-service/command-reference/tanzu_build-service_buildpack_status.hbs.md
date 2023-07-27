@@ -1,6 +1,6 @@
 # tanzu build-service buildpack status
 
-This command displays the status of a buildpacks
+This command displays the status of a buildpack.
 
 ## Synopsis
 

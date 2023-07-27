@@ -1,8 +1,8 @@
 # View resources on multiple clusters in Tanzu Developer Portal
 
 You can configure Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) to retrieve
-Kubernetes object details from multiple clusters and then surface those details in the various Tanzu
-Application Platform GUI plug-ins.
+Kubernetes object details from multiple clusters and then surface those details in the various
+Tanzu Application Platform GUI plug-ins.
 
 > **Important** In this topic the terms `Build`, `Run`, and `View` describe the cluster's roles and
 > distinguish which steps to apply to which cluster.
@@ -298,8 +298,8 @@ To do so:
 
 To view resources on multiple clusters in the Runtime Resources Visibility plug-in:
 
-1. Navigate to the Runtime Resources Visibility plug-in for a component that is running on multiple
-clusters.
+1. Go to the Runtime Resources Visibility plug-in for a component that is running on multiple
+   clusters.
 
 1. View the multiple resources and their statuses across the clusters.
 

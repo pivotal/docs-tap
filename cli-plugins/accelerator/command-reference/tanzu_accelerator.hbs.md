@@ -1,6 +1,6 @@
-## tanzu accelerator
+# tanzu accelerator
 
-Manage accelerators in a Kubernetes cluster
+This command manages accelerators in a Kubernetes cluster.
 
 ### Options
 

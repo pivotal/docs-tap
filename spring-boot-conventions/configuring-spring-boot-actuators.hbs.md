@@ -6,8 +6,8 @@ automatic configuration of actuators on Tanzu Application Platform and on indivi
 
 ## <a id='workload-config'></a>Workload-level configuration
 
-Developers can add a label to their workloads to activate/deactivate the automatic configuration of
-actuators. By default, all existing and future accelerator projects are configured to activate
+Developers can add a label to their workloads to activate or deactivate the automatic configuration
+of actuators. By default, all existing and future accelerator projects are configured to activate
 automatic configuration on the workload level.
 
 To activate or deactivate the automatic configuration of actuators at the workload level, follow these
@@ -55,7 +55,7 @@ data over HTTP by exposing all the actuator endpoints.
 In addition, the information exposed by the health endpoint is not set to `always` by default.
 
 If the automatic configuration of actuators is set to `true` either at the workload level or platform
-level, the Spring Boot Convention then sets the runtime environment properties
+level, the Spring Boot convention then sets the runtime environment properties
 `management.endpoints.web.exposure.include="*"` and `management.endpoint.health.show-details=true`
 on to the PodSpec to expose all the actuator endpoints and detailed health information.
 You do not need to add these properties manually in `application.properties` or `application.yml`.

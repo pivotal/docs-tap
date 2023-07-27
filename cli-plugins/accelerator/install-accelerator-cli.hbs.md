@@ -1,6 +1,6 @@
 # Install Accelerator CLI plug-in
 
-This document describes how to install the Accelerator CLI plug-in.
+This topic tells you how to install the Accelerator CLI plug-in.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Accelerator CLI plug-in.
 > For more information about profiles, see [About Tanzu Application Platform components and

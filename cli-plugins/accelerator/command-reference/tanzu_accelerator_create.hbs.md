@@ -1,6 +1,6 @@
 # tanzu accelerator create
 
-Create a new accelerator.
+This command creates a new accelerator.
 
 ## Synopsis
 

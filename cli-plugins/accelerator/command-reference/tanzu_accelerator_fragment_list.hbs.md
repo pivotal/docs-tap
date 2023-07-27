@@ -1,6 +1,6 @@
 # tanzu accelerator fragment list
 
-List accelerator fragments.
+This command lists accelerator fragments.
 
 ## Synopsis
 
