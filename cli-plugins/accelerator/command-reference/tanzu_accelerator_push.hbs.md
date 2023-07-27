@@ -1,6 +1,6 @@
 ## tanzu accelerator push
 
-Push local path to source image
+This command pushes source code from local path to source image.
 
 ### Synopsis
 
