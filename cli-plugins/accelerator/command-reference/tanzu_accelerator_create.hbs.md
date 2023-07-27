@@ -1,8 +1,8 @@
-## tanzu accelerator create
+# tanzu accelerator create
 
-Create a new accelerator
+This command creates a new accelerator.
 
-### Synopsis
+## Synopsis
 
 Create a new accelerator resource with specified configuration.
 
@@ -13,20 +13,19 @@ Accelerator configuration options include:
 The Git repository option is required. Metadata options are optional and will override any values for
 the same options specified in the accelerator metadata retrieved from the Git repository.
 
-
-```
+```console
 tanzu accelerator create [flags]
 ```
 
 ### Examples
 
-```
+```console
 tanzu accelerator create <accelerator-name> --git-repository <URL> --git-branch <branch>
 ```
 
 ### Options
 
-```
+```console
       --description string    description of this accelerator
       --display-name string   display name for the accelerator
       --git-branch string     Git repository branch to be used
@@ -45,7 +44,7 @@ tanzu accelerator create <accelerator-name> --git-repository <URL> --git-branch 
 
 ### Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
@@ -53,4 +52,3 @@ tanzu accelerator create <accelerator-name> --git-repository <URL> --git-branch 
 ### SEE ALSO
 
 * [tanzu accelerator](tanzu_accelerator.md)	 - Manage accelerators in a Kubernetes cluster
-

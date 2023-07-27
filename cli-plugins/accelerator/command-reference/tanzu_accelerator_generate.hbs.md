@@ -1,6 +1,6 @@
 ## tanzu accelerator generate
 
-Generate project from accelerator
+This command generates a project from an accelerator.
 
 ### Synopsis
 

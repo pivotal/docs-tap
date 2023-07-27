@@ -1,31 +1,31 @@
-## tanzu accelerator fragment
+# tanzu accelerator fragment
 
-Fragment commands
+This command manages fragments.
 
-### Synopsis
+## Synopsis
 
 Commands to manage accelerator fragments
 
-### Examples
+## Examples
 
-```
+```console
 tanzu accelerator fragment --help
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help   help for fragment
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu accelerator](tanzu_accelerator.md)	 - Manage accelerators in a Kubernetes cluster
 * [tanzu accelerator fragment create](tanzu_accelerator_fragment_create.md)	 - Create a new accelerator fragment
@@ -33,4 +33,3 @@ tanzu accelerator fragment --help
 * [tanzu accelerator fragment get](tanzu_accelerator_fragment_get.md)	 - Get accelerator fragment information
 * [tanzu accelerator fragment list](tanzu_accelerator_fragment_list.md)	 - List accelerator fragments
 * [tanzu accelerator fragment update](tanzu_accelerator_fragment_update.md)	 - Update an accelerator fragment
-
