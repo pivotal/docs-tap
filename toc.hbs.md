@@ -325,7 +325,7 @@ docs.vmware.com is built.
     - [Application Single Sign-On (AppSSO)](app-sso/about.hbs.md)
         - [AppSSO overview](app-sso/about.hbs.md)
         - [Concepts](app-sso/concepts/index.hbs.md)
-            - [The three levels of AppSSO consumption](app-sso/concepts/levels-of-consumption.hbs.md)
+            - [About levels of consumption](app-sso/concepts/levels-of-consumption.hbs.md)
             - [About grant types](app-sso/concepts/grant-types.hbs.md)
             - [About token signatures](app-sso/concepts/token-signature.hbs.md)
         - [Get started](app-sso/getting-started/index.hbs.md)
