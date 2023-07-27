@@ -15,7 +15,7 @@ In release notes, this condition hides content that describes an unreleased patc
 
 **Release Date**: 27 July 2023
 
-### <a id='1-6-1-whats-new'></a> What's new in Tanzu Application Platform
+### <a id='1-6-1-whats-new'></a> What's new in Tanzu Application Platform v1.6
 
 This release includes the following platform-wide enhancements.
 
@@ -38,18 +38,18 @@ in the documentation. For more information, see [Scale workloads](scalability.hb
 
 ---
 
-### <a id='1-6-1-new-features'></a> New features by component and area
+### <a id='1-6-1-new-features'></a> v1.6.1 New features by component and area
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-6-1-app-acc'></a> Application Accelerator
+#### <a id='1-6-1-app-acc'></a> v1.6.1 features: Application Accelerator
 
 - The Application Accelerator plug-in for IntelliJ has now reached general availability on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
   The plug-in for IntelliJ now supports Git repository creation and custom type declarations for options,
   and embeds telemetry and bootstrapping provenance.
   For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md).
 
-#### <a id='1-6-1-alv'></a> Application Live View
+#### <a id='1-6-1-alv'></a> v1.6.1 features: Application Live View
 
 - You can secure access, at the user level, to sensitive operations that can be executed on a running
   application using the actuator endpoints. For more information, see
@@ -61,7 +61,7 @@ This release includes the following changes, listed by component and area.
   threads, heap dump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
   For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md).
 
-#### <a id='1-6-1-appsso'></a> Application Single Sign-On (AppSSO)
+#### <a id='1-6-1-appsso'></a> v1.6.1 features: Application Single Sign-On (AppSSO)
 
 - Incorporates the token expiry settings into the `AuthServer` resource. Service
   operators can customize the expiry settings of access, refresh, or identity
@@ -87,20 +87,20 @@ This release includes the following changes, listed by component and area.
   API between Services Toolkit, Crossplane, and Application Single Sign-On.
   For more information, see [XWorkloadRegistration API](app-sso/reference/api/xworkloadregistration.hbs.md).
 
-#### <a id='1-6-1-bitnami-services'></a> Bitnami Services
+#### <a id='1-6-1-bitnami-services'></a> v1.6.1 features: Bitnami Services
 
 The `bitnami.services.tanzu.vmware.com` package v0.2.0 includes the following:
 
 - New services available: MongoDB and Kafka
 
-#### <a id='1-6-1-cnrs'></a> Cloud Native Runtimes
+#### <a id='1-6-1-cnrs'></a> v1.6.1 features: Cloud Native Runtimes
 
 - Adds a new configuration option that configures `default-external-scheme` on Knative's `config-network`
   ConfigMap with a default scheme you can use for Knative Service URLs.
   Supported values are either `http` or `https`. You cannot set this option at the same time as the
   `default_tls_secret` option.
 
-#### <a id='1-6-1-contour'></a> Contour
+#### <a id='1-6-1-contour'></a> v1.6.1 features: Contour
 
 - Adds new parameters to specify `contour` and `envoy` resources requests and limits for CPU and memory.
   For more information, see [Install Contour](contour/install.hbs.md).
@@ -108,7 +108,7 @@ The `bitnami.services.tanzu.vmware.com` package v0.2.0 includes the following:
 - For more information about the new features in Contour v1.24.4, see the
   [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.24.4) in GitHub.
 
-#### <a id='1-6-1-crossplane'></a> Crossplane
+#### <a id='1-6-1-crossplane'></a> v1.6.1 features: Crossplane
 
 The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
 
@@ -148,7 +148,7 @@ The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
   > This might also cause any existing service instances also being deleted.
   > For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md).
 
-#### <a id='1-6-1-flux-sc'></a> Flux CD Source Controller
+#### <a id='1-6-1-flux-sc'></a> v1.6.1 features: Flux CD Source Controller
 
 Flux Source Controller v0.36.1-build.2 release includes the following API changes:
 
@@ -200,7 +200,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
   - Adds the new field `status.observedIgnore`, which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
-#### <a id='1-6-1-namespace-provisioner'></a> Namespace Provisioner
+#### <a id='1-6-1-namespace-provisioner'></a> v1.6.1 features: Namespace Provisioner
 
 - Implements the capability to skip creating certain default resources for the Namespace Provisioner,
   providing greater flexibility for customization.
@@ -225,7 +225,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - The `path` value in `additional_sources` is now automatically generated, eliminating the need for
   you to provide it manually. This simplifies the configuration of external sources.
 
-#### <a id='1-6-1-stk'></a> Services Toolkit
+#### <a id='1-6-1-stk'></a> v1.6.1 features: Services Toolkit
 
 The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
 
@@ -241,11 +241,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The Tanzu Service CLI plug-in is now compiled using the new Tanzu CLI runtime (v0.90.0).
 - There are no new features or changes to existing commands.
 
-#### <a id='1-6-1-scc'></a> Supply Chain Choreographer
+#### <a id='1-6-1-scc'></a> v1.6.1 features: Supply Chain Choreographer
 
 - [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
 
-#### <a id='1-6-1-scst-scan'></a> Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-6-1-scst-scan'></a> v1.6.1 features: Supply Chain Security Tools (SCST) - Scan
 
 - The source scanning step is removed from the Out of the Box Supply Chain - Testing and Scanning.
   For information about how to add the source scanning step to the test and scan supply chain, see
@@ -274,7 +274,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       - [Grype](scst-scan/ivs-grype.hbs.md)
   - VMware encourages feedback about SCST - Scan 2.0. Email your VMware representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
-#### <a id='1-6-1-scst-store'></a> Supply Chain Security Tools (SCST) - Store
+#### <a id='1-6-1-scst-store'></a> v1.6.1 features: Supply Chain Security Tools (SCST) - Store
 
 - Adds a new report feature that links all packages, vulnerabilities, and ratings
   associated from a specific vulnerability scan SBOM to a Store report. When
@@ -325,7 +325,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   - New triage subcommands for the Tanzu CLI Insight plug-in enable interaction with the triage API.
     For more information, see [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
-#### <a id='1-6-1-tanzu-cli'></a> Tanzu CLI
+#### <a id='1-6-1-tanzu-cli'></a> v1.6.1 features: Tanzu CLI
 
 - This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
 
@@ -356,7 +356,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - If you have any issues, questions, or suggestions, you can submit feedback, feature requests, or
   issue reports in the open-source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
 
-#### <a id='1-6-1-tanzu-cli-plugins'></a> Tanzu CLI plug-in distribution change
+#### <a id='1-6-1-tanzu-cli-plugins'></a> v1.6.1 features: Tanzu CLI plug-in distribution change
 
 - Tanzu CLI plug-ins are no longer distributed as part of the Tanzu Application Platform bundle on
   VMware Tanzu Network. The Tanzu CLI is still included in the bundle.
@@ -367,7 +367,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - For Internet-restricted environments, see
   [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#internet-restricted-install).
 
-#### <a id='1-6-1-apps-cli-plugin'></a> Tanzu CLI Apps plug-in
+#### <a id='1-6-1-apps-cli-plugin'></a> v1.6.1 features: Tanzu CLI Apps plug-in
 
 - The apps plug-in is integrated with Local Source Proxy for seamless iterative inner-loop development
   using the Tanzu CLI or IDE plug-ins.
@@ -396,23 +396,23 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The `tanzu apps workload get` command is enhanced to include Git revision information in the
   overview section. This provides a quick reference to the Git revision associated with the workload.
 
-#### <a id='1-6-1-tbs-plugin'></a> Tanzu CLI Build Service plug-in
+#### <a id='1-6-1-tbs-plugin'></a> v1.6.1 features: Tanzu CLI Build Service plug-in
 
 - Adds a new Build Service plug-in that allows you to view all Tanzu Build Service resources on any
   Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service installed.
   For more information, see [Build Service CLI plug-in overview](cli-plugins/build-service/overview.hbs.md).
 
-#### <a id='1-6-1-insight-cli-plugin'></a> Tanzu CLI Insight plug-in
+#### <a id='1-6-1-insight-cli-plugin'></a> v1.6.1 features: Tanzu CLI Insight plug-in
 
 - Triage vulnerabilities with the `tanzu insight triage` command. For more information, see
   [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
-#### <a id='1-6-1-tap-dev-portal'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-1-tap-dev-portal'></a> v1.6.1 features: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.
   Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
 
-#### <a id='1-6-1-intellij-ext'></a> Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-1-intellij-ext'></a> v1.6.1 features: Tanzu Developer Tools for IntelliJ
 
 - Added support for Local Source Proxy that eliminates the need to provide source image configuration
   for rapid iteration in the inner loop.
@@ -424,7 +424,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
   projects in their preferred IDE.
 
-#### <a id='1-6-1-vscode-ext'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-6-1-vscode-ext'></a> v1.6.1 features: Tanzu Developer Tools for VS Code
 
 - Added support for Local Source Proxy that eliminates the need to provide source image configuration
   for rapid iteration in the inner loop.
@@ -438,11 +438,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 ---
 
-### <a id='1-6-1-breaking-changes'></a> Breaking changes
+### <a id='1-6-1-breaking-changes'></a> v1.6.1 Breaking changes
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-6-1-appsso-bc'></a> Application Single Sign-On (AppSSO)
+#### <a id='1-6-1-appsso-bc'></a> v1.6.1 breaking changes: Application Single Sign-On (AppSSO)
 
 - Consumes Application Single Sign-On service offerings using `ClassClaim` instead of the lower-level
   `WorkloadRegistration` or `ClientRegistration`.
@@ -453,19 +453,19 @@ This release includes the following changes, listed by component and area.
 
 - The default for field `ClientRegistration.spec.redirectURIs` is no longer `["http://127.0.0.0:8080"]`.
 
-#### <a id='1-6-1-cnrs-bc'></a> Cloud Native Runtimes
+#### <a id='1-6-1-cnrs-bc'></a> v1.6.1 breaking changes: Cloud Native Runtimes
 
 - The `provider` configuration option is removed in this release. For more information, see the
  [Deprecation notice](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html#deprecation-notice-13)
  in the Cloud Native Runtimes v2.0 release notes.
 
-#### <a id='1-6-1-flux-sc-bc'></a> Flux CD Source Controller
+#### <a id='1-6-1-flux-sc-bc'></a> v1.6.1 breaking changes: Flux CD Source Controller
 
 - The format of the `status.artifact.revision` value in the `GitRepository` resource's
   status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
   For example, `main/6db88c7a7e7dec1843809b058195b68480c4c12a` is now `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
 
-#### <a id='1-6-1-buildservice-bc'></a> Tanzu Build Service
+#### <a id='1-6-1-buildservice-bc'></a> v1.6.1 breaking changes: Tanzu Build Service
 
 - The full dependencies package is renamed and the installation process is modified.
   - You must remove existing full dependencies installations before installing the new version.
@@ -480,12 +480,12 @@ This release includes the following changes, listed by component and area.
 - Introduced a cluster buildpack resource to enable individually packaged dependencies and provide
   insights into installed buildpack versions.
 
-#### <a id='1-6-1-apps-cli-plugin-bc'></a> Tanzu CLI Apps plug-in
+#### <a id='1-6-1-apps-cli-plugin-bc'></a> v1.6.1 breaking changes: Tanzu CLI Apps plug-in
 
 - The deprecated command `tanzu apps workload update` is removed from the CLI.
   Use the command `tanzu apps workload apply` instead.
 
-#### <a id='1-6-1-tap-gui-bc'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-1-tap-gui-bc'></a> v1.6.1 breaking changes: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - The `allowGuestAccess` configuration option: Previously this was not needed in the configuration because
   users were permitted to log in without credentials by default. In v1.6 and later, guest users must
@@ -503,7 +503,7 @@ This release includes the following changes, listed by component and area.
 
 ---
 
-### <a id='1-6-1-security-fixes'></a> Security fixes
+### <a id='1-6-1-security-fixes'></a> v1.6.1 Security fixes
 
 This release has the following security fixes, listed by component and area.
 
@@ -532,11 +532,11 @@ This release has the following security fixes, listed by component and area.
 | tap-gui.tanzu.vmware.com | <details><summary>Expand to see the list</summary><ul><li><a href="https://github.com/advisories/GHSA-x77j-w7wf-fjmw">GHSA-x77j-w7wf-fjmw</a></li><li><a href="https://github.com/advisories/GHSA-qwph-4952-7xr6">GHSA-qwph-4952-7xr6</a></li><li><a href="https://github.com/advisories/GHSA-p5gc-c584-jj6v">GHSA-p5gc-c584-jj6v</a></li><li><a href="https://github.com/advisories/GHSA-jv3g-j58f-9mq9">GHSA-jv3g-j58f-9mq9</a></li><li><a href="https://github.com/advisories/GHSA-hjrf-2m68-5959">GHSA-hjrf-2m68-5959</a></li><li><a href="https://github.com/advisories/GHSA-8cf7-32gw-wr33">GHSA-8cf7-32gw-wr33</a></li><li><a href="https://github.com/advisories/GHSA-7hv8-3fr9-j2hv">GHSA-7hv8-3fr9-j2hv</a></li><li><a href="https://github.com/advisories/GHSA-6w63-h3fj-q4vw">GHSA-6w63-h3fj-q4vw</a></li></ul></details>|
 | workshops.learningcenter.tanzu.vmware.com | <details><summary>Expand to see the list</summary><ul><li><a href="https://github.com/advisories/GHSA-wxc4-f4m6-wwqv">GHSA-wxc4-f4m6-wwqv</a></li><li><a href="https://github.com/advisories/GHSA-v95c-p5hm-xq8f">GHSA-v95c-p5hm-xq8f</a></li><li><a href="https://github.com/advisories/GHSA-qq97-vm5h-rrhg">GHSA-qq97-vm5h-rrhg</a></li><li><a href="https://github.com/advisories/GHSA-p782-xgp4-8hr8">GHSA-p782-xgp4-8hr8</a></li><li><a href="https://github.com/advisories/GHSA-p5gc-c584-jj6v">GHSA-p5gc-c584-jj6v</a></li><li><a href="https://github.com/advisories/GHSA-m8cg-xc2p-r3fc">GHSA-m8cg-xc2p-r3fc</a></li><li><a href="https://github.com/advisories/GHSA-hmfx-3pcx-653p">GHSA-hmfx-3pcx-653p</a></li><li><a href="https://github.com/advisories/GHSA-hhqj-cfjx-vj25">GHSA-hhqj-cfjx-vj25</a></li><li><a href="https://github.com/advisories/GHSA-h86h-8ppg-mxmh">GHSA-h86h-8ppg-mxmh</a></li><li><a href="https://github.com/advisories/GHSA-gp7f-rwcx-9369">GHSA-gp7f-rwcx-9369</a></li><li><a href="https://github.com/advisories/GHSA-gc89-7gcr-jxqc">GHSA-gc89-7gcr-jxqc</a></li><li><a href="https://github.com/advisories/GHSA-g2j6-57v7-gm8c">GHSA-g2j6-57v7-gm8c</a></li><li><a href="https://github.com/advisories/GHSA-f3fp-gc8g-vw66">GHSA-f3fp-gc8g-vw66</a></li><li><a href="https://github.com/advisories/GHSA-c2h3-6mxw-7mvq">GHSA-c2h3-6mxw-7mvq</a></li><li><a href="https://github.com/advisories/GHSA-8gw7-4j42-w388">GHSA-8gw7-4j42-w388</a></li><li><a href="https://github.com/advisories/GHSA-77vh-xpmg-72qh">GHSA-77vh-xpmg-72qh</a></li><li><a href="https://github.com/advisories/GHSA-6wrf-mxfj-pf5p">GHSA-6wrf-mxfj-pf5p</a></li><li><a href="https://github.com/advisories/GHSA-5j5w-g665-5m35">GHSA-5j5w-g665-5m35</a></li><li><a href="https://github.com/advisories/GHSA-5ffw-gxpp-mxpf">GHSA-5ffw-gxpp-mxpf</a></li><li><a href="https://github.com/advisories/GHSA-45rm-2893-5f49">GHSA-45rm-2893-5f49</a></li><li><a href="https://github.com/advisories/GHSA-3633-5h82-39pq">GHSA-3633-5h82-39pq</a></li><li><a href="https://github.com/advisories/GHSA-33pg-m6jh-5237">GHSA-33pg-m6jh-5237</a></li><li><a href="https://github.com/advisories/GHSA-2qjp-425j-52j9">GHSA-2qjp-425j-52j9</a></li><li><a href="https://github.com/advisories/GHSA-259w-8hf6-59c2">GHSA-259w-8hf6-59c2</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34969">CVE-2023-34969</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-33288">CVE-2023-33288</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-33203">CVE-2023-33203</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32665">CVE-2023-32665</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32643">CVE-2023-32643</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32636">CVE-2023-32636</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32611">CVE-2023-32611</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32269">CVE-2023-32269</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32254">CVE-2023-32254</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-32250">CVE-2023-32250</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31484">CVE-2023-31484</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-30772">CVE-2023-30772</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2953">CVE-2023-2953</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29499">CVE-2023-29499</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29491">CVE-2023-29491</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29469">CVE-2023-29469</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29007">CVE-2023-29007</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28531">CVE-2023-28531</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28487">CVE-2023-28487</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28486">CVE-2023-28486</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28484">CVE-2023-28484</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28466">CVE-2023-28466</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28328">CVE-2023-28328</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28327">CVE-2023-28327</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28322">CVE-2023-28322</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-28321">CVE-2023-28321</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27538">CVE-2023-27538</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27536">CVE-2023-27536</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27535">CVE-2023-27535</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27534">CVE-2023-27534</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27533">CVE-2023-27533</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27522">CVE-2023-27522</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27320">CVE-2023-27320</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27043">CVE-2023-27043</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26607">CVE-2023-26607</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26606">CVE-2023-26606</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26605">CVE-2023-26605</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26545">CVE-2023-26545</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26544">CVE-2023-26544</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-26242">CVE-2023-26242</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2612">CVE-2023-2612</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2610">CVE-2023-2610</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2609">CVE-2023-2609</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2603">CVE-2023-2603</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2602">CVE-2023-2602</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25815">CVE-2023-25815</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25690">CVE-2023-25690</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25652">CVE-2023-25652</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25588">CVE-2023-25588</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25585">CVE-2023-25585</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25584">CVE-2023-25584</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25180">CVE-2023-25180</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25012">CVE-2023-25012</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24593">CVE-2023-24593</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2426">CVE-2023-2426</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23936">CVE-2023-23936</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23920">CVE-2023-23920</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23918">CVE-2023-23918</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23916">CVE-2023-23916</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23915">CVE-2023-23915</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23914">CVE-2023-23914</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23559">CVE-2023-23559</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23455">CVE-2023-23455</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23454">CVE-2023-23454</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23004">CVE-2023-23004</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23000">CVE-2023-23000</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22995">CVE-2023-22995</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2283">CVE-2023-2283</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2269">CVE-2023-2269</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2235">CVE-2023-2235</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2194">CVE-2023-2194</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21843">CVE-2023-21843</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21835">CVE-2023-21835</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21830">CVE-2023-21830</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2166">CVE-2023-2166</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2162">CVE-2023-2162</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2156">CVE-2023-2156</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2124">CVE-2023-2124</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21102">CVE-2023-21102</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20938">CVE-2023-20938</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2007">CVE-2023-2007</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2006">CVE-2023-2006</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2004">CVE-2023-2004</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2002">CVE-2023-2002</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1999">CVE-2023-1999</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1998">CVE-2023-1998</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1990">CVE-2023-1990</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1989">CVE-2023-1989</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1972">CVE-2023-1972</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1872">CVE-2023-1872</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1859">CVE-2023-1859</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1855">CVE-2023-1855</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1670">CVE-2023-1670</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1667">CVE-2023-1667</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1652">CVE-2023-1652</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1611">CVE-2023-1611</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1513">CVE-2023-1513</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1382">CVE-2023-1382</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1264">CVE-2023-1264</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1195">CVE-2023-1195</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1194">CVE-2023-1194</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1193">CVE-2023-1193</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1192">CVE-2023-1192</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1175">CVE-2023-1175</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1170">CVE-2023-1170</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1118">CVE-2023-1118</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1079">CVE-2023-1079</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1078">CVE-2023-1078</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1077">CVE-2023-1077</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1076">CVE-2023-1076</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1075">CVE-2023-1075</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1074">CVE-2023-1074</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1073">CVE-2023-1073</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0804">CVE-2023-0804</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0803">CVE-2023-0803</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0802">CVE-2023-0802</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0801">CVE-2023-0801</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0800">CVE-2023-0800</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0799">CVE-2023-0799</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0798">CVE-2023-0798</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0797">CVE-2023-0797</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0796">CVE-2023-0796</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0795">CVE-2023-0795</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0597">CVE-2023-0597</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0464">CVE-2023-0464</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0459">CVE-2023-0459</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0458">CVE-2023-0458</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0433">CVE-2023-0433</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0401">CVE-2023-0401</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0394">CVE-2023-0394</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0361">CVE-2023-0361</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0288">CVE-2023-0288</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0266">CVE-2023-0266</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0217">CVE-2023-0217</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0216">CVE-2023-0216</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0215">CVE-2023-0215</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0210">CVE-2023-0210</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0054">CVE-2023-0054</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0051">CVE-2023-0051</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0049">CVE-2023-0049</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0045">CVE-2023-0045</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0030">CVE-2023-0030</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4899">CVE-2022-4899</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48425">CVE-2022-48425</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48424">CVE-2022-48424</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48423">CVE-2022-48423</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4842">CVE-2022-4842</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48281">CVE-2022-48281</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47929">CVE-2022-47929</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47521">CVE-2022-47521</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47520">CVE-2022-47520</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47519">CVE-2022-47519</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47518">CVE-2022-47518</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-47024">CVE-2022-47024</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-46908">CVE-2022-46908</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45919">CVE-2022-45919</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45888">CVE-2022-45888</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45887">CVE-2022-45887</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45886">CVE-2022-45886</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45885">CVE-2022-45885</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45884">CVE-2022-45884</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45869">CVE-2022-45869</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4543">CVE-2022-4543</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4450">CVE-2022-4450</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4415">CVE-2022-4415</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44034">CVE-2022-44034</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44033">CVE-2022-44033</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44032">CVE-2022-44032</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4382">CVE-2022-4382</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4379">CVE-2022-4379</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4304">CVE-2022-4304</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4285">CVE-2022-4285</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4269">CVE-2022-4269</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-42329">CVE-2022-42329</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-42328">CVE-2022-42328</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4203">CVE-2022-4203</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41848">CVE-2022-41848</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4139">CVE-2022-4139</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4129">CVE-2022-4129</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41218">CVE-2022-41218</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-40898">CVE-2022-40898</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-40735">CVE-2022-40735</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-40133">CVE-2022-40133</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3996">CVE-2022-3996</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3857">CVE-2022-3857</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-38457">CVE-2022-38457</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3821">CVE-2022-3821</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-38096">CVE-2022-38096</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3715">CVE-2022-3715</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3707">CVE-2022-3707</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-36402">CVE-2022-36402</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-36280">CVE-2022-36280</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-36056">CVE-2022-36056</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-36033">CVE-2022-36033</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3545">CVE-2022-3545</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3523">CVE-2022-3523</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3521">CVE-2022-3521</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3435">CVE-2022-3435</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3424">CVE-2022-3424</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3344">CVE-2022-3344</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3238">CVE-2022-3238</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-32215">CVE-2022-32215</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-32214">CVE-2022-32214</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-32213">CVE-2022-32213</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-32212">CVE-2022-32212</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3169">CVE-2022-3169</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3114">CVE-2022-3114</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2982">CVE-2022-2982</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2980">CVE-2022-2980</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2961">CVE-2022-2961</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2946">CVE-2022-2946</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-29458">CVE-2022-29458</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2923">CVE-2022-2923</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2889">CVE-2022-2889</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2862">CVE-2022-2862</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2849">CVE-2022-2849</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2845">CVE-2022-2845</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-27943">CVE-2022-27943</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-27672">CVE-2022-27672</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-25836">CVE-2022-25836</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2581">CVE-2022-2581</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2571">CVE-2022-2571</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-24963">CVE-2022-24963</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-23649">CVE-2022-23649</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2345">CVE-2022-2345</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2344">CVE-2022-2344</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2343">CVE-2022-2343</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2304">CVE-2022-2304</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2207">CVE-2022-2207</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2206">CVE-2022-2206</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2196">CVE-2022-2196</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2183">CVE-2022-2183</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2182">CVE-2022-2182</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2175">CVE-2022-2175</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2129">CVE-2022-2129</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2126">CVE-2022-2126</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2125">CVE-2022-2125</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2124">CVE-2022-2124</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2097">CVE-2022-2097</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2068">CVE-2022-2068</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1968">CVE-2022-1968</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1942">CVE-2022-1942</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1927">CVE-2022-1927</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1898">CVE-2022-1898</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1886">CVE-2022-1886</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1851">CVE-2022-1851</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1796">CVE-2022-1796</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1785">CVE-2022-1785</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1735">CVE-2022-1735</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1733">CVE-2022-1733</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1720">CVE-2022-1720</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1674">CVE-2022-1674</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1629">CVE-2022-1629</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1292">CVE-2022-1292</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1247">CVE-2022-1247</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0995">CVE-2022-0995</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0729">CVE-2022-0729</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0714">CVE-2022-0714</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0696">CVE-2022-0696</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0685">CVE-2022-0685</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0629">CVE-2022-0629</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0572">CVE-2022-0572</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0554">CVE-2022-0554</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0480">CVE-2022-0480</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0443">CVE-2022-0443</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0413">CVE-2022-0413</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0408">CVE-2022-0408</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0407">CVE-2022-0407</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0400">CVE-2022-0400</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0393">CVE-2022-0393</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0368">CVE-2022-0368</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0361">CVE-2022-0361</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0359">CVE-2022-0359</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0351">CVE-2022-0351</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0319">CVE-2022-0319</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0318">CVE-2022-0318</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0261">CVE-2022-0261</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0213">CVE-2022-0213</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0158">CVE-2022-0158</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0156">CVE-2022-0156</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0128">CVE-2022-0128</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-45261">CVE-2021-45261</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-4148">CVE-2021-4148</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-4095">CVE-2021-4095</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-40812">CVE-2021-40812</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-3864">CVE-2021-3864</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-3712">CVE-2021-3712</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-26934">CVE-2021-26934</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-23840">CVE-2021-23840</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-36634">CVE-2020-36634</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-35501">CVE-2020-35501</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-17753">CVE-2020-17753</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-14304">CVE-2020-14304</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-14145">CVE-2020-14145</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-13844">CVE-2020-13844</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-13401">CVE-2020-13401</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-19814">CVE-2019-19814</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-19378">CVE-2019-19378</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-1563">CVE-2019-1563</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-15213">CVE-2019-15213</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-14899">CVE-2019-14899</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-1010204">CVE-2019-1010204</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-6952">CVE-2018-6952</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20699">CVE-2018-20699</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20657">CVE-2018-20657</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-17977">CVE-2018-17977</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-12931">CVE-2018-12931</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-12930">CVE-2018-12930</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-12929">CVE-2018-12929</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-12928">CVE-2018-12928</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-1121">CVE-2018-1121</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-10126">CVE-2018-10126</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-1000021">CVE-2018-1000021</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-13716">CVE-2017-13716</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-13693">CVE-2017-13693</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-13165">CVE-2017-13165</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-0537">CVE-2017-0537</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-8660">CVE-2016-8660</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-4472">CVE-2016-4472</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20013">CVE-2016-20013</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-1585">CVE-2016-1585</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-0718">CVE-2016-0718</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-8553">CVE-2015-8553</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-1283">CVE-2015-1283</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2013-7445">CVE-2013-7445</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2013-1779">CVE-2013-1779</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2012-1148">CVE-2012-1148</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2012-0876">CVE-2012-0876</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-3720">CVE-2009-3720</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2007-2379">CVE-2007-2379</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2004-2761">CVE-2004-2761</a></li></ul></details>|
 
-### <a id='1-6-1-resolved-issues'></a> Resolved issues
+### <a id='1-6-1-resolved-issues'></a> v1.6.1 Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-1-cnrs-ri'></a> Cloud Native Runtimes
+#### <a id='1-6-1-cnrs-ri'></a> v1.6.1 resolved issues: Cloud Native Runtimes
 
 - New toggle feature for how to make ConfigMap updates. For some ConfigMaps in Cloud Native Runtimes,
   such as config-features, the option to update using an overlay was not taking effect.
@@ -550,7 +550,7 @@ The following issues, listed by component and area, are resolved in this release
     allow_manual_configmap_update: false
     ```
 
-#### <a id='1-6-1-crossplane-ri'></a> Crossplane
+#### <a id='1-6-1-crossplane-ri'></a> v1.6.1 resolved issues: Crossplane
 
 - The Crossplane package now more gracefully handles situations in which Crossplane is already
   installed to a cluster by using another method, for example, Helm install.
@@ -571,7 +571,7 @@ The following issues, listed by component and area, are resolved in this release
   This prevented the class claims used for dynamic provisioning from reconciling.
   The Crossplane Package now inherits the data configured in `shared.ca_cert_data` of `tap-values.yaml`.
 
-#### <a id='1-6-1-namespace-provisioner-ri'></a> Namespace Provisioner
+#### <a id='1-6-1-namespace-provisioner-ri'></a> v1.6.1 resolved issues: Namespace Provisioner
 
 - Resolved an issue that prevented updates to the AWS Identity and Access Management (IAM) role
   from reflecting in the service accounts used by Supply Chains and Delivery components.
@@ -584,7 +584,7 @@ The following issues, listed by component and area, are resolved in this release
   `Terminating` phase during deletion if it contained a workload.
   This fix requires Cluster Essentials v1.6 or later installed on the cluster.
 
-#### <a id='1-6-1-stk-ri'></a> Services Toolkit
+#### <a id='1-6-1-stk-ri'></a> v1.6.1 resolved issues: Services Toolkit
 
 - Resolved an issue that prevented the default cluster-admin IAM role on Google Kubernetes Engine (GKE)
   clusters from claiming any of the Bitnami services.
@@ -600,7 +600,7 @@ The following issues, listed by component and area, are resolved in this release
   such a CompositeResourceDefinition, the ClassClaim did not transition into `Ready=True` and
   instead reported `unexpected end of JSON input`.
 
-#### <a id='1-6-1-scst-store-ri'></a> Supply Chain Security Tools (SCST) - Store
+#### <a id='1-6-1-scst-store-ri'></a> v1.6.1 resolved issues: Supply Chain Security Tools (SCST) - Store
 
 - Implemented basic logging in the AMR database.
 
@@ -614,7 +614,7 @@ The following issues, listed by component and area, are resolved in this release
   Previously the endpoint returned the list of artifact groups the images or sources were linked to,
   even if the artifact group was not affected by the vulnerability.
 
-#### <a id='1-6-1-apps-cli-plugin-ri'></a> Tanzu CLI Apps plug-in
+#### <a id='1-6-1-apps-cli-plugin-ri'></a> v1.6.1 resolved issues: Tanzu CLI Apps plug-in
 
 - Implemented validations to prevent the inclusion of multiple sources through flags in the
   `workload create` and `workload apply` commands.
@@ -625,7 +625,7 @@ The following issues, listed by component and area, are resolved in this release
   flag is used, the command continues tailing logs from the Supply chain steps that were impacted by
   the workload update.
 
-#### <a id='1-6-1-intellij-plugin-ri'></a> Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-1-intellij-plugin-ri'></a> v1.6.1 resolved issues: Tanzu Developer Tools for IntelliJ
 
 - The `apply` action no longer stores the workload file path, which prevented modifying the workload
   file path later. Now this information is either computed or obtained by prompting the user as needed.
@@ -634,21 +634,21 @@ The following issues, listed by component and area, are resolved in this release
   incorrectly categorized as **Unknown**.
 
 
-#### <a id='1-6-1-vscode-plugin-ri'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-6-1-vscode-plugin-ri'></a> v1.6.1 resolved issues: Tanzu Developer Tools for VS Code
 
 - Errors in the kubeconfig file `~/.kube/config` that are not related to the current context are now
   ignored, allowing you to work with Tanzu panel without any issues.
 
 ---
 
-### <a id='1-6-1-known-issues'></a> Known issues
+### <a id='1-6-1-known-issues'></a> v1.6.1 Known issues
 
 This release has the following known issues, listed by component and area.
 
 > **Note** Starting in this release, the release notes list known issues in every release until
 > they are resolved.
 
-#### <a id='1-6-1-amr-obs-ce-hndlr-ki'></a> Artifact Metadata Repository Observer and CloudEvent Handler
+#### <a id='1-6-1-amr-obs-ce-hndlr-ki'></a> v1.6.1 known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans you can ignore if the previous submission was successful.
@@ -658,7 +658,7 @@ This release has the following known issues, listed by component and area.
   The workaround is that you can interpolate this information from the `instances` metadata in the
   AMR for the ReplicaSet.
 
-#### <a id='1-6-1-bitnami-services-ki'></a> Bitnami Services
+#### <a id='1-6-1-bitnami-services-ki'></a> v1.6.1 known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
   after having already created a claim for one or more of the Bitnami services using the default
@@ -666,13 +666,13 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
-#### <a id='1-6-1-cnrs-ki'></a> Cloud Native Runtimes
+#### <a id='1-6-1-cnrs-ki'></a> v1.6.1 known issues: Cloud Native Runtimes
 
 - For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
-#### <a id='1-6-1-crossplane-ki'></a> Crossplane
+#### <a id='1-6-1-crossplane-ki'></a> v1.6.1 known issues: Crossplane
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
   For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
@@ -682,12 +682,12 @@ This release has the following known issues, listed by component and area.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
-#### <a id='1-6-1-eventing-ki'></a> Eventing
+#### <a id='1-6-1-eventing-ki'></a> v1.6.1 known issues: Eventing
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory use.
 
-#### <a id="1-6-1-grype-scan-ki"></a> Grype scanner
+#### <a id="1-6-1-grype-scan-ki"></a> v1.6.1 known issues: Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
   vulnerabilities:**
@@ -706,12 +706,12 @@ This release has the following known issues, listed by component and area.
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
 
-#### <a id='1-6-1-stk-ki'></a> Services Toolkit
+#### <a id='1-6-1-stk-ki'></a> v1.6.1 known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
   For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
 
-#### <a id='1-6-1-scc-ki'></a> Supply Chain Choreographer
+#### <a id='1-6-1-scc-ki'></a> v1.6.1 known issues: Supply Chain Choreographer
 
 - When using the Carvel Package Supply Chains, if the operator updates the parameter
   `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
@@ -737,7 +737,7 @@ This release has the following known issues, listed by component and area.
     To workaround, edit the Out of the Box Supply template following the steps
     [Modifying an Out of the Box Supply template](./scc/authoring-supply-chains.hbs.md#modify-ootb-sc).
 
-#### <a id='1-6-1-tap-gui-ki'></a> Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-1-tap-gui-ki'></a> v1.6.1 known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
@@ -745,7 +745,7 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-6-1-sc-plugin-ki'></a> Tanzu Developer Portal - Supply Chain GUI plug-in
+#### <a id='1-6-1-sc-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a CRD might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
@@ -756,7 +756,7 @@ This release has the following known issues, listed by component and area.
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
   `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
-#### <a id='1-6-1-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-1-intellij-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
   the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
@@ -776,12 +776,12 @@ This release has the following known issues, listed by component and area.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
 
-#### <a id='1-5-0-vs-plugin-ki'></a> Tanzu Developer Tools for Visual Studio
+#### <a id='1-5-0-vs-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Tools for Visual Studio
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
-#### <a id='1-6-1-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-6-1-vscode-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Tools for VS Code
 
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
@@ -797,7 +797,7 @@ This release has the following known issues, listed by component and area.
 
 ---
 
-### <a id="1-6-components"></a> Component versions
+### <a id="1-6-components"></a> v1.6.1 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
