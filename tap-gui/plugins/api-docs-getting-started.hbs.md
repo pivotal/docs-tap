@@ -21,7 +21,7 @@ For more information, see the [API plug-in documentation](api-docs.hbs.md).
 To add a demo API entity and its related Catalog objects, follow the steps used for registering any
 other software catalog entity:
 
-1. Navigate to the Home page of Tanzu Application Platform GUI by clicking **Home** on the left-side
+1. Go to the Home page of Tanzu Application Platform GUI by clicking **Home** on the left-side
    navigation pane.
 
 1. Click **REGISTER ENTITY**.
@@ -152,7 +152,7 @@ other software catalog entity:
 
     ![Screenshot of the stage for reviewing the entities to be added to the catalog.](../images/api-plugin-7.png)
 
-1. Navigate to the **API** page by clicking **APIs** on the left side navigation pane.
+1. Go to the **API** page by clicking **APIs** on the left side navigation pane.
    The catalog changes and entries are visible for further inspection.
    If you select the system **demo-app**, the diagram appears as follows:
 
