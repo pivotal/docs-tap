@@ -809,8 +809,8 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-1-learningcenter-CVE-2023-26114'></a> v1.6.1 known issues: Learning Center CVE-2023-26114
 
-- Versions of VS Code server before 4.10.1 are vulnerable to Missing Origin Validation in WebSockets handshakes.
-  For more information, see [CVE mitigation](learning-center/cve-mitigation.md#cve-2023-26114).
+- Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSockets handshakes.
+  For more information, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
 
 ---
 
