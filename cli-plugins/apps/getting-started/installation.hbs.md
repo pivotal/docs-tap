@@ -13,7 +13,7 @@ From VMware Tanzu CLI
 : Install Apps CLI plug-in:
 
   ```console
-  tanzu plugin install apps --group vmware-tap/default:VERSION
+  tanzu plugin install apps --group vmware-tap/default:{{ vars.tap_version }}
   ```
 
   Verify that the plug-in is installed correctly:
