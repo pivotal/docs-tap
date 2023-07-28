@@ -1,7 +1,7 @@
 # Bring your own scanner using an ImageVulnerabilityScan
 
 This topic tells you how to bring your own scanning using an `ImageVulnerabilityScan`.
-An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a Tekton step. See the [Tekton](https://tekton.dev/docs/pipelines/tasks/#defining-steps) documentation.
+An `ImageVulnerabilityScan` allows you to scan with any scanner by defining your scan as a Tekton step. For more information, see the [Tekton](https://tekton.dev/docs/pipelines/tasks/#defining-steps) documentation.
 
 ## <a id="sample-img-vuln"></a> Customize an ImageVulnerabilityScan
 
