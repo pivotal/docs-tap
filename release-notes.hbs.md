@@ -812,6 +812,33 @@ This release has the following known issues, listed by component and area.
 - Versions of VS Code server before 4.10.1 are vulnerable to Missing Origin Validation in WebSockets handshakes.
   For more information, see [CVE mitigation](learning-center/cve-mitigation.md#cve-2023-26114).
 
+#### <a id='1-6-1-linux-kernel-CVE-list'></a> v1.6.1 known issues: Linux Kernel CVEs
+
+ - Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which may contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform will incorporate these fixed images in future releases.
+   
+ - It is important for customers to understand that for kernel exploits, the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed.
+    
+ - For each known vulnerability, links to the Ubuntu Security page are provided. These pages may list mitigation steps which operators can take to secure their cluster.
+   - [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
+   - [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
+   - [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
+   - [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
+   - [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
+   - [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
+   - [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
+   - [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
+   - [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
+   -  [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
+   - [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
+   - [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
+   - [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
+   - [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
+   - [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
+   - [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
+
+
+  
+
 ---
 
 ### <a id="1-6-components"></a> v1.6.1 Component versions
