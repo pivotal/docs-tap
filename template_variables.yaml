@@ -5,7 +5,7 @@ template_variables:
   hide_content: true
   staging_toggle: docs-staging
   app-sso:
-    version: 4.0
+    version: 5.0
   tanzu-cli:
     version: 0.90.1
     url_version: 0.90.0
