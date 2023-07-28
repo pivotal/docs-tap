@@ -31,6 +31,7 @@ The following table outlines the Kubernetes distributions and secret management 
 |----|----|---|
 | SOPS | Any TAP supported IaaS | N/A|
 | ESO  | AWS (EKS) | AWS Secrets Manager|
+| ESO  | Any TAP supported IaaS | Vault|
 
 >**Note** Future release will include additional Secrets Managers for ESO.
 
