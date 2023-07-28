@@ -477,7 +477,7 @@ workload. For example:
     - name: tap-registry
   ```
 
-Note: If you've used Namespace Provisioner for setting up your Developer Namespace where you workload is to be created, use the `namespace_provisioner.default_parameters.supply_chain_service_account.secrets` property in your tap-values.yml. For example
+>**Note** If you've used Namespace Provisioner to set up your Developer Namespace where you workload is created, use the `namespace_provisioner.default_parameters.supply_chain_service_account.secrets` property in your `tap-values.yaml`. For example:
 
     ```yaml
     namespace_provisioner:
@@ -486,7 +486,7 @@ Note: If you've used Namespace Provisioner for setting up your Developer Namespa
           secrets:
           - GIT-SECRET-NAME
     ```
-Namespace Provisioner manages the service account and manual edits to it will not persist.
+Namespace Provisioner manages the service account and manual edits to it do not persist.
 
 For information about the credentials and setting up the Kubernetes
 secret, see [Git Authentication's SSH section](git-auth.md#sh).
