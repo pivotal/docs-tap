@@ -4,12 +4,6 @@ The Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) Confi
 you to add functions (plug-ins) to Tanzu Developer Portal, turning it into a customized portal.
 
 > **Note** The Configurator tool is in beta as of this release. Do not use in a production environment.
->
-> Additionally, the current beta version of the Configurator is susceptible to the security vulnerabilities listed below. These will be addressed in a future release.
-> * [CVE-2021-43138](https://nvd.nist.gov/vuln/detail/CVE-2021-43138)
-> * [GHSA-ww39-953v-wcq6](https://github.com/advisories/GHSA-ww39-953v-wcq6)
-> * [GHSA-xvch-5gv4-984h](https://github.com/advisories/GHSA-xvch-5gv4-984h)
-> * [GHSA-6xwr-q98w-rvg7](https://github.com/advisories/GHSA-6xwr-q98w-rvg7)
 
 ## <a id="diff"></a> Differences between the pre-built Tanzu Developer Portal and a customized portal
 
