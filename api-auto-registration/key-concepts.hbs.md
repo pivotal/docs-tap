@@ -11,7 +11,7 @@ You can use the full potential of API Auto Registration by using a distributed e
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
-The information from this custom resource is used to construct an API entity in Tanzu Developer Portal
+The information from this custom resource constructs an API entity in Tanzu Developer Portal
 (formerly named Tanzu Application Platform GUI).
 
 This custom resource exposes the following text boxes:
@@ -48,9 +48,7 @@ The text boxes cause specific behavior in Tanzu Developer Portal
 - To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
 - If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
 
-
-❗ DEPRECATION WARNING: `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and `spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change is to support having different API server location from the spec location. These deprecated fields will be removed in TAP 1.10.
-
+>**Important** `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and `spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change supports having a different API server location from the specifications location. These deprecated fields will be removed in Tanzu Application Platform 1.10.
 
 ## <a id='absolute-url'></a>With an Absolute URL
 
