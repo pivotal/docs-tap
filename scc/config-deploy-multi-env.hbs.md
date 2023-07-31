@@ -2,23 +2,23 @@
 
 This topic describes how to use carvel packages, Git repositories, and Flux CD
 to deploy workloads to multiple environments with Supply Chain Choreographer. By using a continuous delivery
-(CD) tool, you can apply Carvel packages to a runtime. 
+(CD) tool, you can apply Carvel packages to a runtime.
 
-## <a id="overview"></a> Overview 
+## <a id="overview"></a> Overview
 
 Flux CD is the VMware recommended CD tool. You can configure different parameters
 for each environment, such as replicas or host names. When you edit package
 parameters and commit them to a Git repository, Flux CD watches the Git
 repository and applies the package to your runtime environments.
 
-## <a id="prerecs"></a> Feature limits 
+## <a id="prerecs"></a> Feature limits
 
 To configure and deploy to multiple environments with custom parameters, ensure
 that your supply chains are compatible with the feature limits.
 
 This feature is in beta and has the following limits:
 
-- Only the Out of the Box Basic Supply Chain package is supported. 
+- Only the Out of the Box Basic Supply Chain package is supported.
 - The Testing and Scanning supply chains are not supported.
 - Innerloop development is not supported.
 
@@ -32,7 +32,7 @@ configuration for each environment. For information about using Carvel, see
 
 You can deliver packages created by the Carvel package supply chain, and add
 them to clusters, by using a GitOps repository. For information about this
-delivery method, see [Use Gitops Delivery with FluxCD
+delivery method, see [Use Gitops Delivery with Flux CD
 (beta)](delivery-with-flux.hbs.md).
 
 ## <a id="using-app"></a> Using GitOps delivery with Carvel App
