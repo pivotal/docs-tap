@@ -58,11 +58,13 @@ stored in dedicated repositories.
 |Application Configuration Service for VMware Tanzu|Application Configuration Service|
 |Application Live View|Application Live View|
 |Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
+|Bitnami Services|Bitnami Services|
 |Cartographer Conventions|Cartographer Conventions|
 |cert-manager|cert-manager|
 |Cloud Native Runtimes for VMware Tanzu|Cloud Native Runtimes|
 |Contour|Contour|
 |Convention Service for VMware Tanzu|Convention Service|
+|Crossplane|Crossplane|
 |Developer Conventions|Developer Conventions|
 |Eventing|Eventing|
 |Flux CD Source Controller|Flux CD Source Controller|

@@ -75,6 +75,24 @@ a predefined group of packages.
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
+- **[Bitnami Services](bitnami-services/about.hbs.md)**
+
+  Bitnami Services provides a set of backing services for Tanzu Application Platform.
+  The available services are MySQL, PostgreSQL, RabbitMQ, Redis, MongoDB, and Kafka all of which are
+  backed by the corresponding Bitnami Helm Chart.
+  Through integration with [Crossplane](crossplane/about.hbs.md) and
+  [Services Toolkit](services-toolkit/about.hbs.md), these six services are immediately ready
+  for apps teams to consume, with no additional setup or configuration required from ops teams.
+  This makes it incredibly quick and easy to get started working with services on Tanzu Application Platform.
+
+- **[Crossplane](crossplane/about.hbs.md)**
+
+  Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
+  foundation of Kubernetes.
+  Tanzu Application Platform uses Crossplane to power a number of capabilities, such as dynamic
+  provisioning of services instances with [Services Toolkit](../services-toolkit/about.hbs.md)
+  and the [Bitnami Services](../bitnami-services/about.hbs.md).
+
 - **[Cartographer Conventions](cartographer-conventions/about.hbs.md)**
 
   Use Cartographer Conventions to ensure infrastructure uniformity across workloads deployed on
