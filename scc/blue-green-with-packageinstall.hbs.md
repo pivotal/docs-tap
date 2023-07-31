@@ -11,7 +11,7 @@ To use blue-green deployment, you must complete the following prerequisites:
 
 - Complete the prerequisites in [Configure and deploy to multiple environments with custom parameters](./config-deploy-multi-env.hbs.md).
 - Configure Carvel for your supply chain. See [Carvel Package Supply Chains (beta)](./carvel-package-supply-chain.hbs.md).
-- Configure FluxCD for your supply chain. See [Deploy Package and PackageInstall using FluxCD Kustomization](./delivery-with-flux.hbs.md).
+- Configure Flux CD for your supply chain. See [Deploy Package and PackageInstall using Flux CD Kustomization](./delivery-with-flux.hbs.md).
 
 ## <a id="add-http"></a> Add HTTPProxy to the blue deployment
 
@@ -65,7 +65,7 @@ a sample application, `hello-app`, to production using a Carvel Package and Pack
 
 After a new version of the package is added to the GitOps repository, create a new PackageInstall for v1.0.1 to create the green deployment.
 
-1. Create a `green-secret.yaml` file with a secret that contains the following ytt overlay. 
+1. Create a `green-secret.yaml` file with a secret that contains the following ytt overlay.
 
   ```yaml
   ---
