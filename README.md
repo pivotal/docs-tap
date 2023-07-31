@@ -64,6 +64,7 @@ stored in dedicated repositories.
 |Eventing|Eventing|
 |Flux CD Source Controller|Flux CD Source Controller|
 |Tanzu Learning Center|Learning Center|
+|Local Source Proxy|Local Source Proxy|
 |Namespace Provisioner|Namespace Provisioner|
 |Service Bindings|Service Bindings|
 |Services Toolkit for VMware Tanzu Application Platform|Services Toolkit|
