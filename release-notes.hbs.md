@@ -726,7 +726,7 @@ This release has the following known issues, listed by component and area.
 
 - [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
   Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
-  For more information, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
 
 #### <a id='1-6-1-stk-ki'></a> v1.6.1 known issues: Services Toolkit
 
