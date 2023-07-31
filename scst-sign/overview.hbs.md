@@ -1,4 +1,4 @@
-# Supply Chain Security Tools for VMware Tanzu - Sign
+# Overview of Supply Chain Security Tools for VMware Tanzu - Sign
 
 This component is removed in Tanzu Application Platform v1.4 in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
 
