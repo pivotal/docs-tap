@@ -29,9 +29,9 @@ The following table outlines the Kubernetes distributions and secret management 
 
 |Choose|IaaS|Secrets Manager|
 |----|----|---|
-| SOPS | Any TAP supported IaaS | N/A|
-| ESO  | AWS (EKS) | AWS Secrets Manager|
-| ESO  | Any TAP supported IaaS | Vault|
+| SOPS | Any IaaS supported by Tanzu Application Platform | N/A|
+| ESO  | AWS EKS | AWS Secrets Manager|
+| ESO  | Any IaaS supported by Tanzu Application Platform | Vault|
 
 >**Note** Future release will include additional Secrets Managers for ESO.
 
