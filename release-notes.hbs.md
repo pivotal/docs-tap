@@ -722,6 +722,11 @@ This release has the following known issues, listed by component and area.
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
 
+#### <a id='1-6-1-learningcenter-ki'></a> v1.6.1 known issues: Learning Center CVE-2023-26114
+
+- Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For more information, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
 #### <a id='1-6-1-stk-ki'></a> v1.6.1 known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
@@ -810,11 +815,6 @@ This release has the following known issues, listed by component and area.
     ```
 
     For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
-
-#### <a id='1-6-1-learningcenter-CVE-2023-26114'></a> v1.6.1 known issues: Learning Center CVE-2023-26114
-
-- Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
-  For more information, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
 
 ---
 
