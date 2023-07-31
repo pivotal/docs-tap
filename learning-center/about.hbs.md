@@ -122,4 +122,4 @@ Learn more about:
 - [Installing Learning Center](install-learning-center.md)
 - [Local install guides](local-install-guides/about.md)
 - [Air-gapped environment requirements](airgapped-environment.md)
-- [CVE mitigation](known-issues.hbs.md)
+- [Known issues](known-issues.hbs.md)
