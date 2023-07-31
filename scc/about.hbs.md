@@ -1,4 +1,4 @@
-# Supply Chain Choreographer for Tanzu
+# Overview of Supply Chain Choreographer for Tanzu
 
 This topic introduces you to Supply Chain Choreographer.
 
