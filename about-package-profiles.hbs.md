@@ -588,6 +588,20 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+   <td>Local Source Proxy
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
    <td>Namespace Provisioner
    </td>
    <td>&check;
