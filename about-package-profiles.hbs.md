@@ -85,14 +85,6 @@ a predefined group of packages.
   for apps teams to consume, with no additional setup or configuration required from ops teams.
   This makes it incredibly quick and easy to get started working with services on Tanzu Application Platform.
 
-- **[Crossplane](crossplane/about.hbs.md)**
-
-  Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
-  foundation of Kubernetes.
-  Tanzu Application Platform uses Crossplane to power a number of capabilities, such as dynamic
-  provisioning of services instances with [Services Toolkit](../services-toolkit/about.hbs.md)
-  and the [Bitnami Services](../bitnami-services/about.hbs.md).
-
 - **[Cartographer Conventions](cartographer-conventions/about.hbs.md)**
 
   Use Cartographer Conventions to ensure infrastructure uniformity across workloads deployed on
@@ -125,6 +117,14 @@ and service accounts including workload and deliverable. These roles are availab
 operators limit permissions a user or service account requires on a cluster that runs Tanzu
 Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
 access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
+
+- **[Crossplane](crossplane/about.hbs.md)**
+
+  Crossplane is an open source, Cloud Native Computing Foundation (CNCF) project built on the
+  foundation of Kubernetes.
+  Tanzu Application Platform uses Crossplane to power a number of capabilities, such as dynamic
+  provisioning of services instances with [Services Toolkit](services-toolkit/about.hbs.md)
+  and the [Bitnami Services](bitnami-services/about.hbs.md).
 
 - **[Developer Conventions](developer-conventions/about.hbs.md)**
 
