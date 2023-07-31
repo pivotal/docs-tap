@@ -179,6 +179,15 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Services Toolkit has the tools you need to make working with services on Tanzu Application Platform
   simple, easy, and effective.
 
+- **[Source Controller](source-controller/about.hbs.md)**
+
+  Tanzu Source Controller provides a standard interface for artifact acquisition and extends the
+  function of [Flux CD Source Controller](../fluxcd-source-controller/about.hbs.md).
+  Tanzu Source Controller supports the following two resource types:
+
+      - ImageRepository (deprecated)
+      - MavenArtifact
+
 - **[Spring Boot conventions](spring-boot-conventions/about.hbs.md)**
 
   The Spring Boot convention server has a bundle of smaller conventions applied to any Spring Boot
