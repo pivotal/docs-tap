@@ -112,6 +112,15 @@ a predefined group of packages.
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
   DNS records, and so on) on Kubernetes.
 
+- **[Source Controller](source-controller/about.hbs.md)**
+
+  Tanzu Source Controller provides a standard interface for artifact acquisition and extends the
+  function of [Flux CD Source Controller](../fluxcd-source-controller/about.hbs.md).
+  Tanzu Source Controller supports the following two resource types:
+
+      - ImageRepository (deprecated)
+      - MavenArtifact
+
 - **[Spring Boot conventions](spring-boot-conventions/about.hbs.md)**
 
   The Spring Boot convention server has a bundle of smaller conventions applied to any Spring Boot
