@@ -488,6 +488,7 @@ docs.vmware.com is built.
           - [Use session management](learning-center/portal-rest-api/session-management.hbs.md)
           - [Use client authentication](learning-center/portal-rest-api/client-authentication.hbs.md)
       - [Troubleshoot Learning Center](learning-center/troubleshoot-learning-center.hbs.md)
+      - [Known issues](learning-center/known-issues.hbs.md)
     - [Local Source Proxy](local-source-proxy/about.hbs.md)
       - [Overview](local-source-proxy/about.hbs.md)
       - [Design](local-source-proxy/design.hbs.md)

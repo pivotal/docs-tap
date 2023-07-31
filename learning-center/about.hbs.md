@@ -122,3 +122,4 @@ Learn more about:
 - [Installing Learning Center](../learning-center/install-learning-center.md)
 - [Local install guides](local-install-guides/about.md)
 - [Air-gapped environment requirements](../learning-center/airgapped-environment.md)
+- [Known issues](known-issues.hbs.md)
