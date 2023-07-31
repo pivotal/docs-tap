@@ -34,19 +34,6 @@ domain_template: "\{{.Name}}.\{{.Domain}}"
 > routes might conflict if there are multiple `AuthServer`s with the same name
 > but in different namespaces.
 
-## <a id='boot3-clientreg'></a> Spring Boot 3 based `Workload`s and `ClientRegistration` resources
-
-If you run a `Workload` based on Spring Boot 3 or use Spring Security OAuth2
-Client 3 library in conjunction with `ResourceClaim`s, you must configure your
-`ClientRegistration` resource to use either of the following client
-authentication methods: 
-
-- `client_secret_basic` (default)
-- `client_secret_post`
-
-The existing `post` and `basic` values do not work with Spring Boot 3 based
-`Workloads` with Spring Cloud Bindings and are deprecated.
-
 ## <a id='classclaim'></a> `ClassClaim` credential propagation time
 
 It can take up 60 to 120 seconds for the client credentials to propagate up into a
