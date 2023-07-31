@@ -119,7 +119,7 @@ Learn more about:
 
 - [Workshops](workshop-content/about.md)
 - [Get started with Learning Center](getting-started/about.md)
-- [Installing Learning Center](../learning-center/install-learning-center.md)
+- [Installing Learning Center](install-learning-center.md)
 - [Local install guides](local-install-guides/about.md)
-- [Air-gapped environment requirements](../learning-center/airgapped-environment.md)
-- [CVE mitigation](../learning-center/cve-mitigation.md)
+- [Air-gapped environment requirements](airgapped-environment.md)
+- [CVE mitigation](known-issues.hbs.md)

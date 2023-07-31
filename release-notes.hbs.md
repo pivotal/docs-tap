@@ -241,7 +241,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The Tanzu Service CLI plug-in is now compiled using the new Tanzu CLI runtime (v0.90.0).
 - There are no new features or changes to existing commands.
 
-#### <a id='1-6-1-scc'></a> v1.6.1 features: Supply Chain Choreographer
+#### <a id='1-6-1-scc'></a> Supply Chain Choreographer
+
+- [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
+
+#### <a id='1-6-1-scst-scan'></a> Supply Chain Security Tools - Scan
 
 - [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
 
@@ -718,6 +722,12 @@ This release has the following known issues, listed by component and area.
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
 
+#### <a id='1-6-1-learningcenter-ki'></a> v1.6.1 known issues: Learning Center
+
+- [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
+  Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
 #### <a id='1-6-1-stk-ki'></a> v1.6.1 known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
@@ -807,11 +817,6 @@ This release has the following known issues, listed by component and area.
 
     For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
 
-#### <a id='1-6-1-learningcenter-CVE-2023-26114'></a> v1.6.1 known issues: Learning Center CVE-2023-26114
-
-- Versions of VS Code server before 4.10.1 are vulnerable to Missing Origin Validation in WebSockets handshakes.
-  For more information, see [CVE mitigation](learning-center/cve-mitigation.md#cve-2023-26114).
-
 #### <a id='1-6-1-linux-kernel-CVE-list'></a> v1.6.1 known issues: Linux Kernel CVEs
 
  - Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which may contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform will incorporate these fixed images in future releases.
@@ -836,64 +841,58 @@ This release has the following known issues, listed by component and area.
    - [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
    - [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
 
-
-  
-
 ---
 
 ### <a id="1-6-components"></a> v1.6.1 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                                   | Version |
-| ---------------------------------------------------------------- | ------- |
-| API Auto Registration                                            | 0.3.3   |
-| API portal                                                       | 1.4.0   |
-| Application Accelerator                                          | 1.6.1   |
-| Application Configuration Service                                | 2.1.0   |
-| Application Live View API Server                                 | 1.6.1   |
-| Application Live View Backend                                    | 1.6.1   |
-| Application Live View Connector                                  | 1.6.1   |
-| Application Live View Conventions                                | 1.6.1   |
-| Application Single Sign-On                                       | 4.0.0   |
-| Authentication and authorization                                 | 1.1.0   |
-| Bitnami Services                                                 | 0.2.0   |
-| Cartographer Conventions                                         | 0.7.3   |
-| cert-manager                                                     | 2.3.1   |
-| Cloud Native Runtimes                                            | 2.3.1   |
-| Contour                                                          | 1.24.4  |
-| Crossplane                                                       | 0.2.1   |
-| Developer Conventions                                            | 0.11.0  |
-| Eventing                                                         | 2.2.3   |
-| Flux CD Source Controller                                        | 0.36.1  |
-| Learning Center (deprecated)                                     | 0.3.1   |
-| Learning Center workshops (deprecated)                           | 0.3.0   |
-| Local Source Proxy                                               | 0.1.0   |
-| Namespace Provisioner                                            | 0.4.0   |
-| Out of the Box Delivery - Basic                                  | 0.13.6  |
-| Out of the Box Supply Chain - Basic                              | 0.13.6  |
-| Out of the Box Supply Chain - Testing                            | 0.13.6  |
-| Out of the Box Supply Chain - Testing and Scanning               | 0.13.6  |
-| Out of the Box Templates                                         | 0.13.6  |
-| Service Bindings                                                 | 0.9.1   |
-| Services Toolkit                                                 | 0.11.0  |
-| Source Controller                                                | 0.8.0   |
-| Spring Boot conventions                                          | 1.6.1   |
-| Spring Cloud Gateway                                             | 2.0.3   |
-| Supply Chain Choreographer                                       | 0.7.3   |
-| Supply Chain Security Tools - Policy Controller                  | 1.4.0   |
-| Supply Chain Security Tools - Scan                               | 1.6.67  |
-| Supply Chain Security Tools - Store                              | 1.6.2   |
-| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) | 1.6.3   |
-| Tanzu Application Platform Telemetry                             | 0.6.1   |
-| Tanzu Build Service                                              | 1.11.10 |
-| Tanzu CLI                                                        | 0.90.0  |
-| Tanzu CLI Application Accelerator plug-in                        | 1.6.0   |
-| Tanzu CLI Apps plug-in                                           | 0.12.1  |
-| Tanzu CLI Build Service plug-in                                  | 1.0.0   |
-| Tanzu CLI Insight plug-in                                        | 1.6.0   |
-| Tanzu Service CLI plug-in                                        | 0.7.0   |
-| Tekton Pipelines                                                 | 0.41.0  |
+| Component Name                                  | Version |
+| ----------------------------------------------- | ------- |
+| API Auto Registration                           |         |
+| API portal                                      |         |
+| API Scoring and Validation                      |         |
+| Application Accelerator                         |         |
+| Application Configuration Service               |         |
+| Application Live View                           |         |
+| Application Single Sign-On                      |         |
+| Authentication and authorization                |         |
+| Bitnami Services                                | 0.2.0   |
+| Cartographer Conventions                        |         |
+| cert-manager                                    |         |
+| Cloud Native Runtimes                           |         |
+| Contour                                         |         |
+| Crossplane                                      | 0.2.1   |
+| Developer Conventions                           |         |
+| Eventing                                        | 2.2.3   |
+| FluxCD Source Controller                        |         |
+| Learning Center                                 |         |
+| Local Source Proxy                              | 0.1.0   |
+| Namespace Provisioner                           | 0.4.0   |
+| Out of the Box Delivery - Basic                 | 0.13.6  |
+| Out of the Box Supply Chain - Basic             | 0.13.6  |
+| Out of the Box Supply Chain - Testing           | 0.13.6  |
+| Out of the Box Supply Chain - Testing & Scanning | 0.13.6  |
+| Out of the Box Templates                        | 0.13.6  |
+| Service Bindings                                | 0.9.1   |
+| Services Toolkit                                | 0.11.0  |
+| Source Controller                               |         |
+| Spring Boot conventions                         |         |
+| Spring Cloud Gateway                            |         |
+| Supply Chain Choreographer                      | 0.7.3   |
+| Supply Chain Security Tools - Policy Controller |         |
+| Supply Chain Security Tools - Scan              |         |
+| Supply Chain Security Tools - Sign (Deprecated) |         |
+| Supply Chain Security Tools - Store             |         |
+| Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)                  |         |
+| Tanzu Application Platform Telemetry            |         |
+| Tanzu Build Service                             |         |
+| Tanzu CLI plug-in                               |         |
+| Tanzu Developer Tools for IntelliJ              |         |
+| Tanzu Developer Tools for Visual Studio         |         |
+| Tanzu Developer Tools for VS Code               |         |
+| Tanzu Service CLI plug-in                       | 0.7.0   |
+| Tekton Pipelines                                |         |
 
 ---
 
