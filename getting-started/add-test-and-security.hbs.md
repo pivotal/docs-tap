@@ -67,6 +67,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: developer-defined-tekton-pipeline
+  namespace: DEVELOPER-NAMESPACE
   labels:
     apps.tanzu.vmware.com/pipeline: test     # (!) required
 spec:
@@ -94,11 +95,19 @@ spec:
               ./mvnw test
 ```
 
-The preceding YAML defines a Tekton pipeline with a single step.
-The step contained in the `steps` pulls the code from the repository indicated
-in the developers `workload` and runs the tests within the repository. The steps of the Tekton pipeline are configurable and allow the developer to add additional items needed to test their code.
+Where `DEVELOPER-NAMESPACE` is the name of your developer namespace.
 
-There are many steps in the supply chain. In this case, the next step is an image build. Any additional steps the developer adds to the Tekton pipeline to test their code are independent of the image being built and of any subsequent steps executed in the supply chain. This independence gives the developer freedom to focus on testing their code.
+The preceding YAML puts a Tekton pipeline in the developer namespace you specify.
+It defines the Tekton pipeline with a single step.
+The step contained in the `steps` pulls the code from the repository indicated
+in the developers `workload` and runs the tests within the repository.
+The steps of the Tekton pipeline are configurable and allow the developer to add additional items
+needed to test their code.
+
+There are many steps in the supply chain. In this case, the next step is an image build.
+Any additional steps the developer adds to the Tekton pipeline to test their code are independent of
+the image being built and of any subsequent steps executed in the supply chain.
+This independence gives the developer freedom to focus on testing their code.
 
 The `params` are templated by Supply Chain Choreographer.
 Additionally, Tekton pipelines require a Tekton `pipelineRun` to execute on the cluster.
