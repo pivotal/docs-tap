@@ -1,4 +1,4 @@
-# Supply Chain Security Tools for VMware Tanzu - Policy Controller
+# Overview of Supply Chain Security Tools for VMware Tanzu - Policy Controller
 
 Supply Chain Security Tools - Policy Controller is a security tool that helps
 you ensure that the container images in their registry have not been
