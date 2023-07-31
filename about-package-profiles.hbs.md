@@ -118,7 +118,7 @@ a predefined group of packages.
   function of [Flux CD Source Controller](../fluxcd-source-controller/about.hbs.md).
   Tanzu Source Controller supports the following two resource types:
 
-      - ImageRepository (deprecated)
+      - ImageRepository
       - MavenArtifact
 
 - **[Spring Boot conventions](spring-boot-conventions/about.hbs.md)**
