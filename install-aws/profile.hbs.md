@@ -400,7 +400,7 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
         tanzu package repository delete tbs-full-deps-repository -n tap-install
         ```
 
-    >**Important** The package names might differ depending on your installation configuration.
+    >**Important** The package and repository names might differ depending on your installation configurations.
 
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tap-values.yaml` file under the `buildservice` section. For example:
