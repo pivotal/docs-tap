@@ -1,12 +1,12 @@
-# Triage vulnerabilities (Alpha)
+# Triage vulnerabilities (alpha)
 
-This topic tells you how to add analyze vulnerabilities associated with a workload
-in the Supply Chain Security Tools (SCST) - Store. This is an experimental feature, and the
-API is prone to changes in subsequent releases.
+This topic tells you how to add analyze vulnerabilities associated with a workload in the
+Supply Chain Security Tools (SCST) - Store. This is an experimental feature, and the API is prone to
+changes in subsequent releases.
 
->**Important** The capability to triage scan results in SCST - Store is in Alpha, which means that it is still in
->active development by VMware and might be subject to change at any point. Users
->might encounter unexpected behavior. 
+> **Important** The capability to triage scan results in SCST - Store is in the alpha stage, which
+> means that it is still in early development and is subject to change at any point. You might
+> encounter unexpected behavior from it.
 
 ## <a id='triage-description'></a>Triage
 
@@ -62,7 +62,7 @@ Where:
 by the vulnerability
 - `IMG-DIGEST` is the digest of the image that contains the affected Application and OS package
 - `AG-UID` is the unique identifier for the workload that contains the image. If your workload was deployed with Tanzu CLI, you can find its unique identifier with the command:
-    
+
     ```console
     kubectl get workload $MY_WORKLOAD_NAME --namespace $MY_WORKLOAD_NAMESPACE --output jsonpath='{.metadata.uid}'
     ```
