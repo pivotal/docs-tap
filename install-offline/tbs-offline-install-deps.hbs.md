@@ -5,7 +5,7 @@ on Tanzu Application Platform (commonly known as TAP).
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/full-deps' find_tap_version="1. Get the latest version of the TAP package by running:
+{{> 'partials/full-deps' find_tap_version="1. Get the latest version of the Tanzu Application Platform package by running:
 
     ```console
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
