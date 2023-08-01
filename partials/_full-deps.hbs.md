@@ -12,10 +12,10 @@ To install `full` dependencies:
 
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
-      --to-tar=tbs-full-deps.tar
-    # move tbs-full-deps.tar to environment with registry access
-    imgpkg copy --tar tbs-full-deps.tar \
-      --to-repo=INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps
+      --to-tar=full-deps-package-repo.tar
+    # move full-deps-package-repo.tar to environment with registry access
+    imgpkg copy --tar full-deps-package-repo.tar \
+      --to-repo=INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/full-deps-package-repo
     ```
 
     Where:
@@ -27,8 +27,8 @@ To install `full` dependencies:
 1. Add the Tanzu Build Service `full` dependencies package repository by running:
 
     ```console
-    tanzu package repository add tbs-full-deps-repository \
-      --url INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps:VERSION \
+    tanzu package repository add full-deps-package-repo \
+      --url INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/full-deps-package-repo:VERSION \
       --namespace tap-install
     ```
 
@@ -41,5 +41,5 @@ To install `full` dependencies:
 1. Install the `full` dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
     ```
