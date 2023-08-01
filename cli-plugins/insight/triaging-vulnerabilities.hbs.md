@@ -1,8 +1,12 @@
-# Triage vulnerabilities
+# Triage vulnerabilities (Alpha)
 
 This topic tells you how to add analyze vulnerabilities associated with a workload
 in the Supply Chain Security Tools (SCST) - Store. This is an experimental feature, and the
 API is prone to changes in subsequent releases.
+
+>**Important** The capability to triage scan results in SCST - Store is in Alpha, which means that it is still in
+>active development by VMware and might be subject to change at any point. Users
+>might encounter unexpected behavior. 
 
 ## <a id='triage-description'></a>Triage
 
