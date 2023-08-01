@@ -76,15 +76,10 @@ reconcile the resources of the CRDs, as is the case with the three Kubernetes
 operators listed earlier.
 
 For services that do not provide a resource adhering to the Service Binding
-Specification for Kubernetes, it may still be possible to provide configurations
-allowing such services to integrate with Tanzu Application Platform. See the
-following for examples of how to do this for Amazon AWS RDS.
-
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers
-  for Kubernetes
-  (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_ack.html)
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with
-  Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html)
+Specification for Kubernetes, you might still be able to provide configurations
+allowing such services to integrate with Tanzu Application Platform.
+For an example of how to do this for Amazon AWS RDS, see the tutorial
+[Integrating cloud services into Tanzu Application Platform](../services-toolkit/tutorials/integrate-cloud-services.hbs.md).
 
 ## <a id="stk-user-roles"></a> User roles and responsibilities
 
