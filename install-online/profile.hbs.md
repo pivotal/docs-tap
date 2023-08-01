@@ -600,7 +600,7 @@ earlier than Tanzu Application Platform v1.6.1, you must uninstall the full depe
 
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo
     ```
 
     Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
@@ -608,8 +608,8 @@ earlier than Tanzu Application Platform v1.6.1, you must uninstall the full depe
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    tanzu package repository add full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
+    tanzu package repository add full-deps-package-repo \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo:VERSION \
       --namespace tap-install
     ```
 
@@ -618,7 +618,7 @@ earlier than Tanzu Application Platform v1.6.1, you must uninstall the full depe
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
     ```
 
 For more information about the differences between `lite` and `full` dependencies, see

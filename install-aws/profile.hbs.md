@@ -382,11 +382,13 @@ you must install the `full` dependencies package.
 1. Create an ECR repository for Tanzu Build Service full dependencies by running:
 
     ```console
-    aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
+    aws ecr create-repository --repository-name full-deps-package-repo --region ${AWS_REGION}
     ```
 
 1. (Optional) If you have an existing installation of the full dependencies package from a version
 earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninstall the full dependencies package and remove the package repository:
+
+    Note: These names may differ depending on your install
 
     Uninstall the package:
 
@@ -425,8 +427,8 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/tbs-full-deps
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps-package-repo
     ```
 
     Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
@@ -434,8 +436,8 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    tanzu package repository add full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
+    tanzu package repository add full-deps-package-repo \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo:VERSION \
       --namespace tap-install
     ```
 
@@ -444,7 +446,7 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 1. Install the full dependencies package by running:
 
     ```console
-    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
     ```
 
 For more information about the differences between `lite` and `full` dependencies, see

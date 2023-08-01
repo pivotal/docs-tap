@@ -131,7 +131,7 @@ Subsequent upgrades will not require a removal:
 
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
-    --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+    --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo
     ```
 
     Where `VERSION` is the version of the Tanzu Application Platform package you retrieved in the previous step.
@@ -139,15 +139,17 @@ Subsequent upgrades will not require a removal:
 3. Update the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
-    tanzu package repository add full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+    tanzu package repository add full-deps-package-repo \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo:VERSION \
       --namespace tap-install
     ```
 
 4. Update the `full` dependencies package by running:
+    
+  NOTE: The values file is only needed for this command if you are installing this package for the first time or if the values have changed  
 
     ```console
-    tanzu package installed update full-deps -p full-deps.buildservice.tanzu.vmware.com -v VERSION -n tap-install
+    tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
     ```
 
 ### <a id="upgrade-order"></a> Multicluster upgrade order
