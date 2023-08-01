@@ -178,7 +178,6 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
                                                                                                                                      acquisition from external sources such as Git, Helm repositories and S3 buckets.
       grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
-      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
       namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     Automatic Provisioning of Developer Namespaces.
       ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
@@ -203,7 +202,6 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
                                                                                                                                      case.
       tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
-      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
@@ -416,20 +414,6 @@ Application Platform v1.4 there is no custom SCC.
 
 Tanzu Application Platform packages reconcile without any issues when using
 OpenShift v4.11 with restricted-v2 or nonroot-v2.
-
-#### <a id='exclude-custom-scc'></a> (Optional) Exclude components that require RedHat OpenShift privileged SCC
-
-Learning Center package uses privileged SCC. To exclude this package, update your `tap-values` file with a section listing the exclusions:
-
-```yaml
-...
-excluded_packages:
-  - learningcenter.tanzu.vmware.com
-  - workshops.learningcenter.tanzu.vmware.com
-...
-```
-
-See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

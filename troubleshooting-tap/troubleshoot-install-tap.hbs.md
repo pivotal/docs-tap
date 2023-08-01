@@ -196,8 +196,6 @@ in the provided `tap-config.yml` file.
       fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com          0.16.0           Reconcile succeeded  tap-install
       grype                     grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded  tap-install
       image-policy-webhook      image-policy-webhook.signing.apps.tanzu.vmware.com 1.0.0-beta.3     Reconcile succeeded  tap-install
-      learningcenter            learningcenter.tanzu.vmware.com                    0.1.0-build.6    Reconcile succeeded  tap-install
-      learningcenter-workshops  workshops.learningcenter.tanzu.vmware.com          0.1.0-build.7    Reconcile succeeded  tap-install
       ootb-delivery-basic       ootb-delivery-basic.tanzu.vmware.com               0.5.1            Reconcile succeeded  tap-install
       ootb-supply-chain-basic   ootb-supply-chain-basic.tanzu.vmware.com           0.5.1            Reconcile succeeded  tap-install
       ootb-templates            ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded  tap-install
@@ -232,8 +230,6 @@ in the provided `tap-config.yml` file.
     fluxcd-source-controller   fluxcd.source.controller.tanzu.vmware.com            0.16.1            Reconcile succeeded                                                    119m
     grype                      grype.scanning.apps.tanzu.vmware.com                 1.0.0             Reconcile failed: Error (see .status.usefulErrorMessage for details)   109m
     image-policy-webhook       image-policy-webhook.signing.apps.tanzu.vmware.com   1.0.1             Reconcile succeeded                                                    117m
-    learningcenter             learningcenter.tanzu.vmware.com                      0.1.0             Reconcile succeeded                                                    109m
-    learningcenter-workshops   workshops.learningcenter.tanzu.vmware.com            0.1.0             Reconcile succeeded                                                    103m
     metadata-store             metadata-store.apps.tanzu.vmware.com                 1.0.2             Reconcile succeeded                                                    117m
     ootb-delivery-basic        ootb-delivery-basic.tanzu.vmware.com                 0.6.1             Reconcile succeeded                                                    103m
     ootb-supply-chain-basic    ootb-supply-chain-basic.tanzu.vmware.com             0.6.1             Reconcile succeeded                                                    103m
@@ -283,7 +279,7 @@ _Installing the Tanzu CLI_.
 ## <a id='contour-error-kind'></a> Ingress is broken on Kind cluster
 
 Your Contour installation cannot provide ingress to workloads when installed on a Kind cluster without a LoadBalancer solution.
-Your Kind cluster was created with port mappings, as described in the [Kind install guide](../learning-center/local-install-guides/deploying-to-kind.hbs.md).
+Your Kind cluster was created with port mappings.
 
 **Explanation**
 

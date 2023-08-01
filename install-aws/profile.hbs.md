@@ -119,63 +119,61 @@ To add the Tanzu Application Platform package repository to your cluster:
 
     ```console
     $ tanzu package available list --namespace tap-install
-      NAME                                                 DISPLAY-NAME                                                              
-      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  
-      amr-observer.apps.tanzu.vmware.com                   Supply Chain Security Tools - AMR Observer                                
-      api-portal.tanzu.vmware.com                          API portal                                                                
-      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    
-      apiserver.appliveview.tanzu.vmware.com               Application Live View ApiServer for VMware Tanzu                          
-      app-scanning.apps.tanzu.vmware.com                   Supply Chain Security Tools - App Scanning (Alpha)                        
-      application-configuration-service.tanzu.vmware.com   Application Configuration Service                                         
-      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    
-      base-jammy-builder-lite.buildpacks.tanzu.vmware.com  base-jammy-builder-lite                                                   
-      base-jammy-stack-lite.buildpacks.tanzu.vmware.com    base-jammy-stack                                                          
-      bitnami.services.tanzu.vmware.com                    bitnami-services                                                          
-      buildservice.tanzu.vmware.com                        Tanzu Build Service                                                       
-      carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan                
-      cartographer.tanzu.vmware.com                        Cartographer                                                              
-      cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     
-      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          
-      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   
-      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        
-      crossplane.tanzu.vmware.com                          crossplane                                                                
-      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  
-      dotnet-core-lite.buildpacks.tanzu.vmware.com         dotnet-core-lite                                                          
-      eventing.tanzu.vmware.com                            Eventing                                                                  
-      external-secrets.apps.tanzu.vmware.com               External Secrets Operator                                                 
-      fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    
-      go-lite.buildpacks.tanzu.vmware.com                  go-lite                                                                   
-      grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              
-      java-lite.buildpacks.tanzu.vmware.com                java-lite                                                                 
-      java-native-image-lite.buildpacks.tanzu.vmware.com   java-native-image-lite                                                    
-      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            
-      local-source-proxy.apps.tanzu.vmware.com             Local Source Proxy                                                        
-      metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       
-      namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     
-      nodejs-lite.buildpacks.tanzu.vmware.com              nodejs-lite                                                               
-      ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          
-      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      
-      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  
-      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               
-      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               
-      policy.apps.tanzu.vmware.com                         Supply Chain Security Tools - Policy Controller                           
-      python-lite.buildpacks.tanzu.vmware.com              python-lite                                                               
-      ruby-lite.buildpacks.tanzu.vmware.com                ruby-lite                                                                 
-      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        
-      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           
-      services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          
-      snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               
-      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      
-      spring-cloud-gateway.tanzu.vmware.com                Spring Cloud Gateway                                                      
-      sso.apps.tanzu.vmware.com                            AppSSO                                                                    
-      tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              
-      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            
-      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        
-      tap.tanzu.vmware.com                                 Tanzu Application Platform                                                
-      tekton.tanzu.vmware.com                              Tekton Pipelines                                                          
-      tpb.tanzu.vmware.com                                 Tanzu Portal Builder                                                      
-      web-servers-lite.buildpacks.tanzu.vmware.com         web-servers-lite                                                          
-      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial
+      NAME                                                 DISPLAY-NAME
+      accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu
+      amr-observer.apps.tanzu.vmware.com                   Supply Chain Security Tools - AMR Observer
+      api-portal.tanzu.vmware.com                          API portal
+      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu
+      apiserver.appliveview.tanzu.vmware.com               Application Live View ApiServer for VMware Tanzu
+      app-scanning.apps.tanzu.vmware.com                   Supply Chain Security Tools - App Scanning (Alpha)
+      application-configuration-service.tanzu.vmware.com   Application Configuration Service
+      backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu
+      base-jammy-builder-lite.buildpacks.tanzu.vmware.com  base-jammy-builder-lite
+      base-jammy-stack-lite.buildpacks.tanzu.vmware.com    base-jammy-stack
+      bitnami.services.tanzu.vmware.com                    bitnami-services
+      buildservice.tanzu.vmware.com                        Tanzu Build Service
+      carbonblack.scanning.apps.tanzu.vmware.com           VMware Carbon Black for Supply Chain Security Tools - Scan
+      cartographer.tanzu.vmware.com                        Cartographer
+      cnrs.tanzu.vmware.com                                Cloud Native Runtimes
+      connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu
+      controller.source.apps.tanzu.vmware.com              Tanzu Source Controller
+      conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu
+      crossplane.tanzu.vmware.com                          crossplane
+      developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions
+      dotnet-core-lite.buildpacks.tanzu.vmware.com         dotnet-core-lite
+      eventing.tanzu.vmware.com                            Eventing
+      external-secrets.apps.tanzu.vmware.com               External Secrets Operator
+      fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller
+      go-lite.buildpacks.tanzu.vmware.com                  go-lite
+      grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan
+      java-lite.buildpacks.tanzu.vmware.com                java-lite
+      java-native-image-lite.buildpacks.tanzu.vmware.com   java-native-image-lite
+      local-source-proxy.apps.tanzu.vmware.com             Local Source Proxy
+      metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store
+      namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner
+      nodejs-lite.buildpacks.tanzu.vmware.com              nodejs-lite
+      ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic
+      ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic
+      ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning
+      ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing
+      ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates
+      policy.apps.tanzu.vmware.com                         Supply Chain Security Tools - Policy Controller
+      python-lite.buildpacks.tanzu.vmware.com              python-lite
+      ruby-lite.buildpacks.tanzu.vmware.com                ruby-lite
+      scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan
+      service-bindings.labs.vmware.com                     Service Bindings for Kubernetes
+      services-toolkit.tanzu.vmware.com                    Services Toolkit
+      snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan
+      spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server
+      spring-cloud-gateway.tanzu.vmware.com                Spring Cloud Gateway
+      sso.apps.tanzu.vmware.com                            AppSSO
+      tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform
+      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI
+      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform
+      tap.tanzu.vmware.com                                 Tanzu Application Platform
+      tekton.tanzu.vmware.com                              Tekton Pipelines
+      tpb.tanzu.vmware.com                                 Tanzu Portal Builder
+      web-servers-lite.buildpacks.tanzu.vmware.com         web-servers-lite
     ```
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
@@ -308,7 +306,7 @@ The following tasks are optional during the Tanzu Application Platform installat
 - [(Optional) Configure your profile with the Jammy stack only](#jammy-only)
 
 #### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
-  
+
 When you install a profile that includes Tanzu Build Service,
 Tanzu Application Platform is installed with the `lite` set of dependencies.
 These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)

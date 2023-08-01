@@ -153,7 +153,6 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
                                                                                                                                      acquisition from external sources such as Git, Helm repositories and S3 buckets.
       grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
-      learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
       namespace-provisioner.apps.tanzu.vmware.com          Namespace Provisioner                                                     Automatic Provisioning of Developer Namespaces.
       ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
@@ -178,7 +177,6 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
                                                                                                                                      case.
       tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
-      workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
@@ -266,9 +264,6 @@ buildservice:
     name: registry-credentials
     namespace: "MY-DEV-NAMESPACE"
   enable_automatic_dependency_updates: false
-
-learningcenter:
-  ingressDomain: learning-center.tap.com
 
 ootb_delivery_basic:
   service_account: default

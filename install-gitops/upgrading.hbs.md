@@ -82,7 +82,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='patch-upgrade'></a> Upgrade to a patch version
 
->**Caution** Tanzu Application Platform (GitOps) does not provide a separate artifact for each patch version within a minor line. For example, Tanzu Application Platform v1.6.x only contains the v1.6.1 GitOps artifact. 
+>**Caution** Tanzu Application Platform (GitOps) does not provide a separate artifact for each patch version within a minor line. For example, Tanzu Application Platform v1.6.x only contains the v1.6.1 GitOps artifact.
 
 Follow these steps to upgrade to the latest patch:
 
@@ -205,8 +205,6 @@ Your output is similar, but probably not identical, to the following example out
   fluxcd-source-controller            fluxcd.source.controller.tanzu.vmware.com            0.27.0+tap.1     Reconcile succeeded
   grype                               grype.scanning.apps.tanzu.vmware.com                 1.3.0            Reconcile succeeded
   image-policy-webhook                image-policy-webhook.signing.apps.tanzu.vmware.com   1.1.7            Reconcile succeeded
-  learningcenter                      learningcenter.tanzu.vmware.com                      0.2.3            Reconcile succeeded
-  learningcenter-workshops            workshops.learningcenter.tanzu.vmware.com            0.2.2            Reconcile succeeded
   metadata-store                      metadata-store.apps.tanzu.vmware.com                 1.3.3            Reconcile succeeded
   ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com                 0.10.2           Reconcile succeeded
   ootb-supply-chain-testing-scanning  ootb-supply-chain-testing-scanning.tanzu.vmware.com  0.10.2           Reconcile succeeded

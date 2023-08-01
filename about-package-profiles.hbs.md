@@ -147,18 +147,6 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   The main role of this source management component is to provide a common interface for artifact
   acquisition.
 
-- **[Learning Center](learning-center/about.md)**
-
-  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center,
-  content creators can create workshops from markdown files that learners can view in a terminal
-  shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
-  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom
-  web applications.
-
-  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
-  you can use it to host training for other purposes as well. For example, you can use it to train
-  users on web-based applications, use of databases, or programming languages.
-
 - **[Local Source Proxy](local-source-proxy/about.hbs.md)**
 
   Local Source Proxy is a secure and convenient means for you to interact with external registries
@@ -579,20 +567,6 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
    <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Learning Center
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
    </td>
   </tr>
   <tr>

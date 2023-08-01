@@ -116,8 +116,6 @@ The following table lists the supported component versions for this Tanzu Applic
 | Developer Conventions                                            |         |
 | Eventing                                                         |         |
 | Flux CD Source Controller                                        |         |
-| Learning Center (deprecated)                                     |         |
-| Learning Center workshops (deprecated)                           |         |
 | Local Source Proxy                                               |         |
 | Namespace Provisioner                                            |         |
 | Out of the Box Delivery - Basic                                  |         |

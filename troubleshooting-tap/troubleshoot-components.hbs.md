@@ -3,7 +3,6 @@
 For component-level troubleshooting, see these topics:
 
 - [Troubleshoot Tanzu Developer Portal](../tap-gui/troubleshooting.md)
-- [Troubleshoot Learning Center](../learning-center/troubleshoot-learning-center.md)
 - [Troubleshoot Service Bindings](../service-bindings/troubleshooting.md)
 - [Troubleshoot Source Controller](../source-controller/troubleshooting.md)
 - [Troubleshoot Spring Boot Conventions](../spring-boot-conventions/troubleshooting.md)
