@@ -13,4 +13,6 @@ For component-level troubleshooting, see these topics:
 - [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.2/tanzu-cloud-native-runtimes/troubleshooting.html)
 - [Tanzu Build Service FAQ](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/faq.html)
 - [Troubleshoot Tanzu Build Service](../tanzu-build-service/troubleshooting.md)
-- [Troubleshoot Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/reference-troubleshooting.html)
+- [Troubleshoot Services Toolkit](../services-toolkit/how-to-guides/troubleshooting.hbs.md)
+- [Troubleshoot Crossplane](../crossplane/how-to-guides/troubleshooting.hbs.md)
+- [Troubleshoot Bitnami Services](../bitnami-services/how-to-guides/troubleshooting.hbs.md)
