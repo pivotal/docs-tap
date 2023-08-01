@@ -144,13 +144,13 @@ Subsequent upgrades will not require a removal:
       --namespace tap-install
     ```
 
-4. Update the `full` dependencies package by running:
-    
-  NOTE: The values file is only needed for this command if you are installing this package for the first time or if the values have changed  
+4. Update the `full` dependencies package by running: 
 
     ```console
     tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE
     ```
+
+    >**Important** The values file is only required for this command if you install this package for the first time or if the values have changed.
 
 ### <a id="upgrade-order"></a> Multicluster upgrade order
 
