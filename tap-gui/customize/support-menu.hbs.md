@@ -20,11 +20,10 @@ As standard, there are two support item groupings:
 
 ## <a id="customizing"></a> Customizing
 
-The set of support item groupings is completely customizable. However, you might
-want to offer custom in-house links for your Tanzu Application Platform users rather than simply
-sending them to VMware support and documentation. You can provide this
-configuration by using your `tap-values.yaml`.
-Here is a configuration snippet, which produces the default support menu:
+The set of support item groupings is completely customizable. However, you might want to offer
+custom in-house links for your Tanzu Application Platform users rather than simply sending them to
+VMware support and documentation. You can provide this configuration by using your
+`tap-values.yaml`. Here is a configuration snippet, which produces the default support menu:
 
 ```yaml
 tap_gui:
@@ -56,16 +55,14 @@ The `url` field under the `support` section, for example,
         url: https://tanzu.vmware.com/support
 ```
 
-provides the address of the **contact support** link that appears on error
-pages such as this one:
+provides the address of the **contact support** link that appears on error pages such as this one:
 
 ![Screenshot of the 404 Error Page Not Found Page.](../images/error-page.png)
 
 ### <a id="items"></a> Items
 
-The `items` field under the `support` section, for example,
-
-provides the set of support item groupings to display when the support menu is expanded.
+The `items` field under the `support` section, for example, provides the set of support item
+groupings to display when the support menu is expanded.
 
 #### <a id="title"></a> Title
 
@@ -112,5 +109,5 @@ The `links` field on a support item grouping, for example,
                 title: Tanzu Support Page
 ```
 
-is a list of YAML objects that render as links.
-Each link has the text given by the `title` field and links to the value of the `url` field.
+is a list of YAML objects that render as links. Each link has the text given by the `title` field
+and links to the value of the `url` field.
