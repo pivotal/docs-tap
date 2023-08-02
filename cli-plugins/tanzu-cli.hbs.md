@@ -1,6 +1,6 @@
-# Tanzu CLI Overview
+# Overview of Tanzu CLI
 
-This topic tells you about the Tanzu command-line interface (CLI).
+This topic tells you about the Tanzu command-line interface (commonly known as Tanzu CLI).
 
 ## <a id="tanzu-cli"></a>Tanzu CLI
 
@@ -99,4 +99,3 @@ To discover and install plug-ins and plug-in groups:
    ```console
    tanzu plugin install --group GROUP-NAME:VERSION
    ```
-

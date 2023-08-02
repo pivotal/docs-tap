@@ -1,6 +1,6 @@
-# Configure the Tanzu Insight CLI plug-in
+# Configure your Tanzu Insight CLI plug-in
 
-This topic explains how to configure the Tanzu Insight plug-in.
+This topic tells you how to configure your Tanzu Insight CLI plug-in.
 
 ## <a id='set-tar-cert'></a>Set the target and certificate authority (CA) certificate
 
