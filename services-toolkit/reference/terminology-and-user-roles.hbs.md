@@ -165,7 +165,7 @@ Replication.
 It is a Kubernetes cluster that has Service Resource Lifecycle APIs installed and a corresponding controller
 managing their life cycle.
 
-### <a id="wrokload-cluster"></a> Workload cluster
+### <a id="workload-cluster"></a> Workload cluster
 
 A workload cluster is applicable within the context of Service API Projection and Service Resource
 Replication.
