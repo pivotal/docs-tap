@@ -15,20 +15,20 @@ The integration allows you to create:
 
 Before you can use or test RabbitMQ eventing on Eventing, you need to install VMWare Tanzu RabbitMQ for Kubernetes. Follow below steps to complete the installation:
 
-1. [Accept End User License Agreement](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html#accept-the-end-user-license-agreements)
+1. [Accept End User License Agreement](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html#accept-the-end-user-license-agreements)
 
-2. [Prerequisites](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html):
+2. [Prerequisites](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html):
    This step installs kapp-controller and secretgen-controller.
    Skip this step if kapp-controller and secretgen-controller are already installed on your cluster.
 
 3. Prepare for the Installation
 
-   - [Provide imagePullSecrets](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html#provide-imagepullsecrets)
-   - [Install the PackageRepository](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html#install-the-packagerepository)
-   - [Create a Service Account](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html#create-a-serviceaccount)
-   - [Install Cert-Manager ](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html#install-cert-manager): Skip this step if cert-manager is already installed on your cluster.
+   - [Provide imagePullSecrets](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html#provide-imagepullsecrets)
+   - [Install the PackageRepository](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html#install-the-packagerepository)
+   - [Create a Service Account](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html#create-a-serviceaccount)
+   - [Install Cert-Manager ](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html#install-cert-manager): Skip this step if cert-manager is already installed on your cluster.
 
-4. [Install the Tanzu RabbitMQ Package ](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.4/rmq/GUID-installation.html#install-the-vmware-rabbitmq-package): This step will install the Tanzu RabbitMQ Cluster Operator, Message Topology Operator, and Standby Replication Operator on your cluster.
+4. [Install the Tanzu RabbitMQ Package ](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/1.5/rmq/GUID-installation.html#install-the-vmware-rabbitmq-package): This step will install the Tanzu RabbitMQ Cluster Operator, Message Topology Operator, and Standby Replication Operator on your cluster.
 
 ## Next Steps
 
