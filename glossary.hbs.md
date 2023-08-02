@@ -147,6 +147,3 @@
         </td>
     </tr>
 </table>
-
-Tanzu Developer Portal Configurator Foundation is the image that contains everything necessary
-to build a customized version of Tanzu Developer Portal.
