@@ -1,8 +1,8 @@
-# Tanzu Insight plug-in overview
+# Overview of the Tanzu Insight plug-in
 
-The Tanzu Insight CLI plug-in enables querying vulnerability, image, and package data.
+The Tanzu Insight CLI plug-in helps you query vulnerability, image, and package data.
 
-Follow the below steps to install, configure, and use the Tanzu Insight CLI plug-in.
+Follow these steps to install, configure, and use your Tanzu Insight CLI plug-in:
 
 >**Note:** Prior to using the CLI plug-in, you must install the Supply Chain Security Tools - Store, either as its own package, or as part of Tanzu Application Platform View profile.
 
