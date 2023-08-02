@@ -1,6 +1,7 @@
-# Tanzu insight Package Vulnerabilities
+# tanzu insight package vulnerabilities
 
-Get package vulnerabilities.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight package vulnerabilities` to get the package vulnerabilities.
 
 ## <a id='synopsis'></a>Synopsis
 

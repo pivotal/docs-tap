@@ -1,6 +1,7 @@
-# Tanzu insight source packages
+# tanzu insight source packages
 
-Get source packages.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight source packages` to get the source packages.
 
 ## <a id='synopsis'></a>Synopsis
 

@@ -1,6 +1,7 @@
-# Tanzu insight config
+# tanzu insight config
 
-Config commands are as follows:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight config` to get help for the configuration commands.
 
 ## <a id='options'></a>Options
 

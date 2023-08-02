@@ -1,6 +1,7 @@
-# Tanzu insight vulnerabilities
+# tanzu insight vulnerabilities
 
-Vulnerabilities commands are as follows:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight vulnerabilities` to get help for the vulnerabilities commands.
 
 ## <a id='options'></a>Options
 

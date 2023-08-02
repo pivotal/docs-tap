@@ -1,6 +1,7 @@
-## Tanzu insight config set-target
+## tanzu insight config set-target
 
-Set the metadata store endpoint.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight config set-target` to set your metadata store endpoint.
 
 ### <a id='synopsis'></a>Synopsis
 

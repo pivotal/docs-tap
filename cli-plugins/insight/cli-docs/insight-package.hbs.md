@@ -1,6 +1,7 @@
-# Tanzu insight package
+# tanzu insight package
 
-Package commands are as follows:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight package` to get help for the package commands.
 
 ## <a id='options'></a>Options
 
