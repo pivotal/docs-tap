@@ -1,6 +1,8 @@
 # tanzu insight triage copy
 
-Use this command to copy an existing analysis to a new image, source or artifact group.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight triage copy` to copy an existing analysis to a new image, source 
+or artifact group.
 
 ## <a id='synopsis'></a>Synopsis
 
@@ -51,4 +53,3 @@ insight triage copy --triage-uid-to-copy BEC0F39C-FE99-4F18-A0AF-069A4AA8D71A --
 ## <a id='see-also'></a>See also
 
 * [tanzu insight triage](tanzu_insight_triage.hbs.md)	 - Vulnerability analysis commands
-

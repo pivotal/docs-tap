@@ -1,6 +1,7 @@
 # tanzu insight triage list
 
-Use this command to return the list of existing vulnerability triages.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight triage list` to get a list of the existing vulnerability triages.
 
 ```console
 tanzu insight triage list [flags]

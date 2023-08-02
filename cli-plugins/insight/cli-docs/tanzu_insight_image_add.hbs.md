@@ -1,6 +1,7 @@
 # tanzu insight image add
 
-Use this command to add an image report.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight image add` to add an image report.
 
 ## <a id='synopsis'></a>Synopsis
 
