@@ -24,7 +24,7 @@ To make these customizations:
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
 2. Reinstall your Tanzu Application Platform GUI package by following steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
@@ -47,7 +47,7 @@ By default, the portal displays **Your Organization** next to **Catalog** and in
 To customize the name of the organization for the software catalog in your portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+   file:
 
     ```yaml
     tap_gui:
@@ -60,7 +60,7 @@ file:
     `Our Organization Name`. You don't need to add `Catalog` to the `ORG-NAME`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI, you see
 the customized version of your portal.
@@ -89,7 +89,7 @@ To customize the portal name on the **Authentication** page and the name of the 
 for Tanzu Application Platform GUI:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+   file:
 
     ```yaml
     tap_gui:
@@ -102,7 +102,7 @@ file:
     portal, such as `Our Organization Full Name`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
@@ -116,7 +116,7 @@ it displays the list of owned components of the software catalog.
 To change the default view:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+   file:
 
     ```yaml
     tap_gui:
@@ -134,7 +134,7 @@ file:
     > even if there is an error in `YOUR-PREFERRED-ROUTE`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.

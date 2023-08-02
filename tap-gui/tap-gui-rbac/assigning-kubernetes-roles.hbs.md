@@ -1,16 +1,15 @@
 # Assigning roles and permissions on Kubernetes clusters
 
-This topic gives you an overview of creating roles and permissions on Kubernetes clusters
-and assigning these roles to users. For more information, see
-[Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) in the
-Kubernetes documentation.
+This topic gives you an overview of creating roles and permissions on Kubernetes clusters and
+assigning these roles to users. For more information, see
+[Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+in the Kubernetes documentation.
 
 The steps to define and assign roles are:
 
 1. [Create roles](#create-roles)
 2. [Create users](#create-users)
 3. [Assign users to their roles](#assign-users-to-roles)
-
 
 ## <a id="create-roles"></a> Create roles
 
@@ -19,7 +18,6 @@ roles and permissions for each of visible remote clusters, VMware recommends two
 
 - [Cluster-scoped roles](#cluster-scoped-roles)
 - [Namespace-scoped roles](#namespace-scoped-roles)
-
 
 ### <a id="cluster-scoped-roles"></a> Cluster-scoped roles
 
@@ -39,11 +37,10 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
-
 ### <a id="namespace-scoped-roles"></a> Namespace-scoped roles
 
-Namespace-scoped roles provide privileges that are limited to a certain namespace.
-They enable visibility into runtime resources inside namespaces.
+Namespace-scoped roles provide privileges that are limited to a certain namespace. They enable
+visibility into runtime resources inside namespaces.
 
 In this example YAML snippet, the `pod-viewer-app1` role enables pod visibility in the `app1` namespace:
 
@@ -59,7 +56,6 @@ rules:
   verbs: ["get", "list"]
 ```
 
-
 ## <a id="create-users"></a> Create users
 
 You can create users by running the `kubectl create` command.
@@ -72,7 +68,6 @@ metadata:
   namespace: default
   name: john
 ```
-
 
 ## <a id="assign-users-to-roles"></a> Assign users to their roles
 
