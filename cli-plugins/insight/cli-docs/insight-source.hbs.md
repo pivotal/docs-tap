@@ -1,6 +1,7 @@
-# Tanzu insight source
+# tanzu insight source
 
-Source commands are as follows:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight source` to get help for the source commands.
 
 ## <a id='curltopost'></a>Options
 

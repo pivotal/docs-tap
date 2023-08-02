@@ -1,6 +1,7 @@
-# Tanzu insight vulnerabilities get
+# tanzu insight vulnerabilities get
 
-Get vulnerability by CVE id.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight vulnerabilities get` to get a vulnerability by CVE ID.
 
 ## <a id='synopsis'></a>Synopsis
 

@@ -1,6 +1,7 @@
-# Tanzu insight source get
+# tanzu insight source get
 
-Get sources by repository, commit, or organization.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight source get` to get sources by repository, commit or organization.
 
 ## <a id='synopsis'></a>Synopsis
 

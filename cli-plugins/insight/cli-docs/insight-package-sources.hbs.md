@@ -1,6 +1,8 @@
-# Tanzu insight package sources
+# tanzu insight package sources
 
-Get sources that contain the given package by name.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight package sources` to get the sources that contain 
+the given package by name.
 
 ## <a id='synopsis'></a>Synopsis
 

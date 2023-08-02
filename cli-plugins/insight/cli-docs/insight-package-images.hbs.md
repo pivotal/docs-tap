@@ -1,6 +1,8 @@
-# Tanzu insight Package Images
+# tanzu insight package images
 
-Get images that contain the given package by name.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight package images` to get the images that contain the given package 
+by name.
 
 ## <a id='synopsis'></a>Synopsis
 
