@@ -1,6 +1,7 @@
-# Tanzu insight version
+# tanzu insight version
 
-To display tanzu insight version:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight version` to display the Tanzu insight version:
 
 ```console
 tanzu insight version [flags]

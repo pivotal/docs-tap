@@ -1,6 +1,7 @@
-# Tanzu insight image vulnerabilities
+# tanzu insight image vulnerabilities
 
-Get image vulnerabilities:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight image vulnerabilities` to get the image vulnerabilities.
 
 ```console
 tanzu insight image vulnerabilities --digest <image-digest> [--format <image-format>] [flags]

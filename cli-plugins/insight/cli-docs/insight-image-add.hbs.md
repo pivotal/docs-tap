@@ -1,10 +1,12 @@
-# Tanzu insight image add
+# tanzu insight image add
 
-Add an image report from a report file:
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight image add` to add an image report.
 
 ```console
 tanzu insight image add [--cyclonedxtype <json|xml>] [--spdxtype json] --path <filepath>
 ```
+
 If report  type is not specified, it will be defaulted to `--cyclonedxtype=xml`
 
 ## <a id='examples'></a>Examples

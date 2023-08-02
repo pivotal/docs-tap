@@ -1,6 +1,7 @@
-# Tanzu insight image packages
+# tanzu insight image packages
 
-Get image packages.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight image packages` to get the image packages.
 
 ## <a id='synopsis'></a>Synopsis
 

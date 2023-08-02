@@ -1,6 +1,7 @@
-## Tanzu insight health
+## tanzu insight health
 
-Checks if endpoint is reachable.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight health` to check if an endpoint is reachable.
 
 ### <a id='synopsis'></a>Synopsis
 

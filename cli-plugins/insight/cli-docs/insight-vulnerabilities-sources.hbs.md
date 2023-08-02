@@ -1,6 +1,7 @@
-# Tanzu insight vulnerabilities sources
+# tanzu insight vulnerabilities sources
 
-Get sources with a given vulnerability.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight vulnerabilities sources` to get the sources with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 
