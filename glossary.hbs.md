@@ -111,6 +111,11 @@
         <td>This tool is used for customizing Tanzu Developer Portal with Backstage plug-ins.</td>
     </tr>
     <tr>
+        <td>Tanzu Developer Portal Configurator Foundation</td>
+        <td>This is the image that contains everything necessary to build a customized version of
+            Tanzu Developer Portal.</td>
+    </tr>
+    <tr>
         <td>Tanzu Developer Tools for IntelliJ</td>
         <td>This extension for IntelliJ IDEA helps you develop with Tanzu Application Platform and
             enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
@@ -142,3 +147,6 @@
         </td>
     </tr>
 </table>
+
+Tanzu Developer Portal Configurator Foundation is the image that contains everything necessary
+to build a customized version of Tanzu Developer Portal.
