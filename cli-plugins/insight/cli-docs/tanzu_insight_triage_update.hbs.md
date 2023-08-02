@@ -1,6 +1,7 @@
 # tanzu insight triage update
 
-Use this command to create or update a vulnerability analysis.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight triage update` to create or update a vulnerability analysis.
 
 ## <a id='synopsis'></a>Synopsis
 

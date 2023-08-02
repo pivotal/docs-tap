@@ -1,6 +1,7 @@
 # tanzu insight triage
 
-Use this command to get help for vulnerability analysis commands.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight triage` to get help for the vulnerability analysis commands.
 
 ## <a id='options'></a>Options
 

@@ -1,6 +1,7 @@
 # tanzu insight source
 
-Use this command to get help for source commands.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight source` to get help for the source commands.
 
 ## <a id='options'></a>Options
 

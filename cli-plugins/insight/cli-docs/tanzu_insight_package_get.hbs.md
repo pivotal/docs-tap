@@ -1,6 +1,7 @@
 # tanzu insight package get
 
-Use this command to get package by name, version, and package manager.
+This topic tells you how to use the Tanzu Insight CLI plug-in 
+`tanzu insight package get` to get the package by name, version, and package manager.
 
 ## <a id='synopsis'></a>Synopsis
 
