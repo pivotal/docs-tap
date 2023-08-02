@@ -46,7 +46,7 @@ Tanzu Live Update uses [Tilt](https://tilt.dev/). This requires a suitable
 Your `Tiltfile` must be similar to the following:
 
 ```starlark
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='your-registry.io/project/weatherforecast-steeltoe-source')
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='your-registry.io/project/csharp-weatherforecast-source')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='default')
 NAME = os.getenv("NAME", default='sample-app')
