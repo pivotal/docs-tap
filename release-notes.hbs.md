@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-2'></a> v1.6.2 
- 
+## <a id='1-6-2'></a> v1.6.2
+
 **Release Date**: 15 August 2023
- 
-### <a id='1-6-2-security-fixes'></a> v1.6.2 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+
+### <a id='1-6-2-security-fixes'></a> v1.6.2 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-2-COMPONENT-NAME-fixes'></a> v1.6.2 security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -33,34 +33,34 @@ OR add HTML or Markdown table
 </details>
 </td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-6-2-resolved-issues'></a> v1.6.2 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-2-resolved-issues'></a> v1.6.2 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-2-COMPONENT-NAME-ri'></a> v1.6.2 resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-6-2-known-issues'></a> v1.6.2 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-6-2-known-issues'></a> v1.6.2 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-6-2-COMPONENT-NAME-ki'></a> v1.6.2 known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-6-2-components'></a> v1.6.2 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                                   | Version |
 | ---------------------------------------------------------------- | ------- |
 | API Auto Registration                                            |         |
@@ -110,8 +110,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu CLI Insight plug-in                                        |         |
 | Tanzu Service CLI plug-in                                        |         |
 | Tekton Pipelines                                                 |         |
- 
----   
+
+---
 
 ## <a id='1-6-1'></a> v1.6.1
 
@@ -820,6 +820,12 @@ This release has the following known issues, listed by component and area.
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
 
+#### <a id='1-6-1-learningcenter-ki'></a> v1.6.1 known issues: Learning Center
+
+- [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
+  Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
 #### <a id='1-6-1-stk-ki'></a> v1.6.1 known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
@@ -908,6 +914,38 @@ This release has the following known issues, listed by component and area.
     ```
 
     For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
+
+#### <a id='1-6-1-linux-kernel-CVEs'></a> v1.6.1 known issues: Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these
+fixed images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS.
+An unpatched host OS might be exploitable if the base image is deployed.
+
+For each known vulnerability, links to the Ubuntu Security page are provided.
+These pages might list mitigation steps that operators can take to secure the cluster.
+
+- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
+- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
+- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
+- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
+- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
+- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
+- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
+- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
+- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
+- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
+- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
+- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
+- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
+- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
+- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
+- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
 
 ---
 
