@@ -1,5 +1,9 @@
 # Overview of Learning Center for Tanzu Application Platform
 
+> **Caution** Learning Center is deprecated and marked for removal in Tanzu Application Platform v1.7.0.
+> Use [Tanzu Academy](https://tanzu.academy/) instead for all Tanzu Application Platform learning and
+> education needs.
+
 Learning Center provides a platform for creating and self-hosting workshops.
 It allows you to create workshops from markdown files that are displayed to the learner in a terminal
 shell environment with an instructional wizard UI.
