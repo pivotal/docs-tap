@@ -25,10 +25,10 @@ To make these customizations:
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
 2. Reinstall your Tanzu Developer Portal package by following steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Developer Portal,
-you see the customized version of your portal.
+After the updated values configuration file is applied in Tanzu Developer Portal, you see the
+customized version of your portal.
 
 If there is an error in any of the supplied images encoded in base64 or in your choice of portal name,
 Tanzu Developer Portal reverts to the original branding template.
@@ -48,7 +48,7 @@ By default, the portal displays **Your Organization** next to **Catalog** and in
 To customize the name of the organization for the software catalog in your portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+   file:
 
     ```yaml
     tap_gui:
@@ -61,13 +61,13 @@ file:
     `Our Organization Name`. You don't need to add `Catalog` to the `ORG-NAME`.
 
 1. Reinstall your Tanzu Developer Portal package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Developer Portal, you see
-the customized version of your portal.
+After the updated values configuration file is applied in Tanzu Developer Portal, you see the
+customized version of your portal.
 
-If there is an error in the provided configuration parameters, Tanzu Developer Portal
-reverts to the original organization name.
+If there is an error in the provided configuration parameters, Tanzu Developer Portal reverts to the
+original organization name.
 
 ![Screenshot displaying the custom Software Catalog naming within the Tanzu Developer Portal portal](../images/customized-catalog-name.png)
 
@@ -90,7 +90,7 @@ To customize the portal name on the **Authentication** page and the name of the 
 for Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+   file:
 
     ```yaml
     tap_gui:
@@ -102,22 +102,22 @@ file:
     Where `CUSTOM-TAB-NAME` is the name on the Authentication page and the browser tab of your
     portal, such as `Our Organization Full Name`.
 
-1. Reinstall your Tanzu Developer Portal package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+2. Reinstall your Tanzu Developer Portal package by following the steps in
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Developer Portal,
-you see the customized version of your portal.
+After the updated values configuration file is applied in Tanzu Developer Portal, you see the
+customized version of your portal.
 
 ## <a id="customize-default-view"></a> Customize the default view
 
-You can set your default route when the user is accessing your portal.
-Without this customization, when the user accesses the Tanzu Developer Portal URL,
-it displays the list of owned components of the software catalog.
+You can set your default route when the user is accessing your portal. Without this customization,
+when the user accesses the Tanzu Developer Portal URL, it displays the list of owned components of
+the software catalog.
 
 To change the default view:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+   file:
 
     ```yaml
     tap_gui:
@@ -134,16 +134,16 @@ file:
     > **Caution** Tanzu Developer Portal redirects you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`
     > even if there is an error in `YOUR-PREFERRED-ROUTE`.
 
-1. Reinstall your Tanzu Developer Portal package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+2. Reinstall your Tanzu Developer Portal package by following the steps in
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Developer Portal,
-you see the customized version of your portal.
+After the updated values configuration file is applied in Tanzu Developer Portal, you see the
+customized version of your portal.
 
 ## <a id="cust-security-banners"></a> Customize security banners
 
-You can instruct Tanzu Developer Portal to create security banners on the top and bottom of
-the page. To add security banners to Tanzu Developer Portal:
+You can instruct Tanzu Developer Portal to create security banners on the top and bottom of the
+page. To add security banners to Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
    file, as in the following example:
@@ -171,7 +171,7 @@ the page. To add security banners to Tanzu Developer Portal:
     - `OPTIONAL-LINK` is the link to which your text redirects. Setting this is optional.
 
 1. Reinstall your Tanzu Developer Portal package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+   [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
-After the updated values configuration file is applied in Tanzu Developer Portal,
-the customized version of your portal is displayed.
+After the updated values configuration file is applied in Tanzu Developer Portal, the customized
+version of your portal is displayed.
