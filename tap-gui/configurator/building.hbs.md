@@ -30,6 +30,12 @@ Meet the following prerequisites:
 - Ensure that your extra plug-ins are in an npm registry. This registry can be your own private
   registry or a plug-in registry if you intend to use a third-party or community plug-in.
 
+- Ensure that you've installed the [Carvel tools](https://carvel.dev/) on your workstation. Specifically `imgpkg` must be installed in order to perform some of the build steps.
+
+- Ensure that the `yq` tool is [installed](https://github.com/mikefarah/yq/#install).
+
+- Ensure that the [Docker](https://docs.docker.com/engine/install/) CLI is installed and that you've logged into your registry.
+
 > **Important** Tanzu Application Platform plug-ins cannot be removed from customized portals.
 > However, if you decide you want to hide them, you can use the
 > [runtime configuration](concepts.hbs.md#runtime) options in your `tap-values.yaml` file.
@@ -80,6 +86,31 @@ To prepare your Configurator configuration file:
    ```console
    base64 -i tdp-config.yaml
    ```
+
+## <a id="prep-ident-image"></a> Identify your Configurator foundation image
+
+In order to build a customized Tanzu Developer Portal, we need to identify the image that contains the foundation that's ready to pass through the supplychain. Depending on how you installed things, this could either be on  `registry.tanzu.vmware.com` or on your local image registry that you relocated (`imgpkg`) the installation packages to.
+
+1. You'll export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
+
+```bash
+export OUTPUT_IMAGE=$(kubectl -n tap-install get package tpb.tanzu.vmware.com.0.1.2 -o "jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}")
+```
+
+2. Pull the image from your registry (You'll need to have logged into it via `docker login`) and extract it to a local directory:
+
+```bash
+imgpkg pull -b ${OUTPUT_IMAGE} -o tpb-package
+```
+
+3. Finally, you'll use [yq](https://github.com/mikefarah/yq/#install) to retrieve the `TDP-IMAGE-LOCATION` that you'll be supplying in your workload definition below:
+
+```bash
+yq -r ".images[0].image" <tpb-package/.imgpkg/images.yml
+```
+
+
+
 
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
