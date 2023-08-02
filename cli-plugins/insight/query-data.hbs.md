@@ -1,6 +1,9 @@
 # Query vulnerabilities, images, and packages
 
-This topic describes how to query the database to understand vulnerability, image, and dependency relationships. The Tanzu Insight CLI plug-in queries the database for vulnerability scan reports or Software Bill of Materials (SBoM) files.
+This topic tells you how to query the database to understand vulnerability, image, 
+and dependency relationships. The Tanzu Insight CLI plug-in queries the database 
+for vulnerability scan reports or Software Bill of Materials (commonly known as SBoM) 
+files.
 
 ## <a id='sup-usecase'></a>Supported use cases
 

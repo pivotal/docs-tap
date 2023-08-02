@@ -1,6 +1,8 @@
-# Add data
+# Add data to your Supply Chain Security Tools - Store
 
-This topic describes how to add vulnerability scan reports or Software Bill of Materials (SBoM) files to the Supply Chain Security Tools - Store.
+This topic tells you how to add vulnerability scan reports or Software Bill of 
+Materials (commonly known as SBoM) files to your Supply Chain Security Tools 
+(commonly known as SCST) - Store.
 
 ## <a id='supported-formats'></a>Supported formats and file types
 

@@ -1,9 +1,9 @@
-# Install the Tanzu Insight CLI plug-in
+# Install your Tanzu Insight CLI plug-in
 
-> **Note** By following the [instructions](../../install-tanzu-cli.md) to install the Tanzu CLI and
-> all the plug-ins, the Tanzu Insight plug-in is also installed.
+This topic tells you how to install your Tanzu Insight CLI plug-in.
 
-This topic explains how to install the Tanzu Insight plug-in by itself, after the user has installed the Tanzu CLI.
+By following the [instructions](../../install-tanzu-cli.md) to install the Tanzu 
+CLI and all the plug-ins, the Tanzu Insight plug-in is also installed.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > the Tanzu Insight CLI plug-in. For more information about profiles, see [About Tanzu Application Platform
