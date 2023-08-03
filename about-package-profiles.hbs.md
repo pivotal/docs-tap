@@ -77,11 +77,10 @@ a predefined group of packages.
 
 - **[Bitnami Services](bitnami-services/about.hbs.md)**
 
-  Bitnami Services provides a set of backing services for Tanzu Application Platform.
-  The available services are MySQL, PostgreSQL, RabbitMQ, Redis, MongoDB, and Kafka all of which are
-  backed by the corresponding Bitnami Helm Chart.
+  Bitnami Services provides a set of services for Tanzu Application Platform backed by
+  corresponding Bitnami Helm Charts.
   Through integration with [Crossplane](crossplane/about.hbs.md) and
-  [Services Toolkit](services-toolkit/about.hbs.md), these six services are immediately ready
+  [Services Toolkit](services-toolkit/about.hbs.md), these Bitnami Services are immediately ready
   for apps teams to consume, with no additional setup or configuration required from ops teams.
   This makes it incredibly quick and easy to get started working with services on Tanzu Application Platform.
 
