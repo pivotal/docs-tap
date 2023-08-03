@@ -3,8 +3,8 @@
 This topic tells you how to uninstall Application Live View from Tanzu Application Platform
 (commonly known as TAP).
 
-To uninstall the Application Live View Backend, Application Live View Connector and Application Live View
-convention server, run:
+To uninstall the Application Live View back end, Application Live View connector, and
+Application Live View convention server, run:
 
 ```console
 tanzu package installed delete appliveview -n tap-install
