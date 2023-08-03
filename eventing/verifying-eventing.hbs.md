@@ -17,7 +17,7 @@ You can use either an in-memory broker or a RabbitMQ broker to verify Knative Ev
 
 Before you verify Knative Eventing, you must:
 
-* Have a namespace where you want to deploy your Knative resources. This namespace will be referred as `${WORKLOAD_NAMESPACE}` in this tutorial. See step 1 of [Verifying Eventing Installation](verifying-installation.md) for more information.
+* Have a namespace where you want to deploy your Knative resources. This namespace will be referred as `${WORKLOAD_NAMESPACE}` in this tutorial. See step 1 of [Verifying Eventing Installation](verify-installation.hbs.md) for more information.
 
 * Create the following role binding in the `${WORKLOAD_NAMESPACE}` namespace. Run:
     ```sh

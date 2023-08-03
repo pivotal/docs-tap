@@ -19,8 +19,9 @@ instructions.
 >**Note** If you have previously installed Cloud Native Runtimes v1.3 or an earlier version (which Eventing was formerly bundled in) and wish to upgrade to the latest version,
 please be aware that the Tanzu Application Platform now includes a shared ingress issuer by default. If you are currently using a single
 certificate (for example, if you have set `cnrs.default_tls_secret` in your tap-values.yaml file) and want to opt out of the default
-shared ingress issuer, it is important to deactivate it. To learn how to opt out and deactivate the automatic TLS feature,
-please refer to the documentation: [Opt out from any ingress issuer and deactivate automatic TLS feature](tls-guides-deactivate-autotls.md).
+shared ingress issuer, it is important to deactivate it.
+
+<!-- To learn how to opt out and deactivate the automatic TLS feature, please refer to the documentation: [Opt out from any ingress issuer and deactivate automatic TLS feature](tls-guides-deactivate-autotls.hbs.md). -->
 
 To upgrade the Eventing PackageInstall specifically, run:
 
