@@ -315,7 +315,7 @@ tanzu apps workload create "${WORKLOAD_NAME}" \
   --git-branch "${GIT_BRANCH}" \
   --git-repo "${GITHUB_REPO}" \
   --label apps.tanzu.vmware.com/has-tests=true \
-  --label app.kubernetes.io/part-of="${WORKLOAAD_NAME}" \
+  --label app.kubernetes.io/part-of="${WORKLOAD_NAME}" \
   --param-yaml testing_pipeline_matching_labels='{"apps.tanzu.vmware.com/pipeline":"jenkins-pipeline"}' \
   --param-yaml testing_pipeline_params='{"secret-name":"jenkins-secret", "job-name": "jenkins-job", "job-params":"[{"name":"GIT_URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT_BRANCH", "value":"main"}]"}'\
   --type web
