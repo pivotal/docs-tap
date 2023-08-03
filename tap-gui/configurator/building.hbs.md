@@ -60,13 +60,14 @@ To prepare your Configurator configuration file:
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
       npm registry
 
-    The following example adds the sample `hello-world` plug-in which is available in the internal package's registry:
+    The following example adds the sample `hello-world` plug-in, which is available in the internal
+    package's registry:
 
     ```yaml
     app:
       plugins:
         - name: '@tpb/plugin-hello-world'
-          version: '^1.6.0-release-1.6.x.1' 
+          version: '^1.6.0-release-1.6.x.1'
     backend:
       plugins:
         - name: '@tpb/plugin-hello-world-backend'
