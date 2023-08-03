@@ -74,13 +74,6 @@
         <th>Definition</th>
     </tr>
     <tr>
-        <td>Live Update</td>
-        <td>Live Update is a tool that enables you to deploy your workload once, save changes to the
-            code, and see those changes reflected in the workload running on the cluster within seconds.
-            For more information, see the [Tilt documentation](https://docs.tilt.dev/live_update_reference.html).
-        </td>
-    </tr>
-    <tr>
         <td>Local Source Proxy (LSP)</td>
         <td>This component serves as a proxy registry server with Open Container Initiative (OCI)
             compatibility. Its main purpose is to handle image push requests by forwarding them to an
@@ -132,18 +125,5 @@
         <td>This extension for Visual Studio Code helps you develop with Tanzu Application Platform
             and enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
             have Tanzu Application Platform installed.</td>
-    </tr>
-    <tr>
-        <td>Tekton Pipelines</td>
-        <td>Tekton is a cloud-native, open-source framework for creating continuous integration/
-            continuous delivery systems. It allows developers to build, test, and deploy across cloud
-            providers and on-premise systems.</td>
-    </tr>
-    <tr>
-        <td>Tiltfile</td>
-        <td>The Tiltfile is a file with no extension that is required for Tilt to enable the
-            Live Update feature. For more information, see the
-            [Tilt documentation](https://docs.tilt.dev/tiltfile_concepts.html).
-        </td>
     </tr>
 </table>
