@@ -106,7 +106,7 @@ moved the installation packages to.
 2. Log in to your image registry by running:
 
    ```console
-   docker login
+   docker login REGISTRY-SERVER-NAME
    ```
 
 3. Pull the image from your registry and extract it to a local directory:
