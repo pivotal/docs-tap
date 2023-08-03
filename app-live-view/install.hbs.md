@@ -9,8 +9,8 @@ profiles:
 <!-- Where are the four packages and why can't I see iterate and full in the list below? -->
 
 - For the `view` profile, Application Live View installs Application Live View
-  back-end package (`backend.appliveview.tanzu.vmware.com`). This installs the
-  Application Live View back-end component with Tanzu Application Platform GUI
+  back end package (`backend.appliveview.tanzu.vmware.com`). This installs the
+  Application Live View back end component with Tanzu Application Platform GUI
   in `app-live-view` namespace.
 
 - For the `run` profile, Application Live View installs Application Live View
@@ -29,7 +29,7 @@ profiles:
   Application Live View Conventions package.
 
 - For the `full` profile, Application Live View installs the Application Live
-  View back-end package, Application Live View connector package, Application
+  View back end package, Application Live View connector package, Application
   Live View APIServer package, and Application Live View Conventions package.
 
 The Application Live View back end (`backend.appliveview.tanzu.vmware.com`)
@@ -69,7 +69,7 @@ environment:
   is the default mode of Application Live View.
 
 - `Multicluster`: In a multicluster environment, the Application Live View
-  back-end component is installed only once in a single cluster and exposes a
+  back end component is installed only once in a single cluster and exposes a
   RSocket registration for the other clusters using Tanzu shared ingress. Each
   cluster continues to install the connector as a DaemonSet. The connectors are
   configured to connect to the central instance of the Application Live View
@@ -245,11 +245,11 @@ To install Application Live View back end:
         app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 appliveview-cert   valid    Valid HTTPProxy
         ```
 
-        To verify the App Live View pages in a multi-cluster setup, set the appropriate connector
+        To verify the App Live View pages in a multicluster setup, set the appropriate connector
         configuration in your run cluster as listed in
         [Install Application Live View connector](#install-alv-connector).
 
-1. Install the Application Live View back-end package by running:
+1. Install the Application Live View back end package by running:
 
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
@@ -273,10 +273,10 @@ To install Application Live View back end:
     Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-    The Application Live View back-end component is deployed in `app-live-view`
+    The Application Live View back end component is deployed in `app-live-view`
     namespace by default.
 
-1. Verify the Application Live View back-end package installation by running:
+1. Verify the Application Live View back end package installation by running:
 
     ```console
     tanzu package installed get appliveview -n tap-install
@@ -361,7 +361,7 @@ To install Application Live View connector:
     to the `cluster-local` Application Live View back end to register the
     applications.
 
-        By default, ingress is disabled for connector.
+        By default, ingress is deactivated for connector.
 
     - For a multicluster environment, set the flag `ingressEnabled` to `true` for
     the Application Live View connector to connect to the Application Live View
@@ -442,7 +442,7 @@ To install Application Live View connector:
         values as is.
 
         Using the HTTP proxy either on 80 or 443 based on SSL config exposes the
-        back-end service running on port 7000. The connector connects to the back
+        back end service running on port 7000. The connector connects to the back
         end on port 80/443 by default. Therefore, you are not required to explicitly
         configure the `port` field.
 
