@@ -7,12 +7,11 @@ For troubleshooting guidance, see [Troubleshoot Crossplane](../how-to-guides/tro
 
 ## <a id="too-many-crds"></a> Cluster performance degradation due to large number of CRDs
 
-Take care before choosing to install additional Crossplane `Providers` into
-Tanzu Application Platform.
-Some of these `Providers` install hundreds of additional CRDs into the cluster.
+Take care before installing extra Crossplane Providers into Tanzu Application Platform.
+Some Providers install hundreds of additional CRDs into the cluster.
 
-This is particularly true of the `Providers` for AWS, Azure, and GCP.
-For the number of CRDs installed with these `Providers`, see:
+This is particularly true of the Providers for AWS, Azure, and GCP.
+For the number of CRDs installed with these Providers, see:
 
 - [provider-aws CRDs](https://marketplace.upbound.io/providers/upbound/provider-aws/latest/managed-resources)
 - [provider-azure CRDs](https://marketplace.upbound.io/providers/upbound/provider-azure/latest/managed-resources)
