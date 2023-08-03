@@ -77,7 +77,7 @@ You can learn and discover more about a class by running:
 tanzu service class get postgresql-unmanaged
 ```
 
-The expected output is similar to the following:
+Example output:
 
 ```console
 NAME:           postgresql-unmanaged
@@ -117,7 +117,7 @@ parameter, setting it instead to `3`.  You can override any of the options as yo
 tanzu service class-claim create psql-1 --class postgresql-unmanaged --parameter storageGB=3 -n dev-team-1
 ```
 
-The expected output is similar to the following:
+Example output:
 
 ```console
 Creating claim 'psql-1' in namespace 'dev-team-1'.
@@ -131,7 +131,7 @@ As the output states, you can then confirm the status of the claim by using the
 tanzu services class-claims get psql-1 --namespace dev-team-1
 ```
 
-The expected output is similar to the following:
+Example output:
 
 ```console
 Name: psql-1
@@ -163,12 +163,13 @@ After creating the claim, you can bind it to one or more of your application wor
 > exist in the same namespace. This is a known limitation. For more information, see
 > [Cannot claim and bind to the same service instance from across multiple namespaces](../../services-toolkit/reference/known-limitations.hbs.md#multi-workloads).
 
-1. Find the reference for the claim by running the following command. The reference is in the output
-under the heading "Claim Reference.
+1. Find the reference for the claim by running the following command.
 
     ```console
     tanzu service class-claim get psql-1
     ```
+
+    The reference is in the output under the heading Claim Reference.
 
 1. Bind the claim to a workload of your choice by pass a reference to the claim to the `--service-ref`
    flag of the `tanzu apps workload create` command. For example:
