@@ -48,11 +48,11 @@ The text boxes cause specific behavior in Tanzu Developer Portal
 - To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
 - If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
 
->**Important** `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and `spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change supports having a different API server location from the specifications location. These deprecated fields will be removed in Tanzu Application Platform 1.10.
+>**Important** `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and `spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change supports having a different API server location from the specifications location. These deprecated fields will be removed in Tanzu Application Platform 1.8.
 
 ## <a id='absolute-url'></a>With an Absolute URL
 
-To create an APIDescriptor with a static `baseURL.url`, you must apply the following YAML to your cluster.
+To create an APIDescriptor with a static `server.url`, you must apply the following YAML to your cluster.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -68,12 +68,13 @@ spec:
     apiSpec:
       path: "/v3/api-docs.yaml"
     server:
-      url: https://myservice.com
+      url: https://myservice.mynamespace.svc.cluster.local:6789
 ```
 
 ## <a id='with-ref'></a>With an Object Ref
 
 You can use an object reference, instead of hard coding the URL, to point to a HTTPProxy, Knative Service, or Ingress.
+We do not support referencing kubernetes `Service` with Object Ref. If you'd like to point to your kubernetes `Service` directly, you may use the static url with cluster DNS address instead, e.g. https://myservice.mynamespace.svc.cluster.local:6789.
 
 ### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
 
@@ -106,7 +107,7 @@ To use a Knative Service, your controller reads the `status.url` as the baseURL.
 
 ```yaml
 # all other fields similar to the above example
-    baseURL:
+    server:
       ref:
         apiVersion: serving.knative.dev/v1
         kind: Service
@@ -120,7 +121,7 @@ To use an Ingress instead, your controller reads the URL from the jsonPath speci
 
 ```yaml
 # all other fields similar to the above example
-    baseURL:
+    server:
       ref:
         apiVersion: networking.k8s.io/v1
         kind: Ingress
