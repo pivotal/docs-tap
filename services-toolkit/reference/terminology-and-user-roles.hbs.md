@@ -35,23 +35,23 @@ For example:
 - A Kubernetes resource with API Kind `Secret` containing credentials and connectivity information
   for a Service that may or may not be running on the cluster itself.
 
-### <a id="provisioned-service"></a>Provisioned Service
+### <a id="provisioned-service"></a>Provisioned service
 
-A Provisioned Service is any Service Resource that defines a `.status.binding.name` which points
+A provisioned service is any service resource that defines a `.status.binding.name` which points
 to a secret in the same namespace that contains credentials and connectivity information for the resource.
 
 This term is defined in the Service Binding Specification for Kubernetes.
-For the full definition, see
-[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) in GitHub.
+For the full definition, see the
+[Service Binding Specification](https://github.com/servicebinding/spec#provisioned-service) in GitHub.
 
-### <a id="service-binding"></a>Service Binding
+### <a id="service-binding"></a>Service binding
 
 A service binding is a mechanism in which service instance credentials and other related connectivity
 information are automatically communicated to application workloads.
 
 For example:
 
-- The Service Binding concept implemented through the `ServiceBinding` Service Resource provided by
+- The Service binding concept implemented through the `ServiceBinding` service resource provided by
   [servicebinding](https://github.com/vmware-tanzu/servicebinding) in GitHub.
 
 ### <a id="service-instance"></a>Service instance
@@ -123,7 +123,7 @@ For example:
 
 - A class claim pointing to a class named `on-demand-rabbitmq`.
 
-### <a id="claim-service-instance"></a> Claimable Service Instance
+### <a id="claim-service-instance"></a> Claimable service instance
 
 A claimable service instance is any service instance that you are permitted claim using a
 resource claim from a namespace, taking into consideration:
@@ -144,15 +144,15 @@ For example:
 - A `RabbitmqCluster` service resource located in the same namespace as a resource claim that has
   already been claimed is not a claimable service instance due to the exclusive nature of Resource Claims.
 
-### <a id="dynamic-provisioning"></a> Dynamic Provisioning
+### <a id="dynamic-provisioning"></a> Dynamic provisioning
 
 Dynamic provisioning is a capability of Services Toolkit in which class claims that refer to
 provisioner-based classes are fulfilled automatically through the provisioning of new Service instances.
 
-### <a id="lifecycle"></a> Service Resource Life cycle API
+### <a id="lifecycle"></a> Service resource life cycle API
 
-A Service Resource Life cycle API is any Kubernetes API that you can use to manage the life cycle (CRUD)
-of a Service Resource.
+A service resource life cycle API is any Kubernetes API that you can use to manage the life cycle (CRUD)
+of a service resource.
 
 For example:
 
