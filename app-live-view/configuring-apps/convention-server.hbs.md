@@ -1,17 +1,17 @@
-# Application Live View Convention server
+# Application Live View convention server
 
-This topic provides information about Application Live View Convention, which provides a
+This topic provides information about Application Live View convention, which provides a
 Webhook handler for
 [Convention Service for VMware Tanzu](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-convention-service-about.html).
 
-## <a id="role"></a> Role of Application Live View Convention
+## <a id="role"></a> Role of Application Live View convention
 
-The Application Live View Convention works in conjunction with core Convention Service.
+The Application Live View convention works in conjunction with core Convention Service.
 It enhances Tanzu PodIntents with metadata such as labels, annotations, or app properties.
 This metadata allows Application Live View, specifically the connector, to discover
 app instances so that Application Live View can access the actuator data from those workloads.
 
->**Note** Application Live View Conventions now supports only Steeltoe applications. Spring Boot conventions supports both Spring Boot and Spring Cloud Gateway applications. For more information about Spring Boot conventions, see [Enable Application Live View with Spring Boot apps](../../spring-boot-conventions/enabling-app-live-view.hbs.md)
+>**Note** Application Live View conventions now supports only Steeltoe applications. Spring Boot conventions supports both Spring Boot and Spring Cloud Gateway applications. For more information about Spring Boot conventions, see [Enable Application Live View with Spring Boot apps](../../spring-boot-conventions/enabling-app-live-view.hbs.md)
 
 To run Application Live View with Steeltoe apps, the Spring Boot convention recognizes PodIntents and adds the following metadata labels:
 
