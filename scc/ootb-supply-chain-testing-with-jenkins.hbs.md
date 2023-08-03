@@ -59,11 +59,17 @@ pipeline {
     stage('Checkout code') {
       steps {
         script {
-          sourceUrl = params.SOURCE-REVISION
+          sourceUrl = params.SOURCE_REVISION
           indexSlash = sourceUrl.indexOf("/")
-          revision = sourceUrl.substring(indexSlash + 1)
+          if (indexSlash == -1) {
+            // TAP 1.6+
+            revision = sourceUrl.substring(sourceUrl.indexOf(":") + 1)
+          } else {
+            // pre TAP 1.6
+            revision = sourceUrl.substring(indexSlash + 1)
+          }
         }
-        sh "git clone ${params.GIT-URL} target"
+        sh "git clone ${params.GIT_URL} target"
         dir("target") {
           sh "git checkout ${revision}"
         }
@@ -85,35 +91,35 @@ pipeline {
 ```
 
 Where
-- `SOURCE-URL` **string** The URL of the source code being tested.  The
+- `SOURCE_URL` **string** The URL of the source code being tested.  The
   `source-provider` resource in the supply chain provides this code and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
   Jenkins service is running inside the cluster or if there is ingress
   set up and the Jenkins service can make requests to services inside the
   cluster.
 
-- `SOURCE-REVISION` **string** The revision of the source code being tested.
+- `SOURCE_REVISION` **string** The revision of the source code being tested.
   The format of this value can vary depending on the implementation of the
   `source_provider` resource.  If the `source-provider` is the Flux CD
-  `GitRepository` resource, then the value of the `SOURCE-REVISION` is the
+  `GitRepository` resource, then the value of the `SOURCE_REVISION` is the
   Git branch name followed by the commit SHA, both separated by a (`/`) slash
   character. For example: `main/2b1ed6c3c4f74f15b0e4de2732234eafd050eb1ca`. Your
   Jenkins pipeline script must extract the commit SHA from the
-  `SOURCE-REVISION` to be useful.
+  `SOURCE_REVISION` to be useful.
 
 >**Caveat**:
->If you can't use the `SOURCE-URL` because your Jenkins service cannot
+>If you can't use the `SOURCE_URL` because your Jenkins service cannot
 >make requests into the Kubernetes cluster, then you can supply the source code
 >URL to the Jenkins job with other parameters instead.
 
 The following fields will also be required in the Jenkins Job definition
 
-- `SOURCE-REVISION` **string**
-- `GIT-URL` **string**
+- `SOURCE_REVISION` **string**
+- `GIT_URL` **string**
 
 
 
-To configure your `Workload` to pass the `GIT-URL` parameter into the Jenkins task:
+To configure your `Workload` to pass the `GIT_URL` parameter into the Jenkins task:
 
 ```bash
 tanzu apps workload create workload \
@@ -162,7 +168,7 @@ type: Opaque
 stringData:
   url: JENKINS-URL # target jenkins instance url
   username: USERNAME # jenkins username
-  password: PASSWORD # jenkins password
+  password: PASSWORD # jenkins password or token
   ca-cert: PEM-CA-CERT # PEM encoded certificate
 ```
 
@@ -309,16 +315,16 @@ tanzu apps workload create "${WORKLOAD_NAME}" \
   --git-branch "${GIT_BRANCH}" \
   --git-repo "${GITHUB_REPO}" \
   --label apps.tanzu.vmware.com/has-tests=true \
-  --label app.kubernetes.io/part-of="${WORKLOAAD_NAME}" \
+  --label app.kubernetes.io/part-of="${WORKLOAD_NAME}" \
   --param-yaml testing_pipeline_matching_labels='{"apps.tanzu.vmware.com/pipeline":"jenkins-pipeline"}' \
-  --param-yaml testing_pipeline_params='{"secret-name":"jenkins-secret", "job-name": "jenkins-job", "job-params":"[{"name":"GIT-URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT-BRANCH", "value":"main"}]"}'\
+  --param-yaml testing_pipeline_params='{"secret-name":"jenkins-secret", "job-name": "jenkins-job", "job-params":"[{"name":"GIT_URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT_BRANCH", "value":"main"}]"}'\
   --type web
   ```
 
 Where:
 
-- `GIT-URL` is the URL of your GitHub repository.
-- `GIT-BRANCH` is the branch you want to target.
+- `GIT_URL` is the URL of your GitHub repository.
+- `GIT_BRANCH` is the branch you want to target.
 
 The value of the `job-params` parameter is a list of zero-or-more parameters
 that are sent to the Jenkins job.  The parameter is entered into the
