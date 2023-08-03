@@ -86,7 +86,7 @@ To prepare your Configurator configuration file:
    running:
 
    ```console
-   base64 -i tdp-config.yaml
+   base64 -i tpb-config.yaml
    ```
 
 ## <a id="prep-ident-image"></a> Identify your Configurator foundation image
