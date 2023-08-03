@@ -56,11 +56,16 @@ To install Source Controller:
 
 3. (Optional) There are two optional fields that can override Source Controller's default installation setting:
 
-    - `ca_cert_data` Enables Source Controller to connect to image registries that use self-signed or private certificate authorities. If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
+    - `ca_cert_data`: Enables Source Controller to connect to image registries that use self-signed
+    or private certificate authorities.
+    If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be
+    used to trust additional certificate authorities.
 
-    - `aws_iam_role_arn` Annotates Source Controller service with an AWS IAM role. This allows Source Controller to pull images from ECR.
+    - `aws_iam_role_arn`: Annotates the Source Controller service with an AWS Identity and Access Management
+    (IAM) role. This allows Source Controller to pull images from Amazon Elastic Container Registry (ECR).
 
-    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
+    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes
+    the PEM-encoded CA certificate data.
 
     For example:
 
@@ -73,7 +78,8 @@ To install Source Controller:
         -----END CERTIFICATE-----
     ```
 
-    To add AWS IAM role ARN in Source Controller Servc, create a file named `source-controller-values.yaml` that includes the following:
+    To add the AWS IAM role Amazon Resource Name (ARN) to the Source Controller service, create a
+    file named `source-controller-values.yaml` that includes the following:
 
     ```yaml
     aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
