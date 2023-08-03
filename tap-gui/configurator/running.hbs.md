@@ -28,8 +28,8 @@ kubectl
     For example:
 
     ```console
-    > kubectl -n default get images.kpack.io tdp-workload -o jsonpath={.status.latestImage}
-    > kapplegate.azurecr.io/demo/workloads/tdp-workload-default@sha256:bae710386f7d81a725ce5ab15d76a3dd4f6ea79804ae0a475cf98f5e3dd6cf82
+    > kubectl -n default get images.kpack.io tpb-workload -o jsonpath={.status.latestImage}
+    > kapplegate.azurecr.io/demo/workloads/tpb-workload-default@sha256:bae710386f7d81a725ce5ab15d76a3dd4f6ea79804ae0a475cf98f5e3dd6cf82
     ```
 
 Tanzu Developer Portal GUI
@@ -53,10 +53,10 @@ To prepare to overlay your customized image onto the currently running instance:
     apiVersion: v1
     kind: Secret
     metadata:
-      name: tdp-app-image-overlay-secret
+      name: tpb-app-image-overlay-secret
       namespace: tap-install
     stringData:
-      tdp-app-image-overlay.yaml: |
+      tpb-app-image-overlay.yaml: |
         #@ load("@ytt:overlay", "overlay")
 
         #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
@@ -96,7 +96,7 @@ To prepare to overlay your customized image onto the currently running instance:
     package_overlays:
     - name: tap-gui
       secrets:
-      - name: tdp-app-image-overlay-secret
+      - name: tpb-app-image-overlay-secret
     ```
 
 5. Update your installation to use the modified `tap-values.yaml` file. The exact steps vary depending

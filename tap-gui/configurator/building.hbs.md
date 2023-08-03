@@ -46,7 +46,7 @@ Meet the following prerequisites:
 
 To prepare your Configurator configuration file:
 
-1. Create a new file called `tdp-config.yaml` by using the following template:
+1. Create a new file called `tpb-config.yaml` by using the following template:
 
     ```yaml
     app:
@@ -74,15 +74,15 @@ To prepare your Configurator configuration file:
     ```yaml
     app:
       plugins:
-        - name: '@tdp/plugin-hello-world'
+        - name: '@tpb/plugin-hello-world'
           version: '^1.6.0-release-1.6.x.1'
     backend:
       plugins:
-        - name: '@tdp/plugin-hello-world-backend'
+        - name: '@tpb/plugin-hello-world-backend'
           version: '^1.6.0-release-1.6.x.1'
     ```
 
-2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
+2. Encode the file in base64, to later embed `tpb-config.yaml` in the workload definition file, by
    running:
 
    ```console
@@ -99,7 +99,7 @@ moved the installation packages to.
 1. Export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
 
    ```console
-   export OUTPUT_IMAGE=$(kubectl -n tap-install get package tdp.tanzu.vmware.com.0.1.2 -o \
+   export OUTPUT_IMAGE=$(kubectl -n tap-install get package tpb.tanzu.vmware.com.0.1.2 -o \
    "jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}")
    ```
 
@@ -112,14 +112,14 @@ moved the installation packages to.
 3. Pull the image from your registry and extract it to a local directory:
 
    ```console
-   imgpkg pull -b ${OUTPUT_IMAGE} -o tdp-package
+   imgpkg pull -b ${OUTPUT_IMAGE} -o tpb-package
    ```
 
 4. Using the yq tool, retrieve the `TDP-IMAGE-LOCATION` that you will supply in your workload
    definition by running:
 
    ```console
-   yq -r ".images[0].image" <tdp-package/.imgpkg/images.yml
+   yq -r ".images[0].image" <tpb-package/.imgpkg/images.yml
    ```
 
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
@@ -139,10 +139,10 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-tdp-config,portal:pack'
-      - name: TDP_CONFIG
-        value: /tmp/tdp-config.yaml
-      - name: TDP_CONFIG_STRING
+        value: 'set-tpb-config,portal:pack'
+      - name: TPB_CONFIG
+        value: /tmp/tpb-config.yaml
+      - name: TPB_CONFIG_STRING
         value:
         ENCODED-TDP-CONFIG-VALUE
 
@@ -177,10 +177,10 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-tdp-config,portal:pack'
-      - name: TDP_CONFIG
-        value: /tmp/tdp-config.yaml
-      - name: TDP_CONFIG_STRING
+        value: 'set-tpb-config,portal:pack'
+      - name: TPB_CONFIG
+        value: /tmp/tpb-config.yaml
+      - name: TPB_CONFIG_STRING
         value:
         YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogI
         CAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
