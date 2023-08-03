@@ -5,7 +5,7 @@ This topic tells you how to install Application Live View from the Tanzu Applica
 
 Application Live View installs three packages for `view`, `run`, and `build` profiles:
 
-- For the `view` profile, Application Live View installs Application Live View back-end package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View back-end component with Tanzu Application Platform GUI in `app-live-view` namespace.
+- For the `view` profile, Application Live View installs Application Live View back end package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View back end component with Tanzu Application Platform GUI in `app-live-view` namespace.
 
 - For the `run` profile, Application Live View installs Application Live View connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View connector component as DaemonSet in `app-live-view-connector` namespace.
 
@@ -13,7 +13,7 @@ Application Live View installs three packages for `view`, `run`, and `build` pro
 
 - For the `iterate` profile, Application Live View installs Application Live View connector package and Application Live View Conventions package.
 
-- For the `full` profile, Application Live View installs the Application Live View back-end package, Application Live View connector package, and Application Live View Conventions package.
+- For the `full` profile, Application Live View installs the Application Live View back end package, Application Live View connector package, and Application Live View Conventions package.
 
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Live View. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
@@ -32,7 +32,7 @@ You can install Application Live View in single cluster or multicluster environm
 
 - `Single cluster`: All Application Live View components are deployed in a single cluster. The user can access Application Live View plug-in information of the applications across all the namespaces in the Kubernetes cluster. This is the default mode of Application Live View.
 
-- `Multicluster`: In a multicluster environment, the Application Live View back-end component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View back end.
+- `Multicluster`: In a multicluster environment, the Application Live View back end component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View back end.
 
 
 ## <a id='install-app-live-view-back-end'></a> Install Application Live View back end
@@ -145,7 +145,7 @@ To install Application Live View back end:
     ```
 
 
-3. Install the Application Live View back-end package by running:
+3. Install the Application Live View back end package by running:
 
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
@@ -169,9 +169,9 @@ To install Application Live View back end:
     Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-    The Application Live View back-end component is deployed in `app-live-view` namespace by default.
+    The Application Live View back end component is deployed in `app-live-view` namespace by default.
 
-4. Verify the Application Live View back-end package installation by running:
+4. Verify the Application Live View back end package installation by running:
 
     ```console
     tanzu package installed get appliveview -n tap-install
