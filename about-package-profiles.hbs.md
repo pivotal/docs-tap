@@ -868,7 +868,7 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling </strong>
+   <td><strong>Tanzu Developer Tooling</strong>
    </td>
    <td><strong>Application Live View</strong>
    </td>
