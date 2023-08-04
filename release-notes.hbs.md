@@ -949,7 +949,7 @@ These pages might list mitigation steps that operators can take to secure the cl
 
 ---
 
-### <a id="1-6-components"></a> v1.6.1 Component versions
+### <a id="1-6-1-components"></a> v1.6.1 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
@@ -959,10 +959,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | API portal                                                       | 1.4.0   |
 | Application Accelerator                                          | 1.6.1   |
 | Application Configuration Service                                | 2.1.0   |
-| Application Live View API Server                                 | 1.6.1   |
-| Application Live View Backend                                    | 1.6.1   |
-| Application Live View Connector                                  | 1.6.1   |
-| Application Live View Conventions                                | 1.6.1   |
+| Application Live View APIserver                                  | 1.6.1   |
+| Application Live View back end                                   | 1.6.1   |
+| Application Live View connector                                  | 1.6.1   |
+| Application Live View conventions                                | 1.6.1   |
 | Application Single Sign-On                                       | 4.0.0   |
 | Authentication and authorization                                 | 1.1.0   |
 | Bitnami Services                                                 | 0.2.0   |
