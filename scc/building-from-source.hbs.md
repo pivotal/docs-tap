@@ -28,7 +28,7 @@ building the application from the beginning by using the supply chain, see
 ## <a id="git-source"></a>Git source
 
 To provide source code from a Git repository to the supply chains,
-you must fill `workload.spec.source.git`. With the `tanzu` CLI, you can do so by using the following flags:
+you must fill `workload.spec.source.git`. With the Tanzu CLI, you can do so by using the following flags:
 
 - `--git-branch`: branch within the Git repository to checkout
 - `--git-commit`: commit SHA within the Git repository to checkout
@@ -317,7 +317,7 @@ individually):
 ## <a id="local-source"></a>Local source
 
 You can provide source code from a local directory such as, from a directory in the
-developer's file system. The `tanzu` CLI provides two flags to specify
+developer's file system. The Tanzu CLI provides two flags to specify
 the source code location in the file system and where the source code is
 pushed to as a container image:
 
@@ -381,7 +381,7 @@ local source code is published to.
 
 #### <a id="dev"></a>Developer
 
-The `tanzu` CLI must push the source code to the container image registry
+The Tanzu CLI must push the source code to the container image registry
 indicated by `--source-image`. To do so, the CLI must find the credentials,
 so the developer must configure their machine accordingly.
 
@@ -486,7 +486,7 @@ spec:
       classifier: sources   # optional
 ```
 
-There are two ways to create a workload that defines a specific version of a Maven artifact as source in the `tanzu` CLI.
+There are two ways to create a workload that defines a specific version of a Maven artifact as source in the Tanzu CLI.
 
 The first way is to define the source through CLI flags. For example:
 
@@ -542,7 +542,7 @@ data:
   caFile: <BASE64>    # PEM Encoded certificate data for custom CA
 ```
 
-You cannot use the `tanzu` CLI to create secrets such as this, but
+You cannot use the Tanzu CLI to create secrets such as this, but
 you can use the kubectl CLI instead.
 
 For example:
