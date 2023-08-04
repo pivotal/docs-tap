@@ -25,11 +25,31 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
 
 ## <a id="-set-up-run-cluster"></a> Set up run cluster namespaces
 
-Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
+Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`, `PackageInstalls` and Kubernetes `Secrets`.
+Create a namespace and `ServiceAccount` with the following permissions:
 
-To set up a developer namespace if your Run cluster is also a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: RUN-CLUSTER-NS
+  name: app-package-and-pkgi-install-role
+rules:
+  - apiGroups: ["data.packaging.carvel.dev"]
+    resources: ["packages"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+  - apiGroups: ["packaging.carvel.dev"]
+    resources: ["packageinstalls"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+```
 
-If your Run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
+If your Run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+
+If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` should also have the following permissions:
 
 ```yaml
 ---
@@ -91,7 +111,7 @@ app.default.tap/
   - `PACKAGE-NAME` is the name of your Carvel package you want to use.
   - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
 
-   > **Note** You can skip this step to use the default parameter values.
+   > **Note** You must set a value for the `workload_name` parameter. You may skip setting other fields to use the default parameter values.
 
 1. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/packageinstall.yaml`.
 
@@ -125,7 +145,6 @@ app.default.tap/
   ```
 
   See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
-   > **Important** If you skipped creation of the `Secret`, omit the `values` key.
 
 1. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
