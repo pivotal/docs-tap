@@ -4,10 +4,10 @@ This reference topic describes the convention service resources you can use with
 
 ## Overview
 
-There are several resources involved in the application of conventions to workloads and these 
-are typically consumed by platform developers and operators rather than by application developers. 
+There are several resources involved in the application of conventions to workloads and these
+are typically consumed by platform developers and operators rather than by application developers.
 
-+ [ClusterPodConvention](cluster-pod-convention.md) 
++ [ClusterPodConvention](cluster-pod-convention.md)
 
   The following is an example `conventions.carto.run/v1alpha1` type:
 
@@ -25,19 +25,19 @@ are typically consumed by platform developers and operators rather than by appli
       certificate:
         name: sample-cert
         namespace: sample-conventions
-      clientConfig: 
+      clientConfig:
         <admissionregistrationv1.WebhookClientConfig>
     ```
 
-  A `ClusterPodConvention` can target a one or more workloads of different types. 
-  You can apply multiple conventions to a single workload. 
+  A `ClusterPodConvention` can target a one or more workloads of different types.
+  You can apply multiple conventions to a single workload.
   It is at the discretion of the "Conventions Author" how a convention is applied.
 
-  To list out available conventions in your cluster, run the following `kubectl`command 
-    
-    ```console 
+  To list out available conventions in your cluster, run the following `kubectl`command
 
-    ❯ kubectl get clusterpodconventions.conventions.carto.run
+    ```console
+
+    $ kubectl get clusterpodconventions.conventions.carto.run
 
       NAME                     AGE
       appliveview-sample       23h
@@ -45,7 +45,7 @@ are typically consumed by platform developers and operators rather than by appli
       spring-boot-convention   23h
     ```
 
-+ [PodIntent](pod-intent.md) 
++ [PodIntent](pod-intent.md)
 
   The following is an example `conventions.carto.run/v1alpha1` resource:
 
@@ -68,7 +68,7 @@ are typically consumed by platform developers and operators rather than by appli
     ```  
 
   To list out available `PodIntent` resources in your cluster, run the following kubectl command
-  
+
   ```console
    # specify relevant namespace
    kubectl get podintents.conventions.carto.run -n my-apps
@@ -77,13 +77,13 @@ are typically consumed by platform developers and operators rather than by appli
     spring-sample   True    ConventionsApplied   8m5s
   ```
 
-  When a`PodIntent` is created, the `PodIntent` reconciler lists all `ClusterPodConventions` resources 
-  and applies them serially. To ensure that the consistency of the enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), 
+  When a`PodIntent` is created, the `PodIntent` reconciler lists all `ClusterPodConventions` resources
+  and applies them serially. To ensure that the consistency of the enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec),
   the list of `ClusterPodConventions`is sorted alphabetically by name before applying the conventions.
-  
+
   >**Tip** : *You can use strategic naming to control the order in which the conventions are applied.*
 
-  After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used 
+  After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used
   to indicate whether it is applied.
   A list of all applied conventions is stored under the annotation `conventions.carto.run/applied-conventions`.
 
@@ -99,8 +99,8 @@ There are also a few other resources available to the `Conventions Author` that 
 
   A successful deployment of the convention service creates it's resources on the following `cartographer-system` namespace:
 
-  ```console 
-  ❯ kubectl get all -n cartographer-system
+  ```console
+  $ kubectl get all -n cartographer-system
     NAME                                                               READY   STATUS    RESTARTS   AGE
     ...
     pod/cartographer-conventions-controller-manager-76fd86789f-lzh86   1/1     Running   0          20h
