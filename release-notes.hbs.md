@@ -906,15 +906,6 @@ This release has the following known issues, listed by component and area.
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
-- Tanzu Debug does not work on Windows for new workloads. When attempting to Tanzu Debug on Windows,
-  the user sees an error message similar to the following:
-
-    ```console
-    Error: unable to check if filepath "'FILE-PATH'" is a valid url.
-    ```
-
-    For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
-
 #### <a id='1-6-1-linux-kernel-CVEs'></a> v1.6.1 known issues: Linux Kernel CVEs
 
 Kernel level vulnerabilities are regularly identified and patched by Canonical.
