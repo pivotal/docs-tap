@@ -114,7 +114,7 @@ This must be set to `always` as follows:
 management.endpoint.health.show-details: "always"
 ```
 
-## <a id="stale-info"></a> Stale information in App Live View
+## <a id="stale-info"></a> Stale information in Application Live View
 
 **Symptom**
 
@@ -125,7 +125,7 @@ instance doesn't show up yet.
 
 To troubleshoot:
 
-1. View the App Live View connector pod logs to see if the connector is sending updates to the back end.
+1. View the Application Live View connector pod logs to see if the connector is sending updates to the back end.
 
 2. Delete the connector pod to recreate it by running:
 
@@ -133,7 +133,7 @@ To troubleshoot:
     kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
 
-## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in App Live View Convention
+## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in Application Live View Convention
 
 **Symptom**
 
@@ -144,7 +144,7 @@ The certificate request is missing for certificate `app-live-view-conventions/ap
 To troubleshoot:
 
 1. Run `kubectl get certificaterequest -A` to see if the certificate request is missing for
-   App Live View Convention.
+   Application Live View convention.
 
 2. Delete the secret `appliveview-webhook-cert` that corresponds to the certificate in the
    `app-live-view-conventions` namespace by running:
@@ -163,7 +163,7 @@ In Tanzu Application Platform GUI, you receive the error `No live information fo
 
 **Cause**
 
-This might happen because of stale information in App Live View because it is an old instance that
+This might happen because of stale information in Application Live View because it is an old instance that
 no longer exists while the new instance doesn't show up yet.
 
 **Solution**

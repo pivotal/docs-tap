@@ -1029,7 +1029,7 @@ For more information, see [Configure ingress timeouts](application-accelerator/c
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-**Unable to find CertificateRequests in App Live View Convention:**
+**Unable to find CertificateRequests in Application Live View convention:**
 
 When creating a Tanzu Application Platform workload, an error might appear with the text:
 
