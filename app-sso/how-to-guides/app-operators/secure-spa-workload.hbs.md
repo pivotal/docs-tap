@@ -78,10 +78,10 @@ see [Set up developer namespaces](../../../install-online/set-up-namespaces.hbs.
 
 Follow these steps to claim the credentials for an Application Single Sign-On service so that you can secure your workload:
 
-1. Discover the available Application Single Sign-On services with the `tanzu` CLI:
+1. Discover the available Application Single Sign-On services with the Tanzu Service CLI:
 
     ```console
-    ❯ tanzu services classes list
+    $ tanzu service class list
       NAME      DESCRIPTION
       sso       Login by AppSSO
     ```

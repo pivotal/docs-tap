@@ -5,7 +5,7 @@ represents the request to expose an `AuthServer` as a claimable service offering
 It is cluster-scoped and is identified by its short name `cwrc`.
 
 `ClusterWorkloadRegistrationClass` optionally receives a free-form description
-which explains the offering to those which discover it with the `tanzu` CLI. It
+which explains the offering to those which discover it with the Tanzu CLI. It
 also receives a base `WorkloadRegistration` section.
 
 `ClusterWorkloadRegistrationClass` reconciles into a Crossplane `Composition` and
@@ -35,18 +35,18 @@ limited to the fields `metadata.labels`, `metadata.annotations`,
 For more information about the fields, see
 [WorkloadRegistration](workloadregistration.hbs.md).
 
-After the offering is created, you can discover it with the `tanzu` CLI:
+After the offering is created, you can discover it with the Tanzu Service CLI:
 
 ```console
-❯ tanzu services classes list
+$ tanzu service class list
   NAME     DESCRIPTION
   <name>   <description>
 ```
 
-You can also discover the service's parameters with the `tanzu` CLI:
+You can also discover the service's parameters with the Tanzu Service CLI:
 
 ```console
-❯ tanzu services classes get <name>
+$ tanzu service class get <name>
 NAME:           <name>
 DESCRIPTION:    <description>
 READY:          true
@@ -219,7 +219,7 @@ spec:
 If a claimable AppSSO service offering exists as follows:
 
 ```console
-❯ tanzu services classes list
+$ tanzu service class list
   NAME               DESCRIPTION
   demo               Single Sign-On Demo
 ```

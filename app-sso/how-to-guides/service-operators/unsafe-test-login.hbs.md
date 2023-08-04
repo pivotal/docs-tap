@@ -31,7 +31,7 @@ After applying the `ClusterUnsafeTestLogin` resource, application operators can 
 for it by running:
 
 ```console
-tanzu services classes list
+tanzu service class list
 ```
 
 Example output:

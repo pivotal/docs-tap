@@ -288,7 +288,7 @@ spec:
 ```
 
 Alternatively, you can refer to your `ClassClaim` when deploying your workload
-with the `tanzu` CLI:
+with the Tanzu CLI:
 
 ```shell
 tanzu apps workload create my-workload \

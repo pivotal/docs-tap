@@ -110,7 +110,7 @@ these service offerings.
 In your Kubernetes cluster, run the following command:
 
 ```bash
-   tanzu services classes list
+   tanzu service class list
 ```
 
 Assuming there isn't already a Login Offering you want to connect to, you will want to create your own.
@@ -137,7 +137,7 @@ EOF
 You can now see the service offering with:
 
 ```shell
-tanzu services classes list
+tanzu service class list
 ```
 
 You should see
@@ -187,13 +187,13 @@ offering using those credentials.
 Choose your Login offering out of the options available at
 
 ```bash
-tanzu services classes list
+tanzu service class list
 ```
 
 If there aren't any available, [you can set one up.](#provision-an-authserver)
 
 ```bash
-tanzu services class-claims create my-workload \
+tanzu service class-claim create my-workload \
   --class my-login \
   --parameter workloadRef.name=appsso-starter-java \
   --parameter redirectPaths='["/login/oauth2/code/appsso-starter-java"]'
@@ -205,14 +205,14 @@ we will be deploying a minimal Spring application, so we will use the Spring Sec
 Check the status of your ClassClaim with
 
 ```bash
-tanzu services class-claims list
+tanzu service class-claim list
 ```
 
 ## <a href='deploy-an-application-with-single-sign-on'></a> Deploy an application with Application Single Sign-On
 
 This topic tells you how to deploy a minimal Kubernetes application that is protected
 by Application Single Sign-On (commonly called AppSSO) by using the credentials
-that [tanzu services class-claims](#claim-credentials) creates.
+that [tanzu service class-claim](#claim-credentials) creates.
 
 ![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
 

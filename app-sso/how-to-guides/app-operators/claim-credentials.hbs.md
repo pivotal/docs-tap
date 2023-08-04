@@ -19,13 +19,13 @@ These parameters allow you to configure the OAuth2 client according to your need
 To discover the parameter schema for a service, run:
 
 ```console
-tanzu services classes get NAME
+tanzu service class get NAME
 ```
 
 For example:
 
 ```console
-$ tanzu services classes get sso
+$ tanzu service class get sso
 
 NAME:           app-sso
 DESCRIPTION:    Login by AppSSO - OAuth2
@@ -47,13 +47,13 @@ default values, and whether they are required or not. The only required paramete
 
 ## <a id="claim-creds"></a>Claim credentials
 
-To claim credentials you can either use the `tanzu services class-claims create` command
+To claim credentials you can either use the `tanzu service class-claim create` command
 or create a `ClassClaim` directly.
 
 - **If using the Tanzu CLI,** claim credentials by running:
 
     ```console
-    tanzu services class-claims create CLAIM-NAME \
+    tanzu service class-claim create CLAIM-NAME \
       --class SERVICE-NAME \
       --namespace NAMESPACE \
       --parameter workloadRef.name=WORKLOAD-NAME \
@@ -73,7 +73,7 @@ or create a `ClassClaim` directly.
     For example:
 
     ```console
-    $ tanzu services class-claims create my-class-claim \
+    $ tanzu service class-claim create my-class-claim \
       --class app-sso \
       --namespace my-namespace \
       --parameter workloadRef.name=my-workload \
@@ -117,7 +117,7 @@ or create a `ClassClaim` directly.
 You can inspect the progress of you claim creation by running:
 
 ```console
-tanzu services class-claims get MY-CLAIM-NAME --namespace MY-NAMESPACE
+tanzu service class-claim get MY-CLAIM-NAME --namespace MY-NAMESPACE
 ```
 
 or
@@ -140,5 +140,5 @@ For tutorials that show how to secure specific types of workloads with Applicati
 
 If you have problems claiming credentials for an Application Single Sign-On service, learn how
 to [troubleshoot](../troubleshoot.hbs.md).
-For more information about the `tanzu services` command, classes, and claims, see the
+For more information about the `tanzu service` command, classes, and claims, see the
 [Tanzu Service CLI plug-in reference](../../../services-toolkit/reference/tanzu-service-cli.hbs.md).
