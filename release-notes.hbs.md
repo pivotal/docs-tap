@@ -847,7 +847,7 @@ These pages might list mitigation steps that operators can take to secure the cl
 
 ---
 
-### <a id="1-6-components"></a> v1.6.1 Component versions
+### <a id="1-6-1-components"></a> v1.6.1 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
