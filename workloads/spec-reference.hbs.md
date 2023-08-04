@@ -645,7 +645,7 @@ For more information about the controller behind `PodIntent`, see [Cartographer 
 For more details about the two
 convention servers enabled by default in Tanzu Application Platform installations, see [Developer
 Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
-Conventions](../spring-boot-conventions/about.hbs.md).
+conventions](../spring-boot-conventions/about.hbs.md).
 
 ### <a id ="app-config"></a>app-config
 

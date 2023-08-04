@@ -6,7 +6,7 @@ For component-level troubleshooting, see these topics:
 - [Troubleshoot Learning Center](../learning-center/troubleshoot-learning-center.md)
 - [Troubleshoot Service Bindings](../service-bindings/troubleshooting.md)
 - [Troubleshoot Source Controller](../source-controller/troubleshooting.md)
-- [Troubleshoot Spring Boot Conventions](../spring-boot-conventions/troubleshooting.md)
+- [Troubleshoot Spring Boot conventions](../spring-boot-conventions/troubleshooting.md)
 - [Troubleshoot Supply Chain Security Tools - Scan](../scst-scan/observing.md)
 - [Troubleshoot Supply Chain Security Tools - Store](../scst-store/troubleshooting.md)
 - [Troubleshoot Application Live View](../app-live-view/troubleshooting.md)

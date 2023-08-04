@@ -4,37 +4,37 @@ This topic describes the changes in Tanzu Application Platform (commonly known a
 v{{ vars.url_version }}.
 
 ## <a id='1-4-8'></a> v1.4.8
- 
-**Release Date**: 15 August 2023 
- 
-### <a id='1-4-8-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+
+**Release Date**: 15 August 2023
+
+### <a id='1-4-8-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-4-8-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 ---
- 
-### <a id='1-4-8-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-4-8-resolved-issues'></a> Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-4-8-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-4-8-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-4-8-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-4-8-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.  
- 
+
 ---
 
 ## <a id='1-4-7'></a> v1.4.7
@@ -604,10 +604,10 @@ This release has the following known issues, listed by area and component.
   information, see [Configure and access Spring Boot actuators in Tanzu
   Application
   Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
-- Added App Live View Memory View panel in Visual Studio Code as part of Spring
+- Added Application Live View Memory View panel in Visual Studio Code as part of Spring
   Boot Dashboard extension.
 - Added support for Spring Boot 3. Spring Boot 3 Native Image is not supported.
-- Added new App Live View pages `HTTP Requests` and `Request Mappings` for
+- Added new Application Live View pages `HTTP Requests` and `Request Mappings` for
   Steeltoe workloads.
 - Added `appliveview_connnector.backend.sslDeactivated` to deprecate
   `appliveview_connnector.backend.sslDisabled`.

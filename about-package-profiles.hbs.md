@@ -648,7 +648,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Spring Boot Convention
+   <td>Spring Boot conventions
   </td>
    <td>&check;
    </td>

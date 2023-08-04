@@ -5,7 +5,7 @@ in Tanzu Application Platform (commonly known as TAP).
 
 Application Live View is focused on monitoring apps for a `live` window and does not apply to any of the apps that are scaled down to zero. The intended behavior for Knative apps is to keep track of revisions to allow you to rollback easily, but also scale all of the unused revision instances down to zero to keep resource consumption low.
 
-You can configure Knative apps to set `autoscaling.knative.dev/minScale` to `1` so that App Live View can still observe app instance. This ensures that there is at least one instance of the latest revision, while still scaling down the older instances.
+You can configure Knative apps to set `autoscaling.knative.dev/minScale` to `1` so that Application Live View can still observe app instance. This ensures that there is at least one instance of the latest revision, while still scaling down the older instances.
 
 You can configure any app in Tanzu Application Platform using the `Workload` resource. To scale a Knative app, add the annotation `autoscaling.knative.dev/minScale` in the `Workload` and set it to the value you want. For Application Live View to observe an app and have at least one instance of the latest revision, set `autoscaling.knative.dev/minScale = "1"`.
 

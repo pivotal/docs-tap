@@ -144,7 +144,6 @@ To install Application Live View back end:
     app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
     ```
 
-
 3. Install the Application Live View back end package by running:
 
     ```console
