@@ -6,7 +6,7 @@ Webhook handler for
 
 ## <a id="role"></a> Role of Application Live View convention
 
-The Application Live View convention works in conjunction with core Convention Service.
+Application Live View conventions works in conjunction with core Convention Service.
 It enhances Tanzu PodIntents with metadata such as labels, annotations, or app properties.
 This metadata allows Application Live View, specifically the connector, to discover
 app instances so that Application Live View can access the actuator data from those workloads.

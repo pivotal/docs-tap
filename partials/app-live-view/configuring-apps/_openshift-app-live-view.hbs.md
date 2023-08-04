@@ -1,10 +1,10 @@
 Application Live View must run with a custom SecurityContextConstraint (SCC) to enable compliance
 with restricted Kubernetes Pod Security Standards on Openshift.
-Tanzu Application Platform configures the following SCC for Application Live View Backend,
-Application Live View Connector, and Application Live View Convention Service when you configure
+Tanzu Application Platform configures the following SCC for Application Live View back end,
+Application Live View connector, and Application Live View convention service when you configure
 the `kubernetes_distribution: openshift` key in the `tap-values.yaml` file.
 
-The following is a `SecurityContextConstraints` specification for Application Live View Connector:
+The following is a `SecurityContextConstraints` specification for Application Live View connector:
 
 ```yaml
 ---
@@ -44,4 +44,4 @@ seccompProfiles:
   - runtime/default
 ```
 
-The preceding `SecurityContextConstraints` specification is applicable to Application Live View Backend and Application Live View Convention Service as well.
+The preceding `SecurityContextConstraints` specification is applicable to Application Live View back end and Application Live View convention service as well.
