@@ -88,6 +88,7 @@ To confirm whether you are affected by this issue:
     LAST SEEN   TYPE      REASON                            OBJECT                      MESSAGE
     3m41s       Warning   CannotCreateExternalResource      release/wordpress-example   failed to install release: failed to login to registry: Get "https://insecure-registry:443/v2/": tls: failed to verify certificate: x509: certificate signed by unknown authority
     ```
+
 **Cause:**
 
 This issue occurs because the Providers are installed by Crossplane itself rather than directly by the

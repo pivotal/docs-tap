@@ -7,7 +7,7 @@ it with Application Live View.
 Labels from the app PodSpec are used to discover the app and configure the connector
 to access the actuator data of the app.
 
-Usually, the Application Live View convention applies the necessary configuration automatically.
+Usually, Application Live View conventions applies the necessary configuration automatically.
 To deactivate the convention and configure the app and the workload manually,
 the list of labels in the following table gives you an overview of the options:
 
