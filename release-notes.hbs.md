@@ -67,10 +67,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | API portal                                                       |         |
 | Application Accelerator                                          |         |
 | Application Configuration Service                                |         |
-| Application Live View API Server                                 |         |
-| Application Live View Backend                                    |         |
-| Application Live View Connector                                  |         |
-| Application Live View Conventions                                |         |
+| Application Live View APIServer                                  |         |
+| Application Live View back end                                   |         |
+| Application Live View connector                                  |         |
+| Application Live View conventions                                |         |
 | Application Single Sign-On                                       |         |
 | Authentication and authorization                                 |         |
 | Bitnami Services                                                 |         |
