@@ -20,23 +20,22 @@ that together expose a known capability through a well-defined interface. For
 example, a theoretical "MySQL" service instance might consist of a
 `MySQLDatabase` and a `MySQLUser` resource. When considering compatibility of
 service instances for Tanzu Application Platform, one of the resources of a
-service instance must adhere to the [Service Binding for
-Kubernetes](https://servicebinding.io/) specification.
+service instance must adhere to the [Service Binding for Kubernetes](https://servicebinding.io/)
+specification.
 
 ### <a id="service-bindings"></a>Service bindings
 
 **Service binding** refers to a mechanism in which connectivity information,
 such as service instance credentials, and connectivity information, such as host and port,
 are automatically communicated to application workloads. Tanzu
-Application Platform uses a standard named [Service Binding for
-Kubernetes](https://servicebinding.io/) to implement this mechanism. See this
-standard to fully understand the services aspect of Tanzu Application Platform.
+Application Platform uses a standard named [Service Binding for Kubernetes](https://servicebinding.io/)
+to implement this mechanism.
+See this standard to fully understand the services aspect of Tanzu Application Platform.
 
 ### <a id="resource-claims"></a>Resource claims
 
 **Resource claims** are inspired in part by Persistent Volume Claims. For more
-information, see the [Kubernetes
-documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
+information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
 Resource claims provide a mechanism for users to claim service instances on a
 cluster, while also decoupling the life cycle of application workloads and
 service instances.
@@ -53,11 +52,11 @@ Tanzu Application Platform:
 Compatibility of a service with Tanzu Application Platform ranges on a scale
 between fully compatible and incompatible. The minimum requirement for
 compatibility is that there must be a declarative, Kubernetes-based API on which
-at least one API resource type adheres to the [Provisioned
-Service](https://github.com/servicebinding/spec#provisioned-service) duck type
-defined by the [Service Binding Specification for
-Kubernetes](https://github.com/servicebinding/spec) in GitHub. This duck type
-includes any resource type with the following schema:
+at least one API resource type adheres to the
+[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
+duck type defined by the
+[Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec)
+in GitHub. This duck type includes any resource type with the following schema:
 
 ```yaml
 status:

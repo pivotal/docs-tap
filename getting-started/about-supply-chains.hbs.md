@@ -35,14 +35,16 @@ This allows their authors to add all of the steps of the path to production for 
 The Tanzu Application Platform provides three out of the box (OOTB) supply chains to
 work with the Tanzu Application Platform components. They include:
 
--  OOTB Supply Chain Basic (default)
--  OOTB Supply Chain with Testing (optional)
--  OOTB Supply Chain with Testing+Scanning (optional)
+- OOTB Supply Chain Basic (default)
+- OOTB Supply Chain with Testing (optional)
+- OOTB Supply Chain with Testing+Scanning (optional)
 
 ## <a id="OOTB-basic-sc-default"></a>1: **OOTB Basic (default)**
 
-The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
-The following table and diagrams provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
+The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during
+the Tanzu Application Platform install.
+The following table and diagrams provide descriptions for each of the supply chains and dependencies
+provided with the Tanzu Application Platform.
 
 ![The Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
 
@@ -62,7 +64,7 @@ The following table and diagrams provide descriptions for each of the supply cha
    </td>
    <td><code>ootb-supply-chain-basic.tanzu.vmware.com</code>
    </td>
-   <td>This supply chain monitors a repository that is identified in the developer’s `workload.yaml` file. When any new commits are made to the application, the supply chain:
+   <td>This supply chain monitors a repository that is identified in the developer’s <code>workload.yaml</code> file. When any new commits are made to the application, the supply chain:
 <ul>
 
 <li>Creates a new image.

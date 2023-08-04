@@ -124,13 +124,11 @@ The following instructions require using Visual Studio Code to edit the files.
     `CONFIGURABLE_PARAMETER_1` and, if the check box is checked, `CONFIGURABLE_PARAMETER_2` with the
     parameters that the user passes in during project creation.
 
-    This also leverages [Spring Expression Language
-    (SpEL)](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions)
+    This also leverages [Spring Expression Language (SpEL)](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions)
     syntax to convert the text input to all lowercase.
 
     For more information about the possible parameters for use within the `engine` section, see
-    [Creating
-    accelerator.yaml](../application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#engine).
+    [Creating accelerator.yaml](../application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#engine).
 
     ```yaml
     # Place this after the `options` section from the previous step
@@ -198,13 +196,14 @@ that the resulting project is generated as expected.
 The Application Accelerator system and Tanzu Application Platform GUI depend on an accelerator
 project residing inside a Git repository. For this example, [GitHub](https://github.com/) is used.
 
-1. [Create a new repository in
-   GitHub](https://docs.github.com/en/get-started/quickstart/create-a-repo) and ensure that
-   **Visibility** is set to **Public**. Click **Create Repository**.
+1. [Create a new repository in GitHub](https://docs.github.com/en/get-started/quickstart/create-a-repo)
+  and ensure that **Visibility** is set to **Public**. Click **Create Repository**.
+
 2. To push your accelerator project (**not** the generated project from `generate-from-local`) to
    GitHub, follow the instructions that GitHub provides for the *…or create a new repository on the
    command line* that is shown after clicking **Create Repository**. Instructions can also be found
    in the [GitHub documentation](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git).
+
 3. Verify that the project is pushed to the target repository.
 
 ## <a id="register-accelerator"></a>Register the accelerator to the Tanzu Application Platform and verify project generation output
@@ -258,6 +257,7 @@ accelerator.
     > in [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
 
 6. On the **Review and generate** step, review the parameters and click **Generate Accelerator**.
+
 7. Explore the ZIP file of the configured project and verify that the project is generated with the
    parameters you provided during configuration.
 
@@ -266,12 +266,14 @@ accelerator.
 ## Learn more about Application Accelerator
 
 - For advanced functionality when creating accelerators, such as accelerator best practices,
-  accelerator fragments, engine transforms, and more, see the [Application Accelerator
-  documentation](../application-accelerator/about-application-accelerator.hbs.md).
-- For more information about Application Accelerator configurations, see the [Configure Application
-  Accelerator documentation](../application-accelerator/configuration.hbs.md).
+  accelerator fragments, engine transforms, and more, see the
+  [Application Accelerator documentation](../application-accelerator/about-application-accelerator.hbs.md).
+
+- For more information about Application Accelerator configurations, see the
+  [Configure Application Accelerator documentation](../application-accelerator/configuration.hbs.md).
+
 - For information about installing the Application Accelerator extension for Visual Studio Code, see
-  the [Application Accelerator Visual Studio Code extension
-  documentation](../application-accelerator/vscode.hbs.md).
-- For general accelerator troubleshooting, see [Troubleshooting Application Accelerator for VMware
-  Tanzu](../application-accelerator/troubleshooting.hbs.md).
+  the [Application Accelerator Visual Studio Code extension documentation](../application-accelerator/vscode.hbs.md).
+
+- For general accelerator troubleshooting, see
+  [Troubleshooting Application Accelerator for VMware Tanzu](../application-accelerator/troubleshooting.hbs.md).

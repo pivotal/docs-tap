@@ -5,7 +5,7 @@ them to communicate using a service instance.
 The topic uses RabbitMQ as an example, but the process is the same regardless of the service you
 want to consume.
 
-You will use the `tanzu service` CLI plug-in and will learn about classes, claims, and bindings.
+You will use the Tanzu Services CLI plug-in and will learn about classes, claims, and bindings.
 
 ## <a id="you-will"></a>What you will do
 
