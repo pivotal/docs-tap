@@ -46,7 +46,7 @@ properties to the `JAVA_TOOLS_OPTIONS` environment variable:
 
 ## <a id="security"></a> Important security advice
 
-The Application Live View Convention automatically exposes all the actuators of an app
+The Application Live View convention automatically exposes all the actuators of an app
 so that Application Live View can access all those actuator endpoints and visualize all the details on the UI.
 This overrides configuration settings that your app itself might contain, for example,
 if you configured your app to expose only specific actuators.
@@ -112,8 +112,8 @@ you can override the labels listed in the following table using the `Workload` Y
 | `tanzu.app.live.view` | `true` | Label | When deploying a workload in Tanzu Application Platform, this label is set to `true` as default across the supply chain. |
 | `tanzu.app.live.view.application.name` | `spring-boot-app` | Label | When deploying a workload in Tanzu Application Platform, this label is set to `spring-boot-app` if the container image metadata does not contain the app name. Otherwise, the label is set to the app name from container image metadata. |
 | `tanzu.app.live.view.application.flavours` | `spring-boot,spring-cloud-gateway` | Label | When deploying a Spring Boot workload in Tanzu Application Platform, this label is set to `spring-boot` as default across the supply chain. For Spring Cloud Gateway app, it is set to `spring-boot,spring-cloud-gateway` as default. |
-| `management.endpoints.web.exposure.include` | `*` | Environment Property | The user provided environment property takes precedence over the default value set by Application Live View Convention Server. |
-| `management.endpoint.health.show-details` | always | Environment Property |The user provided environment property takes precedence over the default value set by Application Live View Convention Server. |
+| `management.endpoints.web.exposure.include` | `*` | Environment Property | The user provided environment property takes precedence over the default value set by Application Live View convention Server. |
+| `management.endpoint.health.show-details` | always | Environment Property |The user provided environment property takes precedence over the default value set by Application Live View convention Server. |
 
 Similarly, to override the default value for `management.endpoints.web.exposure.include` or `management.endpoint.health.show-details`, add it to the workload as follows:
 
@@ -130,13 +130,13 @@ spec:
       -Dmanagement.endpoint.health.show-details=always
 ```
 
-Application Live View Convention Server detects properties defined in the workload
+Application Live View convention server detects properties defined in the workload
 `env` section and respects those values.
 
 >**Note** You can also define properties such as `management.endpoints.web.exposure.include`
 and `management.endpoint.health.show-details` in `application.properties` or `application.yml`
 in the Spring Boot or Spring Cloud Gateway Application. Properties defined in this way have lower priority and are overridden
-by the Application Live View Convention default values.
+by the Application Live View convention default values.
 
 ## <a id="verify"></a> Verify the applied labels and annotations
 

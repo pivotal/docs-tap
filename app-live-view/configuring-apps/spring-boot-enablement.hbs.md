@@ -17,19 +17,19 @@ Add the maven dependency in `pom.xml` as follows:
 </dependency>
 ```
 
-The Application Live View Convention then sets the runtime environment properties `management.endpoints.web.exposure.include="*"` and `management.endpoint.health.show-details=true` onto the PodSpec to expose all the actuator endpoints and detailed health information.
+The Application Live View convention then sets the runtime environment properties `management.endpoints.web.exposure.include="*"` and `management.endpoint.health.show-details=true` onto the PodSpec to expose all the actuator endpoints and detailed health information.
 You do not need to add these properties manually in `application.properties` or `application.yml`.
 
-For more information on the labels automatically set by Application Live View Convention, see [Convention server](convention-server.md).
+For more information on the labels automatically set by Application Live View convention, see [Convention server](convention-server.md).
 
 ## <a id="security"></a> Important security advice
 
-The Application Live View Convention automatically exposes all the actuators of an app
+The Application Live View convention automatically exposes all the actuators of an app
 so that Application Live View can access all those actuator endpoints and visualize all the details about the UI.
 This overrides configuration settings that your app itself might contain, for example,
 if you configured your app to expose only specific actuators.
 
-Read about the [Application Live View Convention](convention-server.md) and the [Spring Boot Convention](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-spring-boot-conventions-about.html) to understand the potential impact of this, and manually configure this to suit your security needs.
+Read about [Application Live View conventions](convention-server.md) and [Spring Boot conventions](../../spring-boot-conventions/about.hbs.md) to understand the potential impact of this, and manually configure this to suit your security needs.
 
 
 ## Enable Spring Cloud Gateway apps
