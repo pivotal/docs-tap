@@ -249,7 +249,6 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
 
     If the package is not installed, follow the installation instructions at [Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles](../scst-store/install-scst-store.md).
 
-
 1. Update the profile to use the supply chain with testing and scanning by
    updating `tap-values.yaml` (the file used to customize the profile in `tanzu
    package install tap --values-file=...`) with the following changes:
