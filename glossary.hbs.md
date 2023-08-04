@@ -48,11 +48,11 @@
         <td></td>
     </tr>
     <tr>
-        <td>Application Live View Connector</td>
+        <td>Application Live View connector</td>
         <td></td>
     </tr>
     <tr>
-        <td>Application Live View Server</td>
+        <td>Application Live View server</td>
         <td></td>
     </tr>
     <tr>
@@ -127,18 +127,5 @@
         <td>This extension for Visual Studio Code helps you develop with Tanzu Application Platform
             and enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
             have Tanzu Application Platform installed.</td>
-    </tr>
-    <tr>
-        <td>Tekton Pipelines</td>
-        <td>Tekton is a cloud-native, open-source framework for creating continuous integration/
-            continuous delivery systems. It allows developers to build, test, and deploy across cloud
-            providers and on-premise systems.</td>
-    </tr>
-    <tr>
-        <td>Tiltfile</td>
-        <td>The Tiltfile is a file with no extension that is required for Tilt to enable the
-            Live Update feature. For more information, see the
-            [Tilt documentation](https://docs.tilt.dev/tiltfile_concepts.html).
-        </td>
     </tr>
 </table>
