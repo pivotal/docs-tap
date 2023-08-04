@@ -57,7 +57,7 @@ To configure how projects are generated:
 
 5. Click **BACK** to make more changes, if necessary. Otherwise, proceed to [create the project](#create-project).
 
-    ![Screenshot of the project summary for the sample hello-fun project. A red cross is adjacent to the text Enable App Live View.](images/aa4-configuredProjectSummary.png)
+    ![Screenshot of the project summary for the sample hello-fun project. A red cross is adjacent to the text Enable Application Live View.](images/aa4-configuredProjectSummary.png)
 
 ## <a id='create-project'></a> Create the project
 
