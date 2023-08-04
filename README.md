@@ -71,6 +71,7 @@ Use this table to keep a running list of terms used and how they should be defin
 |Tanzu Developer Tools for IntelliJ| The long form is VMware Tanzu Developer Tools for IntelliJ. It can be referred to as "the extension" in a topic after introducing it as "the Tanzu Developer Tools for IntelliJ extension" when there is no risk of confusion. |
 |Tanzu Developer Tools for VS Code| The long form is VMware Tanzu Developer Tools for Visual Studio Code. It can be referred to as "the extension" in a topic after introducing it as "the Tanzu Developer Tools for VS Code extension" when there is no risk of confusion. |
 | Tanzu Kubernetes Grid | Never use TKGm or TKG in customer facing documentation. |
+| Tanzu Service CLI plug-in | Do not use `tanzu service` CLI or Tanzu Services CLI plug-in (with an "s") |
 | TAP repo bundle | Decided on lowercase and not "TAP Repo Bundle".|
 | TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) Changed from TAP to Tanzu Application Platform, Sept 24, 2021.|
