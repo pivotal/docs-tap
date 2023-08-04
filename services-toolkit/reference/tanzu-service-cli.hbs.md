@@ -1,6 +1,6 @@
 # Tanzu Service CLI plug-in
 
-This topic provides reference information about the `tanzu service` CLI plug-in for Services Toolkit.
+This topic provides reference information about the Tanzu Service CLI plug-in for Services Toolkit.
 The main use for the plug-in is for
 [application operators](../reference/terminology-and-user-roles.hbs.md#ao) and
 [application developers](../reference/terminology-and-user-roles.hbs.md#ad) to create claims.
@@ -30,10 +30,10 @@ This command lists the available classes.
 
 ```console
 Usage:
-  tanzu services classes list [flags]
+  tanzu service class list [flags]
 
 Examples:
-  tanzu services classes list
+  tanzu service class list
 
 Flags:
   -h, --help   help for list
@@ -54,10 +54,10 @@ command using the `--parameter` flag.
 
 ```console
 Usage:
-  tanzu services classes get [name] [flags]
+  tanzu service class get [name] [flags]
 
 Examples:
-  tanzu services classes get rmq-small
+  tanzu service class get rmq-small
 
 Flags:
   -h, --help   help for get
@@ -91,15 +91,15 @@ service instance that your application workloads are using.
 You can pass parameters with the `--parameter key.subKey=value` flag.
 You can provide this flag multiple times.
 The value must be valid YAML.
-You can find available parameters for a class by running `tanzu services class get CLASS-NAME`.
+You can find available parameters for a class by running `tanzu service class get CLASS-NAME`.
 
 ```console
 Usage:
-  tanzu services class-claim create [name] [flags]
+  tanzu service class-claim create [name] [flags]
 
 Examples:
-  tanzu services class-claim create psql-claim-1 --class postgres
-  tanzu services class-claim create rmq-claim-1 --class rmq --parameter durable=true --parameter replicas=3
+  tanzu service class-claim create psql-claim-1 --class postgres
+  tanzu service class-claim create rmq-claim-1 --class rmq --parameter durable=true --parameter replicas=3
 
 Flags:
       --class string            the name of a class to claim an instance of
@@ -123,11 +123,11 @@ bind workloads to claimed service instances.
 
 ```console
 Usage:
-  tanzu services class-claim get [flags]
+  tanzu service class-claim get [flags]
 
 Examples:
-  tanzu services class-claim get psql-claim-1
-  tanzu services class-claim get psql-claim-1 --namespace app-ns-1
+  tanzu service class-claim get psql-claim-1
+  tanzu service class-claim get psql-claim-1 --namespace app-ns-1
 
 Flags:
   -h, --help             help for get
@@ -153,12 +153,12 @@ At this point, other claims created by other users can claim the service instanc
 
 ```console
 Usage:
-  tanzu services class-claim delete [flags]
+  tanzu service class-claim delete [flags]
 
 Examples:
-  tanzu services class-claim delete psql-claim-1
-  tanzu services class-claim delete psql-claim-1 --yes
-  tanzu services class-claim delete psql-claim-1 --namespace app-ns-1
+  tanzu service class-claim delete psql-claim-1
+  tanzu service class-claim delete psql-claim-1 --yes
+  tanzu service class-claim delete psql-claim-1 --namespace app-ns-1
 
 Flags:
   -h, --help             help for delete
@@ -181,13 +181,13 @@ bind workloads to claimed service instances.
 
 ```console
 Usage:
-  tanzu services class-claim list [flags]
+  tanzu service class-claim list [flags]
 
 Examples:
-  tanzu services class-claim list
-  tanzu services class-claim list --class postgres
-  tanzu services class-claim list -o wide
-  tanzu services class-claim list -n app-ns-1 -o wide
+  tanzu service class-claim list
+  tanzu service class-claim list --class postgres
+  tanzu service class-claim list -o wide
+  tanzu service class-claim list -n app-ns-1 -o wide
 
 Flags:
   -A, --all-namespaces   list class claims across all namespaces
@@ -232,12 +232,12 @@ To find resources you can create resource claims for, run the `tanzu service cla
 
 ```console
 Usage:
-  tanzu services resource-claims create [name] [flags]
+  tanzu service resource-claim create [name] [flags]
 
 Examples:
-  tanzu services resource-claim create psql-claim-1 --resource-name psql-instance-1 --resource-kind Postgres --resource-api-version sql.example.com/v1
-  tanzu services resource-claim create psql-claim-1 --resource-name psql-instance-1 --resource-kind Postgres --resource-api-version sql.example.com/v1 --resource-namespace service-instances-1
-  tanzu services resource-claim create psql-claim-1 --resource-name secret-1 --resource-kind Secret --resource-api-version v1
+  tanzu service resource-claim create psql-claim-1 --resource-name psql-instance-1 --resource-kind Postgres --resource-api-version sql.example.com/v1
+  tanzu service resource-claim create psql-claim-1 --resource-name psql-instance-1 --resource-kind Postgres --resource-api-version sql.example.com/v1 --resource-namespace service-instances-1
+  tanzu service resource-claim create psql-claim-1 --resource-name secret-1 --resource-kind Secret --resource-api-version v1
 
 Flags:
   -h, --help                          help for create
@@ -263,11 +263,11 @@ bind workloads to claimed service instances.
 
 ```console
 Usage:
-  tanzu services resource-claims get [name] [flags]
+  tanzu service resource-claim get [name] [flags]
 
 Examples:
-  tanzu services resource-claim get psql-claim-1
-  tanzu services resource-claim get psql-claim-1 --namespace app-ns-1
+  tanzu service resource-claim get psql-claim-1
+  tanzu service resource-claim get psql-claim-1 --namespace app-ns-1
 
 Flags:
   -h, --help             help for get
@@ -293,12 +293,12 @@ At this point, other claims created by other users can claim the resource you pr
 
 ```console
 Usage:
-  tanzu services resource-claims delete [name] [flags]
+  tanzu service resource-claim delete [name] [flags]
 
 Examples:
-  tanzu services resource-claim delete psql-claim-1
-  tanzu services resource-claim delete psql-claim-1 --yes
-  tanzu services resource-claim delete psql-claim-1 --namespace app-ns-1
+  tanzu service resource-claim delete psql-claim-1
+  tanzu service resource-claim delete psql-claim-1 --yes
+  tanzu service resource-claim delete psql-claim-1 --namespace app-ns-1
 
 Flags:
   -h, --help             help for delete
@@ -321,12 +321,12 @@ bind workloads to claimed service instances.
 
 ```console
 Usage:
-  tanzu services resource-claims list [flags]
+  tanzu service resource-claim list [flags]
 
 Examples:
-  tanzu services resource-claim list
-  tanzu services resource-claim list -o wide
-  tanzu services resource-claim list -n app-ns-1 -o wide
+  tanzu service resource-claim list
+  tanzu service resource-claim list -o wide
+  tanzu service resource-claim list -n app-ns-1 -o wide
 
 Flags:
   -A, --all-namespaces   list resource claims across all namespaces
@@ -351,11 +351,11 @@ This command lists resources for a class that you can claim directly using the
 
 ```console
 Usage:
-  tanzu services claimable list [flags]
+  tanzu service claimable list [flags]
 
 Examples:
-  tanzu services claimable list --class postgres
-  tanzu services claimable list --class postgres --namespace app-ns-1
+  tanzu service claimable list --class postgres
+  tanzu service claimable list --class postgres --namespace app-ns-1
 
 Flags:
       --class string     name of the class to list claimable resources for

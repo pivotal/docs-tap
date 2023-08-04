@@ -75,7 +75,7 @@ Use this label to aggregate RBAC rules to `provider-helm`, which is a Crossplane
 installed by default as part of the [Crossplane](../../../crossplane/about.hbs.md) package in
 Tanzu Application Platform.
 You must grant relevant RBAC permissions for each API Group/Kind used during the creation of Helm
-releases when using the `Release` Managed Resource as part of `Compositions`.
+releases when using the `Release` managed resource as part of `Compositions`.
 
 For example, the following `ClusterRole` grants `provider-helm` full control over `rabbitmqclusters`
 on the `rabbitmq.com` API Group.
