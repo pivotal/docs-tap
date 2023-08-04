@@ -38,8 +38,8 @@ The following table summarizes the top-level keys used for package-specific conf
 |API portal|`api_portal`|
 |Application Accelerator|`accelerator`|
 |Application Live View|`appliveview`|
-|Application Live View Connector|`appliveview_connector`|
-|Application Live View Conventions|`appliveview-conventions`|
+|Application Live View connector|`appliveview_connector`|
+|Application Live View conventions|`appliveview-conventions`|
 |Cartographer|`cartographer`|
 |Cloud Native Runtimes|`cnrs`|
 |Convention controller|`convention_controller`|

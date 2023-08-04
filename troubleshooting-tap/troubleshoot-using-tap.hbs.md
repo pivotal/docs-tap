@@ -227,7 +227,7 @@ Platform GUI.
 
 ### Solution
 
-Recreate the Application Live View Connector pod by running:
+Recreate the Application Live View connector pod by running:
 
 ```console
 kubectl -n app-live-view delete pods -l=name=application-live-view-connector

@@ -9,11 +9,11 @@ Application Live View installs three packages for `view`, `run`, and `build` pro
 
 - For the `run` profile, Application Live View installs Application Live View connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View connector component as DaemonSet in `app-live-view-connector` namespace.
 
-- For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
+- For the `build` profile, Application Live View installs Application Live View conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View convention Service in `app-live-view-conventions` namespace.
 
-- For the `iterate` profile, Application Live View installs Application Live View connector package and Application Live View Conventions package.
+- For the `iterate` profile, Application Live View installs Application Live View connector package and Application Live View conventions package.
 
-- For the `full` profile, Application Live View installs the Application Live View back end package, Application Live View connector package, and Application Live View Conventions package.
+- For the `full` profile, Application Live View installs the Application Live View back end package, Application Live View connector package, and Application Live View conventions package.
 
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Live View. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
@@ -329,9 +329,9 @@ To install Application Live View connector:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-## <a id='install-alv-conventions'></a> Install Application Live View Conventions
+## <a id='install-alv-conventions'></a> Install Application Live View conventions
 
-To install Application Live View Conventions:
+To install Application Live View conventions:
 
 1. List version information for the package by running:
 
@@ -366,7 +366,7 @@ To install Application Live View Conventions:
 
     For more information about values schema options, see the properties listed earlier.
 
-1. Install the Application Live View Conventions package by running:
+1. Install the Application Live View conventions package by running:
 
     ```console
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -390,7 +390,8 @@ To install Application Live View Conventions:
     Added installed package 'appliveview-conventions' in namespace 'tap-install'
     ```
 
-1. Verify the package install for Application Live View Conventions package by running:
+1. Verify the package install for Application Live View conventions package by
+   running:
 
     ```console
     tanzu package installed get appliveview-conventions -n tap-install

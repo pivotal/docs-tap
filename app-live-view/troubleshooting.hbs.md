@@ -259,9 +259,9 @@ To verify that the labels in your workload YAML file are working:
         resources: {}
     ```
 
-## <a id="override-labels"></a> Override labels set by the Application Live View Convention Service
+## <a id="override-labels"></a> Override labels set by the Application Live View convention service
 
-It is not possible to override the labels set by the Application Live View Convention Service
+It is not possible to override the labels set by the Application Live View convention service
 for the workload deployment in Tanzu Application Platform.
 The labels `tanzu.app.live.view`, `tanzu.app.live.view.application.flavours`
 and `tanzu.app.live.view.application.name` cannot be overridden.
