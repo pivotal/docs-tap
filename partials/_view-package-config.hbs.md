@@ -48,7 +48,7 @@ These keys are defined under the `shared` Top-level Key, as summarized in the fo
 |`image_registry.password`|Password for the container image registry. Mutually exclusive with `shared.image_registry.secret.name/namespace`|Yes|
 |`secret.name`|Secret name for the container image registry credentials of type `kubernetes.io/dockerconfigjson`. Mutually exclusive with `shared.image_registry.username/password`|Yes|
 |`secret.namespace`|Secret namespace for the container image registry credentials. Mutually exclusive with `shared.image_registry.username/password`|Yes|
-|`activateAppLiveViewSecureAccessControl`|Enable secure access connection between App Live View components.|Yes|
+|`activateAppLiveViewSecureAccessControl`|Enable secure access connection between Application Live View components.|Yes|
 
 The following table summarizes the top-level keys used for package-specific configuration within your `tap-values.yaml`.
 

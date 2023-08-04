@@ -20,7 +20,7 @@ profiles:
   `app-live-view-connector` namespace.
 
 - For the `build` profile, Application Live View installs Application Live View
-  Conventions package (`conventions.appliveview.tanzu.vmware.com`). This
+  conventions package (`conventions.appliveview.tanzu.vmware.com`). This
   installs the Application Live View convention service in
   `app-live-view-conventions` namespace.
 
@@ -245,7 +245,7 @@ To install Application Live View back end:
         app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 appliveview-cert   valid    Valid HTTPProxy
         ```
 
-        To verify the App Live View pages in a multicluster setup, set the appropriate connector
+        To verify the Application Live View pages in a multicluster setup, set the appropriate connector
         configuration in your run cluster as listed in
         [Install Application Live View connector](#install-alv-connector).
 

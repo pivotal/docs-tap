@@ -779,7 +779,7 @@ For information about conventions, see
 For information about the two convention servers enabled by default in Tanzu
 Application Platform installations, see [Developer
 Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
-Conventions](../spring-boot-conventions/about.hbs.md).
+conventions](../spring-boot-conventions/about.hbs.md).
 
 ## <a id='config'></a> config-template
 

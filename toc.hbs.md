@@ -476,7 +476,7 @@ docs.vmware.com is built.
       - [Configure Spring Boot actuators](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
       - [Enable Application Live View for Spring Boot apps](spring-boot-conventions/enabling-app-live-view.hbs.md)
       - [Conventions](spring-boot-conventions/reference/conventions.hbs.md)
-      - [Troubleshoot Spring Boot Conventions](spring-boot-conventions/troubleshooting.hbs.md)
+      - [Troubleshoot Spring Boot conventions](spring-boot-conventions/troubleshooting.hbs.md)
     - [Spring Cloud Gateway](spring-cloud-gateway/about.hbs.md)
       - [Spring Cloud Gateway overview](spring-cloud-gateway/about.hbs.md)
       - [Install Spring Cloud Gateway](spring-cloud-gateway/install-spring-cloud-gateway.hbs.md)
