@@ -1,6 +1,6 @@
 # Configure an ImageVulnerabilityScan for Trivy
 
-This topic tells you how to configure an ImageVulnerabilityScan for Trivy. 
+This topic tells you how to configure an ImageVulnerabilityScan for Trivy.
 
 Use the following ImageVulnerabilityScan configuration:
 
@@ -9,6 +9,8 @@ apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ImageVulnerabilityScan
 metadata:
   name: trivy-ivs
+  annotations:
+    app-scanning.apps.tanzu.vmware.com/scanner-name: trivy
 spec:
   image: nginx@sha256:... # The image to be scanned. Digest must be specified.
   scanResults:

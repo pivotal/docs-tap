@@ -15,6 +15,8 @@ To customize an ImageVulnerabilityScan to use your scanner:
     metadata:
       name: generic-image-scan
       namespace: DEV-NAMESPACE
+      annotations:
+        app-scanning.apps.tanzu.vmware.com/scanner-name: SCANNER-NAME
     spec:
       image: nginx@sha256:... # The image to be scanned. Digest must be specified.
       scanResults:
@@ -40,6 +42,7 @@ To customize an ImageVulnerabilityScan to use your scanner:
         - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
     - `SCANNER-IMAGE` is the image containing the scanner of your choice.
     - `SCANNER-CLI-COMMAND` is the scanner's CLI command.
+    - `SCANNER-NAME` is the scanner image name that will be reported in the Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
     **Note** Do not define `write-certs` or `cred-helper` as step names. These names are already used during scanning.
 
