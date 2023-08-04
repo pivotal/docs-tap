@@ -8,16 +8,16 @@ Application Single Sign-On service using [Services Toolkit](../../../services-to
 [Service operators](../../how-to-guides/service-operators/index.hbs.md) are responsible for curating
 service offerings.
 
-You can discover the available service offerings with the Tanzu Services CLI:
+You can discover the available service offerings with the Tanzu Service CLI:
 
 ```console
-tanzu services classes list
+tanzu service class list
 ```
 
 The output contains a list of services you can claim credentials for, for example:
 
 ```plain
-$ tanzu services classes list
+$ tanzu service class list
   NAME                  DESCRIPTION
   mysql-unmanaged       MySQL by Bitnami
   postgresql-unmanaged  PostgreSQL by Bitnami

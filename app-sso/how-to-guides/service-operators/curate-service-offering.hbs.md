@@ -6,7 +6,7 @@ offering using a `ClusterWorkloadRegistrationClass`.
 `ClusterWorkloadRegistrationClass` creates resources so that application
 operators can discover and claim credentials for an Application Single Sign-On service offering.
 A `ClusterWorkloadRegistrationClass` has a description that is shown
-when application operators discover services by running `tanzu services classes list`.
+when application operators discover services by running `tanzu service class list`.
 This allows you identify the offering as an Application Single Sign-On service.
 
 Furthermore, `ClusterWorkloadRegistrationClass` carries a base
@@ -50,17 +50,17 @@ spec:
         sso.apps.tanzu.vmware.com/ldap: ""
 ```
 
-After you apply this resource, application operators can discover it by running `tanzu services classes list`,
+After you apply this resource, application operators can discover it by running `tanzu service class list`,
 for example:
 
 ```console
-$ tanzu services classes list
+$ tanzu service class list
   NAME  DESCRIPTION
   demo  Login by AppSSO
 ```
 
 Application operators can claim credentials for this service either by running the command
-`tanzu services class-claims create` or with a `ClassClaim` resource.
+`tanzu service class-claim create` or with a `ClassClaim` resource.
 
 When a claim is created, a `WorkloadRegistration` is created from the base and it targets the `AuthServer`.
 
