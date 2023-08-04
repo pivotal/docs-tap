@@ -48,11 +48,11 @@
         <td></td>
     </tr>
     <tr>
-        <td>Application Live View Connector</td>
+        <td>Application Live View connector</td>
         <td></td>
     </tr>
     <tr>
-        <td>Application Live View Server</td>
+        <td>Application Live View server</td>
         <td></td>
     </tr>
     <tr>

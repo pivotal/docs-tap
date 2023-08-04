@@ -21,16 +21,16 @@ profiles:
 
 - For the `build` profile, Application Live View installs Application Live View
   Conventions package (`conventions.appliveview.tanzu.vmware.com`). This
-  installs the Application Live View Convention Service in
+  installs the Application Live View convention service in
   `app-live-view-conventions` namespace.
 
 - For the `iterate` profile, Application Live View installs Application Live
   View connector package, Application Live View APIServer package, and
-  Application Live View Conventions package.
+  Application Live View conventions package.
 
 - For the `full` profile, Application Live View installs the Application Live
   View back end package, Application Live View connector package, Application
-  Live View APIServer package, and Application Live View Conventions package.
+  Live View APIServer package, and Application Live View conventions package.
 
 The Application Live View back end (`backend.appliveview.tanzu.vmware.com`)
 provides a REST API that fetches the actuator data for the applications.
@@ -418,7 +418,7 @@ To install Application Live View connector:
         ```
 
         Where `caCertData` is the certificate retrieved from the HTTPProxy secret exposed by the
-        Application Live View Backend in view cluster.
+        Application Live View back end in view cluster.
         The `host` is the backend host in the view cluster.
 
         To retrieve the certificate from the HTTPProxy secret, run the following command in the view cluster:
@@ -497,9 +497,9 @@ To install Application Live View connector:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-## <a id='install-alv-conventions'></a> Install Application Live View Conventions
+## <a id='install-alv-conventions'></a> Install Application Live View conventions
 
-To install Application Live View Conventions:
+To install Application Live View conventions:
 
 1. List version information for the package by running:
 
@@ -537,7 +537,7 @@ To install Application Live View Conventions:
     For more information about values schema options, see the properties listed
     earlier.
 
-1. Install the Application Live View Conventions package by running:
+1. Install the Application Live View conventions package by running:
 
     ```console
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -562,7 +562,7 @@ To install Application Live View Conventions:
     Added installed package 'appliveview-conventions' in namespace 'tap-install'
     ```
 
-1. Verify the package install for Application Live View Conventions package by
+1. Verify the package install for Application Live View conventions package by
    running:
 
     ```console

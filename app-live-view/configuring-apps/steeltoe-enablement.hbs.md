@@ -77,7 +77,7 @@ To enable the Actuators on a .NET Core App:
 
 You can enable Application Live View to interact with a Steeltoe app within Tanzu Application Platform.
 
-To enable Application Live View on the Steeltoe Tanzu Application Platform workload, the Application Live View Convention Service automatically applies labels on the workload, such as `tanzu.app.live.view.application.flavours: steeltoe` and `tanzu.app.live.view: true`, based on the Steeltoe image metadata.
+To enable Application Live View on the Steeltoe Tanzu Application Platform workload, the Application Live View convention service automatically applies labels on the workload, such as `tanzu.app.live.view.application.flavours: steeltoe` and `tanzu.app.live.view: true`, based on the Steeltoe image metadata.
 
 Here's an example of creating a workload for a Steeltoe Application:
 
