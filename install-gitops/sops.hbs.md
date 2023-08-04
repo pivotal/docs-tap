@@ -105,7 +105,7 @@ If you are working in an internetless environment, the following pre-requisites 
 
     - `VERSION` is the version of Tanzu Build Service which can be found by running `kubectl get package -n tap-install | grep buildservice`
 
-1. Host a `grype` database within the airgapped environment. See [Grype Offline](../install-online/grype-offline-airgap.hbs.md) for details.
+1. Host a `grype` database within the airgapped environment. See [Grype Offline](../install-offline/grype-offline-airgap.hbs.md) for details.
 
 ## <a id='create-a-new-git-repository'></a> Create a new Git repository
 
