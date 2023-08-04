@@ -133,7 +133,7 @@ To troubleshoot:
     kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
 
-## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in Application Live View Convention
+## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in Application Live View convention
 
 **Symptom**
 
