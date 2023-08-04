@@ -91,6 +91,22 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
+## <a id='airgap-support'></a> (Optional) Installing Tanzu Application Platform in an airgapped environment
+
+If you are working in an internetless environment, the following pre-requisites must be met before continuing with this installation guide:
+
+1. Relocate Tanzu Build Service images to your registry
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-tbs-deps-package-repo
+    ```
+
+    Where:
+
+    - `VERSION` is the version of Tanzu Build Service which can be found by running `kubectl get package -n tap-install | grep buildservice`
+
+1. Host a `grype` database within the airgapped environment. See [Grype Offline](../install-online/grype-offline-airgap.hbs.md) for details.
+
 ## <a id='create-a-new-git-repository'></a> Create a new Git repository
 
 Follow these steps to create a new Git repository and set up the authentication:
@@ -274,6 +290,24 @@ tap_install:
     - policy.apps.tanzu.vmware.com
 ...
 ```
+
+If installing Tanzu Application Service in an offline environment. Ensure `Tanzu Build Service` and `Grype` are configured to work in an airgapped environment:
+
+```yaml
+---
+tap_install:
+  values:
+    ...
+    buildservice:
+      exclude_dependencies: true
+    grype:
+      db:
+        dbUpdateUrl: INTERNAL-VULN-DB-URL
+```
+
+Where:
+
+- `INTERNAL-VULN-DB-URL` URL that points to the internal file server.
 
 For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
