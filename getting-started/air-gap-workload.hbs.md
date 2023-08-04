@@ -45,7 +45,7 @@ To create a workload from Git through HTTPS, follow these steps:
     - `PASSWORD` is the password.
     - `CADATA` is the PEM-encoded CA certificate for the Git repository.
 
-3. To pass in a custom settings.xml for Java, create a file called `settings-xml.yaml`. For example:
+3. To pass in a custom `settings.xml` for Java, create a file called `settings-xml.yaml`. For example:
 
     ```yaml
     apiVersion: v1
@@ -147,7 +147,8 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 For instructions about creating a workload with the testing and scanning supply chain, see [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test-scan).
 
 In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan),
-follow [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.hbs.md) before workload creation.
+follow [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.hbs.md)
+before workload creation.
 
 Create workload by running:
 
