@@ -66,7 +66,7 @@ For example, if you want to provide your Customer Entitlement Number, create a `
 
     ```console
     tanzu package install tap-telmetry \
-      --package-name tap-telemetry.tanzu.vmware.com \
+      --package tap-telemetry.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file tap-telemetry-values.yaml
@@ -82,7 +82,7 @@ For example, if you want to provide your Customer Entitlement Number, create a `
 
     ```console
     $ tanzu package install tap-telmetry \
-      --package-name tap-telemetry.tanzu.vmware.com \
+      --package tap-telemetry.tanzu.vmware.com \
       --version 0.3.1 \
       --namespace tap-install \
       --values-file tap-telemetry-values.yaml
