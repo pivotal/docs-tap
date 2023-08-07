@@ -102,7 +102,7 @@ To install the API Auto Registration package:
 
     ```console
     tanzu package install api-auto-registration
-    --package-name apis.apps.tanzu.vmware.com
+    --package apis.apps.tanzu.vmware.com
     --namespace tap-install
     --version $VERSION
     --values-file api-auto-registration-values.yaml
