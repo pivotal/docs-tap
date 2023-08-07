@@ -47,9 +47,11 @@ rules:
     verbs: ["get", "list", "create", "update", "delete", "patch"]
 ```
 
+Where `RUN-CLUSTER-NS` is the Run cluster namespace you want to use.
+
 If your Run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
-If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` should also have the following permissions:
+If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` must also have the following permissions:
 
 ```yaml
 ---
@@ -111,7 +113,7 @@ app.default.tap/
   - `PACKAGE-NAME` is the name of your Carvel package you want to use.
   - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
 
-   > **Note** You must set a value for the `workload_name` parameter. You may skip setting other fields to use the default parameter values.
+   > **Note** You must set a value for the `workload_name` parameter. You can skip setting other fields to use the default parameter values.
 
 1. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/packageinstall.yaml`.
 
@@ -148,7 +150,7 @@ app.default.tap/
 
 1. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create app"></a> Create an app
+## <a id="create-app"></a> Create an app
 
 1. You must give the build cluster access to the Run clusters. On the build cluster create a `Secret` containing the Run cluster's kubeconfig for each run cluster:
 
@@ -227,7 +229,7 @@ app.default.tap/
 
    > **Note** The fetch section includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 
-## <a id="verify-app"></a> Verifying applications
+## <a id="verify-app"></a> Verify applications
 
 To verify your installation:
 
