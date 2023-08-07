@@ -52,7 +52,7 @@ To install Out of the Box Templates:
 
     ```console
     tanzu package install ootb-templates \
-      --package-name ootb-templates.tanzu.vmware.com \
+      --package ootb-templates.tanzu.vmware.com \
       --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-templates-values.yaml
