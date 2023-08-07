@@ -365,7 +365,7 @@ components to have their pods preempted or evicted instead.
 
         ```console
         tanzu package installed update image-policy-webhook \
-          --package-name image-policy-webhook.signing.apps.tanzu.vmware.com \
+          --package image-policy-webhook.signing.apps.tanzu.vmware.com \
           --version 1.0.0-beta.3 \
           --namespace tap-install \
           --values-file scst-sign-values.yaml
