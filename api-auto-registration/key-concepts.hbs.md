@@ -74,7 +74,7 @@ spec:
 ## <a id='with-ref'></a>With an Object Ref
 
 You can use an object reference, instead of hard coding the URL, to point to a HTTPProxy, Knative Service, or Ingress.
-We do not support referencing kubernetes `Service` with Object Ref. If you'd like to point to your kubernetes `Service` directly, you may use the static url with cluster DNS address instead, e.g. https://myservice.mynamespace.svc.cluster.local:6789.
+VMware does not support referencing Kubernetes `Service` with Object Ref. To point to your Kubernetes `Service` directly, you can use the static URL with cluster DNS address instead. For example, `https://myservice.mynamespace.svc.cluster.local:6789`.
 
 ### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
 
