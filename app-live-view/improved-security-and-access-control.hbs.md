@@ -243,7 +243,7 @@ plug-in, take the following steps.
 
     ```console
     tanzu package install tap-gui \
-     --package-name tap-gui.tanzu.vmware.com \
+     --package tap-gui.tanzu.vmware.com \
      --version VERSION -n tap-install \
      -f tap-gui-values.yaml
     ```
@@ -253,7 +253,7 @@ plug-in, take the following steps.
     For example:
 
     ```console
-    $ tanzu package install tap-gui -package-name tap-gui.tanzu.vmware.com --version 1.4.6 -n tap-install -f tap-gui-values.yaml
+    $ tanzu package install tap-gui --package tap-gui.tanzu.vmware.com --version 1.4.6 -n tap-install -f tap-gui-values.yaml
     - Installing package 'tap-gui.tanzu.vmware.com'
     | Getting package metadata for 'tap-gui.tanzu.vmware.com'
     | Creating service account 'tap-gui-default-sa'
