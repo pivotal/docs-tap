@@ -162,7 +162,7 @@ Install by following these steps:
 
     ```console
     tanzu package install ootb-supply-chain-testing \
-      --package-name ootb-supply-chain-testing.tanzu.vmware.com \
+      --package ootb-supply-chain-testing.tanzu.vmware.com \
       --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-values.yaml
