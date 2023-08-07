@@ -118,7 +118,7 @@ To update the installation values for the `api-portal` package:
 
     ```console
     tanzu package installed update api-auto-registration
-    --package-name apis.apps.tanzu.vmware.com
+    --package apis.apps.tanzu.vmware.com
     --namespace tap-install
     --version $VERSION
     --values-file api-portal-values.yaml
@@ -128,7 +128,7 @@ To update the installation values for the `api-portal` package:
 See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
 
     ```console
-    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
+    tanzu package installed update tap --package tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
     ```
 
 >**Note** You can update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
