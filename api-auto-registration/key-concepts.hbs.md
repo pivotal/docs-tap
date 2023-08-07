@@ -4,7 +4,8 @@ This topic explains key concepts you use with API Auto Registration.
 
 ## <a id='architecture'></a>API Auto Registration Architecture
 
-You can use the full potential of API Auto Registration by using a distributed environment, like the one in this diagram:
+You can use the full potential of API Auto Registration by using a distributed environment,
+like the one in this diagram:
 
 ![Diagram describing the clusters used with API Auto Registration.](./images/arch.png)
 
@@ -41,12 +42,21 @@ spec:
 
 The text boxes cause specific behavior in Tanzu Developer Portal:
 
-- The system and owner are copied to the API entity. You might have to separately create and add the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind to the catalog.
-- Tanzu Developer Portal uses the namespace for the API entity where the APIDescriptor CR is applied. This causes the API entity's name, system, and owner to all be in that namespace.
-- To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
-- If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
+- The system and owner are copied to the API entity. You might have to separately create and add the
+  [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and
+  [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind to
+  the catalog.
+- Tanzu Developer Portal uses the namespace for the API entity where the APIDescriptor CR is applied.
+  This causes the API entity's name, system, and owner to all be in that namespace.
+- To explicitly use a system or owner in a different namespace, you can specify that in the
+  `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
+- If the system or owner you are trying to link doesn't have a namespace specified, you can qualify
+  them with the `default` namespace. For example, `system: default/my-default-system`
 
->**Important** `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and `spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change supports having a different API server location from the specifications location. These deprecated fields will be removed in Tanzu Application Platform 1.8.
+>**Important** `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and
+`spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change supports
+having a different API server location from the specifications location.
+These deprecated fields will be removed in Tanzu Application Platform 1.8.
 
 ## <a id='absolute-url'></a>With an Absolute URL
 
@@ -71,12 +81,15 @@ spec:
 
 ## <a id='with-ref'></a>With an Object Ref
 
-You can use an object reference, instead of hard coding the URL, to point to a HTTPProxy, Knative Service, or Ingress.
-VMware does not support referencing Kubernetes `Service` with Object Ref. To point to your Kubernetes `Service` directly, you can use the static URL with cluster DNS address instead. For example, `https://myservice.mynamespace.svc.cluster.local:6789`.
+You can use an object reference, instead of hard coding the URL, to point to a HTTPProxy, Knative
+Service, or Ingress.
+VMware does not support referencing Kubernetes `Service` with Object Ref. To point to your Kubernetes
+`Service` directly, you can use the static URL with cluster DNS address instead. For example, `https://myservice.mynamespace.svc.cluster.local:6789`.
 
 ### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
 
-This section includes an example YAML that points to an HTTPProxy from which the controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
+This section includes an example YAML that points to an HTTPProxy from which the controller extracts
+the `.spec.virtualhost.fqdn` as the baseURL.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -115,7 +128,8 @@ To use a Knative Service, your controller reads the `status.url` as the baseURL.
 
 ### <a id='with-ingress-ref'></a>With an Ingress Object Ref
 
-To use an Ingress instead, your controller reads the URL from the jsonPath specified. When jsonPath is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. For example:
+To use an Ingress instead, your controller reads the URL from the jsonPath specified. When jsonPath
+is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. For example:
 
 ```yaml
 # all other fields similar to the above example
@@ -130,9 +144,12 @@ To use an Ingress instead, your controller reads the URL from the jsonPath speci
 
 ### <a id='status-fields'></a>APIDescriptor Status Fields
 
-When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`, which provide information useful for troubleshooting. The conditions are explained in the [Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
+When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`,
+which provide information useful for troubleshooting. The conditions are explained in the
+[Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
 
-In addition to `conditions` the `status` contains a couple of other useful fields. The following is a list of these fields with a brief explanation of what they contain.
+In addition to `conditions` the `status` contains a couple of other useful fields. The following is
+a list of these fields with a brief explanation of what they contain.
 
 ```yaml
 status:

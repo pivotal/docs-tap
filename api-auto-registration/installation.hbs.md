@@ -1,8 +1,10 @@
 # Install API Auto Registration
 
-This topic describes how you can install API Auto Registration from the Tanzu Application Platform package repository.
+This topic describes how you can install API Auto Registration from the Tanzu Application Platform
+package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install API Auto Registration. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install API Auto Registration.
+> For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Tanzu Application Platform prerequisites
 
@@ -12,12 +14,15 @@ See [Tanzu Application Platform Prerequisites](../prerequisites.md).
 ## <a id='prereqs'></a> Using with TLS
 
 Starting in Tanzu Application Platform v1.4, TLS is turned on by default for several components.
-API Auto Registration automatically trusts the CA for the shared `ingress_issuer` when using the default ClusterIssuer `tap-ingress-selfsigned`.
+API Auto Registration automatically trusts the CA for the shared `ingress_issuer` when using the
+default ClusterIssuer `tap-ingress-selfsigned`.
 This change means that a `Certificate` is automatically generated using this issuer.
 
-If you do not want a `Certificate` to generate automatically, you can set the `auto_generate_cert` flag to `false` in the values file.
+If you do not want a `Certificate` to generate automatically, you can set the `auto_generate_cert`
+flag to `false` in the values file.
 To replace the default with a custom ingress issuer, see [Security and compliance](../security-and-compliance/about.hbs.md).
-Whenever you do not use the default ClusterIssuer `tap-ingress-selfsigned`, do not automatically generate certificates,
+Whenever you do not use the default ClusterIssuer `tap-ingress-selfsigned`, do not automatically
+generate certificates,
 or use other custom CAs, you must manually set the certificate. See [Troubleshooting](../api-auto-registration/troubleshooting.hbs.md#set-ca-crt).
 
 ## <a id='install'></a>Install
@@ -72,21 +77,27 @@ To install the API Auto Registration package:
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
-2. Locate the Tanzu Developer Portal URL.
+1. Locate the Tanzu Developer Portal (formerly Tanzu Application Platform GUI) URL.
 
-    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Developer Portal URL is sufficient. You can edit this to match the externally available FQDN of Tanzu Developer Portal to display the entity URL in the externally accessible APIDescriptor status.
+    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu
+    Developer Portal URL is sufficient. You can edit this to match the externally available FQDN of
+    Tanzu Developer Portal to display the entity URL in the externally accessible APIDescriptor status.
 
-    When installed in a run cluster or with a profile where Tanzu Developer Portal is not installed in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity registration with Tanzu Developer Portal.
+    When installed in a run cluster or with a profile where Tanzu Developer Portal is not installed
+    in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity
+    registration with Tanzu Developer Portal.
 
-    You can locate the `tap_gui_url` by going to the view cluster with the Tanzu Developer Portal you want to register the entity with:
+    You can locate the `tap_gui_url` by going to the view cluster with the Tanzu Developer Portal you
+    want to register the entity with:
 
     ```console
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
     ```
 
-3. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
+1. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
 
-    To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file:
+    To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml`
+    file:
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
@@ -98,7 +109,7 @@ To install the API Auto Registration package:
     sync_period: 2m
     ```
 
-4. Install the package using the Tanzu CLI:
+1. Install the package using the Tanzu CLI:
 
     ```console
     tanzu package install api-auto-registration
@@ -108,7 +119,7 @@ To install the API Auto Registration package:
     --values-file api-auto-registration-values.yaml
     ```
 
-5. Verify the package installation by running:
+1. Verify the package installation by running:
 
     ```console
     tanzu package installed get api-auto-registration -n tap-install
@@ -120,7 +131,7 @@ To install the API Auto Registration package:
     kubectl get pods -n api-auto-registration
     ```
 
-6. Verify that applying an APIDescriptor resource to your cluster causes the `STATUS` showing `Ready`:
+1. Verify that applying an APIDescriptor resource to your cluster causes the `STATUS` showing `Ready`:
 
     ```console
     kubectl apply -f - <<EOF
@@ -153,7 +164,8 @@ To install the API Auto Registration package:
     sample-api-descriptor-with-absolute-url    Ready     <url-to-the-entity>    <url-to-the-api-spec>
     ```
 
-    If the status does not show `Ready`, you can inspect the reason with the detailed message shown by running:
+    If the status does not show `Ready`, you can inspect the reason with the detailed message shown
+    by running:
 
     ```console
     kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'

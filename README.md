@@ -34,7 +34,6 @@ stored in dedicated repositories.
 
 | Component | Repo |
 |-----------|------|
-| API Auto Registration | https://gitlab.eng.vmware.com/tap-api-first/api-auto-registration |
 | API portal | https://github.com/pivotal-cf/docs-api-portal |
 | Application Configuration Service | https://github.com/pivotal-cf/docs-application-configuration-service |
 | Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
