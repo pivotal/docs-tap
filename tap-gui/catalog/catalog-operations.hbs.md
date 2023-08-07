@@ -214,7 +214,7 @@ Use GitLabDiscoveryProcessor
 
         ```console
         tanzu package installed update tap \
-          --package-name tap.tanzu.vmware.com \
+          --package tap.tanzu.vmware.com \
           --version PACKAGE-VERSION \
           --values-file tap-values.yaml \
           --namespace tap-install
@@ -224,7 +224,7 @@ Use GitLabDiscoveryProcessor
 
         ```console
         tanzu package installed update tap-gui \
-          --package-name tap-gui.tanzu.vmware.com \
+          --package tap-gui.tanzu.vmware.com \
           --version PACKAGE-VERSION \
           --values-file tap-gui-values.yaml \
           --namespace tap-install
