@@ -93,7 +93,7 @@ To install a new scanner, follow these steps:
 
     ```console
     tanzu package install REFERENCE-NAME \
-      --package-name SCANNER-NAME \
+      --package SCANNER-NAME \
       --version VERSION \
       --namespace tap-install \
       --values-file PATH-TO-VALUES-YAML
@@ -110,7 +110,7 @@ To install a new scanner, follow these steps:
 
     ```console
     $ tanzu package install snyk-scanner \
-      --package-name snyk.scanning.apps.tanzu.vmware.com \
+      --package snyk.scanning.apps.tanzu.vmware.com \
       --version 1.1.0 \
       --namespace tap-install \
       --values-file values.yaml
