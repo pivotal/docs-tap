@@ -147,7 +147,7 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
 
     ```console
     tanzu package install metadata-store \
-      --package-name metadata-store.apps.tanzu.vmware.com \
+      --package metadata-store.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
@@ -163,7 +163,7 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
 
     ```console
     $ tanzu package install metadata-store \
-      --package-name metadata-store.apps.tanzu.vmware.com \
+      --package metadata-store.apps.tanzu.vmware.com \
       --version 1.0.2 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
