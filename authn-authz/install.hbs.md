@@ -33,7 +33,7 @@ To install default roles:
 
     ```console
     tanzu package install tap-auth \
-      --package-name tap-auth.tanzu.vmware.com \
+      --package tap-auth.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install
     ```
@@ -46,7 +46,7 @@ To install default roles:
 
     ```console
     $ tanzu package install tap-auth \
-      --package-name tap-auth.tanzu.vmware.com \
+      --package tap-auth.tanzu.vmware.com \
       --version 1.0.1 \
       --namespace tap-install
     ```
