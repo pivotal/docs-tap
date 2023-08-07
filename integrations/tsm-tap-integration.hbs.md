@@ -633,14 +633,14 @@ in the Tanzu Application Platform Carvel bundle.
 Install the Spring Cloud Gateway package with the default settings by using this Tanzu CLI template:
 
 ```console
-tanzu package install scg –package-name spring-cloud-gateway.tanzu.vmware.com \
+tanzu package install scg –-package spring-cloud-gateway.tanzu.vmware.com \
 -version VERSION-NUMBER -n TAP-INSTALL-NAMESPACE
 ```
 
 For example:
 
 ```console
-tanzu package install scg --package-name spring-cloud-gateway.tanzu.vmware.com \
+tanzu package install scg --package spring-cloud-gateway.tanzu.vmware.com \
 --version 2.0.0-tap.3 -n tap-install
 ```
 
