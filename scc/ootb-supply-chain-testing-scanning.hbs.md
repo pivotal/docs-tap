@@ -229,7 +229,7 @@ to the properties you want to change. For example:
 
     ```console
     tanzu package install grype-scanner \
-      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --package grype.scanning.apps.tanzu.vmware.com \
       --version 1.0.0 \
       --namespace YOUR-DEV-NAMESPACE
     ```
