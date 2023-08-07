@@ -101,7 +101,7 @@ Doing so updates Tanzu Application Platform GUI because it belongs to Tanzu Appl
 To apply your new configuration, run:
 
 ```console
-tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
+tanzu package installed update  tap --package tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
 ```
 
 Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
@@ -109,7 +109,7 @@ Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, 
 For example:
 
 ```console
-$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version \{{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
+$ tanzu package installed update  tap --package tap.tanzu.vmware.com --version \{{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'
 | Getting package metadata for 'tap.tanzu.vmware.com'
