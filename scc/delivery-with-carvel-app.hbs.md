@@ -129,7 +129,7 @@ app.default.tap/
 
 1. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create app"></a> Create an app
+## <a id="create-app"></a> Create an app
 
 1. You must give the build cluster access to the Run clusters. On the build cluster create a `Secret` containing the Run cluster's kubeconfig for each run cluster:
 
@@ -208,7 +208,7 @@ app.default.tap/
 
    > **Note** The fetch section includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 
-## <a id="verify-app"></a> Verifying applications
+## <a id="verify-app"></a> Verify applications
 
 To verify your installation:
 
