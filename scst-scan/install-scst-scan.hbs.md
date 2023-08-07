@@ -151,7 +151,7 @@ To install SCST - Scan (Scan controller):
 
     ```console
     tanzu package install scan-controller \
-      --package-name scanning.apps.tanzu.vmware.com \
+      --package scanning.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file scan-values.yaml
@@ -254,7 +254,7 @@ To install SCST - Scan (Scan controller):
 
     ```console
     tanzu package install grype-scanner \
-      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --package grype.scanning.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file grype-values.yaml
@@ -266,7 +266,7 @@ To install SCST - Scan (Scan controller):
 
     ```console
     $ tanzu package install grype-scanner \
-      --package-name grype.scanning.apps.tanzu.vmware.com \
+      --package grype.scanning.apps.tanzu.vmware.com \
       --version 1.1.0 \
       --namespace tap-install \
       --values-file grype-values.yaml
