@@ -1,6 +1,6 @@
 # Install Application Single Sign-On
 
-This topic tells you how to install Application Single Sign-On (commonly called AppSSO) 
+This topic tells you how to install Application Single Sign-On (commonly called AppSSO)
 from the Tanzu Application Platform (commonly called TAP) package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On.
@@ -31,7 +31,7 @@ Before installing AppSSO, please ensure you have Tanzu Application Platform inst
    ```shell
    tanzu package install appsso \
      --namespace tap-install \
-     --package-name sso.apps.tanzu.vmware.com \
+     --package sso.apps.tanzu.vmware.com \
      --version {{ vars.app-sso.version }}
    ```
 
