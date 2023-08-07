@@ -226,7 +226,7 @@ you must edit the configurations to deactivate the Store:
 
   ```console
   tanzu package install scan-controller \
-    --package-name scanning.apps.tanzu.vmware.com \
+    --package scanning.apps.tanzu.vmware.com \
     --version VERSION \
     --namespace tap-install \
     --values-file tap-values.yaml
