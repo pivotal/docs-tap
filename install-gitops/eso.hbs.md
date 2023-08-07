@@ -87,6 +87,24 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
 
+## <a id='airgap-support'></a> (Optional) Installing Tanzu Application Platform in an airgapped environment
+
+If you are working in an internetless environment, the following pre-requisites must be met before continuing with this installation guide:
+
+1. Relocate Tanzu Build Service images to your registry
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-tbs-deps-package-repo
+    ```
+
+    Where:
+
+    - `VERSION` is the version of Tanzu Build Service which can be found by running `kubectl get package -n tap-install | grep buildservice`
+
+1. Configure custom certificate authorities for Tanzu Application Platform GUI. See [custom CAs](../install-offline/tap-gui-non-standard-certs-offline.hbs.md) for details.
+
+1. Host a `grype` database within the airgapped environment. See [Grype Offline](../install-offline/grype-offline-airgap.hbs.md) for details.
+
 ## <a id='create-a-new-git-repository'></a>Create a new Git repository
 
 1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
@@ -523,6 +541,24 @@ which contains the minimum configurations required to deploy Tanzu Application P
         ceip_policy_disclosed: true
     ...
     ```
+
+    If installing Tanzu Application Service in an offline environment. Ensure `Tanzu Build Service` and `Grype` are configured to work in an airgapped environment:
+
+    ```yaml
+    ---
+    tap_install:
+      values:
+        ...
+        buildservice:
+          exclude_dependencies: true
+        grype:
+          db:
+            dbUpdateUrl: INTERNAL-VULN-DB-URL
+    ```
+
+    Where:
+
+    - `INTERNAL-VULN-DB-URL` URL that points to the internal file server.
 
     For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
