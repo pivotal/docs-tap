@@ -216,7 +216,7 @@ To install Supply Chain Security Tools - Policy Controller:
 
     ```console
     tanzu package install policy-controller \
-      --package-name policy.apps.tanzu.vmware.com \
+      --package policy.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file scst-policy-values.yaml
@@ -228,7 +228,7 @@ To install Supply Chain Security Tools - Policy Controller:
 
     ```console
     $ tanzu package install policy-controller \
-        --package-name policy.apps.tanzu.vmware.com \
+        --package policy.apps.tanzu.vmware.com \
         --version 1.2.0 \
         --namespace tap-install \
         --values-file scst-policy-values.yaml
