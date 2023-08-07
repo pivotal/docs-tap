@@ -54,7 +54,7 @@ To install Supply Chain Choreographer:
     ```console
     tanzu package install cartographer \
       --namespace tap-install \
-      --package-name cartographer.tanzu.vmware.com \
+      --package cartographer.tanzu.vmware.com \
       --version 0.7.1+tap.1
     ```
 
