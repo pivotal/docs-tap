@@ -52,7 +52,7 @@ rules:
 
 If your Run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
-If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` should also have the following permissions:
+If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` must also have the following permissions:
 
 ```yaml
 ---
@@ -107,9 +107,9 @@ app.default.tap/
        hostname: app.mycompany.com
    ```
 
-   > **Note** You must set a value for the `workload_name` parameter. You may skip setting other fields to use the default parameter values.
+   > **Note** You must set a value for the `workload_name` parameter. You can skip setting other fields to use the default parameter values.
 
-1. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
+2. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
 
    ```yaml
    ---
@@ -143,7 +143,7 @@ app.default.tap/
 Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each of your run clusters.
 
 1. Give your Build cluster access to your run clusters. On the Build cluster, for each run cluster, create a `Secret` containing the run cluster's kubeconfig.
-   Make sure to create the Kubernetes `Secret` in the same namespace as the Kustomization resource:
+   Create the Kubernetes `Secret` in the same namespace as the Kustomization resource:
 
    ```console
    kubectl create secret generic <run-cluster>-kubeconfig \
