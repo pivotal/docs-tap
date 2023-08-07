@@ -62,7 +62,7 @@ To install Spring Boot conventions:
 
    ```console
    tanzu package install spring-boot-conventions \
-   --package-name spring-boot-conventions.tanzu.vmware.com \
+   --package spring-boot-conventions.tanzu.vmware.com \
    --version 1.4.0 \
    --namespace tap-install
    ```
