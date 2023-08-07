@@ -34,7 +34,7 @@ To install External Secrets Operator:
 
    ```console
    tanzu package install external-secrets \
-     --package-name external-secrets.apps.tanzu.vmware.com \
+     --package external-secrets.apps.tanzu.vmware.com \
      --version VERSION-NUMBER \
      --namespace tap-install
    ```
@@ -45,7 +45,7 @@ To install External Secrets Operator:
 
    ```console
    tanzu package install external-secrets \
-   --package-name external-secrets.apps.tanzu.vmware.com
+   --package external-secrets.apps.tanzu.vmware.com
    --version 0.6.1+tap.6
    --namespace tap-install
 
