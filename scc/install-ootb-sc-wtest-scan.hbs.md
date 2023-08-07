@@ -169,7 +169,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
     ```console
     tanzu package install ootb-supply-chain-testing-scanning \
-      --package-name ootb-supply-chain-testing-scanning.tanzu.vmware.com \
+      --package ootb-supply-chain-testing-scanning.tanzu.vmware.com \
       --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-supply-chain-testing-scanning-values.yaml
