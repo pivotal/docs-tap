@@ -93,7 +93,7 @@ The Ingress method of access for Tanzu Application Platform GUI uses the shared
 1. Update your package installation with your changed `tap-values.yaml` file by running:
 
     ```console
-    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER \
+    tanzu package installed update tap --package tap.tanzu.vmware.com --version VERSION-NUMBER \
     --values-file tap-values.yaml -n tap-install
     ```
 
