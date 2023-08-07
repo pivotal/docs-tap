@@ -38,7 +38,7 @@ by running:
 
     ```console
     tanzu package install developer-conventions \
-      --package-name developer-conventions.tanzu.vmware.com \
+      --package developer-conventions.tanzu.vmware.com \
       --version 0.3.0 \
       --namespace tap-install
     ```
