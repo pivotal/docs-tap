@@ -9,6 +9,8 @@ like the one in this diagram:
 
 ![Diagram describing the clusters used with API Auto Registration.](./images/arch.png)
 
+TODO: diagram for API curation
+
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
@@ -20,20 +22,20 @@ This custom resource exposes the following text boxes:
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
 kind: APIDescriptor
 metadata:
-  name:                  # name of your APIDescriptor
-  namespace:             # optional namespace of your APIDescriptor
+  name:                   # name of your APIDescriptor
+  namespace:              # optional namespace of your APIDescriptor
 spec:
-  type:                  # type of the API spec. oneOf(openapi, grpc, asyncapi, graphql)
-  description:           # description for the API exposed
-  system:                # system that the API is part of
-  owner:                 # person/team that owns the API
+  type:                   # type of the API spec. oneOf(openapi, grpc, asyncapi, graphql)
+  description:            # description for the API exposed
+  system:                 # system that the API is part of
+  owner:                  # person/team that owns the API
   location:
     apiSpec:
-      path:              # sub-path where the API spec is available (previously `location.path`)
-      url:               # (Optional) static absolute base URL for the API spec
-    server:             # base URL object where the API spec is available. oneOf(url, ref) (previously `location.baseURL`)
-      url:               # (Optional) static absolute base URL for the API server
-      ref:               # (Optional) object ref to oneOf(HTTPProxy, Knative Service, Ingress)
+      path:               # sub-path where the API spec is available (previously `location.path`)
+      url:                # (Optional) static absolute base URL for the API spec
+    server:               # base URL object where the API spec is available. oneOf(url, ref) (previously `location.baseURL`)
+      url:                # (Optional) static absolute base URL for the API server
+      ref:                # (Optional) object ref to oneOf(HTTPProxy, Knative Service, Ingress)
         apiVersion:
         kind:
         name:
@@ -164,6 +166,61 @@ status:
 
 ## <a id='curated-api-descriptor'></a>CuratedAPIDescriptor Custom Resource Explained
 
+To curate one or more Workload OpenAPI specifications into a single aggregated API,
+you may create a custom resource of type `CuratedAPIDescriptor`.
+The information from this custom resource references a list of APIDescriptors and how they should
+be aggregated together through path-based routing.
+
+If a valid route provider is specified, e.g. `spring-cloud-gateway` for [Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG for short),
+the API Auto Registration controller will find the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
+resource and automatically creates the following routing resources for you to expose your curated APIs
+as one:
+
+- [SpringCloudGatewayRouteConfig (SCGRC)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewayrouteconfig.html):
+  a custom resource that describes all the API endpoints and optional routing modifiers to access
+  the endpoints. This is generated from the resolved OpenAPI Specification of the APIDescriptor
+  through [SCG OpenAPI conversion service](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
+- [SpringCloudGatewayMapping (SCGM)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewaymapping.html):
+  a custom resource that binds a SCGRC resource to a SCG resource.
+
+This custom resource exposes the following text boxes:
+
+```yaml
+apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
+kind: CuratedAPIDescriptor
+metadata:
+  name:                 # name of your CuratedAPIDescriptor
+  namespace:            # optional namespace of your CuratedAPIDescriptor
+  annotations:
+    "apis.apps.tanzu.vmware.com/route-provider": "spring-cloud-gateway"   # specify route provider
+spec:
+  type: openapi         # type of the API spec. oneOf(openapi, grpc, asyncapi, graphql)
+  title:                # title of the curated API
+  description:          # description of the curated API
+  documentation:        # TODO
+  groupId:              # groupID of the curated API.
+  version:              # version of the curated API
+  apiDescriptors:
+    - name:             # name of a APIDescriptor to include in this curated API
+      namespace:        # optional namespace of the APIDescriptor
+      pathPrefix:       # Path prefix that the API endpoints from the linked APIDescriptor should have
+      routeConfig:
+        ssoEnabled:     # whether to enable SSO on the gateway to perform authentication for users
+        filters:        # additional service lever filters to set on all the endpoints in this API
+    - ...
+```
+
+More detailed explanation on some of the key text boxes:
+
+- The `apis.apps.tanzu.vmware.com/route-provider` annotation specified how you want to provide routing
+  to the curated API. We currently only support `spring-cloud-gateway`.
+- `groupId` is a concept that's aligned with [API portal](../api-portal/about.hbs.md) to group APIs
+  from different high-availability zones/locations and/or with different `version`s.
+- `groupId` and `version` is used to identify a matching gateway that will be routing traffic for the
+  curated API
+- `routeConfig` section specifies service level configuration we should add when generating the routing
+  resource for the API. Please refer to [this page](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html#providing-service-level-filters)
+  for more details on each field for spring-cloud-gateway.
 
 ### <a id='curated-status-fields'></a>CuratedAPIDescriptor Status Fields
 
@@ -181,5 +238,5 @@ status:
   AggregatedAPISpec:      # Generated full API Spec as aggregated by Api Auto Registration
   AggregatedAPISpecHash:  # Hash of the aggregated API Spec. This field can be used to see whether the spec has been updated or not.
   LastUpdateTime:         # Timestamp representing the server time when API Spec was last updated. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
-	MatchedGateway:         # The Gateway resource the curated API is matched on. We currently only support SCG.
+  MatchedGateway:         # The Gateway resource the curated API is matched on. We currently only support SCG.
 ```
