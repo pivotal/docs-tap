@@ -66,6 +66,27 @@
     </tr>
 </table>
 
+## <a id="c"></a> C
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Cartographer Conventions</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Cloud Native Runtimes</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Convention Controller</td>
+        <td></td>
+    </tr>
+</table>
+
 ## <a id="l"></a> L
 
 <table>
