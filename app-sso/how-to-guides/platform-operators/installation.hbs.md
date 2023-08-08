@@ -50,7 +50,7 @@ The `sso.apps.tanzu.vmware.com` package has these dependencies:
    ```console
    tanzu package install appsso \
      --namespace tap-install \
-     --package-name sso.apps.tanzu.vmware.com \
+     --package sso.apps.tanzu.vmware.com \
      --version {{ vars.app-sso.version }}
    ```
 

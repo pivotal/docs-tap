@@ -73,7 +73,7 @@ To add an integration for a provider that isn't associated with GitHub, see the
 After making changes to `tap-values.yaml`, update the package profile by running:
 
 ```console
-tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER \
+tanzu package installed update  tap --package tap.tanzu.vmware.com --version VERSION-NUMBER \
 --values-file tap-values.yaml -n tap-install
 ```
 
@@ -82,7 +82,7 @@ Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `
 For example:
 
 ```console
-$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version \
+$ tanzu package installed update  tap --package tap.tanzu.vmware.com --version \
 {{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'

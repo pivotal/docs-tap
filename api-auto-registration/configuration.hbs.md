@@ -83,7 +83,7 @@ own.
 
     ```console
     tanzu package installed update api-auto-registration
-    --package-name apis.apps.tanzu.vmware.com
+    --package apis.apps.tanzu.vmware.com
     --namespace tap-install
     --version $VERSION
     --values-file api-auto-registration-values.yaml
