@@ -171,7 +171,8 @@ you may create a custom resource of type `CuratedAPIDescriptor`.
 The information from this custom resource references a list of APIDescriptors and how they should
 be aggregated together through path-based routing.
 
-If a valid route provider is specified, e.g. `spring-cloud-gateway` for [Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG for short),
+If a valid route provider is specified, e.g. `spring-cloud-gateway` for
+[Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG for short),
 the API Auto Registration controller will find the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
 resource and automatically creates the following routing resources for you to expose your curated APIs
 as one:

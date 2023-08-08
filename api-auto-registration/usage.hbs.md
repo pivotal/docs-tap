@@ -182,14 +182,14 @@ interpret baseURL from Knative Services, and construct APIDescriptor CRs.
 In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant
 permissions to create the CR from the delivery pipeline.
 
-For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
+For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ### <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
 
 Using your GitOps process, or manually, you must stamp out an APIDescriptor CR and apply it in the
 cluster you choose. Be sure specify all the required fields for an APIDescriptor CR to reconcile.
 
-For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
+For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ## <a id='additional-config'></a>Additional configuration
 

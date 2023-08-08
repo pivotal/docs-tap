@@ -2,213 +2,95 @@
 
 This topic describes how you can use API Curation to expose several standalone APIs as one API.
 
-To unlock the maximum power of API curation, using a supported route provider is strongly recommended.
+To unlock the maximum power of API curation, we strongly recommend to use a supported route provider.
+Without this setup, the generated API spec will not have a functional server URL set for testing the
+curated API. And you will need to manually create the routing resources to route traffic to each
+referenced API to match on the aggregated API spec. With the route provider integration, all of these
+routing concern will be taken care of by us automatically.
 
-API Auto Registration requires the following:
+A successful API curation requires the following as of today:
 
-1. A location exposing a dynamic or static API specification.
+1. (Optional) Spring Cloud Gateway for Kubernetes is installed.
+2. API Auto Registration is installed or updated with `route_provider.spring_cloud_gateway.enabled`
+   set accordingly.
+3. One or more `APIDescriptor`s that are in the ready state.
+4. (Optional) A `SpringCloudGateway` resource is created with the matching `groupId` and `version`.
+5. A `CuratedAPIDescriptor` resource is created
+6. You should be able to get the aggregated API spec from the OpenAPI endpoint from our controller.
 
-2. An APIDescriptor Custom Resource (CR) with that location created in the cluster.
+## <a id='create-route-provider'></a>(Optional) Install route provider and create gateway resources
 
-3. (Optional) Configure Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
+### <a id='install-scg'></a>Install Spring Cloud Gateway for Kubernetes
 
-To generate OpenAPI Spec:
+Install Spring Cloud Gateway for Kubernetes following [this guide](../spring-cloud-gateway/install-spring-cloud-gateway.hbs.md).
 
-- [By creating a simple Spring Boot app](#using-simple-app)
-
-- [By scaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
-
-- [In an existing Spring Boot project](#existing-spring-project)
-
-To create APIDescriptor Custom Resource:
-
-- [Using Out Of The Box Supply Chains](#using-ootb-supply-chain)
-
-- [Using Custom Supply Chains](#using-custom-supply-chain)
-
-- [Using other GitOps processes or Manually](#using-gitops-manually)
-
-To configure:
-
-- [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
-
-## <a id='generate-openapi'></a>Generate OpenAPI Spec
-
-### <a id='using-simple-app'></a>Using a Spring Boot app with a REST service
-
-You can use a [Spring Boot example app](https://github.com/making/rest-service) built using
-[Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
-and has the [Springdoc dependency](https://springdoc.org/#getting-started).
-
-Example of a workload using the Spring Boot app:
+SCG integration as route provider is disabled by default. Once you have SCG installed, you may enable
+SCG as a route provider by [installing/updating API Auto Registration](./configuration.hbs.md) with
+the following value property:
 
 ```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: simple-rest-app
-  labels:
-    ...
-    apis.apps.tanzu.vmware.com/register-api: "true"
-spec:
-  source:
-    ...
-  params:
-    - name: api_descriptor
-      value:
-        type: openapi
-        location:
-          path: "/v3/api-docs"
-        system: dev
-        owner: team-a
-        description: "A set of API endpoints."
+route_provider:
+  spring_cloud_gateway:
+    enabled: true
+    scg_openapi_service_url: "http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local" # default value
 ```
 
-### <a id='using-app-acc-template'></a>Using App Accelerator Template
+For SCG 2.1.0 and above, if you enabled TLS on SCG, or installed it in a custom namespace,
+you will need to overwrite `route_provider.spring_cloud_gateway.scg_openapi_service_url` in your
+API Auto Registration values file.
 
-If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
-App Accelerator template to get a pre-built app that includes a `workload.yaml` with a basic REST
-API. From your Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) Accelerators
-tab, search for the accelerator and scaffold it according to your needs.
+If you are using lower version of SCG, consider to upgrade or refer to the following table to
+understand the impact:
 
-### <a id='existing-spring-project'></a>Using an existing Spring Boot project using springdoc
+| Capability | Behavior with SCG 2.1.0 and above | Behavior prior to SCG 2.1.0 |
+| --- | --- | --- |
+| Configuring `scg_openapi_service_url` | The default value should be sufficient if with default SCG installation | The URL is `http://scg-operator.tap-install.svc.cluster.local` with the default SCG installation |
+| Update API metadata on the matching SCG | API metadata annotations will be added/updated, and the API spec exposed from SCG OpenAPI endpoint will reflect that | API metadata annotations will be added/updated, but the API spec exposed from SCG OpenAPI endpoint will <strong>NOT</strong> reflect that |
+| Use SCG generated API spec as aggregated API spec | Yes. And the OpenAPI endpoint from AAR controller will return the same spec as the SCG OpenAPI Service | SCG OpenAPI endpoint does not support returning spec for a single SCG instance, so the aggregated API spec will not include the additional information from SCG filters |
 
-If you have an existing Spring Boot app that exposes an API, you can generate OpenAPI specifications
-using springdoc. See the [springdoc documentation](https://springdoc.org/#getting-started)
+### <a id='create-scg'></a>Create SpringCloudGateway resource
 
-After you have springdoc configured and an OpenAPI automatically generated, you can choose one of the
-three methods of creating the APIDescriptor custom resource.
-VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box
-(OOTB) supply chain.
-See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
-Alternatively, if you want to use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
-Lastly, if you want to use a different Gitops process or manage the APIDescriptor CR manually,
-see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
-
-## <a id='create-api-descriptor'></a>Create APIDescriptor Custom Resource
-
-### <a id='using-ootb-supply-chain'></a> Use Out-Of-The-Box (OOTB) supply chains
-
-All the Out-Of-The-Box (OOTB) supply chains are modified so that they can use API Auto Registration.
-If you want your workload to be auto registered, you must make modifications to your
-workload YAML:
-
-1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`.
-2. Add a parameter of `type api_descriptor`:
-
-    ```yaml
-      params:
-        - name: api_descriptor
-          value:
-            type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
-            location:
-              path: "/v3/api-docs"  # The path to the api documentation
-            owner: team-petclinic   # The team that owns this
-            description: "A set of API endpoints to manage the resources within the petclinic app."
-    ```
-
-There are 2 different options for the location:
-
-- The default supply chains use Knative to deploy your applications. In this
-  event the only location information you must send is the path to the API
-  documentation. The controller can figure out the base URL for you.
-- You can hardcode the URL using the baseURL property. The controller uses a
-combination of this baseURL and your path to retrieve the YAML.
-
-Example workload that exposes a Knative service:
+Sample SCG:
 
 ```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
+apiVersion: "tanzu.vmware.com/v1"
+kind: SpringCloudGateway
 metadata:
-  name: petclinic-knative
-  labels:
-    ...
-    apis.apps.tanzu.vmware.com/register-api: "true"
+  name: test-api-curation
 spec:
-  source:
-    ...
-  params:
-    - name: api_descriptor
-      value:
-        type: openapi
-        location:
-          path: "/v3/api-docs"
-        system: pet-clinics
-        owner: team-petclinic
-        description: "A set of API endpoints to manage the resources within the petclinic app."
-
+  api:
+    version: 1.2.3
+    groupId: test-api-curation
+    serverUrl: https://my-curated-api.mydomain.com
+    cors:
+      allowedOrigins:
+        - "http://api-portal.mydomain.com"
+      allowedMethods:
+        - "GET"
+        - "PUT"
+        - "POST"
+      allowedHeaders:
+        - '*'
 ```
 
-Example of a workload with a hardcoded URL to the API documentation:
+## <a id='create-api-descriptors-for-curation'></a>Create APIDescriptors for curation
 
-```yaml
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: petclinic-hard-coded
-  labels:
-    ...
-    apis.apps.tanzu.vmware.com/register-api: "true"
-spec:
-  source:
-    ...
-  params:
-    - name: api_descriptor
-      value:
-        type: openapi
-        location:
-          baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/
-          path: "/v3/api-docs"
-        owner: team-petclinic
-        system: pet-clinics
-        description: "A set of API endpoints to manage the resources within the petclinic app."
-```
+Follow the [API Auto Registration Usage Guide](./usage.hbs.md) to create `APIDescriptor` resources.
+If any of the referenced `APIDescriptor` is not ready, the `CuratedAPIDescriptor` will keep retrying
+until all the referenced `APIDescriptor`s are ready. If the API spec from any of the `APIDescriptor`
+gets updated, our controller will pick up the changes on the next reconciliation loop.
 
-After the supply chain runs, it creates an `APIDescriptor` custom resource. This resource is what
-Tanzu Application Platform uses to auto register your API.
-See [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
+**Note:** By default, the update might take up to 10 minutes to be reflected in the worst case scenario,
+max 5 minutes to refresh the `APIDescriptor`, and max 5 minutes to refresh `CuratedAPIDescriptor`.
+However, you may shorten the wait time by configuring `sync_period` in the AAR values file.
 
-### <a id='using-custom-supply-chain'></a>Using Custom Supply Chains
+## <a id='create-curated-api-descriptor'></a>Create CuratedAPIDescriptor custom resource
 
-If you are creating custom supply chains, you can still use API Auto Registration. To write a
-supply chain pipeline, use `ClusterConfigTemplate` by the name of `config-template` in
-your pipeline. To write a custom task, verify how the template is written to read parameters,
-interpret baseURL from Knative Services, and construct APIDescriptor CRs.
+Using your GitOps process, or manually, you may create an CuratedAPIDescriptor CR and apply it in the
+cluster you choose. Be sure specify all the required fields for an CuratedAPIDescriptor CR to reconcile.
 
-In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant
-permissions to create the CR from the delivery pipeline.
+For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained](./key-concepts.hbs.md#curated-api-descriptor).
 
-For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
+## <a id='retrieve-curated-api-specs'></a>Retrieve curated API specs
 
-### <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
-
-Using your GitOps process, or manually, you must stamp out an APIDescriptor CR and apply it in the
-cluster you choose. Be sure specify all the required fields for an APIDescriptor CR to reconcile.
-
-For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
-
-## <a id='additional-config'></a>Additional configuration
-
-### <a id='cors'></a>Setting up CORS for OpenAPI specifications
-
-The agent, usually a browser, uses the [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol)
-protocol to verify whether the current origin uses an API.
-To use the "Try it out" feature for OpenAPI specifications from the API Documentation plug-in, you must
-configure CORS to allow successful requests.
-
-Your API must be configured to allow CORS Requests from Tanzu Developer Portal. How you
-accomplish this varies based on the programming language and framework you are using.
-If you are using Spring, see [CORS support in spring framework](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
-
-At a high level, the Tanzu Developer Portal domain must be accepted as valid cross-origin by
-your API.
-
-Verify the following:
-
-- **Origins allowed** header: `Access-Control-Allow-Origin`: A list of comma-separated values.
-This list must include your Tanzu Developer Portal host.
-- **Methods allowed** header: `Access-Control-Allow-Method`: Must allow the method used by your API.
-Also confirm that your API supports preflight requests, a valid response to the OPTIONS HTTP method.
-- **Headers allowed** header: `Access-Control-Allow-Headers`: If the API requires any header, you
-must include it in the API configuration or your authorization server.
+Describe the OpenAPI endpoint and filtering.
