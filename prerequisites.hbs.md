@@ -99,8 +99,8 @@ providers:
 - Red Hat OpenShift Container Platform v4.12 or v4.13.
     - vSphere
     - Baremetal
-- Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see [TKG documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
-- vSphere with Tanzu v8.0.1c or later (with Tanzu Application Platform v1.6.2 onwards).
+- Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
+- vSphere with Tanzu v8.0.1c or later and Tanzu Application Platform v1.6.2 or later.
     - For vSphere with Tanzu, you must configure the pod security policies so the 
     Tanzu Application Platform controller pods can run as root. 
     For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
