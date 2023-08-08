@@ -23,7 +23,7 @@ kind: ImageVulnerabilityScan
 metadata:
   name: prisma-ivs
   annotations:
-    app-scanning.apps.tanzu.vmware.com/scanner-name: prisma
+    app-scanning.apps.tanzu.vmware.com/scanner-name: Prisma
 spec:
   image: nginx@sha256:... # The image to be scanned. Digest must be specified.
   scanResults:

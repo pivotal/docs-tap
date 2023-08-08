@@ -428,7 +428,7 @@ overlays work with Tanzu Application Platform, see
    tanzu package installed update tap -p tap.tanzu.vmware.com -n tap-install --values-file tap-values.yaml
    ```
 
-### <a id='no-scanner-name'></a> Scanner name not shown
+### <a id='no-scanner-name'></a> Scanner name not shown in the Tanzu Developer Portal for Scan 2.0
 
 #### Symptom
 

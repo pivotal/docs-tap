@@ -10,7 +10,7 @@ kind: ImageVulnerabilityScan
 metadata:
   name: trivy-ivs
   annotations:
-    app-scanning.apps.tanzu.vmware.com/scanner-name: trivy
+    app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy
 spec:
   image: nginx@sha256:... # The image to be scanned. Digest must be specified.
   scanResults:

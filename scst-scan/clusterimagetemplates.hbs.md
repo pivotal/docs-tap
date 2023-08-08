@@ -124,7 +124,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
           labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
           annotations:
             apps.tanzu.vmware.com/correlationid: #@ correlationId()
-            app-scanning.apps.tanzu.vmware.com/scanner-name: trivy
+            app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy
           generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
         spec:
           image: #@ data.values.image

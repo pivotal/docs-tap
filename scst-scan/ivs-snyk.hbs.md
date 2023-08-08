@@ -19,7 +19,7 @@ kind: ImageVulnerabilityScan
 metadata:
   name: snyk-ivs
   annotations:
-    app-scanning.apps.tanzu.vmware.com/scanner-name: snyk
+    app-scanning.apps.tanzu.vmware.com/scanner-name: Snyk
 spec:
   image: nginx@sha256:... # The image to be scanned. Digest must be specified.
   scanResults:
