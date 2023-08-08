@@ -29,8 +29,7 @@ Meet the following prerequisites:
   can build a sample application, such as `Tanzu-Java-Web-App` in
   [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md).
 
-- Ensure that your extra plug-ins are in an npm registry. This registry can be your own private
-  registry or a plug-in registry if you intend to use a third-party or community plug-in.
+- Ensure that your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry.
 
 - Ensure that [Carvel tools](https://carvel.dev/) is installed on your workstation.
   `imgpkg`, in particular, must be installed to perform some of the build steps.
