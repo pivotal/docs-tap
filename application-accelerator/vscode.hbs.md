@@ -8,8 +8,7 @@ from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies
 
-- To use the VS Code extension, the extension must access the Tanzu Developer Portal
-  (formerly named Tanzu Application Platform GUI) URL.
+- To use the VS Code extension, the extension must access the Tanzu Developer Portal URL.
   For information about how to retrieve the Tanzu Developer Portal URL, see
   [Retrieving the URL for the Tanzu Developer Portal](#fqdn-tap-gui-url).
 

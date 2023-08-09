@@ -1,7 +1,6 @@
 # Add external plug-ins to Tanzu Developer Portal
 
-This topic tells you how to add external plug-ins to Tanzu Developer Portal
-(formerly Tanzu Application Platform GUI).
+This topic tells you how to add external plug-ins to Tanzu Developer Portal.
 
 ## <a id="prereqs"></a> External plug-in prerequisite
 

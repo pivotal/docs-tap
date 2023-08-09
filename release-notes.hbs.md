@@ -132,7 +132,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Policy Controller                  |         |
 | Supply Chain Security Tools - Scan                               |         |
 | Supply Chain Security Tools - Store                              |         |
-| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
+| Tanzu Developer Portal                                           |         |
 | Tanzu Application Platform Telemetry                             |         |
 | Tanzu Build Service                                              |         |
 | Tanzu CLI                                                        |         |

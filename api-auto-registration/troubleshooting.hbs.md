@@ -34,8 +34,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     ```
 
     > **Note** If you manually remove the finalizers from the APIDescriptor resources, you can have
-    > stale API entities within Tanzu Developer Portal (formerly called Tanzu Application Platform GUI)
-    > that you must manually deregister.
+    > stale API entities within Tanzu Developer Portal that you must manually deregister.
 
 ### APIDescriptor CRD shows message of `connection refused` but service is up and running
 

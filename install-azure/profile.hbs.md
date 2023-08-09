@@ -172,7 +172,7 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
       spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.
       sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu
       tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform
-      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI                                            web app graphical user interface for Tanzu Application Platform
+      tap-gui.tanzu.vmware.com                             Tanzu Developer Portal                                            web app graphical user interface for Tanzu Application Platform
       tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
                                                                                                                                      case.
@@ -428,11 +428,8 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the host
-name that you configured earlier.
-This host name is pointed at the shared ingress.
-To configure LoadBalancer for Tanzu Developer Portal,
-see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.hbs.md).
+To access Tanzu Developer Portal, you can use the host name that you configured earlier. This host
+name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Developer Portal, see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.hbs.md).
 
 You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the

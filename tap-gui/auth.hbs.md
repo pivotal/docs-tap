@@ -1,8 +1,8 @@
 # Set up authentication for Tanzu Developer Portal
 
-Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) extends the current Backstage
-authentication plug-in so that you can see a login page based on the authentication providers
-configured at installation. This feature is a work in progress.
+Tanzu Developer Portal extends the current Backstage authentication plug-in so that you can see a
+login page based on the authentication providers configured at installation. This feature is a work
+in progress.
 
 Tanzu Developer Portal currently supports the following authentication providers:
 

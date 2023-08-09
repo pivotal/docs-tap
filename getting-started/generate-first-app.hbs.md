@@ -14,7 +14,7 @@ There are multiple interfaces that you can use to generate a new project. The op
 
 - Application Accelerator extension for VS Code
 - Application Accelerator plug-in for IntelliJ
-- Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+- Tanzu Developer Portal
 
 Choose one of the following tabs for how to generate and deploy applications using your selected interface.
 If you have already generated a project and want to skip this step, you can go to
@@ -33,18 +33,18 @@ VS Code
   1. Install and configure the Application Accelerator extension for VS Code, see
      [Application Accelerator Visual Studio Code extension](../application-accelerator/vscode.hbs.md).
 
-  1. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
+  2. Select an accelerator from the catalog. This example uses `Tanzu Java Web App`.
 
      ![Selecting Tanzu Java Web App in the Visual Studio Code UI.](../images/app-accelerator/generate-first-app/vscode-1-1.png)
 
-  1. In **Configure Accelerator**, configure the accelerator as defined by your project's requirements.
+  3. In **Configure Accelerator**, configure the accelerator as defined by your project's requirements.
      This example configures the project to use Spring Boot v3.0 and Java v17.
 
      ![The Configure Accelerator step in the Visual Studio Code UI. The check box for Spring Boot 3.0 is selected.](../images/app-accelerator/generate-first-app/vscode-1-2.png)
 
-  1. Click **Next Step**.
+  4. Click **Next Step**.
 
-  1. If your organization's Tanzu Application Platform is configured for Git repository creation,
+  5. If your organization's Tanzu Application Platform is configured for Git repository creation,
      configure the **Setup Repository** step using the following sub-steps.
      If not, click **Skip** and go to step 5.
 
@@ -54,7 +54,7 @@ VS Code
 
       1. Using the **Providers** drop-down menu, select your Git provider. For example, `github.com`.
 
-      1. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
+      2. After you select the provider, a dialog box appears for you to enter an API token for your Git provider.
         Populate the text box with your provider's API token and press Enter.
 
          This API key must be able to create new repositories for an organization or user.
@@ -64,28 +64,28 @@ VS Code
 
          ![The Setup Repository step in the Visual Studio UI showing the dialog box to enter the personal access token for your provider.](../images/app-accelerator/generate-first-app/vscode-1-4.png)
 
-      1. In the **Owner** text box, enter the name of either the GitHub organization or user name to
+      3. In the **Owner** text box, enter the name of either the GitHub organization or user name to
          create the repository under.
 
-      1. In the **Repository Name** text box, enter the name of the project repository.
+      4. In the **Repository Name** text box, enter the name of the project repository.
 
-      1. In the **Repository Branch** text box, enter the name of the default branch for the
+      5. In the **Repository Branch** text box, enter the name of the default branch for the
          project repository. Typically, this is set to `main`.
 
-      1. Click **Next Step**.
+      6. Click **Next Step**.
 
-  1. In the **Review and Generate** step, verify that all the information you provided
+  6. In the **Review and Generate** step, verify that all the information you provided
      is accurate, then click **Generate Project**.
 
      ![The Review and Generate step in the Visual Studio Code UI.](../images/app-accelerator/generate-first-app/vscode-1-5.png)
 
-  1. A dialog box appears for you to choose a location for the project to be stored on the local file system.
+  7. A dialog box appears for you to choose a location for the project to be stored on the local file system.
      Choose a directory or create a new one.
 
-  1. After the project has generated, a second dialog box appears for you to open the new project
+  8. After the project has generated, a second dialog box appears for you to open the new project
      in a new window. Click **Yes**.
 
-  1. When opened, the project is ready for development.
+  9. When opened, the project is ready for development.
 
 IntelliJ
 : **What you will do:**

@@ -1,7 +1,7 @@
 # Configure custom certificate authorities for Tanzu Developer Portal
 
-This topic tells you how to configure your Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
-to trust unusual certificate authorities (CA) when making outbound connections.
+This topic tells you how to configure your Tanzu Developer Portal to trust unusual certificate
+authorities (CA) when making outbound connections.
 
 Tanzu Developer Portal might require custom certificates when connecting
 to persistent databases or custom catalog locations that require SSL.

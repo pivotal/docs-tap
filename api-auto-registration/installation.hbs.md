@@ -72,7 +72,7 @@ To install the API Auto Registration package:
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
-2. Locate the Tanzu Developer Portal (formerly Tanzu Application Platform GUI) URL.
+2. Locate the Tanzu Developer Portal URL.
 
     When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Developer Portal URL is sufficient. You can edit this to match the externally available FQDN of Tanzu Developer Portal to display the entity URL in the externally accessible APIDescriptor status.
 

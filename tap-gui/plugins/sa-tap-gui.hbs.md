@@ -1,7 +1,6 @@
 # Security Analysis in Tanzu Developer Portal
 
-This topic tells you about the Security Analysis plug-in in Tanzu Developer Portal
-(formerly called Tanzu Application Platform GUI).
+This topic tells you about the Security Analysis plug-in in Tanzu Developer Portal.
 
 ## <a id="overview"></a> Overview
 

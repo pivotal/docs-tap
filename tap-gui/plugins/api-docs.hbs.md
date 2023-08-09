@@ -1,7 +1,7 @@
 # API documentation plug-in in Tanzu Developer Portal
 
-This topic gives you an overview of the API documentation plug-in of Tanzu Developer Portal
-(formerly called Tanzu Application Platform GUI). For more information, see
+This topic gives you an overview of the API documentation plug-in of Tanzu Developer Portal.
+For more information, see
 [Get started with the API documentation plug-in](api-docs-getting-started.hbs.md).
 
 ## <a id="overview"></a> Overview

@@ -1,7 +1,6 @@
 # Customize the Tanzu Developer Portal telemetry collection
 
-This section tells you how to customize telemetry collection for the Tanzu Developer Portal
-(formerly named Tanzu Application Platform GUI) portal.
+This section tells you how to customize telemetry collection for Tanzu Developer Portal.
 
 ## <a id="telemetry-customizing"></a> Customize organization ID
 

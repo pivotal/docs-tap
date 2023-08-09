@@ -1,9 +1,8 @@
 # Overview of enabling TLS for Tanzu Developer Portal
 
-Many users want inbound traffic to Tanzu Developer Portal
-(formerly called Tanzu Application Platform GUI) to be properly encrypted.
-These topics tell you how to enable TLS encryption either with an existing certificate or by using
-the included cert-manager instance.
+Many users want inbound traffic to Tanzu Developer Portal to be properly encrypted. These topics
+tell you how to enable TLS encryption either with an existing certificate or by using the included
+cert-manager instance.
 
 ## <a id="concepts"></a> Concepts
 

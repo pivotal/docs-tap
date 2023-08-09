@@ -1,7 +1,7 @@
 # Application Live View for Spring Boot Applications in Tanzu Developer Portal
 
 This topic tells you about the Application Live View pages for Spring Boot Applications in
-Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
+Tanzu Developer Portal.
 
 ## <a id="details-page"></a> Details page
 

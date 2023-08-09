@@ -70,7 +70,7 @@ spec:
 
 If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
 App Accelerator template to get a pre-built app that includes a `workload.yaml` with a basic REST
-API. From your Tanzu Developer Portal (formerly called Tanzu Application Platform GUI) Accelerators
+API. From your Tanzu Developer Portal Accelerators
 tab, search for the accelerator and scaffold it according to your needs.
 
 ### <a id='existing-spring-project'></a>Using an existing Spring Boot project using springdoc

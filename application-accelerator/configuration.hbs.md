@@ -549,9 +549,8 @@ command and provide the name of the secret for that flag.
 
 ## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate
 
-If Tanzu Application Platform is configured to use an ingress for Tanzu Developer Portal
-(formerly named Tanzu Application Platform GUI) and the Accelerator Server, then it might detect a
-timeout during accelerator generation.
+If Tanzu Application Platform is configured to use an ingress for Tanzu Developer Portal and the
+Accelerator Server, then it might detect a timeout during accelerator generation.
 
 This can happen if the accelerator takes a longer time to generate than the default timeout. When
 this happens, Tanzu Developer Portal appears to continue to run for an indefinite period. In the IDE

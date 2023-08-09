@@ -17,8 +17,7 @@ Follow these steps to deploy a sample Spring Boot `Workload`:
 Follow these steps to fetch the Application Single Sign-On Spring Boot application source code:
 
 1. Download the Application Single Sign-On Starter Java accelerator from the Tanzu Developer Portal
-   (formerly named Tanzu Application Platform GUI) accelerators located on your
-   Tanzu Application Platform cluster:
+   accelerators located on your Tanzu Application Platform cluster:
 
     - Option 1: Use the Tanzu Developer Portal dashboard through browser.
 

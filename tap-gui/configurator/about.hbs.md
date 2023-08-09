@@ -1,7 +1,7 @@
 # Overview of Configurator
 
-The Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) Configurator tool enables
-you to add functions (plug-ins) to Tanzu Developer Portal, turning it into a customized portal.
+The Tanzu Developer Portal Configurator tool enables you to add functions (plug-ins) to
+Tanzu Developer Portal, turning it into a customized portal.
 
 > **Note** The Configurator tool is in beta as of this release. Do not use in a production environment.
 

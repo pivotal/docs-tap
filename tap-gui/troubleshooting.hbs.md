@@ -1,7 +1,6 @@
 # Troubleshoot Tanzu Developer Portal
 
-This topic tells you how to troubleshoot issues encountered when installing Tanzu Developer Portal
-(formerly called Tanzu Application Platform GUI).
+This topic tells you how to troubleshoot issues encountered when installing Tanzu Developer Portal.
 
 ## <a id='port-range-invalid'></a> Tanzu Developer Portal reports that the port range is not valid
 

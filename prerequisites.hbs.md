@@ -41,10 +41,10 @@ There are some optional but recommended DNS records you must allocate if you dec
 
 - Cloud Native Runtimes (Knative): Allocate a wildcard subdomain for your developer's applications. This is specified in the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Access with the shared Ingress method](tap-gui/accessing-tap-gui.html#ingress-method) for more information about `tanzu-system-ingress`.
 
-- Tanzu Developer Portal (formerly named Tanzu Application Platform GUI): If you decide to implement
-  the shared ingress and include Tanzu Developer Portal, allocate a fully Qualified Domain Name
-  (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists
-  of `tap-gui` and the `shared.ingress_domain` value. For example, `tap-gui.example.com`.
+- Tanzu Developer Portal: If you decide to implement the shared ingress and include
+  Tanzu Developer Portal, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the
+  `tanzu-system-ingress` service. The default host name consists of `tap-gui` and the
+  `shared.ingress_domain` value. For example, `tap-gui.example.com`.
 
 - Supply Chain Security Tools - Store: Similar to Tanzu Developer Portal, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
 
@@ -101,8 +101,8 @@ providers:
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 - vSphere with Tanzu v8.0.1c or later and Tanzu Application Platform v1.6.2 or later.
-    - For vSphere with Tanzu, you must configure the pod security policies so the 
-    Tanzu Application Platform controller pods can run as root. 
+    - For vSphere with Tanzu, you must configure the pod security policies so the
+    Tanzu Application Platform controller pods can run as root.
     For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
         To set the pod security policies, run:
@@ -111,7 +111,7 @@ providers:
         kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
         ```
 
-        For more information about the pod security policies on Tanzu for vSphere, 
+        For more information about the pod security policies on Tanzu for vSphere,
         see the [VMware vSphere documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-3B7F5B44-E31D-4819-B166-C531D4ECAE7D.html).
 
 ## <a id="resource-requirements"></a>Resource requirements

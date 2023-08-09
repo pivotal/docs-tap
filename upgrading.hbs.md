@@ -17,8 +17,8 @@ Before you upgrade Tanzu Application Platform:
 - Ensure that Tanzu CLI is updated to the version recommended by the target Tanzu Application Platform
   version. For information about installing or updating the Tanzu CLI and plug-ins, see
   [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.hbs.md#cli-and-plugin).
-- For information about Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
-  considerations, see [Tanzu Developer Portal Considerations](tap-gui/upgrades.md#considerations).
+- For information about Tanzu Developer Portal considerations, see
+  [Tanzu Developer Portal Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
 - To avoid the temporary warning state that is described in
   [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials
@@ -144,7 +144,7 @@ Subsequent upgrades will not require a removal:
       --namespace tap-install
     ```
 
-4. Update the `full` dependencies package by running: 
+4. Update the `full` dependencies package by running:
 
     ```console
     tanzu package install full-deps -p full-deps.buildservice.tanzu.vmware.com -v "> 0.0.0" -n tap-install --values-file PATH-TO-TAP-VALUES-FILE

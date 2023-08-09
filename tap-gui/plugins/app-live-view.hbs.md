@@ -1,7 +1,6 @@
 # Application Live View in Tanzu Developer Portal
 
-This topic tells you about Application Live View in Tanzu Developer Portal
-(formerly called Tanzu Application Platform GUI).
+This topic tells you about Application Live View in Tanzu Developer Portal.
 
 ## <a id="overview"></a> Overview
 

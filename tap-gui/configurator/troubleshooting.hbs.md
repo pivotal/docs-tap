@@ -1,7 +1,6 @@
 # Troubleshoot Tanzu Developer Portal Configurator
 
-This topic helps you troubleshoot Tanzu Developer Portal (formerly Tanzu Application Platform GUI)
-Configurator.
+This topic helps you troubleshoot Tanzu Developer Portal Configurator.
 
 ## Symptom
 

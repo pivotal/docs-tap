@@ -11,8 +11,7 @@ You can use the full potential of API Auto Registration by using a distributed e
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
-The information from this custom resource constructs an API entity in Tanzu Developer Portal
-(formerly named Tanzu Application Platform GUI).
+The information from this custom resource constructs an API entity in Tanzu Developer Portal.
 
 This custom resource exposes the following text boxes:
 
@@ -40,8 +39,7 @@ spec:
         namespace:
 ```
 
-The text boxes cause specific behavior in Tanzu Developer Portal
-(formerly called Tanzu Application Platform GUI):
+The text boxes cause specific behavior in Tanzu Developer Portal:
 
 - The system and owner are copied to the API entity. You might have to separately create and add the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind to the catalog.
 - Tanzu Developer Portal uses the namespace for the API entity where the APIDescriptor CR is applied. This causes the API entity's name, system, and owner to all be in that namespace.

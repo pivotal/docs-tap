@@ -1,8 +1,7 @@
 # Generate and publish TechDocs
 
 This topic tells you how to generate and publish TechDocs for catalogs as part of
-Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
-For more information about TechDocs, see the
+Tanzu Developer Portal. For more information about TechDocs, see the
 [Backstage.io documentation](https://backstage.io/docs/features/techdocs/).
 
 ## <a id="create-s3-bucket"></a> Create an Amazon S3 bucket

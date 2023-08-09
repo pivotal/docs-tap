@@ -168,7 +168,7 @@ To add the Tanzu Application Platform package repository to your cluster:
       spring-cloud-gateway.tanzu.vmware.com                Spring Cloud Gateway
       sso.apps.tanzu.vmware.com                            AppSSO
       tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform
-      tap-gui.tanzu.vmware.com                             Tanzu Application Platform GUI
+      tap-gui.tanzu.vmware.com                             Tanzu Developer Portal
       tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform
       tap.tanzu.vmware.com                                 Tanzu Application Platform
       tekton.tanzu.vmware.com                              Tekton Pipelines
@@ -452,10 +452,8 @@ For more information about the differences between `lite` and `full` dependencie
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the host
-name that you configured earlier. This host name is pointed at the shared ingress.
-To configure LoadBalancer for Tanzu Developer Portal, see
-[Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Developer Portal, you can use the host name that you configured earlier. This host
+name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Developer Portal, see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the

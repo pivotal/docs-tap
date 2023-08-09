@@ -58,8 +58,8 @@ for your environment:
 
 To create a function project from an accelerator:
 
-1. From the Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) portal, click
-   **Create** on the left navigation bar to see the list of available accelerators.
+1. From Tanzu Developer Portal, click **Create** on the left navigation bar to see the list of
+   available accelerators.
 
    ![Screenshot of Tanzu Developer Portal. The create button in the left navigation menu has been selected.](images/create-accelerator.png)
 
