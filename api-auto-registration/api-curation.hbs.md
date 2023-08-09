@@ -20,7 +20,7 @@ A successful API curation requires the following as of today:
 
 ## <a id='create-route-provider'></a>(Optional) Install route provider and create gateway resources
 
-### <a id='install-scg'></a>Install Spring Cloud Gateway for Kubernetes
+### <a id='setup-scg'></a>Setup Spring Cloud Gateway integration
 
 Install Spring Cloud Gateway for Kubernetes following [this guide](../spring-cloud-gateway/install-spring-cloud-gateway.hbs.md).
 
@@ -50,7 +50,10 @@ understand the impact:
 
 ### <a id='create-scg'></a>Create SpringCloudGateway resource
 
-Sample SCG:
+Using your GitOps process, or manually, you may create an `SpringCloudGateway` CR and apply it in the
+cluster you choose.
+
+Here is a sample SCG resource
 
 ```yaml
 apiVersion: "tanzu.vmware.com/v1"
@@ -73,6 +76,9 @@ spec:
         - '*'
 ```
 
+The `groupId` and `version` will be used to match on the SCG when we reconcile for `CuratedAPIDescriptor`.
+Once a match is found, `serverUrl` will be used as the baseURL of the curated API.
+
 ## <a id='create-api-descriptors-for-curation'></a>Create APIDescriptors for curation
 
 Follow the [API Auto Registration Usage Guide](./usage.hbs.md) to create `APIDescriptor` resources.
@@ -93,4 +99,29 @@ For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained
 
 ## <a id='retrieve-curated-api-specs'></a>Retrieve curated API specs
 
-Describe the OpenAPI endpoint and filtering.
+The API Auto Registration controller offers an endpoint to retrieve all the generated API specs for
+the curated APIs in the cluster. To do so, you need to first find the HTTPProxy that's created for
+accessing the endpoint:
+
+```console
+kubectl get httpproxy api-auto-registration-controller -n api-auto-registration
+```
+
+The result is similar to:
+
+```console
+NAME                               FQDN                              TLS SECRET                   STATUS   STATUS DESCRIPTION
+api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
+```
+
+With the FQDN with proper http scheme, you may get all the curated API specs with curl:
+
+```console
+curl http(s)://<AAR-controller-fqdn>/openapi
+```
+
+You may retrieve spec for a specific `groupId` and `version` combination by specifying query params:
+
+```console
+curl http(s)://<AAR-controller-fqdn>/openapi?groupId=<groupId>&version=<version>
+```
