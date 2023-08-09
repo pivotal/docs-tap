@@ -1,5 +1,8 @@
 # API Curation (alpha)
 
+> **Caution** API Curation functionality is in alpha and is intended for evaluation and test purposes
+> only. Do not use in a production environment.
+
 This topic describes how you can use API Curation to expose several standalone APIs as one API.
 
 To unlock the maximum power of API curation, we strongly recommend to use a supported route provider.
@@ -11,10 +14,10 @@ routing concern will be taken care of by us automatically.
 A successful API curation requires the following as of today:
 
 1. (Optional) Spring Cloud Gateway for Kubernetes is installed.
-2. API Auto Registration is installed or updated with `route_provider.spring_cloud_gateway.enabled`
+2. (Optional) `SpringCloudGateway` resources are created with the matching `groupId` and `version`.
+3. API Auto Registration is installed or updated with `route_provider.spring_cloud_gateway.enabled`
    set accordingly.
-3. One or more `APIDescriptor`s that are in the ready state.
-4. (Optional) A `SpringCloudGateway` resource is created with the matching `groupId` and `version`.
+4. One or more `APIDescriptor`s that are in the ready state.
 5. A `CuratedAPIDescriptor` resource is created
 6. You should be able to get the aggregated API spec from the OpenAPI endpoint from our controller.
 
@@ -42,11 +45,11 @@ API Auto Registration values file.
 If you are using lower version of SCG, consider to upgrade or refer to the following table to
 understand the impact:
 
-| Capability | Behavior with SCG 2.1.0 and above | Behavior prior to SCG 2.1.0 |
-| --- | --- | --- |
-| Configuring `scg_openapi_service_url` | The default value should be sufficient if with default SCG installation | The URL is `http://scg-operator.tap-install.svc.cluster.local` with the default SCG installation |
-| Update API metadata on the matching SCG | API metadata annotations will be added/updated, and the API spec exposed from SCG OpenAPI endpoint will reflect that | API metadata annotations will be added/updated, but the API spec exposed from SCG OpenAPI endpoint will <strong>NOT</strong> reflect that |
-| Use SCG generated API spec as aggregated API spec | Yes. And the OpenAPI endpoint from AAR controller will return the same spec as the SCG OpenAPI Service | SCG OpenAPI endpoint does not support returning spec for a single SCG instance, so the aggregated API spec will not include the additional information from SCG filters |
+| Capability with SCG 2.1.0 and above | Behavior prior to SCG 2.1.0 |
+| --- | --- |
+| The default value `scg_openapi_service_url` should be sufficient if using the default SCG installation | Need to overwrite the value `scg_openapi_service_url` with `http://scg-operator.tap-install.svc.cluster.local` if using the default SCG installation |
+| Matching SCG will have API metadata updated automatically and the generated openapi spec will reflect the metadata | API metadata annotations will be added/updated, but the API spec exposed from SCG OpenAPI endpoint will <strong>NOT</strong> reflect that |
+| The aggregated API spec will be in sync with the SCG generated API spec | SCG OpenAPI endpoint does not support returning spec for a single SCG instance, so the aggregated API spec will not include the additional information from SCG filters |
 
 ### <a id='create-scg'></a>Create SpringCloudGateway resource
 
@@ -125,3 +128,9 @@ You may retrieve spec for a specific `groupId` and `version` combination by spec
 ```console
 curl http(s)://<AAR-controller-fqdn>/openapi?groupId=<groupId>&version=<version>
 ```
+
+You may add the curated APIs to an API portal for display and trying out by configuring the source URL
+locations of an existing API portal.
+You may add all your curated APIs by using the unfiltered URL `http(s)://<AAR-controller-fqdn>/openapi`
+or the filtered URL with query params to add a specific curated API of your choice.
+Follow [this guide](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/{{ vars.api-portal.version }}/api-portal/GUID-configuring-k8s-basics.html#modifying-openapi-source-url-locations) for more details.

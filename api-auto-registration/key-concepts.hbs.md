@@ -173,15 +173,15 @@ be aggregated together through path-based routing.
 
 If a valid route provider is specified, e.g. `spring-cloud-gateway` for
 [Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG for short),
-the API Auto Registration controller will find the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
+the API Auto Registration controller will find the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.spring-cloud-gateway.version }}/scg-k8s/GUID-developer-resources-springcloudgateway.html)
 resource and automatically creates the following routing resources for you to expose your curated APIs
 as one:
 
-- [SpringCloudGatewayRouteConfig (SCGRC)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewayrouteconfig.html):
+- [SpringCloudGatewayRouteConfig (SCGRC)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.spring-cloud-gateway.version }}/scg-k8s/GUID-developer-resources-springcloudgatewayrouteconfig.html):
   a custom resource that describes all the API endpoints and optional routing modifiers to access
   the endpoints. This is generated from the resolved OpenAPI Specification of the APIDescriptor
-  through [SCG OpenAPI conversion service](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
-- [SpringCloudGatewayMapping (SCGM)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewaymapping.html):
+  through [SCG OpenAPI conversion service](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.spring-cloud-gateway.version }}/scg-k8s/GUID-guides-openapi-route-conversion.html).
+- [SpringCloudGatewayMapping (SCGM)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.spring-cloud-gateway.version }}/scg-k8s/GUID-developer-resources-springcloudgatewaymapping.html):
   a custom resource that binds a SCGRC resource to a SCG resource.
 
 This custom resource exposes the following text boxes:
@@ -220,7 +220,7 @@ More detailed explanation on some of the key text boxes:
 - `groupId` and `version` is used to identify a matching gateway that will be routing traffic for the
   curated API
 - `routeConfig` section specifies service level configuration we should add when generating the routing
-  resource for the API. Please refer to [this page](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html#providing-service-level-filters)
+  resource for the API. Please refer to [this page](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes{{ vars.spring-cloud-gateway.version }}/scg-k8s/GUID-guides-openapi-route-conversion.html#providing-service-level-filters)
   for more details on each field for spring-cloud-gateway.
 
 ### <a id='curated-status-fields'></a>CuratedAPIDescriptor Status Fields

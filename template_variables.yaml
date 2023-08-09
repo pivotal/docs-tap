@@ -9,3 +9,8 @@ template_variables:
   tanzu-cli:
     version: 0.90.1
     url_version: 0.90.0
+  api-portal:
+    version: 1.4
+  spring-cloud-gateway:
+    version: 2.1
+
