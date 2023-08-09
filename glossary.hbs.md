@@ -19,6 +19,10 @@
         <td>Accelerator Server</td>
         <td></td>
     </tr>
+        <tr>
+        <td>AMR Observer</td>
+        <td></td>
+    </tr>
     <tr>
         <td>API Auto Registration</td>
         <td></td>
@@ -66,13 +70,18 @@
     </tr>
 </table>
 
-## <a id="c"></a> C
+## <a id="b"></a> B
 
 <table>
     <tr>
-        <th>Term</th>
+        <th>Build Cluster</th>
         <th>Definition</th>
     </tr>
+</table>
+
+## <a id="c"></a> C
+
+<table>
     <tr>
         <td>Cartographer Conventions</td>
         <td></td>
@@ -99,6 +108,49 @@
         <td>This component serves as a proxy registry server with Open Container Initiative (OCI)
             compatibility. Its main purpose is to handle image push requests by forwarding them to an
             external registry server, which is configured through <code>tap-values.yaml</code>.</td>
+    </tr>
+</table>
+
+## <a id="o"></a> O
+
+<table>
+    <tr>
+        <th>Out of the Box</th>
+        <th></th>
+    </tr>
+</table>
+
+## <a id="r"></a> R
+
+<table>
+    <tr>
+        <th>Run Cluster</th>
+        <th></th>
+    </tr>
+</table>
+
+## <a id="s"></a> S
+
+<table>
+    <tr>
+        <th>Supply Chain Choreographer</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>Supply Chain Security Tools - Policy</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>Supply Chain Security Tools - Scan</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>Supply Chain Security Tools - Sign</th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>Supply Chain Security Tools - Store</th>
+        <th></th>
     </tr>
 </table>
 
@@ -145,5 +197,14 @@
         <td>This extension for Visual Studio Code helps you develop with Tanzu Application Platform
             and enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
             have Tanzu Application Platform installed.</td>
+    </tr>
+</table>
+
+## <a id="v"></a> V
+
+<table>
+    <tr>
+        <th>Values Schema</th>
+        <th></th>
     </tr>
 </table>
