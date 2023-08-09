@@ -41,9 +41,9 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-2-COMPONENT-NAME-ri'></a> v1.6.2 resolved issues: COMPONENT-NAME
+#### <a id='1-6-2-vscode-ext-ri'></a> v1.6.2 resolved issues: Tanzu Developer Tools for VS Code
 
-- Resolved issue description.
+- Tanzu Debug now works for new untracked workloads on Windows.
 
 ---
 
