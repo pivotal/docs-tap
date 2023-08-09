@@ -21,11 +21,11 @@
     </tr>
         <tr>
         <td>AMR Observer</td>
-        <td></td>
+        <td>AMR Observer is a set of managed controllers that watches for relevant updates on resources of interest. When relevant events are observed, a CloudEvent is generated and sent to AMR CloudEvent-Handler and relayed for storage in the Metadata Store.</td>
     </tr>
     <tr>
         <td>API Auto Registration</td>
-        <td></td>
+        <td>API Auto Registration is a Tanzu Application Platform component that automates registering API specifications defined in a workload's configuration.</td>
     </tr>
     <tr>
         <td>API portal</td>
@@ -75,7 +75,8 @@
 <table>
     <tr>
         <th>Build Cluster</th>
-        <th>Definition</th>
+        <th>A build cluster is a cluster with network access to your run clusters that controls the deployment on all the run clusters.
+    </th>
     </tr>
 </table>
 
@@ -84,15 +85,15 @@
 <table>
     <tr>
         <td>Cartographer Conventions</td>
-        <td></td>
+        <td>Cartographer Conventions is a Tanzu Application Platform component that supports defining and applying conventions to pods. It applies these conventions to developer workloads as they are deployed to the platform.</td>
     </tr>
     <tr>
         <td>Cloud Native Runtimes</td>
-        <td></td>
+        <td>Cloud Native Runtimes is a Tanzu Application Platform component that is a serverless application runtime for Kubernetes. It is based on Knative and runs on a single Kubernetes cluster.</td>
     </tr>
     <tr>
         <td>Convention Controller</td>
-        <td></td>
+        <td>The convention controller provides the metadata to the convention server and executes the updates to a PodTemplateSpec in accordance with convention server's requests.</td>
     </tr>
 </table>
 
@@ -111,21 +112,12 @@
     </tr>
 </table>
 
-## <a id="o"></a> O
-
-<table>
-    <tr>
-        <th>Out of the Box</th>
-        <th></th>
-    </tr>
-</table>
-
 ## <a id="r"></a> R
 
 <table>
     <tr>
         <th>Run Cluster</th>
-        <th></th>
+        <th>Run clusters serve as your deployment environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have kapp-controller and Contour installed.</th>
     </tr>
 </table>
 
@@ -134,23 +126,19 @@
 <table>
     <tr>
         <th>Supply Chain Choreographer</th>
-        <th></th>
+        <th>Supply Chain Choreographer is a Tanzu Application Platform component based on open source Cartographer. It allows App Operators to create pre-approved paths to production by integrating Kubernetes resources with the elements of their existing toolchains, for example, Jenkins.</th>
     </tr>
     <tr>
         <th>Supply Chain Security Tools - Policy</th>
-        <th></th>
+        <th>Supply Chain Security Tools - Policy Controller is a Tanzu Application Platform component that helps you ensure that the container images in your registry are not tampered with.</th>
     </tr>
     <tr>
         <th>Supply Chain Security Tools - Scan</th>
-        <th></th>
-    </tr>
-    <tr>
-        <th>Supply Chain Security Tools - Sign</th>
-        <th></th>
+        <th>Supply Chain Security Tools - Scan is a Tanzu Application Platform component that lets you build and deploy secure, trusted software that complies with your corporate security requirements by using scanning and gatekeeping capabilities.</th>
     </tr>
     <tr>
         <th>Supply Chain Security Tools - Store</th>
-        <th></th>
+        <th>Supply Chain Security Tools - Store is a Tanzu Application Platform component that saves software bills of materials (SBoMs) to a database and allows you to query for image, source code, package, and vulnerability relationships.</th>
     </tr>
 </table>
 
@@ -197,14 +185,5 @@
         <td>This extension for Visual Studio Code helps you develop with Tanzu Application Platform
             and enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
             have Tanzu Application Platform installed.</td>
-    </tr>
-</table>
-
-## <a id="v"></a> V
-
-<table>
-    <tr>
-        <th>Values Schema</th>
-        <th></th>
     </tr>
 </table>
