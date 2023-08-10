@@ -90,8 +90,7 @@ Public clients supporting Authorization Code with PKCE flow ensure that:
   Public clients do not provide a Client Secret because they are not tailored to
   retain any secrets in public view.
 
->**Note:** For public clients, the `Authserver` **only** supports `response_type=code` ("Authorization Code Flow")
-> because public clients cannot safely store sensitive information like client secrets.
+For public clients, the `Authserver` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single page apps cannot safely store sensitive information such as client secrets.
 
 ## <a id="refs"></a>References
 
