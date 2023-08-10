@@ -25,6 +25,11 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+### <a id='1-4-8-tbs-ri'></a> Resolved issues
+
+- Fixed an issue where some buildpacks caused the builder image to become
+  excessively large
+
 ---
 
 ### <a id='1-4-8-known-issues'></a> Known issues
@@ -34,6 +39,14 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-4-8-COMPONENT-NAME-ki'></a> COMPONENT-NAME
 
 - Known issue description with link to workaround.  
+
+#### <a id='1-4-8-tbs-ki'></a> COMPONENT-NAME
+
+- TAP installation will fail if automatic dependency updater is used with a
+  kubernetes secret ref (`buildservice.tanzunet_secret.name` and
+  `buildservice.tanzunet_secret.name` in `tap-values.yaml`). For a workaround,
+  use plaintext secrets (`buildservice.tanzunet_username` and
+  `buildservice.tanzunet_password`) in `tap-values.yaml`.
 
 ---
 
