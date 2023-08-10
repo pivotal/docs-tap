@@ -60,7 +60,8 @@ The token expiry constraints are as follows:
 After you set up an Application Single Sign-On `AuthServer`, you can verify that the token received by  applications looks as expected. 
 For this purpose, you can create a simple application consuming your `AuthServer`. The following YAML file creates such an application. When you access its URL, it enables you to log in by using your `AuthServer` and displays the token it receives.
 
->**Caution** 
+> **Caution**
+>
 > - The simple application is not intended for production use. It only serves a tool to help you verify your setup.
 > - The following YAML file pulls an unvetted public image `bitnami/oauth2-proxy:7.3.0`
 > - This section does not apply to an air-gapped environment.
