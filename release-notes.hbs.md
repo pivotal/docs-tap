@@ -11,10 +11,10 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-4-8-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
-
-- Security fix description.
-
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| ootb-templates.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2602</li><li>CVE-2023-2603</li><li>CVE-2023-2650</li><li>CVE-2023-29491</li><li>CVE-2023-31484</li><li>GHSA-g2j6-57v7-gm8c</li><li>GHSA-m8cg-xc2p-r3fc</li><li>CVE-2023-1667</li><li>CVE-2023-2283</li><li>CVE-2023-25652</li><li>CVE-2023-25815</li><li>CVE-2023-29007</li><li>CVE-2023-3138</li><li>GHSA-hw7c-3rfg-p46j </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2016-20013</li><li>CVE-2017-11164</li><li>CVE-2022-29458</li><li>CVE-2023-0466</li><li>CVE-2009-5155</li><li>CVE-2015-8985</li><li>CVE-2017-13165</li><li>CVE-2017-13693</li><li>CVE-2018-12928</li><li>CVE-2018-20657</li><li>CVE-2018-6952</li><li>CVE-2021-32078</li><li>CVE-2021-39801</li><li>CVE-2021-45261</li><li>CVE-2022-41848</li><li>CVE-2022-44032</li><li>CVE-2022-44033</li><li>CVE-2022-44034</li><li>CVE-2021-26934</li><li>CVE-2022-3114 </li></ul>|
 ---
 
 ### <a id='1-4-8-resolved-issues'></a> Resolved issues
