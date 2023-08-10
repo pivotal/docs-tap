@@ -59,4 +59,4 @@ Add these CIDR ranges to the `AuthServer.spec` (this is a sample range):
 
 ## <a id="authserver-support"></a> `AuthServer` only supports `response_type=code`
 
-For public clients, the `Authserver` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single page apps cannot safely store sensitive information such as client secrets.
+For public clients, the `AuthServer` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single page apps cannot safely store sensitive information such as client secrets.
