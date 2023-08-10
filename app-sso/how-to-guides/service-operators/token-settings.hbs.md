@@ -1,4 +1,4 @@
-# Token settings for AppSSO
+# Token settings for Application Single Sign-On
 
 This topic tells you how to configure token expiry settings for Application Single 
 Sign-On (commonly called AppSSO).
@@ -55,27 +55,25 @@ The token expiry constraints are as follows:
 - The duration of the `expiry` field cannot be negative or zero.
 - The refresh token's expiration time cannot be the same as or shorter than that of the access token.
 
-## Verify token settings
+## <a id='verify'></a> Verify token settings
 
-After you set up an AppSSO Authserver, you may want to verify that the token applications receive looks as expected.
-To do this, you can create a simple application consuming your Authserver. The following `yaml` creates such an application
-that, when you visit its url, lets you log in using your Authserver and then displays the token it receives.
+After you set up an Application Single Sign-On `AuthServer`, you can verify that the token received by  applications looks as expected. 
+For this purpose, you can create a simple application consuming your `AuthServer`. The following YAML file creates such an application. When you access its URL, it enables you to log in by using your `AuthServer` and displays the token it receives.
 
->**Note:** that this is **not** intended to be an app to be run in production, but rather a tool to help you verify your
-> setup.
+>**Caution** 
+> - The simple application is not intended for production use. It only serves a tool to help you verify your setup.
+> - The following YAML file pulls an unvetted public image `bitnami/oauth2-proxy:7.3.0`
+> - This section does not apply to an air-gapped environment.
 
->**Warning:** the below yaml pulls an unvetted, public image (bitnami/oauth2-proxy:7.3.0). Please assess your own risk factor.
-
->**Note:** this will *not* work in an air-gap environment.
-
-Assuming you saved the below yaml in a file called `token-viewer.yaml`, you can apply this to your cluster with the following command:
+If you stored the following YAML in a file named `token-viewer.yaml`, you can apply it to your cluster by running the following command:
 
 ```shell
-ytt -f token-viewer.yaml --data-value ingress_domain=<Your ingress domain> --data-value-yaml 'authserver_selector=<Your authserver selector>' | kubectl apply -f-
+  ytt -f token-viewer.yaml --data-value ingress_domain=YOUR-INGRESS-DOMAIN --data-value-yaml 'authserver_selector=YOUR-AUTHSERVER-SELECTOR' | kubectl apply -f-
 ```
 
-The authserver selector field is populated by adding a label name and its value. For example: `{"name": "ci"}`
-If you need more help understanding the Authserver selector field, please read more here.
+Where `YOUR-AUTHSERVER-SELECTOR` is the label name and its value. For example: `{"name": "ci"}`.
+
+A full example is as follows:
 
 ```yaml
 #!
