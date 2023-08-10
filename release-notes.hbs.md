@@ -41,6 +41,10 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
+#### <a id='1-6-2-supply-chain-choreographer'></a> v1.6.2 resolved issues: Supply Chain Choreographer
+- Fixed issue where if a user attempts to update the `ootb_supply_chain_testing_scanning` field in their `tap-values.yaml` file to use a specified ClusterImageTemplate, it would not update because the ClusterSupplyChain was preset to `image-scanner-template`. Users can now update the `ootb_supply_chain_testing_scanning` field in their `tap-values.yaml` to use a specified ClusterImageTemplate.
+
+
 #### <a id='1-6-2-vscode-ext-ri'></a> v1.6.2 resolved issues: Tanzu Developer Tools for VS Code
 
 - Fixed issue that prevented Tanzu Debug from working on new untracked workloads on Windows.
