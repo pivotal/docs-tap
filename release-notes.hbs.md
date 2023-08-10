@@ -90,17 +90,17 @@ The following table lists the supported component versions for this Tanzu Applic
 | Learning Center workshops (deprecated)                           |         |
 | Local Source Proxy                                               |         |
 | Namespace Provisioner                                            |         |
-| Out of the Box Delivery - Basic                                  |         |
-| Out of the Box Supply Chain - Basic                              |         |
-| Out of the Box Supply Chain - Testing                            |         |
-| Out of the Box Supply Chain - Testing and Scanning               |         |
-| Out of the Box Templates                                         |         |
+| Out of the Box Delivery - Basic                                  | 0.13.8  |
+| Out of the Box Supply Chain - Basic                              | 0.13.8  |
+| Out of the Box Supply Chain - Testing                            | 0.13.8  |
+| Out of the Box Supply Chain - Testing and Scanning               | 0.13.8  |
+| Out of the Box Templates                                         | 0.13.8  |
 | Service Bindings                                                 |         |
 | Services Toolkit                                                 |         |
 | Source Controller                                                |         |
 | Spring Boot conventions                                          |         |
 | Spring Cloud Gateway                                             |         |
-| Supply Chain Choreographer                                       |         |
+| Supply Chain Choreographer                                       | 0.7.3   |
 | Supply Chain Security Tools - Policy Controller                  |         |
 | Supply Chain Security Tools - Scan                               |         |
 | Supply Chain Security Tools - Store                              |         |
