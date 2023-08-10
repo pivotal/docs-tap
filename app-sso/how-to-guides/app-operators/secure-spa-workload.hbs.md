@@ -56,8 +56,7 @@ Follow these steps to fetch the single-page Angular app source code:
     git push origin main -u
     ```
 
->**Note:** For public clients, the `Authserver` **only** supports `response_type=code` ("Authorization Code Flow")
-> because public clients (single page apps) cannot safely store sensitive information like client secrets.
+For public clients, the `Authserver` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single page apps cannot safely store sensitive information such as client secrets.
 
 1. Push the resulting directory to the remote Git repository.
 
