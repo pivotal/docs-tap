@@ -68,11 +68,6 @@ To install Cloud Native Runtimes:
         ```console
         ---
         domain_name: example.com
-        contour:
-           external:
-               namespace: tanzu-system-ingress
-           internal:
-               namespace: tanzu-system-ingress
         ```
 
         >**Note** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
