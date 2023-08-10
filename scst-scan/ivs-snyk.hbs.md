@@ -1,7 +1,7 @@
 
 # Configure an ImageVulnerabilityScan for Snyk
 
-This topic tells you how to configure an ImageVulnerabilityScan for Snyk. 
+This topic tells you how to configure an ImageVulnerabilityScan for Snyk.
 
 Use the following ImageVulnerabilityScan and secret configuration:
 
@@ -18,6 +18,8 @@ apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ImageVulnerabilityScan
 metadata:
   name: snyk-ivs
+  annotations:
+    app-scanning.apps.tanzu.vmware.com/scanner-name: Snyk
 spec:
   image: nginx@sha256:... # The image to be scanned. Digest must be specified.
   scanResults:

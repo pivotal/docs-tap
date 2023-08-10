@@ -20,6 +20,8 @@ apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ImageVulnerabilityScan
 metadata:
   name: carbon-black-ivs
+  annotations:
+    app-scanning.apps.tanzu.vmware.com/scanner-name: Carbon-Black
 spec:
   image: nginx@sha256:... # The image to be scanned. Digest must be specified.
   scanResults:

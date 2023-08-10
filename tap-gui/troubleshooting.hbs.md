@@ -358,7 +358,9 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
-### <a id='ivs-support'></a> Supporting ImageVulnerabilityScans
+## <a id='ivs-support'></a> Supporting ImageVulnerabilityScans
+
+### <a id='no-vulnerabilities'></a> No Vulnerability data
 
 #### Symptom
 
@@ -424,6 +426,33 @@ overlays work with Tanzu Application Platform, see
    ```console
    tanzu package installed update tap -p tap.tanzu.vmware.com -n tap-install --values-file tap-values.yaml
    ```
+
+### <a id='no-scanner-name'></a> Scanner name not shown in the Tanzu Developer Portal for Scan 2.0
+
+#### Symptom
+
+SCST - Scan 2.0 is enabled and the scanner name in Security Analysis and
+Supply Chain Choreographer dashboards does not appear.
+
+#### Cause
+
+The `ImageVulnerabilityScan` custom resource lacks the required annotation to
+be detected by Tanzu Developer Portal.
+
+#### Solution
+
+Add the `app-scanning.apps.tanzu.vmware.com/scanner-name` annotation to your
+the `ImageVulnerabilityScan`:
+
+```
+apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ImageVulnerabilityScan
+metadata:
+  annotations:
+    app-scanning.apps.tanzu.vmware.com/scanner-name: SCANNER-NAME
+```
+
+Where `SCANNER-NAME` is the name that will be reported in the Tanzu Developer Portal.
 
 ## Security Analysis plug-in
 

@@ -124,6 +124,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
           labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
           annotations:
             apps.tanzu.vmware.com/correlationid: #@ correlationId()
+            app-scanning.apps.tanzu.vmware.com/scanner-name: Trivy
           generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
         spec:
           image: #@ data.values.image
@@ -193,6 +194,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
    - `.metadata.name` is the name of your ClusterImageTemplate.
    - `registry-server` and `registry-repository` refer to your registry.
    - The location of your Trivy scanner image
+   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name that will be reported in the Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
 
 2. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
 
