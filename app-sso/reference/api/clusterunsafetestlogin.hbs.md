@@ -43,6 +43,7 @@ kind: ClusterUnsafeTestLogin
 metadata:
   name: "" #! required
 status:
+  issuerURI: ""
   clusterResourceNamespace: ""
   conditions:
   - lastTransitionTime: ""
