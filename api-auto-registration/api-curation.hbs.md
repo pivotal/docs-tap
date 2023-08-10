@@ -120,17 +120,18 @@ api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-re
 With the FQDN with proper http scheme, you may get all the curated API specs with curl:
 
 ```console
-curl http(s)://<AAR-controller-fqdn>/openapi
+curl http(s)://<AAR-CONTROLLER-FQDN>/openapi
 ```
 
 You may retrieve spec for a specific `groupId` and `version` combination by specifying query params:
 
 ```console
-curl http(s)://<AAR-controller-fqdn>/openapi?groupId=<groupId>&version=<version>
+curl http(s)://<AAR-CONTROLLER-FQDN>/openapi?groupId=<GROUP-ID>&version=<VERSION>
 ```
 
 You may add the curated APIs to an API portal for display and trying out by configuring the source URL
 locations of an existing API portal.
-You may add all your curated APIs by using the unfiltered URL `http(s)://<AAR-controller-fqdn>/openapi`
+You may add all your curated APIs by using the unfiltered URL `http(s)://<AAR-CONTROLLER-FQDN>/openapi`
 or the filtered URL with query params to add a specific curated API of your choice.
-Follow [this guide](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/{{ vars.api-portal.version }}/api-portal/GUID-configuring-k8s-basics.html#modifying-openapi-source-url-locations) for more details.
+Follow [this guide](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/1.4/api-portal/GUID-configuring-k8s-basics.html#modifying-openapi-source-url-locations)
+for more details.
