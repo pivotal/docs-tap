@@ -112,6 +112,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | PackageRepositories | Don't use. There is really only one packageRepository of interest for this page. |
 | packageRepository custom resource | Because we don't use CR in other Kubernetes docs, spell out custom resource here too. An example of the packageRepository custom resource is given in the YAML file named `tap-package-repo.yaml`.|
 | packageRepository pull | Just means pulling the packages from the repository|
+| Services Toolkit | Do not use abbreviation STK |
 | Tanzu Kubernetes Grid | Never use TKGm or TKG in customer-facing documentation. |
 | Tanzu Service CLI plug-in | Do not use `tanzu service` CLI or Tanzu Services CLI plug-in (with an "s") |
 | TAP repo bundle | Decided on lowercase and not "TAP Repo Bundle".|
