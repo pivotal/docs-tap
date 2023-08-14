@@ -17,7 +17,7 @@ To leverage an external OIDC provider, such as Auth0:
 1. Set up the OIDC provider
 1. Configure the GKE cluster with the OIDC provider
 1. Configure the Tanzu Developer Portal to view the remote GKE cluster
-1. Upgrade the Tanzu Developer Portal package
+1. Update the Tanzu Developer Portal package
 
 ### <a id="set-up-oidc-provider"></a> Set up the OIDC provider
 
@@ -124,9 +124,9 @@ Configure visibility of the remote cluster in Tanzu Developer Portal:
     If there are any other clusters that you want to make visible in Tanzu Developer Portal,
     add their entries to `clusters` as well.
 
-### <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Developer Portal package
+### <a id="update-tap-gui-pkg-ext"></a> Update the `tap-gui` package to finish leveraging the external OIDC provider
 
-After the new configuration file is ready, update the `tap` package:
+After the new configuration file is ready, update the `tap-gui` package:
 
 1. Run:
 
@@ -213,9 +213,9 @@ Configure visibility of the remote GKE cluster in Tanzu Developer Portal:
     If there are any other clusters that you want to make visible in Tanzu Developer Portal,
     add their entries to `clusters` as well.
 
-### <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Developer Portal package
+### <a id="update-tap-gui-pkg-ggl"></a> Update the `tap-gui` package to finish leveraging the Google OIDC provider
 
-After the new configuration file is ready, update the `tap` package:
+After the new configuration file is ready, update the `tap-gui` package:
 
 1. Run:
 
@@ -223,7 +223,7 @@ After the new configuration file is ready, update the `tap` package:
     tanzu package installed update tap --values-file tap-values.yaml
     ```
 
-1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
+2. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
    `Reconcile succeeded` by running:
 
     ```console
