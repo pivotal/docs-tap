@@ -15,7 +15,7 @@ The following issues, listed by component and area, are resolved in this release
 
 - Fixed an issue where names generated for Tanzu Application Platform GUI API entities exceeded 63 characters.
 
-### <a id='1-3-11-tbs-ri'></a> Tanzu Build Service
+#### <a id='1-3-11-tbs-ri'></a> Tanzu Build Service
 
 - Fixed an issue where some buildpacks caused the builder image to become excessively large.
 
