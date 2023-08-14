@@ -76,6 +76,8 @@ This release has the following security fixes, listed by component and area.
 <tr>
 <td>spring-cloud-gateway.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-crqg-jrpj-fc84">GHSA-crqg-jrpj-fc84</a></li>
+<li><a href="https://github.com/advisories/GHSA-6mjq-h674-j845">GHSA-6mjq-h674-j845</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34035">CVE-2023-34035</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34034">CVE-2023-34034</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-33008">CVE-2023-33008</a></li>
@@ -84,8 +86,6 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2603">CVE-2023-2603</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2602">CVE-2023-2602</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
-<li><a href="https://github.com/advisories/GHSA-crqg-jrpj-fc84">GHSA-crqg-jrpj-fc84</a></li>
-<li><a href="https://github.com/advisories/GHSA-6mjq-h674-j845">GHSA-6mjq-h674-j845</a></li>
 </ul></details></td>
 </tr>
 <tr>
@@ -97,6 +97,7 @@ This release has the following security fixes, listed by component and area.
 <tr>
 <td>tap-gui.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-h755-8qp9-cq85">GHSA-h755-8qp9-cq85</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23936">CVE-2023-23936</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23920">CVE-2023-23920</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23919">CVE-2023-23919</a></li>
@@ -105,7 +106,6 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4304">CVE-2022-4304</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3821">CVE-2022-3821</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2097">CVE-2022-2097</a></li>
-<li><a href="https://github.com/advisories/GHSA-h755-8qp9-cq85">GHSA-h755-8qp9-cq85</a></li>
 </ul></details></td>
 </tr>
 <tr>
