@@ -72,7 +72,7 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-### <a id='1-4-8-tbs-ri'></a> Tanzu Build Service
+#### <a id='1-4-8-tbs-ri'></a> Tanzu Build Service
 
 - Fixed an issue where some buildpacks caused the builder image to become excessively large.
 
