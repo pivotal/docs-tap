@@ -1,7 +1,9 @@
-# Troubleshoot Tanzu Developer Portal Configurator
+# Troubleshoot Tanzu Developer Portal Configurator (beta)
 
 This topic helps you troubleshoot Tanzu Developer Portal (formerly Tanzu Application Platform GUI)
 Configurator.
+
+> **Caution** The Configurator tool is in beta. Do not use it in a production environment.
 
 ## Symptom
 
