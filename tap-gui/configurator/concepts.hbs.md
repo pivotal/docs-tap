@@ -2,6 +2,8 @@
 
 This topic gives you conceptual overviews of how Tanzu Developer Portal Configurator works.
 
+> **Caution** The Configurator tool is in beta. Do not use it in a production environment.
+
 ## <a id="customize"></a> Overview of how to customize your portal
 
 ![Tanzu Developer Portal customization flowchart. It starts with installing Tanzu Application Platform and finishes with portal deployment.](images/tdp-install-flowchart.png)
