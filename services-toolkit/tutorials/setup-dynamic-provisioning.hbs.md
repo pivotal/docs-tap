@@ -237,7 +237,7 @@ but you can mostly ignore these for now.
 You do most of the configuration for dynamic provisioning during the creation of the `Composition`.
 
 For a more detailed explanation about the `Composition`, see the
-[Crossplane documentation](https://docs.crossplane.io/v1.10/concepts/composition/).
+[Crossplane documentation](https://docs.crossplane.io/latest/concepts/composition/).
 
 The following are the basics you must know to start to create a `Composition` for use in
 Tanzu Application Platform.
