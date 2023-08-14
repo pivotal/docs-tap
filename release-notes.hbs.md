@@ -548,7 +548,7 @@ This release includes the following changes, listed by component and area.
   For more information about dynamic provisioning, see
   [Set up dynamic provisioning of service instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
 
-- Includes two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/):
+- Includes two Crossplane [Providers](https://docs.crossplane.io/latest/concepts/providers/):
   `provider-kubernetes` and `provider-helm`.
   You can add other providers manually as required.
 
