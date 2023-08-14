@@ -11,24 +11,70 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| ootb-templates.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2602</li><li>CVE-2023-2603</li><li>CVE-2023-2650</li><li>CVE-2023-29491</li><li>CVE-2023-31484</li><li>GHSA-g2j6-57v7-gm8c</li><li>GHSA-m8cg-xc2p-r3fc</li><li>CVE-2023-1667</li><li>CVE-2023-2283</li><li>CVE-2023-25652</li><li>CVE-2023-25815</li><li>CVE-2023-29007</li><li>CVE-2023-3138</li><li>GHSA-hw7c-3rfg-p46j </li></ul>|
-| buildservice.tanzu.vmware.com | <ul><li> CVE-2016-20013</li><li>CVE-2017-11164</li><li>CVE-2022-29458</li><li>CVE-2023-0466</li><li>CVE-2009-5155</li><li>CVE-2015-8985</li><li>CVE-2017-13165</li><li>CVE-2017-13693</li><li>CVE-2018-12928</li><li>CVE-2018-20657</li><li>CVE-2018-6952</li><li>CVE-2021-32078</li><li>CVE-2021-39801</li><li>CVE-2021-45261</li><li>CVE-2022-41848</li><li>CVE-2022-44032</li><li>CVE-2022-44033</li><li>CVE-2022-44034</li><li>CVE-2021-26934</li><li>CVE-2022-3114 </li></ul>|
+<table>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+<tr>
+<td>ootb-templates.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-m8cg-xc2p-r3fc">GHSA-m8cg-xc2p-r3fc</a></li>
+<li><a href="https://github.com/advisories/GHSA-hw7c-3rfg-p46j">GHSA-hw7c-3rfg-p46j</a></li>
+<li><a href="https://github.com/advisories/GHSA-g2j6-57v7-gm8c">GHSA-g2j6-57v7-gm8c</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31484">CVE-2023-31484</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3138">CVE-2023-3138</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29491">CVE-2023-29491</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29007">CVE-2023-29007</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2603">CVE-2023-2603</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2602">CVE-2023-2602</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25815">CVE-2023-25815</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25652">CVE-2023-25652</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2283">CVE-2023-2283</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1667">CVE-2023-1667</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0464">CVE-2023-0464</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3996">CVE-2022-3996</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>buildservice.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0466">CVE-2023-0466</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44034">CVE-2022-44034</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44033">CVE-2022-44033</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-44032">CVE-2022-44032</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41848">CVE-2022-41848</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3114">CVE-2022-3114</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-29458">CVE-2022-29458</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-45261">CVE-2021-45261</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-39801">CVE-2021-39801</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-32078">CVE-2021-32078</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-26934">CVE-2021-26934</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-6952">CVE-2018-6952</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-20657">CVE-2018-20657</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2018-12928">CVE-2018-12928</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-13693">CVE-2017-13693</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-13165">CVE-2017-13165</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-11164">CVE-2017-11164</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2016-20013">CVE-2016-20013</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-8985">CVE-2015-8985</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-5155">CVE-2009-5155</a></li>
+</ul></details></td>
+</tr>
+</table>
+
 ---
 
 ### <a id='1-4-8-resolved-issues'></a> Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-4-8-COMPONENT-NAME-ri'></a> COMPONENT-NAME
+### <a id='1-4-8-tbs-ri'></a> Tanzu Build Service
 
-- Resolved issue description.
-
-### <a id='1-4-8-tbs-ri'></a> Resolved issues
-
-- Fixed an issue where some buildpacks caused the builder image to become
-  excessively large
+- Fixed an issue where some buildpacks caused the builder image to become excessively large.
 
 ---
 
@@ -36,17 +82,13 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-4-8-COMPONENT-NAME-ki'></a> COMPONENT-NAME
+#### <a id='1-4-8-tbs-ki'></a> Tanzu Build Service
 
-- Known issue description with link to workaround.  
-
-#### <a id='1-4-8-tbs-ki'></a> COMPONENT-NAME
-
-- TAP installation will fail if automatic dependency updater is used with a
-  kubernetes secret ref (`buildservice.tanzunet_secret.name` and
-  `buildservice.tanzunet_secret.name` in `tap-values.yaml`). For a workaround,
-  use plaintext secrets (`buildservice.tanzunet_username` and
-  `buildservice.tanzunet_password`) in `tap-values.yaml`.
+- Tanzu Application Platform installation fails if the automatic dependency updater is used with a
+  Kubernetes secret ref, that is, using the fields `buildservice.tanzunet_secret.name` and
+  `buildservice.tanzunet_secret.name` in the `tap-values.yaml` file.
+  For a workaround, use plaintext secrets by using the fields `buildservice.tanzunet_username` and
+  `buildservice.tanzunet_password` in the `tap-values.yaml` file.
 
 ---
 
@@ -75,9 +117,9 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20861">CVE-2023-20861</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20863">CVE-2023-20863</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3821">CVE-2022-3821</a></li>
-<li>GHSA-g2j6-57v7-gm8c</li>
-<li>GHSA-m8cg-xc2p-r3fc</li>
-<li>GHSA-f3fp-gc8g-vw66 </li>
+<li><a href="https://github.com/advisories/GHSA-g2j6-57v7-gm8c">GHSA-g2j6-57v7-gm8c</a></li>
+<li><a href="https://github.com/advisories/GHSA-m8cg-xc2p-r3fc">GHSA-m8cg-xc2p-r3fc</a></li>
+<li><a href="https://github.com/advisories/GHSA-f3fp-gc8g-vw66">GHSA-f3fp-gc8g-vw66</a> </li>
 </ul></td>
 </tr>
 <tr>
