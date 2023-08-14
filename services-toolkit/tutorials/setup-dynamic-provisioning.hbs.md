@@ -164,7 +164,7 @@ kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.xrd.yaml
 ```
 
 For a detailed explanation of `CompositeResourceDefinition` see, the
-[Crossplane documentation](https://docs.crossplane.io/v1.10/concepts/composition/#defining-composite-resources).
+[Crossplane documentation](https://docs.crossplane.io/latest/concepts/composite-resource-definitions/).
 
 The following is a condensed explanation of the most relevant pieces of the `CompositeResourceDefinition`
 configuration, provided in this section, as it relates to dynamic provisioning in Tanzu Application Platform.
