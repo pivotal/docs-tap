@@ -68,7 +68,7 @@ These include Tanzu Application Platform plug-ins as well as [Backstage](https:/
 plug-ins.
 
 External plug-ins are not in the Tanzu Developer Portal Configurator Foundation image. They are added
-from external registries. They can include custom plug-ins as well as
+from the external registry [npmjs.com](https://www.npmjs.com/). They can include custom plug-ins as well as
 [third-party Backstage plug-ins](https://backstage.io/plugins/).
 
 ### <a id="surfaces-and-wrappers"></a> Plug-in surfaces and wrappers
