@@ -1,7 +1,9 @@
-# Build your Customized Tanzu Developer Portal with Configurator
+# Build your Customized Tanzu Developer Portal with Configurator (beta)
 
 This topic tells you how to build your customized Tanzu Developer Portal
 (formerly named Tanzu Application Platform GUI) with Configurator.
+
+> **Caution** The Configurator tool is in beta. Do not use it in a production environment.
 
 ## <a id="prereqs"></a> Prerequisites
 
