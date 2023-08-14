@@ -3,55 +3,35 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-3-11'></a> v1.3.11 
- 
-**Release Date**: 15 August 2023 
- 
-### <a id='1-3-11-security-fixes'></a> Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-#### <a id='1-3-11-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
-- Security fix description.
- 
----
- 
-### <a id='1-3-11-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
-#### <a id='1-3-11-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
-- Resolved issue description.
+## <a id='1-3-11'></a> v1.3.11
 
-#### <a id='1-3-11-api-auto-registration-ri'></a> API Auto Registration
+**Release Date**: 15 August 2023
 
-- Fixed an issue where names generated for Tanzu Application Platform GUI API
-  entities exceeded 63 characters.
+### <a id='1-3-11-resolved-issues'></a> Resolved issues
 
-### <a id='1-3-11-tbs-ri'></a> Resolved issues
+The following issues, listed by component and area, are resolved in this release.
 
-- Fixed an issue where some buildpacks caused the builder image to become
-  excessively large
+#### <a id='1-3-11-api-auto-reg-ri'></a> API Auto Registration
+
+- Fixed an issue where names generated for Tanzu Application Platform GUI API entities exceeded 63 characters.
+
+### <a id='1-3-11-tbs-ri'></a> Tanzu Build Service
+
+- Fixed an issue where some buildpacks caused the builder image to become excessively large.
 
 ---
- 
-### <a id='1-3-11-known-issues'></a> Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
-#### <a id='1-3-11-COMPONENT-NAME-ki'></a> COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
-#### <a id='1-3-11-tbs-ki'></a> COMPONENT-NAME
 
-- TAP installation will fail if automatic dependency updater is used with a
-  kubernetes secret ref (`buildservice.tanzunet_secret.name` and
-  `buildservice.tanzunet_secret.name` in `tap-values.yaml`). For a workaround,
-  use plaintext secrets (`buildservice.tanzunet_username` and
-  `buildservice.tanzunet_password`) in `tap-values.yaml`.
+### <a id='1-3-11-known-issues'></a> Known issues
+
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-3-11-tbs-ki'></a> Tanzu Build Service
+
+- Tanzu Application Platform installation fails if the automatic dependency updater is used with a
+  Kubernetes secret ref, that is, using the fields `buildservice.tanzunet_secret.name` and
+  `buildservice.tanzunet_secret.name` in the `tap-values.yaml` file.
+  For a workaround, use plaintext secrets by using the fields `buildservice.tanzunet_username` and
+  `buildservice.tanzunet_password` in the `tap-values.yaml` file.
 
 ---
 
