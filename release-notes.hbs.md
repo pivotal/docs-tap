@@ -242,10 +242,10 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-2-sc-plugin-ki'></a> v1.6.2 known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a CRD might not work as expected.
-  Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
+  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
 
 - [Supply Chain Security Tools - Scan v2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
-  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI.
+  `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain UI.
 
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
   `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
