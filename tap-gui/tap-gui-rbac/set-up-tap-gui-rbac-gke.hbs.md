@@ -17,7 +17,7 @@ To leverage an external OIDC provider, such as Auth0:
 1. Set up the OIDC provider
 1. Configure the GKE cluster with the OIDC provider
 1. Configure Tanzu Application Platform GUI to view the remote GKE cluster
-1. Upgrade the Tanzu Application Platform GUI package
+1. Upgrade `tap-gui` package
 
 ### <a id="set-up-oidc-provider"></a> Set up the OIDC provider
 
@@ -61,7 +61,7 @@ in the Backstage documentation.
 Add redirect configuration on the OIDC side by following the
 [Google Cloud documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
 
-### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
+### <a id="cnfg-rmt-clst-visibility"></a> Configure visibility of the remote cluster
 
 Configure visibility of the remote cluster in Tanzu Application Platform GUI:
 
@@ -155,7 +155,7 @@ When leveraging Google's OIDC provider, fewer steps are needed to enable authori
 Add redirect configuration on the OIDC side by following the
 [Google Cloud documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
 
-### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
+### <a id="cnfg-rmt-gke-clst-visib"></a> Configure visibility of the remote GKE cluster
 
 Configure visibility of the remote GKE cluster in Tanzu Application Platform GUI:
 
