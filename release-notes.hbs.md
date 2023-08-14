@@ -132,9 +132,9 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-2-scc-ri'></a> v1.6.2 resolved issues: Supply Chain Choreographer
 
-- Fixed an issue where if a user attempts to update the `ootb_supply_chain_testing_scanning` field
-  in their `tap-values.yaml` file to use a specified ClusterImageTemplate, it does not update
-  because the ClusterSupplyChain is already preset to `image-scanner-template`.
+- Fixed an issue where if a user attempted to update the `ootb_supply_chain_testing_scanning` field
+  in their `tap-values.yaml` file to use a specified ClusterImageTemplate, it did not update
+  because the ClusterSupplyChain was already preset to `image-scanner-template`.
   You can now update the `ootb_supply_chain_testing_scanning` field in their `tap-values.yaml` to
   use a specified ClusterImageTemplate.
 
