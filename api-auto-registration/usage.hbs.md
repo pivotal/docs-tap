@@ -2,8 +2,8 @@
 
 This topic describes how you can use API Auto Registration.
 
->**Note** The run profile requires you to [update the install values](#update-values) before
->proceeding. For iterate and full profiles, the default values work but you
+>**Note** The run profile requires you to [update the install values](./configuration.hbs.md#update-values)
+before proceeding. For iterate and full profiles, the default values work but you
 >might prefer to update them. For information about profiles,
 >see [About Tanzu Application Platform profiles](../about-package-profiles.hbs.md#profiles-and-packages).
 
@@ -39,7 +39,8 @@ To configure:
 
 ### <a id='using-simple-app'></a>Using a Spring Boot app with a REST service
 
-You can use a [Spring Boot example app](https://github.com/making/rest-service) built using [Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
+You can use a [Spring Boot example app](https://github.com/making/rest-service) built using
+[Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
 and has the [Springdoc dependency](https://springdoc.org/#getting-started).
 
 Example of a workload using the Spring Boot app:
@@ -75,12 +76,17 @@ tab, search for the accelerator and scaffold it according to your needs.
 
 ### <a id='existing-spring-project'></a>Using an existing Spring Boot project using springdoc
 
-If you have an existing Spring Boot app that exposes an API, you can generate OpenAPI specifications using springdoc. See the [springdoc documentation](https://springdoc.org/#getting-started)
+If you have an existing Spring Boot app that exposes an API, you can generate OpenAPI specifications
+using springdoc. See the [springdoc documentation](https://springdoc.org/#getting-started)
 
-After you have springdoc configured and an OpenAPI automatically generated, you can choose one of the three methods of creating the APIDescriptor custom resource.
-VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box (OOTB) supply chain. See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
+After you have springdoc configured and an OpenAPI automatically generated, you can choose one of the
+three methods of creating the APIDescriptor custom resource.
+VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box
+(OOTB) supply chain.
+See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
 Alternatively, if you want to use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
-Lastly, if you want to use a different Gitops process or manage the APIDescriptor CR manually, see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
+Lastly, if you want to use a different Gitops process or manage the APIDescriptor CR manually,
+see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
 
 ## <a id='create-api-descriptor'></a>Create APIDescriptor Custom Resource
 
@@ -164,7 +170,7 @@ spec:
 
 After the supply chain runs, it creates an `APIDescriptor` custom resource. This resource is what
 Tanzu Application Platform uses to auto register your API.
-See [APIDescriptor explained](#api-descriptor).
+See [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ### <a id='using-custom-supply-chain'></a>Using Custom Supply Chains
 
@@ -176,14 +182,14 @@ interpret baseURL from Knative Services, and construct APIDescriptor CRs.
 In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant
 permissions to create the CR from the delivery pipeline.
 
-For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
+For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ### <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
 
 Using your GitOps process, or manually, you must stamp out an APIDescriptor CR and apply it in the
 cluster you choose. Be sure specify all the required fields for an APIDescriptor CR to reconcile.
 
-For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
+For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ## <a id='additional-config'></a>Additional configuration
 

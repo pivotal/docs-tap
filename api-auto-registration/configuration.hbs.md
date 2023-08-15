@@ -35,9 +35,9 @@ own.
 
     Retrieving package details for apis.apps.tanzu.vmware.com/0.2.2...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS. 
+    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS.
     ingress_issuer                                                           string   Optional: Name of the default cluster issuer used to generate certificates
-    auto_generate_cert         true                                          boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified      
+    auto_generate_cert         true                                          boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified
     connections with a custom CA
     cluster_name               dev                                           string   Name of the cluster used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
     sync_period                5m                                            string   Time period used for reconciling an APIDescriptor.
@@ -50,7 +50,8 @@ own.
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
-3. Create `api-auto-registration-values.yaml` if you installed API Auto Registration package on its own, or update the tap-values.yaml if you used a package to install.
+3. Create `api-auto-registration-values.yaml` if you installed API Auto Registration package on its own,
+4. or update the tap-values.yaml if you used a package to install.
 
     A `api-auto-registration-values.yaml` file might contain the following:
 
@@ -63,7 +64,8 @@ own.
         -----END CERTIFICATE-----
     ```
 
-    A `tap-values.yaml` file might contain the following, in addition to other values.  See the [Full Profile sample](#full-profile).
+    A `tap-values.yaml` file might contain the following, in addition to other values.
+    See the [Full Profile sample](../install-online/profile.hbs.md#full-profile).
 
     ```yaml
     shared:
@@ -78,7 +80,7 @@ own.
         cluster_name: staging-us-east
     ```
 
-4. If you installed the API Auto Registration package on its own, not as part of Tanzu Application
+5. If you installed the API Auto Registration package on its own, not as part of Tanzu Application
    Platform, update the package using the Tanzu CLI:
 
     ```console
@@ -89,4 +91,5 @@ own.
     --values-file api-auto-registration-values.yaml
     ```
 
-5. If you installed API Auto Registration as part of Tanzu Application Platform, see [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
+6. If you installed API Auto Registration as part of Tanzu Application Platform,
+   see [Upgrading Tanzu Application Platform](../upgrading.hbs.md).

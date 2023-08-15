@@ -1,7 +1,6 @@
 # Tanzu Application Platform
 <!-- Your Markdown linter might tell you to fix the 4-tab indentation for the sublists (relative to the list items above). Don't. For more information, see https://confluence.eng.vmware.com/display/CSOT/Formatting+best+practices. -->
-This is the table of contents from which the Tanzu Application Platform Documentation site on
-docs.vmware.com is built.
+
 
 - [Tanzu Application Platform v{{ vars.url_version }}](overview.hbs.md)
 - [Release notes](release-notes.hbs.md)
@@ -255,7 +254,9 @@ docs.vmware.com is built.
         - [API Auto Registration overview](api-auto-registration/about.hbs.md)
         - [Key concepts](api-auto-registration/key-concepts.hbs.md)
         - [Install API Auto Registration](api-auto-registration/installation.hbs.md)
+        - [Configure API Auto Registration](api-auto-registration/configuration.hbs.md)
         - [Use API Auto Registration](api-auto-registration/usage.hbs.md)
+        - [API Curation](api-auto-registration/api-curation.hbs.md)
         - [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md)
     - [API portal for VMware Tanzu](api-portal/about.hbs.md)
         - [API portal overview](api-portal/about.hbs.md)
