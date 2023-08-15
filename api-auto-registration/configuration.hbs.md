@@ -50,8 +50,8 @@ own.
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
-3. Create `api-auto-registration-values.yaml` if you installed API Auto Registration package on its own,
-4. or update the tap-values.yaml if you used a package to install.
+3. Create `api-auto-registration-values.yaml` if you installed the API Auto Registration package on its own.
+4. Update the tap-values.yaml if you used a package to install.
 
     A `api-auto-registration-values.yaml` file might contain the following:
 
@@ -64,8 +64,7 @@ own.
         -----END CERTIFICATE-----
     ```
 
-    A `tap-values.yaml` file might contain the following, in addition to other values.
-    See the [Full Profile sample](../install-online/profile.hbs.md#full-profile).
+    A `tap-values.yaml` file might contain the following values, in addition to other values.
 
     ```yaml
     shared:
@@ -79,6 +78,7 @@ own.
         tap_gui_url: https://tap-gui.view-cluster.com
         cluster_name: staging-us-east
     ```
+    See the [Full Profile sample](../install-online/profile.hbs.md#full-profile).
 
 5. If you installed the API Auto Registration package on its own, not as part of Tanzu Application
    Platform, update the package using the Tanzu CLI:

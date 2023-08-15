@@ -2,6 +2,8 @@
 
 This topic describes how you can use API Auto Registration.
 
+## <a id='overview'></a> Overview
+
 >**Note** The run profile requires you to [update the install values](./configuration.hbs.md#update-values)
 before proceeding. For iterate and full profiles, the default values work but you
 >might prefer to update them. For information about profiles,
@@ -35,7 +37,9 @@ To configure:
 
 - [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
 
-## <a id='generate-openapi'></a>Generate OpenAPI Spec
+## <a id='generate-openapi'></a>Generate OpenAPI spec
+
+This section tells you how to generate OpenAPI specifications.
 
 ### <a id='using-simple-app'></a>Using a Spring Boot app with a REST service
 
@@ -67,7 +71,7 @@ spec:
         description: "A set of API endpoints."
 ```
 
-### <a id='using-app-acc-template'></a>Using App Accelerator Template
+### <a id='using-app-acc-template'></a>Using App Accelerator template
 
 If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
 App Accelerator template to get a pre-built app that includes a `workload.yaml` with a basic REST
@@ -84,11 +88,13 @@ three methods of creating the APIDescriptor custom resource.
 VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box
 (OOTB) supply chain.
 See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
-Alternatively, if you want to use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
-Lastly, if you want to use a different Gitops process or manage the APIDescriptor CR manually,
+Alternatively, to use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
+Lastly, to use a different Gitops process or manage the APIDescriptor CR manually,
 see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
 
-## <a id='create-api-descriptor'></a>Create APIDescriptor Custom Resource
+## <a id='create-api-descriptor'></a>Create APIDescriptor custom resource
+
+This section tells you how to create an APIDescriptor custom resource.
 
 ### <a id='using-ootb-supply-chain'></a> Use Out-Of-The-Box (OOTB) supply chains
 
@@ -172,7 +178,7 @@ After the supply chain runs, it creates an `APIDescriptor` custom resource. This
 Tanzu Application Platform uses to auto register your API.
 See [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
-### <a id='using-custom-supply-chain'></a>Using Custom Supply Chains
+### <a id='using-custom-supply-chain'></a>Using custom supply chains
 
 If you are creating custom supply chains, you can still use API Auto Registration. To write a
 supply chain pipeline, use `ClusterConfigTemplate` by the name of `config-template` in
@@ -184,14 +190,16 @@ permissions to create the CR from the delivery pipeline.
 
 For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
-### <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
+### <a id='using-gitops-manually'></a>Using other GitOps processes or manually
 
 Using your GitOps process, or manually, you must stamp out an APIDescriptor CR and apply it in the
-cluster you choose. Be sure specify all the required fields for an APIDescriptor CR to reconcile.
+cluster you choose. Specify all the required fields for an APIDescriptor CR to reconcile.
 
 For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ## <a id='additional-config'></a>Additional configuration
+
+This section tells you how to perform additional configuration.
 
 ### <a id='cors'></a>Setting up CORS for OpenAPI specifications
 

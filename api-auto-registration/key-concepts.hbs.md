@@ -2,16 +2,16 @@
 
 This topic explains key concepts you use with API Auto Registration.
 
-## <a id='architecture'></a>API Auto Registration Architecture
+## <a id='architecture'></a>API Auto Registration architecture
 
 You can use the full potential of API Auto Registration by using a distributed environment,
-like the one in this diagram:
+as shown in the following diagram:
 
 ![Diagram describing the clusters used with API Auto Registration.](./images/arch.png)
 
 ![Diagram describing the API curation with API Auto Registration.](./images/api-curation-arch.png)
 
-## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
+## <a id='api-descriptor'></a>APIDescriptor custom resource explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
 The information from this custom resource constructs an API entity in Tanzu Developer Portal.
@@ -55,12 +55,12 @@ The text boxes cause specific behavior in Tanzu Developer Portal:
 - If the system or owner you are trying to link doesn't have a namespace specified, you can qualify
   them with the `default` namespace. For example, `system: default/my-default-system`
 
->**Important** `spec.location.path` is now deprecated in favor of `spec.location.apiSpec.path`, and
-`spec.location.baseURL` is now deprecated in favor of `spec.location.server`. This change supports
+>**Important** `spec.location.path` is deprecated in favor of `spec.location.apiSpec.path`, and
+`spec.location.baseURL` is deprecated in favor of `spec.location.server`. This change supports
 having a different API server location from the specifications location.
 These deprecated fields will be removed in Tanzu Application Platform 1.8.
 
-### <a id='absolute-url'></a>With an Absolute URL
+### <a id='absolute-url'></a>With an absolute URL
 
 To create an APIDescriptor with a static `server.url`, you must apply the following YAML to your cluster.
 
@@ -81,14 +81,14 @@ spec:
       url: https://myservice.mynamespace.svc.cluster.local:6789
 ```
 
-### <a id='with-ref'></a>With an Object Ref
+### <a id='with-ref'></a>With an object ref
 
 You can use an object reference, instead of hard coding the URL, to point to a HTTPProxy, Knative
 Service, or Ingress.
 VMware does not support referencing Kubernetes `Service` with Object Ref. To point to your Kubernetes
-`Service` directly, you can use the static URL with cluster DNS address instead. For example, `https://myservice.mynamespace.svc.cluster.local:6789`.
+`Service` directly, you can use the static URL with cluster DNS address. For example, `https://myservice.mynamespace.svc.cluster.local:6789`.
 
-#### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
+#### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy object ref
 
 This section includes an example YAML that points to an HTTPProxy from which the controller extracts
 the `.spec.virtualhost.fqdn` as the baseURL.
@@ -114,7 +114,7 @@ spec:
         namespace: my-namespace # optional
 ```
 
-#### <a id='with-knative-ref'></a>With a Knative Service Object Ref
+#### <a id='with-knative-ref'></a>With a Knative service object ref
 
 To use a Knative Service, your controller reads the `status.url` as the baseURL. For example:
 
@@ -128,7 +128,7 @@ To use a Knative Service, your controller reads the `status.url` as the baseURL.
         namespace: my-namespace # optional
 ```
 
-#### <a id='with-ingress-ref'></a>With an Ingress Object Ref
+#### <a id='with-ingress-ref'></a>With an ingress object ref
 
 To use an Ingress instead, your controller reads the URL from the jsonPath specified. When jsonPath
 is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. For example:
@@ -144,7 +144,7 @@ is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. F
         namespace: my-namespace # optional
 ```
 
-### <a id='status-fields'></a>APIDescriptor Status Fields
+### <a id='status-fields'></a>APIDescriptor status fields
 
 When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`,
 which provide information useful for troubleshooting. The conditions are explained in the
@@ -164,16 +164,15 @@ status:
   APISpecLastUpdateTime:  # Timestamp representing the server time when API Spec was last updated. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
 ```
 
-## <a id='curated-api-descriptor'></a>CuratedAPIDescriptor Custom Resource Explained
+## <a id='curated-api-descriptor'></a>CuratedAPIDescriptor custom resource explained
 
 To curate one or more Workload OpenAPI specifications into a single aggregated API,
-you may create a custom resource of type `CuratedAPIDescriptor`.
-The information from this custom resource references a list of APIDescriptors and how they should
-be aggregated together through path-based routing.
+you can create a custom resource of type `CuratedAPIDescriptor`.
+The information from this custom resource references a list of APIDescriptors and how they are aggregated together through path-based routing.
 
-If a valid route provider is specified, e.g. `spring-cloud-gateway` for
+If a valid route provider is specified, for example, `spring-cloud-gateway` for
 [Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG for short),
-the API Auto Registration controller will find the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
+the API Auto Registration controller finds the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
 resource and automatically creates the following routing resources for you to expose your curated APIs
 as one:
 
@@ -211,19 +210,18 @@ spec:
     - ...
 ```
 
-More detailed explanation on some of the key text boxes:
+The following are explanations for key text boxes:
 
 - The `apis.apps.tanzu.vmware.com/route-provider` annotation specified how you want to provide routing
-  to the curated API. We currently only support `spring-cloud-gateway`.
+  to the curated API. VMware only supports `spring-cloud-gateway`.
 - `groupId` is a concept that's aligned with [API portal](../api-portal/about.hbs.md) to group APIs
-  from different high-availability zones/locations and/or with different `version`s.
-- `groupId` and `version` is used to identify a matching gateway that will be routing traffic for the
+  from different high-availability zones/locations or with different `version`s.
+- `groupId` and `version` identify a matching gateway that route traffic for the
   curated API
-- `routeConfig` section specifies service level configuration we should add when generating the routing
-  resource for the API. Please refer to [this page](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes2.1/scg-k8s/GUID-guides-openapi-route-conversion.html#providing-service-level-filters)
-  for more details on each field for spring-cloud-gateway.
+- `routeConfig` section specifies service level configuration you add when generating the routing
+  resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.0/scg-k8s/GUID-guides-openapi-route-conversion.html).
 
-### <a id='curated-status-fields'></a>CuratedAPIDescriptor Status Fields
+### <a id='curated-status-fields'></a>CuratedAPIDescriptor status fields
 
 When processing an CuratedAPIDescriptor several fields are added to the `status`. One of these is `conditons`,
 which provide information useful for troubleshooting. The conditions are explained in the

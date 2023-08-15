@@ -2,27 +2,27 @@
 
 This topic provides an overview of API Auto Registration for Tanzu Application Platform.
 
-## Overview
+## <a id='overview'></a> Overview
 
 API Auto Registration automates the registration of API specification defined in a workload's
 configuration. The registered API specification is accessible in Tanzu Developer Portal without any
 additional steps.
 
-An automated workflow using a supply chain, leverages API Auto Registration to create and manage a
+An automated workflow using a supply chain leverages API Auto Registration to create and manage a
 Kubernetes Custom Resource (CR) of kind `APIDescriptor`. A Kubernetes controller periodically
 reconciles the CR and updates the API entity in Tanzu Developer Portal to achieve automated
 API specification registration from origin workloads.
 
-You might also use API Auto Registration without supply chain automation, with other GitOps
+You can also use API Auto Registration without supply chain automation, with other GitOps
 processes, or by directly applying an `APIDescriptor` CR to the cluster.
 
 ![Flow chart with boxes for each element of the API Auto Registration process.](./images/autoregistering-api-entities-stages.png)
 
-With standalone APIDescriptors in your run clusters, you might want to curate the APIs by applying
+With standalone APIDescriptors in your run clusters, you can curate APIs by applying
 `CuratedAPIDescriptor` to your clusters to provide a single entry point for consuming your APIs. With
-our Spring Cloud Gateway for Kubernetes integration as route provider, our kubernetes controller will
-automatically generate and manage necessary routing resources that exposes each curated API on the
-desired spring cloud gateway instance.
+Spring Cloud Gateway for Kubernetes integration as the route provider, your Kubernetes controller
+automatically generates and manages necessary routing resources that exposes each curated API on the
+spring cloud gateway instance that you want.
 
 ![Flow chart with boxes for API curation process.](./images/api-curation-stages.png)
 

@@ -1,6 +1,9 @@
 # Overview of API portal for VMware Tanzu
 
-You can use API portal for VMware Tanzu to find APIs you can use in your own applications.
+This topic tells you how to use API portal for VMware Tanzu to find APIs you can use in your own applications.
+
+## <a id='overview'></a> Overview
+
 You can view detailed API documentation and try out an API to meet your needs.
 API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI documentation from the source URLs.
 An API portal operator can add any number of OpenAPI source URLs in a single instance.

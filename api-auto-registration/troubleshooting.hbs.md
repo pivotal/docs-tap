@@ -2,7 +2,7 @@
 
 This topic contains ways that you can troubleshoot API Auto Registration.
 
-## Debug API Auto Registration
+## <a id='debug'></a> Debug API Auto Registration
 
 This section includes commands for debugging or troubleshooting the APIDescriptor CR.
 
@@ -30,7 +30,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
 
    This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources.
    You can reinstall the package and delete all the APIDescriptor resources first,
-   or run the following command for each stuck APIDescriptor resource.
+   or run for each stuck APIDescriptor resource.
 
     ```console
     kubectl patch apidescriptor <api-apidescriptor-name> -p '{"metadata":{"finalizers":null}}' --type=merge
@@ -39,7 +39,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     > **Note** If you manually remove the finalizers from the APIDescriptor resources, you can have
     > stale API entities within Tanzu Developer Portal that you must manually deregister.
 
-### APIDescriptor CRD shows message of `connection refused` but service is up and running
+### <a id='api-connection-refused'></a> APIDescriptor CRD shows message of `connection refused` but service is up and running
 
 In Tanzu Application Platform v1.4 and later, if your workloads use ClusterIssuer for the TLS configuration
  or your API specifications location URL is secured using a custom CA,
@@ -69,7 +69,7 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
    you must update the `tap-values.yaml` and update the Tanzu Application Platform installation.
    Place the PEM encoded certificate into the `shared.ca_cert_data` key of the values file.
    See [Install your Tanzu Application Platform profile](../install-online/profile.hbs.md#install-profile).
-   Run the following command to update the package.
+   Run to update the package:
 
    ```console
    tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
@@ -81,7 +81,7 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
    you must update the `api-auto-registration-values.yaml` and then update the package.
    Place the PEM encoded certificate into the `ca_cert_data` key of the values file.
    See [Install API Auto Registration](installation.hbs.md).
-   Run the following command to update the package.
+   Run to update the package.
 
    ```console
    tanzu package installed update api-auto-registration --version API-AUTO-REGISTRATION-VERSION --namespace tap-install --values-file api-auto-registration-values.yaml
@@ -95,7 +95,7 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
    tanzu package available list -n tap-install | grep 'API Auto Registration'
    ```
 
-### APIDescriptor status shows `x509: certificate signed by unknown authority` but service is running
+### <a id='cert-signed-unknown'></a> APIDescriptor status shows `x509: certificate signed by unknown authority` but service is running
 
 Your APIDescription CR shows a status and message similar to:
 
