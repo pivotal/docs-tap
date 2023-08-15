@@ -9,20 +9,21 @@ This repo contains the content for Tanzu Application Platform docs.
 | Branch | Staging | Production |
 |--------|---------|------------|
 | main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) (Pre-release v1.7 docs) | n/a |
-| 1-6-2  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6.2/tap/overview.html) (Pre-release v1.6.2 docs) | n/a |
-| 1-6-1  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) |
-| 1-5-4  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.4/tap/overview.html) (Pre-release v1.5.4 docs) | n/a |
-| 1-5-3  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) |
+| 1-6-3  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6.3/tap/overview.html) (Pre-release v1.6.3 docs) | n/a |
+| 1-6-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) |
+| 1-6-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-5-5  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5.5/tap/overview.html) (Pre-release v1.5.5 docs) | n/a |
+| 1-5-4  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) |
+| 1-5-3  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-5-2  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-5-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-4-8  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.8/tap/overview.html) (Pre-release v1.4.8 docs) | n/a |
-| 1-4-7  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| 1-4-9  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.9/tap/overview.html) (Pre-release v1.4.9 docs) | n/a |
+| 1-4-8  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| 1-4-7  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-4-6  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-4-5  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-3-11  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.11/tap/overview.html) (Pre-release v1.3.11 docs) | n/a |
-| 1-3-10  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-12 | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.12/tap/overview.html) (Pre-release v1.3.12 docs) | n/a |
+| 1-3-11 | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-10 | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-3-9  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
-| 1-3-8  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-2-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) |
 | 1-1    | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) |
 | 1-0    | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) |
