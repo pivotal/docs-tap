@@ -727,7 +727,7 @@ docs.vmware.com is built.
          - [Concepts](tap-gui/configurator/concepts.hbs.md)
          - [Build your customized Tanzu Developer Portal](tap-gui/configurator/building.hbs.md)
          - [Run your customized Tanzu Developer Portal](tap-gui/configurator/running.hbs.md)
-         - [Add external plugins to your customized Tanzu Developer Portal](tap-gui/configurator/external-plugins.hbs.md)
+         - [Add external plug-ins to your customized Tanzu Developer Portal](tap-gui/configurator/external-plugins.hbs.md)
          - [Troubleshoot Tanzu Developer Portal Configurator](tap-gui/configurator/troubleshooting.hbs.md)
       - [Tanzu Developer Portal plug-ins](tap-gui/plugins/about.hbs.md)
          - [Tanzu Developer Portal plug-ins overview](tap-gui/plugins/about.hbs.md)
