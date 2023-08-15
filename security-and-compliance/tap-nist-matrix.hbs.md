@@ -6,9 +6,9 @@ This topic tells you about Tanzu Application Platform (commonly known as TAP) se
 Many organizations are required to reference a standardized control framework when assessing the security and compliance of their information systems.
 Standardized control frameworks provide a model for how to protect information and data systems from threats, including malicious third parties, structural failures, and human error. One comprehensive and commonly referenced framework is [NIST Special Publication 800-53 Rev. 5](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final). Adherence to these controls is required for many government agencies in the United States, and for many private enterprises that operate within regulated markets, such as healthcare or finance. For example, the HIPAA regulations that govern the required protections for Personal Health Information (PHI) can be cross-referenced to the NIST SP 800-53 Rev. 5 control set.
 
-This table provides a self-assessment of Tanzu Application Platform against the NIST SP 800-53 Rev. 5 controls and provides a high level of guidance for  the initial approch of how deployers can achieve compliance when using a shared responsibility model. Responsibility for any control can be assigned as indicated.
+This table provides a self-assessment of Tanzu Application Platform against the NIST SP 800-53 Rev. It provides a high level of guidance for  the initial approach of how deployers can achieve compliance when using a shared responsibility model. Responsibility for any control can be assigned as indicated.
 
-|Name | Developer Responability | Platform Provided (Tanzu Application Platform) | Hybrid (Platform and App shared resonsibility) | Potential to inharet from IaaS or Enterprise pollicy/tool | Security Control Baseline Moderate | Security Controle Baseline High |
+|Name | Developer Responsibility | Platform Provided (Tanzu Application Platform) | Hybrid (Platform and App shared responsibility) | Potential to inherit from IaaS or Enterprise policy/tool | Security Control Baseline Moderate | Security Control Baseline High |
 |---|---|---|---|---|---|---|
 | AC-1 | yes |  |  | yes | x | x |
 | AC-2 | yes |  |  | yes | x | x |
