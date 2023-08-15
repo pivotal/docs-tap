@@ -44,6 +44,7 @@ docs.vmware.com is built.
   - [Customize package installation](customize-package-installation.hbs.md)
   - [Upgrade](upgrading.hbs.md)
   - [Opt out of telemetry collection](opting-out-telemetry.hbs.md)
+- [Security](security-and-compliance/tap-nist-matrix.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
   - [Multicluster overview](multicluster/about.hbs.md)
   - [Install](multicluster/installing-multicluster.hbs.md)
