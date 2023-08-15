@@ -36,36 +36,31 @@ To add source scanning to the default out-of-the-box test and scan supply chain:
 1. Create a `secret.yml` file with a `Secret` that contains your ytt overlay. For example:
 
    ```yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: ootb-supply-chain-testing-scanning-add-source-scanner
-     namespace: tap-install
-     annotations:
-       kapp.k14s.io/change-group: "tap-overlays"
-   type: Opaque
-   stringData:
-     ootb-supply-chain-testing-scanning-add-source-scanner.yaml: |
-       #@ load("@ytt:overlay", "overlay")
-       #@ load("@ytt:data", "data")
-       #@overlay/match by=overlay.subset({"metadata":{"name":"source-test-scan-to-url"}, "kind": "ClusterSupplyChain"})
-       ---
-       spec:
-         resources:
-           #@overlay/match by=overlay.index(2)
-           #@overlay/insert before=True
-             - name: source-scanner
-               params:
-               - default: scan-policy
-                 name: scanning_source_policy
-               - default: blob-source-scan-template
-                 name: scanning_source_template
-               sources:
-               - name: source
-                 resource: source-tester
-               templateRef:
-                 kind: ClusterSourceTemplate
-                 name: source-scanner-template
+   #@ load("@ytt:overlay", "overlay")
+   #@overlay/match by=overlay.subset({"metadata":{"name":"source-test-scan-to-url"}, "kind": "ClusterSupplyChain"})
+   ---
+   spec:
+     resources:
+       #@overlay/match by=overlay.index(2)
+       #@overlay/insert before=True
+          - name: source-scanner
+            params:
+            - default: scan-policy
+              name: scanning_source_policy
+            - default: blob-source-scan-template
+              name: scanning_source_template
+            sources:
+            - name: source
+              resource: source-tester
+            templateRef:
+              kind: ClusterSourceTemplate
+              name: source-scanner-template
+          #@overlay/match by="name"
+          - name: image-provider
+            sources:
+            #@overlay/match by="name"
+            - name: source
+              resource: source-scanner
    ```
 
    For information about ytt overlays, see the
@@ -82,8 +77,8 @@ To add source scanning to the default out-of-the-box test and scan supply chain:
     ```yaml
     package_overlays:
     - name: ootb-supply-chain-testing-scanning
-    secrets:
-    - name: ootb-supply-chain-testing-scanning-add-source-scanner
+      secrets:
+      - name: ootb-supply-chain-testing-scanning-add-source-scanner
     ```
 
 4. Update Tanzu Application Platform:
