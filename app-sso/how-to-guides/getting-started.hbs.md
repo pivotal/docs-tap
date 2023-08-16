@@ -165,15 +165,11 @@ kubectl get clusterunsafetestlogin.sso.apps.tanzu.vmware.com --all-namespaces
 and you should see:
 
 ```shell
-NAME                          STATUS
-my-login  Ready
+NAME       ISSUER URI                           STATUS
+my-login   http://unsafe-my-login.appsso.<...>  Ready
 ```
 
-If you want to see your `AuthServer`'s issuer URI, look at:
-
-```shell
-kubectl get authserver -A
-```
+You will be able to visit the login page by navigating to the `ISSUER URI`.
 
 ## <a href='claim-credentials'></a> Claim Credentials
 
