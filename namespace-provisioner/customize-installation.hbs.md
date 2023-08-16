@@ -1,6 +1,7 @@
 # Customize Namespace Provisioner installation
 
-This topic tells you how to customize a standard installation of Namespace Provisioner in Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to customize a standard installation of Namespace Provisioner in
+Tanzu Application Platform (commonly known as TAP).
 
 Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 The Namespace Provisioner package is installed as part of all the standard installation profiles
@@ -20,7 +21,7 @@ tanzu package available get namespace-provisioner.apps.tanzu.vmware.com/0.3.0 --
 Different package customization options are available depending on what method you use to manage
 the list of developer namespaces:
 
-## Add additional resources to your namespaces from your GitOps repository
+## <a id='additional-resources'></a>Add additional resources to your namespaces from your GitOps repository
 
    - `additional_sources`: This is an array of Git repository locations that contain Platform Operator
    templated resources to create in the provisioned namespaces, in addition to the default
@@ -104,9 +105,9 @@ automatically generates a path as follows: `_ytt_lib/applicaton-accelerator-samp
 
 For more information, see [Git Authentication for Private repository](use-case3.md#git-private).
 
-## Adjust sync period of Namespace Provisioner
+## <a id='adjust-sync'></a>Adjust sync period of Namespace Provisioner
 
-The `sync_period` parameter determines the interval at which the Namespace Provisioner reconciles.
+The `sync_period` parameter is the interval at which the Namespace Provisioner reconciles.
 It must be specified in the format of time + unit. The minimum allowed `sync_period` is 30 seconds.
 If a value lower than 30 seconds is specified in the `tap-values.yaml` file, Namespace Provisioner
 automatically sets the `sync_period` to 30 seconds. If no value is specified, the default `sync_period` is `1m0s`.
@@ -134,7 +135,7 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-## Import user defined secrets in YAML format as ytt data.values
+## <a id='import-user-defined'></a>Import user defined secrets in YAML format as ytt data.values
 
 The `import_data_values_secrets` is an array of additional secrets in YAML format that can be
 imported into the Namespace Provisioner as data.values under the `data.values.imported` key.
@@ -144,7 +145,9 @@ The following parameters are available:
 
 - `name`: The name of the secret to be imported to use as valuesFrom in kapp.
 - `namespace`: The namespace where the secret exists.
-- `create_export`:  A Boolean flag that determines whether a `SecretExport` resource should be created in the namespace. The default value is `false`. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
+- `create_export`:  A Boolean flag that indicates whether a `SecretExport` resource is
+created in the namespace. The default value is `false`. If the secret is already exported, ensure
+that it is exported to the `tap-namespace-provisioning` namespace.
 
 >**Note** The `stringData` key of the secret must have .`yaml` or .`yml` suffix.
 
@@ -194,11 +197,11 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-## Use AWS IAM roles
+## <a id='use-aws-iam'></a>Use AWS IAM roles
 
 If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Service (EKS), you
-can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes Service Account
-used by the Workload and the Supply chain components.
+can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes service account
+used by the workload and the supply chain components.
 
 Sample `tap-values.yaml` configuration:
 
@@ -224,10 +227,10 @@ Using GitOps
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-## Apply default parameters to all namespaces
+## <a id='apply-default-params'></a>Apply default parameters to all namespaces
 
-The `default_parameters` is an array of parameters that are applied to all namespaces. These
-parameters can be used as ytt, such as  `data.values.default_parameters` for templating default and
+The `default_parameters` is an array of parameters that are applied to all namespaces. Use these
+parameters as ytt, such as  `data.values.default_parameters` for templating default and
 additional resources.
 
 Sample `tap-values.yaml` configuration:
@@ -345,7 +348,7 @@ Options if using Controller
 
    **<a id='con-label-selector'></a>Use a different label selector than default**
 
-   The `namespace_selector` specifies the [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) used by the [controller](about.hbs.md#nsp-controller) to identify the namespaces that should be included in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
+   Use the `namespace_selector` to specify the [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) used by the [controller](about.hbs.md#nsp-controller) to identify the namespaces that will be included in the [desired-namespaces](about.hbs.md#desired-ns) ConfigMap.
 
    Sample `tap-values.yaml` configuration:
 
@@ -360,7 +363,7 @@ Options if using Controller
 
    **<a id='con-override-cpu'></a>Override the default CPU and memory limits for controller pods**
 
-   To configure the compute resources for the Namespace Provisioner controllers, you can utilize the `controller_resources` section in the Namespace Provisioner configuration in `tap-values.yaml`.
+   To configure the compute resources for the Namespace Provisioner controllers, you can use the `controller_resources` section in the Namespace Provisioner configuration in `tap-values.yaml`.
 
    To set the maximum CPU and memory limits for the controllers, edit the `controller_resources.resources.limits.cpu` and `controller_resources.resources.limits.memory` values.
 
@@ -408,7 +411,7 @@ customization option:
 
    `gitops_install` is a Git repository configuration with the list of namespaces to be provisioned.
 
-   The gitops_install section should only be used when `controller: false` is set. If this section
+   Only use the gitops_install section when `controller: false` is set. If this section
    is used in conjunction with `controller: true`, the Namespace Provisioner package fails to
    reconcile, resulting in an error message stating `controller: false when using 'gitops_install' in provided values`.
 
@@ -421,7 +424,7 @@ customization option:
    - `ref`: The Git repository reference, the default is origin/main
    - `secretRef`: If the repository needs authentication, the reference to the secret is set here
       - `name`: The name of the secret to be used for the repository authentication, see [Git Authentication for Private repository](use-case3.hbs.md#git-private).
-      - `namespace`: The namespace where the secret is created. Namespace Provisioner creates a Carvel secretgen [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) from this given namespaces to Namespace Provisioner namespace.
+      - `namespace`: The namespace where the secret is created. Namespace Provisioner creates a Carvel secretgen [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) from this namespace to the Namespace Provisioner namespace.
       - `create_export`: A Boolean flag to create a Carvel secretgen [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) from the given namespace to Namespace Provisioner namespace. The default value is `false`.
 
      Sample `gitops_install` repository file:

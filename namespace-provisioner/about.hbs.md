@@ -6,7 +6,10 @@ function as intended in Tanzu Application Platform (commonly known as TAP).
 
 ## Description
 
-Namespace Provisioner enables platform operators to add additional customized namespace-scoped resources using GitOps to meet their organization's requirements and provides continuous reconciliation using the kapp-controller to maintain the desired state of the namespace-scoped resources.
+Namespace Provisioner enables platform operators to add additional customized namespace-scoped
+resources using GitOps to meet their organization's requirements and provides continuous
+reconciliation using the kapp-controller to maintain the desired state of the namespace-scoped
+resources.
 
 Namespace Provisioner enables operators that are new to Kubernetes to automate the provisioning of
 multiple developer namespaces in a shared cluster. For organizations that have already adopted
