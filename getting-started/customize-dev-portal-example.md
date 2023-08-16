@@ -103,8 +103,7 @@ spec:
       - name: TPB_CONFIG
         value: /tmp/tpb-config.yaml
       - name: TPB_CONFIG_STRING
-        value:
-        ENCODED-TDP-CONFIG-VALUE
+        value: ENCODED-TDP-CONFIG-VALUE
 
   source:
     image: TDP-IMAGE-LOCATION
