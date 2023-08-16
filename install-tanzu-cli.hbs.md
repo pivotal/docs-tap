@@ -3,11 +3,12 @@
 This topic tells you how to accept the EULAs, and install the Tanzu CLI and plug-ins on Tanzu Application Platform (commonly known as TAP).
 
 - [Install Tanzu CLI](#install-tanzu-cli)
-  - [ Accept the End User License Agreements](#-accept-the-end-user-license-agreements)
+  - [Accept the End User License Agreements](#accept-the-end-user-license-agreements)
     - [ Example of accepting the Tanzu Application Platform EULA](#-example-of-accepting-the-tanzu-application-platform-eula)
   - [ Set the Kubernetes cluster context](#-set-the-kubernetes-cluster-context)
   - [ Install or update the Tanzu CLI and plug-ins](#-install-or-update-the-tanzu-cli-and-plug-ins)
-  - [ Install/Update Tanzu CLI plug-ins](#-installupdate-tanzu-cli-plug-ins)
+    - [ Install the Tanzu CLI](#-install-the-tanzu-cli)
+    - [ Install Tanzu CLI Plug-ins](#-install-tanzu-cli-plug-ins)
   - [Next steps](#next-steps)
 
 ## <a id='accept-eulas'></a>Accept the End User License Agreements
@@ -82,12 +83,12 @@ and features.
 
  From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plug-ins
 required to interact with Tanzu Application Platform are released and distributed independently
-from Tanzu Application Platform itself.
+from Tanzu Application Platform.
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-The Tanzu CLI can be installed using a package manager such as Chocolatey, Homebrew, APT, YUM, and DNF, or 
-it can be installed from a binary release.
+Install the Tanzu CLI using a package manager such as Chocolatey, Homebrew, APT, YUM, or DNF.
+Alternatively install the Tanzu CLI from a binary release.
 
 Basic installation instructions are provided below. For more information including how to install
 the Tanzu CLI and CLI plug-ins in Internet-restricted environments,
@@ -158,7 +159,7 @@ Install using a package manager
          sudo yum install -y tanzu-cli # If you are using DNF, run sudo dnf install -y tanzu-cli.
          ```
 
-   1. Check that the correct version of the CLI is properly installed.
+   1. Verify that the correct version of the CLI is properly installed.
 
       ```console
       tanzu version
@@ -236,7 +237,7 @@ Install from a binary release
            7. Select the `Path` row under **System variables**, and click **Edit**.
            8. Click **New** to add a new row and enter the path to the Tanzu CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
 
-  4. Check that the correct version of the CLI is properly installed:
+  4. Verify that the correct version of the CLI is properly installed:
 
         ```console
         tanzu version
