@@ -1,8 +1,6 @@
 # Integrate a plugin into your Tanzu Developer Portal
 
-This topic guides you through integrating the hello-world plugin into your Tanzu Developer Portal by using the configurator tool.
-
-The hello-world plugin has been created a demonstration of the configurator tool's capabilities and does not carry a standalone valuable function.
+This topic guides you through integrating the hello-world plugin into your Tanzu Developer Portal by using the configurator tool. The hello-world plugin has been created a demonstration of the configurator tool's capabilities.
 
 For general information on the Tanzu Developer Portal configurator and its basic concepts, please refer to [Tanzu Developer Portal Configurator](../tap-gui/configurator/about.hbs.md)
 
