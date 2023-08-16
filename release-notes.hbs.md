@@ -448,6 +448,12 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - Developers can now use Tanzu Developer Tools for VS Code to rapidly iterate and build Gradle
   projects in their preferred IDE.
 
+#### <a id='1-6-1-visualstudio-ext'></a> v1.6.1 features: Tanzu Developer Tools for Visual Studio
+
+- Added a Tanzu Workloads panel to easily view deployed workloads in a Tanzu Application Platform cluster.
+
+- Developers can now use Tanzu Developer Tools for Visual Studio to directly manage workloads, including Apply Workload, Start Live Update, and Debug Workload.
+
 ---
 
 ### <a id='1-6-1-breaking-changes'></a> v1.6.1 Breaking changes
