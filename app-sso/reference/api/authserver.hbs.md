@@ -81,10 +81,10 @@ spec:
         name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
-    - name: "" # > must be unique
-               # > must follow DNS Subdomain formatting (RFC 1123)
-               #    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
-               # > must not start with 'client' or 'unknown'
+    - name: "" # must be unique
+               # must follow the DNS Subdomain formatting (RFC 1123): 
+               # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
+               # must not start with 'client' or 'unknown'
       internalUnsafe: # requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""`
         users:
           - username: ""
@@ -102,9 +102,9 @@ spec:
               - fromRole: ""
                 toScopes:
                   - ""
-    - name: "" # > must be unique
-               # > must follow DNS Subdomain formatting (RFC 1123)
-               #    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
+    - name: "" # must be unique
+               # must follow the DNS Subdomain formatting (RFC 1123):
+               # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
                # > must not start with 'client' or 'unknown'
       ldap:
         server:
@@ -149,10 +149,10 @@ spec:
             subTree: false
             depth: 0
           roleAttribute: "" # deprecated, use 'ldap.roles.fromUpstream.attribute' instead.
-    - name: "" # > must be unique
-               # > must follow DNS Subdomain formatting (RFC 1123)
-               #    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
-               # > must not start with 'client' or 'unknown'
+    - name: "" # must be unique
+               # must follow the DNS Subdomain formatting (RFC 1123): 
+               # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
+               # must not start with 'client' or 'unknown'
       openID:
         issuerURI: ""
         displayName: "" # optional, must be between 2 and 32 characters in length
@@ -179,10 +179,10 @@ spec:
               - fromRole: ""
                 toScopes:
                 - ""
-    - name: "" # > must be unique
-               # > must follow DNS Subdomain formatting (RFC 1123)
-               #    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
-               # > must not start with 'client' or 'unknown'
+    - name: "" # must be unique
+               # must follow the DNS Subdomain formatting (RFC 1123):
+               # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
+               # must not start with 'client' or 'unknown'
       saml:
         metadataURI: ""
         displayName: "" # optional, must be between 2 and 32 characters in length

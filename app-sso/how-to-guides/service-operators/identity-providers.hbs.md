@@ -85,7 +85,7 @@ Where:
   curl -s "https://openid.example.com/.well-known/openid-configuration" | jq -r ".issuer"
   ```
 
-- `.openID.displayName` (optional): a user-friendly display name for the provider that is rendered on the login page.
+- `.openID.displayName` (optional): A user-friendly display name for the provider that is rendered on the login page.
 - `.openID.scopes`: The scopes requested to the issuer in the authorization request. Its value must contain `"openid"`. Other common `openID.scopes` values include `"profile"` and `"email"`.
 - `.openID.clientSecretRef`: The issuer's client secret. The value of `clientSecretRef` must be a `Secret` with the entry `clientSecret`.
 - `.openID.authorizationUri` (optional): The URI for performing an authorization request and obtaining an `authorization_code`.
@@ -615,8 +615,8 @@ spec:
             toClaim: ""      # claim that is part of an AppSSO id_token
 ```
 
-- `.saml.displayName` (optional): a user-friendly display name for the provider that is rendered on the login page.
-- `.saml.idToken.claims`: allows for mapping a SAML attribute from an upstream SAML identity provider to the current authorization server. See [Identity token claims mapping](#id-token-claims-mapping) for more details.
+- `.saml.displayName` (optional): A user-friendly display name for the provider that is rendered on the login page.
+- `.saml.idToken.claims`: Allows for mapping a SAML attribute from an upstream SAML identity provider to the current authorization server. For more information, see [Identity token claims mapping](#id-token-claims-mapping).
 
 ### <a id='saml-external-groups-mapping'></a> SAML external groups mapping
 
