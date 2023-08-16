@@ -169,7 +169,7 @@ NAME       ISSUER URI                           STATUS
 my-login   http://unsafe-my-login.appsso.<...>  Ready
 ```
 
-You will be able to visit the login page by navigating to the `ISSUER URI`.
+You can visit the login page by using `ISSUER URI`.
 
 ## <a href='claim-credentials'></a> Claim Credentials
 
