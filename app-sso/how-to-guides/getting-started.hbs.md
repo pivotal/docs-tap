@@ -1,4 +1,4 @@
-# <a href='getting-started'></a> Getting Started with Application Single Sign-On
+# Getting Started with Application Single Sign-On
 
 This topic tells you about concepts important to getting started with Application
 Single Sign-On (commonly called AppSSO).
