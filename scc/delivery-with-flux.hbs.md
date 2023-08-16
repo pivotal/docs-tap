@@ -28,11 +28,31 @@ To use Gitops Delivery with Flux CD, you must complete the following prerequisit
 
 ## <a id="run-cluster-ns"></a> Set up run cluster namespaces
 
-Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
+Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`, `PackageInstalls` and Kubernetes `Secrets`.
+Create a namespace and `ServiceAccount` with the following permissions:
 
-If your run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: <run-cluster-ns>
+  name: app-package-and-pkgi-install-role
+rules:
+  - apiGroups: ["data.packaging.carvel.dev"]
+    resources: ["packages"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+  - apiGroups: ["packaging.carvel.dev"]
+    resources: ["packageinstalls"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+```
 
-If your run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
+If your Run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+
+If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` must also have the following permissions:
 
 ```yaml
 ---
@@ -87,9 +107,9 @@ app.default.tap/
        hostname: app.mycompany.com
    ```
 
-   > **Note** You can skip this step to use the default parameter values.
+   > **Note** You must set a value for the `workload_name` parameter. You can skip setting other fields to use the default parameter values.
 
-1. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
+2. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `<package_name>/<run_cluster>/packageinstall.yaml`.
 
    ```yaml
    ---
@@ -108,15 +128,13 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
-  To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
+To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
 
   ```console
   packaging.carvel.dev/downgradable: ""
   ```
 
-  See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
-
-   > **Note** If you skipped creation of the `Secret`, omit the `values` key.
+See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
 
 1. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
@@ -124,7 +142,8 @@ app.default.tap/
 
 Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each of your run clusters.
 
-1. Give your Build cluster access to your run clusters. On the Build cluster, for each run cluster, create a `Secret` containing the run cluster's kubeconfig:
+1. Give your Build cluster access to your run clusters. On the Build cluster, for each run cluster, create a `Secret` containing the run cluster's kubeconfig.
+   Create the Kubernetes `Secret` in the same namespace as the Kustomization resource:
 
    ```console
    kubectl create secret generic <run-cluster>-kubeconfig \
@@ -150,10 +169,9 @@ Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstal
        branch: # GitOps repo branch
      timeout: 60s
 
-     # only required if GitOps repo is private (recommended)
+     # only required if GitOps repo is private (recommended). The secret below should be present in the same namespace as the GitRepository.
      secretRef:
        name: <package-name>-gitops-auth
-       namespace: <build-cluster-ns>
 
    # only required if GitOps repo is private (recommended)
    ---
@@ -192,10 +210,11 @@ Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstal
      kubeConfig:
        secretRef:
          name: <run-cluster>-kubeconfig
-         namespace: <build-cluster-ns>
      targetNamespace: <run-cluster-ns>
      serviceAccountName: <run-cluster-ns-sa>
    ```
+
+   > **Note** The Kustomization resource does not accept a `metadata.name` field longer than 63 characters.
 
 4. Configure your Build cluster to deploy your `PackageInstalls` and `Secrets` to the run clusters. For each run cluster, on the Build cluster, create the following Flux CD `Kustomization`:
 
@@ -222,10 +241,11 @@ Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstal
      kubeConfig:
        secretRef:
          name: <run-cluster>-kubeconfig
-         namespace: <build-cluster-ns>
      targetNamespace: <run-cluster-ns>
      serviceAccountName: <run-cluster-ns-sa>
    ```
+
+   > **Note** The Kustomization resource does not accept a `metadata.name` field longer than 63 characters.
 
 ## <a id="verify-install"></a> Verify installation
 
