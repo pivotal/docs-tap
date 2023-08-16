@@ -81,7 +81,7 @@ To set the Kubernetes cluster context:
 The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
- From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plug-ins
+From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plug-ins
 required to interact with Tanzu Application Platform are released and distributed independently
 from Tanzu Application Platform.
 
