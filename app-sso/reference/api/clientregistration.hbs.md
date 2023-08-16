@@ -3,8 +3,9 @@
 In Application Single Sign-On (commonly called AppSSO), `ClientRegistration` is
 the request for client credentials for an [AuthServer](./authserver.hbs.md).
 
-Typically, this gets created automatically when [claiming credentials](../../how-to-guides/app-operators/claim-credentials.hbs.md),
-but alternatively it can be manually created.
+`ClientRegistration` is created automatically during the process of 
+[claiming credentials](../../how-to-guides/app-operators/claim-credentials.hbs.md). 
+However, there is also the option of creating it manually.
 
 It implements the [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
 are returned as a [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `Secret`.
