@@ -25,11 +25,33 @@ To use GitOps Delivery with Carvel App, you must complete the following prerequi
 
 ## <a id="-set-up-run-cluster"></a> Set up run cluster namespaces
 
-Each Run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`.
+Each run cluster must have a namespace and `ServiceAccount` with the correct permissions to deploy the Carvel `Packages`, `PackageInstalls` and Kubernetes `Secrets`.
+Create a namespace and `ServiceAccount` with the following permissions:
 
-To set up a developer namespace if your Run cluster is also a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: RUN-CLUSTER-NS
+  name: app-package-and-pkgi-install-role
+rules:
+  - apiGroups: ["data.packaging.carvel.dev"]
+    resources: ["packages"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+  - apiGroups: ["packaging.carvel.dev"]
+    resources: ["packageinstalls"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "create", "update", "delete", "patch"]
+```
 
-If your Run cluster is not a Tanzu Application Platform cluster, create a namespace and `ServiceAccount` with the following permissions:
+Where `RUN-CLUSTER-NS` is the Run cluster namespace you want to use.
+
+If your Run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+
+If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` must also have the following permissions:
 
 ```yaml
 ---
@@ -86,12 +108,12 @@ app.default.tap/
        hostname: app.mycompany.com
    ```
 
-  Where:
+Where:
 
-  - `PACKAGE-NAME` is the name of your Carvel package you want to use.
-  - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+- `PACKAGE-NAME` is the name of your Carvel package you want to use.
+- `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
 
-   > **Note** You can skip this step to use the default parameter values.
+> **Note** You must set a value for the `workload_name` parameter. You can skip setting other fields to use the default parameter values.
 
 1. For each Run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/packageinstall.yaml`.
 
@@ -112,24 +134,23 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
-  Where:
+Where:
 
-   - `PACKAGE-NAME` is the name of your Carvel package you want to use.
-   - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
-   - `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
-  
-  To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
+- `PACKAGE-NAME` is the name of your Carvel package you want to use.
+- `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+- `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
+
+To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
 
   ```console
   packaging.carvel.dev/downgradable: ""
   ```
 
-  See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
-   > **Important** If you skipped creation of the `Secret`, omit the `values` key.
+See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
 
 1. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
-## <a id="create app"></a> Create an app
+## <a id="create-app"></a> Create an app
 
 1. You must give the build cluster access to the Run clusters. On the build cluster create a `Secret` containing the Run cluster's kubeconfig for each run cluster:
 
@@ -139,11 +160,11 @@ app.default.tap/
        --from-file=value.yaml=PATH-TO-RUN-CLUSTER-KUBECONFIG
    ```
 
-  Where: 
+Where:
 
-  - `RUN-CLUSTER` is the name of the run cluster you want to use with your app.
-  - `BUILD-CLUSTER-NS` is the namespace of the build cluster you want to use.
-  - `PATH-TO-RUN-CLUSTER-KUBECONFIG` is the location of your run cluster kubeconfig.
+- `RUN-CLUSTER` is the name of the run cluster you want to use with your app.
+- `BUILD-CLUSTER-NS` is the namespace of the build cluster you want to use.
+- `PATH-TO-RUN-CLUSTER-KUBECONFIG` is the location of your run cluster kubeconfig.
 
 2. Each Carvel `App` custom resource (CR) must specify either a service account, by using
    `spec.serviceAccountName`, in the same namespace where the App CR is located
@@ -160,7 +181,7 @@ app.default.tap/
    `PackageRepository` and `Packages`, are defined. By default, an `App` custom
    resource syncs the cluster with its fetch source every 30 seconds to prevent
    the cluster state from drifting from its source of truth.
-  Create the following `App` on your Build cluster:
+   Create the following `App` on your Build cluster:
 
    ```yaml
    ---
@@ -201,14 +222,14 @@ app.default.tap/
 
    Where:
 
-   - `DESIRED-NAMESPACE` is the namespace you want to use with your app.
-   - `PATH-FOR-PACKAGE-INSTALLS` is the package install path.
-   - `PATH-FOR-PACKAGES` is the package path.
-   - `BUILD-CLUSTER-NS` is the build cluster namespace.
+    - `DESIRED-NAMESPACE` is the namespace you want to use with your app.
+    - `PATH-FOR-PACKAGE-INSTALLS` is the package install path.
+    - `PATH-FOR-PACKAGES` is the package path.
+    - `BUILD-CLUSTER-NS` is the build cluster namespace.
 
    > **Note** The fetch section includes entries for all the locations in the GitOps repository to deploy, and append with other run clusters if needed.
 
-## <a id="verify-app"></a> Verifying applications
+## <a id="verify-app"></a> Verify applications
 
 To verify your installation:
 
