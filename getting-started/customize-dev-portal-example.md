@@ -214,7 +214,7 @@ For example, you may use the following Tanzu CLI command:
 tanzu package installed update tap -f tap-values.yaml -n tap-install
 ```
 
-11. Once all the packages have reconciled, that would prompt the Tanzu Developer Portal pod to restart, enabling the customized portal. 
+11. Once all the packages have reconciled, the Tanzu Developer Portal pod should restart and your customized portal should take the place of the default one. 
 
 > **Note**: you may need to hard refresh your Tanzu Developer Portal in your browser. In Chrome, right-click on the page to start `Inspect` mode, then right click on the refresh button.
 
