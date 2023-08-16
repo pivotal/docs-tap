@@ -23,7 +23,7 @@ You need an AWS user's access key to read from the bucket when viewing TechDocs.
 
 ### <a id="create-aws-iam-user-group"></a> Create an AWS IAM user group
 
-Create an [AWS IAM User Group](https://console.aws.amazon.com/iamv2/home#/groups):
+To create an [AWS IAM User Group](https://console.aws.amazon.com/iamv2/home#/groups):
 
 1. Click **Create Group**.
 1. Give the group a name.
@@ -58,7 +58,7 @@ Create an [AWS IAM User Group](https://console.aws.amazon.com/iamv2/home#/groups
 
 ### <a id="create-aws-iam-user"></a> Create an AWS IAM user
 
-Create an [AWS IAM User](https://console.aws.amazon.com/iamv2/home#/users) to add to this group:
+To create an [AWS IAM User](https://console.aws.amazon.com/iamv2/home#/users) to add to this group:
 
 1. Click **Add users**.
 2. Give the user a name.
