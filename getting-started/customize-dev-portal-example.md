@@ -21,7 +21,7 @@ To get the fully-qualified domain name for the portal, run the following command
 ```console
 kubectl get httpproxy tap-gui -n tap-gui
 ```
-> **Note:** by default, Tanzu Developer Portal uses a self-signed certificate and may result in a security error in the browser. To eliminate that error message, the Platform Engineer shall need to configure SSL. For more information, please refer to [Configure a TLS certificate by using an existing certificate](../tap-gui/tls/enable-tls-existing-cert.hbs.md).
+> **Note:** by default, Tanzu Developer Portal uses a self-signed certificate and may result in a security error in the browser. To address this error, please refer to [Configure a TLS certificate by using an existing certificate](../tap-gui/tls/enable-tls-existing-cert.hbs.md).
 
 - At least one configured developer namespace
 - At least one operational Supply Chain
