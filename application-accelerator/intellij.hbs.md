@@ -127,17 +127,17 @@ might look different to the following example.
 the certificate. After restarting, the application uses the certificate
 to communicate with the endpoints using TLS.
 
-  macOS
-  : Run:
+    macOS
+    : Run:
 
-  ```console
-  sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
-  ```
+    ```console
+    sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
+    ```
 
-  For more information, see [Installing a root CA certificate in the trust store](https://ubuntu.com/server/docs/security-trust-store) in the Ubuntu documentation.
+    For more information, see [Installing a root CA certificate in the trust store](https://ubuntu.com/server/docs/security-trust-store) in the Ubuntu documentation.
 
-  Windows
-  : Complete the following steps:
+    Windows
+    : Complete the following steps:
 
     1. Use Windows Explorer to navigate to the directory where the certificate was downloaded and select the certificate.
     2. In the Certificate window, click **Install Certificate...**.
