@@ -128,7 +128,7 @@ tanzu apps workload create -f tdp-workload.yaml -n DEVELOPER-NAMESPACE
 Where:
 - `DEVELOPER-NAMESPACE` is the configured developer namespace on the cluster
 
-Once the workload is deploy, you can observe it in the `Supply Chains` section of the Tanzu Developer Portal
+Once the workload is deployed, you can observe it in the `Supply Chains` section of the Tanzu Developer Portal
 
 ![Deployed workload](../images/configurator/tdp-configurator-workload.png)
 
