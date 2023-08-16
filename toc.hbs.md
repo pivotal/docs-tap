@@ -129,6 +129,7 @@
   - [Troubleshoot Tanzu GitOps](troubleshooting-tap/troubleshooting-gitops.hbs.md)
 - [Uninstall by Tanzu CLI](uninstall.hbs.md)
 - [Uninstall by GitOps (beta)](install-gitops/uninstall.hbs.md)
+- [Glossary](glossary.hbs.md)
 - [Component documentation](components.hbs.md)
     - [Components overview](components.hbs.md)
     - [Tanzu CLI](cli-plugins/tanzu-cli.hbs.md)
