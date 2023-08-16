@@ -136,7 +136,7 @@ Wait for the **Image Provider** step of the Supply Chain to be completed.
 
 6. Copy the address to the customized Tanzu Developer Portal's image.
 
-To complete this step, navidate to the box that follows the **Image Provider** step:
+To complete this step, navigate to the box that follows the **Image Provider** step:
 
 ![Portal image in the Supply Chain](../images/configurator/tdp-configurator-supply-chain.png)
 
