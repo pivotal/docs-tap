@@ -42,7 +42,8 @@ Complete the following steps to integrate the hello-world plugin into your Tanzu
 
 1. Create the **tpb-config.yaml** file specifying the list of additional plugins that you want to integrate. In this example, we only need to specify the hello-world plugin that has both frontend and backend parts:
 
-    ```yaml
+
+```yaml
     app:
       plugins:
         - name: '@tpb/plugin-hello-world'
@@ -51,7 +52,8 @@ Complete the following steps to integrate the hello-world plugin into your Tanzu
       plugins:
         - name: '@tpb/plugin-hello-world-backend'
           version: '^1.6.0-release-1.6.x.1'
-    ```
+```
+
 > **Note:** If the plugin's version is not specified, it is likely that the workload that uses the config file as input will fail.
 
 2. Encode the file in base64, to later embed `tpb-config.yaml` in the workload definition file, by
@@ -192,7 +194,7 @@ kubectl apply -f tdp-overlay-secret.yaml
 
 To complete this step, add the following lines to your values file:
 
-    ```yaml
+```yaml
     profile: full
     tap_gui:
       ...
@@ -200,7 +202,7 @@ To complete this step, add the following lines to your values file:
     - name: tap-gui
       secrets:
       - name: tpb-app-image-overlay-secret
-    ```
+```
 
 10. Apply the new **tap-values.yaml** to your cluster. The exact steps vary depending on your installation method (GitOps, online install, or offline install).
 
