@@ -132,10 +132,10 @@ you must update this parameter to align with the new name.
 > **Note** `workloadRef` is not resolved to an actual `Workload` existing on the
 > cluster. This means that the claim does not depend on the existence of a `Workload`.
 
-### Display name
+### <a id="display-name"></a> Display name
 
 An optional field to designate a user-friendly display name for your registered
-client. The display name will be rendered on the authorization scope consent page
+client. The display name is rendered on the authorization scope consent page
 if the field `.spec.parameters.requireUserConsent` is toggled on.
 
 The display name must be between 2 and 32 characters in length.
