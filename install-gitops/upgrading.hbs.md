@@ -106,7 +106,7 @@ Follow these steps to upgrade to the latest patch:
 1. Commit the upgrade configurations:
 
     ```console
-    git add . && git commit -m "Upgrade TAP to version 1.6.1"
+    git add . && git commit -m "Upgrade TAP to {{ vars.tap_version }}"
     git push
     ```
 
