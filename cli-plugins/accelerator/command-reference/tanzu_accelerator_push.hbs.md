@@ -1,6 +1,7 @@
 ## tanzu accelerator push
 
-This command pushes source code from local path to source image.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator push`
+command to push source code from local path to source image.
 
 ### Synopsis
 
