@@ -1,6 +1,6 @@
 # Get workload status
 
-This topic tells you about the Apps CLI plug-in commands you can use to get information about the status of a workload.
+This topic tells you about the Tanzu Apps CLI commands you can use to get information about the status of a workload.
 
 ## tanzu apps workload list
 
