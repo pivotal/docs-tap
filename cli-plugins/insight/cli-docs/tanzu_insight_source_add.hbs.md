@@ -1,7 +1,7 @@
 # tanzu insight source add
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight source add` to add a source report.
+This topic tells you how to use the Tanzu Insight CLI 
+`tanzu insight source add` command to add a source report.
 
 ## <a id='synopsis'></a>Synopsis
 

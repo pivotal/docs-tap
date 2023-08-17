@@ -1,7 +1,7 @@
 # tanzu insight image get
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight image get` to get an image by digest.
+This topic tells you how to use the Tanzu Insight CLI 
+`tanzu insight image get` command to get an image by digest.
 
 ## <a id='synopsis'></a>Synopsis
 

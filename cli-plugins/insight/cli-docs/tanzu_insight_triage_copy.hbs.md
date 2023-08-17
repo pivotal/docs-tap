@@ -1,7 +1,7 @@
 # tanzu insight triage copy
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight triage copy` to copy an existing analysis to a new image, source 
+This topic tells you how to use the Tanzu Insight CLI
+`tanzu insight triage copy` command to copy an existing analysis to a new image, source
 or artifact group.
 
 ## <a id='synopsis'></a>Synopsis
