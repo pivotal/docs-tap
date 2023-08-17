@@ -3,6 +3,112 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
+## <a id='1-3-12'></a> v1.3.12 
+ 
+**Release Date**: 12 September 2023 
+ 
+### <a id='1-3-12-security-fixes'></a> v1.3.12 Security fixes 
+ 
+This release has the following security fixes, listed by component and area. 
+ 
+#### <a id='1-3-12-COMPONENT-NAME-fixes'></a> v1.3.12 security fixes: COMPONENT-NAME
+ 
+- Security fix description.
+ 
+OR add HTML or Markdown table
+ 
+<table>
+<tr>
+<th>Package name</th>
+<th>Vulnerabilities resolved</th>
+</tr>
+<tr>
+<td>PACKAGE.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
+</ul></details></td>
+</tr>
+</table> 
+ 
+---
+ 
+### <a id='1-3-12-resolved-issues'></a> v1.3.12 Resolved issues 
+ 
+The following issues, listed by component and area, are resolved in this release. 
+ 
+#### <a id='1-3-12-COMPONENT-NAME-ri'></a> v1.3.12 resolved issues: COMPONENT-NAME
+ 
+- Resolved issue description.
+ 
+---
+ 
+### <a id='1-3-12-known-issues'></a> v1.3.12 Known issues 
+ 
+This release has the following known issues, listed by component and area. 
+ 
+#### <a id='1-3-12-COMPONENT-NAME-ki'></a> v1.3.12 known issues: COMPONENT-NAME
+ 
+- Known issue description with link to workaround.  
+ 
+---
+ 
+### <a id='1-3-12-components'></a> v1.3.12 Component versions
+ 
+The following table lists the supported component versions for this Tanzu Application Platform release.
+ 
+| Component Name                                                   | Version |
+| ---------------------------------------------------------------- | ------- |
+| API Auto Registration                                            |         |
+| API portal                                                       |         |
+| Application Accelerator                                          |         |
+| Application Configuration Service                                |         |
+| Application Live View API Server                                 |         |
+| Application Live View Backend                                    |         |
+| Application Live View Connector                                  |         |
+| Application Live View Conventions                                |         |
+| Application Single Sign-On                                       |         |
+| Authentication and authorization                                 |         |
+| Bitnami Services                                                 |         |
+| Cartographer Conventions                                         |         |
+| cert-manager                                                     |         |
+| Cloud Native Runtimes                                            |         |
+| Contour                                                          |         |
+| Crossplane                                                       |         |
+| Developer Conventions                                            |         |
+| Eventing                                                         |         |
+| Flux CD Source Controller                                        |         |
+| Learning Center (deprecated)                                     |         |
+| Learning Center workshops (deprecated)                           |         |
+| Local Source Proxy                                               |         |
+| Namespace Provisioner                                            |         |
+| Out of the Box Delivery - Basic                                  |         |
+| Out of the Box Supply Chain - Basic                              |         |
+| Out of the Box Supply Chain - Testing                            |         |
+| Out of the Box Supply Chain - Testing and Scanning               |         |
+| Out of the Box Templates                                         |         |
+| Service Bindings                                                 |         |
+| Services Toolkit                                                 |         |
+| Source Controller                                                |         |
+| Spring Boot conventions                                          |         |
+| Spring Cloud Gateway                                             |         |
+| Supply Chain Choreographer                                       |         |
+| Supply Chain Security Tools - Policy Controller                  |         |
+| Supply Chain Security Tools - Scan                               |         |
+| Supply Chain Security Tools - Store                              |         |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
+| Tanzu Application Platform Telemetry                             |         |
+| Tanzu Build Service                                              |         |
+| Tanzu CLI                                                        |         |
+| Tanzu CLI Application Accelerator plug-in                        |         |
+| Tanzu CLI Apps plug-in                                           |         |
+| Tanzu CLI Build Service plug-in                                  |         |
+| Tanzu CLI Insight plug-in                                        |         |
+| Tanzu Service CLI plug-in                                        |         |
+| Tekton Pipelines                                                 |         |
+ 
+---   
+
 ## <a id='1-3-11'></a> v1.3.11
 
 **Release Date**: 15 August 2023
