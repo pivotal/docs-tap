@@ -1,6 +1,6 @@
 # tanzu accelerator get
 
-This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator get`
+This topic tells you how to use the Tanzu Accelerator CLI `tanzu accelerator get`
 command to get accelerator information.
 
 ## Synopsis

@@ -1,6 +1,6 @@
 # Delete a workload
 
-This topic tells you about the `tanzu apps workload delete` command.
+This topic tells you about the Tanzu Apps CLI `tanzu apps workload delete` command.
 
 Use the `tanzu apps workload delete` command to remove one or more workloads from a specific
 namespace on the target cluster.

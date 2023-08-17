@@ -1,11 +1,11 @@
-# Configure the Apps CLI plug-in
+# Configure the Tanzu Apps CLI
 
-This topic tells you how to configure the Apps CLI plug-in on Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to configure the Tanzu Apps CLI on Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='changing-clusters'></a>Changing clusters with --context
 
-The Apps CLI plug-in references the default kubeconfig file to access a Kubernetes cluster.
-When you run a `tanzu apps` command, the Apps CLI plug-in uses the default context.
+The Tanzu Apps CLI references the default kubeconfig file to access a Kubernetes cluster.
+When you run a `tanzu apps` command, the Tanzu Apps CLI  uses the default context.
 The default context is defined in the kubeconfig file located by default in: `HOME/.kube/config`.
 
 There are two ways to change the target cluster:
@@ -13,7 +13,7 @@ There are two ways to change the target cluster:
 1. Use `kubectl config use-context CONTEXT-NAME` to change the default context. All subsequent
   `tanzu apps` commands target the cluster defined in the new default kubeconfig context.
 
-2. Include the `--context CONTEXT-NAME` flag when running any `tanzu apps` command.
+1. Include the `--context CONTEXT-NAME` flag when running any `tanzu apps` command.
 
    >**Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTENT-NAME`
      flag continue to use the default context set in the kubeconfig.
@@ -22,7 +22,7 @@ There are two ways to change the target cluster:
 
 There are two approaches to overriding the default kubeconfig:
 
-1. To change the kubeconfig the Apps CLI plug-in will
+1. To change the kubeconfig the Tanzu Apps CLI will
    reference, set the environment variable `KUBECONFIG=PATH` . All subsequent `tanzu apps` commands
    reference the non-default kubeconfig assigned to the environment variable.
 
@@ -150,7 +150,7 @@ export TANZU_APPS_TYPE=server
 
 ## <a id='autocompletion'></a>Autocompletion
 
-The Apps CLI plug-in provides auto-completion support for commands,
+The Tanzu Apps CLI provides auto-completion support for commands,
 positional arguments, flags, and flag values.
 
 Add one of the following commands to the shell config file according to your setup:

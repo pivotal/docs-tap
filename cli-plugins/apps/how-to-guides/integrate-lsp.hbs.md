@@ -1,6 +1,6 @@
 # Integrate with Local Source Proxy
 
-This topic tells you how to integrate the Apps CLI plug-in with Local Source Proxy.
+This topic tells you how to integrate the Tanzu Apps CLI with Local Source Proxy.
 
 You can configure workloads to push local source code to a registry that is predefined using
 the Local Source Proxy component.

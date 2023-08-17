@@ -1,6 +1,6 @@
 # tanzu accelerator
 
-This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator`
+This topic tells you how to use the Tanzu Accelerator CLI `tanzu accelerator`
 command to manages accelerators in a Kubernetes cluster.
 
 ### Options
