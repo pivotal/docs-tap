@@ -1,6 +1,6 @@
 # Application Accelerator Best Practices
 
-The following topics describe best practices for authoring accelerators and fragments.
+The following topics tells you about best practices for authoring accelerators and fragments.
 
 - **[Best practices for using Accelerators](accelerators.hbs.md)**
 

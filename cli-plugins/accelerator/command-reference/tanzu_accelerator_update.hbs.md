@@ -1,6 +1,7 @@
 # tanzu accelerator update
 
-This command updates an accelerator.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator update`
+command to update an accelerator.
 
 ## Synopsis
 

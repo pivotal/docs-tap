@@ -2,7 +2,8 @@
 
 This topic tells you about advanced configuration options available for Application Accelerator in
 Tanzu Application Platform (commonly known as TAP).
-This includes configuring Git-Ops style deployments of accelerators and configurations for use with non-public repositories and in air-gapped environments.
+This includes configuring Git-Ops style deployments of accelerators and configurations for use with
+non-public repositories and in air-gapped environments.
 
 ## Overview
 

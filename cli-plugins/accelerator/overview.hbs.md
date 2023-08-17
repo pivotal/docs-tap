@@ -1,10 +1,12 @@
-# Application Accelerator CLI plug-in overview
+# Tanzu Accelerator CLI plug-in overview
 
-The Application Accelerator Tanzun CLI plug-in includes commands for developers and operators to create and use accelerators.
+The Tanzu Accelerator Tanzu CLI plug-in includes commands for developers and operators to
+create and use accelerators.
 
 ## <a id="server-api-connections"></a>Server API connections for operators and developers
 
-The Application Accelerator CLI must connect to a server for all provided commands except for the `help` and `version` commands.
+The Tanzu Accelerator CLI must connect to a server for all provided commands except for the
+`help` and `version` commands.
 
 Operators typically use **create**, **update**, and **delete** commands for managing accelerators in a Kubernetes context.
 They also use the **fragment** commands to manage acccelerator fragments.
@@ -42,7 +44,7 @@ If the developer explicitly specifies the `--server-url` flag, it overrides the 
 
 ## <a id="installation"></a>Installation
 
-For information about installing the Tanzu CLI accelerator plug-in, see [Install Accelerator CLI plug-in](install-accelerator-cli.md).
+For information about installing the Tanzu CLI Accelerator plug-in, see [Install Accelerator CLI plug-in](install-accelerator-cli.md).
 
 ## <a id='command-reference'></a>Command reference
 
