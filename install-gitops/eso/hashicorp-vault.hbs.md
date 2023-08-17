@@ -642,9 +642,7 @@ Follow these steps to split the Tanzu Application Platform values:
             dbUpdateUrl: INTERNAL-VULN-DB-URL
     ```
 
-    Where:
-
-    - `INTERNAL-VULN-DB-URL` is the URL that points to the internal file server.
+    Where `INTERNAL-VULN-DB-URL` is the URL that points to the internal file server.
 
     For more information, see [Components and installation profiles](../../about-package-profiles.hbs.md).
 
