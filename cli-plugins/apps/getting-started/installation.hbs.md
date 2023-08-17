@@ -1,4 +1,4 @@
-# Install the Tanzu Apps CLI
+# Install Tanzu Apps CLI
 
 This topic tells you how to install the Tanzu Apps CLI on Tanzu Application Platform (commonly known as TAP).
 
