@@ -1,6 +1,7 @@
 ## tanzu accelerator generate
 
-This command generates a project from an accelerator.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator generate`
+command to generate a project from an accelerator.
 
 ### Synopsis
 
