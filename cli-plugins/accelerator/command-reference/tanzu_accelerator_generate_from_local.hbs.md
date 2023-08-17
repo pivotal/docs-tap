@@ -1,6 +1,6 @@
 # tanzu accelerator generate-from-local
 
-This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator generate-from-local`
+This topic tells you how to use the Tanzu Accelerator CLI `tanzu accelerator generate-from-local`
 command to generate a project from a combination of registered and local artifacts.
 
 ## Synopsis

@@ -1,16 +1,16 @@
-# Install the Apps CLI plug-in
+# Install the Tanzu Apps CLI
 
-This topic tells you how to install the Apps CLI plug-in on Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to install the Tanzu Apps CLI on Tanzu Application Platform (commonly known as TAP).
 
 ## Prerequisites
 
 Ensure that you installed or updated the core Tanzu CLI. For more information, see
 [Install Tanzu CLI](../../../install-tanzu-cli.hbs.md#install-cli).
 
-## Install Apps CLI Plug-in
+## Install Tanzu Apps CLI
 
 From VMware Tanzu CLI
-: Install Apps CLI plug-in:
+: Install Tanzu Apps CLI:
 
   ```console
   tanzu plugin install apps --group vmware-tap/default:{{ vars.tap_version }}
@@ -44,7 +44,7 @@ From GitHub release:
         --version v0.12.1
         ```
 
-## Uninstalling Apps CLI Plug-in
+## Uninstalling Tanzu Apps CLI
 
 Run:
 

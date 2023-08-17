@@ -1,6 +1,6 @@
-# Tanzu Accelerator CLI plug-in overview
+# Tanzu Accelerator CLI overview
 
-The Tanzu Accelerator Tanzu CLI plug-in includes commands for developers and operators to
+The Tanzu Accelerator Tanzu CLI includes commands for developers and operators to
 create and use accelerators.
 
 ## <a id="server-api-connections"></a>Server API connections for operators and developers
