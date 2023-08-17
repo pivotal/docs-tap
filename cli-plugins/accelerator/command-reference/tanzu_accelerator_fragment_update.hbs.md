@@ -1,6 +1,7 @@
 # tanzu accelerator fragment update
 
-This command updates an accelerator fragment.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator fragment update`
+command to update an accelerator fragment.
 
 ## Synopsis
 

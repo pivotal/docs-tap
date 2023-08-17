@@ -1,6 +1,7 @@
 # tanzu accelerator list
 
-This command lists accelerators.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator list`
+command to list accelerators.
 
 ## Synopsis
 
