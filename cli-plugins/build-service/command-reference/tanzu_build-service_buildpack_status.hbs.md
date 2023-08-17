@@ -1,6 +1,7 @@
 # tanzu build-service buildpack status
 
-This command displays the status of a buildpack.
+This topic tells you how to use the Tanzu Build Service CLI `build-service buildpack status` command
+to display the status of a buildpack.
 
 ## Synopsis
 

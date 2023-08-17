@@ -1,6 +1,7 @@
 # tanzu build-service clusterstack list
 
-This command lists cluster stacks.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service clusterstack status`
+command to list cluster stacks.
 
 ## Synopsis
 

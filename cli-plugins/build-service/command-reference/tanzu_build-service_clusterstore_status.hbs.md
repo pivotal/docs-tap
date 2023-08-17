@@ -1,6 +1,7 @@
 # tanzu build-service clusterstore status
 
-This command displays cluster store status.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service clusterstore status`
+command to display cluster store status.
 
 ## Synopsis
 

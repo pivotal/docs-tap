@@ -1,12 +1,13 @@
 # tanzu build-service build list
 
-This command lists builds.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service build list` command
+to lists builds.
 
 ## Synopsis
 
 Prints a table of the most important information about builds in the provided namespace.
 
-The namespace defaults to the kubernetes current-context namespace.
+The namespace defaults to the Kubernetes current-context namespace.
 
 ```console
 tanzu build-service build list [image-resource-name] [flags]

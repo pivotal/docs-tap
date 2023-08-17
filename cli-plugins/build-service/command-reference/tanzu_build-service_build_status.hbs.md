@@ -1,6 +1,7 @@
 # tanzu build-service build status
 
-This command displays the status for an image resource build.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service build status` command
+to display the status for an image resource build.
 
 ## Synopsis
 

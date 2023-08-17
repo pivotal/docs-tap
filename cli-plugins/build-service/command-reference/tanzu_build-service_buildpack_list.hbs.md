@@ -1,6 +1,7 @@
 # tanzu build-service buildpack list
 
-This command lists available buildpacks.
+This topic tells you how to use the Tanzu Build Service CLI `build-service buildpack list` command
+to lists available buildpacks.
 
 ## Synopsis
 

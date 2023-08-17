@@ -1,6 +1,7 @@
 # tanzu build-service clusterstore list
 
-This command lists cluster stores.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service clusterstore list`
+command to lists cluster stores.
 
 ## Synopsis
 

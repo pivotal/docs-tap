@@ -1,6 +1,6 @@
 # tanzu build-service build
 
-Build Commands
+This topic tells you about the Tanzu Build Service CLI `tanzu build-service build` command options.
 
 ## Options
 

@@ -1,6 +1,7 @@
 # tanzu build-service build logs
 
-This command tails logs for an image resource build.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service build logs` command
+to tails logs.
 
 ## Synopsis
 
