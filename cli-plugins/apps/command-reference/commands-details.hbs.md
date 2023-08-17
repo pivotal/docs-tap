@@ -1,4 +1,4 @@
-# Apps CLI plug-in commands
+# Tanzu Apps CLI commands
 
 The following topics describe the Tanzu CLI Apps plug-in commands.
 
