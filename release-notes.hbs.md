@@ -140,7 +140,12 @@ This release has the following security fixes, listed by component and area.
 
 ### <a id='1-5-4-known-issues'></a> Known issues
 
-This release introduces no new known issues.
+This release has the following known issues, listed by component and area. 
+
+#### <a id='1-5-4-tap-ki'></a> TAP
+
+- While upgrading from TAP 1.4 to TAP 1.5 sometimes results in temporary failures that self heal in a few minutes. This is because we switched to versioned secrets for all components in 1.5 which results in a race condition during upgrades and errors that would look like this:
+  - `Reconcile failed: Preparing template values: secrets "tekton-pipelines-values" not found`
 
 ---
 
