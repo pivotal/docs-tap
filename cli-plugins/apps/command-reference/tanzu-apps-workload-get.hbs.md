@@ -1,6 +1,7 @@
 # Tanzu apps workload get
 
-This topic helps you get details from a workload.
+This topic tells you how to use the Tanzu Apps CLI `apps workload get` command to get details from
+a workload.
 
 ```console
 tanzu apps workload get <name> [flags]

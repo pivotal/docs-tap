@@ -1,5 +1,7 @@
 # Command reference
 
+This topic provides you with a list of the Tanzu Apps CLI commands.
+
 - [Tanzu apps](command-reference/tanzu-apps.md)
     - [Workload](command-reference/tanzu-apps-workload.md)
         - [Workload apply](command-reference/tanzu-apps-workload-apply.md)

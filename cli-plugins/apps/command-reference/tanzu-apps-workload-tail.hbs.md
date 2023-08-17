@@ -1,6 +1,7 @@
 # Tanzu apps workload tail
 
-This topic will help you to watch workload related logs.
+This topic tells you how to use the Tanzu Apps CLI `apps workload tail ` command
+to watch workload related logs.
 
 You can stream logs for a workload until canceled. To cancel, press Ctl-c in
 the shell or stop the process. As new workload pods are started, the logs

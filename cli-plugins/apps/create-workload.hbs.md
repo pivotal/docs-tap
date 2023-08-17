@@ -1,6 +1,7 @@
 # Create a workload
 
-This topics describes how to create a workload from example source code with Tanzu Application Platform.
+This topics tells you  how to create a workload from example source code with
+Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='prerequisites'></a> Prerequisites
 

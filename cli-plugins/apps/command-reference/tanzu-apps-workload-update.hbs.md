@@ -1,6 +1,7 @@
 # Tanzu apps workload update
 
-This topic helps you update the configuration of an existing workload.
+This topic tells you how to use the Tanzu Apps CLI `apps workload update` command to update the
+configuration of an existing workload.
 
 ## <a id="synopsis"></a> Synopsis
 

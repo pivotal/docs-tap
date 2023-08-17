@@ -1,9 +1,11 @@
-# Use and examples
+# Manage a workload using a YAML file
+
+This topic tells you how to use the Tanzu Apps CLI to manage a workload using a `yaml` file.
 
 ## <a id='changing-clusters'></a> Changing clusters
 
-The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
-When a `tanzu apps` command is run, the plug-in uses the default context that is defined in
+The Tanzu Apps CLI refers to the default kubeconfig file to access a Kubernetes cluster.
+When a `tanzu apps` command is run, the Tanzu Apps CLI uses the default context that is defined in
 that kubeconfig file (located by default at `$HOME/.kube/config`).
 
 There are two ways to change the target cluster:
@@ -27,7 +29,7 @@ For more information about kubeconfig, see [Configure Access to Multiple Cluster
 
 ## <a id='checking-update-status'></a>Checking update status
 
-You can use the Apps CLI plug-in to create or update a workload.
+You can use the Tanzu Apps CLI to create or update a workload.
 After you've submitted your changes to the platform, the CLI command exits.
 Depending on the changes you submitted, it might take time for them to be executed on the platform.
 Run `tanzu apps workload get` to verify the status of your changes.
@@ -37,10 +39,10 @@ For more information about this command, see [Tanzu Apps Workload Get](command-r
 
 In many cases, you can manage workload life cycles through CLI commands.
 However, you might find cases where you want to manage a workload by using a `yaml` file.
-The Apps CLI plug-in supports using `yaml` files.
+The Tanzu Apps CLI supports using `yaml` files.
 
-The plug-in manages one workload at a time. When you manage a workload using a `yaml` file, that
-file must contain a single workload definition. Plug-in commands support only one file per command.
+The Tanzu Apps CLI manages one workload at a time. When you manage a workload using a `yaml` file, that
+file must contain a single workload definition. Tanzu Apps CLI commands support only one file per command.
 
 For example:
 

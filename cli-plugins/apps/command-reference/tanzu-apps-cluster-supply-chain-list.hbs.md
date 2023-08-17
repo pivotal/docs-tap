@@ -1,6 +1,7 @@
 # Tanzu apps cluster supply chain list
 
-This topic helps you list cluster supply chains.
+This topic tells you how to use the Tanzu Apps CLI `apps cluster supply chain list` command
+to list cluster supply chains.
 
 ```console
 tanzu apps cluster-supply-chain list [flags]

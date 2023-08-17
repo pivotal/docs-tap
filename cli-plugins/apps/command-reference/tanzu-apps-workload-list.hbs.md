@@ -1,6 +1,7 @@
 # Tanzu apps workload list
 
-This topic will help you list workloads in a namespace or across all namespaces.
+This topic tells you how to use the Tanzu Apps CLI `apps workload list` command
+to list workloads in a namespace or across all namespaces.
 
 ```console
 tanzu apps workload list [flags]

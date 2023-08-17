@@ -1,6 +1,7 @@
 # Tanzu Apps Cluster Supply Chain Get
 
-The `tanzu apps cluster-supply-chain get` command gets detailed information of the cluster supply chain.
+This topic tells you how to use the `tanzu apps cluster-supply-chain get` command
+to get detailed information about the cluster supply chain.
 
 ## Default view
 

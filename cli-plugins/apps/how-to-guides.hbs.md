@@ -1,6 +1,7 @@
 # Workload Examples
 
-Use the following flags with the Apps CLI plug-in.
+This topic provides you with examples of how to use the Tanzu Apps CLI `apps workload apply`
+command flags.
 
 ## <a id='custom-registry'></a> Custom registry credentials
 
@@ -33,6 +34,7 @@ export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
 
 tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE
 ```
+
 ## <a id='live-updated-debug'></a> --live-update and --debug
 
 Use the `--live-update` flag to ensure that local source code changes are reflected quickly

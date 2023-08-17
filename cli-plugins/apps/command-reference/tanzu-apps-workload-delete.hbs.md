@@ -1,6 +1,7 @@
 # Tanzu apps workload delete
 
-This topic helps you delete one or more workloads by name or all workloads within a namespace.
+This topic tells you how to use the Tanzu Apps CLI `apps workload delete` command
+to delete one or more workloads by name or all workloads within a namespace.
 
 Deleting a workload prevents new builds while preserving built images in the
 registry.

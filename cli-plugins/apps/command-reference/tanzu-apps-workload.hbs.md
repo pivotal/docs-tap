@@ -1,6 +1,7 @@
 # Tanzu apps workload
 
-This topic helps you with workload life cycle management.
+This topic tells you how to use the Tanzu Apps CLI `apps workload` command for workload life cycle
+management.
 
 A workload may run as a Knative service, Kubernetes deployment, or other runtime. Workloads can be grouped together with other related resources, such as storage or credential objects as a logical application for easier management.
 

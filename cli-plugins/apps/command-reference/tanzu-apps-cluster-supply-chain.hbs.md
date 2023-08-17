@@ -1,6 +1,6 @@
 # Tanzu apps cluster supply chain
 
-This topic includes patterns for building and configuring workloads.
+This topic tells you how to get help for the the Tanzu Apps CLI `apps cluster supply chain` command.
 
 ## <a id="options"></a>Options
 

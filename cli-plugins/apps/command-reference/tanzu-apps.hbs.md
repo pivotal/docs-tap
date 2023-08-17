@@ -1,6 +1,6 @@
 # Tanzu apps
 
-This topic includes a description of applications (apps) available on Kubernetes.
+This topic tells you about the Tanzu Apps CLI options.
 
 ## <a id="options"></a>Options
 

@@ -1,6 +1,7 @@
 # Tanzu apps workload create
 
-This topic helps you create a workload with the specified configuration.
+This topic tells you how to use the Tanzu Apps CLI `apps workload create` command
+to create a workload with the specified configuration.
 
 ## <a id="synopsis"></a> Synopsis
 

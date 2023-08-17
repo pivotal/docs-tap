@@ -1,8 +1,8 @@
 # Tanzu apps workload apply
 
-This topic helps you apply configurations to a new or existing workload.
+This topic tells you how to use the Tanzu Apps CLI to apply configurations to a new or existing workload.
 
-### <a id="synopsis"></a> Synopsis
+## <a id="synopsis"></a> Synopsis
 
 Apply configurations to a new or existing workload. If the resource does not exist, it's created.
 
