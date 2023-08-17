@@ -1,6 +1,6 @@
 # tanzu accelerator delete
 
-This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator delete` command
+This topic tells you how to use the Tanzu Accelerator CLI `tanzu accelerator delete` command
 to delete an accelerator.
 
 ## Synopsis

@@ -1,6 +1,6 @@
 # Command reference
 
-This topic provides you with a list of the Tanzu Accelerator CLI plug-in commands.
+This topic provides you with a list of the Tanzu Accelerator CLI commands.
 
 - [tanzu accelerator](command-reference/tanzu_accelerator.md)
     - [tanzu accelerator apply](command-reference/tanzu_accelerator_apply.md)

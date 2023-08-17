@@ -1,6 +1,6 @@
 # Tanzu apps workload list
 
-This topic tells you about the Apps CLI `tanzu apps workload list` command.
+This topic tells you about the Tanzu Apps CLI `tanzu apps workload list` command.
 
 The `tanzu apps workload list` command gets the workloads present in the cluster, either in the current namespace, in another namespace, or all namespaces.
 
