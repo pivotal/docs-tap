@@ -101,9 +101,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-tbs-deps-package-repo
     ```
 
-    Where:
-
-    - `VERSION` is the version of Tanzu Build Service. You can retrieve this value by running `kubectl get package -n tap-install | grep buildservice`
+    Where `VERSION` is the version of Tanzu Build Service. You can retrieve this value by running `kubectl get package -n tap-install | grep buildservice`
 
 1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../install-offline/grype-offline-airgap.hbs.md).
 
@@ -305,9 +303,7 @@ tap_install:
         dbUpdateUrl: INTERNAL-VULN-DB-URL
 ```
 
-Where:
-
-- `INTERNAL-VULN-DB-URL` is the URL that points to the internal file server.
+Where `INTERNAL-VULN-DB-URL` is the URL that points to the internal file server.
 
 For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
