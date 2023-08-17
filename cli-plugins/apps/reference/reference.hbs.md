@@ -1,4 +1,4 @@
-# Apps CLI plug-in reference
+# Tanzu Apps CLI reference
 
 The reference section contains the following topics:
 

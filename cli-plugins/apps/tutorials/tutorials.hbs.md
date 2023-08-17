@@ -1,4 +1,4 @@
-# Apps CLI tutorials
+# Tanzu Apps CLI tutorials
 
 This section contains the following topics:
 
