@@ -116,7 +116,7 @@ For each run cluster:
 
 Configure Argo CD on the Build cluster to deploy your `Packages`, `PackageInstalls`, and `Secrets` to each run cluster:
 
-1. Register a cluster's credentials to Argo CD. Thi is only necessary when deploying to an external cluster.
+1. Register a cluster's credentials to Argo CD. This is only necessary when deploying to an external cluster.
   - First list all clusters contexts in your current kubeconfig:
 
    ```console
