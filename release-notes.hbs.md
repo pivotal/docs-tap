@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-5-5'></a> v1.5.5 
- 
-**Release Date**: 12 September 2023 
- 
-### <a id='1-5-5-security-fixes'></a> v1.5.5 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-5-5'></a> v1.5.5
+
+**Release Date**: 12 September 2023
+
+### <a id='1-5-5-security-fixes'></a> v1.5.5 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-5-5-COMPONENT-NAME-fixes'></a> v1.5.5 security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -29,34 +29,34 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-5-5-resolved-issues'></a> v1.5.5 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-5-5-resolved-issues'></a> v1.5.5 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-5-5-COMPONENT-NAME-ri'></a> v1.5.5 resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-5-5-known-issues'></a> v1.5.5 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-5-5-known-issues'></a> v1.5.5 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-5-5-COMPONENT-NAME-ki'></a> v1.5.5 known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-5-5-components'></a> v1.5.5 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                                   | Version |
 | ---------------------------------------------------------------- | ------- |
 | API Auto Registration                                            |         |
@@ -106,8 +106,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu CLI Insight plug-in                                        |         |
 | Tanzu Service CLI plug-in                                        |         |
 | Tekton Pipelines                                                 |         |
- 
----   
+
+---
 
 ## <a id='1-5-4'></a> v1.5.4
 
@@ -246,7 +246,18 @@ This release has the following security fixes, listed by component and area.
 
 ### <a id='1-5-4-known-issues'></a> Known issues
 
-This release introduces no new known issues.
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-5-4-tap-ki'></a> Tanzu Application Platform
+
+- Upgrading from Tanzu Application Platform v1.4 to v1.5 sometimes causes temporary failures that
+  self heal in a few minutes. This is because Tanzu Application Platform switched to versioned secrets
+  for all components in v1.5, which can cause a race condition during upgrades and errors similar to
+  the following:
+
+      ```console
+      Reconcile failed: Preparing template values: secrets "tekton-pipelines-values" not found
+      ```
 
 ---
 
