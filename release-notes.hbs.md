@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-3'></a> v1.6.3 
- 
+## <a id='1-6-3'></a> v1.6.3
+
 **Release Date**: 12 September 2023
- 
-### <a id='1-6-3-security-fixes'></a> v1.6.3 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+
+### <a id='1-6-3-security-fixes'></a> v1.6.3 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-3-COMPONENT-NAME-fixes'></a> v1.6.3 security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -29,34 +29,34 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-6-3-resolved-issues'></a> v1.6.3 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-3-resolved-issues'></a> v1.6.3 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-3-COMPONENT-NAME-ri'></a> v1.6.3 resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-6-3-known-issues'></a> v1.6.3 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-6-3-known-issues'></a> v1.6.3 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-6-3-COMPONENT-NAME-ki'></a> v1.6.3 known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-6-3-components'></a> v1.6.3 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 | Component Name                                                   | Version |
 | ---------------------------------------------------------------- | ------- |
 | API Auto Registration                                            |         |
@@ -106,8 +106,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu CLI Insight plug-in                                        |         |
 | Tanzu Service CLI plug-in                                        |         |
 | Tekton Pipelines                                                 |         |
- 
----   
+
+---
 
 ## <a id='1-6-2'></a> v1.6.2
 
@@ -915,9 +915,10 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 #### <a id='1-6-1-visualstudio-ext'></a> v1.6.1 features: Tanzu Developer Tools for Visual Studio
 
-- Added a Tanzu Workloads panel to easily view deployed workloads in a Tanzu Application Platform cluster.
-
-- Developers can now use Tanzu Developer Tools for Visual Studio to directly manage workloads, including Apply Workload, Start Live Update, and Debug Workload.
+- Added a Tanzu Workloads panel to easily view deployed workloads in a Tanzu Application Platform
+  cluster.
+- You can now use Tanzu Developer Tools for Visual Studio to directly manage workloads, which includes
+  the functions Apply Workload, Start Live Update, and Debug Workload.
 
 ---
 
