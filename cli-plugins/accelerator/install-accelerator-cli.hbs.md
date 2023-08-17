@@ -1,20 +1,20 @@
-# Install Tanzu Accelerator CLI plug-in
+# Install Tanzu Accelerator CLI
 
-This topic tells you how to install the Tanzu Accelerator CLI plug-in.
+This topic tells you how to install the Tanzu Accelerator CLI.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Tanzu Accelerator CLI plug-in.
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Tanzu Accelerator CLI.
 > For more information about profiles, see [About Tanzu Application Platform components and
 > profiles](../../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before you install the Tanzu Accelerator CLI plug-in:
+Before you install the Tanzu Accelerator CLI:
 
 - Follow the instructions to [Install or update the Tanzu CLI and plug-ins](../../install-tanzu-cli.md#cli-and-plugin).
 
 ## <a id='Install'></a>Install
 
-To install the Tanzu Accelerator CLI plug-in:
+To install the Tanzu Accelerator CLI:
 
 1. From the `$HOME/tanzu` directory, run:
 
