@@ -1,6 +1,8 @@
 # Debug workloads
 
-This topic describes steps you can take to debug workloads.
+This topic tells you how to use the Tanzu Apps CLI to debug workloads.
+
+## <a id="check-build-logs"></a> Verify build logs
 
 ## <a id="check-build-logs"></a> Check build logs
 
