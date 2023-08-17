@@ -1,6 +1,8 @@
 # Tanzu Apps CLI overview
 
-This topic gives you an overview of the Tanzu Apps CLI. Use the Tanzu Apps CLI to create, view, update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application Platform (commonly known as TAP) components installed.
+This topic gives you an overview of the Tanzu Apps CLI. Use the Tanzu Apps CLI to create, view,
+update, and delete application workloads on any Kubernetes cluster that has the Tanzu Application
+Platform (commonly known as TAP) components installed.
 
 ## <a id='about'></a>About workloads
 

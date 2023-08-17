@@ -1,6 +1,7 @@
 # tanzu apps workload delete
 
-This topic tells you about the Tanzu Apps CLI `tanzu apps workload delete` command. This command deletes workloads in a cluster. Deleting a workload does not mean the images published
+This topic tells you about the Tanzu Apps CLI `tanzu apps workload delete` command. This command
+deletes workloads in a cluster. Deleting a workload does not mean the images published
 in the registry are deleted with it.
 
 ## Default view
