@@ -1,6 +1,7 @@
 # Transforms reference
 
-This topic provides a list and brief description of the available Application Accelerator transforms in Tanzu Application Platform (commonly known as TAP).
+This topic provides you with a list and brief description of the available Application Accelerator
+transforms in Tanzu Application Platform (commonly known as TAP).
 
 ## Available transforms
 
