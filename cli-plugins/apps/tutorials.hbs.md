@@ -1,6 +1,6 @@
 # Install Apps CLI plug-in
 
-This topic describes how to install the Apps CLI plug-in.
+This topic describes how to install the Tanzu Apps CLI plug-in.
 
 ## <a id='prereqs'></a>Prerequisites
 
