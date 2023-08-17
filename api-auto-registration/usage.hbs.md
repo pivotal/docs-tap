@@ -112,19 +112,24 @@ workload YAML:
             type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
             location:
               path: "/v3/api-docs"  # The path to the api documentation
+              baseURL: "http://my-spec.url" # (Optional) The base URL to the api documentation if not served from the API runtime
             owner: team-petclinic   # The team that owns this
+            system: petclinic       # The Backstage system entity this API belongs to
             description: "A set of API endpoints to manage the resources within the petclinic app."
     ```
 
-There are 2 different options for the location:
+The default supply chains use Knative to deploy your applications. and that will be referenced as the
+server location for the generated APIDescriptor.
 
-- The default supply chains use Knative to deploy your applications. In this
-  event the only location information you must send is the path to the API
-  documentation. The controller can figure out the base URL for you.
-- You can hardcode the URL using the baseURL property. The controller uses a
-combination of this baseURL and your path to retrieve the YAML.
+As for API spec, there are 2 different options for the location:
 
-Example workload that exposes a Knative service:
+- If the API spec is generated and served from an endpoint of your applications,
+the only location information you must set is the path to the API documentation.
+The controller can figure out the base URL for you from the Knative server reference.
+- If your API spec is served elsewhere from a static location, you can hardcode the URL using the
+`location.baseURL` property.
+
+Example workload that exposes the API spec from a Knative service:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
