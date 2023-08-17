@@ -9,16 +9,26 @@ This section includes commands for debugging or troubleshooting the APIDescripto
 1. Get the details of CRs.
 
     ```console
-    kubectl get apidescriptor <name> -n <namespace> -owide
-    kubectl get curatedapidescriptor <name> -n <namespace> -owide
+    kubectl get apidescriptor NAME -n NAMESPACE -owide
+    kubectl get curatedapidescriptor NAME -n NAMESPACE -owide
     ```
+
+    Where:
+
+    - `NAME` is the name of the CR you want to debug.
+    - `NAMESPACE` is the namespace associated with the CR you want to debug.
 
 2. Find the status of the CRs.
 
     ```console
-    kubectl get apidescriptor <name> -n <namespace> -o jsonpath='{.status.conditions}'
-    kubectl get curatedapidescriptor <name> -n <namespace> -o jsonpath='{.status.conditions}'
+    kubectl get apidescriptor NAME -n NAMESPACE -o jsonpath='{.status.conditions}'
+    kubectl get curatedapidescriptor NAME -n NAMESPACE -o jsonpath='{.status.conditions}'
     ```
+
+    Where:
+
+    - `NAME` is the name of the CR you want to debug.
+    - `NAMESPACE` is the namespace associated with the CR you want to debug.
 
 3. Read logs from the `api-auto-registration` controller.
 
@@ -33,8 +43,10 @@ This section includes commands for debugging or troubleshooting the APIDescripto
    or run for each stuck APIDescriptor resource.
 
     ```console
-    kubectl patch apidescriptor <api-apidescriptor-name> -p '{"metadata":{"finalizers":null}}' --type=merge
+    kubectl patch apidescriptor API-DESCRIPTOR-NAME -p '{"metadata":{"finalizers":null}}' --type=merge
     ```
+
+    Where `API-DESCRIPTOR-NAME` is the name of the API descriptor you want to patch.
 
     > **Note** If you manually remove the finalizers from the APIDescriptor resources, you can have
     > stale API entities within Tanzu Developer Portal that you must manually deregister.
