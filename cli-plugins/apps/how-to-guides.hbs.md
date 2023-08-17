@@ -1,6 +1,7 @@
 # Workload Examples
 
-Use the following flags with the Apps CLI plug-in.
+This topic provides you with examples of how to use the Tanzu Apps CLI `apps workload apply`
+command flags.
 
 ## <a id='custom-registry'></a> Custom registry credentials
 
