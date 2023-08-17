@@ -10,7 +10,7 @@ An image is admitted after it is validated against a policy with
 matching image pattern, and where at least one valid signature is obtained from
 the authorities provided in a matched [ClusterImagePolicy](#create-cip-resource).
 
-If more than one policy exists with matching image pattern, _ALL_ of the policies
+If more than one policy exists with a matching image pattern, _ALL_ of the policies
 must have at least one passing authority for the image.
 
 ## <a id="including-namespaces"></a> Including Namespaces
