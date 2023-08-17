@@ -1,6 +1,7 @@
 # Create or update a workload
 
-This topic tells you how to create a workload in Tanzu Application Platform (commonly known as TAP) from a `workload.yaml` file, a URL, a Git source,
+This topic tells you how to create a workload in Tanzu Application Platform
+(commonly known as TAP) from a `workload.yaml` file, a URL, a Git source,
 a local source, and a pre-built image.
 
 For more information about the different types of workload creation, see [Supply Chain How-to-guides](../../../scc/scc-how-to.hbs.md).

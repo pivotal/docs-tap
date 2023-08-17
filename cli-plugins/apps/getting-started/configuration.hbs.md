@@ -1,6 +1,7 @@
 # Configure the Tanzu Apps CLI
 
-This topic tells you how to configure the Tanzu Apps CLI on Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to configure the Tanzu Apps CLI on Tanzu Application Platform
+(commonly known as TAP).
 
 ## <a id='changing-clusters'></a>Changing clusters with --context
 
