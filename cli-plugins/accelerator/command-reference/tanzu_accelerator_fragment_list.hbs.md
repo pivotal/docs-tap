@@ -1,6 +1,7 @@
 # tanzu accelerator fragment list
 
-This command lists accelerator fragments.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator fragment list`
+to list accelerator fragments.
 
 ## Synopsis
 

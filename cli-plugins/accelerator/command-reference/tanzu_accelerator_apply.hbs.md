@@ -1,6 +1,7 @@
 ## tanzu accelerator apply
 
-This command creates or updates accelerators.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator apply` command
+to create or update accelerators.
 
 ### Synopsis
 

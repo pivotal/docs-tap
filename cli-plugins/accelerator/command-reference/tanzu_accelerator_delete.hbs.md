@@ -1,8 +1,9 @@
-## tanzu accelerator delete
+# tanzu accelerator delete
 
-This command deletes an accelerator.
+This topic tells you how to use the Tanzu Accelerator CLI plug-in `tanzu accelerator delete` command
+to delete an accelerator.
 
-### Synopsis
+## Synopsis
 
 Delete the accelerator resource with the specified name.
 
@@ -10,27 +11,26 @@ Delete the accelerator resource with the specified name.
 tanzu accelerator delete [flags]
 ```
 
-### Examples
+## Examples
 
 ```
 tanzu accelerator delete <accelerator-name>
 ```
 
-### Options
+## Options
 
 ```
   -h, --help               help for delete
   -n, --namespace string   namespace for accelerator system (default "accelerator-system")
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 * [tanzu accelerator](tanzu_accelerator.md)	 - Manage accelerators in a Kubernetes cluster
-
