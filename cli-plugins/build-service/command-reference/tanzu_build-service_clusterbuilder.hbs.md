@@ -1,6 +1,6 @@
 # tanzu build-service clusterbuilder
 
-ClusterBuilder Commands
+This topic tells you about the Tanzu Build Service CLI `tanzu build-service clusterbuilder` command options.
 
 ## Options
 

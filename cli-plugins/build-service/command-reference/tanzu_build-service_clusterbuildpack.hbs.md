@@ -1,6 +1,6 @@
 # tanzu build-service clusterbuildpack
 
-This command lists ClusterBuildpack commands.
+This topic tells you about the Tanzu Build Service CLI `tanzu build-service clusterbuildpack` command options.
 
 ## Options
 
@@ -13,4 +13,3 @@ This command lists ClusterBuildpack commands.
 * [tanzu build-service](tanzu_build-service.hbs.md)	 - plugin to interact with tanzu build service (tbs) crds
 * [tanzu build-service clusterbuildpack list](tanzu_build-service_clusterbuildpack_list.hbs.md)	 - List available cluster buildpacks
 * [tanzu build-service clusterbuildpack status](tanzu_build-service_clusterbuildpack_status.hbs.md)	 - Display status of a buildpack
-

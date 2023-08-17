@@ -1,6 +1,7 @@
 # tanzu build-service image trigger
 
-This command trigger an image resource build.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service image trigger`
+command to trigger an image resource build.
 
 ## Synopsis
 

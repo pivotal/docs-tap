@@ -1,6 +1,7 @@
 # tanzu build-service clusterbuilder list
 
-List available cluster builders
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service clusterbuilder list`
+command to list available cluster builders.
 
 ## Synopsis
 

@@ -1,6 +1,7 @@
 # tanzu build-service image list
 
-This command lists image resources.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service image list`
+command to lists image resources.
 
 ## Synopsis
 

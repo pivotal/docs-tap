@@ -1,8 +1,9 @@
 # tanzu build-service builder status
 
-This command displays the status of a builder.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service builder status` command
+to display the status of a builder.
 
-### Synopsis
+## Synopsis
 
 Prints detailed information about the status of a specific builder in the provided namespace.
 
