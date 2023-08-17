@@ -1,6 +1,7 @@
 # tanzu build-service clusterstack status
 
-This command displays cluster stack status.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service clusterstack status`
+command to display cluster stack status.
 
 ## Synopsis
 

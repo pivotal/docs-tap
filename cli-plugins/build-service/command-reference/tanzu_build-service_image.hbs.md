@@ -1,6 +1,6 @@
 # tanzu build-service image
 
-Image commands
+This topic tells you about the Tanzu Build Service CLI `tanzu build-service` command options.
 
 ## Options
 

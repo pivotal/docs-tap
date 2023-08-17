@@ -1,6 +1,6 @@
 # tanzu build-service clusterstore
 
-ClusterStore Commands
+This topic tells you about the Tanzu Build Service CLI `tanzu build-service clusterstore` command options.
 
 ## Options
 

@@ -1,6 +1,7 @@
 # tanzu build-service clusterbuildpack list
 
-This command lists available cluster buildpacks.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service clusterbuildpack list`
+command to lists available cluster buildpacks.
 
 ## Synopsis
 

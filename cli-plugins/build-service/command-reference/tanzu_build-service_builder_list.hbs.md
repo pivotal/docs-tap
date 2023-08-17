@@ -1,6 +1,7 @@
 # tanzu build-service builder list
 
-This command list available builders.
+This topic tells you how to use the Tanzu Build Service CLI `tanzu build-service build list` command
+to list available builders.
 
 ## Synopsis
 

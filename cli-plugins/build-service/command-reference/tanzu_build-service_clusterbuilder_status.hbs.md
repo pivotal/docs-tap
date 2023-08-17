@@ -1,6 +1,7 @@
 # tanzu build-service clusterbuilder status
 
-This command displays cluster builder status.
+This topic tells you how to use the Tanzu Build Service CLI
+`tanzu build-service clusterbuilder status` command to display cluster builder status.
 
 ## Synopsis
 
