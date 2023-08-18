@@ -1,7 +1,7 @@
 # tanzu insight package sources
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight package sources` to get the sources that contain 
+This topic tells you how to use the Tanzu Insight CLI 
+`tanzu insight package sources` command to get the sources that contain 
 the given package by name.
 
 ## <a id='synopsis'></a>Synopsis
