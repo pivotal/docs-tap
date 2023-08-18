@@ -1,4 +1,4 @@
-# Troubleshoot Apps CLI plug-in
+# Troubleshoot Apps CLI
 
 The troubleshooting section contains the following topics:
 
