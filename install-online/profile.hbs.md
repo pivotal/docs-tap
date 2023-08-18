@@ -41,16 +41,16 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     # These environment variables starting with IMGPKG_* are used by the imgpkg command only.
 
     # The registry from which the Tanzu Application Platform package is retrieved.
-    export INSTALL_REGISTRY_USERNAME=”${IMGPKG_REGISTRY_USERNAME_1}”
-    export INSTALL_REGISTRY_PASSWORD=”${IMGPKG_REGISTRY_PASSWORD_1}”
-    export INSTALL_REGISTRY_HOSTNAME=”${IMGPKG_REGISTRY_HOSTNAME_1}”
+    export INSTALL_REGISTRY_USERNAME="${IMGPKG_REGISTRY_USERNAME_1}"
+    export INSTALL_REGISTRY_PASSWORD="${IMGPKG_REGISTRY_PASSWORD_1}"
+    export INSTALL_REGISTRY_HOSTNAME="${IMGPKG_REGISTRY_HOSTNAME_1}"
     export TAP_VERSION=VERSION-NUMBER
     export INSTALL_REPO=TARGET-REPOSITORY
 
     # The user’s registry used by Tanzu Application Platform to store built images and the Tanzu Build Service dependencies. These credentials must have write permission.
-    export MY_REGISTRY_USERNAME=”${IMGPKG_REGISTRY_USERNAME_1}”
-    export MY_REGISTRY_PASSWORD=”${IMGPKG_REGISTRY_PASSWORD_1}”
-    export MY_REGISTRY_HOSTNAME=”${IMGPKG_REGISTRY_HOSTNAME_1}”
+    export MY_REGISTRY_USERNAME="${IMGPKG_REGISTRY_USERNAME_1}"
+    export MY_REGISTRY_PASSWORD="${IMGPKG_REGISTRY_PASSWORD_1}"
+    export MY_REGISTRY_HOSTNAME="${IMGPKG_REGISTRY_HOSTNAME_1}"
     ```
 
     Where:
