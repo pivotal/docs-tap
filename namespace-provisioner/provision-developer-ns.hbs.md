@@ -1,6 +1,7 @@
 # Provision developer namespaces in Namespace Provisioner
 
-This topic describes how to use Namespace Provisioner to provision developer namespaces in Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to use Namespace Provisioner to provision developer namespaces in
+Tanzu Application Platform (commonly known as TAP).
 
 ## Prerequisite
 
