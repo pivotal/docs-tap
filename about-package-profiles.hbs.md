@@ -136,7 +136,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
-- **[Eventing](eventing/eventing-overview.hbs.md)**
+- **[Eventing](eventing/about.hbs.md)**
 
   Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to
   manage event-triggered systems through Knative Eventing. For information about Knative, see
