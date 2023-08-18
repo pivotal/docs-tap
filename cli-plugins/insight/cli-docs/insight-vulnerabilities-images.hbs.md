@@ -1,7 +1,7 @@
 # tanzu insight vulnerabilities images
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight vulnerabilities images` to get the images with a given vulnerability.
+This topic tells you how to use the Tanzu Insight CLI 
+`tanzu insight vulnerabilities images` command to get the images with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 

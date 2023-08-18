@@ -1,7 +1,7 @@
 # tanzu insight config
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight config` to get help for the configuration commands.
+This topic tells you how to use the Tanzu Insight CLI 
+`tanzu insight config` command to get help for the configuration commands.
 
 ## <a id='options'></a>Options
 
