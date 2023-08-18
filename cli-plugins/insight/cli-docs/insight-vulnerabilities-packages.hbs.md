@@ -1,7 +1,7 @@
 # tanzu insight vulnerabilities packages
 
-This topic tells you how to use the Tanzu Insight CLI plug-in 
-`tanzu insight vulnerabilities packages` to get the packages with a given vulnerability.
+This topic tells you how to use the Tanzu Insight CLI 
+`tanzu insight vulnerabilities packages` command to get the packages with a given vulnerability.
 
 ## <a id='synopsis'></a>Synopsis
 
