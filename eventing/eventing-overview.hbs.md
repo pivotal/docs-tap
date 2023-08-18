@@ -1,8 +1,9 @@
-# Eventing Overview
+# Overview of Eventing
 
-This topic gives you an overview of the Eventing package on TAP.
+This topic gives you an overview of the Eventing package on Tanzu Application Platform (commonly known as TAP).
 
 ## Overview
+
 Eventing is enterprise supported Knative Eventing.
 Eventing offers everything Knative Eventing does and some extras that make it ideal for cloud native application development.
 Cloud Native Runtimes gives developers a powerful default toolsuite to enable event-driven architectures with the inclusion of RabbitMQ and TriggerMesh support.
