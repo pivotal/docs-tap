@@ -1,4 +1,4 @@
-# Build Service CLI plug-in overview
+# Overview of Build Service CLI plug-in
 
 Use the Build Service CLI plug-in to view all the Tanzu Build Service resources on any
 Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service installed.
