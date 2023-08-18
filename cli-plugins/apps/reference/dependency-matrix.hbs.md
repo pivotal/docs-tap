@@ -1,6 +1,6 @@
 # Tanzu Apps CLI plug-in dependency matrix
 
-This topic tells you which Cartographer versions are supported in
+This topic tells you which versions of Cartographer are supported in
 Tanzu Application Platform (commonly known as TAP).
 
 | Tanzu Application Platform Version   | Apps CLI Version | Required Cartographer Version |

@@ -135,7 +135,6 @@
     - [Tanzu CLI](cli-plugins/tanzu-cli.hbs.md)
       - [Tanzu CLI overview](cli-plugins/tanzu-cli.hbs.md)
       - [CLI plug-ins](cli-plugins/tanzu-cli-plugin.hbs.md)
-          - [CLI plug-ins overview](cli-plugins/tanzu-cli-plugin.hbs.md)
           - [Apps](cli-plugins/apps/overview.hbs.md)
                 - [Tanzu Apps CLI overview](cli-plugins/apps/overview.hbs.md)
                 - [Get started with Tanzu Apps CLI](cli-plugins/apps/getting-started/getting-started.hbs.md)
