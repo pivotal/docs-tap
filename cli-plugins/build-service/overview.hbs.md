@@ -1,4 +1,4 @@
-# Build Service CLI plug-in overview
+# Overview of Build Service CLI plug-in
 
 This topic tells you how to use the Build Service CLI plug-in to view all the Tanzu Build Service
 resources on any Kubernetes cluster that has Tanzu Application Platform (commonly known as TAP) or
