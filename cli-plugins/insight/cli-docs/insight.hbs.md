@@ -1,11 +1,13 @@
 # Tanzu insight CLI plug-in command reference
 
-The Tanzu Insight CLI plug-in posts data and query your Supply Chain Security Tools 
-(commonly known as SCST) - Store database.
+This topic tells you about the The Tanzu Insight CLI plug-in. 
 
 ## <a id='synopsis'></a>Synopsis
 
-This CLI plug-in is used to post data and query the Supply Chain Security Tools - Store through its secure REST API. Source commit and image vulnerability reports can be uploaded using CycloneDX format (XML and JSON) and SPDX format (JSON).  Source commit, image, package, and vulnerabilities can be queried and outputted in CycloneDX XML, JSON, and human-readable text formats.
+This CLI plug-in is used to post data and query the Supply Chain Security Tools - Store through its
+secure REST API. Source commit and image vulnerability reports can be uploaded using CycloneDX
+format (XML and JSON) and SPDX format (JSON).  Source commit, image, package, and
+vulnerabilities can be queried and outputted in CycloneDX XML, JSON, and human-readable text formats.
 
 ## <a id='options'></a>Options
 
