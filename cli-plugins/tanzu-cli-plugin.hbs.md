@@ -1,4 +1,4 @@
-# Tanzu CLI plug-ins
+# Overview of Tanzu CLI plug-ins
 
 The topics in this section tell you about the following plug-ins in your Tanzu 
 Application Platform (commonly known as TAP):
