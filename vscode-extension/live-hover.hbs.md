@@ -1,16 +1,16 @@
 # Integrating Live Hover by using Spring Boot Tools
 
 For more information about this feature, see the **Live application information hovers** section of
-[VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
+the [Spring Boot Tools Marketplace page](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
 
 ## <a id="prerequisites"></a> Prerequisites
 
 To integrate Live Hover by using Spring Boot Tools you need:
 
 - A Tanzu Spring Boot application, such as
-[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
+  [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
 - Spring Boot Extension Pack (includes Spring Boot Dashboard)
-[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
+  [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
@@ -25,74 +25,75 @@ The examples in some steps reference the sample
 
 1. Clone the repository by running:
 
-    ```console
-    git clone REPOSITORY-ADDRESS
-    ```
+   ```console
+   git clone REPOSITORY-ADDRESS
+   ```
 
-    Where `REPOSITORY-ADDRESS` is your repository address.
-    For example, `https://github.com/vmware-tanzu/application-accelerator-samples`.
+   Where `REPOSITORY-ADDRESS` is your repository address.
+   For example, `https://github.com/vmware-tanzu/application-accelerator-samples`.
 
-1. Open the project in VS Code, with the Live Hover feature enabled, by running:
+2. Open the project in VS Code, with the Live Hover feature enabled, by running:
 
-    ```console
-    TAP_LIVE_HOVER=true code ./PROJECT-DIRECTORY
-    ```
+   ```console
+   TAP_LIVE_HOVER=true code ./PROJECT-DIRECTORY
+   ```
 
-    Where `PROJECT-DIRECTORY` is your project directory.
-    For example, `./application-accelerator-samples/tanzu-java-web-app`.
+   Where `PROJECT-DIRECTORY` is your project directory.
+   For example, `./application-accelerator-samples/tanzu-java-web-app`.
 
-1. Verify that you are targeting the cluster on which you want to run the workload by running:
+3. Verify that you are targeting the cluster on which you want to run the workload by running:
 
-    ```console
-    kubectl cluster-info
-    ```
+   ```console
+   kubectl cluster-info
+   ```
 
-    For example:
+   For example:
 
-    ```console
-    $ kubectl cluster-info
-    Kubernetes control plane is running at https://...
-    CoreDNS is running at https://...
+   ```console
+   $ kubectl cluster-info
+   Kubernetes control plane is running at https://...
+   CoreDNS is running at https://...
 
-    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-    ```
+   To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+   ```
 
-    Tanzu Developer Tools for VS Code periodically connects to your cluster to search for pods from
-    which live data can be extracted and shown.
-    Tanzu Developer Tools for VS Code uses your current context from `~/.kube/config` to choose
-    which cluster to connect with.
+   Tanzu Developer Tools for VS Code periodically connects to your cluster to search for pods from
+   which live data can be extracted and shown.
+   Tanzu Developer Tools for VS Code uses your current context from `~/.kube/config` to choose
+   which cluster to connect with.
 
-1. If you don't have the workload running yet, run `Tanzu: Apply Workload` from the Command Palette.
-Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond to
-the workload configurations it finds in your workspace.
+4. If you don't have the workload running yet, run `Tanzu: Apply Workload` from the Command Palette.
+   Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond
+   to the workload configurations it finds in your workspace.
 
-1. The workload takes time to build and then start a running pod. To see if a pod has started running,
-run:
+5. The workload takes time to build and then start a running pod. To see if a pod has started running,
+   run:
 
-    ```console
-    kubectl get pods
-    ```
+   ```console
+   kubectl get pods
+   ```
 
-    For example:
+   For example:
 
-    ```console
-    $ kubectl get pods
-    NAME                                                   READY   STATUS      RESTARTS   AGE
-    tanzu-java-web-app-00001-deployment-8596bfd9b4-5vgx2   2/2     Running     0          20s
-    tanzu-java-web-app-build-1-build-pod                   0/1     Completed   0          2m26s
-    tanzu-java-web-app-config-writer-fpnzb-pod             0/1     Completed   0          67s
-    ```
+   ```console
+   $ kubectl get pods
+   NAME                                                   READY   STATUS      RESTARTS   AGE
+   tanzu-java-web-app-00001-deployment-8596bfd9b4-5vgx2   2/2     Running     0          20s
+   tanzu-java-web-app-build-1-build-pod                   0/1     Completed   0          2m26s
+   tanzu-java-web-app-config-writer-fpnzb-pod             0/1     Completed   0          67s
+   ```
 
-    In this example, live data can be extracted from the `...-0001-deployment-...` pod.
+   In this example, live data can be extracted from the `...-0001-deployment-...` pod.
 
-1. Open a Java file, such as `HelloController.java`.
-After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights appear in
-your code.
-![Live Hover example showing at sign RestController and at sign RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
+6. Open a Java file, such as `HelloController.java`.
+   After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights appear in
+   your code.
 
-1. Hover over any of the bubbles to see live information about the corresponding element.
+   ![Live Hover example showing at sign RestController and at sign RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
 
-1. The `Live Beans` and `Live Endpoint Mapping` information are displayed in Spring Boot Dashboard.
+7. Hover over any of the bubbles to see live information about the corresponding element.
+
+8. The `Live Beans` and `Live Endpoint Mapping` information are displayed in Spring Boot Dashboard.
    To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette.
 
    ![Spring Boot Dashboard showing Live Beans and Live Endpoint Mapping information.](../images/vscode-beansmapping-example.png)
