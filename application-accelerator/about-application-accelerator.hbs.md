@@ -1,4 +1,4 @@
-# Application Accelerator Overview
+# Overview of Application Accelerator
 
 This topic tells you about the Application Accelerator component and architecture in Tanzu
 Application Platform (commonly known as TAP).

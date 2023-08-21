@@ -1,4 +1,4 @@
-# Tanzu Accelerator CLI overview
+# Overview of Tanzu Accelerator CLI
 
 The Tanzu Accelerator Tanzu CLI includes commands for developers and operators to
 create and use accelerators.

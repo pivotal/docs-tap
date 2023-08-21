@@ -1,4 +1,4 @@
-# Developer Conventions overview
+# Overview of Developer Conventions
 
 Developer Conventions is a set of conventions that enable your workloads to support live-update
 and debug operations in Tanzu Application Platform (commonly known as TAP).
