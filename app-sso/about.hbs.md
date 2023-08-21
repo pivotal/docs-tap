@@ -3,7 +3,8 @@
 Application Single Sign-On for VMware Tanzu® (AppSSO) provides APIs for curating and consuming a "Single
 Sign-On as a service" offering on Tanzu Application Platform.
 
-To get started with AppSSO, see [Get started with Application Single Sign-On](./how-to-guides/getting-started.hbs.md).
+To get started with Application Single Sign-On, 
+see [Get started with Application Single Sign-On](./how-to-guides/getting-started.hbs.md).
 
 With AppSSO, Service Operators can configure and deploy authorization servers. Application Operators can then
 secure their Workloads with these authorization servers to provide Single Sign-On to their end-users.
