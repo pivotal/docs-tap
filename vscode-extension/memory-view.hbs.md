@@ -33,18 +33,17 @@ The heap and non-heap memory regions provide memory insights into the applicatio
 The real-time graphs display a stacked overview of the different spaces in memory relative to the
 total memory used and total memory size.
 
-The memory view also contains graphs to display the garbage-collection pauses and garbage-collection
-events.
-Long and frequent garbage-collection pauses indicate that the app is having a memory problem that
-requires further investigation.
-
 ![Screenshot of Spring Boot Dashboard Memory View Heap Memory.](../images/vscode-heap-memory-example.png)
 
 ![Screenshot of Spring Boot Dashboard Memory View Non Heap Memory.](../images/vscode-nonheap-memory-example.png)
 
-![Screenshot of Spring Boot Dashboard Memory View Garbage Collection Pauses.](../images/vscode-gcpauses-example.png)
+The memory view also contains graphs to display the garbage-collection pauses and garbage-collection
+events. Long and frequent garbage-collection pauses indicate that the app is having a memory problem
+that requires further investigation.
 
 ![Screenshot of Spring Boot Dashboard Memory View Garbage Collections.](../images/vscode-garbage-collection-example.png)
+
+![Screenshot of Spring Boot Dashboard Memory View Garbage Collection Pauses.](../images/vscode-gcpauses-example.png)
 
 The graphs show only real-time data. You can configure the number of data points to view and the
 interval by changing the settings. To access the settings on macOS, go to
