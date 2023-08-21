@@ -50,9 +50,9 @@ rules:
     verbs: ["get", "list", "create", "update", "delete", "patch"]
 ```
 
-If your Run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+If your run cluster is a Tanzu Application Platform cluster, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
 
-If your Run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` must also have the following permissions:
+If your run cluster is not a Tanzu Application Platform cluster, the `ServiceAccount` must also have the following permissions:
 
 ```yaml
 ---
@@ -75,7 +75,7 @@ rules:
 
 ## <a id="create-carvel"></a> Create Carvel PackageInstalls and secrets
 
-For each Carvel `Package` and for each run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` is stored in your GitOps repository and deployed to run clusters by Flux CD.
+For each Carvel `Package` and for each run cluster, you must create a Carvel `PackageInstall` and a `Secret`. The Carvel `PackageInstall` and the `Secret` are stored in your GitOps repository and deployed to run clusters by Flux CD.
 
 The following example shows GitOps repository structure after completing this section:
 
