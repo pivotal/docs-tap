@@ -1,4 +1,4 @@
-# Getting Started with Application Single Sign-On
+# Get Started with Application Single Sign-On
 
 This topic tells you about concepts important to getting started with Application
 Single Sign-On (commonly called AppSSO).
@@ -197,7 +197,7 @@ tanzu service class-claim create my-workload \
 The `redirectPaths` is the login redirect within your application. This example 
 deploys a minimal Spring application, so you can use the Spring Security path.
 
-Check the status of your `ClassClaim` by running:
+Verify the status of your `ClassClaim` by running:
 
 ```bash
 tanzu service class-claim list
@@ -205,7 +205,7 @@ tanzu service class-claim list
 
 ## <a id="deploy"></a> Deploy an application with Application Single Sign-On
 
-This topic tells you how to deploy a minimal Kubernetes application that is protected
+This section tells you how to deploy a minimal Kubernetes application that is protected
 by Application Single Sign-On (commonly called AppSSO) by using the credentials
 that [tanzu service class-claim](#claim-credentials) creates.
 
@@ -214,62 +214,66 @@ that [tanzu service class-claim](#claim-credentials) creates.
 [//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMUY5O0I=/)
 
 For more information about how a Client application uses an AuthServer to
-authenticate an end user, see the [Overview of AppSSO](#getting-started).
+authenticate an end user, see the [Overview of Application Single Sign-On](../about.hbs.md).
 
-### Prerequisites
+### <a id="deploy-prereqs"></a>Prerequisites
 
-You must complete the steps described in [Get started with Application Single Sign-On](#getting-started).
-If not, see [claim credentials](#claim-credentials).
+You must complete the steps in [Claim credentials](#claim-credentials).
 
-### Deploy a minimal application
+### <a id="deploy-min-app"></a>Deploy a minimal application
 
-You are going to deploy a minimal Spring Boot application. When you run
+Follow these steps to deploy a minimal Spring Boot application:
 
-```bash
-tanzu accelerator list
-```
+1. List the available accelerators by running:
 
-You should be able to see one named `appsso-starter-java`. This is the accelerator we want to use.
+    ```bash
+    tanzu accelerator list
+    ```
 
-Create a project using the following command:
+    Expect to see an accelerator named `appsso-starter-java`. 
+    This is the accelerator to use.
 
-```bash
-tanzu accelerator generate appsso-starter-java --server-url <YOUR TAP SERVER URI> --options '{"appssoOfferingName": "my-login"}'
-```
+1. Create a project by running:
 
-This will give you a zip file, that you can unzip with
+    ```bash
+    tanzu accelerator generate appsso-starter-java --server-url YOUR-TAP-SERVER-URI --options '{"appssoOfferingName": "my-login"}'
+    ```
 
-```bash
-unzip appsso-starter-java.zip
-```
+    This command creates a zip file.
 
-Take a look at `config/workload.yaml`.
+1. Unzip the file by running:
 
-We need to make 2 changes here:
+    ```bash
+    unzip appsso-starter-java.zip
+    ```
 
-1. The reference to the `serviceClaims` should be to the `ServiceClaim` we generated in the previous step. For this,
-   replace `appsso-starter-java` within the `serviceClaims` section (2 times) with `my-workload`.
-1. You will see that there is a reference to a remote version of your repository.
-   You can push this repo to your preferred git repository and refer to it here. Once that is done, apply the workload via
+1. Make the following changes in `config/workload.yaml`:
 
-The following piece is the one responsible for claiming the ServiceClaim from your app:
+    1. The reference to the `serviceClaims` is the `ServiceClaim` you generated in the previous step. Replace `appsso-starter-java` in the `serviceClaims` section with `my-workload`.
+    1. There is a reference to a remote version of your repository.
+       You can push this repository to your preferred Git repository and provide 
+       the reference here.
 
-```yaml
----
-spec:
-  serviceClaims:
-    - name: <Your service claim>
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ClassClaim
-        name: <Your service claim>
-```
+    The following code sample claimes the `ServiceClaim` from your appliction:
 
-  ```bash
-  kubectl apply -f config/workload.yaml
-  ```
+    ```yaml
+    ---
+    spec:
+      serviceClaims:
+        - name: YOUR-SERVICE-CLAIM
+          ref:
+            apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+            kind: ClassClaim
+            name: YOUR-SERVICE-CLAIM
+    ```
 
-This will deploy your workload for you. Thanks to the ServiceClaim, your application will automatically connect to the
-`AppSSO AuthServer`.
+1. Deploy the workload by running:
 
-That's it! You can check the Workload section of the TAP Portal to find the URL for your workload at `https://tap-gui.<your tap cluster domain>`.
+    ```bash
+    kubectl apply -f config/workload.yaml
+    ```
+
+The `ServiceClaim` connects your application to the `AppSSO AuthServer`.
+
+See the workload section of the Tanzu Application Platform Portal where you can 
+find the URL for your workload at `https://tap-gui.YOUR-TAP-CLUSTER-DOMAIN`.
