@@ -128,13 +128,13 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
-  To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
+To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
 
   ```console
   packaging.carvel.dev/downgradable: ""
   ```
 
-  See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
+See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
 
 1. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
@@ -214,7 +214,7 @@ Configure Flux CD on the Build cluster to deploy your `Packages`, `PackageInstal
      serviceAccountName: <run-cluster-ns-sa>
    ```
 
-    > **Note** The Kustomization resource does not accept a `metadata.name` field longer than 63 characters.
+   > **Note** The Kustomization resource does not accept a `metadata.name` field longer than 63 characters.
 
 4. Configure your Build cluster to deploy your `PackageInstalls` and `Secrets` to the run clusters. For each run cluster, on the Build cluster, create the following Flux CD `Kustomization`:
 
