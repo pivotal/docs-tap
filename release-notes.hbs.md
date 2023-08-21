@@ -32,12 +32,12 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
 
 - **New config option `cnrs.contour.default_tls_secret`**: This option has the same meaning as `cnrs.default_tls_secret`.
-  `cnrs.default_tls_secret` has been deprecated in this release and will be removed in TAP 1.10.0 (which will include CNRs 2.7.0). 
-  In the meantime both options are going to be supported and `cnrs.contour.default_tls_secret` will take precedence over `cnrs.default_tls_secret`.
+  `cnrs.default_tls_secret` is deprecated in this release and will be removed in Tanzu Application Platform v1.10.0, which includes Cloud Native Runtimes v2.7.0.
+  In the meantime both options are supported and `cnrs.contour.default_tls_secret` takes precedence over `cnrs.default_tls_secret`.
 
 - **New config options `cnrs.contour.[internal/external].namespace`**: These new options have the same meaning as `cnrs.ingress.[internal/external].namespace`.
-  `cnrs.ingress.[internal/external].namespace` has been deprecated in this release and will be removed in TAP 1.10.0 (which will include CNRs 2.7.0).
-  In the meantime both options are going to be supported and `cnrs.contour.[internal/external].namespace` will take precedence
+  `cnrs.ingress.[internal/external].namespace` is deprecated in this release and will be removed in Tanzu Application Platform v1.10.0, which includes Cloud Native Runtimes v2.7.0.
+  In the meantime both options are supported and `cnrs.contour.[internal/external].namespace` takes precedence
   over `cnrs.ingress.[internal/external].namespace`.
 
 ---
