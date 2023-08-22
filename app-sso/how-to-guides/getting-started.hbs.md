@@ -14,10 +14,11 @@ For more information, see [Secure a workload with Application Single Sign-On](ap
 
 ## <a id='prereqs'></a> Prerequisites
 
-You must install Application Single Sign-On on your Tanzu Application Platform cluster.
-For more information, see [Install Application Single Sign-On](platform-operators/installation.hbs.md).
+To get start with Application Single Sign-On, you must: 
 
-You must install the [Tanzu CLI](../../install-tanzu-cli.hbs.md) on your machine 
+- Install Application Single Sign-On on your Tanzu Application Platform cluster.
+For more information, see [Install Application Single Sign-On](platform-operators/installation.hbs.md).
+- Install the [Tanzu CLI](../../install-tanzu-cli.hbs.md) on your machine 
 and connect to a Tanzu cluster.
 
 ## <a id='concepts'></a>Key concepts
