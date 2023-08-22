@@ -294,25 +294,6 @@ This release has the following known issues, listed by component and area.
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory use.
 
-#### <a id="1-6-2-grype-scan-ki"></a> v1.6.2 known issues: Grype scanner
-
-- **Scanning Java source code that uses Gradle package manager might not reveal
-  vulnerabilities:**
-
-  For most languages, source code scanning only scans files present in the
-  source code repository. Except for support added for Java projects using
-  Maven, no network calls fetch dependencies. For languages using dependency
-  lock files, such as golang and Node.js, Grype uses the lock files to verify
-  dependencies for vulnerabilities.
-
-  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
-  dependencies present in the built binaries, such as `.jar` or `.war` files.
-
-  Grype fails to find vulnerabilities during a source scan because VMware
-  discourages committing binaries to source code repositories. The
-  vulnerabilities are still found during the image scan after the binaries are
-  built and packaged as images.
-
 #### <a id='1-6-2-learningcenter-ki'></a> v1.6.2 known issues: Learning Center
 
 - [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
@@ -1170,25 +1151,6 @@ This release has the following known issues, listed by component and area.
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory use.
-
-#### <a id="1-6-1-grype-scan-ki"></a> v1.6.1 known issues: Grype scanner
-
-- **Scanning Java source code that uses Gradle package manager might not reveal
-  vulnerabilities:**
-
-  For most languages, source code scanning only scans files present in the
-  source code repository. Except for support added for Java projects using
-  Maven, no network calls fetch dependencies. For languages using dependency
-  lock files, such as golang and Node.js, Grype uses the lock files to verify
-  dependencies for vulnerabilities.
-
-  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
-  dependencies present in the built binaries, such as `.jar` or `.war` files.
-
-  Grype fails to find vulnerabilities during a source scan because VMware
-  discourages committing binaries to source code repositories. The
-  vulnerabilities are still found during the image scan after the binaries are
-  built and packaged as images.
 
 #### <a id='1-6-1-learningcenter-ki'></a> v1.6.1 known issues: Learning Center
 
