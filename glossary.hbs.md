@@ -74,6 +74,11 @@
         <th>A build cluster is a cluster with network access to your run clusters that controls the deployment on all the run clusters.
     </th>
     </tr>
+    <tr>
+        <td>Build profile</td>
+        <td>This profile is intended for the transformation of source revisions to workload revisions. 
+        Specifically, hosting workloads and Supply Chains.</td>
+    </tr>
 </table>
 
 ## <a id="c"></a> C
@@ -90,6 +95,34 @@
     <tr>
         <td>Convention Controller</td>
         <td>The convention controller provides the metadata to the convention server and executes the updates to a PodTemplateSpec in accordance with convention server's requests.</td>
+    </tr>
+</table>
+
+## <a id="f"></a> F
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Full profile</td>
+        <td>This profile contains all of the Tanzu Application Platform packages, 
+        including the necessary defaults for the meta-package, or parent 
+        Tanzu Application Platform package, subordinate packages, or individual child packages.</td>
+    </tr>
+</table>
+
+## <a id="i"></a> I
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Iterate profile</td>
+        <td>This profile is intended for iterative application development.</td>
     </tr>
 </table>
 
@@ -114,6 +147,11 @@
     <tr>
         <th>Run Cluster</th>
         <th>Run clusters serve as your deployment environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have kapp-controller and Contour installed.</th>
+    </tr>
+    <tr>
+        <td>Run profile</td>
+        <td>This profile is intended for the transformation of workload revisions to running pods. 
+        Specifically, hosting deliveries and deliverables.</td>
     </tr>
 </table>
 
@@ -186,5 +224,19 @@
         <td>Tanzu GitOps Reference Implementation (RI)</td>
         <td>This is built upon Carvel, which shares the same packaging APIs as the Tanzu Application Platform. 
         Carvel packaging APIs support all the GitOps features and enables a native GitOps flow.</td>
+    </tr>
+</table>
+
+## <a id="v"></a> V
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>View profile</td>
+        <td>This profile is intended for instances of applications related to 
+        centralized developer experiences. Specifically, Tanzu Developer Portal and Metadata Store.</td>
     </tr>
 </table>
