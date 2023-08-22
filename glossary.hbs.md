@@ -182,4 +182,9 @@
             and enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
             have Tanzu Application Platform installed.</td>
     </tr>
+    <tr>
+        <td>Tanzu GitOps Reference Implementation (RI)</td>
+        <td>This is built upon Carvel, which shares the same packaging APIs as the Tanzu Application Platform. 
+        Carvel packaging APIs support all the GitOps features and enables a native GitOps flow.</td>
+    </tr>
 </table>
