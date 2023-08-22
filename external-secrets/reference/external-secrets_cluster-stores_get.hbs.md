@@ -14,11 +14,11 @@ external-secrets cluster-stores get [flags]
 
 ```
 
-		# Get external-secret-cluster-store
-		tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME 
+# Get external-secret-cluster-store
+tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME 
 	
-		# Get external-secret-cluster-store in json output format
-		tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME -o json
+# Get external-secret-cluster-store in json output format
+tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME -o json
 ```
 
 ### Options
@@ -33,4 +33,3 @@ external-secrets cluster-stores get [flags]
 ### SEE ALSO
 
 * [external-secrets cluster-stores](external-secrets_cluster-stores.md)	 - Interacting with external-secrets.io ClusterStores
-

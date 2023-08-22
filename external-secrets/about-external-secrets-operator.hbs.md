@@ -26,3 +26,4 @@ Also, see the example integration of External-Secrets with Hashicorp Vault.
 - [Installing External Secrets Operator in TAP](install-external-secrets-operator.hbs.md)
 - [Installing Tanzu CLI](../prerequisites.hbs.md)
 - [External-Secrets with Hashicorp Vault](vault-example.md)
+- [Tanzu External Secrets CLI plug-in Reference](./reference/external-secrets.hbs.md)

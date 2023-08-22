@@ -14,11 +14,11 @@ external-secrets secrets get [flags]
 
 ```
 
-		# Get a specific external-secret from a specified namespace
-		tanzu external-secrets secrets get $EXTERNAL_SECRET_NAME  -n example-ns
+# Get a specific external-secret from a specified namespace
+tanzu external-secrets secrets get $EXTERNAL_SECRET_NAME  -n example-ns
 	
-		# Get a specific external-secret from a specified namespace in json output format
-		tanzu external-secrets secret get $EXTERNAL_SECRET_NAME -n example-ns -o json
+# Get a specific external-secret from a specified namespace in json output format
+tanzu external-secrets secret get $EXTERNAL_SECRET_NAME -n example-ns -o json
 ```
 
 ### Options
@@ -35,4 +35,3 @@ external-secrets secrets get [flags]
 ### SEE ALSO
 
 * [external-secrets secrets](external-secrets_secrets.md)	 - Interacting with external-secrets.io ExternalSecrets
-

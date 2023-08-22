@@ -14,11 +14,11 @@ external-secrets cluster-stores list [flags]
 
 ```
 
-    # List all external secrets cluster stores
-    tanzu external-secrets cluster-stores list
+# List all external secrets cluster stores
+tanzu external-secrets cluster-stores list
 	
-    # List all external secrets cluster stores in json output format	
-    tanzu external-secrets cluster-stores list -o json
+# List all external secrets cluster stores in json output format	
+tanzu external-secrets cluster-stores list -o json
 ```
 
 ### Options
@@ -33,4 +33,3 @@ external-secrets cluster-stores list [flags]
 ### SEE ALSO
 
 * [external-secrets cluster-stores](external-secrets_cluster-stores.md)	 - Interacting with external-secrets.io ClusterStores
-

@@ -1,27 +1,27 @@
-## external-secrets stores list
+## external-secrets secrets list
 
-Lists all external-secrets.io/v1beta1/Secrets
+Lists all external-secrets.io/v1beta1/ExternalSecret
 
 ### Synopsis
 
 Lists all external-secrets.io/v1beta1/ExternalSecret and checks for the associated v1/Secret with the correct owner reference
 
 ```
-external-secrets stores list [flags]
+external-secrets secrets list [flags]
 ```
 
 ### Examples
 
 ```
 
-    # List all external secrets stores
-    tanzu external-secrets stores list -A
-	
-    # List external secrets stores in specified namespace	
-    tanzu external-secrets stores list -n test-ns
-	
-    # List all external secrets stores in json output format	
-    tanzu external-secrets stores list -n test-ns -o json
+# List external-secrets across all namespaces
+tanzu external-secrets list -A
+
+# List external-secrets from specified namespace
+tanzu external-secrets secrets list -n test-ns
+
+# List external-secrets in json output format
+tanzu external-secrets secret list -n test-ns -o json
 ```
 
 ### Options
@@ -37,5 +37,4 @@ external-secrets stores list [flags]
 
 ### SEE ALSO
 
-* [external-secrets stores](external-secrets_stores.md)	 - Interacting with external-secrets.io SecretStores
-
+* [external-secrets secrets](external-secrets_secrets.md)	 - Interacting with external-secrets.io ExternalSecrets

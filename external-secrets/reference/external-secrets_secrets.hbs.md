@@ -19,4 +19,3 @@ Interacts with external-secrets.io resources.
 * [external-secrets secrets get](external-secrets_secrets_get.md)	 - Get a specific external-secrets.io/v1beta1/ExternalSecret
 * [external-secrets secrets list](external-secrets_secrets_list.md)	 - Lists all external-secrets.io/v1beta1/ExternalSecret
 * [external-secrets secrets sync](external-secrets_secrets_sync.md)	 - Sync a secret
-

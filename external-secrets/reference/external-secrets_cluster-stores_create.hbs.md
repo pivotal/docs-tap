@@ -39,4 +39,3 @@ EOF
 ### SEE ALSO
 
 * [external-secrets cluster-stores](external-secrets_cluster-stores.md)	 - Interacting with external-secrets.io ClusterStores
-

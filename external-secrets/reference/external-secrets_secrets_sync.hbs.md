@@ -14,11 +14,11 @@ external-secrets secrets sync [flags]
 
 ```
 
-    # Trigger the sync of an external secret
-    tanzu external-secrets secrets sync <secret>
+# Trigger the sync of an external secret
+tanzu external-secrets secrets sync <secret>
 
-	# Trigger the sync of an external secret in a namespace
-    tanzu external-secrets secrets sync <secret> -n dev
+# Trigger the sync of an external secret in a namespace
+tanzu external-secrets secrets sync <secret> -n dev
 ```
 
 ### Options
@@ -33,4 +33,3 @@ external-secrets secrets sync [flags]
 ### SEE ALSO
 
 * [external-secrets secrets](external-secrets_secrets.md)	 - Interacting with external-secrets.io ExternalSecrets
-

@@ -14,11 +14,11 @@ external-secrets stores get [flags]
 
 ```
 
-		# Get external-secret-store from specified namespace
-		tanzu external-secrets stores get $SECRET_STORE_NAME  -n test-ns
+# Get external-secret-store from specified namespace
+tanzu external-secrets stores get $SECRET_STORE_NAME  -n test-ns
 	
-		# Get external-secret-store in json output format
-		tanzu external-secrets stores get  $SECRET_STORE_NAME -n test-ns -o json
+# Get external-secret-store in json output format
+tanzu external-secrets stores get  $SECRET_STORE_NAME -n test-ns -o json
 ```
 
 ### Options
@@ -35,4 +35,3 @@ external-secrets stores get [flags]
 ### SEE ALSO
 
 * [external-secrets stores](external-secrets_stores.md)	 - Interacting with external-secrets.io SecretStores
-

@@ -18,4 +18,3 @@ List external secrets cluster stores.
 * [external-secrets cluster-stores create](external-secrets_cluster-stores_create.md)	 - Create cluster-store external-secrets.io/v1beta1/ClusterSecretStore
 * [external-secrets cluster-stores get](external-secrets_cluster-stores_get.md)	 - Get a specific external-secrets.io/v1beta1/ClusterSecretStore
 * [external-secrets cluster-stores list](external-secrets_cluster-stores_list.md)	 - Lists all external-secrets.io/v1beta1/ClusterStores
-

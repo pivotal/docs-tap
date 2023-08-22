@@ -40,4 +40,3 @@ EOF
 ### SEE ALSO
 
 * [external-secrets secrets](external-secrets_secrets.md)	 - Interacting with external-secrets.io ExternalSecrets
-
