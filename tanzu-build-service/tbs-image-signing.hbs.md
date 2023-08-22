@@ -12,7 +12,7 @@ Before you can configure Tanzu Build Service to sign your image builds, you must
 If you have not installed Tanzu Application Platform with one of these profiles,
 see [Installing Tanzu Build Service](install-tbs.md).
 
-- Install Cosign. For instructions, see the [Cosign documentation](https://docs.sigstore.dev/system_config/installation/).
+- Install Cosign. For instructions, see the [Cosign documentation](https://github.com/sigstore/cosign#installation).
 
 - Have a [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-builders.html)
 resource configured.
