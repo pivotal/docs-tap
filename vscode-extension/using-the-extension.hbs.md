@@ -20,10 +20,6 @@ on a per-project basis by using the drop-down menu in **Settings**.
 All commands are available by right-clicking anywhere in the VS Code project explorer, on an associated
 workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-- Screenshot of pop-up menu opened from the project explorer:
-
-  ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
-
 - Screenshot of pop-up menu opened from the workload panel:
 
   ![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
@@ -57,8 +53,6 @@ To apply a workload:
    ![Workload on Tanzu Workloads showing details for tanzu-java-web-app.](../images/vscode-panel-workload-unknown.png)
 
    After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
-
-   ![Workload ready on Tanzu Workloads. It shows details for tanzu-java-web-app.](../images/vscode-panel-workload-ready.png)
 
 ### <a id="debugging-on-clust"></a> Debugging on the cluster
 
@@ -215,8 +209,6 @@ To delete a workload:
    ![Delete Confirmation Notification showing delete options.](../images/vscode-deleteworkload4.png)
 
    A notification appears showing that the workload was deleted.
-
-   ![Delete Workload Notification showing workload has been deleted.](../images/vscode-deleteworkload5.png)
 
 ## <a id="switch-namespace"></a> Switch namespaces
 
