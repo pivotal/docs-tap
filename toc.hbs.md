@@ -119,6 +119,8 @@
   - [Use worker workloads](workloads/worker.hbs.md)
   - [Service-to-Service Communication](workloads/service-to-service-communication.hbs.md)
   - [Parameter reference](workloads/spec-reference.hbs.md)
+  - [Functions (Beta)](workloads/using-functions.hbs.md)
+      - [Using functions](workloads/using-functions.hbs.md)
 - [Troubleshoot](troubleshooting.hbs.md)
   - [Troubleshoot overview](troubleshooting.hbs.md)
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.hbs.md)
