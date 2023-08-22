@@ -7,8 +7,7 @@ This topic explains key concepts you use with API Auto Registration.
 You can use the full potential of API Auto Registration by using a distributed environment,
 as shown in the following diagrams:
 
-- API exposing workloads going through supply chain will results in generated `APIDescriptors`. and they
-will trigger your kubernetes controller to register corresponding API entities in Tanzu Developer Portal.
+- The API exposing workloads through supply chains generates `APIDescriptors`. It triggers your Kubernetes controller to register corresponding API entities in Tanzu Developer Portal.
   ![Diagram describing the clusters used with API Auto Registration.](./images/arch.png)
 
 - Use `CuratedAPIDescriptor` to aggregate one ore more `APIDescriptors` into one cohesive API and

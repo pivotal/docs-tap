@@ -37,7 +37,7 @@ To configure:
 
 - [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
 
-## <a id='generate-openapi'></a>Generate OpenAPI spec
+## <a id='generate-openapi'></a>Generate OpenAPI specifications
 
 This section tells you how to generate OpenAPI specifications.
 
@@ -84,12 +84,12 @@ If you have an existing Spring Boot app that exposes an API, you can generate Op
 using springdoc. See the [springdoc documentation](https://springdoc.org/#getting-started)
 
 After you have springdoc configured and an OpenAPI automatically generated, you can choose one of the
-three methods of creating the APIDescriptor custom resource.
-VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box
-(OOTB) supply chain.
-See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
-Alternatively, to use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
-Lastly, to use a different Gitops process or manage the APIDescriptor CR manually,
+following methods to create the APIDescriptor custom resource:
+
+- VMware recommends having your Spring Boot app to be managed using Workloads and the Out-Of-The-Box
+(OOTB) supply chain. See the [Use Out-Of-The-Box (OOTB) supply chains](#using-ootb-supply-chain) for further instructions.
+- To use custom supply chains, see [Using Custom Supply Chains](#using-custom-supply-chain).
+-To use a different Gitops process or manage the APIDescriptor CR manually,
 see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
 
 ## <a id='create-api-descriptor'></a>Create APIDescriptor custom resource
@@ -118,18 +118,18 @@ workload YAML:
             description: "A set of API endpoints to manage the resources within the petclinic app."
     ```
 
-The default supply chains use Knative to deploy your applications. and that will be referenced as the
+The default supply chains use Knative to deploy your applications and are referenced as the
 server location for the generated APIDescriptor.
 
-As for API spec, there are 2 different options for the location:
+For API specifications, there are 2 options for the location:
 
-- If the API spec is generated and served from an endpoint of your applications,
+- If the API specifications are generated and served from your application endpoint,
 the only location information you must set is the path to the API documentation.
-The controller can figure out the base URL for you from the Knative server reference.
-- If your API spec is served elsewhere from a static location, you can hardcode the URL using the
+The controller can figure out the base URL by using the Knative server reference.
+- If your API specifications are served from a static location, you can hardcode the URL using the
 `location.baseURL` property.
 
-Example workload that exposes the API spec from a Knative service:
+Example workload that exposes the API specifications from a Knative service:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -179,8 +179,7 @@ spec:
         description: "A set of API endpoints to manage the resources within the petclinic app."
 ```
 
-After the supply chain runs, it creates an `APIDescriptor` custom resource. This resource is what
-Tanzu Application Platform uses to auto register your API.
+After the supply chain runs, it creates an `APIDescriptor` custom resource. Tanzu Application Platform uses this resource to auto register your API.
 See [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
 ### <a id='using-custom-supply-chain'></a>Using custom supply chains
@@ -210,17 +209,16 @@ This section tells you how to perform additional configuration.
 
 The agent, usually a browser, uses the [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol)
 protocol to verify whether the current origin uses an API.
-To use the "Try it out" feature for OpenAPI specifications from the API Documentation plug-in, you must
+To use the `Try it out`` feature for OpenAPI specifications from the API Documentation plug-in, you must
 configure CORS to allow successful requests.
 
 Your API must be configured to allow CORS Requests from Tanzu Developer Portal. How you
-accomplish this varies based on the programming language and framework you are using.
+accomplish this varies based on your programming language and framework.
 If you are using Spring, see [CORS support in spring framework](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
 
-At a high level, the Tanzu Developer Portal domain must be accepted as valid cross-origin by
-your API.
+At a high level, your API must accept the Tanzu Developer Portal domain must be accepted as a valid cross-origin.
 
-Verify the following:
+To do this, verify the following:
 
 - **Origins allowed** header: `Access-Control-Allow-Origin`: A list of comma-separated values.
 This list must include your Tanzu Developer Portal host.
