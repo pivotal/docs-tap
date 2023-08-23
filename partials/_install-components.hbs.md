@@ -21,7 +21,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Application Single Sign-On](/docs-tap/app-sso/how-to-guides/platform-operators/installation.hbs.md)
 - [Install Bitnami Services](/docs-tap/bitnami-services/install-bitnami-services.hbs.md)
 - [Install cert-manager](/docs-tap/cert-manager/install.hbs.md)
-- [Install Cloud Native Runtimes](/docs-tap/cloud-native-runtimes/install-cnrt.hbs.md)
+- [Install Cloud Native Runtimes](/cloud-native-runtimes/how-to-guides/app-operators/install.hbs.md)
 - [Install Contour](/docs-tap/contour/install.hbs.md)
 - [Install Crossplane](/docs-tap/crossplane/install-crossplane.hbs.md)
 - [Install default roles for Tanzu Application Platform](/docs-tap/authn-authz/install.hbs.md)
