@@ -7,8 +7,8 @@ Tanzu Application Platform (commonly known as TAP).
 
 ### Symptom
 
-After installing Tanzu Application Platform on or upgrading an existing
-Amazon Elastic Kubernetes Service (EKS) cluster to Kubernetes v1.23, build pods show:
+After installing or upgrading Tanzu Application Platform on an Amazon Elastic Kubernetes Service
+(EKS) cluster running Kubernetes v1.23, build pods show:
 
 ```console
 'running PreBind plugin "VolumeBinding": binding volumes: timed out waiting
