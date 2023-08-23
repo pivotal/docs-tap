@@ -1,6 +1,10 @@
-# Cloud Native Runtimes for App Operators
+# Cloud Native Runtimes for app operators
 
-This subsection describes steps to install, update and uninstall Cloud Native Runtimes:
+This topic outlines topics related to installing, updating, and uninstalling Cloud Native Runtimes.
+
+## <a id='overview'></a> Overview
+
+The following topics are related to app operator tasks:
 
 - [Install CNRs on TAP without a Profile](./install.hbs.md)
 - [Uninstall CNRs](./uninstall.hbs.md)

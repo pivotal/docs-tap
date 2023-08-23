@@ -1,11 +1,11 @@
 # Use wildcard certificates with Cloud Native Runtimes
 
-This section describes how to configure, use and verify wildcard certificates with Cloud Native Runtimes.
+This section describes how to configure, use, and verify wildcard certificates with Cloud Native Runtimes.
 
-Cloud Native Runtimes utilizes the cert-manager package by default to automate the process of obtaining, 
+Cloud Native Runtimes uses the cert-manager package by default to automate the process of obtaining,
 managing, and renewing TLS certificates for your services.
 
-Cert-manager is a Kubernetes-native component that works with different `certificate authorities` (CAs) like Let's Encrypt and others,
+cert-manager is a Kubernetes-native component that works with different `certificate authorities` (CAs) like Let's Encrypt and others,
 to manage certificates within your Kubernetes cluster. As part of Tanzu Application Platform predefined profile installation,
 cert-manager package is deployed to the cluster.
 
@@ -20,8 +20,8 @@ This topic provides instructions for configuring Cloud Native Runtimes to use wi
 1. Create a cert-manager custom Issuer or ClusterIssuer for the DNS01 challenge.
 
   You must create a custom Issuer or ClusterIssuer with the DNS01 solver configured for your specific DNS provider.
-  Visit cert-manager's documentation on [Supported DNS01 providers](https://cert-manager.io/docs/configuration/acme/dns01/#supported-dns01-providers)
-  for instructions on configuring cert-manager for all the supported DNS providers.
+  For more information about supported DNS01 providers, see the [cert-manager documentation](https://cert-manager.io/docs/configuration/acme/dns01/#supported-dns01-providers)
+  for instructions for configuring cert-manager for all the supported DNS providers.
 
   The following example uses Let’s Encrypt and Google Cloud DNS:
 
@@ -42,28 +42,28 @@ This topic provides instructions for configuring Cloud Native Runtimes to use wi
         - dns01:
             cloudDNS:
               # Set this to your GCP project id
-              project: PROJECT_ID
+              project: PROJECT-ID
               # This is the secret used to access the service account
               serviceAccountSecretRef:
                 name: cloud-dns-key
                 key: key.json
     ```
 
-  Where `YOUR-EMAIL` is the email associated with your DNS provider.
-  
-  Where `PROJECT_ID` is the ID of the GCP project.
+  Where: 
+  - `YOUR-EMAIL` is the email associated with your DNS provider.
+  - `PROJECT-ID` is the ID of the GCP project.
 
-2. Save the configuration above in a file called `issuer-wildcard.yaml`.
+1. Save the configuration from the previous step in a file called `issuer-wildcard.yaml`.
 
   When using cert-manager to obtain wildcard certificates, you typically must provide credentials, especially when using the DNS01 challenge.
   The DNS01 challenge requires cert-manager to create and delete DNS records for domain validation during the certificate issuance process.
   To perform these actions, cert-manager needs access to your DNS provider's API, which requires authentication using API keys, access tokens,
   or other credentials. See [Supported DNS01 providers](https://cert-manager.io/docs/configuration/acme/dns01/#supported-dns01-providers) in the cert-manager documentation.
 
-  >**Note** If you want to test this feature, you might want to set `spec.acme.server` to https://acme-staging-v02.api.letsencrypt.org/directory.
-  > This is the staging url, which generates self-signed certs. It is useful for testing without worrying about hitting quotas for your actual domain.
+  >**Note** To test this feature, you can set `spec.acme.server` to https://acme-staging-v02.api.letsencrypt.org/directory.
+  > This is the staging URL, which generates self-signed certificates. It is useful for testing without worrying about hitting quotas for your actual domain.
 
-3. Apply the file you saved in the previous section to your cluster:
+1. Apply the file you saved in the previous section to your cluster:
 
   ```sh
   kubectl apply -f issuer-wildcard.yaml`
@@ -77,7 +77,7 @@ To use wildcard certificates:
 
   >**Note** If no value is passed to `cnrs.namespace_selector`, only per service certificates are generated instead of wildcard certificates.
 
-  You achieve this by add the snippet below to your `tap-values.yaml` file.
+  You achieve this by adding the following YAML to your `tap-values.yaml` file.
 
   ```yaml
   cnrs:
@@ -97,23 +97,23 @@ To use wildcard certificates:
   `apps.tanzu.vmware.com/tap-ns` have corresponding wildcard certificates created for them.
 
   If you are using the suggested namespace selector, label your developer namespace with `apps.tanzu.vmware.com/tap-ns`.
-  You can so by running the following command:
+  Run:
 
-  ```sh
+  ```console
   kubectl label namespace DEV-NAMESPACE "apps.tanzu.vmware.com/tap-ns"
   ```
 
-  To remove a label from a namespace, run the following command:
+  To remove a label from a namespace, run:
 
-  ```sh
+  ```console
   kubectl label namespace DEV-NAMESPACE "apps.tanzu.vmware.com/tap-ns"- --overwrite
   ```
 
-2. Update Tanzu Application Platform.
+1. Update Tanzu Application Platform.
 
   To update the Tanzu Application Platform installation with the changes to the values file, run:
 
-  ```sh
+  ```console
   tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yaml -n tap-install
   ```
 
@@ -121,23 +121,32 @@ To use wildcard certificates:
 
 Verify that your ClusterIssuer was created and properly issuing certificates:
 
-```sh
+```console
 kubectl get clusterissuer letsencrypt-dns-wildcard
 ```
 
-You can confirm the status of the certificate by running the command below. You should see the certificate in a `Ready` state.
+You can confirm the status of the certificate by running the following command. You see the certificate in a `Ready` state.
 
-```sh
+```console
 kubectl get certificate -n DEVELOPER-NAMESPACE
 ```
+
+You see the certificate in a `Ready` state.
+
+Where `DEVELOPER-NAMESPACE` is the namespace you want to use.
 
 Additionally, you can access your workload using the domain you specified with `curl` or a web browser, and verify that it is using
 a TLS certificate issued by the custom Issuer or ClusterIssuer.
 
-```sh
+```console
 tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
 kubectl get ksvc WORKLOAD-NAME -n DEVELOPER-NAMESPACE -o jsonpath='{.status.url}'
 ```
 
-For details on how to troubleshoot failures related to the certificate,
-visit [cert-manager's Troubleshooting guide](https://cert-manager.io/docs/troubleshooting).
+Where:
+
+- `DEVELOPER-NAMESPACE` is the namespace you want to use.
+- `WORKLOAD-NAME` is the name of the workload you want to use.
+
+For details about how to troubleshoot failures related to the certificate,
+see the [cert-manager documentation](https://cert-manager.io/docs/troubleshooting).
