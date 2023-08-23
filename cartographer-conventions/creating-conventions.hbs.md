@@ -135,7 +135,7 @@ With this high-level understanding of Cartographer Conventions components, you c
 
 The following prerequisites must be met before a convention is developed and deployed:
 
-+ The Kubernetes command line interface tool (kubectl) CLI is installed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
++ The Kubernetes CLI tool (kubectl) CLI is installed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
 + Tanzu Application Platform prerequisites are installed. For more information, see [Prerequisites](../prerequisites.md)
 + Tanzu Application Platform components are installed. For more information, see the [Installing the Tanzu CLI](../install-tanzu-cli.md).
 + The default supply chain is installed. Download Supply Chain Security Tools for VMware Tanzu from [Tanzu Network](https://network.tanzu.vmware.com/products/supply-chain-security-tools/).
@@ -173,7 +173,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
      + `template` is the predefined `PodTemplateSpec` that the convention edits. For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
      + `images` are the [ImageConfig](./reference/image-config.md) used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
-2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
+1. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
     ```go
     ...
@@ -206,7 +206,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
     + `port` is the calculated port of the server to listen for requests. It must match the [Deployment](#install-deployment) if the `PORT` variable is not defined in it.
     + The `path` or pattern (default to `/`) is the convention server's default path. If it is changed, it must be changed in the [ClusterPodConvention](#install-convention).
 
->**Note** The *Server Handler*, `func ConventionHandler(...)`, and the configure or start web server, `func NewConventionServer(...)`, is defined in the convention controller in the `webhook` package, but you can use a custom one.
+    >**Note** The *Server Handler*, `func ConventionHandler(...)`, and the configure or start web server, `func NewConventionServer(...)`, is defined in the convention controller in the `webhook` package, but you can use a custom one.
 
 1. Creating the *Server Handler*, which handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON.
 
