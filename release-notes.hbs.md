@@ -29,6 +29,13 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-7-0-cert-manager'></a> v1.7.0 features: cert-manager
+
+- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`. See [the
+  upstream release
+  notes](https://cert-manager.io/docs/release-notes/release-notes-1.12/) for
+  details.
+
 #### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
 
 - **New config option `cnrs.contour.default_tls_secret`**: This option has the same meaning as `cnrs.default_tls_secret`.
