@@ -35,7 +35,7 @@ To install the CLI :
 
 Tanzu CLI commands are organized into command groups. To view a list of available command groups, run `tanzu`. The list of command groups that you see depends on which CLI plug-ins are installed on your local machine.
 
-## <a id="install-new"></a> Install New Plugins
+## <a id="install-new"></a> Install New Plug-ins
 
 To install a Tanzu CLI plug-in that was not automatically downloaded when running `tanzu login` or `tanzu plugin sync`, install it manually by following these steps.
 
