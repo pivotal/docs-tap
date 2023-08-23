@@ -6,9 +6,9 @@
 
 This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
 through GitOps with secrets managed in an external secrets store. 
-To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
+To decide which approach to use, see [Choosing Secrets OPerationS (SOPS) or External Secrets Operator (ESO)](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPS to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI is verified to support Kubernetes integration with HashiCorp Vault.
 
 ## <a id='prerequisites'></a>Prerequisites
@@ -68,7 +68,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
     To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
@@ -96,7 +96,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
     - `VERSION` is the version of Tanzu Build Service. You can retrieve this value by running `kubectl get package -n tap-install | grep buildservice`
 
-1. [Configure custom certificate authorities for Tanzu Application Platform GUI](../../install-offline/tap-gui-non-standard-certs-offline.hbs.md).
+1. [Configure custom certificate authorities for Tanzu Developer Portal](../../install-offline/tap-gui-non-standard-certs-offline.hbs.md).
 
 1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../../install-offline/grype-offline-airgap.hbs.md).
 
@@ -218,7 +218,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
 
     Where:
 
-    - `MY-VAULT-ADDR` is the accessible URL of your vault instance (Vault must be reachable by the kubernetes cluster).
+    - `MY-VAULT-ADDR` is the accessible URL of your vault instance (Vault must be reachable by the Kubernetes cluster).
     - `CLUSTER-NAME` is the name of the target cluster.
     - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images.
     If they are relocated to a different registry as described in [Relocate images to a registry](#relocate-images-to-a-registry),
@@ -226,7 +226,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
 
 ### <a id='connect-vault-to-kubernetes'></a>Connect Vault to a Kubernetes cluster
 
-Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing trust between the kubernetes cluster and Vault, see [Vault Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for more. This authetication method uses the Kubernetes Control Plane [TokenReview API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/) to authenticate the kubernetes service accounts with Vault. For this reason, the clusters control plane must be able to commuicate over the network to the Vault instance.
+Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing trust between the Kubernetes cluster and Vault, see [Vault Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for more. This authetication method uses the Kubernetes Control Plane [TokenReview API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/) to authenticate the Kubernetes service accounts with Vault. For this reason, the clusters control plane must be able to commuicate over the network to the Vault instance.
 
 To configure Kubernetes authentication for Vault, you can create a new Kubernetes authentication engine instance on Vault and two IAM Roles by using the supplied script:
 
@@ -239,7 +239,7 @@ tanzu-sync/scripts/setup/create-kubernetes-auth.sh
 > - If you use an Enterprise Vault Server with namespaces, run `export VAULT_NAMESPACE=MY-VAULT-NAMESPACE` before using the script. 
 > - If you use token to access server, run `export VAULT_TOKEN=MY-VAULT-TOKEN` before using the script.
 
-This creates a new vault kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
+This creates a new vault Kubernetes authentication instance using the information for the current context in your `KUBECONFIG`.
 
 Example:
 
@@ -255,17 +255,17 @@ vault write auth/iterate-green/config \
 Vault secrets store all sensitive configurations, which are accessed by both 
 Tanzu Sync and the Tanzu Application Platform installation.
 
-Follow these step to configure Roles in Vault:
+Follow these steps to configure Roles in Vault:
 
 1. Create two Policies, one to read the Tanzu Sync secrets and another to read the 
-Tanzu Application Platform installation secrets by using the supplied script:
+Tanzu Application Platform installation secrets, by using the supplied script:
 
     ```console
     tanzu-sync/scripts/setup/create-policies.sh
     ```
 
 2. Create two Roles, one to read the Tanzu Sync secrets and another to read the 
-Tanzu Application Platform installation secrets by using the supplied script:
+Tanzu Application Platform installation secrets, by using the supplied script:
 
     ```console
     tanzu-sync/scripts/setup/create-roles.sh
@@ -533,7 +533,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
 ### <a id='reviewstore-tap-installation-config'></a>Review and store the Tanzu Application Platform installation config
 
-Configuration for the Tanzu Application Platform installation are stored in two places:
+Configuration for the Tanzu Application Platform installation is stored in two places:
 
 - Sensitive configuration is stored in Vault.
 - Non-sensitive configuration is stored in YAML files in the Git repository.
@@ -723,7 +723,7 @@ The following deployment process is only required once per cluster:
     sudo cp $HOME/tanzu-cluster-essentials/ytt /usr/local/bin/ytt
     ```
 
-    This step is required to ensure the successful deployment of the `tanzu-sync` App.
+    This step is required to ensure the successful deployment of the `tanzu-sync` app.
 
 1. Ensure the Kubernetes cluster context is set to the correct cluster.
 

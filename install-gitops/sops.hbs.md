@@ -402,7 +402,7 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
 1. Open an editor and use SOPS to edit the encrypted sensitive values file:
 
     ```console
-    sops <<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
+    sops GIT-REPO-ROOT/clusters/CLUSTER-NAME/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
     Example:
