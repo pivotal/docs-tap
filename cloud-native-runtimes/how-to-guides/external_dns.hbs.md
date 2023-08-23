@@ -51,7 +51,7 @@ To set up the custom domain and its external DNS record:
 1. Get the address of the cluster load balancer:
 
    ```
-   kubectl get service envoy -n EXTERNAL-CONTOUR-NS --output 'jsonpath={.status.loadBalancer.ingress}'
+   kubectl get service envoy -n EXTERNAL-CONTOUR-NS --output 'jsonpath=\{.status.loadBalancer.ingress}'
    ```
 
    Where `EXTERNAL-CONTOUR-NS` is the namespace where a Contour serving external traffic is installed. If Cloud Native Runtimes was installed as part of a Tanzu Application Profile, this value will likely be `tanzu-system-ingress`.
