@@ -23,7 +23,7 @@ application named `sync` that is installed in the `tanzu-sync` namespace. The sy
 3. Deploys with `kapp` a set of resources to install Tanzu Application Platform, 
 with any other user specified confiuration in the Git Repository.
 
-## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
+## <a id="sops-vs-eso"></a>Choosing Secrets OPerationS (SOPS) or External Secrets Operator (ESO)
 
 The following table outlines the Kubernetes distributions and secret management solutions that SOPS and ESO support:
 
