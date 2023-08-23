@@ -31,10 +31,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 features: cert-manager
 
-- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`. See [the
-  upstream release
-  notes](https://cert-manager.io/docs/release-notes/release-notes-1.12/) for
-  details.
+- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`. 
+  For more information, see the [upstream release notes](https://cert-manager.io/docs/release-notes/release-notes-1.12/).
 
 #### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
 
