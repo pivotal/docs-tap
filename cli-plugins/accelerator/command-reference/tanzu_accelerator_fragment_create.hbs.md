@@ -19,10 +19,10 @@ the same options specified in the accelerator metadata retrieved from the Git re
 tanzu accelerator fragment create [flags]
 ```
 
-## Examples
+## Example
 
 ```console
-tanzu acceleratorent fragm create <fragment-name> --git-repository <URL> --git-branch <branch> --git-sub-path <sub-path>
+tanzu accelerator fragment create <fragment-name> --git-repository <URL> --git-branch <branch> --git-sub-path <sub-path>
 ```
 
 ## Options
