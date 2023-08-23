@@ -72,20 +72,16 @@ To set the Kubernetes cluster context:
 The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
- From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI and the CLI plug-ins
-required to interact with Tanzu Application Platform are released and distributed independently
-from Tanzu Application Platform itself.
-
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-From Tanzu Application Platform v{{ vars.tap_version }} and later, the Tanzu CLI is released and
-distributed independently from Tanzu Application Platform. The Tanzu CLI can be installed using a
-package manager such as Chocolatey, Homebrew, APT, YUM, and DNF, or it can be installed from a
-binary release.
+Tanzu CLI core v1.0.0 can be used to interact with all supported versions of Tanzu Application Platform.
+Although the recommended approach for installing the Tanzu CLI core is via package manager (Chocolatey, 
+Homebrew, APT, YUM, and DNF are supported),compliance-forward customers can download and install Tanzu 
+CLI binary manually from Tanzu Network or VMware Customer Connect.
 
 Basic installation instructions are provided below. For more information including how to install
 the Tanzu CLI and CLI plug-ins in Internet-restricted environments,
-see the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html) documentation.
+see the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
 
 > **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` or `C:\Program Files\tanzu` on Windows to a different location before following
 the steps below.
@@ -173,7 +169,7 @@ Install from a binary release
 
      * **VMware Customer Connect**
 
-       1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-090&productId=1431).
+       1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-100&productId=1455&rPId=109066).
        2. Download the Tanzu CLI binary for your operating system.
 
      * **GitHub**
