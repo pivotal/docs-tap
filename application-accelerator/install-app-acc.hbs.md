@@ -124,7 +124,7 @@ value for `server.service_type`. For example:
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v ${ACCELERATOR_VERSION_NUMBER} -n tap-install -f app-accelerator-values.yaml
     ```
 
-    Where `ACCELERATOR-ERSION-NUMBER` is the version of the Application Accelerator package included
+    Where `ACCELERATOR-VERSION-NUMBER` is the version of the Application Accelerator package included
     with the Tanzu Application Platform installation.
 
     For example:
