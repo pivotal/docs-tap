@@ -61,7 +61,6 @@ stored in dedicated repositories.
 |Contour|Contour|
 |Crossplane|Crossplane|
 |Developer Conventions|Developer Conventions|
-|Eventing|Eventing|
 |Flux CD Source Controller|Flux CD Source Controller|
 |Local Source Proxy|Local Source Proxy|
 |Namespace Provisioner|Namespace Provisioner|

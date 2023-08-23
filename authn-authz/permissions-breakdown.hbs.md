@@ -99,26 +99,12 @@ Tanzu Application Platform (commonly known as TAP) component.
 - apiGroups: ["networking.k8s.io"]
   resources: ["ingresses"]
   verbs: ["get","list","watch"]
-- apiGroups: ["eventing.knative.dev"]
-  resources: ["brokers","triggers"]
-  verbs: ["get","list","watch"]
 - apiGroups: ["serving.knative.dev"]
   resources: ["configurations","services","revisions","routes"]
   verbs: ["get","list","watch"]
 - apiGroups: ["sources.*"]
   resources: ["(many)"]
   verbs: ["get","list","watch"]
-```
-
-### `apps.tanzu.vmware.com/aggregate-to-app-operator: "true"`
-
-```yaml
-- apiGroups: ["eventing.knative.dev"]
-  resources: ["brokers"]
-  verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
-- apiGroups: ["sources.*"]
-  resources: ["(many)"]
-  verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 ```
 
 ## Convention Service

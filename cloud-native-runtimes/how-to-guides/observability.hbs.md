@@ -26,7 +26,7 @@ If you are using Tanzu Mission Control (TMC), vSphere 7.0 with Tanzu, or Tanzu K
 
 To configure logging with Fluent Bit for your Cloud Native Runtimes environment:
 
-1. VMware recommends that you add any integrations to the `ConfigMap` in both your Knative Serving and Knative Eventing namespaces. Follow the logging configuration steps in the Fluent Bit documentation to create the `Namespace`, `ServiceAccount`, `Role`, `RoleBinding`, and `ConfigMap`. To view these steps, see [Installation](https://docs.fluentbit.io/manual/installation/kubernetes#installation) in the Fluent Bit documentation.
+1. VMware recommends that you add any integrations to the `ConfigMap` in your Knative Serving namespace. Follow the logging configuration steps in the Fluent Bit documentation to create the `Namespace`, `ServiceAccount`, `Role`, `RoleBinding`, and `ConfigMap`. To view these steps, see [Installation](https://docs.fluentbit.io/manual/installation/kubernetes#installation) in the Fluent Bit documentation.
 
 1. If you are using TMC, vSphere with Tanzu, or Tanzu Kubernetes Cluster
    to manage your cloud native environment, create a role binding in the Kubernetes namespace
@@ -99,13 +99,12 @@ You can trace which aspects of Cloud Native Runtimes and workloads running on Cl
 ### Configuring Tracing
 
 You can configure tracing for your applications on Cloud Native Runtimes.
-To do this, you configure tracing for both Knative Serving and Eventing by editing the ConfigMap `config-tracing` for your Knative namespaces.
+To do this, you configure tracing for Knative Serving by editing the ConfigMap `config-tracing` for your Knative namespaces.
 
-VMware recommends that you add any integrations in both your Serving and Eventing namespaces.
+VMware recommends that you add any integrations in your Serving namespaces.
 For information on how to enable request traces in each component, see the following Knative documentation:
 
 - Serving. See [Accessing request traces](https://knative.dev/docs/serving/accessing-traces/).
-- Eventing. See [Accessing CloudEvent traces](https://knative.dev/docs/eventing/accessing-traces/).
 
 ### Forwarding Trace Data to an Observability Platform or Data Visualization Tool
 

@@ -195,7 +195,6 @@ Your output is similar, but probably not identical, to the following example out
   contour                             contour.tanzu.vmware.com                             1.22.0+tap.3     Reconcile succeeded
   conventions-controller              controller.conventions.apps.tanzu.vmware.com         0.7.1            Reconcile succeeded
   developer-conventions               developer-conventions.tanzu.vmware.com               0.8.0            Reconcile succeeded
-  eventing                            eventing.tanzu.vmware.com                            2.0.1            Reconcile succeeded
   fluxcd-source-controller            fluxcd.source.controller.tanzu.vmware.com            0.27.0+tap.1     Reconcile succeeded
   grype                               grype.scanning.apps.tanzu.vmware.com                 1.3.0            Reconcile succeeded
   image-policy-webhook                image-policy-webhook.signing.apps.tanzu.vmware.com   1.1.7            Reconcile succeeded
