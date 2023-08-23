@@ -1,21 +1,27 @@
 # Set up developer namespaces to use your installed packages
 
-First enable your namespace for Tanzu Application Platform Supply Chains and then optionally apply Kubernetes RBAC for additional non-admin user access.
+This topic tells you how to set up developer namespaces to use your installed packages.
 
-- [Enable namespace for Supply Chains](#enable-namespace).
-- [Enable non-admin users access with Kubernetes RBAC](#additional-user-access).
+You must first enable your namespace for Tanzu Application Platform Supply Chains 
+and then optionally apply Kubernetes RBAC for additional non-admin user access. 
+For more information, see:
+
+1. [Enable namespace for Supply Chains](#enable-namespace).
+1. (Optional)[Enable non-admin users access with Kubernetes RBAC](#additional-user-access).
 
 ## <a id='enable-namespace'></a>Enable namespace for Supply Chains
 
-The `default` ServiceAaccount in your developer namepace requires permission to your image repositories and RoleBindings for Tanzu Application Platform ClusterRoles.  The [Namespace Provisioner](../namespace-provisioner/about.hbs.md) watches namespaces for a specific label, then takes action to enable the namespace.  Use the following command to enable the Supply Chain on your namespace.
+The `default` ServiceAaccount in your developer namespace requires permission to your image repositories and RoleBindings for Tanzu Application Platform `ClusterRoles`.  The [Namespace Provisioner](../namespace-provisioner/about.hbs.md) watches namespaces for a specific label, then takes action to enable the namespace. 
 
-   ```console
-   kubectl label namespace $YOUR-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
-   ```
+To enable the Supply Chain on your namespace, run:
 
-    Where `YOUR-NAMESPACE` is your developer namespace.
+```console
+kubectl label namespace $YOUR-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
+```
 
-## <a id='additional-user-access'></a>Enable non-admin users access with Kubernetes RBAC
+Where `YOUR-NAMESPACE` is your developer namespace.
+
+## <a id='additional-user-access'></a>(Optional) Enable non-admin users access with Kubernetes RBAC
 
 Follow these steps to enable non-admin users by using Kubernetes RBAC to submit jobs to the Supply Chain:
 
