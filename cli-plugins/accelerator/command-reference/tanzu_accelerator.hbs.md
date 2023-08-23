@@ -1,7 +1,7 @@
 # tanzu accelerator
 
 This topic tells you how to use the Tanzu Accelerator CLI `tanzu accelerator`
-command to manages accelerators in a Kubernetes cluster.
+command to manage accelerators in a Kubernetes cluster.
 
 ### Options
 
@@ -13,14 +13,13 @@ command to manages accelerators in a Kubernetes cluster.
 
 ### SEE ALSO
 
-* [tanzu accelerator apply](tanzu_accelerator_apply.md)	 - Apply accelerator resource
-* [tanzu accelerator create](tanzu_accelerator_create.md)	 - Create a new accelerator
-* [tanzu accelerator delete](tanzu_accelerator_delete.md)	 - Delete an accelerator
-* [tanzu accelerator fragment](tanzu_accelerator_fragment.md)	 - Fragment commands
-* [tanzu accelerator generate](tanzu_accelerator_generate.md)	 - Generate project from accelerator
+* [tanzu accelerator apply](tanzu_accelerator_apply.hbs.md)	 - Apply accelerator resource
+* [tanzu accelerator create](tanzu_accelerator_create.hbs.md)	 - Create a new accelerator
+* [tanzu accelerator delete](tanzu_accelerator_delete.hbs.md)	 - Delete an accelerator
+* [tanzu accelerator fragment create](tanzu_accelerator_fragment_create.hbs.md)	 - Create a fragment
+* [tanzu accelerator generate](tanzu_accelerator_generate.hbs.md)	 - Generate project from accelerator
 * [tanzu accelerator generate-from-local](tanzu_accelerator_generate_from_local.hbs.md)  - Generate a project from local or registered accelerators/fragments
-* [tanzu accelerator get](tanzu_accelerator_get.md)	 - Get accelerator information
-* [tanzu accelerator list](tanzu_accelerator_list.md)	 - List accelerators
-* [tanzu accelerator push](tanzu_accelerator_push.md)	 - Push local path to source image
-* [tanzu accelerator update](tanzu_accelerator_update.md)	 - Update an accelerator
-
+* [tanzu accelerator get](tanzu_accelerator_get.hbs.md)	 - Get accelerator information
+* [tanzu accelerator list](tanzu_accelerator_list.hbs.md)	 - List accelerators
+* [tanzu accelerator push](tanzu_accelerator_push.hbs.md)	 - Push local path to source image
+* [tanzu accelerator update](tanzu_accelerator_update.hbs.md)	 - Update an accelerator
