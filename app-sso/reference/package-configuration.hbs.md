@@ -86,8 +86,11 @@ The domain template is applied with the configured `workload_domain_name`
 and the name and namespace specified in `WorkloadRegistration.spec.workloadRef`.
 For more information, see [Redirect URI templating](./api/workloadregistration.hbs.md#redirect-uri-templating).
 
-In most cases, the value of `default_workload_domain_template` matches the value
-of [Cloud Native Runtimes](../../cloud-native-runtimes/about.hbs.md)' `domain_template`.
+It's recommended to keep the values of `default_workload_domain_template` and
+[Cloud Native Runtimes](../../cloud-native-runtimes/about.hbs.md)'
+`domain_template` in sync. Both have the same default. But when customizing,
+using the same value for both settings will ensure that `Workloads` get the
+expected redirect URIs templated.
 
 ### <a id="domain-name"></a> `domain_name`
 
