@@ -1,67 +1,23 @@
 # Set up developer namespaces to use your installed packages
 
-You can choose either one of the following two approaches to create a `Workload`
-for your application by using the registry credentials specified,
-add credentials and Role-Based Access Control (RBAC) rules to the namespace
-that you plan to create the `Workload` in:
+First enable your namespace for Tanzu Application Platform Supply Chains and then optionally apply Kubernetes RBAC for additional non-admin user access.
 
-- [Enable single user access](#single-user-access).
-- [Enable additional users access with Kubernetes RBAC](#additional-user-access).
+- [Enable namespace for Supply Chains](#enable-namespace).
+- [Enable non-admin users access with Kubernetes RBAC](#additional-user-access).
 
-## <a id='single-user-access'></a>Enable single user access
+## <a id='enable-namespace'></a>Enable namespace for Supply Chains
 
-Follow these steps to enable your current user to submit jobs to the Supply Chain:
+The `default` ServiceAaccount in your developer namepace requires permission to your image repositories and RoleBindings for Tanzu Application Platform ClusterRoles.  The [Namespace Provisioner](../namespace-provisioner/about.hbs.md) watches namespaces for a specific label, then takes action to enable the namespace.  Use the following command to enable the Supply Chain on your namespace.
 
-1. (Optional) If the variable `AWS_ACCOUNT_ID environment` is not set during the [installation](profile.hbs.md) process, export the AWS Account ID.
-
-    ```console
-    export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
-    ```
-
-1. Add a service account to execute the supply chain and RBAC rules to authorize the service account to the developer namespace.
-
-    ```console
-    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: default
-      annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/tap-workload"
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: default-permit-deliverable
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: deliverable
-    subjects:
-      - kind: ServiceAccount
-        name: default
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: default-permit-workload
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: workload
-    subjects:
-      - kind: ServiceAccount
-        name: default
-    EOF
-    ```
+   ```console
+   kubectl label namespace $YOUR-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
+   ```
 
     Where `YOUR-NAMESPACE` is your developer namespace.
 
-## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
+## <a id='additional-user-access'></a>Enable non-admin users access with Kubernetes RBAC
 
-Follow these steps to enable additional users by using Kubernetes RBAC to submit jobs to the Supply Chain:
-
-1. [Enable single user access](#single-user-access).
+Follow these steps to enable non-admin users by using Kubernetes RBAC to submit jobs to the Supply Chain:
 
 1. Choose either of the following options to give developers namespace-level access and view access to appropriate cluster-level resources:
 
