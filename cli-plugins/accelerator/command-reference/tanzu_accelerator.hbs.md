@@ -3,9 +3,9 @@
 This topic tells you how to use the Tanzu Accelerator CLI `tanzu accelerator`
 command to manages accelerators in a Kubernetes cluster.
 
-### Options
+## Options
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
   -h, --help              help for accelerator
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
