@@ -241,7 +241,7 @@ Changing the `domain_template` alters how Knative will create FQDNs for Knative 
 You can use this option to shorten the template, either by shortening one of the fields:
 
 ```
-{{.Name}}.{{slice .Namespace 0 3}}.{{.Domain}}
+\{{.Name}}.\{{slice .Namespace 0 3}}.\{{.Domain}}
 ```
 
 > **Note:** Knative was not designed with shortening the name or namespace in mind. Due to a quirk in Knative's domain template validation, you can only slice up to a max of 3 characters.
@@ -249,7 +249,7 @@ You can use this option to shorten the template, either by shortening one of the
 Or by removing a field altogether:
 
 ```
-{{.Name}}.{{.Domain}}
+\{{.Name}}.\{{.Domain}}
 ```
 
 > **Warning:** Removing the namespace from the `domain_template` makes it possible for Knative to create non-unique FQDNs for Knative Services across different namespaces. It will require manual care in naming Knative Services to make sure FQDNs remain unique.
