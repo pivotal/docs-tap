@@ -334,7 +334,7 @@ You might receive the following error messages:
 - `Knative is not installed on CLUSTER_NAME (status: 404). Contact your administrator.`
   - **Cause:** The cluster does not have Cloud Native Runtimes installed.
   - **Solution:** Install the Knative components by following the instructions in
-    [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.md).
+    [Install Cloud Native Runtimes](../cloud-native-runtimes/how-to-guides/app-operators/install.hbs.md).
 
 - `Error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 404). Contact your administrator.`
   - **Cause:** The package that contains the resource is not installed.
