@@ -1,7 +1,7 @@
 # Troubleshoot Tanzu Application Platform GUI
 
 This topic tells you how to troubleshoot issues encountered when installing
-Tanzu Application Platform GUI. The topic is divided into sections:
+Tanzu Application Platform GUI (commonly called TAP GUI). The topic is divided into sections:
 
 - [General issues](#general-issues)
 - [Runtime Resources tab issues](#runtime-rsrc-visibility)
