@@ -1,11 +1,21 @@
 # Troubleshoot Tanzu Application Platform GUI
 
 This topic tells you how to troubleshoot issues encountered when installing
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Application Platform GUI (commonly called TAP GUI). The topic is divided into sections:
 
-## <a id='port-range-invalid'></a> Tanzu Application Platform GUI reports that the port range is not valid
+- [General issues](#general-issues)
+- [Runtime Resources tab issues](#runtime-rsrc-visibility)
+- [Accelerators page issues](#app-accelerators-page)
+- [Security Analysis plug-in issues](#sec-analysis-plug-in)
+- [Supply Chain Choreographer plug-in issues](#scc-plug-in)
 
-### Symptom
+## <a id='general-issues'></a> General issues
+
+The following are general issues:
+
+### <a id='port-range-invalid'></a> Tanzu Developer Portal reports that the port range is not valid
+
+#### Symptom
 
 You provided a full URL in a `backend.reading.allow` entry, as in this example `tap-values.yaml` snippet:
 
@@ -24,12 +34,12 @@ and you see the following error message:
 Backend failed to start up, Error: Port range is not valid: //gitlab.example.com/some-group/some-repo/-/blob/main/catalog-info.yaml
 ```
 
-### Cause
+#### Cause
 
 Tanzu Application Platform GUI expects a host name to be passed into the field
 `backend.reading.allow[].host`.
 
-### Solution
+#### Solution
 
 Edit your `tap-values.yaml` file as in the following example:
 
@@ -43,9 +53,9 @@ tap_gui:
             paths: ['/some-group/some-repo/']
 ```
 
-## <a id='catalog-not-loading'></a> Tanzu Application Platform GUI does not load the catalog
+### <a id='catalog-not-loading'></a> Tanzu Application Platform GUI does not load the catalog
 
-### Symptom
+#### Symptom
 
 You are able to visit Tanzu Application Platform GUI, but it does not load the catalog and you see
 the following error message.
@@ -66,7 +76,7 @@ Firefox
 : In the **Transferred** column you see **Mixed Block**
   ![Screenshot of the blocked content status in the Firefox web browser.](images/invalid-tls-firefox-network-tab.png)
 
-### Cause
+#### Cause
 
 As of Tanzu Application Platform v1.4, Tanzu Application Platform GUI provides TLS connections by
 default. Because of this, if you visit a Tanzu Application Platform GUI site your connection is
@@ -77,7 +87,7 @@ You might have manually set the fields `app.baseUrl`, `backend.baseUrl`, and
 Tanzu Application Platform GUI uses the `baseUrl` to determine how to create links to fetch from its
 APIs. The combination of these two factors causes your browser to attempt to fetch mixed content.
 
-### Solution
+#### Solution
 
 The solution is to delete these fields or update your values in `tap-values.yaml` to reflect that your
 Tanzu Application Platform GUI instance is serving https, as in the following example:
@@ -98,28 +108,28 @@ Where `INGRESS-DOMAIN` is the ingress domain you have configured for Tanzu Appli
 The installer determines acceptable values based on your `tap_gui.ingressDomain` or
 `shared.ingress_domain` and the TLS status of the installation.
 
-## <a id='update-sc-err'></a> Updating a supply chain causes an error (`Can not create edge...`)
+### <a id='update-sc-err'></a> Updating a supply chain causes an error (`Can not create edge...`)
 
-### Symptom
+#### Symptom
 
 Updating a supply chain causes an error (`Can not create edge...`) when an existing workload
 is clicked in the Workloads table and that supply chain is no longer present.
 
-### Solution
+#### Solution
 
 Recreate the same workload to execute through the new or updated supply chain.
 
-## <a id='catalog-not-found'></a> Catalog not found
+### <a id='catalog-not-found'></a> Catalog not found
 
-### Symptom
+#### Symptom
 
 When you pull up Tanzu Application Platform GUI, you get the error `Catalog Not Found`.
 
-### Cause
+#### Cause
 
 The catalog plug-in can't read the Git location of your catalog definition files.
 
-### Solution
+#### Solution
 
 1. Ensure you have built your own [Backstage](https://backstage.io/)-compatible catalog or that
    you have downloaded one of the Tanzu Application Platform GUI catalogs from VMware Tanzu
@@ -159,14 +169,14 @@ The catalog plug-in can't read the Git location of your catalog definition files
 You can substitute for other integrations as defined in the
 [Backstage documentation](https://backstage.io/docs/integrations/).
 
-## <a id='updating-tap-gui-values'></a> Issues updating the values file
+### <a id='updating-tap-gui-values'></a> Issues updating the values file
 
-### Symptom
+#### Symptom
 
 After updating the configuration of Tanzu Application Platform GUI, either by using a profile
 or as a standalone package installation, you don't know whether the configuration has reloaded.
 
-### Solution
+#### Solution
 
 1. Get the name you need by running:
 
@@ -211,14 +221,14 @@ or as a standalone package installation, you don't know whether the configuratio
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
-## <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
+### <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
 
-### Symptom
+#### Symptom
 
 You have a problem with Tanzu Application Platform GUI, such as `Catalog: Not Found`, and don't have
 enough information to diagnose it.
 
-### Solution
+#### Solution
 
 Get timestamped logs from the running pod and review the logs:
 
@@ -230,7 +240,7 @@ Get timestamped logs from the running pod and review the logs:
 
 2. Review the logs.
 
-## <a id='runtime-resource-visibility'></a> Runtime Resources tab
+## <a id='runtime-rsrc-visibility'></a> Runtime Resources tab issues
 
 Here are some common troubleshooting steps for errors presented in the **Runtime Resources** tab.
 
@@ -310,7 +320,7 @@ You might receive the following error messages:
   - **Cause:** The package that contains the resource is not installed.
   - **Solution:** Install the missing package.
 
-## <a id='app-accelerators-page'></a> Accelerators page
+## <a id='app-accelerators-page'></a> Accelerators page issues
 
 Here are some common troubleshooting steps for errors displayed on the **Accelerators** page.
 
@@ -340,7 +350,7 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
-## <a id='security-analysis'></a> Security Analysis page
+## <a id='sec-analysis-plug-in'></a> Security Analysis plug-in issues
 
 Here are troubleshooting steps for errors affecting the **Security Analysis** page.
 
@@ -364,7 +374,7 @@ actions:
 - Trigger a workload to run with a new commit to the source code
 - Delete the relevant SourceScan or ImageScan on the Kubernetes cluster
 
-## Supply Chain Choreographer plug-in
+## <a id='scc-plug-in'></a> Supply Chain Choreographer plug-in issues
 
 These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
 
