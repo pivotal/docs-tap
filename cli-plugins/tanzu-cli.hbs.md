@@ -21,8 +21,6 @@ The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here 
 - Secret: secret management
 - Services: discover service types, service instances, and manage resource claims
 
-You can also develop your own plug-ins to add custom commands to the Tanzu CLI. For more information about plug-ins, see the [Sync New Plugins](#plugin-sync), [Install New Plugins](#install-new), [Install Local Plugins](#install-local) following sections.
-
 ## <a id="tanzu-cli-install"></a>Tanzu CLI Installation
 
 You install and initialize the Tanzu CLI on a computer. The computer can be a laptop, host, or server.
@@ -46,7 +44,7 @@ To install a Tanzu CLI plug-in that was not automatically downloaded when runnin
    tanzu plugin install PLUGIN-NAME
    ```
 
-2. Verify that you installed the plugin successfully by running:
+2. Verify that you installed the plug-in successfully by running:
 
    ```console
    tanzu plugin list
@@ -64,7 +62,7 @@ To install a Tanzu CLI plug-in that was not automatically downloaded when runnin
   insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
    ```
 
-## <a id="install-local"></a> Install Local Plugins
+## <a id="install-local"></a> Install Local Plug-ins
 
 If your network is not connected to the Internet or you want to download and inspect
 the Tanzu CLI plug-in binaries before installing, follow these steps:
