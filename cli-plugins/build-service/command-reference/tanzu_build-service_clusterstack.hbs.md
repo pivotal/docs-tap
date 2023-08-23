@@ -10,6 +10,6 @@ This topic tells you about the Tanzu Build Service CLI `tanzu build-service clus
 
 ## SEE ALSO
 
-* [tanzu build-service](tanzu_build-service.hbs.md)	 - plugin to interact with tanzu build service (tbs) crds
+* [tanzu build-service](tanzu_build-service.hbs.md)	 - plug-in to interact with Tanzu Build Service (TBS) crds
 * [tanzu build-service clusterstack list](tanzu_build-service_clusterstack_list.hbs.md)	 - List cluster stacks
 * [tanzu build-service clusterstack status](tanzu_build-service_clusterstack_status.hbs.md)	 - Display cluster stack status
