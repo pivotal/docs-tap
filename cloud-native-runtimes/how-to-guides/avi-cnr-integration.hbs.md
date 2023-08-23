@@ -55,7 +55,7 @@ For more information about deploying an Avi Controller, see [Install Avi Kuberne
 
 The following diagram shows how Avi Vantage integrates with Cloud Native Runtimes:
 
-![This diagram illustrates the workflow described in the text below.](Images/avi-cnr-integration.jpg)
+![This diagram illustrates the workflow described in the text below.](images/avi-cnr-integration.jpg)
 
 When Contour creates a Kubernetes LoadBalancer service for Envoy, the Avi Kubernetes Operator (AKO) sees the new LoadBalancer service.
 Then Avi Controller creates a Virtual Service. For information about LoadBalancer services, see
