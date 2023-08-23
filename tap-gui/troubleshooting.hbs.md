@@ -1,30 +1,39 @@
 # Troubleshoot Tanzu Application Platform GUI
 
 This topic tells you how to troubleshoot issues encountered when installing
-Tanzu Application Platform GUI (commonly called TAP GUI).
+Tanzu Application Platform GUI (commonly called TAP GUI). The topic is divided into sections:
 
-## <a id='safari-not-working'></a> Tanzu Application Platform GUI does not work in Safari
+- [General issues](#general-issues)
+- [Runtime Resources tab issues](#runtime-rsrc-visibility)
+- [Accelerators page issues](#app-accelerators-page)
+- [Supply Chain Choreographer plug-in issues](#scc-plug-in)
 
-### Symptom
+## <a id='general-issues'></a> General issues
+
+The following are general issues.
+
+### <a id='safari-not-working'></a> Tanzu Application Platform GUI does not work in Safari
+
+#### Symptom
 
 Tanzu Application Platform GUI does not work in the Safari web browser.
 
-### Solution
+#### Solution
 
 Currently there is no way to use Tanzu Application Platform GUI in Safari. Please use a different
 web browser.
 
-## <a id='catalog-not-found'></a> Catalog not found
+### <a id='catalog-not-found'></a> Catalog not found
 
-### Symptom
+#### Symptom
 
 When you pull up Tanzu Application Platform GUI, you get the error `Catalog Not Found`.
 
-### Cause
+#### Cause
 
 The catalog plug-in can't read the Git location of your catalog definition files.
 
-### Solution
+#### Solution
 
 1. Ensure you have built your own [Backstage](https://backstage.io/)-compatible catalog or that
    you have downloaded one of the Tanzu Application Platform GUI catalogs from VMware Tanzu
@@ -64,14 +73,14 @@ The catalog plug-in can't read the Git location of your catalog definition files
 You can substitute for other integrations as defined in the
 [Backstage documentation](https://backstage.io/docs/integrations/).
 
-## <a id='updating-tap-gui-values'></a> Issues updating the values file
+### <a id='updating-tap-gui-values'></a> Issues updating the values file
 
-### Symptom
+#### Symptom
 
 After updating the configuration of Tanzu Application Platform GUI, either by using a profile
 or as a standalone package installation, you don't know whether the configuration has reloaded.
 
-### Solution
+#### Solution
 
 1. Get the name you need by running:
 
@@ -116,14 +125,14 @@ or as a standalone package installation, you don't know whether the configuratio
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
-## <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
+### <a id='tap-gui-logs'></a> Pull logs from Tanzu Application Platform GUI
 
-### Symptom
+#### Symptom
 
 You have a problem with Tanzu Application Platform GUI, such as `Catalog: Not Found`, and don't have
 enough information to diagnose it.
 
-### Solution
+#### Solution
 
 Get timestamped logs from the running pod and review the logs:
 
@@ -135,7 +144,7 @@ Get timestamped logs from the running pod and review the logs:
 
 2. Review the logs.
 
-## <a id='runtime-resource-visibility'></a> Runtime Resources tab
+## <a id='runtime-rsrc-visibility'></a> Runtime Resources tab issues
 
 Here are some common troubleshooting steps for errors presented in the **Runtime Resources** tab.
 
@@ -181,7 +190,7 @@ Confirm that you are using the correct label:
 
 2. Confirm your Kubernetes resources correspond to that label drop-down menu.
 
-### Errors retrieving resources
+### <a id='retrieving-rsrcs'></a> Errors retrieving resources
 
 #### Symptom
 
@@ -215,7 +224,7 @@ You might receive the following error messages:
   - **Cause:** The package that contains the resource is not installed.
   - **Solution:** Install the missing package.
 
-## <a id='app-accelerators-page'></a> Accelerators page
+## <a id='app-accelerators-page'></a> Accelerators page issues
 
 Here are some common troubleshooting steps for errors displayed on the **Accelerators** page.
 
