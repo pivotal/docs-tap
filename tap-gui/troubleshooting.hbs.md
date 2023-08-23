@@ -5,7 +5,7 @@ This topic tells you how to troubleshoot issues encountered when installing Tanz
 The topic is divided into sections:
 
 - [General issues](#general-issues)
-- [Runtime Resources tab issues](#runtime-resource-visibility)
+- [Runtime Resources tab issues](#runtime-rsrc-visibility)
 - [Accelerators page issues](#app-accelerators-page)
 - [Supporting ImageVulnerabilityScan issues](#ivs-support)
 - [Security Analysis plug-in issues](#sec-analysis-plug-in)
@@ -13,7 +13,7 @@ The topic is divided into sections:
 
 ## <a id='general-issues'></a> General issues
 
-The following are general issues:
+The following are general issues.
 
 ### <a id='port-range-invalid'></a> Tanzu Developer Portal reports that the port range is not valid
 
@@ -261,7 +261,7 @@ Add Tanzu Developer Portal to your ad-blocking allowlist.
 Alternatively, deactivate the ad-blocking software or
 [turn off Pendo telemetry collection](../opting-out-telemetry.hbs.md#turn-off-pendo-telemetry-collection).
 
-## <a id='runtime-resource-visibility'></a> Runtime Resources tab issues
+## <a id='runtime-rsrc-visibility'></a> Runtime Resources tab issues
 
 Here are some common troubleshooting steps for errors presented in the **Runtime Resources** tab.
 
@@ -307,7 +307,7 @@ Confirm that you are using the correct label:
 
 2. Confirm your Kubernetes resources correspond to that label drop-down menu.
 
-### Errors retrieving resources
+### <a id='retrieving-rsrcs'></a> Errors retrieving resources
 
 #### Symptom
 
