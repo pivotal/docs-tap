@@ -22,7 +22,7 @@ tanzu accelerator fragment create [flags]
 ## Example
 
 ```console
-tanzu acceleratorent fragm create <fragment-name> --git-repository <URL> --git-branch <branch> --git-sub-path <sub-path>
+tanzu accelerator fragment create <fragment-name> --git-repository <URL> --git-branch <branch> --git-sub-path <sub-path>
 ```
 
 ## Options
