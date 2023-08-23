@@ -1,9 +1,9 @@
-## tanzu accelerator fragment create
+# tanzu accelerator fragment create
 
 This topic tells you how to use the Tanzu Accelerator CLI
 `tanzu accelerator fragment create` command to create a new accelerator fragment.
 
-### Synopsis
+## Synopsis
 
 Create a new accelerator fragment resource with specified configuration.
 
@@ -14,20 +14,19 @@ Accelerator configuration options include:
 The Git repository option is required. Metadata options are optional and will override any values for
 the same options specified in the accelerator metadata retrieved from the Git repository.
 
-
-```
+```console
 tanzu accelerator fragment create [flags]
 ```
 
-### Examples
+## Example
 
-```
+```console
 tanzu acceleratorent fragm create <fragment-name> --git-repository <URL> --git-branch <branch> --git-sub-path <sub-path>
 ```
 
 ### Options
 
-```
+```console
       --display-name string   display name for the accelerator
       --git-branch string     Git repository branch to be used
       --git-repo string       Git repository URL for the accelerator
@@ -41,7 +40,7 @@ tanzu acceleratorent fragm create <fragment-name> --git-repository <URL> --git-b
 
 ### Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
@@ -49,4 +48,3 @@ tanzu acceleratorent fragm create <fragment-name> --git-repository <URL> --git-b
 ### SEE ALSO
 
 * [tanzu accelerator fragment](tanzu_accelerator_fragment.md)	 - Fragment commands
-
