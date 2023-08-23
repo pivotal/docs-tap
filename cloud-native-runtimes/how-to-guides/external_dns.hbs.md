@@ -83,24 +83,24 @@ To set up the custom domain and its external DNS record:
 ## <a id='service-domain'></a> Configure Knative Service Domain Template
 
 Knative uses domain template which specifies the golang text template string to use when constructing the Knative service's DNS name.
-The default value is `\{{.Name}}.{{.Namespace}}.{{.Domain}}`.
+The default value is `{{.Name}}.{{.Namespace}}.{{.Domain}}`.
 Valid variables defined in the template include Name, Namespace, Domain, Labels, and Annotations.
 
 To configure domain template for the created Knative Services, edit your cnr-values.yml file to contain the following:
 
 ```
 ---
-domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
+domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
 ```
 
 This will modify the Knative `domain-template` ConfigMap to use `domain_template` as the default domain template.
 
 Changing this value might be necessary when the extra levels in the domain name generated are problematic for wildcard certificates that only support a single level of domain name added to the certificate's domain.
-In those cases you might consider using a value of `\{{.Name}}-\{{.Namespace}}.\{{.Domain}}`, or removing the Namespace entirely from the template.
+In those cases you might consider using a value of `{{.Name}}-{{.Namespace}}.{{.Domain}}`, or removing the Namespace entirely from the template.
 
 When choosing a new value, be thoughtful of the potential for conflicts, such as when users the use of characters like `-` in their service or namespace names.
 
-`\{{.Annotations}}` or `\{{.Labels}}` can be used for any customization in the go template if needed.
+`{{.Annotations}}` or `{{.Labels}}` can be used for any customization in the go template if needed.
 
 It is strongly recommended to keep namespace part of the template to avoid domain name clashes:
-eg. `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `{"sub":"foo"}`, then the generated template would be `{Name}-{Namespace}.foo.{Domain}`.
+eg. `{{.Name}}-{{.Namespace}}.{{ index .Annotations "sub"}}.{{.Domain}}` and you have an annotation `{"sub":"foo"}`, then the generated template would be `{Name}-{Namespace}.foo.{Domain}`.
