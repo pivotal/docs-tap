@@ -70,9 +70,13 @@
 
 <table>
     <tr>
-        <th>Build Cluster</th>
-        <th>A build cluster is a cluster with network access to your run clusters that controls the deployment on all the run clusters.
-    </th>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Build Cluster</td>
+        <td>A Build Cluster is a cluster with network access to your run clusters that controls 
+        the deployment on all the run clusters.</td>
     </tr>
     <tr>
         <td>Build profile</td>
@@ -121,6 +125,11 @@
         <th>Definition</th>
     </tr>
     <tr>
+        <td>Iterate Cluster</td>
+        <td>A Iterate Cluster is for “inner loop” development iteration. Developers connect to the 
+        Iterate Cluster by using their IDE to rapidly iterate on new software features. </td>
+    </tr>
+    <tr>
         <td>Iterate profile</td>
         <td>This profile is intended for iterative application development.</td>
     </tr>
@@ -145,8 +154,12 @@
 
 <table>
     <tr>
-        <th>Run Cluster</th>
-        <th>Run clusters serve as your deployment environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have kapp-controller and Contour installed.</th>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Run Cluster</td>
+        <td>Run Clusters serve as your deployment environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have kapp-controller and Contour installed.</td>
     </tr>
     <tr>
         <td>Run profile</td>
@@ -159,20 +172,24 @@
 
 <table>
     <tr>
-        <th>Supply Chain Choreographer</th>
-        <th>Supply Chain Choreographer is a Tanzu Application Platform component based on open source Cartographer. It allows App Operators to create pre-approved paths to production by integrating Kubernetes resources with the elements of their existing toolchains, for example, Jenkins.</th>
+        <th>Term</th>
+        <th>Definition</th>
     </tr>
     <tr>
-        <th>Supply Chain Security Tools - Policy</th>
-        <th>Supply Chain Security Tools - Policy Controller is a Tanzu Application Platform component that helps you ensure that the container images in your registry are not tampered with.</th>
+        <td>Supply Chain Choreographer</td>
+        <td>Supply Chain Choreographer is a Tanzu Application Platform component based on open source Cartographer. It allows App Operators to create pre-approved paths to production by integrating Kubernetes resources with the elements of their existing toolchains, for example, Jenkins.</td>
     </tr>
     <tr>
-        <th>Supply Chain Security Tools - Scan</th>
-        <th>Supply Chain Security Tools - Scan is a Tanzu Application Platform component that lets you build and deploy secure, trusted software that complies with your corporate security requirements by using scanning and gatekeeping capabilities.</th>
+        <td>Supply Chain Security Tools - Policy</td>
+        <td>Supply Chain Security Tools - Policy Controller is a Tanzu Application Platform component that helps you ensure that the container images in your registry are not tampered with.</td>
     </tr>
     <tr>
-        <th>Supply Chain Security Tools - Store</th>
-        <th>Supply Chain Security Tools - Store is a Tanzu Application Platform component that saves software bills of materials (SBoMs) to a database and allows you to query for image, source code, package, and vulnerability relationships.</th>
+        <td>Supply Chain Security Tools - Scan</td>
+        <td>Supply Chain Security Tools - Scan is a Tanzu Application Platform component that lets you build and deploy secure, trusted software that complies with your corporate security requirements by using scanning and gatekeeping capabilities.</td>
+    </tr>
+    <tr>
+        <td>Supply Chain Security Tools - Store</td>
+        <td>Supply Chain Security Tools - Store is a Tanzu Application Platform component that saves software bills of materials (SBoMs) to a database and allows you to query for image, source code, package, and vulnerability relationships.</td>
     </tr>
 </table>
 
@@ -233,6 +250,10 @@
     <tr>
         <th>Term</th>
         <th>Definition</th>
+    </tr>
+    <tr>
+        <td>View Cluster</td>
+        <td>A View Cluster runs the web applications for Tanzu Application Platform.</td>
     </tr>
     <tr>
         <td>View profile</td>

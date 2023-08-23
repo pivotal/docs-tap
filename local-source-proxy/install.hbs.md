@@ -28,12 +28,14 @@ local_source_proxy:
 Where:
 
 - `local_source_proxy.repository` is required. This is the repository where all your source code
-  will be uploaded. Examples:
+  will be uploaded. Examples of commonly used repositories include:
 
-  - Harbor has the form `my-harbor.io/my-project/local-source`.
-  - Docker Hub has the form `my-dockerhub-user/local-source` or `index.docker.io/my-user/local-source`.
-  - Google Artifact Registry has the form `MY-REGISTRY-REGION-docker.pkg.dev/my-project/local-source/image`.
-  - Google Cloud Registry has the form `gcr.io/my-project/local-source`.
+  - Harbor, which has the form `my-harbor.io/my-project/local-source`.
+  - Docker Hub, which has the form `my-dockerhub-user/local-source` or `index.docker.io/my-user/local-source`.
+  - Google Artifact Registry, which has the form `MY-REGISTRY-REGION-docker.pkg.dev/my-project/local-source/image`.
+  - Google Cloud Registry, which has the form `gcr.io/my-project/local-source`.
+
+  You are not restricted to using a repository from this list.
 
 - `local_source_proxy.push_secret` is required. This is the push secret reference that has the
   permission to push artifacts to the repository mentioned in `local_source_proxy.repository`.
