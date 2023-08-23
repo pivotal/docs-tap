@@ -83,7 +83,7 @@ To set up the custom domain and its external DNS record:
 ## <a id='service-domain'></a> Configure Knative Service Domain Template
 
 Knative uses domain template which specifies the golang text template string to use when constructing the Knative service's DNS name.
-The default value is `\{{.Name}}.\{{.Namespace}}.\{{.Domain}}`.
+The default value is `\{{.Name}}.{{.Namespace}}.{{.Domain}}`.
 Valid variables defined in the template include Name, Namespace, Domain, Labels, and Annotations.
 
 To configure domain template for the created Knative Services, edit your cnr-values.yml file to contain the following:
@@ -103,4 +103,4 @@ When choosing a new value, be thoughtful of the potential for conflicts, such as
 `\{{.Annotations}}` or `\{{.Labels}}` can be used for any customization in the go template if needed.
 
 It is strongly recommended to keep namespace part of the template to avoid domain name clashes:
-eg. `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `\{"sub":"foo"}`, then the generated template would be `\{Name}-\{Namespace}.foo.\{Domain}`.
+eg. `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `{"sub":"foo"}`, then the generated template would be `\{Name}-\{Namespace}.foo.\{Domain}`.
