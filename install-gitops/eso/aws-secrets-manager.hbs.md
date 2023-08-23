@@ -6,11 +6,11 @@
 
 This topic tells you how to install Tanzu Application Platform (commonly known as TAP) 
 through GitOps with secrets managed externally in AWS Secrets Manager. 
-To decide which approach to use, see [Choosing SOPS or ESO](../reference.hbs.md#choosing-sops-or-eso).
+To decide which approach to use, see [Choosing Secrets OPerationS (SOPS) or External Secrets Operator (ESO)](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPs to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
+Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPS to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI
-is verified to support AWS Elastic Kubernetes Service cluster with AWS Secrets Manager.
+is verified to support AWS Elastic Kubernetes Service (EKS) cluster with AWS Secrets Manager.
 Other combinations of Kubernetes distribution and ESO providers are not verified.
 
 ## <a id='prerequisites'></a>Prerequisites
@@ -25,8 +25,7 @@ Before installing Tanzu Application Platform, ensure you have:
 
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
 
-VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
-VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
+VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation. If you don't relocate the images, Tanzu Application Platform depends on VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
 
 The supported registries are Harbor, Azure Container Registry, Google Container Registry,
@@ -71,7 +70,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
     To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
@@ -97,7 +96,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
     Where `VERSION` is the version of Tanzu Build Service. You can retrieve this value by running `kubectl get package -n tap-install | grep buildservice`
 
-1. [Configure custom certificate authorities for Tanzu Application Platform GUI](../../install-offline/tap-gui-non-standard-certs-offline.hbs.md).
+1. [Configure custom certificate authorities for Tanzu Developer Portal](../../install-offline/tap-gui-non-standard-certs-offline.hbs.md).
 
 1. Host a `grype` database in the air-gapped environment. For more information, see [Use Grype in offline and air-gapped environments](../../install-offline/grype-offline-airgap.hbs.md).
 
@@ -237,17 +236,17 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
 AWS Secrets Manager secrets store all sensitive configurations, which are accessed by both 
 Tanzu Sync and the Tanzu Application Platform installation.
 
-Follow these step to configure the [IAM Role for a Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html):
+Follow these steps to configure the [IAM Role for a Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html):
 
 1. In AWS Identity and Access Manager, create two IAM Policies, one to read the Tanzu Sync secrets
-and another to read the Tanzu Application Platform installation secrets by using the supplied script:
+and another to read the Tanzu Application Platform installation secrets, by using the supplied script:
 
     ```console
     tanzu-sync/scripts/setup/create-policies.sh
     ```
 
 1. Create two IAM Role-to-Service Account pairs for your cluster, one for Tanzu Sync
-and another for the Tanzu Application Platform installation by using the supplied script:
+and another for the Tanzu Application Platform installation, by using the supplied script:
 
     ```console
     tanzu-sync/scripts/setup/create-irsa.sh
@@ -506,7 +505,7 @@ Follow these steps to create the sensitive configuration and review the non-sens
 
 ### <a id='reviewstore-tap-installation-config'></a>Review and store the Tanzu Application Platform installation config
 
-Configuration for the Tanzu Application Platform installation are stored in two places:
+Configuration for the Tanzu Application Platform installation is stored in two places:
 
 - Sensitive configuration is stored in AWS Secrets Manager.
 - Non-sensitive configuration is stored in YAML files in the Git repository.
@@ -715,7 +714,7 @@ The following deployment process is only required once per cluster:
     sudo cp $HOME/tanzu-cluster-essentials/ytt /usr/local/bin/ytt
     ```
 
-    This step is required to ensure the successful deployment of the `tanzu-sync` App.
+    This step is required to ensure the successful deployment of the `tanzu-sync` app.
 
 1. Ensure the Kubernetes cluster context is set to the EKS cluster.
 
