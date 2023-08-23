@@ -6,7 +6,6 @@ Tanzu Application Platform GUI (commonly called TAP GUI). The topic is divided i
 - [General issues](#general-issues)
 - [Runtime Resources tab issues](#runtime-rsrc-visibility)
 - [Accelerators page issues](#app-accelerators-page)
-- [Supporting ImageVulnerabilityScan issues](#ivs-support)
 - [Security Analysis plug-in issues](#sec-analysis-plug-in)
 - [Supply Chain Choreographer plug-in issues](#scc-plug-in)
 
