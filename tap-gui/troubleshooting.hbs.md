@@ -3,7 +3,7 @@
 This topic tells you how to troubleshoot issues encountered when installing Tanzu Developer Portal.
 The topic is divided into sections:
 
-- [General issues](#runtime-resource-visibility)
+- [General issues](#general-issues)
 - [Runtime Resources tab issues](#runtime-resource-visibility)
 - [Accelerators page issues](#app-accelerators-page)
 - [Supporting ImageVulnerabilityScan issues](#ivs-support)
