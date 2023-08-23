@@ -103,4 +103,4 @@ When choosing a new value, be thoughtful of the potential for conflicts, such as
 `\{{.Annotations}}` or `\{{.Labels}}` can be used for any customization in the go template if needed.
 
 It is strongly recommended to keep namespace part of the template to avoid domain name clashes:
-eg. `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `{"sub":"foo"}`, then the generated template would be `\{Name}-\{Namespace}.foo.\{Domain}`.
+eg. `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `{"sub":"foo"}`, then the generated template would be `{Name}-{Namespace}.foo.{Domain}`.
