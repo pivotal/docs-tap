@@ -11,9 +11,9 @@ The following sections describe the configuration of the different-size applicat
 This is the simplest configuration and consists of the following services and workloads:
 
 - API Gateway workload
-- Search workload with in memory database
+- Search workload with in-memory database
 - Search processor workload
-- Availability workload with in memory database
+- Availability workload with in-memory database
 - UI workload
 - 3 Node RabbitMQ cluster
 
@@ -33,8 +33,8 @@ This includes all of the services of the medium size application and the followi
 
 - Crawler Service
 - Redis
-- RabbitMQ backed eventing broker
-- RabbitMQ backed triggers
+- RabbitMQ-backed eventing broker
+- RabbitMQ-backed triggers
 
 ## Application Configuration
 
