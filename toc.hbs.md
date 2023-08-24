@@ -420,6 +420,7 @@
                 - [Deactivate HTTP-to-HTTPS redirection](./cloud-native-runtimes/how-to-guides/auto-tls/tls-guides-deactivate-redirection.hbs.md)
                 - [Configure Custom Issuer or ClusterIssuer](./cloud-native-runtimes/how-to-guides/auto-tls/tls-guides-letsencrypt-http01.hbs.md)
                 - [Configure wildcard certificates](./cloud-native-runtimes/how-to-guides/auto-tls/tls-guides-wildcard-cert.hbs.md)
+            - [Configure Garbage collection for the Knative Revisions](./cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md)
             - [Configuring Cloud Native Runtimes with Avi Vantage](./cloud-native-runtimes/how-to-guides/avi-cnr-integration.hbs.md)
             - [Installing Cloud Native Runtimes with an Existing Contour Installation](./cloud-native-runtimes/how-to-guides/contour.hbs.md)
             - [Customize Cloud Native Runtimes](./cloud-native-runtimes/how-to-guides/customizing-cnrs.hbs.md)
