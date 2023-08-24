@@ -76,7 +76,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Contour                                                          |         |
 | Crossplane                                                       |         |
 | Developer Conventions                                            |         |
-| Eventing                                                         |         |
+| Eventing (deprecated)                                            |         |
 | Flux CD Source Controller                                        |         |
 | Learning Center (deprecated)                                     |         |
 | Learning Center workshops (deprecated)                           |         |
@@ -424,7 +424,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Contour                                                          | 1.24.4  |
 | Crossplane                                                       | 0.2.1   |
 | Developer Conventions                                            | 0.11.0  |
-| Eventing                                                         | 2.2.3   |
+| Eventing (deprecated)                                            | 2.2.3   |
 | Flux CD Source Controller                                        | 0.36.1  |
 | Learning Center (deprecated)                                     | 0.3.1   |
 | Learning Center workshops (deprecated)                           | 0.3.0   |
@@ -1304,7 +1304,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Contour                                                          | 1.24.4  |
 | Crossplane                                                       | 0.2.1   |
 | Developer Conventions                                            | 0.11.0  |
-| Eventing                                                         | 2.2.3   |
+| Eventing  (deprecated)                                           | 2.2.3   |
 | Flux CD Source Controller                                        | 0.36.1  |
 | Learning Center (deprecated)                                     | 0.3.1   |
 | Learning Center workshops (deprecated)                           | 0.3.0   |
@@ -1353,6 +1353,10 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `ClientRegistration` resource `clientAuthenticationMethod` field values
   `post` and `basic` are deprecated and marked for removal in Tanzu Application
   Platform v1.7.0. Use `client_secret_post` and `client_secret_basic` instead.
+
+### <a id='1-6-eventing-deprecations'></a> Eventing deprecations
+
+- Eventing in Tanzu Application Platform is deprecated and marked for removal in Tanzu Application Platform v1.7.0.
 
 ### <a id="1-6-flux-sc-deprecations"></a> Flux CD Source Controller deprecations
 
