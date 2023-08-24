@@ -64,7 +64,7 @@
     <tr>
         <td>Application Live View connector</td>
         <td>This component is responsible for discovering the app pods running on the Kubernetes
-        cluster, and registering the instances to the Application Live View server for it to be observed.
+        cluster and registering the instances to the Application Live View server for it to be observed.
         The Application Live View connector is also responsible for proxying the actuator queries to
         the app pods running in the Kubernetes cluster.</td>
     </tr>
@@ -127,11 +127,13 @@
     </tr>
     <tr>
         <td>Claim</td>
-        <td></td>
+        <td>A claim is a mechanism in which requests for service instances can be declared and fulfilled
+        without requiring detailed knowledge of the service instances themselves.</td>
     </tr>
     <tr>
         <td>Claimable service instance</td>
-        <td></td>
+        <td>A claimable service instance is any service instance that you can claim using a resource claim
+        from a namespace.</td>
     </tr>
     <tr>
         <td>Class</td>
@@ -139,7 +141,8 @@
     </tr>
     <tr>
         <td>Class claim</td>
-        <td></td>
+        <td>A class claim refers to a class from which a service instance is either selected (pool-based)
+        or provisioned (provisioner-based).</td>
     </tr>
     <tr>
         <td>Cloud Native Runtimes</td>
@@ -166,7 +169,9 @@
     </tr>
     <tr>
         <td>Dynamic provisioning</td>
-        <td></td>
+        <td>Dynamic provisioning is a capability of Services Toolkit in which class claims that refer
+        to provisioner-based classes are fulfilled automatically through the provisioning of new service
+        instances.</td>
     </tr>
 </table>
 
@@ -252,7 +257,9 @@
     </tr>
     <tr>
         <td>Provisioned service</td>
-        <td></td>
+        <td>A provisioned service is any service resource that defines a <code>.status.binding.name</code>
+        which points to a secret in the same namespace that contains credentials and connectivity
+        information for the resource.</td>
     </tr>
     <tr>
         <td>Provisioner-based class</td>
@@ -269,7 +276,7 @@
     </tr>
     <tr>
         <td>Resource claim</td>
-        <td></td>
+        <td>A resource claim refers to a specific service instance.</td>
     </tr>
     <tr>
         <td>Run Cluster</td>
@@ -291,19 +298,33 @@
     </tr>
     <tr>
         <td>Service</td>
-        <td></td>
+        <td>Service is broad, high-level term that describes something used in either the development of,
+        or running of application workloads. It is often, but not exclusively, synonymous with the concept
+        of a backing service as defined by the Twelve Factor App.</td>
     </tr>
     <tr>
         <td>Service binding</td>
-        <td></td>
+        <td>A service binding is a mechanism in which service instance credentials and other related
+        connectivity information are automatically communicated to application workloads.</td>
     </tr>
     <tr>
         <td>Service cluster</td>
-        <td></td>
+        <td>A service cluster is applicable within the context of Service API Projection and
+        Service Resource Replication.
+        It is a Kubernetes cluster that has Service Resource Lifecycle APIs installed and a corresponding
+        controller managing their life cycle.</td>
     </tr>
     <tr>
         <td>Service instance</td>
-        <td></td>
+        <td>A service instance is an abstraction over one, or a group, of interrelated service resources
+        that together provide the functions for a particular service.
+
+        One of the service resources that make up an instance must either adhere to the definition of
+        provisioned service, or be a secret conforming to the service binding specification for Kubernetes.
+        This guarantees that you can claim a service and subsequently bind service instances to
+        application workloads.
+
+        You make service instances discoverable through service instance classes.</td>
     </tr>
     <tr>
         <td>Service instance class</td>
@@ -311,7 +332,13 @@
     </tr>
     <tr>
         <td>Service resource</td>
-        <td></td>
+        <td>A service resource is a Kubernetes resource that provides some of the functions related to
+        a Service.</td>
+    </tr>
+    <tr>
+        <td>Service resource life cycle API</td>
+        <td>A service resource life cycle API is any Kubernetes API that you can use to manage the
+        life cycle&mdash;create, read, update and delete (CRUD)&mdash;of a service resource.</td>
     </tr>
     <tr>
         <td>Services Toolkit</td>
@@ -441,6 +468,8 @@
     </tr>
     <tr>
         <td>Workload cluster</td>
-        <td></td>
+        <td>A workload cluster is applicable within the context of Service API Projection and
+        Service Resource Replication.
+        It is a Kubernetes cluster that has developer-created applications running on it.</td>
     </tr>
 </table>
