@@ -45,15 +45,41 @@
     </tr>
     <tr>
         <td>Application Live View</td>
-        <td></td>
+        <td>Application Live View is a Tanzu Application Platform component that provides insight and
+        troubleshooting functionality to help application developers and application operators look
+        inside running applications.</td>
+    </tr>
+    <tr>
+        <td>Application Live View APIServer</td>
+        <td>Application Live View APIServer generates a unique token when a user receives access
+        validation to a pod. The Application Live View connector component verifies the token against
+        the Application Live View APIServer before proxying the actuator data from the application.
+        This ensures that the actuator data is secured and only the user who has valid access to view
+        the live information for the pod can retrieve the data.</td>
+    </tr>
+    <tr>
+      <td>Application Live View back end</td>
+      <td></td>
     </tr>
     <tr>
         <td>Application Live View connector</td>
-        <td></td>
+        <td>This component is responsible for discovering the app pods running on the Kubernetes
+        cluster, and registering the instances to the Application Live View server for it to be observed.
+        The Application Live View connector is also responsible for proxying the actuator queries to
+        the app pods running in the Kubernetes cluster.</td>
+    </tr>
+    <tr>
+        <td>Application Live View convention server</td>
+        <td>This component provides a webhook handler for the Tanzu convention controller.
+        The webhook handler is registered with Tanzu convention controller. The webhook handler detects
+        supply-chain workloads running a Spring Boot. Such workloads are annotated automatically to
+        enable Application Live View to monitor them.</td>
     </tr>
     <tr>
         <td>Application Live View server</td>
-        <td></td>
+        <td>Application Live View server is the central server component for Application Live View
+        that contains a list of registered apps.
+        It is responsible for proxying the request to fetch the actuator information related to the app.</td>
     </tr>
     <tr>
         <td>Application Single Sign-On (AppSSO)</td>
@@ -74,13 +100,20 @@
         <th>Definition</th>
     </tr>
     <tr>
+        <td>Bitnami Services</td>
+        <td>Bitnami Services is a Tanzu Application Platform component that provides a set of services for
+        backed by corresponding Bitnami Helm Charts. Through integration with Crossplane and Services Toolkit,
+        these Bitnami Services are immediately ready for apps teams to consume, with no additional setup or
+        configuration required from ops teams.</td>
+    </tr>
+    <tr>
         <td>Build Cluster</td>
-        <td>A Build Cluster is a cluster with network access to your run clusters that controls 
+        <td>A Build Cluster is a cluster with network access to your run clusters that controls
         the deployment on all the run clusters.</td>
     </tr>
     <tr>
         <td>Build profile</td>
-        <td>This profile is intended for the transformation of source revisions to workload revisions. 
+        <td>This profile is intended for the transformation of source revisions to workload revisions.
         Specifically, hosting workloads and Supply Chains.</td>
     </tr>
 </table>
@@ -93,12 +126,47 @@
         <td>Cartographer Conventions is a Tanzu Application Platform component that supports defining and applying conventions to pods. It applies these conventions to developer workloads as they are deployed to the platform.</td>
     </tr>
     <tr>
+        <td>Claim</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Claimable service instance</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Class</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Class claim</td>
+        <td></td>
+    </tr>
+    <tr>
         <td>Cloud Native Runtimes</td>
         <td>Cloud Native Runtimes is a Tanzu Application Platform component that is a serverless application runtime for Kubernetes. It is based on Knative and runs on a single Kubernetes cluster.</td>
     </tr>
     <tr>
-        <td>Convention Controller</td>
+        <td>Convention controller</td>
         <td>The convention controller provides the metadata to the convention server and executes the updates to a PodTemplateSpec in accordance with convention server's requests.</td>
+    </tr>
+    <tr>
+        <td>Convention server</td>
+        <td>The convention server receives and evaluates metadata associated with a workload and requests
+        updates to the PodTemplateSpec associated with that workload.
+        You can have one or more convention servers for a single controller instance.</td>
+    </tr>    
+</table>
+
+## <a id="d"></a> D
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Dynamic provisioning</td>
+        <td></td>
     </tr>
 </table>
 
@@ -111,8 +179,8 @@
     </tr>
     <tr>
         <td>Full profile</td>
-        <td>This profile contains all of the Tanzu Application Platform packages, 
-        including the necessary defaults for the meta-package, or parent 
+        <td>This profile contains all of the Tanzu Application Platform packages,
+        including the necessary defaults for the meta-package, or parent
         Tanzu Application Platform package, subordinate packages, or individual child packages.</td>
     </tr>
 </table>
@@ -126,7 +194,7 @@
     </tr>
     <tr>
         <td>Iterate Cluster</td>
-        <td>A Iterate Cluster is for “inner loop” development iteration. Developers connect to the 
+        <td>A Iterate Cluster is for “inner loop” development iteration. Developers connect to the
         Iterate Cluster by using their IDE to rapidly iterate on new software features. </td>
     </tr>
     <tr>
@@ -150,6 +218,48 @@
     </tr>
 </table>
 
+## <a id="m"></a> M
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Multicluster</td>
+        <td></td>
+    </tr>
+</table>
+
+## <a id="p"></a> P
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Package</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Pool-based class</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Profile</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Provisioned service</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Provisioner-based class</td>
+        <td></td>
+    </tr>
+</table>
+
 ## <a id="r"></a> R
 
 <table>
@@ -158,12 +268,16 @@
         <th>Definition</th>
     </tr>
     <tr>
+        <td>Resource claim</td>
+        <td></td>
+    </tr>
+    <tr>
         <td>Run Cluster</td>
         <td>Run Clusters serve as your deployment environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have kapp-controller and Contour installed.</td>
     </tr>
     <tr>
         <td>Run profile</td>
-        <td>This profile is intended for the transformation of workload revisions to running pods. 
+        <td>This profile is intended for the transformation of workload revisions to running pods.
         Specifically, hosting deliveries and deliverables.</td>
     </tr>
 </table>
@@ -174,6 +288,37 @@
     <tr>
         <th>Term</th>
         <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Service</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Service binding</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Service cluster</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Service instance</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Service instance class</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Service resource</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Services Toolkit</td>
+        <td>Services Toolkit is a Tanzu Application Platform component that provides backing for service
+        capabilities. This includes the integration of an extensive list of cloud-based and on-prem services,
+        through to the offering and discovery of those services, and finally to the claiming and binding
+        of service instances to application workloads.</td>
     </tr>
     <tr>
         <td>Supply Chain Choreographer</td>
@@ -239,8 +384,27 @@
     </tr>
     <tr>
         <td>Tanzu GitOps Reference Implementation (RI)</td>
-        <td>This is built upon Carvel, which shares the same packaging APIs as the Tanzu Application Platform. 
+        <td>This is built upon Carvel, which shares the same packaging APIs as the Tanzu Application Platform.
         Carvel packaging APIs support all the GitOps features and enables a native GitOps flow.</td>
+    </tr>
+    <tr>
+        <td>Tanzu Service CLI plug-in</td>
+        <td>A plug-in for the Tanzu CLI used by application operators and application developers to
+        create claims for service instances.</td>
+    </tr>
+</table>
+
+## <a id="u"></a> U
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Unmanaged service</td>
+        <td>The services available in the Bitnami Services package where the resulting service instances
+        run on the cluster, that is, they are not a managed service running in the cloud.</td>
     </tr>
 </table>
 
@@ -252,12 +416,31 @@
         <th>Definition</th>
     </tr>
     <tr>
+        <td>VMware Application Catalog</td>
+        <td>VMware Application Catalog is a customizable selection of trusted, pre-packaged
+        application components that are continuously maintained and verifiably tested for use in
+        production environments.</td>
+    </tr>
+    <tr>
         <td>View Cluster</td>
         <td>A View Cluster runs the web applications for Tanzu Application Platform.</td>
     </tr>
     <tr>
         <td>View profile</td>
-        <td>This profile is intended for instances of applications related to 
+        <td>This profile is intended for instances of applications related to
         centralized developer experiences. Specifically, Tanzu Developer Portal and Metadata Store.</td>
+    </tr>
+</table>
+
+## <a id="w"></a> W
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Workload cluster</td>
+        <td></td>
     </tr>
 </table>
