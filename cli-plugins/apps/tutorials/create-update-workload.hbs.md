@@ -512,14 +512,34 @@ For information about requirements for prebuilt images and how to configure preb
 images in a supply chains, see
 [Use an existing image with Supply Chain Choreographer](../../../scc/pre-built-image.hbs.md).
 
-### <a id="create-workload-maven"></a> Create a workload from a Maven repository artifact
+## <a id="create-workload-maven"></a> Create a workload from a Maven repository artifact
 
 Create a workload from a Maven repository artifact by setting some
-specific properties as YAML parameters in the workload when using the [supply chain](../../../scc/about.hbs.md). For more information about Maven repository artifact, see [Source-Controller](../../../source-controller/about.hbs.md)
+specific properties as YAML parameters or using `--maven-*` flags in the workload when using the
+[supply chain](../../../scc/about.hbs.md). For more information about Maven repository artifact, 
+see [Source-Controller](../../../source-controller/about.hbs.md)
 
 The Maven repository URL is set when the supply chain is created.
 
-- Param name: `maven`
+### Maven workload created with `--maven-*` flags
+
+To create a Maven workload using the CLI provided flags, run:
+
+```console
+tanzu apps workload apply my-workload \
+      --maven-artifact hello-world \
+      --maven-type jar
+      --maven-version 0.0.1 \
+      --maven-group carto.run \
+      --type web -y
+```
+
+Check more info related to the Maven flags in the
+[command reference](../reference/workload-create-apply.hbs.md#maven-artifact) section
+
+### Maven workload created with YAML or JSON parameters
+
+- Param name: maven
 - Param value:
   - YAML:
 
@@ -541,17 +561,18 @@ The Maven repository URL is set when the supply chain is created.
     }
     ```
 
-For example, to create a workload from a Maven artifact, run:
+For example, to create a workload from a Maven artifact using parameters, run:
 
 ```console
 # YAML
-tanzu apps workload create petclinic-image --param-yaml maven=$"artifactId:hello-world\ntype: jar\nversion: 0.0.1\ngroupId: carto.run"
+tanzu apps workload create my-workload --type web --param-yaml maven=$"artifactId:hello-world\ntype:jar\nversion:0.0.1\ngroupId:carto.run"
 
 # JSON
-tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
+tanzu apps workload create my-workload --type web --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
 
-For information about how to configure the credentials that the MavenArtifact needs for authentication, see [Maven Repository Secret](../../../scc/building-from-source.hbs.md#maven-repository-secret).
+For information about how to configure the credentials that the MavenArtifact needs for authentication,
+see [Maven Repository Secret](../../../scc/building-from-source.hbs.md#maven-repository-secret).
 
 ### <a id="create-wl-dockerfile"></a> Create a workload from a Dockerfile
 
