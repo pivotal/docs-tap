@@ -135,12 +135,6 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
-- **[Eventing](eventing/eventing-overview.hbs.md)**
-
-  Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to
-  manage event-triggered systems through Knative Eventing. For information about Knative, see
-  the [Knative documentation](https://knative.dev/docs/).
-
 - **[Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)**
 
   The main role of this source management component is to provide a common interface for artifact
@@ -522,20 +516,6 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
    <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Eventing
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
    </td>
    <td>
    </td>

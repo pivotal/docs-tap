@@ -141,7 +141,6 @@ To add the Tanzu Application Platform package repository to your cluster:
       crossplane.tanzu.vmware.com                          crossplane
       developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions
       dotnet-core-lite.buildpacks.tanzu.vmware.com         dotnet-core-lite
-      eventing.tanzu.vmware.com                            Eventing
       external-secrets.apps.tanzu.vmware.com               External Secrets Operator
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller
       go-lite.buildpacks.tanzu.vmware.com                  go-lite

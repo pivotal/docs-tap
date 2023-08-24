@@ -30,10 +30,6 @@ Configure Tanzu Service Mesh to ignore namespaces related to Cloud Native Runtim
 1. Create an Is Exactly rule for each of the following namespaces:
     - CONTOUR-NS
     - knative-serving
-    - knative-eventing
-    - knative-sources
-    - triggermesh
-    - vmware-sources
     - tap-install
     - rabbitmq-system
     - kapp-controller

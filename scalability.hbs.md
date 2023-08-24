@@ -23,9 +23,6 @@ This includes all of the services of the small-size application and the followin
 
 - Notify workload
 - Persistent Database, MySQL or Postgres
-- RabbitMQ Event Source
-- KNative Eventing broker
-- KNative triggers
 
 ### Large
 
@@ -33,8 +30,6 @@ This includes all of the services of the medium size application and the followi
 
 - Crawler Service
 - Redis
-- RabbitMQ-backed eventing broker
-- RabbitMQ-backed triggers
 
 ## Application Configuration
 
@@ -87,7 +82,6 @@ The following table describes the resource limit changes that are required for c
 | Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | overlay |
 | Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | overlay |
 | Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | overlay |
-| Eventing/triggermesh | 50&nbsp;m/200&nbsp;m | **100&nbsp;Mi - 800&nbsp;Mi** | n/a | No | Yes | Yes| overlay |
 | tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | n/a| Yes| No | Yes| `tap-values.yaml` |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
