@@ -2,7 +2,7 @@
 
 This subsection describes the how-to guides for Cloud Native Runtimes:
 
-- [Auto-TLS](./auto-tls/index.hbs.md)
+- [Securing Web Workloads in Cloud Native Runtimes](./auto-tls/index.hbs.md)
 - [CNRs for App Operators](./app-operators/index.hbs.md)
 - [AVI-CNRs Integration](./avi-cnr-integration.hbs.md)
 - [Contour](./contour.hbs.md)
