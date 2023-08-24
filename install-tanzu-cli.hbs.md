@@ -74,17 +74,17 @@ and features.
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-Tanzu CLI core v1.0.0 can be used to interact with all supported versions of Tanzu Application Platform.
-Although the recommended approach for installing the Tanzu CLI core is via package manager (Chocolatey, 
-Homebrew, APT, YUM, and DNF are supported),compliance-forward customers can download and install Tanzu 
+Tanzu CLI core v1.0.0 is compatible with all releases of Tanzu Application Platform under support.
+Although the recommended approach for installing the CLI is via package manager (Chocolatey, 
+Homebrew, APT, YUM, and DNF are supported), compliance-forward customers can download and install Tanzu 
 CLI binary manually from Tanzu Network or VMware Customer Connect.
 
 Basic installation instructions are provided below. For more information including how to install
-the Tanzu CLI and CLI plug-ins in Internet-restricted environments,
-see the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
+the Tanzu CLI and CLI plug-ins in Internet-restricted environments, see the 
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
 
-> **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu` or `C:\Program Files\tanzu` on Windows to a different location before following
-the steps below.
+> **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu`
+or `C:\Program Files\tanzu` on Windows to a different location before following the steps below.
 
 Install using a package manager
 : To install the Tanzu CLI using a package manager:
