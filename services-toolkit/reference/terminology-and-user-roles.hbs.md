@@ -59,9 +59,9 @@ For example:
 A service instance is an abstraction over one or a group of interrelated service resources that
 together provide the functions for a particular service.
 
-One of the service resources that make up an instance must either adhere to provisioned service
-or be a secret conforming to the service binding specification for Kubernetes.
-This guarantees that you can claim and service and subsequently bind service instances to
+One of the service resources that make up an instance must either adhere to the definition of
+provisioned service, or be a secret conforming to the service binding specification for Kubernetes.
+This guarantees that you can claim a service and subsequently bind service instances to
 application workloads.
 
 You make service instances discoverable through service instance classes.
@@ -87,7 +87,7 @@ A service instance class is more commonly called a "class".
 They provide a way to describe classes, that is, categories, of service instances.
 
 A service instance class enables service instances belonging to the class to be discovered.
-They come in one of two varieties - pool-based or provisioner-based:
+They come in one of two varieties: pool-based or provisioner-based.
 
 - Claims for pool-based classes are fulfilled by selecting a service instance from a pool.
 - Claims for provisioner-based classes are fulfilled by provisioning new service instances.
@@ -125,7 +125,7 @@ For example:
 
 ### <a id="claim-service-instance"></a> Claimable service instance
 
-A claimable service instance is any service instance that you are permitted claim using a
+A claimable service instance is any service instance that you are permitted to claim using a
 resource claim from a namespace, taking into consideration:
 
 - Location (namespace) of the service instance in relation to the location of the resource claim.
@@ -151,8 +151,8 @@ provisioner-based classes are fulfilled automatically through the provisioning o
 
 ### <a id="lifecycle"></a> Service resource life cycle API
 
-A service resource life cycle API is any Kubernetes API that you can use to manage the life cycle (CRUD)
-of a service resource.
+A service resource life cycle API is any Kubernetes API that you can use to manage the life cycle&mdash;create,
+read, update and delete (CRUD)&mdash;of a service resource.
 
 For example:
 
