@@ -11,7 +11,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Cloud Native Runtimes:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](https://docs.vmware.com/en/Tanzu-Application-Platform/1.5/tap/prerequisites.html).
-- Contour is installed in the cluster. You can install Contour from the [Tanzu Application package repository](/cert-manager/install.hbs.md). If you have have an existing Contour installation, see [Installing Cloud Native Runtimes with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.2/tanzu-cloud-native-runtimes/contour.html).
+- Contour is installed in the cluster. You can install Contour from the [Tanzu Application package repository](../../../cert-manager/install.hbs.md). If you have have an existing Contour installation, see [Installing Cloud Native Runtimes with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.2/tanzu-cloud-native-runtimes/contour.html).
 
 - By default, Tanzu Application Platform installs and uses a self-signed certificate authority for issuing TLS certificates to components by using ingress issuer. For more information, see [Ingress Certificates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/security-and-compliance-tls-and-certificates-ingress-about.html).
   To install Cloud Native Runtimes, you must set the `shared.ingress_domain` or `cnrs.domain_name` property when you set `ingress_issuer`. For example:
@@ -47,7 +47,7 @@ To install Cloud Native Runtimes:
     tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
 
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  2.4.0    2023-06-05 19:00:00 -0500 -05 
+      cnrs.tanzu.vmware.com  2.4.0    2023-06-05 19:00:00 -0500 -05
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -62,8 +62,8 @@ To install Cloud Native Runtimes:
 
         ```console
         tanzu package available get cnrs.tanzu.vmware.com/2.4.0 --values-schema -n tap-install
-       
-        KEY                            DEFAULT                               TYPE     DESCRIPTION                                                                       
+
+        KEY                            DEFAULT                               TYPE     DESCRIPTION
         domain_config                  <nil>                                 <nil>    Optional. Overrides the Knative Serving "config-domain" ConfigMap, allowing you to map Knative Services to specific domains. Must be valid YAML and conform to the "config-domain" specification.
         namespace_selector                                                   string   Specifies a LabelSelector which determines which namespaces should have a wildcard certificate provisioned. Set this property only if the Cluster issuer is type DNS-01 challenge.
         pdb.enable                     true                                  <nil>    Optional. Set to true to enable a PodDisruptionBudget for the Knative Serving activator and webhook deployments.
@@ -85,7 +85,7 @@ To install Cloud Native Runtimes:
     1. Create a `cnr-values.yaml` file by using the following example as a guide to configure Cloud Native Runtimes:
 
         >**Note** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
-        
+
         ```console
         ---
         # Configures the domain that Knative Services will use
