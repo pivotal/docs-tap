@@ -1,13 +1,13 @@
 # tanzu insight source add
 
-This topic tells you how to use the Tanzu Insight CLI 
+This topic tells you how to use the Tanzu Insight CLI
 `tanzu insight source add` command to add a source report.
 
 ```console
 tanzu insight source add [--cyclonedxtype <json|xml>] [--spdxtype json] --path <filepath>
 ```
 
-If report type is not specified, it will be defaulted to `--cyclonedxtype=xml`
+If report type is not specified, it defaults to `--cyclonedxtype=xml`
 
 ## <a id='examples'></a>Examples
 
