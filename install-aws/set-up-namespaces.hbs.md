@@ -7,7 +7,7 @@ and then optionally apply Kubernetes RBAC for additional non-admin user access.
 For more information, see:
 
 1. [Enable namespace for Supply Chains](#enable-namespace).
-1. (Optional)[Enable non-admin users access with Kubernetes RBAC](#additional-user-access).
+1. (Optional) [Enable non-admin users access with Kubernetes RBAC](#additional-user-access).
 
 ## <a id='enable-namespace'></a>Enable namespace for Supply Chains
 
