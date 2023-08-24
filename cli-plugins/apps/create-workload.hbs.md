@@ -107,21 +107,42 @@ Respond `Y` to prompts to complete process.
 
 Create a workload from a Maven repository
 artifact ([Source-Controller](../../source-controller/about.hbs.md)) by setting some
-specific properties as YAML parameters in the workload when using the [supply chain](../../scc/about.hbs.md).
+specific properties as YAML parameters or using `--maven-*` flags in the workload when using the 
+[supply chain](../../scc/about.hbs.md).
 
 The Maven repository URL is set when the supply chain is created.
 
+#### Maven workload created with `--maven-*` flags
+
+To create a Maven workload using the CLI provided flags, run:
+
+```console
+tanzu apps workload apply my-workload \
+      --maven-artifact hello-world \
+      --maven-type jar
+      --maven-version 0.0.1 \
+      --maven-group carto.run \
+      --type web -y
+```
+
+Check more info related to the Maven flags in the
+[command reference](./command-reference/workload_create_update_apply.hbs.md#maven-artifact) section
+
+#### Maven workload created with YAML or JSON parameters
+
 - Param name: maven
 - Param value:
-    - YAML:
+  - YAML:
+
     ```yaml
     artifactId: ...
     type: ... # default jar if not provided
     version: ...
     groupId: ...
-
     ```
-    - JSON:
+
+  - JSON:
+  
     ```json
     {
         "artifactId": ...,
@@ -131,15 +152,18 @@ The Maven repository URL is set when the supply chain is created.
     }
     ```
 
-For example, to create a workload from a Maven artifact, run:
+For example, to create a workload from a Maven artifact using parameters, run:
 
 ```console
 # YAML
-tanzu apps workload create petclinic-image --param-yaml maven=$"artifactId:hello-world\ntype: jar\nversion: 0.0.1\ngroupId: carto.run"
+tanzu apps workload create petclinic-image --type web --param-yaml maven=$"artifactId:hello-world\ntype:jar\nversion:0.0.1\ngroupId:carto.run"
 
 # JSON
-tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
+tanzu apps workload create petclinic-image --type web --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
+
+For information about how to configure the credentials that the MavenArtifact needs for authentication,
+see [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-artifact).
 
 ## <a id='yaml-files'></a> Working with YAML files
 
