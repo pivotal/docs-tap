@@ -1,17 +1,17 @@
 # Query vulnerabilities, images, and packages
 
-This topic tells you how to query the database to understand vulnerability, image, 
-and dependency relationships. The Tanzu Insight CLI plug-in queries the database 
-for vulnerability scan reports or Software Bill of Materials (commonly known as SBoM) 
+This topic tells you how to query the database to understand vulnerability, image,
+and dependency relationships. The Tanzu Insight CLI plug-in queries the database
+for vulnerability scan reports or Software Bill of Materials (commonly known as SBoM)
 files.
 
 ## <a id='sup-usecase'></a>Supported use cases
 
-The following are a few use cases supported by the CLI:
+The following are use cases supported by the CLI:
 
--  What packages and CVEs exist in a particular image? (`image`)
--  What packages and CVEs exist in my source code? (`source`)
--  What dependencies are affected by a specific CVE? (`vulnerabilities`)
+- What packages and CVEs exist in a particular image? (`image`)
+- What packages and CVEs exist in my source code? (`source`)
+- What dependencies are affected by a specific CVE? (`vulnerabilities`)
 
 ## <a id='query-insight'></a> Query using the Tanzu Insight CLI plug-in
 
@@ -26,7 +26,7 @@ There are four commands for querying and adding data.
 
 Use `tanzu insight -h` or for more information see [Tanzu Insight Details](cli-docs/insight.md).
 
-## <a id='example1'></a>Example #1: What packages & CVEs does a specific image contain?
+## <a id='example1'></a>Example #1: What packages and CVEs does a specific image contain?
 
 Run:
 
@@ -58,16 +58,16 @@ Packages:
 ...
 ```
 
-## <a id='example2'></a>Example #2: What packages & CVEs does my source code contain?
+## <a id='example2'></a>Example #2: What packages and CVEs does my source code contain?
 
 ### Determining source code org, repo, and commit SHA
 
-In order to query a source scan for vulnerabilities, you need a Git org and Git repository, or the commit SHA.  Find these by examining the source scan resource.
+To query a source scan for vulnerabilities, you need a Git org and Git repository, or the commit SHA.  Find these by examining the source scan resource.
 
 Run:
 
 ```console
-kubectl describe sourcescan <workload name> -n <workload namespace>
+kubectl describe sourcescan WORKLOAD-NAME -n WORKLOAD-NAMESPACE
 ```
 
 For example:
@@ -89,13 +89,13 @@ Spec:
 
 In the earlier example, the URL is parsed and split into the org and repo. Revision is parsed as the commit SHA.
 
-* Org is parsed as `gitrepository`
-* Repo is parsed as `my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz`
-* Commit SHA is parsed as `master/c7e4c27ba43250a4b7c46f030355c108aa73cc39`
+- Org is parsed as `gitrepository`
+- Repo is parsed as `my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz`
+- Commit SHA is parsed as `master/c7e4c27ba43250a4b7c46f030355c108aa73cc39`
 
 Use this information to perform your search.
 
-### Source code query with repo & org
+### Source code query with repo and org
 
 Run:
 
@@ -105,12 +105,8 @@ tanzu insight source get --repo REPO --org ORG
 
 Where:
 
-- `REPO` specifies the repository
-	- E.g., java-web-app
-	- E.g., my-apps/java-web-app/c7ls8bakd87sakjda8d7.tar.gz
-- `ORG` is the source code's organization
-	- E.g., gitrepository
-	- E.g., gitrepositiory-kj32kal8
+- `REPO` specifies the repository. For example, java-web-app, my-apps/java-web-app/c7ls8bakd87sakjda8d7.tar.gz
+- `ORG` is the source code's organization. For example, gitrepository, gitrepositiory-kj32kal8
 
 For example:
 
@@ -138,9 +134,7 @@ tanzu insight source get --commit COMMIT
 
 Where:
 
-- `COMMIT` specifies the commit
-	- E.g., d7e4c27ba43250a4b7c46f030355c108aa73cc39
-	- E.g., master/d7e4c27ba43250a4b7c46f030355c108aa73cc39
+- `COMMIT` specifies the commit. For example, d7e4c27ba43250a4b7c46f030355c108aa73cc39, main/d7e4c27ba43250a4b7c46f030355c108aa73cc39
 
 For example:
 
@@ -157,7 +151,6 @@ Packages:
 			1. CVE-2021-30999 (Low)
 		3. github.com/Microsoft/go-winio@v0.5.2
 ```
-
 
 ## <a id='example3'></a>Example #3: What dependencies are affected by a specific CVE?
 
@@ -185,4 +178,4 @@ Packages:
 
 ## <a id='add-data'></a>Add data
 
-For more information about manually adding data see [Add Data](add-data.md).
+For more information about manually adding data, see [Add Data](add-data.md).
