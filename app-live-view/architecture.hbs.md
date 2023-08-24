@@ -17,7 +17,7 @@ Application Live View includes the following components as shown in the architec
 
 - **Application Live View connector**
 
-  Application Live View connector is the component responsible for discovering the app pods running on the Kubernetes cluster, and registering the instances to the Application Live View server for it to be observed. The Application Live View connector is also responsible for proxying the actuator queries to the app pods running in the Kubernetes cluster.
+  Application Live View connector is the component responsible for discovering the app pods running on the Kubernetes cluster and registering the instances to the Application Live View server for it to be observed. The Application Live View connector is also responsible for proxying the actuator queries to the app pods running in the Kubernetes cluster.
 
   You can deploy Application Live View connector in two modes:
 
