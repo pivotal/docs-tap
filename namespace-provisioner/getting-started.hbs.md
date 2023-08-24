@@ -1,6 +1,6 @@
 # Get started with Namespace Provisioner
 
-This topic provides a list of the topics to help you get started with Namespace Provisioner.
+This topic provides a list of topics to help you get started with Namespace Provisioner.
 
 [Provision Developer Namespaces](provision-developer-ns.hbs.md)
 
