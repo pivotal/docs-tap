@@ -145,7 +145,7 @@ accelerator:
 ## Interaction with SpEL
 
 Everywhere that SpEL is used in the engine syntax, accelerator authors
-might use SpELs syntax for accessing properties or array elements:
+might use SpEL syntax for accessing properties or array elements:
 
 ```console
   #myTasks[2]['done']
