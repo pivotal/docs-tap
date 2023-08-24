@@ -86,7 +86,7 @@ For example:
 A service instance class is more commonly called a "class".
 They provide a way to describe classes, that is, categories, of service instances.
 
-A service instance class enable service instances belonging to the class to be discovered.
+A service instance class enables service instances belonging to the class to be discovered.
 They come in one of two varieties - pool-based or provisioner-based:
 
 - Claims for pool-based classes are fulfilled by selecting a service instance from a pool.
@@ -147,7 +147,7 @@ For example:
 ### <a id="dynamic-provisioning"></a> Dynamic provisioning
 
 Dynamic provisioning is a capability of Services Toolkit in which class claims that refer to
-provisioner-based classes are fulfilled automatically through the provisioning of new Service instances.
+provisioner-based classes are fulfilled automatically through the provisioning of new service instances.
 
 ### <a id="lifecycle"></a> Service resource life cycle API
 
