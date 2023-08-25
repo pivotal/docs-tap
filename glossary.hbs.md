@@ -157,7 +157,7 @@
         <td>The convention server receives and evaluates metadata associated with a workload and requests
         updates to the PodTemplateSpec associated with that workload.
         You can have one or more convention servers for a single controller instance.</td>
-    </tr>    
+    </tr>
 </table>
 
 ## <a id="d"></a> D
@@ -317,14 +317,13 @@
     <tr>
         <td>Service instance</td>
         <td>A service instance is an abstraction over one, or a group, of interrelated service resources
-        that together provide the functions for a particular service.
-
+        that together provide the functions for a particular service.<br><br>
         One of the service resources that make up an instance must either adhere to the definition of
         provisioned service, or be a secret conforming to the service binding specification for Kubernetes.
         This guarantees that you can claim a service and subsequently bind service instances to
-        application workloads.
-
-        You make service instances discoverable through service instance classes.</td>
+        application workloads.<br><br>
+        You make service instances discoverable through service instance classes.
+        </td>
     </tr>
     <tr>
         <td>Service instance class</td>
