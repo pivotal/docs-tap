@@ -237,8 +237,10 @@ Install from a binary release
 
 There are a specific set of Tanzu CLI plugins which extend the Tanzu CLI Core with TAP-specific feature functionality.</br>
 These TAP-specific plugins can be installed as a group with a single command.</br>
-Versioned releases of the TAP-specific plugin group are available to supported each supported TAP release line 
+Versioned releases of the TAP-specific plugin group align to each supported TAP release line 
 so it's easy to switch between target TAP environments running different versions of the platform.
+
+The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
 
 The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
 
