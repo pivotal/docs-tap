@@ -244,9 +244,9 @@ The following commands can be utlized to search for, install, and verify Tanzu C
 
 
 * List the versions of each plugin group available across Tanzu:
-    ```
-    tanzu plugin group search --show-details
-    ```
+  ```console
+  tanzu plugin group search --show-details
+  ```
 * List the versions of the TAP-specific plugin group:
   ```console
   tanzu plugin group search --name vmware-tanzu/default --show-details
