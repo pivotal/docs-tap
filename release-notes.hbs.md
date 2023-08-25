@@ -19,6 +19,10 @@ This release includes the following platform-wide enhancements.
 
 - [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
 
+#### <a id='1-7-0-removed-components'></a> Removed components
+
+Eventing is removed in this release.
+
 ---
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
