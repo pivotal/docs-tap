@@ -1,6 +1,7 @@
 # Install Tanzu CLI
 
-This topic tells you how to accept the EULAs, and install the Tanzu CLI and plug-ins on Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to accept the EULAs, and install the Tanzu CLI and plug-ins on
+Tanzu Application Platform (commonly known as TAP).
 
 ## <a id='accept-eulas'></a>Accept the End User License Agreements
 
@@ -74,10 +75,12 @@ and features.
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-The Tanzu CLI core v1.0.0 distributed with this release is forward and backward compatible with all
-releases of Tanzu Application Platform under support. You can now run a single command to install
-the plug-in group version matching the Tanzu Application Platform release installed on any target
-Tanzu Application Platform environment. For more information, see [Install Tanzu CLI Plug-ins](#install-plugins).
+The Tanzu CLI core v1.0.0 distributed with Tanzu Application Platform is forward and backward
+compatible with all supported releases of Tanzu Application Platform.
+
+Run a single command to install the plug-in group version that matches the Tanzu Application
+Platform version on any target environment. For more information,
+see [Install Tanzu CLI Plug-ins](#install-plugins).
 
 Use a package manager to install Tanzu CLI on Windows, Mac, or Linux OS. Alternatively, download and
 install manually from Tanzu Network, VMware Customer Connect, or GitHub.
@@ -238,12 +241,12 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plug-ins
 
-There is a set of Tanzu CLI plug-ins which extend the Tanzu CLI Core with Tanzu Application
+There is a group of Tanzu CLI plug-ins which extend the Tanzu CLI Core with Tanzu Application
 Platform specific functionality.
 The plug-ins can be installed as a group with a single command.
 
 Versioned releases of the Tanzu Application Platform specific plug-in group align to each
-supported Tanzu Application Platform  release version.
+Tanzu Application Platform version.
 
 This makes it easy to switch between different versions of Tanzu Application Platforms environments.
 
