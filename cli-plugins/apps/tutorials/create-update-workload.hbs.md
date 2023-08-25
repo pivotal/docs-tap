@@ -516,8 +516,8 @@ images in a supply chains, see
 
 Create a workload from a Maven repository artifact by setting some
 specific properties as YAML parameters or using `--maven-*` flags in the workload when using the
-[supply chain](../../../scc/about.hbs.md). For more information about Maven repository artifact, 
-see [Source-Controller](../../../source-controller/about.hbs.md)
+[supply chain](../../../scc/about.hbs.md). For more information about Maven repository artifact,
+see [Source-Controller](../../../source-controller/about.hbs.md).
 
 The Maven repository URL is set when the supply chain is created.
 
@@ -534,8 +534,8 @@ tanzu apps workload apply my-workload \
       --type web -y
 ```
 
-Check more info related to the Maven flags in the
-[command reference](../reference/workload-create-apply.hbs.md#maven-artifact) section
+For more information about the Maven flags, see
+[--maven-artifact](../reference/workload-create-apply.hbs.md#maven-artifact).
 
 ### Maven workload created with YAML or JSON parameters
 
@@ -571,7 +571,7 @@ tanzu apps workload create my-workload --type web --param-yaml maven=$"artifactI
 tanzu apps workload create my-workload --type web --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
 
-For information about how to configure the credentials that the MavenArtifact needs for authentication,
+For information about how to configure the Maven artifact authentication credentials,
 see [Maven Repository Secret](../../../scc/building-from-source.hbs.md#maven-repository-secret).
 
 ### <a id="create-wl-dockerfile"></a> Create a workload from a Dockerfile
