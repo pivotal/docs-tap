@@ -74,12 +74,16 @@ and features.
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-The Tanzu CLI core v1.0.0 distributed with this release is forward and backward compatible with all releases of Tanzu Application Platform under support. Users can now run a single command to install the plugin group version matching the TAP release installed on any target TAP environment (see [Install Plugins](#install-plugins) for more information).
+The Tanzu CLI core v1.0.0 distributed with this release is forward and backward compatible with all
+releases of Tanzu Application Platform under support. You can now run a single command to install
+the plug-in group version matching the Tanzu Application Platform release installed on any target
+Tanzu Application Platform environment. For more information, see [Install Tanzu CLI Plug-ins](#install-plugins).
 
-Tanzu CLI is installable on Windows, Mac, or Linux OS via package manager and can also be downloaded and installed manually from Tanzu Network,  VMware Customer Connect, or GitHub.
+Use a package manager to install Tanzu CLI on Windows, Mac, or Linux OS. Alternatively, download and
+install manually from Tanzu Network, VMware Customer Connect, or GitHub.
 
 Basic installation instructions are provided below. For more information including how to install
-the Tanzu CLI and CLI plug-ins in Internet-restricted environments, see the 
+the Tanzu CLI and CLI plug-ins in Internet-restricted environments, see the
 [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
 
 > **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu`
@@ -104,7 +108,6 @@ Install using a package manager
          ```
 
          The `tanzu-cli` package is part of the main [Chocolatey Community Repository](https://community.chocolatey.org/packages). When a new `tanzu-cli` version is released, it might not be available immediately. If the above command fails, run:
-
 
          ```console
          choco install tanzu-cli --version TANZU-CLI-VERSION
@@ -157,10 +160,10 @@ Install using a package manager
 
 Install from a binary release
 : To install the Tanzu CLI from a binary release:
-  
+
   1. Download the Tanzu CLI binary from one of the following locations:
      * **VMware Tanzu Network**
-       
+
        1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
        2. Choose the {{ vars.tap_version }} release from the Release dropdown menu.
        3. Click the tanzu-core-cli-binaries item from the result set.
@@ -235,39 +238,47 @@ Install from a binary release
 
 ### <a id="install-plugins"></a> Install Tanzu CLI Plug-ins
 
-There are a specific set of Tanzu CLI plugins which extend the Tanzu CLI Core with TAP-specific feature functionality.</br>
-These TAP-specific plugins can be installed as a group with a single command.</br>
-Versioned releases of the TAP-specific plugin group align to each supported TAP release line 
-so it's easy to switch between target TAP environments running different versions of the platform.
+There is a set of Tanzu CLI plug-ins which extend the Tanzu CLI Core with Tanzu Application
+Platform specific functionality.
+The plug-ins can be installed as a group with a single command.
 
-The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
+Versioned releases of the Tanzu Application Platform specific plug-in group align to each
+supported Tanzu Application Platform  release version.
 
-The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
+This makes it easy to switch between different versions of Tanzu Application Platforms environments.
 
+Use the following to search for, install, and verify Tanzu CLI plug-in groups.
 
-* List the versions of each plugin group available across Tanzu:
+#### List the versions of each plug-in group available across Tanzu
+
   ```console
   tanzu plugin group search --show-details
   ```
-* List the versions of the TAP-specific plugin group:
+
+#### List the versions of the Tanzu Application Platform specific plug-in group
+
   ```console
   tanzu plugin group search --name vmware-tanzu/default --show-details
   ```
-* Install the version of the TAP plugin group matching your target environment, e.g. 
+
+#### Install the version of the Tanzu Application Platform specific plug-in group matching your target environment
+
   ```console
   tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
   ```
-* Verify the plugin group list against the plugins that were installed
+
+#### Verify the plugin group list against the plug-ins that were installed
+
   ```console
   tanzu plugin group get vmware-tap/default:v{{ vars.tap_version }}
   ```
+
   ```console
   tanzu plugin list
   ```
-  
+
 For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#internet-restricted-install) section of the Tanzu CLI
 documentation.
-
 
 ## Next steps
 
