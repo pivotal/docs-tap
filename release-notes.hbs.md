@@ -29,6 +29,11 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-7-0-cli'></a> v1.7.0 features: Tanzu CLI & plugins
+
+- This release includes Tanzu CLI v1.0.0 and a set of installable plugin groups that are versioned such that the CLI is compatible with every version of TAP under support.
+  - See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
+
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 features: cert-manager
 
 - `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`. 
