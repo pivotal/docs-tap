@@ -106,8 +106,8 @@ Respond `Y` to prompts to complete process.
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
 Create a workload from a Maven repository
-artifact ([Source-Controller](../../source-controller/about.hbs.md)) by setting some
-specific properties as YAML parameters or using `--maven-*` flags in the workload when using the 
+artifact [Source-Controller](../../source-controller/about.hbs.md) by setting some
+specific properties as YAML parameters or using `--maven-*` flags in the workload when using the
 [supply chain](../../scc/about.hbs.md).
 
 The Maven repository URL is set when the supply chain is created.
@@ -125,8 +125,8 @@ tanzu apps workload apply my-workload \
       --type web -y
 ```
 
-Check more info related to the Maven flags in the
-[command reference](./command-reference/workload_create_update_apply.hbs.md#maven-artifact) section
+For more information about the Maven flags, see
+[--maven-artifact](./command-reference/workload_create_update_apply.hbs.md#maven-artifact.
 
 #### Maven workload created with YAML or JSON parameters
 
@@ -162,7 +162,7 @@ tanzu apps workload create petclinic-image --type web --param-yaml maven=$"artif
 tanzu apps workload create petclinic-image --type web --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
 ```
 
-For information about how to configure the credentials that the MavenArtifact needs for authentication,
+For information about how to configure the Maven artifact authentication credentials,
 see [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-artifact).
 
 ## <a id='yaml-files'></a> Working with YAML files
