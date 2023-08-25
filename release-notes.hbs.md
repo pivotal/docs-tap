@@ -37,16 +37,16 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-3-COMPONENT-NAME-ri'></a> v1.6.3 resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
 #### <a id='1-6-3-cli-ri'></a> v1.6.3 resolved issues: Tanzu CLI and plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plugin groups that are versioned such that the CLI is compatible with every version of TAP under support.
   - See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
+
+---
+
+#### <a id='1-6-3-COMPONENT-NAME-ri'></a> v1.6.3 resolved issues: COMPONENT-NAME
+
+- Resolved issue description.
 
 ---
 
