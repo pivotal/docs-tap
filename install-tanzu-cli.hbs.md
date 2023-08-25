@@ -240,10 +240,14 @@ These TAP-specific plugins can be installed as a group with a single command.</b
 Versioned releases of the TAP-specific plugin group are available to supported each supported TAP release line 
 so it's easy to switch between target TAP environments running different versions of the platform.
 
-The following commands can be utlized to search
+The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
 
 
-* List all TAP plugin group releases
+* List the versions of each plugin group available across Tanzu:
+    ```
+    tanzu plugin group search --show-details
+    ```
+* List the versions of the TAP-specific plugin group:
   ```console
   tanzu plugin group search --name vmware-tanzu/default --show-details
   ```
@@ -251,11 +255,7 @@ The following commands can be utlized to search
   ```console
   tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
   ```
-* List the plugins in group `v{{ vars.tap_version }}`
-  ```console
-  tanzu plugin group get vmware-tap/default:v{{ vars.tap_version }}
-  ```
-* Verify the plugin group list against the installed plugin list
+* Verify the plugin group list against the plugins that were installed
   ```console
   tanzu plugin group get vmware-tap/default:v{{ vars.tap_version }}
   ```
@@ -265,6 +265,7 @@ The following commands can be utlized to search
   
 For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#internet-restricted-install) section of the Tanzu CLI
 documentation.
+
 
 ## Next steps
 
