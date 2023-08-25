@@ -262,7 +262,8 @@ Versioned releases of the Tanzu Application Platform specific plug-in group alig
 Tanzu Application Platform version.
 
 This makes it easy to switch between different versions of Tanzu Application Platforms environments.
-Use the following to search for, install, and verify Tanzu CLI plug-in groups.
+Use the following commands to search for, install, and verify Tanzu CLI plug-in groups.
+
 #### List the versions of each plug-in group available across Tanzu
 
   ```console
@@ -286,6 +287,7 @@ Use the following to search for, install, and verify Tanzu CLI plug-in groups.
   ```console
   tanzu plugin group get vmware-tap/default:v{{ vars.tap_version }}
   ```
+
   ```console
   tanzu plugin list
   ```
