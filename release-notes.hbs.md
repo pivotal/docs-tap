@@ -45,7 +45,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-3-cli-ri'></a> v1.6.3 resolved issues: Tanzu CLI and plugins
 
-- This release includes Tanzu CLI v1.0.0 and a set installable plugin groups that are versioned such that the CLI is compatible with every version of TAP under support.
+- This release includes Tanzu CLI v1.0.0 and a set of installable plugin groups that are versioned such that the CLI is compatible with every version of TAP under support.
   - See the [Install Tanzu CLI]() for more detailed explanation of 
 
 ---
