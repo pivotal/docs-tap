@@ -535,7 +535,7 @@ tanzu apps workload apply my-workload \
 ```
 
 For more information about the Maven flags, see
-[--maven-artifact](../reference/workload-create-apply.hbs.md#maven-artifact).
+[--maven-artifact](../reference/workload-create-apply.hbs.md#apply-maven-artifact).
 
 ### Maven workload created with YAML or JSON parameters
 
