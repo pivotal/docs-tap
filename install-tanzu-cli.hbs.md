@@ -77,183 +77,204 @@ To set the Kubernetes cluster context:
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
-You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
+The Tanzu CLI and plug-ins enable you to install and use the Tanzu Application Platform functions
 and features.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install
-> the Tanzu CLI and plug-ins. For more information about profiles, see [About Tanzu Application Platform
-> components and profiles](about-package-profiles.hbs.md).
+### <a id="install-cli"></a> Install the Tanzu CLI
 
-To install the Tanzu CLI and plug-ins:
+The Tanzu CLI core v1.0.0 distributed with this release is forward and backward compatible with all releases of Tanzu Application Platform under support. Users can now run a single command to install the plugin group version matching the TAP release installed on any target TAP environment (see [Install Plugins](#install-plugins) for more information).
 
-1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
-2. Go to the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
-3. Select **Release {{ vars.tap_version }}** from the release drop-down menu.
-4. Click **tanzu-cli-tap-{{ vars.tap_version }}** to list the Tanzu framework bundles.
-5. Click and download the Tanzu framework bundle for your operating system.
-6. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the
-   Tanzu CLI and associated plug-ins and files.
-   For more information, see [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli).
+Tanzu CLI is installable on Windows, Mac, or Linux OS via package manager and can also be downloaded and installed manually from Tanzu Network,  VMware Customer Connect, or GitHub.
 
-Linux or macOS
-: Complete the following steps
+Basic installation instructions are provided below. For more information including how to install
+the Tanzu CLI and CLI plug-ins in Internet-restricted environments, see the 
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
 
-   1. Create a `$HOME/tanzu` directory on your local machine.
-   2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
+> **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu`
+or `C:\Program Files\tanzu` on Windows to a different location before following the steps below.
 
-      - **For Linux:**
+Install using a package manager
+: To install the Tanzu CLI using a package manager:
 
-        ```console
-        tar -xvf tanzu-framework-linux-amd64-v0.25.4.5.tar -C $HOME/tanzu
-        ```
+   1. Follow the instructions for your package manager below. This installs the latest version of the CLI available in the package registry.
 
-      - **For macOS:**
+      * **Homebrew (MacOS):**
 
-        ```console
-        tar -xvf tanzu-framework-darwin-amd64-v0.25.4.5.tar -C $HOME/tanzu
-        ```
+         ```console
+         brew update
+         brew install vmware-tanzu/tanzu/tanzu-cli
+         ```
 
-   3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
-      versions of the CLI core and plug-ins are installed by running:
+      * **Chocolatey (Windows):**
 
-       ```console
-       export TANZU_CLI_NO_INIT=true
-       ```
+         ```console
+         choco install tanzu-cli
+         ```
 
-   4. Install or update the CLI core by running:
+         The `tanzu-cli` package is part of the main [Chocolatey Community Repository](https://community.chocolatey.org/packages). When a new `tanzu-cli` version is released, it might not be available immediately. If the above command fails, run:
 
-       >**Note** Replace v0.25.4 with the version you downloaded, which is found by inspecting the
-       >directory name under `$HOME/tanzu/cli/core/`.</br>
-       For example, if the directory name under `$HOME/tanzu/cli/core/` is v0.26.0, set the following
-       `VERSION` to `v0.26.0`.
 
-      - **For Linux:**
+         ```console
+         choco install tanzu-cli --version TANZU-CLI-VERSION
+         ```
 
-        ```console
-        cd $HOME/tanzu
-        export VERSION=v0.25.4
-        sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
-        ```
+         Where `TANZU-CLI-VERSION` is the Tanzu CLI version you want to install.
 
-      - **For macOS:**
+         For example:
 
-        ```console
-        cd $HOME/tanzu
-        export VERSION=v0.25.4
-        install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
-        ```
+         ```console
+         choco install tanzu-cli --version {{ vars.tanzu-cli.version }}
+         ```
 
-   5. Confirm the installation by running:
+      * **APT (Debian or Ubuntu):**
 
-       ```console
-       tanzu version
-       ```
+         ```console
+         sudo mkdir -p /etc/apt/keyrings/
+         sudo apt-get update
+         sudo apt-get install -y ca-certificates curl gpg
+         curl -fsSL https://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub | sudo gpg --dearmor -o /etc/apt/keyrings/tanzu-archive-keyring.gpg
+         echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/tanzu-archive-keyring.gpg] https://storage.googleapis.com/tanzu-cli-os-packages/apt tanzu-cli-jessie main" | sudo tee /etc/apt/sources.list.d/tanzu.list
+         sudo apt-get update
+         sudo apt-get install -y tanzu-cli
 
-       The outcome is similar to:
+         ```
 
-       ```console
-       version: v0.25.4
-       ...
-       ```
+      * **YUM or DNF (RHEL):**
 
-   6. (Optional) Enable tab completion. Follow the shell-specific instructions from completion help:
+         ```console
+         cat << EOF | sudo tee /etc/yum.repos.d/tanzu-cli.repo
+         [tanzu-cli]
+         name=Tanzu CLI
+         baseurl=https://storage.googleapis.com/tanzu-cli-os-packages/rpm/tanzu-cli
+         enabled=1
+         gpgcheck=1
+         repo_gpgcheck=1
+         gpgkey=https://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub
+         EOF
+
+         sudo yum install -y tanzu-cli # If you are using DNF, run sudo dnf install -y tanzu-cli.
+         ```
+
+   1. Check that the correct version of the CLI is properly installed.
 
       ```console
-      tanzu completion --help
+      tanzu version
+      version: v{{ vars.tanzu-cli.version }}
+      ...
       ```
 
-Windows
-: Complete the following step:
+Install from a binary release
+: To install the Tanzu CLI from a binary release:
+  
+  1. Download the Tanzu CLI binary from one of the following locations:
+     * **VMware Tanzu Network**
+       
+       1. Go to [VMware Tanzu Network](https://network.pivotal.io/products/tanzu-application-platform/).
+       2. Choose the {{ vars.tap_version }} release from the Release dropdown menu.
+       3. Click the tanzu-core-cli-binaries item from the result set.
+       4. Download the Tanzu CLI binary for your operating system.
 
-   1. Open the Windows file browser.
+     * **VMware Customer Connect**
 
-   2. Create a `Program Files\tanzu` directory on your local machine.
+       1. Go to [VMware Customer Connect](https://customerconnect.vmware.com/downloads/details?downloadGroup=TCLI-100&productId=1455&rPId=109066).
+       2. Download the Tanzu CLI binary for your operating system.
 
-   3. From the `Downloads` directory, right-click the `tanzu-framework-windows-amd64-v0.25.4.5.zip`
-      file, select
-      the **Extract All...** menu item, enter `C:\Program files\tanzu` in the
-      **Files are extracted to this directory:** text box, and click the **Extract**.
+     * **GitHub**
 
-   4. From the `Program Files\tanzu` directory, move and rename the executable file from:
+       1. Go to [Tanzu CLI release v{{ vars.tanzu-cli.version }} on GitHub](https://github.com/vmware-tanzu/tanzu-cli/releases/tag/v{{ vars.tanzu-cli.version }}).
+       2. Download the Tanzu CLI binary for your operating system, for example, `tanzu-cli-windows-amd64.tar.gz`.
 
-       ```console
-       Program Files\tanzu\cli\core\v0.25.4\tanzu-core-windows_amd64.exe
-       ```
+  2. Use an extraction tool to unpack the binary file:
 
-       to
+        * **macOS:**
 
-       ```console
-       Program Files\tanzu\tanzu.exe
-       ```
+           ```console
+           tar -xvf tanzu-cli-darwin-amd64.tar.gz
+           ```
 
-   5. From the `Program Files` directory, right-click the `tanzu` directory and select **Properties > Security**.
+        * **Linux:**
 
-   6. Ensure that your user account has the **Full Control** permission.
+           ```console
+           tar -xvf tanzu-cli-linux-amd64.tar.gz
+           ```
 
-   7. Use Windows Search to search for `env`, select **Edit the system environment variables**, click
-      **Environment Variables** on the bottom right of the dialog box.
+        * **Windows:**
 
-   8. Find and select the **Path** row under **System variables**, click **Edit**.
+           Use the Windows extractor tool to unzip `tanzu-cli-windows-amd64.zip`.
 
-   9. Click **New**, enter the path value, click **OK**.
+  3. Make the CLI available to the system:
 
-       >**Note:** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
+        * cd to the directory containing the extracted CLI binary
 
-   10. Click **New** following the **System Variables** section, add a new environmental variable named
-       `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
+        * **macOS:**
 
-   11. Use Windows Search to search for `cmd`, select **Command Prompt** to open the command line terminal.
+           Install the binary to `/usr/local/bin`:
 
-   12. Verify the Tanzu CLI installation by running:
+           ```console
+           install tanzu-cli-darwin_amd64 /usr/local/bin/tanzu
+           ```
 
-       ```console
-       tanzu version
-       ```
+        * **Linux:**
 
-       Expected outcome:
+           Install the binary to `/usr/local/bin`:
 
-       ```console
-       version: v0.25.4
-       ...
-       ```
+           ```console
+           sudo install tanzu-cli-linux_amd64 /usr/local/bin/tanzu
+           ```
 
-## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
+        * **Windows:**
 
-To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
+           1. Create a new `Program Files\tanzu` folder.
+           2. Copy the `tanzu-cli-windows_amd64.exe` file into the new `Program Files\tanzu` folder.
+           3. Rename `tanzu-cli-windows_amd64.exe` to `tanzu.exe`.
+           4. Right-click the `tanzu` folder, select **Properties** > **Security**, and make sure that your user account has the **Full Control** permission.
+           5. Use Windows Search to search for `env`.
+           6. Select **Edit the system environment variables** and click the **Environment Variables** button.
+           7. Select the `Path` row under **System variables**, and click **Edit**.
+           8. Click **New** to add a new row and enter the path to the Tanzu CLI. The path value must not include the `.exe` extension. For example, `C:\Program Files\tanzu`.
 
-1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu`
-   directory (if on Windows) by running:
+  4. Check that the correct version of the CLI is properly installed:
 
-    ```console
-    tanzu plugin install --local cli all
-    ```
+        ```console
+        tanzu version
+        version: v{{ vars.tanzu-cli.version }}
+        ...
+        ```
 
-2. Verify that you installed the plug-ins by running:
+### <a id="install-plugins"></a> Install Tanzu CLI Plug-ins
 
-   ```console
-   tanzu plugin list
-   ```
+There are a specific set of Tanzu CLI plugins which extend the Tanzu CLI Core with TAP-specific feature functionality.</br>
+These TAP-specific plugins can be installed as a group with a single command.</br>
+Versioned releases of the TAP-specific plugin group align to each supported TAP release line 
+so it's easy to switch between target TAP environments running different versions of the platform.
 
-   Expected outcome:
+The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
 
-   ```console
-    NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION        STATUS
-      login               Log in to the platform                                                             Standalone  default    v0.25.0        not installed
-      management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0        not installed
-      package             Tanzu package management                                                          Standalone  default    v0.11.6        update available
-      pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0        not installed
-      secret              Tanzu secret management                                                           Standalone  default    v0.11.6        update available
-      telemetry           Configure cluster-wide telemetry settings                                         Standalone  default    v0.25.0        not installed
-      apps                Applications on Kubernetes                                                        Standalone             v0.7.0         installed
-      builder             Build Tanzu components                                                            Standalone             v0.25.0        installed
-      external-secrets    interacts with external-secrets.io resources                                      Standalone             v0.0.1         installed
-      insight             post & query image, package, source, and vulnerability data                       Standalone             v1.2.2         installed
-      rbac                The rbac plug-in allows the tap platform operator to add or remove subjects from   Standalone             v1.0.1-beta.1  installed
-                          a tap default user role with in a namespace.
-      services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.3.0         installed
-                          manage Resource Claims
-      accelerator         Manage accelerators in a Kubernetes cluster                                       Standalone             v1.2.0         installed
+The following commands can be utlized to search for, install, and verify Tanzu CLI plugin groups.
+
+
+* List the versions of each plugin group available across Tanzu:
+  ```console
+  tanzu plugin group search --show-details
   ```
+* List the versions of the TAP-specific plugin group:
+  ```console
+  tanzu plugin group search --name vmware-tanzu/default --show-details
+  ```
+* Install the version of the TAP plugin group matching your target environment, e.g. 
+  ```console
+  tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
+  ```
+* Verify the plugin group list against the plugins that were installed
+  ```console
+  tanzu plugin group get vmware-tap/default:v{{ vars.tap_version }}
+  ```
+  ```console
+  tanzu plugin list
+  ```
+  
+For air-gapped installation, see the [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html#internet-restricted-install) section of the Tanzu CLI
+documentation.
 
 ## <a id='next-steps'></a>Next steps
 
