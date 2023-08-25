@@ -245,7 +245,7 @@ There is a group of Tanzu CLI plug-ins which extend the Tanzu CLI Core with Tanz
 Platform specific functionality.
 The plug-ins can be installed as a group with a single command.
 
-Versioned releases of the Tanzu Application Platform specific plug-in group align to each
+Versioned releases of the Tanzu Application Platform specific plug-in group align to each supported
 Tanzu Application Platform version.
 
 This makes it easy to switch between different versions of Tanzu Application Platforms environments.
