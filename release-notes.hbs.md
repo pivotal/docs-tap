@@ -21,7 +21,7 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-removed-components'></a> Removed components
 
-Eventing is removed in this release.
+Eventing is removed in this release, , install and manage Knative Eventing as an alternative solution.
 
 ---
 
