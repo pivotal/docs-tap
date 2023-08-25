@@ -6,7 +6,6 @@
 1. GraphQL user-defined service account
 1. Cloudevent user-defined service account
 1. Configuring AMR Observer with the Cloudevent handler service account access token
-1. Using `curl` to query GraphQL
 
 
 ## High-level design
