@@ -33,6 +33,10 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-7-0-application-configuration-service'></a> v1.7.0 features: Application Configuration Service
+
+- The default interval for new `ConfigurationSlice` resources is now 60 seconds.
+
 #### <a id='1-7-0-cli'></a> v1.7.0 features: Tanzu CLI & plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plugin groups that are versioned such that the CLI is compatible with every version of TAP under support.
