@@ -633,6 +633,7 @@
           - [Overview](scst-store/amr/overview.hbs.md)
           - [Architecture](scst-store/amr/architecture.hbs.md)
           - [Configuration](scst-store/amr/configuration.hbs.md)
+          - [Authentication and authorization](scst-store/amr/auth.hbs.md)
           - [Data models and concepts](scst-store/amr/data-model-and-concepts.hbs.md)
           - [GraphQL query](scst-store/amr/graphql-query.hbs.md)
           - [CloudEvent JSON specification](scst-store/amr/cloudevents.hbs.md)
