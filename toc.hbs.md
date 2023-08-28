@@ -143,7 +143,7 @@
                     - [Get workload status](cli-plugins/apps/tutorials/get-workload-status.hbs.md)
                     - [Delete a workload](cli-plugins/apps/tutorials/delete-workload.hbs.md)
                 - [How-to-guides](cli-plugins/apps/how-to-guides/how-to-guides.hbs.md)
-                    - [Integrate with Local Dource Proxy](cli-plugins/apps/how-to-guides/integrate-lsp.hbs.md)
+                    - [Integrate with Local Source Proxy](cli-plugins/apps/how-to-guides/integrate-lsp.hbs.md)
                     - [Manage workload merge behavior](cli-plugins/apps/how-to-guides/workload-merge-behavior.hbs.md)
                 - [Troubleshoot Apps CLI](cli-plugins/apps/troubleshooting/troubleshooting.hbs.md)
                     - [Troubleshoot workloads](cli-plugins/apps/troubleshooting/troubleshooting-workload.hbs.md)
