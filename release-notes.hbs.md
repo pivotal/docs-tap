@@ -37,6 +37,16 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
+#### <a id='1-5-5-application-configuration-service-ri'></a> v1.5.5 resolved issues: Application Configuration Service
+
+- Resolves an issue preventing `GitRepository` changes from being observed after approximately 15 
+minutes. The `interval` property for a `ConfigurationSlice` should now continue to work as expected.
+- Logging Enhancement: Error logged when handling the case where a `ConfigurationSlice` references a
+ non-existent `ConfigurationSource` has been improved. A `ConfigurationSlice` will properly reconcile
+ once the referenced `ConfigurationSource` is created.
+ 
+---
+
 #### <a id='1-5-5-cli-ri'></a> v1.5.5 resolved issues: Tanzu CLI and plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
