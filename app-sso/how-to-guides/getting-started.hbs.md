@@ -210,10 +210,6 @@ This section tells you how to deploy a minimal Kubernetes application that is pr
 by Application Single Sign-On (commonly called AppSSO) by using the credentials
 that [tanzu service class-claim](#claim-credentials) creates.
 
-![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
-
-[//]: # (^ diagram is produced from https://miro.com/app/board/uXjVMUY5O0I=/)
-
 For more information about how a Client application uses an AuthServer to
 authenticate an end user, see the [Overview of Application Single Sign-On](../about.hbs.md).
 
