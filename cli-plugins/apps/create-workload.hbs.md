@@ -105,14 +105,11 @@ Respond `Y` to prompts to complete process.
 
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
-Create a workload from a Maven repository
-artifact [Source-Controller](../../source-controller/about.hbs.md) by setting some
-specific properties as YAML parameters or using `--maven-*` flags in the workload when using the
+Create a workload from a Maven repository artifact [Source-Controller](../../source-controller/about.hbs.md)
+by setting its properties through the `--maven-*` flags when using the
 [supply chain](../../scc/about.hbs.md).
 
 The Maven repository URL is set when the supply chain is created.
-
-#### Maven workload created with `--maven-*` flags
 
 To create a Maven workload using the CLI provided flags, run:
 
@@ -126,41 +123,7 @@ tanzu apps workload apply my-workload \
 ```
 
 For more information about the Maven flags, see
-[--maven-artifact](./command-reference/workload_create_update_apply.hbs.md#maven-artifact.
-
-#### Maven workload created with YAML or JSON parameters
-
-- Param name: maven
-- Param value:
-  - YAML:
-
-    ```yaml
-    artifactId: ...
-    type: ... # default jar if not provided
-    version: ...
-    groupId: ...
-    ```
-
-  - JSON:
-  
-    ```json
-    {
-        "artifactId": ...,
-        "type": ..., // default jar if not provided
-        "version": ...,
-        "groupId": ...
-    }
-    ```
-
-For example, to create a workload from a Maven artifact using parameters, run:
-
-```console
-# YAML
-tanzu apps workload create petclinic-image --type web --param-yaml maven=$"artifactId:hello-world\ntype:jar\nversion:0.0.1\ngroupId:carto.run"
-
-# JSON
-tanzu apps workload create petclinic-image --type web --param-yaml maven="{"artifactId":"hello-world", "type": "jar", "version": "0.0.1", "groupId": "carto.run"}"
-```
+[Maven flags command reference](./command-reference/workload_create_update_apply.hbs.md#maven-artifact).
 
 For information about how to configure the Maven artifact authentication credentials,
 see [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-artifact).
