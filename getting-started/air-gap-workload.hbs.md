@@ -77,6 +77,27 @@ To create a workload from Git through HTTPS, follow these steps:
         </settings>
     ```
 
+    or to pass in a custom `settings.xml` for NuGet, create a file called `settings-xml.yaml`. For example:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: settings-xml
+    type: service.binding/nugetconfig
+    stringData:
+      type: nugetconfig
+      provider: sample
+      nuget.config: |
+        <?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+            <packageSources>
+              <clear />
+              <add key="nuget-proxy" value=https://internal_nuget-proxy_fqdn/repository/nuget.org-proxy/index.json />
+            </packageSources>
+          </configuration>
+    ```
+
 4. Apply the file:
 
     ```console
