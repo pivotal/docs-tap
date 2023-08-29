@@ -256,6 +256,11 @@ The following issues, listed by component and area, are resolved in this release
   You can now update the `ootb_supply_chain_testing_scanning` field in their `tap-values.yaml` to
   use a specified ClusterImageTemplate.
 
+#### <a id='1-6-2-sc-plugin-ri'></a> v1.6.2 resolved issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+-  [Supply Chain Security Tools - Scan v2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
+   `ImageVulnerabilityScanner` CRD, is now supported in the Supply Chain UI.
+
 #### <a id='1-6-2-vscode-ext-ri'></a> v1.6.2 resolved issues: Tanzu Developer Tools for VS Code
 
 - Fixed an issue that prevented Tanzu Debug from working on new untracked workloads on Windows.
