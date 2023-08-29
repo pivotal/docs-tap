@@ -1,6 +1,6 @@
 # Cloud Native Runtimes how-to guides
 
-This subsection describes the how-to guides for Cloud Native Runtimes:
+This topic tells you the how-to guides available for Cloud Native Runtimes:
 
 - [Securing Web Workloads in Cloud Native Runtimes](./auto-tls/index.hbs.md)
 - [CNRs for App Operators](./app-operators/index.hbs.md)
