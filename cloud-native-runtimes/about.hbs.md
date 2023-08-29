@@ -45,3 +45,13 @@ For more information about the software that makes Cloud Native Runtimes see:
 - Knative Documentation [Home - Knative](https://knative.dev/docs/)
 - Carvel Tools Suite Documentation [Carvel - Home](https://carvel.dev/)
 - Contour Networking Documentation [Contour](https://projectcontour.io/)
+
+## <a id="doc-org"></a> Document organization
+
+The Cloud Native Runtimes component documentation consists of the following
+subsections that relate to what you want to achieve:
+
+- [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
+  a specific problem.
+- [Reference](reference/index.hbs.md): To find specific information such as
+  CNRs Compatibility Matrix.
