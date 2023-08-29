@@ -8,6 +8,13 @@ Cloud Native Runtimes (CNRs) is enterprise supported Knative, with Carvel tools 
 CNRs offers everything Knative does and some extras that make it ideal for cloud-native application development.
 Cloud Native Runtimes gives developers environmental simplicity and administrators deployment control and it works on any single Kubernetes cluster running Kubernetes v1.25 and later.
 
+The Cloud Native Runtimes component documentation consists of the following sections:
+
+- [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
+  a specific problem.
+- [Reference](reference/index.hbs.md): To find specific information such as
+  CNRs Compatibility Matrix.
+
 CNR uses Knative Serving's main features to provide:
 
 - Automatic pod scaling.
@@ -45,13 +52,3 @@ For more information about the software that makes Cloud Native Runtimes see:
 - Knative Documentation [Home - Knative](https://knative.dev/docs/)
 - Carvel Tools Suite Documentation [Carvel - Home](https://carvel.dev/)
 - Contour Networking Documentation [Contour](https://projectcontour.io/)
-
-## <a id="doc-org"></a> Document organization
-
-The Cloud Native Runtimes component documentation consists of the following
-subsections that relate to what you want to achieve:
-
-- [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
-  a specific problem.
-- [Reference](reference/index.hbs.md): To find specific information such as
-  CNRs Compatibility Matrix.

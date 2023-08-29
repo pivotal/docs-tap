@@ -45,9 +45,10 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
 
-- **New config option `resource_management`**: Allows configuration of cpu and memory resources (follows [Kubernetes requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)) for all Knative Serving deployments in the `knative-serving` namespace.
-  For example, to configure the cpu and memory requirements for the `activator` deployment:
-    ```
+- **New config option `resource_management`**: Allows configuration of CPU and memory resources that follow Kubernetes requests and limitsfor all Knative Serving deployments in the `knative-serving` namespace. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+  For example, to configure the CPU and memory requirements for the `activator` deployment:
+    
+    ```console
     resource_management:
       - name: "activator"
         requests:
@@ -57,6 +58,7 @@ This release includes the following changes, listed by component and area.
           memory: "1000Mi"
           cpu: "1"
     ```
+
 - **New config option `cnrs.contour.default_tls_secret`**: This option has the same meaning as `cnrs.default_tls_secret`.
   `cnrs.default_tls_secret` is deprecated in this release and will be removed in Tanzu Application Platform v1.10.0, which includes Cloud Native Runtimes v2.7.0.
   In the meantime both options are supported and `cnrs.contour.default_tls_secret` takes precedence over `cnrs.default_tls_secret`.
@@ -67,16 +69,16 @@ This release includes the following changes, listed by component and area.
   over `cnrs.ingress.[internal/external].namespace`.
 
 - **New Knative Garbage Collection Defaults**: CNRs is reducing the number of revisions kept for each knative service from 20 to 5.
-  This will improve the knative controller's memory consumption when having several Knative services.
+  This improves the knative controller's memory consumption when having several Knative services.
   Knative manages this through the config-gc ConfigMap under `knative-serving` namespace and is documented [here](https://knative.dev/docs/serving/revisions/revision-admin-config-options/).
 
   The following defaults are set for Knative garbage collection:
-    * `retain-since-create-time: "48h"`: Any revision created with an age of 2 days is considered for garbage collection.
-    * `retain-since-last-active-time: "15h"`: Revision that was last active at least 15 hours ago is considered for garbage collection.
-    * `min-non-active-revisions: "2"`: The minimum number of inactive Revisions to retain.
-    * `max-non-active-revisions: "5"`: The maximum number of inactive Revisions to retain.
+    - `retain-since-create-time: "48h"`: Any revision created with an age of 2 days is considered for garbage collection.
+    - `retain-since-last-active-time: "15h"`: Revision that was last active at least 15 hours ago is considered for garbage collection.
+    - `min-non-active-revisions: "2"`: The minimum number of inactive Revisions to retain.
+    - `max-non-active-revisions: "5"`: The maximum number of inactive Revisions to retain.
 
-  More information and steps to update default values are available [here](./cloud-native-runtimes/how-to-guides/garbage_collection.md).
+  For more information about updating default values, see [Configure Garbage collection for the Knative revisions](/cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
 
 ---
 
