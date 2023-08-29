@@ -126,8 +126,7 @@ in order to use it.
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
 Create a workload from a Maven repository artifact [Source-Controller](../../source-controller/about.hbs.md)
-by setting its properties through the `--maven-*` flags when using the
-[supply chain](../../scc/about.hbs.md).
+by setting its properties through the `--maven-*` flags when using the [supply chain](../../scc/about.hbs.md).
 
 The Maven repository URL is set when the supply chain is created.
 
@@ -142,8 +141,8 @@ tanzu apps workload apply my-workload \
       --type web -y
 ```
 
-For more information about the Maven flags, see
-[Maven flags command reference](./command-reference/workload_create_update_apply.hbs.md#maven-artifact).
+For more information about the Maven flags, see the
+[Maven flags command reference information](command-reference/workload_create_update_apply.hbs.md#apply-maven-artifact).
 
 For information about how to configure the Maven artifact authentication credentials,
 see [Maven Repository Secret](../../scc/building-from-source.hbs.md#maven-artifact).
