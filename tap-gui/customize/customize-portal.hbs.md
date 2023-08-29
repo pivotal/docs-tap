@@ -32,8 +32,6 @@ customized version of your portal.
 If there is an error in any of the supplied images encoded in base64 or in your choice of portal name,
 Tanzu Developer Portal reverts to the original branding template.
 
-![Screenshot displaying the custom branding within the Tanzu Developer Portal portal](../images/customized-branding.png)
-
 ## <a id="customize-catalog-page"></a> Customize the Software Catalog page
 
 You can customize the name of your organization on the Software Catalog page of
