@@ -7,7 +7,7 @@ make use of Tanzu Build Service (TBS) for building container images out of
 source code.
 
 You can configure a **platform operator** by using
-`tap-values`:
+`tap-values.yaml`:
 
 1. The default container image registry where application images must be
    pushed:
