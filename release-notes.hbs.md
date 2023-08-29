@@ -37,13 +37,12 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-3-application-configuration-service-ri'></a> v1.6.3 resolved issues: Application Configuration Service
+#### <a id='1-6-3-app-config-serv-ri'></a> v1.6.3 resolved issues: Application Configuration Service
 
-- Resolves an issue preventing `GitRepository` changes from being observed after approximately 15
- minutes. The `interval` property for a `ConfigurationSlice` should now continue to work as expected.
-- Logging Enhancement: Error logged when handling the case where a `ConfigurationSlice` references a
- non-existent `ConfigurationSource` has been improved. A `ConfigurationSlice` will properly
- reconcile once the referenced `ConfigurationSource` is created.
+- `GitRepository` is now consistently observed beyond 15 minutes. The `interval` property for a
+  `ConfigurationSlice` now continues to work as expected.
+- Error-logging is improved where a `ConfigurationSlice` references a non-existent `ConfigurationSource`.
+  A `ConfigurationSlice` properly reconciles after the referenced `ConfigurationSource` is created.
 
 ---
 
