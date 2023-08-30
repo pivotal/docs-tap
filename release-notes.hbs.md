@@ -53,6 +53,11 @@ The following issues, listed by component and area, are resolved in this release
 ### <a id='1-4-9-known-issues'></a> v1.4.9 Known issues 
  
 This release has the following known issues, listed by component and area. 
+
+#### <a id='1-4-9-tbs-install-fail-ki'></a>Tanzu Build Service
+
+- Tanzu Application Platform installation temporarily fails with this error: `waiting on reconcile packageinstall/buildservice. Overlaying data values (in following order: ca-cert.yaml, cert-injection-webhook/upstream/imagevalues.yaml, cert-injection-webhook/values.yaml, additional data values)` related to the key `deactivate_smart_warmer`.
+This issue will resolve after a few minutes.
  
 #### <a id='1-4-9-COMPONENT-NAME-ki'></a> v1.4.9 known issues: COMPONENT-NAME
  
