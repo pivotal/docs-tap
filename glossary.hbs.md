@@ -58,8 +58,10 @@
         the live information for the pod can retrieve the data.</td>
     </tr>
     <tr>
-      <td>Application Live View back end</td>
-      <td></td>
+        <td>Application Live View back end</td>
+        <td>Application Live View back end is the central server component for Application Live View
+        that contains a list of registered apps.
+        It is responsible for proxying the request to fetch the actuator information related to the app.</td>
     </tr>
     <tr>
         <td>Application Live View connector</td>
@@ -74,12 +76,6 @@
         The webhook handler is registered with Tanzu convention controller. The webhook handler detects
         supply-chain workloads running a Spring Boot. Such workloads are annotated automatically to
         enable Application Live View to monitor them.</td>
-    </tr>
-    <tr>
-        <td>Application Live View server</td>
-        <td>Application Live View server is the central server component for Application Live View
-        that contains a list of registered apps.
-        It is responsible for proxying the request to fetch the actuator information related to the app.</td>
     </tr>
     <tr>
         <td>Application Single Sign-On (AppSSO)</td>
@@ -224,19 +220,6 @@
     </tr>
 </table>
 
-## <a id="m"></a> M
-
-<table>
-    <tr>
-        <th>Term</th>
-        <th>Definition</th>
-    </tr>
-    <tr>
-        <td>Multicluster</td>
-        <td></td>
-    </tr>
-</table>
-
 ## <a id="p"></a> P
 
 <table>
@@ -245,17 +228,18 @@
         <th>Definition</th>
     </tr>
     <tr>
-        <td>Package</td>
-        <td></td>
-    </tr>
-    <tr>
         <td>Pool-based class</td>
         <td>A pool-based class is a type of service instance class for which claims are fulfilled by
         selecting a service instance from a pool.</td>
     </tr>
     <tr>
         <td>Profile</td>
-        <td></td>
+        <td>A profile is a predefined group of Tanzu Application Platform packages you can deploy.
+        You can deploy the full profile, which includes all Tanzu Application Platform packages, or
+        you can deploy a profile that includes a subset of packages that suit a certain use case such
+        as the iterate, build, run, and view profiles.
+        The profiles allow Tanzu Application Platform to scale across an organization's multicluster,
+        multi-cloud, or hybrid cloud infrastructure.</td>
     </tr>
     <tr>
         <td>Provisioned service</td>
