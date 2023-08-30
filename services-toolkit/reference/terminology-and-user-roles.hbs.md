@@ -83,8 +83,8 @@ For example:
 
 ### <a id="service-instance-class"></a>Service instance class
 
-A service instance class is more commonly called a "class".
-They provide a way to describe classes, that is, categories, of service instances.
+A service instance class is more commonly called a class.
+Service instance classes provide a way to describe categories of service instances.
 
 A service instance class enables service instances belonging to the class to be discovered.
 They come in one of two varieties: pool-based or provisioner-based.

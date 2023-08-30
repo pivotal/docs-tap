@@ -132,17 +132,18 @@
     </tr>
     <tr>
         <td>Claimable service instance</td>
-        <td>A claimable service instance is any service instance that you can claim using a resource claim
-        from a namespace.</td>
+        <td>A claimable service instance is any service instance that you can claim using a resource
+        claim from a namespace.</td>
     </tr>
     <tr>
         <td>Class</td>
-        <td></td>
+        <td>A class is the common name for a service instance class.
+        See <a href="#s">service instance class</a> below.</td>
     </tr>
     <tr>
         <td>Class claim</td>
-        <td>A class claim refers to a class from which a service instance is either selected (pool-based)
-        or provisioned (provisioner-based).</td>
+        <td>A class claim is a type of claim that references a class from which a service instance is
+        either selected (pool-based) or provisioned (provisioner-based).</td>
     </tr>
     <tr>
         <td>Cloud Native Runtimes</td>
@@ -169,8 +170,8 @@
     </tr>
     <tr>
         <td>Dynamic provisioning</td>
-        <td>Dynamic provisioning is a capability of Services Toolkit in which class claims that refer
-        to provisioner-based classes are fulfilled automatically through the provisioning of new service
+        <td>Dynamic provisioning is a capability of Services Toolkit in which class claims that reference
+        provisioner-based classes are fulfilled automatically through the provisioning of new service
         instances.</td>
     </tr>
 </table>
@@ -249,7 +250,8 @@
     </tr>
     <tr>
         <td>Pool-based class</td>
-        <td></td>
+        <td>A pool-based class is a type of service instance class for which claims are fulfilled by
+        selecting a service instance from a pool.</td>
     </tr>
     <tr>
         <td>Profile</td>
@@ -263,7 +265,8 @@
     </tr>
     <tr>
         <td>Provisioner-based class</td>
-        <td></td>
+        <td>A provisioner-based class is a type of service instance class for which claims are fulfilled
+        by provisioning new service instances.</td>
     </tr>
 </table>
 
@@ -276,7 +279,7 @@
     </tr>
     <tr>
         <td>Resource claim</td>
-        <td>A resource claim refers to a specific service instance.</td>
+        <td>A resource claim is a type of claim that references a specific service instance.</td>
     </tr>
     <tr>
         <td>Run Cluster</td>
@@ -327,7 +330,10 @@
     </tr>
     <tr>
         <td>Service instance class</td>
-        <td></td>
+        <td>A service instance class is more commonly called a class.
+        Service instance classes provide a way to describe categories of service instances.
+        They enable service instances belonging to the class to be discovered.
+        They come in one of two varieties: pool-based or provisioner-based.</td>
     </tr>
     <tr>
         <td>Service resource</td>
