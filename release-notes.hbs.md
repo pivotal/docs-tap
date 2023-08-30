@@ -40,14 +40,14 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 features: cert-manager
 
-- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`. 
+- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`.
   For more information, see the [upstream release notes](https://cert-manager.io/docs/release-notes/release-notes-1.12/).
 
 #### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
 
 - **New config option `resource_management`**: Allows configuration of CPU and memory resources that follow Kubernetes requests and limitsfor all Knative Serving deployments in the `knative-serving` namespace. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
   For example, to configure the CPU and memory requirements for the `activator` deployment:
-    
+
     ```console
     resource_management:
       - name: "activator"
@@ -78,7 +78,7 @@ This release includes the following changes, listed by component and area.
     - `min-non-active-revisions: "2"`: The minimum number of inactive Revisions to retain.
     - `max-non-active-revisions: "5"`: The maximum number of inactive Revisions to retain.
 
-  For more information about updating default values, see [Configure Garbage collection for the Knative revisions](/cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
+  For more information about updating default values, see [Configure Garbage collection for the Knative revisions](cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
 
 ---
 
