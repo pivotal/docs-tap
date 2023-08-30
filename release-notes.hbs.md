@@ -82,11 +82,11 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-7-0-eventing-br'>Eventing
+#### <a id='1-7-0-eventing-br'></a> Eventing
 
 - Eventing is removed in this release, install and manage Knative Eventing as an alternative solution.
 
-#### <a id='1-7-0-workloads-br'>Workloads
+#### <a id='1-7-0-workloads-br'></a> Workloads
 
 - Function Buildpacks for Knative and the corresponding
 Application Accelerator starter templates for Python and Java are removed in this release.
