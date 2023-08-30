@@ -50,7 +50,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
 7. After downloading the ZIP file, expand it in a workspace directory. If you did not create a Git repository in the preceding steps, follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI 
+## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI
 
 1. Set up environment variables by running:
 
@@ -106,8 +106,6 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 ## <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI software catalog
 
 1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left navigation pane. Click **REGISTER ENTITY**.
-
-    ![Screenshot of Tanzu Application Platform GUI Home page, with REGISTER Entity button highlighted.](../images/getting-started-tap-gui-5.png)
 
     Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md#full-profile).
 
