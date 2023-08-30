@@ -14,7 +14,7 @@ The following prerequisites are required to upgrade Cloud Native Runtimes:
 
 ## <a id='upgrade-cnrs'></a> Upgrade Cloud Native Runtimes
 
->**Important** If you previously installed Cloud Native Runtimes v1.3 or prior and, you want to upgrade to the latest version,
+>**Important** If you previously installed Cloud Native Runtimes v1.3 or earlier, and you want to upgrade to the latest version,
 you must first upgrade to Cloud Native Runtimes v2.0.1.
 
 If you have previously installed Cloud Native Runtimes v1.3 or an earlier version and want to upgrade to the latest version,

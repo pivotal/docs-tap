@@ -6,7 +6,7 @@ You can verify that your Cloud Native Runtimes installation was successful by te
 ## <a id='prerecs'></a> Prerequisites
 
 1. Create a namespace and environment variable where you want to create Knative services. Run:
-   >**Note:** This step covers configuring a namespace to run Knative services.
+   >**Note** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-online-set-up-namespaces.html).
@@ -17,9 +17,9 @@ You can verify that your Cloud Native Runtimes installation was successful by te
     kubectl create namespace ${WORKLOAD_NAMESPACE}
     ```
 
-2. Configure a namespace to use Cloud Native Runtimes. If you relocated images to another registry during the Tanzu Application Platform installation, you must grant service accounts that run Knative services using Cloud Native Runtimes access to the image pull secrets. This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets. Without these credentials, attempts to start a service fail with a timeout and the pods report that they are unable to pull the `queue-proxy` image.
+2. Configure a namespace to use Cloud Native Runtimes. If you relocated images to another registry during Tanzu Application Platform installation, you must grant service accounts that run Knative services using Cloud Native Runtimes access to the image pull secrets. This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets. Without these credentials, attempts to start a service fail with a timeout and the pods report that they are unable to pull the `queue-proxy` image.
 
-    1. Create an image pull secret in the namespace that Knative services run and fill it from the `tap-registry` secret mentioned in [Add the Tanzu Application Platform package repository](https://docs.vmware.com/en/Tanzu-Application-Platform/1.6/tap/install-intro.html).  Run the following commands to create an empty secret and annotate it as a target of the secretgen controller:
+    1. Create an image pull secret in the namespace that Knative services run and fill it from the `tap-registry` secret mentioned in [Add the Tanzu Application Platform package repository](https://docs.vmware.com/en/Tanzu-Application-Platform/1.6/tap/install-intro.html). Run the following commands to create an empty secret and annotate it as a target of the secretgen controller:
 
         ```console
         kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson -n ${WORKLOAD_NAMESPACE}

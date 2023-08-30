@@ -2,7 +2,7 @@
 
 This topic tells you how to verify that Knative Serving was installed for Cloud Native Runtimes, commonly known as CNR.
 
-## About Verifying Knative Serving
+## <a id='overview'></a> Overview of verifying Knative Serving
 
 To verify that Knative Serving was installed, create an example Knative service
 and test it.
@@ -15,7 +15,7 @@ This sample is custom built for Cloud Native Runtimes and is stored in the VMwar
 you can use the [Hello World - Go](https://knative.dev/docs/serving/samples/hello-world/helloworld-go/)
 sample app in the Knative documentation.
 
-## Prerequisites
+## <a id='prereqs'></a> Prerequisites
 
 Before you verify Knative Serving, you must have a namespace where you want to deploy Knative services. This namespace is referred to as `${WORKLOAD_NAMESPACE}` in this tutorial. See [Verifying Your Installation](./verify-installation.hbs.md).
 
@@ -49,6 +49,7 @@ To create an example Knative service and use it to test Knative Serving:
     kn service create hello-yeti -n ${WORKLOAD_NAMESPACE} \
       --image projects.registry.vmware.com/tanzu_serverless/hello-yeti@sha256:17d640edc48776cfc604a14fbabf1b4f88443acc580052eef3a753751ee31652 --env TARGET='hello-yeti'
     ```
+    
    If you are verifying on Tanzu Mission Control or vSphere 7.0 with Tanzu, add `--user 1001` to the command above to run it as a non-root user.
 
 3. Run one of these commands to retrieve the external address for your ingress, depending on your IaaS:
