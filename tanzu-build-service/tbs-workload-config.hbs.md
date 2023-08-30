@@ -25,7 +25,7 @@ see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMwar
 
 To configure a service binding for a Tanzu Application Platform workload, follow these steps:
 
-1. Create a YAML file named `service-binding-secret.yaml` for a secret as follows:
+1. Create a YAML file named `service-binding-secret.yaml` for a Maven secret as follows:
 
     ```yaml
     apiVersion: v1
@@ -38,6 +38,21 @@ To configure a service binding for a Tanzu Application Platform workload, follow
       type: maven
       provider: sample
       settings.xml: |
+      MY-SETTINGS
+    ```
+
+    or for a NuGet secret as follows:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: settings-xml
+      namespace: DEVELOPER-NAMESPACE
+    type: service.binding/nugetconfig
+    stringData:
+      type: nugetconfig
+      nuget.config: |
       MY-SETTINGS
     ```
 
