@@ -27,9 +27,8 @@ external-secrets secrets create [flags]
 To create an ExternalSecret resource from a YAML or JSON file, run:
 
 ```console
-tanzu external-secrets secret create --filename <file.yaml>
+tanzu external-secrets secret create --filename my-file.yaml
 ```
-<!-- angle brackets around file.yaml are required or not? -->
 
 To create an ExternalSecret resource from YAML or JSON using stdin, run:
 
@@ -144,15 +143,14 @@ external-secrets secrets sync [flags]
 To trigger the sync of an external secret, run:
 
 ```console
-tanzu external-secrets secrets sync <secret>
+tanzu external-secrets secrets sync mysecret
 ```
 
 To trigger the sync of an external secret in a namespace, run:
 
 ```console
-tanzu external-secrets secrets sync <secret> -n dev
+tanzu external-secrets secrets sync mysecret -n dev
 ```
-<!-- angle brackets around <secret> are required or not? Would that be the secret name? -->
 
 ### <a id="secrets-sync-options"></a> Options
 

@@ -27,9 +27,8 @@ external-secrets cluster-stores create [flags]
 To create a ClusterStore resource from a YAML or JSON file, run:
 
 ```console
-tanzu external-secrets cluster-stores create --filename <file.yaml>
+tanzu external-secrets cluster-stores create --filename my-file.yaml
 ```
-<!-- angle brackets around file.yaml are required or not? -->
 
 To create a ClusterStore resource from YAML or JSON using stdin, run:
 

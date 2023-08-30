@@ -27,9 +27,8 @@ external-secrets cluster-external-secrets create [flags]
 To create a ClusterExternalSecret resource from a YAML or JSON file, run:
 
 ```console
-tanzu external-secrets cluster-external-secret create --filename <file.yaml>
+tanzu external-secrets cluster-external-secret create --filename my-file.yaml
 ```
-<!-- angle brackets around file.yaml are required or not? -->
 
 To create ClusterExternalSecret resource from YAML or JSON using stdin, run:
 
