@@ -3,6 +3,11 @@
 This topic tells you how to create and deploy a HTTP or CloudEvent function from an
 Application Accelerator starter template in an online or air-gapped environment on Tanzu Application Platform (commonly known as TAP).
 
+> **Important** Function Buildpacks for Knative and the corresponding
+> Application Accelerator starter templates for Python and Java will be
+> immediately deprecated in TAP 1.7 and beyond. This beta product will not
+> receive any future updates or patches.
+
 ## <a id="overview"></a> Overview
 
 The function experience on Tanzu Application Platform enables you to deploy functions, use
