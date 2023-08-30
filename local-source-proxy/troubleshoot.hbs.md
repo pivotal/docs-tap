@@ -223,3 +223,26 @@ AWS Elastic Container Registry (ECR) is configured as the external registry in `
 
 Delete the old pods so that the new pods can mount the expected `podspec`, enabling access to the
 registry through the Identity and Access Management (IAM) role Amazon Resource Name (ARN).
+
+## <a id="unknown-lsp-for-apps"></a> Error: unknown command "lsp" for "apps"
+
+### Symptom
+
+When running `tanzu apps lsp health` the CLI returns the error message
+
+```console
+Error: unknown command "lsp" for "apps"
+```
+
+### Cause
+
+Tanzu CLI and the apps plug-in are out of date.
+
+### Solution
+
+1. Install [Tanzu CLI v0.12.0 or later](../install-tanzu-cli.hbs.md).
+2. Upgrade the apps plug-in by running:
+
+   ```console
+   tanzu plugin upgrade apps
+   ```
