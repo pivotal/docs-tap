@@ -1,94 +1,10 @@
-# Create Eureka Servers for Service Discovery in Workloads
+# Configuring Workloads in Tanzu Application Platform using Service Registry
 
-This topic describes how to create `EurekaServer` resources and how to bind to them in workloads
- with Resource Claims.
+This topic describes how to configure Tanzu Application Platform workloads
+running Spring Boot applications to connect to Service Registry EurekaServers.
 
-## <a id="discover-params"></a> Discover available parameters
-
-To examine the available parameters when creating a `EurekaServer` resource run:
-
-```console
-kubectl explain eurekaservers.service-registry.spring.apps.tanzu.vmware.com.spec
-```
-
-For example:
-
-```console
-$ kubectl explain eurekaservers.service-registry.spring.apps.tanzu.vmware.com.spec
-
-GROUP:      service-registry.spring.apps.tanzu.vmware.com
-KIND:       EurekaServer
-VERSION:    v1alpha1
-
-FIELD: spec <Object>
-
-DESCRIPTION:
-    EurekaServerSpec defines the desired state of EurekaServer
-
-FIELDS:
-  imagePullSecretName	<string>
-    Name of secret to use for pulling the Eureka image
-
-  replicas	<integer>
-    Replica count for the EurekaServer StatefulSet
-```
-
-## <a id="claim-creds"></a>Create a EurekaServer
-
-To create a `EurekaServer` resource with two replicas, use the following YAML definition:
-
-```YAML
----
-apiVersion: service-registry.spring.apps.tanzu.vmware.com/v1alpha1
-kind: EurekaServer
-metadata:
-  name: my-eurekaserver
-  namespace: my-namespace
-spec:
-  replicas: 2
-```
-
-Then apply the YAML:
-
-```console
-kubectl apply -f my-eurekaserver.yaml
-```
-
-Use `kubectl describe` to check the status of the `EurekaServer`. For example:
-
-```console
-$ kubectl describe eurekaservers.service-registry.spring.apps.tanzu.vmware.com my-eurekaserver
-
-Name:         my-eurekaserver
-Namespace:    my-namespace
-Labels:       <none>
-Annotations:  <none>
-API Version:  service-registry.spring.apps.tanzu.vmware.com/v1alpha1
-Kind:         EurekaServer
-Metadata:
-  Creation Timestamp:  2023-08-30T14:51:04Z
-  Generation:          1
-  Resource Version:    4698719
-  UID:                 4dd60698-6332-43bf-a27d-cef610579c98
-Spec:
-  Replicas:  2
-Status:
-  Binding:
-    Name:  eureka-my-eurekaserver-client-binding-mvvlx
-  Conditions:
-    Last Transition Time:  2023-08-30T14:51:04Z
-    Message:               EurekaServer reconciled
-    Observed Generation:   1
-    Reason:                EurekaServerReconciled
-    Status:                True
-    Type:                  Ready
-  Observed Generation:     1
-  Server Binding:
-    Name:  eureka-my-eurekaserver-server-binding-2jq76
-Events:    <none>
-```
-
-The `Status.Conditions` field will inform you when the `EurekaServer` is ready.
+Before following these steps, you should have created a `EurekaServer` as
+described in [the previous topic](configuring-eureka-servers.hbs.md).
 
 ## <a id="claim-creds"></a>Claim credentials
 
@@ -256,3 +172,18 @@ And created with:
 tanzu apps workload create -f greeter-messages.yaml --yes
 tanzu apps workload create -f greeter.yaml --yes
 ```
+
+> **Note:** In the example above, we set `BP_GRADLE_BUILD_ARGUMENTS` to include the
+> `bootJar` task in addition to the default gradle build arguments. This setting is
+> necessary for this example base because the `build.gradle` file contains a
+> `jar` section, and the Spring Boot buildpack will not inject the
+> spring-cloud-bindings library into the application if it is an executable jar
+> file. We require spring-cloud-bindings in order to process our serviceClaim
+> into properties that tell the discovery client how to find the Eureka server.
+> If you wish to use Service Registry with an executable jar file application,
+> you can do so, but you must include [spring-cloud-bindings
+> v1.13.0](https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bindings/1.13.0)
+> or later explicitly, as well as setting the
+> `org.springframework.cloud.bindings.boot.enable=true` system property as
+> described in the [library
+> README](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration)
