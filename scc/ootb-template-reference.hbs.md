@@ -515,7 +515,7 @@ These are used as the `image-provider` resource when the workload parameter `doc
 
 ### <a id='kaniko-creates'></a> Creates
 
-A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to build an image with kaniko.
+A taskrun.tekton.dev which provides configuration to the Tekton Task `kaniko-build` which builds an image with kaniko.
 
 This template uses the [lifecycle: tekton](https://cartographer.sh/docs/v0.6.0/lifecycle/)
 flag to create new immutable objects rather than updating the previous object.
@@ -1921,7 +1921,8 @@ Bundles Kubernetes configuration into a Carvel Package.
 
 ### <a id='carvel-creates'></a> Creates
 
-A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to bundle Kubernetes configuration into a Carvel Package.
+A taskrun.tekton.dev which provides configuration to the `carvel-package` Tekton Task which bundles Kubernetes
+configuration into a Carvel Package.
 
 This template uses the [lifecycle: tekton](https://cartographer.sh/docs/v0.6.0/lifecycle/)
 flag to create new immutable objects rather than updating the previous object.
