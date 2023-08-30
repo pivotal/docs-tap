@@ -107,6 +107,6 @@ This command has the following options:
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-### <a id="see-also"></a> See also
+## <a id="see-also"></a> See also
 
 - [external-secrets](external-secrets.md)
