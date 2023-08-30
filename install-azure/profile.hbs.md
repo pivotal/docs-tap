@@ -404,7 +404,7 @@ To install the `full` dependencies package:
       --namespace tap-install
     ```
 
-    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 1. Install the full dependencies package by running:
 
