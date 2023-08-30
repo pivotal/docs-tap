@@ -99,8 +99,6 @@ To manually create a new API entity:
 
 2. Click **REGISTER ENTITY**.
 
-   ![Your Organization Catalog page. The REGISTER ENTITY button in the header is framed in red.](../../images/getting-started-tap-gui-5.png)
-
 3. **Register an existing component** prompts you to type a repository URL.
    Paste the link to the `catalog-info.yaml` file of your choice that contains the definition of your
    API entity.
