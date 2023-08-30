@@ -288,6 +288,16 @@ appliveview_connector:
       BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
       -----END CERTIFICATE-----
 
+local_source_proxy:
+  # Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
+  repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
+  push_secret:
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
+    name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
+    namespace: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE"
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
+    create_export: true
+
 tap_gui:
   app_config:
     auth:
@@ -361,6 +371,19 @@ service's External IP address.
    - Harbor has the form `repository: "my-project/supply-chain"`.
    - Docker Hub has the form `repository: "my-dockerhub-user"`.
    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where the developer's local source is uploaded when using
+ Tanzu CLI to use Local Source Proxy for workload creation.
+
+ If an AWS ECR registry is being used, ensure that the repository already exists.
+ AWS ECR expects the repository path to already exist. This destination is represented as
+ `REGISTRY-SERVER/REPOSITORY-PATH`. For more information, see
+ [Install Local Source Proxy](../local-source-proxy/install.hbs.md).
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow
+ pushing to the `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` repository.
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
+ `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](../scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
