@@ -19,7 +19,7 @@ For information about the languages and frameworks that are supported by Tanzu A
 
 The following use cases apply to Supply Chain Security Tools - Scan:
 
-- Use your scanner as a plug-in, scan source code repositories and images for known Common Vulnerabilities and Exposures (CVEs) before deploying to a cluster.
+- Use your scanner as a plug-in to scan source code repositories and images for known Common Vulnerabilities and Exposures (CVEs) before deploying to a cluster.
 - Identify CVEs by continuously scanning each new code commit or each new image built.
 - Analyze scan results against user-defined policies by using Open Policy Agent.
 - Produce vulnerability scan results and post them to the Supply Chain Security Tools - Store from where they are queried.
