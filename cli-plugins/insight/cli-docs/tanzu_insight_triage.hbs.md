@@ -15,4 +15,5 @@ This topic tells you how to use the Tanzu Insight CLI
 * [tanzu insight](tanzu_insight.hbs.md)	 - post & query image, package, source, and vulnerability data
 * [tanzu insight triage copy](tanzu_insight_triage_copy.hbs.md)	 - Copy an existing analysis to a new image, source or artifact group
 * [tanzu insight triage list](tanzu_insight_triage_list.hbs.md)	 - Return the list of existing vulnerability triages
+* [tanzu insight triage rebase](tanzu_insight_triage_rebase.hbs.md)	 - Copy existing analyses within an artifact group into an image
 * [tanzu insight triage update](tanzu_insight_triage_update.hbs.md)	 - Create or update a vulnerability analysis
