@@ -23,7 +23,7 @@ This release includes the following platform-wide enhancements.
 
 - Eventing is removed in this release, install and manage Knative Eventing as an alternative solution.
 
----
+- The Workloads Functions feature is removed in this release.
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
