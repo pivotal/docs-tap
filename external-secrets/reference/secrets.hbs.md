@@ -16,7 +16,7 @@ This command has the following options:
 
 ## <a id="secrets-create"></a> external-secrets secrets create
 
-Create an external-secret external-secrets.io/v1beta1/ExternalSecret resource.
+Creates an external-secret external-secrets.io/v1beta1/ExternalSecret resource.
 
 ```console
 external-secrets secrets create [flags]
@@ -24,14 +24,14 @@ external-secrets secrets create [flags]
 
 ### <a id="secrets-create-examples"></a> Examples
 
-Create an ExternalSecret resource from a YAML or JSON file:
+To create an ExternalSecret resource from a YAML or JSON file, run:
 
 ```console
 tanzu external-secrets secret create --filename <file.yaml>
 ```
 <!-- angle brackets around file.yaml are required or not? -->
 
-Create an ExternalSecret resource from YAML or JSON using stdin:
+To create an ExternalSecret resource from YAML or JSON using stdin, run:
 
 ```console
 cat <<EOF | tanzu external-secrets secret create -f -
@@ -64,13 +64,13 @@ external-secrets secrets get [flags]
 
 ### <a id="secrets-get-examples"></a> Examples
 
-Get a specific external-secret from a specified namespace:
+To get a specific external-secret from a specified namespace, run:
 
 ```console
 tanzu external-secrets secrets get $EXTERNAL_SECRET_NAME  -n example-ns
 ```
 
-Get a specific external-secret from a specified namespace in JSON output format:
+To get a specific external-secret from a specified namespace in JSON output format, run:
 
 ```console
 tanzu external-secrets secret get $EXTERNAL_SECRET_NAME -n example-ns -o json
@@ -100,19 +100,19 @@ external-secrets secrets list [flags]
 
 ### <a id="secrets-list-example"></a> Examples
 
-List external-secrets across all namespaces:
+To list external-secrets across all namespaces, run:
 
 ```console
 tanzu external-secrets list -A
 ```
 
-List external-secrets from specified namespace:
+To list external-secrets from specified namespace, run:
 
 ```console
 tanzu external-secrets secrets list -n test-ns
 ```
 
-List external-secrets in JSON output format:
+To list external-secrets in JSON output format, run:
 
 ```console
 tanzu external-secrets secret list -n test-ns -o json
@@ -133,7 +133,7 @@ This command has the following options:
 
 ## <a id="secrets-sync"></a> external-secrets secrets sync
 
-Force the synchronization of an external-secrets.io/v1beta1 secret
+Forces the synchronization of an external-secrets.io/v1beta1 secret.
 
 ```console
 external-secrets secrets sync [flags]
@@ -141,13 +141,13 @@ external-secrets secrets sync [flags]
 
 ### <a id="secrets-sync-examples"></a> Examples
 
-Trigger the sync of an external secret:
+To trigger the sync of an external secret, run:
 
 ```console
 tanzu external-secrets secrets sync <secret>
 ```
 
-Trigger the sync of an external secret in a namespace
+To trigger the sync of an external secret in a namespace, run:
 
 ```console
 tanzu external-secrets secrets sync <secret> -n dev

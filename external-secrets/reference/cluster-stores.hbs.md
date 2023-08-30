@@ -24,14 +24,14 @@ external-secrets cluster-stores create [flags]
 
 ### <a id="cs-create-examples"></a> Examples
 
-Create a ClusterStore resource from a YAML or JSON file:
+To create a ClusterStore resource from a YAML or JSON file, run:
 
 ```console
 tanzu external-secrets cluster-stores create --filename <file.yaml>
 ```
 <!-- angle brackets around file.yaml are required or not? -->
 
-Create a ClusterStore resource from YAML or JSON using stdin:
+To create a ClusterStore resource from YAML or JSON using stdin, run:
 
 ```console
 cat <<EOF | tanzu external-secrets cluster-stores create -f -
@@ -55,7 +55,7 @@ This command has the following options:
 
 ## <a id="cs-get"></a> external-secrets cluster-stores get
 
-Get a specific external-secrets.io/v1beta1/ClusterSecretStore resource.
+Gets a specific external-secrets.io/v1beta1/ClusterSecretStore resource.
 
 ```console
 external-secrets cluster-stores get [flags]
@@ -63,13 +63,13 @@ external-secrets cluster-stores get [flags]
 
 ### <a id="cs-get-examples"></a> Examples
 
-Get a cluster-store:
+To get a cluster-store, run:
 
 ```console
 tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME
 ```
 
-Get a cluster-store in JSON output format:
+To get a cluster-store in JSON output format, run:
 
 ```console
 tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME -o json
@@ -96,13 +96,13 @@ external-secrets cluster-stores list [flags]
 
 ### <a id="cs-list-examples"></a> Examples
 
-List all external secrets cluster stores:
+To list all external secrets cluster stores, run:
 
 ```console
 tanzu external-secrets cluster-stores list
 ```
 
-List all external secrets cluster stores in JSON output format:
+To list all external secrets cluster stores in JSON output format, run:
 
 ```console
 tanzu external-secrets cluster-stores list -o json

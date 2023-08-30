@@ -16,7 +16,7 @@ This command has the following options:
 
 ## <a id="stores-create"></a> external-secrets stores create
 
-Create a secret store external-secrets.io/v1beta1/SecretStore.
+Creates a secret store external-secrets.io/v1beta1/SecretStore.
 
 ```console
 external-secrets stores create [flags]
@@ -24,14 +24,14 @@ external-secrets stores create [flags]
 
 ### <a id="stores-create-examples"></a> Examples
 
-Create SecretStore resource from a YAML or JSON file:
+To create SecretStore resource from a YAML or JSON file, run:
 
 ```console
 tanzu external-secrets stores create --filename <file.yaml>
 ```
 <!-- angle brackets around file.yaml are required or not? -->
 
-Create SecretStore resource from YAML or JSON using stdin:
+To create SecretStore resource from YAML or JSON using stdin, run:
 
 ```console
 cat <<EOF | tanzu external-secrets stores create -f -
@@ -56,7 +56,7 @@ This command has the following options:
 
 ## <a id="stores-get"></a> external-secrets stores get
 
-Get a specific external-secrets.io/v1beta1/SecretStore.
+Gets a specific external-secrets.io/v1beta1/SecretStore.
 
 ```console
 external-secrets stores get [flags]
@@ -64,13 +64,13 @@ external-secrets stores get [flags]
 
 ### <a id="stores-get-examples"></a> Examples
 
-Get an external-secret-store from the specified namespace:
+To get an external-secret-store from the specified namespace, run:
 
 ```console
 tanzu external-secrets stores get $SECRET_STORE_NAME  -n test-ns
 ```
 
-Get an external-secret-store in JSON output format:
+To get an external-secret-store in JSON output format, run:
 
 ```console
 tanzu external-secrets stores get  $SECRET_STORE_NAME -n test-ns -o json
@@ -100,17 +100,17 @@ external-secrets stores list [flags]
 
 ### <a id="stores-list-examples"></a> Examples
 
-List all external secrets stores:
+To list all external secrets stores, run:
 
 ```console
 tanzu external-secrets stores list -A
 
-List external secrets stores in a specified namespace:
+To list external secrets stores in a specified namespace, run:
 
 ```console
 tanzu external-secrets stores list -n test-ns
 
-List all external secrets stores in JSON output format:
+To list all external secrets stores in JSON output format, run:
 
 ```console
 tanzu external-secrets stores list -n test-ns -o json

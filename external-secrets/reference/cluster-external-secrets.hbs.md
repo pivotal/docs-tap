@@ -24,14 +24,14 @@ external-secrets cluster-external-secrets create [flags]
 
 ### <a id="ces-create-examples"></a> Examples
 
-Create a ClusterExternalSecret resource from a YAML or JSON file:
+To create a ClusterExternalSecret resource from a YAML or JSON file, run:
 
 ```console
 tanzu external-secrets cluster-external-secret create --filename <file.yaml>
 ```
 <!-- angle brackets around file.yaml are required or not? -->
 
-Create ClusterExternalSecret resource from YAML or JSON using stdin:
+To create ClusterExternalSecret resource from YAML or JSON using stdin, run:
 
 ```console
 cat <<EOF | tanzu external-secrets cluster-external-secret create -f -
@@ -63,7 +63,7 @@ external-secrets cluster-external-secrets get [flags]
 
 ### <a id="ces-get-examples"></a> Examples
 
-Get a cluster-external-secret in JSON output format:
+To get a cluster-external-secret in JSON output format, run:
 
 ```console
 tanzu external-secrets cluster-external-secrets get $CLUSTER_EXTERNAL_SECRET_NAME -n test-ns -o json
@@ -90,7 +90,7 @@ external-secrets cluster-external-secrets list [flags]
 
 ### <a id="ces-list-examples"></a> Examples
 
-List the cluster-external-secrets in JSON output format:
+To list the cluster-external-secrets in JSON output format, run:
 
 ```console
 tanzu external-secrets cluster-external-secrets list -o json
