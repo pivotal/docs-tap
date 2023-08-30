@@ -37,7 +37,7 @@ OR add HTML or Markdown table
  
 The following issues, listed by component and area, are resolved in this release. 
  
-#### <a id='1-4-9-cli-ri'></a> v1.4.9 resolved issues: Tanzu CLI and plugins
+#### <a id='1-4-9-cli-ri'></a> v1.4.9 resolved issues: Tanzu CLI and plug-ins
  
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
 so that the CLI is compatible with all supported Tanzu Application Platform versions. For more information
