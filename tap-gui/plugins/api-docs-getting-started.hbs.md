@@ -29,8 +29,6 @@ other software catalog entity:
 1. Go to the home page of Tanzu Application Platform GUI by clicking **Home** on the left-side
    navigation bar. Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header.](../images/../../images/getting-started-tap-gui-5.png)
-
 2. **Register an existing component** prompts you to type a repository URL.
    Type the link to the `catalog-info.yaml` file of your choice or use the following sample
    definition. Save this code block as `catalog-info.yaml`, upload it to the Git repository of your

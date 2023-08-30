@@ -119,11 +119,9 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
 1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left navigation pane. Click **REGISTER ENTITY**.
 
-    ![Screenshot of Tanzu Application Platform GUI Home page, with REGISTER Entity button highlighted.](../images/getting-started-tap-gui-5.png)
-
     Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](../install-online/profile.hbs.md#full-profile).
 
-2. **Register an existing component** prompts you to type a repository URL.
+1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository text box. For example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
@@ -131,11 +129,11 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
     ![Screenshot of the page to register an existing component, showing Repository URL text box and Analyze button.](../images/getting-started-tap-gui-6.png)
 
-2. Review the catalog entities to be added and click **IMPORT**.
+1. Review the catalog entities to be added and click **IMPORT**.
 
     ![Screenshot of page for reviewing catalog entities to be added, showing entity details and Import button.](../images/getting-started-tap-gui-7.png)
 
-3. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
 >**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
