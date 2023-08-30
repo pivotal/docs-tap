@@ -54,6 +54,14 @@ This release includes the following changes, listed by component and area.
   In the meantime both options are supported and `cnrs.contour.[internal/external].namespace` takes precedence
   over `cnrs.ingress.[internal/external].namespace`.
 
+#### <a id='1-7-0-service-registry'></a> v1.7.0 features: Service Registry
+
+- This includes the initial release of `service-registry.spring.apps.tanzu.vmware.com` on 
+  Tanzu Application Platform. See the [Component Documentation](service-registry/overview.hbs.md) to
+  get started.
+
+- Feature description.
+
 ---
 
 ### <a id='1-7-0-breaking-changes'></a> v1.7.0 Breaking changes
