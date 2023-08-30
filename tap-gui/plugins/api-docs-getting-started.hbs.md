@@ -26,8 +26,6 @@ other software catalog entity:
 
 1. Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header.](../../images/getting-started-tap-gui-5.png)
-
 1. In the repository URL text box, type the link to the `catalog-info.yaml` file of your choice or use
    the following sample definition.
 

@@ -196,8 +196,6 @@ and then update the `workload.yaml` with the repository URL and branch.
 
 1. Click **REGISTER ENTITY**.
 
-    ![Screenshot of Tanzu Application Platform GUI Home page, with REGISTER Entity button highlighted.](../images/getting-started-tap-gui-5.png)
-
     Alternatively, you can add a link for the `catalog-info.yaml` to the `tap-values.yaml` configuration
     file in the `tap_gui.app_config.catalog.locations` section.
     For more information, see
