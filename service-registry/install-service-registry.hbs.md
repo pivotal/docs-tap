@@ -56,7 +56,10 @@ To install Service Registry on a compliant Kubernetes cluster:
     Added installed package 'service-registry' in namespace 'tap-install'
    ```
 
-4. Verify that you installed the package by running:
+   > **Note** The installation for Service Registry does not offer any customization options at this 
+   > time, so there is no need to include a `--values-file` option.
+
+3. Verify that you installed the package by running:
 
    ```console
    tanzu package installed get service-registry -n tap-install
