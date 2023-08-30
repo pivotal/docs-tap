@@ -19,12 +19,6 @@ This release includes the following platform-wide enhancements.
 
 - [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
 
-#### <a id='1-7-0-removed-components'></a> Removed components
-
-- Eventing is removed in this release, install and manage Knative Eventing as an alternative solution.
-
-- Function Buildpacks for Knative and the corresponding
-Application Accelerator starter templates for Python and Java are removed in this release.
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
@@ -87,6 +81,15 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 ### <a id='1-7-0-breaking-changes'></a> v1.7.0 Breaking changes
 
 This release includes the following changes, listed by component and area.
+
+#### <a id='1-7-0-eventing-br'>Eventing
+
+- Eventing is removed in this release, install and manage Knative Eventing as an alternative solution.
+
+#### <a id='1-7-0-workloads-br'>Workloads
+
+- Function Buildpacks for Knative and the corresponding
+Application Accelerator starter templates for Python and Java are removed in this release.
 
 #### <a id='1-7-0-COMPONENT-NAME-bc'></a> v1.7.0 breaking changes: COMPONENT-NAME
 
