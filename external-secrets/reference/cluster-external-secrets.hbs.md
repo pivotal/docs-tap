@@ -1,48 +1,51 @@
 # external-secrets cluster-external-secrets
 
-Interacting with external-secrets.io ClusterExternalSecrets
+This topic gives you reference information for interacting with external-secrets.io ClusterExternalSecrets.
 
-### Synopsis
+## <a id="cluster-external-secret"></a> external-secrets cluster-external-secret
 
 List external secrets cluster-external-secrets.
 
-### Options
+### <a id="ces-options"></a> Options
+
+This command has the following options:
 
 ```console
   -h, --help   help for cluster-external-secrets
 ```
 
-## external-secrets cluster-external-secrets create
+## <a id="ces-create"></a> external-secrets cluster-external-secrets create
 
-Create cluster-external-secret external-secrets.io/v1beta1/ClusterExternalSecret
+Creates a cluster-external-secret external-secrets.io/v1beta1/ClusterExternalSecret resource.
 
-### Synopsis
-
-Create cluster-external-secret external-secrets.io/v1beta1/ClusterExternalSecret
-
-```
+```console
 external-secrets cluster-external-secrets create [flags]
 ```
 
-### Examples
+### <a id="ces-create-examples"></a> Examples
 
-```
+Create a ClusterExternalSecret resource from a YAML or JSON file:
 
-# Create ClusterExternalSecret resource from yaml/json file
+```console
 tanzu external-secrets cluster-external-secret create --filename <file.yaml>
+```
+<!-- angle brackets around file.yaml are required or not? -->
 
-# Create ClusterExternalSecret resource from yaml/json stdin
+Create ClusterExternalSecret resource from YAML or JSON using stdin:
+
+```console
 cat <<EOF | tanzu external-secrets cluster-external-secret create -f -
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterExternalSecret
 ...
 EOF
-
 ```
 
-### Options
+### <a id="ces-create-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -f, --filepath string     Yaml/Json file to create secret via external-secrets operator
   -h, --help                help for create
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -50,63 +53,60 @@ EOF
   -y, --yes                 Accept all prompts
 ```
 
-## external-secrets cluster-external-secrets get
+## <a id="ces-get"></a> external-secrets cluster-external-secrets get
 
-Get a specific external-secrets.io/v1beta1/ClusterExternalSecret
+Gets a specific external-secrets.io/v1beta1/ClusterExternalSecret resource.
 
-### Synopsis
-
-Get a specific external-secrets.io/v1beta1/ClusterExternalSecret resource
-
-```
+```console
 external-secrets cluster-external-secrets get [flags]
 ```
 
-### Examples
+### <a id="ces-get-examples"></a> Examples
 
-```
-# Get cluster-external-secret in json output format
+Get a cluster-external-secret in JSON output format:
+
+```console
 tanzu external-secrets cluster-external-secrets get $CLUSTER_EXTERNAL_SECRET_NAME -n test-ns -o json
 ```
 
-### Options
+### <a id="ces-get-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help                help for get
       --kubeconfig string   The path to the kubeconfig file, optional
   -o, --output string       Output format (yaml|json|table), optional
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-## external-secrets cluster-external-secrets list
+## <a id="ces-list"></a> external-secrets cluster-external-secrets list
 
-Lists all external-secrets.io/v1beta1/ClusterExternalSecret
+Lists all external-secrets.io/v1beta1/ClusterExternalSecret resources.
 
-### Synopsis
-
-Lists all external-secrets.io/v1beta1/ClusterExternalSecret
-
-```
+```console
 external-secrets cluster-external-secrets list [flags]
 ```
 
-### Examples
+### <a id="ces-list-examples"></a> Examples
 
-```
+List the cluster-external-secrets in JSON output format:
 
-# List cluster-external-secrets in json output format
+```console
 tanzu external-secrets cluster-external-secrets list -o json
 ```
 
-### Options
+### <a id="ces-list-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help                help for list
       --kubeconfig string   The path to the kubeconfig file, optional
   -o, --output string       Output format (yaml|json|table), optional
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-### SEE ALSO
+### <a id="see-also"></a> See also
 
-* [external-secrets](external-secrets.md)	 - interacts with external-secrets.io resources
+- [external-secrets](external-secrets.md)

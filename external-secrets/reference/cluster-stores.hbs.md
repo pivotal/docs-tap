@@ -1,48 +1,51 @@
 # external-secrets cluster-stores
 
-Interacting with external-secrets.io ClusterStores
+This topic provides reference information for interacting with external-secrets.io ClusterStores.
 
-### Synopsis
+## <a id="cluster-stores"></a> external-secrets cluster-stores
 
-List external secrets cluster stores.
+Lists external secrets cluster stores.
 
-### Options
+### <a id="cs-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help   help for cluster-stores
 ```
 
-## external-secrets cluster-stores create
+## <a id="cs-create"></a> external-secrets cluster-stores create
 
-Create cluster-store external-secrets.io/v1beta1/ClusterSecretStore
+Creates a cluster-store external-secrets.io/v1beta1/ClusterSecretStore resource.
 
-### Synopsis
-
-Create cluster-store external-secrets.io/v1beta1/ClusterSecretStore
-
-```
+```console
 external-secrets cluster-stores create [flags]
 ```
 
-### Examples
+### <a id="cs-create-examples"></a> Examples
 
-```
+Create a ClusterStore resource from a YAML or JSON file:
 
-# Create ClusterStore resource from yaml/json file
+```console
 tanzu external-secrets cluster-stores create --filename <file.yaml>
+```
+<!-- angle brackets around file.yaml are required or not? -->
 
-# Create ClusterStore resource from yaml/json stdin
+Create a ClusterStore resource from YAML or JSON using stdin:
+
+```console
 cat <<EOF | tanzu external-secrets cluster-stores create -f -
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 ...
 EOF
-
 ```
 
-### Options
+### <a id="cs-create-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -f, --filepath string     Yaml/Json file to create cluster store secret via external-secrets operator
   -h, --help                help for create
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -50,70 +53,72 @@ EOF
   -y, --yes                 accept all prompts
 ```
 
-## external-secrets cluster-stores get
+## <a id="cs-get"></a> external-secrets cluster-stores get
 
-Get a specific external-secrets.io/v1beta1/ClusterSecretStore
+Get a specific external-secrets.io/v1beta1/ClusterSecretStore resource.
 
-### Synopsis
-
-Get a specific external-secrets.io/v1beta1/ClusterSecretStore resource
-
-```
+```console
 external-secrets cluster-stores get [flags]
 ```
 
-### Examples
+### <a id="cs-get-examples"></a> Examples
 
+Get a cluster-store:
+
+```console
+tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME
 ```
 
-# Get external-secret-cluster-store
-tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME
+Get a cluster-store in JSON output format:
 
-# Get external-secret-cluster-store in json output format
+```console
 tanzu external-secrets cluster-stores get $CLUSTER_STORE_NAME -o json
 ```
 
-### Options
+### <a id="cs-get-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help                help for get
       --kubeconfig string   The path to the kubeconfig file, optional
   -o, --output string       Output format (yaml|json|table), optional
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-## external-secrets cluster-stores list
+## <a id="cs-list"></a> external-secrets cluster-stores list
 
-Lists all external-secrets.io/v1beta1/ClusterStores
+Lists all external-secrets.io/v1beta1/ClusterStores.
 
-### Synopsis
-
-Lists all external-secrets.io/v1beta1/ClusterStores
-
-```
+```console
 external-secrets cluster-stores list [flags]
 ```
 
-### Examples
+### <a id="cs-list-examples"></a> Examples
 
+List all external secrets cluster stores:
+
+```console
+tanzu external-secrets cluster-stores list
 ```
 
-# List all external secrets cluster stores
-tanzu external-secrets cluster-stores list
+List all external secrets cluster stores in JSON output format:
 
-# List all external secrets cluster stores in json output format
+```console
 tanzu external-secrets cluster-stores list -o json
 ```
 
-### Options
+### <a id="cs-list-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help                help for list
       --kubeconfig string   The path to the kubeconfig file, optional
   -o, --output string       Output format (yaml|json|table), optional
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-### SEE ALSO
+### <a id="see-also"></a> See also
 
-* [external-secrets](external-secrets.md)	 - interacts with external-secrets.io resources
+- [external-secrets](external-secrets.md)

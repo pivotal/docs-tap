@@ -2,47 +2,50 @@
 
 Interacting with external-secrets.io SecretStores
 
-### Synopsis
+## <a id="stores"></a> external-secrets stores
 
 List external secrets stores.
 
-### Options
+### <a id="stores-options"></a> Options
+
+This command has the following options:
 
 ```console
   -h, --help   help for stores
 ```
 
-## external-secrets stores create
+## <a id="stores-create"></a> external-secrets stores create
 
-Create secret store external-secrets.io/v1beta1/SecretStore
+Create a secret store external-secrets.io/v1beta1/SecretStore.
 
-### Synopsis
-
-Create secret store external-secrets.io/v1beta1/SecretStore
-
-```
+```console
 external-secrets stores create [flags]
 ```
 
-### Examples
+### <a id="stores-create-examples"></a> Examples
 
-```
+Create SecretStore resource from a YAML or JSON file:
 
-# Create SecretStore resource from yaml/json file
+```console
 tanzu external-secrets stores create --filename <file.yaml>
+```
+<!-- angle brackets around file.yaml are required or not? -->
 
-# Create SecretStore resource from yaml/json stdin
+Create SecretStore resource from YAML or JSON using stdin:
+
+```console
 cat <<EOF | tanzu external-secrets stores create -f -
 apiVersion: external-secrets.io/v1beta1
 kind: SecretStore
 ...
 EOF
-
 ```
 
-### Options
+### <a id="stores-create-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -f, --filepath string     Yaml/Json file to create secret store via external-secrets operator
   -h, --help                help for create
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -51,32 +54,33 @@ EOF
   -y, --yes                 accept all prompts
 ```
 
-## external-secrets stores get
+## <a id="stores-get"></a> external-secrets stores get
 
-Get a  specific external-secrets.io/v1beta1/SecretStore
+Get a specific external-secrets.io/v1beta1/SecretStore.
 
-### Synopsis
-
-Get a specific external-secrets.io/v1beta1/SecretStore
-
-```
+```console
 external-secrets stores get [flags]
 ```
 
-### Examples
+### <a id="stores-get-examples"></a> Examples
 
+Get an external-secret-store from the specified namespace:
+
+```console
+tanzu external-secrets stores get $SECRET_STORE_NAME  -n test-ns
 ```
 
-# Get external-secret-store from specified namespace
-tanzu external-secrets stores get $SECRET_STORE_NAME  -n test-ns
+Get an external-secret-store in JSON output format:
 
-# Get external-secret-store in json output format
+```console
 tanzu external-secrets stores get  $SECRET_STORE_NAME -n test-ns -o json
 ```
 
-### Options
+### <a id="stores-get-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -A, --all-namespaces      View secrets in all namespaces, optional
   -h, --help                help for get
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -85,35 +89,38 @@ tanzu external-secrets stores get  $SECRET_STORE_NAME -n test-ns -o json
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-## external-secrets stores list
+## <a id="stores-list"></a> external-secrets stores list
 
-Lists all external-secrets.io/v1beta1/Secrets
+Lists all external-secrets.io/v1beta1/ExternalSecret resources and checks for the associated v1/Secret
+with the correct owner reference.
 
-### Synopsis
-
-Lists all external-secrets.io/v1beta1/ExternalSecret and checks for the associated v1/Secret with the correct owner reference
-
-```
+```console
 external-secrets stores list [flags]
 ```
 
-### Examples
+### <a id="stores-list-examples"></a> Examples
 
-```
+List all external secrets stores:
 
-# List all external secrets stores
+```console
 tanzu external-secrets stores list -A
 
-# List external secrets stores in specified namespace
+List external secrets stores in a specified namespace:
+
+```console
 tanzu external-secrets stores list -n test-ns
 
-# List all external secrets stores in json output format
+List all external secrets stores in JSON output format:
+
+```console
 tanzu external-secrets stores list -n test-ns -o json
 ```
 
-### Options
+### <a id="stores-list-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -A, --all-namespaces      View secrets in all namespaces, optional
   -h, --help                help for list
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -122,6 +129,6 @@ tanzu external-secrets stores list -n test-ns -o json
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-### SEE ALSO
+### <a id="see-also"></a> See also
 
-* [external-secrets](external-secrets.md)	 - interacts with external-secrets.io resources
+- [external-secrets](external-secrets.md)

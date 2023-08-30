@@ -1,48 +1,51 @@
 # external-secrets secrets
 
-Interacting with external-secrets.io ExternalSecrets
+This topic gives you reference information for interacting with external-secrets.io ExternalSecrets
 
-### Synopsis
+## <a id="secrets"></a> external-secrets secrets
 
 Interacts with external-secrets.io resources.
 
-### Options
+### <a id="secrets-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help   help for secrets
 ```
 
-## external-secrets secrets create
+## <a id="secrets-create"></a> external-secrets secrets create
 
-Create external-secret external-secrets.io/v1beta1/ExternalSecret
+Create an external-secret external-secrets.io/v1beta1/ExternalSecret resource.
 
-### Synopsis
-
-Create external-secret external-secrets.io/v1beta1/ExternalSecret
-
-```
+```console
 external-secrets secrets create [flags]
 ```
 
-### Examples
+### <a id="secrets-create-examples"></a> Examples
 
-```
+Create an ExternalSecret resource from a YAML or JSON file:
 
-# Create ExternalSecret resource from yaml/json file
+```console
 tanzu external-secrets secret create --filename <file.yaml>
+```
+<!-- angle brackets around file.yaml are required or not? -->
 
-# Create ExternalSecret resource from yaml/json stdin
+Create an ExternalSecret resource from YAML or JSON using stdin:
+
+```console
 cat <<EOF | tanzu external-secrets secret create -f -
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 ...
 EOF
-
 ```
 
-### Options
+### <a id="secrets-create-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -f, --filepath string     Yaml/Json file to create secret via external-secrets operator
   -h, --help                help for create
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -51,32 +54,33 @@ EOF
   -y, --yes                 accept all prompts
 ```
 
-## external-secrets secrets get
+## <a id="secrets-get"></a> external-secrets secrets get
 
-Get a specific external-secrets.io/v1beta1/ExternalSecret
+Gets a specific external-secrets.io/v1beta1/ExternalSecret and its correct owner reference.
 
-### Synopsis
-
-Get a specific external-secrets.io/v1beta1/ExternalSecret and it's correct owner reference
-
-```
+```console
 external-secrets secrets get [flags]
 ```
 
-### Examples
+### <a id="secrets-get-examples"></a> Examples
 
+Get a specific external-secret from a specified namespace:
+
+```console
+tanzu external-secrets secrets get $EXTERNAL_SECRET_NAME  -n example-ns
 ```
 
-# Get a specific external-secret from a specified namespace
-tanzu external-secrets secrets get $EXTERNAL_SECRET_NAME  -n example-ns
+Get a specific external-secret from a specified namespace in JSON output format:
 
-# Get a specific external-secret from a specified namespace in json output format
+```console
 tanzu external-secrets secret get $EXTERNAL_SECRET_NAME -n example-ns -o json
 ```
 
-### Options
+### <a id="secrets-get-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -A, --all-namespaces      View secrets in all namespaces, optional
   -h, --help                help for get
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -85,35 +89,40 @@ tanzu external-secrets secret get $EXTERNAL_SECRET_NAME -n example-ns -o json
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-## external-secrets secrets list
+## <a id="secrets-list"></a> external-secrets secrets list
 
-Lists all external-secrets.io/v1beta1/ExternalSecret
+Lists all external-secrets.io/v1beta1/ExternalSecret resources and checks for the associated v1/Secret
+with the correct owner reference.
 
-### Synopsis
-
-Lists all external-secrets.io/v1beta1/ExternalSecret and checks for the associated v1/Secret with the correct owner reference
-
-```
+```console
 external-secrets secrets list [flags]
 ```
 
-### Examples
+### <a id="secrets-list-example"></a> Examples
 
+List external-secrets across all namespaces:
+
+```console
+tanzu external-secrets list -A
 ```
 
-# List external-secrets across all namespaces
-tanzu external-secrets list -A
+List external-secrets from specified namespace:
 
-# List external-secrets from specified namespace
+```console
 tanzu external-secrets secrets list -n test-ns
+```
 
-# List external-secrets in json output format
+List external-secrets in JSON output format:
+
+```console
 tanzu external-secrets secret list -n test-ns -o json
 ```
 
-### Options
+### <a id="secrets-list-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -A, --all-namespaces      View secrets in all namespaces, optional
   -h, --help                help for list
       --kubeconfig string   The path to the kubeconfig file, optional
@@ -122,38 +131,40 @@ tanzu external-secrets secret list -n test-ns -o json
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-## external-secrets secrets sync
-
-Sync a secret
-
-### Synopsis
+## <a id="secrets-sync"></a> external-secrets secrets sync
 
 Force the synchronization of an external-secrets.io/v1beta1 secret
 
-```
+```console
 external-secrets secrets sync [flags]
 ```
 
-### Examples
+### <a id="secrets-sync-examples"></a> Examples
 
+Trigger the sync of an external secret:
+
+```console
+tanzu external-secrets secrets sync <secret>
 ```
 
-# Trigger the sync of an external secret
-tanzu external-secrets secrets sync <secret>
+Trigger the sync of an external secret in a namespace
 
-# Trigger the sync of an external secret in a namespace
+```console
 tanzu external-secrets secrets sync <secret> -n dev
 ```
+<!-- angle brackets around <secret> are required or not? Would that be the secret name? -->
 
-### Options
+### <a id="secrets-sync-options"></a> Options
 
-```
+This command has the following options:
+
+```console
   -h, --help                help for sync
       --kubeconfig string   The path to the kubeconfig file, optional
   -n, --namespace string    Target namespace for the external secret, optional
       --verbose int32       Number for the log level verbosity(0-9)
 ```
 
-### SEE ALSO
+### <a id="see-also"></a> See also
 
-* [external-secrets](external-secrets.md)	 - interacts with external-secrets.io resources
+- [external-secrets](external-secrets.md)

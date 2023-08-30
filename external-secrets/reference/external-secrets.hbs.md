@@ -1,6 +1,6 @@
 # external-secrets CLI reference
 
-This section gives you reference information for how to interact with external-secrets.io resources.
+This section gives you reference information for interacting with external-secrets.io resources.
 
 ## <a id="options"></a> Options
 
