@@ -1,6 +1,6 @@
 # Create Eureka Servers for Service Discovery in Workloads
 
-This topic describes how to create `EurekaServer` resources and how to bind to them in your workloads
+This topic describes how to create `EurekaServer` resources and how to bind to them in workloads
  with Resource Claims.
 
 ## <a id="discover-params"></a> Discover available parameters
@@ -153,4 +153,106 @@ or
 
 ```console
 kubectl get resourceclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
+```
+
+## <a id="inspect"></a>Use Eureka for Service Discovery in Workloads
+
+Given an existing application already configured to use 
+[Spring Cloud Service Discovery](https://cloud.spring.io/spring-cloud-netflix/reference/html/#service-discovery-eureka-clients),
+claim `EurekaServer` credentials to access the running Eureka Server(s). Add the following to 
+`spec.serviceClaims` of a workload:
+
+```YAML
+  serviceClaims:
+    - name: eureka
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: my-eurekaserver-claim
+```
+
+By claiming the credentials, a workload will have its eureka client configured to interact with 
+the referenced Eureka Server.
+
+The following workloads can be used to deploy the [greeting application](https://github.com/spring-cloud-services-samples/greeting):
+
+```YAML
+# greeter-messages.yaml
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: greeter-messages
+  namespace: my-namespace
+  labels:
+    apps.tanzu.vmware.com/workload-type: server
+    apps.tanzu.vmware.com/has-tests: "true"
+    app.kubernetes.io/part-of: greeter
+spec:
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"
+      - name: BP_GRADLE_BUILT_MODULE
+        value: "greeter-messages"
+      - name: BP_GRADLE_BUILD_ARGUMENTS
+        value: "--no-daemon clean bootJar"
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: "development"
+  serviceClaims:
+    - name: eureka
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: my-eurekaserver-claim
+  source:
+    git:
+      url: https://github.com/spring-cloud-services-samples/greeting
+      ref:
+        branch: main
+```
+
+```YAML
+# greeter.yaml
+---
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: greeter
+  namespace: my-namespace
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+    app.kubernetes.io/part-of: greeter
+spec:
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"
+      - name: BP_GRADLE_BUILT_MODULE
+        value: "greeter"
+      - name: BP_GRADLE_BUILD_ARGUMENTS
+        value: "--no-daemon clean bootJar"
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: "development"
+  serviceClaims:
+    - name: eureka
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: my-eurekaserver-claim
+  source:
+    git:
+      url: https://github.com/spring-cloud-services-samples/greeting
+      ref:
+        branch: main
+```
+
+And created with:
+
+```console
+tanzu apps workload create -f greeter-messages.yaml --yes
+tanzu apps workload create -f greeter.yaml --yes
 ```
