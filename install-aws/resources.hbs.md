@@ -18,7 +18,7 @@ This is important when using ECR because authenticating to ECR is a two-step pro
 1. Retrieve a token using your AWS credentials.
 2. Use the token to authenticate to the registry.
 
-To increase security, the token has a lifetime of 12 hours.  This makes storing it as a secret for a service impractical because it has to be refereshed every 12 hours.
+To increase security, the token has a lifetime of 12 hours. This makes storing it as a secret for a service impractical because it has to be refereshed every 12 hours.
 
 Using an IAM role on a service account mitigates the need to retrieve the token at all because it is handled by credential helpers within the services.
 
@@ -107,7 +107,7 @@ aws ecr create-repository --repository-name tanzu-application-platform/tanzu-jav
 
 ## <a id='create-iam-roles'></a>Create IAM roles
 
-By default, the EKS cluster is provisioned with an EC2 instance profile that provides read-only access for the entire EKS cluster to the ECR registery within your AWS account. For more information, see this [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
+By default, the EKS cluster is provisioned with an EC2 instance profile that provides read-only access for the entire EKS cluster to the ECR registry within your AWS account. For more information, see this [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
 
 However, some of the services within Tanzu Application Platform require write access to the container repositories. To provide that access, create IAM roles and add the ARN to the Kubernetes service accounts that those services use.  This ensures that only the required services have access to write container images to ECR, rather than a blanket policy that applies to the entire cluster.
 
