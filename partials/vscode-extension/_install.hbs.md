@@ -47,7 +47,7 @@ To install the extension:
 
 To configure VMware Tanzu Developer Tools for VS Code:
 
-1. Ensure that you are targeting the correct cluster. For more informatiom, see the
+1. Ensure that you are targeting the correct cluster. For more information, see the
    [Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 2. Go to **Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools** and
