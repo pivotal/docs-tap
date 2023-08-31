@@ -334,10 +334,9 @@ The following profiles are available in Tanzu Application Platform:
   Intended for instances of applications related to centralized developer experiences. Specifically,
   Tanzu Developer Portal and Metadata Store.
 
-For a diagram showing the packages that are part of each profile, see
+The following table lists the packages contained in each profile.
+For a diagram showing the packages contained in each profile, see
 [Overview of multicluster Tanzu Application Platform](./multicluster/about.hbs.md).
-
-The following table lists the packages contained in each profile:
 
 <table>
   <tr>
