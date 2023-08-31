@@ -515,7 +515,7 @@ These are used as the `image-provider` resource when the workload parameter `doc
 
 ### <a id='kaniko-creates'></a> Creates
 
-A taskrun.tekton.dev which provides configuration to the Tekton Task `kaniko-build` which builds an image with kaniko.
+A taskrun.tekton.dev provides configuration to the Tekton Task `kaniko-build` which builds an image with kaniko.
 
 This template uses the [lifecycle: tekton](https://cartographer.sh/docs/v0.6.0/lifecycle/)
 flag to create new immutable objects rather than updating the previous object.
