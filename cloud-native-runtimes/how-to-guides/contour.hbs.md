@@ -4,14 +4,15 @@ This topic describes how you can configure Cloud Native Runtimes, commonly known
 as CNR, with your existing Contour instance. Cloud Native Runtimes uses Contour
 to manage internal and external access to the services in a cluster.
 
-## <a id='overview'></a> About Using Contour with Cloud Native Runtimes
+## <a id='overview'></a> About using Contour with Cloud Native Runtimes
 
 Follow the instructions in this topic if:
 
 - You installed Contour as part of Tanzu Application Platform and want to configure Cloud Native Runtimes to use it.
 - You see an error about `an existing Contour installation` when you install the Cloud Native Runtimes package.
 
-Cloud Native Runtimes needs two instances of Contour: 
+Cloud Native Runtimes needs two instances of Contour:
+ 
 - an instance for exposing services outside the cluster 
 - an instance for services that are private in your network. 
 
@@ -48,7 +49,7 @@ The following prerequisites are required to configure Cloud Native Runtimes with
     | `httpproxies.projectcontour.io`               | v1       |
     | `tlscertificatedelegations.projectcontour.io` | v1       |
 
-## <a id='identify-version'></a> Identify Your Contour Version
+## <a id='identify-version'></a> Identify your Contour version
 
 To identify your cluster's Contour version, run:
 
@@ -63,7 +64,7 @@ kubectl get crds tlscertificatedelegations.projectcontour.io --output jsonpath="
 
 Where `CONTOUR-NAMESPACE` is the namespace where Contour is installed on your Kubernetes cluster.
 
-## <a id='install-existing-contour'></a> Install Cloud Native Runtimes on a Cluster with Your Existing Contour Instance
+## <a id='install-existing-contour'></a> Install Cloud Native Runtimes on a cluster with your existing Contour instance
 
 To install Cloud Native Runtimes on a cluster with an existing Contour instance,
 you can add values to your `cnr-values.yml` file so that Cloud Native Runtimes uses your Contour instance.

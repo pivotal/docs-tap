@@ -26,7 +26,7 @@ The following prerequisites are required:
 
 > **Note** If you installed Cloud Native Runtimes on a cluster that has Tanzu Service Mesh attached before doing the following procedure, pods fail to start. To fix this problem, follow the procedure in this topic and then delete all pods in the excluded namespaces.
 
-## <a id='run-cnr'></a> Run Cloud Native Runtimes on a Cluster Attached to Tanzu Service Mesh
+## <a id='run-cnr'></a> Run Cloud Native Runtimes on a cluster attached to Tanzu Service Mesh
 
 Configure Tanzu Service Mesh to ignore namespaces related to Cloud Native Runtimes:
 
@@ -44,7 +44,7 @@ Configure Tanzu Service Mesh to ignore namespaces related to Cloud Native Runtim
 
     Where `CONTOUR-NS` is the one or more namespaces where Contour is installed on your cluster. If Cloud Native Runtimes was installed as part of a Tanzu Application Profile, this value is likely `tanzu-system-ingress`.
 
-## <a id='next-steps'></a> Next Steps
+## <a id='next-steps'></a> Next steps
 
 After configuring Tanzu Service Mesh, install Cloud Native Runtimes and verify your installation:
 

@@ -144,7 +144,7 @@ You configure tracing for Knative Serving by editing the ConfigMap `config-traci
 VMware recommends that you add any integrations in your Serving namespaces.
 For information about how to enable request traces in each component, see the the [Knative documentation](https://knative.dev/docs/serving/accessing-traces/).
 
-### <a id='forward-trace'></a> Forwarding Trace Data to an Observability Platform or Data Visualization Tool
+### <a id='forward-trace'></a> Forwarding trace data to an observability platform or data visualization tool
 
 You can use the OpenTelemetry integration to forward trace data to a data visualization tool that can ingest data in Zipkin format.
 For more information about using Zipkin for tracing, see the [Zipkin](https://zipkin.io/) documentation.
@@ -152,7 +152,7 @@ For more information about using Zipkin for tracing, see the [Zipkin](https://zi
 VMware recommends integrating with VMware Aria Operations for Applications (formerly known as Tanzu Observability by Wavefront).
 For information about forwarding trace data, see the [Wavefront documentation](https://docs.wavefront.com/opentelemetry_overview.html).
 
-### <a id='send-trace'></a> Sending Trace Data to VMware Aria Operations for Applications
+### <a id='send-trace'></a> Sending trace data to VMware Aria Operations for Applications
 
 You can send trace data to an observability and analytics platform such as
 VMware Aria Operations for Applications to view and monitor your trace data in

@@ -47,7 +47,7 @@ For more information about deploying an Avi Controller, see [Install Avi Kuberne
 
    For information about deploying a sample application and connecting to the application, see [Test Knative Serving](./app-operators/verifying-serving.hbs.md#test-knative-serving-1).
 
-1. (Optional) Create a DNS record that configures your KService URL to point to the Avi Service Engines, and resolve to the external IP of the Envoy. You can create a DNS record on any platform that supports DNS services. Refer to the documentation for your DNS service platform for more information.
+2. (Optional) Create a DNS record that configures your KService URL to point to the Avi Service Engines, and resolve to the external IP of the Envoy. You can create a DNS record on any platform that supports DNS services. For more information, see the documentation for your DNS service platform.
 
    To get the KService URL, run:
    

@@ -17,6 +17,8 @@ This topic uses Let's Encrypt as an example of how to set up a custom ingress is
 The Let's Encrypt documentation states that the DNS01 challenge is required to validate wildcard domains.
 This topic provides instructions for configuring Cloud Native Runtimes to use wildcard certificates with the DNS01 challenge only.
 
+To configure an issuer for wildcard certificates:
+
 1. Create a cert-manager custom Issuer or ClusterIssuer for the DNS01 challenge.
 
   You must create a custom Issuer or ClusterIssuer with the DNS01 solver configured for your specific DNS provider.
@@ -50,6 +52,7 @@ This topic provides instructions for configuring Cloud Native Runtimes to use wi
     ```
 
   Where: 
+
   - `YOUR-EMAIL` is the email associated with your DNS provider.
   - `PROJECT-ID` is the ID of the GCP project.
 
@@ -73,7 +76,7 @@ This topic provides instructions for configuring Cloud Native Runtimes to use wi
 
 To use wildcard certificates:
 
-1. Configure Cloud Native Runtimes to use the custom Issuer or ClusterIssuer and indicate in which namespaces to create wildcard certificates
+1. Configure Cloud Native Runtimes to use the custom Issuer or ClusterIssuer and indicate in which namespaces to create wildcard certificates.
 
   >**Note** If no value is passed to `cnrs.namespace_selector`, only per service certificates are generated instead of wildcard certificates.
 
@@ -119,34 +122,36 @@ To use wildcard certificates:
 
 ## <a id="verify-wildcard"></a> Verify the issuance of wildcard certificates
 
-Verify that your ClusterIssuer was created and properly issuing certificates:
+Verify that your ClusterIssuer was created and properly issuing certificates.
 
-```console
-kubectl get clusterissuer letsencrypt-dns-wildcard
-```
+1. To verify your ClusterIssuer, run:
 
-You can confirm the status of the certificate by running the following command. You see the certificate in a `Ready` state.
+  ```console
+  kubectl get clusterissuer letsencrypt-dns-wildcard
+  ```
 
-```console
-kubectl get certificate -n DEVELOPER-NAMESPACE
-```
+1. Confirm the status of the certificate by running the following command. You see the certificate in a `Ready` state.
 
-You see the certificate in a `Ready` state.
+  ```console
+  kubectl get certificate -n DEVELOPER-NAMESPACE
+  ```
 
-Where `DEVELOPER-NAMESPACE` is the namespace you want to use.
+  You see the certificate in a `Ready` state.
 
-Additionally, you can access your workload using the domain you specified with `curl` or a web browser, and verify that it is using
+  Where `DEVELOPER-NAMESPACE` is the namespace you want to use.
+
+1. You can access your workload using the domain you specified with `curl` or a web browser, and verify that it is using
 a TLS certificate issued by the custom Issuer or ClusterIssuer.
 
-```console
-tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
-kubectl get ksvc WORKLOAD-NAME -n DEVELOPER-NAMESPACE -o jsonpath='{.status.url}'
-```
+  ```console
+  tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
+  kubectl get ksvc WORKLOAD-NAME -n DEVELOPER-NAMESPACE -o jsonpath='{.status.url}'
+  ```
 
-Where:
+  Where:
 
-- `DEVELOPER-NAMESPACE` is the namespace you want to use.
-- `WORKLOAD-NAME` is the name of the workload you want to use.
+  - `DEVELOPER-NAMESPACE` is the namespace you want to use.
+  - `WORKLOAD-NAME` is the name of the workload you want to use.
 
 For details about how to troubleshoot failures related to the certificate,
 see the [cert-manager documentation](https://cert-manager.io/docs/troubleshooting).
