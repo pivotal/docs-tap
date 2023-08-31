@@ -207,7 +207,7 @@ not always mean that there is a security issue, but it can provide a pathway
 for attackers listening on that port. To help understand the traffic flows
 in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and protocols on request.
 
-See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
+See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
 
 ## Networking
 
@@ -248,7 +248,8 @@ process.
 ## Deployment Architecture
 
 Tanzu Application Platform provides a
-[reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function. VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run
+[reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function.
+VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run
 functions. This separation enables Kubernetes administrators to manage each function independently
 and therefore, protect the availability and performance of the platform during high usage periods,
 for example, building or scanning.
