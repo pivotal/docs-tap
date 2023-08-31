@@ -5,18 +5,18 @@ This topic tells you how to use the Tanzu Insight CLI
 
 ## <a id='synopsis'></a>Synopsis
 
-This command takes all the existing analysis within an artifact group that are
+This command takes all the existing analyses within an artifact group that are
 valid for the target image and copies them over. An analysis is considered valid
-for an image within an artifact group when:
+for an image within an artifact group when the following conditions are met:
 
 - The analysis exists for a vulnerability that the target image is affected by and
-- Is linked to a "previous version" of an image and
+is linked to a "previous version" of an image.
 - There is no existing analysis for the same vulnerability and the target image,
   or their state is 'in_triage'
 
-In this context, and image A is considered to be a previous version of an image
-B when they have the same name, different digests and image A was created before
-image B.
+For example, Image A is considered to be a previous version of  Image
+B when they have the same name, different digests and Image A was created before
+Image B.
 
 ```console
 tanzu insight triage rebase --img-digest <digest> --artifact-group-uid <ag-uid> [flags]
