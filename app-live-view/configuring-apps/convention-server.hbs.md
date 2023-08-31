@@ -2,7 +2,7 @@
 
 This topic provides information about Application Live View convention, which provides a
 Webhook handler for
-[Convention Service for VMware Tanzu](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-convention-service-about.html).
+[Convention Service for VMware Tanzu](../../convention-service/about.hbs.md).
 
 ## <a id="role"></a> Role of Application Live View convention
 
