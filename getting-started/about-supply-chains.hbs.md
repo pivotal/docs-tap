@@ -3,6 +3,8 @@
 This topic describes the key concepts you need to know about supply chains and
 Continuous Integration/Continuous Delivery (CI/CD) on Tanzu Application Platform (commonly known as TAP).
 
+## <a id="overview"></a> What are Supply Chains
+
 Supply chains provide a way of codifying all of the steps of your path to production, more commonly
 known as CI/CD.
 CI/CD is a method to frequently deliver applications by introducing automation into the stages of
@@ -18,8 +20,8 @@ an application to reach production or a different environment, such as staging.
 
 ## <a id="path-to-prod"></a>A path to production
 
-A path to production allows users to create a unified access point for all of the tools required
-for their applications to reach a customer-facing environment.
+A path to production allows you to create a unified access point for all of the tools required
+for your applications to reach a customer-facing environment.
 Instead of having four tools that are loosely coupled to each other, a path to production defines
 all four tools in a single, unified layer of abstraction. The path to production can be automated and
 repeatable between teams for applications at scale.
@@ -32,19 +34,19 @@ This allows their authors to add all of the steps of the path to production for 
 
 ## <a id="avail-supply-chains"></a>Available Supply Chains
 
-The Tanzu Application Platform provides three out of the box (OOTB) supply chains to
+Tanzu Application Platform provides three out of the box (OOTB) supply chains to
 work with the Tanzu Application Platform components. They include:
 
-- OOTB Supply Chain Basic (default)
-- OOTB Supply Chain with Testing (optional)
-- OOTB Supply Chain with Testing+Scanning (optional)
+- [OOTB Supply Chain Basic](#OOTB-basic-sc-default) (default)
+- [OOTB Supply Chain with Testing](#OOTB-testing) (optional)
+- [OOTB Supply Chain with Testing+Scanning](#OOTB-test-and-scan) (optional)
 
-## <a id="OOTB-basic-sc-default"></a>1: **OOTB Basic (default)**
+### <a id="OOTB-basic-sc-default"></a>1: OOTB Basic (default)
 
 The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during
 the Tanzu Application Platform install.
-The following table and diagrams provide descriptions for each of the supply chains and dependencies
-provided with the Tanzu Application Platform.
+The following diagram and table provide a description of the supply chain and dependencies
+provided with Tanzu Application Platform.
 
 ![The Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
 
@@ -99,9 +101,11 @@ provided with the Tanzu Application Platform.
   </tr>
 </table>
 
-## <a id="OOTB-testing"></a>2: **OOTB Testing**
+### <a id="OOTB-testing"></a>2: OOTB Testing
 
 **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain.
+The following diagram and table provide a description of the supply chain and dependencies
+provided with Tanzu Application Platform.
 
 ![The Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
 
@@ -142,9 +146,11 @@ provided with the Tanzu Application Platform.
   </tr>
 </table>
 
-## <a id="OOTB-test-and-scan"></a>3: **OOTB Testing+Scanning**
+### <a id="OOTB-test-and-scan"></a>3: OOTB Testing+Scanning
 
 **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
+The following diagram and table provide a description of the supply chain and dependencies
+provided with Tanzu Application Platform.
 
 ![The Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
 
@@ -189,7 +195,7 @@ provided with the Tanzu Application Platform.
   </tr>
 </table>
 
-## Next steps
+## <a id="next-steps"></a> Next steps
 
 Apply what you have learned:
 
