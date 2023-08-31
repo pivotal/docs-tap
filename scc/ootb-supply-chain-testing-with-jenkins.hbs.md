@@ -2,12 +2,12 @@
 
 This topic provides an overview of Out of the Box Supply Chain with testing on Jenkins for Supply Chain Choreographer.
 
-The Out of the Box templates package now includes a Tekton `Task`
+The Out of the Box templates package includes a Tekton `Task`
 resource, which triggers a build for a specified Jenkins job.
 
 You can configure the Jenkins task in both the [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.html)
 and [Out of the Box Supply Chain With Testing and Scanning](ootb-supply-chain-testing-scanning.html)
-to trigger a Jenkins job.  The task is implemented as a Tekton `Task` and
+to trigger a Jenkins job. The task is implemented as a Tekton `Task` and
 can now run from a Tekton `Pipeline`.
 
 ## <a id="prerequisite"></a> Prerequisites
@@ -196,8 +196,7 @@ parameters:
 Tasks:
 
 - `jenkins-task`, **required**: This `Task` is one of the tasks that the
-  pipeline runs to trigger the Jenkins job.  It is installed on the cluster
-  in the `tap-tasks` namespace by the **Out of the Box Templates** package.
+  pipeline runs to trigger the Jenkins job. The Out of the Box Templates** package installs the `tap-tasks` namespace on the cluster.
 
 Results:
 
