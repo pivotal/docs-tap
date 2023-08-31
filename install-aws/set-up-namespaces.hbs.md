@@ -11,7 +11,7 @@ For more information, see:
 
 ## <a id='enable-namespace'></a>Enable namespace for Supply Chains
 
-The `default` ServiceAaccount in your developer namespace requires permission to your image repositories and RoleBindings for Tanzu Application Platform `ClusterRoles`.  The [Namespace Provisioner](../namespace-provisioner/about.hbs.md) watches namespaces for a specific label, then takes action to enable the namespace. 
+The `default` Service Account in your developer namespace requires permission to your image repositories and RoleBindings for Tanzu Application Platform `ClusterRoles`.  The [Namespace Provisioner](../namespace-provisioner/about.hbs.md) watches namespaces for a specific label, then takes action to enable the namespace. 
 
 To enable the Supply Chain on your namespace, run:
 
