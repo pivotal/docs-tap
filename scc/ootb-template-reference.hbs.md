@@ -1223,8 +1223,7 @@ This process allows for manual review of configuration before deployment to a cl
 
 ### <a id='config-writer-pr-creates'></a> Creates
 
-A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` to create a
-Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
+A Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 
 ### <a id='config-writer-pr-params'></a> Parameters
 
@@ -1388,6 +1387,22 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       <pre>
       - name: gitops_server_kind
         value: gitlab
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>ca_cert_data<code></td>
+    <td>
+      The string contents of the ssl certificate of the git server
+    </td>
+    <td>
+      <pre>
+      - name: ca_cert_data
+        value:
+          -----BEGIN CERTIFICATE-----
+          MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+          -----END CERTIFICATE-----
       </pre>
     </td>
   </tr>
@@ -2341,8 +2356,7 @@ Persist the passed in Carvel Package Kubernetes configuration to a branch in a r
 
 ### <a id='package-config-writer-pr-creates'></a> Creates
 
-A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` to create a
-Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
+A Tekton TaskRun which refers to the Tekton Task `commit-and-pr`.
 
 ### <a id='package-config-writer-pr-params'></a> Parameters
 
@@ -2532,6 +2546,22 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       <pre>
       - name: carvel_package_name_suffix
         value: vmware.com
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>ca_cert_data<code></td>
+    <td>
+      The string contents of the ssl certificate of the git server
+    </td>
+    <td>
+      <pre>
+      - name: ca_cert_data
+        value:
+          -----BEGIN CERTIFICATE-----
+          MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+          -----END CERTIFICATE-----
       </pre>
     </td>
   </tr>
