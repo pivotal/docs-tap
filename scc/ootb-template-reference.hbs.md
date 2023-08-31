@@ -515,7 +515,7 @@ These are used as the `image-provider` resource when the workload parameter `doc
 
 ### <a id='kaniko-creates'></a> Creates
 
-A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to build an image with kaniko.
+A taskrun.tekton.dev which provides configuration to the Tekton Task `kaniko-build` which builds an image with kaniko.
 
 This template uses the [lifecycle: tekton](https://cartographer.sh/docs/v0.6.0/lifecycle/)
 flag to create new immutable objects rather than updating the previous object.
@@ -1223,8 +1223,7 @@ This process allows for manual review of configuration before deployment to a cl
 
 ### <a id='config-writer-pr-creates'></a> Creates
 
-A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` to create a
-Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
+A Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 
 ### <a id='config-writer-pr-params'></a> Parameters
 
@@ -1388,6 +1387,22 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       <pre>
       - name: gitops_server_kind
         value: gitlab
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>ca_cert_data<code></td>
+    <td>
+      The string contents of the ssl certificate of the git server
+    </td>
+    <td>
+      <pre>
+      - name: ca_cert_data
+        value:
+          -----BEGIN CERTIFICATE-----
+          MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+          -----END CERTIFICATE-----
       </pre>
     </td>
   </tr>
@@ -1921,7 +1936,8 @@ Bundles Kubernetes configuration into a Carvel Package.
 
 ### <a id='carvel-creates'></a> Creates
 
-A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to bundle Kubernetes configuration into a Carvel Package.
+A taskrun.tekton.dev which provides configuration to the `carvel-package` Tekton Task which bundles Kubernetes
+configuration into a Carvel Package.
 
 This template uses the [lifecycle: tekton](https://cartographer.sh/docs/v0.6.0/lifecycle/)
 flag to create new immutable objects rather than updating the previous object.
@@ -2340,8 +2356,7 @@ Persist the passed in Carvel Package Kubernetes configuration to a branch in a r
 
 ### <a id='package-config-writer-pr-creates'></a> Creates
 
-A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` to create a
-Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
+A Tekton TaskRun which refers to the Tekton Task `commit-and-pr`.
 
 ### <a id='package-config-writer-pr-params'></a> Parameters
 
@@ -2531,6 +2546,22 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       <pre>
       - name: carvel_package_name_suffix
         value: vmware.com
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>ca_cert_data<code></td>
+    <td>
+      The string contents of the ssl certificate of the git server
+    </td>
+    <td>
+      <pre>
+      - name: ca_cert_data
+        value:
+          -----BEGIN CERTIFICATE-----
+          MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+          -----END CERTIFICATE-----
       </pre>
     </td>
   </tr>
