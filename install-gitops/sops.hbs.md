@@ -16,7 +16,7 @@ Before installing Tanzu Application Platform, you need:
 
 - **SOPS CLI** to view and edit SOPS encrypted files.
 To install the SOPS CLI, see [SOPS documentation](https://github.com/mozilla/sops/releases) in GitHub.
-- **Age CLI** to create an ecryption key used to encrypt and decrypt sensitive data.
+- **Age CLI** to create an encryption key used to encrypt and decrypt sensitive data.
 To install the Age CLI, see [age documentation](https://github.com/FiloSottile/age#installation) in GitHub.
 - Completed the [Prerequisites](../prerequisites.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
@@ -104,7 +104,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
 ## <a id='initialize-git-repository'></a>Create a new Git repository
 
-1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
+1. In a hosted Git service, for example, GitHub or GitLab, create a new repository.
 
     This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH.
 

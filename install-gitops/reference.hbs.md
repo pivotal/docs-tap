@@ -1,7 +1,7 @@
 # Tanzu GitOps RI Reference Documentation
 
 The following diagrams shows you the components that are installed as part of 
-Tanzu GitOps Reference Implememtation (RI) and how they work together to automate 
+Tanzu GitOps Reference Implementation (RI) and how they work together to automate 
 the installation of Tanzu Application Platform (commonly known as TAP):
 
 SOPS
@@ -21,7 +21,7 @@ application named `sync` that is installed in the `tanzu-sync` namespace. The sy
 1. Fetches a Git repository that contains configuration for Tanzu Application Platform.
 2. Templates with `ytt` a set of resources and data values.
 3. Deploys with `kapp` a set of resources to install Tanzu Application Platform, 
-with any other user specified confiuration in the Git Repository.
+with any other user specified configuration in the Git Repository.
 
 ## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
 
@@ -88,7 +88,7 @@ Git repository for a cluster named `full-tap-cluster`:
       - `values`: Contains the plain YAML data files which configure the application.
     - `tanzu-sync`
       - `app`: Contains the main Carvel Packaging App that runs on the cluster. It fetches, templates and deploys your Tanzu Application Platform installation from `clusters/full-tap-cluster/cluster-config`.
-      - `boostrap`: Contains secret provider specific bootstrapping if required.
+      - `bootstrap`: Contains secret provider specific bootstrapping if required.
       - `scripts`: Contains helper scripts to assist with the configuration and deployment of Tanzu GitOps RI.
 
 ## <a id="configure-values"></a>Configuration of Tanzu Sync without helper scripts
