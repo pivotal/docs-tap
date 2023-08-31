@@ -18,7 +18,7 @@ This is important when using ECR because authenticating to ECR is a two-step pro
 1. Retrieve a token using your AWS credentials.
 2. Use the token to authenticate to the registry.
 
-To increase security, the token has a lifetime of 12 hours.  This makes storing it as a secret for a service impractical because it has to be refreshed every 12 hours.
+To increase security, the token has a lifetime of 12 hours. This makes storing it as a secret for a service impractical because it has to be refreshed every 12 hours.
 
 Using an IAM role on a service account mitigates the need to retrieve the token at all because it is handled by credential helpers within the services.
 
