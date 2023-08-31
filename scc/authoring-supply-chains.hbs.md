@@ -112,7 +112,6 @@ The following set of objects are provided by `ootb-templates`:
 - ClusterRole/**ootb-templates-deliverable**
 - ClusterRole/**ootb-templates-workload**
 - ClusterRunTemplate/**tekton-source-pipelinerun**
-- ClusterRunTemplate/**tekton-taskrun**
 - ClusterSourceTemplate/**delivery-source-template**
 - ClusterSourceTemplate/**source-scanner-template**
 - ClusterSourceTemplate/**source-template**
