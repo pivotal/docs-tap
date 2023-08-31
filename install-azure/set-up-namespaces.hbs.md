@@ -1,5 +1,16 @@
 # Set up developer namespaces to use your installed packages
 
+This topic tells you how to set up developer namespaces by using the legacy manual process.
+For more information about how to automatically set up your developer namespaces, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+
+## <a id="config-test-scan"></a> Additional configuration for testing and scanning
+
+If you plan to install or have already installed Out of the Box Supply Chains with Testing and
+Scanning, you can use Namespace Provisioner to set up the required resources. For more information, 
+see [Customize installation](../namespace-provisioner/customize-installation.hbs.md) in the Namespace Provisioner documentation for configuration steps.
+
+## <a id="legacy-setup"></a> Legacy namespace setup
+
 You can choose either one of the following two approaches to create a `Workload`
 for your application by using the registry credentials specified,
 add credentials and Role-Based Access Control (RBAC) rules to the namespace
@@ -8,7 +19,7 @@ that you plan to create the `Workload` in:
 - [Enable single user access](#single-user-access).
 - [Enable additional users access with Kubernetes RBAC](#additional-user-access).
 
-## <a id='single-user-access'></a>Enable single user access
+### <a id='single-user-access'></a>Enable single user access
 
 Run the following command to add secrets, a service account to execute the supply chain, 
 and RBAC rules to authorize the service account to the developer namespace:
@@ -101,7 +112,7 @@ subjects:
 
 Where `YOUR-NAMESPACE` is your developer namespace.
 
-## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
+### <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
 
 Follow these steps to enable additional users by using Kubernetes RBAC to submit jobs to the Supply Chain:
 

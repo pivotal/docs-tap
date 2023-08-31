@@ -255,7 +255,7 @@ Follow these steps to prepare the sensitive Tanzu Application Platform values:
 1. Move the sensitive Tanzu Application Platform values into the cluster config:
 
     ```console
-    mv tap-sensitive-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/
+    mv tap-sensitive-values.sops.yaml GIT-REPO-ROOT/clusters/CLUSTER-NAME/cluster-config/values/
     ```
 
     Example:
@@ -275,7 +275,7 @@ and purge the scratch space:
 
 ## <a id='prep-non-sensitive-tap-values'></a> Prepare the non-sensitive Tanzu Application Platform values
 
-Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](../install-online/profile.hbs.md#full-profile) as a guide:
+Create a plain YAML file `GIT-REPO-ROOT/clusters/CLUSTER-NAME/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](../install-online/profile.hbs.md#full-profile) as a guide:
 
 Example:
 
@@ -315,7 +315,7 @@ into `tap-sensitive-values.sops.yaml` that you prepared earlier:
 1. Open an editor through SOPS to edit the encrypted sensitive values file:
 
     ```console
-    sops <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-sensitive-values.sops.yaml
+    sops GIT-REPO-ROOT/clusters/CLUSTER-NAME/cluster-config/values/tap-sensitive-values.sops.yaml
     ```
 
     Example:
@@ -386,7 +386,7 @@ Follow these steps to prepare the sensitive Tanzu Sync values:
 1. Move the encrypted sensitive Tanzu Application Platform values into the Tanzu Sync config:
 
     ```console
-    mv tanzu-sync-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
+    mv tanzu-sync-values.sops.yaml GIT-REPO-ROOT/clusters/CLUSTER-NAME/tanzu-sync/app/sensitive-values/tanzu-sync-values.sops.yaml
     ```
 
     Example:
@@ -462,7 +462,7 @@ Follow these steps to populate `tap-sensitive-values.sops.yaml` with credentials
     - `MY-GIT-USERNAME` is the user with read access to your Git repository. Only applies when you use `basic authentication`.
     - `MY-GIT-PASSWORD` is the password for `MY-GIT-USERNAME`. Only applies when you use `basic authentication`.
 
-    You can find the schema for Tanzu Sync credentials in `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/tanzu-sync/app/config/.tanzu-managed/schema--sops.yaml`
+    You can find the schema for Tanzu Sync credentials in `GIT-REPO-ROOT/clusters/CLUSTER-NAME/tanzu-sync/app/config/.tanzu-managed/schema--sops.yaml`
 
 ## <a id='generate-tap-config'></a>Generate Tanzu Application Platform installation and Tanzu Sync configuration
 
@@ -492,7 +492,7 @@ Follow these steps to generate the Tanzu Application Platform installation and T
 1. Generate the Tanzu Application Platform install and the Tanzu Sync configuration files by using the provided script:
 
     ```console
-    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+    cd GIT-REPO-ROOT/clusters/CLUSTER-NAME
 
     ./tanzu-sync/scripts/configure.sh
     ```
