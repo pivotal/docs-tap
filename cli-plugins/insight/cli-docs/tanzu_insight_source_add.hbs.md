@@ -29,8 +29,10 @@ insight source add --input-format cyclonedx-xml --output-format text --path /pat
       --artifact-group-uid string      uid of artifact group to add to, or create if it doesn't already exist
   -h, --help                           help for add
   -i, --input-format string            specify the file’s SBOM report format and file type, options=[cyclonedx-xml, cyclonedx-json, spdx-json] (default: cyclonedx-xml)
+      --original-location string       specify the stored location of the original SBOM vulnerability scan result used to create this report
       --output-format string           specify the response's SBOM report format and file type format, options=[text, api-json] (default: text)
   -p, --path string                    path to file, required
+      --report-uid string              specify a unique report identifier to tag this vulnerability scan result with. Supported characters: ALPHA DIGIT "-" / "." / "_" / "~"
 ```
 
 ## <a id='see-also'></a>See also
