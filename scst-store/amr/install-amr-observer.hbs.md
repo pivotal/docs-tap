@@ -2,6 +2,8 @@
 
 This topic tells you how to install Artifact Metadata Repository (AMR) Observer for Supply Chain Security Tools (SCST) - Store.
 
+>**Note** AMR Observer does not currently support connecting to registries with self-signed certificates. This means that AMR Observer will not be able to retrieve scan results if they are stored on such registries.
+
 ## <a id='prerecs'></a> Prerequisites
 
 You must deploy AMR and AMR CloudEvent Handler if you are using the Full profile. To do so, additional Tanzu Application Platform values are required.
