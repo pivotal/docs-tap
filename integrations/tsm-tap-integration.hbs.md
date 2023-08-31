@@ -199,7 +199,7 @@ GitOps workflow for application and service change control.
 The following instructions describe an end-to-end process for configuring, building, and deploying
 the Where For Dinner application into a Tanzu Service Mesh global namespace.
 
-These instructions use the default configuration of Where For Dinner, which consists of only needing 
+These instructions use the default configuration of Where For Dinner, which consists of only needing
 a single-node RabbitMQ cluster, an in-memory database, and no security.
 The application is deployed across two Tanzu Application Platform run clusters.
 It requires the `ytt` command to execute the build and deployment commands.
@@ -214,7 +214,7 @@ However, they were created from a set of configuration files by using a bootstra
 the Where For Dinner accelerator, and were later modified.
 
 For reference, you can create an initial set of configuration files from the Where For Dinner accelerator,
-which is available in Tanzu Application Platform v1.3 and above.
+which is available in Tanzu Application Platform v1.3 and later.
 
 This section does not include instructions for modifying the configuration files from the accelerator
 into configuration files used in a later section.
