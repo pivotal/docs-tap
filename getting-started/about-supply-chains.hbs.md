@@ -3,7 +3,7 @@
 This topic describes the key concepts you need to know about supply chains and
 Continuous Integration/Continuous Delivery (CI/CD) on Tanzu Application Platform (commonly known as TAP).
 
-## <a id="overview"></a> What are Supply Chains
+## <a id="overview"></a> What are supply chains
 
 Supply chains provide a way of codifying all of the steps of your path to production, more commonly
 known as CI/CD.
@@ -32,7 +32,7 @@ between each of the tools.
 Supply chains that are used to codify the path to production for an organization are configurable.
 This allows their authors to add all of the steps of the path to production for their applications.
 
-## <a id="avail-supply-chains"></a>Available Supply Chains
+## <a id="avail-supply-chains"></a>Available supply chains
 
 Tanzu Application Platform provides three out of the box (OOTB) supply chains to
 work with the Tanzu Application Platform components. They include:
