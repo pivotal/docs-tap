@@ -317,7 +317,7 @@ For example:
 - A submodule `pom.xml` can reference the parent `pom.xml` as a common place for
   centralized dependency management.
 - A microservice submodule can reference another, as a maven dependency.
-- Several microservice submodules can reference one or more shared libary modules.
+- Several microservice submodules can reference one or more shared library modules.
 
 For these projects, make these adjustments:
 
