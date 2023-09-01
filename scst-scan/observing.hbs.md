@@ -7,8 +7,7 @@ This topic outlines observability and troubleshooting methods and issues you can
 The scans  run inside a Kubernetes Job where the Job creates a pod. Both the Job and pod are cleaned
 up after completion.
 
-Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, Imagescans to
-observe their progression:
+Before applying a new scan, you can set a watch on the TaskRuns, Pods, SourceScans, and Imagescans to observe their progression:
 
 ```console
 watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
