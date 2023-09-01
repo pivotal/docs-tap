@@ -176,7 +176,7 @@ To update your demo API entry:
 This section describes the Validation Analysis card, the data format needed to populate the card, and
 how to get automatic scores for your OpenAPI entities.
 
-### <a id="about-validation"></a> About Validation Analysis card
+### <a id="about-validation"></a> About the Validation Analysis card
 
 When viewing entities of the kind `API` on the Overview tab, you see the Validation Analysis card
 that displays the health of an API through various scoring parameters.
