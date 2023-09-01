@@ -82,16 +82,16 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-7-0-eventing-br'></a> Eventing
+#### <a id='1-7-0-eventing-br'></a> v1.7.0 breaking changes: Eventing
 
 - Eventing is removed in this release. Install and manage Knative Eventing as an alternative solution.
 
-#### <a id='1-7-0-lc-br'></a> Learning Center
+#### <a id='1-7-0-lc-br'></a> v1.7.0 breaking changes: Learning Center
 
 - Learning Center is removed in this release. Use [Tanzu Academy](https://tanzu.academy/) instead for
 all Tanzu Application Platform learning and education needs.
 
-#### <a id='1-7-0-workloads-br'></a> Workloads
+#### <a id='1-7-0-workloads-br'></a> v1.7.0 breaking changes: Workloads
 
 - Function Buildpacks for Knative and the corresponding
 Application Accelerator starter templates for Python and Java are removed in this release.
