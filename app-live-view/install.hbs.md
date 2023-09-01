@@ -9,7 +9,7 @@ Application Live View installs three packages for `view`, `run`, and `build` pro
 
 - For the `run` profile, Application Live View installs Application Live View connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View connector component as DaemonSet in `app-live-view-connector` namespace.
 
-- For the `build` profile, Application Live View installs Application Live View conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View convention Service in `app-live-view-conventions` namespace.
+- For the `build` profile, Application Live View installs Application Live View conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View convention service in `app-live-view-conventions` namespace.
 
 - For the `iterate` profile, Application Live View installs Application Live View connector package and Application Live View conventions package.
 
