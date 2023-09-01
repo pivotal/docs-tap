@@ -84,7 +84,7 @@ provided with Tanzu Application Platform.
 
 <li>Tanzu Build Service
 
-<li>Convention Service
+<li>Cartographer Conventions
 
 <li>Tekton
 
