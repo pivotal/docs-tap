@@ -84,16 +84,17 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-eventing-br'></a> Eventing
 
-- Eventing is removed in this release, install and manage Knative Eventing as an alternative solution.
+- Eventing is removed in this release. Install and manage Knative Eventing as an alternative solution.
+
+#### <a id='1-7-0-lc-br'></a> Learning Center
+
+- Learning Center is removed in this release. Use [Tanzu Academy](https://tanzu.academy/) instead for
+all Tanzu Application Platform learning and education needs.
 
 #### <a id='1-7-0-workloads-br'></a> Workloads
 
 - Function Buildpacks for Knative and the corresponding
 Application Accelerator starter templates for Python and Java are removed in this release.
-
-#### <a id='1-7-0-COMPONENT-NAME-bc'></a> v1.7.0 breaking changes: COMPONENT-NAME
-
-- Breaking change description.
 
 ---
 
