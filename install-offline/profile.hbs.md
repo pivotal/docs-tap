@@ -339,7 +339,6 @@ metadata_store:
 >
 >    ```yaml
 >    grype:
->      namespace: "MY-DEV-NAMESPACE"
 >      targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 >    ```
 >

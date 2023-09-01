@@ -27,7 +27,6 @@ This example describes how you can perform a scan against an image located in a 
 
   ```yaml
   grype:
-    namespace: "MY-DEV-NAMESPACE"
     targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   ```
 

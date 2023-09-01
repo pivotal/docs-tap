@@ -354,7 +354,6 @@ tap_telemetry:
 >
 > ```yaml
 > grype:
->   namespace: "MY-DEV-NAMESPACE"
 >   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 >```
 >

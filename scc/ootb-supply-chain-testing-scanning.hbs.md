@@ -206,28 +206,12 @@ live in the same namespace as the workload with the names matching the following
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
-If you are targeting a namespace that does not match the one configured in the
-Tanzu Application Platform profiles, for example, if `grype.namespace` is not the same as the one
-you are writing the workload to, you can install these in such namespace by making use of the
-`tanzu package install` command as described in [Install Supply Chain Security
-Tools - Scan](../scst-scan/install-scst-scan.md):
+If you have not already installed the Grype ScanTemplates in the namespace that you are writing the workload to, you can use the Namespace Provisioner to install them. For more detail see [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md#manage-a-list-of-developer-namespaces).
 
-1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
-to the properties you want to change. For example:
-
-    ```yaml
-    grype:
-      namespace: YOUR-DEV-NAMESPACE
-      targetImagePullSecret: registry-credentials
-    ```
-
-1. With the configuration ready, install the templates by running:
+1. Label the namespace that you are writing the workload to with the default *namespace_selector* `apps.tanzu.vmware.com/tap-ns=""`.
 
     ```console
-    tanzu package install grype-scanner \
-      --package grype.scanning.apps.tanzu.vmware.com \
-      --version 1.0.0 \
-      --namespace YOUR-DEV-NAMESPACE
+    kubectl label namespaces YOUR-DEV-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
     ```
 
 >**Note** Although you can customize the templates, if you are following the Getting Started
