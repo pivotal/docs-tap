@@ -78,7 +78,7 @@ To install SCST - Scan 2.0:
 2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
-    tanzu package install app-scanning-beta --package app-scanning.apps.tanzu.vmware.com \
+    tanzu package install app-scanning-beta --package-name app-scanning.apps.tanzu.vmware.com \
         --version VERSION \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
@@ -103,12 +103,6 @@ To install SCST - Scan 2.0:
         Waiting for 'PackageInstall' reconciliation for 'app-scanning'
         'PackageInstall' resource install status: Reconciling
         'PackageInstall' resource install status: ReconcileSucceeded
-    ```
-
-3. (Optional) If you have Artifact Metadata Repository (AMR) Observer installed, you must to restart it to observe the new ImageVulerabilityScan Custom Resource (CR) that is installed with SCST - Scan 2.0.
-
-    ```console
-    kubectl -n amr-observer-system rollout restart deployment amr-observer-controller-manager
     ```
 
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
