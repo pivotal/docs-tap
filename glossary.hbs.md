@@ -66,7 +66,7 @@
     <tr>
         <td>Application Live View connector</td>
         <td>This component is responsible for discovering the app pods running on the Kubernetes
-        cluster and registering the instances to the Application Live View server for it to be observed.
+        cluster and registering the instances to the Application Live View back end for it to be observed.
         The Application Live View connector is also responsible for proxying the actuator queries to
         the app pods running in the Kubernetes cluster.</td>
     </tr>
