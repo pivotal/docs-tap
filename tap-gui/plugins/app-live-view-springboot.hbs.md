@@ -74,8 +74,6 @@ The page also includes the following capabilities for `editing` configured envir
 
 ![Environment Page in the UI showing many properties.](images/environment-1.png)
 
-![Environment Page in the UI showing text properties that can be edited.](images/environment-2.png)
-
 ## <a id="log-levels-page"></a> Log Levels page
 
 To navigate to the **Log Levels** page, the user can select the **Log Levels** option from the
@@ -112,8 +110,6 @@ The user can view more thread details by clicking on the Thread ID.
 The page also has a feature to download thread dump for analysis purposes.
 
 ![Threads Page in the UI showing thread identities and statuses.](images/threads-1.png)
-
-![Thread Details Page in the UI showing in-depth details for a thread.](images/threads-2.png)
 
 ## <a id="memory-page"></a> Memory page
 
@@ -157,8 +153,6 @@ application.
 
 ![Request Mappings Page in the UI. A search text box is at the top right.](images/request-mappings-1.png)
 
-![Request Mappings Details Page in the UI showing a handler and what it produces.](images/request-mappings-2.png)
-
 ## <a id="http-requests-page"></a> HTTP Requests page
 
 To navigate to the HTTP Requests page, the user should select the **HTTP Requests** option from the
@@ -183,8 +177,6 @@ HTTP Traces data is returned for the application.
 In this case, a message is displayed when the actuator toggle is enabled.
 
 ![HTTP Requests Page in the UI showing a graph and, below it, a list of the latest requests.](images/http-requests-1.png)
-
-![HTTP Request Details Page in the UI. The Close button for the Details page is at the bottom.](images/http-requests-2.png)
 
 ## <a id="caches-page"></a> Caches page
 
