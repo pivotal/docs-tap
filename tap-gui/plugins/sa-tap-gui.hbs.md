@@ -63,14 +63,8 @@ Clicking on the CVE or Package name opens the **CVE** or **Package** page, respe
 
 ![Close-up screenshot of the Workload Build vulnerability summary.](images/sagui-navigate-1.png)
 
-![Screenshot of the Supply Chains page. In the Vulnerabilities table a CVE ID and Package name are framed.](images/sagui-navigate-2.png)
-
 The **CVE** page contains basic information about the vulnerability and includes a table with
 all affected packages and versions.
 
-![Screenshot of the CVE page within the Security Analysis GUI.](images/sagui-cve-details.png)
-
 The **Package** page contains basic information about a package and includes a table with all
 CVEs and the affected package versions.
-
-![Screenshot of the Package page within the Security Analysis GUI.](images/sagui-package-details.png)
