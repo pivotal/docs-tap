@@ -81,10 +81,6 @@ To create a project:
 5. After entering the repository name, a dialog box appears that requests GitHub credentials.
    Log in and then click **Next**.
 
-   ![Dialog box that prompts you to log in to GitHub.](images/application-accelerator-git-repo-oauth-modal.png)
-
-   ![Screenshot of GitHub log-in credential text boxes.](images/github-login.png)
-
 6. Click **GENERATE ACCELERATOR**. A link to the repository location appears.
 
    ![Screenshot of the output status, which includes a Download ZIP File button.](images/application-accelerator-task-output.png)

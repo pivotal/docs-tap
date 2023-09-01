@@ -49,15 +49,11 @@ To configure how projects are generated:
 
 2. Click **EXPLORE** to open the **Explore Project** page and view the project before it is generated.
 
-    ![Screenshot of the Explore Project page. The README file for the sample Hello Fun accelerator is displayed.](images/aa3-exploringProject.png)
-
 3. After configuring your project, click **NEXT STEP** to see the project summary page.
 
 4. Review the values you specified for the configurable options.
 
 5. Click **BACK** to make more changes, if necessary. Otherwise, proceed to [create the project](#create-project).
-
-    ![Screenshot of the project summary for the sample hello-fun project. A red cross is adjacent to the text Enable Application Live View.](images/aa4-configuredProjectSummary.png)
 
 ## <a id='create-project'></a> Create the project
 
