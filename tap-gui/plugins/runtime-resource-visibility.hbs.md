@@ -81,8 +81,6 @@ To view the list of your running resources:
 
 1. Select the **Runtime Resources** tab.
 
-   ![Screenshot of selecting Runtime resources tab.](images/runtime-resources-index.png)
-
 ### <a id="resources-included"></a> Resources
 
 Built-in Kubernetes resources in this view are:
@@ -201,8 +199,6 @@ Most conflicts are due to creating a container before applying a LimitRange.
 Pods display the sum of the limits of all their containers.
 If a limit is not specified for a container, both the container and its pod are deemed to require
 unlimited resources.
-
-![Screenshot of the pod limits overview. Unlimited ranges for Total CPU and Total Memory are framed.](images/runtime-resources-pod-limits-overview.png)
 
 Namespace-level resource limits, such as default memory limits and default CPU limits, are not
 considered as part of these calculations.

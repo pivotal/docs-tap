@@ -114,8 +114,6 @@ trace.
 
 ![Threads Page in the UI showing Worker and IO Completion Port charts.](images/threads-page-steeltoe-1.png)
 
-![Threads Page in the UI showing Thread Details, such as Thread ID and Thread Name.](images/threads-page-steeltoe-2.png)
-
 ## <a id="memory-page"></a> Memory page
 
 To access the **Memory** page, select the **Memory** option from the **Information Category**

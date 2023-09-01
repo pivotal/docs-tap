@@ -72,8 +72,6 @@ The example workload described in this topic is named `tanzu-java-web-app`.
 Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the
 supply chain.
 
-![Screenshot of the Supply Chain visualization. The source-scanner stage is selected.](images/visual-sc.png)
-
 There are two sections within this view:
 
 - The box-and-line diagram at the top shows all the configured CRDs that this supply chain uses, and
@@ -81,30 +79,14 @@ There are two sections within this view:
 - The **Stage Detail** section at the bottom shows source data for each part of the supply chain that
   you select in the diagram view
 
-This is a sample result of the Build stage for the `tanzu-java-web-app` from using
-Tanzu Build Service:
-
 ![Screenshot of details of the Build stage of the application tanzu dash java dash web dash app.](images/build-stage-sample.png)
-
-This is a sample result of the **Image Scan** stage using Grype, which is only available in the
-`test-scan` OOTB supply chain.
-For more information, see the [View Vulnerability Scan Results](#sc-view-scan-results) section.
-
-![Screenshot of details of the Image Scanner stage. CVEs are listed.](images/scc-scan.png)
 
 When a workload is deployed to a cluster that has the `deliverable` package installed, a new section
 appears in the supply chain that shows **Pull Config** boxes and **Delivery** boxes.
 
-![Screenshot of part of the box-and-line diagram. Two Pull Config boxes are each separately linked to two Delivery boxes.](images/pull-config-and-delivery-boxes.png)
-
 When you have a `Pull Request` configured in your environment, access the merge request from the
 supply chain by clicking **APPROVE A REQUEST**. This button is displayed after you click
 **View Approvals** in the supply chain diagram.
-
-In the following example, the merge request is approved, which causes **Pull Config** and **Delivery**
-boxes to appear in the supply chain diagram.
-
-![Screenshot of part of the box-and-line diagram, which includes a View Approvals box. Below the diagram is a button labeled APPROVE A REQUEST.](images/supply-chain-approvals-diagram.png)
 
 ## <a id="sc-view-scan-results"></a> View Vulnerability Scan Results
 
