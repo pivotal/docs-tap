@@ -223,5 +223,5 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id="scst-scan-deprecations"></a> Supply Chain Security Tools (SCST) - Scan deprecations
 - The profile based installation of Grype to a developer namespace and related fields in the values file, such as `grype.namespace` and
-  `grype.targetImagePullSecret`, were deprecated in Tanzu Application Platform v1.6.0 and are marked for removal in v1.8.0. To utilize the profile based installation of Grype to a single namespace, a user can opt-in by setting `grype.namespace` in the `tap-values.yaml` configuration file.
+  `grype.targetImagePullSecret`, were deprecated in Tanzu Application Platform v1.6.0 and are marked for removal in v1.8.0. Prior to removal, a user can opt-in to utilize the profile based installation of Grype to a single namespace by setting `grype.namespace` in the `tap-values.yaml` configuration file.
 ---
