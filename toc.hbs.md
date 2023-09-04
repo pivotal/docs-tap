@@ -761,6 +761,7 @@
       - [Get started with Tanzu Developer Tools for Visual Studio](vs-extension/getting-started.hbs.md)
       - [Use Tanzu Developer Tools for Visual Studio](vs-extension/using-the-extension.hbs.md)
       - [Troubleshoot Tanzu Developer Tools for Visual Studio](vs-extension/troubleshooting.hbs.md)
+      - [DevContainers support for Tanzu Developer Tools for Visual Studio](vs-extension/devcontainers.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.hbs.md)
       - [Tanzu Developer Tools for VS Code overview](vscode-extension/about.hbs.md)
       - [Install Tanzu Developer Tools for your VS Code](vscode-extension/install.hbs.md)
