@@ -116,10 +116,6 @@ trace.
 
 ![Threads Page in the UI showing Worker and IO Completion Port charts.](images/threads-page-steeltoe-1.png)
 
-![Threads Page in the UI showing Thread Details, such as Thread ID and Thread Name.](images/threads-page-steeltoe-2.png)
-
-![Threads Page in the UI showing CPU stats. A Thread Dump button is at the right.](images/threads-cpu-stats-steeltoe.png)
-
 ## <a id="memory-page"></a> Memory page
 
 To access the **Memory** page, select the **Memory** option from the **Information Category**
@@ -131,7 +127,6 @@ The page also has a feature to download the heap dump for analysis.
 The page also has a feature to view the CPU stats for a Steeltoe application
 
 ![Memory Page in the UI showing charts for Heap Memory, Garbage Collection Count by Generation 0, and Garbage Collection Count by Generation 1.](images/memory-page-steeltoe.png)
-![Memory Page in the UI showing CPU stats.](images/memory-cpu-stats-steeltoe.png)
 
 ## <a id="request-mappings-page"></a> Request Mappings page
 

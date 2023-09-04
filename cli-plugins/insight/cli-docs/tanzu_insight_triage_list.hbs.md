@@ -19,11 +19,14 @@ insight triage list --page 5 --limit 20
 ## <a id='options'></a>Options
 
 ```console
-  -h, --help                help for list
-  -d, --img-digest string   Image digest
-  -l, --limit uint          Limits the number of analysis to show (default 10)
-  -p, --page uint           Allows to paginate the results based on the specified limit (default 1)
-  -c, --src-commit string   Source commit
+  -h, --help                  help for list
+  -d, --img-digest string     Image digest
+      --img-registry string   Image registry
+  -l, --limit uint            Limits the number of analysis to show (default 10)
+  -p, --page uint             Allows to paginate the results based on the specified limit (default 1)
+  -c, --src-commit string     Source commit
+      --src-org string        Source organization
+      --src-repo string       Source repository
 ```
 
 ## <a id='options'></a>Options inherited from parent commands

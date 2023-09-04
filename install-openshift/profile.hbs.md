@@ -167,8 +167,6 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       cartographer.tanzu.vmware.com                        Cartographer                                                              Kubernetes native Supply Chain Choreographer.
       cnrs.tanzu.vmware.com                                Cloud Native Runtimes                                                     Cloud Native Runtimes is a serverless runtime based on Knative
       connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
-      controller.conventions.apps.tanzu.vmware.com         Convention Service for VMware Tanzu                                       Convention Service enables app operators to consistently apply desired runtime
-                                                                                                                                     configurations to fleets of workloads.
       controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
       conventions.appliveview.tanzu.vmware.com             Application Live View Conventions for VMware Tanzu                        Application Live View convention server
       developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
@@ -197,7 +195,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       sso.apps.tanzu.vmware.com                            AppSSO                                                                    Application Single Sign-On for Tanzu
       tap-auth.tanzu.vmware.com                            Default roles for Tanzu Application Platform                              Default roles for Tanzu Application Platform
       tap-gui.tanzu.vmware.com                             Tanzu Developer Portal                                            web app graphical user interface for Tanzu Application Platform
-      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Plaform Telemetry
+      tap-telemetry.tanzu.vmware.com                       Telemetry Collector for Tanzu Application Platform                        Tanzu Application Platform Telemetry
       tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use
                                                                                                                                      case.
       tekton.tanzu.vmware.com                              Tekton Pipelines                                                          Tekton Pipelines is a framework for creating CI/CD systems.
@@ -284,6 +282,16 @@ buildservice:
     name: image-registry-creds
     namespace: tap-install
 
+local_source_proxy:
+  # Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
+  repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
+  push_secret:
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
+    name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
+    namespace: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE"
+    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
+    create_export: true
+
 tap_gui:
   app_config:
     auth:
@@ -333,6 +341,19 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
     * Docker Hub has the form `repository: "my-dockerhub-user"`.
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where the developer's local source is uploaded when using
+  Tanzu CLI to use Local Source Proxy for workload creation.
+
+  If an AWS ECR registry is being used, ensure that the repository already exists.
+  AWS ECR expects the repository path to already exist. This destination is represented as
+  `REGISTRY-SERVER/REPOSITORY-PATH`. For more information, see
+  [Install Local Source Proxy](../local-source-proxy/install.hbs.md).
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow
+  pushing to the `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` repository.
+
+- `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
+  `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is available.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.

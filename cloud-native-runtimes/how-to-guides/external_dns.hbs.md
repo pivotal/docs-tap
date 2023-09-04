@@ -1,23 +1,23 @@
-# Configure your External DNS with Cloud Native Runtimes
+# Configure your external DNS with Cloud Native Runtimes
 
-This topic describes how you can configure your external DNS with Cloud Native Runtimes, commonly known as CNR.
+This topic tells you how to configure your external DNS with Cloud Native Runtimes, commonly known as CNR.
 
-## Overview
+## <a id='overview'></a> Overview
 
 Knative uses `svc.cluster.local` as the default domain.
 
-> **Note:** If you are setting up Cloud Native Runtimes for development or testing, you do not have to set up an external DNS.
-However, if you want to access your workloads (apps) over the internet, then you do need to set up a custom domain and an external DNS.
+> **Note** If you are setting up Cloud Native Runtimes for development or testing, you do not have to set up an external DNS.
+However, to access your workloads over the Internet, you must set up a custom domain and an external DNS.
 
-## Configure custom domain
+## <a id='config-custom'></a> Configure custom domain
 
 To set up the custom domain and its external DNS record:
 
 1. Configure your custom domain:
 
-   When your workloads are created, Knative will automatically create URLs for each workload based on the configuration in the domain ConfigMap.
+   When your workloads are created, Knative automatically creates URLs for each workload based on the configuration in the domain ConfigMap.
 
-   - To set a default custom domain, edit your cnr-values.yaml file to contain the following:
+   - To set a default custom domain, edit your `cnr-values.yaml` file to contain the following:
 
       ```yaml
       ---
@@ -28,7 +28,7 @@ To set up the custom domain and its external DNS record:
 
       > **Note** `domain_name` must be a valid DNS subdomain.
 
-   - **Advanced:** To overwrite the domain ConfigMap entirely, edit your `cnr-values.yaml` file to contain your desired config-domain options, similar to the following:
+   - **Advanced** To overwrite the domain ConfigMap entirely, edit your `cnr-values.yaml` file to contain the config-domain options that you want, similar to the following:
       
       ```yaml
       ---
@@ -47,7 +47,7 @@ To set up the custom domain and its external DNS record:
 
       > **Note** `domain_config` must be valid YAML and a valid domain ConfigMap.
 
-   > **Note** You can only use one of `domain_config` or `domain_name` at a time. You may not use both.
+   > **Note** You can only use one of `domain_config` or `domain_name` at a time. You can not use both.
 
 2. Get the address of the cluster load balancer:
 
@@ -63,9 +63,9 @@ To set up the custom domain and its external DNS record:
 3. Create a wildcard DNS `A` record that assigns the custom domain to the load balancer IP.
    Follow the instructions provided by your domain name registrar for creating records.
 
-    The record created looks like:
+    The following is an example of the record you create:
 
-    ```
+    ```console
     *.DOMAIN IN A TTL LOADBALANCER-IP
     ```
 
@@ -81,7 +81,7 @@ To set up the custom domain and its external DNS record:
 
     > If you chose to configure multiple custom domains, you must create a wildcard DNS record for each domain.
 
-## <a id='service-domain'></a> Configure Knative Service Domain Template
+## <a id='service-domain'></a> Configure Knative service domain template
 
 Knative uses domain template which specifies the golang text template string to use when constructing the Knative service's DNS name.
 The default value is `\{{.Name}}.\{{.Namespace}}.\{{.Domain}}`.
@@ -104,4 +104,4 @@ When choosing a new value, be thoughtful of the potential for conflicts, such as
 You can use `\{{.Annotations}}` or `\{{.Labels}}` for any customization in the go template if needed.
 
 VMware recommends to keeping namespace in the template to avoid domain name clashes.
-For example, `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `{"sub":"foo"}`, then the generated template would be `{Name}-{Namespace}.foo.{Domain}`.
+For example, `\{{.Name}}-\{{.Namespace}}.\{{ index .Annotations "sub"}}.\{{.Domain}}` and you have an annotation `{"sub":"foo"}`, the generated template is `{Name}-{Namespace}.foo.{Domain}`.

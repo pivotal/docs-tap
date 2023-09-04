@@ -66,7 +66,6 @@ accelerator:
         # Related to the dataType but somewhat independent, this identifies the type
         # of widget shown in the ui. Available types are:
         # - text - the default
-        # - toggle (boolean on/off control)
         # - textarea (single text value with larger input that allows linebreaks)
         # - checkbox - multivalue selection from choices
         # - select - single value selection from choices

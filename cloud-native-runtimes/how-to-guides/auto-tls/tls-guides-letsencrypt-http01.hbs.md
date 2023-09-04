@@ -9,10 +9,8 @@ provides greater flexibility, security, isolation, and integration with existing
 the TLS configurations to your specific needs and requirements.
 
 The following example explains how to opt out of the shared ingress issuer and use Let's Encrypt with the
-HTTP01 challenge type. The HTTP01 challenge requires that your load balancer be reachable from the Internet by using HTTP.
+HTTP01 challenge type. The HTTP01 challenge requires that your load balancer is reachable from the Internet by using HTTP.
 With the HTTP01 challenge type, a certificate is provisioned for each service.
-
-To configure Cloud Native Runtimes to use a custom Issuer or ClusterIssuer with the HTTP01 challenge, follow these steps:
 
 ## <a id="config-custom-issuer"></a> Configure a custom issuer
 
@@ -21,6 +19,8 @@ that is compliant with cert-manager ClusterIssuer. For more information, see the
 [cert-manager documentation](https://cert-manager.io/docs/configuration/).
 For information about how to replace the default ingress issuer, see
 [Replacing the default ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md).
+
+To configure Cloud Native Runtimes to use a custom Issuer or ClusterIssuer with the HTTP01 challenge:
 
 1. Create a custom Issuer or ClusterIssuer with the Certificate Authority (CA) that you want and configurations.
    Here's an example YAML configuration for a custom ClusterIssuer using Let's Encrypt with the HTTP01 challenge:
@@ -57,9 +57,11 @@ For information about how to replace the default ingress issuer, see
    kubectl apply -f issuer-letsencrypt-http01.yaml
    ```
 
-## <a id="use-custom-issuer"></a> Configure Cloud Native Runtimes to use the custom issuer
+## <a id="use-custom-issuer"></a> Configure Cloud Native Runtimes to use a custom issuer
 
-1. Configure Cloud Native Runtimes to use the custom Issuer or ClusterIssuer for issuing certificates by updating your
+To configure Cloud Native Runtimes to use a custom issuer:
+
+1. Configure Cloud Native Runtimes to use a custom Issuer or ClusterIssuer for issuing certificates by updating your
    `tap-values.yaml` file with the following snippet of YAML.
 
    ```yaml
@@ -67,7 +69,7 @@ For information about how to replace the default ingress issuer, see
        ingress_issuer: "letsencrypt-http01-issuer"
    ```
 
-2. Update Tanzu Application Platform
+2. Update Tanzu Application Platform.
 
    To update the Tanzu Application Platform installation with the changes to the values file, run:
 
@@ -77,34 +79,36 @@ For information about how to replace the default ingress issuer, see
 
 ## <a id="verify-certificate"></a> Verify the issuance of certificates
 
-Verify that your ClusterIssuer was created and properly issuing certificates:
+To verify your certificate:
 
-```console
-kubectl get clusterissuer letsencrypt-http01-issuer
-```
+1. Verify that your ClusterIssuer was created and properly issuing certificates, by running:
 
-You can confirm the status of the certificate by running the following command. You see the certificate in a `Ready` state.
+   ```console
+   kubectl get clusterissuer letsencrypt-http01-issuer
+   ```
 
-```console
-kubectl get certificate -n DEVELOPER-NAMESPACE
-```
+1. Confirm the status of the certificate by running the following command. You see the certificate in a `Ready` state.
 
-You see the certificate in a `Ready` state.
+   ```console
+   kubectl get certificate -n DEVELOPER-NAMESPACE
+   ```
 
-Where `DEVELOPER-NAMESPACE` is the namespace that you want to use.
+   You see the certificate in a `Ready` state.
 
-Additionally, you can access your workload using the domain you specified with `curl` or a web browser, and verify that it is using
+   Where `DEVELOPER-NAMESPACE` is the namespace that you want to use.
+
+1. You can access your workload using the domain you specified with `curl` or a web browser, and verify that it is using
 a TLS certificate issued by the custom Issuer or ClusterIssuer. 
 
-```sh
-tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
-kubectl get ksvc WORKLOAD-NAME -n DEVELOPER-NAMESPACE -o jsonpath='{.status.url}'
-```
+   ```sh
+   tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
+   kubectl get ksvc WORKLOAD-NAME -n DEVELOPER-NAMESPACE -o jsonpath='{.status.url}'
+   ```
 
-Where:
+   Where:
 
-- `DEVELOPER-NAMESPACE` is the namespace that you want to use.
-- `WORKLOAD-NAME` is the name of the workload you want to use.
+   - `DEVELOPER-NAMESPACE` is the namespace that you want to use.
+   - `WORKLOAD-NAME` is the name of the workload you want to use.
 
 For information about how to troubleshoot failures related to the certificate,
 see the [cert-manager documentation](https://cert-manager.io/docs/troubleshooting).

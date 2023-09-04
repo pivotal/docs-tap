@@ -51,6 +51,10 @@ There are some optional but recommended DNS records you must allocate if you dec
 - Application Live View: If you select the `ingressEnabled` option, allocate a corresponding fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `appliveview` and the `shared.ingress_domain` value. For example,
 `appliveview.example.com`.
 
+### <a id='scst-store'></a>Supply Chain Security Tools - Store
+
+The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. For more information about setting up the database for production, see [Database configuration](scst-store/deployment-details.hbs.md#db-config).
+
 ### <a id='tap-gui'></a>Tanzu Developer Portal
 
 For Tanzu Developer Portal, you must have:

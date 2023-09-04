@@ -7,8 +7,8 @@ This topic tells you how to deactivate HTTP-to-HTTPS redirection with Cloud Nati
 When you designate an ingress issuer for your workloads by setting either the `shared.ingress_issuer` or `cnrs.ingress_issuer` configuration value,
 in your `tap-values.yaml` file, the auto-TLS feature is enabled in Cloud Native Runtimes.
 When the auto-TLS is enabled, Cloud Native Runtimes automatically redirects traffic from HTTP to HTTPS.
-However, there can be situations where you want to opt out this behavior and continue serving content over HTTP.
-If this applies, you must deactivate the HTTPS redirection feature.
+However, there can be situations where you want to opt out of this behavior and continue serving content over HTTP.
+To do this, you must deactivate the HTTPS redirection feature.
 
 To deactivate HTTP-to-HTTPS redirection in Cloud Native Runtimes, you must edit your configuration values file:
 

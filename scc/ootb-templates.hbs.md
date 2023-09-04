@@ -15,7 +15,7 @@ The OOTB Template package includes:
   See [reference](ootb-template-reference.html)
 - [Cartographer ClusterRunTemplates](https://cartographer.sh/docs/v0.6.0/runnable/architecture/#clusterruntemplate):
   See [reference](ootb-cluster-run-template-reference.hbs.md)
-- [Tekton ClusterTasks](https://tekton.dev/docs/pipelines/tasks/#overview)
+- [Tekton Tasks](https://tekton.dev/docs/pipelines/tasks/#overview)
 - [ClusterRoles](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
 - [openshift SecurityContextConstraints](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_scc.html)
 

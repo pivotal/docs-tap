@@ -19,11 +19,6 @@ This release includes the following platform-wide enhancements.
 
 - [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
 
-#### <a id='1-7-0-removed-components'></a> Removed components
-
-- Eventing is removed in this release, install and manage Knative Eventing as an alternative solution.
-
----
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
@@ -35,15 +30,30 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 features: Tanzu CLI & plugins
 
-- This release includes Tanzu CLI v1.0.0 and a set of installable plugin groups that are versioned such that the CLI is compatible with every version of TAP under support.
-  - See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
+- This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
+so that the CLI is compatible with every supported version of Tanzu Application Platform.
+See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 features: cert-manager
 
-- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`. 
+- `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`.
   For more information, see the [upstream release notes](https://cert-manager.io/docs/release-notes/release-notes-1.12/).
 
 #### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
+
+- **New config option `resource_management`**: Allows configuration of CPU and memory resources that follow Kubernetes requests and limitsfor all Knative Serving deployments in the `knative-serving` namespace. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+  For example, to configure the CPU and memory requirements for the `activator` deployment:
+
+    ```console
+    resource_management:
+      - name: "activator"
+        requests:
+          memory: "100Mi"
+          cpu: "100m"
+        limits:
+          memory: "1000Mi"
+          cpu: "1"
+    ```
 
 - **New config option `cnrs.contour.default_tls_secret`**: This option has the same meaning as `cnrs.default_tls_secret`.
   `cnrs.default_tls_secret` is deprecated in this release and will be removed in Tanzu Application Platform v1.10.0, which includes Cloud Native Runtimes v2.7.0.
@@ -53,6 +63,18 @@ This release includes the following changes, listed by component and area.
   `cnrs.ingress.[internal/external].namespace` is deprecated in this release and will be removed in Tanzu Application Platform v1.10.0, which includes Cloud Native Runtimes v2.7.0.
   In the meantime both options are supported and `cnrs.contour.[internal/external].namespace` takes precedence
   over `cnrs.ingress.[internal/external].namespace`.
+
+- **New Knative Garbage Collection Defaults**: CNRs is reducing the number of revisions kept for each knative service from 20 to 5.
+  This improves the knative controller's memory consumption when having several Knative services.
+  Knative manages this through the config-gc ConfigMap under `knative-serving` namespace and is documented [here](https://knative.dev/docs/serving/revisions/revision-admin-config-options/).
+
+  The following defaults are set for Knative garbage collection:
+    - `retain-since-create-time: "48h"`: Any revision created with an age of 2 days is considered for garbage collection.
+    - `retain-since-last-active-time: "15h"`: Revision that was last active at least 15 hours ago is considered for garbage collection.
+    - `min-non-active-revisions: "2"`: The minimum number of inactive Revisions to retain.
+    - `max-non-active-revisions: "5"`: The maximum number of inactive Revisions to retain.
+
+  For more information about updating default values, see [Configure Garbage collection for the Knative revisions](cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
 
 #### <a id='1-7-0-service-registry'></a> v1.7.0 features: Service Registry
 
@@ -68,9 +90,19 @@ This release includes the following changes, listed by component and area.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-7-0-COMPONENT-NAME-bc'></a> v1.7.0 breaking changes: COMPONENT-NAME
+#### <a id='1-7-0-eventing-br'></a> v1.7.0 breaking changes: Eventing
 
-- Breaking change description.
+- Eventing is removed in this release. Install and manage Knative Eventing as an alternative solution.
+
+#### <a id='1-7-0-lc-br'></a> v1.7.0 breaking changes: Learning Center
+
+- Learning Center is removed in this release. Use [Tanzu Academy](https://tanzu.academy/) instead for
+all Tanzu Application Platform learning and education needs.
+
+#### <a id='1-7-0-workloads-br'></a> v1.7.0 breaking changes: Workloads
+
+- Function Buildpacks for Knative and the corresponding
+Application Accelerator starter templates for Python and Java are removed in this release.
 
 ---
 
@@ -111,6 +143,11 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-7-0-COMPONENT-NAME-ri'></a> v1.7.0 resolved issues: COMPONENT-NAME
 
 - Resolved issue description.
+
+#### <a id='1-7-0-supply-chain-choreographer-ri'></a> v1.7.0 resolved issues: Supply Chain Choreographer
+
+- The label `apps.tanzu.vmware.com/carvel-package-workflow` is safely ignored when the Package Supply Chain is disabled. Previously, creating workloads with this label would fail when the Package Supply Chain was disabled.
+- Workloads failed on the image supply chains with "multiple supply chain matches" when testing/scanning supply chains were side loaded with the basic supply chain. Though side loading these supply chains is not a supported configuration, this fix allows you to continue to create workloads if you choose to do so.
 
 ---
 
@@ -186,4 +223,14 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 - Deprecation description including the release when the feature will be removed.
 
+### <a id='cloud-native-runtimes-deprecations'></a> Cloud Native Runtimes deprecations
+
+- **`default_tls_secret` config option**: After the recent changes in this release, this config option is moved to
+  `contour.default_tls_secret`. `default_tls_secret` will be removed in CNRs 2.7.0. In the meantime both options
+  are going to be supported and `contour.default_tls_secret` will take precedence over `default_tls_secret`.
+
+- **`ingress.[internal/external].namespace` config options**: After the recent changes in this release, these config options
+  are moved to `contour.[internal/external].namespace`. `ingress.[internal/external].namespace` will be removed in CNRs 2.7.0.
+  In the meantime both options are going to be supported and `contour.[internal/external].namespace` will take precedence
+  over `ingress.[internal/external].namespace`.
 ---

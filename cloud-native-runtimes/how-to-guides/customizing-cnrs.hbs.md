@@ -19,12 +19,12 @@ Besides using the out-of-the-box options to configure your package, you can use 
 See [Customize your package installation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/customize-package-installation.html)
 for instructions on how to customize any Tanzu Platform Application package.
 
-This section provides an example on how to update the Knative ConfigMap `config-logging` to override the logging level
-of the Knative Serving controller to `debug`.
+The following example shows how to update the Knative ConfigMap `config-logging` to override the logging level
+of the Knative Serving controller to `debug`:
 
 1. Create a Kubernetes secret containing the ytt overlay by applying the following configuration to your cluster.
 
-    ```shell
+    ```console
     kubectl apply -n tap-install -f - << EOF
     apiVersion: v1
     kind: Secret
@@ -54,13 +54,13 @@ of the Knative Serving controller to `debug`.
    
    You can retrieve your `tap-values.yaml` file by running:
 
-   ```shell
+   ```console
    kubectl get secret tap-tap-install-values -n tap-install -ojsonpath="{.data.tap-values\.yaml}" | base64 -d
    ```
 
 3. Update the Tanzu Application Platform installation.
 
-    ```sh
+    ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yaml -n tap-install
     ```
 
@@ -69,6 +69,6 @@ of the Knative Serving controller to `debug`.
     To confirm that your changes were applied to the ConfigMap `config-logging`
     by ensuring `loglevel.controller` is set to `debug`.
 
-    ```sh
+    ```console
     kubectl get configmap config-logging -n knative-serving -oyaml
     ```

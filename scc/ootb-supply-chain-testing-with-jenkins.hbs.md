@@ -2,12 +2,12 @@
 
 This topic provides an overview of Out of the Box Supply Chain with testing on Jenkins for Supply Chain Choreographer.
 
-The Out of the Box templates package now includes a Tekton `ClusterTask`
+The Out of the Box templates package includes a Tekton `Task`
 resource, which triggers a build for a specified Jenkins job.
 
 You can configure the Jenkins task in both the [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.html)
 and [Out of the Box Supply Chain With Testing and Scanning](ootb-supply-chain-testing-scanning.html)
-to trigger a Jenkins job.  The task is implemented as a Tekton `ClusterTask` and
+to trigger a Jenkins job. The task is implemented as a Tekton `Task` and
 can now run from a Tekton `Pipeline`.
 
 ## <a id="prerequisite"></a> Prerequisites
@@ -195,15 +195,14 @@ parameters:
 
 Tasks:
 
-- `jenkins-task`, **required**: This `ClusterTask` is one of the tasks that the
-  pipeline runs to trigger the Jenkins job.  It is installed in the cluster by the
-  **Out of the Box Templates** package.
+- `jenkins-task`, **required**: This `Task` is one of the tasks that the
+  pipeline runs to trigger the Jenkins job. The Out of the Box Templates** package installs the `tap-tasks` namespace on the cluster.
 
 Results:
 
 - `jenkins-job-url`: A string result that outputs the URL of the Jenkins build
   that the Tekton task triggered. The `jenkins-task`
-  `ClusterTask` populates the output.
+  `Task` populates the output.
 
 Here is an example of how to create a tekton pipeline with the required parameters
 
@@ -235,8 +234,14 @@ spec:
   #! given job in Jenkins
   - name: jenkins-task
     taskRef:
-      name: jenkins-task
-      kind: ClusterTask
+      resolver: cluster
+      params:
+        - name: kind
+          value: task
+        - name: namespace
+          value: tap-tasks
+        - name: name
+          value: jenkins-task
     params:
       - name: source-url
         value: $(params.source-url)
@@ -256,7 +261,7 @@ EOF
 Tanzu Application Platform includes a [Namespace Provisioner](../namespace-provisioner/about.hbs.md) which is not enabled by default.
 This section requires that you do not use the Namespace Provisioner.
 
-The `jenkins-task` `ClusterTask` resource uses a container image with the
+The `jenkins-task` `Task` resource uses a container image with the
 Jenkins Adapter application to trigger the Jenkins job and wait for it to complete.
 This container image is distributed with Tanzu Application Platform on VMware
 Tanzu Network, but it is not installed at the same time as the other packages.

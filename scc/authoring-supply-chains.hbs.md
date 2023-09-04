@@ -106,22 +106,21 @@ The following set of objects are provided by `ootb-templates`:
 - ClusterImageTemplate/**image-provider-template**
 - ClusterImageTemplate/**image-scanner-template**
 - ClusterImageTemplate/**kpack-template**
-- ClusterTask/**kaniko-build**
+- Task/**kaniko-build**
 - ClusterImageTemplate/**kaniko-template**
 - ClusterRole/**ootb-templates-app-viewer**
 - ClusterRole/**ootb-templates-deliverable**
 - ClusterRole/**ootb-templates-workload**
 - ClusterRunTemplate/**tekton-source-pipelinerun**
-- ClusterRunTemplate/**tekton-taskrun**
 - ClusterSourceTemplate/**delivery-source-template**
 - ClusterSourceTemplate/**source-scanner-template**
 - ClusterSourceTemplate/**source-template**
 - ClusterSourceTemplate/**testing-pipeline**
-- ClusterTask/**git-writer**
-- ClusterTask/**image-writer**
+- Task/**git-writer**
+- Task/**image-writer**
 - ClusterTemplate/**config-writer-template**
 - ClusterTemplate/**deliverable-template**
-- ClusterTask/**carvel-package (experimental)**
+- Task/**carvel-package (experimental)**
 - ClusterConfigTemplate/**carvel-package (experimental)**
 - ClusterTemplate/**package-config-writer-and-pull-requester-template (experimental)**
 - ClusterTemplate/**package-config-writer-template (experimental)**
@@ -429,12 +428,12 @@ with an external API. To do this, you can bring the behavior to the supply chain
 by using Tekton.
 
 You can look at the kaniko image-building as an example. You create a Tekton
-ClusterTask `kaniko-build` with instructions for how to build a Docker image using kaniko
+Task `kaniko-build` with instructions for how to build a Docker image using kaniko
 given a set of parameters.
-The ClusterTask has a set of steps. Each step refers to a container image and a set of instructions
+The Task has a set of steps. Each step refers to a container image and a set of instructions
 to run on the image.
 For example, it can be a Linux image against which a set of bash instructions are run.
-The ClusterTask is installed on the cluster.
+The Task is installed on the cluster in the `tap-tasks` namespace.
 
 You create the ClusterImageTemplate `kaniko-template` to create Tekton TaskRuns. TaskRuns
 are immutable, so you add the `lifecycle: tekton` field to the template's specifications.
