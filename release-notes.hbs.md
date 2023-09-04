@@ -76,6 +76,14 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
   For more information about updating default values, see [Configure Garbage collection for the Knative revisions](cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
 
+#### <a id='1-7-0-service-registry'></a> v1.7.0 features: Service Registry
+
+- This includes the initial release of `service-registry.spring.apps.tanzu.vmware.com` on 
+  Tanzu Application Platform. See the [Component Documentation](service-registry/overview.hbs.md) to
+  get started.
+
+- Feature description.
+
 ---
 
 ### <a id='1-7-0-breaking-changes'></a> v1.7.0 Breaking changes
