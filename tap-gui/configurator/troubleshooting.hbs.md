@@ -7,18 +7,18 @@ Configurator.
 
 ## Symptom
 
-No supplychain is found in `tdp-workload.yaml`
+No supply chain is found in `tdp-workload.yaml`
 
 ## Cause
 
 You might not have specified all of the correct information regarding your workload if you're using
-a supplychain other than `basic`. This documentation has the assumption that you're running the
-`basic` supplychain, so it doesn't tell you to add any tests.
-Because supplychains are configurable, there might be stages unique to your configuration.
+a supply chain other than `basic`. This documentation has the assumption that you're running the
+`basic` supply chain, so it doesn't tell you to add any tests.
+Because supply chains are configurable, there might be stages unique to your configuration.
 
 ## Solution
 
-If you have a supplychain that requires testing, use a no-op set of tests to make the workload
+If you have a supply chain that requires testing, use a no-op set of tests to make the workload
 pass through. For more information about no-op, see [Wikipedia](https://en.wikipedia.org/wiki/NOP_(code)).
 
 Add the following test YAML to your developer namespace:
