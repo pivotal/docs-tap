@@ -136,6 +136,11 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-7-0-supply-chain-choreographer-ri'></a> v1.7.0 resolved issues: Supply Chain Choreographer
+
+- The label `apps.tanzu.vmware.com/carvel-package-workflow` is safely ignored when the Package Supply Chain is disabled. Previously, creating workloads with this label would fail when the Package Supply Chain was disabled.
+- Workloads failed on the image supply chains with "multiple supply chain matches" when testing/scanning supply chains were side loaded with the basic supply chain. Though side loading these supply chains is not a supported configuration, this fix allows you to continue to create workloads if you choose to do so.
+
 ---
 
 ### <a id='1-7-0-known-issues'></a> v1.7.0 Known issues
