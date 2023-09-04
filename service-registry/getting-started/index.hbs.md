@@ -1,6 +1,6 @@
-# Getting Started with Service Registry
+# Get Started with Service Registry
 
-This topic describes how to quickly get started using Service Registry to provide service discovery
+This topic tells you how to quickly get started using Service Registry to provide service discovery
 for microservice architecture. This topic has two sections:
 
 - [Configure Eureka Servers](configuring-eureka-servers.hbs.md)
