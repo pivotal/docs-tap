@@ -17,8 +17,9 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-components'></a> New components
 
-- [COMPONENT-NAME-AND-LINK-TO-DOCS](): Component description.
-
+- [Service Registry for VMware Tanzu](service-registry/overview.hbs.md) provides on-demand Eureka
+  servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
+  servers in your namespaces and bind Spring Boot workloads to them.
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
@@ -75,14 +76,6 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
     - `max-non-active-revisions: "5"`: The maximum number of inactive Revisions to retain.
 
   For more information about updating default values, see [Configure Garbage collection for the Knative revisions](cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
-
-#### <a id='1-7-0-service-registry'></a> v1.7.0 features: Service Registry
-
-- This includes the initial release of `service-registry.spring.apps.tanzu.vmware.com` on 
-  Tanzu Application Platform. See the [Component Documentation](service-registry/overview.hbs.md) to
-  get started.
-
-- Feature description.
 
 ---
 

@@ -1,12 +1,13 @@
 # Install Service Registry
 
-This topic tells you how to install Service Registry from the Tanzu Application Platform 
+This topic tells you how to install Service Registry from the Tanzu Application Platform
 (commonly known as TAP) package repository.
 
-## <a id='prereqs'></a>Prerequisites
+## <a id='prereqs'></a> Prerequisites
 
-Before installing Service Registry, complete all prerequisites to install
-Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
+Before installing Service Registry, complete all the prerequisites to install
+Tanzu Application Platform. For more information, see
+[Prerequisites for installing Tanzu Application Platform](../prerequisites.hbs.md).
 
 ## <a id='install'></a> Install
 
@@ -31,7 +32,7 @@ To install Service Registry on a compliant Kubernetes cluster:
    ```console
    tanzu package install application-configuration-service \
    --package service-registry.spring.apps.tanzu.vmware.com \
-   --version VERSION -n tap-install 
+   --version VERSION -n tap-install
    ```
 
    Where `VERSION` is the version you want, such as `1.2.0`.
@@ -56,8 +57,8 @@ To install Service Registry on a compliant Kubernetes cluster:
     Added installed package 'service-registry' in namespace 'tap-install'
    ```
 
-   > **Note** The installation for Service Registry does not offer any customization options at this 
-   > time, so there is no need to include a `--values-file` option.
+   > **Note** Because there are no customization options at this time, there is no need to include a
+   > `--values-file` option.
 
 3. Verify that you installed the package by running:
 

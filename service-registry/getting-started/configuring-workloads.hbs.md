@@ -1,46 +1,50 @@
-# Configuring Workloads in Tanzu Application Platform using Service Registry
+# Configure workloads in Tanzu Application Platform by using Service Registry
 
-This topic describes how to configure Tanzu Application Platform workloads
-running Spring Boot applications to connect to Service Registry EurekaServers.
+This topic tells you how to configure Tanzu Application Platform workloads that run Spring Boot
+applications to connect to Service Registry EurekaServer resources.
 
-Before following these steps, you should have created a `EurekaServer` as
-described in [the previous topic](configuring-eureka-servers.hbs.md).
+## <a id='prereqs'></a> Prerequisite
 
-## <a id="claim-creds"></a>Claim credentials
+Create a `EurekaServer` resource. For instructions, see
+[Create Eureka Servers](configuring-eureka-servers.hbs.md).
 
-To claim credentials you can either use the `tanzu service resource-claim create` command
-or create a `ResourceClaim` directly.
+## <a id="claim-creds"></a> Claim credentials
 
-- **If using the Tanzu CLI,** claim credentials by running:
+Claim credentials by run the `tanzu service resource-claim create` command or creating a `ResourceClaim`
+directly:
 
-    ```console
-    tanzu service resource-claim create CLAIM-NAME \
-        --resource-kind EurekaServer \
-        --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
-        --resource-name RESOURCE-NAME \
-        --resource-namespace RESOURCE-NAMESPACE \
-        --namespace NAMESPACE \
-    ```
+Using Tanzu CLI
+: Claim credentials by running:
 
-    Where:
+   ```console
+   tanzu service resource-claim create CLAIM-NAME \
+       --resource-kind EurekaServer \
+       --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
+       --resource-name RESOURCE-NAME \
+       --resource-namespace RESOURCE-NAMESPACE \
+       --namespace NAMESPACE \
+   ```
 
-    - `CLAIM-NAME` is a name you choose for your claim.
-    - `RESOURCE-NAME` is the name of the EurekaServer resource you want to claim.
-    - `RESOURCE-NAMESPACE` is the namespace that your EurekaServer resource is in.
-    - `NAMESPACE` is the namespace that your workload is in.
+   Where:
 
-    For example:
+   - `CLAIM-NAME` is a name you choose for your claim.
+   - `RESOURCE-NAME` is the name of the EurekaServer resource you want to claim.
+   - `RESOURCE-NAMESPACE` is the namespace that your EurekaServer resource is in.
+   - `NAMESPACE` is the namespace that your workload is in.
 
-    ```console
-    $ tanzu service resource-claim create my-eurekaserver-claim \
-        --resource-kind EurekaServer \
-        --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
-        --resource-name my-eurekaserver \
-        --resource-namespace my-namespace \
-        --namespace my-namespace \
-    ```
+   For example:
 
-- **If using a `ResourceClaim`,** create a YAML file similar to the following example:
+   ```console
+   $ tanzu service resource-claim create my-eurekaserver-claim \
+       --resource-kind EurekaServer \
+       --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
+       --resource-name my-eurekaserver \
+       --resource-namespace my-namespace \
+       --namespace my-namespace \
+   ```
+
+Using a ResourceClaim
+: Create a YAML file similar to the following example:
 
     ```yaml
     ---
@@ -57,28 +61,28 @@ or create a `ResourceClaim` directly.
         namespace: my-namespace
     ```
 
-## <a id="inspect"></a>Inspect the progress of your claim
+## <a id="inspect"></a> Inspect the progress of your claim
 
-You can inspect the progress of you claim creation by running:
+Inspect the progress of your claim creation by running:
 
 ```console
 tanzu service resource-claim get MY-CLAIM-NAME --namespace MY-NAMESPACE
 ```
 
-or
+or by running:
 
 ```console
 kubectl get resourceclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
 ```
 
-## <a id="inspect"></a>Use Eureka for Service Discovery in Workloads
+## <a id="inspect"></a> Use Eureka for service discovery in workloads
 
-Given an existing application already configured to use 
+Given an existing application already configured to use
 [Spring Cloud Service Discovery](https://cloud.spring.io/spring-cloud-netflix/reference/html/#service-discovery-eureka-clients),
-claim `EurekaServer` credentials to access the running Eureka Server(s). Add the following to 
-`spec.serviceClaims` of a workload:
+claim `EurekaServer` credentials to access the running Eureka servers by adding the following to the
+`spec.serviceClaims` section of a workload:
 
-```YAML
+```yaml
   serviceClaims:
     - name: eureka
       ref:
@@ -87,12 +91,15 @@ claim `EurekaServer` credentials to access the running Eureka Server(s). Add the
         name: my-eurekaserver-claim
 ```
 
-By claiming the credentials, a workload will have its eureka client configured to interact with 
-the referenced Eureka Server.
+By claiming the credentials, a workload has its Eureka client configured to interact with the
+referenced Eureka server.
 
-The following workloads can be used to deploy the [greeting application](https://github.com/spring-cloud-services-samples/greeting):
+You can use the following workloads to deploy the
+[greeting application](https://github.com/spring-cloud-services-samples/greeting):
 
-```YAML
+greeter-messages.yaml example:
+
+```yaml
 # greeter-messages.yaml
 ---
 apiVersion: carto.run/v1alpha1
@@ -129,7 +136,9 @@ spec:
         branch: main
 ```
 
-```YAML
+greeter.yaml example:
+
+```yaml
 # greeter.yaml
 ---
 apiVersion: carto.run/v1alpha1
@@ -166,24 +175,24 @@ spec:
         branch: main
 ```
 
-And created with:
+Create the workloads by running:
 
 ```console
 tanzu apps workload create -f greeter-messages.yaml --yes
 tanzu apps workload create -f greeter.yaml --yes
 ```
 
-> **Note:** In the example above, we set `BP_GRADLE_BUILD_ARGUMENTS` to include the
-> `bootJar` task in addition to the default gradle build arguments. This setting is
-> necessary for this example base because the `build.gradle` file contains a
-> `jar` section, and the Spring Boot buildpack will not inject the
-> spring-cloud-bindings library into the application if it is an executable jar
-> file. We require spring-cloud-bindings in order to process our serviceClaim
-> into properties that tell the discovery client how to find the Eureka server.
-> If you wish to use Service Registry with an executable jar file application,
-> you can do so, but you must include [spring-cloud-bindings
-> v1.13.0](https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bindings/1.13.0)
-> or later explicitly, as well as setting the
-> `org.springframework.cloud.bindings.boot.enable=true` system property as
-> described in the [library
-> README](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration)
+## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable jar file application
+
+In this example, `BP_GRADLE_BUILD_ARGUMENTS` is set to include the `bootJar` task in addition
+to the default Gradle build arguments. This setting is necessary for this example base because the
+`build.gradle` file contains a `jar` section, and the Spring Boot buildpack will not inject the
+`spring-cloud-bindings` library into the application if it is an executable jar file.
+
+`spring-cloud-bindings` is required to process the serviceClaim into properties that tell the
+discovery client how to find the Eureka server.
+
+To use Service Registry with an executable jar file application, you must explicitly include
+[spring-cloud-bindings v1.13.0](https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bindings/1.13.0)
+or later and set the `org.springframework.cloud.bindings.boot.enable=true` system property as described
+in the [library README file](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration).
