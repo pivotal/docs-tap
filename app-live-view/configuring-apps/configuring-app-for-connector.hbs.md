@@ -1,6 +1,6 @@
 # Custom configuration for the connector
 
-This topic for developers tells you to custom configure an app or workload for Application Live View.
+This topic for developers tells you how to custom configure an app or workload for Application Live View.
 
 The connector component is responsible for discovering the app and registering
 it with Application Live View.
