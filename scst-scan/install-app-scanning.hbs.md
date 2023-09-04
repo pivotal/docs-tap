@@ -7,7 +7,8 @@ The following sections describe how to install Supply Chain Security Tools (SCST
 SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is alreadu installed if you installed Tanzu Application Platform by using a profile based installation in both the Full and Build Profiles.
+- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is already installed if you installed Tanzu Application Platform by using a profile based installation in both the Full and Build Profiles.
+- Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in the SCST - Store component to display them correctly. To do this, you must enable AMR (beta) and AMR Observer (alpha) components. See the [AMR documentation](../scst-store/amr/install-amr-observer.hbs.md).
 
 ## <a id="configure-app-scanning"></a> Configure properties
 
@@ -77,7 +78,7 @@ To install SCST - Scan 2.0:
 2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
-    tanzu package install app-scanning-beta --package app-scanning.apps.tanzu.vmware.com \
+    tanzu package install app-scanning-beta --package-name app-scanning.apps.tanzu.vmware.com \
         --version VERSION \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
@@ -102,12 +103,6 @@ To install SCST - Scan 2.0:
         Waiting for 'PackageInstall' reconciliation for 'app-scanning'
         'PackageInstall' resource install status: Reconciling
         'PackageInstall' resource install status: ReconcileSucceeded
-    ```
-
-3. (Optional) If you have Artifact Metadata Repository (AMR) Observer installed, you must to restart it to observe the new ImageVulerabilityScan Custom Resource (CR) that is installed with SCST - Scan 2.0.
-
-    ```console
-    kubectl -n amr-observer-system rollout restart deployment amr-observer-controller-manager
     ```
 
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
