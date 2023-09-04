@@ -174,7 +174,7 @@ The workaround is to delete the connector pod so it is re-created by running:
 kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
 ```
 
-## <a id="cannot-override-act-path"></a> Cannot override the actuator path in the labels
+## <a id="cannot-override-act-path"></a> Cannot override the actuator path in the labels
 
 **Symptom**
 
