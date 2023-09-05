@@ -96,7 +96,7 @@ tanzu-application-platform/WORKLOADNAME-NAMESPACE
 tanzu-application-platform/WORKLOADNAME-NAMESPACE-bundle
 ```
 
-For example, to create these repositories for the the sample workload `tanzu-java-web-app` in the `default` namespace, you can run the following ECR command:
+For example, to create these repositories for the sample workload `tanzu-java-web-app` in the `default` namespace, you can run the following ECR command:
 
 ```console
 aws ecr create-repository --repository-name tanzu-application-platform/tanzu-java-web-app-default --region $AWS_REGION
