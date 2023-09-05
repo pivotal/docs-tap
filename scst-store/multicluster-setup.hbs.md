@@ -129,7 +129,6 @@ what the configuration might look like.
 ```yaml
 ...
 grype:
-  namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   metadataStore:
     url: METADATA-STORE-URL-ON-VIEW-CLUSTER # Url with http / https
@@ -149,9 +148,6 @@ Where:
   `https://metadata-store.example.com`. See [Ingress support](ingress.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
   the credentials to pull an image from the registry for scanning.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys
-  the ScanTemplates there. This allows the scanning feature to run in this
-  namespace.
 
 ## Configure developer namespaces
 

@@ -36,7 +36,6 @@ This example shows how you can perform a private source scan for SCST - Scan.
 
   ```yaml
   grype:
-    namespace: "MY-DEV-NAMESPACE"
     targetSourceSshSecret: "SECRET-SSH-AUTH"
   ```
 

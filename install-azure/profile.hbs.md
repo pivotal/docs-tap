@@ -356,7 +356,6 @@ contour:
 >
 > ```yaml
 > grype:
->   namespace: tap-workload
 >   targetImagePullSecret: registry-credentials
 >```
 >
