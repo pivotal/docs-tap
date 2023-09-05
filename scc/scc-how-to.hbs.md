@@ -21,3 +21,4 @@ The following how-to guides apply to Supply Chain Choreographer for Tanzu:
 - [Deploy Carvel Packages using Argo CD](delivery-with-argo.hbs.md)
 - [Use Blue-green deployments with Contour and Carvel Packages](blue-green-with-packageinstall.hbs.md)
 - [Use Canary deployments with Contour and Carvel Packages](canary-deployment.hbs.md)
+- [Use Blue-green deployments with Flagger](blue-green-with-flagger.hbs.md)
