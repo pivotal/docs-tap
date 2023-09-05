@@ -192,7 +192,7 @@ Using GitOps
 - Second additional source points to the overlay file which will add the git secret onto the default service account
 - Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
->**Note** `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git ** in all provisioned namespaces and also added to the default service account of those namespaces.
+>**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git ** in all provisioned namespaces and also added to the default service account of those namespaces.
 
 ## Customize Limit Range defaults
 
