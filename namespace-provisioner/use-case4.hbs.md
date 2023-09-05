@@ -116,7 +116,7 @@ To configure the service account to work with private Git repositories, follow t
       password: #@ base64.encode(data.values.imported.git.token)
     ```
 
-3. Create a secret to specify an overlay to patch the default service account adding reference to the secret **git**.
+3. Create a secret to specify an overlay to patch the default service account adding reference to the secret git.
 
     ```yaml
     cat << EOF | kubectl apply -f -
@@ -192,11 +192,11 @@ Using GitOps
 - Second additional source points to the overlay file which will add the git secret onto the default service account
 - Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
->**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git ** in all provisioned namespaces and also added to the default service account of those namespaces.
+>**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you will see the secret named git in all provisioned namespaces and also added to the default service account of those namespaces.
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource, see [Default Resources](reference.md#default-resources) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  
+Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource, see [Default Resources](reference.md#default-resources) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:
 
 ```yaml
 limits:
