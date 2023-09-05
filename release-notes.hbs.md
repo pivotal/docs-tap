@@ -29,7 +29,7 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
-#### <a id='1-7-0-application-configuration-service'></a> v1.7.0 features: Application Configuration Service
+#### <a id='1-7-0-app-config-service'></a> v1.7.0 features: Application Configuration Service
 
 - The default interval for new `ConfigurationSlice` resources is now 60 seconds.
 
