@@ -10,13 +10,15 @@ within the VAC UI.
 
 ## <a id='repo'></a> Obtain the Helm chart repository for VMware Application Catalog
 
-1. In VMware Application Catalog, navigate to the **Applications** side tab:
+1. In VMware Application Catalog, navigate to the **Applications** side tab.
 
-2. Search for Helm Charts in your catalog, for example, `MySQL`, and click **Details** for one of the charts you found:
+2. Under **Filter your catalog**, search for Helm Charts in your catalog, for example, `MySQL`, and
+click **Details** for one of the charts you found:
 
    ![The applications tab in the VAC UI. The catalog is filtered with the search term MySQL and by type Helm chart.](../../images/vac-creds-2.png)
 
-3. Take note of the repository shown under **For Helm CLI >= 3.7.0**. You must include the `oci://` prefix as shown on the page:
+3. Take note of the repository shown under **For Helm CLI >= 3.7.0**. You must include the `oci://`
+prefix as shown on the page:
 
    ![A MySQL Helm chart page in the VAC UI. The name of the repository is highlighted in the list of commands required to consume the Helm chart.](../../images/vac-creds-3.png)
 
@@ -29,8 +31,6 @@ within the VAC UI.
 3. Click the **Registry Credentials** tab.
 
 4. Click **Generate New Credentials**.
-
-   ![The registry credentials tab in the VAC UI.](../../images/vac-creds-6.png)
 
 5. Record the user name and token you are presented with.
 
