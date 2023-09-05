@@ -5,7 +5,7 @@ Single Sign-On (commonly called AppSSO).
 
 Use this topic to learn how to:
 
-1. [Set up your first simplistic authorization server](#provision-an-authserver).
+1. [Set up your first AppSSO service offering](#curate-an-appsso-service-offering).
 1. [Claim credentials](#claim-credentials).
 1. [Deploy your workload](#deploy).
 
@@ -76,7 +76,7 @@ For more information about mapping for OpenID Connect, LDAP and SAML, see:
 ID Tokens are signed by the `AuthServer` by using [Token signature keys](service-operators/configure-token-signature.hbs.md). 
 Client applications can verify their validity by using the `AuthServer`'s public keys.
 
-## <a id="provision-an-authserver"></a> Provision an `AuthServer`
+## <a id="curate-an-appsso-service-offering"></a> Curate an AppSSO Service offering
 
 This section tells you how to provision an `AuthServer` for Application Single
 Sign-On. Use this topic to learn how to:
@@ -178,15 +178,13 @@ The next step is to create a `ClassClaim`, which creates consumable credentials
 for your workload, and allows your workload to connect to the login service
 offering by using the credentials.
 
-![Diagram of the Connection between your Workload, the ClassClaim, and Application Single Sign-On.](../../images/app-sso/appsso-flow.png)
-
 Select your preferred login offering from the available options:
 
 ```bash
 tanzu service class list
 ```
 
-If there are none available, [you can create one yourself](#provision-an-authserver):
+If there are none available, [you can create one yourself](#curate-an-appsso-service-offering):
 
 ```bash
 tanzu service class-claim create my-workload \
@@ -204,7 +202,7 @@ Verify the status of your `ClassClaim` by running:
 tanzu service class-claim list
 ```
 
-## <a id="deploy"></a> Deploy an application with Application Single Sign-On
+## <a id="deploy"></a> Deploy an application with AppSSO
 
 This section tells you how to deploy a minimal Kubernetes application that is protected
 by Application Single Sign-On (commonly called AppSSO) by using the credentials
@@ -212,10 +210,6 @@ that [tanzu service class-claim](#claim-credentials) creates.
 
 For more information about how a Client application uses an AuthServer to
 authenticate an end user, see the [Overview of Application Single Sign-On](../about.hbs.md).
-
-### <a id="deploy-prereqs"></a>Prerequisites
-
-You must complete the steps in [Claim credentials](#claim-credentials).
 
 ### <a id="deploy-min-app"></a>Deploy a minimal application
 
