@@ -34,7 +34,7 @@ FIELDS:
 
 ## <a id="create-eurekaserver"></a> Create a EurekaServer
 
-To create a EurekaServer resource:
+To create a `EurekaServer` resource:
 
 1. Create a `EurekaServer` resource with two replicas by using the following YAML definition:
 
@@ -55,7 +55,7 @@ To create a EurekaServer resource:
    kubectl apply -f my-eurekaserver.yaml
    ```
 
-1. Check the status of the `EurekaServer` by running:
+1. Check the status of the `EurekaServer` resource by running:
 
    ```console
    kubectl describe YOUR-ADDRESS RESOURCE-NAME
@@ -95,5 +95,5 @@ To create a EurekaServer resource:
    Events:    <none>
    ```
 
-Successful EurekaServer resources have a `Ready` condition set to `true` and a `status.binding.name`
+A successful `EurekaServer` resource has a `Ready` condition set to `true` and a `status.binding.name`
 field pointing to a secret containing connection information.

@@ -1,17 +1,17 @@
 # Configure workloads in Tanzu Application Platform by using Service Registry
 
-This topic tells you how to configure Tanzu Application Platform workloads that run Spring Boot
-applications to connect to Service Registry EurekaServer resources.
+This topic tells you how to configure Tanzu Application Platform (commonly known as TAP) workloads
+running Spring Boot applications to connect to Service Registry `EurekaServer` resources.
 
-## <a id='prereqs'></a> Prerequisite
+## <a id='prereq'></a> Prerequisite
 
 Create a `EurekaServer` resource. For instructions, see
 [Create Eureka Servers](configuring-eureka-servers.hbs.md).
 
 ## <a id="claim-creds"></a> Claim credentials
 
-Claim credentials by run the `tanzu service resource-claim create` command or creating a `ResourceClaim`
-directly:
+Claim credentials by running the `tanzu service resource-claim create` command or creating a
+`ResourceClaim` directly:
 
 Using Tanzu CLI
 : Claim credentials by running:
@@ -22,7 +22,7 @@ Using Tanzu CLI
        --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
        --resource-name RESOURCE-NAME \
        --resource-namespace RESOURCE-NAMESPACE \
-       --namespace NAMESPACE \
+       --namespace WORKLOAD-NAMESPACE \
    ```
 
    Where:
@@ -30,7 +30,7 @@ Using Tanzu CLI
    - `CLAIM-NAME` is a name you choose for your claim.
    - `RESOURCE-NAME` is the name of the EurekaServer resource you want to claim.
    - `RESOURCE-NAMESPACE` is the namespace that your EurekaServer resource is in.
-   - `NAMESPACE` is the namespace that your workload is in.
+   - `WORKLOAD-NAMESPACE` is the namespace that your workload is in.
 
    For example:
 
@@ -77,10 +77,10 @@ kubectl get resourceclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
 
 ## <a id="inspect"></a> Use Eureka for service discovery in workloads
 
-Given an existing application already configured to use
+If you have an existing application already configured to use
 [Spring Cloud Service Discovery](https://cloud.spring.io/spring-cloud-netflix/reference/html/#service-discovery-eureka-clients),
-claim `EurekaServer` credentials to access the running Eureka servers by adding the following to the
-`spec.serviceClaims` section of a workload:
+you can claim `EurekaServer` credentials to access the running Eureka servers by adding the following
+to the `spec.serviceClaims` section of a workload:
 
 ```yaml
   serviceClaims:
@@ -95,7 +95,7 @@ By claiming the credentials, a workload has its Eureka client configured to inte
 referenced Eureka server.
 
 You can use the following workloads to deploy the
-[greeting application](https://github.com/spring-cloud-services-samples/greeting):
+[greeting application](https://github.com/spring-cloud-services-samples/greeting).
 
 greeter-messages.yaml example:
 
@@ -182,17 +182,18 @@ tanzu apps workload create -f greeter-messages.yaml --yes
 tanzu apps workload create -f greeter.yaml --yes
 ```
 
-## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable jar file application
+## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable JAR file application
 
 In this example, `BP_GRADLE_BUILD_ARGUMENTS` is set to include the `bootJar` task in addition
 to the default Gradle build arguments. This setting is necessary for this example base because the
 `build.gradle` file contains a `jar` section, and the Spring Boot buildpack will not inject the
-`spring-cloud-bindings` library into the application if it is an executable jar file.
+`spring-cloud-bindings` library into the application if it is an executable JAR file.
 
-`spring-cloud-bindings` is required to process the serviceClaim into properties that tell the
+`spring-cloud-bindings` is required to process the `serviceClaim` into properties that tell the
 discovery client how to find the Eureka server.
 
-To use Service Registry with an executable jar file application, you must explicitly include
+To use Service Registry with an executable JAR file application, you must explicitly include
 [spring-cloud-bindings v1.13.0](https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bindings/1.13.0)
 or later and set the `org.springframework.cloud.bindings.boot.enable=true` system property as described
-in the [library README file](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration).
+in the [library README file](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration)
+in GitHub.
