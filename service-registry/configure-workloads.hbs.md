@@ -6,7 +6,7 @@ running Spring Boot applications to connect to Service Registry `EurekaServer` r
 ## <a id='prereq'></a> Prerequisite
 
 Create a `EurekaServer` resource. For instructions, see
-[Create Eureka Servers](configuring-eureka-servers.hbs.md).
+[Create Eureka Servers](./configure-eureka-servers.hbs.md).
 
 ## <a id="claim-creds"></a> Claim credentials
 
