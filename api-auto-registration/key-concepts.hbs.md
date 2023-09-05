@@ -223,6 +223,12 @@ The following are explanations for key text boxes:
   curated API
 - `routeConfig` section specifies service level configuration you add when generating the routing
   resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.0/scg-k8s/GUID-guides-openapi-route-conversion.html).
+  - `routeConfig.filters` section specifies service level filters for all the routes exposed in each
+    API. You may add modifications to your endpoints such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`
+  - Your controller will automatically prepend each endpoint path with the `pathPrefix` you specified
+    for each APIDescriptor, and add `StripPrefix` filter to the end of the filter list to facilitate
+    a successful path-based redirect. But do not worry, you may still add your own `StripPrefix` filter
+    to the service level filters to skip some common path in your spec that's not in your actual service.
 
 ### <a id='curated-status-fields'></a>CuratedAPIDescriptor status fields
 
