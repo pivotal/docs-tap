@@ -41,7 +41,7 @@ offered by VMware Tanzu's data services, but the overwhelming majority of resour
 
 The second limitation is that all resources have to be in the same namespace.
 
-The third limitation is that the service binding has have detailed and specific information about
+The third limitation is that the service binding must have detailed and specific information about
 the service resource, including its name, namespace, and API group, version, and kind.
 This is not a clear separation of concerns as it introduces tight coupling between app teams,
 who create the application workloads, and ops teams, who create the service resources.
