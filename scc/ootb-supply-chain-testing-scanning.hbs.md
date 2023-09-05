@@ -206,7 +206,7 @@ live in the same namespace as the workload with the names matching the following
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
-If you have not already installed the Grype ScanTemplates in the namespace that you are writing the workload to, you can use the Namespace Provisioner to install them. For more detail see [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md#manage-a-list-of-developer-namespaces).
+If you have not already installed the Grype ScanTemplates in the namespace that you are writing the workload to, you can use the Namespace Provisioner to install them. See [Manage a List of developer namespaces](../namespace-provisioner/provision-developer-ns.hbs.md#manage-a-list-of-developer-namespaces).
 
 1. Label the namespace that you are writing the workload to with the default *namespace_selector* `apps.tanzu.vmware.com/tap-ns=""`.
 
