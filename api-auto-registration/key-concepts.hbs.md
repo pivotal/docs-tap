@@ -227,7 +227,7 @@ The following are explanations for key text boxes:
     API. You may add modifications to your endpoints such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`
   - Your controller will automatically prepend each endpoint path with the `pathPrefix` you specified
     for each APIDescriptor, and add `StripPrefix` filter to the end of the filter list to facilitate
-    a successful path-based redirect. But do not worry, you may still add your own `StripPrefix` filter
+    a successful path-based redirect. Additionally, you may still add even more `StripPrefix` filter
     to the service level filters to skip some common path in your spec that's not in your actual service.
 
 ### <a id='curated-status-fields'></a>CuratedAPIDescriptor status fields
