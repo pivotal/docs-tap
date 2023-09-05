@@ -47,7 +47,7 @@ When creating supply chains, you can simplify workflows in both the inner and ou
 
 Supply chains provide a way of codifying all of the steps of your path to production, or what is more commonly known as CI/CD. A supply chain differs from CI/CD in that with a supply chain, you can add every step necessary for an application to reach production or a lower environment.
 
-![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production.png)
+![Diagram depicting a simple path to production: CI to Security Scan to Build Image to Image Scan to CAB Approval to Deployment.](images/path-to-production-new.png)
 
 To address the developer experience gap, the path to production allows users to create a
 unified access point for all of the tools required for their applications to reach a customer-facing

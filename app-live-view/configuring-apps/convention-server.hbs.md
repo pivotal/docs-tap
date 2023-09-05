@@ -2,11 +2,11 @@
 
 This topic provides information about Application Live View convention, which provides a
 Webhook handler for
-[Convention Service for VMware Tanzu](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-convention-service-about.html).
+[Cartographer Conventions](../../cartographer-conventions/about.hbs.md).
 
 ## <a id="role"></a> Role of Application Live View convention
 
-Application Live View conventions works in conjunction with core Convention Service.
+Application Live View conventions works in conjunction with core Cartographer Conventions.
 It enhances Tanzu PodIntents with metadata such as labels, annotations, or app properties.
 This metadata allows Application Live View, specifically the connector, to discover
 app instances so that Application Live View can access the actuator data from those workloads.
@@ -26,7 +26,7 @@ for Application Live View.
 ## <a id="desc-metadata"></a> Description of metadata labels
 
 If a workload resource explicitly defines a label under `metadata.labels` in the
-`workload.yaml`, then Convention Service detects the presence of that label and respects its value.
+`workload.yaml`, then the convention service detects the presence of that label and respects its value.
 When deploying a workload using Tanzu Application Platform,
 you can override the labels listed in the following table using the `Workload` YAML.
 

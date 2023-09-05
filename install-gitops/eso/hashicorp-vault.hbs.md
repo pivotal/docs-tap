@@ -8,7 +8,7 @@ This topic tells you how to install Tanzu Application Platform (commonly known a
 through GitOps with secrets managed in an external secrets store. 
 To decide which approach to use, see [Choosing Secrets OPerationS (SOPS) or External Secrets Operator (ESO)](../reference.hbs.md#choosing-sops-or-eso).
 
-Tanzu GitOps Reference Implememtation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPS to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
+Tanzu GitOps Reference Implementation (RI) does not support changing the secrets management strategy for a cluster, for example, SOPS to ESO. However, changing between AWS Secrets Manager and HashiCorp Vault is supported.
 The External Secrets Operator integration in this release of Tanzu GitOps RI is verified to support Kubernetes integration with HashiCorp Vault.
 
 ## <a id='prerequisites'></a>Prerequisites
@@ -102,7 +102,7 @@ Complete the following steps if you install Tanzu Application Platform in an air
 
 ## <a id='create-a-new-git-repository'></a>Create a new Git repository
 
-1. In a hosted Git service, for example, GitHub or GitLab, create a new respository.
+1. In a hosted Git service, for example, GitHub or GitLab, create a new repository.
 
     This version of Tanzu GitOps RI supports authenticating to a hosted Git repository by using SSH as well as Basic Authentication.
 
@@ -226,7 +226,7 @@ Follow these steps to customize your Tanzu Application Platform cluster configur
 
 ### <a id='connect-vault-to-kubernetes'></a>Connect Vault to a Kubernetes cluster
 
-Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing trust between the Kubernetes cluster and Vault, see [Vault Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for more. This authetication method uses the Kubernetes Control Plane [TokenReview API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/) to authenticate the Kubernetes service accounts with Vault. For this reason, the clusters control plane must be able to commuicate over the network to the Vault instance.
+Tanzu GitOps RI uses the Vault Kubernetes authentication method for establishing trust between the Kubernetes cluster and Vault, see [Vault Kubernetes auth](https://developer.hashicorp.com/vault/docs/auth/kubernetes) for more. This authentication method uses the Kubernetes Control Plane [TokenReview API](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/) to authenticate the Kubernetes service accounts with Vault. For this reason, the clusters control plane must be able to communicate over the network to the Vault instance.
 
 To configure Kubernetes authentication for Vault, you can create a new Kubernetes authentication engine instance on Vault and two IAM Roles by using the supplied script:
 
@@ -744,7 +744,7 @@ The following deployment process is only required once per cluster:
 1. Bootstrap the deployment.
 
     External Secrets Operator is installed from the package included in the
-    Tanzu Application Plaform package repository.
+    Tanzu Application Platform package repository.
     That repository must be fetched from the OCI registry initially.
 
     1. Set the following environment variables:

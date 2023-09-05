@@ -74,10 +74,10 @@ resource that uses port 8080 by default.
    apiVersion: carto.run/v1alpha1
    kind: Workload
    metadata:
-     name: hungryman
+     name: where-for-dinner
      labels:
        apps.tanzu.vmware.com/workload-type: web
-       app.kubernetes.io/part-of: hungryman-api-gateway
+       app.kubernetes.io/part-of: where-for-dinner-api-gateway
    spec:
      params:
      - name: annotations
@@ -85,10 +85,10 @@ resource that uses port 8080 by default.
    autoscaling.knative.dev/minScale: "1"
      source:
        git:
-         url: https://github.com/gm2552/hungryman.git
+         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
        ref:
-         branch: main
-       subPath: hungryman-api-gateway
+         branch: tap-1.6.x
+       subPath: where-for-dinner/where-for-dinner-api-gateway
    ```
 
    This is an example modified for Tanzu Service Mesh, which includes the removal of the autoscaling
@@ -98,10 +98,10 @@ resource that uses port 8080 by default.
    apiVersion: carto.run/v1alpha1
    kind: Workload
    metadata:
-     name: hungryman
+     name: where-for-dinner
      labels:
      apps.tanzu.vmware.com/workload-type: server # modification
-     app.kubernetes.io/part-of: hungryman-api-gateway
+     app.kubernetes.io/part-of: where-for-dinner-api-gateway
    spec:
      params:
      - name: ports # modification
@@ -111,10 +111,10 @@ resource that uses port 8080 by default.
        name: http # modification
      source:
      git:
-         url: https://github.com/gm2552/hungryman.git
+         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
        ref:
-           branch: main
-     subPath: hungryman-api-gateway
+           branch: tap-1.6.x
+     subPath: where-for-dinner/where-for-dinner-api-gateway
    ```
 
    This results in a deployment and a service that listens on port 80 and forwards traffic to port 8080
@@ -176,7 +176,7 @@ apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
   name: deliverable-gitops
-  namespace: hungryman
+  namespace: where-for-dinner
 spec:
   serviceAccountName: default
   fetch:
@@ -194,27 +194,27 @@ The advantage of this model is that applications can be deployed or uninstalled 
 managing the contents of the deliverable resources from within the GitOps repository and enabling a
 GitOps workflow for application and service change control.
 
-## <a id="deploy-hungryman"></a> Deployment use case: Hungryman
+## <a id="deploy-where-for-dinner"></a> Deployment use case: Where For Dinner
 
 The following instructions describe an end-to-end process for configuring, building, and deploying
-the Hungryman application into a Tanzu Service Mesh global namespace.
+the Where For Dinner application into a Tanzu Service Mesh global namespace.
 
-These instructions use the default configuration of Hungryman, which consists of only needing a
-single-node RabbitMQ cluster, an in-memory database, and no security.
+These instructions use the default configuration of Where For Dinner, which consists of only needing
+a single-node RabbitMQ cluster, an in-memory database, and no security.
 The application is deployed across two Tanzu Application Platform run clusters.
 It requires the `ytt` command to execute the build and deployment commands.
 
 The configuration resources referenced in this scenario are located in the
-[hungryman-tap-tsm](https://github.com/gm2552/hungryman-tap-tsm) GitHub repository.
+[where-for-dinner-tap-tsm](https://github.com/gm2552/where-for-dinner-tap-tsm) GitHub repository.
 
 ### <a id="init-config-gen-acc"></a> Create an initial set of configuration files from the accelerator
 
 This use case deployment includes a pre-built set of configuration files in a Git repository.
 However, they were created from a set of configuration files by using a bootstrapped process that uses
-the Hungryman accelerator, and were later modified.
+the Where For Dinner accelerator, and were later modified.
 
-For reference, you can create an initial set of configuration files from the Hungryman accelerator,
-which is available in Tanzu Application Platform v1.3.
+For reference, you can create an initial set of configuration files from the Where For Dinner accelerator,
+which is available in Tanzu Application Platform v1.3 and later.
 
 This section does not include instructions for modifying the configuration files from the accelerator
 into configuration files used in a later section.
@@ -226,7 +226,7 @@ From the accelerator, accept all of the default options with the following excep
 - **Service namespace:** Update this field with the name of the namespace you will use to deploy a
   RabbitMQ cluster on your Tanzu Application Platform run cluster
 
-### <a id="hungryman-workload-build"></a> Apply the workload resources to your build cluster
+### <a id="where-for-dinner-workload-build"></a> Apply the workload resources to your build cluster
 
 To build the application services, run the following command to apply the workload resources to
 your build cluster.
@@ -242,7 +242,7 @@ Where `WORKLOAD-NAMESPACE` is the name of your build namespace
 For example:
 
 ```console
-ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/workloads.yaml \
+ytt -f https://raw.githubusercontent.com/gm2552/where-for-dinner-tap-tsm/main/workloads.yaml \
 -v workloadNamespace=workloads | kubectl apply -f-
 ```
 
@@ -256,7 +256,7 @@ provided in the instructions.
 
 ### <a id="serv-rsrc-clm-install"></a> Install service claim resources on the cluster
 
-Hungryman requires a RabbitMQ cluster installed on your run cluster.
+Where For Dinner requires a RabbitMQ cluster installed on your run cluster.
 You must install RabbitMQ on the same run cluster that is named `RunCluster01` in the following
 deployment section.
 Additionally, you must install service claim resources on this cluster.
@@ -282,7 +282,7 @@ Additionally, you must install service claim resources on this cluster.
    ```console
    kubectl create ns service-instances
 
-   ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/rmqCluster.yaml -v \
+   ytt -f https://raw.githubusercontent.com/gm2552/where-for-dinner-tap-tsm/main/rmqCluster.yaml -v \
    serviceNamespace=service-instances | kubectl apply -f-
    ```
 
@@ -299,17 +299,17 @@ Additionally, you must install service claim resources on this cluster.
    For example:
 
    ```console
-   ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/rmqResourceClaim.yaml \
-   -v serviceNamespace=service-instances -v workloadNamespace=hungryman | kubectl apply -f-
+   ytt -f https://raw.githubusercontent.com/gm2552/where-for-dinner-tap-tsm/main/rmqResourceClaim.yaml \
+   -v serviceNamespace=service-instances -v workloadNamespace=where-for-dinner | kubectl apply -f-
    ```
 
-### <a id="hungryman-run-clstr-dply"></a> Run cluster deployment
+### <a id="where-for-dinner-run-clstr-dply"></a> Run cluster deployment
 
 Workloads are deployed to the run cluster using deliverable resources.
 This section applies the deliverable resources directly to the run clusters instead of using a kapp
 application.
 
-This deployment assumes that two clusters are part of the Tanzu Service Mesh GNS Hungryman.
+This deployment assumes that two clusters are part of the Tanzu Service Mesh GNS Where For Dinner.
 These example clusters are named `RunCluster01` and `RunCluster02`.
 The majority of the workload is deployed to `RunCluster01` while the crawler workload is deployed to
 `RunCluster02`.
@@ -347,16 +347,16 @@ Where:
 To run this deployment on cluster `RunCluster01`, for example, you run:
 
 ```console
-ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/cluster01Deliverables.yaml -v \
-workloadNamespace=hungryman -v gitOpsSecret=tap-play-gitops-secret -v \
+ytt -f https://raw.githubusercontent.com/gm2552/where-for-dinner-tap-tsm/main/cluster01Deliverables.yaml -v \
+workloadNamespace=where-for-dinner -v gitOpsSecret=tap-play-gitops-secret -v \
 gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ```
 
 To run this deployment on cluster `RunCluster02`, for example, you run:
 
 ```console
-ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/cluster02Deliverables.yaml -v \
-workloadNamespace=hungryman -v gitOpsSecret=tap-play-gitops-secret -v \
+ytt -f https://raw.githubusercontent.com/gm2552/where-for-dinner-tap-tsm/main/cluster02Deliverables.yaml -v \
+workloadNamespace=where-for-dinner -v gitOpsSecret=tap-play-gitops-secret -v \
 gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ```
 
@@ -381,39 +381,39 @@ Where:
 For example:
 
 ```console
-ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/ingress.yaml -v \
-workloadNamespace=hungryman -v domainName=tsmdemo.perfect300rock.com | kubectl apply -f-
+ytt -f https://raw.githubusercontent.com/gm2552/where-for-dinner-tap-tsm/main/ingress.yaml -v \
+workloadNamespace=where-for-dinner -v domainName=tsmdemo.perfect300rock.com | kubectl apply -f-
 ```
 
-### <a id="hungry-create-glob-nmspc"></a> Create a global namespace
+### <a id="where-create-glob-nmspc"></a> Create a global namespace
 
 The example clusters have the names `RunCluster01` and `RunCluster02`, and they assume the
-workload and service namespaces of Hungryman and service-instances, respectively.
+workload and service namespaces of where-for-dinner and service-instances, respectively.
 
 1. Open the Tanzu Service Mesh console and create a new GNS.
 2. Configure the following settings in each step:
 
    1. General details
-       - **GNS Name:** hungryman
-       - **Domain:** hungryman.lab
+       - **GNS Name:** where-for-dinner
+       - **Domain:** where-for-dinner.lab
    2. Namespace mapping
        - Namespace mapping Rule 1
            - **Cluster name:** RunCluster01
-           - **Namespace:** hungryman
+           - **Namespace:** where-for-dinner
        - Namespace Mapping Rule 2
            - **Cluster name:** RunCluster02
-           - **Namespace:** hungryman
+           - **Namespace:** where-for-dinner
        - Namespace Mapping Rule 3
            - **Cluster name:** RunCluster01
            - **Namespace:** service-instances
    3. Autodiscovery. Use the default settings.
    4. Public services
-       - **Service name:** hungryman
+       - **Service name:** where-for-dinner
        - **Service port:** 80
-       - **Public URL:** http hungryman . Select a domain.
+       - **Public URL:** http where-for-dinner . Select a domain.
    5. Global server load balancing and resiliency. Use the default settings.
 
-You can now access the Hungryman application with the URL configured earlier.
+You can now access the Where For Dinner application with the URL configured earlier.
 
 ## <a id="acme-use-case"></a> Deployment use case: ACME Fitness Store
 
