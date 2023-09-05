@@ -1,8 +1,8 @@
-# Dev Containers support
+# Using Dev Containers to spin up ready to code dev environment (alpha)
 
-This topic tells you about using DevContainers to develop applications on Tanzu Application Platform.
+This topic tells you about using Dev Containers to spin up ready to code dev environment, that enables developers to connect to a pre-configured dev container that includes all Tanzu tools and IDE extensions required for development on Tanzu pre-installed.
 
-Support for Dev Containers is currently **experimental**.
+Support for Dev Containers is currently **alpha**.
 
 ## <a id="intro"></a> Introduction to Dev Containers
 
@@ -19,7 +19,7 @@ A Development Container (or Dev Container for short) allows you to use a contain
 
 You can start a new project with Dev Containers support or add Dev Containers support for an existing project:
 
-### <a id="new-project"></a> Setting up a new project using Accelerators
+### <a id="new-project"></a> Setting up a new project using Accelerators and Dev Containers
 
 1. From Accelerator page in TAP GUI, select the Tanzu Java Web App accelerator
 2. Select the desired options
@@ -27,7 +27,7 @@ You can start a new project with Dev Containers support or add Dev Containers su
 4. Open the project using VScode
 5. Follow VSCode prompts to restart IDE in devcontainer and you will be connected to the devcontainer
 
-### <a id="existing-project"></a> Adding dev container support to an existing project
+### <a id="existing-project"></a> Adding dev container to an existing project
 
 1. Open project with VScode, make sure you are using Tanzu Developer Tools plugin 1.1.0 or above
 2. Create an empty new file named devcontainer
@@ -35,7 +35,7 @@ You can start a new project with Dev Containers support or add Dev Containers su
 4. Rename the file to .devcontainer.json file
 5. Follow VSCode prompts to restart IDE in devcontainer and you will be connected to the devcontainer
 
-## <a id="usage"></a> Usage
+## <a id="usage"></a> Using the dev container
 
 ### <a id="use-cluster"></a> Connect to your cluster
 
@@ -53,9 +53,9 @@ Once you logged into the cluster you will need to Restart the IDE for it to beco
 "Developer: Reload Window" in the command palette.
 
 You are now ready to start working on your code and deploy it to your cluster and monitor
-your workloads in the Tanzu Panel.
+your workloads in the Tanzu Panel. Please follow the user guide at [Use Tanzu Developer Tools for VS Code](using-the-extension.hbs.md) to continue your development with Tanzu Developer Tools for VS code.
 
-## <a id="cli-eula"></a> Tanzu CLI EULA and other Legal Requirements
+## <a id="cli-eula"></a> Tanzu CLI VMware General Terms and other Legal Requirements
 
 Notice that in the `.devcontainer.json` you can find the following:
 
@@ -70,7 +70,7 @@ When building the devcontainer it installs `tanzu` cli. To
 [avoid interactive prompts](https://github.com/vmware-tanzu/tanzu-cli/blob/main/docs/quickstart/install.md#automatic-prompts-and-potential-mitigations)
 from breaking the installation process, some options have to be preselected:
 
-1. `"acceptEula": true` means you accept the EULA (https://www.vmware.com/vmware-general-terms.html).
+1. `"acceptEula": true` means you accept the VMware general terms (https://www.vmware.com/vmware-general-terms.html).
 
 2. `"acceptCeip": false` means you did not agree to participate in
    [Tanzu CEIP Program](https://www.vmware.com/solutions/trustvmware/ceip.html). It is set by default to false, if you did want to participate in the program
