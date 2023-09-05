@@ -16,4 +16,4 @@ management approach.
 It filters runtime configuration for any application by using slices that produce secrets.
 
 For more information about Application Configuration Service, see the
-[Application Configuration Service for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.0/acs/GUID-overview.html).
+[Application Configuration Service for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.2/acs/GUID-overview.html).
