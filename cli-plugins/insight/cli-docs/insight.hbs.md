@@ -1,6 +1,6 @@
 # Tanzu insight CLI plug-in command reference
 
-This topic tells you about the The Tanzu Insight CLI plug-in. 
+This topic tells you about the Tanzu Insight CLI plug-in.
 
 ## <a id='synopsis'></a>Synopsis
 
