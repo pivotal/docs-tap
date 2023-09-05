@@ -349,6 +349,7 @@ docs.vmware.com is built.
                 - [Public clients and CORS](app-sso/how-to-guides/service-operators/cors.hbs.md)
                 - [Token settings](app-sso/how-to-guides/service-operators/token-settings.hbs.md)
                 - [Token signatures](app-sso/how-to-guides/service-operators/configure-token-signature.hbs.md)
+                - [Session settings](app-sso/how-to-guides/service-operators/session-settings.hbs.md)
                 - [Storage](app-sso/how-to-guides/service-operators/storage.hbs.md)
                 - [AuthServer readiness](app-sso/how-to-guides/service-operators/readiness.hbs.md)
                 - [Scale AuthServer](app-sso/how-to-guides/service-operators/scale.hbs.md)

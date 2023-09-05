@@ -39,6 +39,7 @@ operational, ready-to-claim AppSSO service offering:
 - [Public clients and CORS](cors.hbs.md)
 - [Token settings](token-settings.hbs.md)
 - [Token signatures](configure-token-signature.hbs.md)
+- [Session settings](session-settings.hbs.md)
 - [Storage](storage.hbs.md)
 - [AuthServer readiness](readiness.hbs.md)
 - [Scale AuthServer](scale.hbs.md)
