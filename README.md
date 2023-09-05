@@ -65,6 +65,7 @@ stored in dedicated repositories.
 |Local Source Proxy|Local Source Proxy|
 |Namespace Provisioner|Namespace Provisioner|
 |Service Bindings|Service Bindings|
+|Service Registry for VMware Tanzu|Service Registry|
 |Services Toolkit for VMware Tanzu Application Platform|Services Toolkit|
 |Source Controller|Source Controller|
 |Spring Boot conventions|Spring Boot conventions|

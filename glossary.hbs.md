@@ -330,6 +330,12 @@
         life cycle&mdash;create, read, update and delete (CRUD)&mdash;of a service resource.</td>
     </tr>
     <tr>
+        <td>Service Registry</td>
+        <td>Service Registry provides on-demand Eureka servers for your Tanzu Application Platform
+        (commonly known as TAP) clusters. With Service Registry, you can create Eureka servers in
+        your namespaces and bind Spring Boot workloads to them.</td>
+    </tr>
+    <tr>
         <td>Services Toolkit</td>
         <td>Services Toolkit is a Tanzu Application Platform component that provides backing for service
         capabilities. This includes the integration of an extensive list of cloud-based and on-prem services,

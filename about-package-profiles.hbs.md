@@ -163,6 +163,12 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Service Bindings create a Kubernetes-wide specification for communicating service
   secrets to workloads in a consistent way.
 
+- **[Service Registry](service-registry/overview.hbs.md)**
+
+  Service Registry for VMware Tanzu provides on-demand Eureka servers for your
+  Tanzu Application Platform clusters. With Service Registry, you can create Eureka servers in your
+  namespaces and bind Spring Boot workloads to them.
+
 - **[Services Toolkit](services-toolkit/about.hbs.md)**
 
   Services Toolkit is responsible for backing many of the most exciting and powerful
