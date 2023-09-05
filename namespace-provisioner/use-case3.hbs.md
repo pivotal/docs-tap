@@ -11,7 +11,7 @@ Namespaces Provisioner enables you to use private Git repositories for storing y
 
 The secrets for Git authentication allow the following keys: ssh-privatekey, ssh-knownhosts, username, and password.
 
->**Note**  if ssh-knownhosts is not specified, Git will not perform strict host checking.
+>**Note**  If ssh-knownhosts is not specified, Git does not perform strict host checking.
 
 1. Create the Git secret.
 
@@ -75,7 +75,7 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
 
       **Caution** There is a current limitation in kapp-controller which does not allow the users to
       re-use the same git secret multiple times. If you have multiple additional sources using private
-      repo with the same credentials, you will have to create different secrets with the same
+      repo with the same credentials, you must create different secrets with the same
       authentication details for each of them.
 
       In this example, the location where the list of namespaces resides is also a private repository. So you must create a secret named `git-auth-install` with the same authentication details.
@@ -162,7 +162,7 @@ Using GitOps
         create_export: true
   ```
 
-After reconciling, Namespace Provisioner will create:
+After reconciling, Namespace Provisioner creates:
 
 - [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace (tap-install in the above example) to the Namespace Provisioner namespace.
 - [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in Namespace Provisioning namespace (tap-namespace-provisioning) so Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) can create the required secret for the Provisioner to connect to the Private Git Repository.
@@ -341,8 +341,12 @@ To configure the service account to work with private Git repositories, follow t
           create_export: true
       ```
 
-* First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
-* Second additional source points to the overlay file which will add the git secret onto the default service account
+* First additional source points to the location where the templated git secret resides which is
+created in all developer namespaces.
+* Second additional source points to the overlay file which adds the git secret onto the default service account
 * Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
->**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git **in all provisioned namespaces and also added to the default service account of those namespaces.
+>**Note** `create_export` is set to `true` in `import_data_values_secrets` meaning that a SecretExport
+is created for the `workload-git-auth` secret in the tap-install namespace automatically by
+Namespace Provisioner. After the changes are reconciled, the secret named **git** is in
+all provisioned namespaces and it is also added to the default service account of those namespaces.
