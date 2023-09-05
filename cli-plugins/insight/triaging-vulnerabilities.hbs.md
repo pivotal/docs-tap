@@ -51,7 +51,7 @@ tanzu insight triage update \
   --pkg-name $PKG-NAME \
   --pkg-version $PKG-VERSION \
   --img-digest $IMG-DIGEST \
-  --artifact-group-uid $AG-UID \
+  --artifact-group-uid $ARTIFACT-GROUP-UID \
   --state in_triage
 ```
 
@@ -61,7 +61,7 @@ Where:
 - `PKG-NAME` and `PKG-VERSION` are the name and version of the Application and OS package affected
 by the vulnerability
 - `IMG-DIGEST` is the digest of the image that contains the affected Application and OS package
-- `AG-UID` is the unique identifier for the workload that contains the image. If your workload was deployed with Tanzu CLI, you can find its unique identifier with the command:
+- `ARTIFACT-GROUP-UID` is the unique identifier for the workload that contains the image. If your workload was deployed with Tanzu CLI, you can find its unique identifier with the command:
 
     ```console
     kubectl get workload $MY_WORKLOAD_NAME --namespace $MY_WORKLOAD_NAMESPACE --output jsonpath='{.metadata.uid}'
@@ -118,3 +118,44 @@ The following conditions are required for this action:
 > **Note** The responsibility of assessing a vulnerability's impact is up to the person in charge of
 > triage. Images and sources with the same package and version might use the
 > package in a different way and might not have the same analysis values.
+
+## <a id='rebase-analyses'></a>Rebase multiple analyses
+
+Given the Continuous Delivery nature of TAP's Supply Chains, you might run into scenarios where you
+have performed Triage for several vulnerabilities on the latest version of your workload's image,
+and after a change is made in the source code and a new image is built and deployed, you want to
+carry forward the existing vulnerability analyses for all vulnerabilities that are still present
+in the newest version of the image. We call this process *rebase*, and you can run it with the
+following command:
+
+```console
+tanzu insight triage rebase \
+  --img-digest $TARGET-IMAGE
+  --artifact-group-uid $ARTIFACT-GROUP-UID
+```
+
+Where:
+
+- `TARGET-IMAGE` is the digest of the image you want to rebase analyses into
+- `ARTIFACT-GROUP-UID` is the unique identifier for the workload that contains the image, and where existing analyses will be searched for
+
+Each time you run this command, you will be presented with the list of existing analysis that
+could be automatically rebased into your target image. The algorithm to search for this analyses
+uses the following criteria:
+
+- The analysis exists for a vulnerability that the target image is affected by and
+- Is linked to a "previous version" of an image and
+- There is no existing analysis for the same vulnerability and the target image, or their state is 'in\_triage'
+
+In this context, an image A is considered to be a previous version of an image B when they have
+the same name, different digests and image A was created before image B. This will be bounded on the workload's
+context, using the provided `--artifact-group-uid`.
+
+### Known limitations
+
+1. You can only rebase analyses for images at the moment. Sources should be supported on a future
+   version.
+2. If you are deploying TAP workloads from pre-built images, or have a custom Supply Chain that
+   changes the name of the deployed image in-between builds, you won't be able to use the feature
+   and will have to [manually copy](./triaging-vulnerabilities.md#copying-analysis) the existing
+   analyses.
