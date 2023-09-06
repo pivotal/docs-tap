@@ -147,7 +147,7 @@ is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. F
         namespace: my-namespace # optional
 ```
 
-### <a id='status-fields'></a>APIDescriptor status fields
+### <a id='status-fields'></a>APIDescriptor status fields>
 
 When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`,
 which provide information useful for troubleshooting. The conditions are explained in the
@@ -224,13 +224,12 @@ The following are explanations for key text boxes:
 - `routeConfig` section specifies service level configuration you add when generating the routing
   resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
   - `routeConfig.filters` section specifies service level filters for all the routes exposed in each
-    API. You may add modifications to your endpoints such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`.
-    see [SCG commercial filters](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-filters.html)
-    for the list of filters available.
-  - Your controller will automatically prepend each endpoint path with the `pathPrefix` you specified
-    for each APIDescriptor, and add `StripPrefix` filter to the end of the filter list to facilitate
-    a successful path-based redirect. Additionally, you may still add even more `StripPrefix` filter
-    to the service level filters to skip some common path in your spec that's not in your actual service.
+    API. You can add modifications to your endpoints, such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`.
+    For information about available filters, see [SCG commercial filters](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-filters.html).
+  - Your controller automatically prepends each endpoint path with the `pathPrefix` you specified
+    for each APIDescriptor, and adds the `StripPrefix` filter to the end of the filter list to facilitate
+    a successful path-based redirect. Additionally, you can add more `StripPrefix` filters
+    to the service level filters to skip common paths in your specifications that are not in your service.
 
 ### <a id='curated-status-fields'></a>CuratedAPIDescriptor status fields
 
