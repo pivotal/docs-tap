@@ -469,20 +469,13 @@ contour:
         LBType: nlb
 ```
 
-#### <a id='ceip'></a> CEIP policy disclosure
+### <a id='ceip'></a> CEIP policy disclosure
 
 Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed.
 
 See [Opt out of telemetry collection](../opting-out-telemetry.hbs.md) for more information.
 
-### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
-
-The following tasks are optional during the Tanzu Application Platform installation process:
-
-- [(Optional) Configure your profile with full dependencies](#full-dependencies)
-- [(Optional) Configure your profile with the Jammy stack only](#jammy-only)
-
-#### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
 When you install a profile that includes Tanzu Build Service,
 Tanzu Application Platform is installed with the `lite` set of dependencies.

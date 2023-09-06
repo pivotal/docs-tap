@@ -368,6 +368,38 @@ contour:
 >
 > You can install Grype by using Namespace Provisioner instead.
 
+### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+
+When you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
+and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+required for application builds.
+
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+
+To configure `full` dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
+For example:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
+  exclude_dependencies: true
+```
+
+After configuring `full` dependencies, you must install the dependencies after
+you have finished installing your Tanzu Application Platform package.
+See [Install the full dependencies package](#tap-install-full-deps) for more information.
+
+Tanzu Application Platform v1.6.1 supports building applications with Ubuntu v22.04 (Jammy).
+
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
