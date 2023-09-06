@@ -21,7 +21,7 @@ Access control is implemented through standard Kubernetes Role-Based Access Cont
 the use of the custom verb `claim`.
 You must create a rule in a `ClusterRole` which specifies the `claim` verb for one or
 more `clusterinstanceclasses`, and then bind the `ClusterRole` to the roles that you want to
-authorize to create claims for the classes.
+authorize to create claims for the classes with a `ClusterRoleBinding`.
 This approach is particularly effective when paired with Tanzu Application Platform's aggregated user roles.
 For more information about user roles in Tanzu Application Platform, see
 [Role descriptions](../../authn-authz/role-descriptions.html).
@@ -57,8 +57,11 @@ The example also includes the `apps.tanzu.vmware.com/aggregate-to-app-operator-c
 which causes this `ClusterRole` to aggregate to Tanzu Application Platform's [app-operator](../../authn-authz/role-descriptions.html#app-operator)
 user role at the cluster scope.
 
-The result is that any user who has the `app-operator` role is now authorized to create claims
-for the `bigcorp-rabbitmq` class in any namespace on the cluster.
+The result is that any user who has the `app-operator` role is now authorized
+to claim from the `bigcorp-rabbitmq` class.
+
+Those users still need permission to create `ClassClaims` in the namespace(s)
+they want to consume the services from.
 
 ## <a id="auth-one-user"></a> Authorize a user to claim from a specific namespace
 
@@ -85,10 +88,9 @@ rules:
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: alice-claim-class-bigcorp-rabbitmq
-  namespace: dev-team-1
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -100,11 +102,14 @@ subjects:
 ```
 
 This example specifies a `ClusterRole` that permits claiming from a class named `bigcorp-rabbitmq`.
-The YAML also creates a `RoleBinding` in the `dev-team-1` namespace that binds the user
+The YAML also creates a `ClusterRoleBinding`that binds the user
 `alice@example.com` to the `ClusterRole`.
 
-The result is that `alice@example.com` is now authorized to create claims for the
-`bigcorp-rabbitmq` class in the `dev-team-1` namespace on the cluster.
+The result is that `alice@example.com` is now authorized to claim from
+`bigcorp-rabbitmq` class.
+
+`alice@example.com` users still need permission to create `ClassClaims` in the namespace(s)
+they want to consume the services from.
 
 ## <a id="bitnami-services"></a> Revoke default authorization for claiming from the Bitnami Services classes
 
