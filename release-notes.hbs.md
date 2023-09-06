@@ -213,6 +213,10 @@ This release has the following known issues, listed by component and area.
 - Tanzu Application Platform v1.5.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
   on vSphere with Tanzu v8.
 
+#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 breaking changes: Services Toolkit
+
+- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`
+
 ---
 
 ## <a id='1-5-4'></a> v1.5.4
