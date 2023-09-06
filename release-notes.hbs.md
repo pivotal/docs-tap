@@ -11,7 +11,7 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-6-3-COMPONENT-NAME-fixes'></a> v1.6.3 security fixes: COMPONENT-NAME
+#### <a id='1-6-3-COMPONENT-NAME-fixes'></a> v1.6.3 Security fixes: COMPONENT-NAME
 
 - Security fix description.
 
@@ -37,7 +37,7 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-3-app-config-serv-ri'></a> v1.6.3 resolved issues: Application Configuration Service
+#### <a id='1-6-3-app-config-serv-ri'></a> v1.6.3 Resolved issues: Application Configuration Service
 
 - `GitRepository` is now consistently observed beyond 15 minutes. The `interval` property for a
   `ConfigurationSlice` now continues to work as expected.
@@ -46,7 +46,7 @@ The following issues, listed by component and area, are resolved in this release
 
 ---
 
-#### <a id='1-6-3-cli-ri'></a> v1.6.3 resolved issues: Tanzu CLI and plugins
+#### <a id='1-6-3-cli-ri'></a> v1.6.3 Resolved issues: Tanzu CLI and plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
 so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
@@ -54,7 +54,7 @@ information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
 ---
 
-#### <a id='1-6-3-COMPONENT-NAME-ri'></a> v1.6.3 resolved issues: COMPONENT-NAME
+#### <a id='1-6-3-COMPONENT-NAME-ri'></a> v1.6.3 Resolved issues: COMPONENT-NAME
 
 - Resolved issue description.
 
@@ -64,9 +64,149 @@ information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-6-3-COMPONENT-NAME-ki'></a> v1.6.3 known issues: COMPONENT-NAME
+#### <a id='1-6-3-amr-obs-ce-hndlr-ki'></a> v1.6.3 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
-- Known issue description with link to workaround.
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+- ReplicaSet status in AMR only has two states: `created` and `deleted`.
+  There is a known issue where the `available` and `unavailable` state is not showing.
+  The workaround is that you can interpolate this information from the `instances` metadata in the
+  AMR for the ReplicaSet.
+
+#### <a id='1-6-3-bitnami-services-ki'></a> v1.6.3 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-6-3-cnrs-ki'></a> v1.6.3 Known issues: Cloud Native Runtimes
+
+- For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
+  with status `CertificateNotReady`. For more information, see
+  [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+#### <a id='1-6-3-crossplane-ki'></a> v1.6.3 Known issues: Crossplane
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane Package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-6-3-eventing-ki'></a> v1.6.3 Known issues: Eventing
+
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
+  informers to alleviate load on the API server. This causes high memory use.
+
+#### <a id='1-6-3-learningcenter-ki'></a> v1.6.3 Known issues: Learning Center
+
+- [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
+  Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
+#### <a id='1-6-3-stk-ki'></a> v1.6.3 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+#### <a id='1-6-3-scc-ki'></a> v1.6.3 Known issues: Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, you this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+#### <a id='1-6-3-tap-gui-ki'></a> v1.6.3 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-6-3-sc-plugin-ki'></a> v1.6.3 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Any workloads created by using a CRD might not work as expected.
+  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
+
+- Downloading the SBOM from a vulnerability scan requires additional configuration in
+  `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+
+#### <a id='1-6-3-intellij-plugin-ki'></a> v1.6.3 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-6-3-vs-plugin-ki'></a> v1.6.3 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+#### <a id='1-6-3-vscode-plugin-ki'></a> v1.6.3 Known issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. The correct category is **Supply Chain**.
+
+#### <a id='1-6-3-linux-kernel-CVEs'></a> v1.6.3 Known issues: Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these
+fixed images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS.
+An unpatched host OS might be exploitable if the base image is deployed.
+
+For each known vulnerability, links to the Ubuntu Security page are provided.
+These pages might list mitigation steps that operators can take to secure the cluster.
+
+- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
+- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
+- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
+- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
+- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
+- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
+- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
+- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
+- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
+- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
+- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
+- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
+- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
+- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
+- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
+- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
+
+---
 
 ---
 
@@ -248,7 +388,7 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-2-scc-ri'></a> v1.6.2 resolved issues: Supply Chain Choreographer
+#### <a id='1-6-2-scc-ri'></a> v1.6.2 Resolved issues: Supply Chain Choreographer
 
 - Fixed an issue where if a user attempted to update the `ootb_supply_chain_testing_scanning` field
   in their `tap-values.yaml` file to use a specified ClusterImageTemplate, it did not update
@@ -256,12 +396,12 @@ The following issues, listed by component and area, are resolved in this release
   You can now update the `ootb_supply_chain_testing_scanning` field in their `tap-values.yaml` to
   use a specified ClusterImageTemplate.
 
-#### <a id='1-6-2-sc-plugin-ri'></a> v1.6.2 resolved issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+#### <a id='1-6-2-sc-plugin-ri'></a> v1.6.2 Resolved issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 -  [Supply Chain Security Tools - Scan v2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
    `ImageVulnerabilityScanner` CRD, is now supported in the Supply Chain UI.
 
-#### <a id='1-6-2-vscode-ext-ri'></a> v1.6.2 resolved issues: Tanzu Developer Tools for VS Code
+#### <a id='1-6-2-vscode-ext-ri'></a> v1.6.2 Resolved issues: Tanzu Developer Tools for VS Code
 
 - Fixed an issue that prevented Tanzu Debug from working on new untracked workloads on Windows.
 
@@ -271,7 +411,7 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-6-2-amr-obs-ce-hndlr-ki'></a> v1.6.2 known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+#### <a id='1-6-2-amr-obs-ce-hndlr-ki'></a> v1.6.2 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical
@@ -282,7 +422,7 @@ This release has the following known issues, listed by component and area.
   The workaround is that you can interpolate this information from the `instances` metadata in the
   AMR for the ReplicaSet.
 
-#### <a id='1-6-2-bitnami-services-ki'></a> v1.6.2 known issues: Bitnami Services
+#### <a id='1-6-2-bitnami-services-ki'></a> v1.6.2 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
   after having already created a claim for one or more of the Bitnami services using the default
@@ -290,13 +430,13 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
-#### <a id='1-6-2-cnrs-ki'></a> v1.6.2 known issues: Cloud Native Runtimes
+#### <a id='1-6-2-cnrs-ki'></a> v1.6.2 Known issues: Cloud Native Runtimes
 
 - For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
-#### <a id='1-6-2-crossplane-ki'></a> v1.6.2 known issues: Crossplane
+#### <a id='1-6-2-crossplane-ki'></a> v1.6.2 Known issues: Crossplane
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
   For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
@@ -306,23 +446,23 @@ This release has the following known issues, listed by component and area.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
-#### <a id='1-6-2-eventing-ki'></a> v1.6.2 known issues: Eventing
+#### <a id='1-6-2-eventing-ki'></a> v1.6.2 Known issues: Eventing
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory use.
 
-#### <a id='1-6-2-learningcenter-ki'></a> v1.6.2 known issues: Learning Center
+#### <a id='1-6-2-learningcenter-ki'></a> v1.6.2 Known issues: Learning Center
 
 - [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
   Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
   For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
 
-#### <a id='1-6-2-stk-ki'></a> v1.6.2 known issues: Services Toolkit
+#### <a id='1-6-2-stk-ki'></a> v1.6.2 Known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
   For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
 
-#### <a id='1-6-2-scc-ki'></a> v1.6.2 known issues: Supply Chain Choreographer
+#### <a id='1-6-2-scc-ki'></a> v1.6.2 Known issues: Supply Chain Choreographer
 
 - When using the Carvel Package Supply Chains, if the operator updates the parameter
   `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
@@ -335,7 +475,7 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-#### <a id='1-6-2-tap-gui-ki'></a> v1.6.2 known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-2-tap-gui-ki'></a> v1.6.2 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
@@ -343,7 +483,7 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-6-2-sc-plugin-ki'></a> v1.6.2 known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+#### <a id='1-6-2-sc-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a CRD might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the UI.
@@ -351,7 +491,7 @@ This release has the following known issues, listed by component and area.
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
   `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
-#### <a id='1-6-2-intellij-plugin-ki'></a> v1.6.2 known issues: Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-2-intellij-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
   the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
@@ -371,17 +511,17 @@ This release has the following known issues, listed by component and area.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
 
-#### <a id='1-6-2-vs-plugin-ki'></a> v1.6.2 known issues: Tanzu Developer Tools for Visual Studio
+#### <a id='1-6-2-vs-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Tools for Visual Studio
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
-#### <a id='1-6-2-vscode-plugin-ki'></a> v1.6.2 known issues: Tanzu Developer Tools for VS Code
+#### <a id='1-6-2-vscode-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Tools for VS Code
 
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
-#### <a id='1-6-2-linux-kernel-CVEs'></a> v1.6.2 known issues: Linux Kernel CVEs
+#### <a id='1-6-2-linux-kernel-CVEs'></a> v1.6.2 Known issues: Linux Kernel CVEs
 
 Kernel level vulnerabilities are regularly identified and patched by Canonical.
 Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
@@ -502,14 +642,14 @@ in the documentation. For more information, see [Scale workloads](scalability.hb
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-6-1-app-acc'></a> v1.6.1 features: Application Accelerator
+#### <a id='1-6-1-app-acc'></a> v1.6.1 Features: Application Accelerator
 
 - The Application Accelerator plug-in for IntelliJ has now reached general availability on [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
   The plug-in for IntelliJ now supports Git repository creation and custom type declarations for options,
   and embeds telemetry and bootstrapping provenance.
   For more information, see [Application Accelerator IntelliJ Plug-in](./application-accelerator/intellij.hbs.md).
 
-#### <a id='1-6-1-alv'></a> v1.6.1 features: Application Live View
+#### <a id='1-6-1-alv'></a> v1.6.1 Features: Application Live View
 
 - You can secure access, at the user level, to sensitive operations that can be executed on a running
   application using the actuator endpoints. For more information, see
@@ -521,7 +661,7 @@ This release includes the following changes, listed by component and area.
   threads, heap dump, memory graphs, cache manager, conditions, schedules tasks, and actuator information.
   For more information, see [Enable Spring Native apps for Application Live View](app-live-view/configuring-apps/spring-native-enablement.hbs.md).
 
-#### <a id='1-6-1-appsso'></a> v1.6.1 features: Application Single Sign-On (AppSSO)
+#### <a id='1-6-1-appsso'></a> v1.6.1 Features: Application Single Sign-On (AppSSO)
 
 - Incorporates the token expiry settings into the `AuthServer` resource. Service
   operators can customize the expiry settings of access, refresh, or identity
@@ -547,20 +687,20 @@ This release includes the following changes, listed by component and area.
   API between Services Toolkit, Crossplane, and Application Single Sign-On.
   For more information, see [XWorkloadRegistration API](app-sso/reference/api/xworkloadregistration.hbs.md).
 
-#### <a id='1-6-1-bitnami-services'></a> v1.6.1 features: Bitnami Services
+#### <a id='1-6-1-bitnami-services'></a> v1.6.1 Features: Bitnami Services
 
 The `bitnami.services.tanzu.vmware.com` package v0.2.0 includes the following:
 
 - New services available: MongoDB and Kafka
 
-#### <a id='1-6-1-cnrs'></a> v1.6.1 features: Cloud Native Runtimes
+#### <a id='1-6-1-cnrs'></a> v1.6.1 Features: Cloud Native Runtimes
 
 - Adds a new configuration option that configures `default-external-scheme` on Knative's `config-network`
   ConfigMap with a default scheme you can use for Knative Service URLs.
   Supported values are either `http` or `https`. You cannot set this option at the same time as the
   `default_tls_secret` option.
 
-#### <a id='1-6-1-contour'></a> v1.6.1 features: Contour
+#### <a id='1-6-1-contour'></a> v1.6.1 Features: Contour
 
 - Adds new parameters to specify `contour` and `envoy` resources requests and limits for CPU and memory.
   For more information, see [Install Contour](contour/install.hbs.md).
@@ -568,7 +708,7 @@ The `bitnami.services.tanzu.vmware.com` package v0.2.0 includes the following:
 - For more information about the new features in Contour v1.24.4, see the
   [Contour release notes](https://github.com/projectcontour/contour/releases/tag/v1.24.4) in GitHub.
 
-#### <a id='1-6-1-crossplane'></a> v1.6.1 features: Crossplane
+#### <a id='1-6-1-crossplane'></a> v1.6.1 Features: Crossplane
 
 The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
 
@@ -608,7 +748,7 @@ The `crossplane.tanzu.vmware.com` package v0.2.1 includes the following:
   > This might also cause any existing service instances also being deleted.
   > For more information, see [Delete Crossplane resources when you uninstall Tanzu Application Platform](./crossplane/how-to-guides/delete-resources.hbs.md).
 
-#### <a id='1-6-1-flux-sc'></a> v1.6.1 features: Flux CD Source Controller
+#### <a id='1-6-1-flux-sc'></a> v1.6.1 Features: Flux CD Source Controller
 
 Flux Source Controller v0.36.1-build.2 release includes the following API changes:
 
@@ -660,7 +800,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
   - Adds the new field `status.observedIgnore`, which represents the latest `spec.ignore` value.
     It indicates the ignore rules for building the current artifact in storage.
 
-#### <a id='1-6-1-namespace-provisioner'></a> v1.6.1 features: Namespace Provisioner
+#### <a id='1-6-1-namespace-provisioner'></a> v1.6.1 Features: Namespace Provisioner
 
 - Implements the capability to skip creating certain default resources for the Namespace Provisioner,
   providing greater flexibility for customization.
@@ -685,7 +825,7 @@ Flux Source Controller v0.36.1-build.2 release includes the following API change
 - The `path` value in `additional_sources` is now automatically generated, eliminating the need for
   you to provide it manually. This simplifies the configuration of external sources.
 
-#### <a id='1-6-1-stk'></a> v1.6.1 features: Services Toolkit
+#### <a id='1-6-1-stk'></a> v1.6.1 Features: Services Toolkit
 
 The `services-toolkit.tanzu.vmware.com` package v0.11.0 includes the following:
 
@@ -701,11 +841,11 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The Tanzu Service CLI plug-in is now compiled using the new Tanzu CLI runtime (v0.90.0).
 - There are no new features or changes to existing commands.
 
-#### <a id='1-6-1-scc'></a> v1.6.1 features: Supply Chain Choreographer
+#### <a id='1-6-1-scc'></a> v1.6.1 Features: Supply Chain Choreographer
 
 - [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md) are promoted from `alpha` to `beta`.
 
-#### <a id='1-6-1-scst-scan'></a> v1.6.1 features: Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-6-1-scst-scan'></a> v1.6.1 Features: Supply Chain Security Tools (SCST) - Scan
 
 - The source scanning step is removed from the Out of the Box Supply Chain - Testing and Scanning.
   For information about how to add the source scanning step to the test and scan supply chain, see
@@ -734,7 +874,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
       - [Grype](scst-scan/ivs-grype.hbs.md)
   - VMware encourages feedback about SCST - Scan 2.0. Email your VMware representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
-#### <a id='1-6-1-scst-store'></a> v1.6.1 features: Supply Chain Security Tools (SCST) - Store
+#### <a id='1-6-1-scst-store'></a> v1.6.1 Features: Supply Chain Security Tools (SCST) - Store
 
 - Adds a new report feature that links all packages, vulnerabilities, and ratings
   associated from a specific vulnerability scan SBOM to a Store report. When
@@ -785,7 +925,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   - New triage subcommands for the Tanzu CLI Insight plug-in enable interaction with the triage API.
     For more information, see [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
-#### <a id='1-6-1-tanzu-cli'></a> v1.6.1 features: Tanzu CLI
+#### <a id='1-6-1-tanzu-cli'></a> v1.6.1 Features: Tanzu CLI
 
 - This Tanzu Application Platform release introduces the new Tanzu CLI v0.90.1.
 
@@ -816,7 +956,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - If you have any issues, questions, or suggestions, you can submit feedback, feature requests, or
   issue reports in the open-source [Tanzu CLI project on GitHub](https://github.com/vmware-tanzu/tanzu-cli).
 
-#### <a id='1-6-1-tanzu-cli-plugins'></a> v1.6.1 features: Tanzu CLI plug-in distribution change
+#### <a id='1-6-1-tanzu-cli-plugins'></a> v1.6.1 Features: Tanzu CLI plug-in distribution change
 
 - Tanzu CLI plug-ins are no longer distributed as part of the Tanzu Application Platform bundle on
   VMware Tanzu Network. The Tanzu CLI is still included in the bundle.
@@ -827,7 +967,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - For Internet-restricted environments, see
   [Installing the Tanzu CLI in Internet-Restricted Environments](https://docs.vmware.com/en/VMware-Tanzu-CLI/0.90.0/tanzu-cli/index.html#internet-restricted-install).
 
-#### <a id='1-6-1-apps-cli-plugin'></a> v1.6.1 features: Tanzu CLI Apps plug-in
+#### <a id='1-6-1-apps-cli-plugin'></a> v1.6.1 Features: Tanzu CLI Apps plug-in
 
 - The apps plug-in is integrated with Local Source Proxy for seamless iterative inner-loop development
   using the Tanzu CLI or IDE plug-ins.
@@ -856,18 +996,18 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - The `tanzu apps workload get` command is enhanced to include Git revision information in the
   overview section. This provides a quick reference to the Git revision associated with the workload.
 
-#### <a id='1-6-1-tbs-plugin'></a> v1.6.1 features: Tanzu CLI Build Service plug-in
+#### <a id='1-6-1-tbs-plugin'></a> v1.6.1 Features: Tanzu CLI Build Service plug-in
 
 - Adds a new Build Service plug-in that allows you to view all Tanzu Build Service resources on any
   Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service installed.
   For more information, see [Build Service CLI plug-in overview](cli-plugins/build-service/overview.hbs.md).
 
-#### <a id='1-6-1-insight-cli-plugin'></a> v1.6.1 features: Tanzu CLI Insight plug-in
+#### <a id='1-6-1-insight-cli-plugin'></a> v1.6.1 Features: Tanzu CLI Insight plug-in
 
 - Triage vulnerabilities with the `tanzu insight triage` command. For more information, see
   [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md).
 
-#### <a id='1-6-1-tap-dev-portal'></a> v1.6.1 features: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-1-tap-dev-portal'></a> v1.6.1 Features: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Download the Software Bill of Materials (SBOM) from the Supply Chain Cartographer (SCC) plug-in.
   Obtain the SCST - Store-generated SBOM in SPDX or CycloneDX formats.
@@ -884,7 +1024,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   ownership property. For more information, see
   [Set up permission framework for your Tanzu Developer Portal](tap-gui/tap-gui-rbac/set-up-tap-gui-prmssn-frmwrk.hbs.md)
 
-#### <a id='1-6-1-intellij-ext'></a> v1.6.1 features: Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-1-intellij-ext'></a> v1.6.1 Features: Tanzu Developer Tools for IntelliJ
 
 - Added support for Local Source Proxy that eliminates the need to provide source image configuration
   for rapid iteration in the inner loop.
@@ -896,7 +1036,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - Developers can now use Tanzu Developer Tools for IntelliJ to rapidly iterate and build Gradle
   projects in their preferred IDE.
 
-#### <a id='1-6-1-vscode-ext'></a> v1.6.1 features: Tanzu Developer Tools for VS Code
+#### <a id='1-6-1-vscode-ext'></a> v1.6.1 Features: Tanzu Developer Tools for VS Code
 
 - Added support for Local Source Proxy that eliminates the need to provide source image configuration
   for rapid iteration in the inner loop.
@@ -908,7 +1048,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 - Developers can now use Tanzu Developer Tools for VS Code to rapidly iterate and build Gradle
   projects in their preferred IDE.
 
-#### <a id='1-6-1-visualstudio-ext'></a> v1.6.1 features: Tanzu Developer Tools for Visual Studio
+#### <a id='1-6-1-visualstudio-ext'></a> v1.6.1 Features: Tanzu Developer Tools for Visual Studio
 
 - Added a Tanzu Workloads panel to easily view deployed workloads in a Tanzu Application Platform
   cluster.
@@ -921,7 +1061,7 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-6-1-appsso-bc'></a> v1.6.1 breaking changes: Application Single Sign-On (AppSSO)
+#### <a id='1-6-1-appsso-bc'></a> v1.6.1 Breaking changes: Application Single Sign-On (AppSSO)
 
 - Consumes Application Single Sign-On service offerings using `ClassClaim` instead of the lower-level
   `WorkloadRegistration` or `ClientRegistration`.
@@ -932,19 +1072,19 @@ This release includes the following changes, listed by component and area.
 
 - The default for field `ClientRegistration.spec.redirectURIs` is no longer `["http://127.0.0.0:8080"]`.
 
-#### <a id='1-6-1-cnrs-bc'></a> v1.6.1 breaking changes: Cloud Native Runtimes
+#### <a id='1-6-1-cnrs-bc'></a> v1.6.1 Breaking changes: Cloud Native Runtimes
 
 - The `provider` configuration option is removed in this release. For more information, see the
  [Deprecation notice](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html#deprecation-notice-13)
  in the Cloud Native Runtimes v2.0 release notes.
 
-#### <a id='1-6-1-flux-sc-bc'></a> v1.6.1 breaking changes: Flux CD Source Controller
+#### <a id='1-6-1-flux-sc-bc'></a> v1.6.1 Breaking changes: Flux CD Source Controller
 
 - The format of the `status.artifact.revision` value in the `GitRepository` resource's
   status field is updated from `BRANCH/CHECKSUM` to `BRANCH@sha1:CHECKSUM`.
   For example, `main/6db88c7a7e7dec1843809b058195b68480c4c12a` is now `main@sha1:6db88c7a7e7dec1843809b058195b68480c4c12a`.
 
-#### <a id='1-6-1-buildservice-bc'></a> v1.6.1 breaking changes: Tanzu Build Service
+#### <a id='1-6-1-buildservice-bc'></a> v1.6.1 Breaking changes: Tanzu Build Service
 
 - The full dependencies package is renamed and the installation process is modified.
   - You must remove existing full dependencies installations before installing the new version.
@@ -959,12 +1099,12 @@ This release includes the following changes, listed by component and area.
 - Introduced a cluster buildpack resource to enable individually packaged dependencies and provide
   insights into installed buildpack versions.
 
-#### <a id='1-6-1-apps-cli-plugin-bc'></a> v1.6.1 breaking changes: Tanzu CLI Apps plug-in
+#### <a id='1-6-1-apps-cli-plugin-bc'></a> v1.6.1 Breaking changes: Tanzu CLI Apps plug-in
 
 - The deprecated command `tanzu apps workload update` is removed from the CLI.
   Use the command `tanzu apps workload apply` instead.
 
-#### <a id='1-6-1-tap-gui-bc'></a> v1.6.1 breaking changes: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-1-tap-gui-bc'></a> v1.6.1 Breaking changes: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - The `allowGuestAccess` configuration option: Previously this was not needed in the configuration because
   users were permitted to log in without credentials by default. In v1.6 and later, guest users must
@@ -1015,7 +1155,7 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-1-cnrs-ri'></a> v1.6.1 resolved issues: Cloud Native Runtimes
+#### <a id='1-6-1-cnrs-ri'></a> v1.6.1 Resolved issues: Cloud Native Runtimes
 
 - New toggle feature for how to make ConfigMap updates. For some ConfigMaps in Cloud Native Runtimes,
   such as config-features, the option to update using an overlay was not taking effect.
@@ -1029,7 +1169,7 @@ The following issues, listed by component and area, are resolved in this release
     allow_manual_configmap_update: false
     ```
 
-#### <a id='1-6-1-crossplane-ri'></a> v1.6.1 resolved issues: Crossplane
+#### <a id='1-6-1-crossplane-ri'></a> v1.6.1 Resolved issues: Crossplane
 
 - The Crossplane package now more gracefully handles situations in which Crossplane is already
   installed to a cluster by using another method, for example, Helm install.
@@ -1050,7 +1190,7 @@ The following issues, listed by component and area, are resolved in this release
   This prevented the class claims used for dynamic provisioning from reconciling.
   The Crossplane Package now inherits the data configured in `shared.ca_cert_data` of `tap-values.yaml`.
 
-#### <a id='1-6-1-namespace-provisioner-ri'></a> v1.6.1 resolved issues: Namespace Provisioner
+#### <a id='1-6-1-namespace-provisioner-ri'></a> v1.6.1 Resolved issues: Namespace Provisioner
 
 - Resolved an issue that prevented updates to the AWS Identity and Access Management (IAM) role
   from reflecting in the service accounts used by Supply Chains and Delivery components.
@@ -1063,7 +1203,7 @@ The following issues, listed by component and area, are resolved in this release
   `Terminating` phase during deletion if it contained a workload.
   This fix requires Cluster Essentials v1.6 or later installed on the cluster.
 
-#### <a id='1-6-1-stk-ri'></a> v1.6.1 resolved issues: Services Toolkit
+#### <a id='1-6-1-stk-ri'></a> v1.6.1 Resolved issues: Services Toolkit
 
 - Resolved an issue that prevented the default cluster-admin IAM role on Google Kubernetes Engine (GKE)
   clusters from claiming any of the Bitnami services.
@@ -1079,7 +1219,7 @@ The following issues, listed by component and area, are resolved in this release
   such a CompositeResourceDefinition, the ClassClaim did not transition into `Ready=True` and
   instead reported `unexpected end of JSON input`.
 
-#### <a id='1-6-1-scst-store-ri'></a> v1.6.1 resolved issues: Supply Chain Security Tools (SCST) - Store
+#### <a id='1-6-1-scst-store-ri'></a> v1.6.1 Resolved issues: Supply Chain Security Tools (SCST) - Store
 
 - Implemented basic logging in the AMR database.
 
@@ -1093,7 +1233,7 @@ The following issues, listed by component and area, are resolved in this release
   Previously the endpoint returned the list of artifact groups the images or sources were linked to,
   even if the artifact group was not affected by the vulnerability.
 
-#### <a id='1-6-1-apps-cli-plugin-ri'></a> v1.6.1 resolved issues: Tanzu CLI Apps plug-in
+#### <a id='1-6-1-apps-cli-plugin-ri'></a> v1.6.1 Resolved issues: Tanzu CLI Apps plug-in
 
 - Implemented validations to prevent the inclusion of multiple sources through flags in the
   `workload create` and `workload apply` commands.
@@ -1104,7 +1244,7 @@ The following issues, listed by component and area, are resolved in this release
   flag is used, the command continues tailing logs from the Supply chain steps that were impacted by
   the workload update.
 
-#### <a id='1-6-1-intellij-plugin-ri'></a> v1.6.1 resolved issues: Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-1-intellij-plugin-ri'></a> v1.6.1 Resolved issues: Tanzu Developer Tools for IntelliJ
 
 - The `apply` action no longer stores the workload file path, which prevented modifying the workload
   file path later. Now this information is either computed or obtained by prompting the user as needed.
@@ -1113,7 +1253,7 @@ The following issues, listed by component and area, are resolved in this release
   incorrectly categorized as **Unknown**.
 
 
-#### <a id='1-6-1-vscode-plugin-ri'></a> v1.6.1 resolved issues: Tanzu Developer Tools for VS Code
+#### <a id='1-6-1-vscode-plugin-ri'></a> v1.6.1 Resolved issues: Tanzu Developer Tools for VS Code
 
 - Errors in the kubeconfig file `~/.kube/config` that are not related to the current context are now
   ignored, allowing you to work with Tanzu panel without any issues.
@@ -1127,7 +1267,7 @@ This release has the following known issues, listed by component and area.
 > **Note** Starting in this release, the release notes list known issues in every release until
 > they are resolved.
 
-#### <a id='1-6-1-amr-obs-ce-hndlr-ki'></a> v1.6.1 known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+#### <a id='1-6-1-amr-obs-ce-hndlr-ki'></a> v1.6.1 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical ImageVulnerabilityScans you can ignore if the previous submission was successful.
@@ -1137,7 +1277,7 @@ This release has the following known issues, listed by component and area.
   The workaround is that you can interpolate this information from the `instances` metadata in the
   AMR for the ReplicaSet.
 
-#### <a id='1-6-1-bitnami-services-ki'></a> v1.6.1 known issues: Bitnami Services
+#### <a id='1-6-1-bitnami-services-ki'></a> v1.6.1 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
   after having already created a claim for one or more of the Bitnami services using the default
@@ -1145,13 +1285,13 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
-#### <a id='1-6-1-cnrs-ki'></a> v1.6.1 known issues: Cloud Native Runtimes
+#### <a id='1-6-1-cnrs-ki'></a> v1.6.1 Known issues: Cloud Native Runtimes
 
 - For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
   with status `CertificateNotReady`. For more information, see
   [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
 
-#### <a id='1-6-1-crossplane-ki'></a> v1.6.1 known issues: Crossplane
+#### <a id='1-6-1-crossplane-ki'></a> v1.6.1 Known issues: Crossplane
 
 - Crossplane Providers cannot communicate with systems using a custom CA.
   For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
@@ -1161,23 +1301,23 @@ This release has the following known issues, listed by component and area.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
-#### <a id='1-6-1-eventing-ki'></a> v1.6.1 known issues: Eventing
+#### <a id='1-6-1-eventing-ki'></a> v1.6.1 Known issues: Eventing
 
 - When using vSphere sources in Eventing, the vsphere-source is using a high number of
   informers to alleviate load on the API server. This causes high memory use.
 
-#### <a id='1-6-1-learningcenter-ki'></a> v1.6.1 known issues: Learning Center
+#### <a id='1-6-1-learningcenter-ki'></a> v1.6.1 Known issues: Learning Center
 
 - [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
   Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
   For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
 
-#### <a id='1-6-1-stk-ki'></a> v1.6.1 known issues: Services Toolkit
+#### <a id='1-6-1-stk-ki'></a> v1.6.1 Known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
   For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
 
-#### <a id='1-6-1-scc-ki'></a> v1.6.1 known issues: Supply Chain Choreographer
+#### <a id='1-6-1-scc-ki'></a> v1.6.1 Known issues: Supply Chain Choreographer
 
 - When using the Carvel Package Supply Chains, if the operator updates the parameter
   `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
@@ -1203,7 +1343,7 @@ This release has the following known issues, listed by component and area.
     To workaround, edit the Out of the Box Supply template following the steps
     [Modifying an Out of the Box Supply template](./scc/authoring-supply-chains.hbs.md#modify-ootb-sc).
 
-#### <a id='1-6-1-tap-gui-ki'></a> v1.6.1 known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+#### <a id='1-6-1-tap-gui-ki'></a> v1.6.1 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
   collection within the VMware
@@ -1211,7 +1351,7 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-6-1-sc-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+#### <a id='1-6-1-sc-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a CRD might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
@@ -1222,7 +1362,7 @@ This release has the following known issues, listed by component and area.
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
   `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
-#### <a id='1-6-1-intellij-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Tools for IntelliJ
+#### <a id='1-6-1-intellij-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
   the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
@@ -1242,12 +1382,12 @@ This release has the following known issues, listed by component and area.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
 
-#### <a id='1-6-1-vs-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Tools for Visual Studio
+#### <a id='1-6-1-vs-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Tools for Visual Studio
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
-#### <a id='1-6-1-vscode-plugin-ki'></a> v1.6.1 known issues: Tanzu Developer Tools for VS Code
+#### <a id='1-6-1-vscode-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Tools for VS Code
 
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
@@ -1261,7 +1401,7 @@ This release has the following known issues, listed by component and area.
 
     For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
 
-#### <a id='1-6-1-linux-kernel-CVEs'></a> v1.6.1 known issues: Linux Kernel CVEs
+#### <a id='1-6-1-linux-kernel-CVEs'></a> v1.6.1 Known issues: Linux Kernel CVEs
 
 Kernel level vulnerabilities are regularly identified and patched by Canonical.
 Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
