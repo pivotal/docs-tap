@@ -35,8 +35,8 @@ Obtain the following:
 You can start a new project with support for development containers or you can add support for
 development containers to an existing project:
 
-: New project
-To set up a new project by using accelerators and development containers:
+New project
+: To set up a new project by using accelerators and development containers:
 
    1. From the Accelerator page in Tanzu Developer Portal, select the Tanzu Java Web App accelerator.
    1. Select the options you want.
@@ -45,8 +45,8 @@ To set up a new project by using accelerators and development containers:
    1. Follow the VS Code prompts to restart the IDE in `devcontainer` to connect to the development
       container.
 
-: Existing project
-To add a development container to an existing project:
+Existing project
+: To add a development container to an existing project:
 
    1. Open the project with VS Code and ensure that you have the Tanzu Developer Tools for VS Code
       plug-in v1.1.0 or later.
