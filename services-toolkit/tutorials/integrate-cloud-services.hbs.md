@@ -38,10 +38,41 @@ into Tanzu Application Platform<br />
 
 ## <a id="concepts"></a> Concepts
 
-The following diagram shows, at a high-level, what is required to integrate a cloud-based service into
-Tanzu Application Platform.
+The following is a high-level workflow outlining what is required to integrate a cloud-based service
+into Tanzu Application Platform.
 
-![Diagram shows a high-level overview of the steps required to integrate a cloud-based service into Tanzu Application Platform.](../../images/stk-integrate-cloud-service.png)
+1. [**Install Provider and create ProviderConfig:**](#install-provider)
+
+    - Follow the official Upbound documentation to install the Provider and create a ProviderConfig.
+
+1. [**Create CompositeResourceDefinition:**](#create-xrd)
+
+    - Create a CompositeResourceDefinition to define the shape of a new API type representing the service.
+    - Choose which (if any) configuration parameters to expose to apps teams.
+
+1. [**Create Composition:**](#create-composition)
+
+    - Create a Composition using managed resources supplied by the Provider.
+    - You can compose as many or as few managed resources as required to generate a service instance
+      that application workloads can connect to and use over the network.
+    - (Optional but recommended) Configure the connection secret to adhere to the Service Binding
+      Specification for Kubernetes.
+
+1. [**Create provisioner-based ClusterInstanceClass:**](#clusterinstanceclass)
+
+    - Create a provisioner-based ClusterInstanceClass pointing to the CompositeResourceDefinition created
+      earlier.
+
+1. [**Create required RBAC:**](#configure-rbac)
+
+    - Create RBAC using the `claim` verb pointing to the provisioner-based ClusterInstanceClass to permit
+      claiming from the class.
+
+1. [**Create ClassClaim:**](#verify)
+
+    - Create a ClassClaim pointing to the provisioner-based ClusterInstanceClass to begin a dynamic
+      provisioning request.
+    - Wait for the ClassClaim to report `READY=True`.
 
 ## <a id="procedure"></a> Procedure
 
@@ -73,7 +104,7 @@ Choose the Provider you want, and then follow Upbound's official documentation t
 > Ensure that you use the correct namespace when you create the `Secret` and the `ProviderConfig`
 > with credentials for the `Provider`.
 
-### <a id="procedure"></a> Step 2: Create a CompositeResourceDefinition
+### <a id="create-xrd"></a> Step 2: Create a CompositeResourceDefinition
 
 Create a `CompositeResourceDefinition`, which defines the shape of a new API type which is used to
 create the cloud-based resources.
