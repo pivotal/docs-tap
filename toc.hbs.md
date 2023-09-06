@@ -766,7 +766,7 @@
       - [Install Tanzu Developer Tools for your VS Code](vscode-extension/install.hbs.md)
       - [Get started with Tanzu Developer Tools for VS Code](vscode-extension/getting-started.hbs.md)
       - [Use Tanzu Developer Tools for VS Code](vscode-extension/using-the-extension.hbs.md)
-      - [Use development containers to launch a development environment (alpha)](vscode-extension/dev-containers.hbs.md)
+      - [Use dev containers to make a dev environment (alpha)](vscode-extension/dev-containers.hbs.md)
       - [Pinniped compatibility](vscode-extension/pinniped-auth.hbs.md)
       - [Integrate Live Hover by using Spring Boot Tools](vscode-extension/live-hover.hbs.md)
       - [Use Memory View in Spring Boot Dashboard](vscode-extension/memory-view.hbs.md)

@@ -33,9 +33,9 @@ The extension has the following features:
   From the Tanzu Workloads panel you can see any workload found within the cluster and namespace
   specified in the current kubectl context.
 
-- **Launch a ready-to-code development environment by using development containers (alpha):**
+- **Make a ready-to-code development environment by using development containers (alpha):**
 
-  [Use developer containers](dev-containers.hbs.md) to launch a ready-to-code development
+  [Use developer containers](dev-containers.hbs.md) to make a ready-to-code development
   environment. This enables developers to connect to a pre-configured development container that
   includes all Tanzu tools and IDE extensions required for development on Tanzu pre-installed.
 
