@@ -30,7 +30,7 @@ To install Service Registry on a compliant Kubernetes cluster:
 2. Install the package by running:
 
    ```console
-   tanzu package install application-configuration-service \
+   tanzu package install service-registry \
    --package service-registry.spring.apps.tanzu.vmware.com \
    --version VERSION -n tap-install
    ```
@@ -40,7 +40,7 @@ To install Service Registry on a compliant Kubernetes cluster:
    For example:
 
    ```console
-   $ tanzu package install application-configuration-service \
+   $ tanzu package install service-registry \
    --package service-registry.spring.apps.tanzu.vmware.com \
    --version 1.2.0 -n tap-install
 
