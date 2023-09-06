@@ -302,6 +302,10 @@ The following issues, listed by component and area, are resolved in this release
   so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
   information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
+#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 breaking changes: Services Toolkit
+
+- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`
+
 ---
 
 ### <a id='1-6-3-known-issues'></a> v1.6.3 Known issues
