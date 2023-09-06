@@ -100,3 +100,15 @@ Your kubeconfig file (`~/.kube/config`) is malformed.
 ### Solution
 
 Fix your kubeconfig file.
+
+### Symptom
+
+Live update deploys your workload but changes are not reflected when using Dev Containers on Windows.
+
+### Cause
+
+Monitoring file system changes on Windows folders while mounted in a docker container is very slow and might not work depending on your setup.
+
+### Solution
+
+Clone the repository inside of a container volume instead of mounting a local folder in the container, this has the added benefit of improved I/O performance. Use the `Dev Containers: Clone Repository in Container Volume...` command while the project is opened to get started. Detailed information about this feature is available in VS Code [improve dev container performance documentation](https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-clone-repository-in-container-volume).
