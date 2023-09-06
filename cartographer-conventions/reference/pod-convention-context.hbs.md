@@ -13,7 +13,7 @@ The context is a wrapper of the individual object description in an API (TypeMet
 In the `PodConventionContext` API resource:
 
 - Object path `.spec.template` field defines the `PodTemplateSpec` to be enriched by conventions. For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
-- Object path `.spec.imageConfig[]` field defines [ImageConfig](image-config.md). Each entry of it is populated with the name of the image(`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
+- Object path `.spec.imageConfig[]` field defines [ImageConfig](image-config.md). Each entry of it is populated with the name of the image (`.spec.imageConfig[].image`) and its OCI metadata (`.spec.imageConfig[].config`). These entries are generated for each image referenced in [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) (`.spec.template`).
 
 The following is an example of a `PodConventionContext` resource request received by the convention server. This resource is generated for a [Go language-based application image](https://github.com/paketo-buildpacks/samples/tree/main/go/mod) in GitHub. It is built with Cloud Native Paketo Buildpacks that use Go mod for dependency management.
 
