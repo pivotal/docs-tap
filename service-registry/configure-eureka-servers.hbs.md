@@ -95,5 +95,5 @@ To create a `EurekaServer` resource:
    Events:    <none>
    ```
 
-A successful `EurekaServer` resource has a `Ready` condition set to `true` and a `status.binding.name`
-field pointing to a secret containing connection information.
+   A successful `EurekaServer` resource has a `Ready` condition set to `true` and a
+   `status.binding.name` field pointing to a secret containing connection information.

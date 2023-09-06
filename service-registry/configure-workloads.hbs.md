@@ -10,8 +10,7 @@ Create a `EurekaServer` resource. For instructions, see
 
 ## <a id="claim-creds"></a> Claim credentials
 
-Claim credentials by running the `tanzu service resource-claim create` command or creating a
-`ResourceClaim` directly:
+Claim credentials from Tanzu CLI or by creating a `ResourceClaim` directly:
 
 Using Tanzu CLI
 : Claim credentials by running:
@@ -28,8 +27,8 @@ Using Tanzu CLI
    Where:
 
    - `CLAIM-NAME` is a name you choose for your claim.
-   - `RESOURCE-NAME` is the name of the EurekaServer resource you want to claim.
-   - `RESOURCE-NAMESPACE` is the namespace that your EurekaServer resource is in.
+   - `RESOURCE-NAME` is the name of the `EurekaServer` resource you want to claim.
+   - `RESOURCE-NAMESPACE` is the namespace that your `EurekaServer` resource is in.
    - `WORKLOAD-NAMESPACE` is the namespace that your workload is in.
 
    For example:
@@ -77,117 +76,119 @@ kubectl get resourceclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
 
 ## <a id="inspect"></a> Use Eureka for service discovery in workloads
 
-If you have an existing application already configured to use
-[Spring Cloud Service Discovery](https://cloud.spring.io/spring-cloud-netflix/reference/html/#service-discovery-eureka-clients),
-you can claim `EurekaServer` credentials to access the running Eureka servers by adding the following
-to the `spec.serviceClaims` section of a workload:
+To use Eureka for service discovery in workloads:
 
-```yaml
-  serviceClaims:
-    - name: eureka
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: my-eurekaserver-claim
-```
+1. If you have an existing application already configured to use
+   [Spring Cloud Service Discovery](https://cloud.spring.io/spring-cloud-netflix/reference/html/#service-discovery-eureka-clients),
+   claim `EurekaServer` credentials to access the running Eureka servers by adding the following to
+   the `spec.serviceClaims` section of a workload:
 
-By claiming the credentials, a workload has its Eureka client configured to interact with the
-referenced Eureka server.
+    ```yaml
+      serviceClaims:
+        - name: eureka
+          ref:
+            apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+            kind: ResourceClaim
+            name: my-eurekaserver-claim
+    ```
 
-You can use the following workloads to deploy the
-[greeting application](https://github.com/spring-cloud-services-samples/greeting).
+   By claiming the credentials, a workload has its Eureka client configured to interact with the
+   referenced Eureka server.
 
-greeter-messages.yaml example:
+   For example, You can use the following workloads to deploy the
+   [greeting application](https://github.com/spring-cloud-services-samples/greeting).
 
-```yaml
-# greeter-messages.yaml
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: greeter-messages
-  namespace: my-namespace
-  labels:
-    apps.tanzu.vmware.com/workload-type: server
-    apps.tanzu.vmware.com/has-tests: "true"
-    app.kubernetes.io/part-of: greeter
-spec:
-  build:
-    env:
-      - name: BP_JVM_VERSION
-        value: "17"
-      - name: BP_GRADLE_BUILT_MODULE
-        value: "greeter-messages"
-      - name: BP_GRADLE_BUILD_ARGUMENTS
-        value: "--no-daemon clean bootJar"
-  env:
-    - name: SPRING_PROFILES_ACTIVE
-      value: "development"
-  serviceClaims:
-    - name: eureka
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: my-eurekaserver-claim
-  source:
-    git:
-      url: https://github.com/spring-cloud-services-samples/greeting
-      ref:
-        branch: main
-```
+   `greeter-messages.yaml` example:
 
-greeter.yaml example:
+    ```yaml
+    # greeter-messages.yaml
+    ---
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      name: greeter-messages
+      namespace: my-namespace
+      labels:
+        apps.tanzu.vmware.com/workload-type: server
+        apps.tanzu.vmware.com/has-tests: "true"
+        app.kubernetes.io/part-of: greeter
+    spec:
+      build:
+        env:
+          - name: BP_JVM_VERSION
+            value: "17"
+          - name: BP_GRADLE_BUILT_MODULE
+            value: "greeter-messages"
+          - name: BP_GRADLE_BUILD_ARGUMENTS
+            value: "--no-daemon clean bootJar"
+      env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+      serviceClaims:
+        - name: eureka
+          ref:
+            apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+            kind: ResourceClaim
+            name: my-eurekaserver-claim
+      source:
+        git:
+          url: https://github.com/spring-cloud-services-samples/greeting
+          ref:
+            branch: main
+    ```
 
-```yaml
-# greeter.yaml
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: greeter
-  namespace: my-namespace
-  labels:
-    apps.tanzu.vmware.com/workload-type: web
-    apps.tanzu.vmware.com/has-tests: "true"
-    app.kubernetes.io/part-of: greeter
-spec:
-  build:
-    env:
-      - name: BP_JVM_VERSION
-        value: "17"
-      - name: BP_GRADLE_BUILT_MODULE
-        value: "greeter"
-      - name: BP_GRADLE_BUILD_ARGUMENTS
-        value: "--no-daemon clean bootJar"
-  env:
-    - name: SPRING_PROFILES_ACTIVE
-      value: "development"
-  serviceClaims:
-    - name: eureka
-      ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: my-eurekaserver-claim
-  source:
-    git:
-      url: https://github.com/spring-cloud-services-samples/greeting
-      ref:
-        branch: main
-```
+   `greeter.yaml` example:
 
-Create the workloads by running:
+    ```yaml
+    # greeter.yaml
+    ---
+    apiVersion: carto.run/v1alpha1
+    kind: Workload
+    metadata:
+      name: greeter
+      namespace: my-namespace
+      labels:
+        apps.tanzu.vmware.com/workload-type: web
+        apps.tanzu.vmware.com/has-tests: "true"
+        app.kubernetes.io/part-of: greeter
+    spec:
+      build:
+        env:
+          - name: BP_JVM_VERSION
+            value: "17"
+          - name: BP_GRADLE_BUILT_MODULE
+            value: "greeter"
+          - name: BP_GRADLE_BUILD_ARGUMENTS
+            value: "--no-daemon clean bootJar"
+      env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+      serviceClaims:
+        - name: eureka
+          ref:
+            apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+            kind: ResourceClaim
+            name: my-eurekaserver-claim
+      source:
+        git:
+          url: https://github.com/spring-cloud-services-samples/greeting
+          ref:
+            branch: main
+    ```
 
-```console
-tanzu apps workload create -f greeter-messages.yaml --yes
-tanzu apps workload create -f greeter.yaml --yes
-```
+2. Create the workloads by running:
+
+   ```console
+   tanzu apps workload create -f greeter-messages.yaml --yes
+   tanzu apps workload create -f greeter.yaml --yes
+   ```
 
 ## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable JAR file application
 
-In this example, `BP_GRADLE_BUILD_ARGUMENTS` is set to include the `bootJar` task in addition
-to the default Gradle build arguments. This setting is necessary for this example base because the
-`build.gradle` file contains a `jar` section, and the Spring Boot buildpack will not inject the
-`spring-cloud-bindings` library into the application if it is an executable JAR file.
+In the greeting application example, `BP_GRADLE_BUILD_ARGUMENTS` is set to include the `bootJar`
+task in addition to the default Gradle build arguments. This setting is necessary for this example
+base because the `build.gradle` file contains a `jar` section, and the Spring Boot buildpack will
+not inject the `spring-cloud-bindings` library into the application if it is an executable JAR file.
 
 `spring-cloud-bindings` is required to process the `serviceClaim` into properties that tell the
 discovery client how to find the Eureka server.
