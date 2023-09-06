@@ -25,26 +25,26 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-7-0-COMPONENT-NAME'></a> v1.7.0 features: COMPONENT-NAME
+#### <a id='1-7-0-COMPONENT-NAME'></a> v1.7.0 Features: COMPONENT-NAME
 
 - Feature description.
 
-#### <a id='1-7-0-app-config-service'></a> v1.7.0 features: Application Configuration Service
+#### <a id='1-7-0-app-config-service'></a> v1.7.0 Features: Application Configuration Service
 
 - The default interval for new `ConfigurationSlice` resources is now 60 seconds.
 
-#### <a id='1-7-0-cli'></a> v1.7.0 features: Tanzu CLI & plugins
+#### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI & plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
 so that the CLI is compatible with every supported version of Tanzu Application Platform.
 See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
-#### <a id='1-7-0-cert-manager'></a> v1.7.0 features: cert-manager
+#### <a id='1-7-0-cert-manager'></a> v1.7.0 Features: cert-manager
 
 - `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`.
   For more information, see the [upstream release notes](https://cert-manager.io/docs/release-notes/release-notes-1.12/).
 
-#### <a id='1-7-0-cnrs'></a> v1.7.0 features: Cloud Native Runtimes
+#### <a id='1-7-0-cnrs'></a> v1.7.0 Features: Cloud Native Runtimes
 
 - **New config option `resource_management`**: Allows configuration of CPU and memory resources that follow Kubernetes requests and limitsfor all Knative Serving deployments in the `knative-serving` namespace. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
   For example, to configure the CPU and memory requirements for the `activator` deployment:
@@ -87,16 +87,16 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-7-0-eventing-br'></a> v1.7.0 breaking changes: Eventing
+#### <a id='1-7-0-eventing-br'></a> v1.7.0 Breaking changes: Eventing
 
 - Eventing is removed in this release. Install and manage Knative Eventing as an alternative solution.
 
-#### <a id='1-7-0-lc-br'></a> v1.7.0 breaking changes: Learning Center
+#### <a id='1-7-0-lc-br'></a> v1.7.0 Breaking changes: Learning Center
 
 - Learning Center is removed in this release. Use [Tanzu Academy](https://tanzu.academy/) instead for
 all Tanzu Application Platform learning and education needs.
 
-#### <a id='1-7-0-workloads-br'></a> v1.7.0 breaking changes: Workloads
+#### <a id='1-7-0-workloads-br'></a> v1.7.0 Breaking changes: Workloads
 
 - Function Buildpacks for Knative and the corresponding
 Application Accelerator starter templates for Python and Java are removed in this release.
@@ -107,7 +107,7 @@ Application Accelerator starter templates for Python and Java are removed in thi
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-7-0-COMPONENT-NAME-fixes'></a> v1.7.0 security fixes: COMPONENT-NAME
+#### <a id='1-7-0-COMPONENT-NAME-fixes'></a> v1.7.0 Security fixes: COMPONENT-NAME
 
 - Security fix description.
 
@@ -137,11 +137,11 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-7-0-COMPONENT-NAME-ri'></a> v1.7.0 resolved issues: COMPONENT-NAME
+#### <a id='1-7-0-COMPONENT-NAME-ri'></a> v1.7.0 Resolved issues: COMPONENT-NAME
 
 - Resolved issue description.
 
-#### <a id='1-7-0-supply-chain-choreographer-ri'></a> v1.7.0 resolved issues: Supply Chain Choreographer
+#### <a id='1-7-0-supply-chain-choreographer-ri'></a> v1.7.0 Resolved issues: Supply Chain Choreographer
 
 - You can safely ignore the label `apps.tanzu.vmware.com/carvel-package-workflow` when the Package Supply Chain is disabled. Previously, workloads with this label fail when the Package Supply Chain is disabled.
 - Workloads failed on the image supply chains with `multiple supply chain matches` when testing or scanning supply chains are side loaded with the basic supply chain. Though side loading these supply chains is not a supported configuration, this fix allows you to continue to create workloads.
@@ -152,7 +152,7 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-0-COMPONENT-NAME-ki'></a> v1.7.0 known issues: COMPONENT-NAME
+#### <a id='1-7-0-COMPONENT-NAME-ki'></a> v1.7.0 Known issues: COMPONENT-NAME
 
 - Known issue description with link to workaround.
 
