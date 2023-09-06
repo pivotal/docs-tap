@@ -327,6 +327,53 @@ contour:
         LBType: nlb
 ```
 
+### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
+
+The following tasks are optional during the Tanzu Application Platform installation process:
+
+- [(Optional) Configure your profile with full dependencies](#full-dependencies)
+- [(Optional) Configure your profile with the Jammy stack only](#jammy-only)
+
+#### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+
+When you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
+and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+required for application builds.
+
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+
+To configure `full` dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
+For example:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: "KP-DEFAULT-REPO-SECRET"
+    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
+  exclude_dependencies: true
+```
+
+After configuring `full` dependencies, you must install the dependencies after
+you have finished installing your Tanzu Application Platform package.
+See [Install the full dependencies package](#tap-install-full-deps) for more information.
+
+#### <a id='jammy-only'></a> (Optional) Configure your profile with the Jammy stack only
+
+Tanzu Application Platform v1.5.0 supports building applications with both the
+Ubuntu v22.04 (Jammy) and v18.04 (Bionic) stack. For more information, see
+[Bionic and Jammy stacks](../tanzu-build-service/dependencies.html#bionic-vs-jammy).
+
+To install Tanzu Application Platform with Jammy as the only available stack,
+include the `stack_configuration: jammy-only` field under the `buildservice:`
+section in `tap-values.yaml`.
+
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
