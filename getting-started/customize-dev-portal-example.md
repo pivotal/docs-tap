@@ -216,7 +216,7 @@ tanzu package installed update tap -f tap-values.yaml -n tap-install
 
 11. Once all the packages have reconciled, the Tanzu Developer Portal pod should restart and your customized portal should take the place of the default one. 
 
-> **Note**: you may need to hard refresh your Tanzu Developer Portal in your browser. In Chrome, right-click on the page to start `Inspect` mode, then right click on the refresh button.
+> **Note**: you may need to clear cache in your browswer to see the updated Tanzu Developer Portal. Alternative approach is to hard refresh your Tanzu Developer Portal in your browser. In Chrome, right-click on the page to start `Inspect` mode, then right click on the refresh button.
 
 > **Note**: if the old Tanzu Developer Portal pod is not deleting, you will have to manually delete the old pod using the command `kubectl delete pod <pod-name> -n tap-gui` 
 
