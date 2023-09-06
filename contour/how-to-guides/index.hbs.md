@@ -1,4 +1,4 @@
-# Contour how-to guides
+# Contour How-To guides
 
 This section contains how-to guides for Contour.
 

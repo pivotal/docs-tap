@@ -42,7 +42,7 @@ The following steps correspond to the steps in the [Open Source documentation](h
 
       Where `ARN` is the ARN noted down from Step 1
 
-	  If you are only installing the Contour Package standlone, you just need to update your values file with the `envoy.service` section.
+	  If you are only installing the Contour Package standalone, you just need to update your values file with the `envoy.service` section.
    - Update your TAP install:
  
 	 ```
