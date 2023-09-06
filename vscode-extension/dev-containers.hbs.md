@@ -14,7 +14,7 @@ A development container enables you to use a container as a full-featured develo
 You can use it to:
 
 - Run an application
-- Separate tools, libraries, or runtime environments needed for working with a codebase
+- Separate tools, libraries, and runtime environments needed for working with a codebase
 - Aid in continuous integration and testing
 
 For more information, see the [Development Containers](https://containers.dev/) documentation.
