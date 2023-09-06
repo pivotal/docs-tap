@@ -33,4 +33,8 @@ The extension has the following features:
   From the Tanzu Workloads panel you can see any workload found within the cluster and namespace
   specified in the current kubectl context.
 
+- **Spin up a ready to code dev environment using Dev Containers (alpha):**
+
+  [Use Dev Containers](devcontainers.hbs.md) to spin up ready to code dev environment, that enables developers to connect to a pre-configured dev container that includes all Tanzu tools and IDE extensions required for development on Tanzu pre-installed.
+
 {{> 'partials/ide-extensions/no-ootb-basic-variation' }}
