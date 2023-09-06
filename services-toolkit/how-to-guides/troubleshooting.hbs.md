@@ -183,3 +183,38 @@ Error: exit status 1
 Explicitly create a ClusterRoleBinding for your user or group to the corresponding
 `app-operator-claim-class-SERVICE` ClusterRole, where `SERVICE` is one of `mysql`, `postgresql`,
 `rabbitmq`, or `redis`.
+
+## <a id="claim-rbac"></a> Unexpected addmission error when creating `ClassClaims`
+
+**Symptom:**
+
+Users who previously were able to create `ClassClaim` now get an admission
+error similar to:
+```console
+user 'alice@example.com' cannot 'claim' from clusterinstanceclass 'bigcorp-rabbitmq'
+```
+
+This is the case, even though those users have been granted the `claim`
+permission on `ClusterInstanceClasses` throguh either:
+- a `Role` and a `RoleBinding`
+- a `ClusterRole` and a `RoleBinding`
+
+**Solution:**
+
+Users need to have the cluster-level `claim` permission, granted via
+`ClusterRole` and `ClusterRuleBinding`. Namespace-scoped permissions are not
+enough anymore, to guard against unexpected access to resources in other
+namespaces.
+
+This change came in with Services Toolkit v0.12.0 and thus with Tanzu
+Application Platform v1.7.0, you can read more about that change
+[here](../reference/api/rbac.hbs.md).
+<!--
+Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
+Services Toolkit v0.11.1 for Tanzu Application Platform v1.6.3
+Services Toolkit v0.10.3 for Tanzu Application Platform v1.5.5
+-->
+
+To allow users to create `ClassClaims` again you need to
+- move from granting `claim` on `clusterinstanceclasses` from a `Role` to a `ClusterRole`
+- move from binding this permission to a user from a `RoleBinding` to a `ClusterRoleBinding`
