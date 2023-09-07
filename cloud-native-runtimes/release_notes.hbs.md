@@ -57,7 +57,7 @@ Cloud Native Runtimes v2.4.0 uses the following component versions:
     </tr>
     <tr>
         <td>Release date</td>
-        <td>TBD</td>
+        <td>Oct 20th 2023</td>
     </tr>
     <tr>
         <th>Component</th>
@@ -65,14 +65,18 @@ Cloud Native Runtimes v2.4.0 uses the following component versions:
     </tr>
     <tr>
         <td>Knative Serving</td>
-        <td>TBD</td>
+        <td>v1.11.0</td>
     </tr>
     <tr>
         <td>Knative cert-manager Integration</td>
-        <td>TBD</td>
+        <td>v1.11.0</td>
     </tr>
     <tr>
         <td>Knative Serving Contour Integration</td>
-        <td>TBD</td>
+        <td>v1.11.0</td>
+    </tr>
+    <tr>
+        <td>Knative Serving Istio Integration</td>
+        <td>v1.11.0</td>
     </tr>
 </table>
