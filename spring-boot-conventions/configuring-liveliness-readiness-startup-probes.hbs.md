@@ -1,44 +1,23 @@
-# Install Spring Boot conventions
+# Configure Liveliness Readiness Startup Probes for Spring Boot Applications in Tanzu Application Platform
 
-This topic tells you how to install Spring Boot conventions from the Tanzu Application Platform
-package repository.
+This topic tells you how developers can override the liveliness, readiness and startup probes settings for Spring Boot applications in Tanzu Application Platform. With this feature, users can override the k8s defaults probe settings in spring-boot-conventions for containers on Tanzu Application Platform.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install
-> Spring Boot conventions.
-> For more information about profiles, see
-> [Components and installation profiles](../about-package-profiles.hbs.md).
+## <a id='probes-config'></a>Probes configuration
 
-## <a id='prereqs'></a>Prerequisites
+Kubernetes provides built-in mechanisms for checking the health and readiness of your Spring Boot applications. By default, Kubernetes uses specific endpoints provided by Spring Boot Actuator for liveness and readiness checks. However, you may need to customize these probes to align them with your application's specific requirements.
 
-Before installing Spring Boot conventions:
+Liveliness Probe: Ensures that the application is running and responsive. If the liveliness probe fails, Kubernetes may restart the container.
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see
-  [Prerequisites](../prerequisites.hbs.md).
-- Install [Supply Chain Choreographer](../scc/install-scc.hbs.md).
+Readiness Probe: Indicates whether the application is ready to serve requests. If the readiness probe fails, Kubernetes will not route traffic to the container.
 
-## <a id='install-spring-boot-conv'></a> Install Spring Boot conventions
+Startup Probe: Indicates when the application has completed its initialization and is ready to handle traffic. This is especially useful for applications with a slow startup process.
 
-To install Spring Boot conventions:
+For more information, refer to [Configure Liveness Readiness Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 
-1. Get the exact name and version information for the Spring Boot conventions package to install
-   by running:
+To override the default settings and customize the probes at a cluster level, follow these
+steps:
 
-   ```console
-   tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
-   ```
-
-   For example:
-
-   ```console
-   $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
-   / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
-   NAME                                       VERSION           RELEASED-AT
-   ...
-   spring-boot-conventions.tanzu.vmware.com   1.7.0             2023-09-04T00:00:00Z
-   ...
-   ```
-
-1. (Optional) Change the default installation settings by running:
+1. List the schema for spring-boot-conventions package by running:
 
     ```console
     tanzu package available get spring-boot-conventions.tanzu.vmware.com/VERSION-NUMBER \
@@ -90,13 +69,35 @@ To install Spring Boot conventions:
          startupProbe.initialDelaySeconds               0                 number   Number of seconds after the container has started before probes are initiated
     ```
 
+    For more information about values schema options, see the properties listed
+    earlier.
+
+1. When you install Spring Boot conventions, you can provide an entry in the `values.yaml` file to override the configuration.     
+
+For example:
+
+    ```yaml
+    springboot_conventions:
+      autoConfigureActuators: true
+      livelinessProbe: 
+        initialDelaySeconds: 11
+        periodSeconds: 12
+        timeoutSeconds: 13
+        terminationGracePeriodSeconds: 14
+      readinessProbe: 
+        initialDelaySeconds: 15
+        periodSeconds: 12
+        successThreshold: 3
+        failureThreshold: 4
+    ```
+
 1. Install the package by running:
 
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
    --version 1.7.0 \
-   --namespace tap-install
+   --namespace tap-install -f values.yaml
    ```
 
 1. Verify you installed the package by running:
@@ -119,3 +120,53 @@ To install Spring Boot conventions:
    ```
 
    Verify that `STATUS` is `Reconcile succeeded`
+
+
+The Spring Boot convention applies the probe and timeout settings at the cluster level to all Spring boot and Spring native workloads. 
+
+1. Verify the PodIntent of your workload by ensuring `spec.containers.livenessProbe`
+shows the overidden configuration values propagated through the Spring boot conventions
+
+    ```console
+    kubectl get podintents.conventions.carto.run tanzu-java-web-app -o yaml
+
+    spec:
+      containers:
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details="always"
+            -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*"
+            -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081"
+            -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        image: dev.registry.pivotal.io/app-live-view/test/tanzu-java-web-app-default@sha256:fa822a6585eb1287a817a956f16d77dd391624462a626bf37bbf0f9e89ff7562
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 11
+          periodSeconds: 12
+          terminationGracePeriodSeconds: 14
+          timeoutSeconds: 13
+        name: workload
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 4
+          httpGet:
+            path: /readyz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 12
+          successThreshold: 3
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+        startupProbe:
+          httpGet:
+            path: /startupz
+            port: 8080
+            scheme: HTTP
+    ```
