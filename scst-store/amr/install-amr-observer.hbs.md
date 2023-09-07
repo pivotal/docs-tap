@@ -43,8 +43,8 @@ amr:
 
 When AMR Observer is installed on a different cluster from AMR and AMR CloudEvent Handler, the following values are required:
 
-- `amr.observer.eventhandler.endpoint` is required for the Observer to send to the AMR CloudEvent Handler.
-- `amr.observer.eventhandler.ca_cert_data` or `shared.ca_cert_data` are required for AMR CloudEvent Handlers that use Custom CA certificates to generate the associated TLS certificate for the ingress endpoint.
+- `amr.observer.cloudevent_handler.endpoint` is required for the Observer to send to the AMR CloudEvent Handler.
+- `amr.observer.cloudevent_handler.ca_cert_data` or `shared.ca_cert_data` are required for AMR CloudEvent Handlers that use Custom CA certificates to generate the associated TLS certificate for the ingress endpoint.
 
 >**Note** If SCST - Scan 2.0 is installed after AMR Observer has already been deployed, a deployment you must restart AMR Observer to observe the new ImageVulerabilityScan Custom Resource that was installed with SCST - Scan 2.0.
 
@@ -80,8 +80,8 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer).
 
     KEY                                   DEFAULT  TYPE     DESCRIPTION
     ca_cert_data                                   string   ca_cert_data is used to add certificates to the truststore that is used by the amr-observer.
-    eventhandler.endpoint                          string   The URL of the cloudevent handler endpoint.
-    eventhandler.liveness_period_seconds           integer  The period in seconds between executed health checks to the cloudevent handler endpoint.
+    cloudevent_handler.endpoint                          string   The URL of the cloudevent handler endpoint.
+    cloudevent_handler.liveness_period_seconds           integer  The period in seconds between executed health checks to the cloudevent handler endpoint.
     location                                       string   location is the multiline string configuration for the location.conf content.
     resync_period                                  string   resync_period determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
   ```
@@ -89,7 +89,7 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer).
 1. A sample `values-file.yaml` for installing AMR Observer standalone on a cluster where AMR CloudEvent Handler is present.
 
   ```yaml
-  eventhandler:
+  cloudevent_handler:
     endpoint: http://amr-persister.metadata-store.svc.cluster.local
   ```
 
