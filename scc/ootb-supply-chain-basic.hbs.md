@@ -210,8 +210,13 @@ serviceaccount, and rolebinding), you can create the workload object.
 To do so, make use of the `apps` plug-in from the Tanzu CLI:
 
 ```console
-tanzu apps workload create [flags] [workload-name]
+tanzu apps workload create FLAGS WORKLOAD-NAME
 ```
+
+Where:
+
+- `FLAGS` are the one or more flags you want to include.
+- `WORKLOAD-NAME` is the name of the workload you want to target.
 
 Depending on what you are aiming to achieve, you can set different flags.
 To know more about those (including details about different features
