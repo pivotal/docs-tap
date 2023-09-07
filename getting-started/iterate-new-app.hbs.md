@@ -30,9 +30,19 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
    1. In Visual Studio Code, navigate to **Preferences** > **Settings** >
       **Extensions** > **Tanzu Developer Tools**.
-   1. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default.
-   1. In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
-    For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+      
+   1. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App.
+      The current directory is the default.
+
+   1. In the **Source Image** field, provide the destination image repository to publish an image containing
+      your workload source code.
+      For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+
+      > **Note** See the documentation for the registry you're using to find out which steps are
+      > necessary to authenticate and gain push access.
+      >
+      > For example, if you use Docker, see the [Docker documentation](https://docs.docker.com/engine/reference/commandline/login/),
+      > or if you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/).
 
 You are now ready to iterate on your application.
 
