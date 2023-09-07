@@ -11,7 +11,7 @@ For more information about profiles, see [Installing the Tanzu Application Platf
 Before installing Cloud Native Runtimes:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](https://docs.vmware.com/en/Tanzu-Application-Platform/1.5/tap/prerequisites.html).
-- Contour is installed in the cluster. You can install Contour from the [Tanzu Application package repository](../../../contour/install.hbs.md). If you have have an existing Contour installation, see [Installing Cloud Native Runtimes with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.2/tanzu-cloud-native-runtimes/contour.html).
+- Contour is installed in the cluster. You can install Contour from the [Tanzu Application package repository](../../../contour/how-to-guides/install.hbs.md). If you have have an existing Contour installation, see [Installing Cloud Native Runtimes with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.2/tanzu-cloud-native-runtimes/contour.html).
 
 - By default, Tanzu Application Platform installs and uses a self-signed certificate authority for issuing TLS certificates to components by using ingress issuer. For more information, see [Ingress Certificates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/security-and-compliance-tls-and-certificates-ingress-about.html).
   To install Cloud Native Runtimes, you must set the `shared.ingress_domain` or `cnrs.domain_name` property when you set `ingress_issuer`. For example:

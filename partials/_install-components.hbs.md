@@ -22,7 +22,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Bitnami Services](/docs-tap/bitnami-services/install-bitnami-services.hbs.md)
 - [Install cert-manager](/docs-tap/cert-manager/install.hbs.md)
 - [Install Cloud Native Runtimes](/docs-tap/cloud-native-runtimes/how-to-guides/app-operators/install.hbs.md)
-- [Install Contour](/docs-tap/contour/install.hbs.md)
+- [Install Contour](/docs-tap/contour/how-to-guides/install.hbs.md)
 - [Install Crossplane](/docs-tap/crossplane/install-crossplane.hbs.md)
 - [Install default roles for Tanzu Application Platform](/docs-tap/authn-authz/install.hbs.md)
 - [Install Developer Conventions](/docs-tap/developer-conventions/install-dev-conventions.hbs.md)

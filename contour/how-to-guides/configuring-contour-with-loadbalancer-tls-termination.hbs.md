@@ -10,7 +10,7 @@ Tanzu Application Platform v1.7.0 and onwards.
 
 - An EKS cluster
 - The Contour package installed on the cluster, either as part of Tanzu Application 
-Platform or from the [standalone component installation](../install.hbs.md)
+Platform or from the [standalone component installation](install.hbs.md)
 - Access to Route53 and AWS Certificate Manager
 - A domain registered in Route53. This topic refers to this domain as `DOMAIN`.
 

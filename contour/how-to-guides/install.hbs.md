@@ -3,11 +3,11 @@
 This topic tells you how to install Contour from the Tanzu Application Platform (commonly known as TAP) package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Contour.
-For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
+For more information about profiles, see [Components and installation profiles](../../about-package-profiles.hbs.md).
 
 To install Contour from the Tanzu Application Platform package repository without a profile:
 
-1. [Install cert-manager](../cert-manager/install.hbs.md).
+1. [Install cert-manager](../../cert-manager/install.hbs.md).
 
 1. List version information for the package by running:
 
