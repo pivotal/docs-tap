@@ -90,7 +90,7 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer).
 
   ```yaml
   cloudevent_handler:
-    endpoint: http://amr-persister.metadata-store.svc.cluster.local
+    endpoint: http://amr-cloudevent-handler.metadata-store.svc.cluster.local
   ```
 
 The values file for a standalone package installation does not have the Tanzu Application Platform value root key of `amr.observer` or `amr.deploy_observer`.
