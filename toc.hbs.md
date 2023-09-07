@@ -443,7 +443,7 @@
             - [Compatibility Matrix](./cloud-native-runtimes/reference/compatibility_matrix.hbs.md)
     - [Contour](contour/about.hbs.md)
         - [Contour overview](contour/about.hbs.md)
-        - [Install Contour](contour/install.hbs.md)
+        - [Install Contour](contour/how-to-guides/install.hbs.md)
         - [How-to guides](contour/how-to-guides/index.hbs.md)
             - [Configure Cipher Suites and TLS version in Contour](contour/how-to-guides/configuring-cipher-suites-and-tls-version.hbs.md)
             - [Configure Contour to propagate header with Domain Mapping](contour/how-to-guides/configuring-contour-with-domainmapping.hbs.md)
