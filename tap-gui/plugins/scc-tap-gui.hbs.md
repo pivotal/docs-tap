@@ -186,3 +186,35 @@ source code or image, including vulnerabilities from past scans.
 > On 15 January, the log4j CVE issue is found while scanning image DEF. If a user returns to the
 > **Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
 > `log4shell` package.
+
+### Triage Vulnerabilities
+
+This functionality allows you to store an analysis for each of the vulnerabilities found in the scan.
+
+#### Enable Triage Status
+The triage vulnerability feature is turned off by default in Tanzu Developer Portal. To enable, add the following to your config section within the tap-values.yaml file. See the following example:
+
+```yaml
+# tap-values.yaml
+
+tap_gui:
+  app_config:
+    customize:
+      features:
+        supplyChain:
+          enableTriageUI: false
+```
+
+#### Triaging 
+
+When you select a scan stage, the system will show a table with vulnerabilities and a **Triage Status** column where you will see the latest status stored for each vulnerability. 
+
+![Screenshot of the vulnerabilities table for scans stages.](images/scc-vulnerabilities.png)
+
+The triage panel will let you select a status, justification and resolutions from a set of options and a field to introduce additional details for this analysis; once you submit it, the status will be updated on the table and you will see the latest analysis stored the next time you open the panel. 
+
+![Screenshot of the vulnerabilities table for scans stages.](images/scc-triage-drawer.png)
+
+
+
+> **Note** **Needs triage** is the default status for all vulnerabilities. Once you have submitted an analysis, the status will change and the information button next to the status will show you the Vulnerability Analysis stored.
