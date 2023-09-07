@@ -48,12 +48,12 @@ New project
 Existing project
 : To add a development container to an existing project:
 
-   1. Open the project with VS Code and ensure that your Tanzu Developer Tools for VS Code plug-in is
-      v1.1.0 or later.
-   1. Create an empty new file named `devcontainer`.
-   1. Type `tanzu devcontainer` and press Enter.
-   1. Rename the file as `.devcontainer.json`.
-   1. Follow the Visual Studio Code prompts to restart the IDE in `devcontainer` to connect to the
+   1. Open the project with VS Code and ensure that the Tanzu Developer Tools for VS Code plug-in
+      is v1.1.0 or later.
+   2. Create an empty new file named `devcontainer`.
+   3. Type `tanzu devcontainer` and press Enter.
+   4. Rename the file as `.devcontainer.json`.
+   5. Follow the Visual Studio Code prompts to restart the IDE in `devcontainer` to connect to the
       development container.
 
 ## <a id="connect-to-cluster"></a> Connect to your cluster
