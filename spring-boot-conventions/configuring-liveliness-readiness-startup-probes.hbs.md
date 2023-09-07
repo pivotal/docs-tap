@@ -1,5 +1,7 @@
 # Configure Liveliness Readiness Startup Probes for Spring Boot Applications in Tanzu Application Platform
 
+**Note** This is a **alpha feature** and will be supported for current release
+
 This topic tells you how developers can override the liveliness, readiness and startup probes settings for Spring Boot applications in Tanzu Application Platform. With this feature, users can override the k8s defaults probe settings in spring-boot-conventions for containers on Tanzu Application Platform.
 
 ## <a id='probes-config'></a>Probes configuration

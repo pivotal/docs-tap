@@ -90,6 +90,8 @@ To install Spring Boot conventions:
          startupProbe.initialDelaySeconds               0                 number   Number of seconds after the container has started before probes are initiated
     ```
 
+   For more information on configuring probes in spring-boot-conventions, refer to [Configure Liveliness Readiness Startup Probes for Spring Boot Applications in Tanzu Application Platform](./configuring-liveliness-readiness-startup-probes.hbs.md)
+
 1. Install the package by running:
 
    ```console
