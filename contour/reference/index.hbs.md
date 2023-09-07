@@ -1,14 +1,16 @@
-# Contour Reference
+# Contour reference
 
 This section contains reference documentation for using Contour.
 
-## Open Source Documentation
+## <a id="open-source-doc"></a> Open source Documentation
 
-The [Contour Open Source Documentation](https://projectcontour.io/docs/1.25/) contains more detailed, Contour-specific reference information. This is best for more advanced usages of Contour.
+The [Contour open source documentation](https://projectcontour.io/docs/1.25/) 
+contains more detailed Contour-specific reference information for advanced use, 
+including:
 
-**WARNING:** There may be some features or configurations that aren't directly accessible via the Contour Package API in TAP.
+- [API reference](https://projectcontour.io/docs/1.25/config/api/)
+- [Configuration reference](https://projectcontour.io/docs/1.25/configuration/)
+- [Compatability matrix](https://projectcontour.io/resources/compatibility-matrix/)
 
-Some sections of interest:
-* [API Reference](https://projectcontour.io/docs/1.25/config/api/)
-* [Configuration Reference](https://projectcontour.io/docs/1.25/configuration/)
-* [Compatability Matrix](https://projectcontour.io/resources/compatibility-matrix/)
+>**Important** There may be some features or configurations that are not accessible 
+by using the Contour package API in Tanzu Application Platform.

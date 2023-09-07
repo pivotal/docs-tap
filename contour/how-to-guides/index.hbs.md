@@ -1,8 +1,6 @@
-# Contour How-To guides
+# Contour how-to guides
 
-This section contains how-to guides for Contour.
-
-In this section:
+This section contains the following how-to guides for Contour:
 
 - [Install Contour](./index.hbs.md)
 - [Configure Cipher Suites and TLS version in Contour](./configuring-cipher-suites-and-tls-version.hbs.md)
