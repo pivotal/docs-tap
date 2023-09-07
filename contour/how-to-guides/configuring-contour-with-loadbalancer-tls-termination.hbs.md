@@ -1,94 +1,95 @@
-# Configure Contour to Support TLS Termination at an AWS Network LoadBalancer
+# Configure Contour to support TLS termination at an AWS Network LoadBalancer
 
-This topic tells you how to configure Contour so that it can accept traffic from an AWS NLB that terminates TLS traffic.
+This topic tells you how to configure Contour to accept traffic from an AWS 
+Network Load Balancer (NLB) that terminates TLS traffic.
 
-**Note:** This guide only applies to the Contour Package from TAP 1.7.0 and onwards.
+>**Important** This guide only applies to the Contour package from 
+Tanzu Application Platform v1.7.0 and onwards.
 
 ## <a id="prereqs"></a>Prerequisites
 
-* An EKS Cluster
-* The Contour Package installed on the cluster
-  * either as part of TAP, or from the [individual install](../install.hbs.md)
-* Access to Route53 and AWS Certificate Manager
-* A domain registered in Route53 (this guide will refer to this domain as DOMAIN)
+- An EKS cluster
+- The Contour package installed on the cluster, either as part of Tanzu Application 
+Platform or from the [standalone component installation](../install.hbs.md)
+- Access to Route53 and AWS Certificate Manager
+- A domain registered in Route53. This topic refers to this domain as `DOMAIN`.
 
 ## <a id="procedure"></a>Procedure
 
-The following steps correspond to the steps in the [Open Source documentation](https://projectcontour.io/docs/1.25/guides/deploy-aws-tls-nlb/#configure). The only difference is in Step 2. Rather than creating/updating resources manually, this doc explains how make the appropriate configurations via the `tap-values.yaml` file.
+The following steps correspond to the steps in the [Contour open source documentation](https://projectcontour.io/docs/1.25/guides/deploy-aws-tls-nlb/#configure). Instead of creating or updating resources manually, this topic tells you how to configure the `tap-values.yaml` file.
 
-1. Generate a TLS Certificate
+1. Create a public TLS certificate for `DOMAIN` by using AWS Certificate Manager (ACM). 
 
-   Create a public TLS certificate for DOMAIN using AWS Certificate Manager (ACM). This is streamlined when DOMAIN is managed by Route 53.
+    This is streamlined when Route 53 manages `DOMAIN`.
 
-   Note down the ARN of the created certificate, it will be needed in the following steps.
+    Note down the `ARN` of the created certificate, which is required in the following steps.
 
-2. Modify the Contour Package install values
+1. Edit the Contour package install values.
 
-   - If you are using a `tap-values.yml` file, update the Contour section with the following:
+    - If using a `tap-values.yml` file, update the Contour section with the following:
 
-      ```
-      contour:
-        ...
-        envoy:
-          service:
-	        loadBalancerTLSTermination: true
-	        annotations: |
-	          service.beta.kubernetes.io/aws-load-balancer-type: external
-              service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-              service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-              service.beta.kubernetes.io/aws-load-balancer-ssl-cert: <ARN>
-              service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-      ```
+        ```yaml
+        contour:
+          ...
+          envoy:
+            service:
+            loadBalancerTLSTermination: true
+            annotations: |
+              service.beta.kubernetes.io/aws-load-balancer-type: external
+                service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+                service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+                service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
+                service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+        ```
 
-      Where `ARN` is the ARN noted down from Step 1
+        Where `ARN` is the ARN noted down from the previous step.
 
-	  If you are only installing the Contour Package standalone, you just need to update your values file with the `envoy.service` section.
-   - Update your TAP install:
+    - If installing the Contour package standalone, update your values file with the `envoy.service` section.
+
+1. Update your Tanzu Application Platform install:
  
-	 ```
-	 tanzu package installed update tap -n tap-install -f tap-values.yml -p tap.tanzu.vmware.com -v X.X.X
-	 ```
+    ```console
+    tanzu package installed update tap -n tap-install -f tap-values.yml -p tap.tanzu.vmware.com -v VERSION
+    ```
 
-	 where `X.X.X` is the version of TAP you are using.
+    Where `VERSION` is the version of Tanzu Application Platform in use, which must be in the form of `X.X.X`.
 
-3. Configure DNS
+1. Configure the domain name system (DNS).
 
-   - Get the External IP of the Envoy Service
-     
-	 ```
-	 kubectl get svc envoy -n NAMESPACE
-	 ```
+    - Get the External IP of the Envoy service:
 
-	 where `NAMESPACE` is the namespace where Contour is installed (`tanzu-system-ingress` unless configured otherwise)
+        ```console
+        kubectl get svc envoy -n NAMESPACE
+        ```
 
-	 The result should look something like:
+        Where `NAMESPACE` is the namespace where Contour is installed. The default value is `tanzu-system-ingress` unless configured otherwise.
 
-	 ```
-	 NAME    TYPE           CLUSTER-IP      EXTERNAL-IP                                                                     PORT(S)            AGE
-     envoy   LoadBalancer   10.100.24.154   a7ea2bbde8a164036a7e4c1ed5700cdf-154fb911d990bb1f.elb.us-east-2.amazonaws.com   443:31606/TCP      40d
-	 ```
+	      The result resembles the following:
 
-   - Setup a DNS Entry
+        ```console
+        NAME    TYPE           CLUSTER-IP      EXTERNAL-IP                                                                     PORT(S)            AGE
+         envoy   LoadBalancer   10.100.24.154   a7ea2bbde8a164036a7e4c1ed5700cdf-154fb911d990bb1f.elb.us-east-2.amazonaws.com   443:31606/TCP      40d
+        ```
+
+    - Setup a DNS entry:
  
-	 Create a DNS record pointing from DOMAIN to the NLB Domain (the External IP value from the previous step)
+        Create a DNS record pointing from `DOMAIN` to the NLB Domain, which is the External IP value from the previous step.
 
-	 If you **are not** using AWS Route53, then you will need to create a CNAME entry in your DNS provider.
+	      If not using AWS Route53, you must create a CNAME entry in your DNS provider. Otherwise, with AWS Route53, you can create an "A" record type, and alias it to the Network Loadbalancer.
 
-	 Otherwise, with AWS Route53, you can create an "A" record type, and alias it to the Network Loadbalancer.
+        In the "route traffic to" section, you must set:
 
-	 In the "route traffic to" section, you should set:
-	 - "Alias to Network Loadbalancer"
-	 - The appropriate region for your NLB
-	 - The name of your NLB domain from the previous step
+        - "Alias to Network Loadbalancer".
+        - The appropriate region for your NLB.
+        - The name of your NLB domain from the previous step.
 
-	 It will look something like this:
+        It resembles the following:
 
-	 ![aws-dns-record-screenshot](images/aws-dns-record.png)
-
+        ![aws-dns-record-screenshot](images/aws-dns-record.png)
 
 
-## <a id="verify"></a>Verify
+## <a id="verify"></a>Verification
 
-You can verify this conifguration by applying a simple test app and corresponding HTTPProxy resource.
+You can verify this conifguration by applying a simple test app and the corresponding HTTPProxy resource.
 
-Make the sure FQDN on the HTTPProxy resource matches the DOMAIN you used in the setup.
+The FQDN on the HTTPProxy resource must match the `DOMAIN` you used earlier.
