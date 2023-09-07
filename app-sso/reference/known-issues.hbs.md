@@ -6,11 +6,11 @@ guidance, see [Troubleshoot Application Single Sign-on](../how-to-guides/trouble
 
 ## <a id="unregistration"></a> Unregistration by deletion
 
-An existing, ready `ClientRegistration` can only be unregistered from its
-selected `AuthServer` through deletion. Breaking the match between the two
+You can only deregister an existing, ready `ClientRegistration` from its
+selected `AuthServer` by deleting it. Breaking the match between the two
 resources by updating either the labels of the `AuthServer` or the label
-selector on the `ClientRegistration` does _not_ result un unregistration of the
-client from the authorisation server.
+selector on the `ClientRegistration` does not deregister the client from the 
+authorization server.
 
 ## <a id="clientregistrations"></a> Limited number of `ClientRegistrations` per `AuthServer`
 
