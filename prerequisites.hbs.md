@@ -83,7 +83,7 @@ For Tanzu Developer Portal, you must have:
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.25, v1.26 or v1.27 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.26, v1.27 or v1.28 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
@@ -100,7 +100,7 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.12 or v4.13.
+- Red Hat OpenShift Container Platform v4.13.
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
@@ -151,7 +151,7 @@ providers:
 
 Installation requires:
 
-- The Kubernetes CLI (kubectl) v1.25, v1.26 or v1.27 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+- The Kubernetes CLI (kubectl) v1.26, v1.27 or v1.28 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 ## <a id='next-steps'></a>Next steps
 
