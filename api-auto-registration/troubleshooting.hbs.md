@@ -38,9 +38,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
 ### APIDescriptor CRD shows message of `connection refused` but service is up and running
 
 In Tanzu Application Platform v1.4 and later, if your workloads use ClusterIssuer for the TLS configuration or your API specifications location URL is secured using a custom CA,
-you might encounter the following message.
-
-Your APIDescription CRD shows a status and message similar to:
+your APIDescription CRD shows a status and message similar to:
 
 ```console
     Message:               Get "https://spring-petclinic.example.com/v3/api-docs": dial tcp 12.34.56.78:443: connect: connection refused
