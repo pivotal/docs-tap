@@ -4,6 +4,14 @@ This topic describes known limitations and workarounds related to working with
 Application Single Sign-On (commonly called AppSSO). For further troubleshooting 
 guidance, see [Troubleshoot Application Single Sign-on](../how-to-guides/troubleshoot.hbs.md).
 
+## <a id="unregistration"></a> Unregistration by deletion
+
+An existing, ready `ClientRegistration` can only be unregistered from its
+selected `AuthServer` through deletion. Breaking the match between the two
+resources by updating either the labels of the `AuthServer` or the label
+selector on the `ClientRegistration` does _not_ result un unregistration of the
+client from the authorisation server.
+
 ## <a id="clientregistrations"></a> Limited number of `ClientRegistrations` per `AuthServer`
 
 The number of `ClientRegistration` for an `AuthServer` is limited at
