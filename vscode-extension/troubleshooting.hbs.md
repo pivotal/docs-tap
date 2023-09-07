@@ -15,7 +15,7 @@ VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
 
 {{> 'partials/ide-extensions/ki-lu-not-working-wl-types' }}
 
-## <a id='lu-not-working-classversion'></a> Live update fails with `UnsupportedClassVersionError`
+## <a id='lu-not-wrkng-classversion'></a> Live Update fails with `UnsupportedClassVersionError`
 
 ### Symptom
 
@@ -34,15 +34,14 @@ only recognizes class file versions up to 55.0
 
 ### Cause
 
-The classes produced locally on your machine are compiled to target a newer Java virtual machine (JVM).
+The classes produced locally on your machine are compiled to target a later Java virtual machine (JVM).
 The error message mentions `class file version 61.0`, which corresponds to Java 17.
-The buildpack, however, is set up to run the application with an older JVM.
+The buildpack, however, is set up to run the application with an earlier JVM.
 The error message mentions `class file versions up to 55.0`, which corresponds to Java 11.
 
-The root cause of this is a misconfiguration of the Java compiler that VS Code uses.
-This issue seems to be caused by a suspected bug in the VS Code Java tooling, which sometimes fails
-to properly configure the compiler source and target compatibility-level from information in the
-Maven POM.
+The root cause of this is a misconfiguration of the Java compiler that VS Code uses. The cause might
+be a suspected issue with the VS Code Java tooling, which sometimes fails to properly configure the
+compiler source and target compatibility-level from information in the Maven POM.
 
 For example, in the `tanzu-java-web-app` sample application the POM contains the following:
 
@@ -60,8 +59,8 @@ However, the VS Code Java tooling sometimes fails to take this information into 
 
 Force the VS Code Java tooling to re-read and synchronize information from the POM:
 
-1. Right-click on the `pom.xml` file.
-2. Select **Reload Projects**.
+1. Right-click the `pom.xml` file.
+2. Click **Reload Projects**.
 
 This causes the internal compiler level to be set correctly based on the information from `pom.xml`.
 For example, Java 11 in `tanzu-java-web-app`.
