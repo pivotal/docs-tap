@@ -8,10 +8,12 @@ Tanzu Application Platform v1.7.0 and onwards.
 
 ## <a id="prereqs"></a>Prerequisites
 
-- An EKS cluster
+The following are required before proceeding with the configuration: 
+
+- An EKS cluster.
 - The Contour package installed on the cluster, either as part of Tanzu Application 
-Platform or from the [standalone component installation](install.hbs.md)
-- Access to Route53 and AWS Certificate Manager
+Platform or from the [standalone component installation](install.hbs.md).
+- Access to Route53 and AWS Certificate Manager.
 - A domain registered in Route53. This topic refers to this domain as `DOMAIN`.
 
 ## <a id="procedure"></a>Procedure
@@ -56,7 +58,7 @@ The following steps correspond to the steps in the [Contour open source document
 
 1. Configure the domain name system (DNS).
 
-    - Get the External IP of the Envoy service:
+    1. Get the External IP of the Envoy service:
 
         ```console
         kubectl get svc envoy -n NAMESPACE
@@ -71,7 +73,7 @@ The following steps correspond to the steps in the [Contour open source document
          envoy   LoadBalancer   10.100.24.154   a7ea2bbde8a164036a7e4c1ed5700cdf-154fb911d990bb1f.elb.us-east-2.amazonaws.com   443:31606/TCP      40d
         ```
 
-    - Setup a DNS entry:
+    1. Setup a DNS entry:
  
         Create a DNS record pointing from `DOMAIN` to the NLB Domain, which is the External IP value from the previous step.
 
