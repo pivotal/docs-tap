@@ -35,8 +35,8 @@ The extension has the following features:
 
 - **Make a ready-to-code development environment by using development containers (alpha):**
 
-  [Use developer containers](dev-containers.hbs.md) to make a ready-to-code development
-  environment. This enables developers to connect to a pre-configured development container that
-  includes all Tanzu tools and IDE extensions required for development on Tanzu pre-installed.
+  Use developer containers to make a ready-to-code development environment.
+  This enables developers to connect to a pre-configured development container that includes all
+  Tanzu tools and IDE extensions required for development on Tanzu pre-installed.
 
 {{> 'partials/ide-extensions/no-ootb-basic-variation' }}

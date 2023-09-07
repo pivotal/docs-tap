@@ -28,7 +28,7 @@ Obtain the following:
   that you meet the [system requirements](https://code.visualstudio.com/docs/devcontainers/containers#_system-requirements)
   for the VS Code Dev Containers extension.
 - The VS Code [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
-- AMD architecture, because `tanzu devcontainer` does not currently support ARM, such as Apple M1 Silicon.
+- AMD architecture, because ARM, such as Apple M1 Silicon, is not currently supported.
 
 ## <a id="new-or-old-proj"></a> Create a new project or open an existing one
 
@@ -48,8 +48,8 @@ New project
 Existing project
 : To add a development container to an existing project:
 
-   1. Open the project with VS Code and ensure that you have the Tanzu Developer Tools for VS Code
-      plug-in v1.1.0 or later.
+   1. Open the project with VS Code and ensure that your Tanzu Developer Tools for VS Code plug-in is
+      v1.1.0 or later.
    1. Create an empty new file named `devcontainer`.
    1. Type `tanzu devcontainer` and press Enter.
    1. Rename the file as `.devcontainer.json`.
@@ -82,7 +82,7 @@ see [Use Tanzu Developer Tools for VS Code](using-the-extension.hbs.md).
 ## <a id="cli-eula"></a> VMware General Terms and other legal requirements connected to Tanzu CLI
 
 When building `devcontainer`, Tanzu CLI is installed.
-To [avoid interactive prompts](https://github.com/vmware-tanzu/tanzu-cli/blob/main/docs/quickstart/install.md#automatic-prompts-and-potential-mitigations)
+To avoid [interactive prompts](https://github.com/vmware-tanzu/tanzu-cli/blob/main/docs/quickstart/install.md#automatic-prompts-and-potential-mitigations)
 from breaking the installation, some options are selected in `.devcontainer.json` beforehand:
 
 ```json
