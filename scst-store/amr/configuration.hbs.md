@@ -93,11 +93,13 @@ Configuration options:
   - Tap Multi Cluster deployment will happen through Tanzu Mission Control when `deployed_through_tmc` is set to true
 
 
-## <a id='amr-observer'></a> AMR Observer
+## <a id='amr-graphql'></a> AMR GraphQL
 
 - `amr.graphql.auth.kubernetes_service_accounts.enabled`
   - Default: true
   - Requires Authorization header when communicating with AMR GraphQL.
+
+## <a id='amr-cloudevent-handler'></a> AMR CloudEvent Handler
 
 - `amr.cloudevent_handler.auth.kubernetes_service_accounts.enabled`
   - Default: true
