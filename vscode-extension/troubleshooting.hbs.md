@@ -7,7 +7,7 @@ VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
 
 {{> 'partials/ide-extensions/ki-cannot-view-workloads' }}
 
-## <a id='lu-not-working-classversion'></a> Live update fails with `UnsupportedClassVersionError`
+## <a id='lu-not-wrkng-classversion'></a> Live Update fails with `UnsupportedClassVersionError`
 
 ### Symptom
 
@@ -26,15 +26,14 @@ Java Runtime only recognizes class file versions up to 55.0
 
 ### Cause
 
-The classes produced locally on your machine are compiled to target a newer Java virtual machine (JVM).
+The classes produced locally on your machine are compiled to target a later Java virtual machine (JVM).
 The error message mentions `class file version 61.0`, which corresponds to Java 17.
-The buildpack, however, is set up to run the application with an older JVM.
+The buildpack, however, is set up to run the application with an earlier JVM.
 The error message mentions `class file versions up to 55.0`, which corresponds to Java 11.
 
-The root cause of this is a misconfiguration of the Java compiler that VS Code uses.
-This issue seems to be caused by a suspected bug in the VS Code Java tooling, which sometimes fails
-to properly configure the compiler source and target compatibility-level from information in the
-Maven POM.
+The root cause of this is a misconfiguration of the Java compiler that VS Code uses. The cause might
+be a suspected issue with the VS Code Java tooling, which sometimes fails to properly configure the
+compiler source and target compatibility-level from information in the Maven POM.
 
 For example, in the `tanzu-java-web-app` sample application the POM contains the following:
 
@@ -52,8 +51,8 @@ However, the VS Code Java tooling sometimes fails to take this information into 
 
 Force the VS Code Java tooling to re-read and synchronize information from the POM:
 
-1. Right-click on the `pom.xml` file.
-2. Select **Reload Projects**.
+1. Right-click the `pom.xml` file.
+2. Click **Reload Projects**.
 
 This causes the internal compiler level to be set correctly based on the information from `pom.xml`.
 For example, Java 11 in `tanzu-java-web-app`.
@@ -101,14 +100,23 @@ Your kubeconfig file (`~/.kube/config`) is malformed.
 
 Fix your kubeconfig file.
 
+## <a id="no-change-dev-cont"></a> Live Update changes aren't visible when using development containers on Windows
+
 ### Symptom
 
-Live update deploys your workload but changes are not reflected when using Dev Containers on Windows.
+Live Update deploys your workload but changes are not visible when using development containers on
+Windows.
 
 ### Cause
 
-Monitoring file system changes on Windows folders while mounted in a docker container is very slow and might not work depending on your setup.
+Monitoring file system changes on Windows directories, while mounted in a Docker container, is very
+slow and might not work in your specific setup.
 
 ### Solution
 
-Clone the repository inside of a container volume instead of mounting a local folder in the container, this has the added benefit of improved I/O performance. Use the `Dev Containers: Clone Repository in Container Volume...` command while the project is opened to get started. Detailed information about this feature is available in VS Code [improve dev container performance documentation](https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-clone-repository-in-container-volume).
+1. Clone the repository inside of a container volume instead of mounting a local directory in the
+   container. This improves I/O performance.
+
+1. Run the `Dev Containers: Clone Repository in Container Volume...` command while the project is open
+   to get started. For more information about this command, see the
+   [Visual Studio Code documentation](https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-clone-repository-in-container-volume).
