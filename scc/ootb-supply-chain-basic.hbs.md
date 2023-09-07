@@ -8,14 +8,14 @@ to a Kubernetes configuration ready to be deployed to a cluster.
 It contains the most basic supply chains that focus on providing a quick path
 to deployment making no use of testing or scanning resources.
 
-The supply chains included in this package perform the following:
+The supply chains in this package perform the following:
 
 - Building from source code:
 
   1. Watching a Git repository, Maven repository, or local directory for changes
-  1. Building a container image out of the source code with Buildpacks
-  1. Applying operator-defined conventions to the container definition
-  1. Creating a deliverable object for deploying the application to a cluster
+  2. Building a container image out of the source code with Buildpacks
+  3. Applying operator-defined conventions to the container definition
+  4. Creating a deliverable object for deploying the application to a cluster
     1. (Experimental) Alternatively, outputting a Carvel Package containing the application to a Git Repository
 
 - Using a prebuilt application image:
@@ -60,14 +60,11 @@ The objects that the developer must provide or configure include:
 - **[rolebinding](#rolebinding)**: Grant to the identity the necessary roles
   for creating the resources prescribed by the supply chain.
 
-
-
 #### <a id="registries-secrets"></a> Registries Secrets
 
 Regardless of the supply chain that a workload goes through, there must be
 Kubernetes secrets in the developer namespace containing credentials for both
-pushing and pulling the container image that gets built by the supply chains
-when source code is provided. The developer namespace must also contain
+pushing and pulling the container image that the supply chain builds when source code is provided. The developer namespace must also contain
 registry credentials for Kubernetes to
 run pods using images from the installation of Tanzu Application Platform.
 
@@ -94,7 +91,7 @@ run pods using images from the installation of Tanzu Application Platform.
       same registry server as in `ootb_supply_chain_basic` - `registry` -
       `server`.
 
-1. Add a placeholder secret for gathering the credentials used for pulling
+2. Add a placeholder secret for gathering the credentials used for pulling
    container images from the installation of Tanzu Application Platform:
 
     ```console
@@ -150,24 +147,23 @@ imagePullSecrets:
 > lack the necessary credentials for pushing the images it builds for that
 > workload.
 
-
 #### <a id="rolebinding"></a> RoleBinding
 
 As the Supply Chain takes action in the cluster on behalf of the users who
 created the workload, it needs permissions within Kubernetes' RBAC system to do
 so.
 
-Tanzu Application Platform v1.2 ships with two ClusterRoles that describe all of the necessary
+Tanzu Application Platform v1.2 includes two ClusterRoles that describe all of the necessary
 permissions to grant to the service account:
 
 - `workload` clusterrole, providing the necessary roles for the supply chains
-  to be able to manage the resources prescribed by them.
+  to manage the resources prescribed by them.
 
 - `deliverable` clusterrole, providing the roles for deliveries to deploy to
   the cluster the application Kubernetes objects produced by the supply chain.
 
-To provide those permissions to the identity we created for this workload, bind
-the `workload` ClusterRole to the ServiceAccount we created above:
+To provide those permissions to the identity you created for this workload, bind
+the `workload` ClusterRole to the ServiceAccount you created above:
 
 ```console
 apiVersion: rbac.authorization.k8s.io/v1
@@ -183,7 +179,7 @@ subjects:
     name: default
 ```
 
-If this is just a Build cluster, and you do not intend to run the application in
+If this is a Build cluster, and you do not intend to run the application in
 it, this single RoleBinding is all that's necessary.
 
 If you intend to also deploy the application that's been built, bind to the same
@@ -203,19 +199,23 @@ subjects:
     name: default
 ```
 
-For more information about authentication and authorization in Tanzu Application Platform v1.2, see
-https://github.com/pivotal/docs-tap/blob/main/authn-authz/overview.md.
+For more information about authentication and authorization in Tanzu Application Platform v1.2, see [Overview of Tanzu Application Platform authentication and authorization](../authn-authz/overview.hbs.md).
 
 ### <a id="developer-workload"></a> Developer workload
 
-With the developer namespace set up with the preceding objects (secret,
-serviceaccount, and rolebinding), you can create the workload object.
+With the developer namespace set up with the preceding objects, such as secret,
+serviceaccount, and rolebinding, you can create the workload object.
 
-To do so, make use of the `apps` plug-in from the Tanzu CLI:
+To do so, use the `apps` plug-in from the Tanzu CLI:
 
 ```console
 tanzu apps workload create [flags] [workload-name]
 ```
+
+Where:
+
+- `FLAGS` are the one or more flags you want to include.
+- `WORKLOAD-NAME` is the name of the workload you want to target.
 
 Depending on what you are aiming to achieve, you can set different flags.
 To know more about those (including details about different features
@@ -226,7 +226,7 @@ of the supply chains), see the following sections:
   source code.
 
 - [Using an existing image](pre-built-image.md), for more information about how to
-  leverage prebuilt images in the supply chains.
+  use prebuilt images in the supply chains.
 
 - [GitOps vs RegistryOps](gitops-vs-regops.md), for a description of the
   different ways of propagating the deployment configuration through external
