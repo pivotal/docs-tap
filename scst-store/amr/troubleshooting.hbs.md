@@ -80,7 +80,7 @@ Sample log in AMR CloudEvent Handler:
 ```
 ---
 
-Unsupported protocol is used for the `amr.observer.eventhandler.endpoint`.
+Unsupported protocol is used for the `amr.observer.cloudevent_handler.endpoint`.
 
 ```log
 2023-06-28T18:48:31Z	ERROR	httpclient	error sending request to AMR CloudEvent Handler	{"error": "Get \"amr-persister.example.com/healthz\": unsupported protocol scheme \"\""}
@@ -129,7 +129,7 @@ Events:
   Warning  Unhealthy  3m5s (x10 over 4m25s)  kubelet            Readiness probe failed: Get "http://192.168.45.78:8081/readyz": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
 ```
 
-This is a symptom of a wrong protocol for `amr.observer.eventhandler.endpoint`. The fix is to use the appropriate `https://` or `http://` prepended protocol dependent on the TLS configuration.
+This is a symptom of a wrong protocol for `amr.observer.cloudevent_handler.endpoint`. The fix is to use the appropriate `https://` or `http://` prepended protocol dependent on the TLS configuration.
 
 ---
 
