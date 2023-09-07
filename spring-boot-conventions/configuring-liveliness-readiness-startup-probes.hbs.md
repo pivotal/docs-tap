@@ -1,4 +1,4 @@
-# Configure Liveliness Readiness Startup Probes for Spring Boot Applications in Tanzu Application Platform
+# Configure Liveliness Readiness Startup Probes for Spring Boot Applications  (alpha feature)
 
 **Note** This is a **alpha feature** and will be supported for current release
 
