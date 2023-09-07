@@ -25,7 +25,7 @@ amr:
         value: prod
     resync_period: "5h"
     cloudevent_handler:
-      endpoint: "https://amr-persister.<DOMAIN>"
+      endpoint: "https://amr-cloudevent-handler.<DOMAIN>"
       liveness_period_seconds: 25
     ca_cert_data: |
       -----BEGIN CERTIFICATE-----

@@ -14,7 +14,7 @@ The installation creates the following in your Kubernetes cluster:
 - Services for each of the four components, named:
     - `metadata-store-app`
     - `metadata-store-db`
-    - `amr-persister`. If AMR is deployed, see [Deploying AMR](#amr).
+    - `amr-cloudevent-handler`. If AMR is deployed, see [Deploying AMR](#amr).
     - `artifact-metadata-repository-app`. If AMR is deployed, see [Deploying AMR](#amr).
 - A namespace called `metadata-store`.
 - Persistent volume claim `postgres-db-pv-claim` in the `metadata-store` namespace.
