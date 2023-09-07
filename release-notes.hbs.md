@@ -64,6 +64,10 @@ information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
 This release has the following known issues, listed by component and area.
 
+#### <a id='1-6-3-tap-ki'></a> v1.6.3 Known issues: Tanzu Application Platform
+
+- Tanzu Application Platform 1.6.3 is not supported with TKr 1.26.5 on vSphere with Tanzu 8.
+  
 #### <a id='1-6-3-amr-obs-ce-hndlr-ki'></a> v1.6.3 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
