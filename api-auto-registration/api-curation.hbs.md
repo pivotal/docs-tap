@@ -1,25 +1,25 @@
 # API Curation (alpha)
 
-This topic describes how you can use API Curation to expose several standalone APIs as one API for API Auto Registration.
+This topic describes how you can use API Curation to expose several standalone APIs as one API for
+API Auto Registration.
 
 > **Caution** The API Curation feature is in alpha and is intended for evaluation and test purposes
 > only. Do not use in a production environment.
 
-## <a id='overview'></a> Overview 
+## <a id='overview'></a> Overview
 
 To unlock the maximum power of API curation, VMware recommends using a supported route provider.
-Without this setup, the generated API specifications do not have a functional server URL set for testing the
-curated API. You must manually create the routing resources to route traffic to each
-referenced API to match with the aggregated API specifications. With the route provider integration, these
-routing concerns is taken care of automatically.
+Without this setup, the generated API specifications do not have a functional server URL set for
+testing the curated API. You must manually create the routing resources to route traffic to each
+referenced API to match with the aggregated API specifications. With the route provider integration,
+these routing concerns is taken care of automatically.
 
 A successful API curation requires the following:
 
 1. (Optional) Spring Cloud Gateway for Kubernetes is installed.
 1. (Optional) `SpringCloudGateway` resources created with the matching `groupId` and `version`.
-1. API Auto Registration installed or updated with `route_provider.spring_cloud_gateway.enabled` set.
 1. One or more `APIDescriptor`s in the ready state.
-1. A `CuratedAPIDescriptor` resource is created.
+1. A `CuratedAPIDescriptor` resource is created referencing ready `APIDescriptor`s.
 1. You can get the aggregated API specifications from the OpenAPI endpoint from our controller.
 
 ## <a id='create-route-provider'></a>(Optional) Install route provider and create gateway resources
@@ -28,22 +28,18 @@ You can optionally install a route provider and create gateway resources.
 
 ### <a id='setup-scg'></a>Setup Spring Cloud Gateway integration
 
-Install Spring Cloud Gateway for Kubernetes (SCG). See [Install Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/install-spring-cloud-gateway.hbs.md).
-
-SCG integration as route provider is deactivated by default. After you have SCG installed, you can enable
-SCG as a route provider by [installing/updating API Auto Registration](./configuration.hbs.md) with
-the following value property:
-
-```yaml
-route_provider:
-  spring_cloud_gateway:
-    enabled: true
-    scg_openapi_service_url: "http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local" # default value
-```
+SCG integration as route provider is optional.
+To install Spring Cloud Gateway for Kubernetes (SCG), see [Install Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/install-spring-cloud-gateway.hbs.md).
 
 For SCG v2.1.0 and later, if you enabled TLS on SCG, or installed it in a custom namespace,
 you must overwrite `route_provider.spring_cloud_gateway.scg_openapi_service_url` in your
 API Auto Registration values file.
+
+```yaml
+route_provider:
+  spring_cloud_gateway:
+    scg_openapi_service_url: "http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local" # default value
+```
 
 If you are using earlier version of SCG, consider upgrading or see the following table to
 understand the impact:
