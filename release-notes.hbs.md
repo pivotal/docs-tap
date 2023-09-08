@@ -41,14 +41,15 @@ The following issues, listed by component and area, are resolved in this release
 
 - `GitRepository` is now consistently observed beyond 15 minutes. The `interval` property for a
   `ConfigurationSlice` now continues to work as expected.
+
 - Error-logging is improved where a `ConfigurationSlice` references a non-existent `ConfigurationSource`.
   A `ConfigurationSlice` properly reconciles after the referenced `ConfigurationSource` is created.
 
 #### <a id='1-6-3-cli-ri'></a> v1.6.3 Resolved issues: Tanzu CLI and plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
-so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
-information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
+  so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
+  information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
 ---
 
@@ -202,8 +203,6 @@ These pages might list mitigation steps that operators can take to secure the cl
 - [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
 - [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
 - [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
-
----
 
 ---
 
