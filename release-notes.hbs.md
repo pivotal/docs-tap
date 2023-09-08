@@ -21,6 +21,8 @@ This release includes the following platform-wide enhancements.
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
   servers in your namespaces and bind Spring Boot workloads to them.
 
+- [AWS Services](aws-services/about.hbs.md) provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP). Be sure to checkout the [Quickstart](aws-services/tutorials/quickstart.hbs.md) tutorial to get started.
+
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
 This release includes the following changes, listed by component and area.
