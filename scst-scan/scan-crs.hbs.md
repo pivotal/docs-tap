@@ -44,7 +44,7 @@ The `SourceScan` custom resource helps you define and trigger a scan for a given
         # The username needed to SSH connection. Default value is “git”
         username:
 
-      # A string defining the name of an existing ScanTemplate custom resource. See "How To Create a ScanTemplate" section.
+      # A string defining the name of an existing ScanTemplate custom resource. 
       scanTemplate: my-scan-template
 
        # A string defining the name of an existing ScanPolicy custom resource. See "Enforcement Policies (OPA)" section.
