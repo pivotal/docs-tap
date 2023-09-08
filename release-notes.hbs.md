@@ -44,19 +44,11 @@ The following issues, listed by component and area, are resolved in this release
 - Error-logging is improved where a `ConfigurationSlice` references a non-existent `ConfigurationSource`.
   A `ConfigurationSlice` properly reconciles after the referenced `ConfigurationSource` is created.
 
----
-
 #### <a id='1-6-3-cli-ri'></a> v1.6.3 Resolved issues: Tanzu CLI and plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
 so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
 information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
-
----
-
-#### <a id='1-6-3-COMPONENT-NAME-ri'></a> v1.6.3 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
 
 ---
 
@@ -66,8 +58,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-3-tap-ki'></a> v1.6.3 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform 1.6.3 is not supported with TKr 1.26.5 on vSphere with Tanzu 8.
-  
+- Tanzu Application Platform v1.6.3 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+  on vSphere with Tanzu v8.
+
 #### <a id='1-6-3-amr-obs-ce-hndlr-ki'></a> v1.6.3 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
