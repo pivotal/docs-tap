@@ -4,7 +4,7 @@ This topic describes how you can configure code repositories and image artifacts
 
 ## <a id="prerequisite"></a>Prerequisite
 
-Both the source and image scans require a `ScanTemplate` to be defined. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. These can be referenced, or see [How to create a ScanTemplate](create-scan-template.md).
+Both the source and image scans require you to define a `ScanTemplate`. Run `kubectl get scantemplates` for the ScanTemplates provided with the scanner installation. For information about how to reference these ScanTemplates, see [How to create a ScanTemplate](create-scan-template.md).
 
 ## <a id="deploy-scan-cr"></a>Deploy scan custom resources
 
