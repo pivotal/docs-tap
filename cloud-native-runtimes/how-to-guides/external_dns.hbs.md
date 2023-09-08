@@ -1,6 +1,6 @@
 # Configure your external DNS with Cloud Native Runtimes
 
-This topic tells you how to configure your external DNS with Cloud Native Runtimes, commonly known as CNR.
+This topic tells you how to configure your external DNS with Cloud Native Runtimes, commonly known as CNRs.
 
 ## <a id='overview'></a> Overview
 
@@ -29,7 +29,7 @@ To set up the custom domain and its external DNS record:
       > **Note** `domain_name` must be a valid DNS subdomain.
 
    - **Advanced** To overwrite the domain ConfigMap entirely, edit your `cnr-values.yaml` file to contain the config-domain options that you want, similar to the following:
-      
+
       ```yaml
       ---
       domain_config: |

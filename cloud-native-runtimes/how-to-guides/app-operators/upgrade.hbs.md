@@ -14,14 +14,6 @@ The following prerequisites are required to upgrade Cloud Native Runtimes:
 
 ## <a id='upgrade-cnrs'></a> Upgrade Cloud Native Runtimes
 
->**Important** If you previously installed Cloud Native Runtimes v1.3 or earlier, and you want to upgrade to the latest version,
-you must first upgrade to Cloud Native Runtimes v2.0.1.
-
-If you have previously installed Cloud Native Runtimes v1.3 or an earlier version and want to upgrade to the latest version,
-the Tanzu Application Platform now includes a shared ingress issuer by default. If you are using a single
-certificate, such as `cnrs.contour.default_tls_secret` set in your tap-values.yaml file, and want to opt out of the default
-shared ingress issuer, deactivate it. For information about opting out and deactivating the automatic TLS feature, see [Opt out from any ingress issuer and deactivate automatic TLS feature](../auto-tls/tls-guides-deactivate-autotls.hbs.md).
-
 To upgrade the Cloud Native Runtimes PackageInstall specifically, run:
 
 ```console

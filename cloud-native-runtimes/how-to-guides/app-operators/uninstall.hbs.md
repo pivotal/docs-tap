@@ -11,7 +11,7 @@ Cloud Native Runtimes is part of the Tanzu Application Platform package reposito
 To uninstall Cloud Native Runtimes:
 
 1. Delete the installed package:
-    
+
     ```console
     tanzu package installed delete cloud-native-runtimes --namespace tap-install
     ```

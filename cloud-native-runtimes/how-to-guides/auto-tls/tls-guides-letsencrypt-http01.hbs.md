@@ -97,8 +97,7 @@ To verify your certificate:
 
    Where `DEVELOPER-NAMESPACE` is the namespace that you want to use.
 
-1. You can access your workload using the domain you specified with `curl` or a web browser, and verify that it is using
-a TLS certificate issued by the custom Issuer or ClusterIssuer. 
+1. You can access your workload using the domain you specified with `curl` or a web browser and verify that it is using a TLS certificate issued by the custom Issuer or ClusterIssuer.
 
    ```sh
    tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE

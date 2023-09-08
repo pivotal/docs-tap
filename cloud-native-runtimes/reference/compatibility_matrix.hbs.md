@@ -1,12 +1,11 @@
 # Integrations you can use with Cloud Native Runtimes
 
-## <a id='CNR Integrations'></a> CNR Integrations
+## <a id='CNRs Integrations'></a> CNRs Integrations
 
-| CNR Integration            | Version   | Documentation                                                       |
-|----------------------------|-----------| --------------------------------------------------------------------|
-| VMware Tanzu Observability | Supported | [Configuring Observability for CNR](../how-to-guides/observability.hbs.md)             |
-| Avi Vantage                | Supported | [Configuring CNR with Avi Vantage](../how-to-guides/avi-cnr-integration.hbs.md)        |
-| Rabbit MQ                  | Supported | [Configuring CNR with RabbitMQ](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/rabbitmq.html)                      |
-| Tanzu Service Mesh         | Supported | [Configuring CNR with Tanzu Service Mesh](../how-to-guides/tsm-cnr-integration.hbs.md) |
+| CNRs Integration           | Version   | Documentation                                                                          |
+|----------------------------|-----------| ---------------------------------------------------------------------------------------|
+| VMware Tanzu Observability | Supported | [Configuring Observability for CNRs](../how-to-guides/observability.hbs.md)             |
+| Avi Vantage                | Supported | [Configuring CNRs with Avi Vantage](../how-to-guides/avi-cnr-integration.hbs.md)       |
+| Tanzu Service Mesh         | Supported | [Configuring CNRs with Tanzu Service Mesh](../how-to-guides/tsm-cnr-integration.hbs.md)|
 
-For tools and software compatibility, please refer to [Tanzu Application Platform's requirements](https://docs.vmware.com/en/Tanzu-Application-Platform/1.5/tap/prerequisites.html#kubernetes-cluster-requirements-3).
+For tools and software compatibility, please refer to [Tanzu Application Platform's requirements](../../prerequisites.hbs.md#k8s-cluster-reqs).

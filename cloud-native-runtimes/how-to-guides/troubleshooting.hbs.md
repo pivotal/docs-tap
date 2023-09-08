@@ -1,6 +1,6 @@
 # Troubleshooting Cloud Native Runtimes
 
-This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNR, installation or configuration.
+This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation or configuration.
 
 ## <a id='aws-connection-failure'></a> Cannot connect to app on AWS
 
@@ -16,27 +16,6 @@ curl: (6) Could not resolve host: a***********************7.us-west-2.elb.amazon
 
 Try connecting to your app again after 5 minutes. The AWS LoadBalancer name resolution takes
 several minutes to propagate.
-
-## <a id='minikube-fails'></a> minikube Pods Fail to Start
-
-### Symptom
-
-On minikube, you see the following error when installing Cloud Native Runtimes:
-
-```console
-3:03:59PM: error: reconcile job/contour-certgen-v1.10.0 (batch/v1) namespace: contour-internal
-Pod watching error: Creating Pod watcher: Get "https://192.168.64.17:8443/api/v1/pods?labelSelector=kapp.k14s.io%2Fapp%3D1618232545704878000&watch=true": dial tcp 192.168.64.17:8443: connect: connection refused
-kapp: Error: waiting on reconcile job/contour-certgen-v1.10.0 (batch/v1) namespace: CONTOUR-NS:
-  Errored:
-   Listing schema.GroupVersionResource{Group:"", Version:"v1", Resource:"pods"}, namespaced: true:
-    Get "https://192.168.64.17:8443/api/v1/pods?labelSelector=kapp.k14s.io%2Fassociation%3Dv1.572a543d96e0723f858367fcf8c6af4e": unexpected EOF
-```
-
-Where `CONTOUR-NS` is the namespace where Contour is installed on your cluster. If Cloud Native Runtimes was installed as part of a Tanzu Application Profile, this value is likely `tanzu-system-ingress`.
-
-### Solution
-
-Increase your available system RAM to at least 4&nbsp;GB.
 
 ## <a id='imgpkg-pull-overwriting'></a> Pulling an image with imgpkg overwrites the cloud-native-runtimes directory
 
@@ -116,13 +95,13 @@ Follow these steps to identify and resolve the problem of the cloud provider not
 
 #### Example 2: The webhook deployment failed
 
-Follow these steps to identify and resolve the problem of the `webhook` deployment failing in the `vmware-sources` namespace:
+Follow these steps to identify and resolve the problem of the `webhook` deployment failing in the `knative-serving` namespace:
 
 1. Review the logs for output similar to the following:
-    
+
     ```console
     10:51:58PM: ok: reconcile customresourcedefinition/httpproxies.projectcontour.io (apiextensions.k8s.io/v1) cluster
-    10:51:58PM: fail: reconcile deployment/webhook (apps/v1) namespace: vmware-sources
+    10:51:58PM: fail: reconcile deployment/webhook (apps/v1) namespace: knative-serving
     10:51:58PM:  ^ Deployment is not progressing: ProgressDeadlineExceeded (message: ReplicaSet "webhook-6f5d979b7d" has timed out progressing.)
     ```
 
@@ -132,14 +111,14 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     kubectl get pods --show-labels -n NAMESPACE
     ```
 
-    Where `NAMESPACE` is the namespace associated with the reconcile error, for example, `vmware-sources`.
+    Where `NAMESPACE` is the namespace associated with the reconcile error, for example, `knative-serving`.
 
     For example,
-    
+
     ```console
-    $ kubectl get pods --show-labels -n vmware-sources
+    $ kubectl get pods --show-labels -n knative-serving
     NAME                       READY   STATUS    RESTARTS   AGE   LABELS
-    webhook-6f5d979b7d-cxr9k   0/1     Pending   0          44h   app=webhook,kapp.k14s.io/app=1626302357703846007,kapp.k14s.io/association=v1.9621e0a793b4e925077dd557acedbcfe,pod-template-hash=6f5d979b7d,role=webhook,sources.tanzu.vmware.com/release=v0.23.0
+    webhook-6f5d979b7d-cxr9k   0/1     Pending   0          44h   app=webhook,kapp.k14s.io/app=1626302357703846007,kapp.k14s.io/association=v1.9621e0a793b4e925077dd557acedbcfe,pod-template-hash=6f5d979b7d,role=webhook
     ```
 
 2. Run `kubectl logs` and `kubectl describe`:
@@ -148,18 +127,18 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     kubectl logs PODNAME -n NAMESPACE
     kubectl describe pod PODNAME -n NAMESPACE
     ```
-    
+
     Where:
 
     - `PODNAME` is found in the output of step 3. For example, `webhook-6f5d979b7d-cxr9k`.
-    - `NAMESPACE` is the namespace associated with the reconcile error, for example, `vmware-sources`.
+    - `NAMESPACE` is the namespace associated with the reconcile error, for example, `knative-serving`.
 
     For example:
 
     ```console
-    $ kubectl logs webhook-6f5d979b7d-cxr9k -n vmware-sources
+    $ kubectl logs webhook-6f5d979b7d-cxr9k -n knative-serving
 
-    $ kubectl describe pod webhook-6f5d979b7d-cxr9k  -n vmware-sources
+    $ kubectl describe pod webhook-6f5d979b7d-cxr9k  -n knative-serving
     Events:
     Type     Reason            Age                 From               Message
     ----     ------            ----                ----               -------
@@ -239,17 +218,17 @@ Output:
 
 ### Solution
 
-Due to a restriction imposed by cert-manager, CNs cannot be longer than 64 bytes (see [here](https://github.com/cert-manager/cert-manager/issues/1462)). For Knative using cert-manager, this means that the FQDN for a Knative Service (usually comprised of `<ksvc name>.<namespace>.<domain>`, but configurable via `domain_template` in CNR) must not exceed 64 bytes. 
+Due to a restriction imposed by cert-manager, CNs cannot be longer than 64 bytes (see [here](https://github.com/cert-manager/cert-manager/issues/1462)). For Knative using cert-manager, this means that the FQDN for a Knative Service (usually comprised of `<ksvc name>.<namespace>.<domain>`, but configurable via `domain_template` in CNRs) must not exceed 64 bytes.
 
 [There is an open issue in Knative Serving community that aims to solve this](https://github.com/knative-sandbox/net-certmanager/issues/550).
 
-To avoid this, deactivate TLS. See [CNR docs on disabling auto tls](./auto-tls/tls-guides-deactivate-autotls.hbs.md).
+To avoid this, deactivate TLS. See [CNRs docs on disabling auto tls](./auto-tls/tls-guides-deactivate-autotls.hbs.md).
 
 If you want to continue using TLS, there are a few ways to resolve this on your own, though each has its own risks and limits.
 
 #### Option 1: Change the `domain_template`
 
-Changing the `domain_template` alters how Knative will create FQDNs for Knative Services. See CNR instructions on [configuring External DNS](./external_dns.hbs.md#configure-knative-service-domain-template).
+Changing the `domain_template` alters how Knative will create FQDNs for Knative Services. See CNRs instructions on [configuring External DNS](./external_dns.hbs.md#configure-knative-service-domain-template).
 
 You can use this option to shorten the template, either by shortening one of the fields:
 
