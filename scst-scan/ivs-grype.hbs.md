@@ -1,6 +1,7 @@
 # Configure a ImageVulnerabilityScan for Grype
 
-To configure an ImageVulnerabilityScan for Grype, use the following ImageVulnerabilityScan configuration:
+Below is a sample ImageVulnerabilityScan (IVS) that utilizes Grype to scan a targeted image and push the results to the specified registry location.
+For addtional details about the IVS specification, refer to [Configuration Options](../scst-scan-ivs-create-your-own.html#configuration-options-1).
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -10,18 +11,21 @@ metadata:
   annotations:
     app-scanning.apps.tanzu.vmware.com/scanner-name: Grype
 spec:
-  image: nginx@sha256:... # The image to be scanned. Digest must be specified.
+  image: TARGET-IMAGE
   scanResults:
     location: registry/project/scan-results
+  serviceAccountNames:
+    publisher: publisher
+    scanner: scanner
   steps:
   - name: grype
     image: GRYPE-SCANNER-IMAGE
     args:
     - -o
-    - cyclonedx
+    - cyclonedx-json
     - registry:$(params.image)
     - --file
-    - /workspace/scan-results/scan.cdx
+    - /workspace/scan-results/scan.cdx.json
     env:
     - name: GRYPE_ADD_CPES_IF_NONE
       value: "false"
@@ -31,4 +35,5 @@ spec:
 
 Where:
 
-- `GRYPE-SCANNER-IMAGE` is the Grype scanner image. See [Grype documentation](https://github.com/anchore/grype#getting-started). For example, `image: anchore/grype` references the publicly available grype image from [DockerHub](https://hub.docker.com/r/anchore/grype/tags).
+- `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
+- `GRYPE-SCANNER-IMAGE` is the image containing the Grype CLI. For example, `anchore/grype:latest` For additional publicly available Grype images refer to [DockerHub](https://hub.docker.com/r/anchore/grype/tags). For more information on the usage of the Grype CLI, refer to [Grype documentation](https://github.com/anchore/grype#getting-started).
