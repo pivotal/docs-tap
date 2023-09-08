@@ -43,7 +43,7 @@ Using Tanzu CLI
    ```
 
 Using a ResourceClaim
-: Create a YAML file similar to the following example:
+: Create a YAML file similar to the following example called `my-eurekaserver-claim.yaml`:
 
     ```yaml
     ---
@@ -58,6 +58,13 @@ Using a ResourceClaim
         kind: EurekaServer
         name: my-eurekaserver
         namespace: my-namespace
+    ```
+
+    Create the `ResourceClaim` using `kubectl`:
+
+
+    ```console
+    $ kubectl apply -f my-eurekaserver-claim.yaml
     ```
 
 ## <a id="inspect"></a> Inspect the progress of your claim
