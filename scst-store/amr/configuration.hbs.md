@@ -1,10 +1,10 @@
 # Configure Artifact Metadata Repository
 
-This tells you how to configure Artifact Metadata Repository (AMR).
+This topic tells you how to configure Artifact Metadata Repository (AMR).
 
 ## <a id='amr-observer'></a> AMR Observer
 
-You can obtain the Tanzu Application Platform values schema with the following command:
+You can obtain the Tanzu Application Platform values schema by running:
 
 ```console
 tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --values-schema --namespace tap-install
@@ -12,9 +12,9 @@ tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --v
 
 Values are under the `amr` root key, not under the `metadata_store` root key. 
 
->**Note** If AMR Observer is deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) and not through Tanzu Application Platform package, the values file for a standalone package installation does not have the Tanzu Application Platform value root keys of `amr.observer` or `amr.deploy_observer`.
+>**Note** If AMR Observer is deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) not through a Tanzu Application Platform package, the values file for a standalone package installation does not have the Tanzu Application Platform value root keys of `amr.observer` or `amr.deploy_observer`.
 
-A template of the AMR Observer Tanzu Application Platform values:
+The following is an example template of the AMR Observer Tanzu Application Platform values:
 
 ```yaml
 amr: 
@@ -25,7 +25,7 @@ amr:
         value: prod
     resync_period: "5h"
     cloudevent_handler:
-      endpoint: "https://amr-cloudevent-handler.<DOMAIN>"
+      endpoint: "https://amr-cloudevent-handler.DOMAIN"
       liveness_period_seconds: 25
     ca_cert_data: |
       -----BEGIN CERTIFICATE-----
@@ -33,21 +33,24 @@ amr:
       -----END CERTIFICATE-----
 ```
 
+Where `DOMAIN` is the domain you want to target.
+
 Configuration options:
 
 - `amr.observer.location`
   - Default: ""
-  - Location is the multiline string configuration for the location.conf content.
+  - Location is the multiline string configuration for the location content.
   - The YAML string can contain additional fields:
     - `labels`: Consists of an array for key and value pairing. Useful for adding searchable and identifiable metadata.
 
 - `amr.observer.resync_period`
   - Default: "10h"
-  - resync_period determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
+  - `resync_period` sets the minimum frequency at which watched resources are reconciled. A lower period corrects entropy more quickly, but reduce responsiveness to change if there are many watched resources. Defaults to 10 hours if unset.
 
 - `amr.observer.ca_cert_data` or `shared.ca_cert_data`
   - Default: ""
-  - `ca_cert_data` is used to add certificates to the truststore that is used by the AMR Observer.
+  - `ca_cert_data` adds certificates to the trust store that the AMR Observer uses.
+
     ```console
     kubectl -n metadata-store get secrets/amr-cloudevent-handler-ingress-cert -o jsonpath='{.data."crt.ca"}' | base64 -d
     ```
@@ -61,7 +64,7 @@ Configuration options:
     kubectl -n metadata-store get httpproxies.projectcontour.io amr-cloudevent-handler-ingress -o jsonpath='{.spec.virtualhost.fqdn}'
     ```
 
-  >**Note** Ensure that the correct protocol is set. If there is TLS, `https://` must be prepended. If there is no TLS, `http://` must be prepended.
+  >**Note** Ensure that you set the correct protocol. If there is TLS, you must prepend `https://`. If there is no TLS, you must prepend `http://`.
 
 - `amr.observer.cloudevent_handler.liveness_period_seconds`
   - Default: 25
@@ -69,12 +72,12 @@ Configuration options:
 
 - `amr.observer.autoconfiguration.create_kubernetes_service_accounts`
   - Default: ""
-  - For tap 'full' profile, delegates creation of service accounts to the Metadata Store.
+  - For the Full profile, this delegates creation of service accounts to the Metadata Store.
 
 - `amr.observer.auth.kubernetes_service_accounts`
   - `.enabled`
     - Default: `true`
-    - Include Authorization header when communicating with AMR CloudEvent Handler.
+    - Include an Authorization header when communicating with AMR CloudEvent Handler.
   - `.secret`
     - The secret with the access token for communicating with the cloudevent-handler
     - `.ref`
@@ -90,8 +93,7 @@ Configuration options:
 
 - `amr.observer.deployed_through_tmc`
   - Default: `null`
-  - Tap Multi Cluster deployment will happen through Tanzu Mission Control when `deployed_through_tmc` is set to true
-
+  - Tanzu Application Platform multicluster deployment happens through Tanzu Mission Control when you set `deployed_through_tmc` to true.
 
 ## <a id='amr-graphql'></a> AMR GraphQL
 
