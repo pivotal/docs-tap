@@ -16,7 +16,7 @@ Before you start, you must:
 - Fulfil all the [Prerequisites for the getting started guide](../getting-started.hbs.md#get-started-prereqs).
 - Have the Tanzu Developer Portal Configurator bundle available (`tpb.tanzu.vmware.com`).
 
-    To verify it is present, run:
+    To verify it's present, run:
 
     ```console
     tanzu package available list --namespace tap-install | grep tpb.tanzu.vmware.com
@@ -134,20 +134,20 @@ To integrate the hello-world plug-in into your Tanzu Developer Portal:
 
     Where `DEVELOPER-NAMESPACE` is the developer namespace configured on the cluster.
 
-    After the workload has deployed, you can observe it in the `Supply Chains` section of the
-    Tanzu Developer Portal.
+1. After the workload has deployed, view it in the **Supply Chains** tab of the Tanzu Developer Portal.
 
-    ![Deployed workload](../images/configurator/tdp-configurator-workload.png) <!--฿ Alt text must describe the image in detail. ฿-->
+    ![Screenshot of the Supply Chains tab in the Tanzu Developer Portal UI.](../images/configurator/tdp-configurator-workload.png)
 
-    Wait for the **Image Provider** step of the Supply Chain to be completed. <!-- How do you know this has completed? Is it in the Tanzu Dev Portal? If so, make "observe it in the `Supply Chains` section..." a mandatory step. -->
+    Wait for the **Image Provider** step of the supply chain to be completed. <!-- How do you know this has completed? Is it in the Tanzu Dev Portal? If so, make "observe it in the `Supply Chains` section..." a mandatory step. -->
 
-1. Copy the address to the customized Tanzu Developer Portal's image. Navigate to the box that follows
+1. Copy the address to the customized Tanzu Developer Portal's image.
+   From the **Supply Chains** tab of the Tanzu Developer Portal, click the box that follows
    the **Image Provider** step and select the image address from the **Artifact Detail: Image Provider**
    section:
 
     <!-- How do you get this address to appear? Do you have to click on the box? -->
 
-    ![Portal image in the Supply Chain](../images/configurator/tdp-configurator-supply-chain.png) <!--฿ Alt text must describe the image in detail. ฿-->
+    ![Screenshot of the Supply Chains tab in the Tanzu Developer Portal UI with the image address highlighted.](../images/configurator/tdp-configurator-supply-chain.png)
 
     You use this value as `IMAGE-REFERENCE` in the next step.
 
@@ -230,7 +230,7 @@ To integrate the hello-world plug-in into your Tanzu Developer Portal:
     kubectl delete pod POD-NAME -n tap-gui
     ```
 
-    ![Customized Tanzu Developer Portal](../images/configurator/tdp-customized-portal.png)<!--฿ Alt text must describe the image in detail. ฿-->
+    ![Screenshot of the customized Tanzu Developer Portal with the message "Hello World!"](../images/configurator/tdp-customized-portal.png)
 
 ## <a id="next-steps"></a>Next steps
 
