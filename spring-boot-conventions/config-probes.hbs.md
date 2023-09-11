@@ -78,8 +78,6 @@ To override the default settings and customize the probes at a cluster level:
         startupProbe.initialDelaySeconds               0                 number   Number of seconds after the container has started before probes are initiated
    ```
 
-   For more information about the values schema options, see the properties listed earlier.
-
 2. When you install Spring Boot conventions, provide an entry in the `values.yaml` file to override
    the configuration.
 
