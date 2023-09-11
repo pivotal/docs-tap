@@ -97,23 +97,9 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-3-12-resolved-issues'></a> v1.3.12 Resolved issues
-
-The following issues, listed by component and area, are resolved in this release.
-
-#### <a id='1-3-12-COMPONENT-NAME-ri'></a> v1.3.12 resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
 ### <a id='1-3-12-known-issues'></a> v1.3.12 Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-3-12-COMPONENT-NAME-ki'></a> v1.3.12 known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
+This release introduces no new known issues.
 
 ---
 
