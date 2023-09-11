@@ -10,7 +10,7 @@ kind: ImageVulnerabilityScan
 metadata:
   name: trivy-ivs
 spec:
-  image: nginx@sha256:... # The image to be scanned. Digest must be specified.
+  image: TARGET-IMAGE
   scanResults:
     location: registry/project/scan-results
   serviceAccountNames:
@@ -25,10 +25,12 @@ spec:
     - --format
     - cyclonedx
     - --output
-    - $(params.scan-results-path)/scan.cdx
+    - $(params.scan-results-path)/scan.cdx.json
     - --scanners
     - vuln
     - $(params.image)
 ```
 
-Where `TRIVY-SCANNER-IMAGE` is the Trivy Scanner image used to run Trivy scans. For information about Trivy images, see [Trivy documentation](https://github.com/aquasecurity/trivy).
+Where
+- `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
+- `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For additional publicly available Trivy images, refer to [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information on the usage of the Trivy CLI, refer to the [Trivy documentation](https://github.com/aquasecurity/trivy).
