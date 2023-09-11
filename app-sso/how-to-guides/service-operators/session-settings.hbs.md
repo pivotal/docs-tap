@@ -1,6 +1,6 @@
 # Session settings for AppSSO
 
-This topic tells you how to configure session expiry settings for Application Single
+This topic tells you how to configure the session expiry settings for Application Single
 Sign-On (commonly called AppSSO).
 
 ## <a id='session-expiry-settings'></a> Session expiry
@@ -8,7 +8,7 @@ Sign-On (commonly called AppSSO).
 AppSSO allows you to optionally configure the session expiry settings in your
 `AuthServer` resource.
 
-The default expiry time for an AppSSO session is __15 minutes__, in accordance with the
+The default expiry time for an AppSSO session is 15 minutes, according to the
 [STIG guidelines](https://www.stigviewer.com/stig/application_security_and_development/).
 
 To override the session expiry settings, configure the following in your `AuthServer`
@@ -38,4 +38,4 @@ spec:
 The session expiry constraints are as follows:
 
 - The duration of the `expiry` field cannot be negative or zero.
-- The duration _has to be_ at least 1 minute.
+- The duration must be at least 1 minute.
