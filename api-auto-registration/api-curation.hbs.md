@@ -1,6 +1,6 @@
 # API Curation (alpha)
 
-This topic describes how you can use API Curation to expose several standalone APIs as one API for
+This topic tells you how to use API Curation to expose several standalone APIs as one API for
 API Auto Registration.
 
 > **Caution** The API Curation feature is in alpha and is intended for evaluation and test purposes
@@ -9,18 +9,21 @@ API Auto Registration.
 ## <a id='overview'></a> Overview
 
 To unlock the maximum power of API curation, VMware recommends using a supported route provider.
-Without this setup, the generated API specifications do not have a functional server URL set for
+Without this a supported route provider, the generated API specifications do not have a functional server URL set for
 testing the curated API. You must manually create the routing resources to route traffic to each
 referenced API to match with the aggregated API specifications. With the route provider integration,
-these routing concerns is taken care of automatically.
+these routing concerns are taken care of automatically.
 
-A successful API curation requires the following:
+## <a id='prerecs'></a> Prerequisites 
 
-1. (Optional) Spring Cloud Gateway for Kubernetes is installed.
-1. (Optional) `SpringCloudGateway` resources created with the matching `groupId` and `version`.
-1. One or more `APIDescriptor`s in the ready state.
-1. A `CuratedAPIDescriptor` resource is created referencing ready `APIDescriptor`s.
-1. You can get the aggregated API specifications from the OpenAPI endpoint from our controller.
+A successful API curation requires the following prerequisites:
+
+- (Optional) Spring Cloud Gateway for Kubernetes is installed.
+- (Optional) `SpringCloudGateway` resources created with the matching `groupId` and `version`.
+- One or more `APIDescriptor`s in the ready state.
+- Create a `CuratedAPIDescriptor` resource referencing ready `APIDescriptor`s.
+
+You can get the aggregated API specifications from the OpenAPI endpoint from the controller.
 
 ## <a id='create-route-provider'></a>(Optional) Install route provider and create gateway resources
 
@@ -28,8 +31,8 @@ You can optionally install a route provider and create gateway resources.
 
 ### <a id='setup-scg'></a>Setup Spring Cloud Gateway integration
 
-SCG integration as route provider is optional.
-To install Spring Cloud Gateway for Kubernetes (SCG), see [Install Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/install-spring-cloud-gateway.hbs.md).
+Using Spring Cloud Gateway for Kubernetes (SCG) integration as a route provider is optional.
+To install SCG, see [Install Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/install-spring-cloud-gateway.hbs.md).
 
 For SCG v2.1.0 and later, if you enabled TLS on SCG, or installed it in a custom namespace,
 you must overwrite `route_provider.spring_cloud_gateway.scg_openapi_service_url` in your
@@ -41,7 +44,7 @@ route_provider:
     scg_openapi_service_url: "http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local" # default value
 ```
 
-If you are using earlier version of SCG, consider upgrading or see the following table to
+If you are using an earlier version of SCG, consider upgrading or see the following table to
 understand the impact:
 
 | Capability with SCG v2.1.0 and later | Behavior before SCG v2.1.0 |
@@ -78,10 +81,10 @@ spec:
         - '*'
 ```
 
-The `groupId` and `version` matches on the SCG when VMware reconciles for `CuratedAPIDescriptor`.
-After finding a match, `serverUrl` is used as the baseURL of the curated API.
+The `groupId` and `version` matches on SCG when it reconciles for `CuratedAPIDescriptor`.
+After finding a match, SCG uses `serverUrl` as the baseURL of the curated API.
 
-## <a id='create-api-descriptors-curation'></a>Create APIDescriptors for curation
+## <a id='api-descriptors-curation'></a>Create APIDescriptors for curation
 
 To create `APIDescriptor` resources, see [API Auto Registration Usage Guide](./usage.hbs.md).
 If any of the referenced `APIDescriptor` are not ready, the `CuratedAPIDescriptor` keeps retrying
@@ -92,31 +95,32 @@ update, our controller picks up the changes on the next reconciliation loop.
 maximum 5 minutes to refresh the `APIDescriptor`, and maximum 5 minutes to refresh `CuratedAPIDescriptor`.
 You can shorten the wait time by configuring `sync_period` in the AAR values file.
 
-## <a id='create-curated-api-descriptor'></a>Create CuratedAPIDescriptor custom resource
+## <a id='curated-api-descriptor'></a>Create CuratedAPIDescriptor custom resource
 
 Using your GitOps process, or manually, you can create an CuratedAPIDescriptor CR and apply it in the
 cluster you choose. Specify all the required fields for an CuratedAPIDescriptor CR to reconcile.
 
 For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained](./key-concepts.hbs.md#curated-api-descriptor).
 
-## <a id='retrieve-curated-api-specs'></a>Retrieve curated API specifications
+## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
 The API Auto Registration controller offers an endpoint to retrieve all the generated API specifications for
-the curated APIs in the cluster. To do so, you must first find the HTTPProxy that's created for
-accessing the endpoint:
+the curated APIs in the cluster. 
+
+Find the HTTPProxy that's created to access the endpoint:
 
 ```console
 kubectl get httpproxy api-auto-registration-controller -n api-auto-registration
 ```
 
-The result is similar to:
+The following is an example result:
 
 ```console
 NAME                               FQDN                              TLS SECRET                   STATUS   STATUS DESCRIPTION
 api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
 ```
 
-With the FQDN with proper http scheme, you can get all the curated API specifications with curl:
+By using FQDN with an http scheme, you can get all the curated API specifications with curl:
 
 ```console
 curl http(s)://AAR-CONTROLLER-FQDN/openapi
