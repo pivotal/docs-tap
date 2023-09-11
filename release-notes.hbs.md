@@ -185,6 +185,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Contour                                                          |         |
 | Crossplane                                                       |         |
 | Developer Conventions                                            |         |
+| External Secrets Operator                                        |         |
 | Flux CD Source Controller                                        |         |
 | Local Source Proxy                                               |         |
 | Namespace Provisioner                                            |         |
