@@ -43,7 +43,7 @@ Using Tanzu CLI
    ```
 
 Using a ResourceClaim
-: Create a YAML file similar to the following example called `my-eurekaserver-claim.yaml`:
+: Create a YAML file, similar to the following example, and name it `my-eurekaserver-claim.yaml`:
 
     ```yaml
     ---
@@ -60,11 +60,10 @@ Using a ResourceClaim
         namespace: my-namespace
     ```
 
-    Create the `ResourceClaim` using `kubectl`:
-
+    In kubectl, create the `ResourceClaim` by running:
 
     ```console
-    $ kubectl apply -f my-eurekaserver-claim.yaml
+    kubectl apply -f my-eurekaserver-claim.yaml
     ```
 
 ## <a id="inspect"></a> Inspect the progress of your claim
@@ -102,7 +101,7 @@ To use Eureka for service discovery in workloads:
    By claiming the credentials, a workload has its Eureka client configured to interact with the
    referenced Eureka server.
 
-   For example, You can use the following workloads to deploy the
+   For example, you can use the following workloads to deploy the
    [greeting application](https://github.com/spring-cloud-services-samples/greeting).
 
    `greeter-messages.yaml` example:
