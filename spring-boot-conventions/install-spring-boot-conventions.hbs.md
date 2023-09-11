@@ -56,41 +56,42 @@ To install Spring Boot conventions:
          kubernetes_distribution                                          string   Kubernetes distribution that this package is being installed on. Accepted
                                                                                    values: ['''',''openshift'']
          kubernetes_version                                               string   Optional: The Kubernetes Version. Valid values are '1.24.*', or ''
-         livenessProbe.terminationGracePeriodSeconds                      number   configure a grace period for the kubelet to wait  between triggering a shut down   
-                                                                                   of the failed container, and then forcing the container runtime to stop that      
-                                                                                   container                                                                         
-         livenessProbe.timeoutSeconds                 1                   number   Number of seconds after which the probe times out                                 
-         livenessProbe.failureThreshold                                   number   After a probe fails failureThreshold times in a row, Kubernetes considers that    
-                                                                                   the overall check has failed                                                      
-         livenessProbe.initialDelaySeconds            0                   number   Number of seconds after the container has started before liveness probes are      
-                                                                                   initiated                                                                         
-         livenessProbe.periodSeconds                  10                  number   How often (in seconds) to perform the probe                                       
-         livenessProbe.successThreshold               1                   number   Minimum consecutive successes for the probe to be considered successful after     
-                                                                                   having failed                                                                     
-         readinessProbe.initialDelaySeconds             0                 number   Number of seconds after the container has started before readiness probes are     
-                                                                                   initiated                                                                         
-         readinessProbe.periodSeconds                   10                number   How often (in seconds) to perform the probe                                       
-         readinessProbe.successThreshold                1                 number   Minimum consecutive successes for the probe to be considered successful after     
-                                                                                   having failed                                                                     
-         readinessProbe.terminationGracePeriodSeconds                     number   configure a grace period for the kubelet to wait between triggering a shut down   
-                                                                                   of the failed container, and then forcing the container runtime to stop that      
-                                                                                   container                                                                         
-         readinessProbe.timeoutSeconds                  1                 number   Number of seconds after which the probe times out                                 
-         readinessProbe.failureThreshold                                  number   After a probe fails failureThreshold times in a row, Kubernetes considers that    
-                                                                                   the overall check has failed                                                      
-         startupProbe.periodSeconds                     10                number   How often (in seconds) to perform the probe                                       
-         startupProbe.successThreshold                  1                 number   Minimum consecutive successes for the probe to be considered successful after     
-                                                                                   having failed                                                                     
-         startupProbe.terminationGracePeriodSeconds                       number   configure a grace period for the kubelet to wait between triggering a shut down   
-                                                                                   of the failed container, and then forcing the container runtime to stop that      
-                                                                                   container                                                                         
-         startupProbe.timeoutSeconds                    1                 number   Number of seconds after which the probe times out                                 
-         startupProbe.failureThreshold                                    number   After a probe fails failureThreshold times in a row, Kubernetes considers that    
-                                                                                   the overall check has failed                                                      
+         livenessProbe.terminationGracePeriodSeconds                      number   configure a grace period for the kubelet to wait  between triggering a shut down
+                                                                                   of the failed container, and then forcing the container runtime to stop that
+                                                                                   container
+         livenessProbe.timeoutSeconds                 1                   number   Number of seconds after which the probe times out
+         livenessProbe.failureThreshold                                   number   After a probe fails failureThreshold times in a row, Kubernetes considers that
+                                                                                   the overall check has failed
+         livenessProbe.initialDelaySeconds            0                   number   Number of seconds after the container has started before liveness probes are
+                                                                                   initiated
+         livenessProbe.periodSeconds                  10                  number   How often (in seconds) to perform the probe
+         livenessProbe.successThreshold               1                   number   Minimum consecutive successes for the probe to be considered successful after
+                                                                                   having failed
+         readinessProbe.initialDelaySeconds             0                 number   Number of seconds after the container has started before readiness probes are
+                                                                                   initiated
+         readinessProbe.periodSeconds                   10                number   How often (in seconds) to perform the probe
+         readinessProbe.successThreshold                1                 number   Minimum consecutive successes for the probe to be considered successful after
+                                                                                   having failed
+         readinessProbe.terminationGracePeriodSeconds                     number   configure a grace period for the kubelet to wait between triggering a shut down
+                                                                                   of the failed container, and then forcing the container runtime to stop that
+                                                                                   container
+         readinessProbe.timeoutSeconds                  1                 number   Number of seconds after which the probe times out
+         readinessProbe.failureThreshold                                  number   After a probe fails failureThreshold times in a row, Kubernetes considers that
+                                                                                   the overall check has failed
+         startupProbe.periodSeconds                     10                number   How often (in seconds) to perform the probe
+         startupProbe.successThreshold                  1                 number   Minimum consecutive successes for the probe to be considered successful after
+                                                                                   having failed
+         startupProbe.terminationGracePeriodSeconds                       number   configure a grace period for the kubelet to wait between triggering a shut down
+                                                                                   of the failed container, and then forcing the container runtime to stop that
+                                                                                   container
+         startupProbe.timeoutSeconds                    1                 number   Number of seconds after which the probe times out
+         startupProbe.failureThreshold                                    number   After a probe fails failureThreshold times in a row, Kubernetes considers that
+                                                                                   the overall check has failed
          startupProbe.initialDelaySeconds               0                 number   Number of seconds after the container has started before probes are initiated
     ```
 
-   For more information on configuring probes in spring-boot-conventions, refer to [Configure Liveness Readiness Startup Probes for Spring Boot Applications in Tanzu Application Platform](./configuring-liveness-readiness-startup-probes.hbs.md)
+   For more information about configuring probes in Spring Boot conventions, see
+   [Configure liveness, readiness, and startup probes for Spring Boot applications (alpha)](config-probes.hbs.md)
 
 1. Install the package by running:
 

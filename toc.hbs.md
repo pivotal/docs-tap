@@ -538,7 +538,7 @@
       - [Spring Boot conventions overview](spring-boot-conventions/about.hbs.md)
       - [Install Spring Boot conventions](spring-boot-conventions/install-spring-boot-conventions.hbs.md)
       - [Configure Spring Boot actuators](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
-      - [Configure Liveness Readiness Startup Probes for Spring Boot Applications (alpha)](spring-boot-conventions/configuring-liveness-readiness-startup-probes.hbs.md)
+      - [Configure liveness, readiness, and startup probes for Spring Boot apps (alpha)](spring-boot-conventions/config-probes.hbs.md)
       - [Enable Application Live View for Spring Boot apps](spring-boot-conventions/enabling-app-live-view.hbs.md)
       - [Conventions](spring-boot-conventions/reference/conventions.hbs.md)
       - [Troubleshoot Spring Boot conventions](spring-boot-conventions/troubleshooting.hbs.md)

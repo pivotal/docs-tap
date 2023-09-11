@@ -1,4 +1,4 @@
-# Configure Liveness, Readiness, and Startup Probes for Spring Boot Applications (alpha)
+# Configure liveness, readiness, and startup probes for Spring Boot applications (alpha)
 
 This topic tells you how to override the liveness, readiness, and startup probes' settings for
 Spring Boot apps in Tanzu Application Platform. You can override the Kubernetes default
