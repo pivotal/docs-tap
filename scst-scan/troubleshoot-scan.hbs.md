@@ -62,16 +62,22 @@ Kubernetes documentation for debug init container tips.
 To retrieve status conditions of an SourceScan and ImageScan, run:
 
 ```console
-kubectl describe sourcescan <sourcescan> -n DEV-NAMESPACE
+kubectl describe sourcescan SOURCE-SCAN -n DEV-NAMESPACE
 ```
 
-Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+Where: 
+
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+- `SOURCE-SCAN` is the name of the SourceScan you want to use.
 
 ```console
-kubectl describe imagescan <imagescan> -n DEV-NAMESPACE
+kubectl describe imagescan IMAGE-SCAN -n DEV-NAMESPACE
 ```
 
-Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+Where: 
+
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+- `IMAGE-SCAN` is the name of the ImageScan you want to use.
 
 Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use
 the keyword "Error" to investigate issues.
