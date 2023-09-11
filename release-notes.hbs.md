@@ -11,25 +11,14 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-4-9-COMPONENT-NAME-fixes'></a> v1.4.9 Security fixes: COMPONENT-NAME
-
-- Security fix description.
-
-OR add HTML or Markdown table
-
-<table>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</table>
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-34478</li><li>GHSA-pmhc-2g4f-85cg </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2022-3821</li><li>CVE-2022-4415</li><li>CVE-2022-48303</li><li>CVE-2023-0361</li><li>CVE-2023-1380</li><li>CVE-2023-30456</li><li>CVE-2023-31436</li><li>CVE-2023-32233</li><li>CVE-2023-1667</li><li>CVE-2023-2283</li><li>CVE-2023-25012</li><li>CVE-2023-2612</li><li>CVE-2023-2985</li><li>CVE-2023-3090</li><li>CVE-2023-3117</li><li>CVE-2023-31248</li><li>CVE-2023-3220</li><li>CVE-2023-3389</li><li>CVE-2023-3390</li><li>CVE-2023-3439</li><li>CVE-2023-35001</li><li>CVE-2023-35788</li><li>GHSA-69cg-p879-7622 </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45886</li><li>CVE-2023-3609</li><li>CVE-2023-3610</li><li>CVE-2023-3777</li><li>CVE-2023-3995</li><li>CVE-2023-4004</li><li>CVE-2023-4015</li><li>CVE-2023-4147</li><li>CVE-2023-3635</li><li>GHSA-cf7p-gm2m-833m </li></ul>|
+| tekton.tanzu.vmware.com | <ul><li> CVE-2022-45886 </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45886</li><li>CVE-2023-3609</li><li>CVE-2023-3610</li><li>CVE-2023-3777</li><li>CVE-2023-3995</li><li>CVE-2023-4004</li><li>CVE-2023-4015</li><li>CVE-2023-4147</li><li>CVE-2023-3635 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> GHSA-cchq-frgv-rjh5</li><li>GHSA-g644-9gfx-q4q4 </li></ul>|
 
 ---
 
