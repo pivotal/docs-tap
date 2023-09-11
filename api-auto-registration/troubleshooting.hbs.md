@@ -53,7 +53,7 @@ Your APIDescription CRD shows a status and message similar to:
 This might be due to your workloads using a custom Ingress issuer. To solve this issue, either:
 
 - Configure `ca_cert_data` following the instructions in [Configure CA Cert Data](#set-ca-crt).
-- Deactivate TLS by setting `shared.ingress_issuer: ""`. VMware discourages this method.
+- Deactivate TLS by setting `shared.ingress_issuer: ""`. VMware discourages this method. Deactivating TLS reduces your ability to test plugin functionality and iterate quickly.
 
 #### <a id="set-ca-crt"></a> Configure CA Cert Data
 
