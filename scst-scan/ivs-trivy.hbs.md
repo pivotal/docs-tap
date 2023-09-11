@@ -1,7 +1,7 @@
 # Configure an ImageVulnerabilityScan for Trivy
 
 Below is a sample ImageVulnerabilityScan (IVS) that utilizes Trivy to scan a targeted image and push the results to the specified registry location.
-For addtional details about the IVS specification, refer to [Configuration Options](../scst-scan-ivs-create-your-own.html#configuration-options-1).
+For addtional details about the IVS specification, refer to [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
