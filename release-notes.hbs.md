@@ -11,7 +11,16 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-3-12-COMPONENT-NAME-fixes'></a> v1.3.12 security fixes: COMPONENT-NAME
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| ootb-templates.tanzu.vmware.com | <ul><li> CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-2650</li><li>CVE-2023-29491</li><li>CVE-2023-31484</li><li>CVE-2023-1255</li><li>CVE-2023-2602</li><li>CVE-2023-2603</li><li>CVE-2022-3996</li><li>GHSA-g2j6-57v7-gm8c</li><li>GHSA-m8cg-xc2p-r3fc</li><li>CVE-2023-1667</li><li>CVE-2023-2283</li><li>CVE-2023-25652</li><li>CVE-2023-25815</li><li>CVE-2023-29007</li><li>CVE-2023-3138</li><li>GHSA-hw7c-3rfg-p46j </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-34478</li><li>GHSA-pmhc-2g4f-85cg </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45886</li><li>CVE-2023-3609</li><li>CVE-2023-3635 </li></ul>|
+| tekton.tanzu.vmware.com | <ul><li> CVE-2022-45886 </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45886</li><li>CVE-2023-3609</li><li>CVE-2023-3635 </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-1380</li><li>CVE-2023-30456</li><li>CVE-2023-31436</li><li>CVE-2023-32233</li><li>CVE-2023-1667</li><li>CVE-2023-2283</li><li>CVE-2023-25012</li><li>CVE-2023-2612</li><li>CVE-2023-2985</li><li>CVE-2023-3117</li><li>CVE-2023-3220</li><li>CVE-2023-3439</li><li>CVE-2023-35788 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> GHSA-cchq-frgv-rjh5</li><li>GHSA-g644-9gfx-q4q4 </li></ul>|
+
 
 - Security fix description.
 
