@@ -5,7 +5,7 @@ Single Sign-On (commonly called AppSSO).
 
 Use this topic to learn how to:
 
-1. [Set up your first AppSSO service offering](#curate-an-appsso-service-offering).
+1. [Curate an AppSSO service offering](#curate-service-offering).
 1. [Claim credentials](#claim-credentials).
 1. [Deploy your workload](#deploy).
 
@@ -76,7 +76,7 @@ For more information about mapping for OpenID Connect, LDAP and SAML, see:
 ID Tokens are signed by the `AuthServer` by using [Token signature keys](service-operators/configure-token-signature.hbs.md). 
 Client applications can verify their validity by using the `AuthServer`'s public keys.
 
-## <a id="curate-an-appsso-service-offering"></a> Curate an AppSSO Service offering
+## <a id="curate-service-offering"></a> Curate an AppSSO service offering
 
 This section tells you how to provision an `AuthServer` for Application Single
 Sign-On. Use this topic to learn how to:
