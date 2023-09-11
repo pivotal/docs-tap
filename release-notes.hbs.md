@@ -576,6 +576,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Crossplane                                                       | 0.2.1   |
 | Developer Conventions                                            | 0.11.0  |
 | Eventing (deprecated)                                            | 2.2.3   |
+| External Secrets Operator                                        | 0.6.1   |
 | Flux CD Source Controller                                        | 0.36.1  |
 | Learning Center (deprecated)                                     | 0.3.1   |
 | Learning Center workshops (deprecated)                           | 0.3.0   |
@@ -1456,6 +1457,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Crossplane                                                       | 0.2.1   |
 | Developer Conventions                                            | 0.11.0  |
 | Eventing  (deprecated)                                           | 2.2.3   |
+| External Secrets Operator                                        | 0.6.1   |
 | Flux CD Source Controller                                        | 0.36.1  |
 | Learning Center (deprecated)                                     | 0.3.1   |
 | Learning Center workshops (deprecated)                           | 0.3.0   |
