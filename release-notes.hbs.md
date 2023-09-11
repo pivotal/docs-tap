@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-4-9'></a> v1.4.9 
- 
-**Release Date**: 12 September 2023 
- 
-### <a id='1-4-9-security-fixes'></a> v1.4.9 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-#### <a id='1-4-9-COMPONENT-NAME-fixes'></a> v1.4.9 security fixes: COMPONENT-NAME
- 
+## <a id='1-4-9'></a> v1.4.9
+
+**Release Date**: 12 September 2023
+
+### <a id='1-4-9-security-fixes'></a> v1.4.9 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
+#### <a id='1-4-9-COMPONENT-NAME-fixes'></a> v1.4.9 Security fixes: COMPONENT-NAME
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -29,105 +29,40 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-4-9-resolved-issues'></a> v1.4.9 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
-#### <a id='1-4-9-cli-ri'></a> v1.4.9 resolved issues: Tanzu CLI and plug-ins
- 
+
+### <a id='1-4-9-resolved-issues'></a> v1.4.9 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
+#### <a id='1-4-9-cli-ri'></a> v1.4.9 Resolved issues: Tanzu CLI and plug-ins
+
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
 so that the CLI is compatible with all supported Tanzu Application Platform versions. For more information
 see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
 
 ---
 
-#### <a id='1-4-9-COMPONENT-NAME-ri'></a> v1.4.9 resolved issues: COMPONENT-NAME
- 
-- Resolved issue description.
- 
----
- 
-### <a id='1-4-9-known-issues'></a> v1.4.9 Known issues 
- 
-This release has the following known issues, listed by component and area. 
+### <a id='1-4-9-known-issues'></a> v1.4.9 Known issues
 
- 
-#### <a id='1-4-9-COMPONENT-NAME-ki'></a> v1.4.9 known issues: COMPONENT-NAME
- 
-#### <a id='1-4-9-tbs-install-fail-ki'></a>Tanzu Build Service
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-4-9-tbs-install-fail-ki'></a> v1.4.9 Known issues: Tanzu Build Service
 
 - Tanzu Application Platform installation temporarily fails with this error related to the
 `deactivate_smart_warmer` key:
 `waiting on reconcile packageinstall/buildservice. Overlaying data values (in following order: ca-cert.yaml, cert-injection-webhook/upstream/imagevalues.yaml, cert-injection-webhook/values.yaml, additional data values)` .
-This issue will resolve after a few minutes.
- 
+This issue resolves after a few minutes.
+
 ---
- 
-### <a id='1-4-9-components'></a> v1.4.9 Component versions
- 
-The following table lists the supported component versions for this Tanzu Application Platform release.
- 
-| Component Name                                                   | Version |
-| ---------------------------------------------------------------- | ------- |
-| API Auto Registration                                            |         |
-| API portal                                                       |         |
-| Application Accelerator                                          |         |
-| Application Configuration Service                                |         |
-| Application Live View API Server                                 |         |
-| Application Live View Backend                                    |         |
-| Application Live View Connector                                  |         |
-| Application Live View Conventions                                |         |
-| Application Single Sign-On                                       |         |
-| Authentication and authorization                                 |         |
-| Bitnami Services                                                 |         |
-| Cartographer Conventions                                         |         |
-| cert-manager                                                     |         |
-| Cloud Native Runtimes                                            |         |
-| Contour                                                          |         |
-| Crossplane                                                       |         |
-| Developer Conventions                                            |         |
-| Eventing                                                         |         |
-| Flux CD Source Controller                                        |         |
-| Learning Center (deprecated)                                     |         |
-| Learning Center workshops (deprecated)                           |         |
-| Local Source Proxy                                               |         |
-| Namespace Provisioner                                            |         |
-| Out of the Box Delivery - Basic                                  |         |
-| Out of the Box Supply Chain - Basic                              |         |
-| Out of the Box Supply Chain - Testing                            |         |
-| Out of the Box Supply Chain - Testing and Scanning               |         |
-| Out of the Box Templates                                         |         |
-| Service Bindings                                                 |         |
-| Services Toolkit                                                 |         |
-| Source Controller                                                |         |
-| Spring Boot conventions                                          |         |
-| Spring Cloud Gateway                                             |         |
-| Supply Chain Choreographer                                       |         |
-| Supply Chain Security Tools - Policy Controller                  |         |
-| Supply Chain Security Tools - Scan                               |         |
-| Supply Chain Security Tools - Store                              |         |
-| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
-| Tanzu Application Platform Telemetry                             |         |
-| Tanzu Build Service                                              |         |
-| Tanzu CLI                                                        |         |
-| Tanzu CLI Application Accelerator plug-in                        |         |
-| Tanzu CLI Apps plug-in                                           |         |
-| Tanzu CLI Build Service plug-in                                  |         |
-| Tanzu CLI Insight plug-in                                        |         |
-| Tanzu Service CLI plug-in                                        |         |
-| Tekton Pipelines                                                 |         |
- 
----   
 
 ## <a id='1-4-8'></a> v1.4.8
 
 **Release Date**: 15 August 2023
 
-### <a id='1-4-8-security-fixes'></a> Security fixes
+### <a id='1-4-8-security-fixes'></a> v1.4.8 Security fixes
 
 This release has the following security fixes, listed by component and area.
 
@@ -188,21 +123,21 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-4-8-resolved-issues'></a> Resolved issues
+### <a id='1-4-8-resolved-issues'></a> v1.4.8 Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-4-8-tbs-ri'></a> Tanzu Build Service
+#### <a id='1-4-8-tbs-ri'></a> v1.4.8 Resolved issues: Tanzu Build Service
 
 - Fixed an issue where some buildpacks caused the builder image to become excessively large.
 
 ---
 
-### <a id='1-4-8-known-issues'></a> Known issues
+### <a id='1-4-8-known-issues'></a> v1.4.8 Known issues
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-4-8-tbs-ki'></a> Tanzu Build Service
+#### <a id='1-4-8-tbs-ki'></a> v1.4.8 Known issues: Tanzu Build Service
 
 - Tanzu Application Platform installation fails if the automatic dependency updater is used with a
   Kubernetes secret ref, that is, using the fields `buildservice.tanzunet_secret.name` and
@@ -216,7 +151,7 @@ This release has the following known issues, listed by component and area.
 
 **Release Date**: 11 July 2023
 
-### <a id='1-4-7-security-fixes'></a> Security fixes
+### <a id='1-4-7-security-fixes'></a> v1.4.7 Security fixes
 
 This release has the following security fixes, listed by component and area.
 
@@ -254,7 +189,7 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-4-7-known-issues'></a> Known issues
+### <a id='1-4-7-known-issues'></a> v1.4.7 Known issues
 
 This release introduces no new known issues.
 
@@ -264,7 +199,7 @@ This release introduces no new known issues.
 
 **Release Date**: 13 June 2023
 
-### <a id='1-4-6-security-fixes'></a> Security fixes
+### <a id='1-4-6-security-fixes'></a> v1.4.6 Security fixes
 
 This release has the following security fixes, listed by component and area.
 
@@ -301,28 +236,28 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-4-6-resolved-issues'></a> Resolved issues
+### <a id='1-4-6-resolved-issues'></a> v1.4.6 Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-4-6-intellij-ext-ri'></a> Tanzu Developer Tools for IntelliJ
+#### <a id='1-4-6-intellij-ext-ri'></a> v1.4.6 Resolved issues: Tanzu Developer Tools for IntelliJ
 
 - Resolved permission-denied errors encountered during Live Update when operating against platforms
   configured to use the Jammy build stack.
 
-#### <a id='1-4-6-vs-ext-ri'></a> Tanzu Developer Tools for Visual Studio
+#### <a id='1-4-6-vs-ext-ri'></a> v1.4.6 Resolved issues: Tanzu Developer Tools for Visual Studio
 
 - Resolved permission-denied errors encountered during Live Update when operating against platforms
   configured to use the Jammy build stack.
 
-#### <a id='1-4-6-vscode-ext-ri'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-4-6-vscode-ext-ri'></a> v1.4.6 Resolved issues: Tanzu Developer Tools for VS Code
 
 - Resolved permission-denied errors encountered during Live Update when operating against platforms
   configured to use the Jammy build stack.
 
 ---
 
-### <a id='1-4-6-known-issues'></a> Known issues
+### <a id='1-4-6-known-issues'></a> v1.4.6 Known issues
 
 This release introduces no new known issues.
 
@@ -332,7 +267,7 @@ This release introduces no new known issues.
 
 **Release Date**: 09 May 2023
 
-### <a id='1-4-5-security-fixes'></a> Security fixes
+### <a id='1-4-5-security-fixes'></a> v1.4.5 Security fixes
 
 This release has the following security fixes, listed by component and area.
 
@@ -369,7 +304,7 @@ This release has the following security fixes, listed by component and area.
 
 **Release Date**: 12 April 2023
 
-### <a id='1-4-4-security-fixes'></a> Security fixes
+### <a id='1-4-4-security-fixes'></a> v1.4.4 Security fixes
 
 This release has the following security fixes, listed by package name and
 vulnerabilities.
@@ -411,17 +346,17 @@ vulnerabilities.
 
 ---
 
-### <a id='1-4-4-resolved-issues'></a> Resolved issues
+### <a id='1-4-4-resolved-issues'></a> v1.4.4 Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-4-4-grype-scanner-ri'></a> Grype Scanner
+#### <a id='1-4-4-grype-scanner-ri'></a> v1.4.4 Resolved issues: Grype Scanner
 
 - Updated Syft version to fix image scans failing with panic. This fixes an issue that caused
   the scanner to fail with an index out of range error. This happened when parsing APK metadata to
   identify the installed OS packages if a package's list of provided files is empty.
 
-#### <a id='1-4-4-grype-scanner-ri'></a> Source Controller
+#### <a id='1-4-4-grype-scanner-ri'></a> v1.4.4 Resolved issues: Source Controller
 
 - Updated imgpkg API to v0.36.0 to fix file permissions after extracting the source tarball.
   File permissions were stripped from source files while using IMGPKG v0.25.0.
@@ -429,16 +364,16 @@ The following issues, listed by component and area, are resolved in this release
 
 ---
 
-### <a id='1-4-4-known-issues'></a> Known issues
+### <a id='1-4-4-known-issues'></a> v1.4.4 Known issues
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-4-4-api-auto-reg-ki'></a>API Auto Registration
+#### <a id='1-4-4-api-auto-reg-ki'></a> v1.4.4 Known issues: API Auto Registration
 
 - Users cannot update their APIs through API Auto Registration due to a issue with the ID used to retrieve APIs.
   This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
 
-#### <a id='1-4-4-grype-scanner-ki'></a> Grype Scanner
+#### <a id='1-4-4-grype-scanner-ki'></a> v1.4.4 Known issues: Grype Scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
   vulnerabilities:**
@@ -463,7 +398,7 @@ This release has the following known issues, listed by component and area.
 
 **Release Date**: 06 March 2023
 
-### <a id='1-4-2-security-fixes'></a> Security fixes
+### <a id='1-4-2-security-fixes'></a> v1.4.2 Security fixes
 
 This release has the following security fixes, listed by package name and
 vulnerabilities.
@@ -507,12 +442,12 @@ vulnerabilities.
 
 ---
 
-### <a id='1-4-2-resolved-issues'></a> Resolved issues
+### <a id='1-4-2-resolved-issues'></a> v1.4.2 Resolved issues
 
 The following issues, listed by area and component, are resolved in this
 release.
 
-#### <a id='1-4-2-tbs-ri'></a> Tanzu Build Service
+#### <a id='1-4-2-tbs-ri'></a> v1.4.2 Resolved issues: Tanzu Build Service
 
 - Fixed an issue that prevented the Cloud Native Buildpacks lifecycle component from
   upgrading with Tanzu Build Service.
@@ -521,11 +456,11 @@ release.
   - Upgrading to Tanzu Application Platform v1.4.2 ensures the lifecycle component is updated to
     the latest version.
 
-### <a id='1-4-2-known-issues'></a> Known issues
+### <a id='1-4-2-known-issues'></a> v1.4.2 Known issues
 
 This release has the following known issues, listed by area and component.
 
-#### <a id="1-4-2-grype-scan-known-issues"></a>Grype scanner
+#### <a id="1-4-2-grype-scan-known-issues"></a> v1.4.2 Known issues: Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
   vulnerabilities:**
@@ -555,23 +490,23 @@ This release has the following known issues, listed by area and component.
 
 **Release Date**: 16 February 2023
 
-### <a id='1-4-1-security-fixes'></a> Security fixes
+### <a id='1-4-1-security-fixes'></a> v1.4.1 Security fixes
 
 This release has the following security fixes, listed by area and component.
 
-#### <a id="1-4-1-tap-gui-sf"></a> Tanzu Application Platform GUI
+#### <a id="1-4-1-tap-gui-sf"></a> v1.4.1 Security fixes: Tanzu Application Platform GUI
 
 - [GHSA-3xq5-wjfh-ppjc](https://github.com/advisories/GHSA-3xq5-wjfh-ppjc)
 - [GHSA-36fh-84j7-cv5h](https://github.com/advisories/GHSA-36fh-84j7-cv5h)
 
 ---
 
-### <a id='1-4-1-resolved-issues'></a> Resolved issues
+### <a id='1-4-1-resolved-issues'></a> v1.4.1 Resolved issues
 
 The following issues, listed by area and component, are resolved in this
 release.
 
-#### <a id='1-4-1-src-controller-ri'></a> Source Controller
+#### <a id='1-4-1-src-controller-ri'></a> v1.4.1 Resolved issues: Source Controller
 
 - Fixed an issue that caused some registries, including DockerHub, to incur
   higher than expected pulls because all HTTP GET calls are considered to be
@@ -579,11 +514,13 @@ release.
   operations, which reduces the number of pulls while checking updated image
   versions.
 
-#### <a id='1-4-1-tap-gui-ri'></a> Tanzu Application Platform GUI
+#### <a id='1-4-1-tap-gui-ri'></a> v1.4.1 Resolved issues: Tanzu Application Platform GUI
 
 - Fixed SVG icons that appeared overly large on the sidebar.
 - Added catalog graph cards and diagram defaults to align with upstream
   Backstage.
+
+#### <a id="1-4-1-tap-plugin-ri"></a> v1.4.1 Resolved issues: Tanzu Application Platform plug-ins
 
 ##### <a id="1-4-1-api-val-and-scor-ri"></a> API Validation and Scoring Toolkit plug-in
 
@@ -640,11 +577,11 @@ release.
 
 ---
 
-### <a id='1-4-1-known-issues'></a> Known issues
+### <a id='1-4-1-known-issues'></a> v1.4.1 Known issues
 
 This release has the following known issues, listed by area and component.
 
-#### <a id="1-4-1-grype-scan-known-issues"></a>Grype scanner
+#### <a id="1-4-1-grype-scan-known-issues"></a> v1.4.1 Known issues: Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
   vulnerabilities:**
@@ -668,7 +605,7 @@ This release has the following known issues, listed by area and component.
   An issue in Syft causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
   This problem is resolved in SCST - Scan (Grype) version `1.4.1` or in the Tanzu Application Platform version `1.5.0+`.
 
-#### <a id="1-4-1-sa-gui-known-issues"></a>Security Analysis GUI
+#### <a id="1-4-1-sa-gui-known-issues"></a> v1.4.1 Known issues: Security Analysis GUI
 
 - After upgrading to Tanzu Application Platform v1.4 from v1.3, the Security
   Analysis GUI dashboard might appear empty because the dashboard now displays
@@ -681,7 +618,9 @@ This release has the following known issues, listed by area and component.
 
 **Release Date**: 10 January 2023
 
-### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform new features
+### <a id="1-4-0-tap-new-features"></a> v1.4.0 Tanzu Application Platform new features
+
+This release includes the following platform-wide enhancements.
 
 - [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md)
   for secure ingress communication by default.
@@ -703,16 +642,18 @@ This release has the following known issues, listed by area and component.
 
 ---
 
-### <a id='1-4-0-new-component-features'></a> New features by component and area
+### <a id='1-4-0-new-component-features'></a> v1.4.0 New features by component and area
 
-#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
+This release includes the following changes, listed by component and area.
+
+#### <a id="1-4-0-api-validation-and-scoring"></a> v1.4.0 Features: API Validation and Scoring Toolkit
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI
   specification. The API specification is generated from the API Auto
   Registration of Tanzu Application Platform. See [API Validation and
   Scoring](api-validation-scoring/about.hbs.md) for more information.
 
-#### <a id="1-4-0-appsso-nf"></a> Application Single Sign-On (AppSSO)
+#### <a id="1-4-0-appsso-nf"></a> v1.4.0 Features: Application Single Sign-On (AppSSO)
 
 - Added ability to configure custom Redis storage for an `AuthServer` by using a
   ProvisionedService-style API. For more information, see
@@ -734,7 +675,7 @@ This release has the following known issues, listed by area and component.
   - Introduced `identityProviders.ldap.group.search`.
   - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
 
-#### <a id="1-4-0-app-accelerator"></a> Application Accelerator
+#### <a id="1-4-0-app-accelerator"></a> v1.4.0 Features: Application Accelerator
 
 - Optional Git repository creation during project generation is supported in the
   Application Accelerator extension for VS Code.
@@ -772,7 +713,7 @@ This release has the following known issues, listed by area and component.
     - [Spring Boot PostgreSQL
       Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-postgresql)
 
-#### <a id="1-4-0-app-live-view"></a> Application Live View
+#### <a id="1-4-0-app-live-view"></a> v1.4.0 Features: Application Live View
 
 - Users can now activate or deactivate the automatic configuration of Spring
   Boot actuators on Tanzu Application Platform and on workloads. For more
@@ -787,7 +728,7 @@ This release has the following known issues, listed by area and component.
 - Added `appliveview_connnector.backend.sslDeactivated` to deprecate
   `appliveview_connnector.backend.sslDisabled`.
 
-#### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
+#### <a id="1-4-0-apps-cli-plugin-new-feat"></a> v1.4.0 Features: Apps plug-in for Tanzu CLI
 
 - Added `--update-strategy` flag to allow you to change `tanzu apps workload
   apply` behavior when contents from file are applied. See
@@ -811,12 +752,12 @@ This release has the following known issues, listed by area and component.
   registry.
 - Removed color from tail command output when `--no-color` flag is passed.
 
-#### <a id="1-4-0-cert-manager"></a> cert-manager
+#### <a id="1-4-0-cert-manager"></a> v1.4.0 Features: cert-manager
 
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed
   `ClusterIssuer`s.
 
-#### <a id="1-4-0-eventing"></a> Eventing
+#### <a id="1-4-0-eventing"></a> v1.4.0 Features: Eventing
 
 - Upgraded Knative Eventing version from 1.6 to 1.8.
 - Added a Kubernetes tracing attribute to ApiServerSource.
@@ -825,7 +766,7 @@ This release has the following known issues, listed by area and component.
   creation, deployment updates, and so on. It then forwards them as CloudEvents
   to a sink.
 
-#### <a id="1-4-0-tap-gui-plugin-nf"></a> External Secrets Operator (alpha)
+#### <a id="1-4-0-tap-gui-plugin-nf"></a> v1.4.0 Features: External Secrets Operator (alpha)
 
 - The External Secrets Operator is a Kubernetes operator that integrates with
   external secret management systems. With this release, Tanzu Application
@@ -834,7 +775,7 @@ This release has the following known issues, listed by area and component.
   currently in alpha and is intended for evaluation and test purposes only. Do
   not use in a production environment.**
 
-#### <a id="1-4-0-stk-new-features"></a> Services Toolkit
+#### <a id="1-4-0-stk-new-features"></a> v1.4.0 Features: Services Toolkit
 
 - Added new `ClassClaim` API that allows claims for service instances to be
   created by referring to a `ClusterInstanceClass`. For more information, see
@@ -847,9 +788,9 @@ This release has the following known issues, listed by area and component.
 - Added support for Kubernetes v1.25.
 - All containers are now configured with read-only root file systems.
 
-#### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-4-0-tap-gui-plugin-nf"></a> v1.4.0 Features: Tanzu Application Platform GUI plug-ins
 
-##### <a id='1-4-0-sagui-new-feats'></a>Security Analysis Plug-in
+##### <a id='1-4-0-sagui-new-feats'></a> Security Analysis Plug-in
 
 - **Understand the total number of affected packages and vulnerabilities on the
   Security Analysis Dashboard:** The Vulnerabilities by Severity widget and the
@@ -863,7 +804,7 @@ This release has the following known issues, listed by area and component.
   Package details page on the source or image scan stage in the Supply Chain
   Choreographer Plug-in.
 
-##### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer plug-in
+##### <a id='scc-plug-in-new-features'></a> Supply Chain Choreographer plug-in
 
 - Events are now emitted when resources are applied and when their output or
   health status changes. See [Events reference](scc/events.hbs.md).
@@ -879,7 +820,7 @@ This release has the following known issues, listed by area and component.
   better alignment between the data in the Supply Chain Choreographer plug-in
   and the Security Analysis plug-in.
 
-#### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
+#### <a id="1-4-0-scst-policy-new-features"></a> v1.4.0 Features: Supply Chain Security Tools - Policy
 
 - Added ability to [configure action when no policy matches the admitting image
   digest](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
@@ -888,7 +829,7 @@ This release has the following known issues, listed by area and component.
 - Added ability to [specify which resources a ClusterImagePolicy should
   enforce](./scst-policy/configuring.hbs.md#cip-match).
 
-#### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
+#### <a id="1-4-0-scst-scan-new-features"></a> v1.4.0 Features: Supply Chain Security Tools - Scan
 
 - Users no longer need to create a package overlay to enable Grype in offline
   and air-gapped environments. See [Using Grype in offline and air-gapped
@@ -899,7 +840,7 @@ This release has the following known issues, listed by area and component.
 - Alpha release of Prisma Scanner integration. See [Install Prisma
   Scanner](scst-scan/install-prisma-integration.hbs.md).
 
-#### <a id="1-4-0-intellij-new-feat"></a> Tanzu Developer Tools for IntelliJ
+#### <a id="1-4-0-intellij-new-feat"></a> v1.4.0 Features: Tanzu Developer Tools for IntelliJ
 
 - The developer sandbox enables developers to Live Update their code and
   simultaneously debug the updated code, without having to deactivate Live
@@ -912,7 +853,7 @@ This release has the following known issues, listed by area and component.
 - Code snippets to create `workload.yaml` and `catalog-info.yaml` files were
   added to IntelliJ.
 
-#### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
+#### <a id="1-4-0-vs-new-features"></a> v1.4.0 Features: Tanzu Developer Tools for Visual Studio
 
 - **See code updates running on-cluster in seconds:** By using Live Update
   facilitated by Tilt, deploy your workload once, save changes to the code, and
@@ -925,7 +866,7 @@ This release has the following known issues, listed by area and component.
   Tanzu Application Platform. An environment’s similarity to production relies
   on keeping dependencies updated, among other variables.
 
-#### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
+#### <a id="1-4-0-vscode-new-features"></a> v1.4.0 Features: Tanzu Developer Tools for Visual Studio Code
 
 - The developer sandbox enables developers to Live Update their code, and
   simultaneously debug the updated code, without having to deactivate Live
@@ -933,11 +874,11 @@ This release has the following known issues, listed by area and component.
 
 ---
 
-### <a id='1-4-0-breaking-changes'></a> Breaking changes
+### <a id='1-4-0-breaking-changes'></a> v1.4.0 Breaking changes
 
 This release has the following breaking changes, listed by area and component.
 
-#### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
+#### <a id="1-4-0-appsso-bc"></a> v1.4.0 Breaking changes: Application Single Sign-On (AppSSO)
 
 - Removed
   `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}`
@@ -957,7 +898,7 @@ This release has the following breaking changes, listed by area and component.
   see [IssuerURI and
   TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
 
-#### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
+#### <a id="1-4-0-supply-chain-templates"></a> v1.4.0 Breaking changes: Out of the Box Supply Chain Templates
 
 - In a multicluster setup, when a Deliverable is created on a Build profile
 cluster, the ConfigMap it's in is renamed from `<workload-name>` to
@@ -966,13 +907,13 @@ Deliverable content by the former name must be updated with the new name. For
 more information, see [Multicluster Tanzu Application Platform
 overview](multicluster/about.hbs.md).
 
-#### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
+#### <a id="1-4-0-ipw-bc"></a> v1.4.0 Breaking changes: Supply Chain Security Tools - Image Policy Webhook
 
 - The Image Policy Webhook component is removed in Tanzu Application Platform
 v1.4. This component is deprecated in favor of the [Policy
 Controller](./scst-policy/overview.hbs.md).
 
-#### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
+#### <a id="1-4-0-policy-controller-bc"></a> v1.4.0 Breaking changes: Supply Chain Security Tools - Policy Controller
 
 - Policy Controller no longer initializes TUF by default. TUF is required to
 support the keyless authorities in `ClusterImagePolicy`. To continue to use
@@ -981,7 +922,7 @@ keyless authorities, provide the value `policy.tuf_enabled: true` by using the
 Update Framework (TUF) server is used. To target an alternative Sigstore stack,
 specify `policy.tuf_mirror` and `policy.tuf_root`.
 
-#### <a id="1-4-0-tap-gui-bc"></a> Tanzu Application Platform GUI
+#### <a id="1-4-0-tap-gui-bc"></a> v1.4.0 Breaking changes: Tanzu Application Platform GUI
 
 - **Ingress URL:** As mentioned in the [new features
   section](#1-4-0-tap-new-features), Tanzu Application Platform GUI participates
@@ -999,25 +940,25 @@ specify `policy.tuf_mirror` and `policy.tuf_root`.
   instructions in [Enable CVE scan
   results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
-#### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
+#### <a id="1-4-0-intellij-bc"></a> v1.4.0 Breaking changes: Tanzu Developer Tools for IntelliJ
 
 - IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
 
-#### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
+#### <a id="1-4-0-vscode-bc"></a> v1.4.0 Breaking changes: Tanzu Developer Tools for Visual Studio Code
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
 ---
 
-### <a id='1-4-0-security-fixes'></a> Security fixes
+### <a id='1-4-0-security-fixes'></a> v1.4.0 Security fixes
 
 This release has the following security fixes, listed by area and component.
 
-#### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
+#### <a id="1-4-0-api-auto-registration-fixes"></a> v1.4.0 Security fixes: API Auto Registration
 
 - Base image updated to use the latest Paketo Jammy Base image.
 
-#### <a id='1-4-0-contour-fixes'></a> Contour
+#### <a id='1-4-0-contour-fixes'></a> v1.4.0 Security fixes: Contour
 
 - Update to [Contour
 v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
@@ -1025,11 +966,11 @@ Includes an update to [go
 v1.19.4](https://go.dev/doc/devel/release#go1.19.minor), which contains security
 fixes to the `net/http` and `os` packages.
 
-#### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
+#### <a id='1-4-0-scst-grype-fixes'></a> v1.4.0 Security fixes: Supply Chain Security Tools - Grype
 
 - `python` is updated to `3.7.5-22.ph3`.
 
-#### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated vulnerabilities
+#### <a id="1-4-0-vulnerabilities-remediated"></a> v1.4.0 Security fixes: Remediated vulnerabilities
 
 The following is a list of vulnerabilities remediated with this release:
 
@@ -1070,12 +1011,12 @@ CVE-2022-43552, CVE-2021-3999, GHSA-m974-647v-whv7
 
 ---
 
-### <a id='1-4-0-resolved-issues'></a> Resolved issues
+### <a id='1-4-0-resolved-issues'></a> v1.4.0 Resolved issues
 
 The following issues, listed by area and component, are resolved in this
 release.
 
-#### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
+#### <a id="1-4-0-api-auto-registration-ri"></a> v1.4.0 Resolved issues: API Auto Registration
 
 - API Auto Registration periodically checks the original API specification from
   the defined location to find changes and registers any changes into the `API
@@ -1083,7 +1024,7 @@ release.
   GUI catalog. This synchronization period or frequency is configurable through
   the new value `sync_period`. The default value is 5 minutes.
 
-#### <a id="1-4-0-appsso-ri"></a> Application Single Sign-On (AppSSO)
+#### <a id="1-4-0-appsso-ri"></a> v1.4.0 Resolved issues: Application Single Sign-On (AppSSO)
 
 - Fixed infinite redirect loops for an `AuthServer` configured with a single
   OIDC or SAML identity provider.
@@ -1094,7 +1035,7 @@ release.
   Kubernetes platforms versions 1.23.x and lower.
 - LDAP error log now contains proper error message.
 
-#### <a id="1-4-0-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
+#### <a id="1-4-0-supply-chain-templates-resolved"></a> v1.4.0 Resolved issues: Out of the Box Supply Chain Templates
 
 Fixed deliverable content written into ConfigMaps in multicluster setup.
 ConfigMap is renamed to avoid conflict with `config-template`.
@@ -1102,13 +1043,13 @@ ConfigMap is renamed to avoid conflict with `config-template`.
 For more information, see [Multicluster Tanzu Application Platform
 overview](multicluster/about.hbs.md).
 
-#### <a id="1-4-0-apps-cli-plugin-ri"></a> Tanzu CLI Apps Plug-in
+#### <a id="1-4-0-apps-cli-plugin-ri"></a> v1.4.0 Resolved issues: Tanzu CLI Apps Plug-in
 
 - Fixed `tanzu apps workload tail` command output, which was displaying extra
   init container log lines.
 - Fixed `tanzu apps workload tail` command not including all logs.
 
-#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ri"></a> v1.4.0 Resolved issues: Tanzu Application Platform GUI plug-ins
 
 - **Immediate entity provider back-end plug-in**
 
@@ -1120,7 +1061,7 @@ overview](multicluster/about.hbs.md).
     and its origin is a different entity provider, a `409 Conflict` error is
     returned.
 
-##### <a id="supply-chain-plugin-ri"></a> Supply Chain Choreographer plug-in
+##### <a id="supply-chain-plugin-ri"></a> v1.4.0 Resolved issues: Supply Chain Choreographer plug-in
 
 - The UI no longer shows the error `Unable to retrieve details from Image
   Provider Stage` when the Builder is not available or configured. It now
@@ -1129,22 +1070,22 @@ overview](multicluster/about.hbs.md).
 
 ---
 
-### <a id='1-4-0-known-issues'></a> Known issues
+### <a id='1-4-0-known-issues'></a> v1.4.0 Known issues
 
 This release has the following known issues, listed by area and component.
 
-#### <a id="api-auto-registration-ki"></a> API Auto Registration
+#### <a id="api-auto-registration-ki"></a> v1.4.0 Known issues: API Auto Registration
 
 - Unknown Certificate Authority and connection refused errors from the
 APIDescriptor CRD. For more information, see [Troubleshoot API Auto
 Registration](api-auto-registration/troubleshooting.hbs.md).
 
-#### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
+#### <a id="1-4-0-app-acc-vscode-ki"></a> v1.4.0 Known issues: Application Accelerator for Visual Studio Code
 
 - When using custom types, if there is a check box in the list of attributes
   then re-ordering the inputs doesn't work.
 
-#### <a id="1-4-0-cnr-ki"></a> Cloud Native Runtimes for VMware Tanzu
+#### <a id="1-4-0-cnr-ki"></a> v1.4.0 Known issues: Cloud Native Runtimes for VMware Tanzu
 
 - Knative Serving: Certain app name, namespace, and domain combinations produce
   invalid HTTPProxy resources. See [Cloud Native Runtimes
@@ -1155,7 +1096,7 @@ Registration](api-auto-registration/troubleshooting.hbs.md).
   bytes. See [Cloud Native Runtimes
   Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#certificate-not-ready).
 
-#### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
+#### <a id="1-4-0-grype-scan-known-issues"></a> v1.4.0 Known issues: Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal
   vulnerabilities:**
@@ -1179,7 +1120,7 @@ Registration](api-auto-registration/troubleshooting.hbs.md).
   An issue in Syft causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
   This problem is resolved in SCST - Scan (Grype) version `1.4.1` or in the Tanzu Application Platform version `1.5.0+`.
 
-#### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
+#### <a id="1-4-0-nsp-ki"></a> v1.4.0 Known issues: Namespace Provisioner
 
 - Applying the label selector used by the namespace provisioner controller to
   the developer namespace, which is configured at deployment time under the
@@ -1188,14 +1129,14 @@ Registration](api-auto-registration/troubleshooting.hbs.md).
   to ownership issues. This is because it's trying to install Grype in a
   namespace where it's already been installed.
 
-#### <a id="1-4-scc-ki"></a> Out of the Box Supply Chain Templates
+#### <a id="1-4-scc-ki"></a> v1.4.0 Known issues: Out of the Box Supply Chain Templates
 
 In a Build profile cluster, Deliverables will be created with the labels to
 associate them with their Workload missing. As a workaround, they will have to
 be manually injected.  For more information, see [Multicluster Tanzu Application
 Platform overview](../docs-tap/multicluster/about.hbs.md).
 
-#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ki"></a> v1.4.0 Known issues: Tanzu Application Platform GUI plug-ins
 
 ##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
 
@@ -1214,7 +1155,7 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
 - When a GitOps PR flow is configured, the **Approve a Request** link no longer
   appears in the supply chain graph.
 
-#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
+#### <a id="1-4-0-intellij-ki"></a> v1.4.0 Known issues: Tanzu Developer Tools for IntelliJ
 
 - If a workload is deployed onto a namespace by using Live Update, you must set
   that namespace as the namespace of the current context of your kubeconfig
@@ -1241,7 +1182,7 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
 
 - Live Update does not work when using the Jammy `ClusterBuilder`.
 
-#### <a id="1-4-0-vs-ki"></a> Tanzu Developer Tools for Visual Studio
+#### <a id="1-4-0-vs-ki"></a> v1.4.0 Known issues: Tanzu Developer Tools for Visual Studio
 
 - The `Tanzu: Delete Workload` command can fail with the extension erroneously
   reporting that the workload isn't running. For more information, see
@@ -1253,7 +1194,7 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
 
 - Live Update does not work when using the Jammy `ClusterBuilder`.
 
-#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
+#### <a id="1-4-0-vscode-ki"></a> v1.4.0 Known issues: Tanzu Developer Tools for Visual Studio Code
 
 - `Could not find the task 'tanzuManagement: Kill Port Forward
   fortune-service'`. You might see this error message if an app was deployed
@@ -1268,34 +1209,34 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
 The following features, listed by component, are deprecated. Deprecated features
 will remain on this list until they are retired from Tanzu Application Platform.
 
-#### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View
+### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View deprecations
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for
   removal in Tanzu Application Platform 1.7.0. For more information on the
   migration, see [Deprecate the sslDisabled
   key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 
-#### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
+### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO) deprecations
 
 - `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the
   next release. For more information about how to migrate to
   `AuthServer.spec.tls.deactivated`, see [Migration
   guides](app-sso/upgrades/index.md#migration-guides).
 
-#### <a id="1-4-0-stk-deprecations"></a> Services Toolkit
+### <a id="1-4-0-stk-deprecations"></a> Services Toolkit deprecations
 
 - The `tanzu services claims` CLI plug-in command is now deprecated. It is
   hidden from help text output, but continues to work until officially removed
   after the deprecation period. The new `tanzu services resource-claims` command
   provides the same functionality.
 
-#### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
+### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook deprecations
 
 - The Image Policy Webhook component is removed in Tanzu Application Platform
 v1.4. This component is deprecated in favor of the [Policy
 Controller](./scst-policy/overview.hbs.md).
 
-#### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
+### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan deprecations
 
 - Removed deprecated ScanTemplates:
   - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu
@@ -1309,13 +1250,13 @@ Controller](./scst-policy/overview.hbs.md).
     - For information about the migration path, see
   [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
-#### <a id="1-4-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+### <a id="1-4-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign deprecations
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For
   migration information, see [Migration From Supply Chain Security Tools -
   Sign](./scst-policy/migration.hbs.md).
 
-#### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service
+### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service deprecations
 
 - The Ubuntu Bionic stack is deprecated: Ubuntu Bionic stops receiving support
 in April 2023. VMware recommends you migrate builds to Jammy stacks in advance.
@@ -1328,7 +1269,7 @@ v1.6 and remove support in Tanzu Application Platform v1.7. To manually
 deactivate legacy CNB BOM support, see [Deactivate the CNB BOM
 format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
-#### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in deprecations
 
 - The default value for the
   [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
