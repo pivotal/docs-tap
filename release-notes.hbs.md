@@ -81,6 +81,7 @@ See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
   For more information about updating default values, see [Configure Garbage collection for the Knative revisions](cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
 
+- **Knative Serving v1.11**: Knative Serving v1.11 is available in Cloud Native Runtimes. See the [Knative v1.11 release notes](https://knative.dev/blog/releases/announcing-knative-v1-11-release/) for more details.
 ---
 
 ### <a id='1-7-0-breaking-changes'></a> v1.7.0 Breaking changes
