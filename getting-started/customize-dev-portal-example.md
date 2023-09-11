@@ -9,14 +9,12 @@ For general information about the Tanzu Developer Portal Configurator and its ba
 
 ## <a id="prereqs"></a>Prerequisites
 
-Before you start, you must have:
+Before you start, you must:
 
-<!-- Consider replacing already listed prereqs with a link to the prereqs page. -->
-<!-- Or maybe add the new prereqs to the main prereqs page? -->
+<!-- Full profile not mentioned in main prereqs. Is full profile mandatory? -->
 
-- Tanzu Application Platform cluster with the full profile.
-<!-- Already listed. Full profile not mentioned in main prereqs. Is full profile mandatory? -->
-- Tanzu Developer Portal Configurator bundle available (`tpb.tanzu.vmware.com`)
+- Fulfil all the [Prerequisites for the getting started guide](../getting-started.hbs.md#get-started-prereqs).
+- Have the Tanzu Developer Portal Configurator bundle available (`tpb.tanzu.vmware.com`).
 
     To verify it is present, run:
 
@@ -24,7 +22,7 @@ Before you start, you must have:
     tanzu package available list --namespace tap-install | grep tpb.tanzu.vmware.com
     ```
 
-- Instance of the canonical Tanzu Developer Portal.
+- Have an instance of the canonical Tanzu Developer Portal.
 
     To get the fully-qualified domain name for the portal, run:
 
@@ -35,12 +33,6 @@ Before you start, you must have:
     > **Note** By default, Tanzu Developer Portal uses a self-signed certificate and might cause
     > a security error in the browser. To address this error, see
     > [Configure a TLS certificate by using an existing certificate](../tap-gui/tls/enable-tls-existing-cert.hbs.md).
-
-- At least one configured developer namespace <!-- already listed -->
-- At least one operational Supply Chain <!-- already listed -->
-
-To confirm the last two prerequisites, you can deploy a demo workload as described in
-[Deploy an app on Tanzu Application Platform](./deploy-first-app.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 
