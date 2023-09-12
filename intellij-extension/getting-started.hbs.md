@@ -22,7 +22,7 @@ For example, a common situation is that a sanitised `PATH` does not provide acce
 the `gke-cloud-auth-plugin` installed on your system. This will make Tanzu Developer Tools 
 unable to authenticate and access your GKE cluster.
 
-Ths situation is complex and different things can go wrong depending on:
+This situation is complex and different things can go wrong depending on:
 
 - precisely how you installed various cloud-related CLI tools. 
 - how you set environment variables.
