@@ -18,8 +18,9 @@ This is especially true on Mac OS, because apps launched from Mac OS GUI will re
 restricted set of environment variables compared to a terminal.
 
 This has a tendency to cause problems with cluster authentication for Tanzu Developer Tools. 
-For example a is that a sanitised `PATH` may not provide access to the `gke-cloud-auth-plugin` installed on your system. This will make Tanzu Developer Tools unable to authenticate 
-and access your GKE cluster.
+For example, a common situation is that a sanitised `PATH` does not provide access to 
+the `gke-cloud-auth-plugin` installed on your system. This will make Tanzu Developer Tools 
+unable to authenticate and access your GKE cluster.
 
 Ths situation is complex and different things can go wrong depending on:
 
