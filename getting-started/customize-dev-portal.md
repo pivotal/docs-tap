@@ -9,10 +9,10 @@ For general information about the Tanzu Developer Portal Configurator and its ba
 
 ## <a id="prereqs"></a>Prerequisites
 
-Before you start, you must:
+Before you start, you must have:
 
-- Fulfil all the [Prerequisites for the getting started guide](../getting-started.hbs.md#get-started-prereqs).
-- Have the Tanzu Developer Portal Configurator bundle available (`tpb.tanzu.vmware.com`).
+- All the [Prerequisites for the getting started guide](../getting-started.hbs.md#get-started-prereqs).
+- The Tanzu Developer Portal Configurator bundle available (`tpb.tanzu.vmware.com`).
 
     To verify it's present, run:
 
@@ -20,7 +20,7 @@ Before you start, you must:
     tanzu package available list --namespace tap-install | grep tpb.tanzu.vmware.com
     ```
 
-- Have an instance of the canonical Tanzu Developer Portal.
+- An instance of the canonical Tanzu Developer Portal.
 
     To get the fully-qualified domain name for the portal, run:
 
