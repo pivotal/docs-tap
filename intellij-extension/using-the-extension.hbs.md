@@ -16,9 +16,6 @@ To apply a workload:
 
 1. Right-click anywhere in the IntelliJ project explorer.
 2. Click **Tanzu** > **Apply Workload**.
-
-   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
-
 3. Click **Tanzu > Modify Apply Configuration**.
 
 The `Tanzu workload apply` command is triggered in the terminal and the workload is applied.
@@ -68,8 +65,6 @@ To start debugging on the cluster:
    - **Local Path:** This is the path on the local file system to a directory of source code to build.
    - **Namespace:** This is the namespace that workloads are deployed into.
 
-    ![Create Run Configuration window showing populated configuration parameter text boxes.](../images/intellij-config.png)
-
    You can also manually create Tanzu Debug configurations by using the **Edit Configurations**
    IntelliJ UI.
 
@@ -89,16 +84,12 @@ To start Live Update:
 
 1. Right-click your project’s Tiltfile and then click **Run 'Tanzu Live Update - ...'**.
 
-   ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
-
 2. Ensure that the configuration parameters are set:
 
     - **Source Image:** This is the registry location for publishing local source code.
       For example, `registry.io/yourapp-source`. It must include both a registry and a project name.
     - **Local Path:** This is the path on the local file system to a directory of source code to build.
     - **Namespace:** This is the namespace that workloads are deployed into.
-
-    ![Edit Run Configuration window showing the Live Update configuration parameter text boxes.](../images/intellij-liveupdate-config.png)
 
 > **Note** You must compile your code before the changes are synchronized to the container.
 > For example, `Build Project`: `⌘`+`F9`.
