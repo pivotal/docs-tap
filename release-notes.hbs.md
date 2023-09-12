@@ -5,7 +5,7 @@ v{{ vars.url_version }}.
 
 ## <a id='1-7-0'></a> v1.7.0
 
-**Release Date**: 20 October 2023
+**Release Date**: 7 November 2023
 
 ### <a id='1-7-0-whats-new'></a> What's new in Tanzu Application Platform v1.7
 
