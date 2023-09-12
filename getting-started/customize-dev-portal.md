@@ -205,7 +205,7 @@ To integrate the hello-world plug-in into your Tanzu Developer Portal:
 1. Apply the new `tap-values.yaml` to your cluster. The exact steps vary depending on your installation
    method such as GitOps, online install, or offline install.
 
-    For how to do so for an online installation, see [Install your Tanzu Application Platform package](../../install-online/profile.hbs.md#install-your-tanzu-application-platform-package).
+    For how to do so for an online installation, see [Install your Tanzu Application Platform package](../install-online/profile.hbs.md#install-your-tanzu-application-platform-package).
 
     For example, you can use the following Tanzu CLI command:
 
