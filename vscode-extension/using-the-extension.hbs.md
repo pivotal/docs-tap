@@ -177,7 +177,7 @@ To delete a workload:
 
    A notification appears showing that the workload was deleted.
 
-## <a id="switch-namespace"></a> Switch namespaces
+## <a id="switch-namespace"></a> Deploy to different namespaces
 
 To switch the namespace where you created the workload:
 
