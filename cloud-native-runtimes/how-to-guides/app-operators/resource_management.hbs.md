@@ -4,13 +4,13 @@ This topic tells you how to configure the memory and CPU allocation of resources
 
 ## <a id='overview'></a> Overview
 
-By default, Knative Deployments are allocated a predefined amount of system resources, such as CPU and memory. These default allocations cater to general use cases, but there can be scenarios where adjustments can provide benefits:
+By default, Knative Deployments are allocated a predefined amount of CPU and memory. These default allocations cater to general use cases, but there can be scenarios where adjustments can provide benefits:
 
 * *Performance Optimization*: Customizing resource allocations can help in fine-tuning the load for specific workloads, potentially leading to better response times and throughput.
 * *Cost Efficiency*: Over-provisioning resources can result in unnecessary costs, especially in large-scale deployments. Conversely, under-provisioning can cause potential disruptions or degrade performance. Tailoring the allocations ensures efficient resource utilization.
 * *Improved Stability*: In environments with various workloads, controlling resource allocation can prevent any single deployment from consuming excessive resources, thereby safeguarding the stability of the entire cluster.
 
-As a result, it is possible to configure CNR to provide custom amounts of memory and CPU to Knative Deployments with the config option `resource_management` to give administrators the power to fine-tune their environment, ensuring that the system resources align with the needs of their specific workloads and objectives.
+To address these scenarios, CNRs provides the config option `resource_management` so that administrators may tailor the memory and CPU of Knative system controllers to fit their needs.
 
 ## <a id='update-resources'></a> Configuring Memory and CPU Requests and Limits for Knative Serving Resources
 
@@ -29,7 +29,7 @@ To configure the memory and CPU allocation for the deployments in the knative-se
 
 ### <a id='resource-mgmt-example'></a> Example: Updating the Activator Deployment
 
-To give you an idea of how to use the `resource_management` option, let's take the example where we adjust both the CPU and memory, and requests and limits of the Knative `activator` deployment. By default, the `activator` Deployment is deployed with the following resources:
+To give you an idea of how to use the `resource_management` option, let's take the example where we adjust the CPU and memory requests and limits of the Knative `activator` deployment. By default, the `activator` Deployment is deployed with the following resources:
 
 ```console
 resources:
@@ -74,7 +74,7 @@ kubectl get deployment activator -n knative-serving -o=jsonpath='{.spec.template
 {"limits":{"cpu":"1","memory":"1000Mi"},"requests":{"cpu":"100m","memory":"100Mi"}}
 ```
 
-It's worth also mentioning that even though in the example above we updated all possible fields (i.e. CPU's request **and** limits and memory's request and limits), any of those fields are optional and can be ommited (except for the deployment's name), causing it to use the default value specified for these deployments.
+It's worth mentioning that even though in the example above we updated all possible fields (i.e. CPU's request **and** limits and memory's request and limits), any of those fields are optional and can be ommited (except for the deployment's name), causing it to use the default value specified for these deployments.
 
 For example, if you wanted to change only the CPU's limit and the memory's request of the Knative `controller`, you could provide the following configuration to `resource_management`:
 
