@@ -92,7 +92,6 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
 3. If you installed the API Auto Registration package as standalone,
    you must update the `api-auto-registration-values.yaml` and then update the package.
    Place the PEM encoded certificate into the `ca_cert_data` key of the values file.
-   See [Install API Auto Registration](installation.hbs.md).
    Run to update the package.
 
    ```console
