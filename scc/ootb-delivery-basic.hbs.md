@@ -2,11 +2,11 @@
 
 This topic is an overview of the Out of the Box Delivery Basic package for Supply Chain Choreographer.
 
-This package provides a reusable ClusterDelivery object that is responsible for
-delivering to an environment the Kubernetes configuration that is
-produced by the Out of the Box Supply Chains, including [Basic](ootb-supply-chain-basic.html),
-[Testing](ootb-supply-chain-testing.html), and
-[Testing With Scanning](ootb-supply-chain-testing-scanning.html).
+This package provides a reusable ClusterDelivery object that delivers the
+Kubernetes configuration that the Out of the Box Supply Chain produces to an
+environment, including [Basic](ootb-supply-chain-basic.html),
+[Testing](ootb-supply-chain-testing.html), and [Testing With
+Scanning](ootb-supply-chain-testing-scanning.html) supply chains.
 
 ## <a id="prerequisites"></a> Prerequisites
 
