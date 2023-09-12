@@ -11,8 +11,6 @@ For general information about the Tanzu Developer Portal Configurator and its ba
 
 Before you start, you must:
 
-<!-- Full profile not mentioned in main prereqs. Is full profile mandatory? -->
-
 - Fulfil all the [Prerequisites for the getting started guide](../getting-started.hbs.md#get-started-prereqs).
 - Have the Tanzu Developer Portal Configurator bundle available (`tpb.tanzu.vmware.com`).
 
@@ -138,14 +136,11 @@ To integrate the hello-world plug-in into your Tanzu Developer Portal:
 
     ![Screenshot of the Supply Chains tab in the Tanzu Developer Portal UI.](../images/configurator/tdp-configurator-workload.png)
 
-    Wait for the **Image Provider** step of the supply chain to be completed. <!-- How do you know this has completed? Is it in the Tanzu Dev Portal? If so, make "observe it in the `Supply Chains` section..." a mandatory step. -->
+    Wait for the **Image Provider** step of the supply chain to complete.
 
-1. Copy the address to the customized Tanzu Developer Portal's image.
-   From the **Supply Chains** tab of the Tanzu Developer Portal, click the box that follows
-   the **Image Provider** step and select the image address from the **Artifact Detail: Image Provider**
-   section:
-
-    <!-- How do you get this address to appear? Do you have to click on the box? -->
+1. From the **Supply Chains** tab of the Tanzu Developer Portal, click the box that follows
+   the **Image Provider** step and copy the address to the customized Tanzu Developer Portal's image
+   from the **Artifact Detail: Image Provider** section.
 
     ![Screenshot of the Supply Chains tab in the Tanzu Developer Portal UI with the image address highlighted.](../images/configurator/tdp-configurator-supply-chain.png)
 
