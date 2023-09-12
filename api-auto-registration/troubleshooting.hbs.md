@@ -67,9 +67,10 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
-3. If you installed the API Auto Registration package as standalone, you must update the `api-auto-registration-values.yaml` and then update the package.
-   Place the PEM encoded certificate into the `ca_cert_data` key of the values file. See [Install API Auto Registration](installation.hbs.md).
-   Run the following command to update the package.
+3. If you installed the API Auto Registration package as standalone,
+   you must update the `api-auto-registration-values.yaml` and then update the package.
+   Place the PEM encoded certificate into the `ca_cert_data` key of the values file.
+   Run to update the package.
 
    ```console
    tanzu package installed update api-auto-registration --version API-AUTO-REGISTRATION-VERSION --namespace tap-install --values-file api-auto-registration-values.yaml
