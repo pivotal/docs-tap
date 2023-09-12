@@ -177,9 +177,9 @@ To delete a workload:
 
    A notification appears showing that the workload was deleted.
 
-## <a id="switch-namespace"></a> Switch namespaces
+## <a id="switch-namespace"></a> Deploy to different namespace
 
-To switch the namespace where you created the workload:
+To deploy to a different namespace than where you created the workload:
 
 1. Go to **Code** > **Preferences** > **Settings**.
 1. Expand the **Extensions** section of the settings and click **Tanzu**.
