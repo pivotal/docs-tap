@@ -96,6 +96,7 @@
   - [How-to guides for operators](getting-started/add-test-and-security.hbs.md)
       - [Add testing and scanning](getting-started/add-test-and-security.hbs.md)
       - [Configure image signing](getting-started/config-supply-chain.hbs.md)
+      - [Integrate a plug-in into Tanzu Developer Portal](getting-started/customize-dev-portal.md)
   - [How-to guides for developers](getting-started/create-app-accelerator.hbs.md)
       - [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
       - [Generate an app](getting-started/generate-first-app.hbs.md)

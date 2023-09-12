@@ -5,7 +5,7 @@ by using the Configurator tool.
 The hello-world plug-in is a demonstration of the Configurator tool's capabilities.
 
 For general information about the Tanzu Developer Portal Configurator and its basic concepts, see
-[Tanzu Developer Portal Configurator](../tap-gui/configurator/about.hbs.md).
+[Overview of Configurator (beta)](../tap-gui/configurator/about.hbs.md).
 
 ## <a id="prereqs"></a>Prerequisites
 
