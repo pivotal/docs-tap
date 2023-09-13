@@ -37,7 +37,7 @@ This release includes the following changes, listed by component and area.
 
 - External Secrets Operator is now GA.
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
-  about your external secrets and secret stores. The CREATE command lets you create create cluster
+  about your external secrets and secret stores. The CREATE command lets you create cluster
   external secret and cluster secret stores. For more information, see the commands in the
   [External Secrets CLI reference section](external-secrets/reference/external-secrets.hbs.md).
 
