@@ -342,6 +342,6 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 
 ## <a id="workload-apply-config"></a> Update Workload Apply Configurations
 
-{{> 'partials/ide-extensions/workload-apply-configurations' }}
+{{> 'partials/ide-extensions/workload-apply-configuration' }}
 
 ![Preferences showing workload apply configurations](../images/vscode-workload-apply-configuration.png).
