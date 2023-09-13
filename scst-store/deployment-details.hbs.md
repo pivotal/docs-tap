@@ -61,6 +61,7 @@ This configuration is available in the following places:
 - `amr` in the `metadata_store` section configures the app service type.
 
 Supported values include: 
+
 - `LoadBalancer`
 - `ClusterIP`
 - `NodePort`. The
