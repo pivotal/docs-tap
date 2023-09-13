@@ -47,6 +47,18 @@ This release includes the following changes, listed by component and area.
   so that the CLI is compatible with every supported version of Tanzu Application Platform.
   See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
+##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Tanzu CLI Insight plug-in
+
+- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see <TODO: add in link>
+- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and [tanzu insight triage rebase](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/cli-docs/tanzu_insight_triage_rebase.hbs.md#tanzu-insight-triage-rebase).
+
+#### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu Developer Portal & plugins
+
+
+##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain plug-in
+
+- You can add triage analysis to vulnerabilities from a vulnerability scanner step. For more information, see [Triage Vulnerabilities](tap-gui/plugins/scc-tap-gui.hbs.md#triage-vulnerabilities)
+
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 Features: cert-manager
 
 - `cert-manager.tanzu.vmware.com` is upgraded to `cert-manager@1.12`.
@@ -90,6 +102,13 @@ This release includes the following changes, listed by component and area.
   For more information about updating default values, see [Configure Garbage collection for the Knative revisions](cloud-native-runtimes/how-to-guides/garbage_collection.hbs.md).
 
 - **Knative Serving v1.11**: Knative Serving v1.11 is available in Cloud Native Runtimes. For more information, see the [Knative v1.11 release notes](https://knative.dev/blog/releases/announcing-knative-v1-11-release/).
+
+#### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
+
+- Artifact Metadata Repository (AMR) is deployed by default. For more information, see [Artifact Metadata Repository](scst-store/amr/overview.hbs.md).
+- AMR [Authentication and authorization feature](scst-store/amr/auth.hbs.md) has been introduced.
+- AMR GraphQL now contains data for Images, Containers and Location. For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md)
+
 ---
 
 ### <a id='1-7-0-breaking-changes'></a> v1.7.0 Breaking changes
