@@ -10,16 +10,16 @@ This topic guides you through getting started with Tanzu Developer Tools for Int
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
-## <a id="launch-tanzu-dev-tools"> Launch Tanzu Developer Tools
+## <a id="run-tanzu-dev-tools"></a> Run Tanzu Developer Tools for IntelliJ
 
-Launch IntelliJ from the terminal, instead of through your operating system GUI, to
-avoid restricting the set of environment variables the app receives. This is especially relevant for
-macOS.
+Run IntelliJ from a CLI, instead of through your operating system GUI, to avoid restricting the set
+of environment variables the app receives. This is especially relevant for macOS.
 
-Limited environment variables can cause problems with cluster authentication for Tanzu Developer Tools.
-For example, a common situation is that a sanitized `PATH` does not provide access to
-the `gke-cloud-auth-plugin` installed on your system. This makes Tanzu Developer Tools unable to
-authenticate and access your GKE cluster.
+Limited environment variables can cause problems with cluster authentication for
+Tanzu Developer Tools for IntelliJ.
+For example, a common situation is that a sanitized `PATH` does not provide access to the
+`gke-cloud-auth-plugin` installed on your system.
+This makes Tanzu Developer Tools for IntelliJ unable to authenticate and access your GKE cluster.
 
 This situation is complex and different things can go wrong depending on:
 
@@ -28,15 +28,14 @@ This situation is complex and different things can go wrong depending on:
 - Your OS version
 - Which cloud provider and authentication method you are using
 
-All of these problems are most easily avoided simply by launching IntelliJ from a terminal.
-
-Launch IntelliJ from the macOS terminal by running:
+All of these problems are most easily avoided by running IntelliJ from a CLI.
+Run IntelliJ from a CLI in macOS by running:
 
 ```console
 open /Applications/IntelliJ\ IDEA.app
 ```
 
-## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
+## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools for IntelliJ
 
 {{> 'partials/ide-extensions/set-up-tanzu-dev-tools' }}
 
@@ -54,7 +53,7 @@ The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yam
 
 To create a `workload.yaml` file by using code snippets:
 
-1. Right-click on the IntelliJ project explorer and then click **New**.
+1. Right-click the IntelliJ project explorer and then click **New**.
 2. Select the Tanzu workload.
 3. Add the filename `workload`.
 4. Fill in the template.
@@ -100,7 +99,7 @@ For more information, see [Overview of Tanzu Developer Portal](../tap-gui/about.
 
 To create a `catalog-info.yaml` file by using the code snippets:
 
-1. Right-click on the IntelliJ project explorer and then click **New**.
+1. Right-click the IntelliJ project explorer and then click **New**.
 2. Select the Tanzu Catalog.
 3. Add the filename `catalog-info`.
 4. Fill in the template.
