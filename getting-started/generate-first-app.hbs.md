@@ -77,8 +77,6 @@ VS Code
   6. In the **Review and Generate** step, verify that all the information you provided
      is accurate, then click **Generate Project**.
 
-     ![The Review and Generate step in the Visual Studio Code UI.](../images/app-accelerator/generate-first-app/vscode-1-5.png)
-
   7. A dialog box appears for you to choose a location for the project to be stored on the local file system.
      Choose a directory or create a new one.
 
@@ -118,8 +116,6 @@ IntelliJ
 
   1. In the **Review and Generate** step, verify that all the information provided is accurate then
      click **Next**.
-
-      ![The Review and Generate pane for the accelerator showing the information configured in the previous steps.](../images/app-accelerator/intellij/app-accelerators-intellij-review.png)
 
   1. After the project has generated, click **Create** to open the new project in IntelliJ.
 
