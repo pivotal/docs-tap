@@ -82,52 +82,68 @@ A full example is as follows:
 #!
 #! usage:
 #!
-#! ytt -f client.yml --data-value ingress_domain=example.com --data-value-yaml 'authserver_selector={"name": "ci"}'
+#! ytt -f token-viewer.yaml --data-value ingress_domain=example.com --data-value-yaml 'authserver_selector={"name": "ci"}'
 #!
 #! Then navigate to http://token-viewer.<INGRESS_DOMAIN>
 #!
+
 #@ load("@ytt:data", "data")
 #@ fqdn = "token-viewer." + data.values.ingress_domain
 #@ redirect_uri = "http://" + fqdn + "/oauth2/callback"
+#@ namespace = data.values.namespace if "namespace" in data.values else "default"
+
 ---
 apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
 kind: ClientRegistration
 metadata:
-   name: my-client-registration
-   namespace: default
+  name: my-client-registration
+  namespace: #@ namespace
 spec:
-   authServerSelector:
-      matchLabels: #@ data.values.authserver_selector
-   redirectURIs:
-      - #@ redirect_uri
-   requireUserConsent: false
-   clientAuthenticationMethod: client_secret_basic
-   authorizationGrantTypes:
-      - "authorization_code"
-   scopes:
-      - name: "openid"
-      - name: "email"
-      - name: "profile"
-      - name: "roles"
+  authServerSelector:
+    matchLabels: #@ data.values.authserver_selector
+  redirectURIs:
+    - #@ redirect_uri
+  requireUserConsent: false
+  clientAuthenticationMethod: client_secret_basic
+  authorizationGrantTypes:
+    - "authorization_code"
+  scopes:
+    - name: "openid"
+    - name: "email"
+    - name: "profile"
+    - name: "roles"
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-application
-  namespace: default
+  name: token-viewer
+  namespace: #@ namespace
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: test-application
+      name: token-viewer
   template:
     metadata:
       labels:
-        name: test-application
+        name: token-viewer
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - image: bitnami/oauth2-proxy:7.3.0
           name: proxy
+          securityContext:
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           ports:
             - containerPort: 4180
               name: proxy-port
@@ -171,6 +187,15 @@ spec:
             - --prefer-email-to-user=true
         - image: python:3.9
           name: application
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           resources:
             limits:
               cpu: 100m
@@ -187,10 +212,10 @@ spec:
                   def do_GET(self):
                       if self.path == "/token":
                           self.token()
-                          return
+                      elif self.path == "/jwt":
+                          self.jwt()
                       else:
                           self.greet()
-                          return
 
                   def greet(self):
                       username = self.headers.get("x-forwarded-user")
@@ -200,6 +225,7 @@ spec:
                       page = f"""
                       <h1>It Works!</h1>
                       <p>You are logged in as <b>{username}</b></p>
+                      <p><a href="/jwt">Show me my id_token (JWT format)</a></p>
                       <p><a href="/token">Show me my id_token (JSON format)</a></p>
                       """
                       self.wfile.write(page.encode("utf-8"))
@@ -213,6 +239,13 @@ spec:
                       self.end_headers()
                       self.wfile.write(decoded.encode("utf-8"))
 
+                  def jwt(self):
+                      token = self.headers.get("Authorization").split("Bearer ")[-1]
+                      self.send_response(200)
+                      self.send_header("Content-type", "text/plain")
+                      self.end_headers()
+                      self.wfile.write(token.encode("utf-8"))
+
               server_address = ('', 8000)
               httpd = HTTPServer(server_address, Handler)
               httpd.serve_forever()
@@ -221,21 +254,22 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-application
-  namespace: default
+  name: token-viewer
+  namespace: #@ namespace
 spec:
   ports:
     - port: 80
-      targetPort: 4180
+      targetPort: proxy-port
+      name: proxy-svc-port
   selector:
-    name: test-application
+    name: token-viewer
 
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-application
-  namespace: default
+  name: token-viewer
+  namespace: #@ namespace
 spec:
   rules:
     - host: #@ fqdn
@@ -245,8 +279,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: test-application
+                name: token-viewer
                 port:
-                  number: 80
-
+                  name: proxy-svc-port
 ```
