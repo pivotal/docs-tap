@@ -10,35 +10,35 @@ This topic guides you through getting started with Tanzu Developer Tools for Int
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
-## <a id="launching-tanzu-dev-tools"> Launching Tanzu Developer Tools
+## <a id="launch-tanzu-dev-tools"> Launch Tanzu Developer Tools
 
-**It is recommended to launch the IntelliJ from the terminal**. 
+Launch IntelliJ from the terminal, instead of through your operating system GUI, to
+avoid restricting the set of environment variables the app receives. This is especially relevant for
+macOS.
 
-This is especially true on Mac OS, because apps launched from Mac OS GUI will receive a
-restricted set of environment variables compared to a terminal.
-
-This has a tendency to cause problems with cluster authentication for Tanzu Developer Tools. 
-For example, a common situation is that a sanitised `PATH` does not provide access to 
-the `gke-cloud-auth-plugin` installed on your system. This will make Tanzu Developer Tools 
-unable to authenticate and access your GKE cluster.
+Limited environment variables can cause problems with cluster authentication for Tanzu Developer Tools.
+For example, a common situation is that a sanitized `PATH` does not provide access to
+the `gke-cloud-auth-plugin` installed on your system. This makes Tanzu Developer Tools unable to
+authenticate and access your GKE cluster.
 
 This situation is complex and different things can go wrong depending on:
 
-- precisely how you installed various cloud-related CLI tools. 
-- how you set environment variables.
-- OS version. 
-- which cloud provider and authentication method you are using.
+- Precisely how you installed various cloud-related CLI tools
+- How you set environment variables
+- Your OS version
+- Which cloud provider and authentication method you are using
 
-All of these problems are most easily avoided simply by launching IntelliJ from a terminal. Example terminal command (for Mac OS):
+All of these problems are most easily avoided simply by launching IntelliJ from a terminal.
 
-```
+Launch IntelliJ from the macOS terminal by running:
+
+```console
 open /Applications/IntelliJ\ IDEA.app
 ```
 
 ## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
 {{> 'partials/ide-extensions/set-up-tanzu-dev-tools' }}
-
 
 ## <a id="create-workload-yaml"></a> Create the `workload.yaml` file
 
