@@ -1,8 +1,11 @@
 # Configure an ImageVulnerabilityScan for Trivy
 
-This topic tells you how to configure an ImageVulnerabilityScan for Trivy. 
+This topic gives you an example of how to configure an ImageVulnerabilityScan (IVS) for Trivy.
 
-Use the following ImageVulnerabilityScan configuration:
+## <a id="example"></a> Example ImageVulnerabilityScan
+
+This section gives you an example IVS that uses Trivy to scan a targeted image and push the results to the specified registry location.
+For information about the IVS specification, see [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -31,6 +34,7 @@ spec:
     - $(params.image)
 ```
 
-Where
+Where:
+
 - `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
-- `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For additional publicly available Trivy images, refer to [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information on the usage of the Trivy CLI, refer to the [Trivy documentation](https://github.com/aquasecurity/trivy).
+- `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For information about publicly available Trivy images, see [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information about using the Trivy CLI, see the [Trivy documentation](https://github.com/aquasecurity/trivy).
