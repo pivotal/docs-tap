@@ -26,8 +26,8 @@ This repo contains the content for Tanzu Application Platform docs.
 | 1-3-11 | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-3-10 | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-2-2  | N/A | [Archived](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap.pdf) |
-| 1-1    | N/A | [Archived](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap.pdf) | 
-| 1-0    | N/A | [Archived](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap.pdf) | 
+| 1-1    | N/A | [Archived](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap.pdf) |
+| 1-0    | N/A | [Archived](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap.pdf) |
 
 ## Components with their own repositories
 
@@ -62,6 +62,7 @@ stored in dedicated repositories.
 |Contour|Contour|
 |Crossplane|Crossplane|
 |Developer Conventions|Developer Conventions|
+|External Secrets Operator|External Secrets Operator|
 |Flux CD Source Controller|Flux CD Source Controller|
 |Local Source Proxy|Local Source Proxy|
 |Namespace Provisioner|Namespace Provisioner|

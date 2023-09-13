@@ -1,13 +1,13 @@
 # Use External Secrets Operator in Tanzu Application Platform
 
-The [External Secrets Operator](https://external-secrets.io) is a Kubernetes operator that integrates
+The External Secrets Operator is a Kubernetes operator that integrates
 with external secret management systems, for example, Google Secrets Manager and Hashicorp Vault.
 It reads information from external APIs and automatically injects the values into a Kubernetes secret.
 
 Tanzu Application Platform (commonly known as TAP) uses the
-[External Secrets Operator](https://external-secrets.io) to simplify Kubernetes secret life cycle management.
+External Secrets Operator to simplify Kubernetes secret life cycle management.
 The `external-secrets` plug-in, which is available in the Tanzu CLI, interacts with the
-[External Secrets Operator](https://external-secrets.io) API. Users can use this CLI plug-in to
+External Secrets Operator API. Users can use this CLI plug-in to
 create and view External Secrets Operator resources on a Kubernetes cluster.
 
 External Secrets Operator is available in Tanzu Application Platform packages with a Carvel Package

@@ -187,12 +187,12 @@ source code or image, including vulnerabilities from past scans.
 > **Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
 > `log4shell` package.
 
-### Triage Vulnerabilities
+### <a id="triage-vul"></a> Triage vulnerabilities
 
-This functionality allows you to store an analysis for each of the vulnerabilities found in the scan.
+This feature enables you to store analysis data for each of the vulnerabilities found in the scan.
 
-#### Enable Triage Status
-The triage vulnerability feature is turned off by default in Tanzu Developer Portal. To enable, add the following to your config section within the tap-values.yaml file. See the following example:
+The feature is turned off by default in Tanzu Developer Portal. To enable the feature, add the
+following YAML to your configuration section within the `tap-values.yaml` file:
 
 ```yaml
 # tap-values.yaml
@@ -205,16 +205,16 @@ tap_gui:
           enableTriageUI: false
 ```
 
-#### Triaging 
+When you select a scan stage, the system shows a table with vulnerabilities and a **Triage Status**
+column where you can see the latest status stored for each vulnerability.
 
-When you select a scan stage, the system will show a table with vulnerabilities and a **Triage Status** column where you will see the latest status stored for each vulnerability. 
+![Vulnerabilities table displaying information for scan stages.](images/scc-vulnerabilities.png)
 
-![Screenshot of the vulnerabilities table for scans stages.](images/scc-vulnerabilities.png)
+The triage panel enables you to select a status, justification, and resolutions from a set of
+options, and has a text box to add extra details for the analysis. After you submit this information,
+the status is updated on the table and the latest analysis is visible the next time you open the
+panel.
 
-The triage panel will let you select a status, justification and resolutions from a set of options and a field to introduce additional details for this analysis; once you submit it, the status will be updated on the table and you will see the latest analysis stored the next time you open the panel. 
-
-![Screenshot of the vulnerabilities table for scans stages.](images/scc-triage-drawer.png)
-
-
-
-> **Note** **Needs triage** is the default status for all vulnerabilities. Once you have submitted an analysis, the status will change and the information button next to the status will show you the Vulnerability Analysis stored.
+**Needs triage** is the default status for all vulnerabilities. After you submit an analysis, the
+status changes and the information button next to the status shows you the stored vulnerability
+analysis.
