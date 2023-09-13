@@ -562,6 +562,23 @@ which contains the minimum configurations required to deploy Tanzu Application P
 
     For more information, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
+1. (Optional) Update Tanzu Application Platform to use the latest patch:
+
+    ```yaml
+    tap_install:
+        ...
+        version:
+            package_repo_bundle_tag: "1.5.6" # Populate these values with the latest patch version
+            package_version: "1.5.6"
+    ```
+
+    Where:
+
+    - `package_repo_bundle_tag` is the version of Tanzu Application Platform you wish to upgrade to.
+    - `package_version` is the version of Tanzu Application Platform you wish to upgrade to. This version should match `package_repo_bundle_tag`.
+
+    >**Note** Tanzu GitOps RI does not provide a separate artifact for each patch version within a minor line. For example Tanzu Application Platform 1.5.x will contain the gitops artifact with version 1.5.0 only.
+
 1. Review the contents of `tap-values.yaml` and move all sensitive values into
 the AWS Secrets Store secret created in the [Review and store Tanzu Application Platform installation config](#reviewstore-tap-installation-config) section.
 
