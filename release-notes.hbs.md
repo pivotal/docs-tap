@@ -511,6 +511,19 @@ This release has the following security fixes, listed by component and area.
 </ul></details></td>
 </tr>
 <tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31484">CVE-2023-31484</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>app-scanning.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-g2j6-57v7-gm8c">GHSA-g2j6-57v7-gm8c</a></li>
+<li><a href="https://github.com/advisories/GHSA-m8cg-xc2p-r3fc">GHSA-m8cg-xc2p-r3fc</a></li>
+</ul></details></td>
+</tr>
+<tr>
 <td>base-jammy-stack-lite.buildpacks.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4015">CVE-2023-4015</a></li>
@@ -554,6 +567,13 @@ This release has the following security fixes, listed by component and area.
 </ul></details></td>
 </tr>
 <tr>
+<td>fluxcd.source.controller.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
+</ul></details></td>
+</tr>
+<tr>
 <td>metadata-store.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2603">CVE-2023-2603</a></li>
@@ -576,12 +596,6 @@ This release has the following security fixes, listed by component and area.
 </ul></details></td>
 </tr>
 <tr>
-<td>api-portal.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31484">CVE-2023-31484</a></li>
-</ul></details></td>
-</tr>
-<tr>
 <td>tap-gui.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
 <li><a href="https://github.com/advisories/GHSA-h755-8qp9-cq85">GHSA-h755-8qp9-cq85</a></li>
@@ -593,20 +607,6 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4304">CVE-2022-4304</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3821">CVE-2022-3821</a></li>
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2097">CVE-2022-2097</a></li>
-</ul></details></td>
-</tr>
-<tr>
-<td>fluxcd.source.controller.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
-</ul></details></td>
-</tr>
-<tr>
-<td>app-scanning.apps.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-g2j6-57v7-gm8c">GHSA-g2j6-57v7-gm8c</a></li>
-<li><a href="https://github.com/advisories/GHSA-m8cg-xc2p-r3fc">GHSA-m8cg-xc2p-r3fc</a></li>
 </ul></details></td>
 </tr>
 </table>
