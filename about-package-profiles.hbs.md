@@ -135,6 +135,14 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
+- **[External Secrets Operator](external-secrets/about-external-secrets-operator.hbs.md)**
+
+  The [External Secrets Operator](https://external-secrets.io) is a Kubernetes operator that integrates
+  with external secret management systems, for example, Google Secrets Manager and Hashicorp Vault.
+  It reads information from external APIs and automatically injects the values into a Kubernetes secret.
+  Tanzu Application Platform uses the External Secrets Operator to simplify Kubernetes secret life cycle
+  management.
+
 - **[Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)**
 
   The main role of this source management component is to provide a common interface for artifact
