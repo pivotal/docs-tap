@@ -10,6 +10,31 @@ This topic guides you through getting started with Tanzu Developer Tools for Int
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
+## <a id="run-tanzu-dev-tools"></a> Run Tanzu Developer Tools for IntelliJ
+
+Run IntelliJ from a CLI, instead of through your operating system GUI, to avoid restricting the set
+of environment variables the app receives. This is especially relevant for macOS.
+
+Limited environment variables can cause problems with cluster authentication for
+Tanzu Developer Tools for IntelliJ.
+For example, a common situation is that a sanitized `PATH` does not provide access to the
+`gke-cloud-auth-plugin` installed on your system.
+This makes Tanzu Developer Tools for IntelliJ unable to authenticate and access your GKE cluster.
+
+This situation is complex and different things can go wrong depending on:
+
+- Precisely how you installed various cloud-related CLI tools
+- How you set environment variables
+- Your OS version
+- Which cloud provider and authentication method you are using
+
+All of these problems are most easily avoided by running IntelliJ from a CLI.
+Run IntelliJ from a CLI in macOS by running:
+
+```console
+open /Applications/IntelliJ\ IDEA.app
+```
+
 ## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
 {{> 'partials/ide-extensions/set-up-tanzu-dev-tools' }}
