@@ -38,23 +38,23 @@ development containers to an existing project:
 New project
 : To set up a new project by using accelerators and development containers:
 
-   1. From the Accelerator page in Tanzu Developer Portal, select the Tanzu Java Web App accelerator.
-   1. Select the options you want.
-   1. Select the check box for **Include .devcontainer.json (amd64 support only)**.
-   1. Open a project in VS Code.
-   1. Follow the VS Code prompts to restart the IDE in `devcontainer` to connect to the development
-      container.
+1.  From the Accelerator page in Tanzu Developer Portal, select the Tanzu Java Web App accelerator.
+1.  Select the options you want.
+1.  Select the check box for **Include .devcontainer.json (amd64 support only)**.
+1.  Open a project in VS Code.
+1.  Follow the VS Code prompts to restart the IDE in `devcontainer` to connect to the development
+    container.
 
 Existing project
 : To add a development container to an existing project:
 
-   1. Open the project with VS Code and ensure that the Tanzu Developer Tools for VS Code plug-in
-      is v1.1.0 or later.
-   2. Create an empty new file named `devcontainer`.
-   3. Type `tanzu devcontainer` and press Enter.
-   4. Rename the file as `.devcontainer.json`.
-   5. Follow the Visual Studio Code prompts to restart the IDE in `devcontainer` to connect to the
-      development container.
+1.  Open the project with VS Code and ensure that the Tanzu Developer Tools for VS Code plug-in
+    is v1.1.0 or later.
+2.  Create an empty new file named `devcontainer`.
+3.  Type `tanzu devcontainer` and press Enter.
+4.  Rename the file as `.devcontainer.json`.
+5.  Follow the Visual Studio Code prompts to restart the IDE in `devcontainer` to connect to the
+    development container.
 
 ## <a id="connect-to-cluster"></a> Connect to your cluster
 
@@ -78,6 +78,18 @@ palette.
 You are now ready to start working on your code, deploy it to your cluster, and monitor your
 workloads in the Tanzu Panel. To continue your development with Tanzu Developer Tools for VS Code,
 see [Use Tanzu Developer Tools for VS Code](using-the-extension.hbs.md).
+
+## <a id="using-mounts"></a> Using local file mounts
+
+You can add a volume bound to any local folder using the `mounts` property in the `.devcontainer.json` file, this is useful for instance to share your Kubernetes cluster credentials with the dev container, e.g. (macOS or Linux host):
+
+```console
+"mounts": [
+        "source=${localEnv:HOME}/.kube/,target=/home/vscode/.kube/,type=bind,consistency=cached"
+    ],
+```
+
+To see more information about using mounts with devcontainers please check VS Code [file mount documentation](https://code.visualstudio.com/remote/advancedcontainers/add-local-file-mount).
 
 ## <a id="cli-eula"></a> VMware General Terms and other legal requirements connected to Tanzu CLI
 
