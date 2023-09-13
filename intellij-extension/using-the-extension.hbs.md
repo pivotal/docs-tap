@@ -274,8 +274,8 @@ You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Develo
 
 ![Tanzu Workloads panel showing a workload that uses a native image.](../images/intellij-native-panel.png).
 
-## <a id="workload-apply-config"></a> Update Workload Apply Configurations
+## <a id="workload-apply-config"></a> Update Workload Apply configurations
 
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
 
-![Preferences showing workload apply configuration](../images/intellij-workload-apply-configuration.png).
+![Preferences showing the workload apply configuration.](../images/intellij-workload-apply-configuration.png).

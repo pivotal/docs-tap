@@ -179,7 +179,7 @@ To delete a workload:
 
 ## <a id="switch-namespace"></a> Deploy to different namespaces
 
-To deploy to a different namespace than where you created the workload:
+To deploy to a different namespace from where you created the workload:
 
 1. Go to **Code** > **Preferences** > **Settings**.
 1. Expand the **Extensions** section of the settings and click **Tanzu**.
@@ -340,7 +340,7 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 
 ![Tanzu Workloads panel showing a workload that uses a native image.](../images/vscode-native-panel.png).
 
-## <a id="workload-apply-config"></a> Update Workload Apply Configurations
+## <a id="workload-apply-config"></a> Update Workload Apply configurations
 
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
 
