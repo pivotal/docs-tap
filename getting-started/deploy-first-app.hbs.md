@@ -125,13 +125,11 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository text box. For example,
 `https://github.com/USERNAME/PROJECTNAME/blob/main/catalog-info.yaml`.
 
-1. Click **ANALYZE**.
-
     ![Screenshot of the page to register an existing component, showing Repository URL text box and Analyze button.](../images/getting-started-tap-gui-6.png)
 
-1. Review the catalog entities to be added and click **IMPORT**.
+1. Click **ANALYZE**.
 
-    ![Screenshot of page for reviewing catalog entities to be added, showing entity details and Import button.](../images/getting-started-tap-gui-7.png)
+1. Review the catalog entities to be added and click **IMPORT**.
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
