@@ -129,9 +129,21 @@ spec:
       labels:
         name: token-viewer
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - image: bitnami/oauth2-proxy:7.3.0
           name: proxy
+          securityContext:
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           ports:
             - containerPort: 4180
               name: proxy-port
@@ -175,6 +187,15 @@ spec:
             - --prefer-email-to-user=true
         - image: python:3.9
           name: application
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           resources:
             limits:
               cpu: 100m
