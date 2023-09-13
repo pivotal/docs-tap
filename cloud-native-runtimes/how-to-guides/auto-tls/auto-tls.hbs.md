@@ -1,7 +1,7 @@
 # Securing your web workloads in Cloud Native Runtimes
 
 This topic gives you an overview of securing HTTP connections using TLS
-certificates in Cloud Native Runtimes, commonly known as CNR, for VMware Tanzu Application Platform and
+certificates in Cloud Native Runtimes, commonly known as CNRs, for VMware Tanzu Application Platform and
 helps you configure Transport Layer Security (TLS).
 
 ## <a id="prereqs"></a> Prerequisites
@@ -15,8 +15,8 @@ This section describes default configuration, custom configuration, obtaining, a
 
 ### <a id="default-config"></a> Default TLS configuration in Cloud Native Runtimes
 
-When installing Tanzu Application Platform by using [profiles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/about-package-profiles.html#installation-profiles-in-tanzu-application-platform-v16-1),
-the [cert-manager package](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/cert-manager-about.html)
+When installing Tanzu Application Platform by using [profiles](../../../about-package-profiles.hbs.md),
+the [cert-manager package](../../../cert-manager/about.hbs.md)
 is used to facilitate the acquisition, management, and renewal of TLS certificates.
 
 Cloud Native Runtimes automatically acquires TLS certificates for workloads through the shared ingress issuer
@@ -27,8 +27,8 @@ in Tanzu Application Platform specifies the ingress issuer and it refers to a `c
 By default, the ingress issuer is self-signed and has limits. For more information about
 the shared ingress issuer, see the following Tanzu Application Platform documentation:
 
-- [Ingress certificates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/security-and-compliance-tls-and-certificates-ingress-about.html)
-- [Shared ingress issuer](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/security-and-compliance-tls-and-certificates-ingress-issuer.html)
+- [Ingress certificates](../../../security-and-compliance/tls-and-certificates/ingress/about.hbs.md)
+- [Shared ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md)
 
 The following TLS features are in Cloud Native Runtimes by default:
 
@@ -58,7 +58,7 @@ There are a few ways to customize TLS configuration in Cloud Native Runtimes:
 
 You have the flexibility to replace Tanzu Application Platform's default ingress issuer with any other `certificate authority`
 that is [compliant with cert-manager ClusterIssuer](https://cert-manager.io/docs/configuration/). For information about how to replace the default ingress issuer, see
-[Replacing the default ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md).
+[Replacing the default ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md#replace).
 
 Cloud Native Runtimes uses the issuer specified by the `shared.ingress_issuer` configuration value to issue certificates
 for your workload automatically.

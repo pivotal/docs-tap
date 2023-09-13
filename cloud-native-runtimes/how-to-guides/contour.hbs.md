@@ -1,7 +1,7 @@
 # Installing Cloud Native Runtimes with your Existing Contour Installation
 
 This topic describes how you can configure Cloud Native Runtimes, commonly known
-as CNR, with your existing Contour instance. Cloud Native Runtimes uses Contour
+as CNRs, with your existing Contour instance. Cloud Native Runtimes uses Contour
 to manage internal and external access to the services in a cluster.
 
 ## <a id='overview'></a> About using Contour with Cloud Native Runtimes
@@ -12,9 +12,9 @@ Follow the instructions in this topic if:
 - You see an error about `an existing Contour installation` when you install the Cloud Native Runtimes package.
 
 Cloud Native Runtimes needs two instances of Contour:
- 
-- an instance for exposing services outside the cluster 
-- an instance for services that are private in your network. 
+
+- an instance for exposing services outside the cluster
+- an instance for services that are private in your network.
 
 If installed as part of a Tanzu Application Platform profile,
 by default Cloud Native Runtimes use the Contour instance installed in the
@@ -22,8 +22,7 @@ namespace `tanzu-system-ingress` for both internal and external traffic.
 
 If you already use a Contour instance to route requests from clients outside and
 inside the cluster, you can use your own Contour if it matches the Contour
-version used by [Tanzu Application's
-Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/cert-manager-install.html).
+version used by [Tanzu Application's Platform](../../cert-manager/install.hbs.md).
 
 You can use the same single instance of Contour for both internal and external
 traffic. However, this causes Contour to handle internal and external traffic

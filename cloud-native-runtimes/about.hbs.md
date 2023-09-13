@@ -6,14 +6,14 @@ This topic gives you an overview what Cloud Native Runtimes is and how you can u
 
 Cloud Native Runtimes (CNRs) is enterprise supported Knative, with Carvel tools for deployment and Contour for networking.
 CNRs offers everything Knative does and some extras that make it ideal for cloud-native application development.
-Cloud Native Runtimes gives developers environmental simplicity and administrators deployment control. It works on any single Kubernetes cluster running Kubernetes v1.25 and later.
+Cloud Native Runtimes gives developers environmental simplicity and administrators deployment control. It works on any single Kubernetes cluster running Kubernetes v1.26 and later.
 
 The Cloud Native Runtimes component documentation consists of the following sections:
 
-- [How-to guides](how-to-guides/index.hbs.md) give you steps to solve a specific problem.
+- [How-to Guides](how-to-guides/index.hbs.md) give you steps to solve a specific problem.
 - [Reference](reference/index.hbs.md) give you specific information, such as the CNRs Compatibility Matrix.
 
-CNR uses Knative Serving to provide:
+CNRs uses Knative Serving to provide:
 
 - Automatic pod scaling
 - Traffic splitting by code release version
@@ -21,12 +21,12 @@ CNR uses Knative Serving to provide:
 Cloud Native Runtimes simplifies the Developer experience.
 
 | Kubernetes Developers must know: | Cloud Native Runtimes Developers must know: |
-|-------------------------------------|------------------------------------------------|
-| Pods                                | Pods                                           |
-| Deployment and Rollout Progress       | Knative Service                                |
-| Service (networking model)          |_n/a_                                                |_n/a_
-| Ingress                             |_n/a_                                                |_n/a_
-| Labels and selectors                |_n/a_                                                |_n/a_
+|----------------------------------|---------------------------------------------|
+| Pods                             | Pods                                        |
+| Deployment and Rollout Progress  | Knative Service                             |
+| Service (networking model)       |_n/a_                                        |
+| Ingress                          |_n/a_                                        |
+| Labels and selectors             |_n/a_                                        |
 
 Cloud Native Runtimes increases Administrator control and support.
 

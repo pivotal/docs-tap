@@ -1,6 +1,6 @@
 # Use your existing TLS Certificate for Cloud Native Runtimes
 
-This topic tells you how to use your existing TLS Certificate for Cloud Native Runtimes, commonly known as CNR.
+This topic tells you how to use your existing TLS Certificate for Cloud Native Runtimes, commonly known as CNRs.
 
 ## <a id='overview'></a> Overview
 
@@ -14,14 +14,14 @@ set the `cnrs.ingress_issuer` configuration to an empty value. For detailed inst
 
 ## <a id='prereqs'></a> Prerequisites
 
-In order to configure TLS for Cloud Native Runtimes, you must first configure a Service Domain. For more information, see [Configuring External DNS with CNR](./external_dns.hbs.md).
+In order to configure TLS for Cloud Native Runtimes, you must first configure a Service Domain. For more information, see [Configuring External DNS with CNRs](./external_dns.hbs.md).
 
 ## <a id='config'></a> Configure TLS
 
 To configure your TLS certificate for the created Knative Services, follow the steps:
 
 1. Create a Kubernetes Secret to hold your TLS Certificate:
-    
+
     ```console
     kubectl create -n DEVELOPER-NAMESPACE secret tls SECRET_NAME \
       --key key.pem \
@@ -29,7 +29,7 @@ To configure your TLS certificate for the created Knative Services, follow the s
     ```
 
 1. Create a delegation. To do so, create a `tlscertdelegation.yaml` file:
-    
+
     ```yaml
       apiVersion: projectcontour.io/v1
       kind: TLSCertificateDelegation
@@ -42,11 +42,11 @@ To configure your TLS certificate for the created Knative Services, follow the s
             targetNamespaces:
               - "DEVELOPER-NAMESPACE"
     ```
-    
+
     Where `SECRET-NAME` is the name of the Kubernetes secret you created earlier.
 
 1. Apply the YAML file by running:
-    
+
     ```console
     kubectl apply -f tlscertdelegation.yaml
     ```
@@ -60,7 +60,7 @@ To configure your TLS certificate for the created Knative Services, follow the s
     ```
 
     Where `SECRET-NAME` is the name of the Kubernetes secret you created earlier.
-    
+
     Where `DEVELOPER-NAMESPACE` is the name of the namespace where the secret was created.
 
 1. Update Tanzu Application Platform.

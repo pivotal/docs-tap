@@ -1,15 +1,15 @@
-# Cloud Native Runtimes how-to guides
+# Cloud Native Runtimes How-to Guides
 
-This topic tells you the how-to guides available for Cloud Native Runtimes:
+This topic tells you the how-to guides available for Cloud Native Runtimes (CNRs):
 
-- [CNRs for App Operators](./app-operators/index.hbs.md)
-- [Securing Web Workloads in Cloud Native Runtimes](./auto-tls/index.hbs.md)
-- [Configure Garbage collection for the Knative Revisions](./garbage_collection.hbs.md)
-- [AVI-CNRs Integration](./avi-cnr-integration.hbs.md)
-- [Contour](./contour.hbs.md)
-- [Customize Cloud Native Runtimes](./customizing-cnrs.hbs.md)
-- [Configure External DNS](./external_dns.hbs.md)
-- [Use Existing TLS Certificate with Cloud Native Runtimes](./knative-default-tls.hbs.md)
-- [Observability](./observability.hbs.md)
+- [NSX Advanced Load Balancer (Avi)-CNRs Integration](./avi-cnr-integration.hbs.md)
+- [CNRs Guide for App Operators](./app-operators/index.hbs.md)
+- [CNRs-Observability Integrations](./observability.hbs.md)
+- [Configure Garbage Collection for Knative Revisions](./garbage_collection.hbs.md)
+- [Configure an External DNS for CNRs](./external_dns.hbs.md)
+- [Customize CNRs](./customizing-cnrs.hbs.md)
+- [Installing CNRs with an Existing Contour Installation](./contour.hbs.md)
+- [Secure Web Workloads in CNRs](./auto-tls/index.hbs.md)
 - [TSM-CNRs Integration](./tsm-cnr-integration.hbs.md)
-- [Troubleshooting](./troubleshooting.hbs.md)
+- [Troubleshoot](./troubleshooting.hbs.md)
+- [Use Existing TLS Certificate with CNRs](./knative-default-tls.hbs.md)

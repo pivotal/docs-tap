@@ -1,6 +1,6 @@
 # Configuring Cloud Native Runtimes with Tanzu Service Mesh
 
-This topic tells you how to configure Cloud Native Runtimes, commonly known as CNR, with Tanzu Service Mesh.
+This topic tells you how to configure Cloud Native Runtimes, commonly known as CNRs, with Tanzu Service Mesh.
 
 ## <a id='overview'></a> Overview
 
@@ -19,7 +19,7 @@ see [Tanzu Service Mesh Documentation](https://docs.vmware.com/en/VMware-Tanzu-S
 
 ## <a id='prerecs'></a>Prerequisites
 
-The following prerequisites are required: 
+The following prerequisites are required:
 
 - A cluster attached to Tanzu Service Mesh
 - You haven't installed Cloud Native Runtimes
@@ -31,10 +31,10 @@ The following prerequisites are required:
 Configure Tanzu Service Mesh to ignore namespaces related to Cloud Native Runtimes:
 
 1. Navigate to the **Cluster Overview** tab in the Tanzu Service Mesh UI.
-2. On the cluster where you want to install Cloud Native Runtimes, click **...**. 
+2. On the cluster where you want to install Cloud Native Runtimes, click **...**.
 3. Click **Edit Cluster...**.
 4. Create an Is Exactly rule for each of the following namespaces:
-    
+
     - CONTOUR-NS
     - knative-serving
     - tap-install

@@ -1,6 +1,6 @@
 # Configuring Observability for Cloud Native Runtimes
 
-This topic tells you how to configure observability for Cloud Native Runtimes, commonly known as CNR.
+This topic tells you how to configure observability for Cloud Native Runtimes, commonly known as CNRs.
 
 ## <a id='overview'></a> Overview
 
@@ -202,7 +202,7 @@ then, configure the Wavefront proxy to consume Zipkin spans:
 4. Confirm that the Wavefront Proxy is running and working.
 
    Verify if pods are running. For more information about how to test a proxy, see the [Wavefront documentation](https://docs.wavefront.com/proxies_installing.html#test-a-proxy).
-   
+
    ```console
    kubectl get pods -n ${WF_NAMESPACE}
    ```
@@ -243,7 +243,7 @@ then, configure the Wavefront proxy to consume Zipkin spans:
    ```
 
    The ConfigMap looks like this example:
-   
+
    ```yaml
    apiVersion: v1
    kind: ConfigMap
