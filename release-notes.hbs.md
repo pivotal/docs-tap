@@ -33,11 +33,19 @@ This release includes the following changes, listed by component and area.
 
 - The default interval for new `ConfigurationSlice` resources is now 60 seconds.
 
+#### <a id='1-7-0-eso'></a> v1.7.0 Features: External Secrets Operator
+
+- External Secrets Operator is now GA.
+- Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
+  about your external secrets and secret stores. The CREATE command lets you create create cluster
+  external secret and cluster secret stores. For more information, see the commands in the
+  [External Secrets CLI reference section](external-secrets/reference/external-secrets.hbs.md).
+
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI & plugins
 
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
-so that the CLI is compatible with every supported version of Tanzu Application Platform.
-See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
+  so that the CLI is compatible with every supported version of Tanzu Application Platform.
+  See [Install Tanzu CLI](install-tanzu-cli.hbs.md) for more details.
 
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 Features: cert-manager
 
