@@ -35,7 +35,10 @@ This topic guides you through creating an accelerator and registering it in a Ta
 
 ## <a id="create-simple-project"></a>Create a simple project
 
-### Set up the project directory
+To create your project, follow these instructions to set up the project directory, prepare the
+`README.md` and `accelerator.yaml`, and test your accelerator.
+
+### <a id="set-up-directory"></a> Set up the project directory
 
 1. Create a new directory for the project named `myProject` and change to the newly created
    directory.
@@ -209,34 +212,29 @@ project residing inside a Git repository. For this example, [GitHub](https://git
 
 ## <a id="register-accelerator"></a>Register the accelerator to the Tanzu Application Platform and verify project generation output
 
-Now that the accelerator is committed to its own repository, the accelerator can be registered to
-Tanzu Developer Portal for developers to generate projects from the newly created
-accelerator.
+Now that the accelerator is committed to its own repository, you can register the accelerator to
+Tanzu Developer Portal for developers to generate projects from the newly created accelerator.
 
-1. **Using the URL of the Git repository and branch name created earlier**, run the following
-   command using the Tanzu CLI to register the accelerator to Tanzu Developer Portal.
+To do so, use the URL of the Git repository and branch name created earlier and run the following
+command using the Tanzu CLI to register the accelerator to Tanzu Developer Portal.
 
-    > **Note** `tanzu accelerator create` works with monorepositories as well. Add the
-    > `--git-sub-path` parameter with the desired subpath to fetch the accelerator project in that
-    > directory. For more information, see [tanzu accelerator
-    > create](../cli-plugins/accelerator/command-reference/tanzu_accelerator_create.hbs.md).
+> **Note** `tanzu accelerator create` works with monorepos as well. Add the
+> `--git-sub-path` parameter with the desired subpath to fetch the accelerator project in that
+> directory. For more information, see [tanzu accelerator
+> create](../cli-plugins/accelerator/command-reference/tanzu_accelerator_create.hbs.md).
 
-    ```bash
-    tanzu accelerator create simple-accelerator --git-repository https://github.com/myusername/myprojectrepository --git-branch main
-    ```
+```bash
+tanzu accelerator create simple-accelerator --git-repository https://github.com/myusername/myprojectrepository --git-branch main
+```
 
-    The accelerator can take time to reconcile. After it has reconciled, it is available for use in
-    Tanzu Developer Portal and the Application Accelerator extension for Visual Studio Code.
+The accelerator can take time to reconcile. After it has reconciled, it is available for use in
+Tanzu Developer Portal and the Application Accelerator extension for Visual Studio Code.
 
 ## Verify project generation output by using Tanzu Developer Portal
 
 1. Navigate to your organization's instance of Tanzu Developer Portal.
 
-    ![Home screen image of Tanzu Developer Portal.](../images/app-accelerator/getting-started-1-1.png)
-
 2. On the left navigation pane, click **Create**.
-
-    ![Image of highlighting the Create button in Tanzu Developer Portal.](../images/app-accelerator/getting-started-1-2.png)
 
 3. Using the search bar near the left side of the page, search for `simple accelerator`. After
    you've found it, click **Choose** on the accelerator card.
