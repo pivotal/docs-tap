@@ -61,10 +61,10 @@ Parameters:
       VMware recommends that you use the underlying library for fetching the source code.
     </td>
     <td>
-      <pre><code>
+      <p align ="left">
       - name: gitImplementation
         value: go-git
-      </code></pre>
+      </p>
     </td>
   </tr>
 
@@ -76,10 +76,10 @@ Parameters:
       For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
     <td>
-      <pre><code>
+      <p align ="left">
       - name: gitops_ssh_secret
         value: git-credentials
-      </code></pre>
+      </p>
     </td>
   </tr>
 </table>
