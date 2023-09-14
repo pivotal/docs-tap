@@ -15,7 +15,7 @@ alt="A demonstration of the tanzu insight cli plug-in. Querying for the supply c
 
 ## Using the Tanzu Insight CLI plug-in
 
-the Tanzu Insight CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, and CVE identifier to understand security risks.
+The Tanzu Insight CLI plug-in is the primary way to view results from the Supply Chain Security Tools - Scan of source code and image files.  Use it to query by source code commit, image digest, and CVE identifier to understand security risks.
 
 See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to install, configure, and use `tanzu insight`.
 
