@@ -45,7 +45,7 @@ To install Spring Boot conventions:
     --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example: `1.4.0`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example: `{{ vars.tap_version }}`.
 
     For example:
 
@@ -63,7 +63,7 @@ To install Spring Boot conventions:
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version 1.4.0 \
+   --version \{{ vars.tap_version }} \
    --namespace tap-install
    ```
 
@@ -80,7 +80,7 @@ To install Spring Boot conventions:
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-   PACKAGE-VERSION:         1.4.0
+   PACKAGE-VERSION:         \{{ vars.tap_version }}
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:
