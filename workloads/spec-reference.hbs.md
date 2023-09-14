@@ -58,7 +58,7 @@ Parameters:
   <tr>
     <td><code>gitImplementation</code></td>
     <td>
-      VMware recommends that you use the underlying library for fetching the source code.
+      VMware recommends that you use the underlying<br> library for fetching the source code.
     </td>
     <td>
       <p align ="left">
@@ -114,15 +114,15 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      The name of the service account (in the same namespace as the workload) to use
-      to provide the credentials to `ImageRepository` for fetching
+      Name of the service account (in the same namespace as the workload)<br> to use
+      to provide the credentials to `ImageRepository`<br> for fetching
       the container images.
     </td>
     <td>
-      <pre>
-      - name: serviceAccount
+      <p align ="left">
+      - name: serviceAccount<br>
         value: default
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -157,16 +157,16 @@ Parameters:
       Points to the maven artifact to fetch and the polling interval.
     </td>
     <td>
-      <pre>
-      - name: maven
-        value:
-          artifactId: springboot-initial
-          groupId: com.example
-          version: RELEASE
-          classifier: sources         # optional
+      <p align ="left">
+      - name: maven<br>
+        value:<br>
+          artifactId: springboot-initial<br>
+          groupId: com.example<br>
+          version: RELEASE<br>
+          classifier: sources         # optional<br>
           type: # optional
-          artifactRetryTimeout: 1m0s  # optional
-      </pre>
+          artifactRetryTimeout: 1m0s  # optional<br>
+      </p>
     </td>
   </tr>
 </table>
@@ -211,12 +211,12 @@ Parameters:
       this parameter, it's possible to override the behavior.
     </td>
     <td>
-      <pre>
-      - name: testing_pipeline_matching_labels
-        value:
-          apps.tanzu.com/pipeline: test
-          my.company/language: golang
-      </pre>
+      <p alignment ="left">
+      - name: testing_pipeline_matching_labels<br>
+        value:<br>
+          apps.tanzu.com/pipeline: test<br>
+          my.company/language: golang<br>
+      </p>
     </td>
   </tr>
 
@@ -229,12 +229,12 @@ Parameters:
       `source-revision` and the extra ones declared in this table.
     </td>
     <td>
-      <pre>
-      - name: testing_pipeline_params
-        value:
-        - name: verbose
-          value: true
-      </pre>
+      <p alignment ="left">
+      - name: testing_pipeline_params<br>
+        value:<br>
+        - name: verbose<br>
+          value: true<br>
+      </p>
     </td>
   </tr>
 
@@ -270,28 +270,28 @@ Parameters:
   <tr>
     <td><code>scanning_source_template</code></td>
     <td>
-      The name of the ScanTemplate object (in the same namespace as the workload) to
+      The name of the ScanTemplate object (in the same namespace as the workload)<br> to
       use for running the scans against the source code.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: scanning_source_template
         value: private-source-scan-template
-      </pre>
+      </p>
     </td>
   </tr>
 
   <tr>
     <td><code>scanning_source_policy</code></td>
     <td>
-      The name of the ScanPolicy object (in the same namespace as the workload) to
+      The name of the ScanPolicy object (in the same namespace as the workload)<br> to
       use when evaluating the scan results of a source scan.
     </td>
     <td>
-      <pre>
-      - name: scanning_source_policy
+      <p alignment ="left">
+      - name: scanning_source_policy<br>
         value: allowlist-policy
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -349,10 +349,10 @@ Parameters:
       container images it builds to the configured registry.
     </td>
     <td>
-      <pre>
-      - name: serviceAccount
+      <p alignment ="left">
+      - name: serviceAccount<br>
         value: default
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -363,10 +363,10 @@ Parameters:
       object created.
     </td>
     <td>
-      <pre>
-      - name: clusterBuilder
+      <p alignment ="left">
+      - name: clusterBuilder<br>
         value: nodejs-cluster-builder
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -378,13 +378,13 @@ Parameters:
       repositories that require credentials.
     </td>
     <td>
-      <pre>
-      - name: buildServiceBindings
-        value:
-          - name: settings-xml
-            kind: Secret
+      <p alignment ="left">
+      - name: buildServiceBindings<br>
+        value:<br>
+          - name: settings-xml<br>
+            kind: Secret<br>
             apiVersion: v1
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -394,10 +394,10 @@ Parameters:
       Enables the use of Tilt's live-update function.
     </td>
     <td>
-      <pre>
-      - name: live-update
+      <p alignment ="left">
+      - name: live-update<br>
         value: "true"
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -435,13 +435,16 @@ Parameters:
   <tr>
     <td><code>dockerfile</code></td>
     <td>The relative path to the Dockerfile file in the build context.</td>
-    <td><pre>./Dockerfile</pre></td>
+    <td>
+      <p alignment ="left">
+    ./Dockerfile</p></td>
   </tr>
 
   <tr>
     <td><code>docker_build_context</code></td>
     <td>The relative path to the directory where the build context is.</td>
-    <td><pre>.</pre></td>
+    <td>
+    <p alignment ="left">.</p></td>
   </tr>
 
   <tr>
@@ -449,7 +452,9 @@ Parameters:
     <td>
       List of flags to pass directly to Kaniko, such as providing arguments to a build.
     </td>
-    <td><pre>- --build-arg=FOO=BAR</pre></td>
+    <td>
+      <p alignment ="left">
+    --build-arg=FOO=BAR</p></td>
   </tr>
 </table>
 
@@ -482,10 +487,10 @@ Parameters:
       the container images.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: serviceAccount
         value: default
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -523,10 +528,10 @@ Parameters:
       use for running the scans against a container image.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: scanning_image_template
         value: private-image-scan-template
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -537,10 +542,10 @@ Parameters:
       use when evaluating the scan results of an image scan.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: scanning_image_policy
         value: allowlist-policy
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -582,10 +587,10 @@ Parameters:
       podtemplatespec.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: serviceAccount
         value: default
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -595,13 +600,13 @@ Parameters:
      An extra set of annotations to pass down to the PodTemplateSpec.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: annotations
         value:
           name: my-application
           version: v1.2.3
           team: store
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -611,10 +616,10 @@ Parameters:
       Put the workload in debug mode.
     </td>
     <td>
-      <pre>
-      - name: debug
+      <p alignment ="left">
+      - name: debug<br>
         value: "true"
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -624,10 +629,10 @@ Parameters:
       Enable live-updating of the code (for innerloop development).
     </td>
     <td>
-      <pre>
-      - name: live-update
+      <p alignment ="left">
+      - name: live-update<br>
         value: "true"
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -672,13 +677,13 @@ Only the `server` workload type has the following configurable parameters:
       cluster.
     </td>
     <td>
-      <pre>
+      <p alignment ="left">
       - name: ports
         value:
           - containerPort: 2025
             name: smtp
             port: 25
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -709,13 +714,13 @@ Parameters:
      ResourceClaim objects.
     </td>
     <td>
-      <pre>
-      - name: annotations
-        value:
-          name: my-application
-          version: v1.2.3
+      <p alignment ="left">
+      - name: annotations<br>
+        value:<br>
+          name: my-application<br>
+          version: v1.2.3<br>
           team: store
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -748,13 +753,13 @@ Parameters:
      An extra set of annotations to pass down to the APIDescriptor object.
     </td>
     <td>
-      <pre>
-      - name: annotations
-        value:
-          name: my-application
-          version: v1.2.3
+      <p alignment ="left">
+      - name: annotations<br>
+        value:<br>
+          name: my-application<br>
+          version: v1.2.3<br>
           team: store
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -765,17 +770,17 @@ Parameters:
     (its spec).
     </td>
     <td>
-      <pre>
-      - name: api_descriptor
-        value:
-          type: openapi
-          location:
-            baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/
-            path: "/v3/api"
-          owner: team-petclinic
-          system: pet-clinics
+      <p alignment ="left">
+      - name: api_descriptor<br>
+        value:<br>
+          type: openapi<br>
+          location:<br>
+            baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/<br>
+            path: "/v3/api"<br>
+          owner: team-petclinic<br>
+          system: pet-clinics<br>
           description: "example"
-      </pre>
+      </p>
     </td>
   </tr>
 </table>
@@ -824,10 +829,10 @@ Parameters:
       cluster.
     </td>
     <td>
-      <pre>
-      - name: serviceAccount
-        value: default
-      </pre>
+      <p alignment ="left">
+      - name: serviceAccount<br>
+        value: default<br>
+      </p>
     </td>
   </tr>
 </table>
@@ -901,10 +906,10 @@ Parameters:
       <code>go-git</code>.
     </td>
     <td>
-      <pre>
-      - name: gitImplementation
+      <p alignment ="left">
+      - name: gitImplementation<br>
         value: go-git
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -916,10 +921,10 @@ Parameters:
       the Git repository pointed at. See [Git authentication](../scc/git-auth.md).
     </td>
     <td>
-      <pre>
-      - name: gitops_ssh_secret
+      <p alignment ="left">
+      - name: gitops_ssh_secret<br>
         value: git-credentials
-      </pre>
+      </p>
     </td>
 
   </tr>
@@ -958,10 +963,10 @@ Parameters:
       deploy the objects to the cluster.
     </td>
     <td>
-      <pre>
-      - name: serviceAccount
+      <p alignment ="left">
+      - name: serviceAccount<br>
         value: default
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -1002,10 +1007,10 @@ Parameters:
       the Kubernetes objects to the cluster.
     </td>
     <td>
-      <pre>
-      - name: serviceAccount
+      <p alignment ="left">
+      - name: serviceAccount<br>
         value: default
-      </pre>
+      </p>
     </td>
   </tr>
 
@@ -1016,10 +1021,10 @@ Parameters:
       looking up the files to apply to the Kubernetes cluster.
     </td>
     <td>
-      <pre>
-      - name: gitops_sub_path
+      <p alignment ="left">
+      - name: gitops_sub_path<br>
         value: ./config
-      </pre>
+      </p>
     </td>
   </tr>
 
