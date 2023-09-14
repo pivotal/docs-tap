@@ -292,8 +292,8 @@ To create an accelerator using a private Git repository, first create a secret w
 ```console
 kubectl create secret generic https-credentials \
     --namespace accelerator-system \
-    --from-literal=username=<user> \
-    --from-literal=password=<access-token>
+    --from-literal=username=USER \
+    --from-literal=password=ACCESS-TOKEN
 ```
 
 Verify that your secret was created by running:
@@ -352,9 +352,9 @@ a secret with the HTTP credentials and the certificate.
 ```console
 kubectl create secret generic https-ca-credentials \
     --namespace accelerator-system \
-    --from-literal=username=<user> \
-    --from-literal=password=<access-token> \
-    --from-file=caFile=<path-to-CA-file>
+    --from-literal=username=USER \
+    --from-literal=password=ACCESS-TOKEN \
+    --from-file=caFile=PATH-TO-CA-FILE
 ```
 
 Verify that your secret was created by running:
@@ -422,9 +422,9 @@ kubectl create secret generic ssh-credentials \
 If you have a key file already created, skip the `ssh-keygen` and `ssh-keyscan` steps and replace
 the values for the `kubectl create secret` command. Such as:
 
-- `--from-file=identity=<path to your identity file>`
-- `--from-file=identity.pub=<path to your identity.pub file>`
-- `--from-file=known_hosts=<path to your know_hosts file>`
+- `--from-file=identity=PATH-TO-YOUR-IDENTITY-FILE`
+- `--from-file=identity.pub=PATH-TO-YOUR-IDENTITY.PUB-FILE`
+- `--from-file=known_hosts=PATH-TO-YOUR-KNOWN-HOSTS-FILE`
 
 Verify that your secret was created by running:
 
@@ -504,8 +504,8 @@ image-pull credentials:
 ```console
 create secret generic registry-credentials \
     --namespace accelerator-system \
-    --from-literal=username=<user> \
-    --from-literal=password=<password>
+    --from-literal=username=USER \
+    --from-literal=password=PASSWORD
 ```
 
 Verify that your secret was created by running:
