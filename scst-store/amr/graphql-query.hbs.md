@@ -3,15 +3,83 @@
 This topic tells you how to connect to the GraphQL playground and how to query each supported data model.
 For information about the AMR data models, see [AMR Data Models](data-model-and-concepts.hbs.md).
 
-## <a id='connecting-to-graphql'></a> Connecting to GraphQL playground
+## <a id='connecting-to-graphql'></a> Connecting to AMR GraphQL
 
-Vmware recommends enabling ingress. The Supply Chain Security
+There are two ways you can perform GraphQL queries:
+
+- Using the GraphQL playground
+- Using [cURL](https://curl.se/)
+
+VMware recommends enabling ingress. The Supply Chain Security
 Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
-the same ingress configuration. Setting `ingress_domain` for the SCST -
-Store applies the same value for AMR. To connect to the AMR GraphQL playground
-when ingress is enabled, go to
-`https://artifact-metadata-repository.<ingress-domain>/play`. You can use this to write and
-execute your own GraphQL queries to fetch data from the AMR.
+the same ingress configuration. For more information about enabling ingress, 
+see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md)
+
+### <a id='amr-graphql-access-token'></a> Retrieving the AMR GraphQL Access Token
+
+Whichever method you choose to access the AMR GraphQL, you first need to retrieve the
+access token.
+
+Use the following command to fetch the token:
+
+```console
+kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
+```
+
+### <a id='connecting-to-graphql-playground'></a> Connecting to AMR GraphQL playground
+
+To connect to the AMR GraphQL playground when ingress is enabled, go to
+`https://amr-graphql.<ingress-domain>/play`. 
+
+Look for the Headers tab at the bottom of the query window and add a JSON block containing the auth header 
+in the following format:
+
+```json
+{
+  "Authorization": "Bearer ACCESS-TOKEN"
+}
+```
+
+where:
+
+- `ACCESS-TOKEN` is the AMR GraphQL access token
+
+You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
+
+### <a id='connecting-to-graphql-curl'></a> Connecting to AMR GraphQL through cURL
+
+To connect to the AMR GraphQL using cURL when ingress is enabled, you first need the AMR GraphQL
+access token as well as its CA certificate.
+
+Use the following command to fetch the AMR GraphQL CA certificate:
+
+```console
+kubectl get secret amr-app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
+```
+
+Once the token and certificate are retrieved, you can use cURL to perform GraphQL queries through the 
+`https://amr-graphql.<ingress-domain>/query` endpoint.
+
+For example:
+
+```console
+curl "https://amr-graphql.<ingress-domain>/query" \
+  --cacert /tmp/graphql-ca.crt \
+  -H "Authorization: Bearer ACCESS-TOKEN" \
+  -H 'accept: application/json' \
+  -H 'content-type: application/json' \
+  --data-raw '{"query":"query getAppAcceleratorRuns { appAcceleratorRuns(first: 250){ nodes { guid name namespace timestamp } pageInfo{ endCursor hasNextPage } } }"}' | jq .
+```
+
+where:
+
+- `ACCESS-TOKEN` is the AMR GraphQL access token
+- `/tmp/graphql-ca.crt` is the file location containing the AMR GraphQL CA certificate
+
+You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
+
+Though this section used cURL to query through the AMR GraphQL endpoint, you can use other similar tools to access the endpoint 
+and provide them with the AMR GraphQL access token and CA certificate.
 
 ## <a id='query-locations'></a> Querying for locations
 
