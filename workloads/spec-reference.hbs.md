@@ -1,6 +1,8 @@
 # Parameter reference
 
-This topic tells you about the default supply chains and templates provided by Tanzu Application Platform (commonly known as TAP). It describes the `workload.spec.params` parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that are configured
+This topic tells you about the default supply chains and templates provided by Tanzu Application
+Platform (commonly known as TAP). It describes the `workload.spec.params` parameters that are
+configured in workload objects, and the `deliverable.spec.params` parameters that are configured
 in the deliverable object.
 
 ## <a id="workload-parameter"></a> Workload Parameter Reference
@@ -59,10 +61,10 @@ Parameters:
       VMware recommends that you use the underlying library for fetching the source code.
     </td>
     <td>
-      <pre>
+      <pre><code>
       - name: gitImplementation
         value: go-git
-      </pre>
+      </code></pre>
     </td>
   </tr>
 
@@ -74,10 +76,10 @@ Parameters:
       For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
     <td>
-      <pre>
+      <pre><code>
       - name: gitops_ssh_secret
         value: git-credentials
-      </pre>
+      </code></pre>
     </td>
   </tr>
 </table>
