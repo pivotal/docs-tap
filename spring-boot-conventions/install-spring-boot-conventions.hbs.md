@@ -98,7 +98,7 @@ To install Spring Boot conventions:
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version \{{ vars.tap_version }} \
+   --version {{ vars.tap_version }} \
    --namespace tap-install
    ```
 
@@ -115,7 +115,7 @@ To install Spring Boot conventions:
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-   PACKAGE-VERSION:         \{{ vars.tap_version }}
+   PACKAGE-VERSION:         {{ vars.tap_version }}
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:
