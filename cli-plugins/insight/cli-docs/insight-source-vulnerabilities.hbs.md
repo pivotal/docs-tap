@@ -1,6 +1,6 @@
 # tanzu insight source vulnerabilities
 
-This topic tells you how to use the Tanzu Insight CLI 
+This topic tells you how to use the Tanzu Insight CLI plug-in
 `tanzu insight source vulnerabilities` command to get the source vulnerabilities.
 
 ## <a id='synopsis'></a>Synopsis

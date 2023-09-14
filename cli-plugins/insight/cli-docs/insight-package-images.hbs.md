@@ -1,6 +1,6 @@
 # tanzu insight package images
 
-This topic tells you how to use the Tanzu Insight CLI 
+This topic tells you how to use the Tanzu Insight CLI plug-in
 `tanzu insight package images` command to get the images that contain the given package 
 by name.
 

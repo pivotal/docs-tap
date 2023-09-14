@@ -1,6 +1,6 @@
 # tanzu insight image
 
-This topic tells you how to use the Tanzu Insight CLI 
+This topic tells you how to use the Tanzu Insight CLI plug-in
 `tanzu insight image` command to get help for the image commands.
 
 ## <a id='options'></a>Options

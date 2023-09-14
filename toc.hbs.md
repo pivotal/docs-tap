@@ -182,7 +182,7 @@ docs.vmware.com is built.
                     - [tanzu insight image get](cli-plugins/insight/cli-docs/insight-image-get.hbs.md)
                     - [tanzu insight image packages](cli-plugins/insight/cli-docs/insight-image-packages.hbs.md)
                     - [tanzu insight image vulnerabilities](cli-plugins/insight/cli-docs/insight-image-vulnerabilities.hbs.md)
-                    - [insight package](cli-plugins/insight/cli-docs/insight-package.hbs.md)
+                    - [tanzu insight package](cli-plugins/insight/cli-docs/insight-package.hbs.md)
                     - [tanzu insight package get](cli-plugins/insight/cli-docs/insight-package-get.hbs.md)
                     - [tanzu insight package images](cli-plugins/insight/cli-docs/insight-package-images.hbs.md)
                     - [tanzu insight package sources](cli-plugins/insight/cli-docs/insight-package-sources.hbs.md)
