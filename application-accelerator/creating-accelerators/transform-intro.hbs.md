@@ -20,7 +20,7 @@ It is made up of subsets of the files taken from the accelerator `<root>` direct
 its subdirectories. You can copy the files as is, or transform them in a number of ways before
 adding them to the result.
 
-As such, the YAML notation in the `engine` section defines a transformation that takes as
+The YAML notation in the `engine` section defines a transformation that takes as
 input a set of files (in the `<root>` directory of the accelerator) and produces
 as output another set of files, which are put into the ZIP file.
 
@@ -60,7 +60,7 @@ evaluating a SpEL expression.
 ## <a id="combine-transforms"></a>Combining transforms
 
 From the preceding examples, you can see that transforms such as `ReplaceText`
-and `Include` are too "primitive" to be useful by themselves. They are meant to be the building blocks of more complex accelerators.
+and `Include` are too primitive to be useful by themselves. They are meant to be the building blocks of more complex accelerators.
 
 To combine transforms, provide two operators called `Chain` and `Merge`. These operators
 are recursive in the sense that they compose a number of child transforms to create
@@ -73,10 +73,10 @@ The following example shows what each of these two operators does and how they a
 
 Because transforms are functions whose input and output are of the same type (a set of files),
 you can take the output of one function and feed it as input to another. This is what `Chain` does.
-In mathematical terms, `Chain` is _function composition_.
+In mathematical terms, `Chain` is function composition.
 
 You might, for example, want to do this with the `ReplaceText` transform.
-Used by itself, it replaces text strings in *all* the accelerator input files. What if
+Used by itself, it replaces text strings in all the accelerator input files. What if
 you wanted to apply this replacement to only a subset of the files? You can use an `Include`
 filter to select only a subset of files of interest and chain that subset into `ReplaceText`.
 
@@ -96,7 +96,7 @@ For example:
 ### <a id="merge"></a>Merge
 
 Chaining `Include` into `ReplaceText` limits the scope of `ReplaceText` to a subset of the input files.
-Unfortunately, it also eliminates all other files from the result.
+It also eliminates all other files from the result.
 
 For example:
 
@@ -163,11 +163,10 @@ The preceding accelerator produces a result that includes both:
 
 It becomes cumbersome and verbose to combine transforms such as `Include`, `Exclude`,
 and `ReplaceText` with explicit `Chain` and `Merge` operators. Also, there is
-a common composition pattern to using them. Specifically, select an interesting subset using includes/excludes, apply a chain of additional transformations
-to the subset, and merge the result with the results of other transforms.
-
-That is why there is a swiss army knife transform (known the `Combo` transform)
-that combines `Include`, `Exclude`, `Merge`, and `Chain`.
+a common composition pattern to using them. Specifically, select an interesting subset using
+includes and excludes, apply a chain of additional transformations
+to the subset, and merge the result with the results of other transforms. That is why there is a
+transform known the `Combo` transform that combines `Include`, `Exclude`, `Merge`, and `Chain`.
 
 For example:
 
@@ -206,8 +205,7 @@ Behaves the same as:
   ```
 
 When you do specify multiple properties at the same time, the `Combo` transform
-composes them together in a "logical way" combining `Merge` and `Chain` under
-the hood.
+composes them together and combines `Merge` and `Chain`.
 
 For example:
 
@@ -266,8 +264,8 @@ This is equivalent to:
 ### <a id="combo-of-one"></a>A Combo of one?
 
 You can use the `Combo` as a convenient shorthand for a single
-type of annotation.  However, though you *can* use it to combine multiple types,
-and though that is its main purpose, that doesn't mean you *have* to.
+type of annotation.  However, though you can use it to combine multiple types,
+and though that is its main purpose, that doesn't mean you have to.
 
 For example:
 
@@ -339,8 +337,8 @@ Every `<transform-definition>` can have a `condition` attribute.
             with: "#artifactId"
   ```
 
-When a transform's condition is `false`, that transform is "deactivated."
-This means it is replaced by a transform that "does nothing."
+When a transform's condition is `false`, that transform is deactivated.
+This means it is replaced by a transform that does nothing.
 However, doing nothing can have different meanings depending on the context:
 
 * When in the context of a `Merge`, a deactivated transform behaves like something that
@@ -350,15 +348,13 @@ of union; adding an empty set to union essentially does nothing.
 * When in the context of a `'Chain` however, a deactivated transform behaves like
 the `identity` function instead (that is, `lambda (x) => x`). When you chain
 functions together, a value is passed through all functions in succession. So each
-function in the chain has the chance to "do something" by returning a different modified value.
+function in the chain has the chance to do something by returning a different modified value.
 If you are a function in a chain, to do nothing means to return
 the input you received unchanged as your output.
 
-If this all sounds confusing, fortunately there is a basic guideline
-for understanding and predicting the effect of a deactivated transform in
-the context of your accelerator definition. Namely, if a transform's condition evaluates to false,
-pretend it isn't there. In other words, your accelerator behaves as if you
-deleted (or commented out) that transform's YAML text from the accelerator
+If a transform is deactivated in the context of your accelerator definition, it evaluates
+to false and is ignored. Your accelerator behaves as if you
+deleted or commented out that transform's YAML text from the accelerator
 definition file.
 
 The following examples illustrate both cases.
@@ -378,7 +374,7 @@ This example, **transform A**, has a conditional transform in a `Merge` context:
         ...
   ```
 
-If the condition of **transform A** is `false`, it is replaced with an "empty set" because
+If the condition of **transform A** is `false`, it is replaced with an empty set because
 it is used in a `Merge` context. This has the same effect as if the whole of **transform A** was deleted
 or commented out:
 
@@ -407,23 +403,20 @@ In the following example, some conditional transforms are used in a `Chain` cont
       indent: '#jsonIndent'
   ```
 
-The `JsonPrettyPrint` transform type is purely hypothetical. There *could* be such a
-transform, but VMware doesn't currently provide it.
-
 In the preceding example, both **transform A** and **transform B** are conditional and used in a `Chain` context.
 **Transform A** is chained after the `include` transform. Whereas **transform B** is chained after
 **transform A**. When either of these conditions is `false`, the corresponding transform behaves
 like the identity function. Namely, whatever set of files it receives as input is exactly what it returns as output.
 
-This behavior accords with our guideline. For example, if **transform A**'s condtion is
-`false`, it behaves as if **transform A** wasn't there. **Transform A** is chained after `include` so it
+For example, if **transform A**'s condition is
+`false`, it behaves as if **transform A** isn't there. **Transform A** is chained after `include` so it
 receives the `include`'s result, returns it unchanged, and this is passed to **transform B**. In other words,
-the result of the `include` is passed as is to **transform B**. This is precisely what would happen were **transform A**
-not there.
+the result of the `include` is passed as is to **transform B**.
 
 ### <a id="using-conditionals-in-merge"></a>A small gotcha with using conditionals in merge transforms
 
-As mentioned earlier, it is a useful pattern to use merges with overlapping contents. Yet you must be careful using this in combination with conditional transforms.
+As mentioned earlier, it is a useful pattern to use merges with overlapping contents.
+But you must be careful using this in combination with conditional transforms.
 
 For example:
 
@@ -437,9 +430,9 @@ For example:
         subsitutions: ...
   ```
 
-Now add a little twist. Say you only wanted to include pom files if the user
-selects a `useMaven` option. You might be tempted to add a 'condition' to **transform B** to deactivate it when that
-option isn't selected:
+If you only want to include pom files, if you select a `useMaven` option,
+when you add a 'condition' to **transform B** to deactivate it,
+the final result still contains `pom.xml` files.:
 
   ```yaml
   engine:
@@ -452,10 +445,8 @@ option isn't selected:
         subsitutions: ...
   ```
 
-However, this doesn't do what you might expect. The final result _still_ contains
-`pom.xml` files. To understand why, recall the guideline for deactivated transforms:
-If a transform is deactivated, pretend it isn't there. So when
-`#useMaven` is `false`, the example reduces to:
+This is because if a transform is deactivated in the context of your accelerator definition, it evaluates
+to false and is ignored.  So when `#useMaven` is `false`, the example reduces to:
 
   ```yaml
   engine:
@@ -463,9 +454,9 @@ If a transform is deactivated, pretend it isn't there. So when
     - include: ["**/*"]
   ```
 
-This accelerator copies all files from accelerator `<root>`, _including_ `pom.xml`.
+This accelerator copies all files from accelerator `<root>`, including `pom.xml`.
 
-There are several ways to avoid this pitfall. One is to ensure the `pom.xml` files
+There are several ways to avoid this. One is to ensure the `pom.xml` files
 are not included in **transform A** by explicitly excluding them:
 
   ```yaml
@@ -475,7 +466,7 @@ are not included in **transform A** by explicitly excluding them:
     ...
   ```
 
-Another way is to apply the exclusion of pom.xml conditionally in a `Chain` after the main transform:
+Another way is to apply the exclusion of `pom.xml` conditionally in a `Chain` after the main transform:
 
   ```yaml
   engine:
@@ -492,14 +483,15 @@ Another way is to apply the exclusion of pom.xml conditionally in a `Chain` afte
 
 ## <a id="merge-conflict"></a>Merge conflict
 
-The representation of the set of files upon which transforms operate is "richer" than what you can physically store on a file system. A key difference is that in this case, the set of files allows for multiple files
+The representation of the set of files upon which transforms operate is richer than what you can
+physically store on a file system. A key difference is that in this case, the set of files allows for multiple files
 with the same path to exist at the same time. When files are initially read from a
 physical file system, or a ZIP file, this situation does not arise. However, as transforms are
 applied to this input, it can produce results that have more than one file with
 the same path and yet different contents.
 
 Earlier examples illustrated this happening through a `merge`
-operation. Again, for example:
+operation. For example:
 
   ```yaml
   merge:
@@ -532,7 +524,7 @@ more than one `.md` file, the output contains multiple files with path `docs/REA
 Again, this is a conflict, because there can only be one such file in a physical file system or
 ZIP file.
 
-### <a id="resolve-merge-conflicts"></a>Resolving "merge" conflicts
+### <a id="resolve-merge-conflicts"></a>Resolving merge conflicts
 
 By default, when a conflict arises, the engine doesn't do anything with it. Our internal representation
 for a set of files allows for multiple files with the same path. The engine carries on
@@ -540,7 +532,7 @@ manipulating the files as is. This isn't a problem until the files must be writt
 to disk or a ZIP file. If a conflict is still present at that time, an error is raised.
 
 If your accelerator produces such conflicts, they must be resolved
-before writing files to disk. To this end, VMware provides the [UniquePath](transforms/unique-path.md)
+before writing files to disk. VMware provides the [UniquePath](transforms/unique-path.md)
 transform. This transform allows you to specify what to do when more than one file has the same
 path. For example:
 
@@ -557,18 +549,18 @@ The result of the above transform is that all `.md` files are gathered up and co
 single file at path `docs/README.md`. Another possible resolution strategy is to keep
 only the contents of one of the files. See [Conflict Resolution](transforms/conflict-resolution.md).
 
-[Combo](transforms/combo.md) transform also comes with some convenient built-in support for
+[Combo](transforms/combo.md) transform includes some convenient built-in support for
 conflict resolution. It automatically selects the `UseLast` strategy if none is explicitly
-supplied. So in practice, you rarely, if ever, need to explicitly
-specify a conflict resolution strategy.
+supplied. You rarely, if ever, need to specify a conflict resolution strategy.
 
 ### <a id="file-ordering"></a>File ordering
 
-As mentioned earlier, our set of files representation is richer than the files on a typical file system in that it allows for multiple files with the same path. Another way in which it is richer is that
-the files in the set are "ordered." That is, a `FileSet` is more like an ordered list than an unordered set.
+As mentioned earlier, our set of files representation is richer than the files on a typical file
+system in that it allows for multiple files with the same path. Another way in which it is richer is that
+the files in the set are ordered. That is, a `FileSet` is more like an ordered list than an unordered set.
 
 In most situations, the order of files in a `FileSet` doesn't matter. However, in conflict resolution
-it *is* significant. If you look at the preceding `RewritePath` example again,
+it is significant. If you look at the preceding `RewritePath` example again,
 you might wonder about the order in which the various
 `.md` files are appended to each other. This ordering is determined by the order of
 the files in the input set.
@@ -577,16 +569,14 @@ So what is that order? In general, when files are read from disk to create a
 `FileSet`, you cannot assume a specific order. Yes, the files are read and processed in a sequential order,
 but the actual order is not well defined. It depends on implementation details of the underlying
 file system. The accelerator engine therefore does not ensure a specific order in this case.
-It only ensures that it *preserves* whatever ordering it receives from the file system, and processes files in
+It only ensures that it preserves whatever ordering it receives from the file system, and processes files in
 accord with that order.
 
-As an accelerator author, better to avoid relying on the file order
-produced from reading directly from a file system. So it's better to avoid doing something like the preceding `RewritePath` example, *unless* you do not care about the ordering
-of the various sections of the produced `README.md` file.
+If you do not want the file order produced from reading directly from a file system and want to
+control the order of the sections in the `README.md` file, change the order of the merge children.
+`Merge` processes its children in order and reflects this order in the resulting output
 
-If you do care and want to control the order explicitly, you use the fact
-that `Merge` processes its children in order and reflects this order in the resulting output
-set of files. For example:
+For example:
 
   ```yaml
   chain:
@@ -600,9 +590,8 @@ set of files. For example:
       strategy: Append
   ```
 
-In this example, `README.md` from the first child of `merge` definitely comes
-before `DEPLOYMENT.md` from the second child of `merge`. So you can control
-the merge order directly by changing the order of the merge children.
+In this example, `README.md` from the first child of `merge` comes
+before `DEPLOYMENT.md` from the second child of `merge`. 
 
 ## <a id="conclusion"></a>Next steps
 
@@ -611,7 +600,7 @@ understanding of the `<transform-definition>` notation. This notation defines
 precisely how the accelerator engine generates new project content from the files
 in the accelerator root.
 
-To learn more, read the following more detailed documents:
+For more information, see:
 
-- An exhaustive [Reference](transforms/index.md) of all built-in transform types
-- A sample, commented [accelerator.yaml](accelerator-yaml-sample.md) to learn from a concrete example
+- An exhaustive [Reference](transforms/index.hbs.md) of all built-in transform types
+- A sample, commented [accelerator.yaml](accelerator-yaml-sample.hbs.md) to learn from a concrete example
