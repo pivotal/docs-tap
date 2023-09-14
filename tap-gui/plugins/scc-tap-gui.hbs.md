@@ -208,8 +208,6 @@ tap_gui:
 When you select a scan stage, the system shows a table with vulnerabilities and a **Triage Status**
 column where you can see the latest status stored for each vulnerability.
 
-![Vulnerabilities table displaying information for scan stages.](images/scc-vulnerabilities.png)
-
 The triage panel enables you to select a status, justification, and resolutions from a set of
 options, and has a text box to add extra details for the analysis. After you submit this information,
 the status is updated on the table and the latest analysis is visible the next time you open the
@@ -218,3 +216,5 @@ panel.
 **Needs triage** is the default status for all vulnerabilities. After you submit an analysis, the
 status changes and the information button next to the status shows you the stored vulnerability
 analysis.
+
+![Vulnerabilities table displaying information for scan stages.](images/scc-vulnerabilities.png)
