@@ -62,7 +62,7 @@ Parameters:
     </td>
     <td>
       <p align ="left">
-      - name: gitImplementation
+      - name: gitImplementation<br>
         value: go-git
       </p>
     </td>
@@ -77,7 +77,7 @@ Parameters:
     </td>
     <td>
       <p align ="left">
-      - name: gitops_ssh_secret
+      - name: gitops_ssh_secret<br>
         value: git-credentials
       </p>
     </td>
