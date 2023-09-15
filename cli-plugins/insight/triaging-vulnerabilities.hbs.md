@@ -1,6 +1,6 @@
 # Triage vulnerabilities (alpha)
 
-This topic tells you how to add analyze vulnerabilities associated with a workload in the
+This topic tells you how to add vulnerability analysis associated with a workload in the
 Supply Chain Security Tools (SCST) - Store. This is an experimental feature, and the API is prone to
 changes in subsequent releases.
 
@@ -11,7 +11,7 @@ changes in subsequent releases.
 ## <a id='triage-description'></a>Triage
 
 Vulnerability analysis, or triage is the process of evaluating a reported vulnerability to
-decide an effective remediation plan. Triage helps application teams to
+decide on an effective remediation plan. Triage helps application teams
 generate useful insights about the vulnerabilities in their software so that they can make the right
 decisions about when and how to mitigate them. The current implementation of triage follows
 [CycloneDX's Vulnerability Exploitability eXchange (VEX)](https://cyclonedx.org/capabilities/vex/)
@@ -61,7 +61,8 @@ Where:
 - `PKG-NAME` and `PKG-VERSION` are the name and version of the Application and OS package affected
 by the vulnerability
 - `IMG-DIGEST` is the digest of the image that contains the affected Application and OS package
-- `ARTIFACT-GROUP-UID` is the unique identifier for the workload that contains the image. If your workload was deployed with Tanzu CLI, you can find its unique identifier with the command:
+- `ARTIFACT-GROUP-UID` is the unique identifier for the workload that contains the image. If your
+workload was deployed with Tanzu CLI, you can find its unique identifier with the following  command:
 
     ```console
     kubectl get workload $MY_WORKLOAD_NAME --namespace $MY_WORKLOAD_NAMESPACE --output jsonpath='{.metadata.uid}'
@@ -110,21 +111,20 @@ The following conditions are required for this action:
 
 1. If specified, the targeted image or source must contain the package affected by the vulnerability
    in the existing analysis.
-2. If only an image or source are specified, they must belong to the same workload as the one in the
+2. If only an image or source is specified, they must belong to the same workload as the one in the
    existing analysis.
-3. If only an `artifact-group-uid` is specified, it must contain the image or source associated in
+3. If only an `artifact-group-uid` is specified, it must contain the image or source associated with
    the existing analysis.
 
 > **Note** The responsibility of assessing a vulnerability's impact is up to the person in charge of
 > triage. Images and sources with the same package and version might use the
-> package in a different way and might not have the same analysis values.
+> package differently and might not have the same analysis values.
 
 ## <a id='rebase-analyses'></a>Rebase multiple analyses
 
-If you carry out vulnerability analyses on your workload image, you might want to carry this forward
+When you carry out vulnerability analysis on a workload image, you might want to carry this forward
 after the workload source code is updated and a new image is built and deployed.
-This process is called rebase, and you can run it with the
-following command:
+This process is called rebase, and you can run it with the following command:
 
 ```console
 tanzu insight triage rebase \
@@ -134,26 +134,25 @@ tanzu insight triage rebase \
 
 Where:
 
-- `TARGET-IMAGE` is the digest of the image you want to rebase analyses into
-- `ARTIFACT-GROUP-UID` is the unique identifier for the workload that contains the image, and where existing analyses will be searched for
+- `TARGET-IMAGE` is the digest of the image you want to rebase the analysis into
+- `ARTIFACT-GROUP-UID` is the unique identifier for the workload that contains the image,
+and where existing analysis will be searched for
 
-Each time you run this command, you will be presented with the list of existing analysis that
-could be automatically rebased into your target image. The algorithm to search for this analyses
-uses the following criteria:
+This command returns a list of existing analyses that can be automatically rebased into your
+target image. Each analysis on the list meets all the following criteria:
 
-- The analysis exists for a vulnerability that the target image is affected by and
-- Is linked to a "previous version" of an image and
+- The analysis exists for a vulnerability that the target image is affected by.
+- The analysis is linked to a previous version of an image.
 - There is no existing analysis for the same vulnerability and the target image, or their state is 'in\_triage'
 
-In this context, an image A is considered to be a previous version of an image B when they have
-the same name, different digests and image A was created before image B. This will be bounded on the workload's
-context, using the provided `--artifact-group-uid`.
+In this context, image A is considered to be a previous version of image B when they have
+the same name, different digests and image A was created before image B.
+This will be bound on the workload's context, using the provided `--artifact-group-uid`.
 
 ### Known limitations
 
-1. You can only rebase analyses for images at the moment. Sources should be supported on a future
-   version.
-2. If you are deploying TAP workloads from pre-built images, or have a custom Supply Chain that
-   changes the name of the deployed image in-between builds, you won't be able to use the feature
-   and will have to [manually copy](./triaging-vulnerabilities.md#copying-analysis) the existing
-   analyses.
+1. You can only rebase analyses for images, sources are not currently supported.
+2. If you are deploying Tanzu Application Platform workloads from pre-built images, or have a custom
+Supply Chain that changes the name of the deployed image in between builds, you can't use this feature
+and must manually copy the existing
+analyses, see [Copy an analysis](#copy-an-analysis) above.
