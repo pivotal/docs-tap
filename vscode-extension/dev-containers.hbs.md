@@ -79,11 +79,11 @@ You are now ready to start working on your code, deploy it to your cluster, and 
 workloads in the Tanzu Panel. To continue your development with Tanzu Developer Tools for VS Code,
 see [Use Tanzu Developer Tools for VS Code](using-the-extension.hbs.md).
 
-## <a id="use-mounts"></a> Use local file mounts
+## <a id="use-mounts"></a> (Optional) Use local file mounts
 
-You can add a volume bound to any local folder by using the `mounts` property in the
-`.devcontainer.json` file. This is useful for sharing your Kubernetes cluster credentials
-with the development container, such as a macOS or Linux host.
+Use the `mounts` property in the `.devcontainer.json` file to add a volume bound to any local
+directory. This is useful for sharing your Kubernetes cluster credentials with the development
+container, such as a macOS or Linux host.
 
 For example:
 

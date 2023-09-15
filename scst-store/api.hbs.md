@@ -7,7 +7,7 @@ See [API walkthrough](api-walkthrough.md) for an SCST - Store example.
 
 ### <a id='methods'></a>Version
 
-1.6.1
+1.7.0
 
 ## <a id='con-nego'></a>Content negotiation
 
@@ -68,7 +68,7 @@ See [API walkthrough](api-walkthrough.md) for an SCST - Store example.
   
 
 
-###  <a id='v1artifact_groups'></a>v1artifact_groups 
+###  <a id='v1artifact_groups'></a>v1/artifact_groups
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -76,20 +76,20 @@ See [API walkthrough](api-walkthrough.md) for an SCST - Store example.
 | POST | /api/v1/artifact-groups/_search | [search artifact groups](#search-artifact-groups) | Query for a list of artifact group that contains image(s) with specified digests, and or source(s) with specified shas. At least one image digest or source sha must be provided. This query can be further refined by matching images and sources with a specific combination of package name and/or cve id. |
 | POST | /api/v1/artifact-groups/vulnerabilities/_reach | [search artifact groups vuln reach](#search-artifact-groups-vuln-reach) | Search for how many artifact groups are affected by vulnerabilities associated with the specified image(s) digests, and/or source(s) shas. At least one image digest or source sha must be provided. |
 | POST | /api/v1/artifact-groups/vulnerabilities/_search | [search artifact groups vulnerabilities](#search-artifact-groups-vulnerabilities) | Search for all vulnerabilities associated with an artifact group that contains image(s) with specified digests, and/or source(s) with specified shas. At least one image digest or source sha must be provided. |
-  
 
 
-###  <a id='v1images'></a>v1images
+
+###  <a id='v1images'></a>v1/images
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
 | GET | /api/v1/images/{ID_OR_DIGEST} | [v1 get image](#v1-get-image) | Search image by ID or DIGEST |
 | GET | /api/v1/images | [v1 get images](#v1-get-images) | Query for images. If no parameters are given, this endpoint will return all images. |
 | POST | /api/v1/images | [v1 post images](#v1-post-images) | Add an image with a CycloneDX or SPDX report |
-  
 
 
-###  <a id='v1packages'></a>v1packages
+
+###  <a id='v1packages'></a>v1/packages
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -97,19 +97,20 @@ See [API walkthrough](api-walkthrough.md) for an SCST - Store example.
 | GET | /api/v1/images/packages | [v1 get images packages](#v1-get-images-packages) | Query for packages with images parameters. If no parameters are given, this endpoint will return all packages related to images. |
 | GET | /api/v1/packages | [v1 get packages](#v1-get-packages) | Query for packages. If no parameters are given, this endpoint will return all packages. |
 | GET | /api/v1/sources/packages | [v1 get sources packages](#v1-get-sources-packages) | Query for packages with source parameters. If no parameters are given, this endpoint will return all packages related to sources. |
-  
 
 
-###  <a id='v1reports'></a>v1reports
+
+###  <a id='v1reports'></a>v1/reports
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
 | GET | /api/v1/reports/{ReportUID} | [v1 get report](#v1-get-report) | Get a specific report by its unique identifier |
+| POST | /api/v1/reports/_search | [v1 search multiple reports](#v1-search-multiple-reports) | Search multiple reports by their unique identifiers |
 | GET | /api/v1/reports | [v1 search reports](#v1-search-reports) | Query for a list of reports with specified image digest, source sha, or original location. |
-  
 
 
-###  <a id='v1sources'></a>v1sources
+
+###  <a id='v1sources'></a>v1/sources
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -117,18 +118,21 @@ See [API walkthrough](api-walkthrough.md) for an SCST - Store example.
 | GET | /api/v1/sources | [v1 get sources](#v1-get-sources) | Query for sources. If no parameters are given, this endpoint will return all sources. |
 | GET | /api/v1/sources/vulnerabilities | [v1 get sources vulnerabilities](#v1-get-sources-vulnerabilities) | Query for vulnerabilities with source parameters. If no parameters are given, this endpoint will return all vulnerabilities. |
 | POST | /api/v1/sources | [v1 post sources](#v1-post-sources) | Add a source with a CycloneDX or SPDX report |
-  
 
-###  <a id='v1triage'></a>v1triage
+
+
+###  <a id='v1triage'></a>v1/triage
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
 | POST | /api/v1/triage/{UID}/copy | [v1 copy vulnerability analysis](#v1-copy-vulnerability-analysis) | Copies the analysis of an existing triage to a new target. |
 | POST | /api/v1/triage | [v1 create vulnerability analysis](#v1-create-vulnerability-analysis) | Inserts or updates a vulnerability analysis |
+| GET | /api/v1/triage/rebase | [v1 get rebase options](#v1-get-rebase-options) | Search for analysis that can be rebased on the specified image within an artifact group. |
 | GET | /api/v1/triage | [v1 get triage](#v1-get-triage) | Query for Triage Analysis. If no parameters are given, this endpoint will return all analysis instances. |
-  
 
-###  <a id='v1vulnerabilities'></a>v1vulnerabilities
+
+
+###  <a id='v1vulnerabilities'></a>v1/vulnerabilities
 
 | Method  | URI     | Name   | Summary |
 |---------|---------|--------|---------|
@@ -1650,14 +1654,63 @@ ErrorMessage
 
 ###### <span id="v1-get-packages-default-schema"></span> Schema
 
-  
+
+
+[ErrorMessage](#error-message)
+
+### <span id="v1-get-rebase-options"></span> Search for analysis that can be rebased on the specified image within an artifact group. (*V1GetRebaseOptions*)
+
+```
+GET /api/v1/triage/rebase
+```
+
+An analysis can be rebased when it matches the following conditions:
+They are linked to the specified artifact group
+They are linked to images that belong to the artifact group, have the same name as the specified image but have an older creation date
+They are linked to packages that the specified image also contains, but have no existing analysis for the specified image
+
+#### Parameters
+
+| Name | Source | Type | Go type | Separator | Required | Default | Description |
+|------|--------|------|---------|-----------| :------: |---------|-------------|
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
+| artifact_group_uid | `query` | string | `string` |  | ✓ |  | UID of Workload to rebase within |
+| digest | `query` | string | `string` |  | ✓ |  | The sha256 digest of the image |
+| page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
+| page_size | `query` | int64 (formatted integer) | `int64` |  |  | `20` |  |
+| registry | `query` | string | `string` |  |  |  | The registry name where the image is hosted. |
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [200](#v1-get-rebase-options-200) | OK | PaginatedVulnerabilityAnalysisResponse |  | [schema](#v1-get-rebase-options-200-schema) |
+| [400](#v1-get-rebase-options-400) | Bad Request | ErrorMessage |  | [schema](#v1-get-rebase-options-400-schema) |
+
+#### Responses
+
+
+##### <span id="v1-get-rebase-options-200"></span> 200 - PaginatedVulnerabilityAnalysisResponse
+Status: OK
+
+###### <span id="v1-get-rebase-options-200-schema"></span> Schema
+
+
+
+[PaginatedVulnerabilityAnalysisResponse](#paginated-vulnerability-analysis-response)
+
+##### <span id="v1-get-rebase-options-400"></span> 400 - ErrorMessage
+Status: Bad Request
+
+###### <span id="v1-get-rebase-options-400-schema"></span> Schema
+
+
 
 [ErrorMessage](#error-message)
 
 ### <span id="v1-get-report"></span> Get a specific report by its unique identifier (*V1GetReport*)
 
 ```console
-GET /api/v1/report/{ReportUID}
+GET /api/v1/reports/{ReportUID}
 ```
 
 One of the following combination of headers is needed (---> response format):
@@ -1942,10 +1995,14 @@ GET /api/v1/triage
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
-| commit | `query` | string | `string` |  |  |  |  |
-| digest | `query` | string | `string` |  |  |  |  |
+| artifact_group_uid | `query` | string | `string` |  |  |  | The artifact group unique identifier. |
+| commit | `query` | string | `string` |  |  |  | The commit sha of the source. |
+| digest | `query` | string | `string` |  |  |  | The sha256 digest of the image |
+| org | `query` | string | `string` |  |  |  | The organization name of the source. |
 | page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
 | page_size | `query` | int64 (formatted integer) | `int64` |  |  | `20` |  |
+| registry | `query` | string | `string` |  |  |  | The registry name where the image is hosted. |
+| repo | `query` | string | `string` |  |  |  | The repository name of the source. |
 
 #### All responses
 | Code | Status | Description | Has headers | Schema |
@@ -2007,7 +2064,10 @@ To add an image via a CycloneDX report or SPDX report submitted by uploading a f
 | Content-Type | `header` | string | `string` |  | ✓ |  | The content type of the input report. Supported values are 'application/json', 'application/xml', and 'multipart/form-data' |
 | Entity-Name | `header` | string | `string` |  |  |  | Manual input of the name of the entity. If this value is provided, Entity-Version header must also be provided. If this value is not provided, the value will be read from the submitted SBOM |
 | Entity-Version | `header` | string | `string` |  |  |  | Manual input of the version of the entity. If this value is provided, Entity-Name header must also be provided. If this value is not provided, the value will be read from the submitted SBOM |
-| Original-Location | `header` | string | `string` |  |  |  | The stored location of the original SBOM vulnerability scan result used to create this report. |
+| Image-File-Path | `header` | string | `string` |  |  |  | The location inside the bundle where the original SBOM vulnerability scan that generated this report can be found.
+Used when the original location points to a bundle that contains multiple SBOM vulnerability scans. |
+| Original-Location | `header` | string | `string` |  |  |  | The stored location of the original SBOM vulnerability scan result used to create this report.
+This can be an individual file, or a bundle |
 | Report-Type-Format | `header` | string | `string` |  | ✓ |  | The input report type format. Supported values are 'cyclonedx' and 'spdx' |
 | Report-UID | `header` | string | `string` |  |  |  | A unique identifier to assign to the report. If omitted, a unique identifier will be randomly generated for the report. Supported characters: ALPHA  DIGIT  "-" / "." / "_" / "~" |
 | file | `formData` | file | `io.ReadCloser` |  |  |  | CycloneDX or SPDX report (required if using 'multipart/form-data') |
@@ -2083,7 +2143,8 @@ To add a source via a CycloneDX report or SPDX report submitted by uploading a f
 | Content-Type | `header` | string | `string` |  | ✓ |  | The content type of the input report. Supported values are 'application/json', 'application/xml', and 'multipart/form-data' |
 | Entity-Name | `header` | string | `string` |  |  |  | Manual input of the name of the entity. If this value is provided, Entity-Version header must also be provided. If this value is not provided, the value will be read from the submitted SBOM |
 | Entity-Version | `header` | string | `string` |  |  |  | Manual input of the version of the entity. If this value is provided, Entity-Name header must also be provided. If this value is not provided, the value will be read from the submitted SBOM |
-| Original-Location | `header` | string | `string` |  |  |  | The stored location of the original SBOM vulnerability scan result used to create this report. |
+| Original-Location | `header` | string | `string` |  |  |  | The stored location of the original SBOM vulnerability scan result used to create this report.
+This can be an individual file, or a bundle |
 | Report-Type-Format | `header` | string | `string` |  | ✓ |  | The input report type format. Supported values are 'cyclonedx' and 'spdx' |
 | Report-UID | `header` | string | `string` |  |  |  | A unique identifier to assign to the report. If omitted, a unique identifier will be randomly generated for the report. Supported characters: ALPHA  DIGIT  "-" / "." / "_" / "~" |
 | file | `formData` | file | `io.ReadCloser` |  |  |  | CycloneDX or SPDX report (required if using 'multipart/form-data') |
@@ -2111,8 +2172,67 @@ Status: OK
 Status: Bad Request
 
 ###### <span id="v1-post-sources-400-schema"></span> Schema
-   
-  
+
+
+
+[ErrorMessage](#error-message)
+
+### <span id="v1-search-multiple-reports"></span> Search multiple reports by their unique identifiers (*V1SearchMultipleReports*)
+
+```
+POST /api/v1/reports/_search
+```
+
+#### Parameters
+
+| Name | Source | Type | Go type | Separator | Required | Default | Description |
+|------|--------|------|---------|-----------| :------: |---------|-------------|
+| ReportsSearchFiltersPostRequest | `body` | [MultipleReportSearchFilters](#multiple-report-search-filters) | `models.MultipleReportSearchFilters` | | ✓ | |  |
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [200](#v1-search-multiple-reports-200) | OK | PaginatedReportsSearchPostResponse |  | [schema](#v1-search-multiple-reports-200-schema) |
+| [400](#v1-search-multiple-reports-400) | Bad Request | ErrorMessage |  | [schema](#v1-search-multiple-reports-400-schema) |
+| [500](#v1-search-multiple-reports-500) | Internal Server Error | ErrorMessage |  | [schema](#v1-search-multiple-reports-500-schema) |
+| [503](#v1-search-multiple-reports-503) | Service Unavailable | ErrorMessage |  | [schema](#v1-search-multiple-reports-503-schema) |
+
+#### Responses
+
+
+##### <span id="v1-search-multiple-reports-200"></span> 200 - PaginatedReportsSearchPostResponse
+Status: OK
+
+###### <span id="v1-search-multiple-reports-200-schema"></span> Schema
+
+
+
+[PaginatedReportsSearchPostResponse](#paginated-reports-search-post-response)
+
+##### <span id="v1-search-multiple-reports-400"></span> 400 - ErrorMessage
+Status: Bad Request
+
+###### <span id="v1-search-multiple-reports-400-schema"></span> Schema
+
+
+
+[ErrorMessage](#error-message)
+
+##### <span id="v1-search-multiple-reports-500"></span> 500 - ErrorMessage
+Status: Internal Server Error
+
+###### <span id="v1-search-multiple-reports-500-schema"></span> Schema
+
+
+
+[ErrorMessage](#error-message)
+
+##### <span id="v1-search-multiple-reports-503"></span> 503 - ErrorMessage
+Status: Service Unavailable
+
+###### <span id="v1-search-multiple-reports-503-schema"></span> Schema
+
+
 
 [ErrorMessage](#error-message)
 
@@ -2681,6 +2801,24 @@ gorm.Model
 
 
 
+### <span id="multiple-report-search-filters"></span> MultipleReportSearchFilters
+
+
+
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| All | boolean| `bool` |  | | If no pagination parameters are provided, defaults to true and returns all available results. |  |
+| Page | int64 (formatted integer)| `int64` |  | `1`|  |  |
+| PageSize | int64 (formatted integer)| `int64` |  | `20`|  |  |
+| ReportUIDs | []string| `[]string` | ✓ | |  | `["8b1cc5da-fabe-45a6-ab8c-49260bbeef99","030834c0-972b-48a0-a9d7-f31552da2870"]` |
+
+
+
 ### <span id="null-time"></span> NullTime
 
 
@@ -2796,6 +2934,25 @@ it can be used as a scan destination, similar to NullString.
 | LastPage | int64 (formatted integer)| `int64` |  | | Last page which contains results | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | | Number of results returned per request | `20` |
 | Results | [[]ArtifactGroupVulnSearchPostResponse](#artifact-group-vuln-search-post-response)| `[]*ArtifactGroupVulnSearchPostResponse` |  | |  |  |
+
+
+
+### <span id="paginated-reports-search-post-response"></span> PaginatedReportsSearchPostResponse
+
+
+
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Count | int64 (formatted integer)| `int64` |  | | Total number of results of all combined pages | `10` |
+| CurrentPage | int64 (formatted integer)| `int64` |  | | Current page of results to return | `1` |
+| LastPage | int64 (formatted integer)| `int64` |  | | Last page which contains results | `2` |
+| PageSize | int64 (formatted integer)| `int64` |  | | Number of results returned per request | `20` |
+| Results | [[]ReportResponse](#report-response)| `[]*ReportResponse` |  | |  |  |
 
 
 
@@ -2984,7 +3141,10 @@ it can be used as a scan destination, similar to NullString.
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
 | GeneratedAt | string| `string` |  | | The date and time this report was submitted to the Store. Time format is in ISO 8601 | `2006-01-02T15:04:05Z07:00` |
-| OriginalLocation | string| `string` |  | | The OCI registry location of the original SBOM vulnerability scan that generated this report | `k8s-minikube/kicbase@sha256:be897edc9ed473a9678010f390a0092f488f6a1c30865f571c3b6388f9f56f9b` |
+| OriginalLocation | string| `string` |  | | The OCI registry location of the original SBOM vulnerability scan that generated this report
+This can be an individual file, or a bundle | `k8s-minikube/kicbase@sha256:be897edc9ed473a9678010f390a0092f488f6a1c30865f571c3b6388f9f56f9b` |
+| OriginalLocationFilePath | string| `string` |  | | The location inside the bundle where the original SBOM vulnerability scan that generated this report can be found.
+Used when the original location points to a bundle that contains multiple SBOM vulnerability scans. | `some/path/scan-result.cyclonedx.yaml` |
 | UID | string| `string` |  | | The unique identifier of the report | `6b96a6ff-248d-4c36-b385-93c3813e1e86` |
 | entity | [ReportEntityResponse](#report-entity-response)| `ReportEntityResponse` |  | |  |  |
 | tool | [ReportToolResponse](#report-tool-response)| `ReportToolResponse` |  | |  |  |
@@ -3039,10 +3199,13 @@ it can be used as a scan destination, similar to NullString.
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| EntityID | uint64 (formatted integer)| `uint64` |  | | The database ID of the source or image being associated with this report | `24` |
 | EntityType | string| `string` |  | | The entity type of scan that is stored. This is set to either "image" or "source" | `image` |
+| EntityUID | string| `string` |  | | The sha/digest of the source or image associated with this report | `sha256:5435994e6ae823886689fddeba452f6e806947c5efcca0e4e76f0a187b7d9871` |
 | GeneratedAt | string| `string` |  | | The date and time this report was submitted to the Store. Time format is in ISO 8601 | `2006-01-02T15:04:05Z07:00` |
-| OriginalLocation | string| `string` |  | | The OCI registry location of the original SBOM vulnerability scan that generated this report | `k8s-minikube/kicbase@sha256:be897edc9ed473a9678010f390a0092f488f6a1c30865f571c3b6388f9f56f9b` |
+| OriginalLocation | string| `string` |  | | The OCI registry location of the original SBOM vulnerability scan that generated this report
+This can be an individual file, or a bundle | `k8s-minikube/kicbase@sha256:be897edc9ed473a9678010f390a0092f488f6a1c30865f571c3b6388f9f56f9b` |
+| OriginalLocationFilePath | string| `string` |  | | The location inside the bundle where the original SBOM vulnerability scan that generated this report can be found.
+Used when the original location points to a bundle that contains multiple SBOM vulnerability scans. | `some/path/scan-result.cyclonedx.yaml` |
 | UID | string| `string` |  | | The unique identifier of the report | `6b96a6ff-248d-4c36-b385-93c3813e1e86` |
 | artifact_group | [ReportArtifactGroupResponse](#report-artifact-group-response)| `ReportArtifactGroupResponse` |  | |  |  |
 | tool | [ReportToolResponse](#report-tool-response)| `ReportToolResponse` |  | |  |  |
