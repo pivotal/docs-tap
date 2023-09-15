@@ -1,16 +1,18 @@
-# Configure Cloud Native Runtimes with VMware NSX Advanced Load Balancer (formerly known as Avi Networks)
+# Configure Cloud Native Runtimes with VMware NSX Advanced Load Balancer
 
-This topic tells you how to configure Cloud Native Runtimes, commonly known as CNRs, with VMware NSX Advanced Load Balancer (formerly known as Avi Networks).
+This topic tells you how to configure Cloud Native Runtimes, commonly known as CNRs, with VMware NSX Advanced Load Balancer, formerly known as Avi Networks.
 
 ## <a id="overview"></a> Overview
 
-You can configure Cloud Native Runtimes to integrate with VMware NSX Advanced Load Balancer.
-VMware NSX Advanced Load Balancer is a multi-cloud platform that delivers features such
-as load balancing, security, and container ingress services.
+You can configure Cloud Native Runtimes to integrate with VMware NSX Advanced
+Load Balancer. VMware NSX Advanced Load Balancer is a multi-cloud platform that
+delivers features such as load balancing, security, and container ingress
+services.
 
-The NSX Advanced Load Balancer Controller provides a control plane while the NSX Advanced Load Balance Service Engines provide a data plane.
-After set up, the Service Engines forward incoming traffic to your Kubernetes cluster's Envoy pods, which are created and
-managed by Contour.
+The NSX Advanced Load Balancer Controller provides a control plane while the NSX
+Advanced Load Balance Service Engines provide a data plane. The Service Engines
+forward incoming traffic to your Kubernetes cluster's Envoy pods, which Contour
+creates and manages.
 
 For information about VMware NSX Advanced Load Balancer,
 see [VMware NSX Advanced Load Balancer Documentation](https://docs.vmware.com/en/VMware-NSX-Advanced-Load-Balancer/index.html).
@@ -30,7 +32,7 @@ To configure Cloud Native Runtimes with VMware NSX Advanced Load Balancer:
 1. Deploy the NSX Advanced Load Balancer Controller on a supported infrastructure provider.
 For a list of NSX Advanced Load Balancer supported providers, see [Installation Guides](https://docs.vmware.com/en/VMware-NSX-Advanced-Load-Balancer/22.1/Installation_Guide/GUID-1E470353-38B9-4D77-A52D-EF004943D5E7.html).
 
-1. Deploy the Avi Kubernetes Operator to your Kubernetes cluster where Cloud Native Runtimes is hosted. See [Avi Kubernetes Operator documentation](https://avinetworks.com/docs/ako/1.10/avi-kubernetes-operator/).
+1. Deploy the Avi Kubernetes operator to your Kubernetes cluster where Cloud Native Runtimes is hosted. For more information, see the [Avi Kubernetes Operator documentation](https://avinetworks.com/docs/ako/1.10/avi-kubernetes-operator/).
 
 1. Connect to a test app and verify that it is reachable. Run:
 
@@ -45,7 +47,7 @@ For a list of NSX Advanced Load Balancer supported providers, see [Installation 
 
    For information about deploying a sample application and connecting to the application, see [Test Knative Serving](./app-operators/verifying-serving.hbs.md#test-knative-serving-1).
 
-2. (Optional) Create a DNS record that configures your KService URL to point to the Avi Service Engines, and resolve to the external IP of the Envoy. You can create a DNS record on any platform that supports DNS services. For more information, see the documentation for your DNS service platform.
+1. (Optional) Create a DNS record that configures your KService URL to point to the Avi Service Engines, and resolve to the external IP of the Envoy. You can create a DNS record on any platform that supports DNS services. For more information, see the documentation for your DNS service platform.
 
    To get the KService URL, run:
 
@@ -61,7 +63,7 @@ The following diagram shows how VMware NSX Advanced Load Balancer integrates wit
 
 ![This diagram illustrates the workflow described in the text below.](../images/avi-cnr-integration.jpg)
 
-When Contour creates a Kubernetes LoadBalancer service for Envoy, the Avi kubernetes operator (AKO) sees the new LoadBalancer service.
+When Contour creates a Kubernetes LoadBalancer service for Envoy, the Avi Kubernetes operator (AKO) sees the new LoadBalancer service.
 Then NSX Advanced Load Balancer Controller creates a Virtual Service. For information about LoadBalancer services, see
 [Type LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) in the Kubernetes documentation.
 

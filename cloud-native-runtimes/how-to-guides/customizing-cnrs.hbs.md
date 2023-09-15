@@ -16,8 +16,7 @@ tanzu package available get cnrs.tanzu.vmware.com/${CNR_VERSION} --values-schema
 ## <a id='customize'></a> Customizing Cloud Native Runtimes
 
 Besides using the out-of-the-box options to configure your package, you can use ytt overlays to further customize your installation.
-See [Customize your package installation](../../customize-package-installation.hbs.md)
-for instructions on how to customize any Tanzu Platform Application package.
+For information about how to customize any Tanzu Application Platform package, see [Customize your package installation](../../customize-package-installation.hbs.md).
 
 The following example shows how to update the Knative ConfigMap `config-logging` to override the logging level
 of the Knative Serving controller to `debug`:

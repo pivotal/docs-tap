@@ -5,20 +5,18 @@ This topic gives you an overview what Cloud Native Runtimes is and how you can u
 ## <a id="overview"></a> Overview
 
 Cloud Native Runtimes (CNRs) is enterprise supported Knative, with Carvel tools for deployment and Contour for networking.
-CNRs offers everything Knative does and some extras that make it ideal for cloud-native application development.
-Cloud Native Runtimes gives developers environmental simplicity and administrators deployment control. It works on any single Kubernetes cluster running Kubernetes v1.26 and later.
+CNRs offers everything Knative does and some extras that make it ideal for cloud-native application development. 
+Cloud Native Runtimes gives developers environmental simplicity and administrators deployment control. It works on any Kubernetes cluster running Kubernetes v1.26 and later.
 
 The Cloud Native Runtimes component documentation consists of the following sections:
 
-- [How-to Guides](how-to-guides/index.hbs.md) give you steps to solve a specific problem.
+- [How-to guides](how-to-guides/index.hbs.md) give you steps to solve a specific problem.
 - [Reference](reference/index.hbs.md) give you specific information, such as the CNRs Compatibility Matrix.
 
 CNRs uses Knative Serving to provide:
 
 - Automatic pod scaling
 - Traffic splitting by code release version
-
-Cloud Native Runtimes simplifies the Developer experience.
 
 | Kubernetes Developers must know: | Cloud Native Runtimes Developers must know: |
 |----------------------------------|---------------------------------------------|
@@ -40,7 +38,7 @@ Cloud Native Runtimes increases Administrator control and support.
 Cloud Native Runtimes works well with these use cases:
 
 - Batch Jobs Processing
-- AI/ML
+- AI and ML
 - Application or Network Monitoring
 - IOT
 - Serverless application architectures

@@ -28,8 +28,8 @@ Before installing Cloud Native Runtimes:
     domain_name: "foo.bar.com"
   ```
 
-  If the domain name is not available or desired, you can set the domain name to any valid value as long as no process relies on the domain name resolving to the envoy IP.
-  VMware does not recommend this for production environments. Another alternative to bypass setting domain name is to disable auto-TLS. For more information, see [Disabling Automatic TLS Certificate Provisioning](../auto-tls/tls-guides-deactivate-autotls.hbs.md).
+  If the domain name is not available or not what you want, you can set the domain name to any valid value if no process relies on the domain name resolving to the envoy IP.
+  VMware discourages this for production environments. Another alternative to bypass setting domain name is to deactivate auto-TLS. For more information, see [Disabling Automatic TLS Certificate Provisioning](../auto-tls/tls-guides-deactivate-autotls.hbs.md).
 
 ## <a id='cnr-install'></a> Install
 

@@ -1,4 +1,4 @@
-# Installing Cloud Native Runtimes with your Existing Contour Installation
+# Installing Cloud Native Runtimes with your existing Contour installation
 
 This topic describes how you can configure Cloud Native Runtimes, commonly known
 as CNRs, with your existing Contour instance. Cloud Native Runtimes uses Contour
@@ -14,7 +14,7 @@ Follow the instructions in this topic if:
 Cloud Native Runtimes needs two instances of Contour:
 
 - an instance for exposing services outside the cluster
-- an instance for services that are private in your network.
+- an instance for services that are private in your network
 
 If installed as part of a Tanzu Application Platform profile,
 by default Cloud Native Runtimes use the Contour instance installed in the

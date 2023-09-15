@@ -14,7 +14,7 @@ set the `cnrs.ingress_issuer` configuration to an empty value. For detailed inst
 
 ## <a id='prereqs'></a> Prerequisites
 
-In order to configure TLS for Cloud Native Runtimes, you must first configure a Service Domain. For more information, see [Configuring External DNS with CNRs](./external_dns.hbs.md).
+To configure TLS for Cloud Native Runtimes, you must first configure a Service Domain. For more information, see [Configuring External DNS with CNRs](./external_dns.hbs.md).
 
 ## <a id='config'></a> Configure TLS
 

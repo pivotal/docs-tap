@@ -1,4 +1,4 @@
-# Configure Garbage collection for the Knative revisions
+# Configure garbage collection for the Knative revisions
 
 This topic tells you about current Garbage collection defaults for Knative Revisions and you can update them in Tanzu Application Platform.
 

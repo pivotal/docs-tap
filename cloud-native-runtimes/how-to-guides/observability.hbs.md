@@ -1,4 +1,4 @@
-# Configuring Observability for Cloud Native Runtimes
+# Configuring observability for Cloud Native Runtimes
 
 This topic tells you how to configure observability for Cloud Native Runtimes, commonly known as CNRs.
 

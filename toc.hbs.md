@@ -414,6 +414,7 @@
         - [How-to guides](./cloud-native-runtimes/how-to-guides/index.hbs.md)
             - [Cloud Native Runtimes for platform operators](./cloud-native-runtimes/how-to-guides/app-operators/index.hbs.md)
                 - [Install CNRs on TAP without a Profile](./cloud-native-runtimes/how-to-guides/app-operators/install.hbs.md)
+                - [Manage Knative Serving resources](./cloud-native-runtimes/how-to-guides/app-operators/resource_management.hbs.md)
                 - [Uninstall CNRs](./cloud-native-runtimes/how-to-guides/app-operators/uninstall.hbs.md)
                 - [Upgrade CNRs](./cloud-native-runtimes/how-to-guides/app-operators/upgrade.hbs.md)
                 - [Verify CNRs Installation](./cloud-native-runtimes/how-to-guides/app-operators/verify-installation.hbs.md)

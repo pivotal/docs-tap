@@ -228,7 +228,7 @@ If you want to continue using TLS, there are a few ways to resolve this on your 
 
 #### Option 1: Change the `domain_template`
 
-Changing the `domain_template` alters how Knative will create FQDNs for Knative Services. See CNRs instructions on [configuring External DNS](./external_dns.hbs.md#configure-knative-service-domain-template).
+Changing the `domain_template` alters how Knative will create FQDNs for Knative Services. See [configuring External DNS](./external_dns.hbs.md#configure-knative-service-domain-template).
 
 You can use this option to shorten the template, either by shortening one of the fields:
 
