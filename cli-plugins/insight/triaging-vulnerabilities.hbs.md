@@ -76,7 +76,7 @@ findings by using the `tanzu insight triage update` command as many times as nee
 
 ## <a id='viewing-analysis'></a>View existing analysis
 
-To view all the existing analysis in SCST - Store:
+To view all the existing analysis in SCST - Store, run:
 
 ```console
 tanzu insight triage list
