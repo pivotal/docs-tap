@@ -205,10 +205,10 @@ Parameters:
   <tr>
     <td><code>testing_pipeline_matching_labels</code></td>
     <td>
-      The set of labels to use when searching for Tekton Pipeline objects in the
-      same namespace as the workload. By default, a Pipeline labeled as
-      `apps.tanzu.vmware.com/pipeline: test` is selected, but when using
-      this parameter, it's possible to override the behavior.
+      The set of labels to use when searching for<br> Tekton Pipeline objects in the
+      same namespace as the workload.<br> By default, a Pipeline labeled as<br>
+      `apps.tanzu.vmware.com/pipeline: test` is selected,<br> but when using
+      this parameter,<br> it's possible to override the behavior.
     </td>
     <td>
       <p alignment ="left">
@@ -373,9 +373,9 @@ Parameters:
   <tr>
     <td><code>buildServiceBindings</code></td>
     <td>
-      The definition of a list of service bindings to use at build time. For example,
-      providing credentials for fetching dependencies from
-      repositories that require credentials.
+      The definition of a list of service bindings<br> to use at build time. For example,
+      providing<br> credentials for fetching dependencies from
+      repositories<br> that require credentials.
     </td>
     <td>
       <p alignment ="left">
@@ -766,7 +766,7 @@ Parameters:
   <tr>
     <td><code>api_descriptor</code></td>
     <td>
-     Information used to fill the state that you want of the APIDescriptor object
+     Information used to fill the state that you want of<br> the APIDescriptor object
     (its spec).
     </td>
     <td>
@@ -823,9 +823,9 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      The name of the serviceaccount (in the same namespace as the deliverable) to
-      use for providing the necessary permissions to create the children
-      objects for deploying the objects created by the supply chain to the
+      The name of the serviceaccount (in the same namespace<br> as the deliverable) to
+      use for providing the necessary<br> permissions to create the children
+      objects for deploying the objects<br> created by the supply chain to the
       cluster.
     </td>
     <td>

@@ -121,11 +121,9 @@ The following conditions are required for this action:
 
 ## <a id='rebase-analyses'></a>Rebase multiple analyses
 
-Given the Continuous Delivery nature of TAP's Supply Chains, you might run into scenarios where you
-have performed Triage for several vulnerabilities on the latest version of your workload's image,
-and after a change is made in the source code and a new image is built and deployed, you want to
-carry forward the existing vulnerability analyses for all vulnerabilities that are still present
-in the newest version of the image. We call this process *rebase*, and you can run it with the
+If you carry out vulnerability analyses on your workload image, you might want to carry this forward
+after the workload source code is updated and a new image is built and deployed.
+This process is called rebase, and you can run it with the
 following command:
 
 ```console
