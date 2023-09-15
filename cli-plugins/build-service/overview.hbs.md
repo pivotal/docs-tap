@@ -67,7 +67,7 @@ To view logs from the latest build, run:
 tanzu build-service build logs IMAGE-NAME -n WORKLOAD-NAMESPACE
 ```
 
-For details about a particular build, run
+For details about a particular build, run:
 
 ```console
 tanzu build-service build logs IMAGE-NAME -n WORKLOAD-NAMESPACE --build BUILD-NUMBER
@@ -97,13 +97,13 @@ Use the `clusterbuildpack` command to list information about available buildpack
 
 #### ClusterBuildpack List
 
-To list all language family ClusterBuildpacks, run:
+To list all language-family ClusterBuildpacks, run:
 
 ```console
 tanzu build-service clusterbuildpack list
 ```
 
-To see a detailed view of a particular language family buildpack and see its component buildpack
+To see a detailed view of a particular language-family buildpack and see its component buildpack
  versions, run:
 
 ```console
