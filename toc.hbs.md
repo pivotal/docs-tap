@@ -727,7 +727,7 @@ docs.vmware.com is built.
          - [Application Live View](tap-gui/plugins/app-live-view.hbs.md)
              - [Application Live View in Tanzu Developer Portal](tap-gui/plugins/app-live-view.hbs.md)
              - [Application Live View for Spring Boot](tap-gui/plugins/app-live-view-springboot.hbs.md)
-             - [Application Live View for SCG](tap-gui/plugins/app-live-view-springcloudgateway.hbs.md)
+             - [Application Live View for Spring Cloud Gateway](tap-gui/plugins/app-live-view-springcloudgateway.hbs.md)
              - [Application Live View for Steeltoe](tap-gui/plugins/app-live-view-steeltoe.hbs.md)
          - [Application Accelerator](tap-gui/plugins/application-accelerator.hbs.md)
              - [Application Accelerator in Tanzu Developer Portal](tap-gui/plugins/application-accelerator.hbs.md)
