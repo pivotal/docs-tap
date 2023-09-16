@@ -158,18 +158,18 @@ Verify these possible reasons why the vulnerability database is not valid:
 
 1. The database schema is invalid. First confirm that the required database schema for the installed Grype version is being used. Next, confirm that the top level version key matches the nested `version`. For example, the top level version `1` in the following snippet does not match the nested `version: 5`.
 
-```json
-{
-  "available": {
-    "1": [{
-            "built": "2023-02-08T08_17_20Z",
-            "version": 5,
-            "url": "https://INTERNAL-ENDPOINT/releases/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
-            "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
-    }]
-  }
-}
-```
+    ```json
+    {
+      "available": {
+        "1": [{
+               "built": "2023-02-08T08_17_20Z",
+               "version": 5,
+               "url": "https://INTERNAL-ENDPOINT/path-to-tarball/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
+               "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
+        }]
+      }
+    }
+    ```
 
 As stale databases weaken your security posture, VMware recommends using the newest entry of the relevant schema version in the `listing.json` file. See Anchore’s [grype-db](https://github.com/anchore/grype-db) in GitHub.
 
