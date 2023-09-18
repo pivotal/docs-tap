@@ -1,10 +1,10 @@
 # Configure Contour to support TLS termination at an AWS Network LoadBalancer
 
 This topic tells you how to configure Contour to accept traffic from an AWS 
-Network Load Balancer (NLB) that terminates TLS traffic.
+Network LoadBalancer (NLB) that terminates TLS traffic.
 
 >**Important** This guide only applies to the Contour package from 
-Tanzu Application Platform v1.7.0 and onwards.
+Tanzu Application Platform v1.7.0 and later.
 
 ## <a id="prereqs"></a>Prerequisites
 
@@ -28,7 +28,7 @@ The following steps correspond to the steps in the [Contour open source document
 
 1. Edit the Contour package install values.
 
-    - If using a `tap-values.yml` file, update the Contour section with the following:
+    - If using a `tap-values.yaml` file, update the Contour section with the following:
 
         ```yaml
         contour:
@@ -51,7 +51,7 @@ The following steps correspond to the steps in the [Contour open source document
 1. Update your Tanzu Application Platform install:
  
     ```console
-    tanzu package installed update tap -n tap-install -f tap-values.yml -p tap.tanzu.vmware.com -v VERSION
+    tanzu package installed update tap -n tap-install -f tap-values.yaml -p tap.tanzu.vmware.com -v VERSION
     ```
 
     Where `VERSION` is the version of Tanzu Application Platform in use, which must be in the form of `X.X.X`.
@@ -73,25 +73,25 @@ The following steps correspond to the steps in the [Contour open source document
          envoy   LoadBalancer   10.100.24.154   a7ea2bbde8a164036a7e4c1ed5700cdf-154fb911d990bb1f.elb.us-east-2.amazonaws.com   443:31606/TCP      40d
         ```
 
-    1. Setup a DNS entry:
+    1. Set up a DNS entry:
  
         Create a DNS record pointing from `DOMAIN` to the NLB Domain, which is the External IP value from the previous step.
 
 	      If not using AWS Route53, you must create a CNAME entry in your DNS provider. Otherwise, with AWS Route53, you can create an "A" record type, and alias it to the Network Loadbalancer.
 
-        In the "route traffic to" section, you must set:
+        In the **Route traffic to** section, you must set:
 
-        - "Alias to Network Loadbalancer".
+        - Alias to Network LoadBalancer.
         - The appropriate region for your NLB.
         - The name of your NLB domain from the previous step.
 
         It resembles the following:
 
-        ![aws-dns-record-screenshot](images/aws-dns-record.png)
+        ![Screenshot displaying the AWS quick create record interface.](images/aws-dns-record.png)
 
 
 ## <a id="verify"></a>Verification
 
-You can verify this conifguration by applying a simple test app and the corresponding HTTPProxy resource.
+You can verify this configuration by applying a simple test app and the corresponding HTTPProxy resource.
 
 The FQDN on the HTTPProxy resource must match the `DOMAIN` you used earlier.
