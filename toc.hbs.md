@@ -208,6 +208,7 @@
                 - [Configure the Tanzu Insight CLI plug-in](cli-plugins/insight/cli-configuration.hbs.md)
                 - [Query vulnerabilities, images, and packages](cli-plugins/insight/query-data.hbs.md)
                 - [Add data to your Supply Chain Security Tools - Store](cli-plugins/insight/add-data.hbs.md)
+                - [Query Software Bill of Materials Reports](cli-plugins/insight/query-sbom-reports.hbs.md) 
                 - [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md)
                 - [Command reference](cli-plugins/insight/cli-docs/tanzu_insight.hbs.md)
                     - [tanzu insight config](cli-plugins/insight/cli-docs/tanzu_insight_config.hbs.md)
