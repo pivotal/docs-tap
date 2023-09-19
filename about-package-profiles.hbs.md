@@ -347,7 +347,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td><strong>View</strong>
    </td>
-   <td><strong>Not in any profile</strong>
+   <td><strong>Not in a profile</strong>
    </td>
   </tr>
   <tr>
