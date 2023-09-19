@@ -235,7 +235,8 @@
     <tr>
         <td>Profile</td>
         <td>A profile is a predefined group of Tanzu Application Platform packages you can deploy.
-        You can deploy the full profile, which includes all Tanzu Application Platform packages, or
+        You can deploy the full profile, which includes all Tanzu Application Platform packages apart
+        from a few exceptions, or
         you can deploy a profile that includes a subset of packages that suit a certain use case such
         as the iterate, build, run, and view profiles.
         The profiles allow Tanzu Application Platform to scale across an organization's multicluster,
