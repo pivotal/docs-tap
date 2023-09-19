@@ -3,7 +3,7 @@
 You can control the access to Kubernetes runtime resources on Tanzu Developer Portal based on user
 roles and permissions for each of the visible remote clusters.
 
-> **Caution** On TAP < 1.7.0 Setting up role-based access control (RBAC) might impact the user's ability to view
+> **Caution** On TAP prior to 1.7.0 setting up role-based access control (RBAC) might impact the user's ability to view
 > workloads in the Security Analysis GUI and the Workloads table of the Supply Chain Choreographer
 > plug-in GUI.
 
