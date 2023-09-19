@@ -1,4 +1,4 @@
-# Create Eureka Servers
+# Create EurekaServer resources
 
 This topic tells you about options when creating a `EurekaServer` resource.
 
@@ -32,7 +32,7 @@ FIELDS:
     Replica count for the EurekaServer StatefulSet
 ```
 
-## <a id="create-eurekaserver"></a> Create a EurekaServer
+## <a id="create-eurekaserver"></a> Create a EurekaServer resource
 
 To create a `EurekaServer` resource:
 
