@@ -354,6 +354,8 @@ The following profiles are available in Tanzu Application Platform:
   Tanzu Developer Portal and Metadata Store.
 
 The following table lists the packages contained in each profile.
+Packages not included in any profile are available to install as individual packages only.
+See the component documentation for the package for installation instructions.
 For a diagram showing the packages contained in each profile, see
 [Overview of multicluster Tanzu Application Platform](./multicluster/about.hbs.md).
 
@@ -371,6 +373,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td><strong>View</strong>
    </td>
+   <td><strong>Not in any profile</strong>
+   </td>
   </tr>
   <tr>
    <td>API Auto Registration
@@ -382,6 +386,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -399,11 +405,30 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Application Accelerator
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+   <td>Application Configuration Service
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -427,6 +452,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Application Live View (Run)
@@ -438,6 +465,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -455,8 +484,9 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
-  <tr>
   <tr>
    <td>Application Single Sign-On
    </td>
@@ -467,6 +497,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -484,6 +516,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Cloud Native Runtimes
@@ -495,6 +529,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -512,6 +548,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Default Roles
@@ -523,6 +561,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -539,6 +579,24 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>External Secrets Operator
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -568,6 +626,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Grype
@@ -577,6 +637,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -610,6 +672,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Namespace Provisioner
@@ -621,6 +685,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -638,6 +704,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Basic
@@ -647,6 +715,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -666,6 +736,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
@@ -675,6 +747,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -694,6 +768,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Service Bindings
@@ -705,6 +781,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -722,6 +800,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Source Controller
@@ -735,6 +815,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -750,6 +832,23 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
+  </tr>
+   <td>Spring Cloud Gateway
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Choreographer
@@ -761,6 +860,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -778,6 +879,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>SCST - Scan</td>
@@ -787,6 +890,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -806,6 +911,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>SCST - Store</td>
@@ -820,6 +927,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Tanzu Build Service
@@ -829,6 +938,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -848,6 +959,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Tekton Pipelines
@@ -857,6 +970,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -875,6 +990,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
