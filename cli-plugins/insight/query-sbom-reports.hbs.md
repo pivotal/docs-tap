@@ -1,32 +1,27 @@
 # Query Software Bill of Materials Reports
 
 This topic tells you how to query the database to retrieve a Software Bill
-of Materials (commonly known as SBoM) report for a particular image. The information returned is similar
-to the SBoM returned by [querying for packages and CVE's a specific image contains](query-data.hbs.md#a-idexample1aexample-1-what-packages-and-cves-does-a-specific-image-contain)
-with one significant difference: While querying for images returns all Common Vulnerabilities and Exposures (commonly known as CVE) and packages
-linked to an image found in the database, querying for an SBoM report includes similar information but at a specific point in time with a specific
+of Materials (SBoM) report for a specific image.
+
+Use the `tanzu insight report get --uid` command to query the database to retrieve an SBoM report.
+
+Firstly, query for a list of existing SBoM reports associated with an image, and when you have
+determined the unique identifier (UID) for an SBoM report, query for a specific SBoM report.
+
+Querying for a specific SBoM report returns all common vulnerabilities, exposures
+(commonly known as CVE), and packages for an image for a specific point in time with a specific
 vulnerability scan tool.
 
+The information returned is similar to the SBoM returned by the `tanzu insight image get --digest`
+command, however, the output returned is not for a specific point in time with a specific
+vulnerability scan tool. For more information about querying for images, see the
+[What packages and CVEs does a specific image contain](query-data.hbs.md#example1) example.
 
-## <a id='sup-usecase'></a>Supported use cases
+## <a id='example1'></a>Query the database to retrieve an SBoM report
 
-The following are use cases supported by the CLI:
-- What SBoM reports exist for a particular image?
-- Fetching a specific SBoM report.
-
-## <a id='query-insight'></a> Query using the Tanzu Insight CLI plug-in
-
-[Install the Tanzu Insight CLI plug-in](cli-installation.hbs.md) if you have not already done so.
-
-There are two commands for querying SBoM reports:
-
-- `list` - Query for a list of existing SBoM reports associated with an image
-- `get` - Query for a specific SBoM report
-
-
-## <a id='example1'></a>Example #1: What SBoM reports exist for a specific image?
-
-Run:
+1. Query for the list of all reports associated with an image. To fetch a specific SBoM report, you
+must determine the unique identifier (UID) for the SBoM report. Use the unique
+identifier (UID) returned by this command in the next step. Run:
 
 ```console
 tanzu insight report list --digest DIGEST
@@ -74,19 +69,9 @@ $ tanzu insight report list --digest sha256:20521f76ff3d27f436e03dc666cc97a511bb
 		Vendor:  anchore
 ```
 
-## <a id='example2'></a>Example #2: What packages and CVEs were found in a specific scan report?
-
-### Determining the SBoM report unique identifier
-
-To fetch a specific SBoM report, you first need to determine the report's unique identifier (commonly known as UID). Find it by
-querying for the list of all reports associated with the image as shown in example 1.
-
-In this example, the report UID for the image on July 17, 2022, is `b6bed111-24eb-4814-9cbd-bbc26dd76d7f`.
-Use this UID to fetch the report.
-
-### Fetching the specific SBoM report
-
-Run:
+1. Fetch a specific SBoM report. In the output in the previous step, the report
+UID for the image on `2022-07-15`, is `b6bed111-24eb-4814-9cbd-bbc26dd76d7f`.
+Use this UID to fetch the SBoM report. Run:
 
 ```console
 tanzu insight report get --uid UID
@@ -139,4 +124,5 @@ Entity:
 ...
 ```
 
-This SBoM report only includes packages and vulnerabilities found on this image during this specific date and time and the vulnerability scan tool version.
+This SBoM report only includes packages and vulnerabilities for this image on this specific
+date and time and the vulnerability scan tool version.
