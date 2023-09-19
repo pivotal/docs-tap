@@ -110,7 +110,7 @@ a predefined group of packages.
   delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
   the [Contour documentation](https://projectcontour.io/docs/1.24/).
 
-**[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
+- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
 
   This package includes five default roles for users, including app-editor, app-viewer, app-operator,
   and service accounts including workload and deliverable. These roles are available to help
