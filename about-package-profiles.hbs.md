@@ -109,13 +109,13 @@ a predefined group of packages.
   delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
   the [Contour documentation](https://projectcontour.io/docs/v1.22.0/).
 
-<!-- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
+- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
 
-<!--This package includes five default roles for users, including app-editor, app-viewer, app-operator,
-and service accounts including workload and deliverable. These roles are available to help
-operators limit permissions a user or service account requires on a cluster that runs Tanzu
-Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
-access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
+  This package includes five default roles for users, including app-editor, app-viewer, app-operator,
+  and service accounts including workload and deliverable. These roles are available to help
+  operators limit permissions a user or service account requires on a cluster that runs Tanzu
+  Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
+  access control (RBAC). Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI.
 
 - **[Crossplane](crossplane/about.hbs.md)**
 
