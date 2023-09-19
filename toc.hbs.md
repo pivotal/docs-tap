@@ -204,7 +204,6 @@
                 - [tanzu build-service image trigger](cli-plugins/build-service/command-reference/tanzu_build-service_image_trigger.hbs.md)
           - [Insight](cli-plugins/insight/cli-overview.hbs.md)
                 - [Tanzu Insight plug-in overview](cli-plugins/insight/cli-overview.hbs.md)
-                - [Install the Tanzu Insight CLI plug-in](cli-plugins/insight/cli-installation.hbs.md)
                 - [Configure the Tanzu Insight CLI plug-in](cli-plugins/insight/cli-configuration.hbs.md)
                 - [Query vulnerabilities, images, and packages](cli-plugins/insight/query-data.hbs.md)
                 - [Add data to your Supply Chain Security Tools - Store](cli-plugins/insight/add-data.hbs.md)
