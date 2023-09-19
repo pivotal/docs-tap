@@ -13,5 +13,5 @@ Once `tanzu insight` CLI plug-in is set up:
 
 1. [Add data](add-data.hbs.md)
 1. [Query data](query-data.hbs.md)
-1. [Query Software Bill of Material Reports](query-sbom-reports.hbs.md) 
+1. [Query Software Bill of Material reports](query-sbom-reports.hbs.md) 
 1. [Triage vulnerabilities](triaging-vulnerabilities.hbs.md)
