@@ -336,8 +336,9 @@ for further customization.
 The following profiles are available in Tanzu Application Platform:
 
 - **Full** (`full`):
-  Contains all of the Tanzu Application Platform packages apart from a few exceptions.
-  For the packages available in the full profile, see the table later in this section.
+  Contains nearly all Tanzu Application Platform packages.
+  For the exceptions to the full profile, see the packages with a check mark in the **Not in a profile**
+  column in the table later in this section.
 
 - **Iterate** (`iterate`):
   Intended for iterative application development.
