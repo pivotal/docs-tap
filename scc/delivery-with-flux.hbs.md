@@ -20,11 +20,23 @@ To use Gitops Delivery with Flux CD, you must complete the following prerequisit
   and the [Contour documentation](https://projectcontour.io/).
 - To use a build cluster to control the deployment on all the run
   clusters, you must create a build cluster that has network access to your run
-  clusters. You must also ensure that you installed Flux CD Kustomize Controller.
-  See the [Flux documentation](https://fluxcd.io/flux/installation/#dev-install)
-  for installation instructions. If you intend to deploy directly on the run
-  cluster without a build cluster, a build cluster is only necessary for
-  building the package.
+  clusters. You must also ensure that you installed Flux CD Kustomize Controller:
+  see [below](#install-kustomize-controller) for instructions.
+  If you intend to deploy directly on the run cluster without a build cluster, 
+  a build cluster is only necessary for building the package.
+
+## <a id="install-kustomize-controller"></a> Install Kustomize Controller Prerequisite
+
+As mentioned above, to use a build cluster to control the deployment on run clusters, you need to install Flux CD kustomize-controller. You can do the installation using the flux cli. Use release [v0.41.2](https://github.com/fluxcd/flux2/releases/tag/v0.41.2). (Caution: newer releases of Kustomize Controller are not compatible with TAP 1.7.x)
+
+To install Flux CD:
+
+   ```console
+   # https://fluxcd.io/flux/get-started/
+   brew install fluxcd/tap/flux@0.41  (for example, when on macOS)
+   flux install -n flux-system --components kustomize-controller --version v0.41.2
+   ```
+
 
 ## <a id="run-cluster-ns"></a> Set up run cluster namespaces
 
