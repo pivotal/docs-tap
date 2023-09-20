@@ -788,6 +788,22 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
+   <td>Service Registry
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
    <td>Services Toolkit
    </td>
    <td>&check;
