@@ -14,7 +14,7 @@ testing the curated API. You must manually create the routing resources to route
 referenced API to match with the aggregated API specifications. With the route provider integration,
 these routing concerns are taken care of automatically.
 
-## <a id='prerecs'></a> Prerequisites 
+## <a id='prerecs'></a> Prerequisites
 
 A successful API curation requires the following prerequisites:
 
@@ -51,7 +51,6 @@ understand the impact:
 | --- | --- |
 | The default value `scg_openapi_service_url` is sufficient if using the default SCG installation. | You must overwrite the value `scg_openapi_service_url` with `http://scg-operator.tap-install.svc.cluster.local` if using the default SCG installation. |
 | Matching SCG updates API metadata automatically and the generated OpenAPI specifications reflect the metadata. | API metadata annotations are added or updated, but the API specifications exposed from SCG OpenAPI endpoint do not reflect that. |
-| The aggregated API specifications are in sync with the SCG generated API specifications. | SCG OpenAPI endpoint does not support returning specifications for a single SCG instance, so the aggregated API specifications do not include the additional information from SCG filters. |
 
 ### <a id='create-scg'></a>Create SpringCloudGateway resource
 
@@ -104,8 +103,8 @@ For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained
 
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
-The API Auto Registration controller offers an endpoint to retrieve all the generated API specifications for
-the curated APIs in the cluster. 
+The API Auto Registration controller offers an endpoint to retrieve all the generated API specifications
+for the curated APIs in the cluster.
 
 Find the HTTPProxy that's created to access the endpoint:
 
@@ -128,14 +127,38 @@ curl http(s)://AAR-CONTROLLER-FQDN/openapi
 
 Where `AAR-CONTROLLER-FQDN` is the AAR FQDN controller you want the specifications for.
 
-You can retrieve specifications for a specific `groupId` and `version` combination by specifying query parameters:
+You can retrieve specifications for `CuratedAPIDescriptor` from a specific namespace by specifying path:
 
 ```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi?groupId=GROUP-ID&version=VERSION
+curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE
 ```
 
 Where:
 
+- `NAMESPACE` is the desired namespace to retrieve specifications from.
+
+You can retrieve specifications for a specific `CuratedAPIDescriptor` by `namespace` and `name`:
+
+```console
+curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE/NAME
+```
+
+Where:
+
+- `NAMESPACE` is the namespace of the desired `CuratedAPIDescriptor`.
+- `NAME` is name of the desired `CuratedAPIDescriptor`.
+
+You can retrieve specifications for a specific `groupId` and `version` combination by specifying
+query parameters:
+
+```console
+curl http(s)://AAR-CONTROLLER-FQDN/openapi?groupId=GROUP-ID&version=VERSION
+curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE?groupId=GROUP-ID&version=VERSION
+```
+
+Where:
+
+- `NAMESPACE` is the desired namespace to retrieve specifications from.
 - `VERSION` is the version you want the specifications for.
 - `GROUP-ID` is group ID you want the specifications for.
 - `AAR-CONTROLLER-FQDN` is the AAR-CONTROLLER-FQDN you want to query.
