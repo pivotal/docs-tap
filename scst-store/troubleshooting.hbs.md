@@ -128,6 +128,16 @@ If you see `could not accept SSL connection` in the metadata-store-db logs, dele
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
 
+## Troubleshooting Database Index Corruption issue in SCST - Store
+
+Metadata Store unable to reconcile since metadata store pod complaining about potential database index corruption issue.
+
+    ```console
+    kubectl logs metadata-store-app-pod_name -n metadata-store
+    ```
+
+You can check [Postgres Database Index Corruption](./database-index-corruption.hbs.md) for solution
+
 ## Troubleshooting errors from Tanzu Developer Portal related to SCST - Store
 
 Different Tanzu Developer Portal plug-ins use SCST - Store to display information about
