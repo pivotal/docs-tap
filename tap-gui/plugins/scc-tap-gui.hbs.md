@@ -347,6 +347,8 @@ spec:
 
 There is another set of information that we could add to this CRD in order to enhance the way these resources will be rendered by the CLI tools and the Supply Chain plugin: **Printer Columns**.
 
+The supply chain plugin added support for Printer Columns in version 1.7.0
+
 Official Documentation: [link](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns)
 
 Printer Columns (their official name being “`additionalPrinterColumns`”) is a characteristic that can be added to CRDs to allow them to specify which of their properties should be shown when rendering the resource.
@@ -485,4 +487,112 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
+### <a id="sc-crd-usage"></a> Defining the ClusterTemplate and the Supply Chain
+
+Now that there exists a CRD and the permissions for them, we could start defining a Supply Chain that uses this CRD as one of its resources.
+
+For the following example we’ll be defining a very simple Supply Chain that has only one stage that uses an instance of our CRD.
+
+We will be creating our supply chain by downloading an already existing supply chain and editing it.
+
+To list the existing supply chains in a cluster you can do:
+
+```
+ kubectl get ClusterSupplyChain -n <<namespace>
+```
+
+To download one of them to file:
+
+```
+ kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
+```
+
+Once the Supply Chain definition is on file, open and edit it until it
+looks similar to the following:
+
+```
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: source-scan-test-scan-to-url-rockets
+spec:
+  resources:
+  selector:
+    apps.tanzu.vmware.com/has-rockets: "true"
+  selectorMatchExpressions:
+  - key: apps.tanzu.vmware.com/workload-type
+    operator: In
+    values:
+    - web
+    - server
+    - worker
+```
+
+The “`apiVersion`” and  “`kind`” stay the same. The `metadata.name` is one we just created for this new supply chain — `source-scan-test-scan-to-url-rockets`
+
+The `spec.selector` field indicates which label selector will be used to pick this as the supply chain when creating a workload. For this example we’ve chosen “`apps.tanzu.vmware.com/has-rockets:` `"true"`”. This means that when creating the workload it **must** have the label `“`apps.tanzu.vmware.com/has-rockets:` `"true"`”` in order to use this supply chain.
+
+Now, let’s define something for the `resources` field: a single resource that uses an instance of our CRD:
+
+In this supply chain we’re going to have just a single resource (stage) which will be named `rocket-provider` and it will use a “`templateRef"` of kind “`ClusterTemplate`” called “`rocket-source-template`” that we will create in the next step.
+For now it is only important to know that at its most basic a supply chain’s resource is an object consisting of a `name` and a `templateRef` pointing to an existing `ClusterTemplate.`
+
+We will call this supply chain file `rocket-supply-chain.yaml`.
+
+Now let’s define this new `ClusterTemplate`:
+Just like with the SupplyChain, we have downloaded an existing `ClusterTemplate` and then heavily edited it.
+
+To list existing `ClusterTemplates:`
+```
+kubectl get ClusterTemplates -n <<namespace>
+```
+
+And to download one to file:
+```
+kubectl get ClusterTemplates config-writer-template -n my-apps -oyaml >> ~/cluster-template.yaml
+```
+
+The edited/cleaned up file may end up looking like this:
+```
+apiVersion: carto.run/v1alpha1
+kind: ClusterTemplate
+metadata:
+  name: rocket-source-template
+spec:
+  lifecycle: mutable
+  ytt: |
+    #@ load("@ytt:data", "data")
+
+    #@ def merge_labels(fixed_values):
+    #@   labels = {}
+    #@   if hasattr(data.values.workload.metadata, "labels"):
+    #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+    #@     for k,v in dict(data.values.workload.metadata.labels).items():
+    #@       if k not in exclusions:
+    #@         labels[k] = v
+    #@       end
+    #@     end
+    #@   end
+    #@   labels.update(fixed_values)
+    #@   return labels
+    #@ end
+
+    ---
+    apiVersion: spaceagency.com/v1
+    kind: Rocket
+    metadata:
+      name: falcon9
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "rocket" })
+    spec:
+      type: Falcon 9
+      fuel: RP-1/LOX
+      payloadCapacity: 22000 kg
+```
+
+Note that the `metadata.name` we assigned here —`rocket-source-template`— matches the name we specified in the supply chain resource.
+
+It’s in the `spec` of this resource where we actually use an instance of the Rockets CRD. We do so using a field called `ytt` which is a templating language that can output resource instances.
+Note that we have left in a function that takes in labels from the workload and propagates them to the resource, this is not needed but is usually done to propagate important labels from the workload down to the individual resources.
+
+We will call this file `rocket-cluster-template.yaml` and with this we have completed all the necessary definitions to create a Workload that uses this new supply chain and our Rockets CRD.
 
