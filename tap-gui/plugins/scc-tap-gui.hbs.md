@@ -226,7 +226,7 @@ On 1.7.0 we introduced support for customer-baked CRDs. The following example il
 In order to define and use a CRD in a supply chain the following steps must be taken:
 
 1. Defining the CRD
-2. Assigning Permissions
+2. Setting CRD Permissions
 3. Defining the ClusterTemplate and the Supply Chain.
 4. Creating and Visualizing the Workload.
 
@@ -399,3 +399,90 @@ spec:
 ```
 
 And with that we now have a CRD with printer columns. We will call this CRD file `rockets-crd.yaml`
+
+### <a id="sc-crd-permissions"></a> Setting Resource Permissions
+
+In order to use these `Rocket` resources in a supply chain we need to create a `Role` to define what actions are allowed on this resource, and a `RoleBinding` to bind this new `Role` into the `serviceAccount` that we usually use.
+
+First let's tackle the `Role` resource:
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: my-apps
+  name: rocket-reader
+rules:
+- apiGroups: ["spaceagency.com"]
+  resources: ["rockets"]
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - patch
+  - update
+  - delete
+  - deletecollection
+```
+
+Of note here is the “`metadata.namespace`” and “`metadata.name`” values. The namespace indicates in which namespace are the rules valid, and the name is simply how we’re calling this Role. Then the rules simply list a set of verbs (actions) that are available for the specified “`apiGroups`” and “`resources`”.
+
+Let’s move onto the `RoleBinding.`
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rocket-reader-binding
+  namespace: my-apps
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: my-apps
+roleRef:
+  kind: Role
+  name: rocket-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+In this binding we’re associating the `default` service account that we use with the `rocket-reader` role we created earlier.
+
+We will put these two definitions together in a single file that we’ll call `permissions.yaml`
+The resulting file looks like this:
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: my-apps
+  name: rocket-reader
+rules:
+- apiGroups: ["spaceagency.com"]
+  resources: ["rockets"]
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - patch
+  - update
+  - delete
+  - deletecollection
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rocket-reader-binding
+  namespace: my-apps
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: my-apps
+roleRef:
+  kind: Role
+  name: rocket-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+
