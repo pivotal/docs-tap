@@ -487,7 +487,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### <a id="sc-crd-usage"></a> Defining the ClusterTemplate and the Supply Chain
+### <a id="sc-crd-resources"></a> Defining the ClusterTemplate and the Supply Chain
 
 Now that there exists a CRD and the permissions for them, we could start defining a Supply Chain that uses this CRD as one of its resources.
 
@@ -596,3 +596,63 @@ Note that we have left in a function that takes in labels from the workload and 
 
 We will call this file `rocket-cluster-template.yaml` and with this we have completed all the necessary definitions to create a Workload that uses this new supply chain and our Rockets CRD.
 
+### <a id="sc-crd-usage"></a> Creating and Visualizing the Workload
+
+Now that we have all of the resources we just have to apply them to a cluster and then create a workload.
+
+Let’s start by applying the CRD of our Rockets:
+```
+kubectl apply -f rockets-crd.yaml
+```
+
+Then we apply the resource permissions:
+```
+kubectl apply -f permissions.yaml
+```
+
+Then we apply the cluster template:
+```
+kubectl apply -f rocket-cluster-template.yaml
+```
+
+And finally the supply chain:
+```
+kubectl apply -f rocket-supply-chain.yaml
+```
+
+And now the cluster has all the necessary resource definitions to create a workload using the `source-scan-test-scan-to-url-rockets` supply chain, which, in turns, uses an instance of the `rockets.spaceagency.com` resource.
+
+To create the workload:
+
+```
+tanzu apps workload create tanzu-rockets-test-x \
+--type web \
+--label app.kubernetes.io/part-of=tanzu-rockets \
+--label apps.tanzu.vmware.com/has-rockets=true \
+--yes \
+--namespace my-apps
+```
+Notice how we are explicitly setting the label `apps.tanzu.vmware.com/has-rockets=true`. Remember the `selector` property that we specified when defining the `source-scan-test-scan-to-url-rockets` Supply Chain? That's what ties together that supply chain with this particular workload.
+
+Now that our workload is created, let's take a look at how it is rendered by the Supply Chain plugin.
+
+First we navigate to the supply chain plugin section in TAP-GUI and locate our Workload amongst the listed ones:
+
+![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload_list.png)
+
+Of note here is that our workload `tanzu-rockets-x` is "Healthy" and under the "Supply Chain" column shows that it is using the `source-scan-test-scan-to-url-rockets` supply chain.
+
+Once we click on it to see its details we are presented with the Workload graph.
+Given that our Supply Chain `source-scan-test-scan-to-url-rockets` only specified one `resource`, the result we get is a very simple single-stage graph:
+
+![Screenshot of tanzu-rockets-x workload graph.](images/tanzu-rockets-overview.png)
+
+Scrolling down the screen we are presented with the details associated with the stage:
+
+![Screenshot of Rocket Provider details.](images/tanzu-rockets-crd-detail.png)
+
+Notice how the Printer Columns that were defined on the CRD are now rendered in the overview section. This will hold true for *any* CRD that you define that includes the `additionalPrinterColumns` definition.
+
+Finally, at the end of the section the full resource is presented in JSON format.
+
+![Screenshot of Rocket Provider JSON.](images/tanzu-rockets-crd-json.png)
