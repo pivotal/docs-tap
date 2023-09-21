@@ -15,7 +15,7 @@ The installation creates the following in your Kubernetes cluster:
     - `metadata-store-app`
     - `metadata-store-db`
     - `amr-cloudevent-handler`. If AMR is deployed, see [Deploying AMR](#amr).
-    - `artifact-metadata-repository-app`. If AMR is deployed, see [Deploying AMR](#amr).
+    - `amr-graphql-app`. If AMR is deployed, see [Deploying AMR](#amr).
 - A namespace called `metadata-store`.
 - Persistent volume claim `postgres-db-pv-claim` in the `metadata-store` namespace.
 - A Kubernetes secret in the namespace tap is installed to allow pulling SCST - Store images from a registry.

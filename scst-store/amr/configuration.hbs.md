@@ -12,7 +12,7 @@ tanzu package available get amr-observer.apps.tanzu.vmware.com/${VERSION} --valu
 
 Values are under the `amr` root key, not under the `metadata_store` root key. 
 
->**Note** If AMR Observer is deployed [standalone](./install-amr-observer.hbs.md#installing-artifact-metadata-repository-observer-standalone) not through a Tanzu Application Platform package, the values file for a standalone package installation does not have the Tanzu Application Platform value root keys of `amr.observer` or `amr.deploy_observer`.
+>**Note** If AMR Observer is deployed [standalone](./install-amr-observer.hbs.md#a-idstandalone-installa-installing-artifact-metadata-repository-observer-standalone) not through a Tanzu Application Platform package, the values file for a standalone package installation does not have the Tanzu Application Platform value root keys of `amr.observer` or `amr.deploy_observer`.
 
 The following is an example template of the AMR Observer Tanzu Application Platform values:
 

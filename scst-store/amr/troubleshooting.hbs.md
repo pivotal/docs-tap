@@ -72,7 +72,7 @@ gitlab.eng.vmware.com/tanzu-image-signing/amr-observer/internal/cloud/event/clie
 Sample log in AMR CloudEvent Handler:
 
 ```json
-{"level":"error","ts":"2023-06-20T15:15:04.321672436Z","caller":"amr-persister/main.go:99","msg":"AMR is unavailable: Get \"https://artifact-metadata-repository-app.metadata-store.svc.cluster.local:8443/play\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"<...>"}
+{"level":"error","ts":"2023-06-20T15:15:04.321672436Z","caller":"amr-persister/main.go:99","msg":"AMR is unavailable: Get \"https://amr-graphql-app.metadata-store.svc.cluster.local:8443/play\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"<...>"}
 ```
 
 ```json
@@ -189,7 +189,7 @@ result: 204: sent: type: dev.knative.apiserver.resource.delete
 2023-06-20T19:01:23Z  INFO  replicaset.sendCloudEvent  received result  {"ceType": "dev.knative.apiserver.resource.delete", "result": "500: "}
   id: 4565357219078868493
 Extensions:
-map[kind:ReplicaSet name:artifact-metadata-repository-app-7ff9bc58f namespace:metadata-store]
+map[kind:ReplicaSet name:amr-graphql-app-7ff9bc58f namespace:metadata-store]
 ```
 
 There is partial legacy support for Knative ApiServerSource CloudEvents which the Observer leverages which is why there are CloudEvents formatted similarly to Knative APIServerSource being sent.
@@ -213,7 +213,7 @@ When the Observer starts up, it sends the Location CloudEvent and the AMR CloudE
 
 ```json
 {"level":"debug","ts":"2023-06-20T15:47:09.203390152Z","caller":"persister/persisteradapter.go:117","msg":"Registry Location Event"}
-{"level":"info","ts":"2023-06-20T15:47:09.20349837Z","caller":"persister/persisteradapter.go:279","msg":"Sending request to: https://artifact-metadata-repository-app.metadata-store.svc.cluster.local:8443/api/v1/locations with payload: {\"alias\":\"f17f073d-dfec-4624-953e-a133b694ecad\",\"reference\":\"f17f073d-dfec-4624-953e-a133b694ecad\"}"}
+{"level":"info","ts":"2023-06-20T15:47:09.20349837Z","caller":"persister/persisteradapter.go:279","msg":"Sending request to: https://amr-graphql-app.metadata-store.svc.cluster.local:8443/api/v1/locations with payload: {\"alias\":\"f17f073d-dfec-4624-953e-a133b694ecad\",\"reference\":\"f17f073d-dfec-4624-953e-a133b694ecad\"}"}
 {"level":"info","ts":"2023-06-20T15:47:09.238033374Z","caller":"persister/persisteradapter.go:299","msg":"status: 200, responseBody: {\"alias\":\"f17f073d-dfec-4624-953e-a133b694ecad\",\"reference\":\"f17f073d-dfec-4624-953e-a133b694ecad\",\"labels\":null}\n"}
 ```
 ---
@@ -222,9 +222,9 @@ When there is an error sending Location to the Metadata Store:
 
 ```json
 {"level":"debug","ts":"2023-06-20T15:15:04.294883639Z","caller":"persister/persisteradapter.go:117","msg":"Registry Location Event"}
-{"level":"info","ts":"2023-06-20T15:15:04.295528237Z","caller":"persister/persisteradapter.go:279","msg":"Sending request to: https://artifact-metadata-repository-app.metadata-store.svc.cluster.local:8443/api/v1/locations with payload: {\"alias\":\"f17f073d-dfec-4624-953e-a133b694ecad\",\"reference\":\"f17f073d-dfec-4624-953e-a133b694ecad\"}"}
-{"level":"error","ts":"2023-06-20T15:15:04.304782986Z","caller":"persister/persisteradapter.go:283","msg":"post error: Post \"https://artifact-metadata-repository-app.metadata-store.svc.cluster.local:8443/api/v1/locations\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"<...>"}
-{"level":"error","ts":"2023-06-20T15:15:04.304878714Z","caller":"amr-persister/main.go:72","msg":"Error Handler received error Post \"https://artifact-metadata-repository-app.metadata-store.svc.cluster.local:8443/api/v1/locations\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"..."}
+{"level":"info","ts":"2023-06-20T15:15:04.295528237Z","caller":"persister/persisteradapter.go:279","msg":"Sending request to: https://amr-graphql-app.metadata-store.svc.cluster.local:8443/api/v1/locations with payload: {\"alias\":\"f17f073d-dfec-4624-953e-a133b694ecad\",\"reference\":\"f17f073d-dfec-4624-953e-a133b694ecad\"}"}
+{"level":"error","ts":"2023-06-20T15:15:04.304782986Z","caller":"persister/persisteradapter.go:283","msg":"post error: Post \"https://amr-graphql-app.metadata-store.svc.cluster.local:8443/api/v1/locations\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"<...>"}
+{"level":"error","ts":"2023-06-20T15:15:04.304878714Z","caller":"amr-persister/main.go:72","msg":"Error Handler received error Post \"https://amr-graphql-app.metadata-store.svc.cluster.local:8443/api/v1/locations\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"..."}
 ```
 ---
 
@@ -238,7 +238,7 @@ When the AMR CloudEvent Handler is up and ready to receive CloudEvents:
 When the Artifact Metadata Repository is unavailable:
 
 ```json
-{"level":"error","ts":"2023-06-20T19:03:47.006718745Z","caller":"amr-persister/main.go:99","msg":"AMR is unavailable: Get \"https://artifact-metadata-repository-app.metadata-store.svc.cluster.local:8443/play\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"..."}
+{"level":"error","ts":"2023-06-20T19:03:47.006718745Z","caller":"amr-persister/main.go:99","msg":"AMR is unavailable: Get \"https://amr-graphql-app.metadata-store.svc.cluster.local:8443/play\": dial tcp 10.28.116.184:8443: connect: connection refused","stacktrace":"..."}
 ```
 ---
 
