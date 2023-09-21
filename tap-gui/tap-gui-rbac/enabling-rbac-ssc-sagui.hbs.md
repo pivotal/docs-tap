@@ -1,45 +1,59 @@
-# Enable RBAC for SSC and SAGUI Plugins
+# Enable RBAC for SSC and SAGUI plug-ins
 
-This topic tells you how to be able to view workloads on SSC and SAGUI when using a cluster with RBAC and namespace-scoped access.
+This topic tells you how to become able to view workloads on SSC and SAGUI when using a cluster with
+role-based access control (RBAC) and namespace-scoped access.
 
-## Adding permissions to list namespaces
-In order to be able to get the information from the scoped namespaces, the users must have permissions to list namespaces. To do that you need to create a new ClusterRole and ClusterRoleBinding.
+## <a id="add-permissions"></a> Add permissions to list namespaces
 
-``` yml
-# namespace-cluster-role.yaml 
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: namespaces-role
-rules:
-- apiGroups: ['']
-  resources: ['namespaces']
-  verbs: ['get', 'list']
+To be able to get the information from the scoped namespaces, users must have
+permission to list namespaces. To grant this permission, create a new `ClusterRole` and
+`ClusterRoleBinding`:
+
+1. Add the following to `namespace-cluster-role.yaml`:
+
+    ```yaml
+    # namespace-cluster-role.yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: namespaces-role
+    rules:
+    - apiGroups: ['']
+      resources: ['namespaces']
+      verbs: ['get', 'list']
+    ```
+
+2. Add the following to `namespaces-cluster-role-binding.yaml`:
+
+    ```yaml
+    # namespaces-cluster-role-binding.yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: namespaces-rolebinding
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: namespaces-role
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: User
+      name: YOUR-USER-ID
+    ```
+
+## <a id="add-label"></a> Add a label to the scoped namespaces
+
+The current implementation requires the scoped namespaces to have a specific label or annotation.
+If you are using Namespace Provisioner, one of the required labels is present.
+However, to be safe, add the supported annotation to the scoped namespaces by running:
+
+```console
+kubectl annotate namespaces NAMESPACE apps.tanzu.vmware.com/tap-managed-ns=""
 ```
 
-``` yml
-# namespaces-cluster-role-binding.yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: namespaces-rolebinding
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: namespaces-role
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: User
-  name: <YOUR_USER_ID>
-```
+Where `NAMESPACE` is your namespace
 
-## Add label to the scoped namespaces
-Our current implementation requires the scoped namespaces to have an specific label or annotation. If you are using the namespace provisioner one of the required labels will be present, however in order to be sure run the following command to add the supported annotation to the scoped namespaces:
+With this annotation the UI can target the scoped namespaces and show you workloads on such
+namespaces.
 
-```
-kubectl annotate namespaces <NAMESPACE> apps.tanzu.vmware.com/tap-managed-ns=""
-```
-
-With this annotation the UI will be able to pick the scoped namespaces and allow you to view workloads on such namespaces.
-
-![Showing RBAC Enabled on SAGUI and SSC Plugins.](../images/rbac-on-ssc-and-sagui-plugins.png)
+![Tanzu Developer Portal showing that RBAC is enabled on SAGUI and SSC plug-ins.](../images/rbac-on-ssc-and-sagui-plugins.png)
