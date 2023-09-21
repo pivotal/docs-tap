@@ -293,3 +293,21 @@ Configure `contour.evnoy.service.type` to be `NodePort`. Then, configure
 `envoy.service.nodePorts.http` and `envoy.service.nodePorts.https` to the
 corresponding port mappings on your Kind node. Otherwise, the NodePort service
 is assigned random ports, which are not accessible through your Kind cluster.
+
+## <a id='servicebinding-error'></a> Service binding package fails to reconcile
+
+You find the following error message when deploying or upgrading to TAP 1.7:
+
+```console
+ValidationError(Package.spec.template.spec.template[0].ytt.valuesFrom[0]): unknown field "downwardAPI"
+```
+
+**Explanation**
+
+Version of [Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/index.html) is too old.
+Package `servicebinding.tanzu.vmware.com` requires Cluster Essentials `v1.3.0` or above to be deployed successfully.
+
+**Solution**
+
+Upgrade to Cluster Essentials v{{ vars.url_version }}. For more information about the upgrade procedures, see the
+[Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
