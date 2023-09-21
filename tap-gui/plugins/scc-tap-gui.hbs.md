@@ -218,3 +218,184 @@ panel.
 **Needs triage** is the default status for all vulnerabilities. After you submit an analysis, the
 status changes and the information button next to the status shows you the stored vulnerability
 analysis.
+
+## <a id="sc-crds"></a> Support for CRDs
+
+On 1.7.0 we introduced support for customer-baked CRDs. The following example ilustrates the creation of a basic CRD, its use as part of a supply-chain and its visualization in workload:
+
+In order to define and use a CRD in a supply chain the following steps must be taken:
+
+1. Defining the CRD
+2. Assigning Permissions
+3. Defining the ClusterTemplate and the Supply Chain.
+4. Creating and Visualizing the Workload.
+
+Let's review each of them.
+
+### <a id="sc-crd-definition"></a> Defining the CRD
+
+Official Documentation: [link](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
+
+To define a CRD we should start with a YAML file.
+At its most basic structure a CRD must have “`apiVersion`”, “`kind`”, “`metadata`” and “`spec`”.  
+
+Note that the “`apiVersion`” for a CRD will always need to be “`apiextensions.k8s.io/v1`” and the “`kind`” will be “`CustomResourceDefinition`”
+
+A basic structure may look like the following:
+
+```
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+ name: ...
+spec: ...
+```
+
+In order to fill up this structure you'll need to compe up with two values: `group` and `name`. 
+The value for `group` is usually expressed in a domain url format (e.g. `company.com`), and the `name` value may be any arbitrary value. For the following example we are going to use `spaceagency.com` for the `group` and the `name` will be `rockets`.
+
+```
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: rockets.spaceagency.com
+spec:
+  group: spaceagency.com
+  scope: Namespaced
+  names:
+    plural: rockets
+    singular: rocket
+    kind: Rocket
+    shortNames:
+      - roc
+```
+It is important that the name used in `metadata.name` follows the format `<pluralname>.<group>`, which in this case is `rockets.spaceagency.com`
+
+In order to start adding properties to our CRD we must specify them in the “`spec`” section under a list called “`versions`”, and each version should be an object specifying a “`name`” (for the version) and a “`schema`”.
+
+For this example our “`schema`” will be an “`openAPIV3Schema`” object. Please refer to the [openAPIV3 Schema documentation](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#schema) for in-depth information about this.
+
+Our updated CRD looks like this:
+
+```
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata: ...
+spec:
+  ...
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              type:
+                type: string
+              fuel:
+                type: string
+              payloadCapacity:
+                type: string
+```
+
+Let’s analyze it:
+
+We added a “`versions`” property under “`spec`” and defined an entry for it that has “`name`”, “`schema`”, “`served`” and “`storage`”. 
+Please refer to the [official CRD documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) for in-depth information about `served` and `storage` property. For now just know that they're required.
+
+Under the “`schema`” property we defined an “`openAPIV3Schema`” object which lists the attributes that our instances will have and their types. For this example we have added 3 attributes: “`type`”, “`fuel`” and “`payloadCapacity`”, all of them strings.
+
+And with this we now have a valid Custom Resource Definition that we could apply to our cluster. The full definition is as follows:
+
+```
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: rockets.spaceagency.com
+spec:
+  group: spaceagency.com
+  scope: Namespaced
+  names:
+    plural: rockets
+    singular: rocket
+    kind: Rocket
+    shortNames:
+      - roc
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              type:
+                type: string
+              fuel:
+                type: string
+              payloadCapacity:
+                type: string
+```
+#### <a id="sc-crd-printer-columns"></a> Adding Printer Columns to the CRD
+
+There is another set of information that we could add to this CRD in order to enhance the way these resources will be rendered by the CLI tools and the Supply Chain plugin: **Printer Columns**.
+
+Official Documentation: [link](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns)
+
+Printer Columns (their official name being “`additionalPrinterColumns`”) is a characteristic that can be added to CRDs to allow them to specify which of their properties should be shown when rendering the resource.
+
+They are a list that must be specified as part of a “`version`” object; each of the list items specifies a name for the “column” to be printed along with the type of the value and a json path that indicates where to get the value from, relative to the CRD itself.
+
+Let’s add 3 “`additionalPrinterColumns`” to our CRD to display the “`.spec.type`”, “`.spec.fuel`” and “`.spec.payloadCapacity`” attributes to see them in action:
+
+```
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: rockets.spaceagency.com
+spec:
+  group: spaceagency.com
+  scope: Namespaced
+  names:
+    plural: rockets
+    singular: rocket
+    kind: Rocket
+    shortNames:
+      - roc
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              type:
+                type: string
+              fuel:
+                type: string
+              payloadCapacity:
+                type: string
+    additionalPrinterColumns:
+    - name: Type
+      type: string
+      jsonPath: .spec.type
+    - name: Fuel
+      type: string
+      jsonPath: .spec.fuel
+    - name: Payload Capacity
+      type: string
+      jsonPath: .spec.payloadCapacity
+```
+
+And with that we now have a CRD with printer columns. We will call this CRD file `rockets-crd.yaml`
