@@ -635,6 +635,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Flux Source Controller
@@ -680,6 +682,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
