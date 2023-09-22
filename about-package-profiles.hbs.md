@@ -494,6 +494,22 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
+   <td>Carbon Black Scanner for SCST - Scan (beta)
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
    <td>cert-manager
    </td>
    <td>&check;
@@ -636,7 +652,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Grype
+   <td>Grype Scanner for SCST - Scan
    </td>
    <td>&check;
    </td>
@@ -810,6 +826,22 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
+   <td>Snyk for SCST - Scan (beta)
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
    <td>Spring Boot conventions
   </td>
    <td>&check;
@@ -873,7 +905,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>SCST - Scan</td>
+   <td>SCST - Scan
   </td>
    <td>&check;
    </td>
@@ -886,6 +918,22 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+  </tr>
+  <tr>
+   <td>SCST - Scan 2.0 (beta)
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -905,7 +953,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>SCST - Store</td>
+   <td>SCST - Store
    </td>
    <td>&check;
    </td>
