@@ -108,7 +108,6 @@ To install SCST - Scan 2.0:
 
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
 
-
 >**Note** If you used the Namespace Provisioner to provision your developer namespace, the following section has already been completed and you can proceed to [scanning integration](./integrate-app-scanning.hbs.md). For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
 
 The following section describes how to configure service accounts and registry credentials. SCST - Scan 2.0 requires the following access:
