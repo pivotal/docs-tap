@@ -331,8 +331,9 @@ for further customization.
 The following profiles are available in Tanzu Application Platform:
 
 - **Full** (`full`):
-  Contains all of the Tanzu Application Platform packages apart from a few exceptions.
-  For the packages available in the full profile, see the table later in this section.
+  Contains nearly all Tanzu Application Platform packages.
+  For the exceptions to the full profile, see the packages with a check mark in the **Not in a profile**
+  column in the table later in this section.
 
 - **Iterate** (`iterate`):
   Intended for iterative application development.
@@ -500,6 +501,22 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
+   <td>Artifact Metadata Repository Observer (alpha)</td>
+  </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
    <td>Bitnami Services
    </td>
    <td>&check;
@@ -513,6 +530,22 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Carbon Black Scanner for SCST - Scan (beta)
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -644,7 +677,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Grype
+   <td>Grype Scanner for SCST - Scan
    </td>
    <td>&check;
    </td>
@@ -788,6 +821,22 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
+   <td>Service Registry
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
    <td>Services Toolkit
    </td>
    <td>&check;
@@ -817,6 +866,22 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Snyk for SCST - Scan (beta)
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -883,7 +948,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>SCST - Scan</td>
+   <td>SCST - Scan
   </td>
    <td>&check;
    </td>
@@ -896,6 +961,22 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+  </tr>
+  <tr>
+   <td>SCST - Scan 2.0 (beta)
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -915,7 +996,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>SCST - Store</td>
+   <td>SCST - Store
    </td>
    <td>&check;
    </td>
