@@ -60,7 +60,7 @@ user role at the cluster scope.
 The result is that any user who has the `app-operator` role is now authorized
 to claim from the `bigcorp-rabbitmq` class.
 
-Those users still need permission to create `ClassClaims` in the namespace(s)
+Those users still need permission to create `ClassClaims` in the namespaces
 they want to consume the services from.
 
 ## <a id="auth-one-user"></a> Authorize a user to claim from a specific namespace
@@ -108,7 +108,7 @@ The YAML also creates a `ClusterRoleBinding`that binds the user
 The result is that `alice@example.com` is now authorized to claim from
 `bigcorp-rabbitmq` class.
 
-`alice@example.com` users still need permission to create `ClassClaims` in the namespace(s)
+`alice@example.com` users still need permission to create `ClassClaims` in the namespaces
 they want to consume the services from.
 
 ## <a id="bitnami-services"></a> Revoke default authorization for claiming from the Bitnami Services classes

@@ -7,6 +7,15 @@ v{{ vars.url_version }}.
 
 **Release Date**: 10 October 2023
 
+### <a id='1-6-4-breaking-changes'></a> v1.6.4 Breaking changes
+
+This release has the following breaking changes, listed by component and area.
+
+#### <a id='1-6-4-services-toolkit-br'></a> v1.6.4 Breaking changes: Services Toolkit
+
+- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
+  For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
+
 ### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
 
 This release has the following security fixes, listed by component and area.
