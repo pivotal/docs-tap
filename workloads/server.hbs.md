@@ -422,3 +422,7 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
     ```console
     curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
     ```
+
+### Automatically Expose server workloads outside the cluster
+
+As of TAP 1.6, the Beta Package Supply Chain produces server workloads that have Ingress out of the box. See the note in [Overview of the Carvel Package Supply Chains](carvel-package-supply-chains.hbs.md#overview) for more details.
