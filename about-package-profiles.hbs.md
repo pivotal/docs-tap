@@ -827,7 +827,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Snyk for SCST - Scan (beta)
+   <td>Snyk Scanner for SCST - Scan (beta)
   </td>
    <td>
    </td>
