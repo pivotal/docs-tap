@@ -133,9 +133,10 @@ all Tanzu Application Platform learning and education needs.
 - Function Buildpacks for Knative and the corresponding
 Application Accelerator starter templates for Python and Java are removed in this release.
 
-#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 breaking changes: Services Toolkit
+#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 Breaking changes: Services Toolkit
 
-- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`
+- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
+<!-- where is the best place to link to for more info? -->
 
 ---
 
