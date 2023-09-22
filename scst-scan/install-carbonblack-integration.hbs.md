@@ -1,4 +1,4 @@
-# Prerequisites for Carbon Black Scanner for Supply Chain Security Tools - Scan(Beta)
+# Prerequisites for Carbon Black Scanner for Supply Chain Security Tools - Scan (Beta)
 
 This topic describes prerequisites you must complete to install Supply Chain Security Tools - Scan (Carbon Black Scanner) from the Tanzu Application Platform package repository.
 
@@ -34,7 +34,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
     - `CBC-API-KEY` is the API Key obtained from CBC.
     - `CBC-ORG-KEY` is the Org Key of your CBC organization.
     - `CBC-SAAS-URL` is the CBC Backend URL.
-  
+
 3. Apply the Carbon Black secret YAML file by running:
 
     ```console
