@@ -19,6 +19,7 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 | caCertData | "" | string | The custom certificates trusted by the scan's connections |
 | docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
 | docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
+| scans.maxConcurrentScans | 10 | integer | The max number of scans that the scan controller will schedule to run concurrently |
 | workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
 | workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
 
