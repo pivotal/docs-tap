@@ -75,6 +75,15 @@ a predefined group of packages.
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
+- **[AWS Services](aws-services/about.hbs.md)**
+
+  AWS Services provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP).
+
+  Through integration with [Crossplane](../crossplane/about.hbs.md) and
+  [Services Toolkit](../services-toolkit/about.hbs.md), you can offer these AWS services to
+  apps teams to consume with only minimal setup and configuration required from ops teams.
+  This makes it quick and easy to get started working with AWS services on Tanzu Application Platform.
+
 - **[Bitnami Services](bitnami-services/about.hbs.md)**
 
   Bitnami Services provides a set of services for Tanzu Application Platform backed by
@@ -501,7 +510,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Artifact Metadata Repository Observer (alpha)</td>
+   <td>Artifact Metadata Repository Observer (alpha)
   </td>
    <td>&check;
    </td>
@@ -514,6 +523,22 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+  </tr>
+  <tr>
+   <td>AWS Services
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>

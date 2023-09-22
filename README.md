@@ -55,6 +55,7 @@ stored in dedicated repositories.
 |Application Configuration Service for VMware Tanzu|Application Configuration Service|
 |Application Live View|Application Live View|
 |Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
+|AWS Services|AWS Services|
 |Bitnami Services|Bitnami Services|
 |Cartographer Conventions|Cartographer Conventions|
 |cert-manager|cert-manager|

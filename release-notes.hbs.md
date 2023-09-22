@@ -17,11 +17,13 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-components'></a> New components
 
-- [Service Registry for VMware Tanzu](service-registry/overview.hbs.md) provides on-demand Eureka
+- [Service Registry for VMware Tanzu](service-registry/overview.hbs.md): Provides on-demand Eureka
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
   servers in your namespaces and bind Spring Boot workloads to them.
 
-- [AWS Services](aws-services/about.hbs.md) provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP). Be sure to checkout the [Quickstart](aws-services/tutorials/quickstart.hbs.md) tutorial to get started.
+- [AWS Services](aws-services/about.hbs.md): Provides an integration with Amazon Web Services (AWS)
+  for Tanzu Application Platform.
+  To get started, see the [Quickstart tutorial](aws-services/tutorials/quickstart.hbs.md).
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
@@ -196,53 +198,55 @@ This release has the following known issues, listed by component and area.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                                   | Version |
-| ---------------------------------------------------------------- | ------- |
-| API Auto Registration                                            |         |
-| API portal                                                       |         |
-| Application Accelerator                                          |         |
-| Application Configuration Service                                |         |
-| Application Live View APIServer                                  |         |
-| Application Live View back end                                   |         |
-| Application Live View connector                                  |         |
-| Application Live View conventions                                |         |
-| Application Single Sign-On                                       |         |
-| Authentication and authorization                                 |         |
-| Bitnami Services                                                 |         |
-| Cartographer Conventions                                         |         |
-| cert-manager                                                     |         |
-| Cloud Native Runtimes                                            |         |
-| Contour                                                          |         |
-| Crossplane                                                       |         |
-| Developer Conventions                                            |         |
-| External Secrets Operator                                        |         |
-| Flux CD Source Controller                                        |         |
-| Local Source Proxy                                               |         |
-| Namespace Provisioner                                            |         |
-| Out of the Box Delivery - Basic                                  |         |
-| Out of the Box Supply Chain - Basic                              |         |
-| Out of the Box Supply Chain - Testing                            |         |
-| Out of the Box Supply Chain - Testing and Scanning               |         |
-| Out of the Box Templates                                         |         |
-| Service Bindings                                                 |         |
-| Services Toolkit                                                 |         |
-| Source Controller                                                |         |
-| Spring Boot conventions                                          |         |
-| Spring Cloud Gateway                                             |         |
-| Supply Chain Choreographer                                       |         |
-| Supply Chain Security Tools - Policy Controller                  |         |
-| Supply Chain Security Tools - Scan                               |         |
-| Supply Chain Security Tools - Store                              |         |
-| Tanzu Developer Portal                                           |         |
-| Tanzu Application Platform Telemetry                             |         |
-| Tanzu Build Service                                              |         |
-| Tanzu CLI                                                        |         |
-| Tanzu CLI Application Accelerator plug-in                        |         |
-| Tanzu CLI Apps plug-in                                           |         |
-| Tanzu CLI Build Service plug-in                                  |         |
-| Tanzu CLI Insight plug-in                                        |         |
-| Tanzu Service CLI plug-in                                        |         |
-| Tekton Pipelines                                                 |         |
+| Component Name                                     | Version |
+| -------------------------------------------------- | ------- |
+| API Auto Registration                              |         |
+| API portal                                         |         |
+| Application Accelerator                            |         |
+| Application Configuration Service                  |         |
+| Application Live View APIServer                    |         |
+| Application Live View back end                     |         |
+| Application Live View connector                    |         |
+| Application Live View conventions                  |         |
+| Application Single Sign-On                         |         |
+| AWS Services                                       |         |
+| Bitnami Services                                   |         |
+| Cartographer Conventions                           |         |
+| cert-manager                                       |         |
+| Cloud Native Runtimes                              |         |
+| Contour                                            |         |
+| Crossplane                                         |         |
+| Default Roles                                      |         |
+| Developer Conventions                              |         |
+| External Secrets Operator                          |         |
+| Flux CD Source Controller                          |         |
+| Local Source Proxy                                 |         |
+| Namespace Provisioner                              |         |
+| Out of the Box Delivery - Basic                    |         |
+| Out of the Box Supply Chain - Basic                |         |
+| Out of the Box Supply Chain - Testing              |         |
+| Out of the Box Supply Chain - Testing and Scanning |         |
+| Out of the Box Templates                           |         |
+| Service Bindings                                   |         |
+| Service Registry                                   |         |
+| Services Toolkit                                   |         |
+| Source Controller                                  |         |
+| Spring Boot conventions                            |         |
+| Spring Cloud Gateway                               |         |
+| Supply Chain Choreographer                         |         |
+| Supply Chain Security Tools - Policy Controller    |         |
+| Supply Chain Security Tools - Scan                 |         |
+| Supply Chain Security Tools - Store                |         |
+| Tanzu Developer Portal                             |         |
+| Tanzu Application Platform Telemetry               |         |
+| Tanzu Build Service                                |         |
+| Tanzu CLI                                          |         |
+| Tanzu CLI Application Accelerator plug-in          |         |
+| Tanzu CLI Apps plug-in                             |         |
+| Tanzu CLI Build Service plug-in                    |         |
+| Tanzu CLI Insight plug-in                          |         |
+| Tanzu Service CLI plug-in                          |         |
+| Tekton Pipelines                                   |         |
 
 ---
 
