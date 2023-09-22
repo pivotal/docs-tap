@@ -505,6 +505,22 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
+   <td>Artifact Metadata Repository Observer (alpha)
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
    <td>Bitnami Services
    </td>
    <td>&check;
