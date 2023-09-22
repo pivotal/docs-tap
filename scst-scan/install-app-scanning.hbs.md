@@ -19,6 +19,7 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 | caCertData | "" | string | The custom certificates trusted by the scan's connections |
 | docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
 | docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
+| scans.maxConcurrentScans | 10 | integer | The max number of scans that the scan controller will schedule to run concurrently |
 | workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
 | workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
 
@@ -106,6 +107,8 @@ To install SCST - Scan 2.0:
     ```
 
 ## <a id="config-sa-reg-creds"></a> Configure Service Accounts and Registry Credentials
+
+# RYANNOTE:  Do we need these if we are doing as part of supply chain?  The answer is no.
 
 >**Note** If you used the Namespace Provisioner to provision your developer namespace, the following section has already been completed and you can proceed to [scanning integration](./integrate-app-scanning.hbs.md). For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).
 
