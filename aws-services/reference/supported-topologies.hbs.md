@@ -1,6 +1,8 @@
-# Supported Topologies
+# Supported Topologies for AWS Services
 
-This topic lists the TAP cluster to service instance VPC topologies that are supported by the AWS Services package. Each supported topology lists relevant Package values configurations and one-time manual setup steps.
+This topic lists the Tanzu Application Platform cluster to service instance Virtual Private Cloud (VPC)
+topologies that the AWS Services package supports.
+Each supported topology lists relevant package values configurations and one-time manual setup steps.
 
 ## PostgreSQL
 
