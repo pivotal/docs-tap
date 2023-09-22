@@ -105,15 +105,14 @@ Services Toolkit supports using the `claim` verb for RBAC rules that apply to `c
 You can use this with relevant aggregating labels or `ClusterRoleBindings`
 as a form of access control to specify who can claim from which `ClusterInstanceClass`.
 
-For users to be able to `claim` from a `ClusterInstanceClass` this permission
-needs to be granted on a cluster level, via a `ClusterRole` &
-`ClusterRoleBinding`.
-Namespace-scoped permissions (via `Role` & `RoleBinding` or `ClusterRole` &
-`RoleBinding`) are not sufficient.
-This is deliberate, so that users who e.g. might have namespace-level "admin
-permissions" can't get access to resources in other namespaces through claiming
-from a `ClusterInstanceClass`, except if this was explicitely granted via the
-mentioned cluster-wide RBAC rules.
+To be able to `claim` from a `ClusterInstanceClass` this permission must be granted on a cluster
+level, by using a `ClusterRole` and `ClusterRoleBinding`.
+Namespace-scoped permissions (using a `Role` and `RoleBinding` or `ClusterRole` and `RoleBinding`)
+are not sufficient.
+
+This is so that users who, for example, have namespace-level admin permissions can't get access
+to resources in other namespaces through claiming from a `ClusterInstanceClass`, except if this was
+explicitly granted through the cluster-wide RBAC rules.
 
 For more information, see [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md).
 
@@ -142,23 +141,18 @@ rules:
   - claim
 ```
 
-> **Note** In previous versions Services Toolkit allowed to `claim` from an
-> `ClusterInstanceClass` with only namespace-level permissions. This
-> potentially led to situations where users with only namespace-level
-> permissions could get hold of or (indirectly) deploy resources into other
-> namespaces which they would not have access to according to the Role-Based
-> access permissions. Therefor this has been changed, and users need
-> explicit cluster-wide permissions when claiming a `ClusterInstanceClass`.
->
-> When was this change introduced?  
-> Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
->
-> Does this change affect me?  
-> If you have used `Roles`/`RoleBindings` or `ClusterRoles`/`RoleBindings` to
-> grant `claim` permissions in specific namespaces only, this might affect you.
-> Users with these namespace-scoped permissions won't be able to create
-> `ClassClaims` anymore and they explicitely need to be granted permission to
-> `claim` from a `ClusterInstanceClass` on cluster-level.
+Previously, Services Toolkit allowed you to `claim` from a `ClusterInstanceClass` with only
+namespace-level permissions.
+This might cause situations where users with only namespace-level
+permissions obtain or indirectly deploy resources into
+namespaces that they do not have access to according to the RBAC permissions.
+
+To resolve this issue, as of Services Toolkit v0.12.0 in Tanzu Application Platform v1.7.0,
+you now need explicit cluster-wide permissions when claiming a `ClusterInstanceClass`.
+Users with namespace-scoped permissions will no longer be able to create `ClassClaims`.
+If you used `Roles` and `RoleBindings`, or `ClusterRoles` and `RoleBindings` to
+grant `claim` permissions in specific namespaces only, this change might affect you.
+For instructions, see [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md).
 
 <!--
 Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
