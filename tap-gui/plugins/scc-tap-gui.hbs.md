@@ -221,16 +221,16 @@ analysis.
 
 ## <a id="sc-crds"></a> Support for CRDs
 
-On 1.7.0 we introduced support for customer-baked CRDs. The following example ilustrates the creation of a basic CRD, its use as part of a supply-chain and its visualization in workload:
+In version 1.7.0, we introduced support for custom-baked CRDs. The following example illustrates the creation of a basic CRD, which is used as part of a supply chain and its visualization in the workload:
 
-In order to define and use a CRD in a supply chain the following steps must be taken:
+To define and use a CRD in a supply chain, the following steps must be taken:
 
-1. Defining the CRD
-2. Setting CRD Permissions
-3. Defining the ClusterTemplate and the Supply Chain.
-4. Creating and Visualizing the Workload.
+1. Define the CRD.
+2. Set CRD Permissions.
+3. Define the ClusterTemplate and the Supply Chain.
+4. Create and Visualize the Workload.
 
-Let's review each of them.
+Let's review each step in detail.
 
 ### <a id="sc-crd-definition"></a> Defining the CRD
 
@@ -507,8 +507,7 @@ To download one of them to file:
  kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
 ```
 
-Once the Supply Chain definition is on file, open and edit it until it
-looks similar to the following:
+Once the Supply Chain definition is on file, open and edit it until it looks similar to the following:
 
 ```
 apiVersion: carto.run/v1alpha1
@@ -517,6 +516,10 @@ metadata:
   name: source-scan-test-scan-to-url-rockets
 spec:
   resources:
+  - name: rocket-provider
+    templateRef:
+      kind: ClusterTemplate
+      name: rocket-source-template
   selector:
     apps.tanzu.vmware.com/has-rockets: "true"
   selectorMatchExpressions:
