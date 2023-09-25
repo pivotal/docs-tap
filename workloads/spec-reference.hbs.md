@@ -175,9 +175,8 @@ For information about the
 custom resource, see [MavenArtifact reference
 docs](../source-controller/reference.hbs.md#mavenartifact).
 
-For information about how to use the custom resource with the `tanzu apps workload` CLI
-plug-in, see
-[Create a workload from Maven repository artifact](../cli-plugins/apps/reference/workload-create-apply.hbs.md#maven-artifact).
+For information about how to use the custom resource with the Tanzu apps CLI
+plug-in, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 ### <a id="source-tester"></a>source-tester
 
@@ -726,8 +725,7 @@ Parameters:
 </table>
 
 For an example, see
-[--service-ref](../cli-plugins/apps/reference/workload-create-apply.hbs.md#apply-service-ref)
-in Tanzu CLI documentation.
+see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 For an overview of the function, see [Consume services on
 Tanzu Application Platform](../getting-started/consume-services.hbs.md).

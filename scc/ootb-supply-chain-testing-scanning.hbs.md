@@ -129,7 +129,7 @@ The names of the objects **must** match the names in the example with default in
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
 
 - To override through workload parameters, use the following commands.
-  For more information, see [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
+  For more information, see [Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
     ```console
     tanzu apps workload apply WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE

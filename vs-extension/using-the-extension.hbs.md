@@ -9,8 +9,8 @@ This topic tells you how to use VMware Tanzu Developer Tools for Visual Studio.
 Ensure that you meet the following prerequisites:
 
 - Tanzu CLI is installed in a location in your `PATH` environment variable.
-- A valid `workload.yaml` file is in the project. For more information, see the specification for
-  [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
+- A valid `workload.yaml` file is in the project. For more information, see
+  [Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 - You have a functional Tanzu Application Platform environment.
 - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
 - You have an image repository to which source code in the local file system can be uploaded before

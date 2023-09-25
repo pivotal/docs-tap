@@ -67,7 +67,7 @@ and then update the `workload.yaml` with the repository URL and branch.
       This depends on your organization's Tanzu Application Platform configuration.
       For more information, consult with your Tanzu Application Platform administrators.
 
-    For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
+    For more information, see [Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
 2. View the build and runtime logs for your app by running the `get` command:
 

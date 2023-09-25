@@ -219,8 +219,8 @@ command using the Tanzu CLI to register the accelerator to Tanzu Developer Porta
 
 > **Note** `tanzu accelerator create` works with monorepos as well. Add the
 > `--git-sub-path` parameter with the desired subpath to fetch the accelerator project in that
-> directory. For more information, see [tanzu accelerator
-> create](../cli-plugins/accelerator/command-reference/tanzu_accelerator_create.hbs.md).
+> directory. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.> com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+
 
 ```bash
 tanzu accelerator create simple-accelerator --git-repository https://github.com/myusername/myprojectrepository --git-branch main

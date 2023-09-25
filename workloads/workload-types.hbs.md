@@ -14,7 +14,7 @@ or provide arbitrary network services.
 A workload allows you to choose application specifications, such as
 repository location, environment variables, service binding, and so on.
 For more information about workload creation and management, see
-[Commands Details](../cli-plugins/apps/reference/reference.hbs.md).
+[Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
 The Out of the Box Supply Chains support a range of workload types,
 including scalable web applications (`web`), traditional application
