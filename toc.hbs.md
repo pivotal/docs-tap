@@ -694,6 +694,7 @@ docs.vmware.com is built.
           - [Create a service account with a custom cluster role](scst-store/custom-role.hbs.md)
           - [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.hbs.md)
           - [Prerequisite for Stand alone SCST-Store installation](scst-store/standalone-install-scst-store-prereq.hbs.md)
+          - [Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md)
     - [Tanzu Developer Portal (formerly Tanzu Application Platform GUI)](tap-gui/about.hbs.md)
       - [Tanzu Developer Portal overview](tap-gui/about.hbs.md)
       - [Install Tanzu Developer Portal](tap-gui/install-tap-gui.hbs.md)

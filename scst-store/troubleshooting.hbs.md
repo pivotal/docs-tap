@@ -128,6 +128,21 @@ If you see `could not accept SSL connection` in the metadata-store-db logs, dele
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
 
+## Troubleshooting Database Index Corruption issue in SCST - Store
+
+Metadata Store unable to reconcile since metadata store pod complaining about potential database index corruption issue.
+
+```console
+kubectl logs metadata-store-app-pod_name -n metadata-store
+```
+
+```
+{“level”:“error”,“ts”:“2023-08-15T16:38:31.528115988Z”,“logger”:“MetadataStore”,“msg”:“unable to check index corruption since user is not a superuser to perform \“CREATE EXTENSION amcheck\“. Please create this extension and check for index corruption using following sql command \“SELECT bt_index_check(oid) FROM pg_class WHERE relname in (SELECT indexrelid::regclass::text FROM (SELECT indexrelid, indrelid, indcollation[i] coll FROM pg_index, generate_subscripts(indcollation, 1) g(i)) s JOIN pg_collation c ON coll=c.oid WHERE collprovider IN (‘d’, ‘c’) AND collname NOT IN (‘C’, ‘POSIX’));\“”,“hostname”:“metadata-store-app-77c9fb59c8-qplxt”}
+{“level”:“error”,“ts”:“2023-08-15T16:38:31.528139637Z”,“logger”:“MetadataStore”,“msg”:“Found corrupted database indexes but unable to fix them”,“hostname”:“metadata-store-app-77c9fb59c8-qplxt”,“error”:“unable to check index corruption since user is not a superuser to perform \“CREATE EXTENSION amcheck\“. Please create this extension and check for index corruption using following sql command \“SELECT bt_index_check(oid) FROM pg_class WHERE relname in (SELECT indexrelid::regclass::text FROM (SELECT indexrelid, indrelid, indcollation[i] coll FROM pg_index, generate_subscripts(indcollation, 1) g(i)) s JOIN pg_collation c ON coll=c.oid WHERE collprovider IN (‘d’, ‘c’) AND collname NOT IN (‘C’, ‘POSIX’));\“”}
+```
+
+You can check [Postgres Database Index Corruption](./database-index-corruption.hbs.md) for solution
+
 ## Troubleshooting errors from Tanzu Developer Portal related to SCST - Store
 
 Different Tanzu Developer Portal plug-ins use SCST - Store to display information about
