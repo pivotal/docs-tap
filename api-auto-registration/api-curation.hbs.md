@@ -103,67 +103,69 @@ For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained
 
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
-The API Auto Registration controller offers an endpoint to retrieve all the generated API specifications
-for the curated APIs in the cluster.
+The API Auto Registration controller offers an endpoint to retrieve all of the generated API specifications
+for the curated APIs in the cluster. 
 
-Find the HTTPProxy that's created to access the endpoint:
+To retrieve curated API specifications:
 
-```console
-kubectl get httpproxy api-auto-registration-controller -n api-auto-registration
-```
+1. Find the HTTPProxy that's created to access the endpoint:
 
-The following is an example result:
+  ```console
+  kubectl get httpproxy api-auto-registration-controller -n api-auto-registration
+  ```
 
-```console
-NAME                               FQDN                              TLS SECRET                   STATUS   STATUS DESCRIPTION
-api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
-```
+  The following is an example output:
 
-By using FQDN with an http scheme, you can get all the curated API specifications with curl:
+  ```console
+  NAME                               FQDN                              TLS SECRET                   STATUS   STATUS DESCRIPTION
+  api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
+  ```
 
-```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi
-```
+1. To get all of the curated API specifications with curl, use FQDN with an http scheme:
 
-Where `AAR-CONTROLLER-FQDN` is the AAR FQDN controller you want the specifications for.
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi
+  ```
 
-You can retrieve specifications for `CuratedAPIDescriptor` from a specific namespace by specifying path:
+  Where `AAR-CONTROLLER-FQDN` is the AAR FQDN controller you want the specifications for.
 
-```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE
-```
+1. Retrieve specifications for `CuratedAPIDescriptor` from a specific namespace by specifying the following path:
 
-Where:
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE
+  ```
 
-- `NAMESPACE` is the desired namespace to retrieve specifications from.
+  Where:
 
-You can retrieve specifications for a specific `CuratedAPIDescriptor` by `namespace` and `name`:
+  - `NAMESPACE` is the namespace that you want to retrieve specifications from.
 
-```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE/NAME
-```
+1. Retrieve specifications for a specific `CuratedAPIDescriptor` by `namespace` and `name`:
 
-Where:
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE/NAME
+  ```
 
-- `NAMESPACE` is the namespace of the desired `CuratedAPIDescriptor`.
-- `NAME` is name of the desired `CuratedAPIDescriptor`.
+  Where:
 
-You can retrieve specifications for a specific `groupId` and `version` combination by specifying
+  - `NAMESPACE` is the namespace of the `CuratedAPIDescriptor` that you want to use.
+  - `NAME` is name of the `CuratedAPIDescriptor` that you want to use.
+
+1. Retrieve specifications for a specific `groupId` and `version` combination by specifying
 query parameters:
 
-```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi?groupId=GROUP-ID&version=VERSION
-curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE?groupId=GROUP-ID&version=VERSION
-```
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi?groupId=GROUP-ID&version=VERSION
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE?groupId=GROUP-ID&version=VERSION
+  ```
 
-Where:
+  Where:
 
-- `NAMESPACE` is the desired namespace to retrieve specifications from.
-- `VERSION` is the version you want the specifications for.
-- `GROUP-ID` is group ID you want the specifications for.
-- `AAR-CONTROLLER-FQDN` is the AAR-CONTROLLER-FQDN you want to query.
+  - `NAMESPACE` is the namespace that you want to retrieve specifications from.
+  - `VERSION` is the version you want the specifications for.
+  - `GROUP-ID` is group ID you want the specifications for.
+  - `AAR-CONTROLLER-FQDN` is the AAR-CONTROLLER-FQDN you want to query.
 
-You can add the curated APIs to an API portal for display by configuring the source URL
+1. Add the curated APIs to an API portal for display by configuring the source URL
 locations of an existing API portal.
 You can add all your curated APIs by using the unfiltered URL `http(s)://AAR-CONTROLLER-FQDN/openapi`
 or the filtered URL with query parameters to add a specific curated API of your choice.

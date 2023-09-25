@@ -193,6 +193,27 @@ This release has the following known issues, listed by component and area.
 
 - Known issue description with link to workaround.
 
+#### <a id='1-7-0-api-autoreg-ki'></a> v1.7.0 Known issues: API Auto Registration
+
+Registering conflicting `groupId` and `version` with API portal:
+
+- If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version`
+combination, both reconcile successfully without throwing an error,
+and the `/openapi?groupId&version` endpoint returns both specs.
+- If you are adding both specs to API portal, only one of them might show up in
+the API portal UI with a warning indicating that there is a conflict.
+- If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG,
+the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
+- You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
+
+  ```console
+  $ kubectl get curatedapidescriptors -A
+
+  NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+  my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+  default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
+  ```
+
 #### <a id='1-7-0-supply-chain-security-tools-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
 
 - `Supply Chain Security Tools - Store` will automatically detect Postgres Database Index corruptions. Supply Chain Security Tools - Store will not reconcile if Postgres database index corruption issue found. Remediation to fix this issue can be found at [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md)

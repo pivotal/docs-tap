@@ -119,26 +119,3 @@ Your APIDescription CR shows a status and message similar to:
 ```
 
 This is the same issue as `connection refused` described earlier.
-
-## <a id='known-issues'></a> Known issues
-
-### <a id='conflicting-groupid-and-version'> Registering conflicting `groupId` and `version` with API portal
-
-Currently if you are creating two `CuratedAPIDescriptor`s with the same `groupId` and `version`
-combination, both will reconcile successfully without throwing an error,
-and the `/openapi?groupId&version` endpoint will return both spec.
-However, if you are adding both spec to API portal, you may notice that only one of them show up in
-the API portal UI with a warning indicating that a conflict is detected.
-
-If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG,
-the generated API spec will include API routes from both `CuratedAPIDescriptor`s.
-
-You may see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
-
-```console
-$ kubectl get curatedapidescriptors -A
-
-NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
-my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
-default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
-```
