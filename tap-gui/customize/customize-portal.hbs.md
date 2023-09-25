@@ -1,7 +1,6 @@
-# Customize the Tanzu Developer Portal portal
+# Customize the portal
 
-This section describes how to customize the Tanzu Developer Portal
-(formerly named Tanzu Application Platform GUI) portal.
+This section describes how to customize the portal.
 
 ## <a id="brand-customizing"></a> Customize branding
 
@@ -20,8 +19,8 @@ To make these customizations:
 
     Where:
 
-    - `BASE-64-IMAGE` is the image encoded in base64. A 512-pixel by 512-pixel PNG
-    image with a transparent background is optimal.
+    - `BASE-64-IMAGE` is the image encoded in base64. A 512-pixel by 512-pixel PNG image with a
+      transparent background is optimal.
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
 2. Reinstall your Tanzu Developer Portal package by following steps in
@@ -86,8 +85,8 @@ tap_gui:
 
 ## <a id="customize-auth-page"></a> Customize the Authentication page
 
-To customize the portal name on the **Authentication** page and the name of the browser tab
-for Tanzu Developer Portal:
+To customize the portal name on the **Authentication** page and the name of the browser tab for
+Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
    file:
@@ -142,8 +141,8 @@ customized version of your portal.
 
 ## <a id="cust-security-banners"></a> Customize security banners
 
-You can instruct Tanzu Developer Portal to create security banners on the top and bottom of the
-page. To add security banners to Tanzu Developer Portal:
+You can instruct Tanzu Developer Portal to create security banners on the top and bottom of the page.
+To add security banners to Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
    file, as in the following example:
