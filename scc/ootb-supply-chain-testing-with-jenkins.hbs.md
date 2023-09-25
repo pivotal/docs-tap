@@ -89,24 +89,13 @@ pipeline {
 }
 ```
 
-Where
-- `SOURCE_URL` **string** The URL of the source code being tested.  The
-  `source-provider` resource in the supply chain provides this code and is only
-  resolvable inside the Kubernetes cluster.  This URL is only useful if your
-  Jenkins service is running inside the cluster or if there is ingress
-  set up and the Jenkins service can make requests to services inside the
-  cluster.
+Where:
 
-- `SOURCE_REVISION` **string** The revision of the source code being tested.
-  The format of this value can vary depending on the implementation of the
-  `source_provider` resource.  If the `source-provider` is the Flux CD
-  `GitRepository` resource, then the value of the `SOURCE_REVISION` is the
-  Git branch name followed by the commit SHA, both separated by a (`/`) slash
-  character. For example: `main/2b1ed6c3c4f74f15b0e4de2732234eafd050eb1ca`. Your
-  Jenkins pipeline script must extract the commit SHA from the
-  `SOURCE_REVISION` to be useful.
+- `SOURCE_URL` **string** The URL of the source code being tested.  The `source-provider` resource in the supply chain provides this code and is only resolvable inside the Kubernetes cluster.  This URL is only useful if your Jenkins service is running inside the cluster or if there is ingress set up and the Jenkins service can make requests to services inside the cluster.
 
->**Caveat**:
+- `SOURCE_REVISION` **string** The revision of the source code being tested. The format of this value can vary depending on the implementation of the `source_provider` resource.  If the `source-provider` is the Flux CD `GitRepository` resource, then the value of the `SOURCE_REVISION` is the Git branch name followed by the commit SHA, both separated by a (`/`) slash character. For example, `main/2b1ed6c3c4f74f15b0e4de2732234eafd050eb1ca`. Your Jenkins pipeline script must extract the commit SHA from the `SOURCE_REVISION` to be useful.
+
+>**Note**
 >If you can't use the `SOURCE_URL` because your Jenkins service cannot
 >make requests into the Kubernetes cluster, you can supply the source code
 >URL to the Jenkins job with other parameters instead.
