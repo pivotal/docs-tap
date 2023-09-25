@@ -12,27 +12,28 @@ There are two ways you can perform GraphQL queries:
 
 VMware recommends enabling ingress. The Supply Chain Security
 Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
-the same ingress configuration. For more information about enabling ingress, 
-see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md)
+the same ingress configuration. For information about enabling ingress, 
+see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
 
 ### <a id='amr-graphql-access-token'></a> Retrieving the AMR GraphQL Access Token
 
-Whichever method you choose to access the AMR GraphQL, you first need to retrieve the
-access token.
+When you access the AMR GraphQL by using the GraphQL playground or cURL, you
+must retrieve the access token.
 
-Use the following command to fetch the token:
+To fetch the token, run:
 
 ```console
 kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
 ```
 
-### <a id='connecting-to-graphql-playground'></a> Connecting to AMR GraphQL playground
+### <a id='connect-graphql-playground'></a> Connecting to AMR GraphQL playground
 
-To connect to the AMR GraphQL playground when ingress is enabled, go to
-`https://amr-graphql.<ingress-domain>/play`. 
+To connect to the AMR GraphQL playground when you enabled ingress, visit
+`https://amr-graphql.INGRESS-DOMAIN/play`. 
 
-Look for the Headers tab at the bottom of the query window and add a JSON block containing the auth header 
-in the following format:
+Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
+
+In the **Headers** tab at the bottom of the query window, add a JSON block containing the following authentication header:
 
 ```json
 {
@@ -40,25 +41,25 @@ in the following format:
 }
 ```
 
-where:
-
-- `ACCESS-TOKEN` is the AMR GraphQL access token
+Where `ACCESS-TOKEN` is the AMR GraphQL access token.
 
 You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
 
 ### <a id='connecting-to-graphql-curl'></a> Connecting to AMR GraphQL through cURL
 
-To connect to the AMR GraphQL using cURL when ingress is enabled, you first need the AMR GraphQL
-access token as well as its CA certificate.
+To connect to the AMR GraphQL using cURL when you enabled ingress, you first need the AMR GraphQL
+access token and its CA certificate.
 
-Use the following command to fetch the AMR GraphQL CA certificate:
+To fetch the AMR GraphQL CA certificate:
 
 ```console
 kubectl get secret amr-app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
 ```
 
-Once the token and certificate are retrieved, you can use cURL to perform GraphQL queries through the 
-`https://amr-graphql.<ingress-domain>/query` endpoint.
+After the token and certificate are retrieved, you can use cURL to perform GraphQL queries by using the 
+`https://amr-graphql.INGRESS-DOMAIN/query` endpoint.
+
+Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
 
 For example:
 
@@ -71,14 +72,14 @@ curl "https://amr-graphql.<ingress-domain>/query" \
   --data-raw '{"query":"query getAppAcceleratorRuns { appAcceleratorRuns(first: 250){ nodes { guid name namespace timestamp } pageInfo{ endCursor hasNextPage } } }"}' | jq .
 ```
 
-where:
+Where:
 
 - `ACCESS-TOKEN` is the AMR GraphQL access token
 - `/tmp/graphql-ca.crt` is the file location containing the AMR GraphQL CA certificate
 
 You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
 
-Though this section used cURL to query through the AMR GraphQL endpoint, you can use other similar tools to access the endpoint 
+This section uses cURL to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint 
 and provide them with the AMR GraphQL access token and CA certificate.
 
 ## <a id='query-locations'></a> Querying for locations
@@ -115,7 +116,7 @@ You can specify the following supported arguments when querying for `Location`. 
 
 ### <a id='location-fields'></a> Locations fields
 
-Users can choose the following felids to return in the GraphQL query. At least one field must be specified.
+You can choose the following felids to return in the GraphQL query. You must specify at least one field.
 
 - `reference`: string UID representing the location
 - `labels`: labels associated with the location, has the following fields
