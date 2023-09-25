@@ -186,7 +186,7 @@ parameters in the Workload.
 For information about the custom resource, see [MavenArtifact reference
 docs](../source-controller/reference.hbs.md#maven-artifact).
 
-For information about how to use the custom resource with the Tanzu Apps CLI plug-in, see  [Create a workload from a Maven repository artifact](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-maven).
+For information about how to use the custom resource with the Tanzu Apps CLI plug-in, see [Create a workload from a Maven repository artifact](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-maven).
 
 ## <a id='testing-pipeline'></a> testing-pipeline
 
