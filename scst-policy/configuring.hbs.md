@@ -104,7 +104,7 @@ Warning: failed policy: POLICY-NAME: spec.template.spec.containers[1].image
 Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
 ```
 
-If `Warning` is undesirable, you can configure a `static.action` `pass` authority to allow expected unsigned images.
+If you don't want a `Warning` output message, you can configure a `static.action` `pass` authority to allow expected unsigned images.
 For information about static action authorities, see [Static Action](#cip-static-action).
 
 ### <a id="cip-match"></a> `match`
