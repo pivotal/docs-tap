@@ -1,7 +1,7 @@
 # Customize the Tanzu Developer Portal telemetry collection
 
-This section tells you how to customize telemetry collection for the Tanzu Developer Portal
-(formerly named Tanzu Application Platform GUI) portal.
+This topic tells you how to customize telemetry collection for Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI).
 
 ## <a id="telemetry-customizing"></a> Customize organization ID
 
@@ -18,17 +18,17 @@ To customize:
 
 1. Provide additional configuration parameters to the `app_config` section of `tap-values.yaml`:
 
-   ```yaml
-   tap_gui:
-     app_config:
-       pendoAnalytics:
-         organizationId: 'ORGANIZATION-NAME'
-   ```
+    ```yaml
+    tap_gui:
+      app_config:
+        pendoAnalytics:
+          organizationId: 'ORGANIZATION-NAME'
+    ```
 
-   Where `ORGANIZATION-NAME` is the name of your organization or the name of the
-   Tanzu Developer Portal instance of your choice. `ORGANIZATION-NAME` must be unique and
-   static across an instance of Tanzu Developer Portal so that your organization name remains
-   the same across refreshes of the Tanzu Application Platform database.
+    Where `ORGANIZATION-NAME` is the name of your organization or the name of the
+    Tanzu Developer Portal instance of your choice. `ORGANIZATION-NAME` must be unique and
+    static across an instance of Tanzu Developer Portal so that your organization name remains
+    the same across refreshes of the Tanzu Application Platform database.
 
 2. Reinstall your Tanzu Developer Portal package by following the steps in
    [Upgrade Tanzu Application Platform](../../upgrading.hbs.md).

@@ -1,6 +1,7 @@
 # Customize the Support menu
 
-This topic describes how to customize the support menu.
+This topic tells you how to customize the support menu in Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI).
 
 ## <a id="overview"></a> Overview
 

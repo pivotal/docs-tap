@@ -1,6 +1,7 @@
 # Customize the portal
 
-This section describes how to customize the portal.
+This topic tells you how to customize the portal in Tanzu Developer Portal
+(formerly named Tanzu Application Platform GUI).
 
 ## <a id="brand-customizing"></a> Customize branding
 
@@ -32,7 +33,7 @@ customized version of your portal.
 If there is an error in any of the supplied images encoded in base64 or in your choice of portal name,
 Tanzu Developer Portal reverts to the original branding template.
 
-![Screenshot displaying the custom branding within the Tanzu Developer Portal portal](../images/customized-branding.png)
+![Screenshot displaying the custom branding within the Tanzu Developer Portal portal.](../images/customized-branding.png)
 
 ## <a id="customize-catalog-page"></a> Customize the Software Catalog page
 
@@ -68,7 +69,7 @@ customized version of your portal.
 If there is an error in the provided configuration parameters, Tanzu Developer Portal reverts to the
 original organization name.
 
-![Screenshot displaying the custom Software Catalog naming within the Tanzu Developer Portal portal](../images/customized-catalog-name.png)
+![Screenshot displaying the custom Software Catalog naming within the Tanzu Developer Portal portal.](../images/customized-catalog-name.png)
 
 ### <a id="prevent-changes"></a> Prevent changes to the software catalog
 
