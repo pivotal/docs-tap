@@ -672,7 +672,6 @@
           - [Authentication and authorization](scst-store/amr/auth.hbs.md)
           - [Data models and concepts](scst-store/amr/data-model-and-concepts.hbs.md)
           - [GraphQL query](scst-store/amr/graphql-query.hbs.md)
-          - [CloudEvent JSON specification](scst-store/amr/cloudevents.hbs.md)
           - [Install AMR CloudEvent Handler](scst-store/amr/install-amr-cloudevent-handler.hbs.md)
           - [Install AMR Observer](scst-store/amr/install-amr-observer.hbs.md)
           - [Troubleshooting](scst-store/amr/troubleshooting.hbs.md)
