@@ -157,8 +157,8 @@ supply chain.
 
 There are two sections within this view:
 
-- The box-and-line diagram at the top shows all the configured CRDs that this supply chain uses, and
-  any artifacts that the supply chain's execution outputs
+- The box-and-line diagram at the top shows all the configured custom resource definitions (CRDs)
+  that this supply chain uses, and any artifacts that the supply chain's execution outputs
 - The **Stage Detail** section at the bottom shows source data for each part of the supply chain that
   you select in the diagram view
 
@@ -221,29 +221,28 @@ analysis.
 
 ## <a id="sc-crds"></a> Support for CRDs
 
-In version 1.7.0, we introduced support for custom-baked CRDs. The following example illustrates the creation of a basic CRD, which is used as part of a supply chain and its visualization in the workload:
+Tanzu Developer Portal v1.7.0 introduced support for customized CRDs. The following example
+illustrates the creation of a basic CRD, which is used as part of a supply chain and its
+visualization in the workload:
 
-To define and use a CRD in a supply chain, the following steps must be taken:
+To define and use a CRD in a supply chain:
 
 1. Define the CRD.
-2. Set CRD Permissions.
-3. Define the ClusterTemplate and the Supply Chain.
-4. Create and Visualize the Workload.
+2. Set CRD permissions.
+3. Define the `ClusterTemplate` and the supply chain.
+4. Create and visualize the workload.
 
-Let's review each step in detail.
+### <a id="sc-crd-definition"></a> Define the CRD
 
-### <a id="sc-crd-definition"></a> Defining the CRD
+Start with a YAML file to define a CRD.
+The most basic structure a CRD must have `apiVersion`, `kind`, `metadata`, and `spec`.
 
-Official Documentation: [link](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
+The `apiVersion` for a CRD must always be `apiextensions.k8s.io/v1` and the `kind` must be
+`CustomResourceDefinition`.
 
-To define a CRD we should start with a YAML file.
-At its most basic structure a CRD must have “`apiVersion`”, “`kind`”, “`metadata`” and “`spec`”.  
+The basic structure looks similar to the following:
 
-Note that the “`apiVersion`” for a CRD will always need to be “`apiextensions.k8s.io/v1`” and the “`kind`” will be “`CustomResourceDefinition`”
-
-A basic structure may look like the following:
-
-```
+```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -251,10 +250,12 @@ metadata:
 spec: ...
 ```
 
-In order to fill up this structure you'll need to compe up with two values: `group` and `name`. 
-The value for `group` is usually expressed in a domain url format (e.g. `company.com`), and the `name` value may be any arbitrary value. For the following example we are going to use `spaceagency.com` for the `group` and the `name` will be `rockets`.
+To fill up this structure, you values for `group` and `name`. The value for `group` is usually
+expressed in a domain URL format, such as `company.com`, and the `name` value can be any value.
 
-```
+The following example uses `spaceagency.com` for the `group` and `rockets` for the `name`.
+
+```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -269,15 +270,22 @@ spec:
     shortNames:
       - roc
 ```
-It is important that the name used in `metadata.name` follows the format `<pluralname>.<group>`, which in this case is `rockets.spaceagency.com`
 
-In order to start adding properties to our CRD we must specify them in the “`spec`” section under a list called “`versions`”, and each version should be an object specifying a “`name`” (for the version) and a “`schema`”.
+Ensure that the name used in `metadata.name` follows the format `PLURAL-NAME.GROUP`, which in this
+case is `rockets.spaceagency.com`
 
-For this example our “`schema`” will be an “`openAPIV3Schema`” object. Please refer to the [openAPIV3 Schema documentation](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#schema) for in-depth information about this.
+To start adding properties to the CRD:
 
-Our updated CRD looks like this:
+1. Specify them in the `spec` section under a list called `versions`.
+2. Make each version an object specifying a `name` for the version and a `schema`.
 
-```
+For this example the `schema` is an `openAPIV3Schema` object. For more information, see the
+[OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#schema)
+in GitHub.
+
+The updated CRD looks like this:
+
+```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata: ...
@@ -304,14 +312,19 @@ spec:
 
 Let’s analyze it:
 
-We added a “`versions`” property under “`spec`” and defined an entry for it that has “`name`”, “`schema`”, “`served`” and “`storage`”. 
-Please refer to the [official CRD documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) for in-depth information about `served` and `storage` property. For now just know that they're required.
+We added a `versions` property under `spec` and defined an entry for it that has `name`, `schema`,
+`served` and `storage`. Please refer to the [official CRD documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
+for in-depth information about `served` and `storage` property. For now just know that they're
+required.
 
-Under the “`schema`” property we defined an “`openAPIV3Schema`” object which lists the attributes that our instances will have and their types. For this example we have added 3 attributes: “`type`”, “`fuel`” and “`payloadCapacity`”, all of them strings.
+Under the `schema` property we defined an `openAPIV3Schema` object which lists the attributes that
+our instances will have and their types. For this example we have added 3 attributes: `type`, `fuel`
+and `payloadCapacity`, all of them strings.
 
-And with this we now have a valid Custom Resource Definition that we could apply to our cluster. The full definition is as follows:
+And with this we now have a valid Custom Resource Definition that we could apply to our cluster. The
+full definition is as follows:
 
-```
+```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -343,21 +356,31 @@ spec:
               payloadCapacity:
                 type: string
 ```
-#### <a id="sc-crd-printer-columns"></a> Adding Printer Columns to the CRD
 
-There is another set of information that we could add to this CRD in order to enhance the way these resources will be rendered by the CLI tools and the Supply Chain plugin: **Printer Columns**.
+For more information about CRDs, see the
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/).
 
-The supply chain plugin added support for Printer Columns in version 1.7.0
+#### <a id="sc-crd-printer-columns"></a> Add printer columns to the CRD
+
+There is another set of information that we could add to this CRD in order to enhance the way these
+resources will be rendered by the CLI tools and the Supply Chain plugin: **Printer Columns**.
+
+The supply chain plug-in added support for Printer Columns in version 1.7.0
 
 Official Documentation: [link](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns)
 
-Printer Columns (their official name being “`additionalPrinterColumns`”) is a characteristic that can be added to CRDs to allow them to specify which of their properties should be shown when rendering the resource.
+Printer Columns (their official name being `additionalPrinterColumns`) is a characteristic that can
+be added to CRDs to allow them to specify which of their properties should be shown when rendering
+the resource.
 
-They are a list that must be specified as part of a “`version`” object; each of the list items specifies a name for the “column” to be printed along with the type of the value and a json path that indicates where to get the value from, relative to the CRD itself.
+They are a list that must be specified as part of a `version` object; each of the list items
+specifies a name for the column to be printed along with the type of the value and a json path that
+indicates where to get the value from, relative to the CRD itself.
 
-Let’s add 3 “`additionalPrinterColumns`” to our CRD to display the “`.spec.type`”, “`.spec.fuel`” and “`.spec.payloadCapacity`” attributes to see them in action:
+Let’s add 3 `additionalPrinterColumns` to our CRD to display the `.spec.type`, `.spec.fuel` and
+`.spec.payloadCapacity` attributes to see them in action:
 
-```
+```yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -402,13 +425,15 @@ spec:
 
 And with that we now have a CRD with printer columns. We will call this CRD file `rockets-crd.yaml`
 
-### <a id="sc-crd-permissions"></a> Setting Resource Permissions
+### <a id="sc-crd-permissions"></a> Set Resource Permissions
 
-In order to use these `Rocket` resources in a supply chain we need to create a `Role` to define what actions are allowed on this resource, and a `RoleBinding` to bind this new `Role` into the `serviceAccount` that we usually use.
+In order to use these `Rocket` resources in a supply chain we need to create a `Role` to define what
+actions are allowed on this resource, and a `RoleBinding` to bind this new `Role` into the
+`serviceAccount` that we usually use.
 
 First let's tackle the `Role` resource:
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -428,11 +453,14 @@ rules:
   - deletecollection
 ```
 
-Of note here is the “`metadata.namespace`” and “`metadata.name`” values. The namespace indicates in which namespace are the rules valid, and the name is simply how we’re calling this Role. Then the rules simply list a set of verbs (actions) that are available for the specified “`apiGroups`” and “`resources`”.
+Of note here is the `metadata.namespace` and `metadata.name` values. The namespace indicates in
+which namespace are the rules valid, and the name is simply how we’re calling this Role. Then the
+rules simply list a set of verbs (actions) that are available for the specified `apiGroups` and
+`resources`.
 
 Let’s move onto the `RoleBinding.`
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -448,12 +476,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-In this binding we’re associating the `default` service account that we use with the `rocket-reader` role we created earlier.
+In this binding we’re associating the `default` service account that we use with the `rocket-reader`
+role we created earlier.
 
 We will put these two definitions together in a single file that we’ll call `permissions.yaml`
 The resulting file looks like this:
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -487,29 +516,31 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-### <a id="sc-crd-resources"></a> Defining the ClusterTemplate and the Supply Chain
+### <a id="sc-crd-resources"></a> Define the ClusterTemplate and the Supply Chain
 
-Now that there exists a CRD and the permissions for them, we could start defining a Supply Chain that uses this CRD as one of its resources.
+Now that there exists a CRD and the permissions for them, we could start defining a Supply Chain
+that uses this CRD as one of its resources.
 
-For the following example we’ll be defining a very simple Supply Chain that has only one stage that uses an instance of our CRD.
+For the following example we’ll be defining a very simple Supply Chain that has only one stage that
+uses an instance of our CRD.
 
 We will be creating our supply chain by downloading an already existing supply chain and editing it.
 
 To list the existing supply chains in a cluster you can do:
 
-```
- kubectl get ClusterSupplyChain -n <<namespace>
+```console
+kubectl get ClusterSupplyChain -n <<namespace>
 ```
 
 To download one of them to file:
 
-```
- kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
+```console
+kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
 ```
 
 Once the Supply Chain definition is on file, open and edit it until it looks similar to the following:
 
-```
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
@@ -531,32 +562,44 @@ spec:
     - worker
 ```
 
-The “`apiVersion`” and  “`kind`” stay the same. The `metadata.name` is one we just created for this new supply chain — `source-scan-test-scan-to-url-rockets`
+The `apiVersion` and `kind` stay the same. The `metadata.name` is one we just created for this new
+supply chain — `source-scan-test-scan-to-url-rockets`
 
-The `spec.selector` field indicates which label selector will be used to pick this as the supply chain when creating a workload. For this example we’ve chosen “`apps.tanzu.vmware.com/has-rockets:` `"true"`”. This means that when creating the workload it **must** have the label `“`apps.tanzu.vmware.com/has-rockets:` `"true"`”` in order to use this supply chain.
+The `spec.selector` field indicates which label selector will be used to pick this as the supply
+chain when creating a workload. For this example we’ve chosen `apps.tanzu.vmware.com/has-rockets:`
+`"true"`. This means that when creating the workload it **must** have the label
+`apps.tanzu.vmware.com/has-rockets:` `"true"` in order to use this supply chain.
 
-Now, let’s define something for the `resources` field: a single resource that uses an instance of our CRD:
+Now, let’s define something for the `resources` field: a single resource that uses an instance of
+our CRD:
 
-In this supply chain we’re going to have just a single resource (stage) which will be named `rocket-provider` and it will use a “`templateRef"` of kind “`ClusterTemplate`” called “`rocket-source-template`” that we will create in the next step.
-For now it is only important to know that at its most basic a supply chain’s resource is an object consisting of a `name` and a `templateRef` pointing to an existing `ClusterTemplate.`
+In this supply chain we’re going to have just a single resource (stage) which will be named
+`rocket-provider` and it will use a `templateRef"` of kind `ClusterTemplate` called
+`rocket-source-template` that we will create in the next step.
+
+For now it is only important to know that at its most basic a supply chain’s resource is an object
+consisting of a `name` and a `templateRef` pointing to an existing `ClusterTemplate.`
 
 We will call this supply chain file `rocket-supply-chain.yaml`.
 
-Now let’s define this new `ClusterTemplate`:
-Just like with the SupplyChain, we have downloaded an existing `ClusterTemplate` and then heavily edited it.
+Now let’s define this new `ClusterTemplate`: Just like with the SupplyChain, we have downloaded an
+existing `ClusterTemplate` and then heavily edited it.
 
 To list existing `ClusterTemplates:`
-```
+
+```console
 kubectl get ClusterTemplates -n <<namespace>
 ```
 
 And to download one to file:
-```
+
+```console
 kubectl get ClusterTemplates config-writer-template -n my-apps -oyaml >> ~/cluster-template.yaml
 ```
 
 The edited/cleaned up file may end up looking like this:
-```
+
+```console
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
@@ -592,42 +635,55 @@ spec:
       payloadCapacity: 22000 kg
 ```
 
-Note that the `metadata.name` we assigned here —`rocket-source-template`— matches the name we specified in the supply chain resource.
+Note that the `metadata.name` we assigned here —`rocket-source-template`— matches the name we
+specified in the supply chain resource.
 
-It’s in the `spec` of this resource where we actually use an instance of the Rockets CRD. We do so using a field called `ytt` which is a templating language that can output resource instances.
-Note that we have left in a function that takes in labels from the workload and propagates them to the resource, this is not needed but is usually done to propagate important labels from the workload down to the individual resources.
+It’s in the `spec` of this resource where we actually use an instance of the Rockets CRD. We do so
+using a field called `ytt` which is a templating language that can output resource instances.
 
-We will call this file `rocket-cluster-template.yaml` and with this we have completed all the necessary definitions to create a Workload that uses this new supply chain and our Rockets CRD.
+Note that we have left in a function that takes in labels from the workload and propagates them to
+the resource, this is not needed but is usually done to propagate important labels from the workload
+down to the individual resources.
+
+We will call this file `rocket-cluster-template.yaml` and with this we have completed all the
+necessary definitions to create a Workload that uses this new supply chain and our Rockets CRD.
 
 ### <a id="sc-crd-usage"></a> Creating and Visualizing the Workload
 
-Now that we have all of the resources we just have to apply them to a cluster and then create a workload.
+Now that we have all of the resources we just have to apply them to a cluster and then create a
+workload.
 
 Let’s start by applying the CRD of our Rockets:
-```
+
+```console
 kubectl apply -f rockets-crd.yaml
 ```
 
 Then we apply the resource permissions:
-```
+
+```console
 kubectl apply -f permissions.yaml
 ```
 
 Then we apply the cluster template:
-```
+
+```console
 kubectl apply -f rocket-cluster-template.yaml
 ```
 
 And finally the supply chain:
-```
+
+```console
 kubectl apply -f rocket-supply-chain.yaml
 ```
 
-And now the cluster has all the necessary resource definitions to create a workload using the `source-scan-test-scan-to-url-rockets` supply chain, which, in turns, uses an instance of the `rockets.spaceagency.com` resource.
+And now the cluster has all the necessary resource definitions to create a workload using the
+`source-scan-test-scan-to-url-rockets` supply chain, which, in turns, uses an instance of the
+`rockets.spaceagency.com` resource.
 
 To create the workload:
 
-```
+```console
 tanzu apps workload create tanzu-rockets-test-x \
 --type web \
 --label app.kubernetes.io/part-of=tanzu-rockets \
@@ -635,18 +691,24 @@ tanzu apps workload create tanzu-rockets-test-x \
 --yes \
 --namespace my-apps
 ```
-Notice how we are explicitly setting the label `apps.tanzu.vmware.com/has-rockets=true`. Remember the `selector` property that we specified when defining the `source-scan-test-scan-to-url-rockets` Supply Chain? That's what ties together that supply chain with this particular workload.
 
-Now that our workload is created, let's take a look at how it is rendered by the Supply Chain plugin.
+Notice how we are explicitly setting the label `apps.tanzu.vmware.com/has-rockets=true`. Remember
+the `selector` property that we specified when defining the `source-scan-test-scan-to-url-rockets`
+Supply Chain? That's what ties together that supply chain with this particular workload.
 
-First we navigate to the supply chain plugin section in TAP-GUI and locate our Workload amongst the listed ones:
+Now that our workload is created, let's take a look at how it is rendered by the Supply Chain plug-in.
+
+First we navigate to the supply chain plugin section in TAP-GUI and locate our workload amongst the
+listed ones:
 
 ![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload_list.png)
 
-Of note here is that our workload `tanzu-rockets-x` is "Healthy" and under the "Supply Chain" column shows that it is using the `source-scan-test-scan-to-url-rockets` supply chain.
+Of note here is that our workload `tanzu-rockets-x` is "Healthy" and under the "Supply Chain" column
+shows that it is using the `source-scan-test-scan-to-url-rockets` supply chain.
 
-Once we click on it to see its details we are presented with the Workload graph.
-Given that our Supply Chain `source-scan-test-scan-to-url-rockets` only specified one `resource`, the result we get is a very simple single-stage graph:
+Once we click on it to see its details we are presented with the Workload graph. Given that our
+Supply Chain `source-scan-test-scan-to-url-rockets` only specified one `resource`, the result we get
+is a very simple single-stage graph:
 
 ![Screenshot of tanzu-rockets-x workload graph.](images/tanzu-rockets-overview.png)
 
@@ -654,7 +716,9 @@ Scrolling down the screen we are presented with the details associated with the 
 
 ![Screenshot of Rocket Provider details.](images/tanzu-rockets-crd-detail.png)
 
-Notice how the Printer Columns that were defined on the CRD are now rendered in the overview section. This will hold true for *any* CRD that you define that includes the `additionalPrinterColumns` definition.
+Notice how the Printer Columns that were defined on the CRD are now rendered in the overview
+section. This will hold true for *any* CRD that you define that includes the
+`additionalPrinterColumns` definition.
 
 Finally, at the end of the section the full resource is presented in JSON format.
 
