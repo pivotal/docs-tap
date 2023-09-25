@@ -719,6 +719,7 @@
           - [Enable authorization on remote clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac.hbs.md)
           - [Enable authorization on remote EKS clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-eks.hbs.md)
           - [Enable authorization on remote GKE clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-gke.hbs.md)
+          - [Enable RBAC for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
           - [View runtime resources on authorization-enabled clusters](tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md)
           - [Assign roles and permissions on Kubernetes clusters](tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
       - [Add integrations](tap-gui/integrations.hbs.md)

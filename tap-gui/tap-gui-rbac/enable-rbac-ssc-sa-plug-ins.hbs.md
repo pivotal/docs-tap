@@ -1,13 +1,13 @@
-# Enable RBAC for SSC and SAGUI plug-ins
+# Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins
 
-This topic tells you how to become able to view workloads on SSC and SAGUI when using a cluster with
-role-based access control (RBAC) and namespace-scoped access.
+This topic tells you how to make workloads visible on the Secure Supply Chains UI and the
+Security Analysis UI when using a cluster with role-based access control (RBAC) and namespace-scoped
+access.
 
 ## <a id="add-permissions"></a> Add permissions to list namespaces
 
-To be able to get the information from the scoped namespaces, users must have
-permission to list namespaces. To grant this permission, create a new `ClusterRole` and
-`ClusterRoleBinding`:
+To be able to get the information from the scoped namespaces, users must have permission to list
+namespaces. To grant this permission, create a new `ClusterRole` and `ClusterRoleBinding`:
 
 1. Add the following to `namespace-cluster-role.yaml`:
 
@@ -56,4 +56,4 @@ Where `NAMESPACE` is your namespace
 With this annotation the UI can target the scoped namespaces and show you workloads on such
 namespaces.
 
-![Tanzu Developer Portal showing that RBAC is enabled on SAGUI and SSC plug-ins.](../images/rbac-on-ssc-and-sagui-plugins.png)
+![Tanzu Developer Portal showing that role-based access control is enabled on the Secure Supply Chains UI and Security Analysis UI plug-ins.](../images/rbac-on-ssc-and-sagui-plugins.png)
