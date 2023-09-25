@@ -202,7 +202,7 @@ tap_gui:
     customize:
       features:
         supplyChain:
-          enableTriageUI: false
+          enableTriageUI: true
 ```
 
 When you select a scan stage, the system shows a table with vulnerabilities and a **Triage Status**
