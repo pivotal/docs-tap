@@ -27,7 +27,7 @@ To install **from IntelliJ markerplace**:
 
 1. Start IntelliJ development environment.
 1. Open the command pallette (Press SHIFT-SHIFT) and type and "Plugins", then select "Plugins".
-1. In the "Plugins Settings" dialog that pops up select the "Marketplace" tab.
+1. "Plugins Settings" dialog opens, in it, select the "Marketplace" tab.
 1. In the search box type "Tanzu"
 ![Tanzu Developer Tools entry in Marketplace Dialog](../images/intellij-install-from-marketplace.png)
 1. Select "Tanzu Developers Tools" and click "Install". 
