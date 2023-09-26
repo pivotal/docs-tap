@@ -289,7 +289,7 @@ tap_install:
 ...
 ```
 
-To install Tanzu Application Service in an offline environment, you must configure `Tanzu Build Service` and `Grype` to work in an air-gapped environment:
+To install Tanzu Application Platform in an offline environment, you must configure `Tanzu Build Service` and `Grype` to work in an air-gapped environment:
 
 ```yaml
 ---
