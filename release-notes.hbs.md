@@ -13,7 +13,11 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-platform-features'></a> New platform-wide features
 
-- Feature Description.
+- Added airgapped support to the Tanzu Application Platform GitOps install method. 
+For more information, see one of the following install topics:
+    - [Install Tanzu Application Platform through GitOps with AWS Secrets Manager](install-gitops/eso/aws-secrets-manager.hbs.md#airgap-support)
+    - [Install Tanzu Application Platform through GitOps with HashiCorp Vault](install-gitops/eso/hashicorp-vault.hbs.md#airgap-support)
+    - [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](install-gitops/sops.hbs.md#airgap-support)
 
 #### <a id='1-7-0-new-components'></a> New components
 
