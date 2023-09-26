@@ -42,8 +42,7 @@ This release includes the following changes, listed by component and area.
 - External Secrets Operator is now GA.
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
   about your external secrets and secret stores. The CREATE command lets you create cluster
-  external secret and cluster secret stores. For more information, see the commands in the
-  [External Secrets CLI reference section](external-secrets/reference/external-secrets.hbs.md).
+  external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI & plugins
 
@@ -53,11 +52,10 @@ This release includes the following changes, listed by component and area.
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Tanzu CLI Insight plug-in
 
-- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see <TODO: add in link>
-- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and [tanzu insight triage rebase](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/cli-docs/tanzu_insight_triage_rebase.hbs.md#tanzu-insight-triage-rebase).
+- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu Developer Portal & plugins
-
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain plug-in
 
