@@ -438,8 +438,7 @@ These pages might list mitigation steps that operators can take to secure the cl
 
 #### <a id='1-7-0-supply-chain-security-tools-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` will automatically detect Postgres Database Index corruptions. Supply Chain Security Tools - Store will not reconcile if Postgres database index corruption issue found. Remediation to fix this issue can be found at [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md)
-
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 ---
 

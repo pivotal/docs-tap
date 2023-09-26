@@ -2,25 +2,25 @@
 
 This topic contains ways you can troubleshoot known issues for Supply Chain Security Tools (SCST) - Store.
 
-## Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
+## <a id='query-cve'></a>Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
 
-### Symptom
+### <a id='query-cve-symptom'></a>Symptom
 
 When attempting to look up CVE and affected packages, querying `insight source get` (or other `insight source` commands) might return zero results due to supply chain configuration and repository URL.
 
-### <a id='source-scan-no-cves-solution'></a> Solution
+### <a id='query-cve-solution'></a> Solution
 
 You might have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). For more information see [Query vulnerabilities, images, and packages](../cli-plugins/insight/query-data.hbs.md).
 
-## Persistent volume retains data
+## <a id='retains-data'></a>Persistent volume retains data
 
-### Symptom
+### <a id='retains-data-symptom'></a>Symptom
 
-If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. This is caused by the persistent volume used by postgres retaining old data, even though the retention policy is set to `DELETE`.
+If SCST - Store is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. The persistent volume used by PostgreSQL retaining old data, even though the retention policy is set to `DELETE`, causes this issue.
 
-### <a id='persistent-volume-retains-data-solution'></a>Solution
+### <a id='retains-data-solution'></a>Solution
 
->**Caution** Changing the database password deletes your Supply Chain Security Tools - Store data.
+>**Caution** Changing the database password deletes your SCST - Store data.
 
 To redeploy the app, either use the same database password or follow these steps to erase the data on the volume:
 
@@ -41,16 +41,16 @@ To redeploy the app, either use the same database password or follow these steps
 5. Delete the `metadata-store` app by using `kapp`.
 6. Deploy the `metadata-store` app by using `kapp`.
 
-## Missing persistent volume
+## <a id='missing-pv'></a>Missing persistent volume
 
-### Symptom
+### <a id='missing-pv-symptom'></a>Symptom
 
 After SCST - Store is deployed, `metadata-store-db` pod might fail for missing volume while
 `postgres-db-pv-claim` pvc is in `PENDING` state.
 
 This is because the cluster where SCST - Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
 
-### <a id='missing-persistent-volume-solution'></a>Solution
+### <a id='missing-pv-solution'></a>Solution
 
 1. Verify that your cluster has `storageclass` by running `kubectl get storageclass`.
 2. Create a `storageclass` in your cluster before deploying SCST - Store. For example:
@@ -63,9 +63,9 @@ This is because the cluster where SCST - Store is deployed does not have `storag
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```
 
-## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes v1.23
+## <a id="eks-1-23-vol"></a> Builds fail due to volume errors on EKS running Kubernetes v1.23
 
-### Symptom
+### <a id="eks-1-23-vol-symptom"></a>Symptom
 
 When installing SCST - Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the satabase pod shows:
 
@@ -73,19 +73,19 @@ When installing SCST - Store on or upgrading an existing EKS cluster to Kubernet
 running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
 ```
 
-### Explanation
+### <a id="eks-1-23-vol-explanation"></a>Explanation
 
-This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon Elastic Block Store (EBS) CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the Amazon Elastic Block Store (EBS) CSI Driver to use EBS volumes. For more information, see the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html).
 
 SCST - Store uses the default storage class which uses EBS volumes by default on EKS.
 
-### Solution
+### <a id="eks-1-23-vol-solution"></a>Solution
 
-Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing SCST - Store or before upgrading to Kubernetes v1.23.
+Follow the AWS documentation to install the Amazon EBS CSI Driver before installing SCST - Store or before upgrading to Kubernetes v1.23. For more information, see the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html).
 
-## <a id="certificate-expiries"></a> Certificate Expiries
+## <a id="cert-expiries"></a> Certificate Expiries
 
-### Symptom
+### <a id="cert-expiries-symptom"></a>Symptom
 
 The Insight CLI or the Scan Controller fails to connect to SCST - Store.
 
@@ -110,11 +110,11 @@ $ kubectl logs statefulset/metadata-store-db -n metadata-store
 ...
 ```
 
-### Explanation
+### <a id="cert-expiries-explanation"></a>Explanation
 
 cert-manager rotates the certificates, but the metadata-store and the PostgreSQL db are unaware of the change, and are using the old certificates.
 
-### Solution
+### <a id="cert-expiries-solution"></a>Solution
 
 If you see `TLS handshake error` in the metadata-store-app logs, delete the metadata-store-app pod and wait for it to come back up.
 
@@ -128,22 +128,22 @@ If you see `could not accept SSL connection` in the metadata-store-db logs, dele
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
 
-## Troubleshooting Database Index Corruption issue in SCST - Store
+## <a id="db-index-corrupt"></a>Database index corruption issue in SCST - Store
 
-Metadata Store unable to reconcile since metadata store pod complaining about potential database index corruption issue.
+Metadata Store unable to reconcile because the metadata store pod complains about potential database index corruption issue.
 
 ```console
 kubectl logs metadata-store-app-pod_name -n metadata-store
 ```
 
-```
+```console
 {“level”:“error”,“ts”:“2023-08-15T16:38:31.528115988Z”,“logger”:“MetadataStore”,“msg”:“unable to check index corruption since user is not a superuser to perform \“CREATE EXTENSION amcheck\“. Please create this extension and check for index corruption using following sql command \“SELECT bt_index_check(oid) FROM pg_class WHERE relname in (SELECT indexrelid::regclass::text FROM (SELECT indexrelid, indrelid, indcollation[i] coll FROM pg_index, generate_subscripts(indcollation, 1) g(i)) s JOIN pg_collation c ON coll=c.oid WHERE collprovider IN (‘d’, ‘c’) AND collname NOT IN (‘C’, ‘POSIX’));\“”,“hostname”:“metadata-store-app-77c9fb59c8-qplxt”}
 {“level”:“error”,“ts”:“2023-08-15T16:38:31.528139637Z”,“logger”:“MetadataStore”,“msg”:“Found corrupted database indexes but unable to fix them”,“hostname”:“metadata-store-app-77c9fb59c8-qplxt”,“error”:“unable to check index corruption since user is not a superuser to perform \“CREATE EXTENSION amcheck\“. Please create this extension and check for index corruption using following sql command \“SELECT bt_index_check(oid) FROM pg_class WHERE relname in (SELECT indexrelid::regclass::text FROM (SELECT indexrelid, indrelid, indcollation[i] coll FROM pg_index, generate_subscripts(indcollation, 1) g(i)) s JOIN pg_collation c ON coll=c.oid WHERE collprovider IN (‘d’, ‘c’) AND collname NOT IN (‘C’, ‘POSIX’));\“”}
 ```
 
-You can check [Postgres Database Index Corruption](./database-index-corruption.hbs.md) for solution
+For information about the solution, see[Postgres Database Index Corruption](./database-index-corruption.hbs.md).
 
-## Troubleshooting errors from Tanzu Developer Portal related to SCST - Store
+## <a id="error-dev-portal"></a>Errors from Tanzu Developer Portal related to SCST - Store
 
 Different Tanzu Developer Portal plug-ins use SCST - Store to display information about
 vulnerabilities and packages.
