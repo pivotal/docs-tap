@@ -221,9 +221,9 @@ analysis.
 
 ## <a id="sc-crds"></a> Support for CRDs
 
-Tanzu Developer Portal v1.7.0 introduced support for customized CRDs. The following example
-illustrates the creation of a basic CRD, which is used as part of a supply chain and its
-visualization in the workload:
+Tanzu Developer Portal v1.7.0 introduced support for CRDs. The following example illustrates the
+creation of a basic CRD, which is used as part of a supply chain and its visualization in the
+workload:
 
 To define and use a CRD in a supply chain:
 
@@ -234,151 +234,143 @@ To define and use a CRD in a supply chain:
 
 ### <a id="sc-crd-definition"></a> Define the CRD
 
-Start with a YAML file to define a CRD.
-The most basic structure a CRD must have `apiVersion`, `kind`, `metadata`, and `spec`.
+To define a CRD:
 
-The `apiVersion` for a CRD must always be `apiextensions.k8s.io/v1` and the `kind` must be
-`CustomResourceDefinition`.
+1. Create a new YAML file with a suitable name. The example CRD used in this procedure is named
+   `rockets-crd.yaml`.
+2. Add the following basic structure to the YAML file:
 
-The basic structure looks similar to the following:
+    ```yaml
+    apiVersion: apiextensions.k8s.io/v1
+    kind: CustomResourceDefinition
+    metadata:
+     name: ...
+    spec: ...
+    ```
 
-```yaml
-apiVersion: apiextensions.k8s.io/v1
-kind: CustomResourceDefinition
-metadata:
- name: ...
-spec: ...
-```
+   At its most basic, a CRD must have `apiVersion`, `kind`, `metadata`, and `spec`.
 
-To fill up this structure, you values for `group` and `name`. The value for `group` is usually
-expressed in a domain URL format, such as `company.com`, and the `name` value can be any value.
+   The `apiVersion` for a CRD must always be `apiextensions.k8s.io/v1` and the `kind` must be
+   `CustomResourceDefinition`.
 
-The following example uses `spaceagency.com` for the `group` and `rockets` for the `name`.
+3. Add values for `group` and `name`. The value for `group` is usually expressed in a domain URL
+   format, such as `company.com`, and the `name` value can be anything.
 
-```yaml
-apiVersion: apiextensions.k8s.io/v1
-kind: CustomResourceDefinition
-metadata:
-  name: rockets.spaceagency.com
-spec:
-  group: spaceagency.com
-  scope: Namespaced
-  names:
-    plural: rockets
-    singular: rocket
-    kind: Rocket
-    shortNames:
-      - roc
-```
+   The following example uses `spaceagency.com` for the `group` and `rockets` for the `name`.
 
-Ensure that the name used in `metadata.name` follows the format `PLURAL-NAME.GROUP`, which in this
-case is `rockets.spaceagency.com`
+    ```yaml
+    apiVersion: apiextensions.k8s.io/v1
+    kind: CustomResourceDefinition
+    metadata:
+      name: rockets.spaceagency.com
+    spec:
+      group: spaceagency.com
+      scope: Namespaced
+      names:
+        plural: rockets
+        singular: rocket
+        kind: Rocket
+        shortNames:
+          - roc
+    ```
 
-To start adding properties to the CRD:
+   Ensure that the name used in `metadata.name` follows the format `PLURAL-NAME.GROUP`. In this
+   example it is `rockets.spaceagency.com`.
 
-1. Specify them in the `spec` section under a list called `versions`.
-2. Make each version an object specifying a `name` for the version and a `schema`.
+4. Add properties in the `spec` section under a list called `versions`, and make each version an
+   object with a `name` and a `schema` for the version, so that the CRD looks similar to the following:
 
-For this example the `schema` is an `openAPIV3Schema` object. For more information, see the
-[OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#schema)
-in GitHub.
-
-The updated CRD looks like this:
-
-```yaml
-apiVersion: apiextensions.k8s.io/v1
-kind: CustomResourceDefinition
-metadata: ...
-spec:
-  ...
-  versions:
-  - name: v1
-    served: true
-    storage: true
-    schema:
-      openAPIV3Schema:
-        type: object
-        properties:
-          spec:
+    ```yaml
+    apiVersion: apiextensions.k8s.io/v1
+    kind: CustomResourceDefinition
+    metadata: ...
+    spec:
+      ...
+      versions:
+      - name: v1
+        served: true
+        storage: true
+        schema:
+          openAPIV3Schema:
             type: object
             properties:
-              type:
-                type: string
-              fuel:
-                type: string
-              payloadCapacity:
-                type: string
-```
+              spec:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  fuel:
+                    type: string
+                  payloadCapacity:
+                    type: string
+    ```
 
-Let’s analyze it:
+   The `versions` property also has required `served` and `storage` properties. For more information
+   about `served` and `storage`, and CRDs in general, see the
+   [Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/).
 
-We added a `versions` property under `spec` and defined an entry for it that has `name`, `schema`,
-`served` and `storage`. Please refer to the [official CRD documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
-for in-depth information about `served` and `storage` property. For now just know that they're
-required.
+   For this example the `schema` is an `openAPIV3Schema` object. For more information, see the
+   [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#schema)
+   in GitHub.
 
-Under the `schema` property we defined an `openAPIV3Schema` object which lists the attributes that
-our instances will have and their types. For this example we have added 3 attributes: `type`, `fuel`
-and `payloadCapacity`, all of them strings.
+   The `openAPIV3Schema` object lists the attributes that
+   the instances will have and their types. In this example there are 3 attributes (`type`, `fuel`,
+   and `payloadCapacity`), and all of them are strings.
 
-And with this we now have a valid Custom Resource Definition that we could apply to our cluster. The
-full definition is as follows:
+5. Verify that your CRD looks like this finished example:
 
-```yaml
-apiVersion: apiextensions.k8s.io/v1
-kind: CustomResourceDefinition
-metadata:
-  name: rockets.spaceagency.com
-spec:
-  group: spaceagency.com
-  scope: Namespaced
-  names:
-    plural: rockets
-    singular: rocket
-    kind: Rocket
-    shortNames:
-      - roc
-  versions:
-  - name: v1
-    served: true
-    storage: true
-    schema:
-      openAPIV3Schema:
-        type: object
-        properties:
-          spec:
+    ```yaml
+    apiVersion: apiextensions.k8s.io/v1
+    kind: CustomResourceDefinition
+    metadata:
+      name: rockets.spaceagency.com
+    spec:
+      group: spaceagency.com
+      scope: Namespaced
+      names:
+        plural: rockets
+        singular: rocket
+        kind: Rocket
+        shortNames:
+          - roc
+      versions:
+      - name: v1
+        served: true
+        storage: true
+        schema:
+          openAPIV3Schema:
             type: object
             properties:
-              type:
-                type: string
-              fuel:
-                type: string
-              payloadCapacity:
-                type: string
-```
+              spec:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  fuel:
+                    type: string
+                  payloadCapacity:
+                    type: string
+    ```
 
-For more information about CRDs, see the
-[Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/).
+#### <a id="sc-crd-printer-columns"></a> (Optional) Add printer columns to the CRD
 
-#### <a id="sc-crd-printer-columns"></a> Add printer columns to the CRD
+v1.7.0 of the supply chain plug-in introduced support for printer columns.
 
-There is another set of information that we could add to this CRD in order to enhance the way these
-resources will be rendered by the CLI tools and the Supply Chain plugin: **Printer Columns**.
+Add printer columns (`additionalPrinterColumns`) to specify which CRD properties to display when
+rendering the resource through CLI tools or the supply chain plug-in.
 
-The supply chain plug-in added support for Printer Columns in version 1.7.0
+For more information about printer columns, see the
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns).
 
-Official Documentation: [link](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns)
+A printer column is a list that is specified as part of a `version` object. Each list item specifies
+the following for printing:
 
-Printer Columns (their official name being `additionalPrinterColumns`) is a characteristic that can
-be added to CRDs to allow them to specify which of their properties should be shown when rendering
-the resource.
+- A column name
+- The type of the value
+- A JSON path, relative to the CRD itself, that shows where to get the value
 
-They are a list that must be specified as part of a `version` object; each of the list items
-specifies a name for the column to be printed along with the type of the value and a json path that
-indicates where to get the value from, relative to the CRD itself.
-
-Let’s add 3 `additionalPrinterColumns` to our CRD to display the `.spec.type`, `.spec.fuel` and
-`.spec.payloadCapacity` attributes to see them in action:
+The following example has 3 printer columns for displaying the `.spec.type`, `.spec.fuel`, and
+`.spec.payloadCapacity` attributes:
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -423,122 +415,125 @@ spec:
       jsonPath: .spec.payloadCapacity
 ```
 
-And with that we now have a CRD with printer columns. We will call this CRD file `rockets-crd.yaml`
+### <a id="sc-crd-permissions"></a> Set resource permissions
 
-### <a id="sc-crd-permissions"></a> Set Resource Permissions
+To use resources in a supply chain, set resource permissions:
 
-In order to use these `Rocket` resources in a supply chain we need to create a `Role` to define what
-actions are allowed on this resource, and a `RoleBinding` to bind this new `Role` into the
-`serviceAccount` that we usually use.
+1. Create a new YAML file named `permissions.yaml`.
 
-First let's tackle the `Role` resource:
+1. Add a `Role` to define which actions (`verbs`) are allowed on this resource:
 
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: my-apps
-  name: rocket-reader
-rules:
-- apiGroups: ["spaceagency.com"]
-  resources: ["rockets"]
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - patch
-  - update
-  - delete
-  - deletecollection
-```
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: NAMESPACE
+      name: NAME
+    rules:
+    - apiGroups: ["API-GROUPS"]
+      resources: ["RESOURCES-NAME"]
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+      - deletecollection
+    ```
 
-Of note here is the `metadata.namespace` and `metadata.name` values. The namespace indicates in
-which namespace are the rules valid, and the name is simply how we’re calling this Role. Then the
-rules simply list a set of verbs (actions) that are available for the specified `apiGroups` and
-`resources`.
+    Where:
 
-Let’s move onto the `RoleBinding.`
+    - `NAMESPACE-NAME` is the namespace in which the rules apply. For example, `my-apps`.
+    - `NAME` is the name for the role. For example, `rocket-reader`.
+    - `API-GROUPS` is the name of the group. For example, `spaceagency.com`.
+    - `RESOURCES-NAME` is the resource name. For example, `rockets`.
 
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: rocket-reader-binding
-  namespace: my-apps
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: my-apps
-roleRef:
-  kind: Role
-  name: rocket-reader
-  apiGroup: rbac.authorization.k8s.io
-```
+1. Add a `RoleBinding` to bind this new `Role` to the `serviceAccount` that you typically use:
 
-In this binding we’re associating the `default` service account that we use with the `rocket-reader`
-role we created earlier.
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: BINDING-NAME
+      namespace: NAMESPACE
+    subjects:
+    - kind: ServiceAccount
+      name: default
+      namespace: my-apps
+    roleRef:
+      kind: Role
+      name: ROLE-REFERENCE-NAME
+      apiGroup: rbac.authorization.k8s.io
+    ```
 
-We will put these two definitions together in a single file that we’ll call `permissions.yaml`
-The resulting file looks like this:
+    Where:
 
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  namespace: my-apps
-  name: rocket-reader
-rules:
-- apiGroups: ["spaceagency.com"]
-  resources: ["rockets"]
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - patch
-  - update
-  - delete
-  - deletecollection
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: rocket-reader-binding
-  namespace: my-apps
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: my-apps
-roleRef:
-  kind: Role
-  name: rocket-reader
-  apiGroup: rbac.authorization.k8s.io
-```
+    - `BINDING-NAME` is the binding name. For example, `rocket-reader-binding`.
+    - `NAMESPACE` is the namespace. For example, `my-apps`.
+    - `ROLE-REFERENCE-NAME` is the role reference name. For example, `rocket-reader`.
 
-### <a id="sc-crd-resources"></a> Define the ClusterTemplate and the Supply Chain
+   In this binding you associate the `default` service account that you use with the new role you
+   created. The two definitions together look like this example:
 
-Now that there exists a CRD and the permissions for them, we could start defining a Supply Chain
-that uses this CRD as one of its resources.
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: my-apps
+      name: rocket-reader
+    rules:
+    - apiGroups: ["spaceagency.com"]
+      resources: ["rockets"]
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+      - deletecollection
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: rocket-reader-binding
+      namespace: my-apps
+    subjects:
+    - kind: ServiceAccount
+      name: default
+      namespace: my-apps
+    roleRef:
+      kind: Role
+      name: rocket-reader
+      apiGroup: rbac.authorization.k8s.io
+    ```
 
-For the following example we’ll be defining a very simple Supply Chain that has only one stage that
+### <a id="sc-crd-resources"></a> Define the ClusterTemplate and the supply chain
+
+Now that you have a CRD and the permissions for it, you can define a supply chain that uses this CRD
+as one of its resources.
+
+For the following example we’ll be defining a very simple supply chain that has only one stage that
 uses an instance of our CRD.
 
 We will be creating our supply chain by downloading an already existing supply chain and editing it.
 
-To list the existing supply chains in a cluster you can do:
+To list the existing supply chains in a cluster, run:
 
 ```console
 kubectl get ClusterSupplyChain -n <<namespace>
 ```
 
-To download one of them to file:
+To download one of them to a file, run:
 
 ```console
 kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
 ```
 
-Once the Supply Chain definition is on file, open and edit it until it looks similar to the following:
+After the supply chain definition is on file, open and edit it until it looks similar to the following:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
