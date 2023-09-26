@@ -81,10 +81,10 @@ Configuration options:
   - The period in seconds between executed health checks to the AMR CloudEvent Handler endpoint.
 
 - `amr.observer.auth.kubernetes_service_accounts`
-  - `.enabled`
+  - `.enable`
     - Default: `true`
     - Include an Authorization header when communicating with AMR CloudEvent Handler.
-  - `.autoconfigured`
+  - `.autoconfigure`
     - Default: `true`
     - Delegate creation of auth token secret to the artifact metadata repository. Only applicable on 'full' and 'view' clusters.
   - `.secret`
@@ -108,12 +108,19 @@ Configuration options:
 
 ## <a id='amr-graphql'></a> AMR GraphQL
 
-- `amr.graphql.auth.kubernetes_service_accounts.enabled`
-  - Default: true
-  - Requires Authorization header when communicating with AMR GraphQL.
-
+- `amr.graphql.auth.kubernetes_service_accounts``
+  - `.enable`
+    - Default: true
+    - Enable authentication for artifact metadata repository GraphQL server. By default it is set to true.
+  - `.autoconfigure`
+    - Default: `true`
+    - Delegate creation of auth token secret to the artifact metadata repository. By default it is set to true.
 ## <a id='amr-cloudevent-handler'></a> AMR CloudEvent Handler
 
-- `amr.cloudevent_handler.auth.kubernetes_service_accounts.enabled`
-  - Default: true
-  - Requires Authorization header when communicating with AMR CloudEvent Handler.
+- `amr.cloudevent_handler.auth.kubernetes_service_accounts`
+  - `.enable`
+    - Default: true
+    - Enable authentication and authorization for services accessing Artifact Metadata Repository.
+  - `.autoconfigure`
+    - Default: `true`
+    - Delegate creation of auth token secret to the artifact metadata repository. By default it is set to true.
