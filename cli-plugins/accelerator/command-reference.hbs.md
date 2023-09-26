@@ -1,20 +1,3 @@
 # Command reference
 
-This topic provides you with a list of the Tanzu Accelerator CLI commands.
-
-- [tanzu accelerator](command-reference/tanzu_accelerator.md)
-    - [tanzu accelerator apply](command-reference/tanzu_accelerator_apply.md)
-    - [tanzu accelerator create](command-reference/tanzu_accelerator_create.md)
-    - [tanzu accelerator delete](command-reference/tanzu_accelerator_delete.md)
-    - [tanzu accelerator fragment](command-reference/tanzu_accelerator_fragment.md)
-    - [tanzu accelerator fragment create](command-reference/tanzu_accelerator_fragment_create.md)
-    - [tanzu accelerator fragment delete](command-reference/tanzu_accelerator_fragment_delete.md)
-    - [tanzu accelerator fragment get](command-reference/tanzu_accelerator_fragment_get.md)
-    - [tanzu accelerator fragment list](command-reference/tanzu_accelerator_fragment_list.md)
-    - [tanzu accelerator fragment update](command-reference/tanzu_accelerator_fragment_update.md)
-    - [tanzu accelerator generate](command-reference/tanzu_accelerator_generate.md)
-    - [tanzu accelerator generate-from-local](command-reference/tanzu_accelerator_generate_from_local.hbs.md) 
-    - [tanzu accelerator get](command-reference/tanzu_accelerator_get.md)
-    - [tanzu accelerator list](command-reference/tanzu_accelerator_list.md)
-    - [tanzu accelerator push](command-reference/tanzu_accelerator_push.md)
-    - [tanzu accelerator update](command-reference/tanzu_accelerator_update.md)
+The Tanzu Accelerator CLI plug-in command reference has moved to the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.

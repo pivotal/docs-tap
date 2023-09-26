@@ -1,5 +1,9 @@
 # Tanzu Service CLI plug-in reference
 
+The Tanzu Service CLI plug-in command reference has moved to the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+
+<!-- everything below this to be deleted prior to 1.7 GA see https://jira.eng.vmware.com/browse/TAAP-2198 -->
+
 This topic provides reference information about the Tanzu Service CLI plug-in for Services Toolkit.
 The main use for the plug-in is for
 [application operators](../reference/terminology-and-user-roles.hbs.md#ao) and
