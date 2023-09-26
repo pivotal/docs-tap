@@ -199,8 +199,7 @@ subjects:
     name: default
 ```
 
-For more information about authentication and authorization in Tanzu Application Platform v1.2, see
-https://github.com/pivotal/docs-tap/blob/main/authn-authz/overview.md.
+For more information about authentication and authorization in Tanzu Application Platform, see [Overview of Default roles for Tanzu Application Platform](../authn-authz/overview.hbs.md).
 
 ### <a id="developer-workload"></a> Developer workload
 

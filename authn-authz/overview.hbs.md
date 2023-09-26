@@ -1,4 +1,4 @@
-# Overview of Tanzu Application Platform authentication and authorization
+# Overview of Default roles for Tanzu Application Platform
 
 Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }} includes:
 
