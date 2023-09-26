@@ -45,15 +45,15 @@ To redeploy the app, either use the same database password or follow these steps
 
 ### Symptom
 
-After Store is deployed, `metadata-store-db` pod might fail for missing volume while
+After SCST - Store is deployed, `metadata-store-db` pod might fail for missing volume while
 `postgres-db-pv-claim` pvc is in `PENDING` state.
 
-This is because the cluster where Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
+This is because the cluster where SCST - Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
 
 ### <a id='missing-persistent-volume-solution'></a>Solution
 
 1. Verify that your cluster has `storageclass` by running `kubectl get storageclass`.
-2. Create a `storageclass` in your cluster before deploying Store. For example:
+2. Create a `storageclass` in your cluster before deploying SCST - Store. For example:
 
     ```console
     # This is the storageclass that Kind uses
@@ -67,7 +67,7 @@ This is because the cluster where Store is deployed does not have `storageclass`
 
 ### Symptom
 
-When installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the satabase pod shows:
+When installing SCST - Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the satabase pod shows:
 
 ```console
 running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
@@ -77,17 +77,17 @@ running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for
 
 This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon Elastic Block Store (EBS) CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
 
-Store uses the default storage class which uses EBS volumes by default on EKS.
+SCST - Store uses the default storage class which uses EBS volumes by default on EKS.
 
 ### Solution
 
-Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to Kubernetes v1.23.
+Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing SCST - Store or before upgrading to Kubernetes v1.23.
 
 ## <a id="certificate-expiries"></a> Certificate Expiries
 
 ### Symptom
 
-The Insight CLI or the Scan Controller fails to connect to the Store.
+The Insight CLI or the Scan Controller fails to connect to SCST - Store.
 
 The logs of the metadata-store-app pod show the following error:
 
