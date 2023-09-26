@@ -32,3 +32,8 @@ The extension has the following features:
   Deploy your workload straight to your Kubernetes cluster and, after you're finished using it, you
   can delete it. All the output for deleting a workload is filtered to its own output pane window
   within Visual Studio.
+
+- **See workloads running on the cluster:**
+
+  From the Tanzu Panel, you can see any workload found within the cluster and namespace specified
+  in the current kubectl context.
