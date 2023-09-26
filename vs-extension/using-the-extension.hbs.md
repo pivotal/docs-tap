@@ -4,70 +4,37 @@ This topic tells you how to use VMware Tanzu Developer Tools for Visual Studio.
 
 > **Note** This extension is in the beta stage of development.
 
-## <a id="apply-workload"></a> Apply a workload
+## <a id="settings"></a> Configure settings
 
-To apply a workload:
+To configure settings, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **Settings...**.
 
-1. Ensure that you meet the following prerequisites:
+   ![Screenshot of the Tanzu Settings window.](../images/vs-extension/tanzu-settings.png)
 
-   - The Tanzu CLI is installed in a location included in your `PATH` environment variable.
-   - A valid `workload.yaml` file is in the project. For more information, see the specification for
-     [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
-   - You have a functional Tanzu Application Platform environment.
-   - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
-     There must be a preferred `namespace`, for example.
-   - You have an image repository to which source code in the local file system can be uploaded
-     before Build Service builds it.
+## <a id="workload-actions"></a> Workload Actions
 
-2. Right-click the project node or any file node in the Solution Explorer.
-3. Click **Tanzu: Apply Workload**.
-4. Specify an address to your image repository in the confirmation dialog box.
-5. (Optional) adjust additional settings for the `apply` path to your local source code, Kubernetes
-   namespace, and path to `workload.yaml`.
-   If a `workload.yaml` file exists somewhere in the project file structure, it is used by default.
-6. Click **Apply Workload**.
-7. Verify that output appears in the Tanzu Output pane of the Visual Studio Output tool window.
+The extension enables you to apply, debug, and Live Update your application on a Kubernetes cluster
+that has Tanzu Application Platform.
+The developer sandbox experience enables developers to Live Update their code and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
 
-## <a id="delete-workload"></a> Delete a workload
+### <a id="apply-workload"></a> Apply a workload
 
-To delete a workload:
+To apply a workload, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **Apply Workload**, or right-click on an associated workload in the Tanzu Panel and
+click **Apply Workload**.
 
-1. Ensure that you have the following prerequisites:
+### <a id="delete-workload"></a> Delete a workload
 
-   - The Tanzu CLI is installed in a location included in your `PATH` environment variable.
-   - A running Tanzu Application Platform workload.
-   - A valid `workload.yaml` file in the project that describes the workload to delete.
-   - A `namespace` set in `Kube config/Kubecontext` that matches with where the workload was deployed
-     either by using `Workload Apply` or `Live Update`.
+To delete a workload, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **Delete Workload**, or right-click on an associated workload in the Tanzu Panel and
+click **Delete Workload**.
 
-1. Right-click the project node or any file node in the Solution Explorer.
-1. Click **Tanzu: Delete Workload**. If a `workload.yaml` file exists somewhere in the project file
-   structure, the extension uses it to delete the workload by running
+### <a id="debugging"></a> Start debugging on the cluster
 
-   ```console
-   tanzu apps workload delete --file={workload_path} --yes
-   ```
-
-## <a id="use-live-update"></a> Use Live Update
-
-To use Live Update:
-
-1. Ensure that you have the following prerequisites:
-
-   - A project with a `Tiltfile` in the project root.
-   - The Tilt CLI is installed in a location included in your `PATH` environment variable.
-   - The Tanzu CLI is installed in a location included in your `PATH` environment variable.
-   - The `namespace` you use matches the `namespace` where the workload is running, if it was
-     deployed already by using `Apply Workload`.
-   - You can `Build` the code within Visual Studio.
-   - The `Debug` sub folder is in the output folder.
-
-2. Start Live Update by right-clicking on any project or file node in the solution explorer and then
-   clicking **Tanzu: Start Live Update**.
-3. Stop Live Update by right-clicking on any project or file node in the solution explorer and then
-   clicking **Tanzu: Stop Live Update**.
-
-### <a id="stop-rogues"></a> Stop rogue Tilt processes
+To remote debug a workload, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **Debug Workload**, or right-click on an associated workload in the Tanzu Panel and
+click **Debug Workload**.
 
 If a `tilt` process is already running and you try to start Live Update, a message in the Tanzu Output
 window appears, which is similar to:
@@ -159,19 +126,55 @@ Visual Studio prompts the debugging agent to attach to a running app process wit
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
 > might fail to attach.
 
-A file named `.tanzu-vs-launch-config.json` is created at the root directory of your project.
-This file specifies the configuration needed to attach Visual Studio's debugger to the agent running
-in your workload's container.
-It is only needed to initiate remote debugging and can be safely deleted at any time.
-This file location is temporary and will change in future versions.
+## <a id="live-updating"></a> Live Update
+
+See the following sections for how to use Live Update.
+
+### <a id="start-live-update"></a> Start Live Update
+
+Ensure the Tanzu Settings parameters are set:
+
+   - **Local Path:** This is the path on the local file system to a directory of source code to build.
+   - **Namespace:** This is the namespace that workloads are deployed into.  Optional.
+   - **Source Image:** This is the registry location for publishing local source code.
+     For example, `registry.io/yourapp-source`. It must include both a registry and a project name.
+     The source image parameter is optional if you have configured Local Source Proxy.
+
+To start live update, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **Start Live Update**, or right-click on an associated workload in the Tanzu Panel and
+click **Start Live Update**.
+
+After starting live update, local builds changes are synchronized to the container.
+
+### <a id="stop-live-update"></a> Stop Live Update
+
+To start live update, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **Stop Live Update**, or right-click on an associated workload in the Tanzu Panel and
+click **Stop Live Update**.
+
+## <a id="workload-panel"></a> Tanzu Workloads panel
 
 ### <a id="stop-remote-debug"></a> Stop Remote Debug
 
-Using the red square stop button in Visual Studio's top toolbar can cause the Tanzu Application Platform
-workload to fail or become unresponsive indefinitely.
-A fix is planned for a future release. In the meantime, open the **Debug** menu and click **Detach All**.
+To view the Tanzu Workloads panel, right-click anywhere in the Solution Explorer and click
+**Tanzu** > **View Workloads**.
 
-## <a id="troubleshoot"></a> Troubleshooting
+![Tanzu Workloads panel with the context menu open on the selected sample app.](../images/vs-extension/tanzu-panel.png)
+
+## <a id="extension-logs"></a> Extension logs
+
+The extension creates log entries in two files named `tanzu-dev-tools-{GUID}.log` and
+`tanzu-language-server-{GUID}.log`.
+These files are in the directory where Visual Studio Installer installed the extension.
+
+To find the log files, run:
+
+```console
+# PowerShell
+dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\Logs\tanzu-*.log
+# CMD
+dir %LOCALAPPDATA%\Microsoft\VisualStudio\*\Extensions\*\Logs\tanzu-*.log
+```
 
 This extension records logs in a `.log` file whose name starts with `tanzu-dev-tools` and ends with
 a string of numbers representing the date, such as `tanzu-dev-tools20221202.log`.
