@@ -97,7 +97,7 @@ same identity provider that other components are using.
 
 While there are many options on how to enable OIDC providers for authentication with the Kubernetes
 API, VMware supports the [Pinniped project](https://pinniped.dev/) and has
-[documented](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-integrating-identity.html)
+[documented](../authn-authz/integrating-identity.hbs.md)
 the process of setting it up as part of the Tanzu Application Platform documentation.
 
 By configuring this to use the same identify provider as the Tanzu Application Platform GUI, users
@@ -108,8 +108,8 @@ the Tanzu CLI.
 Using Pinniped will provide authentication for Kubernetes clusters but still requires the users to
 be bound to Kubernetes roles.  To provide a starting point, the Tanzu Application Platform provides
 six Kubernetes Roles as part of the installation that users can be bound to.  For more information
-around the roles used for authorization, refer to the
-[authentication and authorization documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/authn-authz-overview.html).
+around the roles used for authorization, see 
+[Default roles for Tanzu Application Platform](../authn-authz/overview.hbs.md).
 
 ## Cryptographic Protections
 
