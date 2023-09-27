@@ -12,10 +12,9 @@ This topic gives you an overview of the Artifact Metadata Repository (AMR) archi
 
 ## <a id='amr-observer'></a> AMR Observer
 
-The AMR Observer is deployed to the build and run clusters when it is
-[enabled](install-amr-observer.hbs.md#install). It starts by communicating with
+The AMR Observer is deployed to the build and run clusters. It starts by communicating with
 the Kubernetes API Server to obtain the cluster's location ID, which is the GUID
-of the `kube-system` namespace. After you retrieve the location ID, the AMR
+of the `kube-system` namespace. After it retrieves the location ID, the AMR
 Observer emits a cloud event, including any operator-defined metadata, to the
 Artifact Metadata Repository Cloud Event Handler (AMR Cloud Event Handler). This
 cloud event registers the location, and subsequent cloud events in the same
