@@ -85,12 +85,12 @@ spec:
                            # Cannot be combined with 'allowOrigins'.
   tokenSignature: # required
     signAndVerifyKeyRef:
-      name: ""
+      name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits
     extraVerifyKeyRefs:
-      - name: ""
+      - name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits
   storage: # optional
     redis: # required if 'storage' is defined
-      serviceRef: # reference to a provisioned service within the same namespace as this AuthServer. Currently supports Secret reference only.
+      serviceRef: # reference to a provisioned service within the same namespace as this AuthServer. Currently, supports Secret reference only.
         apiVersion: "v1"
         kind: "Secret"
         name: ""
