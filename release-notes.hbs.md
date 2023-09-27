@@ -29,6 +29,12 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
 </ul></details></td>
 </tr>
+<tr>
+<td>application-configuration-service.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4759">CVE-2023-4759</a></li>
+</ul></details></td>
+</tr>
 </table> 
  
 ---
@@ -40,6 +46,15 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-4-COMPONENT-NAME-ri'></a> v1.6.4 Resolved issues: COMPONENT-NAME
  
 - Resolved issue description.
+
+#### <a id='1-6-4-application-configuration-service-ri'></a> v1.6.4 Resolved issues: Application Configuration Service
+
+- Resolves an issue in which client applications that included the spring-cloud-config-client 
+  dependency would fail to start or properly load configuration produced by Application 
+  Configuration Service by including the property spring.cloud.config.enabled=false in ACS produced 
+  Secret resources
+- Sets the Pod Security Context to adhere to the Restricted Pod Security Standard, fixing certain 
+  installation failure scenarios
  
 ---
  
