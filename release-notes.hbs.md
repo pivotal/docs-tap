@@ -112,8 +112,8 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
 - Artifact Metadata Repository (AMR) is deployed by default. For more information, see [Artifact Metadata Repository](scst-store/amr/overview.hbs.md).
-- AMR [Authentication and authorization feature](scst-store/amr/auth.hbs.md) has been introduced.
-- AMR GraphQL now contains data for Images, Containers and Location. For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md)
+- AMR [Authentication and authorization feature](scst-store/amr/auth.hbs.md) is introduced.
+- AMR GraphQL now contains data for Images, Containers, and Location. For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md).
 
 ---
 
