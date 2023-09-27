@@ -99,8 +99,6 @@ an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
 
 The `DoraMetrics` data model represents the DORA Metric information. The Observer sends 
 this information to the Cloud Event Handler to store `DoraMetrics`. 
-See [CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata 
-Repository](cloudevents.hbs.md). 
 
 `AggregatedLeadTime` is a velocity metric that describes the median amount of time in seconds for a 
 commit to deploy to an environment. `AggregatedDeployments` describes how frequently
@@ -112,5 +110,4 @@ a team releases to production in a time range. You can point multiple
 The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for
 a Correlation ID. The Correlation ID groups the all the artifacts together. The 
 Observer sends this information to the Cloud Event Handler to store 
-`DoraMetricsPerCorrelationID`. See [CloudEvent JSON specification for Supply Chain 
-Security Tools - Artifact Metadata Repository](cloudevents.hbs.md).
+`DoraMetricsPerCorrelationID`.
