@@ -6,7 +6,7 @@ The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https:/
 **Recipe** to a set of files and gather the results.
 
 Currently, only [Java-related recipes](https://docs.openrewrite.org/recipes/java)
-are supported. The engine leverages version `7.21.3` of Open Rewrite and parses
+are supported. The engine leverages v7.24.0 of Open Rewrite and parses
 Java files using the grammar for Java 11.
 
 ## <a id="syntax-ref"></a>Syntax reference
