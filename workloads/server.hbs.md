@@ -179,7 +179,7 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
 1. Save the existing `server-template` in a local file:
 
     ```console
-    kubectl get ClusterConfigTemplate server-template -oyaml > secure-server-template.yaml
+    kubectl get ClusterConfigTemplate server-template -o yaml > secure-server-template.yaml
     ```
 
 2. Extract `.spec.ytt` field from this file and create another file:
@@ -422,3 +422,8 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
     ```console
     curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
     ```
+
+### Automatically Expose server workloads outside the cluster
+
+In Tanzu Application v1.6 and later, the Carvel Package Supply Chains (beta) produces server
+workloads that have Ingress by default. For more information, see [Overview of the Carvel Package Supply Chains](../scc/carvel-package-supply-chain.hbs.md#overview).

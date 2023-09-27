@@ -48,6 +48,8 @@ There are some optional but recommended DNS records you must allocate if you dec
 
 - Supply Chain Security Tools - Store: Similar to Tanzu Developer Portal, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
 
+- Artifact Metadata Repository: Similar to the Supply Chain Security Tools (SCST) - Store, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `amr-graphql` and the `shared.ingress_domain` value. For example, `amr-graphql.example.com`.
+
 - Application Live View: If you select the `ingressEnabled` option, allocate a corresponding fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `appliveview` and the `shared.ingress_domain` value. For example,
 `appliveview.example.com`.
 

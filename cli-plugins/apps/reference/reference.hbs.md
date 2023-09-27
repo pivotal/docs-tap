@@ -1,12 +1,3 @@
 # Tanzu Apps CLI reference
 
-The reference section contains the following topics:
-
-- [Dependency matrix for the different versions of Apps CLI Plug-in](dependency-matrix.hbs.md)
-- [tanzu apps clustersupplychain](./clustersupplychain.hbs.md) sub-commands and details.
-- `tanzu apps workload` sub-commands and flags usage for each:
-  - [tanzu apps workload get](./workload-get.hbs.md)
-  - [tanzu apps workload list](./workload-list.hbs.md)
-  - [tanzu apps workload tail](./workload-tail.hbs.md)
-  - [tanzu apps workload delete](./workload-delete.hbs.md)
-  - [tanzu apps workload create and apply](./workload-create-apply.hbs.md)
+The Tanzu Apps CLI plug-in command reference has moved to the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.

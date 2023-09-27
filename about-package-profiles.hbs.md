@@ -75,6 +75,15 @@ a predefined group of packages.
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
+- **[AWS Services](aws-services/about.hbs.md)**
+
+  AWS Services provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP).
+
+  Through integration with [Crossplane](crossplane/about.hbs.md) and
+  [Services Toolkit](services-toolkit/about.hbs.md), you can offer these AWS services to
+  apps teams to consume with only minimal setup and configuration required from ops teams.
+  This makes it quick and easy to get started working with AWS services on Tanzu Application Platform.
+
 - **[Bitnami Services](bitnami-services/about.hbs.md)**
 
   Bitnami Services provides a set of services for Tanzu Application Platform backed by
@@ -109,13 +118,13 @@ a predefined group of packages.
   delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
   the [Contour documentation](https://projectcontour.io/docs/1.24/).
 
-<!-- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)** -->
+- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
-<!--This package includes five default roles for users, including app-editor, app-viewer, app-operator,
-and service accounts including workload and deliverable. These roles are available to help
-operators limit permissions a user or service account requires on a cluster that runs Tanzu
-Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
-access control (RBAC).Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Developer Portal support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO -->
+  This package includes five default roles for users, including app-editor, app-viewer, app-operator,
+  and service accounts including workload and deliverable. These roles are available to help
+  operators limit permissions a user or service account requires on a cluster that runs Tanzu
+  Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
+  access control (RBAC). Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI.
 
 - **[Crossplane](crossplane/about.hbs.md)**
 
@@ -234,14 +243,6 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
-- **[Supply Chain Security Tools - Sign (Deprecated)](scst-sign/overview.md)**
-
-  Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
-  to specify a policy that allows or denies images from running based on signature verification
-  against public keys. SCST - Sign works with
-  [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
-  configuration based on image source patterns.
-
 - **[Supply Chain Security Tools - Store](scst-store/overview.md)**
 
   Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
@@ -331,7 +332,9 @@ for further customization.
 The following profiles are available in Tanzu Application Platform:
 
 - **Full** (`full`):
-  Contains all of the Tanzu Application Platform packages.
+  Contains nearly all Tanzu Application Platform packages.
+  For the exceptions to the full profile, see the packages with a check mark in the **Not in a profile**
+  column in the table later in this section.
 
 - **Iterate** (`iterate`):
   Intended for iterative application development.
@@ -349,6 +352,8 @@ The following profiles are available in Tanzu Application Platform:
   Tanzu Developer Portal and Metadata Store.
 
 The following table lists the packages contained in each profile.
+Packages not included in any profile are available to install as individual packages only.
+See the component documentation for the package for installation instructions.
 For a diagram showing the packages contained in each profile, see
 [Overview of multicluster Tanzu Application Platform](./multicluster/about.hbs.md).
 
@@ -366,6 +371,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td><strong>View</strong>
    </td>
+   <td><strong>Not in a profile</strong>
+   </td>
   </tr>
   <tr>
    <td>API Auto Registration
@@ -377,6 +384,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -394,11 +403,30 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Application Accelerator
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+   <td>Application Configuration Service
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -422,6 +450,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Application Live View (Run)
@@ -433,6 +463,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -450,8 +482,9 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
-  <tr>
   <tr>
    <td>Application Single Sign-On
    </td>
@@ -465,6 +498,40 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Artifact Metadata Repository Observer (alpha)
+  </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>AWS Services
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Bitnami Services
@@ -474,6 +541,40 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Carbon Black Scanner for SCST - Scan (beta)
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>cert-manager
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
@@ -493,6 +594,24 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Contour
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Crossplane
@@ -504,6 +623,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -521,6 +642,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Developer Conventions
@@ -534,6 +657,24 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>External Secrets Operator
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -549,15 +690,19 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
-   <td>Grype
+   <td>Grype Scanner for SCST - Scan
    </td>
    <td>&check;
    </td>
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -570,6 +715,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -591,6 +738,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Delivery - Basic
@@ -605,6 +754,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Basic
@@ -614,6 +765,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -633,6 +786,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Out of the Box Supply Chain - Testing and Scanning
@@ -642,6 +797,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -661,6 +818,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Service Bindings
@@ -675,6 +834,24 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Service Registry
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Services Toolkit
@@ -686,6 +863,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -703,6 +882,24 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Snyk Scanner for SCST - Scan (beta)
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Spring Boot conventions
@@ -717,6 +914,23 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
+  </tr>
+   <td>Spring Cloud Gateway
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
   </tr>
   <tr>
    <td>Supply Chain Choreographer
@@ -728,6 +942,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -745,9 +961,11 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
-   <td>SCST - Scan</td>
+   <td>SCST - Scan
   </td>
    <td>&check;
    </td>
@@ -758,6 +976,24 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>SCST - Scan 2.0 (beta)
+  </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -773,9 +1009,11 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
-   <td>SCST - Store</td>
+   <td>SCST - Store
    </td>
    <td>&check;
    </td>
@@ -786,6 +1024,8 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>
@@ -796,6 +1036,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -815,6 +1057,8 @@ For a diagram showing the packages contained in each profile, see
    </td>
    <td>&check;
    </td>
+   <td>
+   </td>
   </tr>
   <tr>
    <td>Tekton Pipelines
@@ -824,6 +1068,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
    <td>
    </td>
@@ -842,6 +1088,8 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>
    </td>
   </tr>
   <tr>

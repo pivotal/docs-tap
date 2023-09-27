@@ -1,26 +1,26 @@
 # View resources on remote clusters
 
-You can control the access to Kubernetes runtime resources on Tanzu Developer Portal based on user
-roles and permissions for each of the visible remote clusters.
+You can control the access to Kubernetes runtime resources on Tanzu Developer Portal
+(commonly called TDP) based on user roles and permissions for each of the visible remote clusters.
 
-> **Caution** Setting up role-based access control (RBAC) might impact the user's ability to view
-> workloads in the Security Analysis GUI and the Workloads table of the Supply Chain Choreographer
-> plug-in GUI.
+> **Caution** In Tanzu Application Platform v1.6 and earlier, setting up role-based access control
+> (RBAC) might impact your ability to view workloads in the Security Analysis GUI and the
+> Workloads table of the Supply Chain Choreographer plug-in GUI.
 
 RBAC is currently supported for the following Kubernetes cluster providers:
 
-- [EKS](set-up-tap-gui-rbac-eks.html) (Elastic Kubernetes Service) on AWS
-- [GKE](set-up-tap-gui-rbac-gke.html) (Google Kubernetes Engine) on GCP
+- [EKS](set-up-tap-gui-rbac-eks.hbs.md) (Elastic Kubernetes Service) on AWS
+- [GKE](set-up-tap-gui-rbac-gke.hbs.md) (Google Kubernetes Engine) on Google Cloud Platform (GCP)
 
 Support for other Kubernetes providers is planned for future releases of Tanzu Application Platform.
 
 Tanzu Developer Portal is designed under the assumption that the roles and permissions for
 the Kubernetes clusters are already defined and that the users are already assigned to their roles.
 For information about assigning roles and permissions to users, see
-[Assigning roles and permissions on Kubernetes clusters](assigning-kubernetes-roles.html).
+[Assigning roles and permissions on Kubernetes clusters](assigning-kubernetes-roles.hbs.md).
 
 Adding access-controlled visibility for a remote cluster is similar to
-[Setting up unrestricted remote cluster visibility](../cluster-view-setup.html).
+[Setting up unrestricted remote cluster visibility](../cluster-view-setup.hbs.md).
 
 The steps are:
 
@@ -31,4 +31,4 @@ The steps are:
 
 After following these steps, you can view your runtime resources on a remote cluster in
 Tanzu Developer Portal.
-For more information, see [View runtime resources on remote clusters](view-resources-rbac.md).
+For more information, see [View runtime resources on remote clusters](view-resources-rbac.hbs.md).

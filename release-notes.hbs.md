@@ -13,13 +13,21 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-platform-features'></a> New platform-wide features
 
-- Feature Description.
+- Added air-gapped support to the Tanzu Application Platform GitOps install method. 
+For more information, see one of the following install topics:
+    - [Install Tanzu Application Platform through GitOps with AWS Secrets Manager](install-gitops/eso/aws-secrets-manager.hbs.md#airgap-support)
+    - [Install Tanzu Application Platform through GitOps with HashiCorp Vault](install-gitops/eso/hashicorp-vault.hbs.md#airgap-support)
+    - [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](install-gitops/sops.hbs.md#airgap-support)
 
 #### <a id='1-7-0-new-components'></a> New components
 
-- [Service Registry for VMware Tanzu](service-registry/overview.hbs.md) provides on-demand Eureka
+- [Service Registry for VMware Tanzu](service-registry/overview.hbs.md): Provides on-demand Eureka
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
   servers in your namespaces and bind Spring Boot workloads to them.
+
+- [AWS Services](aws-services/about.hbs.md): Provides an integration with Amazon Web Services (AWS)
+  for Tanzu Application Platform.
+  To get started, see the [Quickstart tutorial](aws-services/tutorials/quickstart.hbs.md).
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
@@ -38,8 +46,7 @@ This release includes the following changes, listed by component and area.
 - External Secrets Operator is now GA.
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
   about your external secrets and secret stores. The CREATE command lets you create cluster
-  external secret and cluster secret stores. For more information, see the commands in the
-  [External Secrets CLI reference section](external-secrets/reference/external-secrets.hbs.md).
+  external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI & plugins
 
@@ -49,11 +56,10 @@ This release includes the following changes, listed by component and area.
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Tanzu CLI Insight plug-in
 
-- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see <TODO: add in link>
-- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and [tanzu insight triage rebase](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/cli-docs/tanzu_insight_triage_rebase.hbs.md#tanzu-insight-triage-rebase).
+- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu Developer Portal & plugins
-
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain plug-in
 
@@ -129,10 +135,15 @@ all Tanzu Application Platform learning and education needs.
 - Function Buildpacks for Knative and the corresponding
 Application Accelerator starter templates for Python and Java are removed in this release.
 
-#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 breaking changes: Services Toolkit
+#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 Breaking changes: Services Toolkit
 
-- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`
+- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
+<!-- where is the best place to link to for more info? -->
 
+#### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
+
+- The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation. The following Tanzu CLI plug-ins
+are impacted: Accelerator, Apps, Build Service, External Secrets, Insight, and Service.
 ---
 
 ### <a id='1-7-0-security-fixes'></a> v1.7.0 Security fixes
@@ -188,59 +199,86 @@ This release has the following known issues, listed by component and area.
 
 - Known issue description with link to workaround.
 
+#### <a id='1-7-0-api-autoreg-ki'></a> v1.7.0 Known issues: API Auto Registration
+
+Registering conflicting `groupId` and `version` with API portal:
+
+- If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version`
+combination, both reconcile successfully without throwing an error,
+and the `/openapi?groupId&version` endpoint returns both specs.
+- If you are adding both specs to API portal, only one of them might show up in
+the API portal UI with a warning indicating that there is a conflict.
+- If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG,
+the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
+- You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
+
+  ```console
+  $ kubectl get curatedapidescriptors -A
+
+  NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+  my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+  default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
+  ```
+
+#### <a id='1-7-0-supply-chain-security-tools-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
 ---
 
 ### <a id='1-7-0-components'></a> v1.7.0 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                                   | Version |
-| ---------------------------------------------------------------- | ------- |
-| API Auto Registration                                            |         |
-| API portal                                                       |         |
-| Application Accelerator                                          |         |
-| Application Configuration Service                                |         |
-| Application Live View APIServer                                  |         |
-| Application Live View back end                                   |         |
-| Application Live View connector                                  |         |
-| Application Live View conventions                                |         |
-| Application Single Sign-On                                       |         |
-| Authentication and authorization                                 |         |
-| Bitnami Services                                                 |         |
-| Cartographer Conventions                                         |         |
-| cert-manager                                                     |         |
-| Cloud Native Runtimes                                            |         |
-| Contour                                                          |         |
-| Crossplane                                                       |         |
-| Developer Conventions                                            |         |
-| External Secrets Operator                                        |         |
-| Flux CD Source Controller                                        |         |
-| Local Source Proxy                                               |         |
-| Namespace Provisioner                                            |         |
-| Out of the Box Delivery - Basic                                  |         |
-| Out of the Box Supply Chain - Basic                              |         |
-| Out of the Box Supply Chain - Testing                            |         |
-| Out of the Box Supply Chain - Testing and Scanning               |         |
-| Out of the Box Templates                                         |         |
-| Service Bindings                                                 |         |
-| Services Toolkit                                                 |         |
-| Source Controller                                                |         |
-| Spring Boot conventions                                          |         |
-| Spring Cloud Gateway                                             |         |
-| Supply Chain Choreographer                                       |         |
-| Supply Chain Security Tools - Policy Controller                  |         |
-| Supply Chain Security Tools - Scan                               |         |
-| Supply Chain Security Tools - Store                              |         |
-| Tanzu Developer Portal                                           |         |
-| Tanzu Application Platform Telemetry                             |         |
-| Tanzu Build Service                                              |         |
-| Tanzu CLI                                                        |         |
-| Tanzu CLI Application Accelerator plug-in                        |         |
-| Tanzu CLI Apps plug-in                                           |         |
-| Tanzu CLI Build Service plug-in                                  |         |
-| Tanzu CLI Insight plug-in                                        |         |
-| Tanzu Service CLI plug-in                                        |         |
-| Tekton Pipelines                                                 |         |
+| Component Name                                     | Version |
+| -------------------------------------------------- | ------- |
+| API Auto Registration                              |         |
+| API portal                                         |         |
+| Application Accelerator                            |         |
+| Application Configuration Service                  |         |
+| Application Live View APIServer                    |         |
+| Application Live View back end                     |         |
+| Application Live View connector                    |         |
+| Application Live View conventions                  |         |
+| Application Single Sign-On                         |         |
+| AWS Services                                       |         |
+| Bitnami Services                                   |         |
+| Cartographer Conventions                           |         |
+| cert-manager                                       |         |
+| Cloud Native Runtimes                              |         |
+| Contour                                            |         |
+| Crossplane                                         |         |
+| Default Roles                                      |         |
+| Developer Conventions                              |         |
+| External Secrets Operator                          |         |
+| Flux CD Source Controller                          |         |
+| Local Source Proxy                                 |         |
+| Namespace Provisioner                              |         |
+| Out of the Box Delivery - Basic                    |         |
+| Out of the Box Supply Chain - Basic                |         |
+| Out of the Box Supply Chain - Testing              |         |
+| Out of the Box Supply Chain - Testing and Scanning |         |
+| Out of the Box Templates                           |         |
+| Service Bindings                                   |         |
+| Service Registry                                   |         |
+| Services Toolkit                                   |         |
+| Source Controller                                  |         |
+| Spring Boot conventions                            |         |
+| Spring Cloud Gateway                               |         |
+| Supply Chain Choreographer                         |         |
+| Supply Chain Security Tools - Policy Controller    |         |
+| Supply Chain Security Tools - Scan                 |         |
+| Supply Chain Security Tools - Store                |         |
+| Tanzu Developer Portal                             |         |
+| Tanzu Application Platform Telemetry               |         |
+| Tanzu Build Service                                |         |
+| Tanzu CLI                                          |         |
+| Tanzu CLI Application Accelerator plug-in          |         |
+| Tanzu CLI Apps plug-in                             |         |
+| Tanzu CLI Build Service plug-in                    |         |
+| Tanzu CLI Insight plug-in                          |         |
+| Tanzu Service CLI plug-in                          |         |
+| Tekton Pipelines                                   |         |
 
 ---
 

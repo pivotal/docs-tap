@@ -14,7 +14,7 @@ testing the curated API. You must manually create the routing resources to route
 referenced API to match with the aggregated API specifications. With the route provider integration,
 these routing concerns are taken care of automatically.
 
-## <a id='prerecs'></a> Prerequisites 
+## <a id='prerecs'></a> Prerequisites
 
 A successful API curation requires the following prerequisites:
 
@@ -51,7 +51,6 @@ understand the impact:
 | --- | --- |
 | The default value `scg_openapi_service_url` is sufficient if using the default SCG installation. | You must overwrite the value `scg_openapi_service_url` with `http://scg-operator.tap-install.svc.cluster.local` if using the default SCG installation. |
 | Matching SCG updates API metadata automatically and the generated OpenAPI specifications reflect the metadata. | API metadata annotations are added or updated, but the API specifications exposed from SCG OpenAPI endpoint do not reflect that. |
-| The aggregated API specifications are in sync with the SCG generated API specifications. | SCG OpenAPI endpoint does not support returning specifications for a single SCG instance, so the aggregated API specifications do not include the additional information from SCG filters. |
 
 ### <a id='create-scg'></a>Create SpringCloudGateway resource
 
@@ -102,45 +101,80 @@ cluster you choose. Specify all the required fields for an CuratedAPIDescriptor 
 
 For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained](./key-concepts.hbs.md#curated-api-descriptor).
 
+You may view the readiness of the applied CuratedAPIDescriptors:
+
+```console
+kubectl get curatedapidescriptors -A
+
+NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+my-apps             petstore     cute-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+```
+
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
-The API Auto Registration controller offers an endpoint to retrieve all the generated API specifications for
-the curated APIs in the cluster. 
+The API Auto Registration controller offers an endpoint to retrieve all of the generated API specifications
+for the curated APIs in the cluster. 
 
-Find the HTTPProxy that's created to access the endpoint:
+To retrieve curated API specifications:
 
-```console
-kubectl get httpproxy api-auto-registration-controller -n api-auto-registration
-```
+1. Find the HTTPProxy that's created to access the endpoint:
 
-The following is an example result:
+  ```console
+  kubectl get httpproxy api-auto-registration-controller -n api-auto-registration
+  ```
 
-```console
-NAME                               FQDN                              TLS SECRET                   STATUS   STATUS DESCRIPTION
-api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
-```
+  The following is an example output:
 
-By using FQDN with an http scheme, you can get all the curated API specifications with curl:
+  ```console
+  NAME                               FQDN                              TLS SECRET                   STATUS   STATUS DESCRIPTION
+  api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
+  ```
 
-```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi
-```
+1. To get all of the curated API specifications with curl, use FQDN with an http scheme:
 
-Where `AAR-CONTROLLER-FQDN` is the AAR FQDN controller you want the specifications for.
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi
+  ```
 
-You can retrieve specifications for a specific `groupId` and `version` combination by specifying query parameters:
+  Where `AAR-CONTROLLER-FQDN` is the AAR FQDN controller you want the specifications for.
 
-```console
-curl http(s)://AAR-CONTROLLER-FQDN/openapi?groupId=GROUP-ID&version=VERSION
-```
+1. Retrieve specifications for `CuratedAPIDescriptor` from a specific namespace by specifying the following path:
 
-Where:
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE
+  ```
 
-- `VERSION` is the version you want the specifications for.
-- `GROUP-ID` is group ID you want the specifications for.
-- `AAR-CONTROLLER-FQDN` is the AAR-CONTROLLER-FQDN you want to query.
+  Where:
 
-You can add the curated APIs to an API portal for display by configuring the source URL
+  - `NAMESPACE` is the namespace that you want to retrieve specifications from.
+
+1. Retrieve specifications for a specific `CuratedAPIDescriptor` by `namespace` and `name`:
+
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE/NAME
+  ```
+
+  Where:
+
+  - `NAMESPACE` is the namespace of the `CuratedAPIDescriptor` that you want to use.
+  - `NAME` is name of the `CuratedAPIDescriptor` that you want to use.
+
+1. Retrieve specifications for a specific `groupId` and `version` combination by specifying
+query parameters:
+
+  ```console
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi?groupId=GROUP-ID&version=VERSION
+  curl http(s)://AAR-CONTROLLER-FQDN/openapi/NAMESPACE?groupId=GROUP-ID&version=VERSION
+  ```
+
+  Where:
+
+  - `NAMESPACE` is the namespace that you want to retrieve specifications from.
+  - `VERSION` is the version you want the specifications for.
+  - `GROUP-ID` is group ID you want the specifications for.
+  - `AAR-CONTROLLER-FQDN` is the AAR-CONTROLLER-FQDN you want to query.
+
+1. Add the curated APIs to an API portal for display by configuring the source URL
 locations of an existing API portal.
 You can add all your curated APIs by using the unfiltered URL `http(s)://AAR-CONTROLLER-FQDN/openapi`
 or the filtered URL with query parameters to add a specific curated API of your choice.

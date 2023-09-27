@@ -158,28 +158,6 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
             - --scanners=vuln
             - --format=cyclonedx
             - --output=scan.cdx.json
-          - name: trivy-display-report
-            image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
-            env:
-            - name: TRIVY_DB_REPOSITORY
-              value: #@ data.values.params.trivy_db_repository
-            - name: TRIVY_JAVA_DB_REPOSITORY
-              value: #@ data.values.params.trivy_java_db_repository
-            - name: TRIVY_CACHE_DIR
-              value: /workspace/trivy-cache
-            - name: XDG_CACHE_HOME
-              value: /workspace/.cache
-            - name: TMPDIR
-              value: /workspace
-            args:
-            - image
-            - $(params.image)
-            - --skip-db-update
-            - --skip-java-db-update
-            - --exit-code=0
-            - --scanners=vuln
-            - --severity=HIGH
-            - --no-progress
     ```
 
     Where:
@@ -188,7 +166,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
     - `registry-server` is the registry server.
     - `registry-repository` is the registry repository.
 
->**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes).
+>**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned.
 
 1. Edit the following in your `custom-ivs-template.yaml` file:
    - `.metadata.name` is the name of your ClusterImageTemplate.

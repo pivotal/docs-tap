@@ -163,37 +163,41 @@ json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalPrope
 Rather than setting `additionalProperties: true`, you can set `additionalProperties: {}`.
 This has the same effect, but does not cause unexpected errors.
 
-## <a id="claim-rbac"></a> Unexpected addmission error when creating `ClassClaims`
+## <a id="claim-rbac"></a> Cannot claim from clusterinstanceclass when creating a `ClassClaim`
 
 **Symptom:**
 
-Users who previously were able to create `ClassClaim` now get an admission
-error similar to:
+Users who were previously able to create a `ClassClaim` now get an admission error similar to:
+
 ```console
 user 'alice@example.com' cannot 'claim' from clusterinstanceclass 'bigcorp-rabbitmq'
 ```
 
-This is the case, even though those users have been granted the `claim`
-permission on `ClusterInstanceClasses` throguh either:
-- a `Role` and a `RoleBinding`
-- a `ClusterRole` and a `RoleBinding`
+This occurs even if users were granted the `claim` permission on `ClusterInstanceClasses` through either:
 
-**Solution:**
+- A `Role` and a `RoleBinding`
+- A `ClusterRole` and a `RoleBinding`
 
-Users need to have the cluster-level `claim` permission, granted via
-`ClusterRole` and `ClusterRuleBinding`. Namespace-scoped permissions are not
-enough anymore, to guard against unexpected access to resources in other
-namespaces.
+**Explanation:**
 
-This change came in with Services Toolkit v0.12.0 and thus with Tanzu
-Application Platform v1.7.0, you can read more about that change
-[here](../reference/api/rbac.hbs.md).
+You now need the cluster-level `claim` permission, granted through a `ClusterRole` and `ClusterRoleBinding`.
+Namespace-scoped permissions are no longer enough.
+This is to guard against unexpected access to resources in other namespaces.
+
+This change was introduced with Services Toolkit v0.12.0 in Tanzu Application Platform v1.7.0.
+For more information, see [The claim verb for ClusterInstanceClass](../reference/api/rbac.hbs.md#claim-verb).
+
 <!--
 Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
 Services Toolkit v0.11.1 for Tanzu Application Platform v1.6.3
 Services Toolkit v0.10.3 for Tanzu Application Platform v1.5.5
 -->
 
-To allow users to create `ClassClaims` again you need to
-- move from granting `claim` on `clusterinstanceclasses` from a `Role` to a `ClusterRole`
-- move from binding this permission to a user from a `RoleBinding` to a `ClusterRoleBinding`
+**Solution:**
+
+To allow users to create `ClassClaims` again, you must:
+
+- Move from granting users permission to claim a `clusterinstanceclasses` from a `Role` to a `ClusterRole`
+- Move from binding this permission to a user from a `RoleBinding` to a `ClusterRoleBinding`
+<!-- instructions? -->
+<!-- do you need to do both of these things? -->

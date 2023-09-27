@@ -186,7 +186,7 @@ parameters in the Workload.
 For information about the custom resource, see [MavenArtifact reference
 docs](../source-controller/reference.hbs.md#maven-artifact).
 
-For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository artifact](../cli-plugins/apps/reference/workload-create-apply.hbs.md#apply-maven-artifact).
+For information about how to use the custom resource with the Tanzu Apps CLI plug-in, see [Create a workload from a Maven repository artifact](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-maven).
 
 ## <a id='testing-pipeline'></a> testing-pipeline
 
@@ -933,9 +933,8 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 
 ### <a id='service-bindings-more-info'></a> More information
 
-For an example, see
-[--service-ref](../cli-plugins/apps/reference/workload-create-apply.hbs.md#apply-service-ref)
-in the Tanzu CLI documentation.
+For an example of using `--service-ref`, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+
 
 For an overview of the function, see
 [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).

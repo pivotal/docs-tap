@@ -1,5 +1,9 @@
 # Tanzu insight CLI plug-in command reference
 
+The Tanzu Insight CLI plug-in command reference has moved to the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+
+<!-- everything below this to be deleted prior to 1.7 GA see https://jira.eng.vmware.com/browse/TAAP-2198 -->
+
 This topic tells you about the Tanzu Insight CLI plug-in.
 
 ## <a id='synopsis'></a>Synopsis

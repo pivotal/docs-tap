@@ -1,13 +1,14 @@
 # Configure dynamic provisioning of AWS RDS service instances
 
 This Services Toolkit topic for [service operators](../reference/terminology-and-user-roles.hbs.md#so)
-explains how you set up dynamic provisioning.
-This enables app development teams to self-serve AWS RDS service instances that are customized.
+explains how you set up dynamic provisioning to enable app development teams to self-serve AWS RDS service instances that are customized.
 
 If you are not already familiar with dynamic provisioning in Tanzu Application Platform,
 following the tutorial
 [Set up dynamic provisioning of service instances](../tutorials/setup-dynamic-provisioning.hbs.md)
 might help you to understand the steps presented in this topic.
+
+If you are running Tanzu Application Platform v1.7 or later, you may wish to consider using the [AWS Services](../../aws-services/about.hbs.md) Package, which provides an out of the box experience for integrating AWS RDS into Tanzu Application Platform, rather than following the steps of this How-To guide. Both ultimately result in the same outcome - the availability of an AWS RDS service in the platform, however the AWS Services Package provides a more streamlined and user-friendly approach.
 
 ## <a id="prereqs"></a> Prerequisites
 

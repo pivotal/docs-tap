@@ -61,8 +61,8 @@ Where:
 - `GIT-BRANCH-NAME` is the branch of the Git source code you want to use. For example, `main`.
 
 Alternatively, you can use the Tanzu CLI to create a `workload.yaml` file.
-For more information about the relevant Tanzu CLI command, see
-[Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
+For more information, see
+[Create or update a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md).
 
 ## <a id="create-catalog-info-yaml"/> Create the `catalog-info.yaml` file
 
