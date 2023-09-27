@@ -158,28 +158,6 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
             - --scanners=vuln
             - --format=cyclonedx
             - --output=scan.cdx.json
-          - name: trivy-display-report
-            image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
-            env:
-            - name: TRIVY_DB_REPOSITORY
-              value: #@ data.values.params.trivy_db_repository
-            - name: TRIVY_JAVA_DB_REPOSITORY
-              value: #@ data.values.params.trivy_java_db_repository
-            - name: TRIVY_CACHE_DIR
-              value: /workspace/trivy-cache
-            - name: XDG_CACHE_HOME
-              value: /workspace/.cache
-            - name: TMPDIR
-              value: /workspace
-            args:
-            - image
-            - $(params.image)
-            - --skip-db-update
-            - --skip-java-db-update
-            - --exit-code=0
-            - --scanners=vuln
-            - --severity=HIGH
-            - --no-progress
     ```
 
     Where:
