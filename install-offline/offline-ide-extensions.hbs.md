@@ -17,8 +17,10 @@ Both Vscode and IntelliJ provide the means to do this, but the details differ sl
 
 ### Getting the `.vsix` archives
 
-Find the extension you want to install on the Vscode marketplace. For example, 
-[Tanzu Developer Tools for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools).
+Find the extension you want to install on the Vscode marketplace. For example: 
+
+- [Tanzu Developer Tools for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
+- [Tanzu App Acceleratpr for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-app-accelerator)
 
 In a column on the right side of the screen, under "Resources", click on the
 "Download Extension" link. A file called `vmware.tanzu-dev-tools-${version}.vsix` is downloaded. 
@@ -32,7 +34,7 @@ Specifically, for *Tanzu Developer Tools* you will need all of the following ext
 - [Red Hat Yaml](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
 
-TODO: Add details for Accelerator extension (to be provided by accelerator team)
+The Application Accelerator extension on the other hand does not require additional dependencies.
 
 ### Installing 
 
