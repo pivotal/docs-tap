@@ -296,7 +296,7 @@ is assigned random ports, which are not accessible through your Kind cluster.
 
 ## <a id='servicebinding-error'></a> Service binding package fails to reconcile
 
-You find the following error message when deploying or upgrading to Tanzu Application Platform v1.7:
+You receive the following error message when deploying or upgrading to Tanzu Application Platform v1.7:
 
 ```console
 ValidationError(Package.spec.template.spec.template[0].ytt.valuesFrom[0]): unknown field "downwardAPI"
