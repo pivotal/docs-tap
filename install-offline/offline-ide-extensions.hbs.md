@@ -24,7 +24,7 @@ Find the extension you want to install on the Vscode marketplace. For example:
 
 In a column on the right side of the screen, under "Resources", click on the
 "Download Extension" link. A file called `vmware.tanzu-dev-tools-${version}.vsix` is downloaded. 
-Save the file to with somewhere that can be made accessible to your airgapped environment (e.g. a USB drive).
+Save the file somewhere that can be made accessible to your airgapped environment (e.g. a USB drive).
 
 You will need to repeat these steps for all extensions you want to install, **including any dependencies**.
 
