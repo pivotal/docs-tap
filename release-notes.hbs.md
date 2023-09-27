@@ -140,6 +140,10 @@ Application Accelerator starter templates for Python and Java are removed in thi
 - Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
 <!-- where is the best place to link to for more info? -->
 
+#### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
+
+- The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation. The following Tanzu CLI plug-ins
+are impacted: Accelerator, Apps, Build Service, External Secrets, Insight, and Service.
 ---
 
 ### <a id='1-7-0-security-fixes'></a> v1.7.0 Security fixes
