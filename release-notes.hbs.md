@@ -67,6 +67,10 @@ This release has the following known issues, listed by component and area.
 - Known issue description with link to workaround.  
  
 ---
+
+#### <a id='1-6-4-supply-chain-security-tools-store-ki'></a> v1.6.4 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
  
 ### <a id='1-6-4-components'></a> v1.6.4 Component versions
  
@@ -373,6 +377,10 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
+#### <a id='1-6-3-supply-chain-security-tools-store-ki'></a> v1.6.3 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
 #### <a id='1-6-3-tap-gui-ki'></a> v1.6.3 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
@@ -450,12 +458,6 @@ These pages might list mitigation steps that operators can take to secure the cl
 - [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
 - [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
 - [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
-
-#### <a id='1-7-0-supply-chain-security-tools-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
----
 
 ### <a id='1-6-3-components'></a> v1.6.3 Component versions
 
@@ -722,6 +724,10 @@ This release has the following known issues, listed by component and area.
   If you exceed the size limit, you can either deactivate this feature, or use a workaround.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+#### <a id='1-6-2-supply-chain-security-tools-store-ki'></a> v1.6.2 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-2-tap-gui-ki'></a> v1.6.2 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
@@ -1591,6 +1597,10 @@ This release has the following known issues, listed by component and area.
     This is because the ClusterSupplyChain is preset to `image-scanner-template`.
     To workaround, edit the Out of the Box Supply template following the steps
     [Modifying an Out of the Box Supply template](./scc/authoring-supply-chains.hbs.md#modify-ootb-sc).
+
+#### <a id='1-6-1-supply-chain-security-tools-store-ki'></a> v1.6.1 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-6-1-tap-gui-ki'></a> v1.6.1 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
