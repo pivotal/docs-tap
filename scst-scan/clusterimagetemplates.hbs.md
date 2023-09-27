@@ -188,7 +188,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
     - `registry-server` is the registry server.
     - `registry-repository` is the registry repository.
 
->**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned. See [here](../scst-store/amr/cloudevents.hbs.md#cloudevent-extension-attributes).
+>**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned.
 
 1. Edit the following in your `custom-ivs-template.yaml` file:
    - `.metadata.name` is the name of your ClusterImageTemplate.
