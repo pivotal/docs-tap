@@ -101,6 +101,15 @@ cluster you choose. Specify all the required fields for an CuratedAPIDescriptor 
 
 For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained](./key-concepts.hbs.md#curated-api-descriptor).
 
+You may view the readiness of the applied CuratedAPIDescriptors:
+
+```console
+kubectl get curatedapidescriptors -A
+
+NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+my-apps             petstore     cute-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+```
+
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
 The API Auto Registration controller offers an endpoint to retrieve all of the generated API specifications

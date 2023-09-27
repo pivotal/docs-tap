@@ -25,8 +25,8 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 
 ## <a id="scan"></a> Enable CVE scan results
 
-To see CVE scan results within Tanzu Developer Portal, connect Tanzu Developer Portal
-to the Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
+To see CVE scan results within Tanzu Developer Portal, connect Tanzu Developer Portal to the
+Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
 
 ### <a id="scan-auto"></a> Automatically connect Tanzu Developer Portal to SCST - Store
 
@@ -229,15 +229,15 @@ To define and use a CRD in a supply chain:
 
 1. Define the CRD.
 2. Set CRD permissions.
-3. Define the `ClusterTemplate` and the supply chain.
-4. Create and visualize the workload.
+3. Define the supply chain.
+4. Define the `ClusterTemplate`.
+5. Create and visualize the workload.
 
 ### <a id="sc-crd-definition"></a> Define the CRD
 
 To define a CRD:
 
-1. Create a new YAML file with a suitable name. The example CRD used in this procedure is named
-   `rockets-crd.yaml`.
+1. Create a new YAML file with the name `NAME-crd.yaml`. For example, `rockets-crd.yaml`.
 2. Add the following basic structure to the YAML file:
 
     ```yaml
@@ -511,210 +511,242 @@ To use resources in a supply chain, set resource permissions:
       apiGroup: rbac.authorization.k8s.io
     ```
 
-### <a id="sc-crd-resources"></a> Define the ClusterTemplate and the supply chain
+### <a id="define-the-supply-chain"></a> Define the supply chain
 
 Now that you have a CRD and the permissions for it, you can define a supply chain that uses this CRD
 as one of its resources.
 
-For the following example we’ll be defining a very simple supply chain that has only one stage that
-uses an instance of our CRD.
+The following example is a simple supply chain that has only one stage that uses an instance of
+the CRD. The supply chain is created by downloading another supply chain and editing it.
 
-We will be creating our supply chain by downloading an already existing supply chain and editing it.
+1. List the existing supply chains in your cluster by running:
 
-To list the existing supply chains in a cluster, run:
+   ```console
+   kubectl get ClusterSupplyChain -n NAMESPACE
+   ```
 
-```console
-kubectl get ClusterSupplyChain -n <<namespace>
-```
+   Where `NAMESPACE` is your namespace. For example, `my-apps`.
 
-To download one of them to a file, run:
+2. Download one of them to a file by running:
 
-```console
-kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
-```
+   ```console
+   kubectl get ClusterSupplyChain SUPPLY-CHAIN -n NAMESPACE -oyaml >> ~/supply-chain.yaml
+   ```
 
-After the supply chain definition is on file, open and edit it until it looks similar to the following:
+   Where:
 
-```yaml
-apiVersion: carto.run/v1alpha1
-kind: ClusterSupplyChain
-metadata:
-  name: source-scan-test-scan-to-url-rockets
-spec:
-  resources:
-  - name: rocket-provider
-    templateRef:
-      kind: ClusterTemplate
-      name: rocket-source-template
-  selector:
-    apps.tanzu.vmware.com/has-rockets: "true"
-  selectorMatchExpressions:
-  - key: apps.tanzu.vmware.com/workload-type
-    operator: In
-    values:
-    - web
-    - server
-    - worker
-```
+   - `SUPPLY-CHAIN` is the name a supply chain you discovered earlier.
+   - `NAMESPACE` is your namespace.
 
-The `apiVersion` and `kind` stay the same. The `metadata.name` is one we just created for this new
-supply chain — `source-scan-test-scan-to-url-rockets`
+   For example:
 
-The `spec.selector` field indicates which label selector will be used to pick this as the supply
-chain when creating a workload. For this example we’ve chosen `apps.tanzu.vmware.com/has-rockets:`
-`"true"`. This means that when creating the workload it **must** have the label
-`apps.tanzu.vmware.com/has-rockets:` `"true"` in order to use this supply chain.
+   ```console
+   $ kubectl get ClusterSupplyChain source-test-scan-to-url -n my-apps -oyaml >> ~/supply-chain.yaml
+   ```
 
-Now, let’s define something for the `resources` field: a single resource that uses an instance of
-our CRD:
+3. Edit the downloaded supply-chain definition as follows:
 
-In this supply chain we’re going to have just a single resource (stage) which will be named
-`rocket-provider` and it will use a `templateRef"` of kind `ClusterTemplate` called
-`rocket-source-template` that we will create in the next step.
-
-For now it is only important to know that at its most basic a supply chain’s resource is an object
-consisting of a `name` and a `templateRef` pointing to an existing `ClusterTemplate.`
-
-We will call this supply chain file `rocket-supply-chain.yaml`.
-
-Now let’s define this new `ClusterTemplate`: Just like with the SupplyChain, we have downloaded an
-existing `ClusterTemplate` and then heavily edited it.
-
-To list existing `ClusterTemplates:`
-
-```console
-kubectl get ClusterTemplates -n <<namespace>
-```
-
-And to download one to file:
-
-```console
-kubectl get ClusterTemplates config-writer-template -n my-apps -oyaml >> ~/cluster-template.yaml
-```
-
-The edited/cleaned up file may end up looking like this:
-
-```console
-apiVersion: carto.run/v1alpha1
-kind: ClusterTemplate
-metadata:
-  name: rocket-source-template
-spec:
-  lifecycle: mutable
-  ytt: |
-    #@ load("@ytt:data", "data")
-
-    #@ def merge_labels(fixed_values):
-    #@   labels = {}
-    #@   if hasattr(data.values.workload.metadata, "labels"):
-    #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
-    #@     for k,v in dict(data.values.workload.metadata.labels).items():
-    #@       if k not in exclusions:
-    #@         labels[k] = v
-    #@       end
-    #@     end
-    #@   end
-    #@   labels.update(fixed_values)
-    #@   return labels
-    #@ end
-
-    ---
-    apiVersion: spaceagency.com/v1
-    kind: Rocket
+    ```yaml
+    apiVersion: carto.run/v1alpha1
+    kind: ClusterSupplyChain
     metadata:
-      name: falcon9
-      labels: #@ merge_labels({ "app.kubernetes.io/component": "rocket" })
+      name: SUPPLY-CHAIN-NAME
     spec:
-      type: Falcon 9
-      fuel: RP-1/LOX
-      payloadCapacity: 22000 kg
-```
+      resources:
+      - name: RESOURCES-NAME
+        templateRef:
+          kind: ClusterTemplate
+          name: TEMPLATE-REFERENCE-NAME
+      selector:
+        apps.tanzu.vmware.com/LABEL: "true"
+      selectorMatchExpressions:
+      - key: apps.tanzu.vmware.com/workload-type
+        operator: In
+        values:
+        - web
+        - server
+        - worker
+    ```
 
-Note that the `metadata.name` we assigned here —`rocket-source-template`— matches the name we
-specified in the supply chain resource.
+    Where:
 
-It’s in the `spec` of this resource where we actually use an instance of the Rockets CRD. We do so
-using a field called `ytt` which is a templating language that can output resource instances.
+    - `SUPPLY-CHAIN-NAME` is the supply-chain name. For example, `source-scan-test-scan-to-url-rockets`.
+    - `RESOURCES-NAME` is the resources name. For example, `rocket-provider`.
+    - `TEMPLATE-REFERENCE-NAME` is the template reference name. For example, `rocket-source-template`.
+    - `apps.tanzu.vmware.com/LABEL:` is a label that must be present, when creating the workload, to
+      use this supply chain. For example, `apps.tanzu.vmware.com/has-rockets: "true"`.
 
-Note that we have left in a function that takes in labels from the workload and propagates them to
-the resource, this is not needed but is usually done to propagate important labels from the workload
-down to the individual resources.
+    `apiVersion` and `kind` stay the same. `metadata.name` is created for this new supply chain.
 
-We will call this file `rocket-cluster-template.yaml` and with this we have completed all the
-necessary definitions to create a Workload that uses this new supply chain and our Rockets CRD.
+    The `spec.selector` field states which label selector is used to select this as the supply chain
+    when creating a workload.
 
-### <a id="sc-crd-usage"></a> Creating and Visualizing the Workload
+4. Save the supply-chain YAML file as `NAME-supply-chain.yaml`. For example, `rocket-supply-chain.yaml`.
 
-Now that we have all of the resources we just have to apply them to a cluster and then create a
-workload.
+### <a id="define-cluster-template"></a> Define the ClusterTemplate
 
-Let’s start by applying the CRD of our Rockets:
+In this procedure you define, for the `resources` field, a single resource that uses an instance of
+your CRD.
 
-```console
-kubectl apply -f rockets-crd.yaml
-```
+This example supply chain has just a single resource (stage), which is named `rocket-provider`.
+The supply chain uses a `templateRef`, of the kind `ClusterTemplate`, which is named
+`rocket-source-template`.
 
-Then we apply the resource permissions:
+At its most basic, a supply chain’s resource is an object consisting of a `name` and a `templateRef`
+pointing to an existing `ClusterTemplate`.
 
-```console
-kubectl apply -f permissions.yaml
-```
+To define a new `ClusterTemplate`:
 
-Then we apply the cluster template:
+1. List existing `ClusterTemplate` resources by running:
 
-```console
-kubectl apply -f rocket-cluster-template.yaml
-```
+   ```console
+   kubectl get ClusterTemplates -n NAMESPACE
+   ```
 
-And finally the supply chain:
+   Where `NAMESPACE` is your namespace
 
-```console
-kubectl apply -f rocket-supply-chain.yaml
-```
+2. Download a `ClusterTemplate` resource that you found by running:
 
-And now the cluster has all the necessary resource definitions to create a workload using the
-`source-scan-test-scan-to-url-rockets` supply chain, which, in turns, uses an instance of the
-`rockets.spaceagency.com` resource.
+   ```console
+   kubectl get ClusterTemplates TEMPLATE-NAME -n NAMESPACE -oyaml >> ~/cluster-template.yaml
+   ```
 
-To create the workload:
+   Where:
 
-```console
-tanzu apps workload create tanzu-rockets-test-x \
---type web \
---label app.kubernetes.io/part-of=tanzu-rockets \
---label apps.tanzu.vmware.com/has-rockets=true \
---yes \
---namespace my-apps
-```
+   - `TEMPLATE-NAME` is the name of the `ClusterTemplate` resource you found. For example,
+     `config-writer-template`.
+   - `NAMESPACE` is your namespace. For example, `my-apps`.
 
-Notice how we are explicitly setting the label `apps.tanzu.vmware.com/has-rockets=true`. Remember
-the `selector` property that we specified when defining the `source-scan-test-scan-to-url-rockets`
-Supply Chain? That's what ties together that supply chain with this particular workload.
+   For example:
 
-Now that our workload is created, let's take a look at how it is rendered by the Supply Chain plug-in.
+   ```console
+   kubectl get ClusterTemplates config-writer-template -n my-apps -oyaml >> ~/cluster-template.yaml
+   ```
 
-First we navigate to the supply chain plugin section in TAP-GUI and locate our workload amongst the
-listed ones:
+3. Verify that the file, when cleaned up, looks similar to the following:
 
-![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload_list.png)
+    ```yaml
+    apiVersion: carto.run/v1alpha1
+    kind: ClusterTemplate
+    metadata:
+      name: rocket-source-template
+    spec:
+      lifecycle: mutable
+      ytt: |
+        #@ load("@ytt:data", "data")
 
-Of note here is that our workload `tanzu-rockets-x` is "Healthy" and under the "Supply Chain" column
-shows that it is using the `source-scan-test-scan-to-url-rockets` supply chain.
+        #@ def merge_labels(fixed_values):
+        #@   labels = {}
+        #@   if hasattr(data.values.workload.metadata, "labels"):
+        #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+        #@     for k,v in dict(data.values.workload.metadata.labels).items():
+        #@       if k not in exclusions:
+        #@         labels[k] = v
+        #@       end
+        #@     end
+        #@   end
+        #@   labels.update(fixed_values)
+        #@   return labels
+        #@ end
 
-Once we click on it to see its details we are presented with the Workload graph. Given that our
-Supply Chain `source-scan-test-scan-to-url-rockets` only specified one `resource`, the result we get
-is a very simple single-stage graph:
+        ---
+        apiVersion: spaceagency.com/v1
+        kind: Rocket
+        metadata:
+          name: falcon9
+          labels: #@ merge_labels({ "app.kubernetes.io/component": "rocket" })
+        spec:
+          type: Falcon 9
+          fuel: RP-1/LOX
+          payloadCapacity: 22000 kg
+    ```
 
-![Screenshot of tanzu-rockets-x workload graph.](images/tanzu-rockets-overview.png)
+    `metadata.name` matches the name specified in the supply chain resource.
 
-Scrolling down the screen we are presented with the details associated with the stage:
+    An instance of the new CRD is used in the `spec` of this resource through the `ytt` field.
+    ytt is a templating language that can output resource instances.
 
-![Screenshot of Rocket Provider details.](images/tanzu-rockets-crd-detail.png)
+    A function is kept that takes in labels from the workload and propagates them to the resource.
+    This function is not essential, but is usually done to propagate important labels from the workload
+    down to the individual resources.
 
-Notice how the Printer Columns that were defined on the CRD are now rendered in the overview
-section. This will hold true for *any* CRD that you define that includes the
-`additionalPrinterColumns` definition.
+4. Save the file as `NAME-cluster-template.yaml`. For example, `rocket-cluster-template.yaml`.
 
-Finally, at the end of the section the full resource is presented in JSON format.
+You have now completed all the necessary definitions to create a workload that uses this new supply
+chain and the new CRD.
 
-![Screenshot of Rocket Provider JSON.](images/tanzu-rockets-crd-json.png)
+### <a id="create-the-workload"></a> Create the workload
+
+Now that you have all of the resources, apply them to a cluster and then create a workload:
+
+1. Apply your CRD by running:
+
+   ```console
+   kubectl apply -f rockets-crd.yaml
+   ```
+
+1. Apply the resource permissions by running:
+
+   ```console
+   kubectl apply -f permissions.yaml
+   ```
+
+1. Apply the cluster template by running:
+
+   ```console
+   kubectl apply -f rocket-cluster-template.yaml
+   ```
+
+1. Apply the supply chain by running:
+
+   ```console
+   kubectl apply -f rocket-supply-chain.yaml
+   ```
+
+   The cluster now has all the necessary resource definitions to create a workload by using the
+   new supply chain, which, in turn, uses an instance of the new resource.
+
+1. Create the workload by running:
+
+   ```console
+   tanzu apps workload create tanzu-rockets-test-x \
+   --type web \
+   --label app.kubernetes.io/part-of=tanzu-rockets \
+   --label apps.tanzu.vmware.com/has-rockets=true \
+   --yes \
+   --namespace my-apps
+   ```
+
+   The label `apps.tanzu.vmware.com/has-rockets=true` is explicitly set. The `selector` property,
+   specified when defining the new supply chain, ties the new supply chain with this particular
+   workload.
+
+### <a id="visualize-the-workload"></a> Visualize the workload
+
+To see the workload rendered through the Supply Chain plug-in:
+
+1. Go to the supply-chain plug-in section in Tanzu Developer Portal and locate the workload among
+   the listed ones:
+
+   ![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload_list.png)
+
+   The workload `tanzu-rockets-x` is **Healthy**. The **Supply Chain** column shows that it is using
+   the `source-scan-test-scan-to-url-rockets` supply chain.
+
+2. Click on it to see its details. You see the **Workload** graph. Given that the supply chain
+   `source-scan-test-scan-to-url-rockets` only specified one `resource`, you see a simple
+   single-stage graph.
+
+   ![Screenshot of tanzu-rockets-x workload graph.](images/tanzu-rockets-overview.png)
+
+3. Scroll down the screen to see the details associated with the stage.
+
+   ![Screenshot of Rocket Provider details.](images/tanzu-rockets-crd-detail.png)
+
+   The printer columns that were defined in the CRD are now rendered in the **Overview** section.
+   This holds true for any CRD that you define that includes the `additionalPrinterColumns`
+   definition.
+
+4. Go to the end of the section to see the full resource in JSON format.
+
+   ![Screenshot of Rocket Provider JSON.](images/tanzu-rockets-crd-json.png)

@@ -243,14 +243,6 @@ a predefined group of packages.
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
-- **[Supply Chain Security Tools - Sign (Deprecated)](scst-sign/overview.md)**
-
-  Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
-  to specify a policy that allows or denies images from running based on signature verification
-  against public keys. SCST - Sign works with
-  [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
-  configuration based on image source patterns.
-
 - **[Supply Chain Security Tools - Store](scst-store/overview.md)**
 
   Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
