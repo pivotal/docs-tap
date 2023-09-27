@@ -20,7 +20,7 @@ Both Vscode and IntelliJ provide the means to do this, but the details differ sl
 Find the extension you want to install on the Vscode marketplace. For example: 
 
 - [Tanzu Developer Tools for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
-- [Tanzu App Acceleratpr for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-app-accelerator)
+- [Tanzu App Accelerator for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-app-accelerator)
 
 In a column on the right side of the screen, under "Resources", click on the
 "Download Extension" link. A file called `vmware.tanzu-dev-tools-${version}.vsix` is downloaded. 
