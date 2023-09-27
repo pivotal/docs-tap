@@ -290,7 +290,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | AWS Services                                       |         |
 | Bitnami Services                                   |         |
 | Cartographer Conventions                           |         |
-| cert-manager                                       |         |
+| cert-manager                                       | 2.4.1 (includes cert-manager@1.12) |
 | Cloud Native Runtimes                              |         |
 | Contour                                            |         |
 | Crossplane                                         |         |
