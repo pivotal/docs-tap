@@ -23,7 +23,8 @@ For information about this feature, see [Data models and concepts for SCST - Sto
 
 Before you begin vulnerability analysis, you must:
 
-- Install the [Tanzu Insight CLI plug-in](../../install-tanzu-cli.hbs.md).
+- Install the Tanzu Insight plug-in. The Tanzu Insight plug-in is in the Tanzu Application
+Platform plug-ins group, see [Install Tanzu CLI plug-ins](../../install-tanzu-cli.hbs.md#install-plugins).
 - Add vulnerability scan reports to the SCST - Store. You can do this either
 by using the `tanzu insight image add` command or by installing the SCST - Scan.
 For more information, see [Add data](add-data.hbs.md) and [Supply Chain Security Tools - Scan](../../scst-scan/overview.hbs.md).
