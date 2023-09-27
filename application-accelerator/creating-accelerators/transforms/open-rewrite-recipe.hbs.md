@@ -5,18 +5,16 @@ This topic tells you about the Application Accelerator `OpenRewriteRecipe` trans
 The `OpenRewriteRecipe` transform allows you to apply any [Open Rewrite](https://docs.openrewrite.org/)
 **Recipe** to a set of files and gather the results.
 
-The engine leverages v7.30.1 of Open Rewrite.
-
 The following Open Rewrite Recipes are supported:
->
->- [Java recipes](https://docs.openrewrite.org/reference/recipes/java)
->- [Maven recipes](https://docs.openrewrite.org/reference/recipes/maven)
->- [XML recipes](https://docs.openrewrite.org/reference/recipes/xml)
->- [YAML recipes](https://docs.openrewrite.org/reference/recipes/yaml)
->- [JSON recipes](https://docs.openrewrite.org/reference/recipes/json)
->- [Properties recipes](https://docs.openrewrite.org/reference/recipes/properties)
->
-> The engine parses Java files using the grammar for Java 11.
+
+- [Java recipes](https://docs.openrewrite.org/reference/recipes/java)
+- [Maven recipes](https://docs.openrewrite.org/reference/recipes/maven)
+- [XML recipes](https://docs.openrewrite.org/reference/recipes/xml)
+- [YAML recipes](https://docs.openrewrite.org/reference/recipes/yaml)
+- [JSON recipes](https://docs.openrewrite.org/reference/recipes/json)
+- [Properties recipes](https://docs.openrewrite.org/reference/recipes/properties)
+
+The engine leverages v7.30.1 of Open Rewrite and parses Java files using the grammar for Java 11.
 
 ## <a id="syntax-ref"></a>Syntax reference
 
