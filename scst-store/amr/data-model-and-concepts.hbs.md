@@ -73,6 +73,12 @@ options for the accelerator. This file contains instructions for processing the
 files when you generate a new project. Observer sends this information to the
 Cloud Event Handler to store `AppAcceleratorRuns`.
 
+Each `AppAcceleratorRun` data entry has a unique `guid`. It includes information 
+about the Git repository: `AppAcceleratorRepoURL`, `AppAcceleratorRevision`, 
+and `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
+to the same `AppAcceleratorRun` entry. You can also associate an `AppAcceleratorRun`
+with one `AppAcceleratorSource` (also known as `Commit`). 
+
 ### <a id='appAcceleratorFragments'></a> AppAcceleratorFragments
 
 The `AppAcceleratorFragments` Accelerator fragments are reusable accelerator
@@ -83,13 +89,28 @@ the import. The AppAcceleratorFragments data model represents the information of
 a fragment in the accelerator app. The Observer sends this information to the
 Cloud Event Handler to store `AppAcceleratorFragments`.
 
-`AppAcceleratorRuns` can have zero or many `AppAcceleratorFragments`. 
+Each `AppAcceleratorFragment` data entry stores information about source git repository:
+`AppAcceleratorFragmentSourceRepoURL`, `AppAcceleratorFragmentSourceRevision`, and
+`AppAcceleratorFragmentSourceSubpath`. You can associate an `AppAcceleratorFragment` to 
+an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
+(also known as `Commit`) to one `AppAcceleratorFragment`.
 
 ### <a id='doraMetrics'></a> DoraMetrics
 
-The `DoraMetrics` data model represents the information of DORA Metric. The Observer sends this information to the Cloud Event Handler to store `DoraMetrics`.
+The `DoraMetrics` data model represents the information of DORA Metric. The Observer sends 
+this information to the Cloud Event Handler to store `DoraMetrics`. 
+See [CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata 
+Repository](cloudevents.hbs.md). 
+
+`AggregatedLeadTime` is a velocity metric that describes the median amount of time in seconds for a 
+commit to be deployed into an environment. `AggregatedDeployments` describes how frequently
+a team successfully released to production in a given time range. You can point multiple
+`DoraMetricsPerCorrelationID` to one `DoraMertric`.
 
 ### <a id='metrics-correlation-ID'></a> DoraMetricsPerCorrelationID
 
-The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for Correlation ID. The Correlation ID that groups the all the artifacts together. The Observer sends this information to the Cloud Event Handler to store `DoraMetricsPerCorrelationID`.
-`DoraMetrics` can have zero or many `DoraMetricsPerCorrelationID`. 
+The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for
+a Correlation ID. The Correlation ID that groups the all the artifacts together. The 
+Observer sends this information to the Cloud Event Handler to store 
+`DoraMetricsPerCorrelationID`. See [CloudEvent JSON specification for Supply Chain 
+Security Tools - Artifact Metadata Repository](cloudevents.hbs.md).
