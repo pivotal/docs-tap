@@ -425,5 +425,5 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
 
 ### Automatically Expose server workloads outside the cluster
 
-In Tanzu Application 1.6 and later, the Carvel Package Supply Chains (beta) produces server
+In Tanzu Application v1.6 and later, the Carvel Package Supply Chains (beta) produces server
 workloads that have Ingress by default. For more information, see [Overview of the Carvel Package Supply Chains](../scc/carvel-package-supply-chain.hbs.md#overview).
