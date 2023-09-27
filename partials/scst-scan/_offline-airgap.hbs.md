@@ -164,12 +164,13 @@ Verify these possible reasons why the vulnerability database is not valid:
         "1": [{
                "built": "2023-02-08T08_17_20Z",
                "version": 5,
-               "url": "https://INTERNAL-ENDPOINT/path-to-tarball/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
+               "url": "https://INTERNAL-ENDPOINT/PATH-TO-TARBALL/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
                "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
         }]
       }
     }
     ```
+    Where `PATH-TO-TARBALL` is the path to the tarball containing the vulnerability database.
 
 As stale databases weaken your security posture, VMware recommends using the newest entry of the relevant schema version in the `listing.json` file. See Anchore’s [grype-db](https://github.com/anchore/grype-db) in GitHub.
 
