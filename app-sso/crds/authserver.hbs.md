@@ -78,7 +78,7 @@ spec:
   issuerURI: "" # DEPRECATED and marked for removal. Use .tls instead.
   tokenSignature: # optional
     signAndVerifyKeyRef:
-      name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits
+      name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits.
     extraVerifyKeyRefs:
       - name: ""
   identityProviders: # optional
