@@ -67,17 +67,17 @@ spec:
       expiry: "12h"  # optional, default expiry is 12 hours
   tokenSignature: # required
     signAndVerifyKeyRef:
-      name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits
+      name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits.
     extraVerifyKeyRefs:
-      - name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits
+      - name: "" # Must be a secret that contains an RSA private key with a minimum length of 2048 bits.
   storage: # optional
     redis: # required if 'storage' is defined
-      serviceRef: # reference to a provisioned service within the same namespace as this AuthServer. Currently, supports Secret reference only.
+      serviceRef: # Reference to a provisioned service within the same namespace as this AuthServer. Only supports Secret reference.
         apiVersion: "v1"
         kind: "Secret"
         name: ""
   caCerts: # optional
-    - secretRef: # reference to Secret resource within the same namespace as this AuthServer.
+    - secretRef: # Reference to Secret resource within the same namespace as this AuthServer.
         name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
