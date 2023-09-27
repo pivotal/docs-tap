@@ -18,7 +18,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     - `NAME` is the name of the CR you want to debug.
     - `NAMESPACE` is the namespace associated with the CR you want to debug.
 
-2. Find the status of the CRs.
+1. Find the status of the CRs.
 
     ```console
     kubectl get apidescriptor NAME -n NAMESPACE -o jsonpath='{.status.conditions}'
@@ -30,13 +30,34 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     - `NAME` is the name of the CR you want to debug.
     - `NAMESPACE` is the namespace associated with the CR you want to debug.
 
-3. Read logs from the `api-auto-registration` controller.
+1. Find the generated SCGRC and SCGM resource associated to a specific APIDescriptor CR from curation.
+
+    The generated SCG resources will be placed in the same namespace as the CuratedAPIDescriptor,
+    and the generated name is prefixed with the name of CuratedAPIDescriptor.
+    To see which APIDescriptor the resource was generated for,
+    you may list generated SCG resources with additional labels as follows:
+
+    ```console
+    kubectl get scgrc -A -L apis.apps.tanzu.vmware.com/api-descriptor-name -L apis.apps.tanzu.vmware.com/api-descriptor-namespace
+    kubectl get scgm -A -L apis.apps.tanzu.vmware.com/api-descriptor-name -L apis.apps.tanzu.vmware.com/api-descriptor-namespace
+    ```
+
+    Sample output:
+
+    ```console
+    NAMESPACE      NAME                AGE   API-DESCRIPTOR-NAME   API-DESCRIPTOR-NAMESPACE
+    api-curation   petstore-4a8d2a4f   49s   turtle-api            turtle-ns
+    api-curation   petstore-ce551c65   49s   cat-api               cat-ns
+    api-curation   petstore-d0243a39   49s   dog-api               dog-ns
+    ```
+
+1. Read logs from the `api-auto-registration` controller.
 
     ```console
     kubectl -n api-auto-registration logs deployment.apps/api-auto-registration-controller
     ```
 
-4. Patch an APIDescriptor that is stuck in Deleting mode.
+1. Patch an APIDescriptor that is stuck in Deleting mode.
 
    This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources.
    You can reinstall the package and delete all the APIDescriptor resources first,
