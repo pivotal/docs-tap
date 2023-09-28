@@ -46,6 +46,6 @@ The extension has the following features:
 
 {{> 'partials/ide-extensions/no-ootb-basic-variation' }}
 
-## <a id="next-steps"/> Next steps
+## <a id="next-steps"></a> Next steps
 
 [Install Tanzu Developer Tools for Visual Studio](install.hbs.md).
