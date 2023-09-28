@@ -1,69 +1,72 @@
-# Airgapped installation of IDE extensions
+# Install IDE extensions in your air-gapped environment
 
-To install Vscode or IntelliJ extensions in an 'air-gapped' environment you cannot rely on 
-IDE's built-in UI which downloads and install extensions directly from the Vscode or IntelliJ 
-marketplace.
+This topic tells you how to install IDE extensions in your air-gapped environment.
 
-Instead you will need to do this in several separate steps:
+To install VS Code or IntelliJ extensions in an air-gapped environment, you cannot use 
+IDE's built-in UI which downloads and install extensions directly from the VS Code or IntelliJ 
+Marketplace.
 
-1. Outside the airgapped environment: 
-  download the extensions as an archice from the respective marketplace (Vscode/IntelliJ)
-  and copy them somewhere that is accessible from within the airgapped environment.
-2. In the airgapped environment: Install the extension into the IDE using the archives from step 1.
+The followings are high-level steps to install IDE extensions in your air-gapped environment:
 
-Both Vscode and IntelliJ provide the means to do this, but the details differ slightly.
+1. Outside the air-gapped environment: 
+    1. Download the extension as an archive from the VS Code or IntelliJ Marketplace. 
+    2. Copy the extension to a location that is accessible from within the air-gapped environment.
+2. In the air-gapped environment: 
+    1. Install the extension into the IDE by using the archive generated earlier.
 
-## Vscode
+## <a id="vscode"></a> Install VS Code in your air-gapped environment
 
-### Getting the `.vsix` archives
+Follow these steps to retrieve the `.vsix` archive and install VS Code in your air-gapped environment:
 
-Find the extension you want to install on the Vscode marketplace. For example: 
+1. Find the extension you want to install on the VS Code Marketplace. For example: 
 
-- [Tanzu Developer Tools for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
-- [Tanzu App Accelerator for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-app-accelerator)
+    - [Tanzu Developer Tools for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
+    - [Tanzu App Accelerator for Vscode](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-app-accelerator)
 
-In a column on the right side of the screen, under "Resources", click on the
-"Download Extension" link. A file called `vmware.tanzu-dev-tools-${version}.vsix` is downloaded. 
-Save the file somewhere that can be made accessible to your airgapped environment (e.g. a USB drive).
+2. In a column on the right side of the screen, under **Resources**, click the
+**Download Extension** link. 
 
-You will need to repeat these steps for all extensions you want to install, **including any dependencies**.
+    A file called `vmware.tanzu-dev-tools-${version}.vsix` is downloaded. 
 
-Specifically, for *Tanzu Developer Tools* you will need all of the following extensions as dependencies:
+3. Save the file to a location that is accessible to your air-gapped environment. For example, a USB drive.
 
-- [Red Hat Java](https://marketplace.visualstudio.com/items?itemName=redhat.java)
-- [Red Hat Yaml](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
-- [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
+4. Repeat these steps for all extensions you want to install, including any dependencies.
 
-The Application Accelerator extension on the other hand does not require additional dependencies.
+    For example, Tanzu Developer Tools require all of the following extensions as dependencies:
 
-### Installing 
+    - [Red Hat Java](https://marketplace.visualstudio.com/items?itemName=redhat.java)
+    - [Red Hat Yaml](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+    - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
 
-Inside the air-gapped environment you can install vscode extensions as follows:
+    The Application Accelerator extension, on the other hand, does not require additional dependencies.
 
-- Open Vscode
-- Open the command palette (CTRL-SHIFT-P or CMD-SHIFT-P on Mac).
-- In the Search box type "vsix" and select "Install from VSIX..."
+5. In your air-gapped environment, install VS Code extensions as follows:
 
-It is possible to 'script' this step of the process using commands like:
+    1. Open VS Code
+    2. Open the command palette by pressing CTRL-SHIFT-P or CMD-SHIFT-P on Mac.
+    3. In the search box, type **vsix** and select **Install from VSIX...**.
 
-```
-code --install-extension ${path_to_vsix_file}
-```
+    You can script this step by using commands such as:
 
-## IntelliJ
+    ```console
+    code --install-extension ${path_to_vsix_file}
+    ```
 
-### Getting the `.zip` archive
+## <a id="intellij"></a> Install IntelliJ in your air-gapped environment
 
-Find the extension you want to install on the [Jetbrains marketplace](https://plugins.jetbrains.com/). For example, 
-[Tanzu Developer Tools for IntelliJ](https://plugins.jetbrains.com/plugin/21823-tanzu-developer-tools).
+Follow these steps to retrieve the `.zip` archive and install IntelliJ in your air-gapped environment:
 
-Click the "Get" button near top-right of the screen.
+1. Find the extension you want to install on the [Jetbrains marketplace](https://plugins.jetbrains.com/). 
+For example, [Tanzu Developer Tools for IntelliJ](https://plugins.jetbrains.com/plugin/21823-tanzu-developer-tools).
 
-Find the version you want to download (probably the latest) and click the "Download" link next to it. A file called `Tanzu_Developer_Tools-${version}.zip` is downloaded. Save the file to somewhere that can be made accessible to your
-airgapped environment (e.g. a USB drive).
+2. Click **Get** near top-right of the screen.
 
-You will need to repeat these steps for all extensions you want to install.
+3. Find the version you want to download and click the **Download** link. 
 
-### Installing
+    A file called `Tanzu_Developer_Tools-${version}.zip` is downloaded. 
 
-Follow the instructions in the IntelliJ documentation on [Installing plugin from Disk](https://www.jetbrains.com/help/idea/managing-plugins.html#install_plugin_from_disk).
+4. Save the file to a location that is accessible to your air-gapped environment. For example, a USB drive.
+
+5. Repeat these steps for all extensions you want to install.
+
+6. Follow the instructions in the [IntelliJ documentation](https://www.jetbrains.com/help/idea/managing-plugins.html#install_plugin_from_disk) to install IntelliJ.
