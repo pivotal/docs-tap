@@ -1,8 +1,8 @@
 # Supported AWS Services
 
-This topic lists the AWS services that are supported by the AWS Services package.
+This topic gives you the list of AWS services that are supported by the AWS Services package.
 
-## Tanzu Application Platform v1.7
+## <a id="tap-1-7"></a>Tanzu Application Platform v1.7
 
-The AWS Services package currently only supports one AWS service -- RDS PostgreSQL.
-VMware plans to add more services to the package in future releases.
+In Tanzu Application Platform v1.7, the AWS Services package only supports one AWS service, which is
+RDS PostgreSQL. VMware plans to add more services to the package in future releases.

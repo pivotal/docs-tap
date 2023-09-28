@@ -13,8 +13,7 @@ This topic gives you an overview of Artifact Metadata Repository (AMR).
 AMR Observer is a set of managed controllers that watches for relevant updates
 on resources of interest. When relevant events are observed, a CloudEvent is
 generated and sent to AMR CloudEvent-Handler to be relayed for storage in the
-Metadata Store. For information about CloudEvents, see [CloudEvent JSON
-Specification](./cloudevents.hbs.md).
+Metadata Store.
 
 ## <a id='handler'></a> AMR CloudEvent Handler (beta)
 

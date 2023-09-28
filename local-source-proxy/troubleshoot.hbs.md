@@ -246,3 +246,23 @@ Tanzu CLI and the apps plug-in are out of date.
    ```console
    tanzu plugin upgrade apps
    ```
+
+## <a id="timeout"></a> Error: i/o timeout
+
+### Symptom
+
+When you run `tanzu apps lsp health` or `tanzu apps workload apply`, after a few minutes the
+CLI returns the following error message:
+
+```console
+connect: i/o timeout
+```
+
+### Cause
+
+TCP port 5002 is not open between your control plane nodes and your worker nodes.
+
+### Solution
+
+1. Open the port.
+2. Run the command again.

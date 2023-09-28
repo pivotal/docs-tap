@@ -36,8 +36,7 @@ deployed on, like clusters. It stores data using:
 The `Containers` data model includes information about a container, like runtime
 information about an image. The Observer sends this information to the Cloud
 Event Handler. Each entry represents the state of the container when an event
-occurred. See [CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata Repository](cloudevents.hbs.md). These entries correspond to
-events, such as when a container is running or terminated. This lets you see the
+occurred, such as when a container is running or terminated. This lets you see the
 history of your containers.
 
 Each `Container` data entry stores information about the associated deployment
@@ -49,7 +48,7 @@ multiple `Containers` entries to the same `Locations` entry.
 
 The `Images` data model includes information about image which acts as a
 template for containers. The Observer sends this information to the Cloud Event
-Handler to store newly generated images. See [CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata Repository](cloudevents.hbs.md).
+Handler to store newly generated images.
 
 Each `Image` data entry stores information about the associated deployment
 location. You can only associate an `Images` entry with one `Locations` entry.
@@ -59,8 +58,7 @@ You can point multiple `Images` entries to the same `Locations` entry.
 
 The `Commits` data model includes information about a snapshot of the changes
 made to a project's files. The Observer sends this information to the Cloud
-Event Handler to store new commits. See [CloudEvent JSON specification for
-Supply Chain Security Tools - Artifact Metadata Repository](cloudevents.hbs.md).
+Event Handler to store new commits.
 
 Each `Commit` data entry stores information about the deployment location,
 details about the state, and what commit `sha` or `tag` were used. You can only
@@ -73,27 +71,43 @@ The `AppAcceleratorRuns` data model represents new projects running from Git
 repositories. An `accelerator.yaml` file in the repository declares input
 options for the accelerator. This file contains instructions for processing the
 files when you generate a new project. Observer sends this information to the
-Cloud Event Handler to store `AppAcceleratorRuns`. See [cloud
-events](cloudevents.hbs.md).
+Cloud Event Handler to store `AppAcceleratorRuns`.
+
+Each `AppAcceleratorRun` data entry has a unique `guid`. The `guid` includes information 
+about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`, 
+and `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
+to the same `AppAcceleratorRun` entry. You can also associate an `AppAcceleratorRun`
+with one `AppAcceleratorSource`, also known as `Commit`. 
 
 ### <a id='appAcceleratorFragments'></a> AppAcceleratorFragments
 
 The `AppAcceleratorFragments` Accelerator fragments are reusable accelerator
 components that can provide options, files, or transforms. You can import
-accelerators using an `import` entry. The transforms from the fragment are
-referenced in an `InvokeFragment` transform in the accelerator that declares
-the import. The AppAcceleratorFragments data model represents the information of
-a fragment in the accelerator app. The Observer sends this information to the
-Cloud Event Handler to store `AppAcceleratorFragments`. See [cloud
-events](cloudevents.hbs.md).
+accelerators using an `import` entry. An `InvokeFragment` transform references
+the transforms from the fragment in the accelerator that declares the import.
+The AppAcceleratorFragments data model represents the information of a fragment
+in the accelerator app. The Observer sends this information to the Cloud Event
+Handler to store `AppAcceleratorFragments`.
 
-`AppAcceleratorRuns` can have zero or many `AppAcceleratorFragments`. 
+Each `AppAcceleratorFragment` data entry stores information about source Git repository:
+`AppAcceleratorFragmentSourceRepoURL`, `AppAcceleratorFragmentSourceRevision`, and
+`AppAcceleratorFragmentSourceSubpath`. You can associate an `AppAcceleratorFragment` to 
+an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
+(also known as `Commit`) to one `AppAcceleratorFragment`.
 
 ### <a id='doraMetrics'></a> DoraMetrics
 
-The `DoraMetrics` data model represents the information of DORA Metric. The Observer sends this information to the Cloud Event Handler to store `DoraMetrics`. See [CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata Repository](cloudevents.hbs.md).
+The `DoraMetrics` data model represents the DORA Metric information. The Observer sends 
+this information to the Cloud Event Handler to store `DoraMetrics`. 
+
+`AggregatedLeadTime` is a velocity metric that describes the median amount of time in seconds for a 
+commit to deploy to an environment. `AggregatedDeployments` describes how frequently
+a team releases to production in a time range. You can point multiple
+`DoraMetricsPerCorrelationID` to one `DoraMertric`.
 
 ### <a id='metrics-correlation-ID'></a> DoraMetricsPerCorrelationID
 
-The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for Correlation ID. The Correlation ID that groups the all the artifacts together. The Observer sends this information to the Cloud Event Handler to store `DoraMetricsPerCorrelationID`. See [CloudEvent JSON specification for Supply Chain Security Tools - Artifact Metadata Repository](cloudevents.hbs.md).
-`DoraMetrics` can have zero or many `DoraMetricsPerCorrelationID`. 
+The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for
+a Correlation ID. The Correlation ID groups the all the artifacts together. The 
+Observer sends this information to the Cloud Event Handler to store 
+`DoraMetricsPerCorrelationID`.

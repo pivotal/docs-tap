@@ -13,7 +13,11 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-platform-features'></a> New platform-wide features
 
-- Feature Description.
+- Added air-gapped support to the Tanzu Application Platform GitOps install method. 
+For more information, see one of the following install topics:
+    - [Install Tanzu Application Platform through GitOps with AWS Secrets Manager](install-gitops/eso/aws-secrets-manager.hbs.md#airgap-support)
+    - [Install Tanzu Application Platform through GitOps with HashiCorp Vault](install-gitops/eso/hashicorp-vault.hbs.md#airgap-support)
+    - [Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)](install-gitops/sops.hbs.md#airgap-support)
 
 #### <a id='1-7-0-new-components'></a> New components
 
@@ -42,8 +46,7 @@ This release includes the following changes, listed by component and area.
 - External Secrets Operator is now GA.
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
   about your external secrets and secret stores. The CREATE command lets you create cluster
-  external secret and cluster secret stores. For more information, see the commands in the
-  [External Secrets CLI reference section](external-secrets/reference/external-secrets.hbs.md).
+  external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu CLI & plugins
 
@@ -53,11 +56,10 @@ This release includes the following changes, listed by component and area.
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Tanzu CLI Insight plug-in
 
-- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see <TODO: add in link>
-- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and [tanzu insight triage rebase](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/cli-docs/tanzu_insight_triage_rebase.hbs.md#tanzu-insight-triage-rebase).
+- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+- You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu Developer Portal & plugins
-
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain plug-in
 
@@ -110,8 +112,8 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
 - Artifact Metadata Repository (AMR) is deployed by default. For more information, see [Artifact Metadata Repository](scst-store/amr/overview.hbs.md).
-- AMR [Authentication and authorization feature](scst-store/amr/auth.hbs.md) has been introduced.
-- AMR GraphQL now contains data for Images, Containers and Location. For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md)
+- AMR [Authentication and authorization feature](scst-store/amr/auth.hbs.md) is introduced.
+- AMR GraphQL now contains data for Images, Containers, and Location. For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md).
 
 ---
 
@@ -138,6 +140,10 @@ Application Accelerator starter templates for Python and Java are removed in thi
 - Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
 <!-- where is the best place to link to for more info? -->
 
+#### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
+
+- The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation. The following Tanzu CLI plug-ins
+are impacted: Accelerator, Apps, Build Service, External Secrets, Insight, and Service.
 ---
 
 ### <a id='1-7-0-security-fixes'></a> v1.7.0 Security fixes
@@ -216,8 +222,7 @@ the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
 
 #### <a id='1-7-0-supply-chain-security-tools-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` will automatically detect Postgres Database Index corruptions. Supply Chain Security Tools - Store will not reconcile if Postgres database index corruption issue found. Remediation to fix this issue can be found at [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md)
-
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 ---
 

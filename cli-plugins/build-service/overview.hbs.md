@@ -1,9 +1,8 @@
 # Overview of Build Service CLI plug-in
 
-This topic tells you how to use the Build Service CLI plug-in to view all the Tanzu Build Service
-resources on any Kubernetes cluster that has Tanzu Application Platform (commonly known as TAP) or
-Tanzu Build Service (commonly known as TBS) installed.
+The Tanzu Build Service CLI plug-in command reference has moved to the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
+<!-- everything below this to be deleted prior to 1.7 GA https://jira.eng.vmware.com/browse/TAAP-2198-->
 ## <a id='command-reference'></a>Command reference
 
 For information about all available commands, see [Command Reference](command-reference/tanzu_build-service.hbs.md).

@@ -12,7 +12,7 @@ It executes reproducible builds aligned with modern container standards and keep
 
 Use the Build Service CLI plug-in to view all the Tanzu Build Service
 resources on any Kubernetes cluster that has Tanzu Application Platform or Tanzu Build Service
-installed. For more information, see [Build Service CLI plug-in overview](../cli-plugins/build-service/overview.hbs.md).
+installed. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 For more information about Tanzu Build Service, see the
 [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).

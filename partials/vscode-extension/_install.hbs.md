@@ -17,7 +17,23 @@ Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Develo
 
 ## <a id="install"></a> Install
 
-To install the extension:
+The VMware Tanzu Developer Tools for Vscode extension is available either from:
+
+- [Vscode Marketplace](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools) or
+- [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+
+To install **from Vscode Marketplace** (recommended):
+
+1. Open Visual Studio Code.
+1. Open the command palette (Press CTRL-SHIFT-P, or CMD-SHIFT-P on Mac).
+1. In the sarchbox type "Extension".
+1. Select "Extensions: Install Extensions".
+1. The "Extensions" view opens on the left side of your screen.
+1. In the search box type "Tanzu"
+1. Select "Tanzu Developer Tools" and click "Install".
+    ![Exentions View open showing "Tanzu Developer Tools" entry](/docs-tap/images/vscode-install-from-marketplace.png)
+
+To install **from Tanzu Network** (deprecated):
 
 1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio Code](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 2. Open VS Code.

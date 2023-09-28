@@ -15,7 +15,8 @@ The following are use cases supported by the CLI:
 
 ## <a id='query-insight'></a> Query using the Tanzu Insight CLI plug-in
 
-[Install the Tanzu Insight CLI plug-in](../../install-tanzu-cli.hbs.md) if you have not already done so.
+Install the Tanzu Insight plug-in. The Tanzu Insight plug-in is in the Tanzu Application
+Platform plug-ins group, see [Install Tanzu CLI plug-ins](../../install-tanzu-cli.hbs.md#install-plugins).
 
 There are four commands for querying and adding data.
 

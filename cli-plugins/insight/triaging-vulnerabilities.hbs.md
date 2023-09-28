@@ -23,7 +23,8 @@ For information about this feature, see [Data models and concepts for SCST - Sto
 
 Before you begin vulnerability analysis, you must:
 
-- Install the [Tanzu Insight CLI plug-in](../../install-tanzu-cli.hbs.md).
+- Install the Tanzu Insight plug-in. The Tanzu Insight plug-in is in the Tanzu Application
+Platform plug-ins group, see [Install Tanzu CLI plug-ins](../../install-tanzu-cli.hbs.md#install-plugins).
 - Add vulnerability scan reports to the SCST - Store. You can do this either
 by using the `tanzu insight image add` command or by installing the SCST - Scan.
 For more information, see [Add data](add-data.hbs.md) and [Supply Chain Security Tools - Scan](../../scst-scan/overview.hbs.md).
@@ -39,8 +40,7 @@ A vulnerability analysis contains the following data:
    for the affected component or service.
 4. comment: Free form comments to provide additional details.
 
-For more information about the supported values for each of these fields, see
-[tanzu insight triage update](./cli-docs/tanzu_insight_triage_update.hbs.md).
+For more information about the supported values for each of these fields, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 For example, if you are interested in a vulnerability affecting a specific image in your workload,
 and are investigating its impact, you can add this information to the SCST - Store:
@@ -85,7 +85,7 @@ tanzu insight triage list
 The results are paginated by default. You can switch the current page or the number of results
 returned by providing the `--page` or `--limit` flags respectively. You can also filter the
 results by image or source. For more information, use the `--help` flag or see
-[tanzu insight triage list](./cli-docs/tanzu_insight_triage_list.hbs.md).
+the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 ## <a id='copying-analysis'></a>Copy an analysis
 
