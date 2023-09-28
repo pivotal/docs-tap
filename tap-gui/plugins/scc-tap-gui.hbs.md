@@ -231,7 +231,8 @@ To define and use a CRD in a supply chain:
 2. Set CRD permissions.
 3. Define the supply chain.
 4. Define the `ClusterTemplate`.
-5. Create and visualize the workload.
+5. Create the workload.
+6. Visualize the workload.
 
 ### <a id="sc-crd-definition"></a> Define the CRD
 
@@ -277,8 +278,8 @@ To define a CRD:
    Ensure that the name used in `metadata.name` follows the format `PLURAL-NAME.GROUP`. In this
    example it is `rockets.spaceagency.com`.
 
-4. Add properties in the `spec` section under a list called `versions`, and make each version an
-   object with a `name` and a `schema` for the version, so that the CRD looks similar to the following:
+4. Add properties in the `spec` section under a list called `versions`. Make each version an object
+   with a `name` and a `schema` for the version, so that the CRD looks like the following example:
 
     ```yaml
     apiVersion: apiextensions.k8s.io/v1
@@ -305,7 +306,7 @@ To define a CRD:
                     type: string
     ```
 
-   The `versions` property also has required `served` and `storage` properties. For more information
+   The `versions` property also has mandatory `served` and `storage` properties. For more information
    about `served` and `storage`, and CRDs in general, see the
    [Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/).
 
@@ -445,7 +446,7 @@ To use resources in a supply chain, set resource permissions:
 
     Where:
 
-    - `NAMESPACE-NAME` is the namespace in which the rules apply. For example, `my-apps`.
+    - `NAMESPACE` is the namespace in which the rules apply. For example, `my-apps`.
     - `NAME` is the name for the role. For example, `rocket-reader`.
     - `API-GROUPS` is the name of the group. For example, `spaceagency.com`.
     - `RESOURCES-NAME` is the resource name. For example, `rockets`.
@@ -517,7 +518,7 @@ Now that you have a CRD and the permissions for it, you can define a supply chai
 as one of its resources.
 
 The following example is a simple supply chain that has only one stage that uses an instance of
-the CRD. The supply chain is created by downloading another supply chain and editing it.
+the CRD. You can create the supply chain by downloading another supply chain and editing it.
 
 1. List the existing supply chains in your cluster by running:
 
@@ -578,8 +579,8 @@ the CRD. The supply chain is created by downloading another supply chain and edi
 
     `apiVersion` and `kind` stay the same. `metadata.name` is created for this new supply chain.
 
-    The `spec.selector` field states which label selector is used to select this as the supply chain
-    when creating a workload.
+    The `spec.selector` field states which label selector is used to select this supply chain when
+    creating a workload.
 
 4. Save the supply-chain YAML file as `NAME-supply-chain.yaml`. For example, `rocket-supply-chain.yaml`.
 
@@ -661,14 +662,14 @@ To define a new `ClusterTemplate`:
           payloadCapacity: 22000 kg
     ```
 
-    `metadata.name` matches the name specified in the supply chain resource.
+    `metadata.name` matches the name specified in the supply-chain resource.
 
     An instance of the new CRD is used in the `spec` of this resource through the `ytt` field.
     ytt is a templating language that can output resource instances.
 
-    A function is kept that takes in labels from the workload and propagates them to the resource.
-    This function is not essential, but is usually done to propagate important labels from the workload
-    down to the individual resources.
+    A function is retained that takes in labels from the workload and propagates them to the
+    resource. This function is not essential, but is usually performed to propagate important labels
+    from the workload down to the individual resources.
 
 4. Save the file as `NAME-cluster-template.yaml`. For example, `rocket-cluster-template.yaml`.
 
@@ -725,7 +726,7 @@ Now that you have all of the resources, apply them to a cluster and then create 
 
 To see the workload rendered through the Supply Chain plug-in:
 
-1. Go to the supply-chain plug-in section in Tanzu Developer Portal and locate the workload among
+1. Go to the supply chain plug-in section in Tanzu Developer Portal and locate the workload among
    the listed ones:
 
    ![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload_list.png)
@@ -733,7 +734,7 @@ To see the workload rendered through the Supply Chain plug-in:
    The workload `tanzu-rockets-x` is **Healthy**. The **Supply Chain** column shows that it is using
    the `source-scan-test-scan-to-url-rockets` supply chain.
 
-2. Click on it to see its details. You see the **Workload** graph. Given that the supply chain
+2. Click on it to see its details. The **Workload** graph appears. Given that the supply chain
    `source-scan-test-scan-to-url-rockets` only specified one `resource`, you see a simple
    single-stage graph.
 
@@ -743,8 +744,8 @@ To see the workload rendered through the Supply Chain plug-in:
 
    ![Screenshot of Rocket Provider details.](images/tanzu-rockets-crd-detail.png)
 
-   The printer columns that were defined in the CRD are now rendered in the **Overview** section.
-   This holds true for any CRD that you define that includes the `additionalPrinterColumns`
+   The printer columns that you defined in the CRD are now rendered in the **Overview** section.
+   This happens with any CRD that you define and that includes the `additionalPrinterColumns`
    definition.
 
 4. Go to the end of the section to see the full resource in JSON format.
