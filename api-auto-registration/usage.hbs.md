@@ -15,7 +15,7 @@ API Auto Registration requires the following:
 
 2. An APIDescriptor Custom Resource (CR) with that location created in the cluster.
 
-3. (Optional) Configure Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
+3. Optional: Configure Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
 
 To generate OpenAPI Spec:
 
@@ -112,7 +112,7 @@ workload YAML:
             type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
             location:
               path: "/v3/api-docs"  # The path to the api documentation
-              baseURL: "http://my-spec.url" # (Optional) The base URL to the api documentation if not served from the API runtime
+              baseURL: "http://my-spec.url" # Optional: The base URL to the api documentation if not served from the API runtime
             owner: team-petclinic   # The team that owns this
             system: petclinic       # The Backstage system entity this API belongs to
             description: "A set of API endpoints to manage the resources within the petclinic app."

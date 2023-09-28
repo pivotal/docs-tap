@@ -28,7 +28,7 @@ apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
 kind: APIDescriptor
 metadata:
   name:                   # name of your APIDescriptor
-  namespace:              # optional namespace of your APIDescriptor
+  namespace:              # optional: namespace of your APIDescriptor
 spec:
   type:                   # type of the API spec. oneOf(openapi, grpc, asyncapi, graphql)
   description:            # description for the API exposed
@@ -37,10 +37,10 @@ spec:
   location:
     apiSpec:
       path:               # sub-path where the API spec is available (previously `location.path`)
-      url:                # (Optional) static absolute base URL for the API spec
+      url:                # optional: static absolute base URL for the API spec
     server:               # base URL object where the API spec is available. oneOf(url, ref) (previously `location.baseURL`)
-      url:                # (Optional) static absolute base URL for the API server
-      ref:                # (Optional) object ref to oneOf(HTTPProxy, Knative Service, Ingress)
+      url:                # optional: static absolute base URL for the API server
+      ref:                # optional: object ref to oneOf(HTTPProxy, Knative Service, Ingress)
         apiVersion:
         kind:
         name:
@@ -151,7 +151,7 @@ is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. F
 
 ### <a id='status-fields'></a>APIDescriptor status fields>
 
-WWhen processing an APIDescriptor, several fields describing the progress are added to the `status`.
+When processing an APIDescriptor, several fields describing the progress are added to the `status`.
 One of these is `conditons`, which provide information useful for troubleshooting. The conditions are explained in the
 [Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
 
@@ -195,7 +195,7 @@ apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
 kind: CuratedAPIDescriptor
 metadata:
   name:                 # name of your CuratedAPIDescriptor
-  namespace:            # optional namespace of your CuratedAPIDescriptor
+  namespace:            # optional: namespace of your CuratedAPIDescriptor
   annotations:
     "apis.apps.tanzu.vmware.com/route-provider": "spring-cloud-gateway"   # specify route provider
 spec:

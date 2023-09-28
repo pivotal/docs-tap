@@ -45,7 +45,7 @@ To install the API Auto Registration package:
       apis.apps.tanzu.vmware.com  0.2.0        2022-11-24 12:20:00 -0500 -05
     ```
 
-1. (Optional) Gather values schema.
+1. Optional: Gather values schema.
 
     Display values schema of the package:
 
@@ -99,7 +99,7 @@ To install the API Auto Registration package:
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
     ```
 
-3. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
+3. Optional: VMware recommends creating `api-auto-registration-values.yaml`.
 
     To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml`
     file:

@@ -18,14 +18,14 @@ these routing concerns are taken care of automatically.
 
 A successful API curation requires the following prerequisites:
 
-- (Optional) Spring Cloud Gateway for Kubernetes is installed.
-- (Optional) `SpringCloudGateway` resources created with the matching `groupId` and `version`.
+- Optional: Spring Cloud Gateway for Kubernetes is installed.
+- Optional: `SpringCloudGateway` resources created with the matching `groupId` and `version`.
 - One or more `APIDescriptor`s in the ready state.
 - Create a `CuratedAPIDescriptor` resource referencing ready `APIDescriptor`s.
 
 You can get the aggregated API specifications from the OpenAPI endpoint from the controller.
 
-## <a id='create-route-provider'></a>(Optional) Install route provider and create gateway resources
+## <a id='create-route-provider'></a>Optional: Install route provider and create gateway resources
 
 You can optionally install a route provider and create gateway resources.
 

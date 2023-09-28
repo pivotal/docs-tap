@@ -69,7 +69,7 @@ own.
     ```yaml
     shared:
         ingress_domain: "INGRESS-DOMAIN"
-        ingress_issuer: # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned".
+        ingress_issuer: # Optional: can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned".
         ca_cert_data: | # To be passed if using custom certificates.
             -----BEGIN CERTIFICATE-----
             MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...

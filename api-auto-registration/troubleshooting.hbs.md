@@ -74,7 +74,8 @@ This section includes commands for debugging or troubleshooting the APIDescripto
 
 1. Fix a `CuratedAPIDescriptor` not matching with a SCG.
 
-    This could happen if the groupId and version of the `CuratedAPIDescriptor` does not match any available SCG.
+    This could happen if the groupId and version of the `CuratedAPIDescriptor` does not match any available `SpringCloudGateway` resource.
+    You can remove the `"apis.apps.tanzu.vmware.com/route-provider": "spring-cloud-gateway"` annotation from your `CuratedAPIDescriptor` to skip SCG matching, or make sure you have a matching SCG applied to the cluster. 
 
 ### <a id='api-connection-refused'></a> APIDescriptor CRD shows message of `connection refused` but service is up and running
 
