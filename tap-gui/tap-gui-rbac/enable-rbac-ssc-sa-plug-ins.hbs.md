@@ -23,10 +23,10 @@ namespaces. To grant this permission, create a new `ClusterRole` and `ClusterRol
       verbs: ['get', 'list']
     ```
 
-2. Add the following to `namespaces-cluster-role-binding.yaml`:
+2. Add the following to `namespace-cluster-role-binding.yaml`:
 
     ```yaml
-    # namespaces-cluster-role-binding.yaml
+    # namespace-cluster-role-binding.yaml
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
     metadata:
