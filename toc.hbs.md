@@ -26,7 +26,7 @@ docs.vmware.com is built.
       - [Configure Application Accelerator](install-offline/application-accelerator-configuration.hbs.md)
       - [Use Grype](install-offline/grype-offline-airgap.hbs.md)
       - [Set up namespaces](install-offline/set-up-namespaces.hbs.md)
-      - [Install IDE Extensions](install-offline/offline-ide-extensions.hbs.md)
+      - [Install IDE extensions](install-offline/offline-ide-extensions.hbs.md)
   - [Install on AWS Cloud](install-aws/intro.hbs.md)
       - [Install overview](install-aws/intro.hbs.md)
       - [Create AWS Resources](install-aws/resources.hbs.md)

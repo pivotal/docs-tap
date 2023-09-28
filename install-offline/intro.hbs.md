@@ -14,7 +14,7 @@ clusters in an air-gapped environment:
 |7.| Add the certificate for the private Git repository in the Accelerator system namespace. |[Configure Application Accelerator](./application-accelerator-configuration.hbs.md)|
 |8.| Apply patch to Grype. |[Use Grype in offline and air-gapped environments](grype-offline-airgap.hbs.md)|
 |9.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
-|10.| Install IDE Extensions from Marketplace|[Install IDE Extensions in your air-gapped environment](offline-ide-extensions.hbs.md)|
+|10.| Install IDE extensions from Marketplace|[Install IDE Extensions in your air-gapped environment](offline-ide-extensions.hbs.md)|
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
