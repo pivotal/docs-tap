@@ -7,9 +7,8 @@ This topic tells you how to authenticate and authorize the Artifact Metadata Rep
 The following are included in authentication and authorization:
 
 - [High-level design](#high-level-design)
-- GraphQL default service account
-- Cloudevent handler default service account
-- GraphQL user-defined service account
+- [Kubernetes service account autoconfiguration](scst-store/amr/auth-k8s-sa-autoconfiguration.md)
+- [User-defined kubernetes service account configuration](scst-store/amr/auth-k8s-sa-user-defined.hbs.md)
 - Cloudevent user-defined service account
 - Configuring AMR Observer with the Cloudevent handler service account access token
 

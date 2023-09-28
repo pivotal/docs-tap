@@ -668,6 +668,8 @@
           - [Architecture](scst-store/amr/architecture.hbs.md)
           - [Configuration](scst-store/amr/configuration.hbs.md)
           - [Authentication and authorization](scst-store/amr/auth.hbs.md)
+              - [Kubernetes service account autoconfiguration](scst-store/amr/auth-k8s-sa-autoconfiguration.md)
+              - [User-defined kubernetes service account configuration](scst-store/amr/auth-k8s-sa-user-defined.hbs.md)
           - [Data models and concepts](scst-store/amr/data-model-and-concepts.hbs.md)
           - [GraphQL query](scst-store/amr/graphql-query.hbs.md)
           - [Install AMR CloudEvent Handler](scst-store/amr/install-amr-cloudevent-handler.hbs.md)
