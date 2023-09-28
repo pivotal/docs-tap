@@ -41,8 +41,6 @@ For a production environment, VMware recommends installing SCST - Store with ing
 
 #### <a id='amr'></a>Deploying AMR
 
->**Note** AMR is a beta feature and is not recommended for use in production.
-
 By default, AMR is not deployed with SCST - Store. There is an `amr` section inside `metadata_store`. To deploy AMR, you must set the `deploy` property under `amr` to `true`.
 
 ```yaml
