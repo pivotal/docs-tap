@@ -11,6 +11,10 @@ You need the following prerequisites before you can install Local Source Proxy (
 - Either IaaS-specific trust for Kubernetes service accounts to access the registry, or a secret with
   sufficient privileges to push and pull artifacts from that repository.
 
+- If you are installing Local Source Proxy on a Kubernetes cluster managed by a cloud provider
+  (e.g. EKS, AKS, GKE), ensure that TCP port 5002 is open between control plane nodes and your worker
+  nodes.
+
 The rest of this topic tells you how to obtain these prerequisites.
 
 Using Tanzu CLI
