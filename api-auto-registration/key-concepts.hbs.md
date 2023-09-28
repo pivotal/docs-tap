@@ -7,17 +7,19 @@ This topic explains key concepts you use with API Auto Registration.
 You can use the full potential of API Auto Registration by using a distributed environment,
 as shown in the following diagrams:
 
-- The API exposing workloads through supply chains generates `APIDescriptors`. It triggers your Kubernetes controller to register corresponding API entities in Tanzu Developer Portal.
+- The API-exposing workloads through the supply chains  will result in generated `APIDescriptors`. This will trigger
+  API Auto Registration’s Kubernetes controller to generate and register corresponding API entities in Tanzu Developer Portal.
   ![Diagram describing the clusters used with API Auto Registration.](./images/arch.png)
 
-- Use `CuratedAPIDescriptor` to aggregate one ore more `APIDescriptors` into one cohesive API and
-  to trigger routing resource generation for the referenced APIs.
+- Aggregate one or more `CuratedAPIDescriptor` into one cohesive curated API using `APIDescriptors`. Optionally,
+  this can trigger Spring Cloud Gateway routing resources generation for the referenced APIs.
   ![Diagram describing the API curation with API Auto Registration.](./images/api-curation-arch.jpg)
 
 ## <a id='api-descriptor'></a>APIDescriptor custom resource explained
 
-To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
-The information from this custom resource constructs an API entity in Tanzu Developer Portal.
+To initiate API registration, the custom resource of type `APIDescriptor` must be created either automatically
+from the supply chain or through other processes. The information from this custom resource constructs an API
+entity in Tanzu Developer Portal.
 
 This custom resource exposes the following text boxes:
 
@@ -149,12 +151,12 @@ is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. F
 
 ### <a id='status-fields'></a>APIDescriptor status fields>
 
-When processing an APIDescriptor several fields are added to the `status`. One of these is `conditons`,
-which provide information useful for troubleshooting. The conditions are explained in the
+WWhen processing an APIDescriptor, several fields describing the progress are added to the `status`.
+One of these is `conditons`, which provide information useful for troubleshooting. The conditions are explained in the
 [Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
 
-In addition to `conditions` the `status` contains a couple of other useful fields. The following is
-a list of these fields with a brief explanation of what they contain.
+In addition to `conditions` the `status` contains a couple of other useful fields showing the resolved API’s details.
+The following is a list of these fields with a brief explanation of what they contain.
 
 ```yaml
 status:
@@ -164,18 +166,18 @@ status:
   resolvedAPISpecURL:     # Url used to retrieve the full API Spec by Api Auto Registration
   resolvedAPISpec:        # Full API Spec as retrieved by Api Auto Registration
   resolvedAPISpecHash:    # Hash value of the `resolvedAPISpec`. This field can be used to see whether the spec has been updated or not.
-  APISpecLastUpdateTime:  # Timestamp representing the server time when API Spec was last updated. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
+  apiSpecLastUpdateTime:  # Timestamp representing the server time when API Spec was last updated. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
 ```
 
 ## <a id='curated-api-descriptor'></a>CuratedAPIDescriptor custom resource explained
 
-To curate one or more Workload OpenAPI specifications into a single aggregated API,
-you can create a custom resource of type `CuratedAPIDescriptor`.
-The information from this custom resource references a list of APIDescriptors and how they are aggregated together through path-based routing.
+To curate one or more Workload OpenAPI specifications into a single aggregated API, you can create a custom
+resource of type `CuratedAPIDescriptor`. The information from this custom resource references a list of APIDescriptors
+and how they are aggregated together through path-based routing.
 
 If a valid route provider is specified, for example, `spring-cloud-gateway` for
-[Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG for short),
-the API Auto Registration controller finds the [SpringCloudGateway (SCG)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
+[Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG),
+the API Auto Registration controller finds the [SpringCloudGateway](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
 resource and automatically creates the following routing resources for you to expose your curated APIs
 as one:
 
@@ -199,13 +201,13 @@ metadata:
 spec:
   type: openapi         # type of the API spec. oneOf(openapi, grpc, asyncapi, graphql)
   title:                # title of the curated API
-  description:          # description of the curated API
-  documentation:        # TODO
+  description:          # description of the curated API spec
+  documentation:        # documentation for the curated API spec
   groupId:              # groupID of the curated API.
   version:              # version of the curated API
   apiDescriptors:
     - name:             # name of a APIDescriptor to include in this curated API
-      namespace:        # optional namespace of the APIDescriptor
+      namespace:        # namespace of the APIDescriptor
       pathPrefix:       # Path prefix that the API endpoints from the linked APIDescriptor should have
       routeConfig:
         ssoEnabled:     # whether to enable SSO on the gateway to perform authentication for users
@@ -213,12 +215,12 @@ spec:
     - ...
 ```
 
-The following are explanations for key text boxes:
+There are some key behaviors generated from the text boxes:
 
 - The `apis.apps.tanzu.vmware.com/route-provider` annotation specified how you want to provide routing
-  to the curated API. VMware only supports `spring-cloud-gateway`.
+  to the curated API. VMware currently only supports `spring-cloud-gateway`.
 - `groupId` is a concept that's aligned with [API portal](../api-portal/about.hbs.md) to group APIs
-  from different high-availability zones/locations or with different `version`s.
+  from different high-availability zones/locations or with different `version`.
 - `groupId` and `version` identify a matching gateway that route traffic for the
   curated API
 - `routeConfig` section specifies service level configuration you add when generating the routing
@@ -233,7 +235,7 @@ The following are explanations for key text boxes:
 
 ### <a id='curated-status-fields'></a>CuratedAPIDescriptor status fields
 
-When processing an CuratedAPIDescriptor several fields are added to the `status`. One of these is `conditons`,
+When processing an CuratedAPIDescriptor, several fields are added to the `status`. One of these is `conditions`,
 which provide information useful for troubleshooting. The conditions are explained in the
 [Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
 

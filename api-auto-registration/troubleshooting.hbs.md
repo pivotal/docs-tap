@@ -72,6 +72,10 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     > **Note** If you manually remove the finalizers from the APIDescriptor resources, you can have
     > stale API entities within Tanzu Developer Portal that you must manually deregister.
 
+1. Fix a `CuratedAPIDescriptor` not matching with a SCG.
+
+    This could happen if the groupId and version of the `CuratedAPIDescriptor` does not match any available SCG.
+
 ### <a id='api-connection-refused'></a> APIDescriptor CRD shows message of `connection refused` but service is up and running
 
 In Tanzu Application Platform v1.4 and later, if your workloads use ClusterIssuer for the TLS configuration

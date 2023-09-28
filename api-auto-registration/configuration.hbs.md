@@ -7,7 +7,7 @@ This topic describes configuration options for API Auto Registration.
 You can view the values available for the package by finding the available
 package version and finding the corresponding schema. After you select the
 values that you want to update, update them either by updating the `tap` package
-or by updating the `api-auto-registration` package if you installed it on it's
+or by updating the `api-auto-registration` package if you installed it on its
 own.
 
 1. Find the version of the available package:
@@ -17,7 +17,7 @@ own.
 
     / Retrieving package versions for apis.apps.tanzu.vmware.com...
     NAME                        VERSION  RELEASED-AT
-    apis.apps.tanzu.vmware.com  0.2.6    2023-03-21 13:47:14 -0400 EDT
+    apis.apps.tanzu.vmware.com  0.4.0    2023-10-31 13:47:14 -0400 EDT
     ```
 
 2. Explore the values available:
@@ -31,9 +31,9 @@ own.
     For example:
 
     ```console
-    tanzu package available get apis.apps.tanzu.vmware.com/0.2.2 --values-schema --namespace tap-install
+    tanzu package available get apis.apps.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
 
-    Retrieving package details for apis.apps.tanzu.vmware.com/0.2.2...
+    Retrieving package details for apis.apps.tanzu.vmware.com/0.4.0...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
     ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS.
     ingress_issuer                                                           string   Optional: Name of the default cluster issuer used to generate certificates
