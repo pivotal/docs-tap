@@ -29,11 +29,13 @@ To install the extension:
 
    ![Screenshot of the Manage Extensions pane.](../images/vs-extension/about.png)
 
-See [Use Tanzu Developer Tools for Visual Studio](using-the-extension.hbs.md).
-
 ## <a id="uninstall"></a> Uninstall
 
-To uninstall VMware Tanzu Developer Tools for Visual Studio:
+To uninstall:
 
-1. Go to the **Extensions** tab and click **Manage Extensions**.
-2. Click on the **Installed** section and then click the **Uninstall** button for this extension.
+1. From the top menu, click the **Extensions** tab and then click **Manage Extensions**.
+1. Click on the **Installed** section and then click the **Uninstall** button for this extension.
+
+## <a id="next-steps"></a> Next steps
+
+[Getting Started with Tanzu Developer Tools for Visual Studio](getting-started.hbs.md).
