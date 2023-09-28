@@ -58,6 +58,14 @@ spec:
     allowAllOrigins: false # optional
                            # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
                            # Cannot be combined with 'allowOrigins'.
+
+    allowMethods: # optional, defaults to ["GET", "POST", "OPTIONS"].
+      - ""
+    allowHeaders: # optional, defaults to ["Authorization"].
+      - ""
+    exposeHeaders: # optional, defaults to "[]"
+      - ""
+    allowCredentials: false # optional, defaults to false
   token:             # optional
     accessToken:     # optional
       expiry: "12h"  # optional, default expiry is 12 hours

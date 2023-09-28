@@ -92,6 +92,65 @@ Public clients supporting Authorization Code with PKCE flow ensure that:
 
 For public clients, the `AuthServer` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single page apps cannot safely store sensitive information such as client secrets.
 
+## <a id="client-credentials"></a>Client credentials code grant
+
+Some Single-Page Applications require obtaining a token through the `client_credentials`. This is
+not a recommended practice, as a browser-based app will not be able to protect their
+`client_secret`.
+
+If you need to support such a use-case, note that the `ClientRegistration` cannot use `none` as its
+`clientAuthenticationMethod`. It must use either `client_secret_basic` or `client_secret_post`. For
+example:
+
+```yaml
+kind: ClientRegistration
+# ...
+spec:
+  authorizationGrantTypes:
+  - client_credentials
+  clientAuthenticationMethod: client_secret_basic
+```
+
+## <a id="additional-cors-configuration"></a> Additional CORS configuration
+
+When specifying either `allowOrigins` or `allowAllOrigins`, other CORS-related headers are configured
+with default values. Configuration options are exposed to cover other scenarios that may require
+overriding some of those headers. Here is the full CORS configuration, assuming `allowOrigins` is
+used:
+
+```yaml
+kind: AuthServer
+# ...
+spec:
+  cors:
+    allowOrigins:
+    - "https://example.com"
+    allowMethods:
+    - GET
+    - POST
+    - OPTIONS
+    allowHeaders:
+    - Authorization
+    exposeHeaders: []
+    allowCredentials: false
+```
+
+- `allowMethods` defines the list of HTTP methods allowed. Values are sent back in the response to
+  pre-flight requests, in the `Access-Control-Allow-Methods` header. When a pre-flight request is
+  issued with the `Access-Control-Request-Method` header set, the value is checked against
+  `allowMethods`. If it matches, the request may complete. If it does not match, the server answers
+  with an HTTP 403 Unauthorized. Valid values are either `["*"]` or any combination of the following:
+  [GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE]. Values are case-sensitive. Defaults to
+  `["GET", "POST", "OPTIONS"].
+- `allowHeaders` defines the list of headers allowed. When a client issues a pre-flight request with
+  values in the `Access-Control-Request-Headers` header, only the values that are also present in
+  `AllowHeaders` will be sent back in the response's `Access-Control-Allow-Headers header`. Values
+  are case-insensitive. Defaults to `["Authorization"]`.
+- `exposeHeaders` defines the values of the Access-Control-Expose-Headers header in the response to
+  a CORS request. Defaults to `[]`.
+- `allowCredentials` defines the value of the `Access-Control-Allow-Credentials` header in the
+  response to a CORS request. Defaults to `false`.
+
 ## <a id="refs"></a>References
 
 - [Proof Key for Code Exchange (PKCE) specification](https://www.rfc-editor.org/rfc/rfc7636.html).
