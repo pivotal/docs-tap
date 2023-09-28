@@ -6,22 +6,16 @@ View, Build, Run, and Iterate.
 
 ## <a id='overview'></a>Overview
 
-You use the View profil to deploy SCST - Store. After
-installing the View profile, but before installing the Build profile, you must
-add configuration for SCST - Store to the Kubernetes cluster where you intend to install the Build profile.
-This topic explains how to add configuration which allows components in the Build
-cluster to communicate with SCST - Store in the View cluster.
-
-> **Note** If you already deployed the Build profile, you can follow
-> this procedure. However, in the [Install Build
-> profile](#install-build-profile) step, instead of deploying the Build profile
-> again, update your deployment using `tanzu package installed update`.
+After installing the View profile, but before installing the Build profile and Run profile, you must
+copy certain configurations from the View cluster to the Build and Run Kubernetes clusters.
+This topic explains how to add these configurations which allows components in the Build and Run
+clusters to communicate with SCST - Store in the View cluster.
 
 ![Screenshot of the SCST - Store in Multi Cluster Deployment](images/multicluster-deployment.jpg)
 
 ## <a id='prerecs'></a>Prerequisites
 
-You must install the View profile. See [Install View profile](../multicluster/installing-multicluster.hbs.md#install-view).
+You must first install the View profile. See [Install View profile](../multicluster/installing-multicluster.hbs.md#install-view). This installation automatically creates the CA certificates and tokens necessary to talk to the CloudEvent Handler.
 
 ## <a id='summary'></a>Procedure summary
 
@@ -34,19 +28,19 @@ Store in a multicluster setup:
 2. Copy SCST - Store tokens from the View cluster.
    1. Copy the Metadata Store authentication token from the View cluster.
    2. Copy the AMR CloudEvent Handler edit token from the View cluster.
-3. Apply the SCST - Store CA certificates and SCST - Store tokens to Build cluster.
-   1. Apply the Metadata Store CA certificate and an authentication token to a new Kubernetes cluster.
-   2. Apply the CloudEvent Handler CA certificate and edit the token for the Build cluster.
-4. Install the Build profile.
+3. Apply the SCST - Store CA certificates and SCST - Store tokens to the Build and Run clusters.
+   1. Apply the Metadata Store CA certificate and authentication token to the Build cluster.
+   2. Apply the AMR CloudEvent Handler CA certificate and edit token for the Build and Run cluster.
+4. Install the Build and Run profiles.
 
-## <a id='copy-ca-cert'></a>Copy SCST - Store CA certificate from View cluster
+## <a id='copy-ca-cert'></a>Copy SCST - Store CA certificates from the View cluster
 
 To copy SCST - Store CA certificates from the View cluster, you must 
 copy the Metadata Store CA certificate and the AMR CloudEvent Handler CA certificate from the View cluster.
 
 ### <a id='copy-metadata'></a>Copy Metadata Store CA certificate from the View cluster
 
-With your kubectl targeted at the View cluster, you can view Metadata Store's TLS
+With your kubectl targeted at the View cluster, you can get Metadata Store's TLS
 CA certificate. To copy the CA certificate into a `store_ca.yaml` file:
 
 ```console
@@ -64,24 +58,13 @@ data:
 EOF
 ```
 
-### <a id='copy-amr'></a>Copy AMR CloudEvent Handler CA certificate from the View cluster
+### <a id='copy-amr'></a>Copy AMR CloudEvent Handler CA certificate data from the View cluster
 
-With your kubectl targeted at the View cluster, you can view AMR CloudEvent Handler's TLS
-CA certificate. To copy the CA certificate into a `ceh_ca.yaml` file:
+With your kubectl targeted at the View cluster, you can get AMR CloudEvent Handler's TLS
+CA certificate's data.
 
 ```console
-CEH_CA_CERT=$(kubectl get secret -n amr-observer-system amr-cloudevent-handler-ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-cat <<EOF > ceh_ca.yaml
----
-apiVersion: v1
-kind: Secret
-type: Opaque
-metadata:
-  name: truststore
-  namespace: amr-observer-system
-data:
-  ca.crt: $CEH_CA_CERT
-EOF
+CEH_CA_CERT_DATA=$(kubectl get secret -n metadata-store amr-cloudevent-handler-ingress-cert -o json | jq -r ".data.\"ca.crt\"" | base64 -d)
 ```
 
 ## <a id='copy-token'></a>Copy SCST - Store authentication tokens from the View cluster
@@ -110,19 +93,31 @@ CEH_EDIT_TOKEN=$(kubectl get secrets amr-cloudevent-handler-edit-token -n metada
 You use
 this environment variable in the next step.
 
-## <a id='apply-build'></a>Apply the SCST - Store CA certificates and SCST - Store tokens to Build cluster
+## <a id='apply-build'></a>Apply the SCST - Store CA certificates and SCST - Store tokens to the Build and Run clusters
 
-After you copy the certificate and tokens, apply the Metadata Store CA certificates, Metadata Store authentication token, and CloudEvent Handler edit token to the Kubernetes cluster where you intend to install the Build profile.
+After you copy the certificate and tokens, apply them to the Build and Run clusters prior to deploying the profiles. 
 
-### <a id='apply-kubernetes'></a>Apply the Metadata Store CA certificate and an authentication token to a new Kubernetes cluster
+Build cluster:
+
+* Metadata Store CA certificate
+* Metadata Store authentication token
+* CloudEvent Handler CA certificate
+* CloudEvent Handler edit token
+
+Run cluster:
+
+* CloudEvent Handler CA certificate
+* CloudEvent Handler edit token
+
+### <a id='apply-kubernetes'></a>Apply the Metadata Store CA certificate and authentication token to the Build cluster
 
 Before you deploy the Build profile, you must apply the Metadata Store CA certificate and
-Metadata Store authentication token from the earlier steps. Then the Build profile deployment has access to these values.
+Metadata Store authentication token from the earlier steps. Then the Build profile deployment will have access to these values.
 
 To apply the Metadata Store CA certificate and an authentication token:
 
 1. With your kubectl targeted at the Build cluster, create a namespace for the Metadata Store CA
-certificate and an authentication token.
+certificate and authentication token.
 
     ```console
     kubectl create ns metadata-store-secrets
@@ -134,54 +129,62 @@ certificate and an authentication token.
     kubectl apply -f store_ca.yaml
     ```
 
-1. Create a secret to store the access token. This uses the Metadata Store `MDS_AUTH_TOKEN` environment variable.
+2. Create a secret to store the access token. This uses the Metadata Store `MDS_AUTH_TOKEN` environment variable.
 
     ```console
     kubectl create secret generic store-auth-token \
       --from-literal=auth_token=$MDS_AUTH_TOKEN -n metadata-store-secrets
     ```
 
-The cluster now has a Metadata Store CA certificate named  `store-ca-cert` and a Metadata Store authentication
+The Build cluster now has a Metadata Store CA certificate named  `store-ca-cert` and a Metadata Store authentication
 token named `store-auth-token` in the namespace `metadata-store-secrets`.
 
-### <a id='apply-edit'></a>Apply the CloudEvent Handler CA certificate and edit token to Build cluster
+### <a id='apply-edit'></a>Apply the CloudEvent Handler CA certificate data and edit token to the Build and Run clusters
 
-To apply the CloudEvent Handler CA certificate and edit the token:
+Now we will apply the CloudEvent Handler CA certificate and edit token to the Build and Run clusters. These values need to be accessible during the Build and Run profile deployments.
 
-1. If you already installed build cluster you can skip this step. 
-   With your kubectl targeted at the Build cluster, create a namespace for the Cloud Event Handler CA
+1. First, update your kubectl to target the Build cluster.
+1. If you already installed Build Cluster you can skip this step. 
+   Create a namespace for the CloudEvent Handler CA
 certificate and edit token.
 
     ```console
     kubectl create ns amr-observer-system
     ```
 
-1. Apply the CloudEvent Handler CA certificate `ceh_ca.yaml` secret YAML you generated earlier.
+1. Update the Build profile `values.yaml` file to add the following snippet. It will configure the CA cert and endpoint. In `amr.observer.cloudevent_handler.endpoint` we specify the location of the CloudEvent Handler which was deployed to the View cluster. In `amr.observer.ca_cert_data` we paste the contents of `$CEH_CA_CERT_DATA` which we copied in an earlier step.
 
     ```console
-    kubectl apply -f ceh_ca.yaml
+    amr:
+      observer:
+        auth:
+          kubernetes_service_accounts:
+            enable: true
+        cloudevent_handler:
+          endpoint: https://amr-cloudevent-handler.<VIEW-CLUSTER-INGRESS-DOMAIN>
+        ca_cert_data: |
+            <CONTENTS OF $CEH_CA_CERT_DATA>
     ```
 
-1. Create a secret to store the CloudEvent Handler edit token. This uses the `CEH_EDIT_TOKEN` environment variable.
+2. Create a secret to store the CloudEvent Handler edit token. This uses the `CEH_EDIT_TOKEN` environment variable.
 
     ```console
     kubectl create secret generic amr-observer-edit-token \
-      --from-literal=auth_token=$CEH_EDIT_TOKEN -n amr-observer-system
+      --from-literal=token=$CEH_EDIT_TOKEN -n amr-observer-system
     ```
 
-The cluster now has a CloudEvent Handler CA certificate named  `truststore` and edit
-token named `amr-observer-edit-token` in the namespaces `metadata-store-secrets` and `amr-observer-system`.
+3. Repeat the above steps, but configure kubectl to target the Run cluster instead of the Build cluster.
 
-## <a id='install-build-profile'></a>Install Build profile
+After all the steps are done, both the Build and Run clusters each have a CloudEvent Handler CA certificate and edit
+token named `amr-observer-edit-token` in the namespaces `metadata-store-secrets` and `amr-observer-system`. Now you are ready to deploy the Build and Run profiles.
+
+## <a id='install-build-profile'></a>Install the Build and Run profiles
 
 If you came to this topic from [Install multicluster Tanzu Application
 Platform profiles](../multicluster/installing-multicluster.hbs.md) after
 installing the View profile, return to that topic to [install the Build
-profile](../multicluster/installing-multicluster.hbs.md#install-build).
-
-The Build profile `values.yaml` contains configuration that references the
-secrets in the `metadata-store-secrets` namespace you created in this guide. The
-names of these secrets are hard coded in the example `values.yaml`.
+profile](../multicluster/installing-multicluster.hbs.md#install-build)
+and [install the Run profile](../multicluster/installing-multicluster.hbs.md#install-run).
 
 ### <a id='use-config'></a>How the Build profile uses the configuration
 
@@ -213,9 +216,6 @@ Where:
   `https://metadata-store.example.com`. See [Ingress support](ingress.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
   the credentials to pull an image from the registry for scanning.
-
-AMR Observer uses the CloudEvent Handler CA cert `truststore` and `amr-observer-edit-token` to establish a connection with `AMR CloudEvent Handler`
-to write events.
 
 ## <a id='config-dev-ns'></a>Configure developer namespaces
 
