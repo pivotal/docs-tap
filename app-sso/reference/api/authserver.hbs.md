@@ -59,9 +59,9 @@ spec:
                            # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
                            # Cannot be combined with 'allowOrigins'.
 
-    allowMethods: # optional, defaults to ["GET", "POST", "OPTIONS"].
+    allowMethods: # optional, defaults to ["GET", "POST", "OPTIONS"]
       - ""
-    allowHeaders: # optional, defaults to ["Authorization"].
+    allowHeaders: # optional, defaults to ["Authorization"]
       - ""
     exposeHeaders: # optional, defaults to "[]"
       - ""

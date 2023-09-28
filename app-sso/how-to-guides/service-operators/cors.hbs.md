@@ -94,13 +94,11 @@ For public clients, the `AuthServer` only supports the Authorization Code Flow: 
 
 ## <a id="client-credentials"></a>Client credentials code grant
 
-Some Single-Page Applications require obtaining a token through the `client_credentials`. This is
-not a recommended practice, as a browser-based app will not be able to protect their
-`client_secret`.
+Some single-page applications require obtaining a token by using the `client_credentials`. This is
+not a recommended practice, because a browser-based app cannot protect its `client_secret`.
 
-If you need to support such a use-case, note that the `ClientRegistration` cannot use `none` as its
-`clientAuthenticationMethod`. It must use either `client_secret_basic` or `client_secret_post`. For
-example:
+In this scenario, the `ClientRegistration` cannot use `none` as its `clientAuthenticationMethod`. 
+It must use either `client_secret_basic` or `client_secret_post`. For example:
 
 ```yaml
 kind: ClientRegistration
@@ -111,12 +109,11 @@ spec:
   clientAuthenticationMethod: client_secret_basic
 ```
 
-## <a id="additional-cors-configuration"></a> Additional CORS configuration
+## <a id="cors-config"></a> Additional CORS configuration
 
-When specifying either `allowOrigins` or `allowAllOrigins`, other CORS-related headers are configured
-with default values. Configuration options are exposed to cover other scenarios that may require
-overriding some of those headers. Here is the full CORS configuration, assuming `allowOrigins` is
-used:
+When you define either `allowOrigins` or `allowAllOrigins`, default values are 
+set for other CORS-related headers. VMware provides configuration options to customize 
+some of these headers. The following is the full CORS configuration using `allowOrigins`:
 
 ```yaml
 kind: AuthServer
@@ -135,21 +132,19 @@ spec:
     allowCredentials: false
 ```
 
-- `allowMethods` defines the list of HTTP methods allowed. Values are sent back in the response to
+- `allowMethods` defines the list of HTTP methods allowed. The values are sent back in the response to
   pre-flight requests, in the `Access-Control-Allow-Methods` header. When a pre-flight request is
   issued with the `Access-Control-Request-Method` header set, the value is checked against
-  `allowMethods`. If it matches, the request may complete. If it does not match, the server answers
-  with an HTTP 403 Unauthorized. Valid values are either `["*"]` or any combination of the following:
-  [GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE]. Values are case-sensitive. Defaults to
-  `["GET", "POST", "OPTIONS"].
+  `allowMethods`. If it matches, the request completes. If it does not match, the server answers
+  with an HTTP 403 Unauthorized status. The valid values are either `["*"]` or any combination of `[GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE]`. The values are case-sensitive and default to `["GET", "POST", "OPTIONS"]`.
 - `allowHeaders` defines the list of headers allowed. When a client issues a pre-flight request with
   values in the `Access-Control-Request-Headers` header, only the values that are also present in
-  `AllowHeaders` will be sent back in the response's `Access-Control-Allow-Headers header`. Values
-  are case-insensitive. Defaults to `["Authorization"]`.
-- `exposeHeaders` defines the values of the Access-Control-Expose-Headers header in the response to
-  a CORS request. Defaults to `[]`.
+  `AllowHeaders` are sent back in the response's `Access-Control-Allow-Headers header`. The values
+  are case-insensitive and default to `["Authorization"]`.
+- `exposeHeaders` defines the values of the `Access-Control-Expose-Headers` header in the response to
+  a CORS request. The default value is `[]`.
 - `allowCredentials` defines the value of the `Access-Control-Allow-Credentials` header in the
-  response to a CORS request. Defaults to `false`.
+  response to a CORS request. The default value is `false`.
 
 ## <a id="refs"></a>References
 
