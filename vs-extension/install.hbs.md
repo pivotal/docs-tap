@@ -6,7 +6,7 @@ This topic tells you how to install VMware Tanzu Developer Tools for Visual Stud
 
 Before installing the extension, you must have:
 
-- [Visual Studio 2022, minimum version 17.7](https://visualstudio.microsoft.com/vs/)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Tilt](https://docs.tilt.dev/install.html) v0.30.12 or later
 - [Tanzu CLI and plug-ins](../install-tanzu-cli.md#cli-and-plugin)
@@ -25,7 +25,7 @@ To install Tanzu Developer Tools for Visual Studio:
 3. Open Visual Studio and, from top menu, click **Extensions** > **Manage Extensions**.
 4. Verify that the extension is installed and that it is the version you want.
 
-   ![Screenshot of the Manage Extensions pane.](../images/vs-extension/about.png)
+   ![Screenshot of the Manage Extensions pane.](../images/vs-about.png)
 
 ## <a id="update"/> Update
 
