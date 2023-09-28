@@ -2,19 +2,19 @@
 
 This topic guides you through getting started with VMware Tanzu Developer Tools for Visual Studio.
 
-## <a id="prereqs"/> Prerequisite
+## <a id="prereqs"></a> Prerequisite
 
 [Install Tanzu Developer Tools for Visual Studio](install.hbs.md).
 
-## <a id="config-src-img-registry"/> Configure Local Source Proxy
+## <a id="config-src-img-registry"></a> Configure Local Source Proxy
 
 {{> 'partials/ide-extensions/config-src-img-registry' }}
 
-## <a id="set-up-tanzu-dev-tools"/> Set up Tanzu Developer Tools
+## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
 {{> 'partials/ide-extensions/set-up-tanzu-dev-tools' }}
 
-## <a id="create-workload-yaml"/> Create the `workload.yaml` file
+## <a id="create-workload-yaml"></a> Create the `workload.yaml` file
 
 Your project must contain a file named `workload.yaml`.
 For example, `MyApp\Config\workload.yaml`.
@@ -64,7 +64,7 @@ Alternatively, you can use the Tanzu CLI to create a `workload.yaml` file.
 For more information about the relevant Tanzu CLI command, see
 [Tanzu apps workload apply](../cli-plugins/apps/reference/workload-create-apply.hbs.md).
 
-## <a id="create-catalog-info-yaml"/> Create the `catalog-info.yaml` file
+## <a id="create-catalog-info-yaml"></a> Create the `catalog-info.yaml` file
 
 Your project must contain a file named `catalog-info.yaml`.
 For example, `MyApp\Catalog\catalog-info.yaml`.
@@ -105,7 +105,7 @@ Where:
 - `APP-NAME` is the name of your application.
 - `APP-DESCRIPTION` is a description of your application.
 
-## <a id="create-tiltfile"/> Create the Tiltfile file
+## <a id="create-tiltfile"></a> Create the Tiltfile file
 
 Your project must contain a file named `Tiltfile`.
 For example, `MyApp\Tiltfile`.
@@ -157,7 +157,7 @@ can remove the entire `allow_k8s_contexts` line.
 For more information about this line, see the
 [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
 
-## <a id="create-tanzuignore"/> Create the `.tanzuignore` file
+## <a id="create-tanzuignore"></a> Create the `.tanzuignore` file
 
 Your project can contain a file named `.tanzuignore`.
 When working with local source code, `.tanzuignore` excludes files from the source code that is
@@ -176,7 +176,7 @@ For an example, see the `.tanzuignore`
 in GitHub that is used for the sample Tanzu Java web app.
 You can use the file as it is or edit it for your needs.
 
-## <a id="example-project"/> View an example project
+## <a id="example-project"></a> View an example project
 
 Before you begin, you need a container image registry to use the sample application.
 There are two ways to view a sample application that demonstrates the necessary configuration files:
@@ -203,6 +203,6 @@ Clone from GitHub
   1. Go to the `weatherforecast-steeltoe` directory.
   1. Open the `Tiltfile` and replace `your-registry.io/project` with your registry.
 
-## <a id="whats-next"/> Next steps
+## <a id="whats-next"></a> Next steps
 
 [Use Tanzu Developer Tools for Visual Studio](using-the-extension.hbs.md).

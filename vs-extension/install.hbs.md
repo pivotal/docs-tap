@@ -2,7 +2,7 @@
 
 This topic tells you how to install VMware Tanzu Developer Tools for Visual Studio.
 
-## <a id="prereqs"/> Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Before installing the extension, you must have:
 
@@ -15,7 +15,7 @@ Before installing the extension, you must have:
 > **Note** If you are an app developer, someone else in your organization might have already set up
 > the Tanzu Application Platform environment.
 
-## <a id="install"/> Install
+## <a id="install"></a> Install
 
 To install Tanzu Developer Tools for Visual Studio:
 
@@ -27,18 +27,18 @@ To install Tanzu Developer Tools for Visual Studio:
 
    ![Tanzu Developer Tools is selected within the Manage Extensions pane.](../images/vs-extension/about.png)
 
-## <a id="update"/> Update
+## <a id="update"></a> Update
 
 To update to a later version, repeat the steps in the [Install](#install) section.
 You do not need to uninstall the current version.
 
-## <a id="uninstall"/> Uninstall
+## <a id="uninstall"></a> Uninstall
 
 To uninstall:
 
 1. From the top menu, click the **Extensions** tab and then click **Manage Extensions**.
 1. Select the **Installed** section and then click the **Uninstall** button for this extension.
 
-## <a id="next-steps"/> Next steps
+## <a id="next-steps"></a> Next steps
 
 [Getting Started with Tanzu Developer Tools for Visual Studio](getting-started.hbs.md).
