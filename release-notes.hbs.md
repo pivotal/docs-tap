@@ -39,32 +39,32 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
-- Support Kubernetes 1.28
-- `ClientRegistration`s instantaneously react to updates of `AuthServer`s
+- Supports Kubernetes 1.28.
+- `ClientRegistration`s instantaneously react to updates of `AuthServer`s.
 - `ClusterWorkloadRegistrationClass`s instantaneously react to updates of
   `AuthServer`s
-- Insufficiently small token signature keys result in an explicit error
-  condition in `AuthServer.status`
-- Customise a `ClientRegistration`'s display name
-- Customise an `AuthServer`'s identity providers' display names (limited to
-  OpenID and SAML)
-- Authorisation servers log role mappings in the audit log
-- Authorisation servers advertise the supported client authentication and grant
-  types methods through the OpenID discovery endpoint
-- End-users see their email address on the consent page
+- Insufficiently small token signature keys cause an explicit error condition in 
+  `AuthServer.status`.
+- Customize a `ClientRegistration`'s display name.
+- Customize the display names of identity providers for an `AuthServer`, with the 
+  restriction that this customization applies only to OpenID and SAML.
+- Authorization servers log role mappings in the audit log.
+- Authorization servers advertise the supported client authentication and grant
+  types methods by using the OpenID discovery endpoint.
+- End-users see their email address on the consent page.
 - `AuthServer.spec.cors.{allowHeaders, exposeHeaders, allowCredentials,
   allowMethods}` provide Service Operators with finer control over an
-  authorisation server's CORS configuration. As a result, Application Operators
+  authorization server's CORS configuration. As a result, Application Operators
   can use the `client_credentials` grant for single-page apps.
-- Authorisation servers do not advertise the _device auth_ endpoint through the
-  OpenID discovery endpoint
-- Authorisation server UI uses the _Clarity_ design system
-- `ClientRegistration` uses finalizers
+- Authorization servers do not advertise the device auth endpoint by using the
+  OpenID discovery endpoint.
+- Authorization server UI uses the Clarity design system.
+- `ClientRegistration` uses finalizers.
 - `ClusterUnsafeTestLogin` reports its issuer URI in its status and as a print
-  coloumn
-- Authorisation servers support the user-info endpoint
-- `AuthServer.spec.session.expiry` controls the session expiry of authorisation
-  servers. The default is `15m`. It must be at least `1m`.
+  coloumn.
+- Authorization servers support the user-information endpoint.
+- `AuthServer.spec.session.expiry` controls the session expiry of authorization
+  servers. The default value is `15m`. It must be at least `1m`.
 
 #### <a id='1-7-0-app-config-service'></a> v1.7.0 Features: Application Configuration Service
 
@@ -153,10 +153,10 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-app-sso-br'></a> v1.7.0 Breaking changes: Application Single Sign-On
 
 - `ClientRegistration.spec.clientAuthenticationMethod` no longer supports
-  `basic` and `post`
+  `basic` and `post`.
 - `AuthServer`'s internal-unsafe identity provider no longer supports claim
-  mappings
-- `ClusterUnsafeTestLogin` no longer has the short name `cutl`
+  mappings.
+- `ClusterUnsafeTestLogin` no longer has the short name `cutl`.
 
 #### <a id='1-7-0-eventing-br'></a> v1.7.0 Breaking changes: Eventing
 
@@ -223,16 +223,16 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-7-0-app-sso-ri'></a> v1.7.0 Resolved issues: Application Single Sign-On
 
-- Authorisation servers advertise only supported scopes through the discovery
-  endpoint
-- `AuthServer.spec.identityProviders.*.name` has a description
-- `AuthServer.spec.identityProviders.*.name` is validated against DNS1123
-- `ClusterUnsafeTestLogin` reconciles only if Namespace designated by
-  `cluster_resource_namespace` exists
-- Correctly implement the `restricted` _Pod Security Standard_ for the
-  controller and all `AuthServer`-related resources
-- Authorisation servers display OIDC providers on the login page even when
-  there are no SAML providers
+- Authorization servers advertise only supported scopes by using the discovery
+  endpoint.
+- `AuthServer.spec.identityProviders.*.name` has a description.
+- `AuthServer.spec.identityProviders.*.name` is validated against DNS1123.
+- `ClusterUnsafeTestLogin` reconciles only if the namespace designated by
+  `cluster_resource_namespace` exists.
+- Correctly implement the `restricted` Pod Security Standard for the
+  controller and all `AuthServer`-related resources.
+- Authorization servers display OIDC providers on the login page even when
+  there are no SAML providers.
 
 #### <a id='1-7-0-supply-chain-choreographer-ri'></a> v1.7.0 Resolved issues: Supply Chain Choreographer
 
