@@ -33,11 +33,6 @@ The extension has the following features:
   An environment’s similarity to production relies on keeping dependencies updated, among other
   variables.
 
-- **See workloads running on the cluster:**
-
-  From the Tanzu Panel, you can see any workload found within the cluster and namespace specified
-  in the current kubectl context.
-
 - **Work with microservices in a Visual Studio solution:**
 
   Work with multiple solution projects that represent discrete microservices.
