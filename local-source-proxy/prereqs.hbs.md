@@ -11,9 +11,9 @@ You need the following prerequisites before you can install Local Source Proxy (
 - Either IaaS-specific trust for Kubernetes service accounts to access the registry, or a secret with
   sufficient privileges to push and pull artifacts from that repository.
 
-- If you are installing Local Source Proxy on a Kubernetes cluster managed by a cloud provider
-  (e.g. EKS, AKS, GKE), ensure that TCP port 5002 is open between control plane nodes and your worker
-  nodes.
+- If you install Local Source Proxy on a Kubernetes cluster that a cloud provider manages
+  (such as EKS, AKS, or GKE), ensure that TCP port 5002 is open between control plane nodes and your
+  worker nodes.
 
 The rest of this topic tells you how to obtain these prerequisites.
 
@@ -97,13 +97,13 @@ Using AWS
     export EKS_CLUSTER_NAME=tap-on-aws  # The name of your Elastic Kubernetes Service Cluster
     ```
 
-  1. Create the repository by running:
+  2. Create the repository by running:
 
     ```console
     aws ecr create-repository --repository-name tap-lsp --region $AWS_REGION
     ```
 
-  1. Output the files, and then use the policy documents to create the IAM roles, by running:
+  3. Output the files, and then use the policy documents to create the IAM roles, by running:
 
     ```console
     export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION \
