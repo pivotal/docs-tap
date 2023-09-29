@@ -3,7 +3,7 @@
 Use this topic to learn additional information about authentication and authorization 
 for Tanzu Application Platform (commonly known as TAP). 
 
-See [Tanzu Application Platform authentication and authorization overview](overview.md) to get started.
+See [Default roles for Tanzu Application Platform overview](overview.md) to get started.
 
 ## <a id='install'></a>Install
 
