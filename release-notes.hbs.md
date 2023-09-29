@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-4'></a> v1.6.4 
- 
-**Release Date**: 10 October 2023 
- 
-### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-6-4'></a> v1.6.4
+
+**Release Date**: 10 October 2023
+
+### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-4-COMPONENT-NAME-fixes'></a> v1.6.4 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -35,50 +35,50 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4759">CVE-2023-4759</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-6-4-resolved-issues'></a> v1.6.4 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-4-resolved-issues'></a> v1.6.4 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-4-COMPONENT-NAME-ri'></a> v1.6.4 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
 
-#### <a id='1-6-4-application-configuration-service-ri'></a> v1.6.4 Resolved issues: Application Configuration Service
+#### <a id='1-6-4-app-config-srvc-ri'></a> v1.6.4 Resolved issues: Application Configuration Service
 
-- Resolves an issue in which client applications that included the spring-cloud-config-client 
-  dependency would fail to start or properly load configuration produced by Application 
-  Configuration Service by including the property spring.cloud.config.enabled=false in ACS produced 
-  Secret resources
-- Sets the Pod Security Context to adhere to the Restricted Pod Security Standard, fixing certain 
-  installation failure scenarios
- 
+- Resolves an issue which caused client applications that include the `spring-cloud-config-client`
+  dependency to fail to start or properly load the configuration that Application Configuration Service
+  produced. The fix is adding the property `spring.cloud.config.enabled=false` in secret resources
+  that Application Configuration Service produced.
+- Resolves some installation failure scenarios by setting the pod security context to adhere to the
+  restricted pod security standard.
+
 ---
- 
-### <a id='1-6-4-known-issues'></a> v1.6.4 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-6-4-known-issues'></a> v1.6.4 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-6-4-COMPONENT-NAME-ki'></a> v1.6.4 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
 
 #### <a id='1-6-4-supply-chain-security-tools-store-ki'></a> v1.6.4 Supply Chain Security Tools - Store
 
 - `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
- 
+
 ### <a id='1-6-4-components'></a> v1.6.4 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
+
+---
 
 ## <a id='1-6-3'></a> v1.6.3
 
