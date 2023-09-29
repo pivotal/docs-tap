@@ -185,7 +185,7 @@ parameters:
 Tasks:
 
 - `jenkins-task`, **required**: This `Task` is one of the tasks that the
-  pipeline runs to trigger the Jenkins job. The Out of the Box Templates** package installs the `tap-tasks` namespace on the cluster.
+  pipeline runs to trigger the Jenkins job. The Out of the Box Templates package installs the `tap-tasks` namespace on the cluster.
 
 Results:
 
