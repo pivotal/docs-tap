@@ -67,8 +67,8 @@ For Tanzu Developer Portal, you must have:
     - GitHub
     - GitLab
     - Azure DevOps
-- Tanzu Developer Portal Blank Catalog from the Tanzu Application section of VMware Tanzu Network.
-  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Developer Portal Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your organization's catalog inside Tanzu Developer Portal.
+- Tanzu Developer Portal Blank Catalog from the Tanzu Application section of VMware Tanzu Network. The Blank Catalog serves as a foundation for your customization, allowing you to populate it with your own content. For more information about formatting your own catalog, see [Catalog operations](tap-gui/catalog/catalog-operations.hbs.md).
+  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Developer Portal Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your organization's catalog inside Tanzu Developer Portal. 
 - The Tanzu Developer Portal catalog allows for two approaches to store catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yaml` file.
@@ -81,7 +81,6 @@ For Tanzu Developer Portal, you must have:
           The PostgreSQL database stores all the catalog data persistently both from the Git locations
           and the UI manual entity registrations. For more information, see
           [Configure the Tanzu Developer Portal database](tap-gui/database.md)
-
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
