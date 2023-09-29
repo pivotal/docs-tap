@@ -61,8 +61,6 @@ After adding the Tanzu Application Platform GUI URL, you can explore the defined
 4. Click `Next` to download the project. If the project is downloaded successfully, the
 `Create` button is enabled and you can now create and open the project.
 
-![Download page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)
-
 ## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Application Platform GUI
 
 If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application
