@@ -40,7 +40,7 @@ of the Knative Serving controller to `debug`:
     EOF
     ```
 
-    To learn more about the Carvel tool `ytt` and how to write overlays, see their [official documentation](https://carvel.dev/ytt/).
+    To learn more about the Carvel tool `ytt` and how to write overlays, see the [ytt documentation](https://carvel.dev/ytt/).
 
 2. Update your `tap-values.yaml` file to add the YAML below. This YAML informs the Tanzu Application Platform about the secret name where the overlay is stored and applies the overlay to the `cnrs` package.
 

@@ -1,6 +1,6 @@
 # Cloud Native Runtimes how-to guides
 
-This topic tells you the how-to guides available for Cloud Native Runtimes (CNRs):
+This topic lists the how-to guides available for Cloud Native Runtimes (CNRs):
 
 - [Configure Cloud Native Runtimes with VMware NSX Advanced Load Balancer](./avi-cnr-integration.hbs.md)
 - [Cloud Native Runtimes for App Operators](./app-operators/index.hbs.md)

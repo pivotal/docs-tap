@@ -70,7 +70,7 @@ To create an example Knative service and use it to test Knative Serving:
     | **Run:**  | ```export EXTERNAL_ADDRESS='localhost:8080'```<br/>And set up port-forwarding in a separate terminal:<br/> ```kubectl -n tanzu<!--฿ The brand is |Tanzu|. ฿-->-system-ingress port-forward svc/envoy 8080:80```|
 
 4. Connect to the app.
-   Verify the URL for the knative service.
+   Verify the URL for the Knative service.
 
    Run:
 
@@ -97,7 +97,7 @@ To create an example Knative service and use it to test Knative Serving:
    curl https://${KSERVICE_HOSTNAME} -k --resolve ${KSERVICE_HOSTNAME}:443:${EXTERNAL_ADDRESS}
    ```
 
-   > **Note** If you configured DNS locally by using `/etc/hosts` or externally, the `--resolve` flag is omitted, 
+   > **Note** If you configured DNS locally by using `/etc/hosts` or externally, the `--resolve` flag is omitted,
    > or you can use a web browser.
 
     On success, you see a reply from our mascot, Carl the Yeti.
