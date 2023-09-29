@@ -65,7 +65,7 @@ for your workload automatically.
 
 #### <a id="custom-issuer"></a> Designate another ingress issuer for your workloads in Cloud Native Runtimes only
 
-You can have a shared ingress issuer at the Tanzu Application Platform’s level and designate another issuer 
+You can have a shared ingress issuer at the Tanzu Application Platform’s level and designate another issuer
 used by Cloud Native Runtimes to issue TLS certificates for your workloads. This allows you to customize TLS settings for
 Cloud Native Runtimes while maintaining a global configuration for other components.
 
@@ -76,7 +76,7 @@ For information about designating another ingress issuer for your workloads, see
 
 #### <a id="replace-shared-issuer"></a> Provide an existing TLS certificate for your workloads in Cloud Native Runtimes
 
-If you manually generated a TLS certificate and want to provide it to Cloud Native Runtimes instead of using an ingress issuer, 
+If you manually generated a TLS certificate and want to provide it to Cloud Native Runtimes instead of using an ingress issuer,
 you can follow the instructions in [Use your existing TLS Certificate for Cloud Native Runtimes](../knative-default-tls.hbs.md).
 
 ### <a id="more-custom-tls"></a> Resources on custom TLS configuration for Cloud Native Runtimes

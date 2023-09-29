@@ -1,6 +1,6 @@
 # Opt out from an ingress issuer and deactivate automatic TLS feature
 
-This topic tells you how to opt out from an ingress issuer and deactivate automatic TLS feature for Cloud Native Runtimes, commonly known as CNR.
+This topic tells you how to opt out from an ingress issuer and deactivate the automatic TLS feature for Cloud Native Runtimes, commonly known as CNR.
 
 ## <a id="deactivate-tls"></a> Deactivate TLS
 

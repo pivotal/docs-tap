@@ -13,8 +13,8 @@ Follow the instructions in this topic if:
 
 Cloud Native Runtimes needs two instances of Contour:
 
-- an instance for exposing services outside the cluster
-- an instance for services that are private in your network
+- An instance for exposing services outside the cluster
+- An instance for services that are private in your network
 
 If installed as part of a Tanzu Application Platform profile,
 by default Cloud Native Runtimes use the Contour instance installed in the
@@ -66,9 +66,9 @@ Where `CONTOUR-NAMESPACE` is the namespace where Contour is installed on your Ku
 ## <a id='install-existing-contour'></a> Install Cloud Native Runtimes on a cluster with your existing Contour instance
 
 To install Cloud Native Runtimes on a cluster with an existing Contour instance,
-you can add values to your `cnr-values.yml` file so that Cloud Native Runtimes uses your Contour instance.
+you can add values to your `cnr-values.yaml` file so that Cloud Native Runtimes uses your Contour instance.
 
-An example of a `cnr-values.yml` file where Cloud Native Runtimes uses the Contour version in a different namespace:
+An example of a `cnr-values.yaml` file where Cloud Native Runtimes uses the Contour version in a different namespace:
 
 ```yaml
 ---
