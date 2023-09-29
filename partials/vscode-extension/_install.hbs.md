@@ -17,47 +17,43 @@ Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Develo
 
 ## <a id="install"></a> Install
 
-The VMware Tanzu Developer Tools for Vscode extension is available either from:
+VMware Tanzu Developer Tools for VS Code is available from:
 
-- [Vscode Marketplace](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools) or
-- [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+- [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
+- [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 
-To install **from Vscode Marketplace** (recommended):
+: Visual Studio Marketplace (recommended)
+To install Visual Studio Marketplace:
 
 1. Open Visual Studio Code.
-1. Open the command palette (Press CTRL-SHIFT-P, or CMD-SHIFT-P on Mac).
-1. In the sarchbox type "Extension".
-1. Select "Extensions: Install Extensions".
-1. The "Extensions" view opens on the left side of your screen.
-1. In the search box type "Tanzu"
-1. Select "Tanzu Developer Tools" and click "Install".
-    ![Exentions View open showing "Tanzu Developer Tools" entry](/docs-tap/images/vscode-install-from-marketplace.png)
+2. Open the command palette.
+3. In the search box enter `Extension`.
+4. Click **Extensions: Install Extensions**.
+5. The **Extensions** view opens on the left side of your screen. In the search box enter `Tanzu`.
+6. Click **Tanzu Developer Tools** and then click **Install**.
 
-To install **from Tanzu Network** (deprecated):
+: VMware Tanzu Network
+To install from VMware Tanzu Network:
 
-1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio Code](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+1. Sign in to VMware Tanzu Network and
+   [download Tanzu Developer Tools for VS Code](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 2. Open VS Code.
-3. Press cmd+shift+P to open the Command Palette and run `Extensions: Install from VSIX...`.
-
-    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](/docs-tap/images/vscode-install1v2.png)
-
-4. Select the extension file **tanzu-vscode-extension.vsix**.
+3. From the command palette run `Extensions: Install from VSIX...`.
+4. Click the extension file `tanzu-vscode-extension.vsix`.
 5. If you do not have the following extensions, and they do not automatically install, install them
-   from VS Code Marketplace:
+   from Visual Studio Marketplace:
 
-    - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
-    - [Language Support for Java(™) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
-    - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+   - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
+   - [Language Support for Java(™) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
+   - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 
-6. Ensure Language Support for Java is running in
+6. Go to **Code** > **Preferences** > **Settings** > **Java** > **Server: Launch Mode** and verify
+   that Language Support for Java is running in
    [Standard Mode](https://code.visualstudio.com/docs/java/java-project#_lightweight-mode).
-   You can configure it in the **Settings** menu by going to **Code** > **Preferences** >
-   **Settings** under **Java > Server: Launch Mode**.
 
-    ![The VS Code settings open to the Extensions angle bracket Java section, highlighting the option Java angle bracket Server: Launch Mode with that option changed to Standard](/docs-tap/images/vscode-install4.png)
-
-    When the JDK and Language Support for Java are configured correctly, you see that the integrated
-    development environment creates a directory target where the code is compiled.
+   When the Java Development Kit and Language Support for Java are configured correctly, you
+   can see that the integrated development environment creates a directory target where the code is
+   compiled.
 
 ## <a id="configure"></a> Configure
 

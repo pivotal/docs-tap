@@ -18,28 +18,28 @@ Before installing the extension, you must have:
 
 ## <a id="install"></a> Install
 
-The VMware Tanzu Developer Tools for IntelliJ extension is available either from:
+The VMware Tanzu Developer Tools for IntelliJ extension is available from:
 
-- [IntelliJ marketplace](https://plugins.jetbrains.com/plugin/21823-tanzu-developer-tools) or
+- [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/21823-tanzu-developer-tools) or
 - [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
-To install **from IntelliJ markerplace**:
+: JetBrains Marketplace
+To install from JetBrains Marketplace:
 
 1. Open IntelliJ.
-1. Open the command pallette (Press SHIFT-SHIFT) and type and "Plugins", then select "Plugins".
-1. "Plugins Settings" dialog opens, in it, select the "Marketplace" tab.
-1. In the search box type "Tanzu"
-![Tanzu Developer Tools entry in Marketplace Dialog](../images/intellij-install-from-marketplace.png)
-1. Select "Tanzu Developers Tools" and click "Install". 
+2. Open the command palette, enter `Plugins`, and then click **Plugins**.
+3. Select the **Marketplace** tab in the **Plugins Settings** dialog box.
+4. In the search box enter `Tanzu`.
+5. Click **Tanzu Developers Tools** and then click **Install**.
 
-To install **from Tanzunet**:
+: VMware Tanzu Network
+To install VMware Tanzu Network:
 
-1. Download VMware Tanzu Developer Tools for IntelliJ from the [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-1. Open IntelliJ.
-1. Open the **Preferences** pane and then go to **Plugins**.
-1. Click the gear icon and then click **Install Plugin from disk...**.
-![Gear icon inside the Plugins Preferences pane.](../images/intellij-install.png)
-1. Use the file picker to select the ZIP file downloaded from the VMware Tanzu Network.
+1. Download VMware Tanzu Developer Tools for IntelliJ from [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+2. Open IntelliJ.
+3. Open the **Preferences** pane and then click **Plugins**.
+4. Click the gear icon and then click **Install Plugin from disk...**.
+5. Within the file picker click the ZIP file you downloaded from VMware Tanzu Network.
 
 ## <a id="update"></a> Update
 
