@@ -22,7 +22,7 @@ VMware Tanzu Developer Tools for VS Code is available from:
 - [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=vmware.tanzu-dev-tools)
 - [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 
-Visual Studio Marketplace (recommended)
+Visual Studio Marketplace
 : To install Visual Studio Marketplace:
 
    1. Open Visual Studio Code.
@@ -32,7 +32,7 @@ Visual Studio Marketplace (recommended)
    5. The **Extensions** view opens on the left side of your screen. In the search box enter `Tanzu`.
    6. Click **Tanzu Developer Tools** and then click **Install**.
 
-VMware Tanzu Network
+VMware Tanzu Network (deprecated)
 : To install from VMware Tanzu Network:
 
    1. Sign in to VMware Tanzu Network and
