@@ -25,35 +25,35 @@ VMware Tanzu Developer Tools for VS Code is available from:
 Visual Studio Marketplace (recommended)
 : To install Visual Studio Marketplace:
 
-1. Open Visual Studio Code.
-2. Open the command palette.
-3. In the search box enter `Extension`.
-4. Click **Extensions: Install Extensions**.
-5. The **Extensions** view opens on the left side of your screen. In the search box enter `Tanzu`.
-6. Click **Tanzu Developer Tools** and then click **Install**.
+   1. Open Visual Studio Code.
+   2. Open the command palette.
+   3. In the search box enter `Extension`.
+   4. Click **Extensions: Install Extensions**.
+   5. The **Extensions** view opens on the left side of your screen. In the search box enter `Tanzu`.
+   6. Click **Tanzu Developer Tools** and then click **Install**.
 
 VMware Tanzu Network
 : To install from VMware Tanzu Network:
 
-1. Sign in to VMware Tanzu Network and
-   [download Tanzu Developer Tools for VS Code](https://network.tanzu.vmware.com/products/tanzu-application-platform).
-2. Open VS Code.
-3. From the command palette run `Extensions: Install from VSIX...`.
-4. Click the extension file `tanzu-vscode-extension.vsix`.
-5. If you do not have the following extensions, and they do not automatically install, install them
-   from Visual Studio Marketplace:
+   1. Sign in to VMware Tanzu Network and
+      [download Tanzu Developer Tools for VS Code](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+   2. Open VS Code.
+   3. From the command palette run `Extensions: Install from VSIX...`.
+   4. Click the extension file `tanzu-vscode-extension.vsix`.
+   5. If you do not have the following extensions, and they do not automatically install, install
+      them from Visual Studio Marketplace:
 
-   - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
-   - [Language Support for Java(™) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
-   - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+      - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
+      - [Language Support for Java(™) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
+      - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 
-6. Go to **Code** > **Preferences** > **Settings** > **Java** > **Server: Launch Mode** and verify
-   that Language Support for Java is running in
-   [Standard Mode](https://code.visualstudio.com/docs/java/java-project#_lightweight-mode).
+   6. Go to **Code** > **Preferences** > **Settings** > **Java** > **Server: Launch Mode** and verify
+      that Language Support for Java is running in
+      [Standard Mode](https://code.visualstudio.com/docs/java/java-project#_lightweight-mode).
 
-   When the Java Development Kit and Language Support for Java are configured correctly, you
-   can see that the integrated development environment creates a directory target where the code is
-   compiled.
+      When the Java Development Kit and Language Support for Java are configured correctly, you
+      can see that the integrated development environment creates a directory target where the code is
+      compiled.
 
 ## <a id="configure"></a> Configure
 

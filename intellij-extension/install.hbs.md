@@ -26,20 +26,21 @@ The VMware Tanzu Developer Tools for IntelliJ extension is available from:
 JetBrains Marketplace
 : To install from JetBrains Marketplace:
 
-1. Open IntelliJ.
-2. Open the command palette, enter `Plugins`, and then click **Plugins**.
-3. Select the **Marketplace** tab in the **Plugins Settings** dialog box.
-4. In the search box enter `Tanzu`.
-5. Click **Tanzu Developers Tools** and then click **Install**.
+   1. Open IntelliJ.
+   2. Open the command palette, enter `Plugins`, and then click **Plugins**.
+   3. Select the **Marketplace** tab in the **Plugins Settings** dialog box.
+   4. In the search box enter `Tanzu`.
+   5. Click **Tanzu Developers Tools** and then click **Install**.
 
 VMware Tanzu Network
 : To install VMware Tanzu Network:
 
-1. Download VMware Tanzu Developer Tools for IntelliJ from [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-2. Open IntelliJ.
-3. Open the **Preferences** pane and then click **Plugins**.
-4. Click the gear icon and then click **Install Plugin from disk...**.
-5. Within the file picker click the ZIP file you downloaded from VMware Tanzu Network.
+   1. Download VMware Tanzu Developer Tools for IntelliJ from
+      [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+   2. Open IntelliJ.
+   3. Open the **Preferences** pane and then click **Plugins**.
+   4. Click the gear icon and then click **Install Plugin from disk...**.
+   5. Within the file picker click the ZIP file you downloaded from VMware Tanzu Network.
 
 ## <a id="update"></a> Update
 
