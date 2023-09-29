@@ -32,8 +32,6 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     2. Select the extension file **tanzu-app-accelerator-<EXTENSION_VERSION>.vsix**.
 
-        ![The Command palette is open and Extensions: Install from VSIX appears in the drop-down menu.](../images/vscode-install1v2.png)
-
     **Option 2:**
 
     3. Select the **Extensions** tab: ![Shows the extensions tab icon.](../images/vscode-install2.png)
