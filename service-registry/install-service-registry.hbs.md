@@ -5,9 +5,10 @@ This topic tells you how to install Service Registry from the Tanzu Application 
 
 ## <a id='prereqs'></a> Prerequisites
 
-Before installing Service Registry, complete all the prerequisites to install
-Tanzu Application Platform. For more information, see
-[Prerequisites for installing Tanzu Application Platform](../prerequisites.hbs.md).
+Before installing Service Registry, you must:
+
+- Fulfill all [prerequisites for installing Tanzu Application Platform](../prerequisites.hbs.md)
+- [Install Cert Manager](../cert-manager/install.hbs.md)
 
 ## <a id='install'></a> Install
 
