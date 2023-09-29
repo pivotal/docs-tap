@@ -43,6 +43,12 @@ This extension gives the following features:
   For more information about a typical monorepo setup, see
   [Working with microservices in a monorepo](using-the-extension.hbs.md#mono-repo).
 
+- **Connect to a Sandbox Cluster:**
+
+  You can connect to a TAP Sandbox instance from your Tanzu Developer tools IDE extensions to 
+  try TAP and see its benefits. Please refer [these instructions](https://tanzu.academy/guides/developer-sandbox) 
+  to spin up TAP Sandbox and connect to it from your IDE.
+
 {{> 'partials/ide-extensions/no-ootb-basic-variation' }}
 
 ## <a id="next-steps"></a> Next steps
