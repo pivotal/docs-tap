@@ -1,22 +1,21 @@
 # Kubernetes service account autoconfiguration
 
-This site is giving an overview about the resources that get created for the convenience feature of kubernetes service account autoconfiguration for AMR authentication and authorization. It will help you nderstand which resource play a role in the default configuration and where to look at in case issues arise. If you need a more deep understanding of the resources and if you are in need to set up these resources on your own, for example if you use means to manage your service accounts or have other requirements related to roles and bindings head over to [User-defined kubernetes service account configuration](auth-k8s-sa-user-defined.hbs.md)
+This site gives an overview of the resources created for the convenience feature of kubernetes service account autoconfiguration for AMR authentication and authorization. It will help you understand which resource plays a role in the default configuration and where to look in case issues arise. If you need a deeper understanding of the resources and if you are in need to set up these resources on your own, for example, if you use means to manage your service accounts or have other requirements related to roles and bindings head over to [User-defined kubernetes service account configuration](scst-store/amr/auth-k8s-sa-user-defined.hbs.md)
 
-All of the package-level configuration is prefixed with a component top level key (TLK) and can also be inflenced by certain TAP level configuration, which will be mentioned in the seperate sections.
+All package-level configurations are prefixed with a component top level key (TLK) and can also be influenced by certain TAP level configurations, which will be mentioned in the separate sections.
 
 
 ## Observer
 
-Observer configuration in the TAP context is prefixed with the TLK `amr.observer`.
-For authentication and authorization the TAP profiles will influence autconfiguration. Observer can only autoconfigure itself when colocated with the cloudevent handler, which is currently defined as being in `full` or `view` profile. If this is not the case `auth.kubernetes_service_accounts.autoconfigure` will be set to false at install time.
+Observer configuration in the TAP context is prefixed with the TLK `amr.observer`. 
+For authentication and authorization, the TAP profiles will influence autoconfiguration. The observer can only autoconfigure itself when colocated with the cloudevent handler, which is currently defined as being in `full` or `view` profile. If this is not the case `auth.kubernetes_service_accounts.autoconfigure` will be set to false at install time.
 
-On the package level, if `auth.kubernetes_service_accounts.enable` and `auth.kubernetes_service_accounts.autoconfigure` are true, the observer package will create the following resources to set up authentication automatically in namespace `amr-observer-system`:
+On the package level, if `auth.kubernetes_service_accounts.enable` and `auth.kubernetes_service_accounts.autoconfigure` are true, the observer package will create the following resources to set up authentication automatically in the namespace `amr-observer-system`:
 
 * a `ServiceAccount` named `amr-observer-editor` that observer will use to send requests to the cloudevent handler
 * a `Secret` named `amr-observer-edit-token` of type `kubernetes.io/service-account-token` which will generate a long-lived token for the service account
 * a `ClusterRole` named `tanzu:amr:observer:edit` defining the necessary `update` permissons for all resources in `cloudevents.amr.apps.tanzu.vmware.com`
 * a `ClusterRoleBinding` named `tanzu:amr:observer:editor` binding the defined role to the service account
-
 
 
 ## Cloudevent handler
@@ -27,7 +26,7 @@ On the package level, if `amr.cloudevent_handler.auth.kubernetes_service_account
 
 * a `ServiceAccount` named `amr-cloudevent-handler-editor` that clients will use to send requests to the cloudevent handler
 * a `Secret` named `amr-cloudevent-handler-edit-token` of type `kubernetes.io/service-account-token` which will generate a long-lived token for the service account
-* a `ClusterRole` named `tanzu:amr:cloudevent-handler:edit` defining the necessary `update` permissons for all resources in `cloudevents.amr.apps.tanzu.vmware.com`
+* a `ClusterRole` named `tanzu:amr:cloudevent-handler:edit` defining the necessary `update` permissions for all resources in `cloudevents.amr.apps.tanzu.vmware.com`
 * a `ClusterRoleBinding` named `tanzu:amr:cloudevent-handler:editor` binding the defined role to the service account
 
 
