@@ -69,10 +69,7 @@ go to the review step.
 
    > Note: This is an optional step, the values can be left blank if a repository isn't required.
 
-5. Click `Next` to download the project. If the project is downloaded successfully, the
-   `Create` button is enabled and you can now create and open the project.
-
-![Download page is open.](../images/app-accelerator/intellij/app-accelerators-intellij-create.png)
+5. Click `Next` to download the project. If the project is downloaded successfully, the `Create` button is enabled and you can now create and open the project.
 
 ## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Developer Portal
 
