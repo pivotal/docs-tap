@@ -30,12 +30,12 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     - `NAME` is the name of the CR you want to debug.
     - `NAMESPACE` is the namespace associated with the CR you want to debug.
 
-1. Find the generated SCGRC and SCGM resource associated to a specific APIDescriptor CR from curation.
+1. Find the generated SCGRC and SCGM resource associated with a specific APIDescriptor CR from curation.
 
-    The generated SCG resources will be placed in the same namespace as the CuratedAPIDescriptor,
-    and the generated name is prefixed with the name of CuratedAPIDescriptor.
+    The generated SCG resources are placed in the same namespace as the CuratedAPIDescriptor,
+    and the generated name has a prefix with the name of the CuratedAPIDescriptor.
     To see which APIDescriptor the resource was generated for,
-    you may list generated SCG resources with additional labels as follows:
+    you may list generated SCG resources with additional labels by running:
 
     ```console
     kubectl get scgrc -A -L apis.apps.tanzu.vmware.com/api-descriptor-name -L apis.apps.tanzu.vmware.com/api-descriptor-namespace

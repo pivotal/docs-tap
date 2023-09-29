@@ -49,8 +49,8 @@ understand the impact:
 
 | Capability with SCG v2.1.0 and later | Behavior before SCG v2.1.0 |
 | --- | --- |
-| The default value `scg_openapi_service_url` is sufficient if using the default SCG installation. | You must overwrite the value `scg_openapi_service_url` with `http://scg-operator.tap-install.svc.cluster.local` if using the default SCG installation. |
-| Matching SCG updates API metadata automatically and the generated OpenAPI specifications reflect the metadata. | API metadata annotations are added or updated, but the API specifications exposed from SCG OpenAPI endpoint do not reflect that. |
+| The default value `scg_openapi_service_url` is sufficient if using the default SCG installation | You must overwrite the value `scg_openapi_service_url` with `http://scg-operator.tap-install.svc.cluster.local` if using the default SCG installation. |
+| Matching SCG updates API metadata automatically and the generated OpenAPI specifications reflect the metadata | API metadata annotations are added or updated, but the API specifications exposed from SCG OpenAPI endpoint do not reflect that. |
 
 ### <a id='create-scg'></a>Create SpringCloudGateway resource
 
@@ -101,7 +101,7 @@ cluster you choose. Specify all the required fields for an CuratedAPIDescriptor 
 
 For information about CuratedAPIDescriptors, see [CuratedAPIDescriptor explained](./key-concepts.hbs.md#curated-api-descriptor).
 
-You may view the readiness of the applied CuratedAPIDescriptors:
+You can view the readiness of the applied CuratedAPIDescriptors by running:
 
 ```console
 kubectl get curatedapidescriptors -A
