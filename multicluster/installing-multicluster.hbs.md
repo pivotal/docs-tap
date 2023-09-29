@@ -36,7 +36,7 @@ To install the View cluster:
 
 1. Follow the steps described in [Installing the Tanzu Application Platform package and profiles](../install-online/profile.hbs.md) by using a reduced values file as shown in [View profile](reference/tap-values-view-sample.md).
 2. Verify that you can access Tanzu Developer Portal by using the ingress that you set up. The address must follow this format: `https://tap-gui.INGRESS-DOMAIN`, where `INGRESS-DOMAIN` is the DNS domain you set in `shared.ingress_domain` which points to the shared Contour installation in the `tanzu-system-ingress` namespace with the service `envoy`.
-3. Deploy Supply Chain Security Tools (SCST) - Store. See [Multicluster setup](../scst-store/multicluster-setup.hbs.md) for more information.
+3. Follow the steps to configure Supply Chain Security Tools - Store in a [multicluster setup](../scst-store/multicluster-setup.hbs.md).
 
 ## <a id='install-build'></a> Install Build clusters
 
