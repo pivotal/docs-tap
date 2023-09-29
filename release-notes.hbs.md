@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-5-6'></a> v1.5.6 
- 
-**Release Date**: 10 October 2023 
- 
-### <a id='1-5-6-security-fixes'></a> v1.5.6 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-5-6'></a> v1.5.6
+
+**Release Date**: 10 October 2023
+
+### <a id='1-5-6-security-fixes'></a> v1.5.6 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-5-6-COMPONENT-NAME-fixes'></a> v1.5.6 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -36,46 +36,46 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20863">CVE-2023-20863</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-5-6-resolved-issues'></a> v1.5.6 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-5-6-resolved-issues'></a> v1.5.6 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-5-6-COMPONENT-NAME-ri'></a> v1.5.6 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
 
-#### <a id='1-5-6-application-configuration-service-ri'></a> v1.5.6 Resolved issues: Application Configuration Service
- 
-- Resolves an issue in which client applications that included the spring-cloud-config-client 
-  dependency would fail to start or properly load configuration produced by Application 
-  Configuration Service by including the property spring.cloud.config.enabled=false in ACS produced 
-  Secret resources
-- Sets the Pod Security Context to adhere to the Restricted Pod Security Standard, fixing certain 
-  installation failure scenarios
- 
+#### <a id='1-5-6-app-config-srvc-ri'></a> v1.5.6 Resolved issues: Application Configuration Service
+
+- Resolves an issue which caused client applications that include the `spring-cloud-config-client`
+  dependency to fail to start or properly load the configuration that Application Configuration Service
+  produced. The fix is adding the property `spring.cloud.config.enabled=false` in secret resources
+  that Application Configuration Service produced.
+- Resolves some installation failure scenarios by setting the pod security context to adhere to the
+  restricted pod security standard.
+
 ---
- 
-### <a id='1-5-6-known-issues'></a> v1.5.6 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-5-6-known-issues'></a> v1.5.6 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-5-6-COMPONENT-NAME-ki'></a> v1.5.6 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-5-6-components'></a> v1.5.6 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
+
+---
 
 ## <a id='1-5-5'></a> v1.5.5
 
