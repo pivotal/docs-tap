@@ -75,7 +75,7 @@ Use the following procedure to examine logs:
 
 Follow these steps to identify and resolve the problem of the cloud provider not supporting services of type `LoadBalancer`:
 
-1. Search the log output for `Load balancer`, for example by running:
+1. Search the log output for `Load balancer`, for example, by running:
 
     ```console
     kubectl -n cloud-native-runtimes get app cloud-native-runtimes -ojsonpath="{.status.deploy.stdout}" | grep "Load balancer" -C 1
@@ -194,7 +194,7 @@ However, changing the app name to `foo-jav` causes `foo-jav-contour-<some differ
 
 ### Symptom
 
-When creating a Knative Service, it does not reach ready status. The Knative Service has the status  `CertificateNotReady`. 
+When creating a Knative Service, it does not reach ready status. The Knative Service has the status  `CertificateNotReady`.
 When you verify the status of the `kcert` resource that belongs to the Knative Service you see a message like this:
 
 ```console
@@ -236,7 +236,7 @@ You can use this option to shorten the template, either by shortening one of the
 \{{.Name}}.\{{slice .Namespace 0 3}}.\{{.Domain}}
 ```
 
-> **Note:** Knative was not designed with shortening the name or namespace in mind. Due to a quirk in Knative's domain template validation, you can only slice up to a max of 3 characters.
+> **Note** Knative was not designed with shortening the name or namespace in mind. Due to a quirk in Knative's domain template validation, you can only slice up to a maximum of three characters.
 
 Or by removing a field altogether:
 

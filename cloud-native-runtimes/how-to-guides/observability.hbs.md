@@ -48,7 +48,7 @@ To configure logging with Fluent Bit for your Cloud Native Runtimes environment:
 1. VMware recommends that you add any integrations to the `ConfigMap` in your Knative Serving namespace. Follow the logging configuration steps in the Fluent Bit documentation to create the `Namespace`, `ServiceAccount`, `Role`, `RoleBinding`, and `ConfigMap`. To view these steps, see the [Fluent Bit documentation](https://docs.fluentbit.io/manual/installation/kubernetes#installation).
 
 2. If you are using TMC, vSphere with Tanzu, or Tanzu Kubernetes Cluster
-   to manage your cloud native environment, create a role binding in the Kubernetes namespace
+   to manage your cloud-native environment, create a role binding in the Kubernetes namespace
    where your integration is deployed to grant permission for privileged Fluent Bit containers.
    For information about creating a role binding on a Tanzu platform,
    see [Add a Role Binding](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-DBC3FF6D-F206-4047-8F21-ED8154A7537D.html).
@@ -85,7 +85,7 @@ To configure logging with Fluent Bit for your Cloud Native Runtimes environment:
     kubectl port-forward --namespace logging service/log-collector 8080:80
     ```
 
-    For more information about accessing Fluent Bit logs, see the[Knative documentation](https://knative.dev/docs/install/collecting-logs/).
+    For more information about accessing Fluent Bit logs, see the [Knative documentation](https://knative.dev/docs/install/collecting-logs/).
 
 ### <a id='forward'></a> Forward Logs to vRealize
 
@@ -158,7 +158,7 @@ You can send trace data to an observability and analytics platform such as
 VMware Aria Operations for Applications to view and monitor your trace data in
 dashboards. VMware Aria Operations for Applications offers several deployment
 options. During development, a single proxy is often sufficient for all data
-sources. for
+sources. For
 more information about other deployment options, see the [Wavefront documentation](https://docs.wavefront.com/proxies.html#proxy-deployment-options).
 
 To configure Cloud Native Runtimes to send traces to the Wavefront proxy and
@@ -167,7 +167,7 @@ then, configure the Wavefront proxy to consume Zipkin spans:
 1. Deploy the Wavefront Proxy.
    For more information about Wavefront proxies, see [Install and Manage Wavefront Proxies](https://docs.wavefront.com/proxies_installing.html).
 
-2. Configure the namespace where the Wavefront Proxy was deployed with proper credentials to its image registry.
+2. Configure the namespace where the Wavefront Proxy was deployed with proper credentials to its container image registry.
 
    The following example uses the Namespace Provisioner package to automatically configure namespaces labeled with `apps.tanzu.vmware.com/tap-ns`.
 
@@ -191,7 +191,7 @@ then, configure the Wavefront proxy to consume Zipkin spans:
    - `WF_REGISTRY_USERNAME` is your user name to access the image registry to pull the Wavefront Proxy image.
    - `WF_REGISTRY_PASSWORD` is your password to access the image registry to pull the Wavefront Proxy image.
 
-   For more information about how to set up developer namespaces, see [Provision developer Namespace](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/namespace-provisioner-provision-developer-ns.html).
+   For more information about how to set up developer namespaces, see [Provision developer namespaces](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/namespace-provisioner-provision-developer-ns.html).
 
 3. Configure the Wavefront Proxy to allow Zipkin/Istio traces.
 
@@ -201,7 +201,7 @@ then, configure the Wavefront proxy to consume Zipkin spans:
 
 4. Confirm that the Wavefront Proxy is running and working.
 
-   Verify if pods are running. For more information about how to test a proxy, see the [Wavefront documentation](https://docs.wavefront.com/proxies_installing.html#test-a-proxy).
+   Verify that pods are running. For more information about how to test a proxy, see the [Wavefront documentation](https://docs.wavefront.com/proxies_installing.html#test-a-proxy).
 
    ```console
    kubectl get pods -n ${WF_NAMESPACE}

@@ -20,7 +20,7 @@ To configure TLS for Cloud Native Runtimes, you must first configure a Service D
 
 To configure your TLS certificate for the created Knative Services, follow the steps:
 
-1. Create a Kubernetes Secret to hold your TLS Certificate:
+1. Create a Kubernetes secret to hold your TLS Certificate:
 
     ```console
     kubectl create -n DEVELOPER-NAMESPACE secret tls SECRET_NAME \
