@@ -1,1 +1,0 @@
-# Configuring AMR Observer with the Cloudevent handler service account access token 
