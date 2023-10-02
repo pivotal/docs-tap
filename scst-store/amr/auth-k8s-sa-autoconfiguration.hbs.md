@@ -20,7 +20,7 @@ On the package level, if `auth.kubernetes_service_accounts.enable` and `auth.kub
 
 ## Cloudevent handler
 
-Cloudevent handler configuration in the TAP context can be found under the TLK `metadata_store.cloudevent_handler`. The `metadata_store` prefix is stripped during the transformation to package level configurations.
+Cloudevent handler configuration in the TAP context can be found under the TLK `amr.cloudevent_handler`. The `amr` prefix is stripped during the transformation to package level configurations.
 
 On the package level, if `cloudevent_handler.auth.kubernetes_service_accounts.enable` and `cloudevent_handler.auth.kubernetes_service_accounts.autoconfigure` are true, the package will create the following resources to set up authentication automatically in namespace `metadata-store`:
 
@@ -32,7 +32,7 @@ On the package level, if `cloudevent_handler.auth.kubernetes_service_accounts.en
 
 ## GraphQL handler
 
-GraphQL configuration in the TAP context can be found under the TLK `metadata_store.graphql`. The `metadata_store` prefix is stripped during the transformation to package level configurations.
+GraphQL configuration in the TAP context can be found under the TLK `amr.graphql`. The `amr` prefix is stripped during the transformation to package level configurations.
 
 On the package level, if `graphql.auth.kubernetes_service_accounts.enable` and `graphql.auth.kubernetes_service_accounts.autoconfigure` are true, the package will create the following resources to set up authentication automatically in namespace `metadata-store`:
 
