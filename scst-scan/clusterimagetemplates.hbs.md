@@ -166,13 +166,13 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
     - `registry-server` is the registry server.
     - `registry-repository` is the registry repository.
 
->**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the resource being scanned.
+>**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
 
 1. Edit the following in your `custom-ivs-template.yaml` file:
    - `.metadata.name` is the name of your ClusterImageTemplate.
    - `registry-server` and `registry-repository` refer to your registry.
    - The location of your Trivy scanner image
-   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name that will be reported in the Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
+   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
 2. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
 

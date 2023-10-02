@@ -36,7 +36,7 @@ deployed on, like clusters. It stores data using:
 The `Containers` data model includes information about a container, like runtime
 information about an image. The Observer sends this information to the Cloud
 Event Handler. Each entry represents the state of the container when an event
-occurred, such as when a container is running or terminated. This lets you see the
+occurred, such as when a container runs or stops. This lets you see the
 history of your containers.
 
 Each `Container` data entry stores information about the associated deployment
