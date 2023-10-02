@@ -39,10 +39,11 @@ The extension has the following features:
   This enables developers to connect to a pre-configured development container that includes all
   Tanzu tools and IDE extensions required for development on Tanzu pre-installed.
 
-- **Connect to a Sandbox Cluster:**
+- **Connect to a sandbox cluster:**
 
-  You can connect to a TAP Sandbox instance from your Tanzu Developer tools IDE extensions to 
-  try TAP and see its benefits. Please refer [these instructions](https://tanzu.academy/guides/developer-sandbox) 
-  to spin up TAP Sandbox and connect to it from your IDE.
+  You can connect to a Tanzu Application Platform sandbox instance from
+  Tanzu Developer Tools for VS Code to try Tanzu Application Platform and see its benefits.
+  To use Developer Sandbox and connect to it from your IDE, see the
+  [Tanzu Academy](https://tanzu.academy/guides/developer-sandbox) website.
 
 {{> 'partials/ide-extensions/no-ootb-basic-variation' }}
