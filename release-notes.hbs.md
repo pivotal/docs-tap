@@ -354,14 +354,6 @@ This release has the following security fixes, listed by component and area.
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-5-4-app-config-srvc-ki'></a> v1.5.4 Known issues: Application Configuration Service
-
-- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
-  properly load the configuration that Application Configuration Service produced.
-
-- Installation might fail because the pod security context does not perfectly adhere to the
-  restricted pod security standard.
-
 #### <a id='1-5-4-tap-ki'></a> v1.5.4 Known issues: Tanzu Application Platform
 
 - Upgrading from Tanzu Application Platform v1.4 to v1.5 sometimes causes temporary failures that
@@ -434,15 +426,7 @@ This release has the following security fixes, listed by component and area.
 
 ### <a id='1-5-3-known-issues'></a> v1.5.3 Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-5-3-app-config-srvc-ki'></a> v1.5.3 Known issues: Application Configuration Service
-
-- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
-  properly load the configuration that Application Configuration Service produced.
-
-- Installation might fail because the pod security context does not perfectly adhere to the
-  restricted pod security standard.
+This release introduces no new known issues.
 
 ---
 
@@ -527,15 +511,7 @@ The following issues, listed by component and area, are resolved in this release
 
 ### <a id='1-5-2-known-issues'></a> v1.5.2 Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-5-2-app-config-srvc-ki'></a> v1.5.2 Known issues: Application Configuration Service
-
-- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
-  properly load the configuration that Application Configuration Service produced.
-
-- Installation might fail because the pod security context does not perfectly adhere to the
-  restricted pod security standard.
+This release introduces no new known issues.
 
 ---
 
@@ -654,14 +630,6 @@ The following issues, listed by component and area, are resolved in this release
 ### <a id='1-5-1-known-issues'></a> v1.5.1 Known issues
 
 This release has the following known issues, listed by component and area.
-
-#### <a id='1-5-1-app-config-srvc-ki'></a> v1.5.1 Known issues: Application Configuration Service
-
-- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
-  properly load the configuration that Application Configuration Service produced.
-
-- Installation might fail because the pod security context does not perfectly adhere to the
-  restricted pod security standard.
 
 #### <a id='1-5-1-scst-scan-ki'></a> v1.5.1 Known issues: Supply Chain Security Tools (SCST) - Scan
 
@@ -1198,14 +1166,6 @@ This release has the following known issues, listed by area and component.
 
 - Users cannot update their APIs through API Auto Registration due to an issue with the ID used to retrieve APIs.
   This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
-
-#### <a id='1-5-0-app-config-srvc-ki'></a> v1.5.0 Known issues: Application Configuration Service
-
-- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
-  properly load the configuration that Application Configuration Service produced.
-
-- Installation might fail because the pod security context does not perfectly adhere to the
-  restricted pod security standard.
 
 #### <a id='1-5-0-bitnami-services-ki'></a> v1.5.0 Known issues: Bitnami Services
 
