@@ -45,7 +45,7 @@ To install the API Auto Registration package:
       apis.apps.tanzu.vmware.com  0.2.0        2022-11-24 12:20:00 -0500 -05
     ```
 
-1. (Optional) Gather values schema.
+1. Optional: Gather values schema.
 
     Display values schema of the package:
 
@@ -58,23 +58,28 @@ To install the API Auto Registration package:
     For example:
 
     ```console
-    tanzu package available get apis.apps.tanzu.vmware.com/0.2.2 --values-schema --namespace tap-install
+    tanzu package available get apis.apps.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
 
-    Retrieving package details for apis.apps.tanzu.vmware.com/0.2.2...
-    KEY                        DEFAULT                                       TYPE     DESCRIPTION
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS.
-    ingress_issuer                                                           string   Optional: Name of the default cluster issuer used to generate certificates
-    auto_generate_cert         true                                          boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified
-    connections with a custom CA
-    cluster_name               dev                                           string   Name of the cluster used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
-    sync_period                5m                                            string   Time period used for reconciling an APIDescriptor.
-    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI.
-    replicas                   1                                             integer  Number of controller replicas to deploy.
-    resources.limits.cpu       500m                                          string   CPU limit of the controller.
-    resources.limits.memory    500Mi                                         string   Memory limit of the controller.
-    resources.requests.cpu     20m                                           string   CPU request of the controller.
-    resources.requests.memory  100Mi                                         string   Memory request of the controller.
-    logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
+    Retrieving package details for apis.apps.tanzu.vmware.com/0.4.0...
+    KEY                                                          DEFAULT                                                            TYPE     DESCRIPTION
+    ca_cert_data                                                                                                                    string   Optional: PEM-encoded certificate data for the controller to trust TLS.
+    ingress_issuer                                                                                                                  string   Optional: Name of the default cluster issuer used to generate certificates
+    auto_generate_cert                                           true                                                               boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified connections with a custom CA
+    cluster_name                                                 dev                                                                string   Name of the cluster used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
+    route_provider.spring_cloud_gateway.enabled                  false                                                              boolean  Flag that indicates if VMware Spring Cloud Gateway for Kubernetes is supported as route provider
+    route_provider.spring_cloud_gateway.scg_openapi_service_url  http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local  string   FQDN URL for SCG operator openapi conversion service
+    sync_period                                                  5m                                                                 string   Time period used for reconciling an APIDescriptor
+    cluster_name                                                 dev                                                                string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
+    curated_api_server.port                                      8082                                                               integer
+    curated_api_server.service_type                              ClusterIP                                                          string
+    sync_period                                                  5m                                                                 string   Time period used for reconciling an APIDescriptor.
+    tap_gui_url                                                  http://server.tap-gui.svc.cluster.local:7000                       string   FQDN URL for TAP GUI.
+    replicas                                                     1                                                                  integer  Number of controller replicas to deploy.
+    resources.limits.cpu                                         500m                                                               string   CPU limit of the controller.
+    resources.limits.memory                                      500Mi                                                              string   Memory limit of the controller.
+    resources.requests.cpu                                       20m                                                                string   CPU request of the controller.
+    resources.requests.memory                                    100Mi                                                              string   Memory request of the controller.
+    logging_profile                                              production                                                         string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
 2. Locate the Tanzu Developer Portal (formerly Tanzu Application Platform GUI) URL.
@@ -94,7 +99,7 @@ To install the API Auto Registration package:
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
     ```
 
-3. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
+3. Optional: VMware recommends creating `api-auto-registration-values.yaml`.
 
     To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml`
     file:
