@@ -1167,6 +1167,14 @@ This release has the following known issues, listed by area and component.
 - Users cannot update their APIs through API Auto Registration due to an issue with the ID used to retrieve APIs.
   This issue causes errors in the API Descriptor CRD similar to the following: `Unable to find API entity's uid within TAP GUI. Retrying the sync`.
 
+#### <a id='1-5-0-app-config-srvc-ki'></a> v1.5.0 Known issues: Application Configuration Service
+
+- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
+  properly load the configuration that Application Configuration Service produced.
+
+- Installation might fail because the pod security context does not perfectly adhere to the
+  restricted pod security standard.
+
 #### <a id='1-5-0-bitnami-services-ki'></a> v1.5.0 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
