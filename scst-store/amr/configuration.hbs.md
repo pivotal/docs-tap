@@ -55,11 +55,11 @@ Configuration options:
 
 - `amr.observer.resync_period`
   - Default: "10h"
-  - `resync_period` determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
+  - `resync_period` decides the minimum frequency at which watched resources reconcile. A lower period corrects entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
 
 - `amr.observer.ca_cert_data` or `shared.ca_cert_data`
   - Default: ""
-  - `ca_cert_data` is used to add certificates to the truststore that is used by the amr-observer.
+  - `ca_cert_data` adds certificates to the truststore that amr-observer uses.
 
     ```console
     kubectl -n metadata-store get secrets/amr-cloudevent-handler-ingress-cert -o jsonpath='{.data."crt.ca"}' | base64 -d
@@ -86,7 +86,7 @@ Configuration options:
     - Include an Authorization header when communicating with AMR CloudEvent Handler.
   - `.autoconfigure`
     - Default: `true`
-    - Delegate creation of auth token secret to the artifact metadata repository. Only applicable on 'full' and 'view' clusters.
+    - Delegate creation of authentication token secret to the artifact metadata repository. Only applicable on Full and View clusters.
   - `.secret`
     - The secret with the access token for communicating with the cloudevent-handler
     - `.ref`
@@ -101,10 +101,10 @@ Configuration options:
   - Tanzu Application Platform multicluster deployment happens through Tanzu Mission Control when you set `deployed_through_tmc` to true.
 
 - `amr.observer.max_concurrent_reconciles`
-  - Configure max concurrent reconciles for controllers.
+  - Configure maximum concurrent reconciles for controllers.
   - `.image_vulnerability_scans`
     - Default: `1`
-    - Max concurrent reconciles for observing ImageVulnerabilityScans.
+    - Maximum concurrent reconciles for observing ImageVulnerabilityScans.
 
 ## <a id='amr-graphql'></a> AMR GraphQL
 
@@ -114,7 +114,7 @@ Configuration options:
     - Enable authentication for artifact metadata repository GraphQL server. By default it is set to true.
   - `.autoconfigure`
     - Default: `true`
-    - Delegate creation of auth token secret to the artifact metadata repository. By default it is set to true.
+    - Delegate creation of authentication token secret to the artifact metadata repository. By default it is set to true.
 ## <a id='amr-cloudevent-handler'></a> AMR CloudEvent Handler
 
 - `amr.cloudevent_handler.auth.kubernetes_service_accounts`
@@ -123,4 +123,4 @@ Configuration options:
     - Enable authentication and authorization for services accessing Artifact Metadata Repository.
   - `.autoconfigure`
     - Default: `true`
-    - Delegate creation of auth token secret to the artifact metadata repository. By default it is set to true.
+    - Delegate creation of authentication token secret to the artifact metadata repository. By default it is set to true.

@@ -6,18 +6,19 @@ This topic gives you an overview of the Artifact Metadata Repository (AMR) archi
 
 ## <a id='amr-observer'></a> AMR Observer
 
-The AMR Observer is deployed to the full, build, and run clusters. It starts by 
-communicating with the Kubernetes API Server to obtain the cluster's location 
+The full, build, and run clusters include AMR Observer.
+AMR Observer 
+communicates with the Kubernetes API Server to obtain the cluster's location 
 ID, which is the GUID of the `kube-system` namespace. After it retrieves the 
-location ID, the AMR Observer emits a CloudEvent, including any operator-defined 
-metadata, to the AMR CloudEvent Handler. This CloudEvent registers the location, 
-and subsequent CloudEvents from the same cluster will use the same location 
-reference in the source field. This mechanism helps the AMR track artifacts with 
+location ID, AMR Observer emits a CloudEvent, including any operator-defined 
+metadata, to AMR CloudEvent Handler. This CloudEvent registers the location, 
+and subsequent CloudEvents from that cluster use the same location 
+reference in the source field. This mechanism helps AMR track artifacts with 
 their associated location.
 
 ### <a id='watched-resources'></a> Watched resources
 
-The AMR Observer consists of managed controllers that watch resources. In Tanzu
+AMR Observer consists of managed controllers that watch resources. In Tanzu
 Application Platform 1.7, AMR Observer watches for:
 
 
@@ -59,8 +60,8 @@ Application Platform 1.7, AMR Observer watches for:
 
 #### <a id='imagevulnerabilityscans'></a> ImageVulnerabilityScans
 
-The AMR Observer watches the `ImageVulnerabilityScan` Custom Resources for
-completed scans. When a scan is completed, the AMR Observer uses the 
+AMR Observer watches the `ImageVulnerabilityScan` Custom Resources for
+completed scans. When a scan is completed, AMR Observer uses the 
 `registry secret` and the location information from the `ImageVulnerabilityScan` 
 Custom Resources to fetch the SBOM report. After obtaining the SBOM report, it 
 wraps it in a CloudEvent and emits it to the AMR CloudEvent Handler. The AMR 
