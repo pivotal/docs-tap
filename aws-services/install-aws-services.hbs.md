@@ -6,44 +6,75 @@ This topic tells you how to install AWS Services from the Tanzu Application Plat
 > **Note** The AWS Service package in not in any of the Tanzu Application Platform profiles.
 > To use this package, you must follow the instructions in this topic.
 
-## Prerequisites
+## <a id="prerequisites"></a> Prerequisites
 
-1. Before starting this tutorial it is recommended to first read through [Understanding the AWS Services Package](../concepts/understanding-the-aws-services-package.hbs.md). This will provide you with useful background context about the features and goals of the Package, as well as some of the considerations and compromises that have been made as part of its development.
+Before you install the AWS Services package:
 
-## <a id="infra-planning-setup-configuration"></a> Step 1: Infrastructure planning, setup and configuration
+- [Install Tanzu Application Platform](../install-intro.hbs.md)
+- VMware recommends that you read
+[Understanding the AWS Services Package](../concepts/understanding-the-aws-services-package.hbs.md).
+The topic provides context about the features and goals of the package, and some of the
+considerations and compromises that were made as part of its development.
 
-There are a wide range of possible infrastructure and networking setups available when it comes to integrating AWS services into Tanzu Application Platform. Therefore the first step is to decide which of these setups you'd like to configure the AWS Services Package for. The full list of topologies currently supported by the AWS Services Package can be found in [Supported Topologies](../reference/supported-topologies.hbs.md), but in order to bring focus to this tutorial, we'll run with arguably the most simple of setups:
+## <a id="config-infra"></a> Step 1: Plan and configure your infrastructure planning
 
-* TAP cluster running on AWS EKS in VPC A connecting to RDS PostgreSQL service instances running in VPC A
+There are a wide range of infrastructure and networking setups available when integrating AWS services
+into Tanzu Application Platform.
+Therefore, the first step is to decide which of these setups you want and to configure the AWS Services
+package for this topology.
 
-This setup can be thought of as quite similar to [A DB instance in a VPC accessed by an EC2 instance in the same VPC](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario1) as described in the official AWS documentation. Given we will be using this setup for the rest of this tutorial, it is assumed that you already have a TAP cluster running in a VPC in AWS to hand. If you don't, please refer to [Install Tanzu Application Platform (AWS)](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/install-aws-intro.html).
+> **Note** This section provides setup guidance for the most simple setup, which is
+> a Tanzu Application Platform cluster running on AWS EKS in a virtual private cloud (VPC) connecting
+> to RDS PostgreSQL service instances running in the same VPC.
 
-Now that we know the sort of infrastructure setup we'd like to configure, the next step is to understand what sort of configuration options are provided and required by the AWS Services Package to help us configure that setup. The full list of values can be found in the reference material [Package values for AWS Services](../reference/package-values.hbs.md), with a few of the most important values picked out and highlighted below.
+To plan and configure your infrastructure:
 
-```yaml
-postgresql:
-  enabled: true
-  region: us-east-1
-  infrastructure:
-    subnet_group:
-      name: "dbsubnetgroup-1"
-    security_groups:
-      - id: "sg-1"
-  instance_configuration:
-    instance_class: db.t3.micro
-```
+1. Decide which topology you want to use. For more information about the topologies supported by the
+   AWS Services package, see [Supported Topologies](reference/supported-topologies.hbs.md).
 
-Take particular note of the `postgresql.infrastructure` block, which contains a `subnet_group` and a `security_groups` key. This is how you configure the PostgreSQL service for the AWS Services Package with relevant infrastructure information to support the type of setup we've decided upon. It's important to understand that the current version of the AWS Services Package will not create these resources for you, meaning that they must be created manually out-of-band. It's possible (not guaranteed) that future versions of the AWS Services Package may provide options to create required infrastructure resources for you. For now, this is a one-time manual setup step that must be performed before installing the Package.
+1. Create a DBSubnetGroup and SecurityGroups:
 
-To learn how to create a DBSubnetGroup, refer to [Create a DB subnet group](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.CreateDBSubnetGroup). To learn how to create SecurityGroups, refer to [Creating a VPC security group](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html#Overview.RDSSecurityGroups.Create).
+    - To learn how to create a DBSubnetGroup, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.CreateDBSubnetGroup).
+    - To learn how to create SecurityGroups, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html#Overview.RDSSecurityGroups.Create).
 
-Once created, make sure to note down the name of the DBSubnetGroup and the IDs of the SecurityGroups you create as you will need to refer to them in the next step.
+    > **Note** The current version of the AWS Services package does not create these resources for you.
+    > You must create them manually out-of-band. <!-- what does it mean by out-of-band? -->
+    > It's possible (not guaranteed) that future versions of the AWS Services package might provide options
+    > to create required infrastructure resources for you. For now, this is a one-time manual setup step
+    > that you must complete before installing the package.
 
-## <a id="install-the-aws-services-package"></a> Step 2: Install the AWS Services package
+1. Configure the AWS Services package with the settings required for your topology. For example:
+
+    ```yaml
+    postgresql:
+      enabled: true
+      region: us-east-1
+      infrastructure:
+        subnet_group:
+          name: "dbsubnetgroup-1"
+        security_groups:
+          - id: "sg-1"
+      instance_configuration:
+        instance_class: db.t3.micro
+    ```
+
+    Take particular note of the `postgresql.infrastructure` block, which contains a `subnet_group` and
+    a `security_groups` key.
+    This is how you configure the PostgreSQL service for the AWS Services package with relevant
+    infrastructure information to support the topology you chose. <!-- Use placeholders -->
+
+    For the full list of values you can configure, see [Package values for AWS Services](../reference/package-values.hbs.md).
+
+    <!-- isn't the above step duplication of what to do in step 2 of Install the AWS Services package? -->
+
+1. Record the name of the DBSubnetGroup and the IDs of the SecurityGroups you created.
+   These are required when installing the package.
+
+## <a id="install-package"></a> Step 2: Install the AWS Services package
 
 The AWS Services package is not installed as part of any profile so you must explicitly install it.
 
-1. Check that you have the AWS Services package available by running:
+1. Confirm that you have the AWS Services package available by running:
 
     ```console
     tanzu package available get aws.services.tanzu.vmware.com -n tap-install
@@ -83,6 +114,8 @@ The AWS Services package is not installed as part of any profile so you must exp
         publicly_accessible: false
         maintenance_window: "Wed:00:00-Wed:03:00"
     ```
+
+    For the full list of values you can configure, see [Package values for AWS Services](../reference/package-values.hbs.md).
 
     <!-- consider converting comments to placeholders -->
 
