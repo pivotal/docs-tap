@@ -24,7 +24,7 @@ After the container is built, it updates every time there’s a new code commit 
 
 When creating supply chains, you can simplify workflows in both the inner and outer loop of Kubernetes-based app development with Tanzu Application Platform.
 
-![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with the components that serve the operations staff and security staff.](images/tap-conceptual-value.png)
+![TAP conceptual value. Begins with components that serve developers and ends with components that serve operations and security staff.](images/tap-conceptual-value.png)
 
 - **Inner Loop**
     - The inner loop describes a developer’s development cycle of iterating on code.
