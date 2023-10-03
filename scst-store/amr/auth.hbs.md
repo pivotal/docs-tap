@@ -7,7 +7,7 @@ This topic tells you how to authenticate and authorize the Artifact Metadata Rep
 The following are included in authentication and authorization:
 
 - [High-level design](#high-level-design)
-- [Kubernetes service account autoconfiguration](auth-k8s-sa-autoconfiguration.hbs.md)
+- [Kubernetes service account automatic configuration](auth-k8s-sa-autoconfiguration.hbs.md)
 - [User-defined kubernetes service account configuration](auth-k8s-sa-user-defined.hbs.md)
 - Cloudevent user-defined service account
 - Configuring AMR Observer with the Cloudevent handler service account access token
