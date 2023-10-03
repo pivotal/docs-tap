@@ -1,15 +1,15 @@
 # Overview of API Auto Registration
 
-This topic provides an overview of API Auto Registration for Tanzu Application Platform.
+This topic gives you an overview of API Auto Registration for Tanzu Application Platform.
 
 ## <a id='overview'></a> Overview
 
-API Auto Registration automates the generation of API specification from a workload’s configuration and
-registration of the API entity within the Tanzu Developer Portal’s catalog. The registered API specification
-is accessible within Tanzu Developer Portal with no additional steps. As an experimental alpha feature, 
-API Auto Registration also generates curated API by combining APIs exposed from multiple workloads into one.
+API Auto Registration automatically generates API specifications from a workload’s configuration and
+registration of the API entity in the Tanzu Developer Portal’s catalog. You can access the registered API specification
+in Tanzu Developer Portal with no additional steps. As an experimental alpha feature, 
+API Auto Registration generates a curated API by combining APIs exposed from multiple workloads.
 
-You can leverage an automated workflow using a supply chain to create and manage a Kubernetes Custom Resource (CR)
+You can use an automated workflow with a supply chain to create and manage a Kubernetes Custom Resource (CR)
 of kind `APIDescriptor` from your workload. API Auto Registration’s Kubernetes controller periodically reconciles
 the CR and updates the API entity in Tanzu Developer Portal to achieve automated API specification registration
 from origin workloads.
@@ -23,7 +23,7 @@ For combining and curating multiple standalone APIDescriptors in your run cluste
 `CuratedAPIDescriptor` to your clusters to provide a single curated entry point for users consuming your APIs.
 With Spring Cloud Gateway for Kubernetes available as the route provider, API Auto Registration’s Kubernetes
 controller automatically generates and manages necessary routing resources for the curated API. If configured,
-each curated API will be exposed and navigatable on your preferred Spring Cloud Gateway instance.
+each curated API is exposed and navigable on your preferred Spring Cloud Gateway instance.
 
 ![Flow chart with boxes for API curation process.](./images/api-curation-stages.png)
 

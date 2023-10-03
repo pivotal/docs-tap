@@ -7,19 +7,20 @@ This topic explains key concepts you use with API Auto Registration.
 You can use the full potential of API Auto Registration by using a distributed environment,
 as shown in the following diagrams:
 
-- The API-exposing workloads through the supply chains  will result in generated `APIDescriptors`. This will trigger
-  API Auto Registration’s Kubernetes controller to generate and register corresponding API entities in Tanzu Developer Portal.
+- The workloads that expose APIs through the supply chains cause generated `APIDescriptors`. This triggers
+  API Auto Registration’s Kubernetes controller to generate and register API entities in Tanzu Developer Portal.
   ![Diagram describing the clusters used with API Auto Registration.](./images/arch.png)
 
-- Aggregate one or more `CuratedAPIDescriptor` into one cohesive curated API using `APIDescriptors`. Optionally,
-  this can trigger Spring Cloud Gateway routing resources generation for the referenced APIs.
+- Aggregate one or more `CuratedAPIDescriptor` into a curated API by using `APIDescriptors`. Optionally,
+  this can trigger Spring Cloud Gateway routing resource generation for the referenced APIs.
   ![Diagram describing the API curation with API Auto Registration.](./images/api-curation-arch.jpg)
 
 ## <a id='api-descriptor'></a>APIDescriptor custom resource explained
 
-To initiate API registration, the custom resource of type `APIDescriptor` must be created either automatically
-from the supply chain or through other processes. The information from this custom resource constructs an API
-entity in Tanzu Developer Portal.
+To initiate API registration, the supply chain must create the custom resource
+of type `APIDescriptor` automatically or through other processes. The
+information from this custom resource constructs an API entity in Tanzu
+Developer Portal.
 
 This custom resource exposes the following text boxes:
 
@@ -149,13 +150,13 @@ is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. F
         namespace: my-namespace # optional
 ```
 
-### <a id='status-fields'></a>APIDescriptor status fields>
+### <a id='status-fields'></a>APIDescriptor status fields
 
-When processing an APIDescriptor, several fields describing the progress are added to the `status`.
-One of these is `conditons`, which provide information useful for troubleshooting. The conditions are explained in the
-[Troubleshooting Guide](../api-auto-registration/troubleshooting.hbs.md).
+When API Auto Registration processes an APIDescriptor, it adds several fields describing the progress to the `status`.
+Including `conditons`, which provides information useful for troubleshooting. For information about the conditions, see
+[Troubleshoot API Auto Registration](../api-auto-registration/troubleshooting.hbs.md).
 
-In addition to `conditions` the `status` contains a couple of other useful fields showing the resolved API’s details.
+In addition to `conditions`, the `status` contains other useful fields showing the resolved API’s details.
 The following is a list of these fields with a brief explanation of what they contain.
 
 ```yaml
@@ -171,7 +172,7 @@ status:
 
 ## <a id='curated-api-descriptor'></a>CuratedAPIDescriptor custom resource explained
 
-To curate one or more Workload OpenAPI specifications into a single aggregated API, you can create a custom
+To curate one or more Workload OpenAPI specifications into a single aggregated API, create a custom
 resource of type `CuratedAPIDescriptor`. The information from this custom resource references a list of APIDescriptors
 and how they are aggregated together through path-based routing.
 
