@@ -201,7 +201,7 @@ To install Contour from the Tanzu Application Platform package repository withou
         ```
 
         The LoadBalancer type is appropriate for most installations, but local
-        clusters such as `kind` or `minikube` can fail to complete the package
+        clusters such as `kind` can fail to complete the package
         install if LoadBalancer services are not supported.
 
         For local clusters, you can configure `contour.evnoy.service.type` to be
