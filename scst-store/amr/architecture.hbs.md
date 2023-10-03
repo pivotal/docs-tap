@@ -10,8 +10,8 @@ The full, build, and run clusters include AMR Observer.
 AMR Observer 
 communicates with the Kubernetes API Server to obtain the cluster's location 
 ID, which is the GUID of the `kube-system` namespace. After it retrieves the 
-location ID, AMR Observer emits a CloudEvent, including any operator-defined 
-metadata, to AMR CloudEvent Handler. This CloudEvent registers the location, 
+location ID, AMR Observer emits a CloudEvent to AMR CloudEvent Handler, including any operator-defined
+metadata. This CloudEvent registers the location, 
 and subsequent CloudEvents from that cluster use the same location 
 reference in the source field. This mechanism helps AMR track artifacts with 
 their associated location.
@@ -61,13 +61,13 @@ Application Platform 1.7, AMR Observer watches for:
 #### <a id='imagevulnerabilityscans'></a> ImageVulnerabilityScans
 
 AMR Observer watches the `ImageVulnerabilityScan` Custom Resources for
-completed scans. When a scan is completed, AMR Observer uses the 
+completed scans. When a scan completes, AMR Observer uses the 
 `registry secret` and the location information from the `ImageVulnerabilityScan` 
-Custom Resources to fetch the SBOM report. After obtaining the SBOM report, it 
+Custom Resources to fetch the SBOM report. After obtaining the SBOM report, AMR Observer 
 wraps it in a CloudEvent and emits it to the AMR CloudEvent Handler. The AMR 
 CloudEvent Handler persists this event in the Metadata Store.
 
 #### <a id='data-models'></a> Data Models
 
-For more information about the data that is stored from the observed resources, 
+For more information about the data that AMR stores from the observed resources, 
 see [Artifact Metadata Repository (AMR) data model and concepts](./data-model-and-concepts.hbs.md)
