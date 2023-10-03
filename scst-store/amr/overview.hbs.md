@@ -7,16 +7,13 @@ This topic gives you an overview of Artifact Metadata Repository (AMR).
 AMR Observer is a set of managed controllers that watches for relevant updates
 on resources of interest. When relevant events are observed, a CloudEvent is
 generated and sent to AMR CloudEvent Handler. This component is expected to be
-deployed on "full", "build" and "run" profile clusters.
+deployed on Full, Build and Run profile clusters.
 
 ## <a id='handler'></a> AMR CloudEvent Handler
 
 AMR CloudEvent Handler receives CloudEvents and stores relevant information into 
 the Artifact Metadata Repository or Metadata Store. This component is expected
-to be deployed on "full" and "view" profile clusters.
-
-## <a id='ki'></a> Known Issues
-
+to be deployed on Full and View profile clusters.
 
 ## Additional Resources
 
