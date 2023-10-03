@@ -79,7 +79,6 @@ The following changes affect the upgrade procedures:
 
     Tanzu Application Platform v1.5.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
     from Image Policy Webhook to Policy Controller.
-  <!-- Page removed. Should the rest of this bullet point be removed too for this version? For more information, see [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.hbs.md). -->
 
 - **CVE results require a read-write service account**
 
