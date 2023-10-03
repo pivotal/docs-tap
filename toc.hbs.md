@@ -688,7 +688,7 @@
           - [Log configuration and usage](scst-store/logs.hbs.md)
           - [Connecting to the Postgres Database](scst-store/connect-to-database.hbs.md)
           - [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.hbs.md)
-          - [Troubleshoot upgrading](scst-store/upgrading.hbs.md)
+          - [Upgrading](scst-store/upgrading.hbs.md)
           - [Failover, redundancy, and backups](scst-store/failover.hbs.md)
           - [Custom certificate configuration](scst-store/custom-cert.hbs.md)
           - [TLS configuration](scst-store/tls-configuration.hbs.md)

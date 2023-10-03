@@ -58,7 +58,7 @@ data:
 EOF
 ```
 
-### <a id='copy-amr'></a>Copy AMR CloudEvent Handler CA certificate data from the View cluster
+### <a id='copy-ceh-ca'></a>Copy AMR CloudEvent Handler CA certificate data from the View cluster
 
 With your kubectl targeted at the View cluster, you can get AMR CloudEvent Handler's TLS
 CA certificate's data.
@@ -82,7 +82,7 @@ MDS_AUTH_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadat
 You use
 this environment variable in the next step.
 
-## <a id='copy-cloudevent'></a>Copy AMR CloudEvent Handler edit token from the View cluster
+### <a id='copy-ceh-token'></a>Copy AMR CloudEvent Handler edit token from the View cluster
 
 Copy the AMR CloudEvent Handler token into an environment variable: 
 
@@ -139,7 +139,7 @@ certificate and authentication token.
 The Build cluster now has a Metadata Store CA certificate named  `store-ca-cert` and a Metadata Store authentication
 token named `store-auth-token` in the namespace `metadata-store-secrets`.
 
-### <a id='apply-edit'></a>Apply the CloudEvent Handler CA certificate data and edit token to the Build and Run clusters
+### <a id='apply-ceh-ca-token'></a>Apply the CloudEvent Handler CA certificate data and edit token to the Build and Run clusters
 
 Now we will apply the CloudEvent Handler CA certificate and edit token to the Build and Run clusters. These values need to be accessible during the Build and Run profile deployments.
 
@@ -178,7 +178,7 @@ certificate and edit token.
 After all the steps are done, both the Build and Run clusters each have a CloudEvent Handler CA certificate and edit
 token named `amr-observer-edit-token` in the namespaces `metadata-store-secrets` and `amr-observer-system`. Now you are ready to deploy the Build and Run profiles.
 
-## <a id='install-build-profile'></a>Install the Build and Run profiles
+## <a id='install-build-run-profiles'></a>Install the Build and Run profiles
 
 If you came to this topic from [Install multicluster Tanzu Application
 Platform profiles](../multicluster/installing-multicluster.hbs.md) after
@@ -186,7 +186,7 @@ installing the View profile, return to that topic to [install the Build
 profile](../multicluster/installing-multicluster.hbs.md#install-build)
 and [install the Run profile](../multicluster/installing-multicluster.hbs.md#install-run).
 
-### <a id='use-config'></a>How the Build profile uses the configuration
+## <a id='grype-mds-config'></a>How to configure Grype in the Build profile values file
 
 The Build profile `values.yaml` uses the secrets you created to configure
 the Grype scanner which talks to SCST - Store. After performing a vulnerabilities
