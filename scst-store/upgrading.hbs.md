@@ -1,7 +1,7 @@
 # Upgrading Supply Chain Security Tools - Store
 
-This topic describes how you can troubleshoot upgrading issues in Supply Chain
-Security Tools (SCST) - Store.
+This topic describes how to upgrade Supply Chain Security Tools (SCST) - Store as
+well as how to troubleshoot upgrade issues.
 
 ## <a id="upgrading-1-7"></a>Upgrading to 1.7
 
