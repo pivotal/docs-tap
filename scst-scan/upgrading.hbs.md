@@ -27,7 +27,7 @@ There you can find any breaking changes for the installation.
     Where `$VERSION` is the new version. This gives you insights on the values you can configure in
     your `tap-values.yaml` for the new version.
 
-## <a id="upgrade-scanner"></a> Upgrading a scanner in all namespaces
+## <a id="upgrade-scanner"></a> Upgrade a scanner in all namespaces
 
 This section describes how to upgrade a supported scanner in all namespaces.
 The procedure is different depending on the installation method:
@@ -95,7 +95,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
             tanzu package installed update tap -f tap-values.yaml -n tap-install
             ```
 
-    - **For a multi-cluster deployment:**
+    - **For a multicluster deployment:**
 
         You must reapply the SecretExport by changing the `toNamespace: scan-link-system` to
         `toNamespace: DEV-NAMESPACE`:
@@ -155,20 +155,20 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
     >corresponding exports. See [Install Supply Chain Security Tools - Scan (Grype
     >Scanner)](install-scst-scan.md#install-grype).
 
-1. Update Tanzu Application Platform to apply the changes:
+3. Update Tanzu Application Platform to apply the changes:
 
     ```console
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
-3. Update the `ScanPolicy` to include the latest structure changes for `v1.2.0`.
+4. Update the `ScanPolicy` to include the latest structure changes for `v1.2.0`.
 
     To update to the latest valid Rego File in the `ScanPolicy`,
     [Enforce compliance policy using Open Policy Agent](policies.md).
     `v1.2.0` introduced some breaking changes in the Rego File structure used for the `ScanPolicies`.
     For more information, see the [Release Notes](../release-notes.md#scst-scan-changes).
 
-4. Verify the upgrade.
+5. Verify the upgrade.
 
     You can run any `ImageScan` or `SourceScan` in your `DEV-NAMESPACE` where the Grype Scanner was
     installed, and it finishes. Here is a sample you can try to run to detect if everything upgraded.
@@ -230,13 +230,13 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
           scanPolicy: scan-policy
         ```
 
-    1. Deploy the resources:
+    2. Deploy the resources:
 
         ```console
         kubectl apply -f verify-upgrade.yaml -n DEV-NAMESPACE
         ```
 
-    1. View the scan results:
+    3. View the scan results:
 
         ```console
         kubectl describe imagescan sample-public-image-scan -n DEV-NAMESPACE

@@ -1,54 +1,54 @@
-# Upgrading Supply Chain Security Tools - Store
+# Upgrade Supply Chain Security Tools - Store
 
-This topic describes how to upgrade Supply Chain Security Tools (SCST) - Store as
-well as how to troubleshoot upgrade issues.
+This topic tells you how to upgrade Supply Chain Security Tools (SCST) - Store and how to troubleshoot upgrade issues.
 
 ## <a id="upgrading-1-7"></a>Upgrading to 1.7
 
-In TAP 1.7, we introduce the Artifact Metadata Repository (AMR) into SCST - Store.
-AMR components will be installed by default after the upgrade.
+In Tanzu Application Platform v1.7, VMware introduces Artifact Metadata Repository (AMR) to SCST - Store.
+Tanzu Application Platform installs AMR components by default after upgrading.
 
-How AMR needs to be configured depends on how TAP was deployed.
+How you must configure AMR depends on how Tanzu Application Platform was deployed:
 
-* TAP is installed in a single cluster (Full profile) deployment
-* TAP is installed in a multicluster deployment
+* Tanzu Application Platform is installed in a single cluster, Full profile, deployment.
+* Tanzu Application Platform is installed in a multicluster deployment.
 
-###<a id="full-profile-upgrade"></a> Single cluster (Full profile) upgrade
+### <a id="full-profile-upgrade"></a> Single cluster or Full profile upgrade
 
 In a Full profile, AMR does not need any additional user configuration. See
 [AMR architecture](amr/architecture.hbs.md) and
-[deployment details](deployment-details.hbs.md) for more information.
+[deployment details](deployment-details.hbs.md).
 
 ### <a id="multicluster-upgrade"></a> Multicluster upgrade
 
 In a multicluster deployment, AMR components are installed on the View, Build and
 Run clusters. The AMR Observer is installed on the Build and Run clusters, and
-needs to be configured to talk to the AMR CloudEvent Handler installed on the View
+must be configured to talk to the AMR CloudEvent Handler installed on the View
 cluster.
 
 Read [SCST - Store multicluster setup](multicluster-setup.hbs.md) for the new
-configuration in detail. The doc includes instructions for configuring both the
-AMR (new) and the Metadata Store (existing). The new configurations for 1.7 are:
+configuration in detail. The documentation includes instructions for configuring both the
+new AMR and the existing Metadata Store. The new configurations for 1.7 are:
 
 1. [Copy AMR CloudEvent Handler CA certificate data from the View
    cluster](multicluster-setup.hbs.md#copy-ceh-ca)
-1. [Copy AMR CloudEvent Handler edit token from the View
+2. [Copy AMR CloudEvent Handler edit token from the View
    cluster](multicluster-setup.hbs.md#copy-ceh-token)
-1. [Apply the CloudEvent Handler CA certificate data and edit token to the Build
+3. [Apply the CloudEvent Handler CA certificate data and edit token to the Build
    and Run clusters](multicluster-setup.hbs.md#apply-ceh-ca-token)
-
 
 ## <a id="troubleshoot"></a>Troubleshoot upgrading
 
+The following sections tell you how to troubleshoot AMR upgrades.
+
 ### <a id="observer-cannot-talk-to-ceh"></a> AMR Observer cannot talk to AMR CloudEvent Handler
 
-To see the AMR Observer pod, use this command.
+To see the AMR Observer pod:
 
 ```console
 kubectl get pods -n amr-observer-system
 ```
 
-To view AMR Observer logs, use this command.
+To view AMR Observer logs:
 
 ```console
 kubectl logs OBSERVER-POD-NAME -n amr-observer-system
@@ -56,19 +56,17 @@ kubectl logs OBSERVER-POD-NAME -n amr-observer-system
 
 Where:
 
-* `OBSERVER-POD-NAME` is the name of the AMR observer pod
+* `OBSERVER-POD-NAME` is the name of the AMR observer pod.
 
-If you encounter errors relating to the authentication token, check that you have
-configured the AMR Observer correctly. It may be missing the edit token for the AMR
-CloudEvent Handler. See [SCST - Store multicluster setup](multicluster-setup.hbs.md)
-for more information on how to configure the edit token, as well as the CA cert and
-endpoint.
-
+If you encounter errors relating to the authentication token, verify that you
+configured the AMR Observer correctly. It might be missing the edit token for the AMR
+CloudEvent Handler. For information about how to configure the edit token, and the CA certificate and
+endpoint, see [SCST - Store multicluster setup](multicluster-setup.hbs.md).
 
 ### <a id="deploy-does-not-exist"></a> Database deployment does not exist
 
 To prevent issues with the metadata store database, such as the ones described in
-this topic, the database deployment is `StatefulSet` in
+this topic, the database deployment is `StatefulSet` in:
 
 * Tanzu Application Platform v1.2 and later
 * Metadata Store v1.1 and later
@@ -76,11 +74,10 @@ this topic, the database deployment is `StatefulSet` in
 If you have scripts searching for a `metadata-store-db` deployment, edit the scripts to
 instead search for `StatefulSet`.
 
-
 ### <a id="invalid-checkpoint-record"></a> Invalid checkpoint record
 
-When using Tanzu to upgrade to a new version of the store, there is occasionally data
-corruption. Here is an example of how this shows up in the log:
+When you use Tanzu to upgrade SCST - Store, there is occasionally data
+corruption. For example:
 
 ```console
 PostgreSQL Database directory appears to contain a database; Skipping initialization
@@ -98,17 +95,15 @@ PostgreSQL Database directory appears to contain a database; Skipping initializa
 2022-01-21 21:53:39.507 UTC [1] LOG:  database system is shut down
 ```
 
-The log shows a database pod in a failure loop. For steps to fix the issue so that the
-upgrade can proceed, see the [SysOpsPro documentation](https://sysopspro.com/fix-postgresql-error-panic-could-not-locate-a-valid-checkpoint-record/).
+The log shows a database pod in a failure loop. For information about how to fix the issue, see the [SysOpsPro documentation](https://sysopspro.com/fix-postgresql-error-panic-could-not-locate-a-valid-checkpoint-record/).
 
-
-### <a id="upgraded-pod-hanging"></a> Upgraded pod hanging
+### <a id="upgraded-pod-hanging"></a> Upgraded pod stops responding
 
 Because the default access mode in the PVC is `ReadWriteOnce`, if you are deploying in an
 environment with multiple nodes then each pod might be on a different node.
 This causes the upgraded pod to spin up but then get stuck initializing because the original
 pod does not stop.
-To resolve this issue, find and delete the original pod so that the new pod can attach to the
+To resolve this issue, find, and delete the original pod so that the new pod can attach to the
 persistent volume:
 
 1. Discover the name of the app pod that is not in a pending state by running:
@@ -117,7 +112,7 @@ persistent volume:
     kubectl get pods -n metadata-store
     ```
 
-1. Delete the pod by running:
+2. Delete the pod by running:
 
     ```console
     kubectl delete pod METADATA-STORE-APP-POD-NAME -n metadata-store
