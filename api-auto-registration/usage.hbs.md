@@ -112,7 +112,7 @@ workload YAML:
             type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
             location:
               path: "/v3/api-docs"  # The path to the api documentation
-              baseURL: "http://my-spec.url" # (Optional) The base URL to the api documentation if not served from the API runtime
+              baseURL: "http://my-spec.url" # Optional: The base URL to the api documentation if not served from the API runtime
             owner: team-petclinic   # The team that owns this
             system: petclinic       # The Backstage system entity this API belongs to
             description: "A set of API endpoints to manage the resources within the petclinic app."
@@ -218,7 +218,7 @@ If you are using Spring, see [CORS support in spring framework](https://spring.i
 
 At a high level, your API must accept the Tanzu Developer Portal domain must be accepted as a valid cross-origin.
 
-To do this, verify the following:
+To do this:
 
 - **Origins allowed** header: `Access-Control-Allow-Origin`: A list of comma-separated values.
 This list must include your Tanzu Developer Portal host.

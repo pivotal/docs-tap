@@ -13,7 +13,7 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-platform-features'></a> New platform-wide features
 
-- Added air-gapped support to the Tanzu Application Platform GitOps install method. 
+- Added air-gapped support to the Tanzu Application Platform GitOps install method.
 For more information, see one of the following install topics:
     - [Install Tanzu Application Platform through GitOps with AWS Secrets Manager](install-gitops/eso/aws-secrets-manager.hbs.md#airgap-support)
     - [Install Tanzu Application Platform through GitOps with HashiCorp Vault](install-gitops/eso/hashicorp-vault.hbs.md#airgap-support)
@@ -37,16 +37,25 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-7-0-api-autoreg'></a> v1.7.0 Features: API Auto Registration
+
+- Introduces API curation feature in alpha that is intended for only testing.
+- New `CuratedAPIDescriptor` custom resource allows aggregating multiple APIs of type OpenAPI in a single curated API.
+- Integrate with Spring Cloud Gateway for Kubernetes to automatically generate
+  `SpringCloudGatewayMapping`s and `SpringCloudGatewayRouteConfig`s.
+- API Auto Registration controller exposes API endpoints to view all curated APIs or filter for specific APIs to
+  add as API portal's source urls.
+
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
 - Supports Kubernetes 1.28.
 - `ClientRegistration`s instantaneously react to updates of `AuthServer`s.
 - `ClusterWorkloadRegistrationClass`s instantaneously react to updates of
   `AuthServer`s
-- Insufficiently small token signature keys cause an explicit error condition in 
+- Insufficiently small token signature keys cause an explicit error condition in
   `AuthServer.status`.
 - Customize a `ClientRegistration`'s display name.
-- Customize the display names of identity providers for an `AuthServer`, with the 
+- Customize the display names of identity providers for an `AuthServer`, with the
   restriction that this customization applies only to OpenID and SAML.
 - Authorization servers log role mappings in the audit log.
 - Authorization servers advertise the supported client authentication and grant
@@ -175,7 +184,9 @@ Application Accelerator starter templates for Python and Java are removed in thi
 #### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 Breaking changes: Services Toolkit
 
 - Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
-<!-- where is the best place to link to for more info? -->
+  You must now grant the permission to `claim` from a `ClusterInstanceClass` by using a `ClusterRole`
+  and `ClusterRoleBinding`.
+  For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
 
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
 

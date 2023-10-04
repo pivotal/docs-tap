@@ -4,7 +4,7 @@ This topic tells you how to use API Curation to expose several standalone APIs a
 API Auto Registration.
 
 > **Caution** The API Curation feature is in alpha and is intended for evaluation and test purposes
-> only. Do not use in a production environment.
+> only. Vmware does not recommend using API Curation in a production environment.
 
 ## <a id='overview'></a> Overview
 

@@ -65,7 +65,7 @@ into a bad state.
 
 Although this isn't the only scenario where this can happen, `kpack` can transition into a bad state
 when Tanzu Application Platform is deployed to a local `minikube` or `kind` cluster, and especially
-when that `minikube` or `kind` cluster is restarted.
+when that `kind` cluster is restarted.
 
 ### Solution
 

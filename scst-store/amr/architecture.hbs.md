@@ -2,44 +2,72 @@
 
 This topic gives you an overview of the Artifact Metadata Repository (AMR) architecture.
 
->**Important** Artifact Metadata Repository (AMR) has components with alpha and
->beta statuses, meaning that it is still in active development and is subject to
->change at any point. Users might encounter unexpected behavior. This is an
->opt-in component to gather early feedback from alpha and beta testers and is
->not installed by default with any profile.
-
 ![Diagram of Architecture for AMR Interaction shows the kubernetes resources that are part of the TAP resource in yellow](../images/amr-arch.png)
 
 ## <a id='amr-observer'></a> AMR Observer
 
-The AMR Observer is deployed to the build and run clusters. It starts by communicating with
-the Kubernetes API Server to obtain the cluster's location ID, which is the GUID
-of the `kube-system` namespace. After it retrieves the location ID, the AMR
-Observer emits a cloud event, including any operator-defined metadata, to the
-Artifact Metadata Repository Cloud Event Handler (AMR Cloud Event Handler). This
-cloud event registers the location, and subsequent cloud events in the same
-cluster use the same location ID in the source field. This mechanism helps the
-AMR keep track of artifacts and their associated location.
+The full, build, and run clusters include AMR Observer.
+AMR Observer 
+communicates with the Kubernetes API Server to obtain the cluster's location 
+ID, which is the GUID of the `kube-system` namespace. After it retrieves the 
+location ID, AMR Observer emits a CloudEvent to AMR CloudEvent Handler, including any operator-defined
+metadata. This CloudEvent registers the location, 
+and subsequent CloudEvents from that cluster use the same location 
+reference in the source field. This mechanism helps AMR track artifacts with 
+their associated location.
 
 ### <a id='watched-resources'></a> Watched resources
 
-The AMR Observer consists of managed controllers that watch resources. In Tanzu
-Application Platform 1.6, AMR Observer watches for `ImageVulnerabilityScans` and
-workload `ReplicaSets`. Workload `ReplicaSets` are `ReplicaSets` that contain
-one container named `workload` that the out of the box Supply Chain produces.
+AMR Observer consists of managed controllers that watch resources. In Tanzu
+Application Platform 1.7, AMR Observer watches for:
+
+
+<table>
+  <caption>AMR Observer Supported Resources</caption>
+  <tr>
+    <td>ImageVulnerabilityScans</td>
+    <td>app-scanning.apps.tanzu.vmware.com/v1alpha1</td>
+  </tr>
+  <tr>
+    <td>Pods</td>
+    <td>v1</td>
+  </tr>
+  <tr>
+    <td>GitRepository</td>
+    <td>source.toolkit.fluxcd.io/v1beta2</td>
+  </tr>
+  <tr>
+    <td>OCIRepository</td>
+    <td>source.toolkit.fluxcd.io/v1beta2</td>
+  </tr>
+  <tr>
+    <td>ImageRepository</td>
+    <td>source.apps.tanzu.vmware.com/v1alpha1</td>
+  </tr>
+  <tr>
+    <td>MavenArtifacts</td>
+    <td>source.apps.tanzu.vmware.com/v1alpha1</td>
+  </tr>
+  <tr>
+    <td>Build</td>
+    <td>kpack.io/v1alpha2</td>
+  </tr>
+  <tr>
+    <td>TaskRun</td>
+    <td>tekton.dev/v1beta1</td>
+  </tr>
+</table>
 
 #### <a id='imagevulnerabilityscans'></a> ImageVulnerabilityScans
 
-The AMR Observer watches the `ImageVulnerabilityScan` Custom Resources for
-completed scans. When a scan is completed, the AMR Observer uses the `registry
-secret` and the location information from the `ImageVulnerabilityScan` Custom
-Resources to fetch the SBOM report. After obtaining the SBOM report, it wraps it
-in a cloud event and emits it to the AMR Cloud Event Handler. The AMR Cloud
-Event Handler persists this event in the Metadata Store.
+AMR Observer watches the `ImageVulnerabilityScan` Custom Resources for
+completed scans. When a scan completes, AMR Observer uses the 
+`registry secret` and the location information from the `ImageVulnerabilityScan` 
+Custom Resources to fetch the SBOM report. After obtaining the SBOM report, AMR Observer 
+wraps it in a CloudEvent and emits it to the AMR CloudEvent Handler. The AMR 
+CloudEvent Handler persists this event in the Metadata Store.
 
-#### <a id='replicaset'></a> ReplicaSet
+#### <a id='data-models'></a> Data Models
 
-The AMR Observer watches the runtime data of `ReplicaSet` Apps. It reads the
-status of the `ReplicaSet`, including number of instances, created, updated,
-deleted, and emits a cloud event to the AMR Cloud Event Handler. The AMR Cloud
-Event Handler ensures the event is stored in the Artifact Metadata Repository.
+For more information about the data that AMR stores from the observed resources, 
+see [Artifact Metadata Repository (AMR) data model and concepts](./data-model-and-concepts.hbs.md)

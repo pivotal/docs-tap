@@ -67,6 +67,15 @@ The following sections describe how to upgrade in different scenarios.
 
 The following changes affect the upgrade procedures:
 
+- **Introduced Artifact Metadata Repository**
+
+    In Tanzu Application Platform v1.7.0, the [Artifact Metadata
+    Repository](scst-store/amr/overview.hbs.md) component is introduced into the
+    Supply Chain Security Tools (SCST) - Store package. In a multicluster
+    deployment, this component requires additional configuration during upgrade.
+    For more information, see [SCST - Store upgrade to 1.7
+    instructions](scst-store/upgrading.hbs.md#upgrading-1-7).
+
 - **Keyless support deactivated by default**
 
     In Tanzu Application Platform v1.5.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md).
@@ -79,7 +88,6 @@ The following changes affect the upgrade procedures:
 
     Tanzu Application Platform v1.5.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
     from Image Policy Webhook to Policy Controller.
-  <!-- Page removed. Should the rest of this bullet point be removed too for this version? For more information, see [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.hbs.md). -->
 
 - **CVE results require a read-write service account**
 
@@ -166,8 +174,11 @@ To reduce the likelihood of temporary failures, follow these steps to upgrade yo
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
-For information about upgrading Tanzu Developer Portal, see [Upgrade Tanzu Developer Portal](tap-gui/upgrades.html).
-For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+You can upgrade the following components outside of a Tanzu Application Platform profile upgrade:
+
+- Tanzu Developer Portal: [Upgrade Tanzu Developer Portal](tap-gui/upgrades.html).
+- Supply Chain Security Tools - Scan: [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+- Supply Chain Security Tools - Store: [Upgrading Supply Chain Security Tools - Store](scst-store/upgrading.hbs.md).
 
 ## <a id="verify"></a> Verify the upgrade
 

@@ -33,3 +33,8 @@ As auxiliary components, Tanzu Application Platform also includes:
   configuration built throughout a supply chain
 
 Both Templates and Delivery Basic are requirements for the Supply Chains.
+
+Supply Chain Choreographer supports the following pipeline types:
+
+- [Tekton pipelines](../tekton/install-tekton.hbs.md)
+- [Jenkins pipelines](ootb-supply-chain-testing-with-jenkins.hbs.md)

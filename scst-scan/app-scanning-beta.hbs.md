@@ -49,8 +49,7 @@ as an OCI artifact. Downstream services in the Tanzu Application such as the
 [Tanzu Developer portal](../tap-gui/about.hbs.md) depend on the data being in
 the [SCST - Store component](../scst-store/overview.hbs.md). Because pushing of scan
 results to the proprietary store endpoint is decoupled from the scan framework
-in Scan 2.0, the [AMR Observer
-(alpha)](../scst-store/amr/overview.hbs.md#amr-observer-alpha) observes results
+in Scan 2.0, [AMR Observer](../scst-store/amr/overview.hbs.md) observes results
 pushed to a container registry, parses the results, and pushes them to the SCST - Store component. 
 
 ## <a id="supply-chain-usage"></a>Integrating in to a supply chain

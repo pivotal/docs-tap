@@ -1,14 +1,18 @@
-# User-defined kubernetes service account configuration
+# User-defined Kubernetes service account configuration
 
-In order to configure kubernetes service account authentication for AMR, the following requirements must be met for all clients to cloudevent handler or graphql.
+This topic tells you how to configure a user-defined Kubernetes service account.
 
-## Clients to cloudevent handler
+## <a id="overview"></a>Overview
 
-Clients to the cloudevent handler, such as observer, need to have the permission `update`, resource `*`, group `cloudevents.amr.apps.tanzu.vmware.com`. No resourceNames are supported. That translates to “write for all resources” for the CloudEvents API.
+To configure a Kubernetes service account authentication for AMR, cloudevent handler or graphql clients must have the required permissions, resources, and groups in the following sections.
 
-An example could look like this:
+## <a id="clients-cloudevent"></a>Clients to cloudevent handler
 
-```
+Clients to the cloudevent handler, such as observer, must have the permission `update`, resource `*`, and group `cloudevents.amr.apps.tanzu.vmware.com`. `resourceNames` are not supported. That translates to write for all resources for the CloudEvents API.
+
+For example:
+
+```console
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -53,18 +57,17 @@ metadata:
     kubernetes.io/service-account.name: amr-observer
 ```
 
-If you saved this to a file `observer-rbac.yaml`, you can run `kubectl apply -f observer-rbac.yaml` to set everything up. If you prefer short-lived service account tokens, remove the secret from the file and after creating the resources, run `kubectl create token amr-observer-editor-token -n amr-observer-system` to create a token.
+If you saved this to a `observer-rbac.yaml` file, run `kubectl apply -f observer-rbac.yaml` to set everything up. If you prefer short lived service account tokens, remove the secret from the file beforehand. After creating the resources, run `kubectl create token amr-observer-editor-token -n amr-observer-system` to create a token.
 
-Please note that if you want to configure custom service accounts even if autoconfiguration is turned on you will need to adjust the naming of the resources.
+To configure custom service accounts even if automatic configuration is on, you must edit the resource naming.
 
+## <a id="clients-graphql"></a>Clients to graphql
 
-## Clients to graphql
+Clients to the graphql interface must have the permission `get`, resource `*`, and group `graphql.amr.apps.tanzu.vmware.com`. `resourceNames` are not supported. That translates to get for all resources for the GraphQL API.
 
-Clients to the graphql interface need to have the permission `get`, resource `*`, group `graphql.amr.apps.tanzu.vmware.com`. No resourceNames are supported. That translates to get for all resources” for the GraphQL API.
+For example:
 
-An example could look like this:
-
-```
+```console
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -107,6 +110,6 @@ metadata:
     kubernetes.io/service-account.name: amr-graphql-viewer
 ```
 
-If you saved this to a file `graphql-client-rbac.yaml`, you can run `kubectl apply -f graphql-client-rbac.yaml` to set everything up. If you prefer short lived service account tokens, remove the secret from the file and after creating the resources, run `kubectl create token amr-graphql-view-token -n metadata-store` to create a token.
+If you saved this to a `graphql-client-rbac.yaml` file, run `kubectl apply -f graphql-client-rbac.yaml` to set everything up. If you prefer short lived service account tokens, remove the secret from the file beforehand. After creating the resources, run `kubectl create token amr-graphql-view-token -n metadata-store` to create a token.
 
-Please note that if you want to configure custom service accounts even if autoconfiguration is turned on, you will need to adjust the naming of the resources.
+To configure custom service accounts even if automatic configuration is on, you must edit the resource naming.

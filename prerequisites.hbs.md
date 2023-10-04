@@ -98,9 +98,6 @@ providers:
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
     control plane is resized after traffic increases. Users can mitigate this by creating a
     regional cluster with three control-plane nodes right from the start.
-- Minikube.
-    - Reference the [resource requirements](#resource-requirements) in the following section.
-    - Hyperkit driver is supported on macOS only. Docker driver is not supported.
 - Red Hat OpenShift Container Platform v4.13.
     - vSphere
     - Baremetal
