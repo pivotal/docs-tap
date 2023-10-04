@@ -14,6 +14,8 @@ This release has the following breaking changes, listed by component and area.
 #### <a id='1-5-6-services-toolkit-br'></a> v1.5.6 Breaking changes: Services Toolkit
 
 - Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
+  You must now grant the permission to `claim` from a `ClusterInstanceClass` by using a `ClusterRole`
+  and `ClusterRoleBinding`.
   For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
 
 ### <a id='1-5-6-security-fixes'></a> v1.5.6 Security fixes
@@ -221,10 +223,6 @@ This release has the following known issues, listed by component and area.
 
 - Tanzu Application Platform v1.5.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
   on vSphere with Tanzu v8.
-
-#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 breaking changes: Services Toolkit
-
-- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`
 
 ---
 
