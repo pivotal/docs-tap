@@ -379,8 +379,9 @@ A connection error while attempting to connect to the
 local cluster URL causes this error. If this is a multicluster deployment, set the
 `grype.metadataStore.url` property in your Build profile `values.yaml`. You must
 set the ingress domain of SCST - Store which is deployed in the View cluster.
-For information about this configuration, see [Install Build
-profile](../scst-store/multicluster-setup.hbs.md#install-build-profile).
+For information about this configuration, see [Multicluster Setup — How to
+configure Grype in the Build profile values
+file](../scst-store/multicluster-setup.hbs.md#grype-mds-config).
 
 ### Sourcescan error with SCST - Store endpoint without a prefix
 

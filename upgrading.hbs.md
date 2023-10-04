@@ -67,6 +67,15 @@ The following sections describe how to upgrade in different scenarios.
 
 The following changes affect the upgrade procedures:
 
+- **Artifact Metadata Repository introduced**
+
+    In Tanzu Application Platform v1.7.0, the [Artifact Metadata
+    Repository](scst-store/amr/overview.hbs.md) component is introduced into the
+    Supply Chain Security Tools (SCST) - Store package. In a multicluster
+    deployment, this component requires additional configuration during upgrade.
+    See [SCST - Store upgrade to 1.7
+    instructions](scst-store/upgrading.hbs.md#upgrading-1-7).
+
 - **Keyless support deactivated by default**
 
     In Tanzu Application Platform v1.5.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md).
@@ -165,8 +174,11 @@ To reduce the likelihood of temporary failures, follow these steps to upgrade yo
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
-For information about upgrading Tanzu Developer Portal, see [Upgrade Tanzu Developer Portal](tap-gui/upgrades.html).
-For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+Some components have instructions for upgrading.
+
+* Tanzu Developer Portal, see [Upgrade Tanzu Developer Portal](tap-gui/upgrades.html).
+* Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+* Supply Chain Security Tools - Store, see [Upgrading Supply Chain Security Tools - Store](scst-store/upgrading.hbs.md).
 
 ## <a id="verify"></a> Verify the upgrade
 
