@@ -176,14 +176,12 @@ parameters in the Workload.
       Specifies the secret containing credentials necessary to fetch from the Maven repository.
       The secret named must exist in the same workspace as the workload.
     </td>
-    </tr>
     <td>
       <pre>
       - name: maven_repository_secret_name
         value: auth-secret
       </pre>
     </td>
-  </tr>
 </table>
 
 ##### <a id='maven-artifact-more-info'></a> More information
