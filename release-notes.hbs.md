@@ -55,16 +55,13 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-5-6-COMPONENT-NAME-ri'></a> v1.5.6 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
 #### <a id='1-5-6-app-config-srvc-ri'></a> v1.5.6 Resolved issues: Application Configuration Service
 
 - Resolves an issue which caused client applications that include the `spring-cloud-config-client`
   dependency to fail to start or properly load the configuration that Application Configuration Service
   produced. The fix is adding the property `spring.cloud.config.enabled=false` in secret resources
   that Application Configuration Service produced.
+
 - Resolves some installation failure scenarios by setting the pod security context to adhere to the
   restricted pod security standard.
 
@@ -74,17 +71,10 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-5-6-COMPONENT-NAME-ki'></a> v1.5.6 Known issues: COMPONENT-NAME
+#### <a id='1-5-6-tap-ki'></a> v1.5.6 Known issues: Tanzu Application Platform
 
-- Known issue description with link to workaround.
-
----
-
-### <a id='1-5-6-components'></a> v1.5.6 Component versions
-
-The following table lists the supported component versions for this Tanzu Application Platform release.
-
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+- Tanzu Application Platform v1.5.6 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+  on vSphere with Tanzu v8.
 
 ---
 
