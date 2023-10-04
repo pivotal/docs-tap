@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-4-10'></a> v1.4.10 
- 
-**Release Date**: 10 October 2023 
- 
-### <a id='1-4-10-security-fixes'></a> v1.4.10 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-4-10'></a> v1.4.10
+
+**Release Date**: 10 October 2023
+
+### <a id='1-4-10-security-fixes'></a> v1.4.10 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-4-10-COMPONENT-NAME-fixes'></a> v1.4.10 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <tr>
 <th>Package name</th>
@@ -29,37 +29,29 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-4-10-resolved-issues'></a> v1.4.10 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-4-10-resolved-issues'></a> v1.4.10 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-4-10-COMPONENT-NAME-ri'></a> v1.4.10 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-4-10-known-issues'></a> v1.4.10 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-4-10-known-issues'></a> v1.4.10 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-4-10-COMPONENT-NAME-ki'></a> v1.4.10 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
-### <a id='1-4-10-components'></a> v1.4.10 Component versions
- 
-The following table lists the supported component versions for this Tanzu Application Platform release.
- 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
 
 ## <a id='1-4-9'></a> v1.4.9
 
