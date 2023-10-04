@@ -54,16 +54,13 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-4-COMPONENT-NAME-ri'></a> v1.6.4 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
 #### <a id='1-6-4-app-config-srvc-ri'></a> v1.6.4 Resolved issues: Application Configuration Service
 
 - Resolves an issue which caused client applications that include the `spring-cloud-config-client`
   dependency to fail to start or properly load the configuration that Application Configuration Service
   produced. The fix is adding the property `spring.cloud.config.enabled=false` in secret resources
   that Application Configuration Service produced.
+
 - Resolves some installation failure scenarios by setting the pod security context to adhere to the
   restricted pod security standard.
 
@@ -73,21 +70,211 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-6-4-COMPONENT-NAME-ki'></a> v1.6.4 Known issues: COMPONENT-NAME
+#### <a id='1-6-4-tap-ki'></a> v1.6.4 Known issues: Tanzu Application Platform
 
-- Known issue description with link to workaround.
+- Tanzu Application Platform v1.6.4 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+  on vSphere with Tanzu v8.
 
----
+#### <a id='1-6-4-amr-obs-ce-hndlr-ki'></a> v1.6.4 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+- ReplicaSet status in AMR only has two states: `created` and `deleted`.
+  There is a known issue where the `available` and `unavailable` state is not showing.
+  The workaround is that you can interpolate this information from the `instances` metadata in the
+  AMR for the ReplicaSet.
+
+#### <a id='1-6-4-bitnami-services-ki'></a> v1.6.4 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-6-4-cnrs-ki'></a> v1.6.4 Known issues: Cloud Native Runtimes
+
+- For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
+  with status `CertificateNotReady`. For more information, see
+  [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+#### <a id='1-6-4-crossplane-ki'></a> v1.6.4 Known issues: Crossplane
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane Package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-6-4-eventing-ki'></a> v1.6.4 Known issues: Eventing
+
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
+  informers to alleviate load on the API server. This causes high memory use.
+
+#### <a id='1-6-4-learningcenter-ki'></a> v1.6.4 Known issues: Learning Center
+
+- [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
+  Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
+#### <a id='1-6-4-stk-ki'></a> v1.6.4 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+#### <a id='1-6-4-scc-ki'></a> v1.6.4 Known issues: Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, you this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
 #### <a id='1-6-4-supply-chain-security-tools-store-ki'></a> v1.6.4 Supply Chain Security Tools - Store
 
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-6-4-tap-gui-ki'></a> v1.6.4 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-6-4-sc-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Any workloads created by using a CRD might not work as expected.
+  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
+
+- Downloading the SBOM from a vulnerability scan requires additional configuration in
+  `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+
+#### <a id='1-6-4-intellij-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-6-4-vs-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+#### <a id='1-6-4-vscode-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. The correct category is **Supply Chain**.
+
+#### <a id='1-6-4-linux-kernel-CVEs'></a> v1.6.4 Known issues: Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these
+fixed images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS.
+An unpatched host OS might be exploitable if the base image is deployed.
+
+For each known vulnerability, links to the Ubuntu Security page are provided.
+These pages might list mitigation steps that operators can take to secure the cluster.
+
+- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
+- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
+- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
+- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
+- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
+- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
+- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
+- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
+- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
+- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
+- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
+- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
+- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
+- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
+- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
+- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
+
+---
 
 ### <a id='1-6-4-components'></a> v1.6.4 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+| Component Name                                                   | Version |
+| ---------------------------------------------------------------- | ------- |
+| API Auto Registration                                            |         |
+| API portal                                                       |         |
+| Application Accelerator                                          |         |
+| Application Configuration Service                                |         |
+| Application Live View API Server                                 |         |
+| Application Live View Backend                                    |         |
+| Application Live View Connector                                  |         |
+| Application Live View Conventions                                |         |
+| Application Single Sign-On                                       |         |
+| Authentication and authorization                                 |         |
+| Bitnami Services                                                 |         |
+| Cartographer Conventions                                         |         |
+| cert-manager                                                     |         |
+| Cloud Native Runtimes                                            |         |
+| Contour                                                          |         |
+| Crossplane                                                       |         |
+| Developer Conventions                                            |         |
+| Eventing (deprecated)                                            |         |
+| External Secrets Operator                                        |         |
+| Flux CD Source Controller                                        |         |
+| Learning Center (deprecated)                                     |         |
+| Learning Center workshops (deprecated)                           |         |
+| Local Source Proxy                                               |         |
+| Namespace Provisioner                                            |         |
+| Out of the Box Delivery - Basic                                  |         |
+| Out of the Box Supply Chain - Basic                              |         |
+| Out of the Box Supply Chain - Testing                            |         |
+| Out of the Box Supply Chain - Testing and Scanning               |         |
+| Out of the Box Templates                                         |         |
+| Service Bindings                                                 |         |
+| Services Toolkit                                                 |         |
+| Source Controller                                                |         |
+| Spring Boot conventions                                          |         |
+| Spring Cloud Gateway                                             |         |
+| Supply Chain Choreographer                                       |         |
+| Supply Chain Security Tools - Policy Controller                  |         |
+| Supply Chain Security Tools - Scan                               |         |
+| Supply Chain Security Tools - Store                              |         |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
+| Tanzu Application Platform Telemetry                             |         |
+| Tanzu Build Service                                              |         |
+| Tanzu CLI                                                        |         |
+| Tekton Pipelines                                                 |         |
 
 ---
 
