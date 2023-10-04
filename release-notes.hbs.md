@@ -14,6 +14,8 @@ This release has the following breaking changes, listed by component and area.
 #### <a id='1-6-4-services-toolkit-br'></a> v1.6.4 Breaking changes: Services Toolkit
 
 - Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
+  You must now grant the permission to `claim` from a `ClusterInstanceClass` by using a `ClusterRole`
+  and `ClusterRoleBinding`.
   For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
 
 ### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
@@ -310,10 +312,6 @@ The following issues, listed by component and area, are resolved in this release
 - This release includes Tanzu CLI v1.0.0 and a set of installable plug-in groups that are versioned
   so that the CLI is compatible with every supported version of Tanzu Applicatin Platform. For more
   information, see [Install Tanzu CLI](install-tanzu-cli.hbs.md).
-
-#### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 breaking changes: Services Toolkit
-
-- Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`
 
 ---
 

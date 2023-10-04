@@ -130,8 +130,8 @@ rules:
   - claim
 ```
 
-As of Services Toolkit v0.11.1 in Tanzu Application Platform v1.6.4, the permission to `claim` from
-a `ClusterInstanceClass` must be granted on a cluster level by using a `ClusterRole` and `ClusterRoleBinding`.
+As of Services Toolkit v0.11.1 in Tanzu Application Platform v1.6.4, you must grant the permission to
+`claim` from a `ClusterInstanceClass` at the cluster level by using a `ClusterRole` and `ClusterRoleBinding`.
 Namespace-scoped permissions, such as using a `Role` and `RoleBinding` or `ClusterRole` and `RoleBinding`,
 are not sufficient.
 If you used `Roles` and `RoleBindings`, or `ClusterRoles` and `RoleBindings` to
