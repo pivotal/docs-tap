@@ -11,9 +11,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
 
 1. Obtain a Carbon Black API Token from Carbon Black Cloud.
 
-2. Create a Carbon Black secret YAML file and insert the Carbon Black API configuration key:
-
-    > **Note** Obtain all values from your CBC console.
+2. Create a Carbon Black secret YAML file and insert the Carbon Black API configuration key. Obtain all values from your CBC console.
 
     ```yaml
     apiVersion: v1
