@@ -170,6 +170,7 @@ parameters in the Workload.
           artifactRetryTimeout: 1m0s  # optional
       </pre>
     </td>
+    <tr>
     <td><code>maven_repository_url<code></td>
     <td>
       Specifies the Maven repository from which to fetch
@@ -180,11 +181,14 @@ parameters in the Workload.
         value: https://repo1.maven.org/maven2/
       </pre>
     </td>
+    </tr>
+    <tr>
     <td><code>maven_repository_secret_name<code></td>
     <td>
       Specifies the secret containing credentials necessary to fetch from the Maven repository.
       The secret named must exist in the same workspace as the workload.
     </td>
+    </tr>
     <td>
       <pre>
       - name: maven_repository_secret_name
