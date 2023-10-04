@@ -219,6 +219,6 @@ Services Toolkit v0.10.3 for Tanzu Application Platform v1.5.5
 To allow users to create `ClassClaims` again, you must:
 
 1. Move from a `Role` to a `ClusterRole` for granting users permission to claim a `ClusterInstanceClass`.
-2. Move from a `RoleBinding` to a `ClusterRoleBinding`for binding this permission to a user.
+2. Move from a `RoleBinding` to a `ClusterRoleBinding` for binding this permission to a user.
 
 For more information, see [Authorize users and groups to claim from provisioner-based classes](authorize-claim-provisioner-classes.hbs.md).
