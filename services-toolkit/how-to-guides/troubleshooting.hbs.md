@@ -187,12 +187,6 @@ This is to protect against unexpected access to resources in other namespaces.
 This change was introduced with Services Toolkit v0.12.0 in Tanzu Application Platform v1.7.0.
 For more information about this change, see [The claim verb for ClusterInstanceClass](../reference/api/rbac.hbs.md#claim-verb).
 
-<!--
-Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
-Services Toolkit v0.11.1 for Tanzu Application Platform v1.6.3
-Services Toolkit v0.10.3 for Tanzu Application Platform v1.5.5
--->
-
 **Solution:**
 
 To allow users to create `ClassClaims` again, you must:
