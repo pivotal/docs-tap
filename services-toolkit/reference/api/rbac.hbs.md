@@ -130,13 +130,7 @@ rules:
   - claim
 ```
 
-<!--
-Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
-Services Toolkit v0.11.1 for Tanzu Application Platform v1.6.3
-Services Toolkit v0.10.3 for Tanzu Application Platform v1.5.5
--->
-
-As of Services Toolkit v0.12.0 in Tanzu Application Platform v1.7.0, the permission to `claim` from
+As of Services Toolkit v0.10.3 in Tanzu Application Platform v1.5.6, the permission to `claim` from
 a `ClusterInstanceClass` must be granted on a cluster level by using a `ClusterRole` and `ClusterRoleBinding`.
 Namespace-scoped permissions, such as using a `Role` and `RoleBinding` or `ClusterRole` and `RoleBinding`,
 are not sufficient.
