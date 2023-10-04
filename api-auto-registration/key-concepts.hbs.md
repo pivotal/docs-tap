@@ -153,7 +153,7 @@ is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. F
 ### <a id='status-fields'></a>APIDescriptor status fields
 
 When API Auto Registration processes an APIDescriptor, it adds several fields describing the progress to the `status`.
-Including `conditons`, which provides information useful for troubleshooting. For information about the conditions, see
+Including `conditions`, which provides information useful for troubleshooting. For information about the conditions, see
 [Troubleshoot API Auto Registration](../api-auto-registration/troubleshooting.hbs.md).
 
 In addition to `conditions`, the `status` contains other useful fields showing the resolved API’s details.
@@ -174,13 +174,13 @@ status:
 
 To curate one or more Workload OpenAPI specifications into a single aggregated API, create a custom
 resource of type `CuratedAPIDescriptor`. The information from this custom resource references a list of APIDescriptors
-and how they are aggregated together through path-based routing.
+and how path-based routing aggregates them.
 
-If a valid route provider is specified, for example, `spring-cloud-gateway` for
+If you specify a valid route provider, for example, `spring-cloud-gateway` for
 [Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG),
 the API Auto Registration controller finds the [SpringCloudGateway](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
 resource and automatically creates the following routing resources for you to expose your curated APIs
-as one:
+as:
 
 - [SpringCloudGatewayRouteConfig (SCGRC)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewayrouteconfig.html):
   a custom resource that describes all the API endpoints and optional routing modifiers to access
@@ -219,7 +219,7 @@ spec:
 There are some key behaviors generated from the text boxes:
 
 - The `apis.apps.tanzu.vmware.com/route-provider` annotation specified how you want to provide routing
-  to the curated API. VMware currently only supports `spring-cloud-gateway`.
+  to the curated API. VMware only supports `spring-cloud-gateway`.
 - `groupId` is a concept that's aligned with [API portal](../api-portal/about.hbs.md) to group APIs
   from different high-availability zones/locations or with different `version`.
 - `groupId` and `version` identify a matching gateway that route traffic for the

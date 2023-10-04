@@ -15,7 +15,7 @@ API Auto Registration requires the following:
 
 2. An APIDescriptor Custom Resource (CR) with that location created in the cluster.
 
-3. Optional: Configure Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
+3. (Optional) Configure Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
 
 To generate OpenAPI Spec:
 
@@ -218,7 +218,7 @@ If you are using Spring, see [CORS support in spring framework](https://spring.i
 
 At a high level, your API must accept the Tanzu Developer Portal domain must be accepted as a valid cross-origin.
 
-To do this, verify the following:
+To do this:
 
 - **Origins allowed** header: `Access-Control-Allow-Origin`: A list of comma-separated values.
 This list must include your Tanzu Developer Portal host.

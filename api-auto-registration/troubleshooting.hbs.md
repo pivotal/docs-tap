@@ -35,7 +35,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     The generated SCG resources are placed in the same namespace as the CuratedAPIDescriptor,
     and the generated name has a prefix with the name of the CuratedAPIDescriptor.
     To see which APIDescriptor the resource was generated for,
-    you may list generated SCG resources with additional labels by running:
+    you can list generated SCG resources with additional labels by running:
 
     ```console
     kubectl get scgrc -A -L apis.apps.tanzu.vmware.com/api-descriptor-name -L apis.apps.tanzu.vmware.com/api-descriptor-namespace
@@ -51,13 +51,13 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     api-curation   petstore-d0243a39   49s   dog-api               dog-ns
     ```
 
-1. Read logs from the `api-auto-registration` controller.
+2. Read logs from the `api-auto-registration` controller.
 
     ```console
     kubectl -n api-auto-registration logs deployment.apps/api-auto-registration-controller
     ```
 
-1. Patch an APIDescriptor that is stuck in Deleting mode.
+3. Patch an APIDescriptor that is stuck in Deleting mode.
 
    This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources.
    You can reinstall the package and delete all the APIDescriptor resources first,
@@ -72,10 +72,10 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     > **Note** If you manually remove the finalizers from the APIDescriptor resources, you can have
     > stale API entities within Tanzu Developer Portal that you must manually deregister.
 
-1. Fix a `CuratedAPIDescriptor` not matching with a SCG.
+4. Fix a `CuratedAPIDescriptor` that does not match with a SCG.
 
-    This could happen if the groupId and version of the `CuratedAPIDescriptor` does not match any available `SpringCloudGateway` resource.
-    You can remove the `"apis.apps.tanzu.vmware.com/route-provider": "spring-cloud-gateway"` annotation from your `CuratedAPIDescriptor` to skip SCG matching, or make sure you have a matching SCG applied to the cluster. 
+    This might happen if the `groupId` and version of the `CuratedAPIDescriptor` does not match any available `SpringCloudGateway` resource.
+    You can remove the `"apis.apps.tanzu.vmware.com/route-provider": "spring-cloud-gateway"` annotation from your `CuratedAPIDescriptor` to skip SCG matching, or ensure that you have a matching SCG applied to the cluster. 
 
 ### <a id='api-connection-refused'></a> APIDescriptor CRD shows message of `connection refused` but service is up and running
 
@@ -96,7 +96,7 @@ Your APIDescription CRD shows a status and message similar to:
 This might be due to your workloads using a custom Ingress issuer. To solve this issue, either:
 
 - Configure `ca_cert_data` following the instructions in [Configure CA Cert Data](#set-ca-crt).
-- Deactivate TLS by setting `shared.ingress_issuer: ""`. VMware discourages this method. Deactivating TLS reduces your ability to test plugin functionality and iterate quickly.
+- Deactivate TLS by setting `shared.ingress_issuer: ""`. VMware discourages this method. Deactivating TLS reduces your ability to test plug-in capability and iterate quickly.
 
 #### <a id="set-ca-crt"></a> Configure CA Cert Data
 
