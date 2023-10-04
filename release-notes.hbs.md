@@ -184,6 +184,8 @@ Application Accelerator starter templates for Python and Java are removed in thi
 #### <a id='1-7-0-services-toolkit-br'></a> v1.7.0 Breaking changes: Services Toolkit
 
 - Services Toolkit forces explicit cluster-wide permissions to `claim` from a `ClusterInstanceClass`.
+  You must now grant the permission to `claim` from a `ClusterInstanceClass` by using a `ClusterRole`
+  and `ClusterRoleBinding`.
   For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
 
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
