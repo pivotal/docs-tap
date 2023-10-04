@@ -182,10 +182,10 @@ This occurs even if users were granted the `claim` permission on `ClusterInstanc
 
 You now need the cluster-level `claim` permission, granted through a `ClusterRole` and `ClusterRoleBinding`.
 Namespace-scoped permissions are no longer enough.
-This is to guard against unexpected access to resources in other namespaces.
+This is to protect against unexpected access to resources in other namespaces.
 
 This change was introduced with Services Toolkit v0.12.0 in Tanzu Application Platform v1.7.0.
-For more information, see [The claim verb for ClusterInstanceClass](../reference/api/rbac.hbs.md#claim-verb).
+For more information about this change, see [The claim verb for ClusterInstanceClass](../reference/api/rbac.hbs.md#claim-verb).
 
 <!--
 Services Toolkit v0.12.0 for Tanzu Application Platform v1.7.0
@@ -197,7 +197,7 @@ Services Toolkit v0.10.3 for Tanzu Application Platform v1.5.5
 
 To allow users to create `ClassClaims` again, you must:
 
-- Move from granting users permission to claim a `clusterinstanceclasses` from a `Role` to a `ClusterRole`
-- Move from binding this permission to a user from a `RoleBinding` to a `ClusterRoleBinding`
-<!-- instructions? -->
-<!-- do you need to do both of these things? -->
+1. Move from a `Role` to a `ClusterRole` for granting users permission to claim a `ClusterInstanceClass`.
+2. Move from a `RoleBinding` to a `ClusterRoleBinding`for binding this permission to a user.
+
+For more information, see [Authorize users and groups to claim from provisioner-based classes](authorize-claim-provisioner-classes.hbs.md).
