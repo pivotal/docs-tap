@@ -95,7 +95,7 @@ this environment variable in the next step.
 
 ## <a id='apply-build'></a>Apply the SCST - Store CA certificates and SCST - Store tokens to the Build and Run clusters
 
-After you copy the certificate and tokens, apply them to the Build and Run clusters prior to deploying the profiles. 
+After you copy the certificate and tokens, apply them to the Build and Run clusters before deploying the profiles. 
 
 Build cluster:
 
@@ -111,8 +111,8 @@ Run cluster:
 
 ### <a id='apply-kubernetes'></a>Apply the Metadata Store CA certificate and authentication token to the Build cluster
 
-Before you deploy the Build profile, you must apply the Metadata Store CA certificate and
-Metadata Store authentication token from the earlier steps. Then the Build profile deployment will have access to these values.
+Before you deploy the Build profile, apply the Metadata Store CA certificate and
+Metadata Store authentication token from the earlier steps. This gives the Build profile deployment access to these values.
 
 To apply the Metadata Store CA certificate and an authentication token:
 
@@ -141,9 +141,9 @@ token named `store-auth-token` in the namespace `metadata-store-secrets`.
 
 ### <a id='apply-ceh-ca-token'></a>Apply the CloudEvent Handler CA certificate data and edit token to the Build and Run clusters
 
-Now we will apply the CloudEvent Handler CA certificate and edit token to the Build and Run clusters. These values need to be accessible during the Build and Run profile deployments.
+You can apply the CloudEvent Handler CA certificate and edit the token to the Build and Run clusters. These values must be accessible during the Build and Run profile deployments.
 
-1. First, update your kubectl to target the Build cluster.
+1. Update your kubectl to target the Build cluster.
 1. If you already installed Build Cluster you can skip this step. 
    Create a namespace for the CloudEvent Handler CA
 certificate and edit token.
@@ -152,7 +152,7 @@ certificate and edit token.
     kubectl create ns amr-observer-system
     ```
 
-1. Update the Build profile `values.yaml` file to add the following snippet. It will configure the CA cert and endpoint. In `amr.observer.cloudevent_handler.endpoint` we specify the location of the CloudEvent Handler which was deployed to the View cluster. In `amr.observer.ca_cert_data` we paste the contents of `$CEH_CA_CERT_DATA` which we copied in an earlier step.
+1. Update the Build profile `values.yaml` file to add the following snippet. It configures the CA certificate and endpoint. In `amr.observer.cloudevent_handler.endpoint` you specify the location of the CloudEvent Handler which was deployed to the View cluster. In `amr.observer.ca_cert_data` you paste the contents of `$CEH_CA_CERT_DATA` which you copied earlier.
 
     ```console
     amr:
@@ -166,14 +166,14 @@ certificate and edit token.
             <CONTENTS OF $CEH_CA_CERT_DATA>
     ```
 
-2. Create a secret to store the CloudEvent Handler edit token. This uses the `CEH_EDIT_TOKEN` environment variable.
+1. Create a secret to store the CloudEvent Handler edit token. This uses the `CEH_EDIT_TOKEN` environment variable.
 
     ```console
     kubectl create secret generic amr-observer-edit-token \
       --from-literal=token=$CEH_EDIT_TOKEN -n amr-observer-system
     ```
 
-3. Repeat the above steps, but configure kubectl to target the Run cluster instead of the Build cluster.
+1. Repeat the earlier steps, but configure kubectl to target the Run cluster instead of the Build cluster.
 
 After all the steps are done, both the Build and Run clusters each have a CloudEvent Handler CA certificate and edit
 token named `amr-observer-edit-token` in the namespaces `metadata-store-secrets` and `amr-observer-system`. Now you are ready to deploy the Build and Run profiles.
@@ -219,8 +219,7 @@ Where:
 
 ## <a id='config-dev-ns'></a>Configure developer namespaces
 
-After you finish installing Tanzu Application Platform, you
-are ready to configure developer namespaces. To prepare developer namespaces,
+After you finish installing Tanzu Application Platform, configure developer namespaces. To prepare developer namespaces,
 you must export the Metadata Store secrets you created earlier to those namespaces.
 
 ### <a id="export-multicluster"></a> Exporting SCST - Store secrets to a developer namespace in a Tanzu Application Platform multicluster deployment
