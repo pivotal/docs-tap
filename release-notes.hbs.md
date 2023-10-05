@@ -36,6 +36,12 @@ This release has the following security fixes, listed by component and area.
 | tekton.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2022-48560</li><li>CVE-2022-48564</li><li>CVE-2022-48565</li><li>CVE-2022-48566 </li></ul>|
 | tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-32559 </li></ul>|
 
+### Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if the base image is deployed.
+
 ---
 
 ### <a id='1-6-4-resolved-issues'></a> v1.6.4 Resolved issues
