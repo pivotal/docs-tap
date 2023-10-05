@@ -33,7 +33,7 @@ There are two Carvel Package Supply Chains, `source-to-url-package` and
 are identical to `source-to-url` and `basic-image-to-url`, except for three
 resources:
 
-- A new `carvel-package` resource is added. It stamps out a Tekton Task that
+- A new `carvel-package` resource is added. The supply chain stamps out a Tekton Task that
   bundles all application Kubernetes resources into a Carvel `Package`.
 - `config-writer` is modified to write the Carvel `Package` to a GitOps
   repository.
