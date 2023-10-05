@@ -690,6 +690,7 @@
           - [Connecting to the Postgres Database](scst-store/connect-to-database.hbs.md)
           - [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.hbs.md)
           - [Upgrading](scst-store/upgrading.hbs.md)
+          - [Upgrade Supply Chain Security Tools - Store AMR BETA](scst-store/upgrading-amr-beta.hbs.md)
           - [Failover, redundancy, and backups](scst-store/failover.hbs.md)
           - [Custom certificate configuration](scst-store/custom-cert.hbs.md)
           - [TLS configuration](scst-store/tls-configuration.hbs.md)

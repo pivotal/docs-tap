@@ -36,6 +36,10 @@ new AMR and the existing Metadata Store. The new configurations for 1.7 are:
 3. [Apply the CloudEvent Handler CA certificate data and edit token to the Build
    and Run clusters](multicluster-setup.hbs.md#apply-ceh-ca-token)
 
+## <a id="upgrading-1-7"></a>Upgrading AMR Beta to 1.7
+
+This topic is about a special upgrade scenario for AMR: Upgrading from TAP 1.6 with AMR beta enabled to TAP 1.7. Because AMR was not enabled by default in TAP 1.6, most users will not encounter this scenario. Please refer [Upgrading from AMR Beta to AMR GA release](./upgrading-amr-beta.hbs.md) for more information
+
 ## <a id="troubleshoot"></a>Troubleshoot upgrading
 
 The following sections tell you how to troubleshoot AMR upgrades.
