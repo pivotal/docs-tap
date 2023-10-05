@@ -4,7 +4,7 @@ A quick introduction to the AWS Services Package to get you up and running with 
 Tanzu Application Platform.
 
 <!-- probs should be split into roles -->
-<!-- could this just be a how to? Eg "Create a ProviderConfig" and "Create claim and bind to workload"/"Using AWS Services" -->
+<!-- could this just be a how to? "Create claim and bind to workload"/"Using AWS Services" -->
 
 ## Prerequisites
 
