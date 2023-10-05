@@ -353,15 +353,12 @@ To define a CRD:
                     type: string
     ```
 
-#### <a id="sc-crd-printer-columns"></a> (Optional) Add printer columns to the CRD
+#### <a id="sc-crd-printer-columns"></a> (Optional) Add custom data to display in the Supply Chain GUI
 
-v1.7.0 of the supply chain plug-in introduced support for printer columns.
-
-Add printer columns (`additionalPrinterColumns`) to specify which CRD properties to display when
-rendering the resource through CLI tools or the supply chain plug-in.
-
-For more information about printer columns, see the
+You can display custom data in the Supply Chain Plug-in GUI using the Printer Column feature.  For more information see 
 [Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns).
+
+>**Note** Users must have a service account with permissions to view the Custom Resource Definition, which is where printer column data is maintained.  If the user is using a service account without this permission, the user will not see any printer column data (nor will they have any warning that the data is missing)
 
 A printer column is a list that is specified as part of a `version` object. Each list item specifies
 the following for printing:
