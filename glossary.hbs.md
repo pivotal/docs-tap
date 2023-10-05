@@ -97,7 +97,7 @@
     </tr>
     <tr>
         <td>Bitnami Services</td>
-        <td>Bitnami Services is a Tanzu Application Platform component that provides a set of services for
+        <td>Bitnami Services is a Tanzu Application Platform component that provides a set of services
         backed by corresponding Bitnami Helm Charts. Through integration with Crossplane and Services Toolkit,
         these Bitnami Services are immediately ready for apps teams to consume, with no additional setup or
         configuration required from ops teams.</td>
