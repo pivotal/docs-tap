@@ -24,6 +24,13 @@ This release has the following security fixes, listed by component and area.
 | tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-23918</li><li>CVE-2022-43548</li><li>CVE-2023-23919</li><li>GHSA-3xq5-wjfh-ppjc</li><li>GHSA-4jv9-3563-23j3</li><li>GHSA-m974-647v-whv7 </li></ul>|
 ---
 
+### Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if the base image is deployed.
+
+
 ### <a id='1-3-13-resolved-issues'></a> v1.3.13 Resolved issues
 
 The following issues, listed by component and area, are resolved in this release.
