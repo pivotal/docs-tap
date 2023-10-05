@@ -39,54 +39,23 @@ VMware recommends the following connection methods for Tanzu Application Platfor
 
 For a production environment, VMware recommends installing SCST - Store with ingress enabled.
 
-#### <a id='amr'></a>Deploying AMR
-
-By default, AMR is not deployed with SCST - Store. There is an `amr` section inside `metadata_store`. To deploy AMR, you must set the `deploy` property under `amr` to `true`.
-
-```yaml
-metadata_store:
-  amr:
-    deploy: true
-```
-
->**Note** The `deploy` property expects a Boolean value of `true` or `false`, not a string value.
-
 #### <a id='appserv-type'></a>App service type
 
-This configuration is available in the following places:
-
-- `metadata_store` configures the app service type of the metadata store.
-- `amr` in the `metadata_store` section configures the app service type.
-
-Supported values include: 
-
-- `LoadBalancer`
-- `ClusterIP`
-- `NodePort`. The
-`app_service_type` is set to `LoadBalancer` by default. If your environment does
-not support `LoadBalancer`, configure the
-`app_service_type` property to use `ClusterIP` in your deployment YAML:
-
-For metadata-store:
+The Metadata Store's app service type is configuring inside the `metadata_store`
+property of the values file.
 
 ```yaml
 metadata_store:
   app_service_type: "ClusterIP"
 ```
 
-For AMR:
+Supported values include: 
 
-```yaml
-metadata_store:
-  amr:
-    deploy: true
-    app_service_type: "ClusterIP"
-```
+- `LoadBalancer`
+- `ClusterIP`
+- `NodePort`
 
-If you set the `ingress_enabled` to `"true"`, VMware recommends setting
-the `app_service_type` property to `"ClusterIP"`. 
-
->**Note** The `app_service_type` is set to `ClusterIP` by default when you enable shared ingress.
+The `app_service_type` is set to `ClusterIP` by default.
 
 #### <a id='ingress'></a>Ingress support
 
@@ -128,25 +97,16 @@ See [Use external postgres database](use-external-database.hbs.md).
 #### <a id='cust-data-pass'></a>Custom database password
 
 By default, a database password is generated upon deployment. To configure a
-custom password, use the `db_password` property in the deployment YAML. 
-The `db_password` property is available under `metadata_store` and under `amr` in `metadata_store`.
+custom password, use the `metadata_store.db_password` property in the values
+file
 
 >**Important** There is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
 
-To configure a custom database password for the store:
+To configure a custom database password for the AMR:
 
 ```yaml
 metadata_store:
   db_password: "PASSWORD"
-```
-
-To configure a custom database password for AMR:
-
-```yaml
-metadata_store:
-  amr:
-    deploy: true
-    db_password: "PASSWORD"
 ```
 
 Where `PASSWORD` is the same password used for both deployments.

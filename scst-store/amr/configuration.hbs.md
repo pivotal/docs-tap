@@ -10,11 +10,8 @@ You can obtain the Tanzu Application Platform values schema by running:
 tanzu package available get amr-observer.apps.tanzu.vmware.com/${VERSION} --values-schema --namespace tap-install
 ```
 
-Values are under the `amr` root key, not under the `metadata_store` root key. 
-
->**Note** If you deployed AMR Observer as [standalone](./install-amr-observer.hbs.md#a-idstandalone-installa-installing-artifact-metadata-repository-observer-standalone), not through a Tanzu Application Platform package, the values file for a standalone package installation does not have the Tanzu Application Platform value root keys of `amr.observer` or `amr.deploy_observer`.
-
-The following is an example template of the AMR Observer Tanzu Application Platform values:
+This is an example AMR Observer configuration which is under the `amr` key in
+TAP's values file.
 
 ```yaml
 amr:
@@ -115,6 +112,7 @@ Configuration options:
   - `.autoconfigure`
     - Default: `true`
     - Delegate creation of authentication token secret to the artifact metadata repository. By default it is set to true.
+
 ## <a id='amr-cloudevent-handler'></a> AMR CloudEvent Handler
 
 - `amr.cloudevent_handler.auth.kubernetes_service_accounts`
