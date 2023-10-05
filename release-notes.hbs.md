@@ -21,33 +21,24 @@ This release has the following breaking changes, listed by component and area.
 ### <a id='1-5-6-security-fixes'></a> v1.5.6 Security fixes
 
 This release has the following security fixes, listed by component and area.
-
-#### <a id='1-5-6-COMPONENT-NAME-fixes'></a> v1.5.6 Security fixes: COMPONENT-NAME
-
-- Security fix description.
-
-OR add HTML or Markdown table
-
-<table>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-<tr>
-<td>application-configuration-service.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4759">CVE-2023-4759</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20863">CVE-2023-20863</a></li>
-</ul></details></td>
-</tr>
-</table>
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| apis.apps.tanzu.vmware.com | <ul><li> CVE-2016-2781</li><li>CVE-2022-3219</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-2650</li><li>CVE-2023-29383</li><li>CVE-2023-29491</li><li>CVE-2023-31484</li><li>CVE-2013-4235</li><li>CVE-2020-13844</li><li>CVE-2022-3821</li><li>CVE-2023-26604 </li></ul>|
+| apiserver.appliveview.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650 </li></ul>|
+| conventions.appliveview.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650 </li></ul>|
+| policy.apps.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-1255</li><li>CVE-2023-2650</li><li>CVE-2023-29491</li><li>CVE-2023-31484</li><li>GHSA-6mjq-h674-j845 </li></ul>|
+| application-configuration-service.tanzu.vmware.com | <ul><li> CVE-2023-20861</li><li>CVE-2023-20863</li><li>GHSA-3p86-9955-h393</li><li>GHSA-mjmq-gwgm-5qhm </li></ul>|
+| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>CVE-2020-8908</li><li>GHSA-5mg8-w23w-74h3</li><li>GHSA-7g45-4rm6-3mm3</li><li>CVE-2023-42503</li><li>GHSA-cgwf-w82q-5jrr</li><li>CVE-2023-2976</li><li>CVE-2023-3635 </li></ul>|
+| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-43642 </li></ul>|
+| controller.source.apps.tanzu.vmware.com | <ul><li> GHSA-33pg-m6jh-5237</li><li>GHSA-6wrf-mxfj-pf5p </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2021-3712 </li></ul>|
+| ootb-templates.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064 </li></ul>|
+| tekton.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2022-48560</li><li>CVE-2022-48564</li><li>CVE-2022-48565</li><li>CVE-2022-48566 </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2021-3712 </li></ul>|
+| services-toolkit.tanzu.vmware.com | <ul><li> GHSA-hp87-p4gw-j4gq </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> CVE-2022-48064 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-32006</li><li>CVE-2023-32559 </li></ul>|
 
 ---
 
