@@ -369,6 +369,7 @@
             - [AuthServer audit logs](app-sso/reference/audit-logs.hbs.md)
     - [AWS Services](aws-services/about.hbs.md)
         - [Overview](aws-services/about.hbs.md)
+        - [Install AWS Services](aws-services/install-aws-services.hbs.md)
         - [Concepts](aws-services/concepts/index.hbs.md)
             - [Understanding the AWS Services Package](aws-services/concepts/understanding-the-aws-services-package.hbs.md)
         - [Tutorials](aws-services/tutorials/index.hbs.md)

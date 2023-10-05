@@ -151,3 +151,67 @@ The AWS Services package is not installed as part of any profile so you must exp
     ```
 
 <!-- is this verify step correct? -->
+
+## <a id="create-a-providerconfig"></a> Step 3: Create a ProviderConfig
+<!-- is this an install step? Or could this be a how to on its own with a title eg "Configure credentials and access information for your AWS account" -->
+
+The `ProviderConfig` resource is the mechanism through which you configure credentials and access information for your AWS account.
+
+In this tutorial you will create a `ProviderConfig` using the `Secret` source, in which your AWS account
+credentials will be stored in a `Secret` on the cluster.
+However there are alternative methods available, including an option to assume an IAM Role.
+To learn about the full range of configuration options available, see the [Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-family-aws/latest/resources/aws.upbound.io/ProviderConfig/v1beta1).
+
+To create a ProviderConfig:
+
+1. Create the `Secret` to hold the AWS credentials.
+
+    ```console
+    export AWS_ACCESS_KEY_ID="foo"
+    export AWS_SECRET_ACCESS_KEY="bar"
+
+    echo -e "[default]\naws_access_key_id = $AWS_ACCESS_KEY_ID\naws_secret_access_key = $AWS_SECRET_ACCESS_KEY" > creds.conf
+
+    # (optional) if you are required to use a session token to access your AWS account, you must also set AWS_SESSION_TOKEN
+    # export AWS_SESSION_TOKEN=""
+    # echo -e "aws_session_token = $AWS_SESSION_TOKEN" >> creds.conf
+
+    kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./creds.conf
+    rm -f creds.conf
+    ```
+
+1. Create a `ProviderConfig` and configure it with the `Secret` source.
+
+    > **Note** The `metadata.name` of your `ProviderConifg` must match the
+    > `postgresql.provider_config_ref.name` value you have configured in your `aws-services-values.yaml`
+    > file. The default is `default`.
+
+    ```console
+    kubectl apply -f -<<EOF
+    ---
+    apiVersion: aws.upbound.io/v1beta1
+    kind: ProviderConfig
+    metadata:
+      name: default
+    spec:
+      credentials:
+        source: Secret
+        secretRef:
+          namespace: crossplane-system
+          name: aws-creds
+          key: creds
+    EOF
+    ```
+
+1. Confirm that everything has been setup correctly by inspecting the resources created as part of
+   the installation of the package - the `SubnetGroup` and `SecurityGroups`.
+
+   <!-- would the subnetgroup and securitygroups always be the only resources created? -->
+
+    ```console
+    kubectl get securitygroup
+    kubectl get subnetgroup
+    ```
+
+    When both resources report `SYNCED: True`, the AWS providers have connected to your AWS account
+    and pulled down the information about each of the resources.
