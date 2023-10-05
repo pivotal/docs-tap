@@ -4,15 +4,7 @@ This topic tells you how to install Artifact Metadata Repository (AMR) Observer 
 
 ## <a id='prerecs'></a> Prerequisites
 
-You must deploy AMR and AMR CloudEvent Handler if you are using the Full profile. To do so, additional Tanzu Application Platform values are required.
-
-```yaml
-metadata_store:
-    amr:
-        deploy: true
-```
-
-Alternatively, AMR and AMR CloudEvent Handler must be deployed and accessible by the cluster where AMR Observer is deployed.
+The AMR Observer is deployed by default on TAP's Full, Build and Run profiles.
 
 ## <a id='switch-context'></a> Switching Context
 
@@ -30,18 +22,10 @@ tanzu package installed update tap --values-file tap-values.yaml -n tap-install
 
 Where `OBSERVER-CLUSTER-NAME` is the name of the cluster you want to use.
 
-## <a id='install'></a> Install
+## <a id='install'></a> Configuring AMR Observer in a multicluster deployment
 
-To deploy AMR Observer on a Full, Build, or Run Tanzu Application Platform profile, update the Tanzu Application Platform values:
-
-```yaml
-amr: 
-  deploy_observer: true
-```
-
->**Note** If deployed on a full profile Tanzu Application Platform cluster and `metadata-store.amr.deploy` is `false`, this overrides `amr.deploy_observer` to `false`.
-
-When AMR Observer is installed on a different cluster from AMR and AMR CloudEvent Handler, the following values are required:
+When AMR Observer is installed on a different cluster from the AMR CloudEvent
+Handler, the following values are required:
 
 - `amr.observer.cloudevent_handler.endpoint` is required for the Observer to send to the AMR CloudEvent Handler.
 - `amr.observer.cloudevent_handler.ca_cert_data` or `shared.ca_cert_data` are required for AMR CloudEvent Handlers that use Custom CA certificates to generate the associated TLS certificate for the ingress endpoint.
@@ -73,7 +57,8 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer).
     amr-observer.apps.tanzu.vmware.com  0.1.0-alpha.8  2023-06-08 16:17:22 -0400 EDT
   ```
 
-1. Get the values-schema to create the values file:
+1. Look at the package values-schema to create the values file. For more
+   information, see [Configuration](./configuration.hbs.md#Configuration).
   
   ```console
   $ tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --values-schema --namespace tap-install
@@ -86,13 +71,4 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer).
     resync_period                                  string   resync_period determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
   ```
 
-1. A sample `values-file.yaml` for installing AMR Observer standalone on a cluster where AMR CloudEvent Handler is present.
-
-  ```yaml
-  cloudevent_handler:
-    endpoint: http://amr-cloudevent-handler.metadata-store.svc.cluster.local
-  ```
-
-The values file for a standalone package installation does not have the Tanzu Application Platform value root key of `amr.observer` or `amr.deploy_observer`.
-
-For more information, see [Configuration](./configuration.hbs.md#Configuration).
+1. Install the package using `tanzu package install`.

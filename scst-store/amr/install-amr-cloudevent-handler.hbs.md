@@ -18,25 +18,5 @@ Where `VIEW-CLUSTER-NAME` is the name of the view profile cluster you want to us
 
 ## Install
 
-On the view profile cluster or full profile cluster, the Metadata Store installation must be updated to have Artifact Metadata Repository deployed. 
-When the Artifact Metadata Repository is deployed, Artifact Metadata Repository CloudEvent Handler is deployed alongside it. 
-
-To do so, additional Tanzu Application Platform values are required:
-
-```yaml
-metadata_store:
-    amr:
-        deploy: true
-```
-
-## Uninstall
-
-Artifact Metadata Repository CloudEvent Handler is deployed alongside Artifact Metadata Repository. Therefore, to undeploy Artifact Metadata Repository CloudEvent Handler, the Tanzu Application Platform values are updated with:
-
-```yaml
-metadata_store:
-    amr:
-        deploy: false
-```
-
->**Note** When Artifact Metadata Repository Observer is deployed on the same cluster with the full Tanzu Application Platform profile, Artifact Metadata Repository Observer is undeployed when Artifact Metadata Repository is undeployed.
+The AMR CloudEvent Handler is installed by default in TAP's Full and View
+profiles.
