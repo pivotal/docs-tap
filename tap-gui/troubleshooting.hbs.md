@@ -319,7 +319,8 @@ A build cluster might not have runtime CRDs installed, such as Knative Service, 
 might not have build CRDs installed, such as a Cartographer workload.
 In these cases, 403 and 404 errors might be false positives.
 
-You might receive the following error messages as these resources may not be required for your specific TAP profile. These error messages are known issues:
+You might receive the following error messages because these resources might not be required for
+your specific Tanzu Application Platform profile. These error messages are known issues:
 
 - `Access error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 401). Contact your administrator.`
 - `Access error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 403). Contact your administrator.`
