@@ -3,14 +3,16 @@
 This topic describes how to configure the AWS service endpoint used by the providers included with
 the AWS Services package.
 
-## <a id="create-providerconfig"></a> Create a ProviderConfig using `.spec.endpoint`
+## <a id="overview"></a> Overview
 
 By default, AWS providers make calls to the default service endpoint for each service in an AWS region.
 However, you can configure the providers to make calls to an endpoint of your choice.
 
-To configure AWS Service Endpoint through a `ProviderConfig` resource:
+## <a id="create-providerconfig"></a> Configure the endpoint by using a ProviderConfig resource
 
-1. Configure a `ProviderConfig` resource. For example:
+To configure AWS Service endpoint through a `ProviderConfig` resource:
+
+1. Create a `ProviderConfig` resource. For example:
 
     ```yaml
     ---
