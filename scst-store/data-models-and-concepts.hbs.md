@@ -44,7 +44,7 @@ one place.
 
 ![Screenshot of the SCST - Store Triage concept](images/triage.jpg)
 
-Items in orange are the new information saved for vulnerability analysis.
+Highlighted items are the new information saved for vulnerability analysis.
 You can create, view, and update vulnerability analysis using the [Tanzu CLI
 Insight plug-in](../cli-plugins/insight/triaging-vulnerabilities.md).
 
