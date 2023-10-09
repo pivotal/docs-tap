@@ -22,31 +22,25 @@ This release has the following breaking changes, listed by component and area.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-6-4-COMPONENT-NAME-fixes'></a> v1.6.4 Security fixes: COMPONENT-NAME
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| apis.apps.tanzu.vmware.com | <ul><li> CVE-2016-2781</li><li>CVE-2022-3219</li><li>CVE-2023-29383</li><li>CVE-2013-4235</li><li>CVE-2020-13844</li><li>CVE-2022-3821</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-2650</li><li>CVE-2023-26604</li><li>CVE-2023-29491</li><li>CVE-2023-31484 </li></ul>|
+| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>CVE-2020-8908</li><li>GHSA-5mg8-w23w-74h3</li><li>GHSA-7g45-4rm6-3mm3</li><li>CVE-2023-42503</li><li>GHSA-cgwf-w82q-5jrr</li><li>CVE-2023-2976</li><li>CVE-2023-3635 </li></ul>|
+| accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-43642 </li></ul>|
+| policy.apps.tanzu.vmware.com | <ul><li> CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-2650</li><li>CVE-2022-3996</li><li>CVE-2023-1255 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-2602</li><li>CVE-2023-2603</li><li>CVE-2023-34035</li><li>GHSA-6mjq-h674-j845</li><li>GHSA-r47r-87p9-8jh3 </li></ul>|
+| application-configuration-service.tanzu.vmware.com | <ul><li> GHSA-3p86-9955-h393</li><li>GHSA-mjmq-gwgm-5qhm </li></ul>|
+| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2022-40982</li><li>CVE-2022-4269</li><li>CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2022-48425</li><li>CVE-2022-48502</li><li>CVE-2023-0597</li><li>CVE-2023-1192</li><li>CVE-2023-1611</li><li>CVE-2023-1855</li><li>CVE-2023-1990</li><li>CVE-2023-2002</li><li>CVE-2023-2124</li><li>CVE-2023-21255</li><li>CVE-2023-2163</li><li>CVE-2023-2194</li><li>CVE-2023-2235</li><li>CVE-2023-2269</li><li>CVE-2023-23004</li><li>CVE-2023-28466</li><li>CVE-2023-2898</li><li>CVE-2023-30772</li><li>CVE-2023-31084</li><li>CVE-2023-3117</li><li>CVE-2023-3141</li><li>CVE-2023-3212</li><li>CVE-2023-32248</li><li>CVE-2023-3268</li><li>CVE-2023-33203</li><li>CVE-2023-33288</li><li>CVE-2023-34256</li><li>CVE-2023-3439</li><li>CVE-2023-35823</li><li>CVE-2023-35824</li><li>CVE-2023-35828</li><li>CVE-2023-35829</li><li>CVE-2023-38426</li><li>CVE-2023-38428</li><li>CVE-2023-38429</li><li>GHSA-hp87-p4gw-j4gq </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2021-3712 </li></ul>|
+| ootb-templates.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064 </li></ul>|
+| tekton.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2022-48560</li><li>CVE-2022-48564</li><li>CVE-2022-48565</li><li>CVE-2022-48566 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-32559 </li></ul>|
 
-- Security fix description.
+### Linux Kernel CVEs
 
-OR add HTML or Markdown table
+Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
 
-<table>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-<tr>
-<td>application-configuration-service.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4759">CVE-2023-4759</a></li>
-</ul></details></td>
-</tr>
-</table>
+The kernel runs on your container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if the base image is deployed.
 
 ---
 
