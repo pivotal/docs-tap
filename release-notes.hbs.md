@@ -183,12 +183,6 @@ This release has the following security fixes, listed by component and area.
 </tr>
 </table>
 
-#### Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if the base image is deployed.
-
 ---
 
 ### <a id='1-5-6-resolved-issues'></a> v1.5.6 Resolved issues
@@ -1617,3 +1611,17 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.6.0. Use the command `tanzu apps workload apply` instead.
+
+---
+
+## Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed
+images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if
+the base image is deployed.
