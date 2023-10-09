@@ -92,18 +92,6 @@ This release has the following security fixes, listed by component and area.
 </tr>
 </table>
 
-#### Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical.
-Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
-When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed
-images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image.
-Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
-deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if
-the base image is deployed.
-
 ---
 
 ### <a id='1-3-13-known-issues'></a> v1.3.13 Known issues
@@ -1485,18 +1473,18 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-#### <a id="1-3-app-sso-deprecations"></a> Application Single Sign-On
+### <a id="1-3-app-sso-deprecations"></a> Application Single Sign-On
 
   - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
     to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
   - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
    for removal in the next release.
 
-#### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
 
-#### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service
+### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service
 
 - The Ubuntu Bionic stack is deprecated:
 Ubuntu Bionic stops receiving support in April 2023.
@@ -1508,7 +1496,21 @@ VMware plans to deactivate this format by default in Tanzu Application Platform 
 and remove support in Tanzu Application Platform v1.7.
 To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
-##### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+---
+
+## Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed
+images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if
+the base image is deployed.
