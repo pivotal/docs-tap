@@ -28,7 +28,6 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48064">CVE-2022-48064</a></li>
 </ul></details></td>
 </tr>
-</table>
 <tr>
 <td>learningcenter.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -65,6 +64,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-3712">CVE-2021-3712</a></li>
 </ul></details></td>
 </tr>
+</table>
 
 #### Linux Kernel CVEs
 
