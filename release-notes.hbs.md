@@ -150,11 +150,12 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-4-sc-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
-- Any workloads created by using a CRD might not work as expected.
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the UI.
 
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
-  `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
 #### <a id='1-6-4-intellij-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -591,7 +592,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-3-sc-plugin-ki'></a> v1.6.3 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
-- Any workloads created by using a CRD might not work as expected.
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the UI.
 
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
@@ -848,8 +849,9 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-2-sc-plugin-ri'></a> v1.6.2 Resolved issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
--  [Supply Chain Security Tools - Scan v2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
-   `ImageVulnerabilityScanner` CRD, is now supported in the Supply Chain UI.
+- [Supply Chain Security Tools - Scan v2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
+  `ImageVulnerabilityScanner` custom resource definition (CRD), is now supported in the Supply Chain
+  UI.
 
 #### <a id='1-6-2-vscode-ext-ri'></a> v1.6.2 Resolved issues: Tanzu Developer Tools for VS Code
 
@@ -947,11 +949,12 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-2-sc-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
-- Any workloads created by using a CRD might not work as expected.
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the UI.
 
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
-  `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
 #### <a id='1-6-2-intellij-plugin-ki'></a> v1.6.2 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -1482,10 +1485,9 @@ The Tanzu Service CLI plug-in v0.7.0 includes the following:
   the integration of Backstage-compatible plug-ins in Tanzu Developer Portal. For more information,
   see [Tanzu Developer Portal Configurator](tap-gui/configurator/about.hbs.md).
 
-- Permission framework is released in alpha. Permission framework enables the Platform
-  Operator to evaluate visibility restriction of the software catalog entities based on
-  ownership property. For more information, see
-  [Set up permission framework for your Tanzu Developer Portal](tap-gui/tap-gui-rbac/set-up-tap-gui-prmssn-frmwrk.hbs.md)
+- Permission framework is released in alpha. Permission framework enables the Platform Operator to
+  evaluate visibility restriction of the software catalog entities based on ownership property.
+  For more information, see [Set up permission framework for your Tanzu Developer Portal](tap-gui/tap-gui-rbac/set-up-tap-gui-prmssn-frmwrk.hbs.md)
 
 #### <a id='1-6-1-intellij-ext'></a> v1.6.1 Features: Tanzu Developer Tools for IntelliJ
 
@@ -1575,13 +1577,13 @@ This release includes the following changes, listed by component and area.
   The recommended values files in the installation sections are updated to include this setting.
   Add the following lines to `tap-values.yaml` to enable guest access explicitly:
 
-  ```yaml
-  # Existing tap-values.yaml settings
-  tap_gui:
-    app_config:
-      auth:
-        allowGuestAccess: true  # Allows unauthenticated users to log in to your portal. If you deactivate it, configure an alternative auth provider.
-  ```
+    ```yaml
+    # Existing tap-values.yaml settings
+    tap_gui:
+      app_config:
+        auth:
+          allowGuestAccess: true  # Allows unauthenticated users to log in to your portal. If you deactivate it, configure an alternative auth provider.
+    ```
 
 ---
 
@@ -1828,14 +1830,15 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-1-sc-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
-- Any workloads created by using a CRD might not work as expected.
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
   Only Out of the Box (OOTB) Supply Chains are supported in the GUI.
 
 - [Supply Chain Security Tools - Scan v2.0](scst-scan/app-scanning-beta.hbs.md), which introduces the
   `ImageVulnerabilityScanner` CRD, is not currently supported in the Supply Chain GUI.
 
 - Downloading the SBOM from a vulnerability scan requires additional configuration in
-  `tap-values.yaml`. For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
 #### <a id='1-6-1-intellij-plugin-ki'></a> v1.6.1 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -1964,20 +1967,6 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu CLI Insight plug-in                                        | 1.6.0   |
 | Tanzu Service CLI plug-in                                        | 0.7.0   |
 | Tekton Pipelines                                                 | 0.41.0  |
-
----
-
-### <a id='1-6-known-issues'></a> v1.6.0 Known issues
-
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-6-app-config-srvc-ki'></a> v1.6.0 Known issues: Application Configuration Service
-
-- Client applications that include the `spring-cloud-config-client` dependency might fail to start or
-  properly load the configuration that Application Configuration Service produced.
-
-- Installation might fail because the pod security context does not perfectly adhere to the
-  restricted pod security standard.
 
 ---
 
