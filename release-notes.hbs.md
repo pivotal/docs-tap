@@ -18,6 +18,8 @@ This release has the following breaking changes, listed by component and area.
   and `ClusterRoleBinding`.
   For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
 
+---
+
 ### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
 
 This release has the following security fixes, listed by component and area.
