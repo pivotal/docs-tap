@@ -183,7 +183,7 @@ This release has the following security fixes, listed by component and area.
 </tr>
 </table>
 
-### Linux Kernel CVEs
+#### Linux Kernel CVEs
 
 Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
 
