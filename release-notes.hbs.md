@@ -11,27 +11,25 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-3-13-COMPONENT-NAME-fixes'></a> v1.3.13 Security fixes: COMPONENT-NAME
-
-- Security fix description.
-
-OR add HTML or Markdown table
-
-<table>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</table>
-
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| backend.appliveview.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h</li><li>GHSA-fxg5-wq6x-vr4w </li></ul>|
+| conventions.appliveview.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h </li></ul>|
+| spring-boot-conventions.tanzu.vmware.com | <ul><li> GHSA-vvpx-j8f3-3w6h</li><li>GHSA-fxg5-wq6x-vr4w </li></ul>|
+| services-toolkit.tanzu.vmware.com | <ul><li> GHSA-hp87-p4gw-j4gq </li></ul>|
+| buildservice.tanzu.vmware.com | <ul><li> GHSA-232p-vwff-86mp</li><li>GHSA-hqxw-f8mx-cpmw</li><li>GHSA-2h5h-59f5-c5x9</li><li>CVE-2022-48064 </li></ul>|
+| learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064 </li></ul>|
+| tekton.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064</li><li>CVE-2022-48560</li><li>CVE-2022-48564</li><li>CVE-2022-48565</li><li>CVE-2022-48566 </li></ul>|
+| workshops.learningcenter.tanzu.vmware.com | <ul><li> CVE-2022-45887</li><li>CVE-2022-45919</li><li>CVE-2022-48064 </li></ul>|
+| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-23918</li><li>CVE-2022-43548</li><li>CVE-2023-23919</li><li>GHSA-3xq5-wjfh-ppjc</li><li>GHSA-4jv9-3563-23j3</li><li>GHSA-m974-647v-whv7 </li></ul>|
 ---
+
+### Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if the base image is deployed.
+
 
 ### <a id='1-3-13-resolved-issues'></a> v1.3.13 Resolved issues
 
