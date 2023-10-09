@@ -368,4 +368,17 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 - The profile based installation of Grype to a developer namespace and related fields in the values file, such as `grype.namespace` and
   `grype.targetImagePullSecret`, were deprecated in Tanzu Application Platform v1.6.0 and are marked for removal in v1.8.0. Before removal, you can opt-in to use the profile based installation of Grype to a single namespace by setting `grype.namespace` in the `tap-values.yaml` configuration file.
+
 ---
+
+#### Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed
+images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if
+the base image is deployed.
