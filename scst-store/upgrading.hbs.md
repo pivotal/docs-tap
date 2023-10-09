@@ -7,10 +7,10 @@ This topic tells you how to upgrade Supply Chain Security Tools (SCST) - Store a
 In Tanzu Application Platform v1.7, VMware introduces Artifact Metadata Repository (AMR) to SCST - Store.
 Tanzu Application Platform installs AMR components by default after upgrading.
 
-How you must configure AMR depends on how Tanzu Application Platform was deployed:
+How you must configure AMR depends on if:
 
-* Tanzu Application Platform is installed in a single cluster, Full profile, deployment.
-* Tanzu Application Platform is installed in a multicluster deployment.
+* Tanzu Application Platform is installed in a single cluster, Full profile, deployment. See [Single cluster or Full profile upgrade](#full-profile-upgrade).
+* Tanzu Application Platform is installed in a multicluster deployment. See [Multicluster upgrade](multicluster-upgrade).
 
 ### <a id="full-profile-upgrade"></a> Single cluster or Full profile upgrade
 
@@ -38,7 +38,7 @@ new AMR and the existing Metadata Store. The new configurations for 1.7 are:
 
 ## <a id="upgrading-1-7"></a>Upgrading AMR Beta to 1.7
 
-This topic is about a special upgrade scenario for AMR: Upgrading from TAP 1.6 with AMR beta enabled to TAP 1.7. Because AMR was not enabled by default in TAP 1.6, most users will not encounter this scenario. Please refer [Upgrading from AMR Beta to AMR GA release](./upgrading-amr-beta.hbs.md) for more information
+This topic is about a special upgrade scenario for AMR: Upgrading from Tanzu Application Platform 1.6 with AMR beta enabled to Tanzu Application Platform 1.7. Because AMR was not enabled by default in Tanzu Application Platform 1.6, most users will not encounter this scenario. See [Upgrading from AMR Beta to AMR GA release](./upgrading-amr-beta.hbs.md).
 
 ## <a id="troubleshoot"></a>Troubleshoot upgrading
 
