@@ -94,7 +94,7 @@ This release includes the following changes, listed by component and area.
 
 ##### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Tanzu CLI Insight plug-in
 
-- You can access reports from each scan to find out what packages and vulnerabilites were discovered using `tanzu insight report`. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+- You can access reports from each scan to find out what packages and vulnerabilities were discovered using `tanzu insight report`. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 - You can rebase vulnerability triage analyses using `tanzu insight triage rebase`. For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses) and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 #### <a id='1-7-0-cli'></a> v1.7.0 Features: Tanzu Developer Portal & plugins
