@@ -20,9 +20,8 @@ configurable parameters such as `hostname` and `replicas` that are configured
 per environment. GitOps tools such as Flux CD and Argo CD can deploy the
 `Package`s onto multiple environments.
 
-> **Note** The underlying Kubernetes resources created for your `server`
-> `Workload` are the same for `source-to-url` or `basic-image-to-url`, with the
-> optional addition of a `networking.k8s.io/v1 Ingress` resource. For example,
+> **Note** The Kubernetes resources created for your `server`
+> `Workload` are the same for `source-to-url` or `basic-image-to-url`, optionally with a `networking.k8s.io/v1 Ingress` resource. For example, a resource named
 > `Deployment`. The Carvel `Package` wraps these resources. You secure the
 > `Ingress` by using the `cluster_issuer` `tap-ingress-selfsigned` by default.
 
@@ -33,7 +32,7 @@ There are two Carvel Package Supply Chains, `source-to-url-package` and
 are identical to `source-to-url` and `basic-image-to-url`, except for three
 resources:
 
-- A new `carvel-package` resource is added. It stamps out a Tekton Task that
+- A new `carvel-package` resource is added. The supply chain stamps out a Tekton Task that
   bundles all application Kubernetes resources into a Carvel `Package`.
 - `config-writer` is modified to write the Carvel `Package` to a GitOps
   repository.
