@@ -4,7 +4,7 @@ This topic tells you how to install Artifact Metadata Repository (AMR) Observer 
 
 ## <a id='prerecs'></a> Prerequisites
 
-The AMR Observer is deployed by default on TAP's Full, Build and Run profiles.
+The AMR Observer is deployed by default on the Tanzu Application Platform Full, Build and Run profiles.
 
 ## <a id='switch-context'></a> Switching Context
 
@@ -24,7 +24,7 @@ Where `OBSERVER-CLUSTER-NAME` is the name of the cluster you want to use.
 
 ## <a id='install'></a> Configuring AMR Observer in a multicluster deployment
 
-When AMR Observer is installed on a different cluster from the AMR CloudEvent
+When you install AMR Observer on a different cluster from the AMR CloudEvent
 Handler, the following values are required:
 
 - `amr.observer.cloudevent_handler.endpoint` is required for the Observer to send to the AMR CloudEvent Handler.

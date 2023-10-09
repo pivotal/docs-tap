@@ -1,8 +1,10 @@
-# Artifact Metadata Repository CloudEvent Handler
+# Install Artifact Metadata Repository CloudEvent Handler
 
-## Switching Context
+This topic tells you how to install the Artifact Metadata Repository (AMR) CloudEvent Handler.
 
-If Artifact Metadata Repository CloudEvent Handler is installed on a separate cluster, such as with a view profile cluster, it is important that the correct cluster is targeted when updating the installation. Ensure that the correct cluster is targetted before updating package values.
+## <a id='switch-context'></a>Switching Context
+
+If AMR CloudEvent Handler is installed on a separate cluster, such as with a view profile cluster, it is important that you target the correct cluster when updating. Ensure that the correct cluster is targeted before updating package values.
 
 ```console
 # 1. Switch context to view profile cluster
@@ -16,7 +18,7 @@ tanzu package installed update tap --values-file tap-values.yaml -n tap-install
 
 Where `VIEW-CLUSTER-NAME` is the name of the view profile cluster you want to use.
 
-## Install
+## <a id='install'></a>Install
 
-The AMR CloudEvent Handler is installed by default in TAP's Full and View
+The AMR CloudEvent Handler is installed by default in the Tanzu Application Platform Full and View
 profiles.

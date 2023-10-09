@@ -10,8 +10,8 @@ You can obtain the Tanzu Application Platform values schema by running:
 tanzu package available get amr-observer.apps.tanzu.vmware.com/${VERSION} --values-schema --namespace tap-install
 ```
 
-This is an example AMR Observer configuration which is under the `amr` key in
-TAP's values file.
+The following example is an AMR Observer configuration, located under the `amr` key in the
+Tanzu Application Platform values file:
 
 ```yaml
 amr:

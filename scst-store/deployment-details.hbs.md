@@ -18,7 +18,7 @@ The installation creates the following in your Kubernetes cluster:
     - `amr-graphql-app`. If AMR is deployed, see [Deploying AMR](#amr).
 - A namespace called `metadata-store`.
 - Persistent volume claim `postgres-db-pv-claim` in the `metadata-store` namespace.
-- A Kubernetes secret in the namespace tap is installed to allow pulling SCST - Store images from a registry.
+- A Kubernetes secret in the namespace `tap` is installed to allow pulling SCST - Store images from a registry.
 - Two ClusterRoles:
     - `metadata-store-read-write-client` is bound to a service account by default, giving the service account read and write privileges
     - `metadata-store-read-only` isn't bound to any service accounts, you can bind to it if needed. See [Service Accounts](#service-accounts).
@@ -26,7 +26,7 @@ The installation creates the following in your Kubernetes cluster:
 
 ## <a id='configuration'></a> Deployment configuration
 
-All configurations are nested inside of `metadata_store` in your tap values deployment YAML. For AMR specific configurations, they are nested under `amr` in the `metadata_store` section.
+All configurations are nested inside of `metadata_store` in your Tanzu Application Platform values deployment YAML. AMR specific configurations are nested under `amr` in the `metadata_store` section.
 
 ### <a id='supported-network'></a> Supported Network Configurations
 
@@ -41,7 +41,7 @@ For a production environment, VMware recommends installing SCST - Store with ing
 
 #### <a id='appserv-type'></a>App service type
 
-The Metadata Store's app service type is configuring inside the `metadata_store`
+The Metadata Store's app service type is configured inside the `metadata_store`
 property of the values file.
 
 ```yaml
@@ -89,7 +89,7 @@ However, it is a secure deployment.
 Users can also configure the deployment to use their own RDS database instead of
 the default. See [AWS RDS Postgres Configuration](use-aws-rds.hbs.md).
 
-#### Using external PostgreSQL database
+#### <a id='ex-sql-db'></a>Using external PostgreSQL database
 
 Users can configure the deployment to use any other PostgreSQL database.
 See [Use external postgres database](use-external-database.hbs.md).
@@ -102,7 +102,7 @@ file
 
 >**Important** There is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
 
-To configure a custom database password for the AMR:
+To configure a custom database password for AMR:
 
 ```yaml
 metadata_store:
