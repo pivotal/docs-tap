@@ -178,12 +178,6 @@ This release has the following security fixes, listed by component and area.
 </tr>
 </table>
 
-### Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical. Tanzu Application Platform releases with available images, which might contain known vulnerabilities. When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image. Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if the base image is deployed.
-
 ---
 
 ### <a id='1-6-4-resolved-issues'></a> v1.6.4 Resolved issues
@@ -328,38 +322,6 @@ This release has the following known issues, listed by component and area.
 
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
-
-#### <a id='1-6-4-linux-kernel-CVEs'></a> v1.6.4 Known issues: Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical.
-Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
-When Canonical makes patched images available, Tanzu Application Platform incorporates these
-fixed images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image.
-Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
-deploy your containers on a host with a patched OS.
-An unpatched host OS might be exploitable if the base image is deployed.
-
-For each known vulnerability, links to the Ubuntu Security page are provided.
-These pages might list mitigation steps that operators can take to secure the cluster.
-
-- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
-- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
-- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
-- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
-- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
-- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
-- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
-- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
-- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
-- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
-- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
-- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
-- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
-- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
-- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
-- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
 
 ---
 
@@ -770,38 +732,6 @@ This release has the following known issues, listed by component and area.
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
 
-#### <a id='1-6-3-linux-kernel-CVEs'></a> v1.6.3 Known issues: Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical.
-Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
-When Canonical makes patched images available, Tanzu Application Platform incorporates these
-fixed images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image.
-Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
-deploy your containers on a host with a patched OS.
-An unpatched host OS might be exploitable if the base image is deployed.
-
-For each known vulnerability, links to the Ubuntu Security page are provided.
-These pages might list mitigation steps that operators can take to secure the cluster.
-
-- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
-- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
-- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
-- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
-- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
-- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
-- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
-- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
-- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
-- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
-- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
-- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
-- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
-- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
-- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
-- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
-
 ### <a id='1-6-3-components'></a> v1.6.3 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
@@ -1127,38 +1057,6 @@ This release has the following known issues, listed by component and area.
 
 - In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
   categorized as **Unknown**. The correct category is **Supply Chain**.
-
-#### <a id='1-6-2-linux-kernel-CVEs'></a> v1.6.2 Known issues: Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical.
-Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
-When Canonical makes patched images available, Tanzu Application Platform incorporates these
-fixed images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image.
-Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
-deploy your containers on a host with a patched OS.
-An unpatched host OS might be exploitable if the base image is deployed.
-
-For each known vulnerability, links to the Ubuntu Security page are provided.
-These pages might list mitigation steps that operators can take to secure the cluster.
-
-- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
-- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
-- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
-- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
-- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
-- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
-- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
-- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
-- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
-- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
-- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
-- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
-- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
-- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
-- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
-- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
 
 ---
 
@@ -2021,38 +1919,6 @@ This release has the following known issues, listed by component and area.
 
     For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#windows-quotes-error).
 
-#### <a id='1-6-1-linux-kernel-CVEs'></a> v1.6.1 Known issues: Linux Kernel CVEs
-
-Kernel level vulnerabilities are regularly identified and patched by Canonical.
-Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
-When Canonical makes patched images available, Tanzu Application Platform incorporates these
-fixed images into future releases.
-
-The kernel runs on your container host VM, not the Tanzu Application Platform container image.
-Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
-deploy your containers on a host with a patched OS.
-An unpatched host OS might be exploitable if the base image is deployed.
-
-For each known vulnerability, links to the Ubuntu Security page are provided.
-These pages might list mitigation steps that operators can take to secure the cluster.
-
-- [CVE-2023-1380](https://ubuntu.com/security/CVE-2023-1380)
-- [CVE-2023-30456](https://ubuntu.com/security/CVE-2023-30456)
-- [CVE-2023-3090](https://ubuntu.com/security/CVE-2023-3090)
-- [CVE-2023-31248](https://ubuntu.com/security/CVE-2023-31248)
-- [CVE-2023-31436](https://ubuntu.com/security/CVE-2023-31436)
-- [CVE-2023-32233](https://ubuntu.com/security/CVE-2023-32233)
-- [CVE-2023-3389](https://ubuntu.com/security/CVE-2023-3389)
-- [CVE-2023-3390](https://ubuntu.com/security/CVE-2023-3390)
-- [CVE-2023-35001](https://ubuntu.com/security/CVE-2023-35001)
-- [CVE-2023-35788](https://ubuntu.com/security/CVE-2023-35788)
-- [CVE-2023-0179](https://ubuntu.com/security/CVE-2023-0179)
-- [CVE-2023-0386](https://ubuntu.com/security/CVE-2023-0386)
-- [CVE-2023-0461](https://ubuntu.com/security/CVE-2023-0461)
-- [CVE-2023-0468](https://ubuntu.com/security/CVE-2023-0468)
-- [CVE-2023-1281](https://ubuntu.com/security/CVE-2023-1281)
-- [CVE-2023-1829](https://ubuntu.com/security/CVE-2023-1829)
-
 ---
 
 ### <a id="1-6-1-components"></a> v1.6.1 Component versions
@@ -2227,3 +2093,17 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application
   Platform v1.9. Use the `Task` API instead. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
+
+---
+
+## Linux Kernel CVEs
+
+Kernel level vulnerabilities are regularly identified and patched by Canonical.
+Tanzu Application Platform releases with available images, which might contain known vulnerabilities.
+When Canonical makes patched images available, Tanzu Application Platform incorporates these fixed
+images into future releases.
+
+The kernel runs on your container host VM, not the Tanzu Application Platform container image.
+Even with a patched Tanzu Application Platform image, the vulnerability is not mitigated until you
+deploy your containers on a host with a patched OS. An unpatched host OS might be exploitable if
+the base image is deployed.
