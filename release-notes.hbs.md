@@ -160,6 +160,10 @@ This release includes the following changes, listed by component and area.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-7-0-tap-br'></a> v1.7.0 Breaking changes: Tanzu Application Platform
+
+- Minikube support has been removed.
+
 #### <a id='1-7-0-app-sso-br'></a> v1.7.0 Breaking changes: Application Single Sign-On
 
 - `ClientRegistration.spec.clientAuthenticationMethod` no longer supports
