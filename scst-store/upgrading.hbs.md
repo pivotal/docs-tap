@@ -10,7 +10,7 @@ Tanzu Application Platform installs AMR components by default after upgrading.
 How you must configure AMR depends on if:
 
 * Tanzu Application Platform is installed in a single cluster, Full profile, deployment. See [Single cluster or Full profile upgrade](#full-profile-upgrade).
-* Tanzu Application Platform is installed in a multicluster deployment. See [Multicluster upgrade](multicluster-upgrade).
+* Tanzu Application Platform is installed in a multicluster deployment. See [Multicluster upgrade](#multicluster-upgrade).
 
 ### <a id="full-profile-upgrade"></a> Single cluster or Full profile upgrade
 
