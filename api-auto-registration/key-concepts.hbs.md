@@ -212,6 +212,7 @@ spec:
       pathPrefix:       # Path prefix that the API endpoints from the linked APIDescriptor should have
       routeConfig:
         ssoEnabled:     # whether to enable SSO on the gateway to perform authentication for users
+        tokenRelay:     # whether to enable TokenRelay on the gateway to pass along the SSO ID token to the upstream service. This setting depends on `ssoEnabled`.
         filters:        # additional service lever filters to set on all the endpoints in this API
     - ...
 ```
@@ -226,6 +227,9 @@ There are some key behaviors generated from the text boxes:
   curated API
 - `routeConfig` section specifies service level configuration you add when generating the routing
   resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
+  - Prior to Spring Cloud Gateway for Kubernetes 2.1.3 release,
+  there is a known issue in the SCG OpenAPI Conversion Service to support adding token relay at service
+  level. As a result, the `tokenRelay: true` setting only works with SCG version 2.1.3 and above.
   - `routeConfig.filters` section specifies service level filters for all the routes exposed in each
     API. You can add modifications to your endpoints, such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`.
     For information about available filters, see [SCG commercial filters](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-filters.html).
