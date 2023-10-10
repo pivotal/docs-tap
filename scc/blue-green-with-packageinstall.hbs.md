@@ -198,23 +198,23 @@ After the new green app is ready to handle the complete load and the `-green` ve
 
 1. Ensure that all the traffic is using the correct version of the app. For example:
 
-  ```yaml
-  apiVersion: projectcontour.io/v1
-  kind: HTTPProxy
-  metadata:
-    name: www
-    namespace: prod
-  spec:
-    virtualhost:
-      fqdn: www.hello-app.mycompany.com
-    routes:
-      - conditions:
-        - prefix: /
-        services:
-          - name: hello-app-green
-            port: 8080
-            weight: 100 # all traffic routed to the green app
-  ```
+    ```yaml
+    apiVersion: projectcontour.io/v1
+    kind: HTTPProxy
+    metadata:
+      name: www
+      namespace: prod
+    spec:
+      virtualhost:
+        fqdn: www.hello-app.mycompany.com
+      routes:
+        - conditions:
+          - prefix: /
+          services:
+            - name: hello-app-green
+              port: 8080
+              weight: 100 # all traffic routed to the green app
+    ```
 
 1. Identify the name of the deployment and service that are part of the PackageInstall you no longer need:
 
