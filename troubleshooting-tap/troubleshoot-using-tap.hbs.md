@@ -64,7 +64,7 @@ This message is typically encountered when the core component of the Builder (`k
 into a bad state.
 
 Although this isn't the only scenario where this can happen, `kpack` can transition into a bad state
-when Tanzu Application Platform is deployed to a local `minikube` or `kind` cluster, and especially
+when Tanzu Application Platform is deployed to a local `kind` cluster, and especially
 when that `kind` cluster is restarted.
 
 ### Solution
