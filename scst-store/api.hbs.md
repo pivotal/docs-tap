@@ -3142,7 +3142,7 @@ it can be used as a scan destination, similar to NullString.
 |------|------|---------|:--------:| ------- |-------------|---------|
 | GeneratedAt | string| `string` |  | | The date and time this report was submitted to the Store. Time format is in ISO 8601 | `2006-01-02T15:04:05Z07:00` |
 | OriginalLocation | string| `string` |  | | The OCI registry location of the original SBOM vulnerability scan that generated this report
-This can be an individual file, or a bundle | `k8s-minikube/kicbase@sha256:be897edc9ed473a9678010f390a0092f488f6a1c30865f571c3b6388f9f56f9b` |
+This can be an individual file, or a bundle |  |
 | OriginalLocationFilePath | string| `string` |  | | The location inside the bundle where the original SBOM vulnerability scan that generated this report can be found.
 Used when the original location points to a bundle that contains multiple SBOM vulnerability scans. | `some/path/scan-result.cyclonedx.yaml` |
 | UID | string| `string` |  | | The unique identifier of the report | `6b96a6ff-248d-4c36-b385-93c3813e1e86` |
@@ -3203,7 +3203,7 @@ Used when the original location points to a bundle that contains multiple SBOM v
 | EntityUID | string| `string` |  | | The sha/digest of the source or image associated with this report | `sha256:5435994e6ae823886689fddeba452f6e806947c5efcca0e4e76f0a187b7d9871` |
 | GeneratedAt | string| `string` |  | | The date and time this report was submitted to the Store. Time format is in ISO 8601 | `2006-01-02T15:04:05Z07:00` |
 | OriginalLocation | string| `string` |  | | The OCI registry location of the original SBOM vulnerability scan that generated this report
-This can be an individual file, or a bundle | `k8s-minikube/kicbase@sha256:be897edc9ed473a9678010f390a0092f488f6a1c30865f571c3b6388f9f56f9b` |
+This can be an individual file, or a bundle |  |
 | OriginalLocationFilePath | string| `string` |  | | The location inside the bundle where the original SBOM vulnerability scan that generated this report can be found.
 Used when the original location points to a bundle that contains multiple SBOM vulnerability scans. | `some/path/scan-result.cyclonedx.yaml` |
 | UID | string| `string` |  | | The unique identifier of the report | `6b96a6ff-248d-4c36-b385-93c3813e1e86` |

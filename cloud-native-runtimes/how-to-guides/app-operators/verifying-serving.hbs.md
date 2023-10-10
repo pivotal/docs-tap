@@ -66,8 +66,8 @@ To create an example Knative service and use it to test Knative Serving:
 
     |           |                                                                                                                                                                                                                |
     |-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | **IaaS:** | <ul><li>Docker desktop</li><li>Minikube</li></ul>                                                                                                                                                              |
-    | **Run:**  | ```export EXTERNAL_ADDRESS='localhost:8080'```<br/>And set up port-forwarding in a separate terminal:<br/> ```kubectl -n tanzu<!--฿ The brand is |Tanzu|. ฿-->-system-ingress port-forward svc/envoy 8080:80```|
+    | **IaaS:** | <ul><li>Docker desktop</li></ul>                                                                                                                                                              |
+    | **Run:**  | ```export EXTERNAL_ADDRESS='localhost:8080'```<br/>And set up port-forwarding in a separate terminal:<br/> ```kubectl -n tanzu-system-ingress port-forward svc/envoy 8080:80```|
 
 4. Connect to the app.
    Verify the URL for the Knative service.
