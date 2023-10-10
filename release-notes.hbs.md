@@ -1985,6 +1985,11 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
+
+### <a id="1-6-tap-deprecations"></a> Tanzu Application Platform deprecations
+
+- Minikube support is deprecated and will be removed in Tanzu Application Platform v1.7.
+
 ### <a id="1-6-alv-deprecations"></a> Application Live View deprecations
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
