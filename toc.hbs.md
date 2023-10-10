@@ -762,6 +762,8 @@
       - [Tanzu Application Platform Telemetry overview](telemetry/overview.hbs.md)
       - [Install Tanzu Application Platform Telemetry](telemetry/install-telemetry.hbs.md)
       - [Deployment details and configurations](telemetry/deployment-details.hbs.md)
+    - [Tanzu Buildpacks](tanzu-buildpacks/about.hbs.md)
+      - [Tanzu Buildpacks overview](tanzu-buildpacks/about.hbs.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.hbs.md)
       - [Tanzu Build Service overview](tanzu-build-service/tbs-about.hbs.md)
       - [Install Tanzu Build Service](tanzu-build-service/install-tbs.hbs.md)
