@@ -13,7 +13,7 @@ Querying for a specific SBoM report returns all common vulnerabilities and expos
 vulnerability scan tool.
 
 The information returned is similar to the SBoM returned by the `tanzu insight image get --digest`
-command.However, the output returned is not for a specific point in time with a specific
+command. However, the output returned is not for a specific point in time with a specific
 vulnerability scan tool. For more information about querying for images, see the
 [What packages and CVEs does a specific image contain](query-data.hbs.md#example1) example.
 
