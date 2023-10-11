@@ -79,6 +79,9 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-app-config-service'></a> v1.7.0 Features: Application Configuration Service
 
 - The default interval for new `ConfigurationSlice` resources is now 60 seconds.
+- Improves debugging experience of `ConfigurationSlice` resources by including 
+  Status information from `GitRepository` resources if any errors occur related
+  to the `GitRepository` reconciliation.
 
 #### <a id='1-7-0-eso'></a> v1.7.0 Features: External Secrets Operator
 
@@ -236,6 +239,11 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-7-0-COMPONENT-NAME-ri'></a> v1.7.0 Resolved issues: COMPONENT-NAME
 
 - Resolved issue description.
+
+#### <a id='1-7-0-application-configuration-service-ri'></a> v1.7.0 Resolved issues: Application Configuration Service
+
+- Sets the Pod Security Context to adhere to the Restricted Pod Security Standard, fixing certain
+  installation failure scenarios.
 
 #### <a id='1-7-0-app-sso-ri'></a> v1.7.0 Resolved issues: Application Single Sign-On
 
