@@ -9,10 +9,9 @@ the `grype` CLI with the internal URL.
 
 The `grype` CLI accepts environment variables to satisfy these needs.
 
-
 ## <a id="host-grype-db"></a> Host the Grype vulnerability database
 
-Complete the following steps to host Grype's vulnerability database in an air-gapped environment:
+To host Grype's vulnerability database in an air-gapped environment:
 
 1. Retrieve Grype’s listing file from its public endpoint: [https://toolbox-data.anchore.io/grype/databases/listing.json](https://toolbox-data.anchore.io/grype/databases/listing.json).
 
@@ -67,7 +66,7 @@ Complete the following steps to host Grype's vulnerability database in an air-ga
         }
   ```
 
-  Where `url` points to a tarball containing Grype's `vulnerability.db` and `metadata.json` files.
+  Where `url` points to a tarball containing Grype's `vulnerability`, `db`, and `metadata.json` files.
 
 1. Download and host the tarballs in your internal file server.
 
@@ -236,7 +235,7 @@ the following steps:
         > `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in
         > accordance with your security posture.
 
-    1. Configure `tap-values.yaml` to use `package_overlays`. Add the following to your `tap-values.yaml` file:
+    2. Configure `tap-values.yaml` to use `package_overlays`. Add the following to your `tap-values.yaml` file:
 
         ```yaml
         package_overlays:
@@ -245,7 +244,7 @@ the following steps:
                 - name: "grype-airgap-override-stale-db-overlay"
         ```
 
-    1. Update Tanzu Application Platform:
+    3. Update Tanzu Application Platform:
 
         ```console
         tanzu package installed update tap -f tap-values.yaml -n tap-install
@@ -308,6 +307,7 @@ Verify these possible reasons why the vulnerability database is not valid:
       }
     }
     ```
+
     Where `PATH-TO-TARBALL` is the path to the tarball containing the vulnerability database.
 
     As stale databases weaken your security posture, VMware recommends using the
