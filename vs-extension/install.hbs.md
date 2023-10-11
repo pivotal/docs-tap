@@ -36,4 +36,4 @@ To uninstall:
 
 ## <a id="next-steps"></a> Next steps
 
-[Getting Started with Tanzu Developer Tools for Visual Studio](getting-started.hbs.md).
+[Use Tanzu Developer Tools for Visual Studio](using-the-extension.hbs.md).
