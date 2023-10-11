@@ -66,7 +66,7 @@ After starting Live Update, local builds changes are synchronized with the conta
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
-To start Live Update, right-click anywhere in the Solution Explorer and click
+To stop Live Update, right-click anywhere in the Solution Explorer and click
 **Tanzu** > **Stop Live Update**. Alternatively, right-click an associated workload in the Tanzu Panel
 and click **Stop Live Update**.
 
