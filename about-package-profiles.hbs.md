@@ -336,7 +336,7 @@ For a diagram showing the packages contained in each profile, see
 
 <table>
   <tr>
-   <td><strong>Capability Name</strong>
+   <td><strong>Package Name</strong>
    </td>
    <td><strong>Full</strong>
    </td>
@@ -415,23 +415,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Application Live View (Build)
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Application Live View (Run)
+   <td>Application Live View APIServer
    </td>
    <td>&check;
    </td>
@@ -447,7 +431,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Application Live View GUI back end
+   <td>Application Live View back end
    </td>
    <td>&check;
    </td>
@@ -458,6 +442,38 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
    <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Application Live View connector
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Application Live View conventions
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
    </td>
    <td>
    </td>
