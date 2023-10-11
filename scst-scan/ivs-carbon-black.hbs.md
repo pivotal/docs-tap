@@ -42,11 +42,17 @@ spec:
     image: CARBON-BLACK-SCANNER-IMAGE
     imagePullPolicy: IfNotPresent
     command:
-    - bash
-    args:
-    - -c
-    - cbctl --config /cbctl/.cbctl.yaml image scan --force=true $(params.image) -o
-      cyclonedx > scan.cdx.xml
+    - cbctl
+    - image
+    - scan
+    - --force=true
+    - $(params.image)
+    - --config
+    - /cbctl/.cbctl.yaml
+    - -o
+    - json
+    stdoutConfig:
+      path: /workspace/scan-results/scan-results.cdx.xml
 ```
 
 Where:
@@ -58,3 +64,5 @@ Where:
 - `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image.
 
 **Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
+
+**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry.
