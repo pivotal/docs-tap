@@ -51,13 +51,13 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     api-curation   petstore-d0243a39   49s   dog-api               dog-ns
     ```
 
-1. Read logs from the `api-auto-registration` controller.
+2. Read logs from the `api-auto-registration` controller.
 
     ```console
     kubectl -n api-auto-registration logs deployment.apps/api-auto-registration-controller
     ```
 
-1. Patch an APIDescriptor that is stuck in Deleting mode.
+3. Patch an APIDescriptor that is stuck in Deleting mode.
 
    This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources.
    You can reinstall the package and delete all the APIDescriptor resources first,
@@ -72,7 +72,7 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     > **Note** If you manually remove the finalizers from the APIDescriptor resources, you can have
     > stale API entities within Tanzu Developer Portal that you must manually deregister.
 
-1. Fix a `CuratedAPIDescriptor` that does not match with a SCG.
+4. Fix a `CuratedAPIDescriptor` that does not match with a SCG.
 
     This might happen if the `groupId` and version of the `CuratedAPIDescriptor` does not match any available `SpringCloudGateway` resource.
     You can remove the `"apis.apps.tanzu.vmware.com/route-provider": "spring-cloud-gateway"` annotation from your `CuratedAPIDescriptor` to skip SCG matching, or ensure that you have a matching SCG applied to the cluster.
@@ -146,19 +146,19 @@ Your APIDescription CR shows a status and message similar to:
 
 This is the same issue as `connection refused` described earlier.
 
-### <a id='conflict-groupid-version'></a> Unexpected content in generated spec
+### <a id='conflict-groupid-version'></a> Unexpected content in generated specification
 
-This can be caused by having two or more `CuratedAPIDescriptor` with conflicting `groupId` and `version`.
+This issue happens when there are two or more `CuratedAPIDescriptor` with conflicting `groupId` and `version`.
 
 If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version` combination,
-both reconcile successfully without throwing an error,
-but here are some undesired behaviors that can signal the conflict:
+both reconcile without an error.
+However, the following undesired behaviors can signal conflict:
 
-- The `/openapi?groupId&version` endpoint returns more than one API spec.
-- If you are adding both specs to API portal, e.g. `/openapi?groupId&version`,
-only one of them will show up in the API portal UI with a warning indicating that there is a conflict.
+- The `/openapi?groupId&version` endpoint returns more than one API specification.
+- If you add both specifications to API portal, for example, `/openapi?groupId&version`,
+only one of them shows up in the API portal UI with a warning indicating that there is a conflict.
 - If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG,
-the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
+the generated API specification includes API routes from both `CuratedAPIDescriptor`s.
 
 You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s to find conflicts by running:
 
