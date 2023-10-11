@@ -1,7 +1,7 @@
 # Scan Types for Supply Chain Security Tools - Scan
 
 This topic tells you what scan types you can use with Scan Types for Supply
-Chain Security Tools - Scan (SCST) - Scan. The out-of-box test and scan supply
+Chain Security Tools (SCST) - Scan. The out-of-box test and scan supply
 chain supports the Source and container image scan types.
 
 ## <a id="source-scan"></a> Source scan
