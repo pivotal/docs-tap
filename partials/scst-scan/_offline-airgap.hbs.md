@@ -9,9 +9,10 @@ the `grype` CLI with the internal URL.
 
 The `grype` CLI accepts environment variables to satisfy these needs.
 
+
 ## <a id="host-grype-db"></a> Host the Grype vulnerability database
 
-To host Grype's vulnerability database in an air-gapped environment:
+Complete the following steps to host Grype's vulnerability database in an air-gapped environment:
 
 1. Retrieve Grype’s listing file from its public endpoint: [https://toolbox-data.anchore.io/grype/databases/listing.json](https://toolbox-data.anchore.io/grype/databases/listing.json).
 
