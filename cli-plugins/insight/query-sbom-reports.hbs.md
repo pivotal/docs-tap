@@ -8,19 +8,19 @@ Use the `tanzu insight report get --uid` command to query the database to retrie
 Firstly, query for a list of existing SBoM reports associated with an image, and when you have
 determined the unique identifier (UID) for an SBoM report, query for a specific SBoM report.
 
-Querying for a specific SBoM report returns all common vulnerabilities, exposures
-(commonly known as CVE), and packages for an image for a specific point in time with a specific
+Querying for a specific SBoM report returns all common vulnerabilities and exposures
+(CVEs), and packages for an image for a specific point in time with a specific
 vulnerability scan tool.
 
 The information returned is similar to the SBoM returned by the `tanzu insight image get --digest`
-command, however, the output returned is not for a specific point in time with a specific
+command.However, the output returned is not for a specific point in time with a specific
 vulnerability scan tool. For more information about querying for images, see the
 [What packages and CVEs does a specific image contain](query-data.hbs.md#example1) example.
 
 ## <a id='example1'></a>Query the database to retrieve an SBoM report
 
 1. Query for the list of all reports associated with an image. To fetch a specific SBoM report, you
-must determine the unique identifier (UID) for the SBoM report. Use the unique
+must retrieve the unique identifier (UID) for the SBoM report. Use the unique
 identifier returned by this command in the next step. Run:
 
     ```console
