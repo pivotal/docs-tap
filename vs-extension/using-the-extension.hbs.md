@@ -100,10 +100,3 @@ dir $Env:LOCALAPPDATA\Microsoft\VisualStudio\*\Extensions\*\Logs\tanzu-*.log
 # CMD
 dir %LOCALAPPDATA%\Microsoft\VisualStudio\*\Extensions\*\Logs\tanzu-*.log
 ```
-
-    Directory: C:\Users\...
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a---           3/31/2023  1:07 PM           1668 tanzu-dev-tools.log
-```
