@@ -69,9 +69,7 @@ identifier returned by this command in the next step. Run:
         Vendor:  anchore
     ```
 
-1. Fetch a specific SBoM report. In the output in the previous step, the report
-UID for the image on `2022-07-15`, is `b6bed111-24eb-4814-9cbd-bbc26dd76d7f`.
-Use this UID to fetch the SBoM report. Run:
+1. Fetch a specific SBoM report based on the UID returned in output in the previous step. In the output in the previous step, the report UID for the image on `2022-07-15`, is `b6bed111-24eb-4814-9cbd-bbc26dd76d7f`. Use this UID to fetch the SBoM report. Run:
 
     ```console
     tanzu insight report get --uid UID
