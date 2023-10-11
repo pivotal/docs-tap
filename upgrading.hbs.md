@@ -81,12 +81,6 @@ If you installed Tanzu Application Platform by using a profile, you can perform 
 tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
 ```
 
-When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
-This error does not persist and any subsequent builds resolve this error.
-You can wait for the next build of the workloads that new source code changes trigger.
-If you do not want to wait for subsequent builds to run automatically, follow the instructions in
-[Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
-
 ### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
 If you installed the [full dependencies package](install-online/profile.hbs.md#tap-install-full-deps),
