@@ -43,21 +43,19 @@ are common to a number of other plug-in groups, for more information, see
 Tanzu CLI Product Documentation. 
 
 The command reference documentation is available here in the Tanzu CLI Product Documentation:
-
-[Accelerator](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-accelerator.html)
-[Apps](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html)
-[Build Service](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-build-service.html)
-[External Secrets](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-external-secrets.html)
-[Insight](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-insight.html)
+[Accelerator](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-accelerator.html), 
+[Apps](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html), 
+[Build Service](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-build-service.html), 
+[External Secrets](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-external-secrets.html), 
+[Insight](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-insight.html), 
 [Services](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-services.html)
 
 The release notes are available here in the Tanzu CLI Product Documentation:
-
-[Accelerator](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-apps.html)
-[Apps](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html)
-[Build Service](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-build-service.html)
-[External Secrets](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-external-secrets.html)
-[Insight](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-insight.html)
+[Accelerator](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-apps.html), 
+[Apps](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html), 
+[Build Service](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-build-service.html), 
+[External Secrets](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-external-secrets.html), 
+[Insight](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-insight.html), 
 [Services](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-services.html)
 
 You can also develop your own plug-ins to add custom commands to the Tanzu CLI.
@@ -76,7 +74,7 @@ running:
 tanzu
 ```
 
-The list of command groups that you see depends on which CLI plug-ins are  on your local
+The list of command groups that you see depends on which CLI plug-ins are installed on your local
 machine.
 
 ## <a id="install-new"></a> Install new plug-ins
