@@ -2027,37 +2027,57 @@ flag to create new immutable objects rather than updating the previous object.
             #@data/values-schema
             ---
             #@schema/title "Workload name"
-            #@schema/desc "Required. Name of the workload, used by K8s Ingress HTTP rules."
             #@schema/example "tanzu-java-web-app"
             #@schema/validation min_len=1
             workload_name: ""
 
             #@schema/title "Replicas"
-            #@schema/desc "Number of replicas."
             replicas: 1
 
             #@schema/title "Port"
-            #@schema/desc "Port number for the backend associated with K8s Ingress."
             port: 8080
 
             #@schema/title "Hostname"
-            #@schema/desc "If set, K8s Ingress will be created with HTTP rules for hostname."
             #@schema/example "app.tanzu.vmware.com"
             hostname: ""
 
             #@schema/title "Cluster Issuer"
-            #@schema/desc "CertManager Issuer to use to generate certificate for K8s Ingress."
             cluster_issuer: "tap-ingress-selfsigned"
+
+            #@schema/nullable
+            http_route:
+                #@schema/default [{"protocol": "https", "name": "default-gateway"}]
+                gateways:
+                - protocol: ""
+                  name: ""
           overlays: |
             #@ load("@ytt:overlay", "overlay")
             #@ load("@ytt:data", "data")
+
             #@overlay/match by=overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
             ---
             spec:
               #@overlay/match missing_ok=True
               replicas: #@ data.values.replicas
 
-            #@ if data.values.hostname != "":
+            #@ if data.values.http_route != None:
+            ---
+            apiVersion: gateway.networking.k8s.io/v1beta1
+            kind: HTTPRoute
+            metadata:
+              name: #@ data.values.workload_name + "-route"
+            spec:
+              parentRefs:
+              #@ for/end gateway in data.values.http_route.gateways:
+              - group: gateway.networking.k8s.io
+                kind: Gateway
+                name: #@ gateway.name
+                sectionName: #@ gateway.protocol + "-" + data.values.workload_name
+              rules:
+              - backendRefs:
+                - name: #@ data.values.workload_name
+                  port: #@ data.values.port
+            #@ elif data.values.hostname != "":
             ---
             apiVersion: networking.k8s.io/v1
             kind: Ingress
@@ -2087,7 +2107,7 @@ flag to create new immutable objects rather than updating the previous object.
                         name: #@ data.values.workload_name
                         port:
                           number: #@ data.values.port
-            #@ end              
+            #@ end
         - selector:
             matchLabels:
               apps.tanzu.vmware.com/workload-type: web
