@@ -98,20 +98,4 @@ To see more information about using mounts with development containers, see the
 
 ## <a id="cli-eula"></a> VMware General Terms and other legal requirements connected to Tanzu CLI
 
-When building `devcontainer`, Tanzu CLI is installed.
-To avoid [interactive prompts](https://github.com/vmware-tanzu/tanzu-cli/blob/main/docs/quickstart/install.md#automatic-prompts-and-potential-mitigations)
-from breaking the installation, some options are selected in `.devcontainer.json` beforehand:
-
-```json
-"projects.registry.vmware.com/tanzu-developer-containers/features/vmware-tanzu-dev-tools": {
-   "acceptEula": true,
-   "acceptCeip": false
-}
-```
-
-`"acceptEula": true` means you accept the
-[VMware General Terms](https://www.vmware.com/vmware-general-terms.html).
-
-`"acceptCeip": false` means you don't agree to participate in the
-[Tanzu Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
-If you want to participate in the program, change the value to `true`.
+When the `devcontainer` is created for the first time you will be prompted to review and agree with [VMware General Terms](https://www.vmware.com/vmware-general-terms.html), and to participate in the Customer Experience Improvement Program (CEIP). Your selections will be stored and you will not be asked the next time you start the `devcontainer`.

@@ -120,3 +120,15 @@ slow and might not work in your specific setup.
 1. Run the `Dev Containers: Clone Repository in Container Volume...` command while the project is open
    to get started. For more information about this command, see the
    [Visual Studio Code documentation](https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-clone-repository-in-container-volume).
+
+### Symptom
+
+When using development containers and creating a new project using the Application Accelerator Visual Studio Code extension the only available location to store the project is inside the container
+
+### Cause
+
+VScode is running inside a development container and this is the filesystem that is available when creating a new project.
+
+### Solution
+
+Use local file mounts to expose additional folders from the host filestystem to the development container. See [Use Mounts](dev-containers.hbs.md#use-mounts)
