@@ -18,18 +18,47 @@ For more information about Tanzu CLI, see the
 ## <a id="itanzu-cli-architecture"></a>Tanzu CLI architecture
 
 The Tanzu CLI has a pluggable architecture. Plug-ins extend the Tanzu CLI core with additional CLI
-commands.
+commands. Use the `vmware-tap/default:v{{ vars.tap_version }}` plug-in group with
+Tanzu Application Platform version v{{ vars.tap_version }}. For more information,
+see [Install Tanzu CLI plug-ins](../install-tanzu-cli.hbs.md).
 
-The following CLI plug-ins are required to install and use Tanzu Application Platform:
+The `vmware-tap/default:v{{ vars.tap_version }}` plug-in group consists of the following plug-ins:
 
-- `accelerator`: Manage accelerators in a Kubernetes cluster
-- `apps`: Manage application workloads running on workload clusters
-- `build-service`: Plug-in to interact with Tanzu Build Service (TBS) crds
-- `external-secrets`: Interact with external-secrets.io resources
-- `insight`: Post and query image, package, source, and vulnerability data
-- `package`: Package management
-- `secret`: Secret management
-- `services`: Discover service types, service instances, and manage resource claims
+```console
+NAME              DESCRIPTION                                                      TARGET      VERSION
+  telemetry         configure cluster-wide settings for vmware tanzu telemetry       global      v1.1.0
+  accelerator       Manage accelerators in a Kubernetes cluster                      kubernetes  v1.7.0
+  apps              Applications on Kubernetes                                       kubernetes  v0.12.1
+  build-service     plugin to interact with tanzu build service (tbs) crds           kubernetes  v1.0.0
+  external-secrets  interacts with external-secrets.io resources                     kubernetes  v0.1.0
+  insight           post & query image, package, source, and vulnerability data      kubernetes  v1.7.0
+  package           Tanzu package management                                         kubernetes  v0.29.0
+  secret            Tanzu secret management                                          kubernetes  v0.29.0
+  services          Commands for working with service instances, classes and claims  kubernetes  v0.8.0
+```
+
+> **Note** The Telemetry, Package, and Secret plug-ins are not Tanzu Application Platform specific, they
+are common to a number of other plug-in groups, for more information, see
+ [Command Groups](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) in the
+Tanzu CLI Product Documentation. 
+
+The command reference documentation is available here in the Tanzu CLI Product Documentation:
+
+[Accelerator](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-accelerator.html)
+[Apps](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html)
+[Build Service](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-build-service.html)
+[External Secrets](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-external-secrets.html)
+[Insight](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-insight.html)
+[Services](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-services.html)
+
+The release notes are available here in the Tanzu CLI Product Documentation:
+
+[Accelerator](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-apps.html)
+[Apps](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html)
+[Build Service](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-build-service.html)
+[External Secrets](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-external-secrets.html)
+[Insight](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-insight.html)
+[Services](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-services.html)
 
 You can also develop your own plug-ins to add custom commands to the Tanzu CLI.
 
@@ -47,7 +76,7 @@ running:
 tanzu
 ```
 
-The list of command groups that you see depends on which CLI plug-ins are installed on your local
+The list of command groups that you see depends on which CLI plug-ins are  on your local
 machine.
 
 ## <a id="install-new"></a> Install new plug-ins
