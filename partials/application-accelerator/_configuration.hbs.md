@@ -77,7 +77,7 @@ spec:
 This example creates an accelerator named `spring-cloud-serverless`. The `displayName`, `description`,
 `iconUrl`, and `tags` text boxes are populated based on the content under the `accelerator` key in the
 `accelerator.yaml` file found in the `main` branch of the Git repository
-at [Application Accelerator Samples](https://github.com/vmware<-tanzu</application-accelerator-samples)
+at [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples)
 under the sub-path `spring-cloud-serverless`. For example:
 
 **`accelerator.yaml`**
