@@ -32,9 +32,9 @@ a sample application, `hello-app`, to production using a Carvel Package and Pack
       routes:
         - conditions:
           - prefix: /
-        services:
-          - name: hello-app
-            port: 8080
+            services:
+            - name: hello-app
+              port: 8080
     ```
 
   >**Note** The services names used in HTTPProxy has to match the names of
@@ -176,13 +176,13 @@ names of the already created services.
       routes:
       - conditions:
         - prefix: /
-        services:
-        - name: hello-app-green
-          port: 8080
-          weight: 20
-        - name: hello-app
-          port: 8080
-          weight: 80
+          services:
+          - name: hello-app-green
+            port: 8080
+            weight: 20
+          - name: hello-app
+            port: 8080
+            weight: 80
     ```
 
 1. Update the weights of traffic for each service by editing the HTTPProxy.
@@ -209,7 +209,7 @@ After the new green app is ready to handle the complete load and the `-green` ve
       routes:
         - conditions:
           - prefix: /
-          services:
+            services:
             - name: hello-app-green
               port: 8080
               weight: 100 # all traffic routed to the green app
@@ -283,7 +283,7 @@ After the new green app is ready to handle the complete load and the `-green` ve
           routes:
             - conditions:
               - prefix: /
-              services:
+                services:
                 - name: hello-app # note the name is changed back
                   port: 8080
                   weight: 100
