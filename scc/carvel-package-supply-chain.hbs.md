@@ -138,7 +138,7 @@ For the `server` workload type, the default parameters are:
 - `hostname`: Host name for the `networking.k8s.io/v1 Ingress`. If you don't need ingress, leave host name as an empty string. If host name is not in the file, you see an error.
 - `port`: Port for the `networking.k8s.io/v1 Ingress`. Default is `8080`.
 - `cluster_issuer`: CertManager Issuer to use to generate certificate for Kubernetes `Ingress`. Default is `"tap-ingress-selfsigned"`.
-- `http_route`: Configuration of `gateway.networking.k8s.io/v1beta1 HttpRoute`. Note that is is intended to be used with Tanzu Application Engine, and should not be set when running on TAP.
+- `http_route`: Configuration of `gateway.networking.k8s.io/v1beta1 HttpRoute`. This is intended for use with Tanzu Application Engine. VMware does not recommend this setting when running on Tanzu Application Platform.
 
 For the `web` workload type, the default parameters are:
 
@@ -212,7 +212,7 @@ In `tap-values`, configure the [Out of the Box Basic Supply Chain](ootb-supply-c
         openapiv3_enabled: true
     ```
 
-    If the size of the resulting OpenAPIv3 specification exceeds roughly 3KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-1-tap-gui-ki).
+    If the size of the resulting OpenAPIv3 specification exceeds roughly 3 KB, the Supply Chain does not function. See the [known issue](../release-notes.hbs.md#1-6-1-tap-gui-ki).
 
 2. (Optional) Configure the [Out of the Box Templates](ootb-templates.hbs.md) with custom Carvel Package parameters. See [Template reference](ootb-template-reference.hbs.md#carvel).
 
