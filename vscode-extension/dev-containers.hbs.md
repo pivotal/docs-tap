@@ -93,9 +93,14 @@ For example:
     ],
 ```
 
-To see more information about using mounts with development containers, see the
+For more information about using mounts with development containers, see the
 [Visual Studio Code documentation](https://code.visualstudio.com/remote/advancedcontainers/add-local-file-mount).
 
 ## <a id="cli-eula"></a> VMware General Terms and other legal requirements connected to Tanzu CLI
 
-When the `devcontainer` is created for the first time you will be prompted to review and agree with [VMware General Terms](https://www.vmware.com/vmware-general-terms.html), and to participate in the Customer Experience Improvement Program (CEIP). Your selections will be stored and you will not be asked the next time you start the `devcontainer`.
+When the `devcontainer` is created for the first time you are prompted to review and agree with the
+[VMware General Terms](https://www.vmware.com/vmware-general-terms.html) and to participate in the
+Customer Experience Improvement Program (CEIP).
+
+The selections you make are stored and you will not prompted again when you next start
+`devcontainer`.

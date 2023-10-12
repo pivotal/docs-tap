@@ -121,14 +121,20 @@ slow and might not work in your specific setup.
    to get started. For more information about this command, see the
    [Visual Studio Code documentation](https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-clone-repository-in-container-volume).
 
+## <a id="only-store-in-dev-cntnr"></a> You can only store a project in a development container
+
 ### Symptom
 
-When using development containers and creating a new project using the Application Accelerator Visual Studio Code extension the only available location to store the project is inside the container
+When using a development container, and creating a new project using the Application Accelerator
+extension in VS Code, the only available location to store the project is inside the development
+container.
 
 ### Cause
 
-VScode is running inside a development container and this is the filesystem that is available when creating a new project.
+VS Code is running inside a development container and this is the file system that is available when
+creating a new project.
 
 ### Solution
 
-Use local file mounts to expose additional folders from the host filestystem to the development container. See [Use Mounts](dev-containers.hbs.md#use-mounts)
+Use local file mounts to expose additional folders in the host file system to the development
+container. For more information, see [Use Mounts](dev-containers.hbs.md#use-mounts).
