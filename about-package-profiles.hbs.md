@@ -356,7 +356,7 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-  <td>Application Live View GUI back end
+  <td>Application Live View back end
    </td>
    <td>&check;
    </td>
