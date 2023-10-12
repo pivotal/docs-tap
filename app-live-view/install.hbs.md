@@ -3,21 +3,41 @@
 This topic tells you how to install Application Live View from the Tanzu Application Platform
 (commonly known as TAP) package repository.
 
-Application Live View installs three packages for `view`, `run`, and `build` profiles:
+## <a id='overview'></a>Overview
 
-- For the `view` profile, Application Live View installs Application Live View back end package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View back end component with Tanzu Application Platform GUI in `app-live-view` namespace.
+Application Live View includes four packages you can install. The following table lists these packages
+and shows the Tanzu Application Platform profiles each package is included in.
 
-- For the `run` profile, Application Live View installs Application Live View connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View connector component as DaemonSet in `app-live-view-connector` namespace.
+<table>
+<tr>
+<th>Package</th>
+<th>Profiles</th>
+<th>Details</th>
+</tr>
+<tr>
+<td>Application Live View back end <br>(<code>backend.appliveview.tanzu.vmware.com</code>)</td>
+<td>Full, View</td>
+<td>Installed with Tanzu Application Platform GUI in the <code>app-live-view</code> namespace</td>
+</tr>
+<tr>
+<td>Application Live View connector <br>(<code>connector.appliveview.tanzu.vmware.com</code>)</td>
+<td>Full, Iterate, Run</td>
+<td>Installed as a DaemonSet in the <code>app-live-view-connector</code> namespace</td>
+</tr>
+<tr>
+<td>Application Live View conventions <br>(<code>conventions.appliveview.tanzu.vmware.com</code>)</td>
+<td>Full, Iterate, Build</td>
+<td>Installed in the <code>app-live-view-conventions</code> namespace</td>
+</tr>
+</table>
 
-- For the `build` profile, Application Live View installs Application Live View conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View convention service in `app-live-view-conventions` namespace.
+For more information about these packages, see
+[Application Live View internal architecture](architecture.hbs.md).
 
-- For the `iterate` profile, Application Live View installs Application Live View connector package and Application Live View conventions package.
-
-- For the `full` profile, Application Live View installs the Application Live View back end package, Application Live View connector package, and Application Live View conventions package.
-
-
->**Note** Follow the steps in this topic if you do not want to use a profile to install Application Live View. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
-
+>**Note** Follow the steps in this topic if you do not want to use a profile to
+>install Application Live View. For more information about profiles, see [About
+>Tanzu Application Platform components and
+>profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
