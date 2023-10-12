@@ -82,7 +82,7 @@ machine.
 Install the CLI plug-ins required for Tanzu Application Platform v{{ vars.tap_version }} by running:
 
 ```console
-tanzu plugin install --group vmware-tap/default:v\{{ vars.tap_version }}
+tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
 ```
 
 Plug-ins for the Tanzu CLI are distributed by using a centralized plug-in repository.
