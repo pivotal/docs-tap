@@ -32,6 +32,8 @@ If `auth.kubernetes_service_accounts.enable` and `auth.kubernetes_service_accoun
 - a `ClusterRole` named `tanzu:amr:observer:edit` defining the necessary `update` permissions for all resources in `cloudevents.amr.apps.tanzu.vmware.com`
 - a `ClusterRoleBinding` named `tanzu:amr:observer:editor` binding the defined role to the service account
 
+If `auth.kubernetes_service_accounts.autoconfigure` is set to false, the observer package needs to be configured with all the above resources manually.
+Follow the instructions to set up the observer [here](./auth-k8s-sa-user-defined.hbs.md#clients-to-cloudevent-handler)
 ## <a id="cloudevent-handler"></a>Cloudevent handler
 
 You can find the Cloudevent handler configuration in the Tanzu Application Platform context under the TLK `amr.cloudevent_handler`. This prefix is not stripped in this case.
