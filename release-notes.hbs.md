@@ -84,7 +84,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-eso'></a> v1.7.0 Features: External Secrets Operator
 
-- External Secrets Operator is now GA.
+- External Secrets Operator has now reached General Availability.
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
   about your external secrets and secret stores. The CREATE command lets you create cluster
   external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
