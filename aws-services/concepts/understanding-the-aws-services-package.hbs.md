@@ -37,12 +37,11 @@ simple as possible. This is not guaranteed.
 
 ## <a id="other"></a> Other Considerations
 
-Because not every user needs to integrate AWS Services into their Tanzu Application Platform cluster,
-the AWS Services package is not installed by default as part of an installation of Tanzu Application Platform.
-<!-- should this say installed as part of any of the TAP profiles? -->
+The AWS Services package is not installed as part of any of the Tanzu Application Platform profiles.
+This is because not every user needs to integrate AWS Services into their Tanzu Application Platform cluster.
 However, the package is in the Tanzu Application Platform packageRepository which means
 that you can install it using the same tooling, credentials, and image repositories that you used to
-install Tanzu Application Platform.
+install Tanzu Application Platform. See [Install AWS Services](../install-aws-services.hbs.md).
 
 You might not want to integrate all of the services supported by the package.
 Therefore, none of the services are enabled by default.

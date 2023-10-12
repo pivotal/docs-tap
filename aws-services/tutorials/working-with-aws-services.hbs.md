@@ -1,14 +1,13 @@
-# Quickstart
+# Working with AWS Services
 
-A quick introduction to the AWS Services Package to get you up and running with AWS Services on
-Tanzu Application Platform.
-
-<!-- probs should be split into roles -->
-<!-- could this just be a how to? "Create claim and bind to workload"/"Using AWS Services" -->
+In this tutorial you learn how [application operators](../../services-toolkit/reference/terminology-and-user-roles.hbs.md#ao)
+and [application developers](../../services-toolkit/reference/terminology-and-user-roles.hbs.md#ad)
+can use AWS Services on Tanzu Application Platform.
+You will learn how to discover, claim, and bind services to application workloads.
 
 ## Prerequisites
 
-1. Before starting this tutorial it is recommended to first read through
+1. Before starting this tutorial it is recommended to first read throuågh
   [Understanding the AWS Services Package](../concepts/understanding-the-aws-services-package.hbs.md).
   This provides context about the features and goals of the package, as well as some of the considerations
   and compromises that have been made as part of its development.
@@ -17,16 +16,13 @@ Tanzu Application Platform.
 
 ## <a id="about"></a> About this tutorial
 
-**Target user roles**:      Service Operator, Application Operator, Application Developer<br />
-**Complexity**:             Medium<br />
-**Estimated time**:         45 minutes<br />
-**Topics covered**:         AWS, RDS, PostgreSQL, Classes, Claims,<br />
-**Learning outcomes**:      An understanding of how to configure and provision RDS PostgreSQL instances on Tanzu Application Platform using the AWS Services Package<br />
+**Target user roles**:      Application Operator, Application Developer<br />
+**Complexity**:             Basic<br />
+**Estimated time**:         15 minutes<br />
+**Topics covered**:         AWS, RDS, PostgreSQL, Classes, Claims<br />
+**Learning outcomes**:      An understanding of how to work with RDS PostgreSQL instances on Tanzu Application Platform using the AWS Services package<br />
 
-
-And with that, we are now ready to switch hats to the role of the Application Operator and Developer and to learn how to discover, claim and bind to RDS PostgreSQL service instances. These steps are almost exactly the same as for any other service (e.g. any of the [Bitnami Services](../../bitnami-services/about.hbs.md)).
-
-## <a id="discover-available-aws-services"></a> Step 5: Discover the list of available AWS Services
+## <a id="discover-available-aws-services"></a> Step 1: Discover the list of available AWS Services
 
 To discover the list of available services, run:
 
@@ -42,7 +38,7 @@ To learn more about the service, including which claim parameters are provided, 
 tanzu service class get postgresql-managed-aws
 ```
 
-## <a id="create-a-claim-aws-rds-postgresql"></a> Step 6: Create a claim for an instance of the AWS RDS PostgreSQL service
+## <a id="create-a-claim-aws-rds-postgresql"></a> Step 2: Claim an instance of the AWS RDS PostgreSQL service
 
 To create a claim for the class:
 
@@ -53,7 +49,7 @@ tanzu service class-claim create rds-psql-1 --class postgresql-managed-aws
 It takes about 5-10 minutes for the service instance to be provisioned.
 You can watch the claim and wait for it to transition into a `READY: True` state to know when it is ready to use.
 
-## <a id="bind-to-workload"></a> Step 7: Binding the instance to a Workload
+## <a id="bind-to-workload"></a> Step 3: Bind the service to a workload
 
 After creating the claim, you can bind it to one or more of your application workloads.
 

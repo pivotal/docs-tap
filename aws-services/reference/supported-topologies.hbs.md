@@ -47,12 +47,10 @@ postgresql:
   region: "REGION"
   infrastructure:
     subnet_group:
-      name: "SUBNET_GROUP_NAME"
+      name: "SUBNET-GROUP-NAME"
     security_groups:
-      - id: "SECURITY_GROUP_ID"
+      - id: "SECURITY-GROUP-ID"
 ```
-
-<!-- Are REGION, SUBNET_GROUP_NAME, and SECURITY_GROUP_ID placeholders? -->
 
 ### <a id="external"></a> A service instance in a VPC accessed by a workload in a Tanzu Application Platform cluster running external to AWS
 
@@ -95,11 +93,9 @@ postgresql:
   region: "REGION"
   infrastructure:
     subnet_group:
-      name: "SUBNET_GROUP_NAME"
+      name: "SUBNET-GROUP-NAME"
     security_groups:
-      - id: "SECURITY_GROUP_ID"
+      - id: "SECURITY-GROUP-ID"
   instance_configuration:
     publicly_accessible: true
 ```
-
-<!-- Are REGION, SUBNET_GROUP_NAME, and SECURITY_GROUP_ID placeholders? -->
