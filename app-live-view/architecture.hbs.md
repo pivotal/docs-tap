@@ -12,19 +12,26 @@ Application Live View includes the following components as shown in the architec
 
 - **Application Live View back end**
 
-  Application Live View back end is the central server component that contains a list of registered apps. It is responsible for proxying the request to fetch the actuator information related to the app.
-
+  Application Live View back end is the central server component that contains a list of registered apps.
+  It provides a REST API that fetches the actuator data for the applications.
+  The Application Live View UI plug-in, as part of Tanzu Application Platform GUI,
+  queries this back-end REST API to get live actuator information for the pod.
 
 - **Application Live View connector**
 
-  Application Live View connector is the component responsible for discovering the app pods running on the Kubernetes cluster and registering the instances to the Application Live View back end for it to be observed. The Application Live View connector is also responsible for proxying the actuator queries to the app pods running in the Kubernetes cluster.
+  Application Live View connector is the component responsible for discovering the app pods running
+  on the Kubernetes cluster and registering the instances to the Application Live View back end for
+  it to be observed.
+  The Application Live View connector is also responsible for proxying the actuator queries to the
+  app pods running in the Kubernetes cluster.
+  The actuator data is then displayed in the Application Live View UI plug-in as part of
+  Tanzu Application Platform GUI.
 
   You can deploy Application Live View connector in two modes:
 
     * `Cluster access`: Deploy as a Kubernetes DaemonSet to discover apps across all the namespaces running in a worker node of a Kubernetes cluster. This is the default mode of Application Live View connector.
 
     * `Namespace scoped`: Deploy as a Kubernetes Deployment to discover apps running within a namespace across worker nodes of Kubernetes cluster.
-
 
 - **Application Live View convention server**
 
