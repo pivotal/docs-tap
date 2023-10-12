@@ -20,22 +20,22 @@ a sample application, `hello-app`, to production using a Carvel Package and Pack
 
 1. Create a [Contour HTTPProxy](https://projectcontour.io/docs/main/config/fundamentals/) resource to route traffic to the `hello-app` service from the URL `www.hello-app.mycompany.com`.
 
-```yaml
-apiVersion: projectcontour.io/v1
-kind: HTTPProxy
-metadata:
-  name: www
-  namespace: prod
-spec:
-  virtualhost:
-    fqdn: www.hello-app.mycompany.com
-  routes:
-    - conditions:
-      - prefix: /
-    services:
-      - name: hello-app
-        port: 8080
-```
+    ```yaml
+    apiVersion: projectcontour.io/v1
+    kind: HTTPProxy
+    metadata:
+      name: www
+      namespace: prod
+    spec:
+      virtualhost:
+        fqdn: www.hello-app.mycompany.com
+      routes:
+        - conditions:
+          - prefix: /
+        services:
+          - name: hello-app
+            port: 8080
+    ```
 
   >**Note** The services names used in HTTPProxy has to match the names of
   existing services. In this case, the name `hello-app` matches the service
@@ -67,39 +67,39 @@ After a new version of the package is added to the GitOps repository, create a n
 
 1. Create a `green-secret.yaml` file with a secret that contains the following ytt overlay.
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: green-overlay-secret
-  namespace: prod
-stringData:
-  custom-package-overlay.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    #@ kd = overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
-    #@ ks = overlay.subset({"apiVersion":"v1", "kind": "Service"})
-    #@ ki = overlay.subset({"apiVersion":"networking.k8s.io/v1", "kind": "Ingress"})
-    #@ na = overlay.subset({"metadata":{"name":"hello-app"}})
-
-    #@overlay/match by=overlay.and_op(kd, na)
+    ```yaml
     ---
+    apiVersion: v1
+    kind: Secret
     metadata:
-      #@overlay/replace
-      name: hello-app-green
+      name: green-overlay-secret
+      namespace: prod
+    stringData:
+      custom-package-overlay.yaml: |
+        #@ load("@ytt:overlay", "overlay")
+        #@ kd = overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
+        #@ ks = overlay.subset({"apiVersion":"v1", "kind": "Service"})
+        #@ ki = overlay.subset({"apiVersion":"networking.k8s.io/v1", "kind": "Ingress"})
+        #@ na = overlay.subset({"metadata":{"name":"hello-app"}})
 
-    #@overlay/match by=overlay.and_op(ks, na)
-    ---
-    metadata:
-      #@overlay/replace
-      name: hello-app-green
+        #@overlay/match by=overlay.and_op(kd, na)
+        ---
+        metadata:
+          #@overlay/replace
+          name: hello-app-green
 
-    #@overlay/match by=overlay.and_op(ki, na)
-    ---
-    metadata:
-      #@overlay/replace
-      name: hello-app-green
-```
+        #@overlay/match by=overlay.and_op(ks, na)
+        ---
+        metadata:
+          #@overlay/replace
+          name: hello-app-green
+
+        #@overlay/match by=overlay.and_op(ki, na)
+        ---
+        metadata:
+          #@overlay/replace
+          name: hello-app-green
+    ```
 
   This secret changes the names of the service and deployment in the Carvel
   Package to allow you to install another version of the app in the same
@@ -113,19 +113,19 @@ stringData:
 
 1. Create a parameter secret for the new PackageInstall:
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: green-dev-values
-  namespace: prod
-stringData:
-  values.yaml: |
+    ```yaml
     ---
-    replicas: 2
-    hostname: hello-app-green.mycompany.com
-```
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: green-dev-values
+      namespace: prod
+    stringData:
+      values.yaml: |
+        ---
+        replicas: 2
+        hostname: hello-app-green.mycompany.com
+    ```
 
 1. Apply the parameter secret to your cluster by running:
 
@@ -135,25 +135,25 @@ stringData:
 
 1. Create a PackageInstall to include the `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to reference your new overlay secret.
 
-```yaml
----
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageInstall
-metadata:
-  name: green.hello-app.dev.tap
-  namespace: prod
-  annotations:
-    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: green-overlay-secret
-spec:
-  serviceAccountName: default
-  packageRef:
-    refName: hello-app.dev.tap
-    versionSelection:
-      constraints: "1.0.1"
-  values:
-  - secretRef:
-      name: green-dev-values
-```
+    ```yaml
+    ---
+    apiVersion: packaging.carvel.dev/v1alpha1
+    kind: PackageInstall
+    metadata:
+      name: green.hello-app.dev.tap
+      namespace: prod
+      annotations:
+        ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: green-overlay-secret
+    spec:
+      serviceAccountName: default
+      packageRef:
+        refName: hello-app.dev.tap
+        versionSelection:
+          constraints: "1.0.1"
+      values:
+      - secretRef:
+          name: green-dev-values
+    ```
 
 ## <a id="divide traffic"></a> Divide traffic between the blue and green deployments
 
@@ -163,27 +163,27 @@ Use the following procedure to divide traffic between your blue and green deploy
 both the blue and green deployments. The names of the services must match the
 names of the already created services.
 
-```yaml
----
-apiVersion: projectcontour.io/v1
-kind: HTTPProxy
-metadata:
-  name: www
-  namespace: prod
-spec:
-  virtualhost:
-    fqdn: www.hello-app.mycompany.com
-  routes:
-  - conditions:
-    - prefix: /
-    services:
-    - name: hello-app-green
-      port: 8080
-      weight: 20
-    - name: hello-app
-      port: 8080
-      weight: 80
-```
+    ```yaml
+    ---
+    apiVersion: projectcontour.io/v1
+    kind: HTTPProxy
+    metadata:
+      name: www
+      namespace: prod
+    spec:
+      virtualhost:
+        fqdn: www.hello-app.mycompany.com
+      routes:
+      - conditions:
+        - prefix: /
+        services:
+        - name: hello-app-green
+          port: 8080
+          weight: 20
+        - name: hello-app
+          port: 8080
+          weight: 80
+    ```
 
 1. Update the weights of traffic for each service by editing the HTTPProxy.
 
@@ -239,79 +239,79 @@ After the new green app is ready to handle the complete load and the `-green` ve
 
 1. Rename the service and deployments without the green prefix. For example, update the overlay secret:
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: overlay-secret
-  namespace: prod
-stringData:
-  custom-package-overlay.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    #@ load("@ytt:data", "data")
-
-    #@ kd = overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
-    #@ ks = overlay.subset({"apiVersion":"v1", "kind": "Service"})
-    #@ ki = overlay.subset({"apiVersion":"networking.k8s.io/v1", "kind": "Ingress"})
-    #@ na = overlay.subset({"metadata":{"name":"hello-app-green"}})
-
-    #@overlay/match by=overlay.and_op(kd, na)
+    ```yaml
     ---
+    apiVersion: v1
+    kind: Secret
     metadata:
-      #@overlay/replace
-      name: hello-app
-    #@overlay/match by=overlay.and_op(ks, na)
-    ---
-    metadata:
-      #@overlay/replace
-      name: hello-app
-    #@overlay/match by=overlay.and_op(ki, na)
-    ---
-    metadata:
-      #@overlay/replace
-      name: hello-app
-    ---
-    apiVersion: projectcontour.io/v1
-    kind: HTTPProxy
-    metadata:
-      name: www
+      name: overlay-secret
       namespace: prod
-    spec:
-      virtualhost:
-        fqdn: www.hello-app.mycompany.com
-      routes:
-        - conditions:
-          - prefix: /
-          services:
-            - name: hello-app # note the name is changed back
-              port: 8080
-              weight: 100
-```
+    stringData:
+      custom-package-overlay.yaml: |
+        #@ load("@ytt:overlay", "overlay")
+        #@ load("@ytt:data", "data")
+
+        #@ kd = overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
+        #@ ks = overlay.subset({"apiVersion":"v1", "kind": "Service"})
+        #@ ki = overlay.subset({"apiVersion":"networking.k8s.io/v1", "kind": "Ingress"})
+        #@ na = overlay.subset({"metadata":{"name":"hello-app-green"}})
+
+        #@overlay/match by=overlay.and_op(kd, na)
+        ---
+        metadata:
+          #@overlay/replace
+          name: hello-app
+        #@overlay/match by=overlay.and_op(ks, na)
+        ---
+        metadata:
+          #@overlay/replace
+          name: hello-app
+        #@overlay/match by=overlay.and_op(ki, na)
+        ---
+        metadata:
+          #@overlay/replace
+          name: hello-app
+        ---
+        apiVersion: projectcontour.io/v1
+        kind: HTTPProxy
+        metadata:
+          name: www
+          namespace: prod
+        spec:
+          virtualhost:
+            fqdn: www.hello-app.mycompany.com
+          routes:
+            - conditions:
+              - prefix: /
+              services:
+                - name: hello-app # note the name is changed back
+                  port: 8080
+                  weight: 100
+    ```
 
 1. Update your PackageInstall to include the
    `ext.packaging.carvel.dev/ytt-paths-from-secret-name.x` annotation to
    reference your new overlay secret. For example:
 
-```yaml
----
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageInstall
-metadata:
-  name: green.hello-app.dev.tap
-  namespace: prod
-  annotations:
-    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: overlay-secret
-spec:
-  serviceAccountName: default
-  packageRef:
-    refName: hello-app.dev.tap
-    versionSelection:
-      constraints: "1.0.1"
-  values:
-  - secretRef:
-      name: hello-app-values
-```
+    ```yaml
+    ---
+    apiVersion: packaging.carvel.dev/v1alpha1
+    kind: PackageInstall
+    metadata:
+      name: green.hello-app.dev.tap
+      namespace: prod
+      annotations:
+        ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: overlay-secret
+    spec:
+      serviceAccountName: default
+      packageRef:
+        refName: hello-app.dev.tap
+        versionSelection:
+          constraints: "1.0.1"
+      values:
+      - secretRef:
+          name: hello-app-values
+    ```
 
 1. After the deployment is complete, you can delete the secrets with the overlays.
 
