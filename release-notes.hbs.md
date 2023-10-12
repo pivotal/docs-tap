@@ -47,6 +47,17 @@ This release includes the following changes, listed by component and area.
 - API Auto Registration controller exposes API endpoints to view all curated APIs or filter for specific APIs to
   add as API portal's source urls.
 
+#### <a id='1-7-0-app-acc'></a> v1.7.0 Features: Application Accelerator 
+
+- After integrating application bootstrap provenance via accelerator into AMR an architect would be able to have advanced insight into how accelerators are used and would make it easy to understand which accelerators are used more and which ones not used much.
+
+#### <a id='1-7-0-app-live-view'></a> v1.7.0 Features: Application Live View 
+
+- A developer will be able to override the Kubernetes default liveness, readiness, and startup probes’ settings for Spring Boot apps in Tanzu Application. For more information, see the [Configure liveness, readiness, and startup probes for Spring Boot applications](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/spring-boot-conventions-config-probes.html ) documentation.
+
+
+
+
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
 - Supports Kubernetes 1.28.
