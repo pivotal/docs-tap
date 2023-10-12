@@ -101,6 +101,20 @@ chain:
         with: "#files.contentsOf('snippets/install-' + #platform + '.md')"
 ```
 
+Replacing all occurences of `apple` or `orange`, singular or plural,
+with the value of the accelerator option `#vegetable` (for example `'banana'`),
+keeping the trailing `'s'` when there was one.
+```
+include: ['README.md']
+chain:
+  - type: ReplaceText
+    regex:
+      pattern: "(apple|orange)(s)?"
+      # This constructs a SpEL string containing eg 'banana$2' where $2
+      # refers to the second capturing group (the optional 's')
+      with: "#vegetable + '$2'"
+```
+
 ## See also
 
 - [UseEncoding](use-encoding.md)
