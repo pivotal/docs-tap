@@ -14,7 +14,7 @@ Application Live View includes the following components as shown in the architec
 
   Application Live View back end is the central server component that contains a list of registered apps.
   It provides a REST API that fetches the actuator data for the applications.
-  The Application Live View UI plug-in, as part of Tanzu Developer Portal,
+  The Application Live View UI plug-in, as part of Tanzu Developer Portal (formerly named Tanzu Application Platform GUI),
   queries this back-end REST API to get live actuator information for the pod.
 
 - **Application Live View connector**
