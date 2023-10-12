@@ -75,6 +75,13 @@ a predefined group of packages.
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
+- **[Aria Operations for Applications Dashboard for TAP (Beta)](aoa-dashboard/installation-details.hbs.md)**
+
+  This dashboard powered by Aria Operations for Applications (formerly Tanzu Observability) helps
+  Platform Engineers monitor the health of a given Cluster by providing insight into whether the deployed
+  TAP components are behaving as expected. 
+
+
 - **[AWS Services](aws-services/about.hbs.md)**
 
   AWS Services provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP).
