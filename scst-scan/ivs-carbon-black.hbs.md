@@ -3,6 +3,7 @@
 To configure an ImageVulnerabilityScan for Carbon Black, use the following ImageVulnerabilityScan and secret configuration:
 
 - Configure Carbon Black CLI with CarbonBlack `cbctl-creds` secret and credentials by using the `~/.cbctl/cbctl.yaml` config file. See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
+- Set the tekton-pipelines feature-flags configmap `enable-api-fields` to `alpha`. This enables the user to use the `stdoutConfig` which is needed to output the scan report as a file.
 
 ```yaml
 apiVersion: v1
@@ -64,4 +65,4 @@ Where:
 
 **Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
 
-**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry. In order to use this configuration, the tekton-pipelines feature-flags configmap must have `enable-api-fields` set to `alpha`.
+**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry. See [docs](https://github.com/tektoncd/community/blob/main/teps/0011-redirecting-step-output-streams.md) for more details.
