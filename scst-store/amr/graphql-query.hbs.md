@@ -153,6 +153,102 @@ You can choose the following felids to return in the GraphQL query. You must spe
   }
   ```
 
+## <a id='query-app-accelerator-runs'></a> Querying for AppAcceleratorRuns
+
+This section tells you about GraphQL query arguments, and the list of fields available for `AppAcceleratorRuns` and `AppAcceleratorFragments`.
+
+### <a id='app-accelerator-runs-query-args'></a> AppAcceleratorRuns query arguments
+
+You can specify the following supported arguments when querying for `AppAcceleratorRuns`. They are all optional.
+
+- `query`: expects an object that specifies additional arguments used to query. The following arguments are supported in this query object:
+    
+  - `guid`: UID identifying the run, as a `String` value. Each AppAcceleratorRun automatically gets assigned a uid.
+  
+    For example:
+    
+    ```graphql
+    appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})
+    ```
+  - `source`: string representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE` and `INTELLIJ`.
+  
+    For example:
+    
+    ```graphql
+    appAcceleratorRuns(query:{source: "TAP-GUI"})
+    ```
+  - `username`: string representing the username of the person who run
+  the accelerator, as captured by the client user interface.  
+    For example:
+    
+    ```graphql
+    appAcceleratorRuns(query:{username: "homer.simpson"})
+    ```
+  - `namespace` and `name`: strings representing the accelerator which
+  was used to create an application.
+    For example:
+    
+    ```graphql
+    appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
+    ```
+  - `appAcceleratorRepoURL`, `appAcceleratorRevision` and `appAcceleratorSubpath`: actual location in VCS about the sources of the
+  accelerator used.
+    For example:
+    
+    ```graphql
+    appAcceleratorRuns(query:{
+      appAcceleratorRepoURL: "https://github.com/vmware-tanzu/application-accelerator-samples.git",
+      appAcceleratorRevision: "v1.6"
+    })
+    ```
+  - `timestamp`: string representation of the exact time the accelerator was run. You can query for runs that happened `before` or `after` a particular instant:
+    For example:
+    
+    ```graphql
+    appAcceleratorRuns(query: {timestamp: {after: "2023-10-11T13:40:46.952Z"}})
+    ```
+    
+
+### <a id='app-accelerator-runs-fields'></a> AppAcceleratorRuns fields
+
+You can choose the following fields to return in the GraphQL query. 
+See above for details about some of those fields.
+You must specify at least one field.
+
+- `guid`: UID identifying the run
+- `source`: string representing the client used to run the accelerator
+- `username`: string representing the username of the person who run
+  the accelerator
+- `namespace` and `name`: strings representing the accelerator which
+  was used to create an application
+- `appAcceleratorRepoURL`, `appAcceleratorRevision` and `appAcceleratorSubpath`: actual location in VCS about the sources of the
+  accelerator used.
+- `appAcceleratorSource`: vcs information of the sources of the accelerator used, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
+- `timestamp`: the exact time the accelerator was run
+- `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each AppAcceleratorRun. Those fragment nodes share many of the fields with AppAcceleratorRun, with the same semantics but applied to the particular fragment. Those include:
+  - `namespace` and `name`: strings representing the identity of the fragment
+  - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision` and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS about the sources of the fragment used.
+  - `appAcceleratorFragmentSource`: vcs information of the sources of the fragment, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
+
+### <a id='sample-app-accelerator-runs-query'></a> Sample application accelerators queries
+
+- Get the list of all Application Accelerator runs, with the fragments used for each.
+  
+  ```graphql
+    query getAllAcceleratorRuns {
+      appAcceleratorRuns {
+        nodes {
+          name
+          appAcceleratorFragments {
+            nodes {
+              name
+            }
+          }
+        }
+      }    
+    }
+  ```
+
 ## <a id='addition-resources'></a> Additional resources
 
 - [AMR Data Models](data-model-and-concepts.hbs.md)
