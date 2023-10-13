@@ -377,7 +377,7 @@
         - [Concepts](aws-services/concepts/index.hbs.md)
             - [About the AWS Services package](aws-services/concepts/about-aws-services.hbs.md)
         - [Tutorials](aws-services/tutorials/index.hbs.md)
-            - [Quickstart](aws-services/tutorials/quickstart.hbs.md)
+            - [Working with AWS Services](aws-services/tutorials/working-with-aws-services.hbs.md)
         - [How-to guides](aws-services/how-to-guides/index.hbs.md)
             - [Configure AWS Service Endpoint](aws-services/how-to-guides/configure-aws-service-endpoint.hbs.md)
         - [Reference](aws-services/reference/index.hbs.md)

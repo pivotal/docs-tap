@@ -28,7 +28,7 @@ This release includes the following platform-wide enhancements.
 
 - [AWS Services](aws-services/about.hbs.md): Provides an integration with Amazon Web Services (AWS)
   for Tanzu Application Platform.
-  To get started, see the [Quickstart tutorial](aws-services/tutorials/quickstart.hbs.md).
+  <!--To get started, see the [Quickstart tutorial](aws-services/tutorials/quickstart.hbs.md).-->
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
@@ -47,11 +47,11 @@ This release includes the following changes, listed by component and area.
 - API Auto Registration controller exposes API endpoints to view all curated APIs or filter for specific APIs to
   add as API portal's source urls.
 
-#### <a id='1-7-0-app-acc'></a> v1.7.0 Features: Application Accelerator 
+#### <a id='1-7-0-app-acc'></a> v1.7.0 Features: Application Accelerator
 
 - After integrating application bootstrap provenance via accelerator into AMR an architect would be able to have advanced insight into how accelerators are used and would make it easy to understand which accelerators are used more and which ones not used much.
 
-#### <a id='1-7-0-app-live-view'></a> v1.7.0 Features: Application Live View 
+#### <a id='1-7-0-app-live-view'></a> v1.7.0 Features: Application Live View
 
 - A developer will be able to override the Kubernetes default liveness, readiness, and startup probes’ settings for Spring Boot apps in Tanzu Application. For more information, see the [Configure liveness, readiness, and startup probes for Spring Boot applications](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/spring-boot-conventions-config-probes.html ) documentation.
 
