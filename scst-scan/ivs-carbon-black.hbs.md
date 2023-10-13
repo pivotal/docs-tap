@@ -49,8 +49,7 @@ spec:
     - $(params.image)
     - --config
     - /cbctl/.cbctl.yaml
-    - -o
-    - json
+    - -ocyclonedx
     stdoutConfig:
       path: /workspace/scan-results/scan-results.cdx.xml
 ```
@@ -65,4 +64,4 @@ Where:
 
 **Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
 
-**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry.
+**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry. In order to use this configuration, the tekton-pipelines feature-flags configmap must have `enable-api-fields` set to `alpha`.
