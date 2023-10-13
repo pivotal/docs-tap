@@ -75,12 +75,11 @@ a predefined group of packages.
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
-- **[Aria Operations for Applications Dashboard for TAP (Beta)](aoa-dashboard/installation-details.hbs.md)**
+- **[Aria Operations for Applications (AOA) dashboard for Tanzu Application Platform (Beta)](aoa-dashboard/about.hbs.md)**
 
-  This dashboard powered by Aria Operations for Applications (formerly Tanzu Observability) helps
-  Platform Engineers monitor the health of a given Cluster by providing insight into whether the deployed
-  TAP components are behaving as expected. 
-
+  This dashboard, powered by Aria Operations for Applications (formerly Tanzu Observability), helps
+  platform engineers monitor the health of a given cluster by showing whether the deployed
+  Tanzu Application Platform components are behaving as expected.
 
 - **[AWS Services](aws-services/about.hbs.md)**
 
@@ -525,7 +524,23 @@ For a diagram showing the packages contained in each profile, see
    </td>
   </tr>
   <tr>
-   <td>Artifact Metadata Repository Observer (alpha)
+   <td>AOA dashboard
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+  <td>Artifact Metadata Repository Observer (alpha)
   </td>
    <td>&check;
    </td>
