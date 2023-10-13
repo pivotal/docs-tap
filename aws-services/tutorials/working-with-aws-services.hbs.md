@@ -43,7 +43,7 @@ To find out about available AWS services:
 
 ## <a id="create-a-claim"></a> Step 2: Claim an instance of the AWS RDS PostgreSQL service
 
-To create a claim for the class:
+To claim an instance of the AWS RDS PostgreSQL service:
 
 ```console
 tanzu service class-claim create rds-psql-1 --class postgresql-managed-aws
@@ -57,11 +57,11 @@ ready to use.
 
 After creating the claim, you can bind it to one or more of your application workloads.
 
-> **Important** If binding to more than one application workload then all application workloads must
-> exist in the same namespace. This is a known limitation<!--฿ |limitation| is the act of limiting. If talking about a specific measurable limit, such as useable hard disk space, write |limit|. ฿-->. For more information, see
+> **Important** If binding to more than one application workload, all application workloads must
+> exist in the same namespace. This is a known limitation. For more information, see
 > [Cannot claim and bind to the same service instance from across multiple namespaces](../../services-toolkit/reference/known-limitations.hbs.md#multi-workloads).
 
-1. Find the reference for the claim by running the following command<!--฿ Maybe shorten to just |run:| ฿-->.
+1. Find the reference for the claim by running:
 
     ```console
     tanzu service class-claim get rds-psql-1
@@ -75,7 +75,7 @@ After creating the claim, you can bind it to one or more of your application wor
     ```console
     tanzu apps workload create my-workload --image my-registry/my-app-image --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:rds-psql-1
     ```
-<!--฿ If this is just console output, such as an error message, break up the lines at sensible points with backslashes to make reading it easier. ฿-->
+
     You must pass the claim reference with a corresponding name that follows the format
     `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:rds-psql-1`.
     The `db=` prefix to this example reference is an arbitrary name for the reference.
