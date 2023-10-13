@@ -65,4 +65,4 @@ Where:
 
 **Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
 
-**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry. See [docs](https://github.com/tektoncd/community/blob/main/teps/0011-redirecting-step-output-streams.md) for more details.
+**Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry. See [tekton docs](https://github.com/tektoncd/community/blob/main/teps/0011-redirecting-step-output-streams.md) for more details.
