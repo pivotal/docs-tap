@@ -1,6 +1,7 @@
 # About the AWS Services package
 
-This topic tells you about what the AWS Services package is, why it is useful, and ....
+This topic tells you about what the AWS Services package is, the goals of the package,
+and some of its limitations.
 
 ## <a id="goals"></a> Goals
 

@@ -1,6 +1,6 @@
 # Supported AWS Services
 
-This topic lists the AWS services that are supported by the AWS Services package.
+This topic lists the services that are supported by the AWS Services package.
 
 ## <a id="postgresql"></a> RDS PostgreSQL
 

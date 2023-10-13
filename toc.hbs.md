@@ -371,7 +371,7 @@
         - [Overview](aws-services/about.hbs.md)
         - [Install AWS Services](aws-services/install-aws-services.hbs.md)
         - [Concepts](aws-services/concepts/index.hbs.md)
-            - [Understanding the AWS Services Package](aws-services/concepts/understanding-the-aws-services-package.hbs.md)
+            - [About the AWS Services package](aws-services/concepts/about-aws-services.hbs.md)
         - [Tutorials](aws-services/tutorials/index.hbs.md)
             - [Quickstart](aws-services/tutorials/quickstart.hbs.md)
         - [How-to guides](aws-services/how-to-guides/index.hbs.md)

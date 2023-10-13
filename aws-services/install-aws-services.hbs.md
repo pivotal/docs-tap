@@ -3,7 +3,7 @@
 This topic tells you how to install AWS Services from the Tanzu Application Platform
 (commonly known as TAP) package repository.
 
-> **Note** The AWS Service package in not in any of the Tanzu Application Platform profiles.
+> **Note** The AWS Service package is not in any of the Tanzu Application Platform profiles.
 > To use this package, you must follow the instructions in this topic.
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -11,10 +11,9 @@ This topic tells you how to install AWS Services from the Tanzu Application Plat
 Before you install the AWS Services package:
 
 - [Install Tanzu Application Platform](../install-intro.hbs.md)
-- VMware recommends that you read
-[Understanding the AWS Services Package](../concepts/understanding-the-aws-services-package.hbs.md).
-The topic provides context about the features and goals of the package, and some of the
-considerations and compromises that were made as part of its development.
+- VMware recommends that you read [About the AWS Services package](concepts/about-aws-services.hbs.md).
+  The topic provides context about the features and goals of the package, and some of the
+  considerations and compromises that were made as part of its development.
 
 ## <a id="config-infra"></a> Step 1: Plan and configure your infrastructure
 
@@ -31,6 +30,7 @@ To plan and configure your infrastructure:
 
 1. Decide which topology you want to use. For more information about the topologies supported by the
    AWS Services package, see [Supported Topologies](reference/supported-topologies.hbs.md).
+   <!-- do you have to do the configuration items from this page? when? -->
 
 1. Create a DBSubnetGroup and SecurityGroups:
 
@@ -39,9 +39,9 @@ To plan and configure your infrastructure:
 
     > **Note** The current version of the AWS Services package does not create these resources for you.
     > You must create them manually using the AWS console.
-    > It's possible (not guaranteed) that future versions of the AWS Services package might provide options
-    > to create required infrastructure resources for you. For now, this is a one-time manual setup step
-    > that you must complete before installing the package.
+    > This is a one-time manual setup step that you must complete before installing the package.
+    > Future versions of the AWS Services package might provide options to create required
+    > infrastructure resources for you.
 
 1. Record the name of the DBSubnetGroup and the IDs of the SecurityGroups you created.
    These are required when installing the package.
@@ -49,6 +49,7 @@ To plan and configure your infrastructure:
 ## <a id="install-package"></a> Step 2: Install the AWS Services package
 
 The AWS Services package is not installed as part of any profile so you must explicitly install it.
+To install the AWS Services package:
 
 1. Confirm that you have the AWS Services package available by running:
 
@@ -93,20 +94,15 @@ The AWS Services package is not installed as part of any profile so you must exp
     Where:
 
     - `REGION` is the AWS region you want, for example, `us-east-1`.
-    - `PROVIDER-CONFIG-NAME` you can optionally choose to provide a named ProviderConfig for this service.
-    Otherwise, enter `default` as the value to use the default name.
-    Choosing a name allows you to use a different ProviderConfig per service type offered by the AWS Services package.
-    - `SUBNET-GROUP-NAME` is the name of the DBSubnetGroup you created in [Plan and configure your infrastructure](#config-infra) earlier.
-    - `SECURITY-GROUP-ID` are the IDs of any security groups you created in [Plan and configure your infrastructure](#config-infra) earlier.
-
-    Take particular note of the `postgresql.infrastructure` block, which contains a `subnet_group` and
-    a `security_groups` key.
-    This is how you configure the PostgreSQL service for the AWS Services package with relevant
-    infrastructure information to support the topology you chose. <!-- Use placeholders -->
+    - `PROVIDER-CONFIG-NAME` enter `default`, or choose a name for the ProviderConfig for this service.
+      Choosing a name allows you to use a different ProviderConfig per service type offered by the
+      AWS Services package.
+    - `SUBNET-GROUP-NAME` is the name of the DBSubnetGroup you created in
+      [Plan and configure your infrastructure](#config-infra) earlier.
+    - `SECURITY-GROUP-ID` are the IDs of any security groups you created in
+      [Plan and configure your infrastructure](#config-infra) earlier.
 
     For the full list of values you can configure, see [Package values for AWS Services](../reference/package-values.hbs.md).
-
-    <!-- consider converting comments to placeholders -->
 
 1. Review which versions of AWS Services are available to install by running:
 
@@ -155,16 +151,18 @@ The AWS Services package is not installed as part of any profile so you must exp
 
 ## <a id="create-a-providerconfig"></a> Step 3: Create a ProviderConfig
 
-The `ProviderConfig` resource is the mechanism through which you configure credentials and access information for your AWS account.
+The `ProviderConfig` resource is the mechanism through which you configure credentials and access
+information for your AWS account.
 
-This topic shows you how to create a `ProviderConfig` using the `Secret` source, in which your AWS account
-credentials will be stored in a `Secret` on the cluster.
-However there are alternative methods available, including an option to assume an IAM Role.
-To learn about the full range of configuration options available, see the [Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-family-aws/latest/resources/aws.upbound.io/ProviderConfig/v1beta1).
+This section shows you how to create a `ProviderConfig` using the `Secret` source in which
+your AWS account credentials are stored in a `Secret` on the cluster.
+However, there are alternative methods, for example, an option to assume an IAM Role.
+To learn about the full range of configuration options available, see the
+[Upbound documentation](https://marketplace.upbound.io/providers/upbound/provider-family-aws/latest/resources/aws.upbound.io/ProviderConfig/v1beta1).
 
-To create a ProviderConfig using the `Secret` source:
+To create a `ProviderConfig` using the `Secret` source:
 
-1. Create the `Secret` to hold the AWS credentials.
+1. Create the `Secret` to hold the AWS credentials by running:
 
     ```console
     export AWS_ACCESS_KEY_ID="foo"
@@ -180,11 +178,7 @@ To create a ProviderConfig using the `Secret` source:
     rm -f creds.conf
     ```
 
-1. Create a `ProviderConfig` and configure it with the `Secret` source.
-
-    > **Note** The `metadata.name` of your `ProviderConifg` must match the
-    > `postgresql.provider_config_ref.name` value you have configured in your `aws-services-values.yaml`
-    > file. The default is `default`.
+1. Create a `ProviderConfig` and configure it with the `Secret` source by running:
 
     ```console
     kubectl apply -f -<<EOF
@@ -192,7 +186,7 @@ To create a ProviderConfig using the `Secret` source:
     apiVersion: aws.upbound.io/v1beta1
     kind: ProviderConfig
     metadata:
-      name: default
+      name: PROVIDER-CONFIG-NAME
     spec:
       credentials:
         source: Secret
@@ -203,8 +197,11 @@ To create a ProviderConfig using the `Secret` source:
     EOF
     ```
 
-1. Confirm that everything has been setup correctly by inspecting the resources created as part of
-   the installation of the package - the `SubnetGroup` and `SecurityGroups`.
+    Where `PROVIDER-CONFIG-NAME` is the `postgresql.provider_config_ref.name` value you configured
+    in your `aws-services-values.yaml` file. The default is `default`.
+
+1. Verify your setup by inspecting the resources created as part of the installation of the package,
+   the `SubnetGroup` and `SecurityGroups`, by running:
 
     ```console
     kubectl get securitygroup
