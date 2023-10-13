@@ -102,7 +102,7 @@ To install the AWS Services package:
     - `SECURITY-GROUP-ID` are the IDs of any security groups you created in
       [Plan and configure your infrastructure](#config-infra) earlier.
 
-    For the full list of values you can configure, see [Package values for AWS Services](../reference/package-values.hbs.md).
+    For the full list of values you can configure, see [Package values for AWS Services](reference/package-values.hbs.md).
 
 1. Review which versions of AWS Services are available to install by running:
 
