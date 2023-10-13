@@ -131,10 +131,10 @@ container.
 
 ### Cause
 
-VS Code is running inside a development container and this is the file system that is available when
-creating a new project.
+VS Code is running inside a development container. Therefore the development container file system
+is the file system made available when creating a new project.
 
 ### Solution
 
-Use local file mounts to expose additional folders in the host file system to the development
+Use local file mounts to expose additional directories in the host file system to the development
 container. For more information, see [Use Mounts](dev-containers.hbs.md#use-mounts).
