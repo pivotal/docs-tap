@@ -293,7 +293,7 @@
             - [Use SpEL with Application Accelerator](application-accelerator/creating-accelerators/spel-samples.hbs.md)
             - [Application Accelerator custom resource definition](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
             - [Test accelerators](application-accelerator/creating-accelerators/testing-accelerators.hbs.md)
-        - [Use the Provenance transform in Application Accelerator](application-accelerator/provenance.hbs.md)
+        - [Tracking Provenance with Application Accelerator](application-accelerator/provenance.hbs.md)
         - [Use the Application Accelerator Visual Studio Code extension](application-accelerator/vscode.hbs.md)
         - [Use the Application Accelerator IntelliJ plug-in](application-accelerator/intellij.hbs.md)
         - [Application Accelerator best practices](application-accelerator/best-practices/about-best-practices.hbs.md)
