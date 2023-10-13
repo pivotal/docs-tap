@@ -202,5 +202,18 @@ version of Tanzu Application Platform.
 
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-Updating buildpack, and stack dependencies outside of upgrades to Tanzu Application Platform is possible but VMware does not recommend it, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform.
-For more information about updating a stack and a buildpack, see [Cluster stacks update](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) and [Cluster store update](https://docs.vmware.com/en/Tanzu-Build-Service/1.12/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) in the Tanzu Build Service documentation. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
+### Upgrading Buildpacks out-of-band of TAP 
+
+Updating buildpack dependencies outside of upgrades to Tanzu Application Platform is possible, but VMware recommends upgrading TAP in order to consume new build dependencies. Should you encounter the need to upgrade buildpacks between TAP releases, follow these instructions:
+
+1. Navigate to the the desired buildpack page. Selecting from the Tanzu Buildpacks documentation <a href="https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html">landing page</a> will redirect to the TanzuNet distribution page for a given language family buildpack.
+2. Find the appropriate package in the artifact reference list. Select `lite` if you have installed TAP using `lite` TBS dependencies. This is the default set of dependencies installed. If you installed `full` dependencies, select the package artifact reference that is **not** identified as lite.
+3. Click the icon in the right side of the artifact reference box to reveal the Tanzu Network image repository address and image tag and copy to clipboard.
+4. Relocate buildpack image using imgpkg copy 
+`imgpkg copy -b <PASTE TANZUNET IMAGE URL FROM PREVIOUS STEP> --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/<BUILDPACK LANGUAGE>`
+5. Now that the package repositry that contains the new buildpack image has been relocated, the next step is add the package repository. `tanzu package repository add --url <REPO DESTINATION FROM PREVIOUS STEP> tbs-<BUILDPACK LANGUAGE> --namespace tap-install`
+6. In order to install the package repositry, you must find the package name and version.
+`tanzu package repository list --namespace tap-install`. Find the package repository name that follows the convention `<BUILDPACK LANGUAGE>.buildpacks.tanzu.vmware.com` or `<BUILDPACK LANGUAGE>-lite.buildpacks.tanzu.vmware.com` as well as its associated version. These are required for the following step.
+7. The next step is to install the package repositry on the Cluster. `tanzu package install --package-name <PACKAGE NAME FROM PREVIOUS STEP> --verison <VERSION FROM PREVIOUS STEP> tbs-<BUILDPACK LANGUAGE NAME> --namespace tap-install`
+8. The buildpack has been installed and images that use the buildpack you have upgraded will start to rebuild. When you install future versions of TAP that include higher buildpack versions, TBS will use the higher buildpack versions in builds.
+   
