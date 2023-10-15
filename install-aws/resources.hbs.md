@@ -30,7 +30,9 @@ Before installing Tanzu Application Platform on AWS, you need:
 
 - AWS CLI. This walkthrough uses the AWS CLI to both query and configure resources in AWS, such as IAM roles. For more information, see this [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
-- EKSCTL command line. The EKSCTL command line helps you manage the life cycle of EKS clusters. This guide uses it to create clusters. To install the EKSCTL CLI, see [Installation](https://eksctl.io/introduction/#installation).
+- `eksctl` command line. The `eksctl` command line helps you manage the life cycle
+  of EKS clusters. This guide uses it to create clusters. To install `eksctl`, 
+  see the [eksctl documentation](https://eksctl.io/installation/).
 
 ## <a id='export-env-variables'></a>Export environment variables
 
