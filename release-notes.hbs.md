@@ -311,6 +311,11 @@ the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
 
 - `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions. Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index corruption issue. For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
+#### <a id='1-7-0-service-bindings-upgrade'></a> v1.7.0 Service Bindings Upgrade
+
+- When upgrading from a previous Tanzu Application Platform versions, workloads and pods that are using service bindings will be updated to new service binding volumes. This is done automatically after upgrading to 1.7 and requires no user action. There will be pods recreated for all workloads with service bindings. Please ensure there are sufficient Kubernetes resources in your clusters to support such pod rollout.
+This is a one-off migration of the underlying Service Binding implementation. Once you've upgrade to 1.7, subsequent upgrades won't have the same effect.
+
 ---
 
 ### <a id='1-7-0-components'></a> v1.7.0 Component versions
