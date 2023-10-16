@@ -206,7 +206,7 @@ version of Tanzu Application Platform.
 
 Updating buildpack dependencies outside of upgrades to Tanzu Application Platform is possible, but VMware recommends upgrading TAP in order to consume new build dependencies. Should you encounter the need to upgrade buildpacks between TAP releases, follow these instructions:
 
-1. Navigate to the the desired buildpack page. Selecting from the Tanzu Buildpacks documentation <a href="https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html">landing page</a> will redirect to the TanzuNet distribution page for a given language family buildpack.
+1. Navigate to the the desired buildpack page. Selecting from the Tanzu Buildpacks documentation [landing page](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html) will redirect to the TanzuNet distribution page for a given language family buildpack.
 2. Find the appropriate package in the artifact reference list. Select `lite` if you have installed TAP using `lite` TBS dependencies. This is the default set of dependencies installed. If you installed `full` dependencies, select the package artifact reference that is **not** identified as lite.
 3. Click the icon in the right side of the artifact reference box to reveal the Tanzu Network image repository address and image tag and copy to clipboard.
 4. Relocate buildpack image using imgpkg copy 
