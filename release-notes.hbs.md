@@ -152,6 +152,7 @@ This release includes the following changes, listed by component and area.
 - **Knative Serving Migrator Job added**: CNR now runs a new job in the knative-serving namespace that is responsible for ensuring that CNR uses the latest Knative Serving resource versions.
 
 #### <a id='1-7-0-contour'></a> v1.7.0 Features: Contour
+
 - **Contour v1.25.2**: Contour v1.25.2 is available in the TAP. For more information, see the [Contour v1.25.2 release notes](https://github.com/projectcontour/contour/releases/tag/v1.25.2) in GitHub.
 
 - **New config option `loadBalancerTLSTermination`**: Allows configuring the Envoy service's port for TLS termination. For more information on how to use this config, see [Configure Contour to support TLS termination at an AWS Network LoadBalancer](./contour/how-to-guides/configuring-contour-with-loadbalancer-tls-termination.hbs.md)
@@ -263,6 +264,10 @@ The following issues, listed by component and area, are resolved in this release
 - Authorization servers display OIDC providers on the login page even when
   there are no SAML providers.
 
+#### <a id='1-7-0-cnrs-ri'></a> v1.7.0 Resolved issues: Cloud Native Runtimes
+
+- Certain app name, namespace and domain combinations no longer product Knative Services with status `CertificateNotReady`.
+
 #### <a id='1-7-0-supply-chain-choreographer-ri'></a> v1.7.0 Resolved issues: Supply Chain Choreographer
 
 - You can safely ignore the label `apps.tanzu.vmware.com/carvel-package-workflow` when the Package Supply Chain is disabled. Previously, workloads with this label fail when the Package Supply Chain is disabled.
@@ -335,8 +340,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Bitnami Services                                   |         |
 | Cartographer Conventions                           |         |
 | cert-manager                                       | 2.4.1 (includes cert-manager@1.12) |
-| Cloud Native Runtimes                              |         |
-| Contour                                            |         |
+| Cloud Native Runtimes                              | 2.4.1   |
+| Contour                                            | 1.25.2  |
 | Crossplane                                         |         |
 | Default Roles                                      |         |
 | Developer Conventions                              |         |
