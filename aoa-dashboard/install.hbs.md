@@ -15,7 +15,7 @@ Before integrating a Kubernetes cluster with AOA you must have:
 
 To integrate with AOA Wavefront:
 
-1. Log in to your AOA instance, click the **INTEGRATIONS** tab, and then select **Kubernetes**.
+1. Log in to your AOA instance, click the **INTEGRATIONS** tab, and then click **Kubernetes**.
 
    ![Overview of integrations available for AOA Wavefront](images/aoa_available_integrations.png)
 
@@ -47,12 +47,12 @@ Perform the following procedures to set up metrics collection in a cluster.
 To download the dashboard and set up the cluster:
 
 1. Download and install the Tanzu CLI binary file from the Tanzu Application Platform
-   [VMware Tanzu Network tile](https://network.pivotal.io/products/tanzu-application-platform/)
-   if you have not already installed it.
+   [tile](https://network.tanzu.vmware.com/products/tanzu-application-platform/) in
+   VMware Tanzu Network if you have not already installed it.
 
 2. Download the dashboard zip file from the
-   [VMware Tanzu Network tile](https://network.pivotal.io/products/tanzu-application-platform/) for
-   Tanzu Application Platform v1.7 or later.
+   [tile](https://network.tanzu.vmware.com/products/tanzu-application-platform/) in
+   VMware Tanzu Network for Tanzu Application Platform v{{ vars.tap_version }} or later.
 
    - Click **Aria Operations for Applications Dashboard for Tanzu Application Platform (Beta)**.
    - Download the `aoa-dashboard-for-tap` zip file for your operating system.
@@ -72,7 +72,7 @@ To download the dashboard and set up the cluster:
 
 To create a dashboard in AOA Wavefront:
 
-1. Go to the AOA Wavefront homepage and then click **Dashboards** > **Create Dashboard**.
+1. Go to the AOA Wavefront home page and then click **Dashboards** > **Create Dashboard**.
 
    ![Creating the AOA Dashboard](images/aoa_creating_dashboard.png)
 
@@ -101,4 +101,4 @@ To create a dashboard in AOA Wavefront:
 
 The dashboard currently only supports monitoring one cluster at a time. But you can follow the steps
 in [Set up metrics collection in a cluster](#set-up-metrics) to onboard additional clusters to AOA.
-The additional clusters then appear in the **Cluster** dropdown menu.
+The additional clusters then appear in the **Cluster** drop-down menu.
