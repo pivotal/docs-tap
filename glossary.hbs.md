@@ -20,12 +20,18 @@
         <td>AMR Observer is a set of managed controllers that watches for relevant updates on resources of interest. When relevant events are observed, a CloudEvent is generated and sent to AMR CloudEvent-Handler and relayed for storage in the Metadata Store.</td>
     </tr>
     <tr>
+        <td>Aria Operations for Applications dashboard</td>
+        <td>The Aria Operations for Applications (AOA) dashboard, powered by Aria Operations for
+        Applications (formerly Tanzu Observability), helps you monitor the health of a given cluster
+        by showing whether the deployed Tanzu Application Platform components are behaving as expected.</td>
+    </tr>
+    <tr>
         <td>API Auto Registration</td>
         <td>API Auto Registration is a Tanzu Application Platform component that automates registering API specifications defined in a workload's configuration.</td>
     </tr>
     <tr>
         <td>API portal</td>
-        <td>This component enables API consumers to find APIs they can use in their own applications. </td>
+        <td>This component enables API consumers to find APIs they can use in their own applications.</td>
     </tr>
     <tr>
         <td>API Scoring and Validation</td>
@@ -87,6 +93,8 @@
         <td></td>
     </tr>
 </table>
+
+Aria Operations for Applications dashboard
 
 ## <a id="b"></a> B
 
