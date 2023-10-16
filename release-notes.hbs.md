@@ -28,7 +28,6 @@ This release includes the following platform-wide enhancements.
 
 - [AWS Services](aws-services/about.hbs.md): Provides an integration with Amazon Web Services (AWS)
   for Tanzu Application Platform.
-  <!--To get started, see the [Quickstart tutorial](aws-services/tutorials/quickstart.hbs.md).-->
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
