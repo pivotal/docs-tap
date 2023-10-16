@@ -151,11 +151,7 @@ Install by following these steps:
     service_account: default
     ```
 
-    >**Important** it's **required** that the `gitops.repository_prefix` field ends
-    > with a `/`.
-
-
-1. With the configuration ready, install the package by running:
+3. With the configuration ready, install the package by running:
 
     ```console
     tanzu package install ootb-supply-chain-testing \

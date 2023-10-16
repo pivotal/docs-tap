@@ -4,7 +4,7 @@ This topic gives you a sample ImageVulnerabilityScans for various scanners, and 
 
 ## <a id="overview"></a> ImageVulnerabilityScan samples
 
-This section includes ImageVulnerabilityScans (IVS) for various scanners. To use them, copy the YAML content and use the following sections:
+This section includes ImageVulnerabilityScans (IVS) for various scanners. To use them, copy the YAML content for the scanner you want to use in the following topics:
 
 - [Carbon Black](./ivs-carbon-black.hbs.md)
 - [Snyk](./ivs-snyk.hbs.md)

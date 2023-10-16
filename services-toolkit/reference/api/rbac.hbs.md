@@ -101,11 +101,9 @@ rules:
 
 ## <a id="claim-verb"></a> The claim verb for ClusterInstanceClass
 
-Services Toolkit supports using the `claim` verb for RBAC rules that apply to `clusterinstanceclasses`.
-You can use this with relevant aggregating labels, `RoleBindings`, or `ClusterRoleBindings`
-as a form of access control to specify who can claim from which `ClusterInstanceClass`
-and from where.
-For more information, see [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md).
+Services Toolkit supports using the `claim` verb for RBAC rules that apply to a `ClusterInstanceClass`.
+You can use this with relevant aggregating labels or `ClusterRoleBindings`
+as a form of access control to specify who can claim from which `ClusterInstanceClass`.
 
 For example:
 
@@ -131,3 +129,17 @@ rules:
   verbs:
   - claim
 ```
+
+As of Services Toolkit v0.11.1 in Tanzu Application Platform v1.6.4, you must grant the permission to
+`claim` from a `ClusterInstanceClass` at the cluster level.
+You now must use a `ClusterRole` and `ClusterRoleBinding`.
+Namespace-scoped permissions, such as using a `Role` and `RoleBinding` or `ClusterRole` and `RoleBinding`,
+are not sufficient.
+If you used `Roles` and `RoleBindings`, or `ClusterRoles` and `RoleBindings` to
+grant `claim` permissions in specific namespaces only, this change might affect you.
+For more information, see [Authorize users and groups to claim from provisioner-based classes](../../how-to-guides/authorize-claim-provisioner-classes.hbs.md).
+
+Previously, Services Toolkit allowed you to `claim` from a `ClusterInstanceClass` with only
+namespace-level permissions.
+However, this allowed users with only namespace-level permissions to obtain or indirectly
+deploy resources into namespaces that they do not have access to according to the RBAC permissions.

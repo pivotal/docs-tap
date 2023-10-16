@@ -1,7 +1,7 @@
 # Scan Types for Supply Chain Security Tools - Scan
 
 This topic tells you what scan types you can use with Scan Types for Supply
-Chain Security Tools - Scan (SCST) - Scan. The out-of-box test and scan supply
+Chain Security Tools (SCST) - Scan. The out-of-box test and scan supply
 chain supports the Source and container image scan types.
 
 ## <a id="source-scan"></a> Source scan
@@ -27,7 +27,7 @@ Due to this, in Tanzu Application Platform 1.6, the source scan step is moved to
 
 ### <a id="add-source-scan"></a>Adding Source Scan to the Test and Scan Supply Chain
 
-To add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install `values.yaml`.  This overlay adds the required resources to the supply chain in the correct location to opt-in to source scanning.
+To add source scanning to the [out-of-the-box test and scan supply chain](../getting-started/about-supply-chains.hbs.md#3-ootb-testingscanning), you can apply an overlay in your install `tap-values.yaml`.  This overlay adds the required resources to the supply chain in the correct location to opt-in to source scanning.
 
 For information about how overlays work with Tanzu Application Platform, see [Customize your package installation](../customize-package-installation.hbs.md). 
 

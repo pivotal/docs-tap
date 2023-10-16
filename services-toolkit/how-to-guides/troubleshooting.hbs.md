@@ -162,3 +162,36 @@ json: cannot unmarshal bool into Go struct field JSONSchemaProps.AdditionalPrope
 
 Rather than setting `additionalProperties: true`, you can set `additionalProperties: {}`.
 This has the same effect, but does not cause unexpected errors.
+
+## <a id="claim-rbac"></a> Cannot claim from clusterinstanceclass when creating a `ClassClaim`
+
+**Symptom:**
+
+Users who were previously able to create a `ClassClaim` now get an admission error similar to:
+
+```console
+user 'alice@example.com' cannot 'claim' from clusterinstanceclass 'bigcorp-rabbitmq'
+```
+
+This occurs even if users were granted the `claim` permission on `ClusterInstanceClasses` through either:
+
+- A `Role` and a `RoleBinding`
+- A `ClusterRole` and a `RoleBinding`
+
+**Explanation:**
+
+You now need the cluster-level `claim` permission, granted through a `ClusterRole` and `ClusterRoleBinding`.
+Namespace-scoped permissions are no longer enough.
+This is to protect against unexpected access to resources in other namespaces.
+
+This change was introduced with Services Toolkit v0.11.1 in Tanzu Application Platform v1.6.4.
+For more information about this change, see [The claim verb for ClusterInstanceClass](../reference/api/rbac.hbs.md#claim-verb).
+
+**Solution:**
+
+To allow users to create `ClassClaims` again, you must:
+
+1. Move from a `Role` to a `ClusterRole` for granting users permission to claim a `ClusterInstanceClass`.
+2. Move from a `RoleBinding` to a `ClusterRoleBinding` for binding this permission to a user.
+
+For more information, see [Authorize users and groups to claim from provisioner-based classes](authorize-claim-provisioner-classes.hbs.md).

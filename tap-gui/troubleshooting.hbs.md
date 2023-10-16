@@ -319,27 +319,13 @@ A build cluster might not have runtime CRDs installed, such as Knative Service, 
 might not have build CRDs installed, such as a Cartographer workload.
 In these cases, 403 and 404 errors might be false positives.
 
-You might receive the following error messages:
+You might receive the following error messages because these resources might not be required for
+your specific Tanzu Application Platform profile. These error messages are known issues:
 
 - `Access error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 401). Contact your administrator.`
-  - **Cause:** There is a problem with the cluster configuration.
-  - **Solution:** Confirm the access token used to request information in the cluster.
-
 - `Access error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 403). Contact your administrator.`
-  - **Cause:** The service account used doesn’t have access to the specific resource type in the cluster.
-  - **Solution:** If the cluster is the same where **Tanzu Application Platform** is running, review
-    the version installed to confirm it contains the desired resource.
-    If the error is in a watched cluster, review the process to grant access to it in
-    [Viewing resources on multiple clusters in Tanzu Developer Portal](cluster-view-setup.md).
-
 - `Knative is not installed on CLUSTER_NAME (status: 404). Contact your administrator.`
-  - **Cause:** The cluster does not have Cloud Native Runtimes installed.
-  - **Solution:** Install the Knative components by following the instructions in
-    [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.md).
-
 - `Error when querying cluster CLUSTER_NAME for resource KUBERNETES_RESOURCE_PATH (status: 404). Contact your administrator.`
-  - **Cause:** The package that contains the resource is not installed.
-  - **Solution:** Install the missing package.
 
 ## <a id='app-accelerators-page'></a> Accelerators page issues
 

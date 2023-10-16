@@ -32,7 +32,7 @@ To verify that you can scan an image using your ImageVulnerabilityScan:
 1. Child resources are created. View the child PipelineRun, TaskRuns, and pods:
 
       ```console
-      kubectl get -l imagevulnerabilityscan,pipelinerun,taskrun,pod -n DEV-NAMESPACE
+      kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE
       ```
 
 1. When the scanning completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the published results.

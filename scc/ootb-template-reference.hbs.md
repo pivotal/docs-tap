@@ -123,6 +123,7 @@ documentation](../source-controller/reference.hbs.md#image-repository).
 
 For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository, see
 [Create a workload from local source code](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-a-workload-from-local-source).
+
 #### <a id='maven-artifact'></a> MavenArtifact
 
 `MavenArtifact` makes a pre-built Java artifact available to as a tarball on the cluster.
@@ -157,6 +158,7 @@ parameters in the Workload.
           artifactRetryTimeout: 1m0s  # optional
       </pre>
     </td>
+    <tr>
     <td><code>maven_repository_url<code></td>
     <td>
       Specifies the Maven repository from which to fetch
@@ -167,6 +169,8 @@ parameters in the Workload.
         value: https://repo1.maven.org/maven2/
       </pre>
     </td>
+    </tr>
+    <tr>
     <td><code>maven_repository_secret_name<code></td>
     <td>
       Specifies the secret containing credentials necessary to fetch from the Maven repository.
@@ -178,7 +182,6 @@ parameters in the Workload.
         value: auth-secret
       </pre>
     </td>
-  </tr>
 </table>
 
 ##### <a id='maven-artifact-more-info'></a> More information
