@@ -211,6 +211,7 @@ Updating buildpack dependencies outside of upgrades to Tanzu Application Platfor
 3. Click the icon in the right side of the artifact reference box to reveal the Tanzu Network image repository address and image tag and copy to clipboard.
 4. Relocate buildpack image using imgpkg copy 
 `imgpkg copy -b <PASTE TANZUNET IMAGE URL FROM PREVIOUS STEP> --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/<BUILDPACK LANGUAGE>`
+  Where `$INSTALL_REGISTRY_HOSTNAME` and `$INSTALL_REPO` are the same ones from the [online profile installation docs](../install-online/profile.md#relocate-images)
 5. Now that the package repositry that contains the new buildpack image has been relocated, the next step is add the package repository. `tanzu package repository add --url <REPO DESTINATION FROM PREVIOUS STEP> tbs-<BUILDPACK LANGUAGE> --namespace tap-install`
 6. In order to install the package repositry, you must find the package name and version.
 `tanzu package repository list --namespace tap-install`. Find the package repository name that follows the convention `<BUILDPACK LANGUAGE>.buildpacks.tanzu.vmware.com` or `<BUILDPACK LANGUAGE>-lite.buildpacks.tanzu.vmware.com` as well as its associated version. These are required for the following step.
