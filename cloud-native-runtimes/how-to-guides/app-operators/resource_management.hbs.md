@@ -1,4 +1,4 @@
-# Knative Serving resource management
+# Knative Serving Resource Management
 
 This topic tells you how to configure the memory and CPU allocation of resources in the `knative-serving` namespace.
 
