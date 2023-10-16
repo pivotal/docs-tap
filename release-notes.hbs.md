@@ -48,14 +48,17 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-app-acc'></a> v1.7.0 Features: Application Accelerator
 
-- After integrating application bootstrap provenance via accelerator into AMR an architect would be able to have advanced insight into how accelerators are used and would make it easy to understand which accelerators are used more and which ones not used much.
+- You can integrate application bootstrap provenance using an accelerator into
+  Artifact Metadata Repository (AMR) <!-- check this is correct -->.
+  This enables architects <!-- is this role used elsewhere? is this the app dev? --> to get advanced insight into how accelerators are used,
+  such as, the most commonly and rarely used accelerators.
 
 #### <a id='1-7-0-app-live-view'></a> v1.7.0 Features: Application Live View
 
-- A developer will be able to override the Kubernetes default liveness, readiness, and startup probes’ settings for Spring Boot apps in Tanzu Application. For more information, see the [Configure liveness, readiness, and startup probes for Spring Boot applications](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/spring-boot-conventions-config-probes.html ) documentation.
-
-
-
+- Developers can override the settings for the Kubernetes default liveness, readiness, and startup probes
+  for Spring Boot apps in Tanzu Application.
+  For more information, see
+  [Configure liveness, readiness, and startup probes for Spring Boot applications](./spring-boot-conventions/config-probes.hbs.md).
 
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
