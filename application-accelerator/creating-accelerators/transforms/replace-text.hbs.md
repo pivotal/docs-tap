@@ -54,7 +54,7 @@ For example, `camel2Snake()` enables changing from camelCase to snake_case.
 Replacing the hardcoded string `"hello-world-app"` with the value of variable `#artifactId`
 in all `.md`, `.xml`, and `.yaml` files.
 
-```
+```console
 include: ['**/*.md', '**/*.xml', '**/*.yaml']
 chain:
   - type: ReplaceText
@@ -66,7 +66,7 @@ chain:
 Doing the same in the `README-fr.md` and `README-de.md` files, which are encoded using
 the `ISO-8859-1` charset:
 
-```
+```console
 include: ['README-fr.md', 'README-de.md']
 chain:
   - type: UseEncoding
@@ -80,7 +80,7 @@ chain:
 Similar to the preceding example, but making sure the value appears as kebab case,
 while the entered `#artifactId` is using camel case:
 
-```
+```console
 include: ['**/*.md', '**/*.xml', '**/*.yaml']
 chain:
   - type: ReplaceText
@@ -92,7 +92,7 @@ chain:
 Replacing the hardcoded string `"REPLACE-ME"` with the contents of
 file named after the value of the `#platform` option in `README.md`:
 
-```
+```console
 include: ['README.md']
 chain:
   - type: ReplaceText
@@ -101,10 +101,11 @@ chain:
         with: "#files.contentsOf('snippets/install-' + #platform + '.md')"
 ```
 
-Replacing all occurences of `apple` or `orange`, singular or plural,
-with the value of the accelerator option `#vegetable` (for example `'banana'`),
+Replacing all occurrences of `apple` or `orange`, singular or plural,
+with the value of the accelerator option `#vegetable`, for example `'banana'`,
 keeping the trailing `'s'` when there was one.
-```
+
+```console
 include: ['README.md']
 chain:
   - type: ReplaceText
