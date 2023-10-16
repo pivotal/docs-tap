@@ -1,35 +1,40 @@
-# Tracking Provenance with Application Accelerator
+# Track life cycle using Provenance transform
 
-Application Accelerator provides several features to track
-the lifecycle of generated projects. This topic is known as "provenance".
+This topic tells you about the Application Accelerator `Provenance` transform in Tanzu Application
+Platform (commonly known as TAP).
 
-## Provenance Transform
-This section tells you about the Application Accelerator `Provenance` transform in Tanzu Application Platform (commonly known as TAP).
+Use the `Provenance` transform to track the life cycle of generated projects.
 
 The `Provenance` transform is a special transform used to generate a file that
 provides details of the accelerator engine transform.
 
-The `Provenance` transform provides traceability and visibility into the generation of an application from an accelerator. The following information is embedded into a file that is part of the generated project:
+The `Provenance` transform provides traceability and visibility into the generation of an application
+from an accelerator. The following information is embedded into a file that is part of the generated
+project:
 
 - Which accelerator was used to bootstrap the project
 - Which version of the accelerator was used
 - When the application was bootstrapped
 - Who bootstrapped the application
 
-For more information on the structure of the file and how to enable application bootstrapping provenance, see [Provenance transform](creating-accelerators/transforms/provenance.hbs.md).
+For more information about the structure of the file and how to enable application bootstrapping
+provenance, see [Provenance transform](creating-accelerators/transforms/provenance.hbs.md).
 
 ## Integration with AMR
+
 Application Accelerator also closely integrates with the [Artifact Metadata Repository](../scst-store/amr/overview.hbs.md) (AMR).
 
-Every time an application is generated with an accelerator, an event is sent to the AMR store that
-roughly captures the same set of information as described in the paragraph above.
+When an application is generated with an accelerator, an event that contains the same information captured by
+the `Provenance` transform is sent to the AMR store.
 
-The relevant AMR data models are [AppAcceleratorRun](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorruns) (one for each invocation, also includes version information
-about which accelerator was used) and [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments) (zero to N, tracks which fragments were used
-in that particular invocation, if any).
+The relevant AMR data models are:
 
-Once some invocations have been recorded, you can use the [AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query
-the system about accelerator usage and gain insights about generated apps.
+- [AppAcceleratorRun](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorruns). One for each invocation. Includes version information about which accelerator was used.
+- [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments) Zero to N. Includes which fragments were used in that particular invocation, if any.
 
-For more information on the AMR data model and how to use the Artifact Metadata Repository
-(including some sample queries relevant to AppAcceleratorRun), see the [AMR section](../scst-store/amr/overview.hbs.md). 
+When some invocations have been recorded, use the
+[AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query the system about
+accelerator usage and gain insights about generated applications.
+
+For more information about the AMR data model, how to use the Artifact Metadata Repository,
+and some sample queries relevant to AppAcceleratorRun, see the [Artifact Metadata Repository](../scst-store/amr/overview.hbs.md).
