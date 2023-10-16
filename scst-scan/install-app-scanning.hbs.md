@@ -199,4 +199,4 @@ If the registry specified for SCST - Scan 2.0 to push scan results to supports r
 
 If you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules) on configuring tag retention rules. An example would be to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
 
-Rention policy setup differs between registry providers. Check with your specific registry's documentation on configuration options.
+Retention policy setup differs between registry providers. Check with your specific registry's documentation on configuration options.
