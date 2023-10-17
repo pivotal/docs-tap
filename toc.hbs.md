@@ -754,7 +754,7 @@
          - [API documentation](tap-gui/plugins/api-docs.hbs.md)
              - [API documentation overview](tap-gui/plugins/api-docs.hbs.md)
              - [Get started](tap-gui/plugins/api-docs-getting-started.hbs.md)
-         - [DORA](tap-gui/plugins/sa-tap-gui.hbs.md)
+         - [DORA](tap-gui/plugins/dora)
          - [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.hbs.md)
       - [Configure TLS](tap-gui/tls/overview.hbs.md)
