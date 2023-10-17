@@ -1,8 +1,8 @@
 # Troubleshooting Cloud Native Runtimes
 
-This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation or configuration.
+This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation, or configuration.
 
-## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes
+## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes>
 
 ### Symptom
 
@@ -79,7 +79,7 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     10:51:58PM:  ^ Deployment is not progressing: ProgressDeadlineExceeded (message: ReplicaSet "webhook-6f5d979b7d" has timed out progressing.)
     ```
 
-1. Run `kubectl get pods` to find the name of the pod:
+2. Run `kubectl get pods` to find the name of the pod:
 
     ```console
     kubectl get pods --show-labels -n NAMESPACE
@@ -95,7 +95,7 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     webhook-6f5d979b7d-cxr9k   0/1     Pending   0          44h   app=webhook,kapp.k14s.io/app=1626302357703846007,kapp.k14s.io/association=v1.9621e0a793b4e925077dd557acedbcfe,pod-template-hash=6f5d979b7d,role=webhook
     ```
 
-2. Run `kubectl logs` and `kubectl describe`:
+3. Run `kubectl logs` and `kubectl describe`:
 
     ```console
     kubectl logs PODNAME -n NAMESPACE
@@ -119,7 +119,7 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     Warning  FailedScheduling  80s (x14 over 14m)  default-scheduler  0/1 nodes are available: 1 Insufficient cpu.
     ```
 
-3. Review the output from the `kubectl logs` and `kubectl describe` commands and take further action.
+4. Review the output from the `kubectl logs` and `kubectl describe` commands and take further action.
 
     For this example of the webhook deployment, the output indicates that the scheduler does not have enough CPU to run the pod.
     In this case, the solution is to add nodes or CPU cores to the cluster.
