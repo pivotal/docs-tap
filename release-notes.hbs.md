@@ -212,6 +212,11 @@ Application Accelerator starter templates for Python and Java are removed in thi
 
 - The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation. The following Tanzu CLI plug-ins
 are impacted: Accelerator, Apps, Build Service, External Secrets, Insight, and Service.
+
+#### <a id='1-7-0-scst-scan'></a> v1.7.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
+- Supply Chain Security Tools - Scan 2.0
+  - Users must first upgrade the Tanzu Application Platform package to `v1.7.0` prior to upgrading Scan 2.0 to version `0.2.0`. See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0) for detailed steps.
+
 ---
 
 ### <a id='1-7-0-security-fixes'></a> v1.7.0 Security fixes

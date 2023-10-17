@@ -89,3 +89,26 @@ unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-sc
 
 Ensure that the problematic step runs with the
 [proper user and group ids](./ivs-create-your-own.hbs.md#security-context-user-and-group-ids).
+
+### <a id="upgrading-scan-0.2.0"></a> Incompatible Tekton version
+
+Tanzu Application Platform `v1.7.0` includes Supply Chain Security Tools (SCST) - Scan 2.0 version `0.2.0` and Tekton Pipelines version `0.50.1`. SCST - Scan 2.0 is incompatible with previous versions of Tekton Pipelines as they did not have v1 CRDs enabled. You must first upgrade the Tanzu Application Platform package to `v1.7.0` or greater prior to upgrading SCST - Scan 2.0.
+
+If you did not upgrade in the above order, you may encounter ImageVulnerabilityScans not progressing.
+
+```console
+NAME      SUCCEEDED   REASON
+my-scan
+```
+
+1. Confirm that the issue is due to installation of an incompatible Tekton version by viewing the controller manager logs.
+```console
+kubectl -n app-scanning-system logs -f deployment/app-scanning-controller-manager -c manager
+```
+
+If you encounter the following error, proceed to the next step:
+```console
+ERROR	controller-runtime.source.EventHandler	failed to get informer from cache	{"error": "failed to get API group resources: unable to retrieve the complete list of server APIs: tekton.dev/v1: the server could not find the requested resource"}
+```
+
+1. Follow [Upgrade your Tanzu Application Platform](../upgrading.hbs.md) to upgrade TAP to version `v1.7.0` or greater.
