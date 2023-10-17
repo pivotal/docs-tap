@@ -64,9 +64,9 @@ To host Grype's vulnerability database in an air-gapped environment:
             ]
           }
         }
-    ```
+  ```
 
-    Where `url` points to a tarball containing Grype's vulnerability.db and metadata.json files.
+  Where `url` points to a tarball containing Grype's vulnerability.db and metadata.json files.
 
 1. Download and host the tarballs in your internal file server.
 
@@ -94,7 +94,37 @@ To host Grype's vulnerability database in an air-gapped environment:
     tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
-> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md).
+## <a id="configure-grype-env-var"></a> Configure Grype environmental variables
+
+1. Create a secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: grype-airgap-environmental-variables
+      namespace: tap-install
+    stringData:
+      patch.yaml: |
+        #@ load("@ytt:overlay", "overlay")
+
+        #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
+        ---
+        spec:
+          template:
+            initContainers:
+              #@overlay/match by=overlay.subset({"name": "scan-plugin"}), expects="1+"
+              - name: scan-plugin
+                #@overlay/match missing_ok=True
+                env:
+                  #@overlay/append
+                  - name: GRYPE_CHECK_FOR_APP_UPDATE
+                    value: "false"
+    ```
+Where:
+- `spec.template.initContainers[]` specifies setting the environment variable(s) in the `scan-plugin` initContainer.
+
+> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md)
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
@@ -319,7 +349,14 @@ Verify these possible reasons why the vulnerability database is not valid:
 
     Where `SCAN-NAME` is the name of the source or image scan that failed.
 
-2. Edit the ScanTemplate's `scan-plugin` container to include a "sleep" entrypoint which allows you to troubleshoot inside the container:
+2. Pause reconciliation of the `grype.scanning.apps.tanzu.vmware.com` package:
+
+  ```console
+  kctrl package installed pause -i <PACKAGE-INSTALL-NAME> -n tap-install
+  ```
+  Where `PACKAGE-INSTALL-NAME` is the name of the `grype.scanning.apps.tanzu.vmware.com` package (e.g. grype)
+
+3. Edit the ScanTemplate's `scan-plugin` container to include a "sleep" entrypoint which allows you to troubleshoot inside the container:
 
     ```yaml
     - name: scan-plugin
@@ -334,15 +371,15 @@ Verify these possible reasons why the vulnerability database is not valid:
       - "sleep 1800" # insert 30 min sleep here
     ```
 
-3. Re-run the scan.
+4. Re-run the scan.
 
-4. Get the name of the `scan-plugin` pod.
+5. Get the name of the `scan-plugin` pod.
 
     ```console
     kubectl get pods -n DEV-NAMESPACE
     ```
 
-5. Get a shell to the container. See the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/):
+6. Get a shell to the container. See the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/):
 
     ```console
     kubectl exec --stdin --tty SCAN-PLUGIN-POD -c step-scan-plugin -- /bin/bash
@@ -350,7 +387,7 @@ Verify these possible reasons why the vulnerability database is not valid:
 
     Where `SCAN-PLUGIN-POD` is the name of the `scan-plugin` pod.
 
-6. Inside the container, run Grype CLI commands to report database status and verify connectivity
+7. Inside the container, run Grype CLI commands to report database status and verify connectivity
    from cluster to mirror.
    See the [Grype documentation](https://github.com/anchore/grype#cli-commands-for-database-management) in GitHub.
 
@@ -360,7 +397,13 @@ Verify these possible reasons why the vulnerability database is not valid:
       grype db status
       ```
 
-7. Ensure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
+8. Ensure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
+
+9. After you have completed troubleshooting, use the following command to trigger reconciliation:
+  ```console
+  kctrl package installed kick -i <PACKAGE-INSTALL-NAME> -n tap-install
+  ```
+  Where `PACKAGE-INSTALL-NAME` is the name of the `grype.scanning.apps.tanzu.vmware.com` package (e.g. grype)
 
 ### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
 
