@@ -1,7 +1,7 @@
 # Kubernetes version support for Tanzu Application Platform
 
 The following is a matrix table providing details of the compatible Kubernetes 
-cluster versions Tanzu Application Platform v{{ vars.url_version }}.
+cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
 
 <table>
 <thead>
