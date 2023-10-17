@@ -15,7 +15,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
 </thead>
 <tbody>
   <tr>
-    <td>Kubernetes Version</td>
+    <td>Kubernetes version</td>
     <td>v1.25, v1.26, v1.27</td>
     <td></td>
   </tr>
