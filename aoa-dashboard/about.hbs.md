@@ -5,3 +5,5 @@ AOA dashboard shows whether the deployed Tanzu Application Platform (commonly kn
 components are behaving as expected.
 
 Aria Operations for Applications (formerly Tanzu Observability) powers AOA dashboard.
+
+![New AOA dashboard project, which lacks widgets and charts.](images/aoa-dashboard.png)

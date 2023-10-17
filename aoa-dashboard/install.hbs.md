@@ -17,11 +17,11 @@ To integrate with AOA Wavefront:
 
 1. Log in to your AOA instance, click the **INTEGRATIONS** tab, and then click **Kubernetes**.
 
-   ![Overview of integrations available for AOA Wavefront](images/aoa_available_integrations.png)
+   ![Overview of integrations available for AOA Wavefront](images/aoa-available-integrations.png)
 
 2. Click **ADD AN INTEGRATION INSTANCE** on the next page.
 
-   ![Adding an integration for AOA Wavefront](images/aoa_add_integration.png)
+   ![Adding an integration for AOA Wavefront](images/aoa-add-integration.png)
 
 3. Fill out the **Kubernetes Integration Setup** page:
 
@@ -31,12 +31,12 @@ To integrate with AOA Wavefront:
    1. Enable **Metrics**.
    1. Configure authentication. If the token is not listed, verify that you have AOA Wavefront access.
 
-   ![Setting up Kubernetes cluster integration](images/aoa_kubernetes_integration_setup.png)
+   ![Setting up Kubernetes cluster integration](images/aoa-kubernetes-integration-setup.png)
 
 4. Some kubectl commands appear in the **Deployment Script** text box. Run these commands on the
    cluster that you want to onboard.
 
-   ![Copying deployment script](images/aoa_deployment_script.png)
+   ![Copying deployment script](images/aoa-deployment-script.png)
 
 ## <a id="set-up-metrics"></a> Set up metrics collection in a cluster
 
@@ -57,7 +57,7 @@ To download the dashboard and set up the cluster:
    - Click **Aria Operations for Applications Dashboard for Tanzu Application Platform (Beta)**.
    - Download the `aoa-dashboard-for-tap` zip file for your operating system.
 
-   ![Locating the AOA dashboard zip](images/aoa_dashboard_zip.png)
+   ![Locating the AOA dashboard zip](images/aoa-dashboard-zip.png)
 
 3. Use an extraction tool to unpack the binary file.
 
@@ -74,28 +74,28 @@ To create a dashboard in AOA Wavefront:
 
 1. Go to the AOA Wavefront home page and then click **Dashboards** > **Create Dashboard**.
 
-   ![Creating the AOA Dashboard](images/aoa_creating_dashboard.png)
+   ![Creating the AOA Dashboard](images/aoa-creating-dashboard.png)
 
 2. Click **JSON** in the upper right corner.
 
-   ![Selecting the JSON dashboard option](images/aoa_dashboard_json.png)
+   ![Selecting the JSON dashboard option](images/aoa-dashboard-json.png)
 
 3. Click **Tree** > **Code** and extract the downloaded content from `tap-health-dashboard.json`.
 
-   ![Selecting the code view from the dropdown](images/aoa_select_code_view.png)
+   ![Selecting the code view from the dropdown](images/aoa-select-code-view.png)
 
 4. Copy the content from `tap-health-dashboard.json` into the code block and then click **ACCEPT**.
 
-   ![Importing the JSON](images/aoa_importing_json.png)
+   ![Importing the JSON](images/aoa-importing-json.png)
 
 5. Click **SAVE** in the top right corner to save the dashboard.
 
-   ![Saving the dashboard](images/aoa_save_dashboard.png)
+   ![Saving the dashboard](images/aoa-save-dashboard.png)
 
 6. In the search text box, type the name of the cluster that you onboarded and select it from the
    list of available clusters.
 
-   ![Selecting the Cluster](images/aoa_select_cluster.png)
+   ![Selecting the Cluster](images/aoa-select-cluster.png)
 
 ## <a id="onboard-extra-clusters"></a> (Optional) Onboard additional clusters
 
