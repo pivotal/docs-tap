@@ -17,7 +17,7 @@ To integrate with AOA Wavefront:
 
 1. Log in to your AOA instance, click the **INTEGRATIONS** tab, and then click **Kubernetes**.
 
-   ![Overview of integrations available for AOA Wavefront](images/aoa-available-integrations.png)
+   ![Integrations tab in AOA Wavefront showing integrations such as Kubernetes and Linux Host.](images/aoa-available-integrations.png)
 
 2. Click **ADD AN INTEGRATION INSTANCE** on the next page.
 
@@ -66,7 +66,7 @@ To create a dashboard in AOA Wavefront:
 
 1. Go to the AOA Wavefront home page and then click **Dashboards** > **Create Dashboard**.
 
-   ![Creating the AOA Dashboard](images/aoa-creating-dashboard.png)
+   ![AOA Wavefront home page. The Dashboards drop-down menu is expanded.](images/aoa-creating-dashboard.png)
 
 2. Click **JSON** in the upper right corner.
 
@@ -74,11 +74,9 @@ To create a dashboard in AOA Wavefront:
 
 4. Copy the content from `tap-health-dashboard.json` into the code block and then click **ACCEPT**.
 
-   ![Importing the JSON](images/aoa-importing-json.png)
+   ![Edit JSON window. Cancel and Accept buttons are to the bottom right of the JSON code.](images/aoa-importing-json.png)
 
 5. Click **SAVE** in the top right corner to save the dashboard.
-
-   ![Saving the dashboard](images/aoa-save-dashboard.png)
 
 6. In the search text box, type the name of the cluster that you onboarded and select it from the
    list of available clusters.
