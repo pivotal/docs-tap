@@ -21,22 +21,16 @@ To integrate with AOA Wavefront:
 
 2. Click **ADD AN INTEGRATION INSTANCE** on the next page.
 
-   ![Adding an integration for AOA Wavefront](images/aoa-add-integration.png)
-
 3. Fill out the **Kubernetes Integration Setup** page:
 
    1. Select **Kubernetes Cluster** as the distribution type.
-   1. Type the cluster name in the **Cluster Name** text box.
-   1. Enable **Logs**.
-   1. Enable **Metrics**.
-   1. Configure authentication. If the token is not listed, verify that you have AOA Wavefront access.
-
-   ![Setting up Kubernetes cluster integration](images/aoa-kubernetes-integration-setup.png)
+   2. Type the cluster name in the **Cluster Name** text box.
+   3. Enable **Logs**.
+   4. Enable **Metrics**.
+   5. Configure authentication. If the token is not listed, verify that you have AOA Wavefront access.
 
 4. Some kubectl commands appear in the **Deployment Script** text box. Run these commands on the
    cluster that you want to onboard.
-
-   ![Copying deployment script](images/aoa-deployment-script.png)
 
 ## <a id="set-up-metrics"></a> Set up metrics collection in a cluster
 
@@ -46,18 +40,16 @@ Perform the following procedures to set up metrics collection in a cluster.
 
 To download the dashboard and set up the cluster:
 
-1. Download and install the Tanzu CLI binary file from the Tanzu Application Platform
-   [tile](https://network.tanzu.vmware.com/products/tanzu-application-platform/) in
-   VMware Tanzu Network if you have not already installed it.
+1. Download and install the Tanzu CLI binary file from the Tanzu Application Platform tile in
+   [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
+   if you have not already installed it.
 
-2. Download the dashboard zip file from the
-   [tile](https://network.tanzu.vmware.com/products/tanzu-application-platform/) in
-   VMware Tanzu Network for Tanzu Application Platform v{{ vars.tap_version }} or later.
+2. Download the dashboard zip file from the tile in
+   [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
+   for Tanzu Application Platform v{{ vars.tap_version }} or later.
 
    - Click **Aria Operations for Applications Dashboard for Tanzu Application Platform (Beta)**.
    - Download the `aoa-dashboard-for-tap` zip file for your operating system.
-
-   ![Locating the AOA dashboard zip](images/aoa-dashboard-zip.png)
 
 3. Use an extraction tool to unpack the binary file.
 
@@ -78,11 +70,7 @@ To create a dashboard in AOA Wavefront:
 
 2. Click **JSON** in the upper right corner.
 
-   ![Selecting the JSON dashboard option](images/aoa-dashboard-json.png)
-
 3. Click **Tree** > **Code** and extract the downloaded content from `tap-health-dashboard.json`.
-
-   ![Selecting the code view from the dropdown](images/aoa-select-code-view.png)
 
 4. Copy the content from `tap-health-dashboard.json` into the code block and then click **ACCEPT**.
 
@@ -94,8 +82,6 @@ To create a dashboard in AOA Wavefront:
 
 6. In the search text box, type the name of the cluster that you onboarded and select it from the
    list of available clusters.
-
-   ![Selecting the Cluster](images/aoa-select-cluster.png)
 
 ## <a id="onboard-extra-clusters"></a> (Optional) Onboard additional clusters
 
