@@ -1,4 +1,4 @@
-# Install the Aria Operations for Applications dashboard for Tanzu Application Platform (Beta)
+# Install the Aria Operations for Applications dashboard for Tanzu Application Platform (beta)
 
 This topic tells you how to integrate a Kubernetes cluster of any distribution with Aria Operations
 for Applications (AOA) so that you can use the AOA dashboard. This topic tells you how to set up and

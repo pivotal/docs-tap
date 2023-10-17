@@ -1,4 +1,4 @@
-# Use the Aria Operations for Applications dashboard for Tanzu Application Platform (Beta)
+# Use the Aria Operations for Applications dashboard for Tanzu Application Platform (beta)
 
 This topic tells you how to use the Aria Operations for Applications (AOA) dashboard for use with
 Tanzu Application Platform (commonly known as TAP).

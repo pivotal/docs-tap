@@ -1,4 +1,4 @@
-# Overview of the Aria Operations for Apps dashboard for Tanzu Application Platform (Beta)
+# Overview of the Aria Operations for Apps dashboard for Tanzu Application Platform (beta)
 
 The Aria Operations for Applications (AOA) dashboard helps you monitor the health of a cluster. The
 AOA dashboard shows whether the deployed Tanzu Application Platform (commonly known as TAP)
