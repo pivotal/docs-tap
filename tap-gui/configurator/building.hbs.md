@@ -72,14 +72,14 @@ To prepare your Configurator configuration file:
     package's registry:
 
     ```yaml
-    app:
-      plugins:
-        - name: '@tdp/plugin-hello-world'
-          version: '^1.6.0-release-1.6.x.1'
-    backend:
-      plugins:
-        - name: '@tdp/plugin-hello-world-backend'
-          version: '^1.6.0-release-1.6.x.1'
+      app:
+        plugins:
+          - name: '@tpb/plugin-hello-world'
+            version: '1.7.0-zentest.103'
+      backend:
+        plugins:
+          - name: '@tpb/plugin-hello-world-backend'
+            version: '1.7.0-zentest.103'
     ```
 
 2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
@@ -99,7 +99,7 @@ moved the installation packages to.
 1. Export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
 
    ```console
-   export OUTPUT_IMAGE=$(kubectl -n tap-install get package tdp.tanzu.vmware.com.0.1.2 -o \
+   export OUTPUT_IMAGE=$(kubectl -n tap-install get package tdp.tanzu.vmware.com.1.0.1 -o \
    "jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}")
    ```
 
@@ -181,11 +181,9 @@ spec:
       - name: TDP_CONFIG
         value: /tmp/tdp-config.yaml
       - name: TDP_CONFIG_STRING
-        value:
-        YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogI
-        CAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
+        value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKICAgICAgdmVyc2lvbjogJzEuNy4wLXplbnRlc3QuMTAzJwpiYWNrZW5kOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZC1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMS43LjAtemVudGVzdC4xMDMn
   source:
-    image: TDP-IMAGE-LOCATION
+    image: TDP-IMAGE-LOCATION # This will be the location of your Configurator image identified in previous steps
     subPath: builder
 ```
 
