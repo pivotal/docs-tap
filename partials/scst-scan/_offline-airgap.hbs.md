@@ -91,7 +91,7 @@ To host Grype's vulnerability database in an air-gapped environment:
 2. Update Tanzu Application Platform:
 
     ```console
-    tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+    tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
 
 ## <a id="configure-grype-env-var"></a> Configure Grype environmental variables
@@ -103,7 +103,7 @@ To host Grype's vulnerability database in an air-gapped environment:
     kind: Secret
     metadata:
       name: grype-airgap-environmental-variables
-      namespace: tap-install #! namespace where tap is installed
+      namespace: tap-install
     stringData:
       patch.yaml: |
         #@ load("@ytt:overlay", "overlay")
