@@ -20,12 +20,12 @@ and their corresponding compatible Kubernetes cluster versions.
   <tr>
     <td>VMware Tanzu Kubernetes Grid version</td>
     <td>v2.4.0, v2.3.0, v2.2.0</td>
-    <td>- Support for Tanzu Kubernetes Grid v2.4.x begins with Tanzu Application Platform v1.6.4.<br><br>- Support for Tanzu Kubernetes Grid v2.3.x begins with Tanzu Application Platform v1.6.2</td>
+    <td>Support for Tanzu Kubernetes Grid v2.4.x begins with Tanzu Application Platform v1.6.4.<br><br> Support for Tanzu Kubernetes Grid v2.3.x begins with Tanzu Application Platform v1.6.2</td>
   </tr>
   <tr>
     <td>Tanzu Kubernetes releases (vSphere with Tanzu) version</td>
     <td>TKr<br> 1.25.7 for vSphere 8.x</td>
-    <td>Support for <br>TKr<br> v1.25.7 begins with TAP Tanzu Application Platform v1.6.2</td>
+    <td>Support for TKr v1.25.7 begins with TAP Tanzu Application Platform v1.6.2</td>
   </tr>
   <tr>
     <td>OpenShift version</td>
@@ -45,16 +45,6 @@ and their corresponding compatible Kubernetes cluster versions.
   <tr>
     <td>Google Kubernetes Engine</td>
     <td>Supported</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
     <td></td>
   </tr>
 </tbody>
