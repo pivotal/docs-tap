@@ -66,11 +66,11 @@ To host Grype's vulnerability database in an air-gapped environment:
         }
   ```
 
-  Where `url` points to a tarball containing Grype's vulnerability.db and metadata.json files.
+  Where `url` points to a tarball containing Grype's `vulnerability.db` and `metadata.json` files.
 
 1. Download and host the tarballs in your internal file server.
 
-  **Note** Some storage solutions for internal file servers change the name of TAR files automatically because of their limits. Notice these modified names and reflect the changes in the `url`. Ensure that the timestamp in the name is correctly formatted because Grype parses the name of TAR artifact to get the timestamp.
+  >**Note** Some storage solutions for internal file servers change the name of TAR files automatically because of their limits. Notice these modified names and reflect the changes in the `url`. Ensure that the timestamp in the name is correctly formatted because Grype parses the name of TAR artifact to get the timestamp.
 
 1. Update the download `url` to point at your internal endpoint.
 
@@ -121,10 +121,10 @@ To host Grype's vulnerability database in an air-gapped environment:
                   - name: GRYPE_CHECK_FOR_APP_UPDATE
                     value: "false"
     ```
-Where:
-- `spec.template.initContainers[]` specifies setting the environment variable(s) in the `scan-plugin` initContainer.
 
-> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md)
+Where `spec.template.initContainers[]` specifies setting one or more environment variables in the `scan-plugin` initContainer.
+
+> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md).
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
@@ -318,6 +318,17 @@ Verify these possible reasons why the vulnerability database is not valid:
 3. The `url` that you modified to point at an internal endpoint is not reachable
    from within the cluster. For information about verifying connectivity, see
    [Debug Grype database in a cluster](#debug-grype-database-in-a-cluster).
+4. Verify if there are syntax errors in the listing.json:
+    
+    ```console
+    grype db check
+    ```
+
+5. Validate the configured listing.json:
+   
+    ```console
+    grype db list -o raw
+    ```
 
 #### Debug Grype database in a cluster
 
@@ -367,31 +378,34 @@ Verify these possible reasons why the vulnerability database is not valid:
     kubectl get pods -n DEV-NAMESPACE
     ```
 
-6. Get a shell to the container. See the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/):
+6. Get a shell to the container.
 
     ```console
     kubectl exec --stdin --tty SCAN-PLUGIN-POD -c step-scan-plugin -- /bin/bash
     ```
 
     Where `SCAN-PLUGIN-POD` is the name of the `scan-plugin` pod.
+    For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/).
 
 7. Inside the container, run Grype CLI commands to report database status and verify connectivity
-   from cluster to mirror.
+   from the cluster to the mirror.
    See the [Grype documentation](https://github.com/anchore/grype#cli-commands-for-database-management) in GitHub.
 
-   - Report current status of Grype's database (location, build date, and checksum):
+   - Report current status of Grype's database, such as location, build date, and checksum:
 
       ```console
       grype db status
       ```
 
-8. Ensure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
+8. Ensure that the built parameters in the `listing.json` has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`.
 
-9. After you have completed troubleshooting, use the following command to trigger reconciliation:
+9. After you complete troubleshooting, use the following command to trigger reconciliation:
+
   ```console
   kctrl package installed kick -i <PACKAGE-INSTALL-NAME> -n tap-install
   ```
-  Where `PACKAGE-INSTALL-NAME` is the name of the `grype.scanning.apps.tanzu.vmware.com` package (e.g. grype)
+
+  Where `PACKAGE-INSTALL-NAME` is the name of the `grype.scanning.apps.tanzu.vmware.com` package, such as Grype.
 
 ### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
 
