@@ -1,7 +1,7 @@
 # Kubernetes version support for Tanzu Application Platform
 
-The following is a matrix table providing details of Tanzu Application Platform versions 
-and their corresponding compatible Kubernetes cluster versions.
+The following is a matrix table providing details of the compatible Kubernetes 
+cluster versions Tanzu Application Platform v{{ vars.url_version }}.
 
 <table>
 <thead>
@@ -24,7 +24,7 @@ and their corresponding compatible Kubernetes cluster versions.
   </tr>
   <tr>
     <td>Tanzu Kubernetes releases (vSphere with Tanzu) version</td>
-    <td>TKr<br> 1.25.7 for vSphere 8.x</td>
+    <td>TKr v1.25.7 for vSphere v8.x</td>
     <td>Support for TKr v1.25.7 begins with TAP Tanzu Application Platform v1.6.2</td>
   </tr>
   <tr>
