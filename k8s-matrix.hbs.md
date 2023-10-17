@@ -22,7 +22,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
   <tr>
     <td>VMware Tanzu Kubernetes Grid version</td>
     <td>v2.4.0, v2.3.0, v2.2.0</td>
-    <td>Support for Tanzu Kubernetes Grid v2.4.x begins with Tanzu Application Platform v1.6.4.<br><br> Support for Tanzu Kubernetes Grid v2.3.x begins with Tanzu Application Platform v1.6.2</td>
+    <td>Support for Tanzu Kubernetes Grid v2.4.x begins with Tanzu Application Platform v1.6.4<br><br> Support for Tanzu Kubernetes Grid v2.3.x begins with Tanzu Application Platform v1.6.2</td>
   </tr>
   <tr>
     <td>Tanzu Kubernetes releases (vSphere with Tanzu) version</td>
