@@ -68,18 +68,18 @@ To prepare your Configurator configuration file:
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
       npm registry
 
-    The following example adds the sample `hello-world` plug-in, which is available in the internal
-    package's registry:
+    The following example adds the sample `techinsights` plug-in, who's wrapper is available in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzue):
 
     ```yaml
-      app:
-        plugins:
-          - name: '@tpb/plugin-hello-world'
-            version: '1.7.0-zentest.103'
-      backend:
-        plugins:
-          - name: '@tpb/plugin-hello-world-backend'
-            version: '1.7.0-zentest.103'
+    app:
+      plugins:
+        - name: '@vmware-tanzu/tdp-plugin-techinsights'
+          version: '0.0.2'
+
+    backend:
+      plugins: 
+        - name: '@vmware-tanzu/tdp-plugin-techinsights-backend'
+          version: '0.0.2'
     ```
 
 2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
@@ -181,7 +181,7 @@ spec:
       - name: TDP_CONFIG
         value: /tmp/tdp-config.yaml
       - name: TDP_CONFIG_STRING
-        value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKICAgICAgdmVyc2lvbjogJzEuNy4wLXplbnRlc3QuMTAzJwpiYWNrZW5kOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZC1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMS43LjAtemVudGVzdC4xMDMn
+        value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn # This decodes to the previous example that includes the Tech Insights frontend and backend plugins
   source:
     image: TDP-IMAGE-LOCATION # This will be the location of your Configurator image identified in previous steps
     subPath: builder
