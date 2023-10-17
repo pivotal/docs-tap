@@ -3,34 +3,59 @@
 The following is a matrix table providing details of Tanzu Application Platform versions 
 and their corresponding compatible Kubernetes cluster versions.
 
-|     Tanzu Application Platform version |     TKGm version    |     TKG (TKGm) version   |      EKS version              |     AKS version               |     TKG (TKGs) version   |      OpenShift version    |     GKE version              | 
-|----------------------------------------|---------------------|--------------------------|-----------------------|-----------------------|--------------------------|-------------------|-----------------------|
-|     v1.3.0                             |     v1.6            | -                | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.2                             |     v1.6 or v1.5    | -                | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.3                             |     v1.6            |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.5                             | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.6                             | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.7                             | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.8                             | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.9                             | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.10                            | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.11                            | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.3.12                            | v1.6                |     -            | v1.22, v1.23 or v1.24 | v1.22, v1.23 or v1.24 |     -            | v4.10             | v1.22, v1.23 or v1.24 |
-|     v1.4.0                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 |     -            | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.1                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 |     -            | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.2                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 |     -            | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.4                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 | -                | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.5                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 | -                | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.6                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 | -                | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.7                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 | -                | v4.10, v4.11      | v1.23, v1.24 or v1.25 | 
-|     v1.4.8                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 | -                | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.4.9                             | v1.6                |     -            | v1.23, v1.24 or v1.25 | v1.23, v1.24 or v1.25 | -                | v4.10, v4.11      | v1.23, v1.24 or v1.25 |
-|     v1.5.0                             |     -       |     v2.1.x               | v1.24, v1.25 or v1.26 | v1.24, v1.25 or v1.26 |     v2.0.x               | v4.11, v4.12      | v1.24, v1.25 or v1.26 | 
-|     v1.5.1                             |     -       |     v2.1.x               | v1.24, v1.25 or v1.26 | v1.24, v1.25 or v1.26 | v2.0.x                   | v4.11, v4.12      | v1.24, v1.25 or v1.26 | 
-|     v1.5.2                             |     -       | v2.3.x or v2.1.x         | v1.24, v1.25 or v1.26 | v1.24, v1.25 or v1.26 | v2.0.x                   | v4.11, v4.12      | v1.24, v1.25 or v1.26 |
-|     v1.5.3                             |     -       | v2.3.x or v2.1.x         | v1.24, v1.25 or v1.26 | v1.24, v1.25 or v1.26 | v2.0.x                   | v4.11, v4.12      | v1.24, v1.25 or v1.26 |
-|     v1.5.4                             |     -       | v2.3.x, v2.2.x or v2.1.x | v1.24, v1.25 or v1.26 | v1.24, v1.25 or v1.26 | v2.3.x                   | v4.11, v4.12      | v1.24, v1.25 or v1.26 |
-|     v1.5.5                             |     -       | v2.3.x, v2.2.x or v2.1.x | v1.24, v1.25 or v1.26 | v1.24, v1.25 or v1.26 | v2.3.x                   | v4.11, v4.12      | v1.24, v1.25 or v1.26 |
-|     v1.6.1                             |     -       | v2.3.x                   | v1.25, v1.26 or v1.27 | v1.25, v1.26 or v1.27 |     -            | v4.11, v4.12      | v1.25, v1.26 or v1.27 | 
-|     v1.6.2                             |     -       | v2.3.x or v2.2.x         | v1.25, v1.26 or v1.27 | v1.25, v1.26 or v1.27 | v2.3.x                   | v4.11, v4.12      | v1.25, v1.26 or v1.27 |
-|     v1.6.3                             |     -       | v2.3.x or v2.2.x         | v1.25, v1.26 or v1.27 | v1.25, v1.26 or v1.27 | v2.3.x                   | v4.11, v4.12      | v1.25, v1.26 or v1.27 |
+<table>
+<thead>
+  <tr>
+    <th>Tanzu Application Platform version</th>
+    <th>v1.6.x</th>
+    <th>Notes</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Kubernetes Version</td>
+    <td>v1.25, v1.26, v1.27</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>VMware Tanzu Kubernetes Grid version</td>
+    <td>v2.4.0, v2.3.0, v2.2.0</td>
+    <td>- Support for Tanzu Kubernetes Grid v2.4.x begins with Tanzu Application Platform v1.6.4.<br><br>- Support for Tanzu Kubernetes Grid v2.3.x begins with Tanzu Application Platform v1.6.2</td>
+  </tr>
+  <tr>
+    <td>Tanzu Kubernetes releases (vSphere with Tanzu) version</td>
+    <td>TKr<br> 1.25.7 for vSphere 8.x</td>
+    <td>Support for <br>TKr<br> v1.25.7 begins with TAP Tanzu Application Platform v1.6.2</td>
+  </tr>
+  <tr>
+    <td>OpenShift version</td>
+    <td>v4.12, v4.13</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Azure Kubernetes Service</td>
+    <td>Supported</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Elastic Kubernetes Service</td>
+    <td>Supported</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Google Kubernetes Engine</td>
+    <td>Supported</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody>
+</table>
