@@ -403,6 +403,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 - The profile based installation of Grype to a developer namespace and related fields in the values file, such as `grype.namespace` and
   `grype.targetImagePullSecret`, were deprecated in Tanzu Application Platform v1.6.0 and are marked for removal in v1.8.0. Before removal, you can opt-in to use the profile based installation of Grype to a single namespace by setting `grype.namespace` in the `tap-values.yaml` configuration file.
+- The `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are deprecated and have been removed in Tanzu Application Platform v1.7.0.
 
 ---
 

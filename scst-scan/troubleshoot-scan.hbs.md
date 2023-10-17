@@ -429,8 +429,8 @@ For information about `shared.ca_cert_data`, see [View possible configuration se
 ### <a id="unable-pull-scanner-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
 The `docker` field and related sub-fields by SCST - Scan Controller, Grype
-Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0.
-Previously these text boxes might be used to populate the `registry-credentials`
+Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0 and removed in Tanzu Application Platform v1.7.0.
+Previously these fields might be used to populate the `registry-credentials`
 secret. You might encounter the following error during installation:
 
 ```console
