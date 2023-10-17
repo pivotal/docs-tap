@@ -99,7 +99,7 @@ repository and branch values.
 You can publish an accelerator directly from a local directory on your system. This helps when
 authoring accelerators and allows you to avoid having to commit every small change to a remote Git
 repository. You can also specify `--interval` so the accelerator is reconciled quicker when VMware
->push new changes.
+push new changes.
 
 ```console
 tanzu accelerator create simple --local-path ${ACCELERATOR_PATH} --source-image ${SOURCE_IMAGE_REPO} --interval 10s
