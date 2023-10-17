@@ -64,9 +64,9 @@ To host Grype's vulnerability database in an air-gapped environment:
             ]
           }
         }
-    ```
+  ```
 
-    Where `url` points to a tarball containing Grype's vulnerability.db and metadata.json files.
+  Where `url` points to a tarball containing Grype's vulnerability.db and metadata.json files.
 
 1. Download and host the tarballs in your internal file server.
 
@@ -91,10 +91,8 @@ To host Grype's vulnerability database in an air-gapped environment:
 2. Update Tanzu Application Platform:
 
     ```console
-    tanzu package installed update tap -f tap-values.yaml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
     ```
-
-> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md).
 
 ## <a id="configure-grype-env-var"></a> Configure Grype environmental variables
 
@@ -126,8 +124,7 @@ To host Grype's vulnerability database in an air-gapped environment:
 Where:
 - `spec.template.initContainers[]` specifies setting the environment variable(s) in the `scan-plugin` initContainer.
 
-###<INSERT NOTE ON NSP>
-
+> **Note** If you are using the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you must import the overlay `Secret`s. See [Import overlay secrets](/docs-tap/namespace-provisioner/customize-installation.hbs.md)
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
