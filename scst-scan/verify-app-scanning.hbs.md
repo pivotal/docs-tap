@@ -39,10 +39,12 @@ To verify that you can scan an image using your ImageVulnerabilityScan:
 
     ```console
     kubectl get imagevulnerabilityscans -n DEV-NAMESPACE -o wide
+    ```
 
+    Below is an example of an expected output:
+    ```console
     NAME                 SCANRESULT                           SCANNEDIMAGE          SUCCEEDED   REASON
     generic-image-scan   registry/project/scan-results@digest nginx:latest@digest   True        Succeeded
-
     ```
 
 ## <a id="retrieve-scan-results"></a> Retrieve scan results
@@ -116,3 +118,5 @@ To validate scan format with sbom:
     [INFO] Validating `/Users/lrobin/go/src/gitlab/app-scanning/scan-results-grype-cyclonedx-json/scan.json`...
     [INFO] SBOM valid against JSON schema: `true`
    ```
+
+   **Note** The `sbom-utility` only accepts json as input so your scan report must be a JSON file to use this tool.
