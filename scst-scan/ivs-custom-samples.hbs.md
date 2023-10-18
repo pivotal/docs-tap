@@ -21,7 +21,7 @@ To use a custom ImageVulnerabilityScan sample:
 3. Edit these fields of your ImageVulnerabilityScan:
 
    - `spec.image` is the image that you are scanning. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
-   - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
+   - `scanResults.location` is the registry URL where scan results are uploaded. For example, `my.registry/scan-results`.
    - `serviceAccountNames` includes:
      - `scanner` is the service account that runs the scan. It must have read access to `image`.
      - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
