@@ -150,6 +150,8 @@ These parameters are populated after creating the GrypeImageVulnerabilityScan. F
 | scan-results-path | /workspace/scan-results | string | Location to save scanner output |
 | trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData` |
 
+**Note** The `publisher` service account uploads any files (e.g. scanner output) in the `scan-results-path` directory to the registry of your choice. See [Configure your custom ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md#use-samples) for details on configuring the registry URL where scan results are uploaded.
+
 ## <a id="retrieve-digest"></a> Retrieving an image digest
 
 SCST - Scan 2.0 custom resources require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
