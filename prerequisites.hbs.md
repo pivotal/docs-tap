@@ -116,6 +116,8 @@ providers:
         For more information about the pod security policies on Tanzu for vSphere,
         see the [VMware vSphere documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-3B7F5B44-E31D-4819-B166-C531D4ECAE7D.html).
 
+For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).
+
 ## <a id="resource-requirements"></a>Resource requirements
 
 - To deploy Tanzu Application Platform packages full profile, your cluster must have at least:
