@@ -92,7 +92,7 @@ Ensure that the problematic step runs with the
 
 ### <a id="upgrading-scan-0.2.0"></a> Incompatible Tekton version
 
-Tanzu Application Platform `v1.7.0` includes `app-scanning.apps.tanzu.vmware.com` version `0.2.0` and Tekton Pipelines version `0.50.1`. The `app-scanning.apps.tanzu.vmware.com` package incompatible with previous versions of Tekton Pipelines as they did not have v1 CRDs enabled. You must first upgrade the Tanzu Application Platform package to `v1.7.0` or greater prior to upgrading `app-scanning.apps.tanzu.vmware.com`.
+Tanzu Application Platform `v1.7.0` includes `app-scanning.apps.tanzu.vmware.com` version `0.2.0` and Tekton Pipelines version `0.50.1`. The `app-scanning.apps.tanzu.vmware.com` package is incompatible with previous versions of Tekton Pipelines as they did not have v1 CRDs enabled. You must first upgrade the Tanzu Application Platform package to `v1.7.0` or greater prior to upgrading `app-scanning.apps.tanzu.vmware.com`.
 
 If you did not upgrade in the above order, you may encounter ImageVulnerabilityScans not progressing.
 
