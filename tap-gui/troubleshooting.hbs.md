@@ -517,18 +517,24 @@ For more information, see
 
 These are troubleshooting issues for the [DORA plug-in](plugins/dora.hbs.md).
 
-### <a id='dora-plug-in-401'></a> DORA plugin displays a "Request failed with 401" error when clicking on the tab
+### <a id='dora-plug-in-401'></a> DORA plug-in displays a `Request failed with 401` error when clicking on the tab
 
 #### Symptom
 
-The DORA tab in the Software Catalog displays the following error when you attempt to access it:
+When you click the **DORA** tab in the software catalog the following error appears:
 
-```Request failed with 401 , {"error":{"name":"AuthenticationError","message":"No Backstage token"},"request":{"method":"POST","url":"/api/kubernetes/resources/custom/query"},"response":{"statusCode":401}}```
+```console
+Request failed with 401 , {"error":{"name":"AuthenticationError","message":"No Backstage token"},\
+"request":{"method":"POST","url":"/api/kubernetes/resources/custom/query"},"response":{"statusCode":401}}
+```
 
 #### Cause
 
-The DORA plugin anticipates at least 1 Backstage auth provider is configured. This feature will not work with Guest mode enabled.
+The DORA plug-in expects at least one configured Backstage authentication provider. This feature
+does not work with Guest mode enabled.
 
 #### Solution
 
-Add an [auth](./auth.hbs.md) provider to your Tanzu Developer Portal configuration and re-apply your vales file.
+Add an authentication provider to your Tanzu Developer Portal configuration and then re-apply your
+values file. For how to configure an authentication provider, see
+[Set up authentication for Tanzu Developer Portal](auth.hbs.md).
