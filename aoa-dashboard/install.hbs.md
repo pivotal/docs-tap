@@ -1,8 +1,8 @@
 # Install the Aria Operations for Applications dashboard for Tanzu Application Platform (beta)
 
 This topic tells you how to integrate a Kubernetes cluster of any distribution with Aria Operations
-for Applications (AOA) so that you can use the AOA dashboard. This topic tells you how to set up and
-configure AOA dashboard for use with Tanzu Application Platform (commonly known as TAP).
+for Applications (AOA) so that you can use the AOA dashboard. This topic also tells you how to set
+up and configure AOA dashboard for use with Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -29,8 +29,8 @@ To integrate with AOA Wavefront:
    4. Enable **Metrics**.
    5. Configure authentication. If the token is not listed, verify that you have AOA Wavefront access.
 
-4. Some kubectl commands appear in the **Deployment Script** text box. Run these commands on the
-   cluster that you want to onboard.
+4. Run the kubectl commands in the **Deployment Script** text box on the cluster that you want to
+   onboard.
 
 ## <a id="set-up-metrics"></a> Set up metrics collection in a cluster
 
