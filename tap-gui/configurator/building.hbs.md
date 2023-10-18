@@ -90,12 +90,11 @@ To prepare your Configurator configuration file:
    base64 -i tdp-config.yaml
    ```
 
-## <a id="prep-ident-image"></a> Identify your Configurator foundation image
+## <a id="prep-ident-image"></a> Identify your Configurator image
 
-To build a customized Tanzu Developer Portal, you must identify the image that contains the
-foundation that is ready to pass through the supplychain. Depending on how you installed things, this
-could either be on `registry.tanzu.vmware.com` or on the local image registry (`imgpkg`) that you
-moved the installation packages to.
+To build a customized Tanzu Developer Portal, you must identify the Configurator image to pass through the supplychain.
+Depending on how you installed things, this  could either be on `registry.tanzu.vmware.com` or on the local image
+registry (`imgpkg`) that you moved the installation packages to.
 
 1. Export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
 
