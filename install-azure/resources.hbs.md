@@ -68,9 +68,11 @@ az aks create -g myTAPResourceGroup -n tap-on-azure --enable-managed-identity --
 
 Where `K8S-VERSION` is the compatible Kubernetes version that can be retrieved by running `az aks get-versions`.
 
+> **Note** You might need to increase quota for Standard DDSv4 Family vCPUs. For more information, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/quotas/per-vm-quota-requests).
+
 After a few minutes, the command completes and returns JSON-formatted information about the cluster.
 
-> **Note** When you create an AKS cluster, a second resource group is automatically 
+When you create an AKS cluster, a second resource group is automatically 
 created to store the AKS resources. 
 For more information, see [Why are two resource groups created with AKS?](https://learn.microsoft.com/en-us/azure/aks/faq#why-are-two-resource-groups-created-with-aks)
 
@@ -100,7 +102,13 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client,
 
 ## <a id='create-container-repos'></a>Create the container repositories
 
-Azure Container Registry (ACR) does not require that the container repositories are already created. Repositories are created automatically when images are uploaded.
+Create the Azure Container Registry by running:
+
+```console
+az acr create -n $REGISTRY_NAME -g myTAPResourceGroup --sku Standard
+```
+
+> **Note** Azure Container Registry (ACR) does not require that the container repositories are already created. Repositories are created automatically when images are uploaded.
 
 ## <a id='enable-admin-account'></a>Enable registry admin account
 
