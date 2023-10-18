@@ -48,9 +48,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-app-acc'></a> v1.7.0 Features: Application Accelerator
 
-- You can integrate application bootstrap provenance using an accelerator into
-  Artifact Metadata Repository (AMR) <!-- check this is correct -->.
-  This enables architects <!-- is this role used elsewhere? is this the app dev? --> to get advanced insight into how accelerators are used,
+- Includes built-in integration of application bootstrap provenance through an accelerator into
+  Artifact Metadata Repository (AMR).
+  This enables application architects to get advanced insight into how accelerators are used,
   such as, the most commonly and rarely used accelerators.
 
 #### <a id='1-7-0-app-live-view'></a> v1.7.0 Features: Application Live View
