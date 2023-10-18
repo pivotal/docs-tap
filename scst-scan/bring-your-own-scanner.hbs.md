@@ -16,3 +16,12 @@ You might have an existing investment in a scan solution that VMware does not ha
 1. [Create an ImageVulnerabilityScan](ivs-create-your-own.hbs.md): Create an ImageVulnerabilityScan template that tells the Tanzu Application Platform how to run your scanner.
 2. [Verify your ImageVulnerabilityScan](verify-app-scanning.hbs.md): Verify that your ImageVulnerabilityScan is working correctly so that downstream Tanzu Application Platform services work correctly.
 3. [Wrap your ImageVulnerabilityScan in a ClusterImageTemplate](clusterimagetemplates.hbs.md): The ClusterImageTemplate wraps the ImageVulnerabilityScan and allows the Tanzu Application Platform supply chain to run the scan job.
+
+## <a id="prerequisities"></a>Prerequisites
+
+TAP users will need to:
+
+- Provide their own Vulnerability Scanner Image either by:
+  - Using a publically available scanner image (e.g. from Docker Hub).
+  - Building your own image which allows for a more customizable scanning experience.
+- Have knowledge of how their preferred scanner works (e.g. commands to use to invoke desired scan results).
