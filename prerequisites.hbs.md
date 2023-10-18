@@ -114,6 +114,8 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
     For more information about pod security policies on Tanzu for vSphere, see
     [Using Pod Security Policies with Tanzu Kubernetes Clusters in VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
 
+For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).
+
 ## <a id="resource-requirements"></a>Resource requirements
 
 - To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster, your cluster must have at least:
