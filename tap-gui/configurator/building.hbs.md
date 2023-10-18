@@ -68,7 +68,8 @@ To prepare your Configurator configuration file:
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
       npm registry
 
-    The following example adds the sample `techinsights` plug-in, who's wrapper is available in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzue):
+    The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
+    in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
 
     ```yaml
     app:
@@ -77,7 +78,7 @@ To prepare your Configurator configuration file:
           version: '0.0.2'
 
     backend:
-      plugins: 
+      plugins:
         - name: '@vmware-tanzu/tdp-plugin-techinsights-backend'
           version: '0.0.2'
     ```
@@ -181,11 +182,16 @@ spec:
       - name: TDP_CONFIG
         value: /tmp/tdp-config.yaml
       - name: TDP_CONFIG_STRING
-        value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn # This decodes to the previous example that includes the Tech Insights frontend and backend plugins
+        value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
   source:
-    image: TDP-IMAGE-LOCATION # This will be the location of your Configurator image identified in previous steps
+    image: TDP-IMAGE-LOCATION
     subPath: builder
 ```
+
+The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the Tech Insights
+front-end and back-end plug-ins.
+
+`TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
 
 ## <a id="submit-your-workload"></a> Submit your workload
 
