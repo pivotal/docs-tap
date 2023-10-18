@@ -1,17 +1,17 @@
 # DORA metrics in Tanzu Developer Portal
 
-This topic tells you about how you can view DevOps Research and Assessment (DORA) metrics in
-Tanzu Developer Portal.
+This topic tells you about viewing DevOps Research and Assessment (DORA) metrics in Tanzu Developer
+Portal.
 
 ## <a id="overview"></a> Overview
 
-DORA is a research program that seeks to understand the capabilities that drive software delivery
-and operations performance. For more information, see the [DORA website](https://dora.dev/).
+DORA is a research program for studying the capabilities that drive software delivery and operations
+performance. DORA helps teams apply these capabilities to improve organizational performance.
+For more information about DORA, see the [DORA website](https://dora.dev/).
 
-DORA helps teams apply these capabilities to improve organizational performance. DORA metrics are a
-set of key performance indicators (KPIs) that DORA has developed to measure the effectiveness of an
-organization's DevOps practices. These metrics help organizations to assess their software
-development and delivery processes and identify areas for improvement.
+DORA metrics are a set of key performance indicators (KPIs) that DORA has developed to measure the
+effectiveness of an organization's DevOps practices. These metrics help organizations to assess
+their software development and delivery processes and identify areas for improvement.
 
 Collecting DORA metrics can be challenging because it involves:
 
@@ -38,8 +38,8 @@ DORA metrics include:
   failures or incidents. Lower failure rates indicate a reliable software delivery process.
 
 - Mean Time to Recovery (MTTR), which measures how quickly an organization can recover from
-  incidents or outages in production. A lower MTTR suggests that an organization is effective at
-  resolving issues promptly.
+  incidents or outages in production. A lower MTTR suggests that an organization resolves issues
+  quickly.
 
 ## <a id="supported-metrics"></a> Supported DORA metrics
 
