@@ -1,31 +1,54 @@
-# DORA in Tanzu Developer Portal
+# DORA metrics in Tanzu Developer Portal
 
-This topic tells you about how you can view DORA metrics in Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
+This topic tells you about how you can view DevOps Research and Assessment (DORA) metrics in
+Tanzu Developer Portal.
 
 ## <a id="overview"></a> Overview
 
-DevOps Research and Assessment (DORA) is the largest and longest running research program of its kind, that seeks to understand the capabilities that drive software delivery and operations performance. DORA helps teams apply those capabilities, leading to better organizational performance. DORA metrics refer to a set of key performance indicators (KPIs) that DORA has developed to measure the effectiveness of an organization's DevOps practices. These metrics are designed to help organizations assess their software development and delivery processes and identify areas for improvement.
+DORA is a research program that seeks to understand the capabilities that drive software delivery
+and operations performance. For more information, see the [DORA website](https://dora.dev/).
 
-Collecting DORA metrics can be challenging because it involves gathering data from various sources and tools, ensuring data accuracy and consistency, and dealing with organizational resistance or cultural barriers to measurement and improvement. Tanzu Application Platform is uniquely positioned to provide DORA metrics through its integrated supply chain, offering end-to-end visibility and control over the entire development and deployment process, enabling comprehensive measurement and optimization of DevOps practices.
+DORA helps teams apply these capabilities to improve organizational performance. DORA metrics are a
+set of key performance indicators (KPIs) that DORA has developed to measure the effectiveness of an
+organization's DevOps practices. These metrics help organizations to assess their software
+development and delivery processes and identify areas for improvement.
 
-## <a id="dora metrics"></a> DORA Metrics
+Collecting DORA metrics can be challenging because it involves:
 
-**Deployment Frequency**: Measures how often code changes are deployed to an environment. High deployment frequency is often associated with a more mature DevOps culture.
+- Gathering data from various sources and tools
+- Ensuring data accuracy and consistency
+- Dealing with organizational and cultural resistance to measurement and improvement
 
-**Lead Time for Changes**: Measures the time it takes to go from code committed to code successfully running in an environment. Shortening this lead time is often a goal of DevOps practices.
+Tanzu Application Platform is uniquely positioned to provide DORA metrics through its integrated
+supply chain. This supply chain offers end-to-end visibility and control over the entire development
+and deployment process, enabling comprehensive measurement and optimization of DevOps practices.
 
-**Change Failure Rate**: Assesses the rate at which changes to the production environment result in failures or incidents. Lower failure rates indicate a more reliable software delivery process.
+## <a id="dora-metrics"></a> DORA metrics
 
-**Mean Time to Recovery (MTTR)**: MTTR measures how quickly an organization can recover from incidents or outages in production. A lower MTTR suggests that an organization is more effective at resolving issues promptly.
+DORA metrics include:
 
-## <a id="supported metrics"></a> Supported Metrics
+- Deployment Frequency, which measures how often code changes are deployed to an environment. High
+  deployment frequency is often associated with a mature DevOps culture.
 
-  
-| **DORA Metric**     | **TAP 1.7 - DORA Plugin**     |
-|------------------------|----------------|
-| Deployment Frequency   |      ✓          |
-| Lead Time for Changes  |       ✓         |
-| Change Failure Rate    |       N/A         |
-| Mean Time to Recovery (MTTR) |     N/A           |
-  
-**Note**: Change Failure Rate and Mean Time to Recovery (MTTR) will be in a future release of the DORA plugin.
+- Lead Time for Changes, which measures the time it takes to go from code committed to code
+  successfully running in an environment. Shortening this lead time is often a goal of DevOps
+  practices.
+
+- Change Failure Rate, which measures the rate at which changes to the production environment cause
+  failures or incidents. Lower failure rates indicate a reliable software delivery process.
+
+- Mean Time to Recovery (MTTR), which measures how quickly an organization can recover from
+  incidents or outages in production. A lower MTTR suggests that an organization is effective at
+  resolving issues promptly.
+
+## <a id="supported-metrics"></a> Supported DORA metrics
+
+This table shows supported DORA metrics in the Tanzu Application Platform v{{ vars.tap_version }}
+DORA plug-in. Support for more metrics is planned for later DORA plug-in versions.
+
+| DORA metric           | Tanzu Application Platform v{{ vars.tap_version }} DORA plug-in support |
+|-----------------------|-------------------------------------------------------------------------|
+| Deployment Frequency  | Yes                                                                     |
+| Lead Time for Changes | Yes                                                                     |
+| Change Failure Rate   | No                                                                      |
+| Mean Time to Recovery | No                                                                      |
