@@ -309,8 +309,8 @@ the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
   binding volumes. This happens automatically after upgrading to 1.7 and will not affect subsequent
   upgrades.
 
-  To avoid failures, ensure that you have sufficient Kubernetes resources in your clusters to support
-  this pod rollout.
+  Affected pods will be updated concurrently. To avoid failures, ensure that you have
+  sufficient Kubernetes resources in your clusters to support this pod rollout.
 
 #### <a id='1-7-0-scc-ki'></a> v1.7.0 Known issues: Supply Chain Choreographer
 
