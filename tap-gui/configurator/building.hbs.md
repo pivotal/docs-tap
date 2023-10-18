@@ -92,9 +92,10 @@ To prepare your Configurator configuration file:
 
 ## <a id="prep-ident-image"></a> Identify your Configurator image
 
-To build a customized Tanzu Developer Portal, you must identify the Configurator image to pass through the supplychain.
-Depending on how you installed things, this  could either be on `registry.tanzu.vmware.com` or on the local image
-registry (`imgpkg`) that you moved the installation packages to.
+To build a customized Tanzu Developer Portal, you must identify the Configurator image to pass
+through the supply chain. Depending on your choices during installation, this is on either
+`registry.tanzu.vmware.com` or the local image registry (`imgpkg`) that you moved the installation
+packages to.
 
 1. Export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
 

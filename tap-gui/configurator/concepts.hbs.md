@@ -54,10 +54,10 @@ include:
 
 ## <a id="configurator"></a> Tanzu Developer Portal Configurator
 
-The Tanzu Developer Portal Configurator is the image that contains everything necessary
-to build a customized version of Tanzu Developer Portal. The Configurator includes a templated version of
-Tanzu Developer Portal, an internal registry of Tanzu Developer Portal plug-ins, and tools to enable
-the build process to incorporate external plug-ins.
+The Tanzu Developer Portal Configurator is the image that contains everything necessary to build a
+customized version of Tanzu Developer Portal. Configurator includes a templated version of Tanzu
+Developer Portal, an internal registry of Tanzu Developer Portal plug-ins, and tools to enable the
+build process to incorporate external plug-ins.
 
 ![Diagram of Tanzu Developer Portal Configurator, the included internal plug-in registry, and the customization process.](images/configurator-internal-external-plugins.png)
 
