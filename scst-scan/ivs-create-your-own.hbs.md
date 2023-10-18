@@ -150,7 +150,7 @@ These parameters are populated after creating the GrypeImageVulnerabilityScan. F
 | scan-results-path | /workspace/scan-results | string | Location to save scanner output |
 | trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData` |
 
-**Note** The `publisher` service account by default uploads any files (e.g. scanner output) in the `scan-results-path` directory to the registry of your choice. See [Configure your custom ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md#use-samples) for details on configuring the registry URL where scan results are uploaded.
+**Note** The `publisher` service account uploads any files (e.g. scanner output) in the `scan-results-path` directory to the registry of your choice. See [Configure your custom ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md#use-samples) for details on configuring the registry URL where scan results are uploaded.
 
 ## <a id="retrieve-digest"></a> Retrieving an image digest
 
