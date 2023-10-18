@@ -73,12 +73,6 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
     This namespace keeps the objects grouped together logically.
 
-1. Export the VMware Tanzu Network registry by running:
-
-    ```console
-    export INSTALL_REPO=tanzu-application-platform/tap-packages
-    ```
-
 1. Create registry secret for the VMware Tanzu Network registry by running:
 
     ```console
@@ -259,21 +253,18 @@ contour:
       type: LoadBalancer
 
 buildservice:
-  kp_default_repository: ${KP_REGISTRY_HOSTNAME}
+  kp_default_repository: ${KP_REGISTRY_HOSTNAME}/buildservice
   kp_default_repository_secret:
     name: registry-credentials
-    namespace: "MY-DEV-NAMESPACE"
-  enable_automatic_dependency_updates: false
+    namespace: ${YOUR_NAMESPACE}
 
 local_source_proxy:
   # Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
   repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
   push_secret:
-    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
     name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
     namespace: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE"
-    # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
-    create_export: true
+    create_export: true  # When set to true, the secret mentioned in this section is automatically exported to Local Source Proxy's namespace.
 
 learningcenter:
   ingressDomain: learning-center.tap.com
@@ -298,9 +289,9 @@ tap_gui:
 
 metadata_store:
   ingressEnabled: true
-  ingressDomain: "INGRESS-DOMAIN"
+  ingressDomain: "tap.com"
   app_service_type: ClusterIP
-  ns_for_export_app_cert: "MY-DEV-NAMESPACE"
+  ns_for_export_app_cert: ${YOUR_NAMESPACE}
 
 scanning:
   metadataStore:
@@ -317,27 +308,10 @@ EOF
 
 Where:
 
-- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+- `tap.com` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file.
-  You can download either a blank or populated catalog file from the
-  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
-  Otherwise, you can use a Backstage-compliant catalog that was built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace.
-  SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there.
-  This allows the scanning feature to run in this namespace.
-  If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`
-  to export the SCST - Store CA certificate to all namespaces.
-- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
-  the credentials to pull an image from the registry for scanning.
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where the developer's local source is uploaded when using
   Tanzu CLI to use Local Source Proxy for workload creation.
-
-  If an AWS ECR registry is being used, ensure that the repository already exists.
-  AWS ECR expects the repository path to already exist. This destination is represented as
-  `REGISTRY-SERVER/REPOSITORY-PATH`. For more information, see
-  [Install Local Source Proxy](../local-source-proxy/install.hbs.md).
-
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow
   pushing to the `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` repository.
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET-NAMESPACE` is the namespace in which
@@ -442,8 +416,7 @@ For more information about the differences between `lite` and `full` dependencie
 
 To install the `full` dependencies package:
 
-1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
- to your `tap-values.yaml` file under the `buildservice` section. For example:
+1. To execute a clean install of the full dependencies, you must exclude the default dependencies by adding the key-value pair `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section. For example:
 
     ```yaml
     buildservice:
@@ -485,11 +458,7 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Developer Portal
 
-To access Tanzu Developer Portal (formerly named Tanzu Application Platform GUI), you can use the host
-name that you configured earlier.
-This host name is pointed at the shared ingress.
-To configure LoadBalancer for Tanzu Developer Portal,
-see [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.hbs.md).
+You can use the host name configured in [Access Tanzu Developer Portal](../tap-gui/accessing-tap-gui.hbs.md) to access Tanzu Developer Portal. This host name is pointed at the shared ingress. 
 
 You're now ready to start using Tanzu Developer Portal.
 Proceed to the [Getting Started](../getting-started.md) topic or the
