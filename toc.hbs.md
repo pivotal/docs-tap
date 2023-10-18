@@ -9,6 +9,7 @@ docs.vmware.com is built.
 - [Installation](install-intro.hbs.md)
   - [Introduction](install-intro.hbs.md)
   - [Prerequisites](prerequisites.hbs.md)
+      - [Kubernetes version support](k8s-matrix.hbs.md)
   - [Install Tanzu CLI](install-tanzu-cli.hbs.md)
   - [Online install](install-online/intro.hbs.md)
       - [Install overview](install-online/intro.hbs.md)
