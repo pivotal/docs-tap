@@ -9,6 +9,7 @@ The topic is divided into sections:
 - [Supporting ImageVulnerabilityScan issues](#ivs-support)
 - [Security Analysis plug-in issues](#sec-analysis-plug-in)
 - [Supply Chain Choreographer plug-in issues](#scc-plug-in)
+- [DORA plug-in issues](#dora-plug-in)
 
 ## <a id='general-issues'></a> General issues
 
@@ -511,3 +512,23 @@ tap_gui:
 Where `ACCESS-TOKEN` is the token you obtained after creating a read-write service account.
 For more information, see
 [Manually connect Tanzu Developer Portal to Metadata Store](../tap-gui/plugins/scc-tap-gui.hbs.md#scan-manual).
+
+## <a id='dora-plug-in'></a> DORA plug-in issues
+
+These are troubleshooting issues for the [DORA plug-in](plugins/dora.hbs.md).
+
+### <a id='dora-plug-in-401'></a> DORA plugin displays a "Request failed with 401" error when clicking on the tab
+
+#### Symptom
+
+The DORA tab in the Software Catalog displays the following error when you attempt to access it:
+
+```Request failed with 401 , {"error":{"name":"AuthenticationError","message":"No Backstage token"},"request":{"method":"POST","url":"/api/kubernetes/resources/custom/query"},"response":{"statusCode":401}}```
+
+#### Cause
+
+The DORA plugin anticipates at least 1 Backstage auth provider is configured. This feature will not work with Guest mode enabled.
+
+#### Solution
+
+Add an [auth](./auth.hbs.md) provider to your Tanzu Developer Portal configuration and re-apply your vales file.
