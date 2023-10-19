@@ -3,7 +3,7 @@
 This topic helps you troubleshoot Supply Chain Security Tools (SCST) - Scan 2.0.
 
 When an ImageVulnerabilityScan is created, the following resources are created:
-- Tekton `PipelineRun` with the following `Task`s:
+- Tekton `PipelineRun` with the following `Tasks`:
   - workspace-setup-task
   - scan-task
   - publish-task
