@@ -173,10 +173,10 @@ ERROR	controller-runtime.source.EventHandler	failed to get informer from cache	{
 
 ### <a id="scan-results-empty"></a> Scan results empty
 
-The `publish-task` task will fail if the `scan-results-path` (default value of `/workspace/scan-result`) is empty. To confirm, view the logs of the `publish-task` pod
+The `publish-task` task will fail if the `scan-results-path` (default value of `/workspace/scan-result`) is empty. To confirm, view the logs of the `publish-task` pod:
 
 ```console
 2023/08/22 17:09:49 results folder /workspace/scan-results is empty
 ```
 
-If this <TODO>
+To resolve this issue, you can debug within the `scan-task` pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You many need use an image with both a shell and your scanner image to run the `sleep` command and troubleshoot your scanner.
