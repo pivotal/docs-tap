@@ -20,8 +20,10 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 | docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
 | docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
 | scans.maxConcurrentScans | 10 | integer | The maximum number of scans that the scan controller schedules to run concurrently |
-| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
-| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
+| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses. |
+| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns. **Note**: should be configured with a storage class that does not have a per-node limit. |
+
+**Note**: If the StorageClass you select does not have a node limit but uses the node storage (e.g. hostpath), the nodes must have large enough disks. For example, if a scan creates a 2Gi volume on a hostpath type storage class, `2Gi * number of AMR images` would indicate how much storage this cluster needs overall. `2Gi * number of AMR images / number of nodes` would indicate how much storage each node would need.
 
 ## <a id="install-scst-app-scanning"></a> Install
 
