@@ -308,14 +308,14 @@ the generated API spec includes API routes from both `CuratedAPIDescriptor`s.
 
 #### <a id='1-7-0-service-bindings-ki'></a> v1.7.0 Known issues: Service Bindings
 
-- When upgrading from a previous Tanzu Application Platform version, pods are recreated for all
-  workloads with service bindings.
-  This is because workloads and pods that use service bindings are being updated to new service
-  binding volumes. This happens automatically after upgrading to 1.7 and will not affect subsequent
-  upgrades.
+When upgrading from a previous Tanzu Application Platform version, pods are recreated for all
+workloads with service bindings.
+This is because workloads and pods that use service bindings are being updated to new service
+binding volumes. This happens automatically after upgrading to 1.7 and will not affect subsequent
+upgrades.
 
-  Affected pods will be updated concurrently. To avoid failures, ensure that you have
-  sufficient Kubernetes resources in your clusters to support this pod rollout.
+Affected pods are updated concurrently. To avoid failures, you must have
+sufficient Kubernetes resources in your clusters to support the pod rollout.
 
 #### <a id='1-7-0-scc-ki'></a> v1.7.0 Known issues: Supply Chain Choreographer
 
