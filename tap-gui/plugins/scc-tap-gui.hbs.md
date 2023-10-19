@@ -448,8 +448,8 @@ To use resources in a supply chain, set resource permissions:
 
     - `NAMESPACE` is the namespace in which the rules apply. For example, `my-apps`.
     - `NAME` is the name for the role. For example, `rocket-reader`.
-    - `API-GROUPS` is the name of the group. For example, `spaceagency.com`.
-    - `RESOURCES-NAME` is the resource name. For example, `rockets`.
+    - `API-GROUPS` is the name of the groups. For example, `spaceagency.com` or `apiextensions.k8s.io/v1`.
+    - `RESOURCES-NAME` is the name of the resources. For example, `rockets` or `customresourcedefinitions`.
 
 1. Add a `RoleBinding` to bind this new `Role` to the `serviceAccount` that you typically use:
 
@@ -487,6 +487,44 @@ To use resources in a supply chain, set resource permissions:
     rules:
     - apiGroups: ["spaceagency.com"]
       resources: ["rockets"]
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+      - deletecollection
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: rocket-reader-binding
+      namespace: my-apps
+    subjects:
+    - kind: ServiceAccount
+      name: default
+      namespace: my-apps
+    roleRef:
+      kind: Role
+      name: rocket-reader
+      apiGroup: rbac.authorization.k8s.io
+    ```
+
+   *Note:* if you defined `additionalPrinterColumns` on your CRD you will need to grant permissions for both the group you defined in the CRD as well to the `apiextensions.k8s.io/v1` group that contains the definition of your resource.
+
+   The resulting definitions look like the following example:
+
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: my-apps
+      name: rocket-reader
+    rules:
+    - apiGroups: ["spaceagency.com", "apiextensions.k8s.io/v1"]
+      resources: ["rockets", "customresourcedefinitions"]
       verbs:
       - get
       - list
