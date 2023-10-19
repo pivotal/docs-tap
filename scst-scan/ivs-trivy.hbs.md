@@ -40,3 +40,6 @@ Where:
 
 - `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
 - `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For information about publicly available Trivy images, see [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information about using the Trivy CLI, see the [Trivy documentation](https://github.com/aquasecurity/trivy).
+
+### <a id="disclaimer"></a> Disclaimer
+For the publicly available Trivy scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
