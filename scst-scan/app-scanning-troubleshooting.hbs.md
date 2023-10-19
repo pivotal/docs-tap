@@ -84,6 +84,8 @@ You can use the following methods to debug scan pods:
     - `step-publisher`
     - `sidecar-sleep`
 
+    Where `step-SCANNER` is your [scanner step](./ivs-create-your-own.hbs.md).
+
 - To verify which step container had a [failed exit code](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step):
 
     ```console
