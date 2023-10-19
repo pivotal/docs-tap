@@ -41,5 +41,16 @@ Where:
 - `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
 - `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For information about publicly available Trivy images, see [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information about using the Trivy CLI, see the [Trivy documentation](https://github.com/aquasecurity/trivy).
 
+## <a id="trivy-db-requirement"></a> Trivy database size requirement
+The recommended `storageSize` for Trivy scans is 4Gi due to the size of the Trivy database. If the `storageSize` is not sufficient, you may encounter a `no space left on device` error when initializing the database in the scan pod.
+- Update the `app-scanning-values-file.yaml` for the `app-scanning.apps.tanzu.vmware.com` package to change the default `storageSize`. For more detail see [installation documentation](./install-app-scanning.hbs.md#install-scst-app-scanning).
+
+```console
+scans:
+  workspace:
+    storageSize: 4Gi
+```
+- If you do not want to set a default `storageSize` by updating the  `app-scanning-values-file.yaml`, you will need to specify the `spec.workspace.size` when creating each standalone ImageVulnerabilityScan or embedded ImageVulnerabilityScan in a [ClusterImageTemplate](./clusterimagetemplates.hbs.md#create-clusterimagetemplate).
+
 ### <a id="disclaimer"></a> Disclaimer
 For the publicly available Trivy scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
