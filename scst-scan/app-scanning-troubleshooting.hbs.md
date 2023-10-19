@@ -191,4 +191,4 @@ Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 2023/08/22 17:09:49 results folder /workspace/scan-results is empty
 ```
 
-To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You many need to use an image with both a shell and your scanner image to run the `sleep` command and troubleshoot running your scanner commands from within the container.
+To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You will need to use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot running your scanner commands from within the container.
