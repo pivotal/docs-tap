@@ -142,6 +142,9 @@ You can run these commands to view the Scan-Controller manager logs:
     kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
     ```
 
+
+## <a id="troubleshooting-app-scanning-issues"></a> Troubleshooting issues
+
 ### <a id="volume-permission-errors"></a> Volume permission error
 
 If you encounter a permission error for accessing, opening, and writing to the files inside cluster volume, such as:
@@ -175,7 +178,6 @@ ERROR	controller-runtime.source.EventHandler	failed to get informer from cache	{
 ```
 
 1. Follow [Upgrade your Tanzu Application Platform](../upgrading.hbs.md) to upgrade TAP to version `v1.7.0` or greater.
-## <a id="troubleshooting-app-scanning-issues"></a> Troubleshooting issues
 
 ### <a id="scan-results-empty"></a> Scan results empty
 
@@ -189,4 +191,4 @@ Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 2023/08/22 17:09:49 results folder /workspace/scan-results is empty
 ```
 
-To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You many need use an image with both a shell and your scanner image to run the `sleep` command and troubleshoot running your scanner commands from within the container.
+To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You many need to use an image with both a shell and your scanner image to run the `sleep` command and troubleshoot running your scanner commands from within the container.
