@@ -10,7 +10,7 @@ You will learn how to discover, claim, and bind services to application workload
 Before starting this tutorial:
 
 - VMware recommends that you read [About the AWS Services package](../concepts/about-aws-services.hbs.md).
-  The topic provides context about the features and goals of the package, and some of the
+  The topic provides context about the goals of the package, and some of the
   considerations and compromises that were made as part of its development.
 
 - [Install AWS services](../install-aws-services.hbs.md)
@@ -57,8 +57,8 @@ ready to use.
 
 After creating the claim, you can bind it to one or more of your application workloads.
 
-> **Important** If binding to more than one application workload, all application workloads must
-> exist in the same namespace. This is a known limitation. For more information, see
+> **Important** If you want to bind to more than one application workload, all application workloads
+> must be in the same namespace. This is a known limitation. For more information, see
 > [Cannot claim and bind to the same service instance from across multiple namespaces](../../services-toolkit/reference/known-limitations.hbs.md#multi-workloads).
 
 1. Find the reference for the claim by running:
@@ -69,7 +69,7 @@ After creating the claim, you can bind it to one or more of your application wor
 
     The reference is in the output under the heading Claim Reference.
 
-1. Bind the claim to a workload of your choice by pass a reference to the claim to the `--service-ref`
+1. Bind the claim to a workload of your choice by passing a reference to the claim to the `--service-ref`
    flag of the `tanzu apps workload create` command. For example:
 
     ```console

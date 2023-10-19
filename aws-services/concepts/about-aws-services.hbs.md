@@ -1,26 +1,25 @@
 # About the AWS Services package
 
-This topic tells you about what the AWS Services package is, the goals of the package,
-and some of its limitations.
+This topic tells you about the goal of the AWS Services package and some of its limitations.
 
 ## <a id="goals"></a> Goals
 
 The AWS Services package aims to provide a simple and seamless integration for a variety of AWS Services
 into Tanzu Application Platform. The goal is to minimize the time to value so that users can both offer
-and consume the AWS Services that they want on Tanzu Application Platform with minimal effort.
+and consume the services from AWS that they want on Tanzu Application Platform with minimal effort.
 
-## <a id="challenges"></a> Challenges
+## <a id="limitations"></a> Limitations
 
-One of the main challenges in building a package to provide integrations with AWS is
-that there is a wide range of infrastructure and networking setups that must
-be taken into consideration. Consider the following, non-exhaustive list:
+The AWS Services package has to accommodate a wide range of infrastructure and networking setups.
+Each setup has different infrastructure and configuration requirements.
+
+Example setups include:
 
 - A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to RDS PostgreSQL service instances running in "VPC A"
 - A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to RDS PostgreSQL service instances running in "VPC B"
 - A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to Elasticache Redis service instances running in "VPC B"
 - A Tanzu Application Platform cluster running on Azure AKS connecting to RDS PostgreSQL service instances running in "VPC A"
 
-Each setup has a different set of infrastructure and configuration requirements.
 If not handled carefully, accommodating these differences could lead to the package configuration
 becoming too complex.
 

@@ -151,8 +151,7 @@ To install the AWS Services package:
 
 ## <a id="create-a-providerconfig"></a> Step 3: Create a ProviderConfig
 
-The `ProviderConfig` resource is the mechanism through which you configure credentials and access
-information for your AWS account.
+You configure credentials and access information for your AWS account through the `ProviderConfig` resource.
 
 This section shows you how to create a `ProviderConfig` using the `Secret` source in which
 your AWS account credentials are stored in a `Secret` on the cluster.
