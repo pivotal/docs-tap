@@ -302,8 +302,13 @@ EOF
 
 Where:
 
-- `tap.com` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+- `tap.com` is a placeholder that must be replaced with a subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
+- `YOUR_NAMESPACE` is the environment variable you defined earlier to describe the name of the developer namespace.
+  Supply Chain Security Tools - Store exports secrets to the namespace, and Supply Chain Security Tools - Scan deploys the `ScanTemplates` there.
+  This allows the scanning feature to run in this namespace.
+  If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`
+  to export the Supply Chain Security Tools - Store CA certificate to all namespaces.
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE` is where the developer's local source is uploaded when using
   Tanzu CLI to use Local Source Proxy for workload creation.
 - `EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET` is the name of the secret with credentials that allow
