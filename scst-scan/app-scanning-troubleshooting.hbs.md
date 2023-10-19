@@ -12,7 +12,7 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 
 ## <a id="viewing-resources"></a> Viewing resources
 
-To view all resources:
+- To view all resources:
 
     ```console
     kubectl get imagevulnerabilityscans,pipelineruns,taskruns,pods -n DEV-NAMESPACE
@@ -20,7 +20,8 @@ To view all resources:
 
     Where `DEV-NAMESPACE` is the name of your developer namespace.
 
-Determine which resources are failing and proceed to the debugging sections below:
+- Determine which resources are failing and proceed to the debugging sections below:
+
     ```console
     NAME                                                                SUCCEEDED   REASON
     imagevulnerabilityscan.app-scanning.apps.tanzu.vmware.com/my-scan   True        Succeeded
