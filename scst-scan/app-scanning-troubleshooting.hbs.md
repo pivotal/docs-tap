@@ -24,13 +24,13 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 
     ```console
     NAME                                                                SUCCEEDED   REASON
-    imagevulnerabilityscan.app-scanning.apps.tanzu.vmware.com/my-scan   True        Succeeded
+    imagevulnerabilityscan.app-scanning.apps.tanzu.vmware.com/my-scan   False       Failed
 
     NAME                                   SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-    pipelinerun.tekton.dev/my-scan-5kllf   True        Succeeded   2m10s       85s
+    pipelinerun.tekton.dev/my-scan-5kllf   False       Failed      2m10s       85s
 
     NAME                                                    SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-    taskrun.tekton.dev/my-scan-5kllf-publish-task           True        Succeeded   94s         85s
+    taskrun.tekton.dev/my-scan-5kllf-publish-task           False       Failed      94s         85s
     taskrun.tekton.dev/my-scan-5kllf-scan-task              True        Succeeded   2m1s        94s
     taskrun.tekton.dev/my-scan-5kllf-workspace-setup-task   True        Succeeded   2m9s        2m1s
 
