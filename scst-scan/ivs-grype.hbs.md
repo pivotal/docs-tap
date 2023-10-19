@@ -41,3 +41,6 @@ Where:
 
 - `TARGET-IMAGE` is the image to scan. You must specify digest.
 - `GRYPE-SCANNER-IMAGE` is the image containing the Grype CLI. For example, `anchore/grype:latest`. For information about publicly available Grype images, see [DockerHub](https://hub.docker.com/r/anchore/grype/tags). For more information about using the Grype CLI, see the [Grype documentation](https://github.com/anchore/grype#getting-started).
+
+### <a id="disclaimer"></a> Disclaimer
+For the publicly available Grype scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
