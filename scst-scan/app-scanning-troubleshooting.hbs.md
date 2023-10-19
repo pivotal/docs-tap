@@ -102,7 +102,7 @@ You can use the following methods to debug scan pods:
 
     For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
 
-- To debug inside of the `<NAME>-scan-task-pod` pod:
+- To debug inside of the scan-task pod:
     Add an additional step with a `sleep` command below your scanner step in the ImageVulnerabilityScan. For example:
 
     ```yaml
@@ -120,8 +120,9 @@ You can use the following methods to debug scan pods:
     ```
     This keeps the pod in a running state so that you can exec into it. Re-run the scan and then exec into the pod:
     ```console
-        kubectl exec <NAME>-scan-task-pod -n DEV-NAMESPACE -c step-view --stdin --tty -- sh
+        kubectl exec SCAN-TASK-POD-NAME -n DEV-NAMESPACE -c step-view --stdin --tty -- sh
     ```
+    Where `SCAN-TASK-POD-NAME` is the name of your scan-task pod.
 
 ### <a id="controller-mngr-logs"></a> Viewing the Scan-Controller manager logs
 
@@ -176,10 +177,14 @@ ERROR	controller-runtime.source.EventHandler	failed to get informer from cache	{
 
 ### <a id="scan-results-empty"></a> Scan results empty
 
-The `publish-task` task will fail if the `scan-results-path` (default value of `/workspace/scan-result`) is empty. To confirm, view the logs of the `publish-task` pod:
+The publish-task task will fail if the `scan-results-path` (default value of `/workspace/scan-result`) is empty. To confirm, view the logs of the publish-task pod:
+```console
+kubectl logs PUBLISH-TASK-POD-NAME -c step-publisher -n DEV-NAMESPACE
+```
+Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 
 ```console
 2023/08/22 17:09:49 results folder /workspace/scan-results is empty
 ```
 
-To resolve this issue, you can debug within the `scan-task` pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You many need use an image with both a shell and your scanner image to run the `sleep` command and troubleshoot your scanner.
+To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You many need use an image with both a shell and your scanner image to run the `sleep` command and troubleshoot running your scanner commands from within the container.
