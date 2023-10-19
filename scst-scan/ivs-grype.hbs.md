@@ -42,5 +42,16 @@ Where:
 - `TARGET-IMAGE` is the image to scan. You must specify digest.
 - `GRYPE-SCANNER-IMAGE` is the image containing the Grype CLI. For example, `anchore/grype:latest`. For information about publicly available Grype images, see [DockerHub](https://hub.docker.com/r/anchore/grype/tags). For more information about using the Grype CLI, see the [Grype documentation](https://github.com/anchore/grype#getting-started).
 
+## <a id="grype-db-requirement"></a> Grype database size requirement
+The recommended `storageSize` for Grype scans is 4Gi due to the size of the Grype database. If the `storageSize` is not sufficient, you may encounter an error indicating insufficient space when initializing the database in the scan pod.
+- Update the `app-scanning-values-file.yaml` for the `app-scanning.apps.tanzu.vmware.com` package to change the default `storageSize`. For more detail see [installation documentation](./install-app-scanning.hbs.md#install-scst-app-scanning).
+
+```console
+scans:
+  workspace:
+    storageSize: 4Gi
+```
+- If you do not want to set a default `storageSize` by updating the  `app-scanning-values-file.yaml`, you will need to specify the `spec.workspace.size` when creating each standalone ImageVulnerabilityScan or embedded ImageVulnerabilityScan in a [ClusterImageTemplate](./clusterimagetemplates.hbs.md#create-clusterimagetemplate).
+
 ### <a id="disclaimer"></a> Disclaimer
 For the publicly available Grype scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
