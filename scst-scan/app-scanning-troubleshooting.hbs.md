@@ -13,6 +13,7 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 ## <a id="viewing-resources"></a> Viewing resources
 
 To view all resources:
+
     ```console
     kubectl get imagevulnerabilityscans,pipelineruns,taskruns,pods -n DEV-NAMESPACE
     ```
