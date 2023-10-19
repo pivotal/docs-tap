@@ -17,6 +17,7 @@ To view all resources:
 ```console
 kubectl get imagevulnerabilityscans,pipelineruns,taskruns,pods -n DEV-NAMESPACE
 ```
+Where `DEV-NAMESPACE` is the name of your developer namespace.
 
 Determine which resources are failing and proceed to the debugging sections below:
 ```console
