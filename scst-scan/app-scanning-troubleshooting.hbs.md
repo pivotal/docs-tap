@@ -14,29 +14,29 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 
 To view all resources:
 
-```console
-kubectl get imagevulnerabilityscans,pipelineruns,taskruns,pods -n DEV-NAMESPACE
-```
-Where `DEV-NAMESPACE` is the name of your developer namespace.
+    ```console
+    kubectl get imagevulnerabilityscans,pipelineruns,taskruns,pods -n DEV-NAMESPACE
+    ```
+    Where `DEV-NAMESPACE` is the name of your developer namespace.
 
 Determine which resources are failing and proceed to the debugging sections below:
-```console
-NAME                                                                SUCCEEDED   REASON
-imagevulnerabilityscan.app-scanning.apps.tanzu.vmware.com/my-scan   True        Succeeded
+    ```console
+    NAME                                                                SUCCEEDED   REASON
+    imagevulnerabilityscan.app-scanning.apps.tanzu.vmware.com/my-scan   True        Succeeded
 
-NAME                                   SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-pipelinerun.tekton.dev/my-scan-5kllf   True        Succeeded   2m10s       85s
+    NAME                                   SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    pipelinerun.tekton.dev/my-scan-5kllf   True        Succeeded   2m10s       85s
 
-NAME                                                    SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
-taskrun.tekton.dev/my-scan-5kllf-publish-task           True        Succeeded   94s         85s
-taskrun.tekton.dev/my-scan-5kllf-scan-task              True        Succeeded   2m1s        94s
-taskrun.tekton.dev/my-scan-5kllf-workspace-setup-task   True        Succeeded   2m9s        2m1s
+    NAME                                                    SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
+    taskrun.tekton.dev/my-scan-5kllf-publish-task           True        Succeeded   94s         85s
+    taskrun.tekton.dev/my-scan-5kllf-scan-task              True        Succeeded   2m1s        94s
+    taskrun.tekton.dev/my-scan-5kllf-workspace-setup-task   True        Succeeded   2m9s        2m1s
 
-NAME                                         READY   STATUS      RESTARTS   AGE
-pod/my-scan-5kllf-publish-task-pod           0/4     Completed   1          94s
-pod/my-scan-5kllf-scan-task-pod              0/4     Completed   1          2m
-pod/my-scan-5kllf-workspace-setup-task-pod   0/2     Completed   1          2m10s
-```
+    NAME                                         READY   STATUS      RESTARTS   AGE
+    pod/my-scan-5kllf-publish-task-pod           0/4     Completed   1          94s
+    pod/my-scan-5kllf-scan-task-pod              0/4     Completed   1          2m
+    pod/my-scan-5kllf-workspace-setup-task-pod   0/2     Completed   1          2m10s
+    ```
 
 ## <a id="debugging-commands"></a> Debugging commands
 
