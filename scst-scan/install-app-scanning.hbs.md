@@ -23,7 +23,7 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 | workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses. |
 | workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns. **Note**: should be configured with a storage class that does not have a per-node limit. |
 
-**Note**: If storage classes do not have a node limit but use the node storage (e.g. hostpath), the nodes must have large enough disks. For example, every scan can at most have a 2Gi volume on a hostpath or storage class. "2Gi * number of AMR images / number of nodes" would indicate how much storage this cluster would need.
+**Note**: If the StorageClass you select does not have a node limit but uses the node storage (e.g. hostpath), the nodes must have large enough disks. For example, if a scan creates a 2Gi volume on a hostpath type storage class, `2Gi * number of AMR images` would indicate how much storage this cluster needs overall. `2Gi * number of AMR images / number of nodes` would indicate how much storage each node would need.
 
 ## <a id="install-scst-app-scanning"></a> Install
 
