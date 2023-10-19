@@ -3,7 +3,7 @@
 This topic tells you how to install the AWS Services package from the Tanzu Application Platform
 (commonly known as TAP) package repository.
 
-> **Note** The AWS Service package is not in any of the Tanzu Application Platform profiles.
+> **Note** The AWS Services package is not in any of the Tanzu Application Platform profiles.
 > To use this package, you must follow the instructions in this topic.
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -40,8 +40,6 @@ To plan and configure your infrastructure:
     > **Note** The current version of the AWS Services package does not create these resources for you.
     > You must create them manually using the AWS console.
     > This is a one-time manual setup step that you must complete before installing the package.
-    > Future versions of the AWS Services package might provide options to create required
-    > infrastructure resources for you.
 
 1. Record the name of the DBSubnetGroup and the IDs of the SecurityGroups you created.
    These are required when installing the package.
@@ -62,7 +60,7 @@ To install the AWS Services package:
     ```yaml
     # aws-services-values.yaml
     ---
-    # Optional, add any custom CA certificate data required by your installation of TAP
+    # Optional, add any custom CA certificate data required by your Tanzu Application Plaform installation
     ca_cert_data: |
         -----BEGIN CERTIFICATE-----
         MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -94,7 +92,8 @@ To install the AWS Services package:
     Where:
 
     - `REGION` is the AWS region you want, for example, `us-east-1`.
-    - `PROVIDER-CONFIG-NAME` enter `default`, or choose a name for the ProviderConfig for this service.
+    - `PROVIDER-CONFIG-NAME` is the name of the ProviderConfig for this service.
+      Choose a name, or enter `default`.
       Choosing a name allows you to use a different ProviderConfig per service type offered by the
       AWS Services package.
     - `SUBNET-GROUP-NAME` is the name of the DBSubnetGroup you created in
@@ -150,6 +149,7 @@ To install the AWS Services package:
     ```
 
 ## <a id="create-a-providerconfig"></a> Step 3: Create a ProviderConfig
+<!-- is there a better title for this section that describes what you are doing? -->
 
 You configure credentials and access information for your AWS account through the `ProviderConfig` resource.
 

@@ -10,11 +10,11 @@ This makes it quick and easy to get started working with these services on Tanzu
 
 ## <a id="getting-started"></a> Getting started
 
-If this is your first time working with the AWS Services package on Tanzu Application Platform,
-you can start by reading [About the AWS Services package](concepts/about-package.hbs.md),
+If this is your first time working with the AWS Services package, you can start by reading
+[About the AWS Services package](concepts/about-package.hbs.md),
 which provides you with a better understanding of the goals and limitations of the package.
 
-After you understand the concepts, if you are a service operator, you can
+After you understand these concepts, if you are a service operator, you can
 [Install AWS Services](install-aws-services.hbs.md).
 If you are an app developer, see [Working with AWS Services](./tutorials/working-with-aws-services.hbs.md).
 You can also see the [How-to guides](how-to-guides/index.hbs.md) and
