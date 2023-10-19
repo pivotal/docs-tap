@@ -4,9 +4,10 @@ This topic tells you about the goal of the AWS Services package and some of its 
 
 ## <a id="goals"></a> Goals
 
-The AWS Services package aims to provide a simple and seamless integration for a variety of AWS Services
-into Tanzu Application Platform. The goal is to minimize the time to value so that users can both offer
-and consume the services from AWS that they want on Tanzu Application Platform with minimal effort.
+The AWS Services package aims to provide simple and seamless integration into Tanzu Application Platform
+for a variety of services on AWS.
+The goal is to minimize the time to value so that users can both offer and consume the services that
+they want on Tanzu Application Platform with minimal effort.
 
 ## <a id="limitations"></a> Limitations
 
@@ -38,9 +39,9 @@ simple as possible. This is not guaranteed.
 ## <a id="other"></a> Other Considerations
 
 The AWS Services package is not installed as part of any of the Tanzu Application Platform profiles.
-This is because not every user needs to integrate AWS Services into their Tanzu Application Platform cluster.
-However, the package is in the Tanzu Application Platform packageRepository which means
-that you can install it using the same tooling, credentials, and image repositories that you used to
+This is because not every user needs to integrate services on AWS into their Tanzu Application Platform
+cluster. However, the package is in the Tanzu Application Platform packageRepository, which means
+that you can install it using the same tooling, credentials, and image repositories that you use to
 install Tanzu Application Platform. See [Install AWS Services](../install-aws-services.hbs.md).
 
 You might not want to integrate all of the services supported by the package.

@@ -9,7 +9,7 @@ You will learn how to discover, claim, and bind services to application workload
 
 Before starting this tutorial:
 
-- VMware recommends that you read [About the AWS Services package](../concepts/about-aws-services.hbs.md).
+- VMware recommends that you read [About the AWS Services package](../concepts/about-package.hbs.md).
   The topic provides context about the goals of the package, and some of the
   considerations and compromises that were made as part of its development.
 

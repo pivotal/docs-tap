@@ -73,7 +73,7 @@ for example, on-prem or in another cloud such as Azure.
 
 #### <a id="same-vpc-config"></a> Configuration
 
-To configure the PostgreSQL service from the AWS Services Package for this type of topology you must:
+To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
 
 - Manually create all required subnets and security groups in AWS.
 - Create an Internet gateway.

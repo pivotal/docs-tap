@@ -22,12 +22,12 @@ This release includes the following platform-wide enhancements.
 
 #### <a id='1-7-0-new-components'></a> New components
 
+- [AWS Services](aws-services/about.hbs.md): Provides an integration with services on
+  Amazon Web Services (AWS) for Tanzu Application Platform.
+
 - [Service Registry for VMware Tanzu](service-registry/overview.hbs.md): Provides on-demand Eureka
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
   servers in your namespaces and bind Spring Boot workloads to them.
-
-- [AWS Services](aws-services/about.hbs.md): Provides an integration with Amazon Web Services (AWS)
-  for Tanzu Application Platform.
 
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 

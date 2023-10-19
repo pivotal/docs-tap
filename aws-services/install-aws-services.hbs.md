@@ -1,6 +1,6 @@
 # Install AWS Services
 
-This topic tells you how to install AWS Services from the Tanzu Application Platform
+This topic tells you how to install the AWS Services package from the Tanzu Application Platform
 (commonly known as TAP) package repository.
 
 > **Note** The AWS Service package is not in any of the Tanzu Application Platform profiles.
@@ -11,14 +11,14 @@ This topic tells you how to install AWS Services from the Tanzu Application Plat
 Before you install the AWS Services package:
 
 - [Install Tanzu Application Platform](../install-intro.hbs.md)
-- VMware recommends that you read [About the AWS Services package](concepts/about-aws-services.hbs.md).
+- VMware recommends that you read [About the AWS Services package](concepts/about-package.hbs.md).
   The topic provides context about the features and goals of the package, and some of the
   considerations and compromises that were made as part of its development.
 
 ## <a id="config-infra"></a> Step 1: Plan and configure your infrastructure
 
-There are a wide range of infrastructure and networking setups available when integrating AWS services
-into Tanzu Application Platform.
+There are a wide range of infrastructure and networking setups available when integrating services on
+AWS into Tanzu Application Platform.
 Therefore, the first step is to decide which of these setups you want and to configure the AWS Services
 package for this topology.
 
@@ -199,8 +199,8 @@ To create a `ProviderConfig` using the `Secret` source:
     Where `PROVIDER-CONFIG-NAME` is the `postgresql.provider_config_ref.name` value you configured
     in your `aws-services-values.yaml` file. The default is `default`.
 
-1. Verify your setup by inspecting the resources created as part of the installation of the package,
-   the `SubnetGroup` and `SecurityGroups`, by running:
+1. Verify your setup by inspecting the `SubnetGroup` and `SecurityGroups` resources created as part
+   of the installation of the package by running:
 
     ```console
     kubectl get securitygroup
