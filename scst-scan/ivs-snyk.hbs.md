@@ -51,7 +51,7 @@ spec:
     env:
     - name: XDG_CONFIG_HOME
       value: /snyk
-    command: ["snyk","container","test",$(params.image),"--json-file-output=scan.json"]
+    command: ["snyk","container","test",$(params.image),"--json-file-output=scan-results/scan.json"]
     onError: continue
   - name: snyk2spdx # You will need to create your own image. See explanation below.
     image: SNYK2SPDX-IMAGE
