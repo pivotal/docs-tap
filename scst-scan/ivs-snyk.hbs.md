@@ -18,7 +18,7 @@ stringData:
 
 Where:
 
-- `SNYK-API-TOKEN` is your Snyk API Token obtained from the [Snyk documentation](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account).
+- `SNYK-API-TOKEN` is your Snyk API Token obtained from the [Snyk documentation](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account). Do not base64 encode this value.
 
 ## <a id="example"></a> Example ImageVulnerabilityScan
 This section contains a sample IVS that uses Snyk to scan a targeted image and push the results to the specified registry location.
