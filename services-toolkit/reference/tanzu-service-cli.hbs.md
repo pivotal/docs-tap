@@ -24,7 +24,7 @@ See `tanzu service class list -h`.
 You can create a claim for a service instance of a particular class by running the
 `tanzu service class-claim create` command.
 
-When you get a class, you can see more detailed information about the it, including,
+When you get a class, you can see more detailed information about it, including,
 where available, a list of parameters that you can pass to the `tanzu service class-claim create`
 command using the `--parameter` flag.
 

@@ -60,7 +60,7 @@ To set up the namespace:
 
     Where:
 
-    - `USERNAME` is your registry user name.
+    - `USERNAME` is your registry username.
     - `PASSWORD` is your registry password.
 
     > **Note** You must update the `--docker-server` value if you relocated images as part of the installation
