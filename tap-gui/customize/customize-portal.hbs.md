@@ -1,6 +1,8 @@
 # Customize the portal
 
-This section describes how to customize the portal.
+This section describes how to customize the existing functionality of your currently running portal.
+If you want to learn how to add additional functionality and features to your portal, see
+[Tanzu Developer Portal Configurator](../configurator/about.hbs.md).
 
 ## <a id="brand-customizing"></a> Customize branding
 
