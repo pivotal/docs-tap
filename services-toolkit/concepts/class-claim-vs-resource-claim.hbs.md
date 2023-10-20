@@ -30,7 +30,7 @@ The specificity of the ResourceClaim means it is most useful when you must guara
 instance the application workload uses.
 For example, if the application must connect to the exact same database instance while it advances
 through development, test, and production environments.
-If if you do not need this guarantee VMware recommends that you use the ClassClaim API instead.
+If you do not need this guarantee VMware recommends that you use the ClassClaim API instead.
 
 ## <a id="classclaim"></a> Using a ClassClaim
 
@@ -41,7 +41,7 @@ The ClusterInstanceClass can represent any set of service instances and therefor
 each time you create a new ClassClaim, you can claim any of the service
 instances represented by that ClusterInstanceClass.
 After a ClassClaim has claimed a service instance, it never looks for another.
-This is true even if the ClassClaim's `spec` is updated or the ClusterInstanceClass is
+This is true even if the ClassClaim's `spec` is updated, or the ClusterInstanceClass is
 updated.
 Therefore, the ClassClaim is performing a **point-in-time** lookup at
 its creation, using the ClusterInstanceClass for that lookup.
