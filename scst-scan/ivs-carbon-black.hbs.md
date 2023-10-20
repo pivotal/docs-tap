@@ -2,6 +2,13 @@
 
 To configure an ImageVulnerabilityScan for Carbon Black, use the following ImageVulnerabilityScan and secret configuration:
 
+This topic gives you an example of how to configure an ImageVulnerabilityScan (IVS) for Grype.
+
+## <a id="example"></a> Example ImageVulnerabilityScan
+
+This section contains a sample IVS that uses Carbon Black to scan a targeted image and push the results to the specified registry location.
+For information about the IVS specification, see [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
+
 - Configure Carbon Black CLI with CarbonBlack `cbctl-creds` secret and credentials by using the `~/.cbctl/cbctl.yaml` config file. See the [Carbon Black](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) documentation.
 - Set the tekton-pipelines feature-flags configmap `enable-api-fields` to `alpha`. This enables the user to use the `stdoutConfig` which is needed to output the scan report as a file.
 
@@ -61,8 +68,12 @@ Where:
 - `CB-API-KEY` is the API Key obtained from CBC.
 - `ORG-KEY` is the Org Key for your CBC organization.
 - `SAAS-URL` is the CBC Backend URL.
-- `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image.
+- `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image. For example, `cbartifactory/cbctl:latest`. or information about publicly available Grype images, see DockerHub. For information about publicly available Carbon Black images, see [DockerHub](https://hub.docker.com/r/cbartifactory/cbctl). For more information about using the Carbon Black Scanner CLI, see the [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli/).
+
 
 **Note** The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted into a `cbctl.yaml` config file that the Carbon Black CLI uses.
 
 **Note** `stdoutConfig.path` is specified to take the output stream of the step to a given file where it can be published to the registry. See [tekton docs](https://github.com/tektoncd/community/blob/main/teps/0011-redirecting-step-output-streams.md) for more details.
+
+### <a id="disclaimer"></a> Disclaimer
+For the publicly available Carbon Black scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
