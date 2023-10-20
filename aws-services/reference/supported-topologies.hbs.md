@@ -1,4 +1,4 @@
-# Supported Topologies for AWS Services
+# Supported topologies for AWS Services
 
 This topic gives you the list of Tanzu Application Platform (commonly known as TAP) cluster to
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
@@ -26,7 +26,7 @@ The key properties of this topology are:
 
 This topology is recommended if your Tanzu Application Platform cluster is running in AWS.
 
-#### <a id="same-vpc-config"></a> Configuration
+#### <a id="same-vpc-config"></a> Configuration tasks
 
 To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
 
@@ -71,7 +71,7 @@ The key properties of this topology are:
 This topology is recommended if your Tanzu Application Platform cluster is running external to AWS,
 for example, on-prem or in another cloud such as Azure.
 
-#### <a id="same-vpc-config"></a> Configuration
+#### <a id="same-vpc-config"></a> Configuration tasks
 
 To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
 

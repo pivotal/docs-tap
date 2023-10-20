@@ -1,4 +1,4 @@
-# Supported AWS Services
+# Supported AWS services
 
 This topic lists the services that are supported by the AWS Services package.
 

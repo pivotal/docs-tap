@@ -12,8 +12,7 @@ However, you can configure the providers to make calls to an endpoint of your ch
 
 To configure the service endpoint through a `ProviderConfig` resource:
 
-1. Create a `ProviderConfig` resource. For example:
-    <!-- is this the same as the one created during the install or is it a new one? -->
+1. Update the `ProviderConfig` you created when installing the package. For example:
 
     ```yaml
     ---

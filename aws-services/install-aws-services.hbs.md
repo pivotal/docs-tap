@@ -30,7 +30,6 @@ To plan and configure your infrastructure:
 
 1. Decide which topology you want to use. For more information about the topologies supported by the
    AWS Services package, see [Supported Topologies](reference/supported-topologies.hbs.md).
-   <!-- do you have to do the configuration items from this page? when? -->
 
 1. Create a DBSubnetGroup and SecurityGroups:
 
@@ -43,6 +42,8 @@ To plan and configure your infrastructure:
 
 1. Record the name of the DBSubnetGroup and the IDs of the SecurityGroups you created.
    These are required when installing the package.
+
+1. Complete any remaining configuration tasks listed in [Supported Topologies](reference/supported-topologies.hbs.md).
 
 ## <a id="install-package"></a> Step 2: Install the AWS Services package
 
@@ -81,13 +82,12 @@ To install the AWS Services package:
           - id: "SECURITY-GROUP-ID"
       # Instance-level configuration for the RDS PostgreSQL service applied to all service instances
       instance_configuration:
-        instance_class: db.t3.micro
-        engine_version: "13.7"
-        skip_final_snapshot: false
-        publicly_accessible: false
-        maintenance_window: "Wed:00:00-Wed:03:00"
+        instance_class: INSTANCE-CLASS
+        engine_version: "ENGINE-VERSION"
+        skip_final_snapshot: SKIP-FINAL-SNAPSHOT
+        publicly_accessible: PUBLICLY-ACCESSIBLE
+        maintenance_window: "MAINTENANCE-WINDOW"
     ```
-    <!-- should there be any placeholders in the instance config section? -->
 
     Where:
 
@@ -100,6 +100,16 @@ To install the AWS Services package:
       [Plan and configure your infrastructure](#config-infra) earlier.
     - `SECURITY-GROUP-ID` are the IDs of any security groups you created in
       [Plan and configure your infrastructure](#config-infra) earlier.
+    - `INSTANCE-CLASS` is the instance type of the RDS instance. The default is `db.t3.micro`.
+    - `ENGINE-VERSION` is the PostgreSQL version. The default is `13.7`.
+    - `SKIP-FINAL-SNAPSHOT` is whether a final snapshot is created before the instance is deleted.
+       If you specify `true`, no snapshot is created. If you specify `false`, a snapshot called
+       `final-snapshot-INSTANCE-NAME` is created before the instance is deleted. The default is `false`.
+    - `PUBLICLY-ACCESSIBLE` is whether or not PostgreSQL service instances are publicly accessible
+       over the Internet. The value can be `true` or `false` depending on the topology you chose.
+       See [Supported Topologies](./reference/supported-topologies.hbs.md). The default is `false`.
+    - `MAINTENANCE-WINDOW` is the window to perform maintenance in. The syntax is `ddd:hh24:mi-ddd:hh24:mi`.
+       The default is `Mon:00:00-Mon:03:00`.
 
     For the full list of values you can configure, see [Package values for AWS Services](reference/package-values.hbs.md).
 
@@ -148,8 +158,7 @@ To install the AWS Services package:
       message: ""
     ```
 
-## <a id="create-a-providerconfig"></a> Step 3: Create a ProviderConfig
-<!-- is there a better title for this section that describes what you are doing? -->
+## <a id="create-a-providerconfig"></a> Step 3: Configure credentials for access to your AWS account
 
 You configure credentials and access information for your AWS account through the `ProviderConfig` resource.
 
