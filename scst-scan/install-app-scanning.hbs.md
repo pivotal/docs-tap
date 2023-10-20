@@ -197,6 +197,6 @@ The following section describes how to configure service accounts and registry c
 
 If the registry specified for SCST - Scan 2.0 to push scan results to supports retention policies, you can configure the registry to delete old scan results automatically depending on your archival requirements. Scan result artifacts accumulate over time and especially with recurring scanning, storage space can quickly be consumed.
 
-If you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules) on configuring tag retention rules. An example would be to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
+If you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules) on configuring tag retention rules. An example would be to "retain the most recently pushed # artifacts" or "retain the artifacts pushed within the last # days".
 
 Retention policy setup differs between registry providers. Check with your specific registry's documentation on configuration options.
