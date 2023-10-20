@@ -29,7 +29,7 @@ cloud providers.
 
 In addition, for Tanzu Application Platform v1.7 or later, you can instead use the
 [AWS Services](../../aws-services/about.hbs.md) package, which provides a more streamlined approach
-for integrating services on AWS into Tanzu Application Platform.
+for integrating services from AWS into Tanzu Application Platform.
 
 ## <a id="about"></a> About this tutorial
 

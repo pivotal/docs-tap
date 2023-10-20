@@ -86,7 +86,7 @@ a predefined group of packages.
   AWS Services provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP).
 
   Through integration with [Crossplane](crossplane/about.hbs.md) and
-  [Services Toolkit](services-toolkit/about.hbs.md), you can offer services on AWS to
+  [Services Toolkit](services-toolkit/about.hbs.md), you can offer services from AWS to
   apps teams to consume with only minimal setup and configuration required from ops teams.
   This makes it quick and easy to get started working with these services on Tanzu Application Platform.
 

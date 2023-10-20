@@ -23,7 +23,7 @@ This release includes the following platform-wide enhancements.
 #### <a id='1-7-0-new-components'></a> New components
 
 - [AWS Services](aws-services/about.hbs.md): Provides a more streamlined approach for integrating
-  services on AWS into Tanzu Application Platform.
+  services from AWS into Tanzu Application Platform.
 
 - [Service Registry for VMware Tanzu](service-registry/overview.hbs.md): Provides on-demand Eureka
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka

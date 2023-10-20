@@ -38,8 +38,8 @@ workloads run to the subnet where the RDS PostgreSQL service instances run.
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario1).
 
-After completing configuration in AWS, you must configure the AWS Services package using the following
-package values:
+After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
+the following values when installing the package:
 
 ```yaml
 postgresql:
@@ -84,8 +84,8 @@ workloads run to the subnet where the RDS PostgreSQL service instances run.
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario4).
 
-After completing configuration in AWS, you must configure the AWS Services package using the following
-package values:
+After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
+the following values when installing the package:
 
 ```yaml
 postgresql:
