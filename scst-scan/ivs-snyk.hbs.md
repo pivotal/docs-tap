@@ -1,10 +1,10 @@
 
 # Configure an ImageVulnerabilityScan for Snyk
 
-This topic tells you how to configure a Secret and ImageVulnerabilityScan for Snyk.
+This topic gives you an example of how to configure a Secret and ImageVulnerabilityScan (IVS) for Snyk.
 
 ## <a id="secret-example"></a> Example Secret
-This section gives you an example Secret containing the Snyk API Token used to authenticate your Snyk Account. You will only need to apply this once to your developer namespace.
+This section contains a sample Secret containing the Snyk API Token which is used to authenticate your Snyk Account. You will only need to apply this once to your developer namespace.
 
 ```yaml
 apiVersion: v1
@@ -21,7 +21,7 @@ Where:
 - `SNYK-API-TOKEN` is your Snyk API Token obtained from the [Snyk documentation](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account).
 
 ## <a id="example"></a> Example ImageVulnerabilityScan
-This section gives you an example IVS that uses Snyk to scan a targeted image and push the results to the specified registry location.
+This section contains a sample IVS that uses Snyk to scan a targeted image and push the results to the specified registry location.
 For information about the IVS specification, see [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
