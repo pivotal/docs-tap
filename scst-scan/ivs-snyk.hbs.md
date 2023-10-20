@@ -61,7 +61,7 @@ spec:
 
 Where:
 
-- `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
+- `TARGET-IMAGE` is the image to be scanned. You must specify the digest.
 - `SNYK-SCANNER-IMAGE` is the image containing the Snyk CLI. For example, `snyk/snyk:golang`. For information about publicly available Snyk images, see [DockerHub](https://hub.docker.com/r/snyk/snyk). For more information about using the Snyk CLI, see [Snyk documentation](https://docs.snyk.io/snyk-cli).
 - `XDG_CONFIG_HOME` is the directory that contains your Snyk CLI config file (configstore/snyk.json) which is populated using the snyk-token `Secret` you created. See [Snyk Config documentation](https://docs.snyk.io/snyk-cli/commands/config) for more detail.
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx).
