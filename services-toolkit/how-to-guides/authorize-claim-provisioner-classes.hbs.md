@@ -21,7 +21,7 @@ Access control is implemented through standard Kubernetes Role-Based Access Cont
 the use of the custom verb `claim`.
 You must create a rule in a `ClusterRole` which specifies the `claim` verb for one or
 more `clusterinstanceclasses`, and then bind the `ClusterRole` to the roles that you want to
-authorize to create claims for the classes with a `ClusterRoleBinding`.
+authorize to create claims for classes with a `ClusterRoleBinding`.
 This approach is particularly effective when paired with Tanzu Application Platform's aggregated user roles.
 For more information about user roles in Tanzu Application Platform, see
 [Role descriptions](../../authn-authz/role-descriptions.html).

@@ -82,7 +82,7 @@ You might want to do this in cases where, for example, you want to allow for
 dynamic provisioning of service instances in the `iterate` cluster, but want to be more considered about
 the approach in the `run-production` cluster where you might want to ensure that workloads only ever
 connect to one specific service instance.
-You can achieve this by using a provisioner-based class on the `iterate` cluster
+You can achieve this by using a provisioner-based class on the `iterate` cluster,
 and an identically named pool-based class on the `run-production` cluster that is configured to
 only ever select from a pool that consists of one service instance.
 
@@ -134,7 +134,7 @@ as they are promoted across the clusters.
 Create a file named `postgres.class.iterate-cluster.yaml` and copy in the following contents.
 
 ```yaml
-# postgres.class.iterate-cluster.yasml
+# postgres.class.iterate-cluster.yaml
 
 ---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
