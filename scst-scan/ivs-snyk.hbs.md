@@ -4,7 +4,7 @@
 This topic tells you how to configure a Secret and ImageVulnerabilityScan for Snyk.
 
 ## <a id="secret-example"></a> Example Secret
-This section gives you an example Secret containing the Snyk API Token used to authenticate the Code Agent component with your Snyk Account. You will only need to apply this once to your developer namespace.
+This section gives you an example Secret containing the Snyk API Token used to authenticate your Snyk Account. You will only need to apply this once to your developer namespace.
 
 ```yaml
 apiVersion: v1
@@ -31,7 +31,7 @@ metadata:
   annotations:
     app-scanning.apps.tanzu.vmware.com/scanner-name: Snyk
 spec:
-  image: nginx@sha256:... # The image to be scanned. Digest must be specified.
+  image: TARGET-IMAGE
   scanResults:
     location: registry/project/scan-results
   serviceAccountNames:
@@ -61,7 +61,9 @@ spec:
 
 Where:
 
+- `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
 - `SNYK-SCANNER-IMAGE` is the Snyk Scanner image used to run Snyk scans. See [Snyk documentation](https://github.com/snyk/snyk-images) for Snyk images.
+- `XDG_CONFIG_HOME` is the directory that contains your Snyk CLI config file (configstore/snyk.json) which is populated using the snyk-token `Secret` you created. See [Snyk Config documentation](https://docs.snyk.io/snyk-cli/commands/config) for more detail.
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted. See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx).
 
 > **Note** After detecting vulnerabilities, the Snyk image exits with Exit Code 1 and causes a failed scan task. You can ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
