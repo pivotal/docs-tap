@@ -55,7 +55,7 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 1. Relocate the images with the `imgpkg` CLI by running:
 
     ```console
-    imgpkg copy --concurrency 1 -b ${IMGPKG_REGISTRY_HOSTNAME_0}/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME_1}/${INSTALL_REPO}
+    imgpkg copy --concurrency 1 -b ${IMGPKG_REGISTRY_HOSTNAME_0}/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}
     ```
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
