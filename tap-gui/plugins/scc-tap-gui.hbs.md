@@ -222,8 +222,8 @@ analysis.
 ## <a id="sc-crds"></a> Support for CRDs
 
 Tanzu Developer Portal v1.7.0 introduced support for CRDs. The following example illustrates the
-creation of a basic CRD, which is used as part of a supply chain and its visualization in the
-workload:
+creation of a basic custom resource definition (CRD), which is used as part of a supply chain and
+its visualization in the workload:
 
 To define and use a CRD in a supply chain:
 
@@ -512,9 +512,11 @@ To use resources in a supply chain, set resource permissions:
       apiGroup: rbac.authorization.k8s.io
     ```
 
-   *Note:* if you defined `additionalPrinterColumns` on your CRD you will need to grant permissions for both the group you defined in the CRD as well to the `apiextensions.k8s.io/v1` group that contains the definition of your resource.
+   > **Important** If you defined `additionalPrinterColumns` in your CRD, you must grant
+   > permissions for both the group you defined in the CRD and to the `apiextensions.k8s.io/v1`
+   > group that contains the definition of your resource.
 
-   The resulting definitions look like the following example:
+   The finished definitions look like the following example:
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
