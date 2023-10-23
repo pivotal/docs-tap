@@ -28,4 +28,5 @@ TAP users will need to:
     - More customizable scanning experience.
       - For example, creating an image with the scanner CLI along with any required dependencies to run the scanner CLI.
     - Managing vulnerabilities within the TAP user's custom image.
+    - Managing their own image to meet the TAP user's legal compliance standards.
 - Have knowledge of how their preferred scanner works (e.g. commands to use to invoke desired scan results).
