@@ -7,15 +7,7 @@
         <th>Term</th>
         <th>Definition</th>
     </tr>
-    <tr>
-        <td>Accelerator Engine</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Accelerator Server</td>
-        <td></td>
-    </tr>
-        <tr>
+         <tr>
         <td>AMR Observer</td>
         <td>AMR Observer is a set of managed controllers that watches for relevant updates on resources of interest. When relevant events are observed, a CloudEvent is generated and sent to AMR CloudEvent-Handler and relayed for storage in the Metadata Store.</td>
     </tr>
@@ -41,7 +33,7 @@
     </tr>
     <tr>
         <td>Application Accelerator</td>
-        <td></td>
+        <td>This component provides a method to create and use application project templates that codify best practices and ensure that important configurations and structures are in place. Application developers leverage Application Accelerator to quickly bootstrap applications.</td>
     </tr>
     <tr>
         <td>Application Configuration Service</td>
@@ -153,6 +145,10 @@ Aria Operations for Applications dashboard
         <td>Cloud Native Runtimes</td>
         <td>Cloud Native Runtimes is a Tanzu Application Platform component that is a serverless application runtime for Kubernetes. It is based on Knative and runs on a single Kubernetes cluster.</td>
     </tr>
+        <tr>
+        <td>Component</td>
+        <td>A distinct unit or module within the Tanzu Application Platform that performs a specific function or set of functions. Components can be software-based, such as services, APIs, or libraries, or they can be configuration-based, such as profiles or settings. Each component is designed to be interoperable and plays a role in the overall functionality and extensibility of the platform.</td>
+    </tr>
     <tr>
         <td>Convention controller</td>
         <td>The convention controller provides the metadata to the convention server and executes the updates to a PodTemplateSpec in accordance with convention server's requests.</td>
@@ -171,6 +167,10 @@ Aria Operations for Applications dashboard
     <tr>
         <th>Term</th>
         <th>Definition</th>
+    </tr>
+        <tr>
+        <td>Developer Conventions</td>
+        <td>This component enables you to modify your workloads to support live updates and debug operations.</td>
     </tr>
     <tr>
         <td>Dynamic provisioning</td>
@@ -228,12 +228,46 @@ Aria Operations for Applications dashboard
     </tr>
 </table>
 
+## <a id="l"></a> M
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Multicluster</td>
+        <td>A setup or architecture where multiple Kubernetes clusters are used either for geographical distribution, high availability, scalability, or separation of workloads. In Tanzu Application Platform, multicluster capabilities ensure that applications and platform services can be deployed, managed, and operated across these multiple clusters seamlessly.</td>
+    </tr>
+</table>
+
+## <a id="l"></a> N
+
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+    <tr>
+        <td>Namespace Provisioner</td>
+        <td>This component provides an automated way for you to provision namespaces with the resources and namespace-level privileges required for your workloads to function as intended in Tanzu Application Platform.</td>
+    </tr>
+</table>
+
 ## <a id="p"></a> P
 
 <table>
     <tr>
         <th>Term</th>
         <th>Definition</th>
+    </tr>
+        <tr>
+        <td>Package</td>
+        <td>A Package contains the resources needed to install the Components needed by the cluster.</td>
+    </tr>
+        <tr>
+        <td>Package Repository</td>
+        <td>A centralized store or registry containing packages that can be accessed, retrieved, and deployed by users. A package repository ensures that users have a consistent and curated set of software components, which are versioned and can be fetched to deploy on their Tanzu Application Platform installation.</td>
     </tr>
     <tr>
         <td>Pool-based class</td>
@@ -302,6 +336,10 @@ Aria Operations for Applications dashboard
         <td>Service binding</td>
         <td>A service binding is a mechanism in which service instance credentials and other related
         connectivity information are automatically communicated to application workloads.</td>
+    </tr>
+    <tr>
+        <td>Service Bindings</td>
+        <td>This component specifies a Kubernetes-wide specification for communicating service secrets to workloads in an automated way. Service Bindings provides a proprietary package of the Service Binding for Kubernetes open source project.</td>
     </tr>
     <tr>
         <td>Service cluster</td>
@@ -380,6 +418,26 @@ Aria Operations for Applications dashboard
         <td>Tanzu Application Platform Telemetry</td>
         <td>This is a set of objects that collect data about the usage of Tanzu Application Platform
         and send it back to VMware for product improvements.</td>
+    </tr>
+        <tr>
+        <td>Tanzu Build Packs</td>
+        <td>This component provides framework and runtime support for applications. Use Buildpacks to determine what dependencies are required for your applications to communicate with bound services. Tanzu Buildpacks provides a proprietary package of the Paketo Buildpacks open-source project.</td>
+    </tr>
+        <tr>
+        <td>Tanzu Build Service</td>
+        <td>This component enables you to automate container creation, management, and governance at an enterprise scale. Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application source code into container images.</td>
+    </tr>
+        <tr>
+        <td>Tanzu CLI</td>
+        <td>A command-line tool that connects you to Tanzu.</td>
+    </tr>
+     <tr>
+        <td>Tanzu CLI Plugin</td>
+        <td>Tanzu CLI has a pluggable architecture. Plug-ins extend the Tanzu CLI core with additional CLI commands. Each plugin is an executable binary that packages a group of CLI commands./td>
+    </tr>
+     <tr>
+        <td>Tanzu CLI Plugin group</td>
+        <td>Tanzu CLI commands are organized into command groups.  For each Tanzu Application Platform version, there is a Tanzu CLI plug-in group.</td>
     </tr>
     <tr>
         <td>Tanzu Developer Portal</td>
