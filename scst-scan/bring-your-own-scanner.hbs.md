@@ -4,7 +4,7 @@ This topic tells you how to bring your own scanner to use with Supply Chain Secu
 
 ## <a id="overview"></a>Overview
 
-Supply Chain Security Tools (SCST) - Scan 2.0 includes an integration with Grype and examples for the following container image scanning tools:
+Supply Chain Security Tools (SCST) - Scan 2.0 includes integrations with Trivy and Grype and examples for the following container image scanning tools:
 
 - [Trivy](ivs-trivy.hbs.md)
 - [Prisma](ivs-prisma.hbs.md)

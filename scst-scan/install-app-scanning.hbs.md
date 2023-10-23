@@ -66,7 +66,7 @@ To install SCST - Scan 2.0:
                                                                secretgen-controller). Set to false if the secret will already be present.
       docker.pullSecret       registries-credentials  string   Name of a docker pull secret in the deployment namespace to pull the scanner
                                                                images.
-      workspace.storageSize   100Mi                   string   Size of the Persistent Volume to be used by the tekton pipelineruns
+      workspace.storageSize   2Gi                     string   Size of the Persistent Volume to be used by the tekton pipelineruns
       workspace.storageClass                          string   Name of the storage class to use while creating the Persistent Volume Claims
                                                                used by tekton pipelineruns
       caCertData                                      string   The custom certificates to be trusted by the scan's connections
@@ -116,11 +116,19 @@ To install SCST - Scan 2.0:
 
 The following section describes how to configure service accounts and registry credentials. SCST - Scan 2.0 requires the following access:
 
-  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
-  - Read access to the registry containing the image to scan, if scanning a private image
-  - Write access to the registry to which results are published
+| Registry | Permission | Service Account | Example |
+| --- | --- | --- | --- |
+| Target Image Registry | Read | scanner | registry.tanzu.vmware.com |
+| Vulnerability Scanner Image Registry | Read | scanner | "" |
+| Scan Result Result Location Registry | Write | publisher | "" |
 
-1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images.
+Where:
+  - "Target Image Registry" is the registry containing the image to scan, if scanning a private image. The "image to scan" will be referred to as the "target image" or `TARGET-IMAGE`.
+  - "Vulnerability Scanner Image Registry" is the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`. If you are bringing your own scanner, your vulnerability scanner image must be either located in a public registry or in this registry.
+  - "Scan Result Result Location Registry" is the registry to which scan results are published.
+
+
+1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images. If you are bringing your own scanner, your vulnerability scanner image must be either located in a public registry or in this registry.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), skip this step and use the `tap-registry` secret with your service account.
 
@@ -135,13 +143,13 @@ The following section describes how to configure service accounts and registry c
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
-2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
+2. If you are scanning a private target image, create a secret `target-image-read-creds` with read access to the registry containing that target image.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `targetImagePullSecret` secret with your service account as referenced in your tap-values.yaml [here](../install-online/profile.hbs.md#full-profile).
 
     ```console
     read -s REGISTRY_PASSWORD
-    kubectl create secret docker-registry scan-image-read-creds \
+    kubectl create secret docker-registry target-image-read-creds \
       --docker-username=REGISTRY-USERNAME \
       --docker-password=$REGISTRY_PASSWORD \
       --docker-server=REGISTRY-URL \
@@ -159,7 +167,7 @@ The following section describes how to configure service accounts and registry c
       -n DEV-NAMESPACE
     ```
 
-4. Create the service account `scanner` which enables SCST - Scan 2.0 to pull the image to scan. Attach the read secret created earlier under `imagePullSecrets` and the write secret under `secrets`.
+4. Create a `scanner-sa.yaml` file containing the service account `scanner` which enables SCST - Scan 2.0 to pull both the vulnerability scanner image and target image. Attach the read secret created earlier pulling the Tanzu Application Platform bundles and your vulnerability scanner image under `imagePullSecrets`. Attach the read secret created earlier for your target image under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -170,15 +178,20 @@ The following section describes how to configure service accounts and registry c
     imagePullSecrets:
     - name: scanning-tap-component-read-creds
     secrets:
-    - name: scan-image-read-creds
+    - name: target-image-read-creds
     ```
 
     Where:
 
-    - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
-    - `secrets.name` is the name of the secret used by the component to pull the image to scan. This is required if the image you are scanning is private.
+    - `imagePullSecrets.name` is the name of the secret used by the component to pull both the scan component and vulnerability scanner image from the registry.
+    - `secrets.name` is the name of the secret used by the component to pull the target image to scan. This is required if the image you are scanning is private.
 
-5. Create the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
+5. Apply the service account to your developer namespace by running:
+   ```console
+   kubectl apply -f scanner-sa.yaml
+   ```
+
+6. Create a `publisher-sa.yaml` file containing the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
 
     ```yaml
     apiVersion: v1
@@ -204,3 +217,7 @@ If the registry specified to push scan results to support retention policies, yo
 For information about configuring Harbor tag retention rules, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules). For example, you can configure Harbor to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
 
 Retention policy setup differs between registry providers. Confirm with your specific registry's documentation about configuration options.
+7. Apply the service account to your developer namespace by running:
+   ```console
+   kubectl apply -f publisher-sa.yaml
+   ```

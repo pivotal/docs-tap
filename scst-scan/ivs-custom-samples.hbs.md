@@ -1,6 +1,6 @@
 # Configure your custom ImageVulnerabilityScan samples for Supply Chain Security Tools - Scan
 
-This topic gives you a sample ImageVulnerabilityScans for various scanners, and any associated secrets.
+This topic gives you sample ImageVulnerabilityScans for various scanners, and any associated secrets.
 
 ## <a id="overview"></a> ImageVulnerabilityScan samples
 
