@@ -1,4 +1,4 @@
-# Build your Customized Tanzu Developer Portal with Configurator
+# Build your customized Tanzu Developer Portal with Configurator
 
 This topic tells you how to build your customized Tanzu Developer Portal with Configurator.
 
