@@ -22,7 +22,7 @@ You might have an existing investment in a scan solution that VMware does not ha
 TAP users will need to:
 
 - Provide their own Vulnerability Scanner Image either by:
-  - Using a publicaly available image with the scanner CLI.
+  - Using a publicly available image with the scanner CLI.
     - For example, this image with Trivy scanner CLI from [Dockerhub](https://hub.docker.com/r/aquasec/trivy/tags).
   - Building their own image with the scanner CLI which allows for:
     - More customizable scanning experience.
