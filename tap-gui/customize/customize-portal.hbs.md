@@ -1,8 +1,8 @@
 # Customize the portal
 
-This section describes how to customize the existing functionality of your currently running portal.
-If you want to learn how to add additional functionality and features to your portal, see
-[Tanzu Developer Portal Configurator](../configurator/about.hbs.md).
+This section tells you how to customize the existing functionality of your currently running portal.
+To learn how to add additional functions and features to your portal, see
+[Overview of Configurator](../configurator/about.hbs.md).
 
 ## <a id="brand-customizing"></a> Customize branding
 
@@ -21,8 +21,8 @@ To make these customizations:
 
     Where:
 
-    - `BASE-64-IMAGE` is the image encoded in base64. A 512-pixel by 512-pixel PNG
-    image with a transparent background is optimal.
+    - `BASE-64-IMAGE` is the image encoded in base64. A 512-pixel by 512-pixel PNG image with a
+      transparent background is optimal.
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
 2. Reinstall your Tanzu Developer Portal package by following steps in
@@ -36,11 +36,10 @@ Tanzu Developer Portal reverts to the original branding template.
 
 ## <a id="customize-catalog-page"></a> Customize the Software Catalog page
 
-You can customize the name of your organization on the Software Catalog page of
-Tanzu Developer Portal portal.
+You can customize the name of your organization on the Software Catalog page of Tanzu Developer Portal.
 By default, the portal displays **Your Organization** next to **Catalog** and in the selection box.
 
-![Screenshot displaying the default Software Catalog naming in the Tanzu Developer Portal portal. The words Your Organization are framed.](../images/standard-catalog.png)
+![Screenshot displaying the default Software Catalog naming in Tanzu Developer Portal. The words Your Organization are framed.](../images/standard-catalog.png)
 
 ### <a id="catalog-name-customize"></a> Customize the name of the organization
 
@@ -68,7 +67,7 @@ customized version of your portal.
 If there is an error in the provided configuration parameters, Tanzu Developer Portal reverts to the
 original organization name.
 
-![Screenshot displaying the custom Software Catalog naming within the Tanzu Developer Portal portal](../images/customized-catalog-name.png)
+![Screenshot displaying the custom Software Catalog naming within Tanzu Developer Portal.](../images/customized-catalog-name.png)
 
 ### <a id="prevent-changes"></a> Prevent changes to the software catalog
 
@@ -85,8 +84,8 @@ tap_gui:
 
 ## <a id="customize-auth-page"></a> Customize the Authentication page
 
-To customize the portal name on the **Authentication** page and the name of the browser tab
-for Tanzu Developer Portal:
+To customize the portal name on the **Authentication** page and the name of the browser tab for
+Tanzu Developer Portal:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
    file:
