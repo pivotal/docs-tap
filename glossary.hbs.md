@@ -147,7 +147,7 @@ Aria Operations for Applications dashboard
     </tr>
         <tr>
         <td>Component</td>
-        <td>A distinct unit or module within the Tanzu Application Platform that performs a specific function or set of functions. Components can be software-based, such as services, APIs, or libraries, or they can be configuration-based, such as profiles or settings. Each component is designed to be interoperable and plays a role in the overall functionality and extensibility of the platform.</td>
+        <td>A distinct unit or module within Tanzu Application Platform that performs a specific function or set of functions. Components can be software-based, such as services, APIs, or libraries, or they can be configuration-based, such as profiles or settings. Each component is designed to be interoperable and play a role in the overall functionality and extensibility of the Tanzu Application Platform.</td>
     </tr>
     <tr>
         <td>Convention controller</td>
@@ -263,7 +263,7 @@ Aria Operations for Applications dashboard
     </tr>
         <tr>
         <td>Package</td>
-        <td>A Package contains the resources needed to install the Components needed by the cluster.</td>
+        <td>A package contains the resources needed to install the components needed by the cluster.</td>
     </tr>
         <tr>
         <td>Package Repository</td>
@@ -433,7 +433,7 @@ Aria Operations for Applications dashboard
     </tr>
      <tr>
         <td>Tanzu CLI Plugin</td>
-        <td>Tanzu CLI has a pluggable architecture. Plug-ins extend the Tanzu CLI core with additional CLI commands. Each plugin is an executable binary that packages a group of CLI commands./td>
+        <td>Tanzu CLI has a pluggable architecture. Plug-ins extend the Tanzu CLI core with additional CLI commands. Each plugin is an executable binary that packages a group of CLI commands.
     </tr>
      <tr>
         <td>Tanzu CLI Plugin group</td>
