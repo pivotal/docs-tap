@@ -20,7 +20,7 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 
     Where `DEV-NAMESPACE` is the name of your developer namespace.
 
-- Determine which resources are failing and proceed to the debugging sections below:
+- Verify which resources are failing and proceed to the following debugging sections:
 
     ```console
     NAME                                                                SUCCEEDED   REASON
@@ -46,7 +46,7 @@ The following sections describe commands you run to get logs and details about s
 
 ## <a id="debug-source-image-scan"></a> Debugging resources
 
-If a resource fails or has errors, inspect the resource. If multiple resources are involved, inspecting them all may provide a broader understanding (e.g. inspecting the corresponding `TaskRun` to a failed `Pod`).
+If a resource fails or has errors, inspect the resource. If multiple resources are involved, inspecting them all can provide a broader understanding. For example, inspecting the corresponding `TaskRun` to a failed `Pod`.
 
 To get status conditions on a resource:
 
@@ -75,7 +75,7 @@ You can use the following methods to debug scan pods:
     For information
     about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
 
-    A scan run that has an error may indicate that one of the following step containers has a failure:
+    A scan run that has an error can indicate that one of the following step containers has a failure:
 
     - `step-workspace-setup`
     - `step-write-certs`
@@ -142,7 +142,6 @@ You can run these commands to view the Scan-Controller manager logs:
     kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
     ```
 
-
 ## <a id="troubleshooting-app-scanning-issues"></a> Troubleshooting issues
 
 ### <a id="volume-permission-errors"></a> Volume permission error
@@ -158,37 +157,43 @@ Ensure that the problematic step runs with the
 
 ### <a id="upgrading-scan-0.2.0"></a> Incompatible Tekton version
 
-Tanzu Application Platform `v1.7.0` includes `app-scanning.apps.tanzu.vmware.com` version `0.2.0` and Tekton Pipelines version `0.50.1`. The `app-scanning.apps.tanzu.vmware.com` package is incompatible with previous versions of Tekton Pipelines as v1 CRDs were not enabled. You must first upgrade the Tanzu Application Platform package to `v1.7.0` or greater prior to upgrading `app-scanning.apps.tanzu.vmware.com`.
+Tanzu Application Platform `v1.7.0` includes `app-scanning.apps.tanzu.vmware.com` version `0.2.0` and Tekton Pipelines version `0.50.1`. The `app-scanning.apps.tanzu.vmware.com` package is incompatible with previous versions of Tekton Pipelines as v1 CRDs were not enabled. You must upgrade Tanzu Application Platform to `v1.7.0` or greater before upgrading `app-scanning.apps.tanzu.vmware.com`.
 
-If you did not upgrade in the above order, you may encounter ImageVulnerabilityScans not progressing.
+If you did not upgrade Tanzu Application Platform before upgrading `app-scanning.apps.tanzu.vmware.com`, you can encounter ImageVulnerabilityScans not progressing:
 
 ```console
 NAME      SUCCEEDED   REASON
 my-scan
 ```
+ 
+To resolve the issue above:
 
-1. Confirm that the issue is due to installation of an incompatible Tekton version by viewing the controller manager logs.
-```console
-kubectl -n app-scanning-system logs -f deployment/app-scanning-controller-manager -c manager
-```
+1. Confirm that the issue is due to installing an incompatible Tekton version by viewing the controller manager logs by running:
 
-If you encounter the following error, proceed to the next step:
-```console
-ERROR	controller-runtime.source.EventHandler	failed to get informer from cache	{"error": "failed to get API group resources: unable to retrieve the complete list of server APIs: tekton.dev/v1: the server could not find the requested resource"}
-```
+    ```console
+    kubectl -n app-scanning-system logs -f deployment/app-scanning-controller-manager -c manager
+    ```
 
-1. Follow [Upgrade your Tanzu Application Platform](../upgrading.hbs.md) to upgrade TAP to version `v1.7.0` or greater.
+    If you encounter the following error, proceed to the next step:
+
+    ```console
+    ERROR  controller-runtime.source.EventHandler  failed to get informer from cache  {"error": "failed to get API group resources: unable to retrieve the complete list of server APIs: tekton.dev/v1: the server could not find the requested resource"}
+    ```
+
+2. Upgrade Tanzu Application Platform to `v1.7.0` or later. See [Upgrade your Tanzu Application Platform](../upgrading.hbs.md). 
 
 ### <a id="scan-results-empty"></a> Scan results empty
 
-The publish-task task will fail if the `scan-results-path` (default value of `/workspace/scan-result`) is empty. To confirm, view the logs of the publish-task pod:
+The publish-task task fails if the `scan-results-path` (default value of `/workspace/scan-result`) is empty. To confirm, view the logs of the publish-task pod:
+
 ```console
 kubectl logs PUBLISH-TASK-POD-NAME -c step-publisher -n DEV-NAMESPACE
 ```
+
 Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 
 ```console
 2023/08/22 17:09:49 results folder /workspace/scan-results is empty
 ```
 
-To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You will need to use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot your scanner commands from within the container.
+To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You must use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot your scanner commands from within the container.

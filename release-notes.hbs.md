@@ -213,8 +213,9 @@ Application Accelerator starter templates for Python and Java are removed in thi
 are impacted: Accelerator, Apps, Build Service, External Secrets, Insight, and Service.
 
 #### <a id='1-7-0-scst-scan'></a> v1.7.0 Breaking changes: Supply Chain Security Tools (SCST) - Scan
+
 - Supply Chain Security Tools - Scan 2.0
-  - Users must first upgrade the Tanzu Application Platform package to `v1.7.0` prior to upgrading `app-scanning.apps.tanzu.vmware.com` to version `0.2.0`. See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0) for detailed steps.
+  - Users must upgrade the Tanzu Application Platform package to `v1.7.0` before upgrading `app-scanning.apps.tanzu.vmware.com` to version `0.2.0`. See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0).
 
 ---
 
