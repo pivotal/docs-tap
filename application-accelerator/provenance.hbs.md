@@ -29,7 +29,7 @@ When an application is generated with an accelerator, an event that contains the
 The relevant AMR data models are:
 
 - [AppAcceleratorRun](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorruns). There is one AppAcceleratorRun for each invocation of an accelerator. Includes version information about which accelerator was used.
-- [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments) There is one instance of AppAcceleratorFragment for each named fragment used by the accelerator being run. There is between 0 and N instances of those, N being the number of fragments used by the accelerator.
+- [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments) There is one instance of AppAcceleratorFragment for each named fragment used by the accelerator being run. There is between 0 and N instances, N being the number of fragments used by the accelerator.
 
 When some invocations have been recorded, use the
 [AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query the system about
