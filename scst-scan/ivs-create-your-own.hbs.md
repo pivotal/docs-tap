@@ -35,7 +35,7 @@ To customize an ImageVulnerabilityScan to use your scanner:
     Where:
 
     - `DEV-NAMESPACE` is the developer namespace where scanning occurs.
-    - `spec.image` is your target image (image that you are scanning). See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest)
+    - `spec.image` is your target image (image that you are scanning). The digest must be specified. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
     - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
     - `serviceAccountNames` includes:
         - `scanner` is the service account that runs the scan. It must have read access to `image`.

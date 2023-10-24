@@ -196,8 +196,8 @@ Where:
 
     Where:
 
-    - `imagePullSecrets.name` includes the name of the secret used by the component to pull the scan component from the registry. If you are bringing your own vulnerability scanner and the vulnerability scanner image is located in a separate private registry, you must also include the name of the secret with those registry credentials.
-    - `secrets.name` is the name of the secret used by the component to pull the target image to scan. This is required if the image you are scanning is private.
+    - `imagePullSecrets.name` includes the name of the secret used to pull the scan component from the registry. If you are bringing your own vulnerability scanner and the vulnerability scanner image is located in a separate private registry, you must also include the name of the secret with those registry credentials.
+    - `secrets.name` is the name of the secret used to pull the target image to scan. This is required if the image you are scanning is private.
 
 6. Apply the service account to your developer namespace by running:
    ```console
@@ -220,8 +220,8 @@ Where:
 
     Where:
 
-    - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
-    - `secrets.name` is the name of the secret used by the component to publish the scan results.
+    - `imagePullSecrets.name` is the name of the secret used to pull the scan component image from the registry.
+    - `secrets.name` is the name of the secret used to publish the scan results.
 
 8. Apply the service account to your developer namespace by running:
    ```console
