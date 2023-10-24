@@ -83,7 +83,7 @@ a predefined group of packages.
 
 - **[AWS Services](aws-services/about.hbs.md)**
 
-  AWS Services provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform (TAP).
+  AWS Services provides an integration with Amazon Web Services (AWS) for Tanzu Application Platform.
 
   Through integration with [Crossplane](crossplane/about.hbs.md) and
   [Services Toolkit](services-toolkit/about.hbs.md), you can offer services from AWS to
@@ -364,22 +364,18 @@ For a diagram showing the packages contained in each profile, see
 [Overview of multicluster Tanzu Application Platform](./multicluster/about.hbs.md).
 
 <table>
+ <thead>
   <tr>
-   <td><strong>Package Name</strong>
-   </td>
-   <td><strong>Full</strong>
-   </td>
-   <td><strong>Iterate</strong>
-   </td>
-   <td><strong>Build</strong>
-   </td>
-   <td><strong>Run</strong>
-   </td>
-   <td><strong>View</strong>
-   </td>
-   <td><strong>Not in a profile</strong>
-   </td>
+   <th><strong>Package Name</strong></th>
+   <th><strong>Full</strong></th>
+   <th><strong>Iterate</strong></th>
+   <th><strong>Build</strong></th>
+   <th><strong>Run</strong></th>
+   <th><strong>View</strong></th>
+   <th><strong>Not in a profile</strong></th>
   </tr>
+ </thead>
+ <tbody>
   <tr>
    <td>API Auto Registration
    </td>
@@ -1146,7 +1142,7 @@ For a diagram showing the packages contained in each profile, see
    <td>
    </td>
   </tr>
-  <tr>
+ </tbody>
 </table>
 
 >**Note** You can only install one supply chain at any given time. For information about switching
@@ -1158,22 +1154,18 @@ The following table shows the languages and frameworks supported by
 Tanzu Application Platform components.
 
 <table>
+ <thead>
   <tr>
-   <td><strong>Language or Framework</strong>
-   </td>
-   <td><strong>Tanzu Build Service</strong>
-   </td>
-   <td><strong>Runtime Conventions</strong>
-   </td>
-   <td><strong>Tanzu Developer Tooling</strong>
-   </td>
-   <td><strong>Application Live View</strong>
-   </td>
-   <td><strong>Functions</strong>
-   </td>
-   <td><strong>Extended Scanning Coverage using Buildpack SBOM's</strong>
-   </td>
+   <th><strong>Language or Framework</strong></th>
+   <th><strong>Tanzu Build Service</strong></th>
+   <th><strong>Runtime Conventions</strong></th>
+   <th><strong>Tanzu Developer Tooling</strong></th>
+   <th><strong>Application Live View</strong></th>
+   <th><strong>Functions</strong></th>
+   <th><strong>Extended Scanning Coverage using Buildpack SBOMs</strong></th>
   </tr>
+ </thead>
+ <tbody>
   <tr>
    <td>Java
    </td>
@@ -1319,6 +1311,7 @@ Tanzu Application Platform components.
    <td>&check;
    </td>
   </tr>
+ </td>
 </table>
 
 **Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
