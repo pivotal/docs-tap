@@ -366,13 +366,13 @@ For a diagram showing the packages contained in each profile, see
 <table>
  <thead>
   <tr>
-   <th><strong>Package Name</strong></th>
-   <th><strong>Full</strong></th>
-   <th><strong>Iterate</strong></th>
-   <th><strong>Build</strong></th>
-   <th><strong>Run</strong></th>
-   <th><strong>View</strong></th>
-   <th><strong>Not in a profile</strong></th>
+   <th>Package Name</th>
+   <th>Full</th>
+   <th>Iterate</th>
+   <th>Build</th>
+   <th>Run</th>
+   <th>View</th>
+   <th>Not in a profile</th>
   </tr>
  </thead>
  <tbody>
@@ -1156,160 +1156,96 @@ Tanzu Application Platform components.
 <table>
  <thead>
   <tr>
-   <th><strong>Language or Framework</strong></th>
-   <th><strong>Tanzu Build Service</strong></th>
-   <th><strong>Runtime Conventions</strong></th>
-   <th><strong>Tanzu Developer Tooling</strong></th>
-   <th><strong>Application Live View</strong></th>
-   <th><strong>Functions</strong></th>
-   <th><strong>Extended Scanning Coverage using Buildpack SBOMs</strong></th>
+   <th>Language or Framework</th>
+   <th>Tanzu Build Service</th>
+   <th>Runtime Conventions</th>
+   <th>Tanzu Developer Tooling</th>
+   <th>Application Live View</th>
+   <th>Functions</th>
+   <th>Extended Scanning Coverage using Buildpack SBOMs</th>
   </tr>
  </thead>
  <tbody>
   <tr>
-   <td>Java
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th>Java</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Spring Boot
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th>Spring Boot</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>.NET Core
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th>.NET Core</th>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Steeltoe
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th>Steeltoe</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>NodeJS
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th>NodeJS</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Python
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th>Python</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>golang
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th>golang</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>PHP
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th>PHP</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Ruby
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th>Ruby</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
  </td>
 </table>
