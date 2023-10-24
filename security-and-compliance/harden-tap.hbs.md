@@ -111,6 +111,41 @@ six Kubernetes Roles as part of the installation that users can be bound to.  Fo
 around the roles used for authorization, see 
 [Default roles for Tanzu Application Platform](../authn-authz/overview.hbs.md).
 
+### Artifact Metadata Repository (AMR) Observer, CloudEvent Handler, and GraphQL
+
+AMR Observer deploys on TAP `full`, `build`, and `run` profiles by default.
+
+AMR CloudEvent Handler and GraphQL deploys on TAP `full` and `view` profiles by default. 
+
+Each of these components create Kubernetes service accounts, cluster roles, cluster rolebindings, and secrets required for communication between these components internally and externally between Kubernetes clusters. For more details, see [Kubernetes service account automatic configuration](../scst-store/amr/auth-k8s-sa-autoconfiguration.md).
+
+As best practice, it is recommended to disable the autoconfiguration for each of these components for the respective profiles, and to manually create them as known resources.
+
+Disabling AMR Observer Autoconfiguration:
+```yaml
+amr:
+  observer:
+    auth:
+      kubernetes_service_accounts:
+        autoconfigure: false
+```
+
+Disabling AMR CloudEvent Handler and GraphQL Autoconfiguration:
+```yaml
+amr:
+  cloudevent_handler:
+    auth:
+      kubernetes_service_accounts:
+        autoconfigure: false
+
+  graphql:
+    auth:
+      kubernetes_service_accounts:
+        autoconfigure: false
+```
+
+For best practice, the users on the Kubernetes clusters should create resources with Kubernetes roles that limit access in a least privilege model. For more information, see [User-defined Kubernetes Service Account Configuration](../scst-store/amr/auth-k8s-sa-user-defined.hbs.md).
+
 ## Cryptographic Protections
 
 Encryption of data is leveraged to prevent unauthorized access to data.  With the Tanzu Application

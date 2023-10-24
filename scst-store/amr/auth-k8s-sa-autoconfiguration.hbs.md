@@ -11,7 +11,7 @@ if you use means to manage your service accounts or have other requirements
 related to roles and bindings, see [User-defined kubernetes service account
 configuration](auth-k8s-sa-user-defined.hbs.md)
 
-The package-level configuration has a component top level key (TLK)prefix and
+The package-level configuration has a component top level key (TLK) prefix and
 this topic describes how Tanzu Application Platform configurations can influence
 this prefix.
 
