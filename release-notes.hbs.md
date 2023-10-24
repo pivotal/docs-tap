@@ -29,6 +29,11 @@ This release includes the following platform-wide enhancements.
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
   servers in your namespaces and bind Spring Boot workloads to them.
 
+- [Aria Operations for Applications (AOA) dashboard (Beta)](aoa-dashboard/about.hbs.md):
+  This dashboard, powered by Aria Operations for Applications (formerly Tanzu Observability), helps
+  platform engineers monitor the health of a given cluster by showing whether the deployed
+  Tanzu Application Platform components are behaving as expected.
+
 ### <a id='1-7-0-new-features'></a> v1.7.0 New features by component and area
 
 This release includes the following changes, listed by component and area.
@@ -331,55 +336,56 @@ sufficient Kubernetes resources in your clusters to support the pod rollout.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                     | Version |
-| -------------------------------------------------- | ------- |
-| API Auto Registration                              |         |
-| API portal                                         |         |
-| Application Accelerator                            |         |
-| Application Configuration Service                  |         |
-| Application Live View APIServer                    |         |
-| Application Live View back end                     |         |
-| Application Live View connector                    |         |
-| Application Live View conventions                  |         |
-| Application Single Sign-On                         | 5.0.0   |
-| AWS Services                                       |         |
-| Bitnami Services                                   |         |
-| Cartographer Conventions                           |         |
-| cert-manager                                       | 2.4.1 (includes cert-manager@1.12) |
-| Cloud Native Runtimes                              | 2.4.1   |
-| Contour                                            | 1.25.2  |
-| Crossplane                                         |         |
-| Default Roles                                      |         |
-| Developer Conventions                              |         |
-| External Secrets Operator                          |         |
-| Flux CD Source Controller                          |         |
-| Local Source Proxy                                 |         |
-| Namespace Provisioner                              |         |
-| Out of the Box Delivery - Basic                    |         |
-| Out of the Box Supply Chain - Basic                |         |
-| Out of the Box Supply Chain - Testing              |         |
-| Out of the Box Supply Chain - Testing and Scanning |         |
-| Out of the Box Templates                           |         |
-| Service Bindings                                   |         |
-| Service Registry                                   |         |
-| Services Toolkit                                   |         |
-| Source Controller                                  |         |
-| Spring Boot conventions                            |         |
-| Spring Cloud Gateway                               |         |
-| Supply Chain Choreographer                         |         |
-| Supply Chain Security Tools - Policy Controller    |         |
-| Supply Chain Security Tools - Scan                 |         |
-| Supply Chain Security Tools - Store                |         |
-| Tanzu Developer Portal                             |         |
-| Tanzu Application Platform Telemetry               |         |
-| Tanzu Build Service                                |         |
-| Tanzu CLI                                          |         |
-| Tanzu CLI Application Accelerator plug-in          |         |
-| Tanzu CLI Apps plug-in                             |         |
-| Tanzu CLI Build Service plug-in                    |         |
-| Tanzu CLI Insight plug-in                          |         |
-| Tanzu Service CLI plug-in                          |         |
-| Tekton Pipelines                                   |         |
+| Component Name                                     | Version                             |
+| -------------------------------------------------- | ----------------------------------- |
+| API Auto Registration                              |                                     |
+| API portal                                         |                                     |
+| Application Accelerator                            |                                     |
+| Application Configuration Service                  |                                     |
+| Application Live View APIServer                    |                                     |
+| Application Live View back end                     |                                     |
+| Application Live View connector                    |                                     |
+| Application Live View conventions                  |                                     |
+| Application Single Sign-On                         | 5.0.0                               |
+| Aria Operations for Applications dashboard (Beta)  |                                     |
+| AWS Services                                       |                                     |
+| Bitnami Services                                   |                                     |
+| Cartographer Conventions                           |                                     |
+| cert-manager                                       | 2.4.1 (contains cert-manager v1.12) |
+| Cloud Native Runtimes                              | 2.4.1                               |
+| Contour                                            | 1.25.2                              |
+| Crossplane                                         |                                     |
+| Default Roles                                      |                                     |
+| Developer Conventions                              |                                     |
+| External Secrets Operator                          |                                     |
+| Flux CD Source Controller                          |                                     |
+| Local Source Proxy                                 |                                     |
+| Namespace Provisioner                              |                                     |
+| Out of the Box Delivery - Basic                    |                                     |
+| Out of the Box Supply Chain - Basic                |                                     |
+| Out of the Box Supply Chain - Testing              |                                     |
+| Out of the Box Supply Chain - Testing and Scanning |                                     |
+| Out of the Box Templates                           |                                     |
+| Service Bindings                                   |                                     |
+| Service Registry                                   |                                     |
+| Services Toolkit                                   |                                     |
+| Source Controller                                  |                                     |
+| Spring Boot conventions                            |                                     |
+| Spring Cloud Gateway                               |                                     |
+| Supply Chain Choreographer                         |                                     |
+| Supply Chain Security Tools - Policy Controller    |                                     |
+| Supply Chain Security Tools - Scan                 |                                     |
+| Supply Chain Security Tools - Store                |                                     |
+| Tanzu Developer Portal                             |                                     |
+| Tanzu Application Platform Telemetry               |                                     |
+| Tanzu Build Service                                |                                     |
+| Tanzu CLI                                          |                                     |
+| Tanzu CLI Application Accelerator plug-in          |                                     |
+| Tanzu CLI Apps plug-in                             |                                     |
+| Tanzu CLI Build Service plug-in                    |                                     |
+| Tanzu CLI Insight plug-in                          |                                     |
+| Tanzu Service CLI plug-in                          |                                     |
+| Tekton Pipelines                                   |                                     |
 
 ---
 
