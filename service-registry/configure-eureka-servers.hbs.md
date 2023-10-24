@@ -49,6 +49,8 @@ To create a `EurekaServer` resource:
       replicas: 2
     ```
 
+1. Save the YAML definition as `my-eurekaserver.yaml`.
+
 1. Apply the YAML definition by running:
 
    ```console

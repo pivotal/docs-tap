@@ -134,8 +134,8 @@ Tanzu Developer Portal
 
   **To generate a new project using an Application Accelerator:**
 
-  1. From Tanzu Developer Portal portal, click **Create** located on the
-     left side of the navigation pane to see the list of available accelerators.
+  1. From Tanzu Developer Portal, click **Create** located on the left side of the navigation pane
+     to see the list of available accelerators.
 
       ![Screenshot of the Accelerators page showing list of available accelerators in Tanzu Developer Portal.](../images/getting-started-tap-gui-1.png)
 

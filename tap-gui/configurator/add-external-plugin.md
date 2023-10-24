@@ -2,15 +2,17 @@
 
 <!-- It's not in the ToC right now because it's not finished -->
 
-The Tanzu Developer Portal Configurator tool enables you to add functions (plug-ins) to Tanzu
-Developer Portal, turning it into a customized portal.
+Use Tanzu Developer Portal Configurator to add functions (plug-ins) to Tanzu Developer Portal,
+turning it into a customized portal.
 
-There are several scenarios in which Configurator can help you to integrate a compatible plug-in:
-- [Add a validated community Backstage plug-in](#validated-community)
-- [Add a non-validated community or custom Backstage plug-in](#non-validated-custom)
+There are several scenarios in which Configurator can help you to integrate a compatible plug-in.
+You can:
 
-As of this release, Configurator can integrate an existing plug-in, but it cannot create a new
-Backstage plug-in.
+- Add a [validated community Backstage plug-in](#validated-community)
+- Add a [non-validated community or custom Backstage plug-in](#non-validated-custom)
+
+As of Tanzu Application Platform v1.7, Configurator can integrate an existing plug-in, but it cannot
+create a new Backstage plug-in.
 
 VMware Tanzu, as an organization, can assist you with creating your own plug-in or with
 modifying an existing plug-in to your specification. For more information, see

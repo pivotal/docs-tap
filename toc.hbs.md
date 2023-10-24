@@ -733,7 +733,7 @@
       - [Add integrations](tap-gui/integrations.hbs.md)
       - [Database configuration](tap-gui/database.hbs.md)
       - [Generate and publish TechDocs](tap-gui/techdocs/usage.hbs.md)
-      - [Tanzu Developer Portal Configurator (beta)](tap-gui/configurator/about.hbs.md)
+      - [Tanzu Developer Portal Configurator](tap-gui/configurator/about.hbs.md)
          - [Overview](tap-gui/configurator/about.hbs.md)
          - [Concepts](tap-gui/configurator/concepts.hbs.md)
          - [Build your customized Tanzu Developer Portal](tap-gui/configurator/building.hbs.md)
