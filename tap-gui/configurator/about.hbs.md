@@ -1,7 +1,6 @@
 # Overview of Configurator
 
-The Tanzu Developer Portal Configurator tool allows you to add custom functions to Tanzu Developer
-Portal.
+Use the Tanzu Developer Portal Configurator tool to add custom functions to Tanzu Developer Portal.
 
 ## <a id="diff"></a> Differences between the pre-built Tanzu Developer Portal and a customized portal
 
@@ -9,11 +8,9 @@ Tanzu Application Platform (commonly known as TAP) has a pre-built version of Ta
 Portal. The pre-built Tanzu Developer Portal includes all the core functions of Backstage
 (software catalog, TechDocs, API Docs, templates, accelerators, and Kubernetes).
 
-You can choose to use just the pre-built Tanzu Developer Portal and the integrations with
-Tanzu Application Platform.
-
-Alternatively, you can customize Tanzu Developer Portal as needed by using the Configurator tool to
-add additional Tanzu Developer Portal plug-in wrappers.
+You can choose to use just the pre-built Tanzu Developer Portal and the integrations with Tanzu
+Application Platform. Alternatively, you can customize Tanzu Developer Portal for your needs by
+using the Configurator tool to add additional Tanzu Developer Portal plug-in wrappers.
 
 ## <a id="plug-in-wrappers"></a> Tanzu Developer Portal plug-in wrappers
 
