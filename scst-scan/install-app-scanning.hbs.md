@@ -71,7 +71,7 @@ To install SCST - Scan 2.0:
                                                                used by tekton pipelineruns
       caCertData                                      string   The custom certificates to be trusted by the scan's connections
     ```
-    
+
     To edit any of the default installation settings, create an `app-scanning-values-file.yaml` and append the key-value pairs to be modified to the file. For example:
 
     ```yaml
@@ -118,17 +118,19 @@ The following section describes how to configure service accounts and registry c
 
 | Registry | Permission | Service Account | Example |
 | --- | --- | --- | --- |
-| Target Image Registry | Read | scanner | registry.tanzu.vmware.com |
-| Vulnerability Scanner Image Registry | Read | scanner | "" |
-| Scan Result Result Location Registry | Write | publisher | "" |
+| Tanzu Application Platform bundles registry| Read | scanner | registry.tanzu.vmware.com |
+| Target image registry | Read | scanner | your-registry.io |
+| Vulnerability scanner image registry | Read | scanner | your-registry.io |
+| Scan results location registry | Write | publisher | your-registry.io |
 
 Where:
-  - "Target Image Registry" is the registry containing the image to scan, if scanning a private image. The "image to scan" will be referred to as the "target image" or `TARGET-IMAGE`.
-  - "Vulnerability Scanner Image Registry" is the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`. If you are bringing your own scanner, your vulnerability scanner image must be either located in a public registry or in this registry.
-  - "Scan Result Result Location Registry" is the registry to which scan results are published.
+  - "Tanzu Application Platform bundles registry" is the registry containing the Tanzu Application Platform bundles. This is the registry from the [Relocate images to a registry](../install-online/profile.hbs.md#relocate-images-to-a-registry) step or `registry.tanzu.vmware.com`.
+  - "Target image registry" is the registry containing the image to scan. This registry credential is required if you are scanning a private image. The "image to scan" will hereinafter be referred to as the "target image" or `TARGET-IMAGE`.
+  - "Vulnerability scanner image registry" is the registry containing your vulnerability scanner image. This is only needed if you are bringing your own scanner and your vulnerability scanner image is located in a private registry different from the "Tanzu Application Platform bundles registry".
+  - "Scan results location registry" is the registry to which scan results are published.
 
 
-1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images. If you are bringing your own scanner, your vulnerability scanner image must be either located in a public registry or in this registry.
+1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images. If you previously relocated the TAP bundles to your own registry, you can also place your vulnerability scanner image in this registry.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), skip this step and use the `tap-registry` secret with your service account.
 
@@ -166,8 +168,18 @@ Where:
       --docker-server=DESTINATION-REGISTRY-URL \
       -n DEV-NAMESPACE
     ```
+4. (Optional) If you are bringing your own vulnerability scanner and your vulnerability scanner image is located in a private registry different from the registry containing your Tanzu Application Platform bundles, you will need to create a secret `vulnerability-scanner-image-read-creds` with read access to the registry.
 
-4. Create a `scanner-sa.yaml` file containing the service account `scanner` which enables SCST - Scan 2.0 to pull both the vulnerability scanner image and target image. Attach the read secret created earlier pulling the Tanzu Application Platform bundles and your vulnerability scanner image under `imagePullSecrets`. Attach the read secret created earlier for your target image under `secrets`.
+    ```console
+    read -s WRITE_PASSWORD
+    kubectl create secret docker-registry vulnerability-scanner-image-read-creds \
+      --docker-username=WRITE-USERNAME \
+      --docker-password=$WRITE_PASSWORD \
+      --docker-server=REGISTRY-URL \
+      -n DEV-NAMESPACE
+    ```
+
+5. Create a `scanner-sa.yaml` file containing the service account `scanner` which enables SCST - Scan 2.0 to pull both the vulnerability scanner image and target image. Attach the read secret(s) created earlier pulling the Tanzu Application Platform bundles and optioanlly, your vulnerability scanner image under `imagePullSecrets`. Attach the read secret created earlier for your target image under `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -177,21 +189,22 @@ Where:
       namespace: DEV-NAMESPACE
     imagePullSecrets:
     - name: scanning-tap-component-read-creds
+    - name: vulnerability-scanner-image-read-creds # optional
     secrets:
     - name: target-image-read-creds
     ```
 
     Where:
 
-    - `imagePullSecrets.name` is the name of the secret used by the component to pull both the scan component and vulnerability scanner image from the registry.
+    - `imagePullSecrets.name` includes the name of the secret used by the component to pull the scan component from the registry. If you are bringing your own vulnerability scanner and the vulnerability scanner image is located in a separate private registry, you must also include the name of the secret with those registry credentials.
     - `secrets.name` is the name of the secret used by the component to pull the target image to scan. This is required if the image you are scanning is private.
 
-5. Apply the service account to your developer namespace by running:
+6. Apply the service account to your developer namespace by running:
    ```console
    kubectl apply -f scanner-sa.yaml
    ```
 
-6. Create a `publisher-sa.yaml` file containing the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
+7. Create a `publisher-sa.yaml` file containing the service account `publisher` which enables SCST - Scan 2.0 to push the scan results to a user specified registry.
 
     ```yaml
     apiVersion: v1
@@ -210,6 +223,11 @@ Where:
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to publish the scan results.
 
+8. Apply the service account to your developer namespace by running:
+   ```console
+   kubectl apply -f publisher-sa.yaml
+   ```
+
 ## <a id="registry-retention-policy"></a> (Optional) Set up your registry retention policy
 
 If the registry specified to push scan results to support retention policies, you can configure the registry to delete old scan results automatically depending on your archival requirements. Scan result artifacts accumulate over time and with recurring scanning, artifacts can quickly consume storage space.
@@ -217,7 +235,3 @@ If the registry specified to push scan results to support retention policies, yo
 For information about configuring Harbor tag retention rules, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules). For example, you can configure Harbor to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
 
 Retention policy setup differs between registry providers. Confirm with your specific registry's documentation about configuration options.
-7. Apply the service account to your developer namespace by running:
-   ```console
-   kubectl apply -f publisher-sa.yaml
-   ```
