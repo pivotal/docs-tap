@@ -53,7 +53,7 @@ $ kubectl get imagevulnerabilityscan -n my-apps
 NAME                                  SUCCEEDED   REASON
 tanzu-java-web-app-grype-scan-jb76m   True        Succeeded
 ```
- 
+
 The name of the image vulnerability scan starts with the name of the workload.
 
 To describe the image vulnerability scan, run:
