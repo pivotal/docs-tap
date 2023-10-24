@@ -198,6 +198,8 @@ Submit the workload definition file you created earlier by running:
 ```console
 tanzu apps workload create -f tdp-workload.yaml
 ```
-> **Note** The supply chain does not need to go beyond the image provider stage. Once an image is built, you can proceed to 
-> the next step - [running your customized Tanzu Developer Portal](./running.hbs.md). A dedicated supply chain will be available in a future release.
+
+> **Note** The supply chain does not need to go beyond the image-provider stage. After an image is
+> built, you can proceed to [Run your Customized Tanzu Developer Portal](running.hbs.md).
+> A dedicated supply chain is planned for a future release.
 
