@@ -201,7 +201,7 @@ Using GitOps
 
 If you are installing Tanzu Application Platform on Amazon Elastic Kubernetes Service (EKS), you
 can use the IAM Role specified in `aws_iam_role_arn` to configure the Kubernetes service account
-used by the workload and the supply chain components. For additional details on the process of creating the IAM Role for workloads and obtaining the `aws_iam_role_arn`, please follow the [Create AWS Resources](../install-aws/resources.hbs.md) documentation.
+used by the workload and the supply chain components. For additional details on the process of creating the IAM Role for workloads and obtaining the `aws_iam_role_arn`, see [Create AWS Resources for Tanzu Application Platform](../install-aws/resources.hbs.md).
 
 Sample `tap-values.yaml` configuration:
 
