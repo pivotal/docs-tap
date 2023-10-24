@@ -23,9 +23,9 @@ There are four commands for querying and adding data.
 - `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilities.
 - `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
-Use `tanzu insight -h` or for more information see [Tanzu Insight Details](cli-docs/insight.md).
+Use `tanzu insight -h` or for more information, see [Tanzu Insight Details](cli-docs/insight.md).
 
-## <a id='example1'></a>Example #1: What packages and CVEs does a specific image contain?
+## <a id='example1'></a>Example 1: What packages and CVEs does a specific image contain?
 
 ### Determining an image's digest
 
@@ -33,7 +33,11 @@ To query an image scan for vulnerabilities, you need the image's digest, which y
 
 #### When using Supply Chain Tools - Scan 2.0
 
-When using Supply Chain Tools - Scan 2.0, the image digest can be found by looking inside the corresponding
+When using Supply Chain Tools - Scan 2.0, find the image digest by looking inside the corresponding image vulnerability scan custom resource.
+
+#### Find an image's digest using Supply Chain Tools - Scan 2.0
+
+When using Supply Chain Tools - Scan 2.0, find the image digest by looking inside the corresponding
 image vulnerability scan custom resource.
 
 To get a list of image vulnerability scans, run:
@@ -50,7 +54,7 @@ NAME                                  SUCCEEDED   REASON
 tanzu-java-web-app-grype-scan-jb76m   True        Succeeded
 ```
  
-The name of the image vulnerability scan will start with the name of the workload.
+The name of the image vulnerability scan starts with the name of the workload.
 
 To describe the image vulnerability scan, run:
 
@@ -75,10 +79,7 @@ Spec:
 
 In this example, the image's digest is: `sha256:a24a8d8eb724b6816f244925cc6625a84c15f6ced6a19335121343424be693cd`
 
-
-#### Using Supply Chain Tools - Scan Pre-2.0
-
-When using Supply Chain Tools - Scan Pre-2.0, the image digest can be found by looking inside the corresponding image scan custom resource.
+When using Supply Chain Tools - Scan Pre-2.0, find the image digest by looking inside the corresponding image scan custom resource.
 
 Run:
 
@@ -162,4 +163,4 @@ Packages:
 
 ## <a id='add-data'></a>Add data
 
-For more information about manually adding data, see [Add Data](add-data.md).
+For more information about manually adding data, see [Add data to your Supply Chain Security Tools - Store](add-data.hbs.md).
