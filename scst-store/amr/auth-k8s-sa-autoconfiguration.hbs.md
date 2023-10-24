@@ -20,14 +20,14 @@ this prefix.
 Observer configuration in the Tanzu Application Platform context has the prefix
 TLK `amr.observer`. For authentication and authorization, the Tanzu Application
 Platform profiles influence automatic configuration. Observer can only automatically
-configure itself when co-located with the cloudevent handler, which is in the
+configure itself when co-located with the CloudEvent Handler, which is in the
 `full` or `view` profile. If this is not the case
 `auth.kubernetes_service_accounts.autoconfigure` is set to false at
 installation.
 
 If `auth.kubernetes_service_accounts.enable` and `auth.kubernetes_service_accounts.autoconfigure` are true, the observer package creates the following resources to set up authentication automatically in the `amr-observer-system` namespace:
 
-- a `ServiceAccount` named `amr-observer-editor` that observer uses to send requests to the cloudevent handler
+- a `ServiceAccount` named `amr-observer-editor` that observer uses to send requests to the CloudEvent Handler
 - a `Secret` named `amr-observer-edit-token` of type `kubernetes.io/service-account-token` which generates a long-lived token for the service account
 - a `ClusterRole` named `tanzu:amr:observer:edit` defining the necessary `update` permissions for all resources in `cloudevents.amr.apps.tanzu.vmware.com`
 - a `ClusterRoleBinding` named `tanzu:amr:observer:editor` binding the defined role to the service account
@@ -35,13 +35,13 @@ If `auth.kubernetes_service_accounts.enable` and `auth.kubernetes_service_accoun
 If `auth.kubernetes_service_accounts.autoconfigure` is set to false, you must configure the observer package with all the above resources manually.
 For information about how to set up the observer, see [User-defined Kubernetes service account configuration](./auth-k8s-sa-user-defined.hbs.md#clients-to-cloudevent-handler).
 
-## <a id="cloudevent-handler"></a>Cloudevent handler
+## <a id="cloudevent-handler"></a>CloudEvent Handler
 
-You can find the Cloudevent handler configuration in the Tanzu Application Platform context under the TLK `amr.cloudevent_handler`. This prefix is not stripped in this case.
+You can find the CloudEvent handler configuration in the Tanzu Application Platform context under the TLK `amr.cloudevent_handler`. This prefix is not stripped in this case.
 
 On the package level, if `amr.cloudevent_handler.auth.kubernetes_service_accounts.enable` and `amr.cloudevent_handler.auth.kubernetes_service_accounts.autoconfigure` are true, the package  creates the following resources to set up authentication automatically in the `metadata-store` namespace:
 
-- a `ServiceAccount` named `amr-cloudevent-handler-editor` that clients use to send requests to the cloudevent handler
+- a `ServiceAccount` named `amr-cloudevent-handler-editor` that clients use to send requests to the CloudEvent Handler
 - a `Secret` named `amr-cloudevent-handler-edit-token` of type `kubernetes.io/service-account-token` which generates a long-lived token for the service account
 - a `ClusterRole` named `tanzu:amr:cloudevent-handler:edit` defining the necessary `update` permissions for all resources in `cloudevents.amr.apps.tanzu.vmware.com`
 - a `ClusterRoleBinding` named `tanzu:amr:cloudevent-handler:editor` binding the defined role to the service account
