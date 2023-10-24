@@ -130,9 +130,9 @@ Where:
   - "Scan results location registry" is the registry to which scan results are published.
 
 
-1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images. If you previously relocated the TAP bundles to your own registry, you can also place your vulnerability scanner image in this registry.
+1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the SCST - Scan 2.0 images. If you previously relocated the Tanzu Application Platform bundles to your own registry, you can also place your vulnerability scanner image in this registry.
 
-    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), skip this step and use the `tap-registry` secret with your service account.
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md) and did not relocate images, skip this step and use the `tap-registry` secret with your service account. If you did relocate the images from VMware Tanzu Network registry to your own container image registry, skip this step and use the `registry-credentials` secret with your service account.
 
     ```console
     read -s TAP_REGISTRY_PASSWORD
