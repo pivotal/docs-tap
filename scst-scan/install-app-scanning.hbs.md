@@ -179,7 +179,7 @@ Where:
       -n DEV-NAMESPACE
     ```
 
-5. Create a `scanner-sa.yaml` file containing the service account `scanner` which enables SCST - Scan 2.0 to pull both the vulnerability scanner image and target image. Attach the read secret(s) created earlier pulling the Tanzu Application Platform bundles and optioanlly, your vulnerability scanner image under `imagePullSecrets`. Attach the read secret created earlier for your target image under `secrets`.
+5. Create a `scanner-sa.yaml` file containing the service account `scanner` which enables SCST - Scan 2.0 to pull both the vulnerability scanner image and target image. Attach the read secret(s) created earlier pulling the Tanzu Application Platform bundles and optionally, your vulnerability scanner image under `imagePullSecrets`. Attach the read secret created earlier for your target image under `secrets`.
 
     ```yaml
     apiVersion: v1
