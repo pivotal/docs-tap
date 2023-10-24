@@ -192,10 +192,10 @@ The following section describes how to configure service accounts and registry c
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to publish the scan results.
 
-## <a id="registry-retention-policy"></a> (Optional) Set up Registry Retention Policy
+## <a id="registry-retention-policy"></a> (Optional) Set up your registry retention policy
 
-If the registry specified to push scan results to supports retention policies, you can configure the registry to delete old scan results automatically depending on your archival requirements. Scan result artifacts accumulate over time and especially with recurring scanning, storage space can quickly be consumed.
+If the registry specified to push scan results to support retention policies, you can configure the registry to delete old scan results automatically depending on your archival requirements. Scan result artifacts accumulate over time and with recurring scanning, artifacts can quickly consume storage space.
 
-If you use Harbor, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules) on configuring tag retention rules. An example would be to "retain the most recently pushed # artifacts" or "retain the artifacts pushed within the last # days".
+For information about configuring Harbor tag retention rules, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules). For example, you can configure Harbor to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
 
 Retention policy setup differs between registry providers. Check with your specific registry's documentation on configuration options.
