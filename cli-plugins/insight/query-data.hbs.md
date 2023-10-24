@@ -24,6 +24,9 @@ There are four commands for querying and adding data.
 - `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilities.
 - `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
+For more information about Tanzu Insight CLI plug-in commands, see the
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
+
 ## <a id='example1'></a>Example #1: What packages and CVEs does a specific image contain?
 
 To query an image scan for vulnerabilities, you need the image's digest, which you can get from the image scan resource.
