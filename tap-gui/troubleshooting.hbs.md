@@ -535,6 +535,6 @@ does not work with Guest mode enabled.
 
 #### Solution
 
-Add an authentication provider to your Tanzu Developer Portal configuration and then re-apply your
-values file. For how to configure an authentication provider, see
+Add an authentication provider to your Tanzu Developer Portal configuration and then re-apply
+`tap-values.yaml`. For how to configure an authentication provider, see
 [Set up authentication for Tanzu Developer Portal](auth.hbs.md).
