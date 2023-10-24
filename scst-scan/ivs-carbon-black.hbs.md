@@ -2,12 +2,7 @@
 
 This topic gives you an example of how to configure a Secret and ImageVulnerabilityScan (IVS) for Carbon Black.
 
-## <a id="example"></a> Example ImageVulnerabilityScan
-
-This section contains a sample IVS that uses Carbon Black to scan a targeted image and push the results to the specified registry location.
-For information about the IVS specification, see [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
-
-### <a id="cbc-config"></a> Prepare the Carbon Black Scanner configuration
+## <a id="secret-example"></a> Example Secret
 
 This section contains a sample Secret containing the Carbon Black credentials inside the `~/.cbctl/cbctl.yaml` config file which are used to authenticate your Carbon Black Account and can be found in the Carbon Black console. See [here](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration) for more details. You will only need to apply this once to your developer namespace.
 
@@ -32,7 +27,10 @@ Where:
 - `ORG-KEY` is the Org Key for your Carbon Black organization.
 - `SAAS-URL` is the Carbon Black Backend URL.
 
-### <a id="configure-carbon-black-ivs"></a> Configure IVS for Carbon Black
+## <a id="example"></a> Example ImageVulnerabilityScan
+
+This section contains a sample IVS that uses Carbon Black to scan a targeted image and push the results to the specified registry location.
+For information about the IVS specification, see [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
 
 - Set the tekton-pipelines feature-flags configmap `enable-api-fields` to `alpha`. This enables the user to use the `stdoutConfig` which is needed to output the scan report as a file.
 
