@@ -55,4 +55,6 @@ scans:
 ### <a id="disclaimer"></a> Disclaimer
 As a publicly maintained image that is built outside of VMware's build systems, the image may not meet the security standards VMware has established.  Please be sure to review the image before usage to ensure that it meets your organizations security and compliance policies.
 
+As a publicly maintained image that is built outside of VMware's build systems, the image may not meet the security standards VMware has established.  Please be sure to review the image before usage to ensure that it meets your organizations security and compliance policies
+
 For the publicly available Trivy scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
