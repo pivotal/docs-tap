@@ -110,8 +110,6 @@ Terms beginning with "A".
   </tbody>
 </table>
 
-Aria Operations for Applications dashboard
-
 ## <a id="b"></a> B
 
 Terms beginning with "B".
