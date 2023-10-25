@@ -164,7 +164,7 @@ The `tap.tanzu.vmware.com` package installs predefined sets of packages based on
 by using the package manager installed by Tanzu Cluster Essentials.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
-Some components use `kpack` and will need a repository to publish artifacts to. This registry does not have to be the same registry used to install TAP packages. To create a registry secret and add it to a developer namespace:
+Some components use `kpack` and require a repository to publish artifacts to. This registry does not have to be the same registry used for installing the Tanzu Application Platform packages. To create a registry secret and add it to a developer namespace, run:
 
 ```console
 export KP_REGISTRY_USERNAME=YOUR-USERNAME
@@ -205,7 +205,7 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
-    > **Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
+    > **Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for the Tanzu Application Platform components.
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
@@ -219,7 +219,7 @@ See [Install multicluster Tanzu Application Platform profiles](../multicluster/i
 cat << EOF > tap-values.yaml
 shared:
   ingress_domain: YOUR_DOMAIN
-  ingress_issuer: CLUSTER_ISSUER # "" to disable SSL
+  ingress_issuer: CLUSTER_ISSUER # use "" to disable SSL
 
   image_registry:
     project_path: ${KP_REGISTRY_HOSTNAME}/tap
@@ -236,7 +236,7 @@ ootb_templates:
   iaas_auth: true
 
 ootb_supply_chain_basic:
-  registry: # (Optional) Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting different values
+  registry: # (Optional) Takes the value from the project_path under the shared.image_registry section by default, but you can override it by setting different values.
     server: ${KP_REGISTRY_HOSTNAME}
     repository: tap-apps
   gitops:
@@ -248,14 +248,14 @@ contour:
       type: LoadBalancer
 
 buildservice:
-  # (Optional) Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
+  # (Optional) Takes the value from the project_path under the shared.image_registry section by default, but you can override it by setting a different value.
   kp_default_repository: ${KP_REGISTRY_HOSTNAME}/buildservice
   kp_default_repository_secret:
     name: registry-credentials
     namespace: ${YOUR_NAMESPACE}
 
 local_source_proxy:
-  # (Optional) Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
+  # (Optional) Takes the value from the project_path under the shared.image_registry section by default, but you can override it by setting a different value.
   repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
   push_secret:
     name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
@@ -289,7 +289,7 @@ Where:
 
 - `YOUR_DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress` service's External IP address.
     > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
-- `CLUSTER_ISSUER` is the name of the `ClusterIssuer` deployed that you want to use to ensure TLS on your ingress domain. Using an empty string `""` will disable TLS.
+- `CLUSTER_ISSUER` is the name of the deployed `ClusterIssuer` to enable TLS on your ingress domain. You can disable TLS by using an empty string `""`.
 - `YOUR_NAMESPACE` is the environment variable you defined earlier to describe the name of the developer namespace.
   Supply Chain Security Tools - Store exports secrets to the namespace, and Supply Chain Security Tools - Scan deploys the `ScanTemplates` there.
   This allows the scanning feature to run in this namespace.
