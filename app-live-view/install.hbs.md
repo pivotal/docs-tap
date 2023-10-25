@@ -9,11 +9,14 @@ Application Live View includes four packages you can install. The following tabl
 and shows the Tanzu Application Platform profiles each package is included in.
 
 <table>
+<thead>
 <tr>
 <th>Package</th>
 <th>Profiles</th>
 <th>Details</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>Application Live View back end <br>(<code>backend.appliveview.tanzu.vmware.com</code>)</td>
 <td>Full, View</td>
@@ -29,6 +32,7 @@ and shows the Tanzu Application Platform profiles each package is included in.
 <td>Full, Iterate, Build</td>
 <td>Installed in the <code>app-live-view-conventions</code> namespace</td>
 </tr>
+</tbody>
 </table>
 
 For more information about these packages, see
