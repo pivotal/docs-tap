@@ -22,14 +22,6 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 1. Set up environment variables for installation use by running:
 
     ```console
-    export AZURE_SP_APP_ID=MY-AZURE-APP-ID
-    export AZURE_SP_TENANT=AZURE-TENANT
-    export AZURE_SP_PASSWORD=AZURE-PASSWORD
-    export AZURE_SUBSCRIPTION_ID=MY-AZURE-SUBSCRIPTION-ID
-    export AZURE_ACCOUNT_ID=MY-AZURE-ACCOUNT-ID
-    export AZURE_REGION=TARGET-AZURE-REGION
-    export AKS_CLUSTER_NAME=tap-on-azure
-
     # Set tanzunet as the source registry to copy the Tanzu Application Platform packages from.
     export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
     export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
@@ -49,12 +41,8 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
     Where:
 
-    - `MY-AZURE-APP-ID` is the application ID you deploy Tanzu Application Platform in. Must be in UUID format.
-    - `AZURE-TENANT` is the tenant you deploy Tanzu Application Platform in. Must be in UUID format.
-    - `MY-AZURE-SUBSCRIPTION-ID` is the Azure subscription ID you deploy Tanzu Application Platform in. Must be in UUID format.
     - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
-    - `TARGET-AZURE-REGION` is the region you deploy the Tanzu Application Platform to.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 1. [Install the Carvel tool imgpkg CLI](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
@@ -62,7 +50,7 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 1. Relocate the images with the `imgpkg` CLI by running:
 
     ```console
-    imgpkg copy --concurrency 1 -b ${IMGPKG_REGISTRY_HOSTNAME_0}/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}
+    imgpkg copy --concurrency 1 -b ${IMGPKG_REGISTRY_HOSTNAME_0}/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${IMGPKG_REGISTRY_HOSTNAME_1}/${INSTALL_REPO}
     ```
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
@@ -179,7 +167,7 @@ The `tap.tanzu.vmware.com` package installs predefined sets of packages based on
 by using the package manager installed by Tanzu Cluster Essentials.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
-To create a registry secret and add it to a developer namespace:
+Some components use `kpack` and will need a repository to publish artifacts to. This registry does not have to be the same registry used to install TAP packages. To create a registry secret and add it to a developer namespace:
 
 ```console
 export KP_REGISTRY_USERNAME=YOUR-USERNAME
@@ -220,7 +208,7 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
-    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
+    > **Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
@@ -232,6 +220,16 @@ See [Install multicluster Tanzu Application Platform profiles](../multicluster/i
 
 ```console
 cat << EOF > tap-values.yaml
+shared:
+  ingress_domain: YOUR_DOMAIN
+  ingress_issuer: CLUSTER_ISSUER # "" to disable SSL
+
+  image_registry:
+    project_path: ${KP_REGISTRY_HOSTNAME}/tap
+    secret:
+      name: registry-credentials
+      namespace: ${YOUR_NAMESPACE}
+
 ceip_policy_disclosed: true
 profile: full # Can take iterate, build, run, view.
 
@@ -241,9 +239,9 @@ ootb_templates:
   iaas_auth: true
 
 ootb_supply_chain_basic:
-  registry:
+  registry: # (Optional) Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting different values
     server: ${KP_REGISTRY_HOSTNAME}
-    repository: ${INSTALL_REPO}
+    repository: tap-apps
   gitops:
     ssh_secret: ""
 
@@ -253,13 +251,14 @@ contour:
       type: LoadBalancer
 
 buildservice:
+  # (Optional) Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
   kp_default_repository: ${KP_REGISTRY_HOSTNAME}/buildservice
   kp_default_repository_secret:
     name: registry-credentials
     namespace: ${YOUR_NAMESPACE}
 
 local_source_proxy:
-  # Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
+  # (Optional) Takes the value from the project_path under the image_registry section of shared by default, but can be overridden by setting a different value.
   repository: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE"
   push_secret:
     name: "EXTERNAL-REGISTRY-FOR-LOCAL-SOURCE-SECRET"
@@ -273,23 +272,11 @@ ootb_delivery_basic:
   service_account: default
 
 tap_gui:
-  ingressEnabled: true
-  ingressDomain: tap.com
   app_config:
-    supplyChain:
-      enablePlugin: true
     auth:
       allowGuestAccess: true
-    backend:
-      baseUrl: http://tap-gui.tap.com
-      cors:
-        origin: http://tap-gui.tap.com
-    app:
-      baseUrl: http://tap-gui.tap.com
 
 metadata_store:
-  ingressEnabled: true
-  ingressDomain: "tap.com"
   app_service_type: ClusterIP
   ns_for_export_app_cert: ${YOUR_NAMESPACE}
 
@@ -301,15 +288,14 @@ accelerator:
   server:
     service_type: "ClusterIP"
 
-cnrs:
-  domain_name: tap.com
 EOF
 ```
 
 Where:
 
-- `tap.com` is a placeholder that must be replaced with a subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address.
+- `YOUR_DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress` service's External IP address.
+    > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
+- `CLUSTER_ISSUER` is the name of the `ClusterIssuer` deployed that you want to use to ensure TLS on your ingress domain. Using an empty string `""` will disable TLS.
 - `YOUR_NAMESPACE` is the environment variable you defined earlier to describe the name of the developer namespace.
   Supply Chain Security Tools - Store exports secrets to the namespace, and Supply Chain Security Tools - Scan deploys the `ScanTemplates` there.
   This allows the scanning feature to run in this namespace.
