@@ -23,7 +23,7 @@ TAP users will need to:
 
 - Provide their own Vulnerability Scanner Image either by:
   - Using a publicly available image that contains the scanner CLI.
-    - For example, the official image from Aqua for Trivy from [Dockerhub](https://hub.docker.com/r/aquasec/trivy/tags).
+    - For example, the official Aqua image for Trivy from [Dockerhub](https://hub.docker.com/r/aquasec/trivy/tags).
   - Building their own image with the scanner CLI which allows for:
     - More customizable scanning experience.
       - For example, creating an image with the scanner CLI along with any required dependencies to run the scanner CLI.
