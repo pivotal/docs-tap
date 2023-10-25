@@ -51,6 +51,7 @@ provided with Tanzu Application Platform.
 ![The Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
 
 <table>
+  <thead>
   <tr>
    <td><strong>Name</strong>
    </td>
@@ -61,44 +62,45 @@ provided with Tanzu Application Platform.
    <td><strong>Dependencies</strong>
    </td>
   </tr>
+  </thead>
+  <tbody>
   <tr>
    <td><strong>Out of the Box Basic (Default - Installed during Installing Part 2)</strong>
    </td>
    <td><code>ootb-supply-chain-basic.tanzu.vmware.com</code>
    </td>
    <td>This supply chain monitors a repository that is identified in the developer’s <code>workload.yaml</code> file. When any new commits are made to the application, the supply chain:
-<ul>
+    <ul>
 
-<li>Creates a new image.
+    <li>Creates a new image.</li>
 
-<li>Applies any predefined conventions.
+    <li>Applies any predefined conventions.</li>
 
-<li>Deploys the application to the cluster.
-</li>
-</ul>
+    <li>Deploys the application to the cluster.</li>
+    </ul>
    </td>
    <td>
-<ul>
+    <ul>
 
-<li>Flux/Source Controller
+    <li>Flux/Source Controller</li>
 
-<li>Tanzu Build Service
+    <li>Tanzu Build Service</li>
 
-<li>Cartographer Conventions
+    <li>Cartographer Conventions</li>
 
-<li>Tekton
+    <li>Tekton</li>
 
-<li>Cloud Native Runtimes
-<li>If using Service References:
-   </li>
-<ul>
-<li>Service Bindings
-<li>Services Toolkit
-   </li>
-   </ul>
-</ul>
+    <li>Cloud Native Runtimes</li>
+    <li>If using Service References:
+      <ul>
+      <li>Service Bindings</li>
+      <li>Services Toolkit</li>
+      </ul>
+    </li>
+    </ul>
    </td>
   </tr>
+  </tbody>
 </table>
 
 ### <a id="OOTB-testing"></a>2: OOTB Testing
@@ -110,6 +112,7 @@ provided with Tanzu Application Platform.
 ![The Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
 
 <table>
+  <thead>
   <tr>
    <td><strong>Name</strong>
    </td>
@@ -120,30 +123,29 @@ provided with Tanzu Application Platform.
    <td><strong>Dependencies</strong>
    </td>
   </tr>
+  </thead>
+  <tbody>
   <tr>
    <td><strong>Out of the Box Testing</strong>
    </td>
    <td><code>ootb-supply-chain-testing.tanzu.vmware.com</code>
    </td>
    <td>Out of the Box Testing contains all of the same elements as the Source to URL. It allows developers to specify a Tekton pipeline that runs as part of the CI step of the supply chain.
-<ul>
+    <ul>
 
-<li>The application tests using the Tekton pipeline.
+    <li>The application tests using the Tekton pipeline.</li>
 
-<li>A new image is created.
+    <li>A new image is created.</li>
 
-<li>Any predefined conventions are applied.
+    <li>Any predefined conventions are applied.</li>
 
-<li>The application is deployed to the cluster.
-</li>
-</ul>
+    <li>The application is deployed to the cluster.</li>
+    </ul>
    </td>
    <td>All of the Source to URL dependencies
-<ul>
-
-</ul>
    </td>
   </tr>
+  </tbody>
 </table>
 
 ### <a id="OOTB-test-and-scan"></a>3: OOTB Testing+Scanning
@@ -155,6 +157,7 @@ provided with Tanzu Application Platform.
 ![The Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
 
 <table>
+  <thead>
   <tr>
    <td><strong>Name</strong>
    </td>
@@ -165,34 +168,35 @@ provided with Tanzu Application Platform.
    <td><strong>Dependencies</strong>
    </td>
   </tr>
+  </thead>
+  <tbody>
   <tr>
    <td><strong>Out of the Box Testing and Scanning</strong>
    </td>
    <td><code>ootb-supply-chain-testing-scanning.tanzu.vmware.com</code>
    </td>
    <td>Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chain, and it also includes integrations with the secure scanning components of Tanzu Application Platform.
-<ul>
+    <ul>
 
-<li>The application is tested using the provided Tekton pipeline.
-<li>The application source code is scanned for vulnerabilities.
+    <li>The application is tested using the provided Tekton pipeline.</li>
+    <li>The application source code is scanned for vulnerabilities.</li>
 
-<li>A new image is created.
-<li>The image is scanned for vulnerabilities.
+    <li>A new image is created.</li>
+    <li>The image is scanned for vulnerabilities.</li>
 
-<li>Any predefined conventions are applied.
+    <li>Any predefined conventions are applied.</li>
 
-<li>The application deploys to the cluster.
-</li>
-</ul>
+    <li>The application deploys to the cluster.</li>
+    </ul>
    </td>
    <td>All of the Source to URL dependencies, and:
-<ul>
+    <ul>
 
-<li>The secure scanning components included with Tanzu Application Platform
-</li>
-</ul>
+    <li>The secure scanning components included with Tanzu Application Platform</li>
+    </ul>
    </td>
   </tr>
+  </tbody>
 </table>
 
 ## <a id="next-steps"></a> Next steps
