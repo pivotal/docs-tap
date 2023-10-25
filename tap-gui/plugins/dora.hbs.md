@@ -52,3 +52,16 @@ DORA plug-in. Support for more metrics is planned for later DORA plug-in version
 | Lead Time for Changes | Yes                                                                     |
 | Change Failure Rate   | No                                                                      |
 | Mean Time to Recovery | No                                                                      |
+
+## <a id="supported-metrics"></a> Using DORA plugin
+
+Using guest access to authenticate into Tanzu Developer Portal will not display DORA metrics. Please use an auth provider to log into Tanzu Developer Portal.
+
+1. Select the component you would like to view DORA metrics for.
+
+2. Select the DORA tab from the navigation list.
+
+## <a id="supported-metrics"></a> DORA Metric Calculation
+DORA metrics are calculated by taking the average number of deployments over the last 90 days.
+
+Tanzu Workloads have a Correlation ID which groups all of the artifacts together. The Observer sends this information to the Cloud Event Handler to store DoraMetricsPerCorrelationID. For more information on the data model for DORA metrics: [Artifact Metadata Repository (AMR) data model and concepts]([https://dora.dev/](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/scst-store-amr-data-model-and-concepts.html#dorametricspercorrelationid-9)https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/scst-store-amr-data-model-and-concepts.html#dorametricspercorrelationid-9) . 
