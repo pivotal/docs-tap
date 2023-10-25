@@ -1,34 +1,8 @@
 # Troubleshooting Cloud Native Runtimes
 
-This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation or configuration.
+This topic tells you how to troubleshoot Cloud Native Runtimes, commonly known as CNRs, installation, or configuration.
 
-## <a id='aws-connection-failure'></a> Cannot connect to app on AWS
-
-### Symptom
-
-On AWS, you see the following error when connecting to your app:
-
-```console
-curl: (6) Could not resolve host: a***********************7.us-west-2.elb.amazonaws.com
-```
-
-### Solution
-
-Try connecting to your app again after 5 minutes. The AWS LoadBalancer name resolution takes
-several minutes to propagate.
-
-## <a id='imgpkg-pull-overwriting'></a> Pulling an image with imgpkg overwrites the cloud-native-runtimes directory
-
-### Symptom
-
-When relocating an image to a private registry and later pulling that image with
-`imgpkg pull --lock LOCK-OUTPUT -o ./cloud-native-runtimes`, the contents of the cloud-native-runtimes are overwritten.
-
-### Solution
-
-Upgrade the imgpkg version to v0.13.0 or later.
-
-## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes
+## <a id='reconcile-fails'></a> Installation fails to reconcile app/cloud-native-runtimes>
 
 ### Symptom
 
@@ -105,7 +79,7 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     10:51:58PM:  ^ Deployment is not progressing: ProgressDeadlineExceeded (message: ReplicaSet "webhook-6f5d979b7d" has timed out progressing.)
     ```
 
-1. Run `kubectl get pods` to find the name of the pod:
+2. Run `kubectl get pods` to find the name of the pod:
 
     ```console
     kubectl get pods --show-labels -n NAMESPACE
@@ -121,7 +95,7 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     webhook-6f5d979b7d-cxr9k   0/1     Pending   0          44h   app=webhook,kapp.k14s.io/app=1626302357703846007,kapp.k14s.io/association=v1.9621e0a793b4e925077dd557acedbcfe,pod-template-hash=6f5d979b7d,role=webhook
     ```
 
-2. Run `kubectl logs` and `kubectl describe`:
+3. Run `kubectl logs` and `kubectl describe`:
 
     ```console
     kubectl logs PODNAME -n NAMESPACE
@@ -145,7 +119,7 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     Warning  FailedScheduling  80s (x14 over 14m)  default-scheduler  0/1 nodes are available: 1 Insufficient cpu.
     ```
 
-3. Review the output from the `kubectl logs` and `kubectl describe` commands and take further action.
+4. Review the output from the `kubectl logs` and `kubectl describe` commands and take further action.
 
     For this example of the webhook deployment, the output indicates that the scheduler does not have enough CPU to run the pod.
     In this case, the solution is to add nodes or CPU cores to the cluster.
@@ -153,22 +127,6 @@ Follow these steps to identify and resolve the problem of the `webhook` deployme
     to three or more through the TMC UI.
     See [Edit a Node Pool](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-53D4E904-3FFE-464A-8814-13942E03232A.html),
     in the TMC documentation.
-
-## <a id='aws-connection-failure'></a> Cloud Native Runtimes Installation Fails with Existing Contour Installation
-
-### Symptom
-
-You see the following error message when you run the install script:
-
-  ```console
-  Could not proceed with installation. Refer to Cloud Native Runtimes documentation for details on how to utilize an existing Contour installation. Another app owns the custom resource definitions listed below.
-  ```
-
-### Solution
-
-Follow the procedure in
-[Install Cloud Native Runtimes on a Cluster with Your Existing Contour Instances](./contour.hbs.md#install-with-existing-contour)
-to resolve the issue.
 
 ## <a id='invalid-httpproxy'></a> Knative Service Fails to Come up Due to Invalid HTTPPRoxy
 
@@ -189,63 +147,3 @@ Resolving this is unique to each Knative service. It is likely to involve renami
 For example, `foo-java.cody.iterate.tanzu-azure-lab.winterfell.fun` is hashed and trimmed into `foo-java-contour-5f549ae3e6f584a5f33d069a0650c0d8foo-java.cody.`, leaving an invalid `.` at the end.
 
 However, changing the app name to `foo-jav` causes `foo-jav-contour-<some different hash>foo-jav.cody.it`, which is a valid name.
-
-## <a id='certificate-not-ready-kcert'></a> When using auto-tls, Knative Service Fails with `CertificateNotReady`
-
-### Symptom
-
-When creating a Knative Service, it does not reach ready status. The Knative Service has the status  `CertificateNotReady`.
-When you verify the status of the `kcert` resource that belongs to the Knative Service you see a message like this:
-
-```console
-kubectl -n your-namespace get kcert route-76e387a2-cc35-4580-b2f1-bf7561371891 -ojsonpath='{.status}'
-```
-
-Output:
-
-```json
-{
-  "conditions":[
-  {
-    "lastTransitionTime":"2023-06-05T11:26:53Z",
-    "message":"error creating Certmanager Certificate: cannot create valid length CommonName: (where-for-dinner.medium.longevityaks253.tapalong.cloudfocused.in) still longer than 63 characters, cannot shorten",
-    "reason":"CommonName Too Long",
-    "status":"False",
-    "type":"Ready"
-  }],
-  "observedGeneration":1}
-```
-
-### Solution
-
-Due to a restriction imposed by cert-manager, CNs cannot be longer than 64 bytes (see [here](https://github.com/cert-manager/cert-manager/issues/1462)). For Knative using cert-manager, this means that the FQDN for a Knative Service (usually comprised of `<ksvc name>.<namespace>.<domain>`, but configurable via `domain_template` in CNRs) must not exceed 64 bytes.
-
-[There is an open issue in Knative Serving community that aims to solve this](https://github.com/knative-sandbox/net-certmanager/issues/550).
-
-To avoid this, deactivate TLS. See [CNRs docs on disabling auto tls](./auto-tls/tls-guides-deactivate-autotls.hbs.md).
-
-If you want to continue using TLS, there are a few ways to resolve this on your own, though each has its own risks and limits.
-
-#### Option 1: Change the `domain_template`
-
-Changing the `domain_template` alters how Knative will create FQDNs for Knative Services. See [configuring External DNS](./external_dns.hbs.md#configure-knative-service-domain-template).
-
-You can use this option to shorten the template, either by shortening one of the fields:
-
-```console
-\{{.Name}}.\{{slice .Namespace 0 3}}.\{{.Domain}}
-```
-
-> **Note** Knative was not designed with shortening the name or namespace in mind. Due to a quirk in Knative's domain template validation, you can only slice up to a maximum of three characters.
-
-Or by removing a field altogether:
-
-```console
-\{{.Name}}.\{{.Domain}}
-```
-
-> **Caution** Removing the namespace from the `domain_template` makes it possible for Knative to create non-unique FQDNs for Knative Services across different namespaces. It requires manual care in naming Knative Services to ensure that FQDNs remain unique.
-
-#### Option 2: Shorten the names of Knative Services or Namespaces
-
-You can also shorten the names of your Knative Services or Namespaces, if you have that ability. This requires some manual calculation to ensure that the shortened Name, Namespace, and domain,including `.`s, come out to less that 64 bytes.

@@ -1,40 +1,48 @@
-# Overview of Configurator (beta)
+# Overview of Configurator
 
-The Tanzu Developer Portal Configurator tool enables you to add functions (plug-ins) to
-Tanzu Developer Portal, turning it into a customized portal.
-
-> **Caution** The Configurator tool is in beta. Do not use it in a production environment.
+Use the Tanzu Developer Portal Configurator tool to add custom functions to Tanzu Developer Portal.
 
 ## <a id="diff"></a> Differences between the pre-built Tanzu Developer Portal and a customized portal
 
-Tanzu Application Platform has a pre-built version of Tanzu Developer Portal.
-The portal uses the Backstage open-source framework and includes the core capability of Backstage
-(Software Catalog, TechDocs, API Docs, Templates/Accelerators, and Kubernetes).
+Tanzu Application Platform (commonly known as TAP) has a pre-built version of Tanzu Developer
+Portal. The pre-built Tanzu Developer Portal includes all the core functions of Backstage
+(software catalog, TechDocs, API Docs, templates, accelerators, and Kubernetes).
 
-The Backstage framework enables you to enhance your portal's capabilities by adding functions as
-plug-ins. For more information about Backstage, see the
-[Backstage documentation](https://backstage.io/docs/overview/what-is-backstage/).
+You can choose to use just the pre-built Tanzu Developer Portal and the integrations with Tanzu
+Application Platform. Alternatively, you can customize Tanzu Developer Portal for your needs by
+using the Configurator tool to add additional Tanzu Developer Portal plug-in wrappers.
 
-Any portal owner can create two types of Backstage plug-ins:
+## <a id="plug-in-wrappers"></a> Tanzu Developer Portal plug-in wrappers
 
-- Custom plug-ins, which are for organization-specific needs
-- Community plug-ins, which are for common needs and are made publicly available to Backstage adopters
+Tanzu Developer Portal is built using the [Cloud Native Computing Foundation's](https://www.cncf.io/)
+project [Backstage](https://backstage.io/).
 
-The operator might choose to just use the pre-built Tanzu Developer Portal that includes all the core
-functions of Backstage as well as all the integrations with Tanzu Application Platform.
-Alternatively, the operator might choose to customize Tanzu Developer Portal as needed by using the
-Configurator tool.
+While Backstage offers [Backstage plug-ins](https://backstage.io/plugins/) for adding custom
+functions, Tanzu Developer Portal uses plug-in wrappers to accomplish the same thing.
+A Tanzu Developer Portal plug-in wrapper is simply a Backstage plug-in that is wrapped in a small
+amount of code to make integrating with Configurator and Tanzu Developer Portal easier.
 
 ## <a id="how-it-works"></a> How Configurator works
 
-Configurator takes the list of the Backstage plug-ins that you want to integrate into your
-Tanzu Developer Portal. With that plug-in list, Configurator generates a developer portal customized
-to your specifications. VMware has built automation to simplify integrating the plug-ins.
+Configurator takes a list of Tanzu Developer Portal plug-ins wrappers that you want to integrate
+with your Tanzu Developer Portal. With that plug-in list, Configurator generates a portal customized
+to your specifications.
 
-With these new plug-ins the maintenance of a customized portal remains similar to that of a pre-built
-Tanzu Developer Portal, handled by the automation of Tanzu Application Platform.
+With these new plug-ins, maintaining a customized portal remains similar to maintaining a pre-built
+Tanzu Developer Portal. Tanzu Application Platform automation handles the maintenance.
 
 ## <a id="next-steps"></a> Next steps
 
-See [Tanzu Developer Portal Configurator Concepts](concepts.hbs.md) or skip straight to
-[Building your Customized Tanzu Developer Portal with Configurator](building.hbs.md)
+- Learn the [Tanzu Developer Portal Configurator concepts](concepts.hbs.md).
+
+- See the [list of Tanzu Developer Portal plug-in wrappers](tdp-plug-in-wrapper-list.hbs.md)
+  currently available for use.
+
+- When you are ready, [build your customized Tanzu Developer Portal with Configurator](building.hbs.md).
+
+- Learn how to
+  [create your own Tanzu Developer Portal plug-in wrapper](create-plug-in-wrapper.hbs.md) of
+  an existing Backstage plug-in.
+
+- For more information about how to create Backstage plug-ins, see the
+  [Backstage plug-in documentation](https://backstage.io/docs/plugins/).

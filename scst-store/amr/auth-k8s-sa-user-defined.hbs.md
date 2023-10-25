@@ -4,15 +4,15 @@ This topic tells you how to configure a user-defined Kubernetes service account.
 
 ## <a id="overview"></a>Overview
 
-To configure a Kubernetes service account authentication for AMR, cloudevent handler or graphql clients must have the required permissions, resources, and groups in the following sections.
+To configure a Kubernetes service account authentication for AMR Observer, CloudEvent Handler or GraphQL clients must have the required permissions, resources, and groups in the following sections.
 
-## <a id="clients-cloudevent"></a>Clients to cloudevent handler
+## <a id="clients-cloudevent"></a>Clients to CloudEvent Handler
 
-Clients to the cloudevent handler, such as observer, must have the permission `update`, resource `*`, and group `cloudevents.amr.apps.tanzu.vmware.com`. `resourceNames` are not supported. That translates to write for all resources for the CloudEvents API.
+Clients to the CloudEvent Handler, such as Observer, must have the permission `update`, resource `*`, and group `cloudevents.amr.apps.tanzu.vmware.com`. `resourceNames` are not supported. That translates to write for all resources for the CloudEvents API.
 
 For example:
 
-```console
+```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -61,13 +61,13 @@ If you saved this to a `observer-rbac.yaml` file, run `kubectl apply -f observer
 
 To configure custom service accounts even if automatic configuration is on, you must edit the resource naming.
 
-## <a id="clients-graphql"></a>Clients to graphql
+## <a id="clients-graphql"></a>Clients to GraphQL
 
-Clients to the graphql interface must have the permission `get`, resource `*`, and group `graphql.amr.apps.tanzu.vmware.com`. `resourceNames` are not supported. That translates to get for all resources for the GraphQL API.
+Clients to the AMR GraphQL interface must have the permission `get`, resource `*`, and group `graphql.amr.apps.tanzu.vmware.com`. `resourceNames` are not supported. That translates to "get for all resources for the GraphQL API".
 
 For example:
 
-```console
+```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

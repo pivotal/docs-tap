@@ -27,7 +27,9 @@ which provides each step in detail for AWS RDS integration.
 It might be useful to read through that guide even if you want to integrate with one of the other
 cloud providers.
 
-In addition, if you are running Tanzu Application Platform v1.7 or later, then you should be aware of the [AWS Services](../../aws-services/about.hbs.md) Package, which provides an out of the box integration for AWS.
+In addition, for Tanzu Application Platform v1.7 or later, you can instead use the
+[AWS Services](../../aws-services/about.hbs.md) package, which provides a more streamlined approach
+for integrating services from AWS into Tanzu Application Platform.
 
 ## <a id="about"></a> About this tutorial
 

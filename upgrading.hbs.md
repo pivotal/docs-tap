@@ -23,6 +23,8 @@ Before you upgrade Tanzu Application Platform:
   [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials
   v{{ vars.url_version }}. For more information about the upgrade procedures, see the
   [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
+- Note that this upgrade will update all workloads and pods that are using service bindings. This is done automatically after upgrading to 1.7 and requires no user action.
+- All pods with service bindings are recreated concurrently at the time of the upgrade. You must have sufficient Kubernetes resources in your clusters to support the pod rollout.
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
 

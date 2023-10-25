@@ -182,7 +182,7 @@ To use Eureka for service discovery in workloads:
             branch: main
     ```
 
-2. Create the workloads by running:
+2. Create the workloads. For example, for the greeter application you run:
 
    ```console
    tanzu apps workload create -f greeter-messages.yaml --yes

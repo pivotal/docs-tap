@@ -2,8 +2,6 @@
 
 This topic gives you conceptual overviews of how Tanzu Developer Portal Configurator works.
 
-> **Caution** The Configurator tool is in beta. Do not use it in a production environment.
-
 ## <a id="customize"></a> Overview of how to customize your portal
 
 ![Tanzu Developer Portal customization flowchart. It starts with installing Tanzu Application Platform and finishes with portal deployment.](images/tdp-install-flowchart.png)
@@ -52,22 +50,22 @@ include:
 - Security credentials
 - Showing or hiding the included Tanzu Application Platform plug-ins
 
-## <a id="foundation"></a> Tanzu Developer Portal Configurator Foundation
+## <a id="configurator"></a> Tanzu Developer Portal Configurator
 
-The Tanzu Developer Portal Configurator Foundation is the image that contains everything necessary
-to build a customized version of Tanzu Developer Portal. Foundation includes the templated
-Tanzu Developer Portal, an internal registry of Tanzu Developer Portal plug-ins, and tools to enable
-the build process to incorporate external plug-ins.
+The Tanzu Developer Portal Configurator is the image that contains everything necessary to build a
+customized version of Tanzu Developer Portal. Configurator includes a templated version of Tanzu
+Developer Portal, an internal registry of Tanzu Developer Portal plug-ins, and tools to enable the
+build process to incorporate external plug-ins.
 
-![Diagram of Tanzu Developer Portal Foundation, the included internal plug-in registry, and the customization process.](images/foundation-internal-external-plugins.png)
+![Diagram of Tanzu Developer Portal Configurator, the included internal plug-in registry, and the customization process.](images/configurator-internal-external-plugins.png)
 
 ## <a id="plug-ins"></a> Internal plug-ins and external plug-ins
 
-Internal plug-ins are included inside the Tanzu Developer Portal Configurator Foundation image.
+Internal plug-ins are included inside the Tanzu Developer Portal Configurator image.
 These include Tanzu Application Platform plug-ins and [Backstage](https://backstage.io) core
 plug-ins.
 
-External plug-ins are not in the Tanzu Developer Portal Configurator Foundation image. They are
+External plug-ins are not in the Tanzu Developer Portal Configurator image. They are
 added from the external registry [npmjs.com](https://www.npmjs.com/). They can include custom
 plug-ins and [third-party Backstage plug-ins](https://backstage.io/plugins/).
 

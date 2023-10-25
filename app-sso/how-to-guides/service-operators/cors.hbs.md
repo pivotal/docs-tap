@@ -95,7 +95,7 @@ For public clients, the `AuthServer` only supports the Authorization Code Flow: 
 ## <a id="client-credentials"></a>Client credentials code grant
 
 Some single-page applications require obtaining a token by using the `client_credentials`. This is
-not a recommended practice, because a browser-based app cannot protect its `client_secret`.
+not a recommended practice because a browser-based app cannot protect its `client_secret`.
 
 In this scenario, the `ClientRegistration` cannot use `none` as its `clientAuthenticationMethod`. 
 It must use either `client_secret_basic` or `client_secret_post`. For example:
@@ -139,7 +139,7 @@ spec:
   with an HTTP 403 Unauthorized status. The valid values are either `["*"]` or any combination of `[GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE]`. The values are case-sensitive and default to `["GET", "POST", "OPTIONS"]`.
 - `allowHeaders` defines the list of headers allowed. When a client issues a pre-flight request with
   values in the `Access-Control-Request-Headers` header, only the values that are also present in
-  `AllowHeaders` are sent back in the response's `Access-Control-Allow-Headers header`. The values
+  `AllowHeaders` are sent back in the response's `Access-Control-Allow-Headers` header. The values
   are case-insensitive and default to `["Authorization"]`.
 - `exposeHeaders` defines the values of the `Access-Control-Expose-Headers` header in the response to
   a CORS request. The default value is `[]`.

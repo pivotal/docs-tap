@@ -54,21 +54,30 @@ See [Configuration - AMR Observer](./configuration.hbs.md#amr-observer).
   $ tanzu package available list amr-observer.apps.tanzu.vmware.com -n tap-install
 
     NAME                                VERSION        RELEASED-AT
-    amr-observer.apps.tanzu.vmware.com  0.1.0-alpha.8  2023-06-08 16:17:22 -0400 EDT
+    amr-observer.apps.tanzu.vmware.com  0.2.0          2023-10-05 16:17:22 -0400 EDT
   ```
 
 1. Look at the package values-schema to create the values file. For more
    information, see [Configuration](./configuration.hbs.md#Configuration).
   
   ```console
-  $ tanzu package available get amr-observer.apps.tanzu.vmware.com/0.1.0-alpha.8 --values-schema --namespace tap-install
+  $ tanzu package available get amr-observer.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
 
-    KEY                                   DEFAULT  TYPE     DESCRIPTION
-    ca_cert_data                                   string   ca_cert_data is used to add certificates to the truststore that is used by the amr-observer.
-    cloudevent_handler.endpoint                          string   The URL of the cloudevent handler endpoint.
-    cloudevent_handler.liveness_period_seconds           integer  The period in seconds between executed health checks to the cloudevent handler endpoint.
-    location                                       string   location is the multiline string configuration for the location.conf content.
-    resync_period                                  string   resync_period determines the minimum frequency at which watched resources are reconciled. A lower period will correct entropy more quickly, but reduce responsiveness to change if there are many watched resources. Change this value only if you know what you are doing. Defaults to 10 hours if unset.
-  ```
+    KEY                                                                    DEFAULT                                                                TYPE     DESCRIPTION
+    deployed_through_tmc                                                   false                                                                  boolean  TAP Multi Cluster deployment will happen through Tanzu Mission Control when `deployed_through_tmc` is set to true
+    observer.auth.kubernetes_service_accounts.autoconfigure                true                                                                   boolean  Delegate creation of auth token secret to AMR Observer. By default it is set to true.
+    observer.auth.kubernetes_service_accounts.enable                       true                                                                   boolean  Include Authorization header when communicating with AMR CloudEvent Handler.
+    observer.auth.kubernetes_service_accounts.secret.ref                   amr-observer-edit-token                                                string   Secret name which contains the access token.
+    observer.auth.kubernetes_service_accounts.secret.value                 ""                                                                     string   Secret as a plain text string. This allows integrating with Tanzu Mission Control secret imports.
+    observer.ca_cert_data                                                  ""                                                                     string   ca_cert_data is used to add certificates to the truststore that is used by the amr-observer.
+    observer.cloudevent_handler.endpoint                                   "http://amr-cloudevent-handler.metadata-store.svc.cluster.local:80"    string   The URL of the CloudEvent Handler endpoint.
+    observer.cloudevent_handler.liveness_period_seconds                    10                                                                     integer  The period in seconds between executed health checks to the CloudEvent Handler endpoint.
+    observer.location                                                      ""                                                                     string   location is the multiline string configuration for the location.conf content.
+    observer.max_concurrent_reconciles.image_vulnerability_scans           1                                                                      integer  Max concurrent reconciles for observing ImageVulnerabilityScans.
+    observer.resync_period                                                 10h                                                                    string   resync_period determines the minimum frequency at which watched resources are reconciled.
+                                                                                                                                                           A lower period will correct entropy more quickly, but reduce
+                                                                                                                                                           responsiveness to change if there are many watched resources. Change this value only if you
+                                                                                                                                                           know what you are doing. Defaults to 10 hours if unset.
+    ```
 
 1. Install the package using `tanzu package install`.

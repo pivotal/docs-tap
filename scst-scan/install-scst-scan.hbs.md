@@ -36,20 +36,19 @@ When you install the SCST - Scan (Scan controller), you can configure the follow
 | resources.requests.cpu | 100m | integer/string | Requests describes the minimum amount of CPU resources required. | _n/a_ |
 | resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. | _n/a_ |
 | namespace | scan-link-system | string | Deployment namespace for the Scan Controller | _n/a_ |
-| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which you import the Insight Metadata Store CA Cert | earlier than v1.2.0 |
-| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | earlier than v1.2.0 |
-| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | earlier than v1.2.0 |
-| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | earlier than v1.2.0 |
-| metadataStore.authSecret.importFromNamespace | _n/a_ | string | Namespace from which to import the Insight Metadata Store auth_token | earlier than v1.2.0 |
-| metadataStore.authSecret.name | _n/a_ | string | Name of deployed secret with key auth_token | earlier than v1.2.0 |
 | retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | v1.3.1 and later |
 | caCertData | "" | string | The custom certificates trusted by the scans' connections | v1.4.0 and later |
-| certIssuer | "" | string | The common certificate issuer for the cluster | v1.5.0 and later |
 | controller.pullSecret | "controller-secret-ref" | string | Reference to the secret used for pulling the controller image from private registry. Set to empty if deploying from a public registry. | v1.5.0 and later |
 | docker.import | true | Boolean | Import `controller.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is present. | v1.5.0 and later |
-| kubeRbacProxy.certRef | "" | string | Reference to the secret which holds certificate for kube-rbac-proxy. The Certificate enables secure connection to the metric proxy. | v1.5.0 and later |
-| kubeRbacProxy.tls.minVersion | "" | string | Minimum TLS version supported by kube-rbac-proxy. Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants. | v1.5.0 and later |
-| kubeRbacProxy.tls.ciphers | empty array | array of strings | Comma-separated list of cipher suites for the server supported by kube-rbac-proxy. Values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants). | v1.5.0 and later |
+| deployedThroughTmc | false | Boolean | Flag to configure multicluter property collectors to configure Insight Metadata Store credentials | v1.7.0 and later |
+| insertUserAndGroupID | true | Boolean | Flag to add default pod security context runAsUser and runAsGroup to the scan job | v1.7.0 and later |
+| metadataStore.exports.namespace | metadata-store-secrets | string | Namespace for metadata store secrets and exports | v1.7.0 and later |
+| metadataStore.toNamespace | "*" | string | Destination namespace for exported secrets, or \"*\" to allow any namespace to import | v1.7.0 and later |
+| metadataStore.toNamespaces | - "" | array of strings | List of destination namespaces for exported secrets | v1.7.0 and later |
+| metadataStore.ca.secretName | store-ca-cert | string | Name to use for created CA Cert secret of the Insight Metadata Store | v1.7.0 and later |
+| metadataStore.ca.pem | "" | string | PEM-encoded CA certificate of the Insight Metadata Store| v1.7.0 and later |
+| metadataStore.auth.secretName | store-auth-token | string | Name to use for created auth secret for the Insight Metadata Store | v1.7.0 and later |
+| metadataStore.auth.token | "" | string | Service account auth token with read-write access to the Insight Metadata Store | v1.7.0 and later |
 
 When you install the SCST - Scan (Grype scanner), you can configure the following optional properties:
 
@@ -72,13 +71,14 @@ When you install the SCST - Scan (Grype scanner), you can configure the followin
 ## <a id='install-scst-scan'></a> Install
 There are two options for installing Supply Chain Security Tools – Scan
 
-### <a id='install-scst-scan-namespace-provisioner'></a> Option 1: Install to multiple namespaces with the Namespace Provisioner
+### <a id='install-scst-scan-ns-provisioner'></a> Option 1: Install to multiple namespaces with the Namespace Provisioner
 
-The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
+The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 
 The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Customize installation](../namespace-provisioner/customize-installation.hbs.md) in the Namespace Provisioner documentation for configuration steps.
 
 ### <a id='install-scst-scan-manually'></a> Option 2: Install manually to each individual namespace
+
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 
 - Scan controller

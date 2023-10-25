@@ -33,16 +33,16 @@ This repo contains the content for Tanzu Application Platform docs.
 Some components have docs that introduce them in this repository, but the rest of their docs are
 stored in dedicated repositories.
 
-| Component | Repo |
-|-----------|------|
-| API portal | https://github.com/pivotal-cf/docs-api-portal |
-| Application Configuration Service | https://github.com/pivotal-cf/docs-application-configuration-service |
-| Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
-| Cloud Native Runtimes | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
-| Services Toolkit | https://gitlab.eng.vmware.com/services-control-plane/documentation |
-| Spring Cloud Gateway | https://github.com/pivotal-cf/docs-scg-k8s |
-| Tanzu Build Service | https://github.com/pivotal-cf/docs-build-service/tree/v1.5 |
-| Tanzu Buildpacks | https://github.com/pivotal/docs-tanzu-buildpacks |
+| Component                         | Repo                                                                       |
+|-----------------------------------|----------------------------------------------------------------------------|
+| API portal                        | https://github.com/pivotal-cf/docs-api-portal                              |
+| Application Configuration Service | https://github.com/pivotal-cf/docs-application-configuration-service       |
+| Carvel                            | https://github.com/vmware-tanzu/carvel/tree/develop/site/content           |
+| Cloud Native Runtimes             | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
+| Services Toolkit                  | https://gitlab.eng.vmware.com/services-control-plane/documentation         |
+| Spring Cloud Gateway              | https://github.com/pivotal-cf/docs-scg-k8s                                 |
+| Tanzu Build Service               | https://github.com/pivotal-cf/docs-build-service/tree/v1.5                 |
+| Tanzu Buildpacks                  | https://github.com/pivotal/docs-tanzu-buildpacks                           |
 
 ## Component name list
 
@@ -55,6 +55,7 @@ stored in dedicated repositories.
 |Application Configuration Service for VMware Tanzu|Application Configuration Service|
 |Application Live View|Application Live View|
 |Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
+|Aria Operations for Applications dashboard for Tanzu Application Platform (Beta)|AOA dashboard|
 |AWS Services|AWS Services|
 |Bitnami Services|Bitnami Services|
 |Cartographer Conventions|Cartographer Conventions|

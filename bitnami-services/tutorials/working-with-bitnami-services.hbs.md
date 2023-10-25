@@ -12,7 +12,7 @@ The corresponding Bitnami Helm Chart backs each of these services.
 **Target user role**:       Application Operator<br />
 **Complexity**:             Basic<br />
 **Estimated time**:         15 minutes<br />
-**Topics covered**:         Classes, Claims, Bitnami,<br />
+**Topics covered**:         Classes, Claims, Bitnami<br />
 **Learning outcomes**:      An understanding of how work with the standard Bitnami services<br />
 
 ## <a id="prereqs"></a> Prerequisites

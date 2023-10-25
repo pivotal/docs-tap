@@ -1,8 +1,6 @@
-# Build your Customized Tanzu Developer Portal with Configurator (beta)
+# Build your customized Tanzu Developer Portal with Configurator
 
 This topic tells you how to build your customized Tanzu Developer Portal with Configurator.
-
-> **Caution** The Configurator tool is in beta. Do not use it in a production environment.
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -68,18 +66,19 @@ To prepare your Configurator configuration file:
     - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
       npm registry
 
-    The following example adds the sample `hello-world` plug-in, which is available in the internal
-    package's registry:
+    The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
+    in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
 
     ```yaml
     app:
       plugins:
-        - name: '@tdp/plugin-hello-world'
-          version: '^1.6.0-release-1.6.x.1'
+        - name: '@vmware-tanzu/tdp-plugin-techinsights'
+          version: '0.0.2'
+
     backend:
       plugins:
-        - name: '@tdp/plugin-hello-world-backend'
-          version: '^1.6.0-release-1.6.x.1'
+        - name: '@vmware-tanzu/tdp-plugin-techinsights-backend'
+          version: '0.0.2'
     ```
 
 2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
@@ -89,38 +88,27 @@ To prepare your Configurator configuration file:
    base64 -i tdp-config.yaml
    ```
 
-## <a id="prep-ident-image"></a> Identify your Configurator foundation image
+## <a id="prep-ident-image"></a> Identify your Configurator image
 
-To build a customized Tanzu Developer Portal, you must identify the image that contains the
-foundation that is ready to pass through the supplychain. Depending on how you installed things, this
-could either be on `registry.tanzu.vmware.com` or on the local image registry (`imgpkg`) that you
-moved the installation packages to.
+To build a customized Tanzu Developer Portal, you must identify the Configurator image to pass
+through the supply chain. Depending on your choices during installation, this is on either
+`registry.tanzu.vmware.com` or the local image registry (`imgpkg`) that you moved the installation
+packages to.
 
-1. Export the bundle for the `tdp.tanzu.vmware.com` component as the variable `OUTPUT_IMAGE`:
 
-   ```console
-   export OUTPUT_IMAGE=$(kubectl -n tap-install get package tdp.tanzu.vmware.com.0.1.2 -o \
-   "jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}")
-   ```
-
-2. Log in to your image registry by running:
-
-   ```console
-   docker login REGISTRY-SERVER-NAME
-   ```
-
-3. Pull the image from your registry and extract it to a local directory:
-
-   ```console
-   imgpkg pull -b ${OUTPUT_IMAGE} -o tdp-package
-   ```
-
-4. Using the yq tool, retrieve the `TDP-IMAGE-LOCATION` that you will supply in your workload
+1. Using the `imgpkg` tool, retrieve the `TDP-IMAGE-LOCATION` that you will supply in your workload
    definition by running:
 
    ```console
-   yq -r ".images[0].image" <tdp-package/.imgpkg/images.yml
+   imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}) -o yaml --tty=true | grep -A 1 "kbld.carvel.dev/id: harbor-repo.vmware.com/esback/configurator" | grep "image: " | sed 's/\simage: //g'
    ```
+
+   This should output something similar to:
+   ```console
+   IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
+   ```
+
+   Use this value as the `TDP-IMAGE-LOCATION` in the below workload definition.
 
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
@@ -181,13 +169,16 @@ spec:
       - name: TDP_CONFIG
         value: /tmp/tdp-config.yaml
       - name: TDP_CONFIG_STRING
-        value:
-        YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdHBiL3BsdWdpbi1oZWxsby13b3JsZCcKYmFja2VuZDoKICBwbHVnaW5zOgogI
-        CAgLSBuYW1lOiAnQHRwYi9wbHVnaW4taGVsbG8td29ybGQtYmFja2VuZCcK
+        value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
   source:
     image: TDP-IMAGE-LOCATION
     subPath: builder
 ```
+
+The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the Tech Insights
+front-end and back-end plug-ins.
+
+`TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
 
 ## <a id="submit-your-workload"></a> Submit your workload
 
@@ -196,3 +187,8 @@ Submit the workload definition file you created earlier by running:
 ```console
 tanzu apps workload create -f tdp-workload.yaml
 ```
+
+> **Note** The supply chain does not need to go beyond the image-provider stage. After an image is
+> built, you can proceed to [Run your Customized Tanzu Developer Portal](running.hbs.md).
+> A dedicated supply chain is planned for a future release.
+

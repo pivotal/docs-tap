@@ -19,9 +19,12 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 | caCertData | "" | string | The custom certificates trusted by the scan's connections |
 | docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
 | docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
-| scans.maxConcurrentScans | 10 | integer | The maximum number of scans that the scan controller schedules to run concurrently |
-| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
-| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
+| scans.maxConcurrentScans | 10 | integer | Maximum number of scans  running at one time. Set to 0 to have no limit. |
+| scans.priorityClassName | "" | string | Name of a predefined PriorityClass to apply to scan pods |
+| workspace.storageSize  | 2Gi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
+| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by Tekton pipelineruns |
+
+>**Note** If the StorageClass you select does not have a node limit but uses the node storage, such as hostpath, the nodes must have large enough disks. For example, if a scan creates a 2Gi volume on a hostpath type storage class, `2Gi * number of AMR images` indicates how much storage this cluster needs overall. `2Gi * number of AMR images / number of nodes` indicates how much storage each node needs.
 
 ## <a id="install-scst-app-scanning"></a> Install
 
@@ -76,6 +79,7 @@ To install SCST - Scan 2.0:
       workspace:
         storageSize: 200Mi
     ```
+
 2. Install the package. If you did not edit the default installation settings, you do not need to specify the `--values-file` flag.
 
     ```console
@@ -192,3 +196,11 @@ The following section describes how to configure service accounts and registry c
 
     - `imagePullSecrets.name` is the name of the secret used by the component to pull the scan component image from the registry.
     - `secrets.name` is the name of the secret used by the component to publish the scan results.
+
+## <a id="registry-retention-policy"></a> (Optional) Set up your registry retention policy
+
+If the registry specified to push scan results to support retention policies, you can configure the registry to delete old scan results automatically depending on your archival requirements. Scan result artifacts accumulate over time and with recurring scanning, artifacts can quickly consume storage space.
+
+For information about configuring Harbor tag retention rules, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules). For example, you can configure Harbor to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
+
+Retention policy setup differs between registry providers. Confirm with your specific registry's documentation about configuration options.

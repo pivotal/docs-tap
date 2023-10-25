@@ -1,4 +1,4 @@
-# Add App Scanning to default Test and Scan supply chains
+# Enable App Scanning for default Test and Scan supply chains
 
 This topic tells you how to enable Supply Chain Security Tools (SCST) - Scan 2.0
 and an included container image scanner with the out-of-box box test and scan supply

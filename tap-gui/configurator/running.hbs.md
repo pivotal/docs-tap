@@ -47,7 +47,9 @@ To prepare to overlay your customized image onto the currently running instance:
 1. Create the [ytt](https://carvel.dev/ytt/) overlay secret.
 
 2. Create a file called `tdp-overlay-secret.yaml` with the following content to replace
-   `IMAGE-REFERENCE` with the customized image you retrieved earlier:
+   `IMAGE-REFERENCE` with the customized image you retrieved earlier. There are one of two possible values depending on if you installed TAP with the `lite` dependencies (default) or the `full` dependencies. 
+
+    For the `lite` depenencies (default):
 
     ```yaml
     apiVersion: v1
@@ -80,6 +82,39 @@ To prepare to overlay your customized image onto the currently running instance:
                     --config=/etc/app-config/app-config.yaml
     ```
 
+    For the `full` dependencies:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tdp-app-image-overlay-secret
+      namespace: tap-install
+    stringData:
+      tdp-app-image-overlay.yaml: |
+        #@ load("@ytt:overlay", "overlay")
+
+        #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
+        #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
+        ---
+        spec:
+          template:
+            spec:
+              containers:
+                #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
+                #@overlay/match-child-defaults missing_ok=True
+                - image: IMAGE-REFERENCE
+                #@overlay/replace
+                  args:
+                  - -c
+                  - |
+                    export KUBERNETES_SERVICE_ACCOUNT_TOKEN="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
+                    exec /layers/tanzu-buildpacks_node-engine/node/bin/node portal/dist/packages/backend  \
+                    --config=portal/app-config.yaml \
+                    --config=portal/runtime-config.yaml \
+                    --config=/etc/app-config/app-config.yaml
+    ```
+
 3. Apply the secret by running:
 
    ```console
@@ -104,3 +139,12 @@ To prepare to overlay your customized image onto the currently running instance:
 
    For how to do so for an online installation, see
    [Install your Tanzu Application Platform package](../../install-online/profile.hbs.md#install-your-tanzu-application-platform-package).
+
+> **Important** The cluster that is running Tanzu Developer Portal (formerly known as `TAP-GUI`)
+> needs the appropriate credentials to pull images from the container registry that contains your
+> customized portal.
+>
+> If the cluster is in a `full` profile, it likely has the necessary credentials.
+> In a multicluster installation (`view` profile) you likely need to use Tanzu CLI to add
+> the appropriate credentials.
+

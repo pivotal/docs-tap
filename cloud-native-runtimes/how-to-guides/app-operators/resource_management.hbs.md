@@ -11,7 +11,7 @@ adjust the allocations for the following reasons:
 - *Performance Optimization*: Customize resource allocations to help fine
   tune the load for specific workloads to improve response times and throughput.
 - *Cost Efficiency*: Customize resources to avoid over-provisioning or
-  under-provisioning and ensure efficient resource usage.
+  under-provisioning and verify efficient resource use.
 - *Improved Stability*: Control resource allocation to prevent any deployment
   from consuming excessive resources and increase the stability of the entire
   cluster.

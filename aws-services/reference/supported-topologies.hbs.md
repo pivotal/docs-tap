@@ -1,4 +1,4 @@
-# Supported Topologies for AWS Services
+# Supported topologies for AWS Services
 
 This topic gives you the list of Tanzu Application Platform (commonly known as TAP) cluster to
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
@@ -26,7 +26,7 @@ The key properties of this topology are:
 
 This topology is recommended if your Tanzu Application Platform cluster is running in AWS.
 
-#### <a id="same-vpc-config"></a> Configuration
+#### <a id="same-vpc-config"></a> Configuration tasks
 
 To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
 
@@ -38,8 +38,8 @@ workloads run to the subnet where the RDS PostgreSQL service instances run.
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario1).
 
-After completing configuration in AWS, you must configure the AWS Services package using the following
-package values:
+After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
+the following values when installing the package:
 
 ```yaml
 postgresql:
@@ -47,12 +47,10 @@ postgresql:
   region: "REGION"
   infrastructure:
     subnet_group:
-      name: "SUBNET_GROUP_NAME"
+      name: "SUBNET-GROUP-NAME"
     security_groups:
-      - id: "SECURITY_GROUP_ID"
+      - id: "SECURITY-GROUP-ID"
 ```
-
-<!-- Are REGION, SUBNET_GROUP_NAME, and SECURITY_GROUP_ID placeholders? -->
 
 ### <a id="external"></a> A service instance in a VPC accessed by a workload in a Tanzu Application Platform cluster running external to AWS
 
@@ -73,9 +71,9 @@ The key properties of this topology are:
 This topology is recommended if your Tanzu Application Platform cluster is running external to AWS,
 for example, on-prem or in another cloud such as Azure.
 
-#### <a id="same-vpc-config"></a> Configuration
+#### <a id="same-vpc-config"></a> Configuration tasks
 
-To configure the PostgreSQL service from the AWS Services Package for this type of topology you must:
+To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
 
 - Manually create all required subnets and security groups in AWS.
 - Create an Internet gateway.
@@ -86,8 +84,8 @@ workloads run to the subnet where the RDS PostgreSQL service instances run.
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario4).
 
-After completing configuration in AWS, you must configure the AWS Services package using the following
-package values:
+After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
+the following values when installing the package:
 
 ```yaml
 postgresql:
@@ -95,11 +93,9 @@ postgresql:
   region: "REGION"
   infrastructure:
     subnet_group:
-      name: "SUBNET_GROUP_NAME"
+      name: "SUBNET-GROUP-NAME"
     security_groups:
-      - id: "SECURITY_GROUP_ID"
+      - id: "SECURITY-GROUP-ID"
   instance_configuration:
     publicly_accessible: true
 ```
-
-<!-- Are REGION, SUBNET_GROUP_NAME, and SECURITY_GROUP_ID placeholders? -->
