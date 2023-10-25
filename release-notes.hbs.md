@@ -287,7 +287,7 @@ The following issues, listed by component and area, are resolved in this release
 
 - You can safely ignore the label `apps.tanzu.vmware.com/carvel-package-workflow` when the Package Supply Chain is disabled. Previously, workloads with this label fail when the Package Supply Chain is disabled.
 - Workloads failed on the image supply chains with `multiple supply chain matches` when testing or scanning supply chains are side loaded with the basic supply chain. Though side loading these supply chains is not a supported configuration, this fix allows you to continue to create workloads.
-- The Package Supply Chain can now generate a Carvel package when building an image from source and uploading it to a private registry using a cert.
+- The package Supply Chain can now generate a Carvel package when building an image from source and uploading it to a private registry using a certificate.
 
 ---
 
