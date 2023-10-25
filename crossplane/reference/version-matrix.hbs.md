@@ -9,6 +9,7 @@ used in UXP, provider-helm, and provider-kubernetes.
 > versions remain the same for each Tanzu Application Platform patch release.
 
 <table>
+  <thead>
     <tr>
         <th>Tanzu Application Platform</th>
         <th>Crossplane package</th>
@@ -17,6 +18,8 @@ used in UXP, provider-helm, and provider-kubernetes.
         <th>provider-helm</th>
         <th>provider-kubernetes</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>1.5.0</td>
         <td>0.1.1</td>
@@ -33,4 +36,5 @@ used in UXP, provider-helm, and provider-kubernetes.
         <td>0.15.0</td>
         <td>0.8.0</td>
     </tr>
+  </tbody>
 </table>

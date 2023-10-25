@@ -115,10 +115,13 @@ Terms beginning with "A".
 Terms beginning with "B".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Bitnami Services</td>
         <td>This Tanzu Application Platform component provides a set of services
@@ -136,6 +139,7 @@ Terms beginning with "B".
         <td>This Tanzu Application Platform profile is intended for the transformation of source
         revisions to workload revisions. Specifically, hosting workloads and Supply Chains.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="c"></a> C
@@ -143,6 +147,13 @@ Terms beginning with "B".
 Terms beginning with "C".
 
 <table>
+  <thead>
+    <tr>
+        <th>Term</th>
+        <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Cartographer Conventions</td>
         <td>This Tanzu Application Platform component supports defining and applying conventions to pods.
@@ -189,6 +200,7 @@ Terms beginning with "C".
         updates to the PodTemplateSpec associated with that workload.
         You can have one or more convention servers for a single controller instance.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="d"></a> D
@@ -196,11 +208,14 @@ Terms beginning with "C".
 Terms beginning with "D".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
-        <tr>
+  </thead>
+  <tbody>
+    <tr>
         <td>Developer Conventions</td>
         <td>This Tanzu Application Platform component enables you to configure your workloads to support
         live updates and debug operations.</td>
@@ -210,6 +225,7 @@ Terms beginning with "D".
         <td>A capability of Services Toolkit in which class claims that reference provisioner-based
         classes are fulfilled automatically through the provisioning of new service instances.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="f"></a> F
@@ -217,16 +233,20 @@ Terms beginning with "D".
 Terms beginning with "F".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Full profile</td>
         <td>This profile contains all of the Tanzu Application Platform packages,
         including the necessary defaults for the meta-package, or parent
         Tanzu Application Platform package, subordinate packages, or individual child packages.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="i"></a> I
@@ -234,10 +254,13 @@ Terms beginning with "F".
 Terms beginning with "I".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Iterate cluster</td>
         <td>A cluster for “inner loop” development iteration. Developers connect to the
@@ -247,6 +270,7 @@ Terms beginning with "I".
         <td>Iterate profile</td>
         <td>This Tanzu Application Platform profile is intended for iterative application development.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="l"></a> L
@@ -254,10 +278,13 @@ Terms beginning with "I".
 Terms beginning with "L".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Local Source Proxy (LSP)</td>
         <td>This Tanzu Application Platform component serves as a proxy registry server with
@@ -265,6 +292,7 @@ Terms beginning with "L".
         Its main purpose is to handle image push requests by forwarding them to an
         external registry server, which is configured through <code>tap-values.yaml</code>.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="l"></a> M
@@ -272,10 +300,13 @@ Terms beginning with "L".
 Terms beginning with "M".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Multicluster</td>
         <td>A setup or architecture where multiple Kubernetes clusters are used either for geographical
@@ -283,6 +314,7 @@ Terms beginning with "M".
         In Tanzu Application Platform, multicluster capabilities ensure that you can deploy, manage,
         and operate applications and platform services across these multiple clusters seamlessly.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="l"></a> N
@@ -290,16 +322,20 @@ Terms beginning with "M".
 Terms beginning with "N".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Namespace Provisioner</td>
         <td>This Tanzu Application Platform component provides an automated way for you to provision
         namespaces with the resources and namespace-level privileges required for your workloads to
         function as intended in Tanzu Application Platform.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="p"></a> P
@@ -307,11 +343,14 @@ Terms beginning with "N".
 Terms beginning with "P".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
-        <tr>
+  </thead>
+  <tbody>
+    <tr>
         <td>Package</td>
         <td>A package contains the resources needed to install the components needed by the cluster.</td>
     </tr>
@@ -354,10 +393,13 @@ Terms beginning with "P".
 Terms beginning with "R".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Resource claim</td>
         <td>A type of claim that references a specific service instance.</td>
@@ -373,6 +415,7 @@ Terms beginning with "R".
         <td>This Tanzu Application Platform profile is intended for the transformation of workload
         revisions to running pods. Specifically, hosting deliveries and deliverables.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="s"></a> S
@@ -380,10 +423,13 @@ Terms beginning with "R".
 Terms beginning with "S".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Service</td>
         <td>A broad, high-level term that describes something used in either the development of,
@@ -471,6 +517,7 @@ Terms beginning with "S".
         <td>This Tanzu Application Platform component saves software bills of materials (SBoMs) to a
         database and allows you to query for image, source code, package, and vulnerability relationships.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="t"></a> T
@@ -478,10 +525,13 @@ Terms beginning with "S".
 Terms beginning with "T".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Tanzu Application Platform Telemetry</td>
         <td>This is a set of objects that collect data about the use of Tanzu Application Platform
@@ -556,6 +606,7 @@ Terms beginning with "T".
         <td>A plug-in for the Tanzu CLI used by application operators and application developers to
         create claims for service instances.</td>
     </tr>
+  </td>
 </table>
 
 ## <a id="u"></a> U
@@ -563,15 +614,19 @@ Terms beginning with "T".
 Terms beginning with "U".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Unmanaged service</td>
         <td>The services available in the Bitnami Services package where the resulting service instances
         run on the cluster, that is, they are not a managed service running in the cloud.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="v"></a> V
@@ -579,10 +634,13 @@ Terms beginning with "U".
 Terms beginning with "V".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>VMware Application Catalog</td>
         <td>A customizable selection of trusted, pre-packaged application components that are
@@ -597,6 +655,7 @@ Terms beginning with "V".
         <td>This Tanzu Application Platform profile is intended for instances of applications related
         to centralized developer experiences. Specifically, Tanzu Developer Portal and Metadata Store.</td>
     </tr>
+  </tbody>
 </table>
 
 ## <a id="w"></a> W
@@ -604,14 +663,18 @@ Terms beginning with "V".
 Terms beginning with "W".
 
 <table>
+  <thead>
     <tr>
         <th>Term</th>
         <th>Definition</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
         <td>Workload cluster</td>
         <td>A cluster that has developer-created applications running on it.
         A workload cluster is applicable within the context of Service API Projection and
         Service Resource Replication.</td>
     </tr>
+  </tbody>
 </table>
