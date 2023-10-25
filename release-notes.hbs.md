@@ -3,25 +3,28 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-5'></a> v1.6.5 
- 
-**Release Date**: 14 November 2023 
- 
-### <a id='1-6-5-security-fixes'></a> v1.6.5 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-6-5'></a> v1.6.5
+
+**Release Date**: 14 November 2023
+
+### <a id='1-6-5-security-fixes'></a> v1.6.5 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-5-COMPONENT-NAME-fixes'></a> v1.6.5 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
+<thead>
 <tr>
 <th>Package name</th>
 <th>Vulnerabilities resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>PACKAGE.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -29,36 +32,37 @@ OR add HTML or Markdown table
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
 </ul></details></td>
 </tr>
-</table> 
- 
+</tbody>
+</table>
+
 ---
- 
-### <a id='1-6-5-resolved-issues'></a> v1.6.5 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-5-resolved-issues'></a> v1.6.5 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-5-COMPONENT-NAME-ri'></a> v1.6.5 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-6-5-known-issues'></a> v1.6.5 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-6-5-known-issues'></a> v1.6.5 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-6-5-COMPONENT-NAME-ki'></a> v1.6.5 Known issues: COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.  
- 
+
 ---
- 
+
 ### <a id='1-6-5-components'></a> v1.6.5 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
+
 ---   
 
 ## <a id='1-6-4'></a> v1.6.4
@@ -83,10 +87,13 @@ This release has the following breaking changes, listed by component and area.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>accelerator.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -236,6 +243,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45887">CVE-2022-45887</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -446,10 +454,13 @@ The following table lists the supported component versions for this Tanzu Applic
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>accelerator.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -637,6 +648,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -853,10 +865,13 @@ The following table lists the supported component versions for this Tanzu Applic
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>accelerator.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -963,6 +978,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2097">CVE-2022-2097</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
