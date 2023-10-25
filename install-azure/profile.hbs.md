@@ -86,7 +86,7 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
     ```console
     tanzu package repository add tanzu-tap-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/full-deps-package-repo
       --namespace tap-install
     ```
 
