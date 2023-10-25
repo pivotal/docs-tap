@@ -230,10 +230,13 @@ This release has the following security fixes, listed by component and area.
 OR add HTML or Markdown table
 
 <table>
+<thead>
 <tr>
 <th>Package name</th>
 <th>Vulnerabilities resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>PACKAGE.tanzu.vmware.com</td>
 <td>
@@ -245,6 +248,7 @@ OR add HTML or Markdown table
 </details>
 </td>
 </tr>
+</tbody>
 </table>
 
 ---
