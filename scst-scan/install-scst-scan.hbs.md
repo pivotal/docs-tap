@@ -40,8 +40,8 @@ When you install the SCST - Scan (Scan controller), you can configure the follow
 | caCertData | "" | string | The custom certificates trusted by the scans' connections | v1.4.0 and later |
 | controller.pullSecret | "controller-secret-ref" | string | Reference to the secret used for pulling the controller image from private registry. Set to empty if deploying from a public registry. | v1.5.0 and later |
 | docker.import | true | Boolean | Import `controller.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is present. | v1.5.0 and later |
-| deployedThroughTmc | false | Boolean | Flag to configure multicluter property collectors to configure Insight Metadata Store credentials. | v1.7.0 and later |
-| insertUserAndGroupID | true | Boolean | Flag to add default pod security context runAsUser and runAsGroup to the scan job. | v1.7.0 and later |
+| deployedThroughTmc | false | Boolean | Flag to configure multicluter property collectors to configure Insight Metadata Store credentials | v1.7.0 and later |
+| insertUserAndGroupID | true | Boolean | Flag to add default pod security context runAsUser and runAsGroup to the scan job | v1.7.0 and later |
 | metadataStore.exports.namespace | metadata-store-secrets | string | Namespace for metadata store secrets and exports | v1.7.0 and later |
 | metadataStore.toNamespace | "*" | string | Destination namespace for exported secrets, or \"*\" to allow any namespace to import | v1.7.0 and later |
 | metadataStore.toNamespaces | - "" | array of strings | List of destination namespaces for exported secrets | v1.7.0 and later |
@@ -71,13 +71,14 @@ When you install the SCST - Scan (Grype scanner), you can configure the followin
 ## <a id='install-scst-scan'></a> Install
 There are two options for installing Supply Chain Security Tools – Scan
 
-### <a id='install-scst-scan-namespace-provisioner'></a> Option 1: Install to multiple namespaces with the Namespace Provisioner
+### <a id='install-scst-scan-ns-provisioner'></a> Option 1: Install to multiple namespaces with the Namespace Provisioner
 
-The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
+The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan by using the Namespace Provisioner, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 
 The Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Customize installation](../namespace-provisioner/customize-installation.hbs.md) in the Namespace Provisioner documentation for configuration steps.
 
 ### <a id='install-scst-scan-manually'></a> Option 2: Install manually to each individual namespace
+
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 
 - Scan controller
