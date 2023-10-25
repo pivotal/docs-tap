@@ -169,6 +169,20 @@ The catalog plug-in can't read the Git location of your catalog definition files
 You can substitute for other integrations as defined in the
 [Backstage documentation](https://backstage.io/docs/integrations/).
 
+### <a id='authn-not-configured'></a> No configured authentication provider
+
+#### Symptom
+
+When you load Tanzu Developer Portal in a browser, you get the message `No configured authentication providers. Please configure at least one.`
+
+#### Cause
+
+You have not configured any authentication providers and you have not allowed guest access.
+
+#### Solution
+
+[Configure an authentication provider](auth.hbs.md#configure-an-authentication-provider) and/or [(Optional) Allow guest access](auth.hbs.md#optional-allow-guest-access).
+
 ### <a id='updating-tap-gui-values'></a> Issues updating the values file
 
 #### Symptom
