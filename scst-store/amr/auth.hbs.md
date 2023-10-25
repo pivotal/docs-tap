@@ -10,7 +10,7 @@ The following are included in authentication and authorization:
 - [Kubernetes service account automatic configuration](auth-k8s-sa-autoconfiguration.hbs.md)
 - [User-defined kubernetes service account configuration](auth-k8s-sa-user-defined.hbs.md)
 - Cloudevent user-defined service account
-- Configuring AMR Observer with the Cloudevent handler service account access token
+- Configuring AMR Observer with the CloudEvent Handler service account access token
 
 ## <a id='design'></a> High-level design
 
