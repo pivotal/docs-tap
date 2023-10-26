@@ -48,7 +48,7 @@ who create the application workloads, and ops teams, who create the service reso
 
 ## <a id="resource-claims"></a> Level 2 - resource claims
 
-Level 2 addresses some of the limitations of direct bindings through the Services Toolkit feature
+Level 2 addresses some limitations of direct bindings through the Services Toolkit feature
 resource claims. This feature coincided with the release of Tanzu Application Platform v1.0.
 
 ![Diagram shows level 2 of service consumption in Tanzu Application Platform.](../../images/stk-4-levels-2.png)
@@ -68,7 +68,7 @@ The advantage of level 2 over level 1 is that now the application workload and t
 do not have to exist in the same namespace. This helps to promote a better separation of concerns.
 It is now possible for apps teams and ops teams to manage the life cycles of apps and services independently.
 
-However, it's still not an ideal solution, and some of the limitations from level 1 still exist in level 2.
+However, it's still not an ideal solution, and some limitations from level 1 still exist in level 2.
 The service resource still must be bindable, and apps teams still must know the name,
 namespace, and API group, version, and kind of the service resource.
 In addition, ops teams must ensure that the service resources exist.

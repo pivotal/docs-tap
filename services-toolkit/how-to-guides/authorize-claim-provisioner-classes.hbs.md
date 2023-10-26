@@ -21,7 +21,7 @@ Access control is implemented through standard Kubernetes Role-Based Access Cont
 the use of the custom verb `claim`.
 You must create a rule in a `ClusterRole` which specifies the `claim` verb for one or
 more `clusterinstanceclasses`, and then bind the `ClusterRole` to the roles that you want to
-authorize to create claims for the classes with a `ClusterRoleBinding`.
+authorize to create claims for classes with a `ClusterRoleBinding`.
 This approach is particularly effective when paired with Tanzu Application Platform's aggregated user roles.
 For more information about user roles in Tanzu Application Platform, see
 [Role descriptions](../../authn-authz/role-descriptions.html).
@@ -58,10 +58,8 @@ which causes this `ClusterRole` to aggregate to Tanzu Application Platform's [ap
 user role at the cluster scope.
 
 The result is that any user who has the `app-operator` role is now authorized
-to claim from the `bigcorp-rabbitmq` class.
-
-Those users still need permission to create `ClassClaims` in the namespaces
-they want to consume the services from.
+to claim from the `bigcorp-rabbitmq` class. The `app-operator`
+user role are authorized to create claims for the provisioner-based by default.
 
 ## <a id="auth-one-user"></a> Authorize a user to claim from a specific namespace
 
@@ -108,8 +106,42 @@ The YAML also creates a `ClusterRoleBinding`that binds the user
 The result is that `alice@example.com` is now authorized to claim from
 `bigcorp-rabbitmq` class.
 
-`alice@example.com` users still need permission to create `ClassClaims` in the namespaces
+User `alice@example.com` still needs permission to create `ClassClaims` in namespaces
 they want to consume the services from.
+
+The following example gives `alice@example.com` permission to get/create/update/delete `ClassClaims` in namespace `apps`:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+   name: create-class-claim-example
+   namespace: apps
+rules:
+  - apiGroups:
+    - services.apps.tanzu.vmware.com
+    resources:
+    - classclaims
+    verbs:
+    - get
+    - create
+    - update
+    - delete
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rbac-role-binding-role-binding
+  namespace: apps
+subjects:
+  - kind: User
+    name: "alice@example.com"
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: create-class-claim-example
+  apiGroup: rbac.authorization.k8s.io
+```
 
 ## <a id="bitnami-services"></a> Revoke default authorization for claiming from the Bitnami Services classes
 
