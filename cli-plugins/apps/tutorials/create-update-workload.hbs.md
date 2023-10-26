@@ -534,8 +534,7 @@ tanzu apps workload apply my-workload \
       --type web -y
 ```
 
-For more information about the Maven flags, see
-[--maven-artifact](../reference/workload-create-apply.hbs.md#apply-maven-artifact).
+For information about available commands, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 
 ### Maven workload created with YAML or JSON parameters
 
