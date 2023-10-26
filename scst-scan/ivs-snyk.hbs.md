@@ -34,7 +34,7 @@ For information about the IVS specification, see [Configuration Options](ivs-cre
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ImageVulnerabilityScan
 metadata:
-  name: snyk-ivs
+  name: snyk-ivs-spdx
   annotations:
     app-scanning.apps.tanzu.vmware.com/scanner-name: Snyk
 spec:
@@ -62,8 +62,12 @@ spec:
     onError: continue
   - name: snyk2spdx # You will need to create your own image. See explanation below.
     image: SNYK2SPDX-IMAGE
-    command:
-    ....
+    command: ["/bin/bash"]
+    args:
+      - "-c"
+      - |
+        set -e
+        cat scan.json | /app/bin/snyk2spdx --output=scan.spdx.json
 ```
 
 Where:
@@ -77,7 +81,34 @@ Where:
   For more information, see the [Snyk Config documentation](https://docs.snyk.io/snyk-cli/commands/config).
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step
   to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted.
-  See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx) in GitHub.
+  See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx) in GitHub. Here is one way to do it:
+    1. Clone the [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx)
+    2. Add the following Dockerfile to the root of the repository:
+        ```
+        FROM node AS build
+
+        RUN npm install -g typescript
+        RUN npm install -g ts-node
+
+        WORKDIR /build-dir
+        ADD . .
+
+        RUN npm install --legacy-peer-deps
+        RUN npm run build && npm prune --json --omit=dev --legacy-peer-deps
+        RUN npx nexe@3.3.7 dist/index.js  -r './dist/**/*.js' -t linux-x64-12.16.2 -o snyk2spdx-linux
+
+        FROM paketobuildpacks/builder-jammy-base AS run
+
+        COPY --from=build /build-dir/dist/ /app/dist/
+        COPY --from=build /build-dir/node_modules /app/node_modules
+        COPY --from=build /build-dir/snyk2spdx-linux /app/bin/snyk2spdx
+
+        ENTRYPOINT ["/app/bin/snyk2spdx"]
+        CMD ["/app/bin/snyk2spdx"]
+        ```
+    3. Build and push the image to a registry. Replace `SNYK2SPDX-IMAGE` with
+      the new image you just built.
+    > **Note** The `snyk2spdx` output is not conformant to the [verification process](./verify-app-scanning-supply-chain.hbs.md) so VMware does not guarantee the results.
 
 > **Note** After detecting vulnerabilities, the Snyk image exits with Exit Code 1 and causes a failed
 > scan task. You can ignore the step error by setting `onError` and handling the error in a subsequent
