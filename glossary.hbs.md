@@ -246,8 +246,8 @@ Terms beginning with "F".
   <tbody>
     <tr>
         <td>Full profile</td>
-        <td>This profile contains all of the Tanzu Application Platform packages,
-        including the necessary defaults for the meta-package, or parent
+        <td>This profile contains most Tanzu Application Platform packages.
+        This includes the necessary defaults for the meta-package, or parent
         Tanzu Application Platform package, subordinate packages, or individual child packages.</td>
     </tr>
   </tbody>
