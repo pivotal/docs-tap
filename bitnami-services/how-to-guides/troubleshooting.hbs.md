@@ -41,4 +41,4 @@ This prevents services created with TAP 1.6 or older to start.
 
 **Solution:**
 
-Follow the [_Upgrading to TKR 1.26 or newer_](../upgrading-tkr.hbs.md) guide.
+Follow the [_Upgrading to TKR 1.26 or newer_](upgrading-tkr.hbs.md) guide.
