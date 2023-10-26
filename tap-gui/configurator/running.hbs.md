@@ -47,9 +47,12 @@ To prepare to overlay your customized image onto the currently running instance:
 1. Create the [ytt](https://carvel.dev/ytt/) overlay secret.
 
 2. Create a file called `tdp-overlay-secret.yaml` with the following content to replace
-   `IMAGE-REFERENCE` with the customized image you retrieved earlier. There are one of two possible values depending on if you installed TAP with the `lite` dependencies (default) or the `full` dependencies. 
+   `IMAGE-REFERENCE` with the customized image you retrieved earlier. There is one of two possible
+   values. The value depends on whether you installed Tanzu Application Platform with the `lite`
+   dependencies (default) or the `full` dependencies. <!-- Use tabs -->
 
-    For the `lite` depenencies (default):
+Content for `lite`
+: This is the content for `tdp-overlay-secret.yaml` if you installed the `lite` dependencies (default):
 
     ```yaml
     apiVersion: v1
@@ -82,7 +85,8 @@ To prepare to overlay your customized image onto the currently running instance:
                     --config=/etc/app-config/app-config.yaml
     ```
 
-    For the `full` dependencies:
+Content for `full`
+: This is the content for `tdp-overlay-secret.yaml` if you installed the `full` dependencies:
 
     ```yaml
     apiVersion: v1
@@ -115,13 +119,13 @@ To prepare to overlay your customized image onto the currently running instance:
                     --config=/etc/app-config/app-config.yaml
     ```
 
-3. Apply the secret by running:
+1. Apply the secret by running:
 
    ```console
    kubectl apply -f tdp-overlay-secret.yaml
    ```
 
-4. Add the secret to `tap-values.yaml`, the file used to install Tanzu Application Platform.
+2. Add the secret to `tap-values.yaml`, the file used to install Tanzu Application Platform.
    For example:
 
     ```yaml
@@ -134,7 +138,7 @@ To prepare to overlay your customized image onto the currently running instance:
       - name: tdp-app-image-overlay-secret
     ```
 
-5. Update your installation to use the modified `tap-values.yaml` file. The exact steps vary depending
+3. Update your installation to use the modified `tap-values.yaml` file. The exact steps vary depending
    on your installation method (GitOps, online install, or offline install).
 
    For how to do so for an online installation, see
@@ -147,4 +151,3 @@ To prepare to overlay your customized image onto the currently running instance:
 > If the cluster is in a `full` profile, it likely has the necessary credentials.
 > In a multicluster installation (`view` profile) you likely need to use Tanzu CLI to add
 > the appropriate credentials.
-
