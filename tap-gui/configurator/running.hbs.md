@@ -49,7 +49,7 @@ To prepare to overlay your customized image onto the currently running instance:
 2. Create a file called `tdp-overlay-secret.yaml` with the following content to replace
    `IMAGE-REFERENCE` with the customized image you retrieved earlier. There is one of two possible
    values. The value depends on whether you installed Tanzu Application Platform with the `lite`
-   dependencies (default) or the `full` dependencies. <!-- Use tabs -->
+   dependencies (default) or the `full` dependencies.
 
 Content for `lite`
 : This is the content for `tdp-overlay-secret.yaml` if you installed the `lite` dependencies (default):
