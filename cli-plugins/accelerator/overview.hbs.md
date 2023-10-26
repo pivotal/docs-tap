@@ -72,4 +72,4 @@ For information about installing the Tanzu CLI Accelerator plug-in, see [Install
 
 ## <a id='command-reference'></a>Command reference
 
-For information about available commands, see [Command Reference](command-reference/tanzu_accelerator.md).
+For information about available commands, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
