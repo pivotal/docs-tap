@@ -57,9 +57,9 @@ The example also includes the `apps.tanzu.vmware.com/aggregate-to-app-operator-c
 which causes this `ClusterRole` to aggregate to Tanzu Application Platform's [app-operator](../../authn-authz/role-descriptions.html#app-operator)
 user role at the cluster scope.
 
-The result is that any user who has the `app-operator` role is now authorized
-to claim from the `bigcorp-rabbitmq` class. The `app-operator`
-user role are authorized to create claims for the provisioner-based by default.
+The result is that any user who has the `app-operator` role is now authorized to claim from the
+`bigcorp-rabbitmq` class.
+By default, the `app-operator` user role is authorized to create claims for the provisioner-based class.
 
 ## <a id="auth-one-user"></a> Authorize a user to claim from a specific namespace
 
@@ -106,10 +106,11 @@ The YAML also creates a `ClusterRoleBinding`that binds the user
 The result is that `alice@example.com` is now authorized to claim from
 `bigcorp-rabbitmq` class.
 
-User `alice@example.com` still needs permission to create `ClassClaims` in namespaces
+The user `alice@example.com` still needs permission to create `ClassClaims` in namespaces that
 they want to consume the services from.
 
-The following example gives `alice@example.com` permission to get/create/update/delete `ClassClaims` in namespace `apps`:
+The following example gives `alice@example.com` permission to get, create, update, or delete
+`ClassClaims` in the `apps` namespace:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
