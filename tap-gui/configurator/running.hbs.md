@@ -51,73 +51,73 @@ To prepare to overlay your customized image onto the currently running instance:
    values. The value depends on whether you installed Tanzu Application Platform with the `lite`
    dependencies (default) or the `full` dependencies.
 
-   Content for `lite`
-   : This is the content for `tdp-overlay-secret.yaml` if you installed the `lite` dependencies (default):
+    Content for `lite`
+    : This is the content for `tdp-overlay-secret.yaml` if you installed the `lite` dependencies (default):
 
-       ```yaml
-       apiVersion: v1
-       kind: Secret
-       metadata:
-         name: tdp-app-image-overlay-secret
-         namespace: tap-install
-       stringData:
-         tdp-app-image-overlay.yaml: |
-           #@ load("@ytt:overlay", "overlay")
+      ```yaml
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: tdp-app-image-overlay-secret
+        namespace: tap-install
+      stringData:
+        tdp-app-image-overlay.yaml: |
+          #@ load("@ytt:overlay", "overlay")
 
-           #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
-           #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
-           ---
-           spec:
-             template:
-               spec:
-                 containers:
-                   #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
-                   #@overlay/match-child-defaults missing_ok=True
-                   - image: IMAGE-REFERENCE
-                   #@overlay/replace
-                     args:
-                     - -c
-                     - |
-                       export KUBERNETES_SERVICE_ACCOUNT_TOKEN="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
-                       exec /layers/tanzu-buildpacks_node-engine-lite/node/bin/node portal/dist/packages/backend  \
-                       --config=portal/app-config.yaml \
-                       --config=portal/runtime-config.yaml \
-                       --config=/etc/app-config/app-config.yaml
-       ```
+          #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
+          #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
+          ---
+          spec:
+            template:
+              spec:
+                containers:
+                  #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
+                  #@overlay/match-child-defaults missing_ok=True
+                  - image: IMAGE-REFERENCE
+                  #@overlay/replace
+                    args:
+                    - -c
+                    - |
+                      export KUBERNETES_SERVICE_ACCOUNT_TOKEN="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
+                      exec /layers/tanzu-buildpacks_node-engine-lite/node/bin/node portal/dist/packages/backend  \
+                      --config=portal/app-config.yaml \
+                      --config=portal/runtime-config.yaml \
+                      --config=/etc/app-config/app-config.yaml
+      ```
 
-   Content for `full`
-   : This is the content for `tdp-overlay-secret.yaml` if you installed the `full` dependencies:
+    Content for `full`
+    : This is the content for `tdp-overlay-secret.yaml` if you installed the `full` dependencies:
 
-       ```yaml
-       apiVersion: v1
-       kind: Secret
-       metadata:
-         name: tdp-app-image-overlay-secret
-         namespace: tap-install
-       stringData:
-         tdp-app-image-overlay.yaml: |
-           #@ load("@ytt:overlay", "overlay")
+      ```yaml
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: tdp-app-image-overlay-secret
+        namespace: tap-install
+      stringData:
+        tdp-app-image-overlay.yaml: |
+          #@ load("@ytt:overlay", "overlay")
 
-           #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
-           #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
-           ---
-           spec:
-             template:
-               spec:
-                 containers:
-                   #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
-                   #@overlay/match-child-defaults missing_ok=True
-                   - image: IMAGE-REFERENCE
-                   #@overlay/replace
-                     args:
-                     - -c
-                     - |
-                       export KUBERNETES_SERVICE_ACCOUNT_TOKEN="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
-                       exec /layers/tanzu-buildpacks_node-engine/node/bin/node portal/dist/packages/backend  \
-                       --config=portal/app-config.yaml \
-                       --config=portal/runtime-config.yaml \
-                       --config=/etc/app-config/app-config.yaml
-       ```
+          #! makes an assumption that tap-gui is deployed in the namespace: "tap-gui"
+          #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
+          ---
+          spec:
+            template:
+              spec:
+                containers:
+                  #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
+                  #@overlay/match-child-defaults missing_ok=True
+                  - image: IMAGE-REFERENCE
+                  #@overlay/replace
+                    args:
+                    - -c
+                    - |
+                      export KUBERNETES_SERVICE_ACCOUNT_TOKEN="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
+                      exec /layers/tanzu-buildpacks_node-engine/node/bin/node portal/dist/packages/backend  \
+                      --config=portal/app-config.yaml \
+                      --config=portal/runtime-config.yaml \
+                      --config=/etc/app-config/app-config.yaml
+      ```
 
 3. Apply the secret by running:
 
