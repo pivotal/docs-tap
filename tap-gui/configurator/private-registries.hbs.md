@@ -1,6 +1,9 @@
 # Configuring the Configurator with a private registry
 
-If you have plugins stored in a private registry that you would like to include in your customized Tanzu Developer Portal, you can configure the Configurator in the `tdp-config.yaml` file. Note: this is an **alpha** feature.
+If you have plugins stored in a private registry that you would like to include in your customized Tanzu Developer Portal, you can configure the Configurator in the `tdp-config.yaml` file.
+
+> **Caution** The current release includes the alpha version of this feature. It is not recommended for use in
+> production environment.
 
 ## <a id="methods"></a> Methods
 
