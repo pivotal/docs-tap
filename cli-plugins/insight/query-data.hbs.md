@@ -29,16 +29,16 @@ For more information about Tanzu Insight CLI plug-in commands, see the
 
 ## <a id='example1'></a>Example 1: What packages and CVEs does a specific image contain?
 
-To query an image scan for vulnerabilities, you need the image's digest, which you can get from the
+To query an image scan for vulnerabilities, you need the image digest value, which you can get from the
 image scan resource.
 
-### Find an image's digest
+### Find an image digest value
 
-Find an image's digest using Supply Chain Tools - Scan 2.0 or Supply Chain Tools - Scan Pre-2.0.
+Find an image digest value using Supply Chain Tools - Scan 2.0 or Supply Chain Tools - Scan Pre-2.0.
 
-#### Find an image's digest using Supply Chain Tools - Scan 2.0
+#### Find an image digest using Supply Chain Tools - Scan 2.0
 
-When using Supply Chain Tools - Scan 2.0, find the image digest by looking inside the corresponding
+When using Supply Chain Tools - Scan 2.0, find the image digest value by looking inside the corresponding
 image vulnerability scan custom resource.
 
 To get a list of image vulnerability scans, run:
@@ -79,11 +79,11 @@ Spec:
   Image: fake.oci-registry.io/dev-cluster/supply-chain-apps/tanzu-java-web-app-my-apps@sha256:a24a8d8eb724b6816f244925cc6625a84c15f6ced6a19335121343424be693cd
 ```
 
-In this example, the image's digest is: `sha256:a24a8d8eb724b6816f244925cc6625a84c15f6ced6a19335121343424be693cd`
+In this example, the image digest value is: `sha256:a24a8d8eb724b6816f244925cc6625a84c15f6ced6a19335121343424be693cd`
 
-#### Find an image's digest using Supply Chain Tools - Scan Pre-2.0
+#### Find an image digest value using Supply Chain Tools - Scan Pre-2.0
 
-When using Supply Chain Tools - Scan Pre-2.0, find the image digest by looking inside the
+When using Supply Chain Tools - Scan Pre-2.0, find the image digest value by looking inside the
 corresponding image scan custom resource.
 
 Run:
@@ -109,9 +109,9 @@ Spec:
     Image: fake.oci-registry.io/dev-cluster/supply-chain-apps/tanzu-java-web-app-my-apps@sha256:e8c648533c4c7440ee9a93142ac7480205e0f7669e4f86771cede8bfaacdc2cf
 ```
 
-In this example, the image's digest is: `sha256:e8c648533c4c7440ee9a93142ac7480205e0f7669e4f86771cede8bfaacdc2cf`
+In this example, the image digest is: `sha256:e8c648533c4c7440ee9a93142ac7480205e0f7669e4f86771cede8bfaacdc2cf`
 
-### Query an image with image digest
+### Query an image with the image digest value
 
 Run:
 
