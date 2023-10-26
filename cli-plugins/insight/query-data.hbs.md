@@ -27,9 +27,10 @@ There are four commands for querying and adding data.
 For more information about Tanzu Insight CLI plug-in commands, see the
 [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
 
-## <a id='example1'></a>Example #1: What packages and CVEs does a specific image contain?
+## <a id='example1'></a>Example 1: What packages and CVEs does a specific image contain?
 
-To query an image scan for vulnerabilities, you need the image's digest, which you can get from the image scan resource.
+To query an image scan for vulnerabilities, you need the image's digest, which you can get from the
+image scan resource.
 
 ### Find an image's digest
 
@@ -37,7 +38,8 @@ Find an image's digest using Supply Chain Tools - Scan 2.0 or Supply Chain Tools
 
 #### Find an image's digest using Supply Chain Tools - Scan 2.0
 
-When using Supply Chain Tools - Scan 2.0, find the image digest by looking inside the corresponding image vulnerability scan custom resource.
+When using Supply Chain Tools - Scan 2.0, find the image digest by looking inside the corresponding
+image vulnerability scan custom resource.
 
 To get a list of image vulnerability scans, run:
 
@@ -67,7 +69,8 @@ For example:
 kubectl describe imagevulnerabilityscan tanzu-java-web-app-grype-scan-jb76m -n my-apps
 ```
 
-In the resource, look for the `Spec.Image` field. The value points to the image that was scanned, including its digest.
+In the resource, look for the `Spec.Image` field. The value points to the image that was scanned,
+including its digest.
 
 For example:
 
@@ -80,7 +83,8 @@ In this example, the image's digest is: `sha256:a24a8d8eb724b6816f244925cc6625a8
 
 #### Find an image's digest using Supply Chain Tools - Scan Pre-2.0
 
-When using Supply Chain Tools - Scan Pre-2.0, find the image digest by looking inside the corresponding image scan custom resource.
+When using Supply Chain Tools - Scan Pre-2.0, find the image digest by looking inside the
+corresponding image scan custom resource.
 
 Run:
 
@@ -94,7 +98,8 @@ For example:
 kubectl get imagescan tanzu-java-web-app -n my-apps
 ```
 
-In the resource, look for the `Spec.Registry.Image` field. The value points to the image that was scanned, including its digest.
+In the resource, look for the `Spec.Registry.Image` field. The value points to the image that was
+scanned, including its digest.
 
 For example:
 
@@ -138,7 +143,7 @@ Packages:
 ...
 ```
 
-## <a id='example2'></a>Example #2: What dependencies are affected by a specific CVE?
+## <a id='example2'></a>Example #: What dependencies are affected by a specific CVE?
 
 Run:
 
@@ -164,4 +169,5 @@ Packages:
 
 ## <a id='add-data'></a>Add data
 
-For more information about manually adding data, see [Add Data](Add data to your Supply Chain Security Tools - Store.hbs.md).
+For more information about manually adding data, see [Add Data](Add data to your Supply Chain
+Security Tools - Store.hbs.md).
