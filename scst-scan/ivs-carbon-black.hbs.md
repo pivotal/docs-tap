@@ -79,7 +79,10 @@ spec:
 
 Where:
 
-- `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image. 
+- `CARBON-BLACK-SCANNER-IMAGE` is the Carbon Black scanner image.
+  For information about publicly available Carbon Black images, see
+  [DockerHub](https://hub.docker.com/r/cbartifactory/cbctl). For more information about using the Carbon Black Scanner CLI, see the
+  [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli/).
 
 The Carbon Black `cbctl-creds` secret is mounted as a workspace binding and the credentials are inserted
 into a `cbctl.yaml` config file that the Carbon Black CLI uses.
