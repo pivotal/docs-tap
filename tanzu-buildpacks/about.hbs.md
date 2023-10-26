@@ -1,9 +1,16 @@
 # Overview of Tanzu Buildpacks
 
-Tanzu Buildpacks provide framework and runtime support for applications. Buildpacks typically examine your applications to determine what dependencies to download, install, and how to configure the apps to communicate with bound services.
+This topic describes how to use Tanzu Buildpacks in Tanzu Application Platform (commonly known as TAP).
 
-Tanzu Buildpacks use open-source [Paketo Buildpacks](https://paketo.io/) to allow Tanzu Application Platform users to turn their application source code into container images. From Tanzu Application Platform v1.6, builders, stacks, and buildpacks are packaged separately from Tanzu Build Service, but are included in the same Tanzu Application Platform profiles as Tanzu Build Service. All buildpacks follow the package name format `*.buildpacks.tanzu.vmware.com`.
+Tanzu Buildpacks provide framework and runtime support for applications. Buildpacks
+examine your applications to determine what dependencies to download, install, and how to configure
+the applications to communicate with bound services.
 
-All information about how to install buildpacks and stacks in TAP can be found in the [Tanzu Build Service Dependencies documentation](../tanzu-build-service/install-tbs.md). There, you will find details about the buildpacks and stacks included in the `lite` and `full` profiles, and see what versions are available.
+Tanzu Buildpacks use open-source [Paketo Buildpacks](https://paketo.io/) to allow Tanzu Application Platform users to turn their application source code into container images.
+
+In Tanzu Application Platform v1.6 and later, builders, stacks, and buildpacks are packaged
+separately from Tanzu Build Service. They are included in the Full, Iterate, and Build installation profiles. All buildpacks follow the package name format `*.buildpacks.tanzu.vmware.com`.
+
+For information about how to install Buildpacks and stacks and the versions available in the `lite` and `full` profiles, see the [Tanzu Build Service Dependencies documentation](../tanzu-build-service/install-tbs.hbs.md).
 
 For more in-depth information about Tanzu Buildpacks features and components, see [Tanzu Buildpack Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
