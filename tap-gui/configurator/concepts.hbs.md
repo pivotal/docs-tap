@@ -36,52 +36,66 @@ Runtime configuration values can include:
 - Integrations (GitHub or GitLab keys, identity provider configuration, and so on)
 - The locations of any catalogs on GitHub or GitLab
 - Security credentials
-- Configuration made available by any TDP plug-in wrappers
+- Configuration made available by any Tanzu Developer Portal plug-in wrappers
 
 ### <a id="buildtime"></a> Buildtime configuration
 
-Buildtime configuration refers to the values that you pass to the Configurator to generate a new portal image.
-This consists of a list of TPD plug-in wrappers, as well as any default runtime configuration for the portal image.
+Buildtime configuration refers to the values that you pass to Configurator to generate a new portal
+image. This configuration consists of a list of Tanzu Developer Portal plug-in wrappers and any
+default runtime configuration for the portal image.
 
 ## <a id="configurator"></a> Tanzu Developer Portal Configurator
 
-The Tanzu Developer Portal Configurator is the image that contains everything necessary to build a
-customized version of Tanzu Developer Portal. Configurator includes a templated version of Tanzu
-Developer Portal, an internal registry of TDP plug-ins wrappers, and tools to enable the
-build process to incorporate external plug-ins.
+Tanzu Developer Portal Configurator is the image that contains everything necessary to build a
+customized version of Tanzu Developer Portal.
+
+Configurator includes a templated version of Tanzu Developer Portal, an internal registry of Tanzu
+Developer Portal plug-ins wrappers, and tools to enable the build process to incorporate external
+plug-ins.
 
 ![Diagram of Tanzu Developer Portal Configurator, the included internal plug-in registry, and the customization process.](images/configurator-internal-external-plugins.png)
 
-## <a id="wrappers"></a> TDP plug-in wrappers
+## <a id="wrappers"></a> Tanzu Developer Portal plug-in wrappers
 
-While Backstage uses [Backstage plug-ins](https://backstage.io/plugins/) to allow the user to customize functionality,
-Tanzu Developer Portal uses TPD plug-in wrappers to accomplish the same thing.
-A TPD plug-in wrapper is simply a Backstage plug-in, wrapped small amount of code to facilitate easy integration into
-the Configurator and Tanzu Developer Portal.
+While Backstage uses [Backstage plug-ins](https://backstage.io/plugins/) to enable the user to
+customize functions, Tanzu Developer Portal uses Tanzu Developer Portal plug-in wrappers to do the
+same thing.
 
-## <a id="plug-ins"></a> Internal TDP plug-in wrappers and external TDP plug-in wrappers
+A Tanzu Developer Portal plug-in wrapper is simply a Backstage plug-in wrapped in a small amount of
+code to facilitate easy integration into Configurator and Tanzu Developer Portal.
 
-Internal TDP plug-in wrappers are included inside the Tanzu Developer Portal Configurator image.
-These include TPD plug-in wrappers specifically built for the Tanzu Application Platform and TPD plug-in
-wrappers for core [Backstage](https://backstage.io) plug-ins.
+### <a id="plug-ins"></a> Internal plug-in wrappers and external plug-in wrappers
 
-External TDP plug-in wrappers are not in the Tanzu Developer Portal Configurator image.
-They are hosted and installed from an external registry such as [npmjs.com](https://www.npmjs.com/).
-They can include custom functionality or wrap existing [third-party Backstage plug-ins](https://backstage.io/plugins/).
+Internal Tanzu Developer Portal plug-in wrappers are included inside the Tanzu Developer Portal
+Configurator image. These include:
 
-## <a id="surfaces-and-wrappers"></a> TDP plug-in wrapper surfaces
+- Tanzu Developer Portal plug-in wrappers specifically built for Tanzu Application Platform
+- Tanzu Developer Portal plug-in wrappers for core [Backstage](https://backstage.io) plug-ins
 
-TDP plug-in wrapper surfaces are the mechanism which allow TPD plug-in wrappers to modify the behavior of the portal.
-When adding a Backstage plug-in to an instance of Backstage, code modifications are required.
-Rather than modifying code, Tanzu Developer Portal exposes extension points where TPD plug-in wrappers can inject code.
-These extension points are known as surfaces.
-The pre-built version of Tanzu Developer Portal includes several surfaces to modify existing functionality including:
+External Tanzu Developer Portal plug-in wrappers are not in the Tanzu Developer Portal Configurator
+image. They are hosted in, and installed, from an external registry, such as [npmjs.com](https://www.npmjs.com/).
+External Tanzu Developer Portal plug-in wrappers can include custom functions or wrap existing
+[third-party Backstage plug-ins](https://backstage.io/plugins/).
+
+### <a id="surfaces-and-wrappers"></a> Tanzu Developer Portal plug-in wrapper surfaces
+
+Tanzu Developer Portal plug-in wrapper surfaces are the mechanism that allows Tanzu Developer Portal
+plug-in wrappers to change the behavior of the portal.
+
+When adding a Backstage plug-in to an instance of Backstage, code modifications are required. Rather
+than editing code, Tanzu Developer Portal exposes extension points where Tanzu Developer Portal
+plug-in wrappers can inject code. These extension points are known as surfaces.
+
+The pre-built version of Tanzu Developer Portal has several surfaces to edit existing functions,
+including:
 
 - Allowing new items to be added to the sidebar
-- Adding new routes/URLs, such as `https://YOUR_PORTAL_URL/plugin`
-- The ability to show up as a Catalog Overview tab
+- Adding new routes, such as `https://YOUR_PORTAL_URL/plugin`
+- The ability to appear as a Catalog Overview tab
 
-This pattern of exposing surfaces where TPD plug-in wrappers can inject new behavior is not limited to what is offered
-in the pre-built version of Tanzu Developer Portal.
-The pattern can also be applied on top of TDP plug-in wrappers themselves.
-This allows for one TDP plug-in wrapper to build on top of another TDP plug-in wrapper.
+This pattern of exposing surfaces where Tanzu Developer Portal plug-in wrappers can inject new
+behavior is not limited to what is offered in the pre-built version of Tanzu Developer Portal.
+
+This pattern can also be applied on top of Tanzu Developer Portal plug-in wrappers themselves. This
+allows for one Tanzu Developer Portal plug-in wrapper to build on top of another Tanzu Developer
+Portal plug-in wrapper.
