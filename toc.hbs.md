@@ -304,6 +304,7 @@
             - [Package values](aws-services/reference/package-values.hbs.md)
             - [Supported services](aws-services/reference/supported-services.hbs.md)
             - [Supported topologies](aws-services/reference/supported-topologies.hbs.md)
+        - [Uninstall AWS Services](aws-services/uninstall-aws-services.hbs.md)
     - [Bitnami Services](bitnami-services/about.hbs.md)
         - [Overview](bitnami-services/about.hbs.md)
         - [Install Bitnami Services](bitnami-services/install-bitnami-services.hbs.md)
