@@ -38,6 +38,10 @@ Terms beginning with "A".
         bootstrap applications.</td>
     </tr>
     <tr>
+        <td>Application Accelerator Engine</td>
+        <td>The component that will perform the file transformations specified in an accelerator's `accelerator.yaml` file.</td>
+    </tr>
+    <tr>
         <td>Application Configuration Service</td>
         <td>This Tanzu Application Platform component provides a Kubernetes-native experience to
         enable the runtime configuration of existing Spring applications that were previously
