@@ -162,6 +162,7 @@
                 - [Add data to your Supply Chain Security Tools - Store](cli-plugins/insight/add-data.hbs.md)
                 - [Query Software Bill of Materials reports](cli-plugins/insight/query-sbom-reports.hbs.md)
                 - [Triage vulnerabilities](cli-plugins/insight/triaging-vulnerabilities.hbs.md)
+                - [Command reference](cli-plugins/insight/cli-docs/tanzu_insight.hbs.md)
     - [Aria Operations for Applications (AOA) dashboard (beta)](aoa-dashboard/about.hbs.md)
         - [Overview](aoa-dashboard/about.hbs.md)
         - [Install](aoa-dashboard/install.hbs.md)
