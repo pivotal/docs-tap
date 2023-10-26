@@ -53,15 +53,22 @@ DORA plug-in. Support for more metrics is planned for later DORA plug-in version
 | Change Failure Rate   | No                                                                      |
 | Mean Time to Recovery | No                                                                      |
 
-## <a id="supported-metrics"></a> Using DORA plugin
+## <a id="use-dora-plug-in"></a> Use the DORA plug-in
 
-Using guest access to authenticate into Tanzu Developer Portal will not display DORA metrics. Please use an auth provider to log into Tanzu Developer Portal.
+To use the DORA plug-in:
 
-1. Select the component you would like to view DORA metrics for.
+1. Use an authentication provider to log in to Tanzu Developer Portal. You cannot see DORA metrics
+   if you use guest access.
 
-2. Select the DORA tab from the navigation list.
+2. Select the component you want to view DORA metrics for.
 
-## <a id="supported-metrics"></a> DORA Metric Calculation
-DORA metrics are calculated by taking the average number of deployments over the last 90 days.
+3. Click the **DORA** tab in the navigation list.
 
-Tanzu Workloads have a Correlation ID which groups all of the artifacts together. The Observer sends this information to the Cloud Event Handler to store DoraMetricsPerCorrelationID. For more information on the data model for DORA metrics: [Artifact Metadata Repository (AMR) data model and concepts]([https://dora.dev/](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/scst-store-amr-data-model-and-concepts.html#dorametricspercorrelationid-9)https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7/tap/scst-store-amr-data-model-and-concepts.html#dorametricspercorrelationid-9) . 
+## <a id="dora-metric-calc"></a> DORA metric calculation
+
+DORA metrics are calculated from the average number of deployments over the last 90 days.
+
+Tanzu workloads have a correlation ID that groups all of the artifacts together. The Observer sends
+this information to the Cloud Event Handler to store `DoraMetricsPerCorrelationID`. For more
+information about the data model for DORA metrics, see
+[Artifact Metadata Repository (AMR) data model and concepts](../../scst-store/amr/data-model-and-concepts.hbs.md#doraMetrics).
