@@ -243,7 +243,7 @@
                     - [tanzu insight vulnerabilities images](cli-plugins/insight/cli-docs/tanzu_insight_vulnerabilities_images.hbs.md)
                     - [tanzu insight vulnerabilities packages](cli-plugins/insight/cli-docs/tanzu_insight_vulnerabilities_packages.hbs.md)
                     - [tanzu insight vulnerabilities sources](cli-plugins/insight/cli-docs/tanzu_insight_vulnerabilities_sources.hbs.md)
-    - [Aria Operations for Applications (AOA) dashboard](aoa-dashboard/about.hbs.md)
+    - [Aria Operations for Applications (AOA) dashboard (beta)](aoa-dashboard/about.hbs.md)
         - [Overview](aoa-dashboard/about.hbs.md)
         - [Install](aoa-dashboard/install.hbs.md)
         - [Use](aoa-dashboard/use.hbs.md)
