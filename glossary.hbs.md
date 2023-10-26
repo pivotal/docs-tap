@@ -99,7 +99,7 @@ Terms beginning with "A".
         <td>Artifact Metadata Repository (AMR) Observer</td>
         <td>A set of managed controllers that watches for relevant updates on
         resources of interest. When relevant events are observed, a CloudEvent is generated and sent
-        to AMR CloudEvent-Handler and relayed for storage in the Metadata Store.</td>
+        to AMR CloudEvent-Handler and relayed for storage in the metadata store.</td>
     </tr>
     <tr>
         <td>AWS Services</td>
