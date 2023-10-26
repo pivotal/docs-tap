@@ -91,10 +91,10 @@ Terms beginning with "A".
         (formerly Tanzu Observability), helps you monitor the health of a cluster by showing
         whether the deployed Tanzu Application Platform components are behaving as expected.</td>
     </tr>
-    <tr>
-        <td>Artifact Metadata Repository (AMR)</td>
-        <td></td><!-- needs definition -->
-    </tr>
+    <!-- <tr> -->
+        <!-- <td>Artifact Metadata Repository (AMR)</td> -->
+        <!-- <td>needs definition</td> -->
+    <!-- </tr> -->
     <tr>
         <td>Artifact Metadata Repository (AMR) Observer</td>
         <td>A set of managed controllers that watches for relevant updates on
