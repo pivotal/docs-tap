@@ -55,12 +55,12 @@ amr:
       kubernetes_service_accounts:
         enable: true
     cloudevent_handler:
-      endpoint: https://amr-cloudevent-handler.VIEW-CLUSTER-INGRESS-DOMAIN # AMR CloudEvent handler location at the View profile cluster.
+      endpoint: https://amr-cloudevent-handler.VIEW-CLUSTER-INGRESS-DOMAIN # AMR CloudEvent Handler location at the View profile cluster.
     ca_cert_data: |
-        "AMR-CLOUDEVENT-HANDLER-CA" 
+        "AMR-CLOUDEVENT-HANDLER-CA"
 ```
 
-> **Important** Installing Grype by using `tap-values.yaml` as follows is 
+> **Important** Installing Grype by using `tap-values.yaml` as follows is
 > deprecated in v1.6 and will be removed in v1.8:
 >
 > ```yaml
@@ -102,11 +102,11 @@ credentials to pull an image from the registry for scanning.
 - `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you set up on the View profile cluster. This matches the `shared.ingress_domain` on the View profile cluster.
 - `AMR-CLOUDEVENT-HANDLER-CA` contains the AMR CloudEvent Handler CA data. For more information about configuring the `amr` portion of the values file, see [Multicluster setup for Supply Chain Security Tools - Store](../../scst-store/multicluster-setup.hbs.md).
 
-When you install Tanzu Application Platform, it is bootstrapped with the `lite` 
-set of dependencies, including buildpacks and stacks, for application builds. 
+When you install Tanzu Application Platform, it is bootstrapped with the `lite`
+set of dependencies, including buildpacks and stacks, for application builds.
 For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
-You can find the buildpack and stack artifacts installed with Tanzu Application Platform 
-on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies). 
+You can find the buildpack and stack artifacts installed with Tanzu Application Platform
+on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
 You can update the dependencies by [upgrading Tanzu Application Platform](../../upgrading.md) to the latest patch.
 
 See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
