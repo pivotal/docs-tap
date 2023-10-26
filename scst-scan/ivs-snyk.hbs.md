@@ -81,7 +81,7 @@ Where:
 
 > **Note** After detecting vulnerabilities, the Snyk image exits with Exit Code 1 and causes a failed
 > scan task. You can ignore the step error by setting `onError` and handling the error in a subsequent
-> step. For instructions, see the [Tekton documentation](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step)
+> step. For instructions, see the [Tekton documentation](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step).
 
 For information about setting up scanner credentials, see the [Snyk CLI documentation](https://docs.snyk.io/snyk-cli/commands/config).
 
