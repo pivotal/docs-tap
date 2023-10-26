@@ -69,6 +69,6 @@ To use the DORA plug-in:
 DORA metrics are calculated from the average number of deployments over the last 90 days.
 
 Tanzu workloads have a correlation ID that groups all of the artifacts together. The Observer sends
-this information to the Cloud Event Handler to store `DoraMetricsPerCorrelationID`. For more
+this information to the CloudEvent Handler to store `DoraMetricsPerCorrelationID`. For more
 information about the data model for DORA metrics, see
 [Artifact Metadata Repository (AMR) data model and concepts](../../scst-store/amr/data-model-and-concepts.hbs.md#doraMetrics).

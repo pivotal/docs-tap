@@ -37,7 +37,7 @@ For information about how to set up the observer, see [User-defined Kubernetes s
 
 ## <a id="cloudevent-handler"></a>CloudEvent Handler
 
-You can find the CloudEvent handler configuration in the Tanzu Application Platform context under the TLK `amr.cloudevent_handler`. This prefix is not stripped in this case.
+You can find the CloudEvent Handler configuration in the Tanzu Application Platform context under the TLK `amr.cloudevent_handler`. This prefix is not stripped in this case.
 
 On the package level, if `amr.cloudevent_handler.auth.kubernetes_service_accounts.enable` and `amr.cloudevent_handler.auth.kubernetes_service_accounts.autoconfigure` are true, the package  creates the following resources to set up authentication automatically in the `metadata-store` namespace:
 
