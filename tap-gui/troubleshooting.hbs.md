@@ -185,8 +185,8 @@ You have not configured any authentication providers and you have not allowed gu
 
 #### Solution
 
-[Configure an authentication provider](auth.hbs.md#configure-an-authentication-provider) or
-[allow guest access](auth.hbs.md#optional-allow-guest-access).
+[Configure an authentication provider](auth.hbs.md#config-auth-prov) or
+[allow guest access](auth.hbs.md#allow-guest-access).
 
 ### <a id='updating-tap-gui-values'></a> Issues updating the values file
 
