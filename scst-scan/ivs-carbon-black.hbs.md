@@ -28,10 +28,12 @@ Where:
 
 ## <a id="example"></a> Example ImageVulnerabilityScan
 
-This section contains a sample IVS that uses Carbon Black to scan a targeted image and push the results to the specified registry location.
+This section contains a sample IVS that uses Carbon Black to scan a targeted image and push the
+results to the specified registry location.
 For information about the IVS specification, see [Configuration Options](ivs-create-your-own.hbs.md#img-vuln-config-options).
 
-- Set the tekton-pipelines feature-flags configmap `enable-api-fields` to `alpha`. This lets you use the `stdoutConfig` which is needed to output the scan report as a file.
+- Set the tekton-pipelines feature-flags configmap `enable-api-fields` to `alpha`. This lets you use
+the `stdoutConfig` which is needed to output the scan report as a file.
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
