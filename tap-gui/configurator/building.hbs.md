@@ -95,23 +95,23 @@ through the supply chain. Depending on your choices during installation, this is
 `registry.tanzu.vmware.com` or the local image registry (`imgpkg`) that you moved the installation
 packages to.
 
-Using the `imgpkg` tool, retrieve the `TDP-IMAGE-LOCATION` by running:
+1. Using the `imgpkg` tool, retrieve the image location by running:
 
-```console
-imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
---field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
-jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}) -o yaml --tty=true | grep -A 1 \
-"kbld.carvel.dev/id: harbor-repo.vmware.com/esback/configurator" | grep "image: " | sed 's/\simage: //g'
-```
+   ```console
+   imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
+   --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
+   jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}) -o yaml --tty=true | grep -A 1 \
+   "kbld.carvel.dev/id: harbor-repo.vmware.com/esback/configurator" | grep "image: " | sed 's/\simage: //g'
+   ```
 
-Output similar to the following appears:
+   Output similar to the following appears:
 
-```console
-IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
-```
+   ```console
+   IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
+   ```
 
-You use this value as the `TDP-IMAGE-LOCATION` in the workload definition described in the next
-section.
+2. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
+   workload definition.
 
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
@@ -144,10 +144,11 @@ spec:
 
 Where:
 
-- `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
-- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value that you encoded earlier
+- `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster.
+- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value that you encoded earlier.
 - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
-  you installed Tanzu Application Platform
+  you installed Tanzu Application Platform. You discovered this location earlier when you
+  [identified your Configurator image](#prep-ident-image).
 
 > **Important** Depending on which supply chain you're using or how you've configured it, you might
 > need to add extra sections to your workload definition file to accommodate activities such as
