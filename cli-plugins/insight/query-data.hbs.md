@@ -21,12 +21,13 @@ There are four commands for querying and adding data:
 - `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilities.
 - `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
-Use `tanzu insight -h` or for more information, see [Tanzu Insight Details](cli-docs/insight.md).
+For more information about these commands, use `tanzu insight -h` or
+see [Tanzu Insight Details](./cli-docs/insight.hbs.md).
 
 ## <a id='example1'></a>Example 1: What packages and CVEs does a specific image contain?
 
-To query an image scan for vulnerabilities, you need the image digest, which you can get from
-the image scan resource.
+To query an image scan for vulnerabilities, you need the image digest value. Get the image digest
+value from the image scan resource using Supply Chain Tools - Scan 2.0 or Supply Chain Tools Scan Pre-2.0.
 
 ### Find the image digest using Supply Chain Tools - Scan 2.0
 
@@ -73,7 +74,7 @@ Spec:
 
 In this example, the image digest is: `sha256:a24a8d8eb724b6816f244925cc6625a84c15f6ced6a19335121343424be693cd`
 
-### Find the image digest using Scan Pre-2.0
+### Find the image digest using Supply Chain Tools - Scan Pre-2.0
 
 Find the image digest by looking inside the corresponding image scan custom resource.
 
@@ -102,7 +103,7 @@ Spec:
 
 In this example, the image digest is: `sha256:e8c648533c4c7440ee9a93142ac7480205e0f7669e4f86771cede8bfaacdc2cf`
 
-### Query an image with image digest
+### Query an image using the image digest value
 
 When you have found the image digest value, you can query an image using this value.
 
@@ -139,7 +140,7 @@ Packages:
 ## <a id='example2'></a>Example 2: What packages and CVEs does my source code contain?
 
 When you find the source code organization, repository or commit SHA, you can use these to query
-the source code in more detail:
+the source code in more detail.
 
 ### Find the source code organization, repository, and commit SHA
 
@@ -176,7 +177,7 @@ Revision is parsed as the commit SHA.
 - Repository is parsed as `my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz`
 - Commit SHA is parsed as `master/c7e4c27ba43250a4b7c46f030355c108aa73cc39`
 
-### Query the source code using repository and organization
+### Query the source code using the repository and organization values
 
 Run:
 
@@ -205,7 +206,7 @@ Packages:
 		3. github.com/valyala/bytebufferpool@v1.0.0
 ```
 
-### Query the source code using commit SHA
+### Query the source code using the commit SHA value
 
 Run:
 
