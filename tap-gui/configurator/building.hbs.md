@@ -26,7 +26,7 @@ Meet the following prerequisites:
   can build a sample application, such as `Tanzu-Java-Web-App` in
   [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md).
 
-- Ensure that your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry.
+- Ensure that your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry or a private registry.
 
 - Ensure that [Carvel tools](https://carvel.dev/) is installed on your workstation.
   `imgpkg`, in particular, must be installed to perform some of the build steps.
@@ -80,6 +80,8 @@ To prepare your Configurator configuration file:
         - name: '@vmware-tanzu/tdp-plugin-techinsights-backend'
           version: '0.0.2'
     ```
+
+    If you plan to add plug-ins that exist in a private registry, follow these [additional authentication steps](./private-registries.hbs.md).
 
 2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
    running:
