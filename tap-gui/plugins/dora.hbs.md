@@ -72,6 +72,5 @@ Tanzu workloads have a correlation ID that groups all of the artifacts together.
 this information to the CloudEvent Handler to store `DoraMetricsPerCorrelationID`. For more
 information about the data model for DORA metrics, see
 [Artifact Metadata Repository (AMR) data model and concepts](../../scst-store/amr/data-model-and-concepts.hbs.md#doraMetrics).
-![doraplugin](https://github.com/pivotal/docs-tap/assets/36433204/beaeb1e5-b5d9-4cdc-9883-39dc7c5d058f)
-![doraselect](https://github.com/pivotal/docs-tap/assets/36433204/011c0e5a-a04e-4b2b-a577-acdaea12d432)
-![doracomponent](https://github.com/pivotal/docs-tap/assets/36433204/69b19019-0eba-403a-9d29-37245c858545)
+
+![The DORA tab is selected in Tanzu Developer Portal.](images/dora-tab.png)
