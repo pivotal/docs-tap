@@ -72,7 +72,7 @@ revision:
     For example:
 
     ```console
-    kubectl edit xmongodbinstance.bitnami.database.tanzu.vmware.com mongodb-zfjr5
+    $ kubectl edit xmongodbinstance.bitnami.database.tanzu.vmware.com mongodb-zfjr5
     ```
 
 1. Change the resource `compositionRevisionRef` to point to the new composition revision. For example:
@@ -100,12 +100,8 @@ revision:
     For example:
 
     ```console
-    kubectl get xmongodbinstance.bitnami.database.tanzu.vmware.com mongodb-zfjr5
-    ```
+    $ kubectl get xmongodbinstance.bitnami.database.tanzu.vmware.com mongodb-zfjr5
 
-    Example output:
-
-    ```console
     NAME            SYNCED   READY   COMPOSITION                                           AGE
     mongodb-zfjr5   True     True    xmongodbinstance.bitnami.database.tanzu.vmware.com   3h24m
     ```
