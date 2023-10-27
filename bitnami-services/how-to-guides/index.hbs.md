@@ -6,5 +6,5 @@ In this section:
 
 - [Configure private registry and VMware Application Catalog integration for Bitnami Services](configure-private-reg-integration.hbs.md)
 - [Obtain credentials for VMware Application Catalog integration](obtain-credentials-for-vac-integration.hbs.md)
-- [Upgrading to TKR 1.26 or newer](upgrading-tkr.hbs.md)
+- [Upgrading to Tanzu Kubernetes releases v1.26 or later](upgrading-tkr.hbs.md)
 - [Troubleshoot Bitnami Services](troubleshooting.hbs.md)

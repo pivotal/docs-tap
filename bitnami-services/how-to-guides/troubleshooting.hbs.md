@@ -21,13 +21,13 @@ updates.
 Delete the `provider-helm-*` pods in the `crossplane-system` namespace and wait for new pods to come
 back online after having applied the updated registry configuration.
 
-## <a id="tkr-126"></a> Services aren't starting after upgrading to TKG/TKR 1.26
+## <a id="tkr-126"></a> Services aren't starting after upgrading to Tanzu Kubernetes releases v1.26
 
 **Symptom:**
 
-After updating to TKG/TKR 1.26, Bitnami services are not starting.
-Inspecting the `Statefulset`s or `Replicaset`s associated with the services reveals issues with the cluster's
-Pod Security Standard:
+After upgrading to Tanzu Kubernetes releases v1.26, Bitnami services are not starting.
+When you inspect a `Statefulset` or `Replicaset` associated with the service, you see an error message
+about an issue with the Pod Security Standard for the cluster:
 
 ```console
 Error creating: pods "xxx" is forbidden: violates PodSecurity "restricted:latest": ...
@@ -35,10 +35,10 @@ Error creating: pods "xxx" is forbidden: violates PodSecurity "restricted:latest
 
 **Cause:**
 
-Newer versions of TKG/TKR enforce a [`restricted` Pod Security
-Standard](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted).
-This prevents services created with TAP 1.6 or older to start.
+Tanzu Kubernetes releases v1.6 and later enforces a
+[`restricted` Pod Security Standard](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted).
+This prevents services created with Tanzu Application Platform v1.6 or earlier from starting.
 
 **Solution:**
 
-Follow the [_Upgrading to TKR 1.26 or newer_](upgrading-tkr.hbs.md) guide.
+Follow the steps in [Upgrading to Tanzu Kubernetes releases v1.26 or later](upgrading-tkr.hbs.md).
