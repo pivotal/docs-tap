@@ -49,12 +49,8 @@ If you want to keep a resource:
     For example:
 
     ```console
-    kubectl get xpostgresqlinstance.aws.database.tanzu.vmware.com rds-2-r4mgc -ojsonpath="{.spec.resourceRefs}"
-    ```
+    $ kubectl get xpostgresqlinstance.aws.database.tanzu.vmware.com rds-2-r4mgc -ojsonpath="{.spec.resourceRefs}"
 
-    Example output:
-
-    ```json
     [{"apiVersion":"rds.aws.upbound.io/v1beta1","kind":"Instance","name":"rds-2-r4mgc-zc69h"}]
     ```
 
@@ -69,7 +65,7 @@ If you want to keep a resource:
     For example:
 
     ```console
-    kubectl edit instance.rds.aws.upbound.io rds-2-r4mgc-zc69h
+    $ kubectl edit instance.rds.aws.upbound.io rds-2-r4mgc-zc69h
     ```
 
 1. Change the `Instance` resource `spec.deletionPolicy` field from `Delete` to `Orphan`:
@@ -128,7 +124,7 @@ To uninstall the AWS Services package:
     For example:
 
     ```console
-    tanzu package installed delete aws-services -n tap-install
+    $ tanzu package installed delete aws-services -n tap-install
     ```
 
 ## <a id="delete-providerconfig"></a> Step 3: Delete the `ProviderConfig`
