@@ -18,7 +18,7 @@ process of interacting with external registry servers is more complicated.
 
 ![Box-and-line diagram showing the relationship of an external registry, a developer workstation, and a Kubernetes cluster without Local Source Proxy.](images/without-lsp-design.png)
 
-The Apps CLI generates requests that adhere to the OCI distribution standard to push artifacts to
+The Apps CLI plug-in generates requests that adhere to the OCI distribution standard to push artifacts to
 Local Source Proxy instances. The Kubernetes API server handles user authentication and authorization.
 
 Consequently this default mechanism becomes the primary way to push a developer's local source code

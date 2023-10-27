@@ -15,7 +15,7 @@ With Local Source Proxy, developers can:
   without managing registry credentials on their local machines or keeping track of where their
   local source is uploaded.
 
-Consequently, the `--source-image` flag in the Apps CLI becomes optional, and there is no longer a
+Consequently, the `--source-image` flag in the Apps CLI plug-in becomes optional, and there is no longer a
 need for Docker registry credentials on the developer’s local machine. Local Source Proxy
 abstracts these details, making deployment more streamlined and user-friendly for developers.
 

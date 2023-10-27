@@ -1,6 +1,6 @@
 # Troubleshooting Local Source Proxy integration
 
-This topic tells you how to troubleshoot the Tanzu Apps CLI integration with Local Source Proxy .
+This topic tells you how to troubleshoot the Tanzu Apps CLI plug-in integration with Local Source Proxy.
 
 Use the following topics to troubleshoot the Local Source Proxy integration:
 
