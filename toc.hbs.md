@@ -652,6 +652,7 @@
          - [Overview](tap-gui/configurator/about.hbs.md)
          - [Concepts](tap-gui/configurator/concepts.hbs.md)
          - [Build your customized Tanzu Developer Portal](tap-gui/configurator/building.hbs.md)
+         - [Configure the Configurator with a private registry](tap-gui/configurator/private-registries.hbs.md)
          - [Run your customized Tanzu Developer Portal](tap-gui/configurator/running.hbs.md)
          - [Troubleshoot Tanzu Developer Portal Configurator](tap-gui/configurator/troubleshooting.hbs.md)
       - [Tanzu Developer Portal plug-ins](tap-gui/plugins/about.hbs.md)
