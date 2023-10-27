@@ -41,10 +41,11 @@ If you want to keep a resource:
 
     Where:
 
-    - `XR-API` is the ...
+    - `XR-API` is in the format `KIND.APIVERSION` using the `kind` and `apiVersion` from the output
+       of the previous step. `APIVERSION` is the part of `apiVersion` before the `/`, for example,
+       `aws.database.tanzu.vmware.com`.
+      of the previous step and `APIVERSION` is the `apiVersion` from the previous step without the
     - `XR-NAME` is the value of `name` from the output of the previous step.
-
-    <!-- check these placeholders. -->
 
     For example:
 
@@ -58,7 +59,7 @@ If you want to keep a resource:
     [{"apiVersion":"rds.aws.upbound.io/v1beta1","kind":"Instance","name":"rds-2-r4mgc-zc69h"}]
     ```
 
-1. Edit the `Instance`: <!-- why? what are we doing in this step? -->
+1. Open the `Instance` resource for editing by running:
 
     ```console
     kubectl edit instance.rds.aws.upbound.io INSTANCE-NAME
@@ -83,7 +84,8 @@ If you want to keep a resource:
       deletionPolicy: Orphan
       # ...
     ```
-    <!-- do you have to reapply the resource? -->
+
+1. Save and close your editor.
 
 1. Delete the claim by running:
 
@@ -136,11 +138,11 @@ You must delete the `ProviderConfig` you created after installing the AWS Servic
 the uninstall.
 
 Crossplane installs a finalizer when the `ProviderConfig` is created. To delete the `ProviderConfig`
-you must remove the finalizer first.
+you must remove the finalizer.
 If you don't do this step, the `ProviderConfig` and its related Custom Resource Definition (CRD)
 remain in the cluster and prevent you from reinstalling the package in the future.
 
-1. Edit the `ProviderConfig` by running: <!-- what are we doing in this step? -->
+1. Open the `ProviderConfig` resource for editing by running:
 
     ```console
     kubectl edit providerconfig.aws.upbound.io PROVIDER-CONFIG-NAME
@@ -148,8 +150,13 @@ remain in the cluster and prevent you from reinstalling the package in the futur
 
     Where `PROVIDER-CONFIG-NAME` is the name you chose for your `ProviderConfig`.
 
-1. Record the `Secret` referenced in `spec.credentials`. <!-- record the name and namespace of the secret? -->
-1. Delete the `metadata.finalizers` entry. <!-- do you have to reapply the resource? -->
+1. In the `ProviderConfig`:
+
+    1. Record the `Secret` referenced in `spec.credentials`.
+    1. Delete the `metadata.finalizers` entry. This allows the `ProviderConfig` to be deleted.
+
+1. Save and close your editor. The `ProviderConfig` is automatically deleted.
+
 1. Verify the `ProviderConfig` has been removed by running:
 
     ```console
@@ -169,4 +176,3 @@ remain in the cluster and prevent you from reinstalling the package in the futur
     ```
 
     Where `SECRET-NAME` and `SECRET-NAMESPACE` are the values you recorded earlier.
-    <!-- check these placeholders -->
