@@ -12,7 +12,7 @@ Failing to follow one of the following procedures for all of your resources leav
 Tanzu Application Platform in a state that might prevent you from reinstalling the AWS Services package
 in the future.
 
-### <a id="retain-resources"></a> Retain resources
+### <a id="retain-resources"></a> Retain the resources
 
 If you want to keep a resource:
 
@@ -92,7 +92,7 @@ If you want to keep a resource:
     tanzu service class-claim delete CLAIM-NAME
     ```
 
-### <a id="delete-resources"></a> Delete resources
+### <a id="delete-resources"></a> Delete the resources
 
 If you want to delete a resource:
 
