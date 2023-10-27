@@ -6,7 +6,7 @@ This topic tells you how to uninstall the AWS Services package from Tanzu Applic
 ## <a id="prepare-infra"></a> Step 1: Prepare your infrastructure
 
 Before uninstalling the package, you must decide whether to keep or delete the existing resources that
-you claimed.
+have been claimed.
 
 Failing to follow one of the following procedures for all of your resources leaves your
 Tanzu Application Platform in a state that might prevent you from reinstalling the AWS Services package

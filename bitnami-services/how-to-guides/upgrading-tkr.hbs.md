@@ -1,14 +1,14 @@
 # Upgrading to Tanzu Kubernetes releases v1.26 or later
 
-This topic describes how to update your existing Bitnami Services instances if you have upgraded to
+This topic describes how to update your existing Bitnami Services instances if you upgraded to
 Tanzu Kubernetes releases v1.26 and later.
 
 Tanzu Kubernetes releases v1.26 and later enforces a [`restricted` Pod Security Standard (PSS)](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
 for all pods running on the cluster.
 This change affects your running Bitnami services.
 
-New Bitnami services claimed on Tanzu Application Platform v1.7 run with no issues in a `restricted` PSS.
-Existing Bitnami services claimed on Tanzu Application Platform 1.6 will fail to start.
+New services claimed on Tanzu Application Platform v1.7 run with no issues in a `restricted` PSS.
+Existing services claimed on Tanzu Application Platform v1.6 will fail to start.
 
 To resolve the issue for existing instances on Tanzu Application Platform 1.7,
 you must update CompositionRevision references for any existing Bitnami Services instances.
@@ -18,7 +18,7 @@ you must update CompositionRevision references for any existing Bitnami Services
 To repair your existing services, upgrade their corresponding managed resources to the latest composition
 revision:
 
-1. Find the managed resource associated to your claim by running:
+1. Find the managed resource associated with your claim by running:
 
     ```console
     kubectl get classclaim CLASS-CLAIM-NAME -n CLASS-CLAIM-NAMESPACE -ojsonpath="{.status.provisionedResourceRef}"
