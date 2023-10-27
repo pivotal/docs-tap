@@ -95,34 +95,6 @@ repository and branch values.
     tanzu accelerator apply -f simple-manifest.yaml
     ```
 
-## <a id="using-local-path"></a>Using local-path for publishing accelerators
-
-You can publish an accelerator directly from a local directory on your system. This helps when
-authoring accelerators and allows you to avoid having to commit every small change to a remote Git
-repository. You can also specify `--interval` so the accelerator is reconciled quicker when VMware
-push new changes.
-
-```console
-tanzu accelerator create simple --local-path ${ACCELERATOR_PATH} --source-image ${SOURCE_IMAGE_REPO} --interval 10s
-```
-
-Where:
-
-- `ACCELERATOR-PATH` is the path to the accelerator source. It is a fully qualified or a relative
-  path. If your current directory is already the directory where your source is, then use ".".
-- `SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new
-  accelerator source. If using Docker Hub, use something such as
-  `docker.io/YOUR_DOCKER_ID/simple-accelerator-source`.
-
-After you have made any additional changes, you can push the latest to the same OCI image repository using:
-
-```console
-tanzu accelerator push --local-path ${ACCELERATOR_PATH} --source-image ${SOURCE_IMAGE_REPO}
-```
-
-The accelerator now reflects the new content after approximately a 10-second wait as specified
-in the previous command.
-
 ## <a id="using-acc-fragments"></a>Using accelerator fragments
 
 Accelerator fragments are reusable accelerator components that can provide options, files, or
