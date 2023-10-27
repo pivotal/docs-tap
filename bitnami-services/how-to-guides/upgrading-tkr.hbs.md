@@ -3,11 +3,11 @@
 This topic describes how to update your existing Bitnami Services instances if you upgraded to
 Tanzu Kubernetes releases v1.26 and later.
 
-Tanzu Kubernetes releases v1.26 and later enforces a [`restricted` Pod Security Standard (PSS)](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
+Tanzu Kubernetes releases v1.26 and later enforces a [restricted Pod Security Standard (PSS)](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)
 for all pods running on the cluster.
 This change affects your running Bitnami services.
 
-New services claimed on Tanzu Application Platform v1.7 run with no issues in a `restricted` PSS.
+New services claimed on Tanzu Application Platform v1.7 run with no issues in a restricted PSS.
 Existing services claimed on Tanzu Application Platform v1.6 will fail to start.
 
 To resolve the issue for existing instances on Tanzu Application Platform 1.7,
