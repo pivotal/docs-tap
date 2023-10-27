@@ -7,7 +7,7 @@ Carbon Black.
 
 This section contains a sample secret containing the Carbon Black credentials inside the
 `~/.cbctl/cbctl.yaml` config file. These credentials are used to authenticate your Carbon Black account.
-You can find it in the Carbon Black console. <!-- what can you find in the CB console? -->
+You can find these credentials in the Carbon Black console.
 See the [Carbon Black documentation](https://developer.carbonblack.com/reference/carbon-black-cloud/container/latest/image-scanning-cli#configuration).
 You must apply this once to your developer namespace.
 
