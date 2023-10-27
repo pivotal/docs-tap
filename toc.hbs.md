@@ -332,6 +332,7 @@ docs.vmware.com is built.
         - [How-to guides](bitnami-services/how-to-guides/index.hbs.md)
             - [Configure private registry and VMware Application catalog integration for Bitnami Services](bitnami-services/how-to-guides/configure-private-reg-integration.hbs.md)
             - [Obtain credentials for VMware Application Catalog Integration](bitnami-services/how-to-guides/obtain-credentials-for-vac-integration.hbs.md)
+            - [Upgrading to Tanzu Kubernetes releases v1.26 or later](bitnami-services/how-to-guides/upgrading-tkr.hbs.md)
             - [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md)
         - [Reference](bitnami-services/reference/index.hbs.md)
             - [Dependencies](bitnami-services/reference/dependencies.hbs.md)
