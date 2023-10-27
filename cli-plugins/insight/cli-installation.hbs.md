@@ -13,7 +13,7 @@ CLI and all the plug-ins, the Tanzu Insight plug-in is also installed.
 
     ```console
     cd $HOME/tanzu
-    tanzu plugin install insight --local cli
+    tanzu plugin install insight
     ```
 
 2. Follow the steps in [Configure the Tanzu Insight CLI plug-in](cli-configuration.md).

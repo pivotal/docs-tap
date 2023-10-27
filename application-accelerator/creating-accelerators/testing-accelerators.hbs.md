@@ -111,5 +111,5 @@ cd $HOME/tanzu
 sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
 
 # Install plugins
-tanzu plugin install --local cli accelerator
+tanzu plugin install accelerator
 ```
