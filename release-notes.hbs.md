@@ -168,6 +168,9 @@ This release includes the following changes, listed by component and area.
 - AMR [Authentication and authorization feature](scst-store/amr/auth.hbs.md) is introduced.
 - AMR GraphQL now contains data for Images, Containers, and Location. For more information, see [Data Model and Concepts](scst-store/amr/data-model-and-concepts.hbs.md).
 
+#### <a id='1-7-0-vscode-extension'></a> v1.7.0 Features: Tanzu Developer Tools for VS Code
+
+- Introduces [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) support in alpha. For more information, see [development containers](vscode-extension/dev-containers.hbs.md)
 ---
 
 ### <a id='1-7-0-breaking-changes'></a> v1.7.0 Breaking changes
