@@ -161,6 +161,11 @@ This release includes the following changes, listed by component and area.
 - **Contour v1.25.2**: Contour v1.25.2 is available in the TAP. For more information, see the [Contour v1.25.2 release notes](https://github.com/projectcontour/contour/releases/tag/v1.25.2) in GitHub.
 
 - **New config option `loadBalancerTLSTermination`**: Allows configuring the Envoy service's port for TLS termination. For more information on how to use this config, see [Configure Contour to support TLS termination at an AWS Network LoadBalancer](./contour/how-to-guides/configuring-contour-with-loadbalancer-tls-termination.hbs.md)
+#### <a id='1-7-0-scan'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Scan
+
+- Add support for Pod Security Admission with Pod Security Standards enforced
+- Add support for the new Tanzu CLI Insight plug-in.
+
 
 #### <a id='1-7-0-tanzu-cli-insight-plugin'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
@@ -379,7 +384,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Spring Cloud Gateway                               |                                     |
 | Supply Chain Choreographer                         |                                     |
 | Supply Chain Security Tools - Policy Controller    |                                     |
-| Supply Chain Security Tools - Scan                 |                                     |
+| Supply Chain Security Tools - Scan                 | 1.7.1                               |
 | Supply Chain Security Tools - Store                |                                     |
 | Tanzu Developer Portal                             |                                     |
 | Tanzu Application Platform Telemetry               |                                     |
