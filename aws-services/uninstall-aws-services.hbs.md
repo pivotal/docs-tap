@@ -5,14 +5,14 @@ This topic tells you how to uninstall the AWS Services package from Tanzu Applic
 
 ## <a id="prepare-infra"></a> Step 1: Prepare your infrastructure
 
-Before uninstalling the package, you must decide whether to keep or delete the existing resources that
+Before uninstalling the package, you must decide whether to retain or delete the existing resources that
 have been claimed.
 
 Failing to follow one of the following procedures for all of your resources leaves your
 Tanzu Application Platform in a state that might prevent you from reinstalling the AWS Services package
 in the future.
 
-### <a id="keep-resources"></a> Keep resources
+### <a id="retain-resources"></a> Retain resources
 
 If you want to keep a resource:
 
@@ -44,7 +44,6 @@ If you want to keep a resource:
     - `XR-API` is in the format `KIND.APIVERSION` using the `kind` and `apiVersion` from the output
        of the previous step. `APIVERSION` is the part of `apiVersion` before the `/`, for example,
        `aws.database.tanzu.vmware.com`.
-      of the previous step and `APIVERSION` is the `apiVersion` from the previous step without the
     - `XR-NAME` is the value of `name` from the output of the previous step.
 
     For example:
@@ -152,7 +151,7 @@ remain in the cluster and prevent you from reinstalling the package in the futur
 
 1. In the `ProviderConfig`:
 
-    1. Record the `Secret` referenced in `spec.credentials`.
+    1. Record the name and namespace of the `Secret` referenced in `spec.credentials`.
     1. Delete the `metadata.finalizers` entry. This allows the `ProviderConfig` to be deleted.
 
 1. Save and close your editor. The `ProviderConfig` is automatically deleted.
