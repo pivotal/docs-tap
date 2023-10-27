@@ -19,7 +19,7 @@ To install the Tanzu Accelerator CLI:
 1. From the `$HOME/tanzu` directory, run:
 
     ```console
-    tanzu plugin install --local ./cli accelerator
+    tanzu plugin install accelerator
     ```
 
 2. To verify that the CLI is installed correctly, run:

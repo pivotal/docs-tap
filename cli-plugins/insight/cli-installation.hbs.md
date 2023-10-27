@@ -9,7 +9,7 @@ This topic tells you how to install your Tanzu Insight CLI plug-in.
 
     ```console
     cd $HOME/tanzu
-    tanzu plugin install insight --local cli
+    tanzu plugin install insight
     ```
 
 2. Follow the steps in [Configure the Tanzu Insight CLI plug-in](cli-configuration.md).

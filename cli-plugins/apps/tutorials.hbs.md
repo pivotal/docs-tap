@@ -11,7 +11,7 @@ Ensure that you installed or updated the Tanzu CLI, for more information, see [I
 1. From the `HOME/tanzu` directory, run:
 
     ```console
-    tanzu plugin install --local ./cli apps
+    tanzu plugin install apps
     ```
 
 2. To verify that the CLI is installed correctly, run:
