@@ -286,6 +286,8 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
+- If you do not configure any authentication providers, and do not allow guest access, you will see the following message when loading the Tanzu Developer Portal in a browser: `No configured authentication providers. Please configure at least one.` Follow the [troubleshooting guide](./tap-gui/troubleshooting.hbs.md#no-configured-authentication-provider) to resolve this issue.
+
 #### <a id='1-6-4-sc-plugin-ki'></a> v1.6.4 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
 
 - Any workloads created by using a custom resource definition (CRD) might not work as expected.
