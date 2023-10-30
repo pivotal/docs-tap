@@ -8,7 +8,7 @@ The following prerequisite is required to author a ClusterImageTemplate for Supp
 
 - You create your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
 - See ClusterImageTemplate [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
-- Understand `ytt` templating. See carvel `ytt` [docs](https://carvel.dev/ytt/) for documentation and playground samples.
+- Understand `ytt` templating. See Carvel `ytt` [docs](https://carvel.dev/ytt/) for documentation and playground samples.
 
 ## <a id='create-clusterimagetemplate'></a> Create a ClusterImageTemplate
 
@@ -174,7 +174,6 @@ ClusterImageTemplate Notes:
             - vuln
             - $(params.image)
     ```
-
 
 >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
 
