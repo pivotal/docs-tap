@@ -55,9 +55,16 @@ This release has the following known issues, listed by component and area.
 
 - Known issue description with link to workaround.  
 
-#### <a id='1-7-0-tdp-no-authn-config-ki'></a> v1.7.0 Known issues: Tanzu Developer Protal
+#### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 
-- If you do not configure any authentication providers, and do not allow guest access, you will see the following message when loading the Tanzu Developer Portal in a browser: `No configured authentication providers. Please configure at least one.` Follow the [troubleshooting guide](./tap-gui/troubleshooting.hbs.md#no-configured-authentication-provider) to resolve this issue.
+- If you do not configure any authentication providers, and do not allow guest access, the following
+  message appears when loading Tanzu Developer Portal in a browser:
+
+  ```console
+  No configured authentication providers. Please configure at least one.
+  ```
+
+  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
 ---
 
