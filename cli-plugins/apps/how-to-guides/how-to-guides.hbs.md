@@ -1,4 +1,4 @@
-# Apps CLI how-to-guides
+# Apps CLI plug-in how-to-guides
 
 The how-to-guides section contains the following topics:
 

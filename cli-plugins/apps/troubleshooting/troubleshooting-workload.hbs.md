@@ -1,6 +1,6 @@
 # Troubleshoot workloads
 
-This topic tells you how to use the Tanzu Apps CLI to troubleshoot workloads
+This topic tells you how to use the Tanzu Apps CLI plug-in to troubleshoot workloads
 in Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="check-build-logs"></a> Check build logs

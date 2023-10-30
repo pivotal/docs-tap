@@ -1,12 +1,12 @@
-# Configure the Tanzu Apps CLI
+# Configure the Tanzu Apps CLI plug-in
 
-This topic tells you how to configure the Tanzu Apps CLI on Tanzu Application Platform
+This topic tells you how to configure the Tanzu Apps CLI plug-in on Tanzu Application Platform
 (commonly known as TAP).
 
 ## <a id='changing-clusters'></a>Changing clusters with --context
 
-The Tanzu Apps CLI references the default kubeconfig file to access a Kubernetes cluster.
-When you run a `tanzu apps` command, the Tanzu Apps CLI  uses the default context.
+The Tanzu Apps CLI plug-in references the default kubeconfig file to access a Kubernetes cluster.
+When you run a `tanzu apps` command, the Tanzu Apps CLI plug-in uses the default context.
 The default context is defined in the kubeconfig file located by default in: `HOME/.kube/config`.
 
 There are two ways to change the target cluster:
@@ -151,7 +151,7 @@ export TANZU_APPS_TYPE=server
 
 ## <a id='autocompletion'></a>Autocompletion
 
-The Tanzu Apps CLI provides auto-completion support for commands,
+The Tanzu Apps CLI plug-in provides auto-completion support for commands,
 positional arguments, flags, and flag values.
 
 Add one of the following commands to the shell config file according to your setup:

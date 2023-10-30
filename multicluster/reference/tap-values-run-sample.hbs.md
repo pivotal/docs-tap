@@ -38,7 +38,7 @@ amr:
       kubernetes_service_accounts:
         enable: true
     cloudevent_handler:
-      endpoint: https://amr-cloudevent-handler.VIEW-CLUSTER-INGRESS-DOMAIN # AMR CloudEvent handler location at the View profile cluster.
+      endpoint: https://amr-cloudevent-handler.VIEW-CLUSTER-INGRESS-DOMAIN # AMR CloudEvent Handler location at the View profile cluster.
     ca_cert_data: |
         "AMR-CLOUDEVENT-HANDLER-CA" 
 ```

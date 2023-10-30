@@ -173,7 +173,11 @@ You can substitute for other integrations as defined in the
 
 #### Symptom
 
-When you load Tanzu Developer Portal in a browser, you get the message `No configured authentication providers. Please configure at least one.`
+When you load Tanzu Developer Portal in a browser, the following message appears:
+
+```console
+No configured authentication providers. Please configure at least one.
+```
 
 #### Cause
 
@@ -181,7 +185,8 @@ You have not configured any authentication providers and you have not allowed gu
 
 #### Solution
 
-[Configure an authentication provider](auth.hbs.md#configure-an-authentication-provider) and/or [(Optional) Allow guest access](auth.hbs.md#optional-allow-guest-access).
+[Configure an authentication provider](auth.hbs.md#config-auth-prov) or
+[allow guest access](auth.hbs.md#allow-guest-access).
 
 ### <a id='updating-tap-gui-values'></a> Issues updating the values file
 

@@ -18,11 +18,11 @@ kubectl -n tap-local-source-system logs deployments/local-source-proxy
 
 Use `-f` to follow the log output.
 
-## <a id="view-apps-cli-health"></a> View Apps CLI health messages
+## <a id="view-apps-cli-health"></a> View Apps CLI plug-in health messages
 
 ### Symptom
 
-You need to read the Apps CLI health messages to assess the status of Local Source Proxy and its
+You need to read the Apps CLI plug-in health messages to assess the status of Local Source Proxy and its
 connectivity with the upstream repository.
 
 ### Solution

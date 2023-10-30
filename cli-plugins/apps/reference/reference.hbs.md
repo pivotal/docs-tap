@@ -1,3 +1,3 @@
-# Tanzu Apps CLI reference
+# Tanzu Apps CLI plug-in reference
 
 The Tanzu Apps CLI plug-in command reference has moved to the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.

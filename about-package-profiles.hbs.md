@@ -825,7 +825,6 @@ Tanzu Application Platform components.
    <th scope="col">Runtime Conventions</th>
    <th scope="col">Tanzu Developer Tooling</th>
    <th scope="col">Application Live View</th>
-   <th scope="col">Functions</th>
    <th scope="col">Extended Scanning Coverage using Buildpack SBOMs</th>
   </tr>
  </thead>
@@ -837,7 +836,6 @@ Tanzu Application Platform components.
    <td>&check;</td>
    <td></td>
    <td>&check;</td>
-   <td>&check;</td>
   </tr>
   <tr>
    <th scope="row">Spring Boot</th>
@@ -846,7 +844,6 @@ Tanzu Application Platform components.
    <td>&check;</td>
    <td>&check;</td>
    <td>&check;</td>
-   <td></td>
   </tr>
   <tr>
    <th scope="row">.NET Core</th>
@@ -854,7 +851,6 @@ Tanzu Application Platform components.
    <td></td>
    <td>&check;</td>
    <td>&check;</td>
-   <td></td>
    <td>&check;</td>
   </tr>
   <tr>
@@ -864,7 +860,6 @@ Tanzu Application Platform components.
    <td>&check;</td>
    <td>&check;</td>
    <td></td>
-   <td></td>
   </tr>
   <tr>
    <th scope="row">NodeJS</th>
@@ -872,7 +867,6 @@ Tanzu Application Platform components.
    <td></td>
    <td></td>
    <td></td>
-   <td>&check;</td>
    <td>&check;</td>
   </tr>
   <tr>
@@ -882,12 +876,10 @@ Tanzu Application Platform components.
    <td></td>
    <td></td>
    <td>&check;</td>
-   <td>&check;</td>
   </tr>
   <tr>
    <th scope="row">golang</th>
    <td>&check;</td>
-   <td></td>
    <td></td>
    <td></td>
    <td></td>
@@ -899,13 +891,11 @@ Tanzu Application Platform components.
    <td></td>
    <td></td>
    <td></td>
-   <td></td>
-   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
    <th scope="row">Ruby</th>
    <td>&check;</td>
-   <td></td>
    <td></td>
    <td></td>
    <td></td>

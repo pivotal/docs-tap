@@ -26,7 +26,8 @@ Meet the following prerequisites:
   can build a sample application, such as `Tanzu-Java-Web-App` in
   [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md).
 
-- Ensure that your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry.
+- Ensure that your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry or a
+  private registry.
 
 - Ensure that [Carvel tools](https://carvel.dev/) is installed on your workstation.
   `imgpkg`, in particular, must be installed to perform some of the build steps.
@@ -81,7 +82,10 @@ To prepare your Configurator configuration file:
           version: '0.0.2'
     ```
 
-2. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
+1. If you plan to add plug-ins that exist in a private registry,
+   [configure the Configurator with a private registry](private-registries.hbs.md).
+
+1. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
    running:
 
    ```console
@@ -95,20 +99,23 @@ through the supply chain. Depending on your choices during installation, this is
 `registry.tanzu.vmware.com` or the local image registry (`imgpkg`) that you moved the installation
 packages to.
 
-
-1. Using the `imgpkg` tool, retrieve the `TDP-IMAGE-LOCATION` that you will supply in your workload
-   definition by running:
+1. Using the `imgpkg` tool, retrieve the image location by running:
 
    ```console
-   imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}) -o yaml --tty=true | grep -A 1 "kbld.carvel.dev/id: harbor-repo.vmware.com/esback/configurator" | grep "image: " | sed 's/\simage: //g'
+   imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
+   --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
+   jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}) -o yaml --tty=true | grep -A 1 \
+   "kbld.carvel.dev/id: harbor-repo.vmware.com/esback/configurator" | grep "image: " | sed 's/\simage: //g'
    ```
 
-   This should output something similar to:
+   Output similar to the following appears:
+
    ```console
    IMAGE-REGISTRY/tap-packages@sha256:bea2f5bec5c5102e2a69a4c5047fae3d51f29741911cf5bb588893aa4e03ca27
    ```
 
-   Use this value as the `TDP-IMAGE-LOCATION` in the below workload definition.
+2. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
+   workload definition.
 
 ## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
@@ -141,10 +148,11 @@ spec:
 
 Where:
 
-- `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
-- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value that you encoded earlier
-- `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image
-  registry from which you installed Tanzu Application Platform
+- `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster.
+- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value that you encoded earlier.
+- `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
+  you installed Tanzu Application Platform. You discovered this location earlier when you
+  [identified your Configurator image](#prep-ident-image).
 
 > **Important** Depending on which supply chain you're using or how you've configured it, you might
 > need to add extra sections to your workload definition file to accommodate activities such as
@@ -191,4 +199,3 @@ tanzu apps workload create -f tdp-workload.yaml
 > **Note** The supply chain does not need to go beyond the image-provider stage. After an image is
 > built, you can proceed to [Run your Customized Tanzu Developer Portal](running.hbs.md).
 > A dedicated supply chain is planned for a future release.
-

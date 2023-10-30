@@ -38,6 +38,10 @@ Terms beginning with "A".
         bootstrap applications.</td>
     </tr>
     <tr>
+        <td>Application Accelerator Engine</td>
+        <td>The component that will perform the file transformations specified in an accelerator's `accelerator.yaml` file.</td>
+    </tr>
+    <tr>
         <td>Application Configuration Service</td>
         <td>This Tanzu Application Platform component provides a Kubernetes-native experience to
         enable the runtime configuration of existing Spring applications that were previously
@@ -91,15 +95,19 @@ Terms beginning with "A".
         (formerly Tanzu Observability), helps you monitor the health of a cluster by showing
         whether the deployed Tanzu Application Platform components are behaving as expected.</td>
     </tr>
-    <tr>
-        <td>Artifact Metadata Repository (AMR)</td>
-        <td></td><!-- needs definition -->
-    </tr>
+    <!-- <tr> -->
+        <!-- <td>Artifact Metadata Repository (AMR)</td> -->
+        <!-- <td>needs definition</td> -->
+    <!-- </tr> -->
+        <!-- <tr> -->
+        <!-- <td>Artifact Metadata Repository (AMR) CloudEvent Handler</td> -->
+        <!-- <td>needs definition</td> -->
+    <!-- </tr> -->
     <tr>
         <td>Artifact Metadata Repository (AMR) Observer</td>
         <td>A set of managed controllers that watches for relevant updates on
         resources of interest. When relevant events are observed, a CloudEvent is generated and sent
-        to AMR CloudEvent-Handler and relayed for storage in the Metadata Store.</td>
+        to AMR CloudEvent Handler and relayed for storage in the metadata store.</td>
     </tr>
     <tr>
         <td>AWS Services</td>
@@ -242,8 +250,8 @@ Terms beginning with "F".
   <tbody>
     <tr>
         <td>Full profile</td>
-        <td>This profile contains all of the Tanzu Application Platform packages,
-        including the necessary defaults for the meta-package, or parent
+        <td>This profile contains most Tanzu Application Platform packages.
+        This includes the necessary defaults for the meta-package, or parent
         Tanzu Application Platform package, subordinate packages, or individual child packages.</td>
     </tr>
   </tbody>

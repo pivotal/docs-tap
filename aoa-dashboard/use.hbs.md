@@ -13,4 +13,4 @@ Use this dashboard to monitor:
 
 Use the **JUMP TO** drop-down menu to quickly go to a view.
 
-![AOA dashboard with the JUMP TO drop-down menu expanded.](images/aoa-dashboard-ready.png)
+![AOA dashboard with the JUMP TO drop-down menu expanded.](images/aoa-dashboard-ready-frame.png)

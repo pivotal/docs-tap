@@ -288,7 +288,7 @@ EOF
 Where:
 
 - `YOUR_DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress` service's External IP address.
-    > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
+    > **Note** You can update this field when knowing the external IP address of the ingress after the initial install of Tanzu Application Platform.
 - `CLUSTER_ISSUER` is the name of the deployed `ClusterIssuer` to enable TLS on your ingress domain. You can disable TLS by using an empty string `""`.
 - `YOUR_NAMESPACE` is the environment variable you defined earlier to describe the name of the developer namespace.
   Supply Chain Security Tools - Store exports secrets to the namespace, and Supply Chain Security Tools - Scan deploys the `ScanTemplates` there.

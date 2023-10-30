@@ -257,7 +257,7 @@ Use the following commands to search for, install, and verify Tanzu CLI plug-in 
 #### List the versions of the Tanzu Application Platform specific plug-in group
 
   ```console
-  tanzu plugin group search --name vmware-tanzu/default --show-details
+  tanzu plugin group search --name vmware-tap/default --show-details
   ```
 
 #### Install the version of the Tanzu Application Platform plug-in group matching your target environment

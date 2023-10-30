@@ -71,7 +71,7 @@ The `AppAcceleratorRuns` data model represents new projects running from Git
 repositories. An `accelerator.yaml` file in the repository declares input
 options for the accelerator. This file contains instructions for processing the
 files when you generate a new project. Observer sends this information to the
-Cloud Event Handler to store `AppAcceleratorRuns`.
+CloudEvent Handler to store `AppAcceleratorRuns`.
 
 Each `AppAcceleratorRun` data entry has a unique `guid`. The `guid` includes information 
 about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`, 
@@ -98,7 +98,7 @@ an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
 ### <a id='doraMetrics'></a> DoraMetrics
 
 The `DoraMetrics` data model represents the DORA Metric information. The Observer sends 
-this information to the Cloud Event Handler to store `DoraMetrics`. 
+this information to the CloudEvent Handler to store `DoraMetrics`. 
 
 `AggregatedLeadTime` is a velocity metric that describes the median amount of time in seconds for a 
 commit to deploy to an environment. `AggregatedDeployments` describes how frequently
@@ -109,5 +109,5 @@ a team releases to production in a time range. You can point multiple
 
 The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for
 a Correlation ID. The Correlation ID groups the all the artifacts together. The 
-Observer sends this information to the Cloud Event Handler to store 
+Observer sends this information to the CloudEvent Handler to store 
 `DoraMetricsPerCorrelationID`.

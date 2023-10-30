@@ -145,7 +145,7 @@ Using GitOps
 Run the following Tanzu CLI command to create a workload in your developer namespace:
 
 Using Tanzu CLI
-: Create a workload using Tanzu Apps CLI command
+: Create a workload using Tanzu Apps CLI plug-in command
 
   ```console
   tanzu apps workload apply tanzu-java-web-app \
