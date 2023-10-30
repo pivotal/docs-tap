@@ -51,11 +51,7 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-6-5-COMPONENT-NAME-ki'></a> v1.6.5 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.  
-
-#### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
+#### <a id='1-6-5-tdp-ki'></a> v1.6.5 Known issues: Tanzu Developer Portal
 
 - If you do not configure any authentication providers, and do not allow guest access, the following
   message appears when loading Tanzu Developer Portal in a browser:
@@ -74,7 +70,7 @@ The following table lists the supported component versions for this Tanzu Applic
 
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
 
----   
+---
 
 ## <a id='1-6-4'></a> v1.6.4
 
