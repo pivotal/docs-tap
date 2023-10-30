@@ -51,7 +51,7 @@ To prepare to overlay your customized image onto the currently running instance:
    values. The value depends on whether you installed Tanzu Application Platform with the `lite`
    dependencies (default) or the `full` dependencies.
 
-    Content for `lite`
+    Content for lite
     : This is the content for `tdp-overlay-secret.yaml` if you installed the `lite` dependencies (default):
 
       ```yaml
@@ -85,7 +85,7 @@ To prepare to overlay your customized image onto the currently running instance:
                       --config=/etc/app-config/app-config.yaml
       ```
 
-    Content for `full`
+    Content for full
     : This is the content for `tdp-overlay-secret.yaml` if you installed the `full` dependencies:
 
       ```yaml
