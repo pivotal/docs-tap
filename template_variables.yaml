@@ -9,3 +9,11 @@ template_variables:
   tanzu-cli:
     version: 1.0.0
     url_version: 1.0
+  tdp-plugins:
+    - Runtime Resources Visibility
+    - Application Live View
+    - Application Accelerator
+    - API Documentation
+    - Supply Chain Choreographer
+    - Security Analysis
+    - DORA Metrics

@@ -47,40 +47,40 @@ To prepare your Configurator configuration file:
 
 1. Create a new file called `tdp-config.yaml` by using the following template:
 
-    ```yaml
-    app:
-      plugins:
-        - name: 'NPM-PLUGIN-FRONTEND'
-          version: 'NPM-PLUGIN-FRONTEND-VERSION'
-    backend:
-      plugins:
-        - name: 'NPM-PLUGIN-BACKEND'
-          version: 'NPM-PLUGIN-BACKEND-VERSION'
-    ```
+   ```yaml
+   app:
+     plugins:
+       - name: "NPM-PLUGIN-FRONTEND"
+         version: "NPM-PLUGIN-FRONTEND-VERSION"
+   backend:
+     plugins:
+       - name: "NPM-PLUGIN-BACKEND"
+         version: "NPM-PLUGIN-BACKEND-VERSION"
+   ```
 
-    Where:
+   Where:
 
-    - `NPM-PLUGIN-FRONTEND` is the npm registry and module name of the front-end plug-in
-    - `NPM-PLUGIN-FRONTEND-VERSION` is the version of your desired front-end plug-in that exists in
-      the npm registry
-    - `NPM-PLUGIN-BACKEND` is the npm registry and module name of the back-end plug-in that you want
-    - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
-      npm registry
+   - `NPM-PLUGIN-FRONTEND` is the npm registry and module name of the front-end plug-in
+   - `NPM-PLUGIN-FRONTEND-VERSION` is the version of your desired front-end plug-in that exists in
+     the npm registry
+   - `NPM-PLUGIN-BACKEND` is the npm registry and module name of the back-end plug-in that you want
+   - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
+     npm registry
 
-    The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
-    in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
+   The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
+   in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
 
-    ```yaml
-    app:
-      plugins:
-        - name: '@vmware-tanzu/tdp-plugin-techinsights'
-          version: '0.0.2'
+   ```yaml
+   app:
+     plugins:
+       - name: "@vmware-tanzu/tdp-plugin-techinsights"
+         version: "0.0.2"
 
-    backend:
-      plugins:
-        - name: '@vmware-tanzu/tdp-plugin-techinsights-backend'
-          version: '0.0.2'
-    ```
+   backend:
+     plugins:
+       - name: "@vmware-tanzu/tdp-plugin-techinsights-backend"
+         version: "0.0.2"
+   ```
 
 1. If you plan to add plug-ins that exist in a private registry,
    [configure the Configurator with a private registry](private-registries.hbs.md).
@@ -91,6 +91,10 @@ To prepare your Configurator configuration file:
    ```console
    base64 -i tdp-config.yaml
    ```
+
+   Note: In the event that no plugins are specified in your `tdp-config.yaml` file, the following plugins will be present by default:
+
+   {{vars.tdp-plugins}}
 
 ## <a id="prep-ident-image"></a> Identify your Configurator image
 
@@ -173,7 +177,7 @@ spec:
   build:
     env:
       - name: BP_NODE_RUN_SCRIPTS
-        value: 'set-tdp-config,portal:pack'
+        value: "set-tdp-config,portal:pack"
       - name: TDP_CONFIG
         value: /tmp/tdp-config.yaml
       - name: TDP_CONFIG_STRING
