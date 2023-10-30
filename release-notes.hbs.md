@@ -51,7 +51,7 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-6-5-tdp-ki'></a> v1.6.5 Known issues: Tanzu Developer Portal
+#### <a id='1-6-5-tdp-ki'></a> v1.6.5 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
 
 - If you do not configure any authentication providers, and do not allow guest access, the following
   message appears when loading Tanzu Developer Portal in a browser:
