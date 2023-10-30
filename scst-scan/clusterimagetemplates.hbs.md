@@ -7,14 +7,20 @@ This topic tells you how to create your own ClusterImageTemplate and customize t
 The following prerequisite is required to author a ClusterImageTemplate for Supply Chain integration:
 
 - You create your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
-- See [here](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details about ClusterImageTemplates.
+- See ClusterImageTemplate [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+- Understand `ytt` templating. See carvel `ytt` [docs](https://carvel.dev/ytt/) for documentation and playground samples.
 
 ## <a id='create-clusterimagetemplate'></a> Create a ClusterImageTemplate
 
 This section describes how to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy. To use a different scanner, replace the embedded ImageVulnerabilityScan with your own.
 
-Notes:
-* `ytt` is used in this sample yaml file to define a resource template written in `ytt` for the ImageVulnerabilityScan Custom Resource. See [here](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+ClusterImageTemplate Notes:
+* The `spec.params` in this sample yaml are used to define default values for fields within the ImageVulnerabilityScan. See `params` [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+  * The `spec.params` fields are referenced by `#@ data.values.params` in the `ytt` template block and in the ImageVulnerabilityScan.
+* The values in the `data.values.workload` such as `metadata`, `labels`, `annotations`, `spec` come from the supply chain workload.
+* The `data.values.image` is the container image built from Buildpacks in the previous step in the SupplyChain that will be scanned for vulnerabilities.
+* `ytt` is used in this sample yaml to define a resource template written in `ytt` for the ImageVulnerabilityScan Custom Resource. See `ytt` [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+  * For example, inside the `ytt` template are defined functions that can be used within the ImageVulnerabilityScan.
 
 1. Create a YAML file with the following content and name it `custom-ivs-template.yaml`.
 
@@ -53,6 +59,10 @@ Notes:
         - name: image_scanning_service_account_publisher
           default: publisher
         - name: image_scanning_active_keychains
+          default: []
+        - name: image_scanning_workspace_bindings
+          default: []
+        - name: image_scanning_steps_env_vars
           default: []
         - name: trivy_db_repository
           default: ghcr.io/aquasecurity/trivy-db
@@ -165,20 +175,15 @@ Notes:
             - $(params.image)
     ```
 
-    Where:
-
-    - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-    - `REGISTRY-SERVER` is the registry server.
-    - `REGISTRY-REPOSITORY` is the registry repository.
-    - `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI.
 
 >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
 
 2. Edit the following in your `custom-ivs-template.yaml` file:
-   - `.metadata.name` is the name of your ClusterImageTemplate.
-   - `REGISTRY-SERVER` and `REGISTRY-REPOSITORY` refer to your registry.
-   - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner image
-   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
+  - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
+  - `REGISTRY-SERVER` is the registry server.
+  - `REGISTRY-REPOSITORY` is the registry repository.
+  - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
+  - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
 3. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
 
