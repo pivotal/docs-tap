@@ -380,9 +380,9 @@ This release has the following known issues, listed by component and area.
 - If you do not configure any authentication providers, and do not allow guest access, the following
   message appears when loading Tanzu Developer Portal in a browser:
 
-  ```console
-  No configured authentication providers. Please configure at least one.
-  ```
+   ```console
+   No configured authentication providers. Please configure at least one.
+   ```
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
