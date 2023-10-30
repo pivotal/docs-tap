@@ -24,6 +24,8 @@ Tanzu Developer Portal consists of the following components:
   - Application Accelerator
   - API Documentation
   - Supply Chain Choreographer
+  - Security Analysis
+  - DORA Metrics
 
 - **TechDocs:**
 
