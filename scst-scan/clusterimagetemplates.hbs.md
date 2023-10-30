@@ -142,7 +142,7 @@ Notes:
             publisher: #@ data.values.params.image_scanning_service_account_publisher
           steps:
           - name: trivy
-            image: TRIVY-SCANNER-IMAGE # input the location of your trivy scanner image
+            image: TRIVY-SCANNER-IMAGE # input the location of your Trivy scanner image
             env:
             - name: TRIVY_DB_REPOSITORY
               value: #@ data.values.params.trivy_db_repository
