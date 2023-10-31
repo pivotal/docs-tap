@@ -2,7 +2,10 @@
 
 This topic helps you troubleshoot Supply Chain Security Tools (SCST) - Scan 2.0.
 
-When an ImageVulnerabilityScan is created, the following resources are created:
+## <a id="overview"></a> Overview
+
+When Scan 2.0 creates an ImageVulnerabilityScan, the following resources are also created:
+
 - Tekton `PipelineRun` with the following `Tasks`:
   - workspace-setup-task
   - scan-task
@@ -20,7 +23,7 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 
     Where `DEV-NAMESPACE` is the name of your developer namespace.
 
-- Determine which resources are failing and proceed to the debugging sections below:
+- To verify which resources are failing, proceed to the following debugging sections:
 
     ```console
     NAME                                                                SUCCEEDED   REASON
@@ -105,7 +108,7 @@ You can use the following methods to debug scan pods:
     For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
 
 - To debug inside of the scan-task pod:
-    Add an additional step with a `sleep` command below your scanner step in the ImageVulnerabilityScan. For example:
+    Add an additional step with a `sleep` command after your scanner step in the ImageVulnerabilityScan. For example:
 
     ```yaml
     ...
@@ -142,8 +145,7 @@ You can run these commands to view the Scan-Controller manager logs:
     kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
     ```
 
-
-## <a id="troubleshooting-app-scanning-issues"></a> Troubleshooting issues
+## <a id="troubleshoot-app-scan-issues"></a> Troubleshooting issues
 
 ### <a id="volume-permission-errors"></a> Volume permission error
 
@@ -156,7 +158,7 @@ unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-sc
 Ensure that the problematic step runs with the
 [proper user and group ids](./ivs-create-your-own.hbs.md#security-context-user-and-group-ids).
 
-### <a id="upgrading-scan-0.2.0"></a> Incompatible Tekton version
+### <a id="upgrading-scan-0-2-0"></a> Incompatible Tekton version
 
 Tanzu Application Platform `v1.7.0` includes `app-scanning.apps.tanzu.vmware.com` version `0.2.0` and Tekton Pipelines version `0.50.1`. The `app-scanning.apps.tanzu.vmware.com` package is incompatible with previous versions of Tekton Pipelines as v1 CRDs were not enabled. You must first upgrade the Tanzu Application Platform package to `v1.7.0` or greater prior to upgrading `app-scanning.apps.tanzu.vmware.com`.
 
@@ -166,6 +168,8 @@ If you did not upgrade in the above order, you may encounter ImageVulnerabilityS
 NAME      SUCCEEDED   REASON
 my-scan
 ```
+ 
+To resolve this issue:
 
 1. Confirm that the issue is due to installation of an incompatible Tekton version by viewing the controller manager logs.
 ```console
