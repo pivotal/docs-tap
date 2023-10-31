@@ -9,3 +9,7 @@ template_variables:
   tanzu-cli:
     version: 1.0.0
     url_version: 1.0
+  api-portal:
+    version: 1.4
+  api-auto-registration:
+    scg-version: 2.1
