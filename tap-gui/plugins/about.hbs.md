@@ -17,11 +17,19 @@ Tanzu Application Platform has the following Tanzu Application Platform GUI plug
 - Security Analysis
 - DORA Metrics
 
+## Backstage Plug-ins
+
+Backstage plug-ins are plug-ins which are developed by Backstage and are in the `@backstage` namespace.
+
+## Community Plug-ins
+
+Community plug-ins are plug-ins which are not developed by Backstage or VMware. These plug-ins are not under the `@backstage` namespace.
+
 ## Validated Plug-ins
 
-Validated plug-ins are community plug-ins that are validated and do not require any preparation work by a user to integrate into Tanzu Developer Portal. This simple mechanism for integrating these plug-ins into the developer portal do not require a customer to create any custom wrappers.
+Validated plug-ins are both backstage and community plug-ins that are validated and do not require any preparation work by a user to integrate into Tanzu Developer Portal. This simple mechanism for integrating these plug-ins into the developer portal do not require a customer to create any custom wrappers.
 
-Tanzu Developer Portal currently supports the following nine community plug-ins:
+Tanzu Developer Portal currently supports the following nine validated plug-ins:
 
 - GitHub Actions
 - Grafana
@@ -35,4 +43,4 @@ Tanzu Developer Portal currently supports the following nine community plug-ins:
 
 ## External Plug-ins
 
-External plug-ins are plug-ins that are not validated and not pre-integrated into Tanzu Developer Portal. External plug-ins allows users to integrate any external plug-in and require a user to write a custom wrapper for their external plug-in.
+External plug-ins (also referred to as custom plug-ins) are plug-ins that are not included in the Tanzu Developer Portal configurator.  These are generally plug-ins which are published to npmjs.org or a similar npm registry alternative. If a user would like to integrate with an external plug-in that is not already validated, the user will be required to write a custom wrapper in order to integrate it with Tanzu Developer Portal.
