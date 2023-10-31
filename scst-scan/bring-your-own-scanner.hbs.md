@@ -19,13 +19,13 @@ You might have an existing investment in a scan solution that VMware does not ha
 
 ## <a id="prerequisities"></a>Prerequisites
 
-TAP users will need to:
+Tanzu Application Platform users must have the following prerequisites:
 
-- Provide their own Vulnerability Scanner Image either by:
+- Provide a Vulnerability Scanner Image either by:
   - Using a publicly available image that contains the scanner CLI.
     - For example, the official Aqua image for Trivy from [Dockerhub](https://hub.docker.com/r/aquasec/trivy/tags).
-  - Building their own image with the scanner CLI which allows for:
-    - More customizable scanning experience.
-      - For example, creating an image with the scanner CLI along with any required dependencies to run the scanner CLI.
-    - Managing their own image to meet the TAP user's compliance standards.
-- Have knowledge of how their preferred scanner works (e.g. commands to use to invoke desired scan results).
+  - Building your own image with the scanner CLI, which allows for:
+    - A more customizable scanning experience.
+      - For example, you can create an image with the scanner CLI with any dependencies required to run the scanner CLI.
+    - Managing your image to meet the Tanzu Application Platform user's compliance standards.
+- Know how your preferred scanner works. For example, commands to use to invoke desired scan results.
