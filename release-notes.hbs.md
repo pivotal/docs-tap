@@ -369,15 +369,6 @@ This release has the following known issues, listed by component and area.
   which is the size limit for the string output of a Tekton Task. For information about these parameters,
   see [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md).
 
-
-#### <a id='1-7-0-scc-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal (GUI) - Supply Chain Choreographer 
-
-- When viewing a supply chain, scrolling horizontally will not work.  Clicking and dragging left or right will navigate the supply chain left or right.  A fix is planned for TAP 1.7.1.  
-
-> **NOTE** The ability to zoom in and out of the supply chain was removed intentionally based on user feedback
-
-![Screenshot of a dialog box inviting the reader to accept the EULA. The Agree button is framed.](images/tdp-scc-click-and-drag.png)
-
 #### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Store
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
@@ -394,6 +385,10 @@ This release has the following known issues, listed by component and area.
    ```
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+
+- When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
+  does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
+  planned for the future. The zoom function was removed because of user feedback.
 
 ---
 
