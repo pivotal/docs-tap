@@ -200,3 +200,23 @@ Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 ```
 
 To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You must use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot your scanner commands from within the container.
+
+### <a id="scanning-restricted-pss"></a> Scanning in cluster with restricted Kubernetes Pod Security Standards
+
+As part of compliance with restricted Kubernetes Pod Security Standards, the securityContext of containers and initContainers must be set. This applies to the `prepare` initContainers and affinity assistants created by Tekton. When a pod does not meet the Pod Security Standards, it will not be created. You may see an error message similar to the following when describing the TaskRun:
+
+```console
+pods "trivy-ivs-5lqlj-scan-task-pod" is forbidden: violates PodSecurity "restricted:latest": privileged (container "step-prisma" must not set securityContext.privileged=true), allowPrivilegeEscalation != false (container "step-prisma" must set securityContext.allowPrivilegeEscalation=false)
+
+
+pods "scan-source-scan-with-passing-policy-zx46t-pod" is forbidden: violates PodSecurity
+      "restricted:latest": allowPrivilegeEscalation != false (container "prepare"
+      must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities
+      (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile
+      (pod or container "prepare" must set securityContext.seccompProfile.type to
+      "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound:
+      no pod found'
+```
+
+
+Currently, Tekton does not 
