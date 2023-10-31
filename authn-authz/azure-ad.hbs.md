@@ -12,7 +12,6 @@ Meet these prerequisites:
 
 * Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 * Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
-* Download and install the [Tanzu CLI RBAC plug-in](binding.html)
 
 ### <a id="set-up-azure-platform"></a> Set up a platform operator
 
@@ -237,6 +236,8 @@ Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app
 1. Retrieve the corresponding object IDs for each group.
 
 1. Add users to the groups accordingly.
+
+TODO
 
 1. For each object ID retrieved earlier, use the Tanzu CLI RBAC plug-in to bind the `object id` group to a role by running:
 

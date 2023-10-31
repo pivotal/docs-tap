@@ -1,92 +1,47 @@
 # Bind a user or group to a default role
 
-You can choose one of the following two approaches to bind a user or group to a default role:
-
-- Use the Tanzu Application Platform RBAC CLI plug-in, which only supports binding Tanzu Application Platform (commonly known as TAP) default roles.
-- Use Kubernetes role-based access control (RBAC) role binding.
-
-VMware recommends that you use the Tanzu Application Platform RBAC CLI plug-in.
-This CLI plug-in simplifies the process by binding the cluster-scoped resource permissions
-at the same time as the namespace-scoped resource permissions, where applicable, for each default role.
-The following sections cover the Tanzu Application Platform RBAC CLI plug-in.
+Once your identity provider for Kubernetes has been configured, users can be authenticated to Kubernetes, however, they still need to be authorized to perform actions on resources.  In order to do this, you can use kubectl to create role bindings that binds a user to the roles defined in [role descriptions](role-descriptions.hbs.md).
 
 ## <a id="prereqs"></a> Prerequisites
 
-1. Download the latest Tanzu CLI version.
-1. Download the Tanzu Application Platform RBAC CLI plug-in `tar.gz` file from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
-1. Ensure you have admin access to the cluster.
+1. Ensure you have kubectl configured and admin access to the cluster.
 1. Ensure you have configured an authentication solution for the cluster.
 You can use [Pinniped](https://pinniped.dev/) or the authentication service native to your Kubernetes distribution.
 
-
-## <a id="install"></a> Install the Tanzu Application Platform RBAC CLI plug-in
-
-Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
-
-> **Caution** The Tanzu Application Platform RBAC CLI plug-in is currently in beta and is
->intended for evaluation and test purposes only.
-
-1. Untar the `tar.gz` file:
-
-    ```console
-    tar -zxvf NAME-OF-THE-TAR
-    ```
-
-1. Install the Tanzu Application Platform RBAC CLI plug-in locally on your operating system:
-
-    macOS
-    :
-    ```console
-    tanzu plugin install rbac --local darwin-amd64
-    ```
-
-    Linux
-    :
-    ```console
-    tanzu plugin install rbac --local linux-amd64
-    ```
-
-    Windows
-    :
-    ```console
-    tanzu plugin install rbac --local windows-amd64
-    ```
-
-## <a id="use-kubeconfig"></a> (Optional) Use a different kubeconfig location
-
-You can use a different kubeconfig location by running:
-
-```console
-tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add --user USER --role ROLE --namespace NAMESPACE
-```
-
-> **Note** The environment variable `KUBECONFIG` is not implemented.
-> You must use the `--kubeconfig` flag to enter a different location. Otherwise the default `~/.kube/config` is used.
-
-For example:
-
-```console
-$ tanzu rbac --kubeconfig /tmp/pinniped_kubeconfig.yaml binding add --user username@vmware.com --role app-editor --namespace user-ns
-```
-
-
 ## <a id="add-user-group-to-role"></a> Add the specified user or group to a role
 
-Add a user or group to a role by running:
+In order to give a user or group a role, you must create bindings between the user and the roles.  These steps will walk you through how to create these bindings and grant a role to a user or group. 
+
+Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  Using kubectl, you should create bindings for both the namespace scoped resources and the cluster scoped resources.
+
+For a user:
 
 ```console
-tanzu rbac binding add --user USER --role ROLE --namespace NAMESPACE
+kubectl create rolebinding ROLEBINDINGNAME --clusterrole ROLE --user USER --namespace NAMESPACE
+kubectl create clusterrolebinding ROLEBINDINGNAME --clusterrole ROLE --user USER
 ```
+
+For example, to grant the user "developer-1" app-editor rights to the "dev" namespace:
 
 ```console
-tanzu rbac binding add --group GROUP --role ROLE --namespace NAMESPACE
+kubectl create rolebinding app-editor --clusterrole app-editor --user developer-1 --namespace dev
+kubectl create clusterrolebinding app-editor-cluster-access --clusterrole app-editor-cluster-access --user developer-1
 ```
 
-For example:
+For a group:
 
 ```console
-$ tanzu rbac binding add --user username@vmware.com --role app-editor --namespace user-ns
+kubectl create rolebinding ROLEBINDINGNAME --clusterrole ROLE --group GROUP --namespace NAMESPACE
+kubectl create clusterrolebinding ROLEBINDINGNAME --clusterrole ROLE --user GROUP
 ```
+
+For example, to grant the group "developers" app-editor rights to the "dev" namespace:
+
+```console
+kubectl create rolebinding app-editor --clusterrole app-editor --group developers --namespace dev
+kubectl create clusterrolebinding app-editor-cluster-access --clusterrole app-editor-cluster-access --group developers
+```
+
 
 ## <a id="get-list-users"></a> Get a list of users and groups from a role
 

@@ -2,23 +2,30 @@
 
 Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }} includes:
 
-- Six default roles to help you set up permissions for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
-- A Tanzu CLI RBAC (role-based access control) plug-in for role binding. For more information, see [Bind a user or group to a default role](binding.md).
-- Documentation for [integrating with your existing identity management solution](integrating-identity.md).
+- Documentation for [use your existing identity management solution for Kubernetes authentication](integrating-identity.md).
+- Six default roles that can be used to provide authorization for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
+
 
 ## <a id="default-roles"></a> Default roles
 
-Four roles are for users:
+Tanzu Application Platform has resources that are namespace scoped (such as workloads, pipelineruns, builds, etc) as well as resources that are cluster scoped (such as clusterbuilders, clustersupplychains, clusterimagetemplates, etc).  For users, the Tanzu Application Platform providers 4 roles that include both a namespace scoped role, as well as a cluster scoped role:
 
-- app-editor
-- app-viewer
-- app-operator
-- service-operator
+| Role Name | Role Description | Namespace Scoped Role Name | Cluster Scoped Role Name | 
+| ---- | ---- | ---- | ---- | ---- |
+| app-editor | View, create, edit, and delete a Tanzu workload or deliverable. | app-editor | app-editor-cluster-access |
+| app-viewer |  Read-only for a Tanzu workload or deliverable | app-viewer | app-view-cluster-access | 
+| app-operator | View, create, edit, and delete supply chain resources |  app-operator | app-operator-cluster-access |
+| service-operator | View, create, edit, and delete service instances, service instance classes, and resource claim policiesservice-operator | service-operator| service-operator-cluster-access | 
 
-Two roles are for service accounts associated with the Tanzu Supply Chain:
+For an detailed view of the different roles and their permissions, see [Role Descriptions](role-descriptions.md).
 
-- workload
-- deliverable
+Additionally, two roles are included for service accounts for namespace scoped resources associated with Tanzu Supply Chains:
+
+
+| Role Name | Namespace Scoped Role Name |
+| ---- | ---- | ---- |
+| workload | workload |
+| deliverable | deliverable |
 
 The default roles provide an opinionated starting point for the most common permissions that users
 need when using Tanzu Application Platform.
@@ -32,11 +39,10 @@ When changing roles or adding new roles that carry one of the labels used by the
 
 
 The default roles are installed with every Tanzu Application Platform profile except for `view`.
-For an overview of the different roles and their permissions, see [Role Descriptions](role-descriptions.md).
 
-## <a id="work-with-roles"></a> Working with roles using the RBAC CLI plug-in
+## <a id="assinging-roles"></a> Assigning with roles using kubectl
 
-For more information about working with roles, see [Bind a user or group to a default role](binding.md).
+For more information about assinging roles to users, see [Bind a user or group to a default role](binding.md).
 
 ## <a id="disclaimer"></a> Disclaimer
 
