@@ -142,7 +142,7 @@ You can configure tracing for your applications on Cloud Native Runtimes.
 You configure tracing for Knative Serving by editing the ConfigMap `config-tracing` for your Knative namespaces.
 
 VMware recommends that you add any integrations in your Serving namespaces.
-For information about how to enable request traces in each component, see the the [Knative documentation](https://knative.dev/docs/serving/accessing-traces/).
+For information about how to enable request traces in each component, see the [Knative documentation](https://knative.dev/docs/serving/accessing-traces/).
 
 ### <a id='forward-trace'></a> Forwarding trace data to an observability platform or data visualization tool
 
