@@ -1,9 +1,15 @@
-# Run-time customization of the portal
+# Runtime customization of Tanzu Developer Portal
 
-This section tells you how to use runtime configuration parameters to customize the existing functionality of your currently running portal. This configuration consists of making changes to the values file that you built while installing the portal and then re-applying those changes to the running configuration. The actual steps can vary depending on how the installation was performed, however the basic steps of updating your values file is covered [here](../../customize-package-installation.hbs.md).
+This topic tells you how to use runtime configuration parameters to customize the existing functions
+of your currently running portal.
 
-To learn how to add additional plugins and features to your portal via build-time customization, see
-[Overview of Configurator](../configurator/about.hbs.md).
+This configuration entails changing the values file that you built while installing the
+portal, and then re-applying those changes to the running configuration. The actual steps can vary
+depending on how you performed the installation. The basic steps of updating your values file are
+described in [Customize your package installation](../../customize-package-installation.hbs.md).
+
+To learn how to add additional plug-ins and features to your portal by using build-time
+customization, see [Overview of Configurator](../configurator/about.hbs.md).
 
 ## <a id="brand-customizing"></a> Customize branding
 
