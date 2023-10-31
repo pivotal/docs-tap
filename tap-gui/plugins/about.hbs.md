@@ -5,4 +5,10 @@ To use a plug-in, you must install the relevant Tanzu Application Platform compo
 
 Tanzu Application Platform has the following GUI plug-ins:
 
-{{ vars.tdp-plug-ins }}
+- Runtime Resources Visibility
+- Application Live View
+- Application Accelerator
+- API Documentation
+- Supply Chain Choreographer
+- Security Analysis
+- DORA Metrics

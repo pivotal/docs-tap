@@ -95,7 +95,13 @@ To prepare your Configurator configuration file:
    If no plug-ins are specified in your `tdp-config.yaml` file, the following plug-ins are present
    by default:
 
-   {{ vars.tdp-plug-ins }}
+   - Runtime Resources Visibility
+   - Application Live View
+   - Application Accelerator
+   - API Documentation
+   - Supply Chain Choreographer
+   - Security Analysis
+   - DORA Metrics
 
 ## <a id="prep-ident-image"></a> Identify your Configurator image
 
