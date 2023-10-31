@@ -56,6 +56,10 @@ spec:
       curl --output ./twistcli --write-out "%{http_code}" -s -L -k -u $USER_NAME:$PASSWORD $ADDRESS/api/v1/util/twistcli
       chmod +x /workspace/twistcli
 
+      if [[ ! -e /cred-helper/config.json ]]; then
+      echo "{}" > /cred-helper/config.json
+      fi
+
       podman pull $IMAGE
       twistcli images scan --podman-path /usr/bin/podman --address $ADDRESS --user $USER_NAME --password $PASSWORD $IMAGE --output-file ./twist-scan.json --containerized
 
@@ -93,7 +97,7 @@ Where:
 
 - `TARGET-IMAGE` is the image to be scanned. You must specify the digest.
 - `PRISMA-SCANNER-IMAGE` is the image containing the Prisma Cloud [twistcli](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli), [podman](https://podman.io/docs/installation), and utility to convert the Prisma summary report (JSON format) to a CycloneDX SBOM in XML format. The scan report summary produced by Prisma cannot be used as is and must be converted.
-- The `securityContext` grants root access as Prisma requires root access to run. If permission is not given, you may encounter a "cannot clone: Operation not permitted" error message. For details on troubleshooting the `securityContext`, see [Troubleshooting](./app-scanning-troubleshooting.hbs.md)
+- The `securityContext` grants root access as Prisma requires root access to run. If permission is not given, you may encounter a "cannot clone: Operation not permitted" error message. For details on troubleshooting the `securityContext`, see [Troubleshooting](./app-scanning-troubleshooting.hbs.md). Due to needing root access, Prisma scans are not able to be run in clusters with restricted Pod Security Standards.
 
 **Note** For information about using the CLI, see the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images).
 
