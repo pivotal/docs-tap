@@ -47,16 +47,16 @@ To prepare your Configurator configuration file:
 
 1. Create a new file called `tdp-config.yaml` by using the following template:
 
-   ```yaml
-   app:
-     plugins:
-       - name: "NPM-PLUGIN-FRONTEND"
-         version: "NPM-PLUGIN-FRONTEND-VERSION"
-   backend:
-     plugins:
-       - name: "NPM-PLUGIN-BACKEND"
-         version: "NPM-PLUGIN-BACKEND-VERSION"
-   ```
+    ```yaml
+    app:
+      plugins:
+        - name: "NPM-PLUGIN-FRONTEND"
+          version: "NPM-PLUGIN-FRONTEND-VERSION"
+    backend:
+      plugins:
+        - name: "NPM-PLUGIN-BACKEND"
+          version: "NPM-PLUGIN-BACKEND-VERSION"
+    ```
 
    Where:
 
@@ -70,31 +70,32 @@ To prepare your Configurator configuration file:
    The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
    in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
 
-   ```yaml
-   app:
-     plugins:
-       - name: "@vmware-tanzu/tdp-plugin-techinsights"
-         version: "0.0.2"
+    ```yaml
+    app:
+      plugins:
+        - name: "@vmware-tanzu/tdp-plugin-techinsights"
+          version: "0.0.2"
 
-   backend:
-     plugins:
-       - name: "@vmware-tanzu/tdp-plugin-techinsights-backend"
-         version: "0.0.2"
-   ```
+    backend:
+      plugins:
+        - name: "@vmware-tanzu/tdp-plugin-techinsights-backend"
+          version: "0.0.2"
+    ```
 
 1. If you plan to add plug-ins that exist in a private registry,
    [configure the Configurator with a private registry](private-registries.hbs.md).
 
-1. Encode the file in base64, to later embed `tdp-config.yaml` in the workload definition file, by
+1. Encode the file in Base64, to later embed `tdp-config.yaml` in the workload definition file, by
    running:
 
    ```console
    base64 -i tdp-config.yaml
    ```
 
-   Note: In the event that no plugins are specified in your `tdp-config.yaml` file, the following plugins will be present by default:
+   If no plug-ins are specified in your `tdp-config.yaml` file, the following plug-ins are present
+   by default:
 
-   {{vars.tdp-plugins}}
+   {{ vars.tdp-plug-ins }}
 
 ## <a id="prep-ident-image"></a> Identify your Configurator image
 

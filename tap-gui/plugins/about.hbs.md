@@ -5,4 +5,4 @@ To use a plug-in, you must install the relevant Tanzu Application Platform compo
 
 Tanzu Application Platform has the following GUI plug-ins:
 
-{{vars.tdp-plugins}}
+{{ vars.tdp-plug-ins }}
