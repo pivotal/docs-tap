@@ -630,7 +630,7 @@
     - [Tanzu Developer Portal](tap-gui/about.hbs.md)
       - [Tanzu Developer Portal overview](tap-gui/about.hbs.md)
       - [Install Tanzu Developer Portal](tap-gui/install-tap-gui.hbs.md)
-      - [Run-time Customization of the Tanzu Developer Portal](tap-gui/customize/customize-portal.hbs.md)
+      - [Runtime customization of Tanzu Developer Portal](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the portal](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the support menu](tap-gui/customize/support-menu.hbs.md)
           - [Customize telemetry collection](tap-gui/customize/customize-telemetry.hbs.md)
