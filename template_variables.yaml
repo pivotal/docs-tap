@@ -10,10 +10,12 @@ template_variables:
     version: 1.0.0
     url_version: 1.0
   tdp-plug-ins:
-    - Runtime Resources Visibility
-    - Application Live View
-    - Application Accelerator
-    - API Documentation
-    - Supply Chain Choreographer
-    - Security Analysis
-    - DORA Metrics
+    <ul>
+    <li>Runtime Resources Visibility</li>
+    <li>Application Live View</li>
+    <li>Application Accelerator</li>
+    <li>API Documentation</li>
+    <li>Supply Chain Choreographer</li>
+    <li>Security Analysis</li>
+    <li>DORA Metrics</li>
+    </ul>
