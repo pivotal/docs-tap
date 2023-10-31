@@ -311,3 +311,21 @@ To deploy successfully, the `servicebinding.tanzu.vmware.com` package requires C
 
 Upgrade to Cluster Essentials v{{ vars.url_version }}. For more information about the upgrade procedures, see the
 [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
+
+## <a id='reconcillation-failure-scan-2'></a> Reconcillation fails when Supply Chain Security Tools - Scan 2.0 present and upgrading
+
+When Supply Chain Security Tools - Scan 2.0 (app-scanning.apps.tanzu.vmware.com) is deployed to a cluster and upgrading from TAP 1.6 to TAP 1.7, one may encounter a reconcillation error like:
+
+```
+Expected to find at least one version, but did not (details: all=1 ->
+      after-prereleases-filter=1 -> after-kapp-controller-version-check=1 -> after-constraints-filter=0)
+```
+
+**Explanation**
+
+upgrade instructions overwrites the previous TAP 1.6 repo with the 1.7 version which leads to reconcillation error above.
+
+**Solution**
+
+1. Upgrade app-scanning.apps.tanzu.vmware.com to version 0.2.1 if possible
+1. Otherwise, adding a new package repository with TAP 1.6 will make the error disappear.

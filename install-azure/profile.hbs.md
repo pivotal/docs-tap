@@ -274,10 +274,6 @@ metadata_store:
   app_service_type: ClusterIP
   ns_for_export_app_cert: ${YOUR_NAMESPACE}
 
-scanning:
-  metadataStore:
-    url: "" # Configuration is moved, so set this string to empty.
-
 accelerator:
   server:
     service_type: "ClusterIP"

@@ -238,6 +238,9 @@ This release includes the following changes, listed by component and area.
   upgrading `app-scanning.apps.tanzu.vmware.com` to v0.2.0.
   See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0).
 
+- The previously deprecated field `scanning.metadataStore.url` is now completely removed and 
+  its presence can cause the reconcillation failure. See [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#reconcillation-failure-during-upgrade)
+
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
 
 - The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform

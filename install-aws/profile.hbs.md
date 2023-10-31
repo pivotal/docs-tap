@@ -279,10 +279,6 @@ metadata_store:
 namespace_provisioner:
   aws_iam_role_arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/tap-workload"
 
-scanning:
-  metadataStore:
-    url: "" # Configuration is moved, so set this string to empty.
-
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 EOF
