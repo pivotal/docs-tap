@@ -4,38 +4,36 @@ This topic tells you how to build your customized Tanzu Developer Portal with Co
 
 ## <a id="prereqs"></a> Prerequisites
 
-Meet the following prerequisites:
+Ensure that the following is true:
 
-- Ensure that Configurator has a running and operating Tanzu Application Platform instance to build
-  the customized portal and run the resulting customized image. You can use a `full` profile for
+- Configurator has a running and operating Tanzu Application Platform instance to build the
+  customized portal and run the resulting customized image. You can use a `full` profile for
   everything or you can use a `build` profile for customizing the portal and a `view` profile for
   running the customized portal. For more information, see
   [Components and installation profiles for Tanzu Application Platform](../../about-package-profiles.hbs.md).
 
-- Ensure that your instance of Tanzu Application Platform has a working supplychain that can build
-  the Tanzu Developer Portal bundle. It doesn't need to be able to deliver it because currently
-  an overlay is used to place the built image on the cluster where the pre-built Tanzu Developer
-  Portal resides.
+- Your instance of Tanzu Application Platform has a working supply chain that can build the Tanzu
+  Developer Portal bundle. It doesn't need to be able to deliver it because currently an overlay is
+  used to place the built image on the cluster where the pre-built Tanzu Developer Portal resides.
 
-- Ensure that your developer namespace has access to both:
+- Your developer namespace has access to both:
 
   - Your installation registry where the source Tanzu Application bundles are located
   - Your build registry where your built images are staged
 
-  Verify that you have a working Tanzu Application Platform installation and you
-  can build a sample application, such as `Tanzu-Java-Web-App` in
+- You have a working Tanzu Application Platform installation and you can build a sample application,
+  such as `Tanzu-Java-Web-App` in
   [Generate an application with Application Accelerator](../../getting-started/generate-first-app.hbs.md).
 
-- Ensure that your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry or a
-  private registry.
+- Your extra plug-ins are in the [npmjs.com](https://www.npmjs.com/) registry or a private registry.
 
-- Ensure that [Carvel tools](https://carvel.dev/) is installed on your workstation.
-  `imgpkg`, in particular, must be installed to perform some of the build steps.
+- [Carvel tools](https://carvel.dev/) is installed on your workstation. `imgpkg`, in particular,
+  must be installed to perform some of the build steps.
 
-- Ensure that the [yq tool](https://github.com/mikefarah/yq/#install) is installed.
+- The [yq tool](https://github.com/mikefarah/yq/#install) is installed.
 
-- Ensure that the [Docker](https://docs.docker.com/engine/install/) CLI is installed and that you've
-  logged into your registry.
+- The [Docker](https://docs.docker.com/engine/install/) CLI is installed and you are logged into
+  your registry.
 
 > **Important** Tanzu Application Platform plug-ins cannot be removed from customized portals.
 > However, if you decide you want to hide them, you can use the
@@ -149,8 +147,7 @@ spec:
       - name: TDP_CONFIG
         value: /tmp/tdp-config.yaml
       - name: TDP_CONFIG_STRING
-        value:
-        ENCODED-TDP-CONFIG-VALUE
+        value: ENCODED-TDP-CONFIG-VALUE
 
   source:
     image: TDP-IMAGE-LOCATION
@@ -160,12 +157,12 @@ spec:
 Where:
 
 - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster.
-- `ENCODED-TDP-CONFIG-VALUE` is the base64-encoded value that you encoded earlier.
+- `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier.
 - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
   you installed Tanzu Application Platform. You discovered this location earlier when you
   [identified your Configurator image](#prep-ident-image).
 
-> **Important** Depending on which supply chain you're using or how you've configured it, you might
+> **Important** Depending on which supply chain you're using or how you configured it, you might
 > need to add extra sections to your workload definition file to accommodate activities such as
 > testing.
 

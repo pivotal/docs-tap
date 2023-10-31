@@ -18,7 +18,7 @@ tpb config method
   Therefore, use this method with caution.
 
   1. In your `tdp-config.yaml` file, add a `registry.uplinks` section to include your private
-     registry. Include the `auth` property to the `registry.uplinks` section, as seen in the
+     registry. Add the `auth` property to the `registry.uplinks` section, as seen in the
      [Verdaccio documentation](https://verdaccio.org/docs/uplinks/#auth-property).
 
   2. Use an authentication token with the uplink by using one of three methods:
@@ -94,7 +94,7 @@ secret method
      You cannot create a package with the name `@tpb/*` because these packages are reserved and cannot
      be overridden.
 
-     Here is the full example that uses a `NPM_TOKEN` environment variable:
+     Here is the full example that uses an `NPM_TOKEN` environment variable:
 
      ```yaml
      registry:
