@@ -206,17 +206,12 @@ To resolve this issue, you can debug within the scan-task pod by following the i
 As part of compliance with restricted Kubernetes Pod Security Standards, the securityContext of containers and initContainers must be set. This applies to the `prepare` initContainers and affinity assistants created by Tekton. When a pod does not meet the Pod Security Standards, it will not be created. You may see an error message similar to the following when describing the TaskRun:
 
 ```console
-pods "trivy-ivs-5lqlj-scan-task-pod" is forbidden: violates PodSecurity "restricted:latest": privileged (container "step-prisma" must not set securityContext.privileged=true), allowPrivilegeEscalation != false (container "step-prisma" must set securityContext.allowPrivilegeEscalation=false)
-
-
-pods "scan-source-scan-with-passing-policy-zx46t-pod" is forbidden: violates PodSecurity
-      "restricted:latest": allowPrivilegeEscalation != false (container "prepare"
-      must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities
-      (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile
-      (pod or container "prepare" must set securityContext.seccompProfile.type to
-      "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound:
-      no pod found'
+pods "scan-source-scan-with-passing-policy-zx46t-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found'
 ```
-
-
-Currently, Tekton does not 
+1. Resolve the `prepare` initContainer violation by updating
+```yaml
+tekton_pipelines:
+  feature_flags:
+    set_security_context: "true"
+```
+2. Currently, Tekton does not 
