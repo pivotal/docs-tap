@@ -75,11 +75,17 @@ ClusterImageTemplate Notes:
 
       ytt: |
         #@ load("@ytt:data", "data")
+        #@ load("@ytt:template", "template")
 
         #@ def merge_labels(fixed_values):
         #@   labels = {}
         #@   if hasattr(data.values.workload.metadata, "labels"):
-        #@     labels.update(data.values.workload.metadata.labels)
+        #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+        #@     for k,v in dict(data.values.workload.metadata.labels).items():
+        #@       if k not in exclusions:
+        #@         labels[k] = v
+        #@       end
+        #@     end
         #@   end
         #@   labels.update(fixed_values)
         #@   return labels
@@ -111,24 +117,37 @@ ClusterImageTemplate Notes:
         #@   return data.values.params["maven"][key]
         #@ end
 
+        #@ def maven_repository_url():
+        #@   if maven_param("repository") and "url" in maven_param("repository"):
+        #@     return maven_param("repository")["url"]
+        #@   elif param("maven_repository_url"):
+        #@     return param("maven_repository_url")
+        #@   else:
+        #@     return None
+        #@   end
+        #@ end
+
         #@ def correlationId():
         #@   if hasattr(data.values.workload, "annotations") and hasattr(data.values.workload.annotations, "apps.tanzu.vmware.com/correlationid"):
         #@     return data.values.workload.annotations["apps.tanzu.vmware.com/correlationid"]
         #@   end
-        #@   if not hasattr(data.values.workload.spec, "source"):
-        #@     return ""
-        #@   end
         #@   url = ""
-        #@   if hasattr(data.values.workload.spec.source, "git"):
-        #@     url = data.values.workload.spec.source.git.url
-        #@   end
-        #@   if hasattr(data.values.workload.spec.source, "image"):
-        #@     url = data.values.workload.spec.source.image.split("@")[0]
+        #@   if hasattr(data.values.workload.spec, "source"):
+        #@     if hasattr(data.values.workload.spec.source, "git"):
+        #@       url = data.values.workload.spec.source.git.url
+        #@     elif hasattr(data.values.workload.spec.source, "image"):
+        #@       url = data.values.workload.spec.source.image.split("@")[0]
+        #@     end
+        #@     url = url + "?sub_path=" + getattr(data.values.workload.spec.source, "subPath", "/")
         #@   end
         #@   if param("maven"):
-        #@     url = param("maven_repository_url") + "/" + maven_param("groupId").replace(".", "/") + "/" + maven_param("artifactId")
+        #@     url = maven_repository_url() + "/" + maven_param("groupId").replace(".", "/") + "/" + maven_param("artifactId")
         #@   end
-        #@   return url + "?sub_path=" + getattr(data.values.workload.spec.source, "subPath", "/")
+        #@   if hasattr(data.values.workload.spec, "image"):
+        #@     url = data.values.workload.spec.image.split("@",1)[0]
+        #@     url = url.split(":",1)[0]
+        #@   end
+        #@   return url
         #@ end
 
         ---
@@ -147,11 +166,13 @@ ClusterImageTemplate Notes:
             location: #@ scanResultsLocation()
           workspace:
             size: #@ data.values.params.image_scanning_workspace_size
+            #@ if/end data.values.params.image_scanning_workspace_bindings:
+            bindings: #@ data.values.params.image_scanning_workspace_bindings
           serviceAccountNames:
             scanner: #@ data.values.params.image_scanning_service_account_scanner
             publisher: #@ data.values.params.image_scanning_service_account_publisher
           steps:
-          - name: trivy
+          - name: trivy-generate-report
             image: TRIVY-SCANNER-IMAGE # input the location of your Trivy scanner image
             env:
             - name: TRIVY_DB_REPOSITORY
@@ -164,15 +185,16 @@ ClusterImageTemplate Notes:
               value: /workspace/.cache
             - name: TMPDIR
               value: /workspace
+            - #@ template.replace(data.values.params.image_scanning_steps_env_vars)
             args:
             - image
-            - --format
-            - cyclonedx
-            - --output
-            - scan.cdx.json
-            - --scanners
-            - vuln
             - $(params.image)
+            - --exit-code=0
+            - --no-progress
+            - --scanners=vuln
+            - --format=cyclonedx
+            - --output=$(params.scan-results-path)/scan.cdx.json
+
     ```
 
 >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
@@ -184,28 +206,10 @@ ClusterImageTemplate Notes:
   - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
-3. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
-
-    ```yaml
-    metadata:
-      labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
-      generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
-    spec:
-      image: #@ data.values.image
-      activeKeychains: #@ data.values.params.image_scanning_active_keychains
-      scanResults:
-        location: #@ scanResultsLocation()
-      workspace:
-        size: #@ data.values.params.image_scanning_workspace_size
-      serviceAccountNames:
-        scanner: #@ data.values.params.image_scanning_service_account_scanner
-        publisher: #@ data.values.params.image_scanning_service_account_publisher
-    ```
-
-4. Create the ClusterImageTemplate:
+3. Create the ClusterImageTemplate:
 
     ```console
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-5. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
+4. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).

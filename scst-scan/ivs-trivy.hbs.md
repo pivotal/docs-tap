@@ -27,13 +27,12 @@ spec:
     command: ["trivy"]
     args:
     - image
-    - --format
-    - cyclonedx
-    - --output
-    - $(params.scan-results-path)/scan.cdx.json
-    - --scanners
-    - vuln
     - $(params.image)
+    - --exit-code=0
+    - --no-progress
+    - --scanners=vuln
+    - --format=cyclonedx
+    - --output=$(params.scan-results-path)/scan.cdx.json
 ```
 
 Where:
