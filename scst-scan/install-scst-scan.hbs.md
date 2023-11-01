@@ -25,7 +25,7 @@ Before installing SCST - Scan:
 
   For information about SCST - Store, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
->**Note** If you are installing SCST - Scan in a cluster with restricted Kubernetes Pod Security Standards, you will need to update configurations for the Tekton Pipelines package. See [Troubleshooting](./troubleshoot-scan.hbs.md).
+>**Note** If you are installing SCST - Scan in a cluster with restricted Kubernetes Pod Security Standards, you will need to update configurations for the Tekton Pipelines package. See [Troubleshooting](./troubleshoot-scan.hbs.md#scanning-in-cluster-with-restricted-kubernetes-pod-security-standards).
 
 ## <a id='configure-scst-scan'></a> Configure properties
 
