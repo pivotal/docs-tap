@@ -201,7 +201,7 @@ Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 
 To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You must use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot your scanner commands from within the container.
 
-### <a id="scanning-restricted-pss"></a> Scanning in cluster with restricted Kubernetes Pod Security Standards
+### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
 
 As part of compliance with restricted Kubernetes Pod Security Standards, the `securityContext` of containers and initContainers must be set. This applies to the `prepare` initContainers and affinity assistant pods created by Tekton. When a pod does not meet Pod Security Standards, it will not be created and vulnerability scanning cannot proceed. You may see an error message similar to the following when describing the TaskRun:
 
@@ -213,7 +213,7 @@ pods "trivy-ivs-abcd-scan-task-pod" is forbidden: violates PodSecurity "restrict
     tekton_pipelines:
         feature_flags:
             set_security_context: "true"
-            disable-affinity-assistant: "false"
+            disable-affinity-assistant: "true"
     ```
     Setting the `securityContext` will resolve the `prepare` initContainer violation. Deactivating affinity assistant pods is a workaround for the affinity assistant violation as currently Tekton does not have a way to update the `securityContext` in those pods.
 

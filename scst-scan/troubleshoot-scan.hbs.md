@@ -507,7 +507,7 @@ This is because the field `scanning.metadataStore.url` has been removed.
 If this field is present in `tap-values.yaml` provided for the upgrade, the reconciliation will fail.
 To resolve this problem, remove the field from the values file and run the upgrade command again.
 
-### <a id="scanning-restricted-pss"></a> Scanning in cluster with restricted Kubernetes Pod Security Standards
+### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
 
 As part of compliance with restricted Kubernetes Pod Security Standards, the `securityContext` of containers and initContainers must be set. This applies to the `prepare` initContainers created by Tekton. When a pod does not meet Pod Security Standards, it will not be created and vulnerability scanning cannot proceed. You may see an error message similar to the following when describing the TaskRun:
 
