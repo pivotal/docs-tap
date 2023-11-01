@@ -60,7 +60,7 @@ to build a customized version of Tanzu Developer Portal. Foundation includes the
 Tanzu Developer Portal, an internal registry of Tanzu Developer Portal plug-ins, and tools to enable
 the build process to incorporate external plug-ins.
 
-![Diagram of Tanzu Developer Portal Foundation, the included internal plug-in registry, and the customization process.](images/foundation-internal-external-plugins.png)
+![Diagram of Tanzu Developer Portal Foundation, the included internal plug-in registry, and the customization process.](images/configurator-internal-external-plugins.png)
 
 ## <a id="plug-ins"></a> Internal plug-ins and external plug-ins
 
