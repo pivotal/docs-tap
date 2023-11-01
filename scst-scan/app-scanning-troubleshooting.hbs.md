@@ -225,6 +225,6 @@ pods "trivy-ivs-abcd-scan-task-pod" is forbidden: violates PodSecurity "restrict
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
-  >**Note** Tekton's [affinity assistant](https://tekton.dev/vault/pipelines-main/affinityassistants/) is a feature that can schedule all TaskRun pods within the PipelineRun that share the Workspace to the same Node. To prevent a pod and volume being scheduled on separate nodes in a multinode cluster, you need to make the necessary configurations.
+  >**Note** Tekton's [affinity assistant](https://tekton.dev/vault/pipelines-main/affinityassistants/) is a feature that can schedule all TaskRun pods within a PipelineRun that share the Workspace to the same Node. If deactivated, it is recommended to use an affinity-aware [CSI](https://kubernetes.io/docs/concepts/storage/volumes/#csi) storage class.
 
-3. Re-run the scan.
+1. Re-run the scan.
