@@ -41,8 +41,4 @@ This prevents services created with Tanzu Application Platform v1.6 or earlier f
 
 **Solution:**
 
-<<<<<<< HEAD
-Follow the [_Upgrading to TKR 1.26 or newer_](../upgrading-tkr.hbs.md) guide.
-=======
 Follow the steps in [Upgrading to Tanzu Kubernetes releases v1.26 or later](upgrading-tkr.hbs.md).
->>>>>>> 3dc587009 ([TAAP-2518] Edit PR #3043)
