@@ -1,13 +1,16 @@
 # Overview of Tanzu Developer Portal plug-ins
 
-Tanzu Developer Portal can integrate with many plug-ins. Some of these plug-ins are pre-integrated into the developer portal and some can be integrated via the configurator. This section gives an overview of the different plug-in types that are supported in Tanzu Developer Portal.
+This topic gives you an overview of the different plug-in types that Tanzu Developer Portal
+supports. Some plug-ins are already integrated with Tanzu Developer Portal. Other plug-ins require
+you to use Configurator to integrate them.
 
-## Tanzu Application Platform Plug-ins
+## <a id='tap-plug-ins'></a> Tanzu Application Platform plug-ins
 
-Tanzu Application Platform plug-ins are pre-integrated plug-ins. You need not configure the plug-ins.
-To use a plug-in, you must install the relevant Tanzu Application Platform component.
+Tanzu Application Platform plug-ins are already integrated with Tanzu Developer Portal. You don't
+need to configure these plug-ins. To use a Tanzu Application Platform plug-in, you must install the
+relevant Tanzu Application Platform component.
 
-Tanzu Application Platform has the following Tanzu Application Platform GUI plug-ins:
+Tanzu Application Platform has the following Tanzu Developer Portal plug-ins:
 
 - Runtime Resources Visibility
 - Application Live View
@@ -17,19 +20,22 @@ Tanzu Application Platform has the following Tanzu Application Platform GUI plug
 - Security Analysis
 - DORA Metrics
 
-## Backstage Plug-ins
+## <a id='backstage-plug-ins'></a> Backstage plug-ins
 
-Backstage plug-ins are plug-ins which are developed by Backstage and are in the `@backstage` namespace.
+Backstage plug-ins are developed by Backstage and are in the `@backstage` namespace.
 
-## Community Plug-ins
+## <a id='community-plug-ins'></a> Community plug-ins
 
-Community plug-ins are plug-ins which are not developed by Backstage or VMware. These plug-ins are not under the `@backstage` namespace.
+Community plug-ins are not developed by Backstage or VMware. These plug-ins are not in the
+`@backstage` namespace.
 
-## Validated Plug-ins
+## <a id='valid-plug-ins'></a> Validated plug-ins
 
-Validated plug-ins are both backstage and community plug-ins that are validated and do not require any preparation work by a user to integrate into Tanzu Developer Portal. This simple mechanism for integrating these plug-ins into the developer portal do not require a customer to create any custom wrappers.
+Validated plug-ins are Backstage plug-ins or community plug-ins that VMware has validated for use
+with Tanzu Developer Portal. You don't need to create custom wrappers to integrate these plug-ins
+with Tanzu Developer Portal.
 
-Tanzu Developer Portal currently supports the following nine validated plug-ins:
+Tanzu Developer Portal currently supports the following validated plug-ins:
 
 - GitHub Actions
 - Grafana
@@ -41,6 +47,11 @@ Tanzu Developer Portal currently supports the following nine validated plug-ins:
 - Stack Overflow
 - TechInsights
 
-## External Plug-ins
+## <a id='ext-plug-ins'></a> External plug-ins
 
-External plug-ins (also referred to as custom plug-ins) are plug-ins that are not included in the Tanzu Developer Portal configurator.  These are generally plug-ins which are published to npmjs.org or a similar npm registry alternative. If a user would like to integrate with an external plug-in that is not already validated, the user will be required to write a custom wrapper in order to integrate it with Tanzu Developer Portal.
+External plug-ins (also referred to as custom plug-ins) are plug-ins that are not in
+Tanzu Developer Portal Configurator.
+
+These plug-ins are typically are published to npmjs.org or a similar npm registry alternative. If
+you want to integrate an external plug-in that is not validated for use with Tanzu Developer Portal,
+you must write a custom wrapper for it.
