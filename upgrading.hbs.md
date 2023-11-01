@@ -23,7 +23,7 @@ Before you upgrade Tanzu Application Platform:
   [Update the new package repository](#add-new-package-repo), upgrade to Cluster Essentials
   v{{ vars.url_version }}. For more information about the upgrade procedures, see the
   [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
-- The previously deprecated field `scanning.metadataStore.url` is now completely removed from the `tap-values.yaml` file. Make sure that this field is not present in the `tap-values.yaml` file used for the upgrade.
+- The previously deprecated field `scanning.metadataStore.url` is removed from the values for installing or upgrading Tanzu Application Platform v1.7. This field must not present in the `tap-non-sensitive-values.yaml` file when performing the upgrade.
 - Note that this upgrade will update all workloads and pods that are using service bindings. This is done automatically after upgrading to 1.7 and requires no user action.
 - All pods with service bindings are recreated concurrently at the time of the upgrade. You must have sufficient Kubernetes resources in your clusters to support the pod rollout.
 
