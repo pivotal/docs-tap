@@ -1,7 +1,8 @@
 # Runtime configuration options for Tanzu Developer Portal
 
-You can provide a series of options to the Tanzu Developer Portal package to configure it and do
-some basic [runtime customization](customize/customize-portal.hbs.md).
+You can provide a series of options to the Tanzu Developer Portal
+(formerly called Tanzu Application Platform GUI) package to configure it and do some basic
+[runtime customization](customize/customize-portal.hbs.md).
 
 ## <a id="identify"></a> Identify the Tanzu Developer Portal version you have available
 
