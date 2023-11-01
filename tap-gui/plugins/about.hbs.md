@@ -52,6 +52,6 @@ Tanzu Developer Portal currently supports the following validated plug-ins:
 External plug-ins (also referred to as custom plug-ins) are plug-ins that are not in
 Tanzu Developer Portal Configurator.
 
-These plug-ins are typically are published to npmjs.org or a similar npm registry alternative. If
-you want to integrate an external plug-in that is not validated for use with Tanzu Developer Portal,
-you must write a custom wrapper for it.
+These plug-ins are typically published to npmjs.org or a similar npm registry alternative. If you
+want to integrate an external plug-in that is not validated for use with Tanzu Developer Portal, you
+must write a custom wrapper for it.
