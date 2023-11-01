@@ -701,7 +701,7 @@ docs.vmware.com is built.
     - [Tanzu Developer Portal (formerly Tanzu Application Platform GUI)](tap-gui/about.hbs.md)
       - [Tanzu Developer Portal overview](tap-gui/about.hbs.md)
       - [Install Tanzu Developer Portal](tap-gui/install-tap-gui.hbs.md)
-      - [Runtime Configuration Options of Tanzu Developer Portal](tap-gui/runtime-config-options.hbs.md)
+      - [Runtime configuration options for Tanzu Developer Portal](tap-gui/runtime-config-options.hbs.md)
       - [Customize Tanzu Developer Portal](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the portal](tap-gui/customize/customize-portal.hbs.md)
           - [Customize the support menu](tap-gui/customize/support-menu.hbs.md)
