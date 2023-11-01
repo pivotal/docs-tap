@@ -95,14 +95,17 @@ Terms beginning with "A".
         (formerly Tanzu Observability), helps you monitor the health of a cluster by showing
         whether the deployed Tanzu Application Platform components are behaving as expected.</td>
     </tr>
-    <!-- <tr> -->
-        <!-- <td>Artifact Metadata Repository (AMR)</td> -->
-        <!-- <td>needs definition</td> -->
-    <!-- </tr> -->
-        <!-- <tr> -->
-        <!-- <td>Artifact Metadata Repository (AMR) CloudEvent Handler</td> -->
-        <!-- <td>needs definition</td> -->
-    <!-- </tr> -->
+    <tr>
+        <td>Artifact Metadata Repository (AMR)</td>
+        <td>AMR Observer is a set of managed controllers that watches for relevant updates
+        on resources of interest. When relevant events are observed, a CloudEvent is
+        generated and sent to AMR CloudEvent Handler.</td>
+    </tr>
+        <tr>
+        <td>Artifact Metadata Repository (AMR) CloudEvent Handler</td>
+        <td>AMR CloudEvent Handler receives CloudEvents and stores relevant information in 
+        the Artifact Metadata Repository or Metadata Store.</td>
+    </tr>
     <tr>
         <td>Artifact Metadata Repository (AMR) Observer</td>
         <td>A set of managed controllers that watches for relevant updates on
