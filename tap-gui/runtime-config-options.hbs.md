@@ -1,11 +1,11 @@
-# Runtime configuration options for Tanzu Developer Portal
+# Runtime configuration options for Tanzu Application Platform GUI
 
-You can provide a series of options to the Tanzu Developer Portal package to configure it and do
-some basic [runtime customization](customize/customize-portal.hbs.md).
+You can provide a series of options to the Tanzu Application Platform GUI (commonly called TAP GUI)
+package to configure it and do some basic [runtime customization](customize/customize-portal.hbs.md).
 
-## <a id="identify"></a> Identify the Tanzu Developer Portal version you have available
+## <a id="identify"></a> Identify the Tanzu Application Platform GUI version you have available
 
-From the Tanzu CLI, discover the Tanzu Developer Portal package version that is available to
+From the Tanzu CLI, discover the Tanzu Application Platform GUI package version that is available to
 configure by running:
 
 ```console
@@ -33,9 +33,9 @@ SUPPORT-DESCRIPTION:    https://tanzu.vmware.com/support
   1.7.6    2023-10-17 00:25:21 +0000 UTC
 ```
 
-## <a id="values-schema"></a> Display the possible values options for Tanzu Developer Portal
+## <a id="values-schema"></a> Display the possible values options for Tanzu Application Platform GUI
 
-From the Tanzu CLI, identify possible values options for Tanzu Developer Portal by running:
+From the Tanzu CLI, identify possible values options for Tanzu Application Platform GUI by running:
 
 ```console
 tanzu package available get tap-gui.tanzu.vmware.com/VERSION --values-schema -n INSTALL-NAMESPACE
@@ -43,7 +43,7 @@ tanzu package available get tap-gui.tanzu.vmware.com/VERSION --values-schema -n 
 
 Where:
 
-- `VERSION` is the Tanzu Developer Portal package version you learned earlier
+- `VERSION` is the Tanzu Application Platform GUI package version you learned earlier
 - `INSTALL-NAMESPACE` is the namespace in which you configured the Tanzu Application Platform
   installation. In most cases the namespace is `tap-install`.
 
