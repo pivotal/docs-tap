@@ -50,6 +50,11 @@ spec:
     securityContext:
       privileged: true
       allowPrivilegeEscalation: true
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+          - ALL
     script: |
       #!/bin/bash
       # Alternative method of making twistcli available in the container
