@@ -506,3 +506,26 @@ values.yaml:
 This is because the field `scanning.metadataStore.url` has been removed.
 If this field is present in `tap-values.yaml` provided for the upgrade, the reconciliation will fail.
 To resolve this problem, remove the field from the values file and run the upgrade command again.
+
+### <a id="scanning-restricted-pss"></a> Scanning in cluster with restricted Kubernetes Pod Security Standards
+
+As part of compliance with restricted Kubernetes Pod Security Standards, the `securityContext` of containers and initContainers must be set. This applies to the `prepare` initContainers created by Tekton. When a pod does not meet the Pod Security Standards, it will not be created and vulnerability scanning cannot proceed. You may see an error message similar to the following when describing the TaskRun:
+
+```console
+"scan-source-scan-with-passing-policy-zx46t-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found
+```
+1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes.
+    ```yaml
+    tekton_pipelines:
+        feature_flags:
+            set_security_context: "true"
+    ```
+    Setting the `securityContext` will resolve the `prepare` initContainer violation.
+
+2. Update your TAP installation by running:
+
+   ```console
+   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+   ```
+
+    Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
