@@ -178,15 +178,15 @@ and how path-based routing aggregates them.
 
 If you specify a valid route provider, for example, `spring-cloud-gateway` for
 [Spring Cloud Gateway for Kubernetes](../spring-cloud-gateway/about.hbs.md) (SCG),
-the API Auto Registration controller finds the [SpringCloudGateway](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-developer-resources-springcloudgateway.html)
+the API Auto Registration controller finds the [SpringCloudGateway](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgateway.html)
 resource and automatically creates the following routing resources for you to expose your curated APIs
 as:
 
-- [SpringCloudGatewayRouteConfig (SCGRC)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-developer-resources-springcloudgatewayrouteconfig.html):
+- [SpringCloudGatewayRouteConfig (SCGRC)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewayrouteconfig.html):
   a custom resource that describes all the API endpoints and optional routing modifiers to access
   the endpoints. This is generated from the resolved OpenAPI Specification of the APIDescriptor
-  through [SCG OpenAPI conversion service](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-openapi-route-conversion.html).
-- [SpringCloudGatewayMapping (SCGM)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-developer-resources-springcloudgatewaymapping.html):
+  through [SCG OpenAPI conversion service](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
+- [SpringCloudGatewayMapping (SCGM)](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-developer-resources-springcloudgatewaymapping.html):
   a custom resource that binds a SCGRC resource to a SCG resource.
 
 This custom resource exposes the following text boxes:
@@ -226,13 +226,13 @@ There are some key behaviors generated from the text boxes:
 - `groupId` and `version` identify a matching gateway that route traffic for the
   curated API
 - `routeConfig` section specifies service level configuration you add when generating the routing
-  resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-openapi-route-conversion.html).
+  resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
   - Prior to Spring Cloud Gateway (SCG) for Kubernetes v2.1.3,
     there is a known issue in the SCG OpenAPI Conversion Service to support adding token relay at the service
     level. The `tokenRelay: true` setting only works with SCG v2.1.3 and above.
   - `routeConfig.filters` section specifies service level filters for all the routes exposed in each
     API. You can add modifications to your endpoints, such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`.
-    For information about available filters, see [SCG commercial filters](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-filters.html).
+    For information about available filters, see [SCG commercial filters](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-filters.html).
   - Your controller automatically prepends each endpoint path with the `pathPrefix` you specified
     for each APIDescriptor, and adds the `StripPrefix` filter to the end of the filter list to facilitate
     a successful path-based redirect. Additionally, you can add more `StripPrefix` filters
