@@ -17,6 +17,7 @@ Before you upgrade your Tanzu Application Platform:
 - For information about Tanzu Developer Portal considerations, see
   [Tanzu Developer Portal Considerations](../tap-gui/upgrades.hbs.md#considerations).
 - Verify all packages are reconciled by running `kubectl get packageinstall --namespace tap-install`.
+- The previously deprecated field `scanning.metadataStore.url` is now completely removed from values provided for the installation/upgrading of Tanzu Application Platform v1.7. Make sure that this field is not present in the `tap-non-sensitive-values.yaml` file during the upgrade.
 
 ## <a id="relocate-images"></a> Relocate Tanzu Application Platform images to a registry
 
