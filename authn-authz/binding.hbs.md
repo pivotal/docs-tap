@@ -14,21 +14,9 @@ In order to give a user or group a role, you must create bindings between the us
 
 Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  Using kubectl, you should create bindings for both the namespace scoped resources and the cluster scoped resources.
 
-For a user:
+To simplify the management of mapping users to roles, VMware suggests binding roles to groups, and then managing group membership in your identity provider.  
 
-```console
-kubectl create rolebinding ROLEBINDINGNAME --clusterrole ROLE --user USER --namespace NAMESPACE
-kubectl create clusterrolebinding ROLEBINDINGNAME --clusterrole ROLE --user USER
-```
-
-For example, to grant the user "developer-1" app-editor rights to the "dev" namespace:
-
-```console
-kubectl create rolebinding app-editor --clusterrole app-editor --user developer-1 --namespace dev
-kubectl create clusterrolebinding app-editor-cluster-access --clusterrole app-editor-cluster-access --user developer-1
-```
-
-For a group:
+To bind a role to a group:
 
 ```console
 kubectl create rolebinding ROLEBINDINGNAME --clusterrole ROLE --group GROUP --namespace NAMESPACE
@@ -42,6 +30,19 @@ kubectl create rolebinding app-editor --clusterrole app-editor --group developer
 kubectl create clusterrolebinding app-editor-cluster-access --clusterrole app-editor-cluster-access --group developers
 ```
 
+However, it may be necessary to bind individual users to a role.  To bind a role to a user:
+
+```console
+kubectl create rolebinding ROLEBINDINGNAME --clusterrole ROLE --user USER --namespace NAMESPACE
+kubectl create clusterrolebinding ROLEBINDINGNAME --clusterrole ROLE --user USER
+```
+
+For example, to grant the user "developer-1" app-editor rights to the "dev" namespace:
+
+```console
+kubectl create rolebinding app-editor --clusterrole app-editor --user developer-1 --namespace dev
+kubectl create clusterrolebinding app-editor-cluster-access --clusterrole app-editor-cluster-access --user developer-1
+```
 
 ## <a id="get-list-users"></a> Get a list of users and groups from a role
 
