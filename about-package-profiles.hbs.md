@@ -322,6 +322,14 @@ a predefined group of packages.
   The VS Code extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
 
+- **TAP GUI Client**
+  
+  TAP GUI Client is a package with RBAC resources required by Tanzu Developer Portal on clusters
+  with Build, Run and Iterate profiles. It also contains TMC specific resources. This package cannot
+  be installed on the same cluster as Tanzu Developer Portal.
+
+  This package is only meant to be used while installing TAP via TMC.
+
 - **[Tekton Pipelines](tekton/tekton-about.hbs.md)**
 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
