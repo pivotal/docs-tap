@@ -54,8 +54,7 @@ of OIDC providers that you are able to configure as an identity provider.
 In order to configure authentication for the Tanzu Developer Portal, VMware suggests the
 following:
 
-1. Enable user authentication using one of the
-   [supported providers](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/tap-gui-auth.html).
+1. Enable user authentication using one of the supported providers. For more information, see [Set up authentication for Tanzu Developer Portal](../tap-gui/auth.hbs.md).
    Note that due to the limitations with the backstage authentication implementation, simply having
    authentication does [not guarantee full end-to-end security](https://backstage.io/docs/auth/#sign-in-configuration)
    as Backstage doesn’t currently support per-API authentication.
@@ -258,7 +257,7 @@ not always mean that there is a security issue, but it can provide a pathway
 for attackers listening on that port. To help understand the traffic flows
 in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and protocols on request.
 
-See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
+See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
 
 ## <a id="networking"></a> Networking
 
@@ -266,7 +265,7 @@ Ensure that workloads only expose internal-only routes.
 
 All traffic should go through Contour and LoadBalancer without utilizing NodePort [services](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-Tanzu Application Platform is supported by [Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/integrations-tsm-tap-integration.html).
+Tanzu Application Platform is supported by [Tanzu Service Mesh](../integrations/tsm-tap-integration.hbs.md).
 
 You must configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on Knative deployed services.
 For more information, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
@@ -277,11 +276,11 @@ Key management is the foundation of all data security. Data is encrypted and dec
 
 - Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
 - Encryption of secrets at rest are Kubernetes Distribution Dependent.
-- If customers desire to store secrets in a Secret Management service (e.g. [Hashicorp Vault](https://www.vaultproject.io),
-  [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/),
-  [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/)) they can make
-  use of the [External Secrets Operator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/external-secrets-about-external-secrets-operator.html)
-  to automate the lifecycle management (ALPHA).
+- If you want to store secrets in a Secret Management service, for example, [Hashicorp Vault](https://www.vaultproject.io),
+  [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or
+  [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/)) you can
+  use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md)
+  to automate the lifecycle management (beta).
 - 800-53 [Section AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
   related to safeguarding of sensitive information from exploitation, for example, Tanzu Application Platform values.
 
@@ -299,7 +298,7 @@ process.
 ## <a id="architecture"></a> Deployment Architecture
 
 Tanzu Application Platform provides a
-[reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function. VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run
+[reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function. VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run
 functions. This separation enables Kubernetes administrators to manage each function independently
 and therefore, protect the availability and performance of the platform during high usage periods,
 for example, building or scanning.
