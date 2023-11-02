@@ -261,7 +261,3 @@ The previous steps help making App Live View be aware of your app, but it still 
 If you need further instructions, see the full details in the [documentation](deploy-first-app.hbs.md).
 
 An important note is that not all the usual information will be available. For example, JVM memory information won’t be since native images have a slightly different mode, so are other elements that are not available in the actuator endpoints yet.
-
-
-
-
