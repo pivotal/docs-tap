@@ -311,3 +311,23 @@ To deploy successfully, the `servicebinding.tanzu.vmware.com` package requires C
 
 Upgrade to Cluster Essentials v{{ vars.url_version }}. For more information about the upgrade procedures, see the
 [Cluster Essentials documentation](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#upgrade).
+
+## <a id='scst-scan-fail'></a> Reconcillation fails with Supply Chain Security Tools - Scan 2.0 upgrade
+
+When deploying Supply Chain Security Tools - Scan 2.0 `app-scanning.apps.tanzu.vmware.com` to a cluster and upgrading Tanzu Application Platform from v1.6 to v1.7, you might encounter a reconcillation error as follows:
+
+```console
+Expected to find at least one version, but did not (details: all=1 ->
+      after-prereleases-filter=1 -> after-kapp-controller-version-check=1 -> after-constraints-filter=0)
+```
+
+**Explanation**
+
+The upgrade instructions overwrite the Tanzu Application Platform v1.6 repository with the 1.7 version, which leads to a reconcillation error.
+
+**Solution**
+
+You can resolve this issue by using either of the following two solutions:
+
+1. Upgrade `app-scanning.apps.tanzu.vmware.com` to v0.2.1.
+1. Add a new package repository with Tanzu Application Platform v1.6.

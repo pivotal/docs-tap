@@ -7,10 +7,20 @@ This topic tells you how to create your own ClusterImageTemplate and customize t
 The following prerequisite is required to author a ClusterImageTemplate for Supply Chain integration:
 
 - You create your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
+- See ClusterImageTemplate [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+- Understand `ytt` templating. See Carvel `ytt` [docs](https://carvel.dev/ytt/) for documentation and playground samples.
 
 ## <a id='create-clusterimagetemplate'></a> Create a ClusterImageTemplate
 
 This section describes how to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy. To use a different scanner, replace the embedded ImageVulnerabilityScan with your own.
+
+ClusterImageTemplate Notes:
+* The `spec.params` in this sample yaml are used to define default values for fields within the ImageVulnerabilityScan. See `params` [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+  * The `spec.params` fields are referenced by `#@ data.values.params` in the `ytt` template block and in the ImageVulnerabilityScan.
+* The values in the `data.values.workload` such as `metadata`, `labels`, `annotations`, `spec` come from the supply chain workload.
+* The `data.values.image` is the container image built from Buildpacks in the previous step in the SupplyChain that will be scanned for vulnerabilities.
+* `ytt` is used in this sample yaml to define a resource template written in `ytt` for the ImageVulnerabilityScan Custom Resource. See `ytt` [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
+  * For example, inside the `ytt` template are defined functions that can be used within the ImageVulnerabilityScan.
 
 1. Create a YAML file with the following content and name it `custom-ivs-template.yaml`.
 
@@ -50,22 +60,32 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
           default: publisher
         - name: image_scanning_active_keychains
           default: []
+        - name: image_scanning_workspace_bindings
+          default: []
+        - name: image_scanning_steps_env_vars
+          default: []
         - name: trivy_db_repository
           default: ghcr.io/aquasecurity/trivy-db
         - name: trivy_java_db_repository
           default: ghcr.io/aquasecurity/trivy-java-db
         - name: registry
           default:
-            server: my-registry.io    # input your registry server
-            repository: my-registry-repository    # input your registry repository
+            server: REGISTRY-SERVER    # input your registry server
+            repository: REGISTRY-REPOSITORY    # input your registry repository
 
       ytt: |
         #@ load("@ytt:data", "data")
+        #@ load("@ytt:template", "template")
 
         #@ def merge_labels(fixed_values):
         #@   labels = {}
         #@   if hasattr(data.values.workload.metadata, "labels"):
-        #@     labels.update(data.values.workload.metadata.labels)
+        #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+        #@     for k,v in dict(data.values.workload.metadata.labels).items():
+        #@       if k not in exclusions:
+        #@         labels[k] = v
+        #@       end
+        #@     end
         #@   end
         #@   labels.update(fixed_values)
         #@   return labels
@@ -97,24 +117,37 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
         #@   return data.values.params["maven"][key]
         #@ end
 
+        #@ def maven_repository_url():
+        #@   if maven_param("repository") and "url" in maven_param("repository"):
+        #@     return maven_param("repository")["url"]
+        #@   elif param("maven_repository_url"):
+        #@     return param("maven_repository_url")
+        #@   else:
+        #@     return None
+        #@   end
+        #@ end
+
         #@ def correlationId():
         #@   if hasattr(data.values.workload, "annotations") and hasattr(data.values.workload.annotations, "apps.tanzu.vmware.com/correlationid"):
         #@     return data.values.workload.annotations["apps.tanzu.vmware.com/correlationid"]
         #@   end
-        #@   if not hasattr(data.values.workload.spec, "source"):
-        #@     return ""
-        #@   end
         #@   url = ""
-        #@   if hasattr(data.values.workload.spec.source, "git"):
-        #@     url = data.values.workload.spec.source.git.url
-        #@   end
-        #@   if hasattr(data.values.workload.spec.source, "image"):
-        #@     url = data.values.workload.spec.source.image.split("@")[0]
+        #@   if hasattr(data.values.workload.spec, "source"):
+        #@     if hasattr(data.values.workload.spec.source, "git"):
+        #@       url = data.values.workload.spec.source.git.url
+        #@     elif hasattr(data.values.workload.spec.source, "image"):
+        #@       url = data.values.workload.spec.source.image.split("@")[0]
+        #@     end
+        #@     url = url + "?sub_path=" + getattr(data.values.workload.spec.source, "subPath", "/")
         #@   end
         #@   if param("maven"):
-        #@     url = param("maven_repository_url") + "/" + maven_param("groupId").replace(".", "/") + "/" + maven_param("artifactId")
+        #@     url = maven_repository_url() + "/" + maven_param("groupId").replace(".", "/") + "/" + maven_param("artifactId")
         #@   end
-        #@   return url + "?sub_path=" + getattr(data.values.workload.spec.source, "subPath", "/")
+        #@   if hasattr(data.values.workload.spec, "image"):
+        #@     url = data.values.workload.spec.image.split("@",1)[0]
+        #@     url = url.split(":",1)[0]
+        #@   end
+        #@   return url
         #@ end
 
         ---
@@ -133,12 +166,14 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
             location: #@ scanResultsLocation()
           workspace:
             size: #@ data.values.params.image_scanning_workspace_size
+            #@ if/end data.values.params.image_scanning_workspace_bindings:
+            bindings: #@ data.values.params.image_scanning_workspace_bindings
           serviceAccountNames:
             scanner: #@ data.values.params.image_scanning_service_account_scanner
             publisher: #@ data.values.params.image_scanning_service_account_publisher
           steps:
           - name: trivy-generate-report
-            image: my.registry.com/aquasec/trivy:0.41.0     # input the location of your trivy scanner image
+            image: TRIVY-SCANNER-IMAGE
             env:
             - name: TRIVY_DB_REPOSITORY
               value: #@ data.values.params.trivy_db_repository
@@ -150,6 +185,7 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
               value: /workspace/.cache
             - name: TMPDIR
               value: /workspace
+            - #@ template.replace(data.values.params.image_scanning_steps_env_vars)
             args:
             - image
             - $(params.image)
@@ -157,40 +193,18 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
             - --no-progress
             - --scanners=vuln
             - --format=cyclonedx
-            - --output=scan.cdx.json
+            - --output=$(params.scan-results-path)/scan.cdx.json
+
     ```
-
-    Where:
-
-    - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-    - `registry-server` is the registry server.
-    - `registry-repository` is the registry repository.
 
 >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
 
-1. Edit the following in your `custom-ivs-template.yaml` file:
-   - `.metadata.name` is the name of your ClusterImageTemplate.
-   - `registry-server` and `registry-repository` refer to your registry.
-   - The location of your Trivy scanner image
-   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
-
-2. (Optional) If you are replacing the embedded ImageVulnerabilityScan with your own, use `ytt` to pass relevant values to the ImageVulnerabilityScan:
-
-    ```yaml
-    metadata:
-      labels: #@ merge_labels({ "app.kubernetes.io/component": "image-scan" })
-      generateName: #@ data.values.workload.metadata.name + "-trivy-scan-"
-    spec:
-      image: #@ data.values.image
-      activeKeychains: #@ data.values.params.image_scanning_active_keychains
-      scanResults:
-        location: #@ scanResultsLocation()
-      workspace:
-        size: #@ data.values.params.image_scanning_workspace_size
-      serviceAccountNames:
-        scanner: #@ data.values.params.image_scanning_service_account_scanner
-        publisher: #@ data.values.params.image_scanning_service_account_publisher
-    ```
+2. Edit the following in your `custom-ivs-template.yaml` file:
+  - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
+  - `REGISTRY-SERVER` is the registry server which is used for the scan results location.
+  - `REGISTRY-REPOSITORY` is the registry repository which is used for the scan results location.
+  - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
+  - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
 3. Create the ClusterImageTemplate:
 

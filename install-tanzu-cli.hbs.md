@@ -84,7 +84,7 @@ and install manually from Tanzu Network, VMware Customer Connect, or GitHub.
 
 Basic installation instructions are provided below. For more information including how to install
 the Tanzu CLI and CLI plug-ins in Internet-restricted environments, see the
-[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/index.html) documentation.
 
 > **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu`
 or `C:\Program Files\tanzu` on Windows to a different location before following the steps below.

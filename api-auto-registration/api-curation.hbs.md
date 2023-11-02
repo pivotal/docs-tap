@@ -113,7 +113,7 @@ my-apps             petstore     cute-api-group     1.2.3     Ready    http://AA
 ## <a id='retrieve-api-specs'></a>Retrieve curated API specifications
 
 The API Auto Registration controller offers an endpoint to retrieve all of the generated API specifications
-for the curated APIs in the cluster. 
+for the curated APIs in the cluster.
 
 To retrieve curated API specifications:
 
@@ -130,7 +130,7 @@ To retrieve curated API specifications:
   api-auto-registration-controller   api-auto-registration.tap.domain  api-auto-registration-cert   valid    Valid HTTPProxy
   ```
 
-1. To get all of the curated API specifications with curl, use FQDN with an http scheme:
+1. To get all the curated API specifications with curl, use FQDN with an http scheme:
 
   ```console
   curl http(s)://AAR-CONTROLLER-FQDN/openapi
@@ -179,3 +179,8 @@ locations of an existing API portal.
 You can add all your curated APIs by using the unfiltered URL `http(s)://AAR-CONTROLLER-FQDN/openapi`
 or the filtered URL with query parameters to add a specific curated API of your choice.
 See [Configuring API portal for VMware Tanzu on Kubernetes](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/1.4/api-portal/GUID-configuring-k8s-basics.html#modifying-openapi-source-url-locations).
+
+1. While this Curated API is not yet automatically registered in Tanzu Developer Portal, you can do this manually.
+You can do this by creating an api.yaml and adding it to the catalog. For more information about the structure of
+the definition file for an API entity, see the [API Docs plugin documentation](../tap-gui/plugins/api-docs.hbs.md)
+or the Backstage Kind: API documentation.

@@ -10,36 +10,42 @@ Tanzu Developer Portal, you can configure Configurator in the `tdp-config.yaml` 
 
 Use one of two methods to configure Configurator:
 
-- Provide the private registry token in the tpb configuration
+- Provide the private registry token in the `tpb` configuration
 - Store the private registry token in a secret
 
 tpb config method
-: This method makes your credentials base64-encoded in the workload definition.
+: This method makes your credentials Base64-encoded in the workload definition.
   Therefore, use this method with caution.
 
   1. In your `tdp-config.yaml` file, add a `registry.uplinks` section to include your private
-     registry. Include the `auth` property detailed [here](https://verdaccio.org/docs/uplinks/#auth-property)
-     to use an auth token with an uplink. You can do this using the default environment variable, a
-     specified custom environment variable, or by directly specifying a token in the configuration
-     file. Note: you cannot create an uplink with the names `tpb` or `npmjs` as these packages are
-     reserved and cannot be overriden.
+     registry. Add the `auth` property to the `registry.uplinks` section, as seen in the
+     [Verdaccio documentation](https://verdaccio.org/docs/uplinks/#auth-property).
 
-  2. In your `tdp-config.yaml` file, add a `registry.packages` section. This section lists access
-     rules for different packages. More details about this section can be found
-     [here](https://verdaccio.org/docs/packages/).
-     You cannot create a package with the names `@tpb/*` as these packages are reserved and
-     cannot be overriden.
+  2. Use an authentication token with the uplink by using one of three methods:
 
-     Here is a full example that directly specifies the auth token in the configuration file:
+     - Use the default environment variable
+     - Use a specified custom environment variable
+     - Directly specify a token in the configuration file
+
+     You cannot create an uplink with the name `tpb` or `npmjs` because these packages are reserved
+     and cannot be overridden.
+
+  3. In your `tdp-config.yaml` file, add a `registry.packages` section. This section lists access
+     rules for different packages. For more information about this section, see the
+     [Verdaccio documentation](https://verdaccio.org/docs/packages/).
+     You cannot create a package with the name `@tpb/*` because these packages are reserved and
+     cannot be overridden.
+
+     Here is a full example that directly specifies the authentication token in the configuration file:
 
      ```yaml
      registry:
        uplinks:
          private-registry:
-           url: <private-registry-endpoint>
+           url: PRIVATE-REGISTRY-ENDPOINT
            auth:
              type: bearer
-             token: <valid-token-for-private-registry>
+             token: VALID-TOKEN-FOR-PRIVATE-REGISTRY
        packages:
          '@company/*':
            access: $all
@@ -52,7 +58,7 @@ tpb config method
          - name: '@tpb/plugin-hello-world-backend'
      ```
 
-     This configuration is telling to download any package with scope `@company` from the
+     This configuration instructs to download any package with the scope `@company` from the
      `private-registry` registry with the specified credentials.
 
 secret method
@@ -65,33 +71,36 @@ secret method
      apiVersion: v1
      kind: Secret
      metadata:
-       namespace: <developer-namespace>
+       namespace: DEVELOPER-NAMESPACE
        name: private-registry
      data:
-       registry_token: <a-token>
+       registry_token: A-TOKEN
      ```
 
-     Where `<a-token>` is the token value encoded in Base 64.
+     Where `A-TOKEN` is the token value encoded in Base64.
 
   2. In your `tdp-config.yaml` file, add a `registry.uplinks` section to include your private
-     registry. Include the `auth` property detailed [here](https://verdaccio.org/docs/uplinks/#auth-property)
-     to use an auth token with an uplink. In the following example, we specified the environment
-     variable that will contain the token value to be `NPM_TOKEN`. Note: you cannot create an uplink
-     with the names `tpb` or `npmjs` as these uplinks are reserved and cannot be overriden.
+     registry. Add the `auth` property to the `registry.uplinks` section, as seen in the
+     [Verdaccio documentation](https://verdaccio.org/docs/uplinks/#auth-property),
+     to use an authentication token with an uplink.
+
+     You cannot create an uplink with the name `tpb` or `npmjs` because these uplinks are reserved
+     and cannot be overridden.
 
   3. In your `tdp-config.yaml` file, add a `registry.packages` section. This section lists access
-     rules for different packages. More details about this section can be found
-     [here](https://verdaccio.org/docs/packages/).
-     You cannot create a package with the names `@tpb/*` as these packages are reserved and cannot
-     be overriden.
+     rules for different packages. For more information about this section, see the
+     [Verdaccio documentation](https://verdaccio.org/docs/packages/).
 
-     Here is the full example that uses the NPM_TOKEN environment variable:
+     You cannot create a package with the name `@tpb/*` because these packages are reserved and cannot
+     be overridden.
+
+     Here is the full example that uses an `NPM_TOKEN` environment variable:
 
      ```yaml
      registry:
        uplinks:
          private:
-           url: <private-registry-endpoint>
+           url: PRIVATE-REGISTRY-ENDPOINT
            auth:
              type: bearer
              token_env: NPM_TOKEN
@@ -107,7 +116,7 @@ secret method
          - name: '@company/company-plugin-backend'
      ```
 
-     This configuration is telling to download any package with scope `@company` from the
+     This configuration instructs to download any package with the scope `@company` from the
      `private-registry` registry with the specified credentials.
 
   4. Populate the environment variable value with the secret value in the workload file:
@@ -129,14 +138,15 @@ secret method
 
 ## <a id="redir-npm-reqs"></a> (Optional) Redirect all the npm requests to a private registry
 
-By default, the configurator redirects all the external requests to `npmjs`. If, for some
-reason, you need to redirect those requests to your private registry, here is how it can be done:
+By default, Configurator redirects all the external requests to `npmjs`. If, for some reason,
+you need to redirect those requests to your private registry, edit the `registry.packages` section
+as follows:
 
 ```yaml
 registry:
   uplinks:
     private:
-      url: <private-registry-endpoint>
+      url: PRIVATE-REGISTRY-ENDPOINT
       auth:
         type: bearer
         token_env: NPM_TOKEN

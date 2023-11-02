@@ -125,3 +125,16 @@ Events:
             ...
             version: "v1" # v1 or v2
     ```
+
+### <a id="delete-k8s-auth-error"></a> Error occurs when deleting Kubernetes authentication
+
+**Problem:** The following error occurs when deleting Kubernetes authentication:
+
+```console
+./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh
+flag provided but not defined: -path
+```
+
+**Cause:** The command to disable vault authentication is incorrect.
+
+**Solution:** Update the command `vault auth disable -path=$CLUSTER_NAME kubernetes` to `vault auth disable $CLUSTER_NAME` in the file `./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh`

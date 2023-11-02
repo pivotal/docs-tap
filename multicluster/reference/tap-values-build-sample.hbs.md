@@ -43,9 +43,6 @@ ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys 
     repository: "REPO-NAME"
   gitops:
     ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
-scanning:
-  metadataStore:
-    url: "" # Configuration is moved, so set this string to empty.
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 

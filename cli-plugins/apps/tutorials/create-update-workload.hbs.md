@@ -534,7 +534,7 @@ tanzu apps workload apply my-workload \
       --type web -y
 ```
 
-For information about available commands, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+For information about available commands, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
 
 ### Maven workload created with YAML or JSON parameters
 

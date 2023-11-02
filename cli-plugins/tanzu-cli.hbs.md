@@ -39,7 +39,7 @@ NAME              DESCRIPTION                                                   
 
 > **Note** The Telemetry, Package, and Secret plug-ins are not Tanzu Application Platform specific, they
 are common to a number of other plug-in groups, for more information, see
- [Command Groups](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) in the
+ [Command Groups](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) in the
 Tanzu CLI Product Documentation.
 
 | Command Reference Documentation | Release Notes | 

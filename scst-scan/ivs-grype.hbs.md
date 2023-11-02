@@ -43,17 +43,18 @@ Where:
 - `GRYPE-SCANNER-IMAGE` is the image containing the Grype CLI. For example, `anchore/grype:latest`. For information about publicly available Grype images, see [DockerHub](https://hub.docker.com/r/anchore/grype/tags). For more information about using the Grype CLI, see the [Grype documentation](https://github.com/anchore/grype#getting-started).
 
 ## <a id="grype-db-requirement"></a> Grype database size requirement
-The recommended `storageSize` for Grype scans is 4Gi due to the size of the Grype database. If the `storageSize` is not sufficient, you may encounter an error indicating insufficient space when initializing the database in the scan pod.
-- Update the `app-scanning-values-file.yaml` for the `app-scanning.apps.tanzu.vmware.com` package to change the default `storageSize`. For more detail see [installation documentation](./install-app-scanning.hbs.md#install-scst-app-scanning).
+
+The recommended `storageSize` for Grype scans is 4Gi due to the size of the Grype database. If the `storageSize` is not sufficient, you might encounter an error indicating insufficient space when initializing the database in the scan pod.
+
+Update the `app-scanning-values-file.yaml` for the `app-scanning.apps.tanzu.vmware.com` package to change the default `storageSize`. See [installation documentation](./install-app-scanning.hbs.md#install-scst-app-scanning).
 
 ```console
 scans:
   workspace:
     storageSize: 4Gi
 ```
-- If you do not want to set a default `storageSize` by updating the  `app-scanning-values-file.yaml`, you will need to specify the `spec.workspace.size` when creating each standalone ImageVulnerabilityScan or embedded ImageVulnerabilityScan in a [ClusterImageTemplate](./clusterimagetemplates.hbs.md#create-clusterimagetemplate).
 
-### <a id="disclaimer"></a> Disclaimer
+If you do not want to set a default `storageSize` by updating the  `app-scanning-values-file.yaml`, you must specify the `spec.workspace.size` when creating each standalone ImageVulnerabilityScan or embedded the ImageVulnerabilityScan in a [ClusterImageTemplate](./clusterimagetemplates.hbs.md#create-clusterimagetemplate).
 
-As a publicly maintained image that is built outside of VMware's build systems, the image may not meet the security standards VMware has established.  Please be sure to review the image before usage to ensure that it meets your organizations security and compliance policies.
+>**Warning** As a publicly maintained image that is built outside of VMware build systems, the image might not meet the security standards VMware established. Ensure that you review the image before use to ensure that it meets your organizations security and compliance policies.
 For the publicly available Grype scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.

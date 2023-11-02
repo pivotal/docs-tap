@@ -13,7 +13,7 @@ and ensuring more efficient remediation.
 
 ## <a id="use-cases"></a>Language support
 
-For information about the languages and frameworks that are supported by Tanzu Application Platform components, see the [Language and framework support in Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/about-package-profiles.html#language-and-framework-support-in-tanzu-application-platform-2) table.
+For information about the languages and frameworks that are supported by Tanzu Application Platform components, see the [Language and framework support in Tanzu Application Platform](../about-package-profiles.hbs.md#language-support) table.
 
 ## <a id="use-cases"></a>Use cases
 

@@ -25,7 +25,7 @@ There are four commands for querying and adding data.
 - `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
 For more information about Tanzu Insight CLI plug-in commands, see the
-[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/index.html) documentation.
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/index.html) documentation.
 
 ## <a id='example1'></a>Example 1: What packages and CVEs does a specific image contain?
 

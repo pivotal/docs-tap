@@ -63,7 +63,7 @@ The text boxes cause specific behavior in Tanzu Developer Portal:
 
 >**Important** `spec.location.path` is deprecated in favor of `spec.location.apiSpec.path`, and
 `spec.location.baseURL` is deprecated in favor of `spec.location.server`. This change supports
-having a different API server location from the specifications location.
+having a different API server location from the specification's location.
 These deprecated fields will be removed in Tanzu Application Platform 1.8.
 
 ### <a id='absolute-url'></a>With an absolute URL
@@ -228,8 +228,8 @@ There are some key behaviors generated from the text boxes:
 - `routeConfig` section specifies service level configuration you add when generating the routing
   resource for the API. For information about spring-cloud-gateway fields, see [OpenAPI route conversion](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-openapi-route-conversion.html).
   - Prior to Spring Cloud Gateway (SCG) for Kubernetes v2.1.3,
-  there is a known issue in the SCG OpenAPI Conversion Service to support adding token relay at the service
-  level. The `tokenRelay: true` setting only works with SCG v2.1.3 and above.
+    there is a known issue in the SCG OpenAPI Conversion Service to support adding token relay at the service
+    level. The `tokenRelay: true` setting only works with SCG v2.1.3 and above.
   - `routeConfig.filters` section specifies service level filters for all the routes exposed in each
     API. You can add modifications to your endpoints, such as `RateLimit=5,10s` or `RemoveRequestHeader=X-Request-Foo`.
     For information about available filters, see [SCG commercial filters](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-filters.html).
