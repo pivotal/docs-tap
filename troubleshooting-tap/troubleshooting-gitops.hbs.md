@@ -125,3 +125,13 @@ Events:
             ...
             version: "v1" # v1 or v2
     ```
+
+### <a id="delete-external-resource-error"></a>Delete kubernetes auth
+
+- **Problem :** Incorrect command to disable vault auth
+
+    ```console
+    ./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh
+    flag provided but not defined: -path
+    ```
+    **Solution :** Update command `vault auth disable -path=$CLUSTER_NAME kubernetes` to `vault auth disable $CLUSTER_NAME` in file `./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh`.
