@@ -1109,7 +1109,7 @@ This release has the following known issues, listed by component and area.
   reconcile without throwing an error, and the `/openapi?groupId&version` endpoint returns both specifications.
   If you are adding both specifications to the API portal, only one of them might show up in the
   API portal UI with a warning indicating that there is a conflict.
-  If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG, <!-- what is SCG? -->
+  If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use Spring Cloud Gateway,
   the generated API specspecification includes API routes from both `CuratedAPIDescriptor`s.
 
   You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
