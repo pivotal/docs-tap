@@ -64,11 +64,20 @@ To customize an ImageVulnerabilityScan to use your scanner:
 
     Because volumes on a Tekton pipeline are shared amongst steps, files created by one step are consumable by the other steps. The scan controller applies the following security context to `pipelinerun.spec.podTemplate`:
 
-  ```console
-  runAsUser: 65534
-  fsGroup: 65534
-  runAsGroup: 65534
-  ```
+    ```console
+    runAsUser: 65534
+    fsGroup: 65534
+    runAsGroup: 65534
+    ```
+
+    > **Note** If you populate any of the following fields in the `securityContext`, you must
+    populate all the other fields or you may see a runtime error in the `ImageVulnerabilityScan` controller:
+    ```
+    allowPrivilegeEscalation
+    runAsNonRoot
+    seccompProfile
+    capabilities
+    ```
 
   The `SCANNER-IMAGE` runs and manipulates files with user and group ids of `65534`.
 
