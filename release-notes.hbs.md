@@ -253,6 +253,10 @@ This release has the following known issues, listed by component and area.
   Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
   For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
 
+#### <a id='1-6-4-local-source-proxy-ki'></a> v1.6.4 Known issues: Local Source Proxy
+
+- Individual component installation of `Local Source Proxy` fails on Openshift distribution due to missing `SecurityContextConstraits` policy.
+
 #### <a id='1-6-4-stk-ki'></a> v1.6.4 Known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
