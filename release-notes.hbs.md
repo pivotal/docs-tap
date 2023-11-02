@@ -1079,7 +1079,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-7-0-cnrs-ri'></a> v1.7.0 Resolved issues: Cloud Native Runtimes
 
-- Certain app name, namespace, and domain combinations no longer produce Knative Services with
+- Certain combinations of app name, namespace, and domain no longer produce Knative Services with
   status `CertificateNotReady`.
 
 #### <a id='1-7-0-scc-ri'></a> v1.7.0 Resolved issues: Supply Chain Choreographer
@@ -1105,14 +1105,14 @@ This release has the following known issues, listed by component and area.
 
 - Registering conflicting `groupId` and `version` with API portal:
 
-  - If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version`
-  combination, both reconcile successfully<!--฿ Redundant word? ฿--> without throwing an error,
-  and the `/openapi?groupId&version` endpoint returns both specs<!--฿ |specifications| is preferred. ฿-->.
-  - If you are adding both specs<!--฿ |specifications| is preferred. ฿--> to API portal, only one of them might show up in
-  the API portal UI with a warning indicating that there is a conflict.
-  - If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG,
-  the generated API spec<!--฿ |specifications| is preferred. ฿--> includes API routes from both `CuratedAPIDescriptor`s.
-  - You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
+  If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version` combination, both
+  reconcile without throwing an error, and the `/openapi?groupId&version` endpoint returns both specifications.
+  If you are adding both specifications to the API portal, only one of them might show up in the
+  API portal UI with a warning indicating that there is a conflict.
+  If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use SCG, <!-- what is SCG? -->
+  the generated API specspecification includes API routes from both `CuratedAPIDescriptor`s.
+
+  You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
 
     ```console
     $ kubectl get curatedapidescriptors -A
@@ -1121,6 +1121,40 @@ This release has the following known issues, listed by component and area.
     my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
     default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
     ```
+
+#### <a id='1-7-0-amr-obs-ce-hndlr-ki'></a> v1.7.0 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+- ReplicaSet status in AMR only has two states: `created` and `deleted`.
+  There is a known issue where the `available` and `unavailable` state is not showing.
+  The workaround is that you can interpolate this information from the `instances` metadata in the
+  AMR for the ReplicaSet.
+
+#### <a id='1-7-0-bitnami-services-ki'></a> v1.7.0 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-7-0-crossplane-ki'></a> v1.7.0 Known issues: Crossplane
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-7-0-eventing-ki'></a> v1.7.0 Known issues: Eventing
+
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
+  informers to alleviate load on the API server. This causes high memory use.
 
 #### <a id='1-7-0-service-bindings-ki'></a> v1.7.0 Known issues: Service Bindings
 
@@ -1131,6 +1165,11 @@ This release has the following known issues, listed by component and area.
   Affected pods are updated concurrently. To avoid failures, you must have sufficient Kubernetes
   resources in your clusters to support the pod rollout.
 
+#### <a id='1-7-0-stk-ki'></a> v1.7.0 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
 #### <a id='1-7-0-scc-ki'></a> v1.7.0 Known issues: Supply Chain Choreographer
 
 - By default, Server Workload Carvel packages generated by the Carvel package supply chains no longer
@@ -1139,11 +1178,27 @@ This release has the following known issues, listed by component and area.
   which is the size limit for the string output of a Tekton Task. For information about these parameters,
   see [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md).
 
-#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Store
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, you this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 
@@ -1159,6 +1214,51 @@ This release has the following known issues, listed by component and area.
 - When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
   does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
   planned for the future. The zoom function was removed because of user feedback.
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-7-0-sc-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
+  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
+
+- Downloading the SBOM from a vulnerability scan requires additional configuration in
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+
+#### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-7-0-vs-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+#### <a id='1-7-0-vscode-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. The correct category is **Supply Chain**.
 
 ---
 
