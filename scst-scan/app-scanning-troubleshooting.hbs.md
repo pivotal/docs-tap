@@ -203,7 +203,7 @@ To resolve this issue, you can debug within the scan-task pod by following the i
 
 ### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
 
-As part of compliance with restricted Kubernetes Pod Security Standards, the `securityContext` of containers and initContainers must be set. This applies to the `prepare` initContainers and affinity assistant pods created by Tekton. When a pod does not meet Pod Security Standards, it will not be created and vulnerability scanning cannot proceed. You may see an error message similar to the following when describing the TaskRun:
+As part of compliance with the [restricted profile for Kubernetes Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/), the `securityContext` of containers and initContainers must be set. This applies to the `prepare` initContainers and affinity assistant pods created by Tekton. When a pod does not meet Pod Security Standards, it will not be created and vulnerability scanning cannot proceed. You may see an error message similar to the following when describing the TaskRun:
 
 ```console
 pods "trivy-ivs-abcd-scan-task-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found
