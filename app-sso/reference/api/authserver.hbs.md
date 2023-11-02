@@ -162,12 +162,7 @@ spec:
                # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
                # must not start with 'client' or 'unknown'
       openID:
-        configurationURI: "" # optional. If not specified, must define alternate fields: issuerURI and/or (authorizationUri, tokenUri, and jwksUri). This field must be suffixed with '/.well-known/openid-configuration'
-        issuerURI: "" # DEPRECATED, optional, use 'openid.configurationURI' instead. This field may not be set if 'configurationURI' is specified.
-        authorizationUri: "" # optional. Must be specified if 'configurationURI' and 'issuerURI' are not set.
-        tokenUri: "" # optional.  Must be specified if 'configurationURI' and 'issuerURI' are not set.
-        jwksUri: "" # optional.  Must be specified if 'configurationURI' and 'issuerURI' are not set.
-        userinfoUri: "" # optional
+        issuerURI: ""
         displayName: "" # optional, must be between 2 and 32 characters in length
         clientID: ""
         clientSecretRef:
@@ -450,11 +445,15 @@ spec:
               - message.write
     - name: okta
       openID:
-        configurationURI: https://dev-xxxxxx.okta.com/.well-known/openid-configuration
+        issuerURI: https://dev-xxxxxx.okta.com
         displayName: "Okta"
         clientID: xxxxxxxxxxxxx
         clientSecretRef:
           name: okta-client-secret
+        authorizationUri: https://dev-xxxxxx.okta.com/oauth2/v1/authorize
+        tokenUri: https://dev-xxxxxx.okta.com/oauth2/v1/token
+        jwksUri: https://dev-xxxxxx.okta.com/oauth2/v1/keys
+        userinfoUri: https://dev-xxxxxx.okta.com/oauth2/v1/userinfo
         scopes:
           - openid
         roles:
