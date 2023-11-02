@@ -113,7 +113,7 @@ packages to.
    ```console
    imgpkg describe -b $(kubectl get -n tap-install $(kubectl get package -n tap-install \
    --field-selector spec.refName=tpb.tanzu.vmware.com -o name) -o \
-   jsonpath={.spec.template.spec.fetch[0].imgpkgBundle.image}) -o yaml --tty=true | grep -A 1 \
+   jsonpath="{.spec.template.spec.fetch[0].imgpkgBundle.image}") -o yaml --tty=true | grep -A 1 \
    "kbld.carvel.dev/id: harbor-repo.vmware.com/esback/configurator" | grep "image: " | sed 's/\simage: //g'
    ```
 
