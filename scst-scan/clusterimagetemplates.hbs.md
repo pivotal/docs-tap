@@ -173,7 +173,7 @@ ClusterImageTemplate Notes:
             publisher: #@ data.values.params.image_scanning_service_account_publisher
           steps:
           - name: trivy-generate-report
-            image: TRIVY-SCANNER-IMAGE # input the location of your Trivy scanner image
+            image: TRIVY-SCANNER-IMAGE
             env:
             - name: TRIVY_DB_REPOSITORY
               value: #@ data.values.params.trivy_db_repository
@@ -201,8 +201,8 @@ ClusterImageTemplate Notes:
 
 2. Edit the following in your `custom-ivs-template.yaml` file:
   - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-  - `REGISTRY-SERVER` is the registry server.
-  - `REGISTRY-REPOSITORY` is the registry repository.
+  - `REGISTRY-SERVER` is the registry server which is used for the scan results location.
+  - `REGISTRY-REPOSITORY` is the registry repository which is used for the scan results location.
   - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
