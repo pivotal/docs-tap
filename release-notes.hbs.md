@@ -1200,7 +1200,7 @@ This release has the following known issues, listed by component and area.
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
-#### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan
+#### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
 - The default Trivy image used by Supply Chain may point to an unaccessible location. One can solve
   this issue by providing the correct image pointing to `registry.tanzu.vmware.com` like:
