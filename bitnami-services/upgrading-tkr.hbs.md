@@ -3,7 +3,7 @@
 The newest version of TKR enforce a [`restricted` Pod Security
 Standard](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted) for all pods
 running on the cluster. This will have an impact on your running Bitnami services. In this topic we explore
-two possible solutions to this problem. Where possible, it is recommended to follow the first solution, which involves upgrading to TAP 1.7 and then updating CompositionRevision references for any existing Bitnami Services instances. See the "If upgrading to TAP 1.7" section below. If you do not wish or are unable to upgrade to TAP 1.7 for any reason, then an alternative solution is provided. See the "If staying on TAP 1.6 or older" section below.
+possible solutions to this problem.
 
 ## <a id="tap-17"></a>If upgrading to TAP 1.7
 
