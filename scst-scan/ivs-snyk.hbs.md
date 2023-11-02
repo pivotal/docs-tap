@@ -108,7 +108,7 @@ Where:
         ```
     3. Build and push the image to a registry. Replace `SNYK2SPDX-IMAGE` with
       the new image you just built.
-    > **Note** The `snyk2spdx` output is not conformant to the [verification process](./verify-app-scanning-supply-chain.hbs.md) so VMware does not guarantee the results.
+    > **Note** The `snyk2spdx` output is not conformant to the [verification process](./verify-app-scanning-supply-chain.hbs.md) although the results may be ingested to the Tanzu Application Platform metadata store, VMware does not guarantee the accuracy of the results.
 
 > **Note** After detecting vulnerabilities, the Snyk image exits with Exit Code 1 and causes a failed
 > scan task. You can ignore the step error by setting `onError` and handling the error in a subsequent
