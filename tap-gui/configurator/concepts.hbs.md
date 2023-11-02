@@ -36,12 +36,12 @@ Runtime configuration values can include:
 - Integrations (GitHub or GitLab keys, identity provider configuration, and so on)
 - The locations of any catalogs on GitHub or GitLab
 - Security credentials
-- Configuration made available by any Tanzu Developer Portal plug-in wrappers
+- Configuration made available by any Tanzu Developer Portal plug-ins
 
 ### <a id="buildtime"></a> Buildtime configuration
 
 Buildtime configuration refers to the values that you pass to Configurator to generate a new portal
-image. This configuration consists of a list of Tanzu Developer Portal plug-in wrappers and any
+image. This configuration consists of a list of Tanzu Developer Portal plug-ins and any
 default runtime configuration for the portal image.
 
 ## <a id="configurator"></a> Tanzu Developer Portal Configurator
@@ -50,41 +50,41 @@ Tanzu Developer Portal Configurator is the image that contains everything necess
 customized version of Tanzu Developer Portal.
 
 Configurator includes a templated version of Tanzu Developer Portal, an internal registry of Tanzu
-Developer Portal plug-ins wrappers, and tools to enable the build process to incorporate external
+Developer Portal plug-ins, and tools to enable the build process to incorporate external
 plug-ins.
 
 ![Diagram of Tanzu Developer Portal Configurator, the included internal plug-in registry, and the customization process.](images/configurator-internal-external-plugins.png)
 
-## <a id="wrappers"></a> Tanzu Developer Portal plug-in wrappers
+## <a id="plug-ins"></a> Tanzu Developer Portal plug-ins
 
 While Backstage uses [Backstage plug-ins](https://backstage.io/plugins/) to enable the user to
-customize functions, Tanzu Developer Portal uses Tanzu Developer Portal plug-in wrappers to do the
+customize functions, Tanzu Developer Portal uses Tanzu Developer Portal plug-ins to do the
 same thing.
 
-A Tanzu Developer Portal plug-in wrapper is simply a Backstage plug-in wrapped in a small amount of
+A Tanzu Developer Portal plug-in is simply a Backstage plug-in wrapped in a small amount of
 code to facilitate easy integration into Configurator and Tanzu Developer Portal.
 
-### <a id="plug-ins"></a> Internal plug-in wrappers and external plug-in wrappers
+### <a id="plug-ins"></a> Internal plug-ins and external plug-ins
 
-Internal Tanzu Developer Portal plug-in wrappers are included inside the Tanzu Developer Portal
+Internal Tanzu Developer Portal plug-ins are included inside the Tanzu Developer Portal
 Configurator image. These include:
 
-- Tanzu Developer Portal plug-in wrappers specifically built for Tanzu Application Platform
-- Tanzu Developer Portal plug-in wrappers for core [Backstage](https://backstage.io) plug-ins
+- Tanzu Developer Portal plug-ins specifically built for Tanzu Application Platform
+- Tanzu Developer Portal plug-ins for core [Backstage](https://backstage.io) plug-ins
 
-External Tanzu Developer Portal plug-in wrappers are not in the Tanzu Developer Portal Configurator
+External Tanzu Developer Portal plug-ins are not in the Tanzu Developer Portal Configurator
 image. They are hosted in, and installed, from an external registry, such as [npmjs.com](https://www.npmjs.com/).
-External Tanzu Developer Portal plug-in wrappers can include custom functions or wrap existing
+External Tanzu Developer Portal plug-ins can include custom functions or wrap existing
 [third-party Backstage plug-ins](https://backstage.io/plugins/).
 
-### <a id="surfaces-and-wrappers"></a> Tanzu Developer Portal plug-in wrapper surfaces
+### <a id="surfaces"></a> Tanzu Developer Portal plug-in surfaces
 
-Tanzu Developer Portal plug-in wrapper surfaces are the mechanism that allows Tanzu Developer Portal
-plug-in wrappers to change the behavior of the portal.
+Tanzu Developer Portal plug-in surfaces are the mechanism that allows Tanzu Developer Portal
+plug-ins to change the behavior of the portal.
 
 When adding a Backstage plug-in to an instance of Backstage, code modifications are required. Rather
 than editing code, Tanzu Developer Portal exposes extension points where Tanzu Developer Portal
-plug-in wrappers can inject code. These extension points are known as surfaces.
+plug-ins can inject code. These extension points are known as surfaces.
 
 The pre-built version of Tanzu Developer Portal has several surfaces to edit existing functions,
 including:
@@ -93,9 +93,8 @@ including:
 - Adding new routes, such as `https://YOUR_PORTAL_URL/plugin`
 - The ability to appear as a Catalog Overview tab
 
-This pattern of exposing surfaces where Tanzu Developer Portal plug-in wrappers can inject new
+This pattern of exposing surfaces where Tanzu Developer Portal plug-ins can inject new
 behavior is not limited to what is offered in the pre-built version of Tanzu Developer Portal.
 
-This pattern can also be applied on top of Tanzu Developer Portal plug-in wrappers themselves. This
-allows for one Tanzu Developer Portal plug-in wrapper to build on top of another Tanzu Developer
-Portal plug-in wrapper.
+This pattern can also be applied on top of Tanzu Developer Portal plug-ins themselves. This allows
+for one Tanzu Developer Portal plug-in to build on top of another Tanzu Developer Portal plug-in.

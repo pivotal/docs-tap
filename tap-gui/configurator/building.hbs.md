@@ -65,7 +65,7 @@ To prepare your Configurator configuration file:
    - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
      npm registry
 
-   The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
+   The following example adds the sample `techinsights` plug-in. The plug-in is available
    in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
 
     ```yaml
