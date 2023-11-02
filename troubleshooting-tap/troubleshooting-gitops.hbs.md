@@ -125,3 +125,12 @@ Events:
             ...
             version: "v1" # v1 or v2
     ```
+- **Problem 3:** Incorrect command to disable vault auth
+
+    ```console
+    ./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh
+    Error deleting auth/tap-gitops-vault/config: Error making API request.
+    Namespace: admin/URL: DELETE https://vault-cluster-public-vault-5593a539.8ae01486.z1.hashicorp.cloud:8200/v1/auth/tap-gitops-vault/configCode: 405. Errors:
+    * 1 error occurred:	* unsupported operation
+    ```
+    **Solution :** Update command `vault delete auth/$CLUSTER_NAME/config` to `vault auth disable $CLUSTER_NAME` in file `./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh`.
