@@ -138,3 +138,21 @@ is the file system made available when creating a new project.
 
 Use local file mounts to expose additional directories in the host file system to the development
 container. For more information, see [Use Mounts](dev-containers.hbs.md#use-mounts).
+
+## <a id="dsbl-lnch-ctrl"></a> Frequent application restarts
+
+### Symptom
+
+When an application is applied from VSCode it restarts frequently.
+
+### Cause
+
+Application or environment behaviors triggering the application to restart on a periodic basis. 
+
+Observed trigger behaviors:
+- The application itself writing logs to the filesystem into the application directory that live update is watching
+- In their IDE configuration the user has autosave settings tuned to very high frequencies
+
+### Solution
+
+The solution depends on the trigger but can be generically described as preventing the trigger behaviors.  For example, 12-factor applications should not be writing to filesystem.  Developers usually do not require very high frequency autosaves.  Once every few minutes if sufficent.
