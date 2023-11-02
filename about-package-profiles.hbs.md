@@ -1169,7 +1169,7 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
@@ -1266,7 +1266,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
   </tr>
   <tr>
