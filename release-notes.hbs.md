@@ -1202,7 +1202,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
-- The default Trivy image used by Supply Chain may point to an unaccessible location. One can solve
+- When using Scan 2.0 with a clusterimagetemplate other the Grype, the scanner image is being incorrectly overwritten to the Grype image by the default value from the tap values in no value for ootb_supply_chain_testing_scanning.image_scanner_cli is provided.  You can prevent this from happening by setting the value in tap values for the correct image.  For example, for the Trivy image packaged with TAP:
   this issue by providing the correct image pointing to `registry.tanzu.vmware.com` like:
   ```
   ootb_supply_chain_testing_scanning:
