@@ -269,14 +269,6 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
->**Note** In Tanzu Application Platform v1.7 there is [a known issue](../release-notes.hbs.md#1-7-0-scst-scan-ki) leading to a situation where the default Trivy Scanner Image is pointing to an unaccessible location. One can correct this by setting:
-```
-ootb_supply_chain_testing_scanning:
-  image_scanner_template_name: image-vulnerability-scan-trivy
-    image_scanner_cli: 
-      image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
-```
-
 ### <a id="workload-update"></a>Workload update
 
 To connect the new supply chain to the workload, update the workload to point to your Tekton

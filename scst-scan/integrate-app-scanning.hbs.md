@@ -49,6 +49,14 @@ To integrate Scan 2.0 with an OOTB supply chain using the Trivy scanner:
 
   Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
+  >**Note** In Tanzu Application Platform v1.7 there is [a known issue](../release-notes.hbs.md#1-7-0-scst-scan-ki) leading to a situation where the default Trivy Scanner Image is pointing to an unaccessible location. One can correct this by setting:
+```
+ootb_supply_chain_testing_scanning:
+  image_scanner_template_name: image-vulnerability-scan-trivy
+    image_scanner_cli:
+      image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+```
+
 1. Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. You must enable AMR and AMR Observer. See [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
 
 1. Verify the scan capability is working as expected by creating a workload. See [Verify](./verify-app-scanning-supply-chain.hbs.md).
