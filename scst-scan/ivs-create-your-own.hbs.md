@@ -78,7 +78,6 @@ To customize an ImageVulnerabilityScan to use your scanner:
     seccompProfile
     capabilities
     ```
-    Failing to populate
 
   The `SCANNER-IMAGE` runs and manipulates files with user and group ids of `65534`.
 
