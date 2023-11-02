@@ -2167,7 +2167,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
   VMware plans to deactivate this format by default in Tanzu Application Platform v1.6.1 and remove
-  support in Tanzu Application Platform v1.7.0.
+  support in Tanzu Application Platform v1.8.
   To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
 ### <a id="1-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in deprecations
