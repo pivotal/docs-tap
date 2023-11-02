@@ -43,7 +43,7 @@ using the accelerator `java-rest` and the fragment `tap-workload` which are assu
 already registered in the Tanzu Application Platform cluster, the fragment named `java-version`
 located at `workspace/version`, and the option `projectName` set to `test`.
 
-For more information about the `generate-from-local` command, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+For more information about the `generate-from-local` command, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
 
 No changes are made to the Tanzu Application Platform cluster that is provided with the
 server URL. No new accelerators/fragments are registered or modified.
