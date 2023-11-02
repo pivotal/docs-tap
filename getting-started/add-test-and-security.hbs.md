@@ -273,7 +273,8 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
 ```
 ootb_supply_chain_testing_scanning:
   image_scanner_template_name: image-vulnerability-scan-trivy
-  image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+    image_scanner_cli: 
+      image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
 ```
 
 ### <a id="workload-update"></a>Workload update
