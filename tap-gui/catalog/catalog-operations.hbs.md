@@ -257,5 +257,5 @@ Backstage components.
 
 1. From the
    [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
-   page, click **tap-gui-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
+   page, click **tanzu-developer-portal-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
 1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
