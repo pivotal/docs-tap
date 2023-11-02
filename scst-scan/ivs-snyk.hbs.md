@@ -34,7 +34,7 @@ For information about the IVS specification, see [Configuration Options](ivs-cre
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ImageVulnerabilityScan
 metadata:
-  name: snyk-ivs-spdx
+  name: snyk-ivs
   annotations:
     app-scanning.apps.tanzu.vmware.com/scanner-name: Snyk
 spec:
