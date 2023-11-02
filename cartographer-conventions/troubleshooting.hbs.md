@@ -183,3 +183,55 @@ imagePullSecrets:
 secrets:
 - name: registry-credentials
 ``` 
+
+## <a id="upgrade-failure-with-oomemorykilled"></a> Upgrade Failure with OOMKilled
+
+After upgrading to a new version of the component, a user might experience a periodic `CrashLoopBackOff` of the `cartographer-conventions-controller-manager` when running an upgrade. The `cartogrpaher-conventions-controller-manager` might indicate an `OOMemoryKilled` status and eventually fail with a `CrashLoopBackOff` status. 
+
+### Solution 
+
+Increasing memory allocation might remidiate this issue. In order to do this, we need to apply an appropriate ytt overlay to update the memory allocation. This will provide enough resources for kapp to reconcile the component during an upgrade scenario.  
+
+Here is an exmaple of a ytt overlay specifying how to apply the change.
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cc-patch-conventions-controller
+  namespace: tap-install
+stringData:
+  cc-patch-conventions-controller.yaml: |
+   #@ load("@ytt:overlay", "overlay")
+   #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"cartographer-conventions-controller-manager", "namespace": "cartographer-system"}})
+   ---
+    spec:
+      template:
+        spec:
+          containers:
+            #@overlay/match by="name"
+            - name: cartographer-conventions-controller-manager
+              resources:
+                limits:
+                  cpu: 1
+                  memory: 2Gi
+                requests:
+                  cpu: 100m
+                  memory: 512Mi
+    
+    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"cartographer-conventions-controller-manager", "namespace": "cartographer-system"}})
+   ---
+    spec:
+      template:
+        spec:
+          containers:
+            #@overlay/match by="name"
+            - name: cartographer-conventions-controller-manager
+              resources:
+                limits:
+                  cpu: 400m
+                  memory: 2Gi
+                requests:
+                  cpu: 40m
+                  memory: 512Mi
+```
