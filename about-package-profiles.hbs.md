@@ -825,7 +825,7 @@ Tanzu Application Platform components.
    <td>&check;</td>
    <td>&check;</td>
    <td>&check;</td>
-   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
    <th scope="row">.NET Core</th>
@@ -879,7 +879,7 @@ Tanzu Application Platform components.
    <td></td>
    <td></td>
    <td></td>
-   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
    <th scope="row">Ruby</th>
