@@ -28,7 +28,8 @@ This release includes the following platform-wide enhancements.
   Tanzu Application Platform components are behaving as expected.
 
 - [AWS Services](aws-services/about.hbs.md): Provides a more streamlined approach for integrating
-  services from AWS into Tanzu Application Platform.
+  services from AWS into Tanzu Application Platform. Currently supports RDS PostgresSQL and MySQL on AWS. The
+  package is optional.
 
 - [Service Registry for VMware Tanzu](service-registry/overview.hbs.md): Provides on-demand Eureka
   servers for Tanzu Application Platform clusters. With Service Registry, you can create Eureka
@@ -101,6 +102,10 @@ This release includes the following changes, listed by component and area.
 - `AuthServer.spec.session.expiry` controls the session expiry of authorization
   servers. The default value is `15m`. It must be at least `1m`.
 
+#### <a id='1-7-0-bitnami-services'></a> v1.7.0 Features: Bitnami Services
+
+- Adds support for environments enforcing the restricted Pod Security Standard.
+
 #### <a id='1-7-0-cert-manager'></a> v1.7.0 Features: cert-manager
 
 - Upgrades `cert-manager.tanzu.vmware.com` to `cert-manager@1.12`.
@@ -143,6 +148,12 @@ This release includes the following changes, listed by component and area.
 
 - **New config option `loadBalancerTLSTermination`**: Allows configuring the Envoy service's port for TLS termination. For more information on<!--฿ |information about| is preferred. ฿--> how to use this config, see [Configure Contour to support TLS termination at an AWS Network LoadBalancer](./contour/how-to-guides/configuring-contour-with-loadbalancer-tls-termination.hbs.md)
 
+#### <a id='1-7-0-crossplane'></a> v1.7.0 Features: Crossplane
+
+- Bumps to Universal Crossplane v1.13.2-up.1. Read the Upbound
+  [announcement](https://blog.crossplane.io/crossplane-v1-13/) for details.
+- Custom certificate data is now correctly passed through to the Crossplane Providers.
+
 #### <a id='1-7-0-eso'></a> v1.7.0 Features: External Secrets Operator
 
 - External Secrets Operator has now reached General Availability.
@@ -150,6 +161,17 @@ This release includes the following changes, listed by component and area.
 - Adds SYNC, GET, LIST and CREATE commands to the CLI. The GET command lets you get more details
   about your external secrets and secret stores. The CREATE command lets you create cluster
   external secret and cluster secret stores. For more information, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+
+#### <a id='1-7-0-service-bindings'></a> v1.7.0 Features: Service Bindings
+
+- Introduces the new `servicebinding.tanzu.vmware.com` package, which supersedes the existing
+  `service-bindings.labs.vmware.com`. The new package is based on the community maintained
+  [`servicebinding/runtime`](https://github.com/servicebinding/runtime) implementation instead of the
+  VMware-maintained [`vmware-tanzu/servicebinding`](https://github.com/vmware-tanzu/servicebinding).
+
+#### <a id='1-7-0-services-toolkit'></a> v1.7.0 Features: Services Toolkit
+
+- Adds support for Kubernetes 1.27.
 
 #### <a id='1-7-0-supply-chain-plugin'></a> v1.7.0 Features: Supply Chain plug-in for Tanzu Developer Portal
 
