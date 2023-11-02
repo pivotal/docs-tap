@@ -39,6 +39,7 @@ Ensure that the following is true:
 > However, if you decide you want to hide them, you can use the
 > [runtime configuration](concepts.hbs.md#runtime) options in your `tap-values.yaml` file.
 
+
 ## <a id="prep-config-file"></a> Prepare your Configurator configuration file
 
 To prepare your Configurator configuration file:
@@ -65,7 +66,7 @@ To prepare your Configurator configuration file:
    - `NPM-PLUGIN-BACKEND-VERSION` is the version of your desired back-end plug-in that exists in the
      npm registry
 
-   The following example adds the sample `techinsights` plug-in. The plug-in is available
+   The following example adds the sample `techinsights` plug-in. The plug-in wrapper is available
    in the [VMware NPM repository](https://www.npmjs.com/search?q=vmware-tanzu):
 
     ```yaml
@@ -126,7 +127,18 @@ packages to.
 2. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
    workload definition.
 
-## <a id="prep-def-file"></a> Prepare your Configurator workload definition file
+## Choose a method for customization
+
+Now it's time to pass your workload through a supply chain. There are two options that you can pursue in order to build your custom portal:
+  - **Method 1:** [Customize Tanzu Developer Portal via an exiting supply chain](#method-1-use-an-existing-supply-chain)
+  - **Method 2:** [Customize Tanzu Developer Portal via a custom supply chain](#method-2-use-a-custom-supply-chain)
+
+
+
+## <a id="method-1"></a> Method 1: Use an Existing Supply Chain
+
+
+### <a id="prep-def-file"></a> Prepare your Configurator workload definition file
 
 Create a file called `tdp-workload.yaml` with the following content:
 
@@ -196,7 +208,7 @@ front-end and back-end plug-ins.
 
 `TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
 
-## <a id="submit-your-workload"></a> Submit your workload
+### <a id="submit-your-workload"></a> Submit your workload
 
 Submit the workload definition file you created earlier by running:
 
@@ -204,6 +216,258 @@ Submit the workload definition file you created earlier by running:
 tanzu apps workload create -f tdp-workload.yaml
 ```
 
+Once the job completes the Image Provider stage of your supply chain, you're ready to move on to [running your customized Tanzu Deveoper Portal instance](./running.hbs.md)
+
+
 > **Note** The supply chain does not need to go beyond the image-provider stage. After an image is
 > built, you can proceed to [Run your Customized Tanzu Developer Portal](running.hbs.md).
-> A dedicated supply chain is planned for a future release.
+
+
+## <a id="method-2"></a> Method 2: Use a custom supply chain
+
+This creates a custom supply chain for `workload-type`: `tdp` that encompasses just the steps necessary to build the customized image.
+
+### <a id="prep-custom-sc"></a>Prepare your custom supply chain
+
+Create a file called `tdp-sc.yaml` with the following content:
+
+```yaml
+apiVersion: carto.run/v1alpha1
+kind: ClusterSupplyChain
+metadata:
+  name: tdp-configurator
+spec:
+  resources:
+  - name: source-provider
+    params:
+    - default: default
+      name: serviceAccount
+    - default: TDP-IMAGE-LOCATION
+      name: tdp_configurator_bundle
+    templateRef:
+      kind: ClusterSourceTemplate
+      name: tdp-source-template
+  - name: image-provider
+    params:
+    - default: default
+      name: serviceAccount
+    - name: registry
+      default:
+        ca_cert_data: ""
+        repository: IMAGE-REPOSITORY
+        server: REGISTRY-HOSTNAME
+    - default: default
+      name: clusterBuilder
+    sources:
+    - name: source
+      resource: source-provider
+    templateRef:
+      kind: ClusterImageTemplate
+      name: tdp-kpack-template
+  
+  selectorMatchExpressions:
+  - key: apps.tanzu.vmware.com/workload-type
+    operator: In
+    values:
+    - tdp
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterImageTemplate
+metadata:
+  name: tdp-kpack-template
+spec:
+  healthRule:
+    multiMatch:
+      healthy:
+        matchConditions:
+        - status: "True"
+          type: BuilderReady
+        - status: "True"
+          type: Ready
+      unhealthy:
+        matchConditions:
+        - status: "False"
+          type: BuilderReady
+        - status: "False"
+          type: Ready
+  imagePath: .status.latestImage
+  lifecycle: mutable
+  params:
+  - default: default
+    name: serviceAccount
+  - default: default
+    name: clusterBuilder
+  - name: registry
+    default: {}
+  ytt: |
+    #@ load("@ytt:data", "data")
+    #@ load("@ytt:regexp", "regexp")
+
+    #@ def merge_labels(fixed_values):
+    #@   labels = {}
+    #@   if hasattr(data.values.workload.metadata, "labels"):
+    #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+    #@     for k,v in dict(data.values.workload.metadata.labels).items():
+    #@       if k not in exclusions:
+    #@         labels[k] = v
+    #@       end
+    #@     end
+    #@   end
+    #@   labels.update(fixed_values)
+    #@   return labels
+    #@ end
+
+    #@ def image():
+    #@   return "/".join([
+    #@    data.values.params.registry.server,
+    #@    data.values.params.registry.repository,
+    #@    "-".join([
+    #@      data.values.workload.metadata.name,
+    #@      data.values.workload.metadata.namespace,
+    #@    ])
+    #@   ])
+    #@ end
+    
+    #@ bp_node_run_scripts = "set-tpb-config,portal:pack"
+    #@ tpb_config = "/tmp/tpb-config.yaml"
+
+    #@ for env in data.values.workload.spec.build.env:
+    #@   if env.name == "TPB_CONFIG_STRING":
+    #@     tpb_config_string = env.value
+    #@   end
+    #@   if env.name == "BP_NODE_RUN_SCRIPTS":
+    #@     bp_node_run_scripts = env.value
+    #@   end
+    #@   if env.name == "TPB_CONFIG":
+    #@     tpb_config = env.value
+    #@   end
+    #@ end
+    
+    apiVersion: kpack.io/v1alpha2
+    kind: Image
+    metadata:
+      name: #@ data.values.workload.metadata.name
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "build" })
+    spec:
+      tag: #@ image()
+      serviceAccountName: #@ data.values.params.serviceAccount
+      builder:
+        kind: ClusterBuilder
+        name: #@ data.values.params.clusterBuilder
+      source:
+        blob:
+          url: #@ data.values.source.url
+        subPath: builder
+      build:
+        env:
+        - name: BP_OCI_SOURCE
+          value: #@ data.values.source.revision
+        #@  if regexp.match("^([a-zA-Z0-9\/_-]+)(\@sha1:)?[0-9a-f]{40}$", data.values.source.revision):
+        - name: BP_OCI_REVISION
+          value: #@ data.values.source.revision
+        #@ end
+        - name: BP_NODE_RUN_SCRIPTS
+          value: #@ bp_node_run_scripts
+        - name: TPB_CONFIG
+          value: #@ tpb_config
+        - name: TPB_CONFIG_STRING
+          value: #@ tpb_config_string
+
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterSourceTemplate
+metadata:
+  name: tdp-source-template
+spec:
+  healthRule:
+    singleConditionType: Ready
+  lifecycle: mutable
+  params:
+  - default: default
+    name: serviceAccount
+  revisionPath: .status.artifact.revision
+  urlPath: .status.artifact.url
+  ytt: |
+    #@ load("@ytt:data", "data")
+    
+    #@ def merge_labels(fixed_values):
+    #@   labels = {}
+    #@   if hasattr(data.values.workload.metadata, "labels"):
+    #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+    #@     for k,v in dict(data.values.workload.metadata.labels).items():
+    #@       if k not in exclusions:
+    #@         labels[k] = v
+    #@       end
+    #@     end
+    #@   end
+    #@   labels.update(fixed_values)
+    #@   return labels
+    #@ end
+    
+    ---
+    apiVersion: source.apps.tanzu.vmware.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: #@ data.values.workload.metadata.name
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
+    spec:
+      serviceAccountName: #@ data.values.params.serviceAccount
+      interval: 10m0s
+      #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
+      image: #@ data.values.workload.spec.source.image
+      #@ else:
+      image: #@ data.values.params.tdp_configurator_bundle
+      #@ end
+```
+
+Where:
+
+- `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
+  you installed Tanzu Application Platform. You discovered this location earlier when you
+  [identified your Configurator image](#prep-ident-image).
+- `REGISTRY-HOSTNAME` is the name of the container registry that your developer namespace has been configured to push artifacts to.
+- `IMAGE-REPOSITORY` is the name of the repository (folder) on the `REGISTRY-HOSTNAME` that you want the built artifacts to be pushed to.
+
+### <a id="submit-your-sc-custom"></a> Submit your custom supply chain
+
+Submit the custom supply chain file you created earlier by running:
+
+```console
+tanzu apps workload create -f tdp-sc.yaml
+```
+
+### <a id="prep-def-file-custom"></a> Prepare your Configurator workload definition file for your custom supply chain
+
+Create a file called `tdp-workload.yaml` with the following content:
+
+```yaml
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: tdp-configurator-1-sc
+  namespace: DEVELOPER-NAMESPACE
+  labels:
+    apps.tanzu.vmware.com/workload-type: tdp
+    app.kubernetes.io/part-of: tdp-configurator-1-custom
+spec:
+  build:
+    env:
+      - name: TPB_CONFIG_STRING
+        value: ENCODED-TDP-CONFIG-VALUE
+
+```
+
+Where:
+
+- `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster.
+- `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier.
+
+### <a id="submit-your-workload-custom"></a> Submit your workload to you custom supply chain
+
+Submit the workload definition file you created earlier by running:
+
+```console
+tanzu apps workload create -f tdp-workload.yaml
+```
+
+Once the job completes the Image Provider stage of your supply chain, you're ready to move on to [running your customized Tanzu Deveoper Portal instance](./running.hbs.md)
