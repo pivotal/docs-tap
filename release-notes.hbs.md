@@ -208,7 +208,7 @@ This release includes the following changes, listed by component and area.
   [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html)
   documentation.
 
-- You can rebase vulnerability triage analyses by using the `tanzu insight triage rebase`command.
+- You can rebase vulnerability triage analyses by using the `tanzu insight triage rebase` command.
   For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses)
   and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
 <!-- should this now move to the main Tanzu CLI docs RNs? -->
