@@ -140,4 +140,4 @@ For tutorials that show how to secure specific types of workloads with Applicati
 
 If you have problems claiming credentials for an Application Single Sign-On service, learn how
 to [troubleshoot](../troubleshoot.hbs.md).
-For more information about the `tanzu service` command, classes, and claims, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+For more information about the `tanzu service` command, classes, and claims, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.

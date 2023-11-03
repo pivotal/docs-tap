@@ -2,7 +2,10 @@
 
 This topic helps you troubleshoot Supply Chain Security Tools (SCST) - Scan 2.0.
 
-When an ImageVulnerabilityScan is created, the following resources are created:
+## <a id="overview"></a> Overview
+
+When Scan 2.0 creates an ImageVulnerabilityScan, the following resources are also created:
+
 - Tekton `PipelineRun` with the following `Tasks`:
   - workspace-setup-task
   - scan-task
@@ -20,7 +23,7 @@ When an ImageVulnerabilityScan is created, the following resources are created:
 
     Where `DEV-NAMESPACE` is the name of your developer namespace.
 
-- Verify which resources are failing and proceed to the following debugging sections:
+- To verify which resources are failing, proceed to the following debugging sections:
 
     ```console
     NAME                                                                SUCCEEDED   REASON
@@ -105,7 +108,7 @@ You can use the following methods to debug scan pods:
     For information about debugging a TaskRun, see the [Tekton documentation](https://tekton.dev/docs/pipelines/taskruns/#debugging-a-taskrun).
 
 - To debug inside of the scan-task pod:
-    Add an additional step with a `sleep` command below your scanner step in the ImageVulnerabilityScan. For example:
+    Add an additional step with a `sleep` command after your scanner step in the ImageVulnerabilityScan. For example:
 
     ```yaml
     ...
@@ -142,7 +145,7 @@ You can run these commands to view the Scan-Controller manager logs:
     kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
     ```
 
-## <a id="troubleshooting-app-scanning-issues"></a> Troubleshooting issues
+## <a id="troubleshoot-app-scan-issues"></a> Troubleshooting issues
 
 ### <a id="volume-permission-errors"></a> Volume permission error
 
@@ -155,7 +158,7 @@ unsuccessful cred copy: ".git-credentials" from "/tekton/creds" to "/home/app-sc
 Ensure that the problematic step runs with the
 [proper user and group ids](./ivs-create-your-own.hbs.md#security-context-user-and-group-ids).
 
-### <a id="upgrading-scan-0.2.0"></a> Incompatible Tekton version
+### <a id="upgrading-scan-0-2-0"></a> Incompatible Tekton version
 
 Tanzu Application Platform `v1.7.0` includes `app-scanning.apps.tanzu.vmware.com` version `0.2.0` and Tekton Pipelines version `0.50.1`. The `app-scanning.apps.tanzu.vmware.com` package is incompatible with previous versions of Tekton Pipelines as v1 CRDs were not enabled. You must upgrade Tanzu Application Platform to `v1.7.0` or greater before upgrading `app-scanning.apps.tanzu.vmware.com`.
 
@@ -166,7 +169,7 @@ NAME      SUCCEEDED   REASON
 my-scan
 ```
  
-To resolve the issue above:
+To resolve this issue:
 
 1. Confirm that the issue is due to installing an incompatible Tekton version by viewing the controller manager logs by running:
 
@@ -197,3 +200,38 @@ Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 ```
 
 To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You must use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot your scanner commands from within the container.
+
+### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
+
+As part of compliance with the restricted profile for Kubernetes Pod Security Standards, you must set the `securityContext` of containers and initContainers. This applies to the `prepare` initContainers and affinity assistant pods created by Tekton. When a pod does not meet pod Security Standards, it is not created and vulnerability scanning cannot proceed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
+
+You might see an error message similar to the following when describing the TaskRun:
+
+```console
+pods "trivy-ivs-abcd-scan-task-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found
+```
+
+To resolve this issue:
+
+1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes:
+    
+    ```yaml
+    tekton_pipelines:
+        feature_flags:
+            set_security_context: "true"
+            disable-affinity-assistant: "true"
+    ```
+
+    Setting the `securityContext` resolves the `prepare` initContainer violation. Deactivating affinity assistant pods is a workaround for the affinity assistant violation as Tekton does not have a way to update the `securityContext` in those pods.
+
+1. Update your Tanzu Application Platform installation by running:
+
+   ```console
+   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+   ```
+
+    Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+
+  >**Note** Tekton [affinity assistant](https://tekton.dev/vault/pipelines-main/affinityassistants/) is a feature that can schedule all TaskRun pods within a PipelineRun that share a Workspace on the same node. If deactivated, VMware recommends using an affinity-aware CSI storage class. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes/#csi).
+
+1. Re-run the scan.

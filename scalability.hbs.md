@@ -73,15 +73,16 @@ The following table describes the resource limit changes that are required for c
 
 |**Controller/Pod**|**CPU Requests/Limits**|**Memory Requests/Limits**|**Other changes**|**Build** | **Run** | **Iterate** |**Changes made in**|
 |:------|:------|:--------|:-------|:------|:------|:-----|:------|:--------|:-------|
- Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** |n/a| Yes | No | Yes | `tap-values.yaml` |
+ AMR Observer | 100&nbsp;m/500&nbsp;m | 256&nbsp;Mi/**1&nbsp;Gi** |n/a| Yes | Yes | No | `tap-values.yaml` |
+| Build Service/kpack controller | 20&nbsp;m/100&nbsp;m | **1&nbsp;Gi/2&nbsp;Gi** |n/a| Yes | No | Yes | `tap-values.yaml` |
 | Scanning/scan-link | 200&nbsp;m/500&nbsp;m | **1&nbsp;Gi/3&nbsp;Gi**| "SCAN_JOB_TTL_SECONDS_AFTER_FINISHED" - 10800*| Yes | No | No | `tap-values.yaml` |
 | Cartographer| **3000&nbsp;m/4000&nbsp;m** | **10&nbsp;Gi/10&nbsp;Gi** | In `tap-values.yaml`, change `concurrency` to 25. | Yes| Partial (only CPU) | Yes  | `tap-values.yaml` |
 | Cartographer conventions| 100&nbsp;m/100&nbsp;m | 20&nbsp;Mi/**1.8&nbsp;Gi**  | n/a | Yes | Yes | Yes | `tap-values.yaml` |
 | Namespace Provisioner | 100&nbsp;m/500&nbsp;m | **500&nbsp;Mi/2&nbsp;Gi** |n/a | Yes | Yes | Yes | `tap-values.yaml` |
-| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** |n/a | No | Yes | Yes | overlay |
-| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | overlay |
-| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | overlay |
-| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | overlay |
+| Cnrs/knative-controller  | 100&nbsp;m/1000&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** |n/a | No | Yes | Yes | `tap-values.yaml` |
+| Cnrs/net-contour | 40&nbsp;m/400&nbsp;m | **512&nbsp;Mi/2&nbsp;Gi** | In `tap-values.yaml`, change Contour envoy workload type from `Daemonset` to `Deployment`.| No | Yes | Yes | `tap-values.yaml` |
+| Cnrs/activator | 300&nbsp;m/1000&nbsp;m | **5&nbsp;Gi/5&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
+| Cnrs/autoscaler  | 100&nbsp;m/1000&nbsp;m | **2&nbsp;Gi/2&nbsp;Gi** | n/a | No | Yes | No | `tap-values.yaml` |
 | tap-telemetry/tap-telemetry-informer | 100&nbsp;m/1000&nbsp;m | 100&nbsp;m/**2&nbsp;Gi** | n/a| Yes| No | Yes| `tap-values.yaml` |
 
 - CPU is measured in millicores. m = millicore. 1000 millicores = 1 vCPU.
@@ -211,6 +212,31 @@ scanning:
       memory: 1Gi
 ```
 
+### AMR Observer
+
+The default resource limits are:
+
+```console
+resources:
+  limits:
+    cpu:     500m
+    memory:  512Mi
+  requests:
+    cpu:      100m
+    memory:   256Mi
+```
+
+Edit `values.yaml` to scale resource limits:
+
+```console
+amr:
+  observer:
+    app_limit_cpu: 500m
+    app_limit_memory: 1Gi
+    app_req_cpu: 100m
+    app_req_memory: 256Mi
+```
+
 ### kpack-controller in build service
 
 The default resource limits are:
@@ -280,32 +306,18 @@ resources:
     memory: 100Mi
 ```
 
-Use an overlay to make the following resource limit changes:
+Edit `values.yaml` to scale resource limits:
 
 ```console
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cnrs-patch-knative-controller
-  namespace: tap-install
-stringData:
-  cnrs-patch-knative-controller.yaml: |
-   #@ load("@ytt:overlay", "overlay")
-   #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"controller", "namespace": "knative-serving"}})
-   ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by="name"
-            - name: controller
-              resources:
-                limits:
-                  cpu: 1
-                  memory: 2Gi
-                requests:
-                  cpu: 100m
-                  memory: 512Mi
+cnrs:
+  resource_management:
+  - name: "controller"
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 512Mi
 ```
 
 ### net-contour controller
@@ -332,32 +344,18 @@ resources:
     memory: 40Mi
 ```
 
-Use an overlay to make the following resource limit changes:
+Edit `values.yaml` to scale resource limits:
 
 ```console
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cnrs-patch-net-contour
-  namespace: tap-install
-stringData:
-  cnrs-patch-net-contour.yaml: |
-   #@ load("@ytt:overlay", "overlay")
-   #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"net-contour-controller", "namespace": "knative-serving"}})
-   ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by="name"
-            - name: controller
-              resources:
-                limits:
-                  cpu: 400m
-                  memory: 2Gi
-                requests:
-                  cpu: 40m
-                  memory: 512Mi
+cnrs:
+  resource_management:
+  - name: "net-contour-controller"
+    limits:
+      cpu: 400m
+      memory: 2Gi
+    requests:
+      cpu: 40m
+      memory: 512Mi
 ```
 
 ### Autoscaler
@@ -374,32 +372,18 @@ resources:
     memory: 100Mi
 ```
 
-Use an overlay to make the following resource limit changes:
+Edit `values.yaml` to scale resource limits:
 
 ```console
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cnrs-patch-autoscaler
-  namespace: tap-install
-stringData:
-  cnrs-patch-autoscaler.yaml: |
-   #@ load("@ytt:overlay", "overlay")
-   #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"autoscaler", "namespace": "knative-serving"}})
-   ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by="name"
-            - name: autoscaler
-              resources:
-                limits:
-                  cpu: 1000m
-                  memory: 2Gi
-                requests:
-                  cpu: 100m
-                  memory: 2Gi
+cnrs:
+  resource_management:
+  - name: "autoscaler"
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 2Gi
 ```
 
 ### Activator
@@ -416,74 +400,18 @@ resources:
     memory: 60Mi
 ```
 
-Use an overlay to make the following resource limit changes:
+Edit `values.yaml` to scale resource limits:
 
 ```console
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cnrs-patch-activator
-  namespace: tap-install
-stringData:
-  cnrs-patch-activator.yaml: |
-   #@ load("@ytt:overlay", "overlay")
-   #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"activator", "namespace": "knative-serving"}})
-   ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by="name"
-            - name: activator
-              resources:
-                limits:
-                  cpu: 1000m
-                  memory: 5Gi
-                requests:
-                  cpu: 300m
-                  memory: 5Gi
-```
-
-### Triggermesh:
-
-The default resource limits are:
-
-```console
-resources:
-  limits:
-    cpu: 200m
-    memory: 300Mi
-  requests:
-    cpu: 50m
-    memory: 100Mi
-```
-
-Use an overlay to make the following resource limit changes:
-
-```console
-apiVersion: v1
-kind: Secret
-metadata:
-  name: triggermesh-patch-triggermesh-controller
-  namespace: tap-install
-stringData:
-  triggermesh-patch-triggermesh-controller.yaml: |
-   #@ load("@ytt:overlay", "overlay")
-   #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"triggermesh-controller", "namespace": "triggermesh"}})
-   ---
-   spec:
-     template:
-       spec:
-         containers:
-           #@overlay/match by="name"
-           - name: controller
-             resources:
-               limits:
-                 cpu: 200m
-                 memory: 800Mi
-               requests:
-                 cpu: 50m
-                 memory: 100Mi
+cnrs:
+  resource_management:
+  - name: "activator"
+    limits:
+      cpu: 1000m
+      memory: 5Gi
+    requests:
+      cpu: 300m
+      memory: 5Gi
 ```
 
 ### Tap Telemetry

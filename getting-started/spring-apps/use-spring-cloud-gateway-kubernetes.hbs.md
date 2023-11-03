@@ -15,4 +15,4 @@ Spring Cloud Gateway for Kubernetes is included with Tanzu Application Platform 
 You can migrate upstream applications that expose API routes on Spring Cloud Gateway
 from Tanzu Application Service and custom open source implementations to Tanzu Application Platform.
 For how to do so, see the
-[VMware Spring Cloud Gateway for Kubernetes documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/2.1/scg-k8s/GUID-guides-tap.html).
+[VMware Spring Cloud Gateway for Kubernetes documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/{{ vars.api-auto-registration.scg-version }}/scg-k8s/GUID-guides-tap.html).

@@ -7,8 +7,8 @@ Sample applications are used to demonstrate how a global namespace can provide a
 workloads that are connected and secured within and across clusters, and across clouds.
 
 >**Note** You can also use Tanzu Mission Control (commonly called TMC)
-to install Tanzu Application Platform (commonly called TAP) on a managed cluster.
-<!-- For more information, see the [Tanzu Mission Control documentation](https://{{ vars.staging_toggle }}.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-1BA391EC-A49B-44AE-A8C7-D72F6012EF58.html). -->
+to install Tanzu Application Platform (commonly called TAP) on a managed cluster. 
+For more information, see the [Tanzu Mission Control documentation](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-1BA391EC-A49B-44AE-A8C7-D72F6012EF58.html).
 
 ## <a id="prereqs"></a> Prerequisites
 

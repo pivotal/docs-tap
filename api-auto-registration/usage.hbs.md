@@ -15,13 +15,15 @@ API Auto Registration requires the following:
 
 2. An APIDescriptor Custom Resource (CR) with that location created in the cluster.
 
-3. (Optional) Configure Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
+3. (Optional) Configurations
+   1. Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
+   2. Connect the Component to the auto-registered API in Tanzu Developer Portal
 
 To generate OpenAPI Spec:
 
 - [By creating a simple Spring Boot app](#using-simple-app)
 
-- [By scaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
+- [By scaffolding a new project using App Accelerator Template](#using-app-acc-template)
 
 - [In an existing Spring Boot project](#existing-spring-project)
 
@@ -33,11 +35,13 @@ To create APIDescriptor Custom Resource:
 
 - [Using other GitOps processes or Manually](#using-gitops-manually)
 
-To configure:
+To additionally configure:
 
 - [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
 
-## <a id='generate-openapi'></a>Generate OpenAPI specifications
+- [Connection between the Component and API in Tanzu Developer Portal](#component)
+
+## <a id='generate-openapi'></a>1. Generate OpenAPI specifications
 
 This section tells you how to generate OpenAPI specifications.
 
@@ -92,7 +96,8 @@ following methods to create the APIDescriptor custom resource:
 -To use a different Gitops process or manage the APIDescriptor CR manually,
 see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
 
-## <a id='create-api-descriptor'></a>Create APIDescriptor custom resource
+
+## <a id='create-api-descriptor'></a>2. Create APIDescriptor custom resource
 
 This section tells you how to create an APIDescriptor custom resource.
 
@@ -201,7 +206,8 @@ cluster you choose. Specify all the required fields for an APIDescriptor CR to r
 
 For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
-## <a id='additional-config'></a>Additional configuration
+
+## <a id='additional-config'></a>3. Additional configuration
 
 This section tells you how to perform additional configuration.
 
@@ -226,3 +232,32 @@ This list must include your Tanzu Developer Portal host.
 Also confirm that your API supports preflight requests, a valid response to the OPTIONS HTTP method.
 - **Headers allowed** header: `Access-Control-Allow-Headers`: If the API requires any header, you
 must include it in the API configuration or your authorization server.
+
+### <a id='component'></a>Connecting the Component to the API in Tanzu Developer Portal
+
+When the API-producing component is added to the Tanzu Developer Portal catalog, it is often helpful
+to connect the component to the API. By connecting the two entities, the catalog graph will visualize
+this relationship for API consumers or other users. In order to connect the entities, in your component.yaml,
+you will need to add the `.spec.providesApis` where you can list all the APIs it provides using string reference
+format. You need to ensure to follow the `namespace/name` format instead of simply `name` else the namespace will
+default to the component's namespace (which is typically `default`). The name should be exactly the auto-registered
+API's name. So we recommend to update the component.yaml with the API name after the auto-registration is finished.
+
+Here is an example of a component.yaml with string entity reference to an API
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: petclinic
+  namespace: petclinic-systems
+  description: Petstore
+spec:
+  type: service
+  lifecycle: dev
+  owner: team-petclinic
+  providesApis:
+    - internal/petclinic-api-dev
+```
+
+For more info, check out the [API Docs plugin documentation](../tap-gui/plugins/api-docs.hbs.md).

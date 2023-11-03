@@ -32,7 +32,7 @@ excluded_packages:
 - crossplane.tanzu.vmware.com
 ```
 
-> **Important** Other Tanzu Application Platform components might depend on the the Crossplane package,
+> **Important** Other Tanzu Application Platform components might depend on the Crossplane package,
 > for example, [Bitnami Services](../../bitnami-services/about.hbs.md).
 > If you exclude the Crossplane package, you must also exclude any other Tanzu Application Platform
 > package that depends on it.

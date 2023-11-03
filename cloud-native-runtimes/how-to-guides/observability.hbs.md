@@ -142,7 +142,7 @@ You can configure tracing for your applications on Cloud Native Runtimes.
 You configure tracing for Knative Serving by editing the ConfigMap `config-tracing` for your Knative namespaces.
 
 VMware recommends that you add any integrations in your Serving namespaces.
-For information about how to enable request traces in each component, see the the [Knative documentation](https://knative.dev/docs/serving/accessing-traces/).
+For information about how to enable request traces in each component, see the [Knative documentation](https://knative.dev/docs/serving/accessing-traces/).
 
 ### <a id='forward-trace'></a> Forwarding trace data to an observability platform or data visualization tool
 
@@ -191,7 +191,8 @@ then, configure the Wavefront proxy to consume Zipkin spans:
    - `WF_REGISTRY_USERNAME` is your user name to access the image registry to pull the Wavefront Proxy image.
    - `WF_REGISTRY_PASSWORD` is your password to access the image registry to pull the Wavefront Proxy image.
 
-   For more information about how to set up developer namespaces, see [Provision developer namespaces](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/namespace-provisioner-provision-developer-ns.html).
+   For more information about how to set up developer namespaces, see [Provision developer namespaces](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/namespace-provisioner-provision-developer-ns.html)
+   [Provision developer namespaces](../../namespace-provisioner/provision-developer-ns.hbs.md).
 
 3. Configure the Wavefront Proxy to allow Zipkin/Istio traces.
 

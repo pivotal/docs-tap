@@ -43,7 +43,7 @@ using the accelerator `java-rest` and the fragment `tap-workload` which are assu
 already registered in the Tanzu Application Platform cluster, the fragment named `java-version`
 located at `workspace/version`, and the option `projectName` set to `test`.
 
-For more information about the `generate-from-local` command, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+For more information about the `generate-from-local` command, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
 
 No changes are made to the Tanzu Application Platform cluster that is provided with the
 server URL. No new accelerators/fragments are registered or modified.
@@ -95,7 +95,7 @@ system. Update the script to suit the Tanzu Application Platform version and OS 
 ACCESS_TOKEN=$(curl -X POST https://network.tanzu.vmware.com/api/v2/authentication/access_tokens -d '{"refresh_token":"'"$TANZU_REFRESH_TOKEN"'"}' | jq -r ".access_token")
 
 # Download bundle
-# See https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/install-tanzu-cli.html#cli-and-plugin
+# See https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/install-tanzu-cli.html#cli-and-plugin
 # Update url to download desired version
 mkdir -p $HOME/tanzu
 curl -L -X GET https://network.tanzu.vmware.com/api/v2/products/tanzu-application-platform/releases/1205491/product_files/1352407/download -H "Authorization: Bearer $ACCESS_TOKEN" --output bundle.tar

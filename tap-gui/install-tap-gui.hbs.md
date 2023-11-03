@@ -21,7 +21,7 @@ Before installing Tanzu Developer Portal:
   - Azure DevOps
 - Install Tanzu Developer Portal Blank Catalog
   1. Go to the [Tanzu Application Platform section of VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-  2. Under the list of available files to download, open the **tap-gui-catalogs-latest** folder.
+  2. Under the list of available files to download, open the **tanzu-developer-portal-catalogs-latest** folder.
   3. Extract Tanzu Developer Portal Blank Catalog to your Git repository.
      This serves as the configuration location for your organization's Catalog inside
      Tanzu Developer Portal.
