@@ -82,7 +82,7 @@ To retrieve status conditions of an SourceScan and ImageScan, run:
 kubectl describe sourcescan SOURCE-SCAN -n DEV-NAMESPACE
 ```
 
-Where: 
+Where:
 
 - `DEV-NAMESPACE` is the name of the developer namespace you want to use.
 - `SOURCE-SCAN` is the name of the SourceScan you want to use.
@@ -91,7 +91,7 @@ Where:
 kubectl describe imagescan IMAGE-SCAN -n DEV-NAMESPACE
 ```
 
-Where: 
+Where:
 
 - `DEV-NAMESPACE` is the name of the developer namespace you want to use.
 - `IMAGE-SCAN` is the name of the ImageScan you want to use.
@@ -474,18 +474,20 @@ Pods
 
 One restart in scanner pods is expected with successful scans. To support Tanzu Service Mesh (TSM) integration, jobs were replaced with TaskRuns. This restart is an artifact of how Tekton cleans up sidecar containers by patching the container specifications.
 
-### <a id="reconcillation-failure-during-upgrade"></a> Reconcillation of SCST - Scan is failing when upgrading to v1.7+
+### <a id="reconciliation-failure-during-upgrade"></a> Reconciliation of SCST - Scan fails when upgrading to v1.7
 
-When upgrading the SCST - Scan from a previous version to v1.7+, one may see a reconcillation failure like:
+When upgrading the SCST - Scan from a previous version to v1.7 or later, you might see a reconciliation
+failure similar to:
 
-```
+```console
 NAME                                PACKAGE-NAME                                         PACKAGE-VERSION                STATUS
   scanning                            scanning.apps.tanzu.vmware.com                       1.7.0-build.36081392+c072d305  Reconcile failed
 ```
 
-If getting the package using the command `tanzu package installed get scanning -n tap-install` one may find the error like:
+If getting the package using the command `tanzu package installed get scanning -n tap-install` you
+might see an error similar:
 
-```
+```console
 STATUS:                  Reconcile failed
 CONDITIONS:              - type: ReconcileFailed
   status: "True"
@@ -501,4 +503,6 @@ values.yaml:
     = expected: a map item with the key named "exports" (from .ytt/data.yaml:52)
 ```
 
-This is because the previously deprecated field of `scanning.metadataStore.url` is now completely removed. If this field is present in `tap-values.yaml` provided for the upgrade then the reconcillation will fail. Remove the field from the values file and run the upgrade command again to resolve this problem.
+This is because the field `scanning.metadataStore.url` has been removed.
+If this field is present in `tap-values.yaml` provided for the upgrade, the reconciliation will fail.
+To resolve this problem, remove the field from the values file and run the upgrade command again.

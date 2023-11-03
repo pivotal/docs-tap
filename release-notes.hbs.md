@@ -271,12 +271,13 @@ This release includes the following changes, listed by component and area.
 
 - The `docker` field and related sub-fields used in SCST - Scan are removed in this release.
 
-- SCST - Scan 2.0: Users must upgrade the Tanzu Application Platform package to v1.7.0 before
+- SCST - Scan 2.0: You must upgrade the Tanzu Application Platform package to v1.7.0 before
   upgrading `app-scanning.apps.tanzu.vmware.com` to v0.2.0.
   See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0).
 
-- The previously deprecated field `scanning.metadataStore.url` is now completely removed and
-  its presence can cause the reconcillation failure. See [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#reconcillation-failure-during-upgrade)
+- The field `scanning.metadataStore.url` is now removed.
+  If this field is present in the `tap-values.yaml` file, it can cause reconciliation failure.
+  For more information, see [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#reconciliation-failure-during-upgrade)
 
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
 
@@ -1184,7 +1185,7 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
+#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools - Store
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
