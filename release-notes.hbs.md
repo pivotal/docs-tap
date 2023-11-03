@@ -156,11 +156,19 @@ This release includes the following changes, listed by component and area.
 - You can add triage analysis to vulnerabilities from a vulnerability scanner step.
   For more information, see [Triage Vulnerabilities](tap-gui/plugins/scc-tap-gui.hbs.md#triage-vulnerabilities)
 
+- RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
+  For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+
+#### <a id='1-7-0-security-analysis-plugin'></a> v1.7.0 Features: Security Analysis plug-in for Tanzu Developer Portal
+
+- RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
+  For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+
 #### <a id='1-7-0-scst-scan'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Scan
 
 - Adds support for Pod Security Admission with Pod Security Standards enforced.
 
-- Adds support for the new Tanzu CLI Insight plug-in.
+- Adds support for the new version Tanzu CLI Insight plug-in.
 
 - [Supply Chain Security Tools - Scan 2.0 Beta](scst-scan/app-scanning-beta.hbs.md) 
   - Switches Trivy the default scanner for container image scanning using the included image and template.  Scan 1.0 will maintain Grype as the default.
@@ -240,6 +248,8 @@ This release includes the following changes, listed by component and area.
 - SCST - Scan 2.0: Users must upgrade the Tanzu Application Platform package to v1.7.0 before
   upgrading `app-scanning.apps.tanzu.vmware.com` to v0.2.0.
   See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0).
+
+- SCST - Scan 2.0: Trivy is required to be pinned version 0.42.1 because CycloneDX 1.5 was made the default for newer versions and is not supported by AMR. 
 
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
 
