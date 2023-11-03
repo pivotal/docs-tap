@@ -169,3 +169,8 @@ You can see the `groupId` and `version` information from all `CuratedAPIDescript
   my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
   default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
   ```
+
+### <a id='unsupported-openapi-version'></a> Unsupported OpenAPI version
+
+Currently, API Auto Registration only supports OpenAPI v3.0 and v2.0 (formerly known as Swagger).
+OpenAPI v3.1 is planned to be supported soon.
