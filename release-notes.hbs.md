@@ -1445,6 +1445,11 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   Use the `Task` API instead. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
 
+### <a id="1-7-tanzu-cli-rbac-plugin-deprecations"></a> Tanzu CLI RBAC Plugin deprecations
+
+- The `rbac` plugin for the Tanzu CLI, which was released as a beta and intended to help manage user and group bindings to the [out-of-box TAP roles](./authn-authz/overview.hbs.md#default-roles) has been depricated and removed in favor of native Kubernetes functionality.  
+  [Authentication and Authorization Documentation](./authn-authz/overview.hbs.md).
+
 ---
 
 ## <a id="linux-kernel-cves"></a> Linux Kernel CVEs
