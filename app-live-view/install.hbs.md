@@ -676,5 +676,5 @@ Application Platform GUI](../tap-gui/plugins/app-live-view.md).
 
 ## <a id='sslDisabled'></a> Deprecate the sslDisabled key
 
-The `appliveview_connector.backend.sslDisabled` key has been replaced by the
+The `appliveview_connector.backend.sslDisabled` key has been replaced by
 `appliveview_connector.backend.sslDeactivated`.
