@@ -4,9 +4,9 @@ This topic gives you the list of Tanzu Application Platform (commonly known as T
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
 Each supported topology lists relevant package values configurations and one-time manual setup steps.
 
-## <a id="postgresql"></a> PostgreSQL
+## <a id="postgresql-mysql"></a> PostgreSQL and MySQL
 
-This section describes the available topologies for PostgreSQL.
+This section describes the available topologies for PostgreSQL and MySQL services.
 
 ### <a id="same-vpc"></a> A service instance in a VPC accessed by a workload in a Tanzu Application Platform cluster in the same VPC
 
@@ -18,9 +18,9 @@ VPC as described in the
 
 The key properties of this topology are:
 
-- Uses subnets to separate where application workloads run and where RDS PostgreSQL service instances run
+- Uses subnets to separate where application workloads run and where RDS service instances run
 - Uses security groups to manage access between the subnets
-- PostgreSQL service instances are not publicly accessible
+- Service instances are not publicly accessible
 
 <!-- Maybe add a diagram? -->
 
@@ -28,11 +28,11 @@ This topology is recommended if your Tanzu Application Platform cluster is runni
 
 #### <a id="same-vpc-config"></a> Configuration tasks
 
-To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
+To configure the service from the AWS Services package for this type of topology you must:
 
 - Manually create all required subnets and security groups in AWS.
 - Add a rule to permit TCP port 5432 from the subnet where the Tanzu Application Platform application
-workloads run to the subnet where the RDS PostgreSQL service instances run.
+workloads run to the subnet where the RDS service instances run.
 - Create a database subnet group consisting of the subnets.
 
 For instructions for these tasks, see the
@@ -41,16 +41,31 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-```yaml
-postgresql:
-  enabled: true
-  region: "REGION"
-  infrastructure:
-    subnet_group:
-      name: "SUBNET-GROUP-NAME"
-    security_groups:
-      - id: "SECURITY-GROUP-ID"
-```
+- For PostgreSQL:
+
+    ```yaml
+    postgresql:
+      enabled: true
+      region: "REGION"
+      infrastructure:
+        subnet_group:
+          name: "SUBNET-GROUP-NAME"
+        security_groups:
+          - id: "SECURITY-GROUP-ID"
+    ```
+
+- For MySQL:
+
+    ```yaml
+    mysql:
+      enabled: true
+      region: "REGION"
+      infrastructure:
+        subnet_group:
+          name: "SUBNET-GROUP-NAME"
+        security_groups:
+          - id: "SECURITY-GROUP-ID"
+    ```
 
 ### <a id="external"></a> A service instance in a VPC accessed by a workload in a Tanzu Application Platform cluster running external to AWS
 
@@ -61,10 +76,10 @@ the Internet as described in the [AWS documentation](https://docs.aws.amazon.com
 
 The key properties of this topology are:
 
-- Uses a public subnet in which to run RDS PostgreSQL service instances
+- Uses a public subnet in which to run RDS service instances
 - Uses an Internet gateway to provide connectivity over the Internet
 - Uses security groups to manage access to the subnet
-- PostgreSQL service instances are publicly accessible over the Internet
+- Service instances are publicly accessible over the Internet
 
 <!-- Maybe add a diagram? -->
 
@@ -73,12 +88,12 @@ for example, on-prem or in another cloud such as Azure.
 
 #### <a id="same-vpc-config"></a> Configuration tasks
 
-To configure the PostgreSQL service from the AWS Services package for this type of topology you must:
+To configure the service from the AWS Services package for this type of topology you must:
 
 - Manually create all required subnets and security groups in AWS.
 - Create an Internet gateway.
 - Add a rule to permit TCP port 5432 from the subnet where the Tanzu Application Platform application
-workloads run to the subnet where the RDS PostgreSQL service instances run.
+workloads run to the subnet where the RDS service instances run.
 - Create a database subnet group consisting of the subnets.
 
 For instructions for these tasks, see the
@@ -87,15 +102,32 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-```yaml
-postgresql:
-  enabled: true
-  region: "REGION"
-  infrastructure:
-    subnet_group:
-      name: "SUBNET-GROUP-NAME"
-    security_groups:
-      - id: "SECURITY-GROUP-ID"
-  instance_configuration:
-    publicly_accessible: true
-```
+- For PostgreSQL:
+
+    ```yaml
+    postgresql:
+      enabled: true
+      region: "REGION"
+      infrastructure:
+        subnet_group:
+          name: "SUBNET-GROUP-NAME"
+        security_groups:
+          - id: "SECURITY-GROUP-ID"
+      instance_configuration:
+        publicly_accessible: true
+    ```
+
+- For MySQL:
+
+    ```yaml
+    mysql:
+      enabled: true
+      region: "REGION"
+      infrastructure:
+        subnet_group:
+          name: "SUBNET-GROUP-NAME"
+        security_groups:
+          - id: "SECURITY-GROUP-ID"
+      instance_configuration:
+        publicly_accessible: true
+    ```

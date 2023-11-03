@@ -27,13 +27,12 @@ spec:
     command: ["trivy"]
     args:
     - image
-    - --format
-    - cyclonedx
-    - --output
-    - $(params.scan-results-path)/scan.cdx.json
-    - --scanners
-    - vuln
     - $(params.image)
+    - --exit-code=0
+    - --no-progress
+    - --scanners=vuln
+    - --format=cyclonedx
+    - --output=$(params.scan-results-path)/scan.cdx.json
 ```
 
 Where:
@@ -42,17 +41,17 @@ Where:
 - `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For information about publicly available Trivy images, see [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information about using the Trivy CLI, see the [Trivy documentation](https://github.com/aquasecurity/trivy).  Note: Versions of Trivy greater than 0.42.1 are not yet supported as they output CycloneDX 1.5 which is not yet supported for ingestion.
 
 ## <a id="trivy-db-requirement"></a> Trivy database size requirement
-The recommended `storageSize` for Trivy scans is 4Gi due to the size of the Trivy database. If the `storageSize` is not sufficient, you may encounter a `no space left on device` error when initializing the database in the scan pod.
-- Update the `app-scanning-values-file.yaml` for the `app-scanning.apps.tanzu.vmware.com` package to change the default `storageSize`. For more detail see [installation documentation](./install-app-scanning.hbs.md#install-scst-app-scanning).
+
+The recommended `storageSize` for Trivy scans is 4Gi due to the size of the Trivy database. If the `storageSize` is not sufficient, you might encounter a `no space left on device` error when initializing the database in the scan pod.
+
+Update the `app-scanning-values-file.yaml` for the `app-scanning.apps.tanzu.vmware.com` package to change the default `storageSize`. See [installation documentation](./install-app-scanning.hbs.md#install-scst-app-scanning).
 
 ```console
 scans:
   workspace:
     storageSize: 4Gi
 ```
-- If you do not want to set a default `storageSize` by updating the  `app-scanning-values-file.yaml`, you will need to specify the `spec.workspace.size` when creating each standalone ImageVulnerabilityScan or embedded ImageVulnerabilityScan in a [ClusterImageTemplate](./clusterimagetemplates.hbs.md#create-clusterimagetemplate).
 
-### <a id="disclaimer"></a> Disclaimer
-As a publicly maintained image that is built outside of VMware's build systems, the image may not meet the security standards VMware has established.  Please be sure to review the image before usage to ensure that it meets your organizations security and compliance policies.
+If you do not want to set a default `storageSize` by updating the  `app-scanning-values-file.yaml`, you must specify the `spec.workspace.size` when creating each standalone ImageVulnerabilityScan or embedded ImageVulnerabilityScan in a [ClusterImageTemplate](./clusterimagetemplates.hbs.md#create-clusterimagetemplate).
 
-For the publicly available Trivy scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.
+>**Warning** As a publicly maintained image that is built outside of VMware build systems, the image might not meet the security standards VMware has established. Ensure that you review the image before use to ensure that it meets your organizations security and compliance policies. For the publicly available Trivy scanner CLI image, CLI commands and parameters used are accurate at the time of documentation.

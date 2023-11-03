@@ -936,7 +936,7 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 
 ### <a id='service-bindings-more-info'></a> More information
 
-For an example of using `--service-ref`, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.0/tanzu-cli/command-ref.html) documentation.
+For an example of using `--service-ref`, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
 
 
 For an overview of the function, see

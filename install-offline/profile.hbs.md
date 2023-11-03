@@ -237,9 +237,6 @@ buildservice:
     namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   exclude_dependencies: true
 supply_chain: basic
-scanning:
-  metadataStore:
-    url: ""
 contour:
   infrastructure_provider: aws
   envoy:

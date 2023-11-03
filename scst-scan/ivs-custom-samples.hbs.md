@@ -16,12 +16,12 @@ This section includes ImageVulnerabilityScans (IVS) for various scanners. To use
 
 To use a custom ImageVulnerabilityScan sample:
 
-1. Copy the sample YAML into a file named `custom-ivs.yaml`. Some scanners, such as Carbon Black, Snyk, and Prisma Scanner, require specific credentials that you must specifiy in the secret.
+1. Copy the sample YAML into a file named `custom-ivs.yaml`. Some scanners, such as Carbon Black, Snyk, and Prisma Scanner, require specific credentials that you must specify in the secret.
 2. Obtain the one or more necessary images. For example, an image containing the scanner.
 3. Edit these fields of your ImageVulnerabilityScan:
 
    - `spec.image` is the image that you are scanning. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
-   - `scanResults.location` is the registry URL where scan results are uploaded. For example, `my.registry/scan-results`.
+   - `scanResults.location` is the registry URL where the `publisher` service account uploads the scan results. For example, `my.registry/scan-results`.
    - `serviceAccountNames` includes:
      - `scanner` is the service account that runs the scan. It must have read access to `image`.
      - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.

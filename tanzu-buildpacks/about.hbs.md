@@ -11,6 +11,6 @@ Tanzu Buildpacks use open-source [Paketo Buildpacks](https://paketo.io/) to allo
 In Tanzu Application Platform v1.6 and later, builders, stacks, and buildpacks are packaged
 separately from Tanzu Build Service. They are included in the Full, Iterate, and Build installation profiles. All buildpacks follow the package name format `*.buildpacks.tanzu.vmware.com`.
 
-For information about how to install Buildpacks and stacks and the versions available in the `lite` and `full` profiles, see the [Tanzu Build Service Dependencies documentation](../tanzu-build-service/install-tbs.hbs.md).
+For information about how to install buildpacks and stacks and the versions available in the `lite` and `full` profiles, see [About lite and full dependencies](../tanzu-build-service/dependencies.hbs.md#about-lite-and-full-dependencies).
 
-For more in-depth information about Tanzu Buildpacks features and components, see [Tanzu Buildpack Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
+For information about how to configure Tanzu Buildpacks features and components, see [Tanzu Buildpack Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).

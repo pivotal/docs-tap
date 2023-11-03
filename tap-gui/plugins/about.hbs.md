@@ -1,13 +1,57 @@
 # Overview of Tanzu Developer Portal plug-ins
 
-Tanzu Developer Portal has many pre-integrated plug-ins. You need not configure the plug-ins.
-To use a plug-in, you must install the relevant Tanzu Application Platform component.
+This topic gives you an overview of the different plug-in types that Tanzu Developer Portal
+supports. Some plug-ins are already integrated with Tanzu Developer Portal. Other plug-ins require
+you to use Configurator to integrate them.
 
-Tanzu Application Platform has the following GUI plug-ins:
+## <a id='tap-plug-ins'></a> Tanzu Application Platform plug-ins
 
-- [Runtime Resources Visibility](runtime-resource-visibility.hbs.md)
-- [Application Live View](app-live-view.hbs.md)
-- [Application Accelerator](application-accelerator.hbs.md)
-- [API Documentation](api-docs.hbs.md)
-- [Security Analysis](sa-tap-gui.hbs.md)
-- [Supply Chain Choreographer](scc-tap-gui.hbs.md)
+Tanzu Application Platform plug-ins are already integrated with Tanzu Developer Portal. You don't
+need to configure these plug-ins. To use a Tanzu Application Platform plug-in, you must install the
+relevant Tanzu Application Platform component.
+
+Tanzu Application Platform has the following Tanzu Developer Portal plug-ins:
+
+- Runtime Resources Visibility
+- Application Live View
+- Application Accelerator
+- API Documentation
+- Supply Chain Choreographer
+- Security Analysis
+- DORA Metrics
+
+## <a id='backstage-plug-ins'></a> Backstage plug-ins
+
+Backstage plug-ins are developed by Backstage and are in the `@backstage` namespace.
+
+## <a id='community-plug-ins'></a> Community plug-ins
+
+Community plug-ins are not developed by Backstage or VMware. These plug-ins are not in the
+`@backstage` namespace.
+
+## <a id='valid-plug-ins'></a> Validated plug-ins
+
+Validated plug-ins are Backstage plug-ins or community plug-ins that VMware has validated for use
+with Tanzu Developer Portal. You don't need to create custom wrappers to integrate these plug-ins
+with Tanzu Developer Portal.
+
+Tanzu Developer Portal currently supports the following validated plug-ins:
+
+- [GitHub Actions](../configurator/validated-community-plugins/github-actions.hbs.md)
+- [Grafana](../configurator/validated-community-plugins/grafana.hbs.md)
+- [Homepage](../configurator/validated-community-plugins/home-page.hbs.md)
+- [Jira](../configurator/validated-community-plugins/jira.hbs.md)
+- [Prometheus](../configurator/validated-community-plugins/prometheus.hbs.md)
+- [Snyk](../configurator/validated-community-plugins/snyk.hbs.md)
+- [SonarQube](../configurator/validated-community-plugins/sonarqube.hbs.md)
+- [Stack Overflow](../configurator/validated-community-plugins/stack-overflow.hbs.md)
+- [TechInsights](../configurator/validated-community-plugins/techinsights.hbs.md)
+
+## <a id='ext-plug-ins'></a> External plug-ins
+
+External plug-ins (also referred to as custom plug-ins) are plug-ins that are not in
+Tanzu Developer Portal Configurator.
+
+These plug-ins are typically published to npmjs.org or a similar npm registry alternative. If you
+want to integrate an external plug-in that is not validated for use with Tanzu Developer Portal, you
+must write a custom wrapper for it.

@@ -25,7 +25,7 @@ If you want to keep a resource:
     Where:
 
     - `CLASS-CLAIM-NAME` is the name of the claim.
-    - `CLASS-CLAIM-NAMESPACE` is is the namespace the claim is in.
+    - `CLASS-CLAIM-NAMESPACE` is the namespace the claim is in.
 
     Example output for a PostgreSQL claim:
 

@@ -42,9 +42,9 @@ To customize an ImageVulnerabilityScan to use your scanner:
         - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
     - `SCANNER-IMAGE` is the image containing the scanner of your choice.
     - `SCANNER-CLI-COMMAND` is the scanner's CLI command.
-    - `SCANNER-NAME` is the scanner image name that is reported in the Tanzu Developer Portal (formerly called Tanzu Application Platform GUI).
+    - `SCANNER-NAME` is the scanner image name that is reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
-    **Note** Do not define `write-certs` or `cred-helper` as step names. These names are already used during scanning.
+    >**Important** Do not define `write-certs` or `cred-helper` as step names. These names are already used during scanning.
 
 2. Configure the `scan` step. You must input your scanner specific `image`, `command`, and `args`. For example:
 
@@ -64,11 +64,21 @@ To customize an ImageVulnerabilityScan to use your scanner:
 
     Because volumes on a Tekton pipeline are shared amongst steps, files created by one step are consumable by the other steps. The scan controller applies the following security context to `pipelinerun.spec.podTemplate`:
 
-  ```console
-  runAsUser: 65534
-  fsGroup: 65534
-  runAsGroup: 65534
-  ```
+    ```console
+    runAsUser: 65534
+    fsGroup: 65534
+    runAsGroup: 65534
+    ```
+
+    >**Note** If you populate any of the following fields in the `securityContext`, you must
+    populate all the other fields or you might see a runtime error in the `ImageVulnerabilityScan` controller:
+    
+    ```
+    allowPrivilegeEscalation
+    runAsNonRoot
+    seccompProfile
+    capabilities
+    ```
 
   The `SCANNER-IMAGE` runs and manipulates files with user and group ids of `65534`.
 
@@ -150,7 +160,9 @@ These parameters are populated after creating the GrypeImageVulnerabilityScan. F
 | scan-results-path | /workspace/scan-results | string | Location to save scanner output |
 | trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData` |
 
-**Note** The `publisher` service account uploads any files (e.g. scanner output) in the `scan-results-path` directory to the registry of your choice. See [Configure your custom ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md#use-samples) for details on configuring the registry URL where scan results are uploaded.
+>**Note** The `publisher` service account uploads any files, such as scanner
+>output, in the `scan-results-path` directory to the registry of your choice.
+>For information about configuring the registry URL where the `publisher` service account uploads scan results, see [Configure your custom ImageVulnerabilityScan samples](./ivs-custom-samples.hbs.md#use-samples).
 
 ## <a id="retrieve-digest"></a> Retrieving an image digest
 
