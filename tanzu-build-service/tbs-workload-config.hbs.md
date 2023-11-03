@@ -25,40 +25,67 @@ see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMwar
 
 To configure a service binding for a Tanzu Application Platform workload, follow these steps:
 
-1. Create a YAML file named `service-binding-secret.yaml` for a Maven secret as follows:
+1. Create a YAML file named `service-binding-secret.yaml`
+    - A Maven secret for example:
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: settings-xml
-      namespace: DEVELOPER-NAMESPACE
-    type: service.binding/maven
-    stringData:
-      type: maven
-      provider: sample
-      settings.xml: |
-      MY-SETTINGS
-    ```
+        ```yaml
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: settings-xml
+          namespace: DEVELOPER-NAMESPACE
+        type: service.binding/maven
+        stringData:
+          type: maven
+          provider: sample
+          settings.xml: |
+          MY-SETTINGS
+        ```
 
-    or for a NuGet secret as follows:
+        Where:
+        - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
+        - `MY-SETTINGS` is the contents of your service bindings file.
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: settings-xml
-      namespace: DEVELOPER-NAMESPACE
-    type: service.binding/nugetconfig
-    stringData:
-      type: nugetconfig
-      nuget.config: |
-      MY-SETTINGS
-    ```
+    - A NuGet secret for example:
 
-    Where:
-    - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
-    - `MY-SETTINGS` is the contents of your service bindings file.
+        ```yaml
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: nuget-config
+          namespace: DEVELOPER-NAMESPACE
+        type: service.binding/nugetconfig
+        stringData:
+          type: nugetconfig
+          nuget.config: |
+          MY-SETTINGS
+        ```
+
+        Where:
+        - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
+        - `MY-SETTINGS` is the contents of your service bindings file.
+
+    - A Git secret for example:
+
+        ```yaml
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: git-credentials
+          namespace: DEVELOPER-NAMESPACE
+        type: service.binding/git-credentials
+        stringData:
+          type: git-credentials
+          context: CREDENTIAL-CONTEXT
+          credentials: |
+          MY-CREDENTIALS
+        ```
+
+        Where:
+        - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
+        - `CREDENTIAL-CONTEXT` is the [url context of the credential](https://git-scm.com/docs/gitcredentials#_credential_contexts).
+           If the workload only has one git-credential service binding, this field may be omitted.
+        - `MY-CREDENTIALS` is the credential as defined in the [`git credential` format](https://git-scm.com/docs/git-credential).
 
 1. Apply the YAML file by running:
 
