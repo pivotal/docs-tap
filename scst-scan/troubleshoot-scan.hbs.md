@@ -485,7 +485,7 @@ NAME                                PACKAGE-NAME                                
 ```
 
 If getting the package by running the command `tanzu package installed get scanning -n tap-install` you
-might see an error similar:
+might see an error similar to:
 
 ```console
 STATUS:                  Reconcile failed
