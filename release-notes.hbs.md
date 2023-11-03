@@ -238,6 +238,11 @@ This release includes the following changes, listed by component and area.
 
 - Minikube support has been removed.
 
+### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
+
+- The `appliveview_connector.backend.sslDisabled` key has been removed and is replaced by
+  `appliveview_connector.backend.sslDeactivated`.
+
 #### <a id='1-7-0-app-sso-br'></a> v1.7.0 Breaking changes: Application Single Sign-On
 
 - `ClientRegistration.spec.clientAuthenticationMethod` no longer supports `basic` and `post`.
@@ -266,12 +271,13 @@ This release includes the following changes, listed by component and area.
 
 - The `docker` field and related sub-fields used in SCST - Scan are removed in this release.
 
-- SCST - Scan 2.0: Users must upgrade the Tanzu Application Platform package to v1.7.0 before
+- SCST - Scan 2.0: You must upgrade the Tanzu Application Platform package to v1.7.0 before
   upgrading `app-scanning.apps.tanzu.vmware.com` to v0.2.0.
   See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0).
 
-- The previously deprecated field `scanning.metadataStore.url` is now completely removed and
-  its presence can cause the reconcillation failure. See [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#reconcillation-failure-during-upgrade)
+- The field `scanning.metadataStore.url` is now removed.
+  If this field is present in the `tap-values.yaml` file, it can cause reconciliation failure.
+  For more information, see [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#reconciliation-failure-during-upgrade)
 
 #### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
 
@@ -1128,11 +1134,6 @@ This release has the following known issues, listed by component and area.
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical
   ImageVulnerabilityScans you can ignore if the previous submission was successful.
 
-- ReplicaSet status in AMR only has two states: `created` and `deleted`.
-  There is a known issue where the `available` and `unavailable` state is not showing.
-  The workaround is that you can interpolate this information from the `instances` metadata in the
-  AMR for the ReplicaSet.
-
 #### <a id='1-7-0-bitnami-services-ki'></a> v1.7.0 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
@@ -1150,11 +1151,6 @@ This release has the following known issues, listed by component and area.
   Crossplane package.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
-
-#### <a id='1-7-0-eventing-ki'></a> v1.7.0 Known issues: Eventing
-
-- When using vSphere sources in Eventing, the vsphere-source is using a high number of
-  informers to alleviate load on the API server. This causes high memory use.
 
 #### <a id='1-7-0-service-bindings-ki'></a> v1.7.0 Known issues: Service Bindings
 
@@ -1189,7 +1185,7 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Supply Chain Security Tools - Store
+#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools - Store
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
@@ -1199,6 +1195,59 @@ This release has the following known issues, listed by component and area.
   Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+
+- When using SCST - Scan 2.0 with a ClusterImageTemplate other than Grype, if you don't provide a
+  value for `ootb_supply_chain_testing_scanning.image_scanner_cli`, the default value from the
+  `tap-values.yaml` file incorrectly overwrites the scanner image to Grype.
+  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
+  For example, for the Trivy image packaged with Tanzu Application Platform:
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      image_scanner_template_name: image-vulnerability-scan-trivy
+      image_scanner_cli:
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+    ```
+
+
+#### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
+
+- During upgrades a large number of builds may get created due to buildpack and stack bumps. 
+  It is possible that some of these builds might fail due to transient network issues, 
+  causing the workload to be en an unhealthy state. This will resolve itself on subsequent builds
+  after a code change and will not affect the running application. 
+
+  If you do not want to wait for subsequent builds to run, you can use the Tanzu Build Service plugin 
+  for the Tanzu Cli to trigger a build manually.
+
+1. List the image resources in the developer namespace:
+
+    ```console
+    tanzu build-service image list -n DEVELOPER-NAMESPACE
+    ```
+
+2. Manually trigger the image resources to re-run builds for each failing image:
+
+    ```console
+    tanzu build-service image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```
+   
+  Alternatively, you can use the open source [kpack cli](https://github.com/buildpacks-community/kpack-cli) to do
+  the same thing.
+
+1. List the image resources in the developer namespace:
+
+    ```console
+    kp image list -n DEVELOPER-NAMESPACE
+    ```
+
+2. Manually trigger the image resources to re-run builds for each failing image:
+
+    ```console
+    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```
 
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 
@@ -1220,15 +1269,6 @@ This release has the following known issues, listed by component and area.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
-
-#### <a id='1-7-0-sc-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
-
-- Any workloads created by using a custom resource definition (CRD) might not work as expected.
-  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
-
-- Downloading the SBOM from a vulnerability scan requires additional configuration in
-  `tap-values.yaml`. For more information, see
-  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
 
@@ -1254,11 +1294,6 @@ This release has the following known issues, listed by component and area.
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
-
-#### <a id='1-7-0-vscode-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for VS Code
-
-- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
-  categorized as **Unknown**. The correct category is **Supply Chain**.
 
 ---
 
@@ -1324,13 +1359,6 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
 
-### <a id="1-6-alv-deprecations"></a> Application Live View deprecations
-
-- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
-  Tanzu Application Platform v1.7.0.
-  For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
-<!-- is this now a breaking change for 1.7? -->
-
 ### <a id='1-7-cnrs-deprecations'></a> Cloud Native Runtimes deprecations
 
 - **`default_tls_secret` config option**: After changes in this release, this config option is moved
@@ -1371,6 +1399,12 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   Tanzu Application Platform v1.8.
   It is hidden from help text output, but it will continue to work until it is removed.
   The new `tanzu services resource-claims` command provides the same function.
+
+- The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1` are deprecated
+  and marked for removal in Tanzu Application Platform v1.9.
+
+- The experimental `kubectl-scp` plug-in is deprecated and marked for removal in Tanzu
+  Application Platform v1.9.
 
 ### <a id="1-7-sc-deprecations"></a> Source Controller deprecations
 

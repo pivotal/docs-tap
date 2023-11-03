@@ -656,6 +656,7 @@
          - [Build your customized Tanzu Developer Portal](tap-gui/configurator/building.hbs.md)
          - [Configure the Configurator with a private registry](tap-gui/configurator/private-registries.hbs.md)
          - [Run your customized Tanzu Developer Portal](tap-gui/configurator/running.hbs.md)
+         - [Validated Community Plugins](tap-gui/configurator/validated-community-plugins/about.hbs.md)
          - [Troubleshoot Tanzu Developer Portal Configurator](tap-gui/configurator/troubleshooting.hbs.md)
       - [Tanzu Developer Portal plug-ins](tap-gui/plugins/about.hbs.md)
          - [Tanzu Developer Portal plug-ins overview](tap-gui/plugins/about.hbs.md)
