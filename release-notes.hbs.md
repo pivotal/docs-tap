@@ -1195,6 +1195,16 @@ This release has the following known issues, listed by component and area.
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
+#### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+
+- When using Scan 2.0 with a clusterimagetemplate other the Grype, the scanner image is being incorrectly overwritten to the Grype image by the default value from the tap values in no value for ootb_supply_chain_testing_scanning.image_scanner_cli is provided.  You can prevent this from happening by setting the value in tap values for the correct image.  For example, for the Trivy image packaged with TAP:
+  ```
+  ootb_supply_chain_testing_scanning:
+    image_scanner_template_name: image-vulnerability-scan-trivy
+    image_scanner_cli: 
+      image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+  ```
+
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 
 - If you do not configure any authentication providers, and do not allow guest access, the following
