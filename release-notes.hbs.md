@@ -238,6 +238,11 @@ This release includes the following changes, listed by component and area.
 
 - Minikube support has been removed.
 
+### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
+
+- The `appliveview_connector.backend.sslDisabled` key has been removed and is replaced by
+  `appliveview_connector.backend.sslDeactivated`.
+
 #### <a id='1-7-0-app-sso-br'></a> v1.7.0 Breaking changes: Application Single Sign-On
 
 - `ClientRegistration.spec.clientAuthenticationMethod` no longer supports `basic` and `post`.
@@ -1128,11 +1133,6 @@ This release has the following known issues, listed by component and area.
   ImageVulnerabilityScan results. There is an error on duplicate submission of identical
   ImageVulnerabilityScans you can ignore if the previous submission was successful.
 
-- ReplicaSet status in AMR only has two states: `created` and `deleted`.
-  There is a known issue where the `available` and `unavailable` state is not showing.
-  The workaround is that you can interpolate this information from the `instances` metadata in the
-  AMR for the ReplicaSet.
-
 #### <a id='1-7-0-bitnami-services-ki'></a> v1.7.0 Known issues: Bitnami Services
 
 - If you try to configure private registry integration for the Bitnami services
@@ -1150,11 +1150,6 @@ This release has the following known issues, listed by component and area.
   Crossplane package.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
-
-#### <a id='1-7-0-eventing-ki'></a> v1.7.0 Known issues: Eventing
-
-- When using vSphere sources in Eventing, the vsphere-source is using a high number of
-  informers to alleviate load on the API server. This causes high memory use.
 
 #### <a id='1-7-0-service-bindings-ki'></a> v1.7.0 Known issues: Service Bindings
 
@@ -1221,15 +1216,6 @@ This release has the following known issues, listed by component and area.
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
 
-#### <a id='1-7-0-sc-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
-
-- Any workloads created by using a custom resource definition (CRD) might not work as expected.
-  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
-
-- Downloading the SBOM from a vulnerability scan requires additional configuration in
-  `tap-values.yaml`. For more information, see
-  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
-
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
 
 - The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
@@ -1254,11 +1240,6 @@ This release has the following known issues, listed by component and area.
 
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
-
-#### <a id='1-7-0-vscode-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for VS Code
-
-- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
-  categorized as **Unknown**. The correct category is **Supply Chain**.
 
 ---
 
@@ -1323,13 +1304,6 @@ The following table lists the supported component versions for this Tanzu Applic
 
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
-
-### <a id="1-6-alv-deprecations"></a> Application Live View deprecations
-
-- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in
-  Tanzu Application Platform v1.7.0.
-  For more information about the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
-<!-- is this now a breaking change for 1.7? -->
 
 ### <a id='1-7-cnrs-deprecations'></a> Cloud Native Runtimes deprecations
 

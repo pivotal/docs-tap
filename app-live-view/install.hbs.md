@@ -676,7 +676,5 @@ Application Platform GUI](../tap-gui/plugins/app-live-view.md).
 
 ## <a id='sslDisabled'></a> Deprecate the sslDisabled key
 
-The `appliveview_connector.backend.sslDisabled` key is deprecated and
-renamed to `appliveview_connector.backend.sslDeactivated`. The
-`appliveview_connector.backend.sslDisabled` key is marked for removal in Tanzu
-Application Platform 1.7.0.
+The `appliveview_connector.backend.sslDisabled` key has been replaced by the
+`appliveview_connector.backend.sslDeactivated`.
