@@ -6,7 +6,7 @@ Each supported topology lists relevant package values configurations and one-tim
 
 ## <a id="postgresql-mysql"></a> PostgreSQL and MySQL
 
-This section describes the available topologies for PostgreSQL and MySQL.
+This section describes the available topologies for PostgreSQL and MySQL services.
 
 ### <a id="same-vpc"></a> A service instance in a VPC accessed by a workload in a Tanzu Application Platform cluster in the same VPC
 
@@ -41,7 +41,8 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-* PostgreSQL:
+- For PostgreSQL:
+
     ```yaml
     postgresql:
       enabled: true
@@ -52,7 +53,9 @@ the following values when installing the package:
         security_groups:
           - id: "SECURITY-GROUP-ID"
     ```
-* MySQL:
+
+- For MySQL:
+
     ```yaml
     mysql:
       enabled: true
@@ -99,7 +102,8 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-* PostgreSQL:
+- For PostgreSQL:
+
     ```yaml
     postgresql:
       enabled: true
@@ -112,9 +116,11 @@ the following values when installing the package:
       instance_configuration:
         publicly_accessible: true
     ```
-* MySQL:
+
+- For MySQL:
+
     ```yaml
-    postgresql:
+    mysql:
       enabled: true
       region: "REGION"
       infrastructure:

@@ -13,7 +13,7 @@ Before starting this tutorial:
   The topic provides context about the goals of the package, and some of the
   considerations and compromises that were made as part of its development.
 
-- [Install AWS services](../install-aws-services.hbs.md)
+- [Install AWS Services](../install-aws-services.hbs.md).
 
 ## <a id="about"></a> About this tutorial
 
@@ -33,22 +33,22 @@ To find out about available AWS services:
     tanzu service class list
     ```
 
-    The expected output has two services named `postgresql-managed-aws` and `mysql-managed-aws`.
+    The expected output has two services: `postgresql-managed-aws` and `mysql-managed-aws`.
 
 1. To learn more about the service, including which claim parameters are provided, run:
 
     ```console
-    tanzu service class get <CLASS-NAME>
+    tanzu service class get CLASS-NAME
     ```
 
-    Where `CLASS-NAME` is one of the services listed in the previous steps.
+    Where `CLASS-NAME` is one of the services listed in the previous step.
 
-## <a id="create-a-claim"></a> Step 2: Claim an instance of the AWS RDS service
+## <a id="create-a-claim"></a> Step 2: Claim an instance of an AWS RDS service
 
 To claim an instance of an AWS RDS service:
 
 ```console
-tanzu service class-claim create rds-1 --class <CLASS-NAME>
+tanzu service class-claim create rds-1 --class CLASS-NAME
 ```
 
 It takes about 5 to 10 minutes for the service instance to be provisioned.

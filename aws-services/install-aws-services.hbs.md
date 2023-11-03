@@ -110,7 +110,6 @@ To install the AWS Services package:
         maintenance_window: "MAINTENANCE-WINDOW"
     ```
 
-
     Where:
 
     - `REGION` is the AWS region you want, for example, `us-east-1`.
