@@ -12,8 +12,7 @@ You can use [Pinniped](https://pinniped.dev/) or the authentication service nati
 
 User or group mapping to a role is granted by a [Kubernetes rolebinding or clusterrole binding](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding).  A RoleBinding grants a role or clusterrole to a specific namespace.  Alternatively, a clusterbinding maps a clusterrole to all namespaces.
 
-Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  To ensure that the roles have access to the resources at the correct scoping, you should create bindings for both the namespace scoped resources and the cluster scoped resources.  The role and clusterroles are as follows:
-
+Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  To ensure that the roles have access to the resources at the correct scoping, you should create bindings for both the namespace scoped resources and the cluster scoped resources.  For a listing of the roles and cluster roles for each out-of-the-box tap role, see [here](./overview.hbs.md#default-roles).
 
 There are many ways to manage the binding of a user or group to a role.  This guide will walk you through how to use Kubernetes manifests to create the binding between a user/group and roles.  By using a manifest, this will also allow you add or remove users/roles after initial creation by simply applying the updated manifiest.
 
