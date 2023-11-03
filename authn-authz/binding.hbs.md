@@ -8,13 +8,35 @@ Once your identity provider for Kubernetes has been configured, users can be aut
 1. Ensure you have configured an authentication solution for the cluster.
 You can use [Pinniped](https://pinniped.dev/) or the authentication service native to your Kubernetes distribution.
 
-## <a id="add-user-group-to-role"></a> Add the specified user or group to a role
+## <a id="Managing-user-group-to-role"></a> Managing a user or groups mapping to a role
 
-In order to give a user or group a role, you must create bindings between the user and the roles.  These steps will walk you through how to create these bindings and grant a role to a user or group. 
+User or group mapping to a role is granted by a [Kubernetes rolebinding or clusterrole binding](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding).  A RoleBinding grants a role or clusterrole to a specific namespace.  Alternatively, a clusterbinding maps a clusterrole to all namespaces.
 
-Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  Using kubectl, you should create bindings for both the namespace scoped resources and the cluster scoped resources.
+Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  To ensure that the roles have access to the resources at the correct scoping, you should create bindings for both the namespace scoped resources and the cluster scoped resources.
 
-To simplify the management of mapping users to roles, VMware suggests binding roles to groups, and then managing group membership in your identity provider.  
+There are many ways to manage the binding of a user or group to a role.  This guide will walk you through how to use Kubernetes manifests to create the binding between a user/group and roles.  By using a manifest, this will also allow you add or remove users/roles after initial creation by simply applying the updated manifiest.
+
+The following is an example of mapping the user "developer-1" to the app-editor" role.
+
+    ```console
+    kubectl apply -n DEVELOPER_NAMESPACE -f - << EOF
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: app-editor
+      namespace: $DEVELOPER_NAMSPACE
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: app-editor
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: User
+      name: developer-1
+    EOF
+    ```
+
 
 To bind a role to a group:
 
