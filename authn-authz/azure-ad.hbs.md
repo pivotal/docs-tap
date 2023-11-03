@@ -11,8 +11,6 @@ Perform the following procedures to integrate Azure AD with a new or existing AK
 Meet these prerequisites:
 
 * Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
-* Download and install the [Tanzu CLI RBAC plug-in](binding.html)
 
 ### <a id="set-up-azure-platform"></a> Set up a platform operator
 
@@ -127,8 +125,6 @@ Perform the following procedures to set up Azure AD with Pinniped.
 
 Meet these prerequisites:
 
-* Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
-* Download and install the [Tanzu CLI RBAC plug-in](binding.html)
 * Install [Pinniped supervisor and concierge](pinniped-install-guide.hbs.md) on the cluster without
 setting up the [OIDCIdentityProvider and secret](pinniped-install-guide.hbs.md#create-pinniped-supervisor-configuration).
 
@@ -238,18 +234,47 @@ Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app
 
 1. Add users to the groups accordingly.
 
-1. For each object ID retrieved earlier, use the Tanzu CLI RBAC plug-in to bind the `object id` group to a role by running:
+1. For each object ID retrieved earlier, use kubectl to bind the `object id` group to a role by running:
 
     ```console
-    tanzu rbac binding add -g OBJECT-ID -r TAP-ROLE -n NAMESPACE
+    kubectl apply -n DEVELOPER_NAMESPACE -f - << EOF
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: TAP-ROLE
+      namespace: $DEVELOPER_NAMSPACE
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: TAP-ROLE
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: OBJECT-ID
+    EOF
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: TAP-ROLE-cluster-access
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: TAP-ROLE
+    subjects:
+    - apiGroup: rbac.authorization.k8s.io
+      kind: Group
+      name: OBJECT-ID
     ```
 
     Where:
 
     * `OBJECT-ID` is the object ID
     * `TAP-ROLE` is the Tanzu Application Platform role
-    * `NAMESPACE` is the namespace
+    * `DEVELOPER-NAMESPACE` is the namespace the for the group to be scoped to
 
+See [Bind a user or group to a default role](./binding.hbs.md) for more details how to bind users/groups to roles.
 
 ### <a id="pinniped-kubeconfig"></a> Set up kubeconfig
 
