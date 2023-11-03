@@ -1211,6 +1211,44 @@ This release has the following known issues, listed by component and area.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
     ```
 
+
+#### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
+
+- During upgrades a large number of builds may get created due to buildpack and stack bumps. 
+  It is possible that some of these builds might fail due to transient network issues, 
+  causing the workload to be en an unhealthy state. This will resolve itself on subsequent builds
+  after a code change and will not affect the running application. 
+
+  If you do not want to wait for subsequent builds to run, you can use the Tanzu Build Service plugin 
+  for the Tanzu Cli to trigger a build manually.
+
+1. List the image resources in the developer namespace:
+
+    ```console
+    tanzu build-service image list -n DEVELOPER-NAMESPACE
+    ```
+
+2. Manually trigger the image resources to re-run builds for each failing image:
+
+    ```console
+    tanzu build-service image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```
+   
+  Alternatively, you can use the open source [kpack cli](https://github.com/buildpacks-community/kpack-cli) to do
+  the same thing.
+
+1. List the image resources in the developer namespace:
+
+    ```console
+    kp image list -n DEVELOPER-NAMESPACE
+    ```
+
+2. Manually trigger the image resources to re-run builds for each failing image:
+
+    ```console
+    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```
+
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 
 - If you do not configure any authentication providers, and do not allow guest access, the following
