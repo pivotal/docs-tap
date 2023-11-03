@@ -22,7 +22,7 @@ provenance, see [Provenance transform](creating-accelerators/transforms/provenan
 
 ## Integration with AMR
 
-Application Accelerator also closely integrates with the [Artifact Metadata Repository](../scst-store/amr/overview.hbs.md) (AMR).
+Application Accelerator also closely integrates with the [Artifact Metadata Repository](../scst-store/overview.hbs.md) (AMR).
 
 When an application is generated with an accelerator, an event that contains the same information captured by the `Provenance` transform is sent to the AMR store.
 
@@ -36,4 +36,4 @@ When some invocations have been recorded, use the
 accelerator usage and gain insights about generated applications.
 
 For more information about the AMR data model, how to use the Artifact Metadata Repository,
-and some sample queries relevant to AppAcceleratorRun, see the [Artifact Metadata Repository](../scst-store/amr/overview.hbs.md).
+and some sample queries relevant to AppAcceleratorRun, see the [Artifact Metadata Repository](../scst-store/overview.hbs.md).

@@ -198,7 +198,7 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
 - Deploys Artifact Metadata Repository (AMR) by default. For more information, see
-  [Artifact Metadata Repository](scst-store/amr/overview.hbs.md).
+  [Artifact Metadata Repository](scst-store/overview.hbs.md).
 
 - Introduces the AMR authentication and authorization feature. For more information, see
   [Authentication and authorization](scst-store/amr/auth.hbs.md).
