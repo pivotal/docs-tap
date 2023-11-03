@@ -1198,9 +1198,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
-- When using SCST - Scan 2.0 with a cluster image template other than Grype, the scanner image is
-  incorrectly overwritten to the Grype image by the default value from the `tap-values.yaml` file if
-  you don't provide a value for `ootb_supply_chain_testing_scanning.image_scanner_cli`.
+- When using SCST - Scan 2.0 with a ClusterImageTemplate other than Grype, if you don't provide a
+  value for `ootb_supply_chain_testing_scanning.image_scanner_cli`, the default value from the
+  `tap-values.yaml` file incorrectly overwrites the scanner image to Grype.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
   For example, for the Trivy image packaged with Tanzu Application Platform:
 
