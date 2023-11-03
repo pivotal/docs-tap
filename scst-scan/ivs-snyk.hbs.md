@@ -3,7 +3,13 @@
 
 This topic tells you how to configure an ImageVulnerabilityScan for Snyk. 
 
-Use the following ImageVulnerabilityScan and secret configuration:
+## <a id="secret-example"></a> Example Secret
+
+>**Important** For the publicly available Snyk scanner CLI image, CLI commands and parameters used are accurate at
+the time of documentation.
+
+This section contains a sample secret containing the Snyk API token, which authenticates
+your Snyk account. You must apply this once to your developer namespace.
 
 ```yaml
 apiVersion: v1
@@ -37,7 +43,7 @@ spec:
   - name: snyk
     image: SNYK-SCANNER-IMAGE
     env:
-    - name: XDG_CONFIG_HOME
+    - name: XDG-CONFIG-HOME
       value: /snyk
     command: ["snyk","container","test",$(params.image),"--json-file-output=$(params.scan-results-path)/scan.json"]
     onError: continue
@@ -57,14 +63,16 @@ Where:
 - `SNYK-SCANNER-IMAGE` is the image containing the Snyk CLI. For example, `snyk/snyk:golang`.
   For information about publicly available Snyk images, see [DockerHub](https://hub.docker.com/r/snyk/snyk).
   For more information about using the Snyk CLI, see the [Snyk documentation](https://docs.snyk.io/snyk-cli).
-- `XDG_CONFIG_HOME` is the directory that contains your Snyk CLI config file, `configstore/snyk.json`,
+- `XDG-CONFIG-HOME` is the directory that contains your Snyk CLI config file, `configstore/snyk.json`,
   which is populated using the snyk-token `Secret` you created.
   For more information, see the [Snyk Config documentation](https://docs.snyk.io/snyk-cli/commands/config).
 - `SNYK2SPDX-IMAGE` is the image used to convert the Snyk CLI output `scan.json` in the `snyk` step
   to SPDX format and have its missing `DOCUMENT DESCRIBES` relation inserted.
-  See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx) in GitHub. Here is one way to do it:
-    1. Clone the [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx)
+  See the Snyk [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx) in GitHub. To do this:
+    
+    1. Clone the [snyk2spdx repository](https://github.com/snyk-tech-services/snyk2spdx).
     2. Add the following Dockerfile to the root of the repository:
+        
         ```
         FROM node AS build
 
@@ -87,9 +95,10 @@ Where:
         ENTRYPOINT ["/app/bin/snyk2spdx"]
         CMD ["/app/bin/snyk2spdx"]
         ```
+
     3. Build and push the image to a registry. Replace `SNYK2SPDX-IMAGE` with
-      the new image you just built.
-    > **Note** The `snyk2spdx` output is not conformant to the [verification process](./verify-app-scanning-supply-chain.hbs.md) although the results may be ingested to the Tanzu Application Platform metadata store, VMware does not guarantee the accuracy of the results.
+      the new image you built.
+    > **Note** The `snyk2spdx` output does not conform to the [verification process](./verify-app-scanning-supply-chain.hbs.md). Although the results might be ingested to the Tanzu Application Platform metadata store, VMware does not ensure the accuracy of the results.
 
 > **Note** After detecting vulnerabilities, the Snyk image exits with Exit Code 1 and causes a failed scan task. You can ignore the step error by setting [onError](https://tekton.dev/docs/pipelines/tasks/#specifying-onerror-for-a-step) and handling the error in a subsequent step.
 
