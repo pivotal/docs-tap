@@ -484,7 +484,7 @@ NAME                                PACKAGE-NAME                                
   scanning                            scanning.apps.tanzu.vmware.com                       1.7.0-build.36081392+c072d305  Reconcile failed
 ```
 
-If getting the package using the command `tanzu package installed get scanning -n tap-install` you
+If getting the package by running the command `tanzu package installed get scanning -n tap-install` you
 might see an error similar:
 
 ```console
@@ -503,26 +503,31 @@ values.yaml:
     = expected: a map item with the key named "exports" (from .ytt/data.yaml:52)
 ```
 
-This is because the field `scanning.metadataStore.url` has been removed.
-If this field is present in `tap-values.yaml` provided for the upgrade, the reconciliation will fail.
+This is because the field `scanning.metadataStore.url` is removed.
+If this field is present in `tap-values.yaml` provided for the upgrade, the reconciliation fails.
 To resolve this problem, remove the field from the values file and run the upgrade command again.
 
 ### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
 
-As part of compliance with the [restricted profile Kubernetes Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/), the `securityContext` of containers and initContainers must be set. This applies to the `prepare` initContainers created by Tekton. When a pod does not meet Pod Security Standards, it will not be created and vulnerability scanning cannot proceed. You may see an error message similar to the following when describing the TaskRun:
+As part of compliance with the restricted profile Kubernetes Pod Security Standards, you must set the `securityContext` of containers and initContainers. This applies to the `prepare` initContainers created by Tekton. When a pod does not meet pod Security Standards, it is not created and vulnerability scanning cannot proceed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
+
+You might see an error message similar to the following when describing the TaskRun:
 
 ```console
 "scan-source-scan-with-passing-policy-zx46t-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found
 ```
+
 1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes.
+    
     ```yaml
     tekton_pipelines:
         feature_flags:
             set_security_context: "true"
     ```
-    Setting the `securityContext` will resolve the `prepare` initContainer violation.
 
-2. Update your TAP installation by running:
+    Setting the `securityContext` resolves the `prepare` initContainer violation.
+
+2. Update your Tanzu Application Platform installation by running:
 
    ```console
    tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
