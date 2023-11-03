@@ -1362,6 +1362,12 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
   It is hidden from help text output, but it will continue to work until it is removed.
   The new `tanzu services resource-claims` command provides the same function.
 
+- The experimental multicluster APIs `*.multicluster.x-tanzu.vmware.com/v1alpha1` are deprecated
+  and marked for removal in Tanzu Application Platform v1.9.
+
+- The experimental `kubectl-scp` plug-in is deprecated and marked for removal in Tanzu
+  Application Platform v1.9.
+
 ### <a id="1-7-sc-deprecations"></a> Source Controller deprecations
 
 - The Source Controller `ImageRepository` API is deprecated and is marked for
