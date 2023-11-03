@@ -125,13 +125,16 @@ Events:
             ...
             version: "v1" # v1 or v2
     ```
-## Error occurs when deleting Kubernetes authentication
-- **Problem :** The following error occurs when deleting Kubernetes authentication:
 
-    ```console
-    ./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh
-    Error deleting auth/tap-gitops-vault/config: Error making API request.
-    Namespace: admin/URL: DELETE https://vault-cluster-public-vault-5593a539.8ae01486.z1.hashicorp.cloud:8200/v1/auth/tap-gitops-vault/configCode: 405. Errors:
-    * 1 error occurred:	* unsupported operation
-    ```
-    **Solution :** Update the command `vault delete auth/$CLUSTER_NAME/config` to `vault auth disable $CLUSTER_NAME` in the file `./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh`
+## <a id="delete-k8s-auth-error"></a> Error occurs when deleting Kubernetes authentication
+
+**Problem:** The following error occurs when deleting Kubernetes authentication:
+
+```console
+./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh
+Error deleting auth/tap-gitops-vault/config: Error making API request.
+Namespace: admin/URL: DELETE https://vault-cluster-public-vault-5593a539.8ae01486.z1.hashicorp.cloud:8200/v1/auth/tap-gitops-vault/configCode: 405. Errors:
+* 1 error occurred:	* unsupported operation
+```
+
+**Solution:** Update the command `vault delete auth/$CLUSTER_NAME/config` to `vault auth disable $CLUSTER_NAME` in the file `./tanzu-sync/vault/scripts/setup/delete-kubernetes-auth.sh`
