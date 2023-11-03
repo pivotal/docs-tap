@@ -48,8 +48,13 @@ To find out about available AWS services:
 To claim an instance of an AWS RDS service:
 
 ```console
-tanzu service class-claim create rds-1 --class CLASS-NAME
+tanzu service class-claim create CLAIM-NAME --class CLASS-NAME
 ```
+
+Where:
+
+- `CLAIM-NAME` is the name you want for your claim, for example, `rds-1`.
+- `CLASS-NAME` is one of the services listed earlier.
 
 It takes about 5 to 10 minutes for the service instance to be provisioned.
 You can watch the claim and wait for it to transition into a `READY: True` state to know when it is
@@ -66,8 +71,10 @@ After creating the claim, you can bind it to one or more of your application wor
 1. Find the reference for the claim by running:
 
     ```console
-    tanzu service class-claim get rds-1
+    tanzu service class-claim get CLAIM-NAME
     ```
+
+    Where `CLAIM-NAME` is the name of the claim you want to bind your workload to, for example, `rds-1`.
 
     The reference is in the output under the heading Claim Reference.
 
