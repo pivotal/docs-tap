@@ -70,8 +70,9 @@ To customize an ImageVulnerabilityScan to use your scanner:
     runAsGroup: 65534
     ```
 
-    > **Note** If you populate any of the following fields in the `securityContext`, you must
-    populate all the other fields or you may see a runtime error in the `ImageVulnerabilityScan` controller:
+    >**Note** If you populate any of the following fields in the `securityContext`, you must
+    populate all the other fields or you might see a runtime error in the `ImageVulnerabilityScan` controller:
+    
     ```
     allowPrivilegeEscalation
     runAsNonRoot
