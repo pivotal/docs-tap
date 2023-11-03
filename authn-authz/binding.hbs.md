@@ -51,7 +51,11 @@ The following is an example of mapping the user "developer-1" to the app-editor"
       name: developer-1
     ```
 
-To simplify the management of user to role membership, you may wish to bind a group to a role and manage group membership in an enteprise identity provider.  For example, if you wanted to add the group "developers" to the app-editor role, you could use the following:
+    Where:
+
+    * `DEVELOPER-NAMESPACE` is the namespace that the developers access should be scoped to
+
+To simplify the management of user to role membership, you may wish to bind a group to a role and manage group membership in an enteprise identity provider.  For an example of how to do this for Azure AD, see [Integrate your Azure Active Directory](./azure-ad.hbs.md).  As a basic example, if you wanted to add the group "developers" to the app-editor role, you could use the following:
 
     ```console
     kubectl apply -n DEVELOPER_NAMESPACE -f - << EOF
@@ -84,8 +88,11 @@ To simplify the management of user to role membership, you may wish to bind a gr
       kind: Group
       name: developers
     ```
+    Where:
 
-Additional users or groups can be added to the role by adding another subject to the list.  For example, if you wanted to add the "developer-2" user, the `subjects` key would look like this:
+    * `DEVELOPER-NAMESPACE` is the namespace that the developers access should be scoped to
+
+Additional users or groups can be added to the role by adding another subject to the list.  For example, if you wanted to add the "developer-2" user, the `subjects` key would look like the following:
 
     ```console
     subjects:
@@ -96,7 +103,7 @@ Additional users or groups can be added to the role by adding another subject to
       kind: User
       name: developer-2
     ```
-    
+
 Additionally, you can use a combination of users and groups in the `subject` key as follows:
 
     ```console
