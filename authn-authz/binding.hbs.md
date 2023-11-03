@@ -1,10 +1,10 @@
 # Bind a user or group to a default role
 
-Once your identity provider for Kubernetes has been configured, users can be authenticated to Kubernetes, however, they still need to be authorized to perform actions on resources.  In order to do this, you can use kubectl to create role bindings that binds a user to the roles defined in [role descriptions](role-descriptions.hbs.md).
+Once your identity provider for Kubernetes has been configured, users can be authenticated to Kubernetes, however, they still need to be authorized to perform actions on resources.  In order to do this, you can use `kubectl` to create role bindings that binds a user to the roles defined in [role descriptions](role-descriptions.hbs.md).
 
 ## <a id="prereqs"></a> Prerequisites
 
-1. Ensure you have kubectl configured and admin access to the cluster.
+1. Ensure you have `kubectl` configured and admin access to the cluster.
 1. Ensure you have configured an authentication solution for the cluster.
 You can use [Pinniped](https://pinniped.dev/) or the authentication service native to your Kubernetes distribution.
 
@@ -14,7 +14,7 @@ User or group mapping to a role is granted by a [Kubernetes rolebinding or clust
 
 Each of the four roles for users have both a role for namespace scoped resources, as well as a role for cluster scoped resources.  To ensure that the roles have access to the resources at the correct scoping, you should create bindings for both the namespace scoped resources and the cluster scoped resources.  For a listing of the roles and cluster roles for each out-of-the-box tap role, see [here](./overview.hbs.md#default-roles).
 
-There are many ways to manage the binding of a user or group to a role.  This guide will walk you through how to use Kubernetes manifests to create the binding between a user/group and roles.  By using a manifest, this will also allow you add or remove users/roles after initial creation by simply applying the updated manifiest.
+There are many ways to manage the binding of a user or group to a role.  This guide will walk you through how to use Kubernetes manifests to create the binding between a user/group and roles.  By using a manifest, this will also allow you add or remove users/groups after initial creation by updating the manifest and re-applying it via `kubectl`.
 
 The following is an example of mapping the user "developer-1" to the app-editor" role.
 
@@ -54,7 +54,7 @@ The following is an example of mapping the user "developer-1" to the app-editor"
 
     * `DEVELOPER-NAMESPACE` is the namespace that the developers access should be scoped to
 
-To simplify the management of user to role membership, you may wish to bind a group to a role and manage group membership in an enteprise identity provider.  For an example of how to do this for Azure AD, see [Integrate your Azure Active Directory](./azure-ad.hbs.md).  As a basic example, if you wanted to add the group "developers" to the app-editor role, you could use the following:
+To simplify the management of user to role membership, you may wish to bind a group to a role in Kubernetes and manage a users group membership in an enteprise identity provider.  For an example of how to do this for Azure AD, see [Integrate your Azure Active Directory](./azure-ad.hbs.md).  As a basic example, if you wanted to add the group "developers" to the app-editor role, you could use the following:
 
     ```console
     kubectl apply -n DEVELOPER_NAMESPACE -f - << EOF

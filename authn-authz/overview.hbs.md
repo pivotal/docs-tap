@@ -40,9 +40,9 @@ When changing roles or adding new roles that carry one of the labels used by the
 
 The default roles are installed with every Tanzu Application Platform profile except for `view`.
 
-## <a id="assinging-roles"></a> Assigning with roles using kubectl
+## <a id=" assigning-roles"></a>  Assigning with roles using kubectl
 
-For more information about assinging roles to users, see [Bind a user or group to a default role](binding.md).
+For more information about assigning roles to users, see [Bind a user or group to a default role](binding.md).
 
 ## <a id="disclaimer"></a> Disclaimer
 
