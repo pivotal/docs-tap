@@ -2,7 +2,11 @@
 
 This topic gives you an example of how to configure a secret and ImageVulnerabilityScan (IVS) for Prisma.
 
-## <a id="secret-example"></a> Example Secret
+## <a id="secret-example"></a> Example secret
+
+>**Important** For the publicly available Prisma scanner CLI image, CLI commands and parameters used are accurate at
+the time of documentation.
+
 This section contains a sample secret containing the Prisma Cloud account access key, secret key, and console URL which are used to authenticate
 your Prisma account. You must apply this once to your developer namespace.
 
@@ -16,6 +20,7 @@ stringData:
   password: PASSWORD
   address: ADDRESS
 ```
+
 Where:
 
 - `USERNAME` is the access Key from the Prisma Cloud account.
@@ -98,13 +103,21 @@ spec:
 
 Where:
 
-- `TARGET-IMAGE` is the image to be scanned. You must specify the digest.
-- `PRISMA-SCANNER-IMAGE` is the image containing the Prisma Cloud [twistcli](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli), [podman](https://podman.io/docs/installation), and a utility to convert the Prisma summary report (JSON format) to a CycloneDX SBOM in XML format. The Prisma scanner produces a proprietary output instead of community standard CycloneDX or SPDX. Because of this, the scan report summary produced by Prisma cannot be used as is and must be converted.  Please contact your account team if you wish to use Prisma and need this utility.
-- The `securityContext` grants root access as Prisma requires root access to run. If permission is not given, you may encounter a "cannot clone: Operation not permitted" error message. For details on the `securityContext`, see [Customize an ImageVulnerabilityScan](./ivs-create-your-own.hbs.md#customize-an-imagevulnerabilityscan). Due to needing root access, Prisma scans are not able to be run in clusters with restricted Pod Security Standards.
+- `TARGET-IMAGE` is the image to scan. You must specify the digest.
+- `PRISMA-SCANNER-IMAGE` is the image containing the Prisma Cloud
+  [twistcli](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli),
+  [podman](https://podman.io/docs/installation), and a utility to convert the
+  Prisma summary report in JSON format to a CycloneDX SBOM in XML format. The
+  Prisma scanner produces a proprietary output instead of community standard
+  CycloneDX or SPDX. Because of this, you cannot use the scan report summary produced by Prisma
+  as is and you must convert it. Contact your account team
+  if you want to use Prisma and need this utility.
+- The `securityContext` grants root access as Prisma requires root access to
+  run. If permission is not given, you might encounter a `cannot clone:
+  Operation not permitted` error message. For information about the
+  `securityContext`, see [Customize an
+  ImageVulnerabilityScan](./ivs-create-your-own.hbs.md#customize-an-imagevulnerabilityscan).
+  Due to needing root access, you cannot run Prisma scans in clusters with
+  restricted pod Security Standards.
 
-**Note** For information about using the CLI, see the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images).
-
-### <a id="disclaimer"></a> Disclaimer
-
-For the publicly available Prisma scanner CLI image, CLI commands and parameters used are accurate at
-the time of documentation.
+>**Note** For information about using the CLI, see the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images).
