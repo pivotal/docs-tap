@@ -162,6 +162,9 @@ This release includes the following changes, listed by component and area.
 
 - Adds support for the new Tanzu CLI Insight plug-in.
 
+- [Supply Chain Security Tools - Scan 2.0 Beta](scst-scan/app-scanning-beta.hbs.md) 
+  - Switches Trivy the default scanner for container image scanning using the included image and template.  Scan 1.0 will maintain Grype as the default.
+
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
 - Deploys Artifact Metadata Repository (AMR) by default. For more information, see
