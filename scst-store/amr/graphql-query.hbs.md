@@ -82,7 +82,7 @@ You can use this to write and execute your own GraphQL queries to fetch data fro
 This section uses cURL to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint 
 and provide them with the AMR GraphQL access token and CA certificate.
 
-## <a id='query-locations'></a> Querying for locations
+## <a id='query-locations'></a> Querying for locations (alpha)
 
 This section tells you about GraphQL query arguments, and the list of fields available for `Location`.
 
@@ -153,7 +153,7 @@ You can choose the following felids to return in the GraphQL query. You must spe
   }
   ```
 
-## <a id='query-app-accelerator-runs'></a> Querying for AppAcceleratorRuns
+## <a id='query-app-accelerator-runs'></a> Querying for AppAcceleratorRuns (alpha)
 
 This section tells you about GraphQL query arguments, and lists the fields available for `AppAcceleratorRuns` and `AppAcceleratorFragments`.
 
