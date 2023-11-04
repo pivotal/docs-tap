@@ -12,16 +12,16 @@ The following diagram shows the data models used in the AMR to store artifact in
 
 The following data models are stored in the AMR: 
 
-- `Locations`
+- `Locations` (alpha)
 - `Containers`
 - `Images`
 - `Commits`
-- `AppAcceleratorRuns`
-- `AppAcceleratorFragments`
-- `DoraMetrics`
-- `DoraMetricsPerCorrelationID`
+- `AppAcceleratorRuns` (alpha)
+- `AppAcceleratorFragments` (alpha)
+- `DoraMetrics` (alpha)
+- `DoraMetricsPerCorrelationID` (alpha)
 
-### <a id='locations'></a> Locations
+### <a id='locations'></a> Locations (alpha)
 
 The `Locations` data model stores data about the locations that `Apps` are
 deployed on, like clusters. It stores data using:
@@ -65,7 +65,7 @@ details about the state, and what commit `sha` or `tag` were used. You can only
 associate a `Commits` entry with one `Locations` entry. You can point multiple
 `Commits` entries to the same `Locations` entry. 
 
-### <a id='appAcceleratorRuns'></a> AppAcceleratorRuns
+### <a id='appAcceleratorRuns'></a> AppAcceleratorRuns (alpha)
 
 The `AppAcceleratorRuns` data model represents new projects running from Git
 repositories. An `accelerator.yaml` file in the repository declares input
@@ -79,7 +79,7 @@ and `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` en
 to the same `AppAcceleratorRun` entry. You can also associate an `AppAcceleratorRun`
 with one `AppAcceleratorSource`, also known as `Commit`. 
 
-### <a id='appAcceleratorFragments'></a> AppAcceleratorFragments
+### <a id='appAcceleratorFragments'></a> AppAcceleratorFragments (alpha)
 
 The `AppAcceleratorFragments` Accelerator fragments are reusable accelerator
 components that can provide options, files, or transforms. You can import
@@ -95,7 +95,7 @@ Each `AppAcceleratorFragment` data entry stores information about source Git rep
 an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
 (also known as `Commit`) to one `AppAcceleratorFragment`.
 
-### <a id='doraMetrics'></a> DoraMetrics
+### <a id='doraMetrics'></a> DoraMetrics (alpha)
 
 The `DoraMetrics` data model represents the DORA Metric information. The Observer sends 
 this information to the CloudEvent Handler to store `DoraMetrics`. 
@@ -105,7 +105,7 @@ commit to deploy to an environment. `AggregatedDeployments` describes how freque
 a team releases to production in a time range. You can point multiple
 `DoraMetricsPerCorrelationID` to one `DoraMertric`.
 
-### <a id='metrics-correlation-ID'></a> DoraMetricsPerCorrelationID
+### <a id='metrics-correlation-ID'></a> DoraMetricsPerCorrelationID (alpha)
 
 The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for
 a Correlation ID. The Correlation ID groups the all the artifacts together. The 
