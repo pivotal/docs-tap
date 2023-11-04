@@ -73,7 +73,7 @@ The following changes affect the upgrade procedures:
 - **Introduced Artifact Metadata Repository**
 
     In Tanzu Application Platform v1.7.0, the [Artifact Metadata
-    Repository](scst-store/amr/overview.hbs.md) component is introduced into the
+    Repository](scst-store/overview.hbs.md) component is introduced into the
     Supply Chain Security Tools (SCST) - Store package. In a multicluster
     deployment, this component requires additional configuration during upgrade.
     For more information, see [SCST - Store upgrade to 1.7
