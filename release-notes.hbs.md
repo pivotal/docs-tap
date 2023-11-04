@@ -66,7 +66,7 @@ This release includes the following changes, listed by component and area.
 - When debugging `ConfigurationSlice` resources, you now see status information from `GitRepository`
   resources if any of the errors are related to the `GitRepository` reconciliation.
 
-#### <a id='1-7-0-app-live-view'></a> v1.7.0 Features: Application Live View
+#### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
 
 - Developers can override the settings for the Kubernetes default liveness, readiness, and startup
   probes for Spring Boot apps in Tanzu Application.
