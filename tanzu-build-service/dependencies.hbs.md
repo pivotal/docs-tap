@@ -2,8 +2,7 @@
 
 This topic tells you about Tanzu Build Service dependencies.
 
-> **Important** Ubuntu Bionic will stop receiving support in April 2023. The
-> Bionic stack is deprecated and will be removed in a future release.
+> **Important** Ubuntu Bionic stack is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
 >For Tanzu Application Platform v1.5 and later, the default stack for Tanzu
 > Build Service is Jammy.
@@ -55,7 +54,7 @@ you migrate builds to Jammy.
 For more information about support for Jammy stacks, see
 [About lite and full dependencies](#lite-vs-full) later in this topic.
 
-> **Note** While upgrading apps to a newer stack, you might encounter the build platform
+> **Note** While upgrading apps to a later stack, you might encounter the build platform
 > erroneously reusing the old build cache. If you encounter this issue, delete
 > and recreate the workload in Tanzu Application Platform, or delete and
 > recreate the image in Tanzu Build Service.
@@ -202,5 +201,56 @@ version of Tanzu Application Platform.
 
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-Updating buildpack, and stack dependencies outside of upgrades to Tanzu Application Platform is possible but VMware does not recommend it, as we cannot guarantee those dependencies are compatible with the other components of Tanzu Application Platform.
-For more information about updating a stack and a buildpack, see [Cluster stacks update](https://docs.vmware.com/en/Tanzu-Build-Service/1.11/vmware-tanzu-build-service/updating-deps.html#cluster-stacks-update) and [Cluster store update](https://docs.vmware.com/en/Tanzu-Build-Service/1.11/vmware-tanzu-build-service/updating-deps.html#cluster-store-update) in the Tanzu Build Service documentation. Both workflows require the [kp CLI](https://network.pivotal.io/products/build-service).
+### Upgrading Buildpacks between Tanzu Application Platform releases
+
+While updating buildpack dependencies outside of upgrades to Tanzu Application Platform is possible,
+VMware recommends upgrading Tanzu Application Platform to consume new build dependencies.
+
+Before you begin:  Sign in to VMware Tanzu Network so that the image can be pulled from the Tanzu Network Registry.
+
+1. Use the links
+provided in the [Language Family Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html) page in the Tanzu Buildpacks documentation to locate the buildpack
+image URL on VMware Tanzu Network. Select `tanzu-buildpacks/<LANGUAGE-FAMILY>` for `full`
+dependencies, or `tanzu-buildpacks/<LANGUAGE-FAMILY>-lite`  for `lite` dependencies. Scroll to the
+Docker command at the bottom, and copy the buildpack image URL for use in the next step.
+
+1. Relocate the buildpack image using imgpkg copy:
+
+    ```console
+    imgpkg copy -b <BUILDPACK-IMAGE-URL> --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/<BUILDPACK LANGUAGE>
+    ```
+
+    Where `BUILDPACK-IMAGE-URL` is the buildpack image URL copied from the Docker command in the previous step
+
+1. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
+
+    ```console
+    apiVersion: kpack.io/v1alpha2
+    kind: ClusterBuildpack
+    metadata:
+      name: out-of-band-<LANGUAGE-NAME>-<BUILDPACK-VERSION>
+    spec:
+      image: <RELOCATED-BUILDPACKIMAGE>
+      serviceAccountRef:
+        name: dependencies-pull-serviceaccount
+        namespace: build-service
+    ```
+
+    Where `RELOCATED-BUILDPACKIMAGE` is the URL of relocated buildpack image from previous step.
+
+    To avoid naming collisions, follow the name conventions specified in `metadata.name`. The name
+    can follow any convention that allows the Cluster Operator to distinguish this `ClusterBuildpack`
+    from others installed by Tanzu Application Platform.
+
+1. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
+
+    ```console
+    kubectl apply -f <FILE-FROM-PREVIOUS-STEP>
+    ```
+
+The ClusterBuildpack is now deployed. Tanzu Build Service uses the latest
+available version to execute builds. All images that were built with older versions of the buildpack
+will begin to rebuild.
+
+When you upgrade Tanzu Application Platform, new buildpacks with higher versions are installed.
+After an upgrade, the `ClusterBuildpack` created in this procedure is not needed and can be removed.
