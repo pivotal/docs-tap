@@ -388,6 +388,20 @@ Parameters:
   </tr>
 
   <tr>
+    <td><code>additionalTags</code></td>
+    <td>
+     The additionalTags is a list of locations the built OCI image will be written to in addition to the default tag. Additional tags must be in the same registry as the default tag.
+    </td>
+    <td>
+      <p alignment ="left">
+      - name: additionalTags<br>
+        value:<br>
+          - my-registry.com/my-app<br>
+          - my-other-registry.com/other-app:other-tag
+      </p>
+    </td>
+  </tr>  
+  <tr>
     <td><code>live-update</code></td>
     <td>
       Enables the use of Tilt's live-update function.
