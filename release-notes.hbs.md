@@ -66,13 +66,6 @@ This release includes the following changes, listed by component and area.
 - When debugging `ConfigurationSlice` resources, you now see status information from `GitRepository`
   resources if any of the errors are related to the `GitRepository` reconciliation.
 
-#### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
-
-- Developers can override the settings for the Kubernetes default liveness, readiness, and startup
-  probes for Spring Boot apps in Tanzu Application.
-  For more information, see
-  [Configure liveness, readiness, and startup probes for Spring Boot applications](./spring-boot-conventions/config-probes.hbs.md).
-
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
 - Supports Kubernetes v1.28.
@@ -197,13 +190,20 @@ This release includes the following changes, listed by component and area.
 - RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
   For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
 
+#### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
+
+- Developers can override the settings for the Kubernetes default liveness, readiness, and startup
+  probes for Spring Boot apps in Tanzu Application Platform.
+  For more information, see
+  [Configure liveness, readiness, and startup probes for Spring Boot applications](./spring-boot-conventions/config-probes.hbs.md).
+
 #### <a id='1-7-0-scst-scan'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Scan
 
 - Adds support for Pod Security Admission with Pod Security Standards enforced.
 
 - Adds support for the new version Tanzu CLI Insight plug-in.
 
-- [Supply Chain Security Tools - Scan 2.0 Beta](scst-scan/app-scanning-beta.hbs.md) 
+- [Supply Chain Security Tools - Scan 2.0 Beta](scst-scan/app-scanning-beta.hbs.md)
   - Switches Trivy the default scanner for container image scanning using the included image and template.  Scan 1.0 will maintain Grype as the default.
 
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
@@ -1209,7 +1209,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
-- When using SCST - Scan 2.0 with a ClusterImageTemplate the value for the scanning image is overwritten 
+- When using SCST - Scan 2.0 with a ClusterImageTemplate the value for the scanning image is overwritten
   with and incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in TAP Values.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
   For example, for the Trivy image packaged with Tanzu Application Platform:
@@ -1221,16 +1221,16 @@ This release has the following known issues, listed by component and area.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
     ```
 
-- When using SCST - Scan 2.0: Trivy is required to be pinned version 0.42.1 because CycloneDX 1.5 was made the default for newer versions and is not supported by AMR. 
+- When using SCST - Scan 2.0: Trivy is required to be pinned version 0.42.1 because CycloneDX 1.5 was made the default for newer versions and is not supported by AMR.
 
 #### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
 
-- During upgrades a large number of builds may get created due to buildpack and stack bumps. 
-  It is possible that some of these builds might fail due to transient network issues, 
+- During upgrades a large number of builds may get created due to buildpack and stack bumps.
+  It is possible that some of these builds might fail due to transient network issues,
   causing the workload to be en an unhealthy state. This will resolve itself on subsequent builds
-  after a code change and will not affect the running application. 
+  after a code change and will not affect the running application.
 
-  If you do not want to wait for subsequent builds to run, you can use the Tanzu Build Service plugin 
+  If you do not want to wait for subsequent builds to run, you can use the Tanzu Build Service plugin
   for the Tanzu Cli to trigger a build manually.
 
 1. List the image resources in the developer namespace:
@@ -1244,7 +1244,7 @@ This release has the following known issues, listed by component and area.
     ```console
     tanzu build-service image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
     ```
-   
+
   Alternatively, you can use the open source [kpack cli](https://github.com/buildpacks-community/kpack-cli) to do
   the same thing.
 
@@ -1458,7 +1458,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id="1-7-tanzu-cli-rbac-plugin-deprecations"></a> Tanzu CLI RBAC Plugin deprecations
 
-- The `rbac` plugin for the Tanzu CLI, which was released as a beta and intended to help manage user and group bindings to the [out-of-box TAP roles](./authn-authz/overview.hbs.md#default-roles) has been depricated and removed in favor of native Kubernetes functionality.  
+- The `rbac` plugin for the Tanzu CLI, which was released as a beta and intended to help manage user and group bindings to the [out-of-box TAP roles](./authn-authz/overview.hbs.md#default-roles) has been depricated and removed in favor of native Kubernetes functionality.
   [Authentication and Authorization Documentation](./authn-authz/overview.hbs.md).
 
 ---
