@@ -1,14 +1,13 @@
 # Configuring Pod Security for Workloads
 
-This topic describes the various configuration options that are available for applying security 
-contexts to pods that are responsible for running supply chain workloads. To apply security contexts
-to pods responsible for running supply chain workloads, organizations can leverage various
-configuration options. With this approach, security policies can be configured and specific 
-security requirements of applications running on a Kubernetes cluster can be met.
+This topic provides an overview of the different configuration options that can be used to apply 
+security contexts to pods that are responsible for running supply chain workloads. By leveraging 
+these configuration options, organizations can apply security policies and meet the specific security
+requirements of applications running on a Kubernetes cluster.
 
 ## <a id="config-options"></a> Configuration options
 
-There are two methods to provide pod security context for running supply chain workloads. 
+There are two methods to provide the pod security context for running supply chain workloads. 
 
 - Platform operators can set a default security context for all supply chain workloads via 
 TAP values YAML file during TAP installation or upgrade. 
@@ -18,12 +17,12 @@ TAP values YAML file during TAP installation or upgrade.
 
 ## <a id="platform-default"></a> Setting a default security context
 
-A default workload security context can be optionally configured using tap-values.yaml.
-The YAML file lists the security context configurable fields. 
+A default workload security context can be optionally configured using the "tap-values.yaml" file 
+during TAP installation or upgrade. The YAML file lists the security context configurable fields. 
 
 ```yaml
 ootb_templates:
-  podintent_secuirty_context:
+  podintent_security_context:
     runAsGroup: # integer - The GID to run the entrypoint of the container process.
     runAsNonRoot: # boolean - Indicates that the container must run as a non-root user.
     windowsOptions:
@@ -43,7 +42,7 @@ ootb_templates:
       user: # string - User is a SELinux user label that applies to the container.
     seccompProfile:
       localhostProfile: # string - LocalhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost".
-      type: # string - Type indicates which kind of seccomp profile will be applied. Valid options are, Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied.
+      type: # string - Type indicates which kind of seccomp profile will be applied. Valid options are, "Localhost" - a profile defined in a file on the node should be used. "RuntimeDefault" - the container runtime default profile should be used. "Unconfined" - no profile should be applied.
     privileged: # boolean - Run container in privileged mode. Defaults to false.
     procMount: # string - procMount denotes the type of proc mount to use for the containers.
 ```
@@ -54,7 +53,7 @@ please see [Installing out of the box templates](../scc/install-ootb-templates.h
 ## <a id="workload-config"></a> Setting a Workload security context
 
 Suppply chain workload security context can be optionally configured using the workload parameter 
-name "security-context". Security context configured via workload *overrides* deafult security 
+name "security-context". Security context configured via workload *overrides* default security 
 context defined in the TAP values YAML.
 
 ### <a id="workload-config-yaml"></a> Sample workload YAML with security context 
@@ -90,7 +89,7 @@ spec:
     subpath: tanzu-java-web-app
 ```
 
-Alternatively, suppply chain workload security context can be set when creating workload using the 
+Alternatively, the suppply chain workload security context can be set when creating workload using the 
 Tanzu CLI. For example:
 
 ```console

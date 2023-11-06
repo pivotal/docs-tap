@@ -82,7 +82,7 @@ To install Out of the Box Templates:
 
     ```yaml
     excluded_templates: []
-    podintent_secuirty_context:
+    podintent_security_context:
       allowPrivilegeEscalation: false
       runAsNonRoot: true
       seccompProfile:
