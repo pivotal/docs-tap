@@ -1,6 +1,6 @@
-# Homepage in Tanzu Developer Portal
+# Home in Tanzu Developer Portal
 
-This topic tells you about the Homepage validated frontend plugin.
+This topic tells you about the Home validated frontend plugin.
 
 The Homepage frontend plug-in makes it possible to create a custom home page for your Tanzu Developer Portal to conveniently surface important information.
 To learn more about the Homepage plug-ins visit the [Homepage Backstage documentation](https://github.com/backstage/backstage/tree/master/plugins/home).

@@ -1,6 +1,6 @@
 # Overview of Tanzu Developer Portal Validated Community plug-ins
 
-Tanzu Developer Portal has the following validated community plug-ins available:
+Tanzu Developer Portal has the following available validated community plug-ins:
 
 - [GitHub Actions](github-actions.hbs.md)
 - [Grafana](grafana.hbs.md)
