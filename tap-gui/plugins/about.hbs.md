@@ -35,17 +35,7 @@ Validated plug-ins are Backstage plug-ins or community plug-ins that VMware has 
 with Tanzu Developer Portal. You don't need to create custom wrappers to integrate these plug-ins
 with Tanzu Developer Portal.
 
-Tanzu Developer Portal currently supports the following validated plug-ins:
-
-- [GitHub Actions](../configurator/validated-community-plugins/github-actions.hbs.md)
-- [Grafana](../configurator/validated-community-plugins/grafana.hbs.md)
-- [Home](../configurator/validated-community-plugins/home.hbs.md)
-- [Jira](../configurator/validated-community-plugins/jira.hbs.md)
-- [Prometheus](../configurator/validated-community-plugins/prometheus.hbs.md)
-- [Snyk](../configurator/validated-community-plugins/snyk.hbs.md)
-- [SonarQube](../configurator/validated-community-plugins/sonarqube.hbs.md)
-- [Stack Overflow](../configurator/validated-community-plugins/stack-overflow.hbs.md)
-- [TechInsights](../configurator/validated-community-plugins/techinsights.hbs.md)
+For more information, see the [validated community plug-ins section](valid-comm-plugins/about.hbs.md).
 
 ## <a id='ext-plug-ins'></a> External plug-ins
 
