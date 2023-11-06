@@ -6,6 +6,8 @@ After configuring your identity provider for Kubernetes, users can be authentica
 
 ## <a id="prereqs"></a> Prerequisites
 
+Meet these prerequisites:
+
 1. Configure kubectl and have admin access to the cluster.
 1. Configure an authentication solution for the cluster.
 You can use [Pinniped](https://pinniped.dev/) or the authentication service native to your Kubernetes distribution.

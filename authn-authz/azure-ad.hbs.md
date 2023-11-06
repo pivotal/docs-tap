@@ -8,7 +8,7 @@ Perform the following procedures to integrate Azure AD with a new or existing AK
 
 ### <a id="azure-prereqs"></a> Prerequisites
 
-Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 
 ### <a id="set-up-azure-platform"></a> Set up a platform operator
 
