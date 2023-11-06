@@ -75,3 +75,26 @@ kubectl config set-context --current --namespace=NAMESPACE
 ## <a id="live-update-jammy-fail"></a> Live Update does not work with the Jammy `ClusterBuilder`
 
 {{> 'partials/ide-extensions/ki-live-update-jammy' }}
+
+## <a id="freq-app-restarts"></a> Frequent application restarts
+
+### Symptom
+
+When an application is applied from Visual Studio it restarts frequently.
+
+### Cause
+
+An application or environment behavior is triggering the application to restart.
+
+Observed trigger behaviors include:
+
+- The application itself writing logs to the file system in the application directory that Live Update
+  is watching
+- Autosave being set to a very high frequency in the IDE configuration
+
+### Solution
+
+Prevent the trigger behavior. Example solutions include:
+
+- Prevent 12-factor applications from writing to the file system.
+- Reduce the autosave frequency to once every few minutes.
