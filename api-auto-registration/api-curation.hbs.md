@@ -4,7 +4,7 @@ This topic tells you how to use API Curation to expose several standalone APIs a
 API Auto Registration.
 
 > **Caution** The API Curation feature is in alpha and is intended for evaluation and test purposes
-> only. VMware does not recommend using API Curation in a production environment.
+> only. VMware discourages using API Curation in a production environment.
 
 ## <a id='overview'></a> Overview
 
@@ -50,7 +50,7 @@ understand the impact:
 | Capability with SCG v2.1.0 and later | Behavior before SCG v2.1.0 |
 | --- | --- |
 | The default value `scg_openapi_service_url` is sufficient if using the default SCG installation | You must overwrite the value `scg_openapi_service_url` with `http://scg-operator.tap-install.svc.cluster.local` if using the default SCG installation. |
-| Matching SCG updates API metadata automatically and the generated OpenAPI specifications reflect the metadata | API metadata annotations are added or updated, but the API specifications exposed from SCG OpenAPI endpoint do not reflect that. |
+| Matching SCG updates API metadata automatically and the generated OpenAPI specifications reflect the metadata | API metadata annotations are added or updated, but the API specifications exposed from SCG OpenAPI endpoint do not reflect that |
 
 ### <a id='create-scg'></a>Create SpringCloudGateway resource
 
@@ -88,7 +88,7 @@ After finding a match, SCG uses `serverUrl` as the baseURL of the curated API.
 To create `APIDescriptor` resources, see [API Auto Registration Usage Guide](./usage.hbs.md).
 If any of the referenced `APIDescriptor` are not ready, the `CuratedAPIDescriptor` keeps retrying
 until all the referenced `APIDescriptor`s are ready. If the API specifications from any of the `APIDescriptor`
-update, our controller picks up the changes on the next reconciliation loop.
+update, the controller selects the changes on the next reconciliation loop.
 
 **Note** By default, the update might take up to 10 minutes, including
 maximum 5 minutes to refresh the `APIDescriptor`, and maximum 5 minutes to refresh `CuratedAPIDescriptor`.
@@ -180,7 +180,6 @@ You can add all your curated APIs by using the unfiltered URL `http(s)://AAR-CON
 or the filtered URL with query parameters to add a specific curated API of your choice.
 See [Configuring API portal for VMware Tanzu on Kubernetes](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/1.4/api-portal/GUID-configuring-k8s-basics.html#modifying-openapi-source-url-locations).
 
-1. While this Curated API is not yet automatically registered in Tanzu Developer Portal, you can do this manually.
-You can do this by creating an api.yaml and adding it to the catalog. For more information about the structure of
-the definition file for an API entity, see the [API Docs plugin documentation](../tap-gui/plugins/api-docs.hbs.md)
-or the Backstage Kind: API documentation.
+1. This curated API is not automatically registered in Tanzu Developer Portal. You can do this manually by creating an `api.yaml` and adding it to the catalog. For information about the structure of
+the definition file for an API entity, see the [API documentation plug-in in Tanzu Developer Portal](../tap-gui/plugins/api-docs.hbs.md)
+or the [Backstage Kind: API documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api).

@@ -4,10 +4,12 @@ This topic describes how you can use API Auto Registration.
 
 ## <a id='overview'></a> Overview
 
->**Note** The run profile requires you to [update the install values](./configuration.hbs.md#update-values)
+The run profile requires you to [update the install values](./configuration.hbs.md#update-values)
 before proceeding. For iterate and full profiles, the default values work but you
->might prefer to update them. For information about profiles,
->see [About Tanzu Application Platform profiles](../about-package-profiles.hbs.md#profiles-and-packages).
+might prefer to update them. For information about profiles,
+see [About Tanzu Application Platform profiles](../about-package-profiles.hbs.md#profiles-and-packages).
+
+## <a id='prerecs'></a> Prerequisites
 
 API Auto Registration requires the following:
 
@@ -15,9 +17,12 @@ API Auto Registration requires the following:
 
 2. An APIDescriptor Custom Resource (CR) with that location created in the cluster.
 
-3. (Optional) Configurations
-   1. Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
-   2. Connect the Component to the auto-registered API in Tanzu Developer Portal
+3. (Optional) Configurations:
+
+   1. Cross-Origin Resource Sharing (CORS) for OpenAPI specifications
+   2. Connect the component to the auto-registered API in Tanzu Developer Portal
+
+## <a id='config'></a> Configurations
 
 To generate OpenAPI Spec:
 
@@ -35,13 +40,13 @@ To create APIDescriptor Custom Resource:
 
 - [Using other GitOps processes or Manually](#using-gitops-manually)
 
-To additionally configure:
+Additional configurations:
 
 - [CORS for viewing OpenAPI Spec in Tanzu Developer Portal](#cors)
 
 - [Connection between the Component and API in Tanzu Developer Portal](#component)
 
-## <a id='generate-openapi'></a>1. Generate OpenAPI specifications
+## <a id='generate-openapi'></a> Generate OpenAPI specifications
 
 This section tells you how to generate OpenAPI specifications.
 
@@ -97,7 +102,7 @@ following methods to create the APIDescriptor custom resource:
 see the [Using other GitOps processes or Manually](#using-gitops-manually) section.
 
 
-## <a id='create-api-descriptor'></a>2. Create APIDescriptor custom resource
+## <a id='create-api-descriptor'></a> Create APIDescriptor custom resource
 
 This section tells you how to create an APIDescriptor custom resource.
 
@@ -206,8 +211,7 @@ cluster you choose. Specify all the required fields for an APIDescriptor CR to r
 
 For information about APIDescriptors, see [APIDescriptor explained](./key-concepts.hbs.md#api-descriptor).
 
-
-## <a id='additional-config'></a>3. Additional configuration
+## <a id='additional-config'></a> Additional configuration
 
 This section tells you how to perform additional configuration.
 
@@ -233,17 +237,17 @@ Also confirm that your API supports preflight requests, a valid response to the 
 - **Headers allowed** header: `Access-Control-Allow-Headers`: If the API requires any header, you
 must include it in the API configuration or your authorization server.
 
-### <a id='component'></a>Connecting the Component to the API in Tanzu Developer Portal
+### <a id='component'></a>Connecting the component to the API in Tanzu Developer Portal
 
-When the API-producing component is added to the Tanzu Developer Portal catalog, it is often helpful
-to connect the component to the API. By connecting the two entities, the catalog graph will visualize
-this relationship for API consumers or other users. In order to connect the entities, in your component.yaml,
-you will need to add the `.spec.providesApis` where you can list all the APIs it provides using string reference
-format. You need to ensure to follow the `namespace/name` format instead of simply `name` else the namespace will
-default to the component's namespace (which is typically `default`). The name should be exactly the auto-registered
-API's name. So we recommend to update the component.yaml with the API name after the auto-registration is finished.
+When the API-producing component is added to the Tanzu Developer Portal catalog, it is helpful
+to connect the component to the API. By connecting the two entities, the catalog graph visualizes
+this relationship for users. To connect the entities
+you must add the `.spec.providesApis` in your component.yaml where you can list all the APIs it provides using string reference
+format. Ensure that you follow the `namespace/name` format instead of `name`, otherwise the namespace
+defaults to the component's namespace, typically `default`. The name is the auto-registered
+API's name. VMware recommends updating the `component.yaml` with the API name after the auto-registration finishes.
 
-Here is an example of a component.yaml with string entity reference to an API
+The following is an example of a `component.yaml` with string entity reference to an API:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -260,4 +264,4 @@ spec:
     - internal/petclinic-api-dev
 ```
 
-For more info, check out the [API Docs plugin documentation](../tap-gui/plugins/api-docs.hbs.md).
+For more information, see the [API documentation plug-in in Tanzu Developer Portal](../tap-gui/plugins/api-docs.hbs.md).
