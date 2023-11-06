@@ -200,3 +200,38 @@ Where `PUBLISH-TASK-POD-NAME` is the name of your publish-task pod.
 ```
 
 To resolve this issue, you can debug within the scan-task pod by following the instructions under [Debugging scan pods](./app-scanning-troubleshooting.hbs.md#debugging-scan-pods). You must use an image with both a shell and your scanner CLI image to run the `sleep` command and troubleshoot your scanner commands from within the container.
+
+### <a id="scanning-restricted-pss"></a> Scanning in a cluster with restricted Kubernetes Pod Security Standards
+
+As part of compliance with the restricted profile for Kubernetes Pod Security Standards, you must set the `securityContext` of containers and initContainers. This applies to the `prepare` initContainers and affinity assistant pods created by Tekton. When a pod does not meet pod Security Standards, it is not created and vulnerability scanning cannot proceed. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
+
+You might see an error message similar to the following when describing the TaskRun:
+
+```console
+pods "trivy-ivs-abcd-scan-task-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found
+```
+
+To resolve this issue:
+
+1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes:
+    
+    ```yaml
+    tekton_pipelines:
+        feature_flags:
+            set_security_context: "true"
+            disable-affinity-assistant: "true"
+    ```
+
+    Setting the `securityContext` resolves the `prepare` initContainer violation. Deactivating affinity assistant pods is a workaround for the affinity assistant violation as Tekton does not have a way to update the `securityContext` in those pods.
+
+1. Update your Tanzu Application Platform installation by running:
+
+   ```console
+   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
+   ```
+
+    Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
+
+  >**Note** Tekton [affinity assistant](https://tekton.dev/vault/pipelines-main/affinityassistants/) is a feature that can schedule all TaskRun pods within a PipelineRun that share a Workspace on the same node. If deactivated, VMware recommends using an affinity-aware CSI storage class. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes/#csi).
+
+1. Re-run the scan.

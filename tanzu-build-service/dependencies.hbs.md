@@ -218,3 +218,4 @@ Updating buildpack dependencies outside of upgrades to Tanzu Application Platfor
 7. The next step is to install the package repositry on the Cluster. `tanzu package install --package-name <PACKAGE NAME FROM PREVIOUS STEP> --verison <VERSION FROM PREVIOUS STEP> tbs-<BUILDPACK LANGUAGE NAME> --namespace tap-install`
 8. The buildpack has been installed and images that use the buildpack you have upgraded will start to rebuild. When you install future versions of TAP that include higher buildpack versions, TBS will use the higher buildpack versions in builds.
    
+

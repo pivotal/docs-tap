@@ -87,6 +87,27 @@ To install the AWS Services package:
         skip_final_snapshot: SKIP-FINAL-SNAPSHOT
         publicly_accessible: PUBLICLY-ACCESSIBLE
         maintenance_window: "MAINTENANCE-WINDOW"
+
+    # Configuration specific to the RDS MySQL service
+    mysql:
+      # Enable the RDS MySQL service. The default is set to false.
+      enabled: true
+      region: REGION
+      provider_config_ref:
+        name: PROVIDER-CONFIG-NAME
+      # Infrastructure configuration for the RDS MySQL service
+      infrastructure:
+        subnet_group:
+          name: "SUBNET-GROUP-NAME"
+        security_groups:
+          - id: "SECURITY-GROUP-ID"
+      # Instance-level configuration for the RDS MySQL service applied to all service instances
+      instance_configuration:
+        instance_class: INSTANCE-CLASS
+        engine_version: "ENGINE-VERSION"
+        skip_final_snapshot: SKIP-FINAL-SNAPSHOT
+        publicly_accessible: PUBLICLY-ACCESSIBLE
+        maintenance_window: "MAINTENANCE-WINDOW"
     ```
 
     Where:

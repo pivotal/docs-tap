@@ -13,15 +13,15 @@ Before starting this tutorial:
   The topic provides context about the goals of the package, and some of the
   considerations and compromises that were made as part of its development.
 
-- [Install AWS services](../install-aws-services.hbs.md)
+- [Install AWS Services](../install-aws-services.hbs.md).
 
 ## <a id="about"></a> About this tutorial
 
 **Target user roles**:      Application Operator, Application Developer<br />
 **Complexity**:             Basic<br />
 **Estimated time**:         15 minutes<br />
-**Topics covered**:         AWS, RDS, PostgreSQL, Classes, Claims<br />
-**Learning outcomes**:      An understanding of how to work with RDS PostgreSQL instances on Tanzu Application Platform using the AWS Services package<br />
+**Topics covered**:         AWS, RDS, PostgreSQL, MySQL, Classes, Claims<br />
+**Learning outcomes**:      An understanding of how to work with RDS PostgreSQL and MySQL instances on Tanzu Application Platform using the AWS Services package<br />
 
 ## <a id="discover-services"></a> Step 1: Discover the list of available AWS services
 
@@ -33,21 +33,28 @@ To find out about available AWS services:
     tanzu service class list
     ```
 
-    The expected output has one service named `postgresql-managed-aws`.
+    The expected output has two services: `postgresql-managed-aws` and `mysql-managed-aws`.
 
 1. To learn more about the service, including which claim parameters are provided, run:
 
     ```console
-    tanzu service class get postgresql-managed-aws
+    tanzu service class get CLASS-NAME
     ```
 
-## <a id="create-a-claim"></a> Step 2: Claim an instance of the AWS RDS PostgreSQL service
+    Where `CLASS-NAME` is one of the services listed in the previous step.
 
-To claim an instance of the AWS RDS PostgreSQL service:
+## <a id="create-a-claim"></a> Step 2: Claim an instance of an AWS RDS service
+
+To claim an instance of an AWS RDS service:
 
 ```console
-tanzu service class-claim create rds-psql-1 --class postgresql-managed-aws
+tanzu service class-claim create CLAIM-NAME --class CLASS-NAME
 ```
+
+Where:
+
+- `CLAIM-NAME` is the name you want for your claim, for example, `rds-1`.
+- `CLASS-NAME` is one of the services listed earlier.
 
 It takes about 5 to 10 minutes for the service instance to be provisioned.
 You can watch the claim and wait for it to transition into a `READY: True` state to know when it is
@@ -64,8 +71,10 @@ After creating the claim, you can bind it to one or more of your application wor
 1. Find the reference for the claim by running:
 
     ```console
-    tanzu service class-claim get rds-psql-1
+    tanzu service class-claim get CLAIM-NAME
     ```
+
+    Where `CLAIM-NAME` is the name of the claim you want to bind your workload to, for example, `rds-1`.
 
     The reference is in the output under the heading Claim Reference.
 
@@ -73,9 +82,9 @@ After creating the claim, you can bind it to one or more of your application wor
    flag of the `tanzu apps workload create` command. For example:
 
     ```console
-    tanzu apps workload create my-workload --image my-registry/my-app-image --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:rds-psql-1
+    tanzu apps workload create my-workload --image my-registry/my-app-image --service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:rds-1
     ```
 
     You must pass the claim reference with a corresponding name that follows the format
-    `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:rds-psql-1`.
+    `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:rds-1`.
     The `db=` prefix to this example reference is an arbitrary name for the reference.

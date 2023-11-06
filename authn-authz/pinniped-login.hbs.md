@@ -2,9 +2,7 @@
 
 This topic tells you how to log in to your Tanzu Application Platform (commonly known as TAP) by using Pinniped.
 
-As a prerequisite, the administrator must provide users access to resources by using `rolebindings`. 
-It can be done with the `tanzu rbac` plug-in. 
-For more information, see [Bind a user or group to a default role](binding.md).
+As a prerequisite, the administrator must provide authorization for users to resources by using `rolebindings`.  For more information, see [Bind a user or group to a default role](binding.md).
 
 To log in to your cluster by using Pinniped, follow these steps:
 

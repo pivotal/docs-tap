@@ -38,7 +38,7 @@ spec:
 Where:
 
 - `TARGET-IMAGE` is the image to be scanned.  Digest must be specified.
-- `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For information about publicly available Trivy images, see [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information about using the Trivy CLI, see the [Trivy documentation](https://github.com/aquasecurity/trivy).
+- `TRIVY-SCANNER-IMAGE` is the image containing the Trivy CLI. For example, `aquasec/trivy:0.42.1` For information about publicly available Trivy images, see [DockerHub](https://hub.docker.com/r/aquasec/trivy/tags). For more information about using the Trivy CLI, see the [Trivy documentation](https://github.com/aquasecurity/trivy).  Note: Versions of Trivy greater than 0.42.1 are not yet supported as they output CycloneDX 1.5 which is not yet supported for ingestion.
 
 ## <a id="trivy-db-requirement"></a> Trivy database size requirement
 
