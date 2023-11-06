@@ -1,27 +1,26 @@
 # Snyk in Tanzu Developer Portal
 
-This topic tells you about the Snyk validated frontend plugin.
+This topic tells you about the Snyk front-end plug-in.
 
-The Snyk frontend plug-in displays security vulnerabilities from [snyk.io](https://snyk.io/). The plug-in shows an overview of the vulnerabilities found by Snyk on the Overview tab of an entity, and adds a tab to the entity view showing all details related to the scan.
-To learn more about the Snyk plug-ins visit the [Snyk Backstage documentation](https://github.com/snyk-tech-services/backstage-plugin-snyk).
+The Snyk front-end plug-in displays security vulnerabilities from [snyk.io](https://snyk.io/).
 
-## <a id="add-plugin"></a> Adding the Snyk Plug-in to a Custom Tanzu Developer Portal
+The plug-in shows an overview of the vulnerabilities found by Snyk on the **Overview** tab of an
+entity. The plug-in also adds a tab to the entity view, which shows all details related to the scan.
+For more information, see the
+[Snyk Backstage documentation](https://github.com/snyk-tech-services/backstage-plugin-snyk).
 
-### <a id="buildtime-config"></a> Buildtime Configuration
+## <a id="add-plug-in"></a> Add the plug-in
 
-To add the Snyk plug-in to your custom Tanzu Developer portal, add the frontend plugin to your `tdp-config.yaml` file:
+To add the plug-in to your customized Tanzu Developer Portal, add the front-end plug-in to your
+`tdp-config.yaml` file:
 
 ```yaml
 app:
   plugins:
     ...
     - name: '@vmware-tanzu/tdp-plugin-snyk'
-      version: '^0.0.2'
+      version: 'VERSION'
     ...
 ```
 
-In this example, we use version `^0.0.2` as it is the latest version at the time of writing.
-
-### <a id="runtime-config"></a> Runtime Configuration
-
-There is no runtime configuration required for the Synk frontend plug-in.
+Where `VERSION` is the latest version. For example, `^0.0.2`.
