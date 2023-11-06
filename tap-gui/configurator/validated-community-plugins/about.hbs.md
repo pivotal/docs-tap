@@ -4,7 +4,7 @@ Tanzu Developer Portal has the following available validated community plug-ins:
 
 - [GitHub Actions](github-actions.hbs.md)
 - [Grafana](grafana.hbs.md)
-- [Homepage](home-page.hbs.md)
+- [Homepage](home.hbs.md)
 - [Jira](jira.hbs.md)
 - [Prometheus](prometheus.hbs.md)
 - [Snyk](snyk.hbs.md)
