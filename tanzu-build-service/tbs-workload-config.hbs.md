@@ -83,9 +83,8 @@ To configure a service binding for a Tanzu Application Platform workload, follow
 
         Where:
         - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
-        - `CREDENTIAL-CONTEXT` is the [url context of the credential](https://git-scm.com/docs/gitcredentials#_credential_contexts).
-           If the workload only has one git-credential service binding, this field may be omitted.
-        - `MY-CREDENTIALS` is the credential as defined in the [`git credential` format](https://git-scm.com/docs/git-credential).
+        - `CREDENTIAL-CONTEXT` is the [URL context of the credential](https://git-scm.com/docs/gitcredentials#_credential_contexts). If the workload only has one git-credential service binding, this field can be omitted.
+        - `MY-CREDENTIALS` is the credential defined in the [git credential format](https://git-scm.com/docs/git-credential).
 
 1. Apply the YAML file by running:
 
