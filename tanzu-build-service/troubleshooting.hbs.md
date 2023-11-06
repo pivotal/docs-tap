@@ -174,13 +174,13 @@ If using the Tanzu CLI, manually trigger a build as follows:
 
 If using the kpack CLI, manually trigger a build as follows:
 
-1. List the image resources in the developer namespace:
+1. List the image resources in the developer namespace by running:
 
     ```console
     kp image list -n DEVELOPER-NAMESPACE
     ```
 
-1. Manually trigger the image resources to re-run builds for each failing image:
+1. Manually trigger the image resources to re-run builds for each failing image by running:
 
     ```console
     kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
