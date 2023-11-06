@@ -139,79 +139,79 @@ Use an existing supply chain
 
   1. Create a file called `tdp-workload.yaml` with the following content:
 
-  ```yaml
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    name: tdp-configurator
-    namespace: DEVELOPER-NAMESPACE
-    labels:
-      apps.tanzu.vmware.com/workload-type: web
-      app.kubernetes.io/part-of: tdp-configurator
-  spec:
-    build:
-      env:
-        - name: BP_NODE_RUN_SCRIPTS
-          value: 'set-tdp-config,portal:pack'
-        - name: TDP_CONFIG
-          value: /tmp/tdp-config.yaml
-        - name: TDP_CONFIG_STRING
-          value: ENCODED-TDP-CONFIG-VALUE
+     ```yaml
+     apiVersion: carto.run/v1alpha1
+     kind: Workload
+     metadata:
+      name: tdp-configurator
+      namespace: DEVELOPER-NAMESPACE
+      labels:
+        apps.tanzu.vmware.com/workload-type: web
+        app.kubernetes.io/part-of: tdp-configurator
+     spec:
+      build:
+        env:
+          - name: BP_NODE_RUN_SCRIPTS
+            value: 'set-tdp-config,portal:pack'
+          - name: TDP_CONFIG
+            value: /tmp/tdp-config.yaml
+          - name: TDP_CONFIG_STRING
+            value: ENCODED-TDP-CONFIG-VALUE
 
-    source:
-      image: TDP-IMAGE-LOCATION
-      subPath: builder
-  ```
+      source:
+        image: TDP-IMAGE-LOCATION
+        subPath: builder
+     ```
 
-  Where:
+     Where:
 
-  - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster.
-  - `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier.
-  - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
-    you installed Tanzu Application Platform. You discovered this location earlier when you
-    [identified your Configurator image](#prep-ident-image).
+     - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster.
+     - `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier.
+     - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
+       you installed Tanzu Application Platform. You discovered this location earlier when you
+       [identified your Configurator image](#prep-ident-image).
 
-  Depending on which supply chain you're using or how you configured it, you might need to add extra
-  sections to your workload definition file to accommodate activities such as testing.
+     Depending on which supply chain you're using or how you configured it, you might need to add extra
+     sections to your workload definition file to accommodate activities such as testing.
 
-  For example:
+     For example:
 
-  ```yaml
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    name: tdp-configurator
-    namespace: default
-    labels:
-      apps.tanzu.vmware.com/workload-type: web
-      app.kubernetes.io/part-of: tdp-configurator
-  spec:
-    build:
-      env:
-        - name: BP_NODE_RUN_SCRIPTS
-          value: "set-tdp-config,portal:pack"
-        - name: TDP_CONFIG
-          value: /tmp/tdp-config.yaml
-        - name: TDP_CONFIG_STRING
-          value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
-    source:
-      image: TDP-IMAGE-LOCATION
-      subPath: builder
-  ```
+     ```yaml
+     apiVersion: carto.run/v1alpha1
+     kind: Workload
+     metadata:
+      name: tdp-configurator
+      namespace: default
+      labels:
+        apps.tanzu.vmware.com/workload-type: web
+        app.kubernetes.io/part-of: tdp-configurator
+     spec:
+      build:
+        env:
+          - name: BP_NODE_RUN_SCRIPTS
+            value: "set-tdp-config,portal:pack"
+          - name: TDP_CONFIG
+            value: /tmp/tdp-config.yaml
+          - name: TDP_CONFIG_STRING
+            value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
+      source:
+        image: TDP-IMAGE-LOCATION
+        subPath: builder
+     ```
 
-  The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the Tech Insights
-  front-end and back-end plug-ins.
+     The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the Tech
+     Insights front-end and back-end plug-ins.
 
-  `TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
+     `TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
 
   1. Submit your workload definition file you created earlier by running:
 
-  ```console
-  tanzu apps workload create -f tdp-workload.yaml
-  ```
+     ```console
+     tanzu apps workload create -f tdp-workload.yaml
+     ```
 
-  After the job completes the Image Provider stage of your supply chain, you're ready to move on to
-  [running your customized Tanzu Deveoper Portal instance](running.hbs.md)
+  After the job completes the Image Provider stage of your supply chain,
+  [run your customized Tanzu Deveoper Portal instance](running.hbs.md).
 
   The supply chain does not need to go beyond the image-provider stage. After an image is built, you
   can proceed to [Run your Customized Tanzu Developer Portal](running.hbs.md).
@@ -222,12 +222,12 @@ Use a custom supply chain
 
   1. Create a file called `tdp-sc.yaml` with the following content:
 
-    ```yaml
-    apiVersion: carto.run/v1alpha1
-    kind: ClusterSupplyChain
-    metadata:
+     ```yaml
+     apiVersion: carto.run/v1alpha1
+     kind: ClusterSupplyChain
+     metadata:
       name: tdp-configurator
-    spec:
+     spec:
       resources:
       - name: source-provider
         params:
@@ -261,12 +261,12 @@ Use a custom supply chain
         operator: In
         values:
         - tdp
-    ---
-    apiVersion: carto.run/v1alpha1
-    kind: ClusterImageTemplate
-    metadata:
+     ---
+     apiVersion: carto.run/v1alpha1
+     kind: ClusterImageTemplate
+     metadata:
       name: tdp-kpack-template
-    spec:
+     spec:
       healthRule:
         multiMatch:
           healthy:
@@ -364,12 +364,12 @@ Use a custom supply chain
             - name: TPB_CONFIG_STRING
               value: #@ tpb_config_string
 
-    ---
-    apiVersion: carto.run/v1alpha1
-    kind: ClusterSourceTemplate
-    metadata:
+     ---
+     apiVersion: carto.run/v1alpha1
+     kind: ClusterSourceTemplate
+     metadata:
       name: tdp-source-template
-    spec:
+     spec:
       healthRule:
         singleConditionType: Ready
       lifecycle: mutable
@@ -409,52 +409,52 @@ Use a custom supply chain
           #@ else:
           image: #@ data.values.params.tdp_configurator_bundle
           #@ end
-    ```
+     ```
 
-   Where:
+     Where:
 
-   - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from which
-     you installed Tanzu Application Platform. You discovered this location earlier when you
-     [identified your Configurator image](#prep-ident-image).
-   - `REGISTRY-HOSTNAME` is the name of the container registry that your developer namespace has been
-     configured to push artifacts to.
-   - `IMAGE-REPOSITORY` is the name of the repository (folder) on the `REGISTRY-HOSTNAME` that you want
-     the built artifacts to be pushed to.
+     - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from
+       which you installed Tanzu Application Platform. You discovered this location earlier when you
+       [identified your Configurator image](#prep-ident-image).
+     - `REGISTRY-HOSTNAME` is the name of the container registry that your developer namespace has
+       been configured to push artifacts to.
+     - `IMAGE-REPOSITORY` is the name of the repository (folder) on the `REGISTRY-HOSTNAME` that you
+       want the built artifacts to be pushed to.
 
   1. Submit the custom supply chain file you created earlier by running:
 
-   ```console
-   tanzu apps workload create -f tdp-sc.yaml
-   ```
+     ```console
+     tanzu apps workload create -f tdp-sc.yaml
+     ```
 
   1. Create a file called `tdp-workload.yaml` with the following content:
 
-    ```yaml
-    apiVersion: carto.run/v1alpha1
-    kind: Workload
-    metadata:
+     ```yaml
+     apiVersion: carto.run/v1alpha1
+     kind: Workload
+     metadata:
       name: tdp-configurator-1-sc
       namespace: DEVELOPER-NAMESPACE
       labels:
         apps.tanzu.vmware.com/workload-type: tdp
         app.kubernetes.io/part-of: tdp-configurator-1-custom
-    spec:
+     spec:
       build:
         env:
           - name: TPB_CONFIG_STRING
             value: ENCODED-TDP-CONFIG-VALUE
-    ```
+     ```
 
-   Where:
+     Where:
 
-   - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
-   - `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier
+     - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
+     - `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier
 
   1. Submit the workload definition file you created earlier by running:
 
-   ```console
-   tanzu apps workload create -f tdp-workload.yaml
-   ```
+     ```console
+     tanzu apps workload create -f tdp-workload.yaml
+     ```
 
 After the job completes the Image Provider stage of your supply chain,
 [run your customized Tanzu Developer Portal instance](running.hbs.md).
