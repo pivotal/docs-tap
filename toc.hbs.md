@@ -658,7 +658,7 @@
          - [Configure the Configurator with a private registry](tap-gui/configurator/private-registries.hbs.md)
          - [Run your customized Tanzu Developer Portal](tap-gui/configurator/running.hbs.md)
          - [Troubleshoot Tanzu Developer Portal Configurator](tap-gui/configurator/troubleshooting.hbs.md)
-         - [API Documentation for Surfaces](tap-gui/configurator/api-docs.md)
+         - [API documentation for surfaces](tap-gui/configurator/api-docs.md)
       - [Tanzu Developer Portal plug-ins](tap-gui/plugins/about.hbs.md)
          - [Tanzu Developer Portal plug-ins overview](tap-gui/plugins/about.hbs.md)
          - [Runtime resources visibility](tap-gui/plugins/runtime-resource-visibility.hbs.md)
