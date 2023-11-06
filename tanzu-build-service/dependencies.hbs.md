@@ -250,7 +250,7 @@ Docker command at the bottom, and copy the buildpack image URL for use in the ne
 
 The ClusterBuildpack is now deployed. Tanzu Build Service uses the latest
 available version to execute builds. All images that were built with older versions of the buildpack
-are rebuilt.
+will now be rebuilt.
 
 When you upgrade Tanzu Application Platform, new buildpacks with later versions are installed.
 After an upgrade, the `ClusterBuildpack` created in this procedure is not needed and can be removed.
