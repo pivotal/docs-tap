@@ -301,6 +301,12 @@ This release includes the following changes, listed by component and area.
   documentation. The following Tanzu CLI plug-ins are impacted: Accelerator, Apps, Build Service,
   External Secrets, Insight, and Tanzu Service.
 
+### <a id="1-7-0-rbac-plugin-br"></a> v1.7.0 Breaking changes: Tanzu CLI RBAC plug-in
+
+- The RBAC plug-in for the Tanzu CLI, which was released as a beta to help manage user and group bindings to the
+  Tanzu Application Platform [Default Roles](./authn-authz/overview.hbs.md#default-roles), has been removed in favor of native Kubernetes capability.
+  For more information, see the [Default roles for Tanzu Application Platform](./authn-authz/overview.hbs.md) documentation.
+
 #### <a id='1-7-0-workloads-br'></a> v1.7.0 Breaking changes: Workloads
 
 - Function Buildpacks for Knative and the corresponding Application Accelerator starter templates
@@ -1450,11 +1456,6 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 - Tekton `ClusterTask` is deprecated and marked for removal in Tanzu Application Platform v1.9.
   Use the `Task` API instead. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/deprecations/).
-
-### <a id="1-7-tanzu-cli-rbac-plugin-deprecations"></a> Tanzu CLI RBAC Plugin deprecations
-
-- The `rbac` plugin for the Tanzu CLI, which was released as a beta and intended to help manage user and group bindings to the [out-of-box TAP roles](./authn-authz/overview.hbs.md#default-roles) has been depricated and removed in favor of native Kubernetes functionality.
-  [Authentication and Authorization Documentation](./authn-authz/overview.hbs.md).
 
 ---
 
