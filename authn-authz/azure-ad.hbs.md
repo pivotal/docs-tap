@@ -8,9 +8,7 @@ Perform the following procedures to integrate Azure AD with a new or existing AK
 
 ### <a id="azure-prereqs"></a> Prerequisites
 
-Meet these prerequisites:
-
-* Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+Download and install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 
 ### <a id="set-up-azure-platform"></a> Set up a platform operator
 
@@ -123,9 +121,7 @@ Perform the following procedures to set up Azure AD with Pinniped.
 
 ### <a id="azure-pinniped-prereqs"></a> Prerequisites
 
-Meet these prerequisites:
-
-* Install [Pinniped supervisor and concierge](pinniped-install-guide.hbs.md) on the cluster without
+Install [Pinniped supervisor and concierge](pinniped-install-guide.hbs.md) on the cluster without
 setting up the [OIDCIdentityProvider and secret](pinniped-install-guide.hbs.md#create-pinniped-supervisor-configuration).
 
 ### <a id="set-up-azure-ad-app"></a> Set up the Azure AD app
@@ -270,11 +266,11 @@ Tanzu Application Platform default roles (`app-operator`, `app-viewer`, and `app
 
     Where:
 
-    * `OBJECT-ID` is the object ID
-    * `TAP-ROLE` is the Tanzu Application Platform role
-    * `DEVELOPER-NAMESPACE` is the namespace the for the group to be scoped to
+    * `OBJECT-ID` is the object ID.
+    * `TAP-ROLE` is the Tanzu Application Platform role.
+    * `DEVELOPER-NAMESPACE` is the namespace for scoping the group.
 
-See [Bind a user or group to a default role](./binding.hbs.md) for more details how to bind users/groups to roles.
+For more information about binding users or groups to roles, see [Bind a user or group to a default role](binding.hbs.md).
 
 ### <a id="pinniped-kubeconfig"></a> Set up kubeconfig
 

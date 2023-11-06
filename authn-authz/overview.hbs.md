@@ -2,27 +2,26 @@
 
 Tanzu Application Platform (commonly known as TAP) v{{ vars.url_version }} includes:
 
-- Documentation for [use your existing identity management solution for Kubernetes authentication](integrating-identity.md).
-- Six default roles that can be used to provide authorization for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
+- Documentation for using your existing identity management solution for Kubernetes authentication. For more information, see [Set up authentication for your Tanzu Application Platform deployment](integrating-identity.md).
+- Six default roles for providing authorization for users and service accounts within a namespace on a cluster that runs one of the Tanzu Application Platform profiles. For more information about service accounts, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/).
 
 
 ## <a id="default-roles"></a> Default roles
 
-Tanzu Application Platform has resources that are namespace scoped (such as workloads, pipelineruns, builds, etc) as well as resources that are cluster scoped (such as clusterbuilders, clustersupplychains, clusterimagetemplates, etc).  For users, the Tanzu Application Platform providers 4 roles that include both a namespace scoped role, as well as a cluster scoped role:
+Tanzu Application Platform has resources that are namespace scoped, such as workloads, pipelineruns, builds and resources that are cluster scoped, such as clusterbuilders, clustersupplychains, clusterimagetemplates.  Tanzu Application Platform provides four roles that include both a namespace scoped role and a cluster scoped role:
 
-| Role Name | Role Description | Namespace Scoped Role Name | Cluster Scoped Role Name | 
+| Role name | Role description | Namespace scoped role name | Cluster scoped role name | 
 | ---- | ---- | ---- | ---- | ---- |
 | app-editor | View, create, edit, and delete a Tanzu workload or deliverable. | app-editor | app-editor-cluster-access |
-| app-viewer |  Read-only for a Tanzu workload or deliverable | app-viewer | app-view-cluster-access | 
-| app-operator | View, create, edit, and delete supply chain resources |  app-operator | app-operator-cluster-access |
-| service-operator | View, create, edit, and delete service instances, service instance classes, and resource claim policiesservice-operator | service-operator| service-operator-cluster-access | 
+| app-viewer |  Read-only for a Tanzu workload or deliverable. | app-viewer | app-view-cluster-access | 
+| app-operator | View, create, edit, and delete supply chain resources. |  app-operator | app-operator-cluster-access |
+| service-operator | View, create, edit, and delete service instances, service instance classes, and resource claim policies. | service-operator| service-operator-cluster-access | 
 
-For an detailed view of the different roles and their permissions, see [Role Descriptions](role-descriptions.md).
+For more information about the different roles and their permissions, see [Role descriptions for Tanzu Application Platform](role-descriptions.md).
 
-Additionally, two roles are included for service accounts for namespace scoped resources associated with Tanzu Supply Chains:
+Additionally, the following two roles are available for service accounts for namespace scoped resources associated with Tanzu Supply Chains:
 
-
-| Role Name | Namespace Scoped Role Name |
+| Role name | Namespace scoped role name |
 | ---- | ---- | ---- |
 | workload | workload |
 | deliverable | deliverable |
