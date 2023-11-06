@@ -41,12 +41,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-api-autoreg'></a> v1.7.0 Features: API Auto Registration
 
-- Introduces API curation feature in alpha that is intended for only testing.
+- Introduces API curation feature in alpha that is intended for testing only.
 
 - The new `CuratedAPIDescriptor` custom resource allows aggregating multiple APIs of type OpenAPI in
   a single curated API.
 
-- Integrate with Spring Cloud Gateway for Kubernetes to automatically generate
+- Integrates with Spring Cloud Gateway for Kubernetes to automatically generate
   `SpringCloudGatewayMapping`s and `SpringCloudGatewayRouteConfig`s.
 
 - The API Auto Registration controller exposes API endpoints to view all curated APIs or filter for
