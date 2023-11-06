@@ -151,20 +151,25 @@ Restart IntelliJ to properly detect the context change.
 
 {{> 'partials/ide-extensions/ki-config-writer-pull-requester' }}
 
-## <a id="dsbl-lnch-ctrl"></a> Frequent application restarts
+## <a id="freq-app-restarts"></a> Frequent application restarts
 
 ### Symptom
 
-When an application is applied from Intellij it restarts frequently.
+When an application is applied from IntelliJ it restarts frequently.
 
 ### Cause
 
-Application or environment behaviors triggering the application to restart on a periodic basis.
+An application or environment behavior is triggering the application to restart.
 
-Observed trigger behaviors:
-- The application itself writing logs to the filesystem into the application directory that live update is watching
-- In their IDE configuration the user has autosave settings tuned to very high frequencies
+Observed trigger behaviors include:
+
+- The application itself writing logs to the file system in the application directory that Live Update
+  is watching
+- Autosave being set to a very high frequency in the IDE configuration
 
 ### Solution
 
-The solution depends on the trigger but can be generically described as preventing the trigger behaviors.  For example, 12-factor applications should not be writing to filesystem.  Developers usually do not require very high frequency autosaves.  Once every few minutes if sufficent.
+Prevent the trigger behavior. Example solutions include:
+
+- Prevent 12-factor applications from writing to the file system.
+- Reduce the autosave frequency to once every few minutes.
