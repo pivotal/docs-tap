@@ -6,7 +6,7 @@ This topic gives you an overview of API Auto Registration for Tanzu Application 
 
 API Auto Registration automatically generates API specifications from a workload’s configuration and
 registration of the API entity in the Tanzu Developer Portal’s catalog. You can access the registered API specification
-in Tanzu Developer Portal with no additional steps. As an experimental alpha feature, 
+in Tanzu Developer Portal with no additional steps. As an experimental alpha feature,
 API Auto Registration generates a curated API by combining APIs exposed from multiple workloads.
 
 You can use an automated workflow with a supply chain to create and manage a Kubernetes Custom Resource (CR)
@@ -29,8 +29,8 @@ each curated API is exposed and navigable on your preferred Spring Cloud Gateway
 
 ## <a id='getting-started'></a> Getting started
 
-For information about API Auto Registration architecture, the `APIDescriptor` CR, the `CuratedAPIDescriptor` CR  and
-API entities in Tanzu Developer Portal, see [Key Concepts](key-concepts.hbs.md).
+For information about API Auto Registration architecture, the `APIDescriptor` CR, the
+`CuratedAPIDescriptor` CR, and API entities in Tanzu Developer Portal, see [Key Concepts](key-concepts.hbs.md).
 
 For information about configuring iterate, run, and full Tanzu Application Platform cluster profiles,
 see [Configure API Auto Registration](configuration.hbs.md).
