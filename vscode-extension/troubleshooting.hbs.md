@@ -100,7 +100,7 @@ Your kubeconfig file (`~/.kube/config`) is malformed.
 
 Fix your kubeconfig file.
 
-## <a id="dsbl-lnch-ctrl"></a> Frequent application restarts
+## <a id="freq-app-restarts"></a> Frequent application restarts
 
 ### Symptom
 
