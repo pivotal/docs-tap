@@ -39,7 +39,7 @@ Tanzu Developer Portal currently supports the following validated plug-ins:
 
 - [GitHub Actions](../configurator/validated-community-plugins/github-actions.hbs.md)
 - [Grafana](../configurator/validated-community-plugins/grafana.hbs.md)
-- [Homepage](../configurator/validated-community-plugins/home.hbs.md)
+- [Home](../configurator/validated-community-plugins/home.hbs.md)
 - [Jira](../configurator/validated-community-plugins/jira.hbs.md)
 - [Prometheus](../configurator/validated-community-plugins/prometheus.hbs.md)
 - [Snyk](../configurator/validated-community-plugins/snyk.hbs.md)
