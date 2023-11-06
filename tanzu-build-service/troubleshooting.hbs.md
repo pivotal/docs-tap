@@ -158,7 +158,7 @@ If you do not want to wait for subsequent builds to run, you can use either the 
 plug-in for the Tanzu CLI or the open source [kpack CLI](https://github.com/buildpacks-community/kpack-cli)
 to trigger a build manually.
 
-If using the Tanzu CLI, manually trigger a build as follows:
+**If using the Tanzu CLI**, manually trigger a build as follows:
 
 1. List the image resources in the developer namespace by running:
 
@@ -172,7 +172,7 @@ If using the Tanzu CLI, manually trigger a build as follows:
     tanzu build-service image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
     ```
 
-If using the kpack CLI, manually trigger a build as follows:
+**If using the kpack CLI**, manually trigger a build as follows:
 
 1. List the image resources in the developer namespace by running:
 
