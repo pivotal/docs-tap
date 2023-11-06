@@ -1,30 +1,36 @@
 # Home in Tanzu Developer Portal
 
-This topic tells you about the Home validated frontend plugin.
+This topic tells you about the Home front-end plug-in.
 
-The Homepage frontend plug-in makes it possible to create a custom home page for your Tanzu Developer Portal to conveniently surface important information.
-To learn more about the Homepage plug-ins visit the [Homepage Backstage documentation](https://github.com/backstage/backstage/tree/master/plugins/home).
+The Homepage frontend plug-in makes it possible to create a custom home page for your Tanzu
+Developer Portal to conveniently surface important information. For more information, see the
+[Home documentation](https://github.com/backstage/backstage/tree/master/plugins/home).
 
-## <a id="add-plugin"></a> Adding the Homepage Plug-in to a Custom Tanzu Developer Portal
+## <a id="add-and-configure"></a> Add and configure the plug-in
 
-### <a id="buildtime-config"></a> Buildtime Configuration
+To add the plug-in to your customized Tanzu Developer Portal and configure the plug-in, see the
+following sections.
 
-To add the Homepage plug-in to your custom Tanzu Developer portal, add the frontend plugin to your `tdp-config.yaml` file:
+### <a id="add-plug-in"></a> Add the plug-in
+
+To add the plug-in to your customized Tanzu Developer Portal, add the front-end plug-in to your
+`tdp-config.yaml` file:
 
 ```yaml
 app:
   plugins:
     ...
     - name: '@vmware-tanzu/tdp-plugin-home'
-      version: '^0.0.2'
+      version: 'VERSION'
     ...
 ```
 
-In this example, we use version `^0.0.2` as it is the latest version at the time of writing.
+Where `VERSION` is the latest version. For example, `^0.0.2`.
 
-### <a id="runtime-config"></a> Runtime Configuration
+### <a id="configure-plug-in"></a> Configure the plug-in
 
-To customize your Homepage, update the `app_config` section of your `tap-values.yaml` file like the following example:
+To configure the plug-in, update the `app_config` section of your `tap-values.yaml` file. All of the
+values are optional. For example:
 
 ```yaml
 tap_gui:
@@ -51,7 +57,4 @@ tap_gui:
 
 ```
 
-Where:
-
-* all of the values are optional
-* `BASE64-ENCODED-LOGO-STRING` and 'BASE64-ENCODED-ICON-STRING' are base64 encoded svgs
+Where `BASE64-ENCODED-LOGO-STRING` and `BASE64-ENCODED-ICON-STRING` are Base64-encoded SVG files.

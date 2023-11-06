@@ -1,36 +1,42 @@
 # SonarQube in Tanzu Developer Portal
 
-This topic tells you about the SonarQube validated frontend and backend plugins.
+This topic tells you about the SonarQube validated front-end and back-end plugins.
 
-The SonarQube frontend plug-in displays static analysis code quality statistics.
-To learn more about the SonarQube plug-ins visit the [SonarQube Backstage documentation](https://github.com/backstage/backstage/blob/master/plugins/sonarqube).
+The SonarQube front-end plug-in displays static analysis code quality statistics.
+For more information, see the
+[SonarQube Backstage documentation](https://github.com/backstage/backstage/blob/master/plugins/sonarqube).
 
-## <a id="add-plugin"></a> Adding the SonarQube Plug-ins to a Custom Tanzu Developer Portal
+## <a id="add-and-configure"></a> Add and configure the plug-in
 
-### <a id="buildtime-config"></a> Buildtime Configuration
+To add the plug-in to your customized Tanzu Developer Portal and configure the plug-in, see the
+following sections.
 
-To add the SonarQube plug-ins to your custom Tanzu Developer portal, add the frontend and backend plugins to your `tdp-config.yaml` file:
+### <a id="add-plug-in"></a> Add the plug-in
 
-  ```yaml
-  app:
-    plugins:
-      ...
-      - name: '@vmware-tanzu/tdp-plugin-backstage-sonarqube'
-        version: '^0.0.2'
-      ...
-  backend:
-    plugins:
-      ...
-      - name: '@vmware-tanzu/tdp-plugin-backstage-sonarqube-backend'
-        version: '^0.0.3'
-      ...
-  ```
+To add the plug-in to your customized Tanzu Developer Portal, add the front-end and back-end
+plug-ins to your `tdp-config.yaml` file:
 
-In this example, we use versions `^0.0.2` and `^0.0.3` as they are the latest versions at the time of writing.
+```yaml
+app:
+  plugins:
+    ...
+    - name: '@vmware-tanzu/tdp-plugin-backstage-sonarqube'
+      version: 'VERSION'
+    ...
+backend:
+  plugins:
+    ...
+    - name: '@vmware-tanzu/tdp-plugin-backstage-sonarqube-backend'
+      version: 'VERSION'
+    ...
+```
 
-### <a id="runtime-config"></a> Runtime Configuration
+Where `VERSION` is the latest version for each plug-in. For example, `^0.0.2` and `^0.0.3`.
 
-To connect your Stack Overflow plug-in to a running instance, update the `app_config` section of your `tap-values.yaml` file like the following example:
+### <a id="configure-plug-in"></a> Configure the plug-in
+
+To connect your Stack Overflow plug-in to a running instance, update the `app_config` section of
+your `tap-values.yaml` file. For example:
 
 ```yaml
 tap_gui:
@@ -42,13 +48,14 @@ tap_gui:
       apiKey: 'SONARQUBE-API-KEY'
 
 ```
+
 Where:
 
-* `SONARQUBE-URL` is the url of your SonarQube instance.
-* `SONARQUBE-API-KEY` is a valid api key for connecting to the SonarQube instance.
+- `SONARQUBE-URL` is the URL of your SonarQube instance
+- `SONARQUBE-API-KEY` is a valid API key for connecting to the SonarQube instance
 
-
-Add the `annotations` entry for sonarqube to the catalog entity to display the sonarqube project results on the component overview tab.
+Add the `annotations` entry for SonarQube to the catalog entity to display the SonarQube project
+results on the component overview tab.
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -59,4 +66,5 @@ metadata:
     sonarqube.org/project-key: YOUR_INSTANCE_NAME/YOUR_PROJECT_KEY
 ```
 
-More detailed explanation for Sonarqube configuration is available [here](https://github.com/backstage/backstage/blob/master/plugins/sonarqube-backend/README.md).
+For a more detailed explanation of SonarQube configuration, see
+[SonarQube Backstage documentation](https://github.com/backstage/backstage/blob/master/plugins/sonarqube-backend/README.md).

@@ -1,30 +1,36 @@
 # Stack Overflow in Tanzu Developer Portal
 
-This topic tells you about the Stack Overflow validated frontend plugin.
+This topic tells you about the Stack Overflow front-end plug-in.
 
-The Stack Overflow frontend plug-in provides Stack Overflow functionality in your Tanzu Developer Portal.
-To learn more about the Stack Overflow plug-ins visit the [Stack Overflow Backstage documentation](https://github.com/backstage/backstage/tree/master/plugins/stack-overflow).
+The Stack Overflow front-end plug-in provides Stack Overflow functions in Tanzu Developer Portal.
+For more information, see the
+[Backstage Stack Overflow documentation](https://github.com/backstage/backstage/tree/master/plugins/stack-overflow).
 
-## <a id="add-plugin"></a> Adding the Stack Overflow Plug-in to a Custom Tanzu Developer Portal
+## <a id="add-and-configure"></a> Add and configure the plug-in
 
-### <a id="buildtime-config"></a> Buildtime Configuration
+To add the plug-in to your customized Tanzu Developer Portal and configure the plug-in, see the
+following sections.
 
-To add the Stackoverflow plug-in to your custom Tanzu Developer portal, add the frontend plugin to your `tdp-config.yaml` file:
+### <a id="add-plug-in"></a> Add the plug-in
 
-  ```yaml
-  app:
-    plugins:
-      ...
-      - name: '@vmware-tanzu/tdp-plugin-stack-overflow'
-        version: '^0.0.2'
-      ...
-  ```
+To add the plug-in to your customized Tanzu Developer Portal, add the front-end plug-in to your
+`tdp-config.yaml` file:
 
-In this example, we use version `^0.0.2` as it is the latest version at the time of writing.
+```yaml
+app:
+  plugins:
+    ...
+    - name: '@vmware-tanzu/tdp-plugin-stack-overflow'
+      version: 'VERSION'
+    ...
+```
 
-### <a id="runtime-config"></a> Runtime Configuration
+Where `VERSION` is the latest version. For example, `^0.0.2`.
 
-To configure your Stack Overflow plug-in, update the `app_config` section of your `tap-values.yaml` file like the following example:
+### <a id="configure-plug-in"></a> Configure the plug-in
+
+To configure your Stack Overflow plug-in, update the `app_config` section of your `tap-values.yaml`
+file. For example:
 
 ```yaml
 tap_gui:

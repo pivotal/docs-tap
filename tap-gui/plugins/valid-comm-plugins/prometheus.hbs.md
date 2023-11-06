@@ -1,30 +1,36 @@
 # Prometheus in Tanzu Developer Portal
 
-This topic tells you about the Prometheus validated frontend plugin.
+This topic tells you about the Prometheus front-end plug-in.
 
-The Prometheus frontend plug-in displays Prometheus information in your Tanzu Developer Portal. 
-To learn more about the Snyk plug-ins visit the [Prometheus Plug-in documentation](https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-prometheus).
+The Prometheus front-end plug-in displays Prometheus information in your Tanzu Developer Portal.
+For more information, see the
+[Prometheus plug-in documentation](https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-prometheus).
 
-## <a id="add-plugin"></a> Adding the Prometheus Plug-in to a Custom Tanzu Developer Portal
+## <a id="add-and-configure"></a> Add and configure the plug-in
 
-### <a id="buildtime-config"></a> Buildtime Configuration
+To add the plug-in to your customized Tanzu Developer Portal and configure the plug-in, see the
+following sections.
 
-To add the Prometheus plug-in to your custom Tanzu Developer portal, add the frontend plugin to your `tdp-config.yaml` file:
+### <a id="add-plug-in"></a> Add the plug-in
+
+To add the plug-in to your customized Tanzu Developer Portal, add the front-end plug-in to your
+`tdp-config.yaml` file:
 
 ```yaml
 app:
   plugins:
     ...
     - name: '@vmware-tanzu/tdp-plugin-prometheus'
-      version: '^0.0.2'
+      version: 'VERSION'
     ...
 ```
 
-In this example, we use version `^0.0.2` as it is the latest version at the time of writing.
+Where `VERSION` is the latest version. For example, `^0.0.2`.
 
-### <a id="runtime-config"></a> Runtime Configuration
+### <a id="configure-plug-in"></a> Configure the plug-in
 
-To configure the Prometheus plug-in, update the `app_config` section of your `tap-values.yaml` file to include a `proxy` entry and `prometheus` configiration like the following example:
+To configure the Prometheus plug-in, update the `app_config` section of your `tap-values.yaml` file
+to include a `proxy` entry and `prometheus` configuration. For example:
 
 ```yaml
 tap_gui:
@@ -46,6 +52,5 @@ tap_gui:
       proxyPath: /prometheus/api
       uiUrl: http://localhost:9090
 ```
-Where:
 
-* `PROMETHEUS-AUTH-TOKEN` is a valid token for your secure prometheus instance.
+Where `PROMETHEUS-AUTH-TOKEN` is a valid token for your secure `prometheus` instance

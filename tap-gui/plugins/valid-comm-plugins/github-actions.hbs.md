@@ -1,30 +1,36 @@
 # GitHub Actions in Tanzu Developer Portal
 
-This topic tells you about the GitHub Actions validated frontend plugin.
+This topic tells you about the GitHub Actions validated front-end plug-in.
 
-The GitHub Actions frontend plug-in visualizes your GitHub Actions integrations.
-To learn more about the GitHub Actions plug-ins visit the [GitHub Actions Backstage documentation](https://github.com/backstage/backstage/tree/master/plugins/github-actions).
+The GitHub Actions front-end plug-in visualizes your GitHub Actions integrations.
+For more information, see the
+[GitHub Actions Backstage documentation](https://github.com/backstage/backstage/tree/master/plugins/github-actions).
 
-## <a id="add-plugin"></a> Adding the GitHub Actions Plug-in to a Custom Tanzu Developer Portal
+## <a id="add-and-configure"></a> Add and configure the plug-in
 
-### <a id="buildtime-config"></a> Buildtime Configuration
+To add the plug-in to your customized Tanzu Developer Portal and configure the plug-in, see the
+following sections.
 
-To add the GitHub Actions plug-in to your custom Tanzu Developer portal, add the frontend plugin to your `tdp-config.yaml` file:
+### <a id="add-plug-in"></a> Add the plug-in
+
+To add the plug-in to your customized Tanzu Developer Portal, add the front-end plug-in to your
+`tdp-config.yaml` file:
 
 ```yaml
 app:
   plugins:
     ...
     - name: '@vmware-tanzu/tdp-plugin-github-actions'
-      version: '^0.0.2'
+      version: 'VERSION'
     ...
 ```
 
-In this example, we use version `^0.0.2` as it is the latest version at the time of writing.
+Where `VERSION` is the latest version. For example, `^0.0.2`.
 
-### <a id="runtime-config"></a> Runtime Configuration
+### <a id="configure-plug-in"></a> Configure the plug-in
 
-To configure the GitHub Actions plug-in, update the `app_config` section of your `tap-values.yaml` file to include a gitHub integration like the following example:
+To configure the plug-in, update the `app_config` section of your `tap-values.yaml` file to include
+a GitHub integration. For example:
 
 ```yaml
 tap_gui:
@@ -36,6 +42,5 @@ tap_gui:
         - host: 'GITHUB-HOST.com'
           apiBaseUrl: 'https://api.GITHUB-HOST.com'
 ```
-Where:
 
-* `GITHUB-HOST` is the domain of your github.
+Where `GITHUB-HOST` is your GitHub domain

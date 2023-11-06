@@ -1,13 +1,5 @@
-# Overview of Tanzu Developer Portal Validated Community plug-ins
+# Overview of validated community plug-ins for Tanzu Developer Portal
 
-Tanzu Developer Portal has the following available validated community plug-ins:
-
-- [GitHub Actions](github-actions.hbs.md)
-- [Grafana](grafana.hbs.md)
-- [Homepage](home.hbs.md)
-- [Jira](jira.hbs.md)
-- [Prometheus](prometheus.hbs.md)
-- [Snyk](snyk.hbs.md)
-- [SonarQube](sonarqube.hbs.md)
-- [Stack Overflow](stack-overflow.hbs.md)
-- [TechInsights](techinsights.hbs.md)
+Validated plug-ins are Backstage plug-ins or community plug-ins that VMware has validated for use
+with Tanzu Developer Portal. You don't need to create custom wrappers to integrate these plug-ins
+with Tanzu Developer Portal.
