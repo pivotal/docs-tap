@@ -7,20 +7,22 @@ This topic tells you how to create your own ClusterImageTemplate and customize t
 The following prerequisite is required to author a ClusterImageTemplate for Supply Chain integration:
 
 - You create your own ImageVulnerabilityScan or configured one of the samples provided in [Configure your custom ImageVulnerabilityScan](./ivs-custom-samples.hbs.md).
-- See ClusterImageTemplate [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
-- Understand `ytt` templating. See Carvel `ytt` [docs](https://carvel.dev/ytt/) for documentation and playground samples.
+- For more information, see ClusterImageTemplate in the [Cartographer documentation](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate).
+- Understand `ytt` templates. See Carvel `ytt` [docs](https://carvel.dev/ytt/) for documentation and playground samples.
 
 ## <a id='create-clusterimagetemplate'></a> Create a ClusterImageTemplate
 
 This section describes how to create a ClusterImageTemplate using an ImageVulnerabilityScan with Trivy. To use a different scanner, replace the embedded ImageVulnerabilityScan with your own.
 
-ClusterImageTemplate Notes:
-* The `spec.params` in this sample yaml are used to define default values for fields within the ImageVulnerabilityScan. See `params` [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
-  * The `spec.params` fields are referenced by `#@ data.values.params` in the `ytt` template block and in the ImageVulnerabilityScan.
-* The values in the `data.values.workload` such as `metadata`, `labels`, `annotations`, `spec` come from the supply chain workload.
-* The `data.values.image` is the container image built from Buildpacks in the previous step in the SupplyChain that will be scanned for vulnerabilities.
-* `ytt` is used in this sample yaml to define a resource template written in `ytt` for the ImageVulnerabilityScan Custom Resource. See `ytt` [docs](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate) for more details.
-  * For example, inside the `ytt` template are defined functions that can be used within the ImageVulnerabilityScan.
+ClusterImageTemplate parameters and values:
+
+* The `spec.params` in this sample YAML define default values for fields within the ImageVulnerabilityScan. For more information, see `params` in the [Cartographer documentation](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate).
+  * `#@ data.values.params` in the `ytt` template block and in the ImageVulnerabilityScan both reference `spec.params` fields.
+* The values in the `data.values.workload` such as `metadata`, `labels`, `annotations`, and `spec` come from the supply chain workload.
+* The `data.values.image` is the container image built from Buildpacks in the supply chain step that scans for vulnerabilities.
+* The example YAML in this topic uses `ytt` to define a resource template written in `ytt` for the ImageVulnerabilityScan Custom Resource. For more information, see `ytt` in the [Cartographer documentation](https://cartographer.sh/docs/v0.3.0/reference/template/#clusterimagetemplate). For example, inside the `ytt` template are defined functions that you can use within the ImageVulnerabilityScan.
+
+To create a ClusterImageTemplate:
 
 1. Create a YAML file with the following content and name it `custom-ivs-template.yaml`.
 
@@ -200,9 +202,10 @@ ClusterImageTemplate Notes:
 >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
 
 2. Edit the following in your `custom-ivs-template.yaml` file:
+
   - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-  - `REGISTRY-SERVER` is the registry server which is used for the scan results location.
-  - `REGISTRY-REPOSITORY` is the registry repository which is used for the scan results location.
+  - `REGISTRY-SERVER` is the registry server used for the scan results location.
+  - `REGISTRY-REPOSITORY` is the registry repository used for the scan results location.
   - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
   - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
