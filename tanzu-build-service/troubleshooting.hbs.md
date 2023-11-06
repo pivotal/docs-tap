@@ -138,3 +138,50 @@ Alternatively, re-add the `buildservice.kp_default_repository_*` fields
 in the `tap-values.yaml`. You must set both the repository and the
 authentication fields to override the shared values. Set `kp_default_repository`, `kp_default_repository_secret.name`, and
 `kp_default_repository_secret.namespace`.
+
+## <a id='failed-builds-upgrade'></a> Failing builds during an upgrade
+
+### Symptom
+
+During upgrades a large number of builds might be created due to buildpack and stack updates.
+Some of these builds might fail causing the workload to be in an unhealthy state.
+
+### Cause
+
+Builds fail due to transient network issues.
+
+### Solution
+
+This resolves itself on subsequent builds after a code change and does not affect the running application.
+
+If you do not want to wait for subsequent builds to run, you can use either the Tanzu Build Service
+plug-in for the Tanzu CLI or the open source [kpack CLI](https://github.com/buildpacks-community/kpack-cli)
+to trigger a build manually.
+
+**If using the Tanzu CLI**, manually trigger a build as follows:
+
+1. List the image resources in the developer namespace by running:
+
+    ```console
+    tanzu build-service image list -n DEVELOPER-NAMESPACE
+    ```
+
+1. Manually trigger the image resources to re-run builds for each failing image by running:
+
+    ```console
+    tanzu build-service image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```
+
+**If using the kpack CLI**, manually trigger a build as follows:
+
+1. List the image resources in the developer namespace by running:
+
+    ```console
+    kp image list -n DEVELOPER-NAMESPACE
+    ```
+
+1. Manually trigger the image resources to re-run builds for each failing image by running:
+
+    ```console
+    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```

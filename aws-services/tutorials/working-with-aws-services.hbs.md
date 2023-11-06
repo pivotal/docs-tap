@@ -53,7 +53,7 @@ tanzu service class-claim create CLAIM-NAME --class CLASS-NAME
 
 Where:
 
-- `CLAIM-NAME` is the name you want for your claim, for example, `rds-1`.
+- `CLAIM-NAME` is the name you choose for your claim, for example, `rds-1`.
 - `CLASS-NAME` is one of the services listed earlier.
 
 It takes about 5 to 10 minutes for the service instance to be provisioned.

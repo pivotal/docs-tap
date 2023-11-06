@@ -57,7 +57,8 @@ This release includes the following changes, listed by component and area.
 - Includes built-in integration of application bootstrap provenance through an accelerator into
   Artifact Metadata Repository (AMR).
   This enables application architects to get advanced insight into how accelerators are used,
-  such as, the most commonly and rarely used accelerators. For more information, see [Integration with AMR](./application-accelerator/provenance.hbs.md)
+  such as, the most commonly and rarely used accelerators.
+  For more information, see [Integration with AMR](./application-accelerator/provenance.hbs.md#amr)
 
 #### <a id='1-7-0-app-config-service'></a> v1.7.0 Features: Application Configuration Service
 
@@ -65,13 +66,6 @@ This release includes the following changes, listed by component and area.
 
 - When debugging `ConfigurationSlice` resources, you now see status information from `GitRepository`
   resources if any of the errors are related to the `GitRepository` reconciliation.
-
-#### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
-
-- Developers can override the settings for the Kubernetes default liveness, readiness, and startup
-  probes for Spring Boot apps in Tanzu Application.
-  For more information, see
-  [Configure liveness, readiness, and startup probes for Spring Boot applications](./spring-boot-conventions/config-probes.hbs.md).
 
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
@@ -189,22 +183,32 @@ This release includes the following changes, listed by component and area.
 - You can add triage analysis to vulnerabilities from a vulnerability scanner step.
   For more information, see [Triage Vulnerabilities](tap-gui/plugins/scc-tap-gui.hbs.md#triage-vulnerabilities)
 
-- RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
-  For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+- Adds role-based access control (RBAC) support based on namespace to allow a user with a
+  namespace scoped account to select a namespace within the plugin. For more information, see
+  [Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
 
 #### <a id='1-7-0-security-analysis-plugin'></a> v1.7.0 Features: Security Analysis plug-in for Tanzu Developer Portal
 
-- RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
-  For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+- Adds RBAC support based on namespace to allow a user with a namespace scoped account to
+  select a namespace within the plugin. For more information, see
+  [Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+
+#### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
+
+- Developers can override the settings for the Kubernetes default liveness, readiness, and startup
+  probes for Spring Boot apps in Tanzu Application Platform.
+  For more information, see
+  [Configure liveness, readiness, and startup probes for Spring Boot applications](./spring-boot-conventions/config-probes.hbs.md).
 
 #### <a id='1-7-0-scst-scan'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Scan
 
 - Adds support for Pod Security Admission with Pod Security Standards enforced.
 
-- Adds support for the new version Tanzu CLI Insight plug-in.
+- Adds support for the new version of the Tanzu CLI Insight plug-in.
 
-- [Supply Chain Security Tools - Scan 2.0 Beta](scst-scan/app-scanning-beta.hbs.md) 
-  - Switches Trivy the default scanner for container image scanning using the included image and template.  Scan 1.0 will maintain Grype as the default.
+- [SCST - Scan 2.0 (beta)](scst-scan/app-scanning-beta.hbs.md) now uses Trivy as
+  the default scanner for container image scanning using the included image and template.
+  SCST - Scan 1.0 maintains Grype as the default.
 
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
@@ -1094,6 +1098,11 @@ The following issues, listed by component and area, are resolved in this release
 - Authorization servers display OpenID Connect (OIDC) providers on the login page even when there
   are no SAML providers.
 
+#### <a id='1-7-0-amr-obs-ce-hndlr-ri'></a> v1.7.0 Resolved issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- The ReplicaSet status in AMR now shows the `available` and `unavailable` states in addition to
+  `created` and `deleted`.
+
 #### <a id='1-7-0-cnrs-ri'></a> v1.7.0 Resolved issues: Cloud Native Runtimes
 
 - Certain combinations of app name, namespace, and domain no longer produce Knative Services with
@@ -1111,6 +1120,18 @@ The following issues, listed by component and area, are resolved in this release
 
 - The package Supply Chain can now generate a Carvel package when building an image from source and
   uploading it to a private registry using a certificate.
+
+#### <a id='1-7-0-sc-plugin-ri'></a> v1.7.0 Resolved issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Workloads created by using a custom resource definition (CRD) work as expected.
+
+- Downloading the SBOM from a vulnerability scan no longer requires additional configuration in
+  `tap-values.yaml`.
+
+#### <a id='1-7-0-vscode-plugin-ri'></a> v1.7.0 Resolved issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is is correctly
+  categorized as **Supply Chain**.
 
 ---
 
@@ -1209,8 +1230,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
-- When using SCST - Scan 2.0 with a ClusterImageTemplate the value for the scanning image is overwritten 
-  with and incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in TAP Values.
+- When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
+  with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
+  `tap-values.yaml` file.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
   For example, for the Trivy image packaged with Tanzu Application Platform:
 
@@ -1221,44 +1243,18 @@ This release has the following known issues, listed by component and area.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
     ```
 
-- When using SCST - Scan 2.0: Trivy is required to be pinned version 0.42.1 because CycloneDX 1.5 was made the default for newer versions and is not supported by AMR. 
+- When using SCST - Scan 2.0, Trivy is must be pinned to v0.42.1. This is because CycloneDX v1.5 is
+  the default for later versions of Trivy and is not supported by AMR.
 
 #### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
 
-- During upgrades a large number of builds may get created due to buildpack and stack bumps. 
-  It is possible that some of these builds might fail due to transient network issues, 
-  causing the workload to be en an unhealthy state. This will resolve itself on subsequent builds
-  after a code change and will not affect the running application. 
+- During upgrades a large number of builds might be created due to buildpack and stack updates.
+  Some of these builds might fail due to transient network issues,
+  causing the workload to be in an unhealthy state. This resolves itself on subsequent builds
+  after a code change and does not affect the running application.
 
-  If you do not want to wait for subsequent builds to run, you can use the Tanzu Build Service plugin 
-  for the Tanzu Cli to trigger a build manually.
-
-1. List the image resources in the developer namespace:
-
-    ```console
-    tanzu build-service image list -n DEVELOPER-NAMESPACE
-    ```
-
-2. Manually trigger the image resources to re-run builds for each failing image:
-
-    ```console
-    tanzu build-service image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-    ```
-   
-  Alternatively, you can use the open source [kpack cli](https://github.com/buildpacks-community/kpack-cli) to do
-  the same thing.
-
-1. List the image resources in the developer namespace:
-
-    ```console
-    kp image list -n DEVELOPER-NAMESPACE
-    ```
-
-2. Manually trigger the image resources to re-run builds for each failing image:
-
-    ```console
-    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-    ```
+  If you do not want to wait for subsequent builds to run, you can manually trigger a build.
+  For instructions, see [Troubleshooting](./tanzu-build-service/troubleshooting.hbs.md#failed-builds-upgrade).
 
 #### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
 
@@ -1312,56 +1308,55 @@ This release has the following known issues, listed by component and area.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-| Component Name                                     | Version                            |
-| -------------------------------------------------- | ---------------------------------- |
-| API Auto Registration                              |                                    |
-| API portal                                         |                                    |
-| Application Accelerator                            |                                    |
-| Application Configuration Service                  |                                    |
-| Application Live View APIServer                    |                                    |
-| Application Live View back end                     |                                    |
-| Application Live View connector                    |                                    |
-| Application Live View conventions                  |                                    |
-| Application Single Sign-On                         | 5.0.0                              |
-| Aria Operations for Applications dashboard (Beta)  |                                    |
-| AWS Services                                       |                                    |
-| Bitnami Services                                   |                                    |
-| Cartographer Conventions                           |                                    |
-| cert-manager                                       | 2.4.1(contains cert-manager v1.12) |
-| Cloud Native Runtimes                              | 2.4.1                              |
-| Contour                                            | 1.25.2                             |
-| Crossplane                                         |                                    |
-| Default Roles                                      |                                    |
-| Developer Conventions                              |                                    |
-| External Secrets Operator                          |                                    |
-| Flux CD Source Controller                          |                                    |
-| Local Source Proxy                                 |                                    |
-| Namespace Provisioner                              |                                    |
-| Out of the Box Delivery - Basic                    |                                    |
-| Out of the Box Supply Chain - Basic                |                                    |
-| Out of the Box Supply Chain - Testing              |                                    |
-| Out of the Box Supply Chain - Testing and Scanning |                                    |
-| Out of the Box Templates                           |                                    |
-| Service Bindings                                   |                                    |
-| Service Registry                                   |                                    |
-| Services Toolkit                                   |                                    |
-| Source Controller                                  |                                    |
-| Spring Boot conventions                            |                                    |
-| Spring Cloud Gateway                               |                                    |
-| Supply Chain Choreographer                         |                                    |
-| Supply Chain Security Tools - Policy Controller    |                                    |
-| Supply Chain Security Tools - Scan                 | 1.7.1                              |
-| Supply Chain Security Tools - Store                |                                    |
-| Tanzu Developer Portal                             |                                    |
-| Tanzu Application Platform Telemetry               |                                    |
-| Tanzu Build Service                                |                                    |
-| Tanzu CLI                                          |                                    |
-| Tanzu CLI Application Accelerator plug-in          |                                    |
-| Tanzu CLI Apps plug-in                             |                                    |
-| Tanzu CLI Build Service plug-in                    |                                    |
-| Tanzu CLI Insight plug-in                          |                                    |
-| Tanzu Service CLI plug-in                          |                                    |
-| Tekton Pipelines                                   |                                    |
+| Component Name                                     | Version                             |
+| -------------------------------------------------- | ----------------------------------- |
+| API Auto Registration                              | 0.4.0                               |
+| API portal                                         | 1.4.4                               |
+| Application Accelerator                            | 1.7.3                               |
+| Application Configuration Service                  | 2.2.0                               |
+| Application Live View APIServer                    | 1.7.2                               |
+| Application Live View back end                     | 1.7.2                               |
+| Application Live View connector                    | 1.7.2                               |
+| Application Live View conventions                  | 1.7.2                               |
+| Application Single Sign-On                         | 5.0.0                               |
+| Artifact Metadata Repository Observer              | 0.2.1                               |
+| AWS Services                                       | 0.1.0                               |
+| Bitnami Services                                   | 0.3.1                               |
+| Carbon Black Scanner for SCST - Scan (beta)        | 1.2.2                               |
+| Cartographer Conventions                           | 0.8.5                               |
+| cert-manager                                       | 2.4.1 (contains cert-manager v1.12) |
+| Cloud Native Runtimes                              | 2.4.1                               |
+| Contour                                            | 1.25.2                              |
+| Crossplane                                         | 0.3.0                               |
+| Default Roles                                      | 1.1.0                               |
+| Developer Conventions                              | 0.14.0                              |
+| External Secrets Operator                          | 0.9.4                               |
+| Flux CD Source Controller                          | 0.36.1                              |
+| Grype Scanner for SCST - Scan                      | 1.7.0                               |
+| Local Source Proxy                                 | 0.2.1                               |
+| Namespace Provisioner                              | 0.5.0                               |
+| Out of the Box Delivery - Basic                    | 0.14.7                              |
+| Out of the Box Supply Chain - Basic                | 0.14.7                              |
+| Out of the Box Supply Chain - Testing              | 0.14.7                              |
+| Out of the Box Supply Chain - Testing and Scanning | 0.14.7                              |
+| Out of the Box Templates                           | 0.14.7                              |
+| Service Bindings                                   | 0.10.2                              |
+| Service Registry                                   | 1.2.0                               |
+| Services Toolkit                                   | 0.12.0                              |
+| Snyk Scanner for SCST - Scan (beta)                | 1.1.0                               |
+| Source Controller                                  | 0.8.3                               |
+| Spring Boot conventions                            | 1.7.2                               |
+| Spring Cloud Gateway                               | 2.1.4                               |
+| Supply Chain Choreographer                         | 0.8.5                               |
+| Supply Chain Security Tools - Policy Controller    | 1.6.3                               |
+| Supply Chain Security Tools - Scan                 | 1.7.1                               |
+| Supply Chain Security Tools - Scan 2.0             | 0.2.1                               |
+| Supply Chain Security Tools - Store                | 1.7.1                               |
+| Tanzu Developer Portal                             | 1.7.7                               |
+| Tanzu Application Platform Telemetry               | 0.7.0                               |
+| Tanzu Build Service                                | 1.12.2                              |
+| Tanzu CLI                                          | 1.1                                 |
+| Tekton Pipelines                                   | 0.50.1                              |
 
 ---
 
@@ -1458,7 +1453,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id="1-7-tanzu-cli-rbac-plugin-deprecations"></a> Tanzu CLI RBAC Plugin deprecations
 
-- The `rbac` plugin for the Tanzu CLI, which was released as a beta and intended to help manage user and group bindings to the [out-of-box TAP roles](./authn-authz/overview.hbs.md#default-roles) has been depricated and removed in favor of native Kubernetes functionality.  
+- The `rbac` plugin for the Tanzu CLI, which was released as a beta and intended to help manage user and group bindings to the [out-of-box TAP roles](./authn-authz/overview.hbs.md#default-roles) has been depricated and removed in favor of native Kubernetes functionality.
   [Authentication and Authorization Documentation](./authn-authz/overview.hbs.md).
 
 ---

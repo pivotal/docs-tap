@@ -20,7 +20,7 @@ project:
 For more information about the structure of the file and how to enable application bootstrapping
 provenance, see [Provenance transform](creating-accelerators/transforms/provenance.hbs.md).
 
-## Integration with AMR
+## <a id="amr"></a> Integration with AMR
 
 Application Accelerator also closely integrates with the [Artifact Metadata Repository](../scst-store/overview.hbs.md) (AMR).
 
