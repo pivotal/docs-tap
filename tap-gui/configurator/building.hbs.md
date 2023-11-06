@@ -9,7 +9,7 @@ Ensure that the following is true:
 - Configurator has a running and operating Tanzu Application Platform instance to build the
   customized portal and run the resulting customized image. You can use a `full` profile for
   everything or you can use a `build` profile for customizing the portal and a `view` profile for
-  running the customized po rtal. For more information, see
+  running the customized portal. For more information, see
   [Components and installation profiles for Tanzu Application Platform](../../about-package-profiles.hbs.md).
 
 - Your instance of Tanzu Application Platform has a working supply chain that can build the Tanzu
@@ -126,13 +126,10 @@ packages to.
 2. Record this value to later use it in place of the `TDP-IMAGE-LOCATION` placeholder in the
    workload definition.
 
-## Choose a method for customization
+## <a id="build"></a> Build your customized portal
 
-Now it's time to pass your workload through a supply chain. There are two options that you can
-pursue in order to build your custom portal:
-
-- [Use an existing supply chain](#method-1-use-an-existing-supply-chain)
-- [Use a custom supply chain](#method-2-use-a-custom-supply-chain)
+There are two options for passing your workload through a supply chain and building your customized
+portal:
 
 Use an existing supply chain
 : To use an existing supply chain to build your custom portal:
@@ -199,26 +196,27 @@ Use an existing supply chain
         subPath: builder
      ```
 
-     The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the Tech
-     Insights front-end and back-end plug-ins.
+     The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the
+     TechInsights front-end and back-end plug-ins.
 
      `TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
 
-  1. Submit your workload definition file you created earlier by running:
+  2. Submit your workload definition file that you created earlier by running:
 
      ```console
      tanzu apps workload create -f tdp-workload.yaml
      ```
 
-  After the job completes the Image Provider stage of your supply chain,
-  [run your customized Tanzu Deveoper Portal instance](running.hbs.md).
+  After the job finishes the Image Provider stage of your supply chain,
+  [run your customized Tanzu Developer Portal instance](running.hbs.md).
 
   The supply chain does not need to go beyond the image-provider stage. After an image is built, you
-  can proceed to [Run your Customized Tanzu Developer Portal](running.hbs.md).
+  can proceed to [run your customized Tanzu Developer Portal](running.hbs.md).
 
 Use a custom supply chain
-: To create a custom supply chain for `workload-type`: `tdp` that encompasses just the steps necessary
-  to build the customized image.
+: To use an existing supply chain to build your custom portal, follow these steps.
+  This method creates a custom supply chain for `workload-type: tdp` that encompasses only the steps
+  necessary to build the customized image:
 
   1. Create a file called `tdp-sc.yaml` with the following content:
 
@@ -416,18 +414,18 @@ Use a custom supply chain
      - `TDP-IMAGE-LOCATION` is the location of the Configurator image in the image registry from
        which you installed Tanzu Application Platform. You discovered this location earlier when you
        [identified your Configurator image](#prep-ident-image).
-     - `REGISTRY-HOSTNAME` is the name of the container registry that your developer namespace has
-       been configured to push artifacts to.
+     - `REGISTRY-HOSTNAME` is the name of the container registry that your developer namespace was
+       configured to push artifacts to.
      - `IMAGE-REPOSITORY` is the name of the repository (folder) on the `REGISTRY-HOSTNAME` that you
-       want the built artifacts to be pushed to.
+       want to push built artifacts to.
 
-  1. Submit the custom supply chain file you created earlier by running:
+  2. Submit the custom supply chain file that you created earlier by running:
 
      ```console
      tanzu apps workload create -f tdp-sc.yaml
      ```
 
-  1. Create a file called `tdp-workload.yaml` with the following content:
+  3. Create a file called `tdp-workload.yaml` with the following content:
 
      ```yaml
      apiVersion: carto.run/v1alpha1
@@ -450,11 +448,11 @@ Use a custom supply chain
      - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
      - `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier
 
-  1. Submit the workload definition file you created earlier by running:
+  4. Submit the workload definition file you created earlier by running:
 
      ```console
      tanzu apps workload create -f tdp-workload.yaml
      ```
 
-After the job completes the Image Provider stage of your supply chain,
+After the job finishes the Image Provider stage of your supply chain,
 [run your customized Tanzu Developer Portal instance](running.hbs.md).
