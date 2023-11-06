@@ -1098,6 +1098,11 @@ The following issues, listed by component and area, are resolved in this release
 - Authorization servers display OpenID Connect (OIDC) providers on the login page even when there
   are no SAML providers.
 
+#### <a id='1-7-0-amr-obs-ce-hndlr-ri'></a> v1.7.0 Resolved issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- The ReplicaSet status in AMR now shows the `available` and `unavailable` states in addition to
+  `created` and `deleted`.
+
 #### <a id='1-7-0-cnrs-ri'></a> v1.7.0 Resolved issues: Cloud Native Runtimes
 
 - Certain combinations of app name, namespace, and domain no longer produce Knative Services with
@@ -1115,6 +1120,18 @@ The following issues, listed by component and area, are resolved in this release
 
 - The package Supply Chain can now generate a Carvel package when building an image from source and
   uploading it to a private registry using a certificate.
+
+#### <a id='1-7-0-sc-plugin-ri'></a> v1.7.0 Resolved issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Workloads created by using a custom resource definition (CRD) work as expected.
+
+- Downloading the SBOM from a vulnerability scan no longer requires additional configuration in
+  `tap-values.yaml`.
+
+#### <a id='1-7-0-vscode-plugin-ri'></a> v1.7.0 Resolved issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is is correctly
+  categorized as **Supply Chain**.
 
 ---
 
