@@ -182,13 +182,15 @@ This release includes the following changes, listed by component and area.
 - You can add triage analysis to vulnerabilities from a vulnerability scanner step.
   For more information, see [Triage Vulnerabilities](tap-gui/plugins/scc-tap-gui.hbs.md#triage-vulnerabilities)
 
-- RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
-  For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+- Adds role-based access control (RBAC) support based on namespace to allow a user with a
+  namespace scoped account to select a namespace within the plugin. For more information, see
+  [Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
 
 #### <a id='1-7-0-security-analysis-plugin'></a> v1.7.0 Features: Security Analysis plug-in for Tanzu Developer Portal
 
-- RBAC support based on namespace has been added to allow a user with a namespace scoped account to select a namespace within the plugin.
-  For more information, see [Enable RBAC on SCC and SAGUI Plugins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
+- Adds RBAC support based on namespace to allow a user with a namespace scoped account to
+  select a namespace within the plugin. For more information, see
+  [Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
 
 #### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
 
@@ -201,10 +203,11 @@ This release includes the following changes, listed by component and area.
 
 - Adds support for Pod Security Admission with Pod Security Standards enforced.
 
-- Adds support for the new version Tanzu CLI Insight plug-in.
+- Adds support for the new version of the Tanzu CLI Insight plug-in.
 
-- [Supply Chain Security Tools - Scan 2.0 Beta](scst-scan/app-scanning-beta.hbs.md)
-  - Switches Trivy the default scanner for container image scanning using the included image and template.  Scan 1.0 will maintain Grype as the default.
+- [SCST - Scan 2.0 (beta)](scst-scan/app-scanning-beta.hbs.md) now uses Trivy as
+  the default scanner for container image scanning using the included image and template.
+  SCST - Scan 1.0 maintains Grype as the default.
 
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
@@ -1209,8 +1212,9 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
-- When using SCST - Scan 2.0 with a ClusterImageTemplate the value for the scanning image is overwritten
-  with and incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in TAP Values.
+- When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
+  with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
+  `tap-values.yaml` file.
   You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
   For example, for the Trivy image packaged with Tanzu Application Platform:
 
@@ -1221,7 +1225,8 @@ This release has the following known issues, listed by component and area.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
     ```
 
-- When using SCST - Scan 2.0: Trivy is required to be pinned version 0.42.1 because CycloneDX 1.5 was made the default for newer versions and is not supported by AMR.
+- When using SCST - Scan 2.0, Trivy is must be pinned to v0.42.1. This is because CycloneDX v1.5 was
+  made the default for newer versions of Trivy and is not supported by AMR.
 
 #### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
 
