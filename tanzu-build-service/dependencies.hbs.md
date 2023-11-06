@@ -200,7 +200,7 @@ version of Tanzu Application Platform.
 
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-### Upgrading Buildpacks between Tanzu Application Platform releases
+### <a id="upgrade"></a> Upgrading Buildpacks between Tanzu Application Platform releases
 
 While updating buildpack dependencies outside of upgrades to Tanzu Application Platform is possible,
 VMware recommends upgrading Tanzu Application Platform to consume new build dependencies.
