@@ -139,7 +139,7 @@ in the `tap-values.yaml`. You must set both the repository and the
 authentication fields to override the shared values. Set `kp_default_repository`, `kp_default_repository_secret.name`, and
 `kp_default_repository_secret.namespace`.
 
-#### <a id='failed-builds-upgrade'></a> Failing builds during an upgrade
+## <a id='failed-builds-upgrade'></a> Failing builds during an upgrade
 
 ### Symptom
 
