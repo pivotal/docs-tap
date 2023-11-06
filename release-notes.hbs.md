@@ -69,29 +69,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
-- Supports Kubernetes v1.28.
-- `ClientRegistration`s instantaneously react to updates of `AuthServer`s.
-- `ClusterWorkloadRegistrationClass`s instantaneously react to updates of `AuthServer`s.
-- Insufficiently small token signature keys cause an explicit error condition in `AuthServer.status`.
-- You can customize a `ClientRegistration`'s display name.
-- You can customize the display names of identity providers for an `AuthServer`, with the restriction
-  that this customization applies only to OpenID and Security Assertion Markup Language (SAML).
-- Authorization servers log role mappings in the audit log.
-- Authorization servers advertise the supported client authentication and grant types methods by using
-  the OpenID discovery endpoint.
-- End users can see their email address on the consent page.
-- `AuthServer.spec.cors.{allowHeaders, exposeHeaders, allowCredentials, allowMethods}` provide
-  service operators with finer control over an authorization server's Cross-Origin Resource Sharing
-  (CORS) configuration. <!-- check abbreviation -->
-  As a result, application operators can use the `client_credentials` grant for single-page apps.
-- Authorization servers do not advertise the device authentication endpoint by using the
-  OpenID discovery endpoint.
-- The authorization server UI uses the Clarity design system.
-- `ClientRegistration` uses finalizers.
-- `ClusterUnsafeTestLogin` reports its issuer URI in its status and as a print column.
-- Authorization servers support the user-information endpoint.
-- `AuthServer.spec.session.expiry` controls the session expiry of authorization servers.
-  The default value is `15m`. It must be at least `1m`.
+- Single Page App Support: CORs options so application developers can use client_credentials grants for SPA's
+- New configuration option `AuthServer.spec.session.expiry` to customize how long an Authserver's session is active
+- Authorization servers support the user-information endpoint to obtain users identity information for OIDC providers
+- UI updates with clearer messaging on login and consent screens
+- Enhancements in audit log, error handling, and status fields
 
 #### <a id='1-7-0-bitnami-services'></a> v1.7.0 Features: Bitnami Services
 
