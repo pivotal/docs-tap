@@ -26,10 +26,9 @@ dependencies in patch versions of Tanzu Application Platform.
 For upgrade instructions, see [Upgrade the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
 By default, Tanzu Build Service is installed with the `lite` set of dependencies,
-which are smaller-footprint and contain a subset of the buildpacks and stacks in
+which have a smaller-footprint and contain a subset of the buildpacks and stacks in
 the `full` set of dependencies.
-For a comparison of `lite` and `full` dependencies, see [Dependency comparison](#lite-vs-full-table)
-later in this topic.
+For a comparison of `lite` and `full` dependencies, see [Dependency comparison](#lite-vs-full-table).
 
 ### <a id="view"></a> View installed dependencies
 
@@ -206,7 +205,8 @@ version of Tanzu Application Platform.
 While updating buildpack dependencies outside of upgrades to Tanzu Application Platform is possible,
 VMware recommends upgrading Tanzu Application Platform to consume new build dependencies.
 
-Before you begin:  Sign in to VMware Tanzu Network so that the image can be pulled from the Tanzu Network Registry.
+Before you begin:  Sign into [VMware Tanzu Network](https://network.tanzu.vmware.com/) so that
+the image can be retrieved from the registry.
 
 1. Use the links
 provided in the [Language Family Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html) page in the Tanzu Buildpacks documentation to locate the buildpack
@@ -250,7 +250,7 @@ Docker command at the bottom, and copy the buildpack image URL for use in the ne
 
 The ClusterBuildpack is now deployed. Tanzu Build Service uses the latest
 available version to execute builds. All images that were built with older versions of the buildpack
-will begin to rebuild.
+are rebuilt.
 
-When you upgrade Tanzu Application Platform, new buildpacks with higher versions are installed.
+When you upgrade Tanzu Application Platform, new buildpacks with later versions are installed.
 After an upgrade, the `ClusterBuildpack` created in this procedure is not needed and can be removed.
