@@ -1,24 +1,19 @@
 # Configuring Pod Security for Workloads
 
-This topic provides an overview of the different configuration options you can use to apply
-security contexts to pods that are responsible for running supply chain workloads in Tanzu Application Platform (commonly known as TAP). By leveraging
-these configuration options, organizations can apply security policies and meet the specific security
-requirements of applications running on a Kubernetes cluster.
+This topic provides an overview of the configuration options you can use to apply
+security contexts to pods that are running supply chain workloads in Tanzu Application Platform (commonly known as TAP). Use these configuration options to apply security policies that meet the security requirements of applications running on a Kubernetes cluster.
 
 ## <a id="config-options"></a> Configuration options
 
-There are two methods to provide the pod security context for running supply chain workloads.
+There are two methods to provide the pod security context for running supply chain workloads:
 
-- Platform operators can set a default security context for all supply chain workloads with the
-`tap-values.yaml` file during a Tanzu Application Platform installation or upgrade.
+- Platform operators can configure a default security context for running supply chain workloads with the `tap-values.yaml` file during a Tanzu Application Platform installation or upgrade.
 
-- App operators can set workload security context via the workload parameter name
-"security-context" which overrides the default set by the platform operator.
+- Application operators can configure the workload security context for running supply chain workloads with the `security-context` workload parameter. This overrides the default security context in the `tap-values.yaml` file.
 
-## <a id="platform-default"></a> Setting a default security context
+## <a id="platform-default"></a> Configure a default security context in `tap-values.yaml`
 
-A default workload security context can be optionally configured using the "tap-values.yaml" file
-during TAP installation or upgrade. The YAML file lists the security context configurable fields.
+Configure the default workload security context for running supply chain workloads in the `tap-values.yaml` file during a Tanzu Application Platform installation or upgrade. The YAML file lists the security context configurable fields.
 
 ```yaml
 ootb_templates:
@@ -47,16 +42,15 @@ ootb_templates:
     procMount: # string - procMount denotes the type of proc mount to use for the containers.
 ```
 
-To view the possible configuration setting for the `ootb-templates` package,
-please see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md)
+For information about the possible configuration setting for the `ootb-templates` package,
+see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md)
 
-## <a id="workload-config"></a> Setting a Workload security context
+## <a id="workload-config"></a> Configure a security context with the `security-context` workload parameter
 
-Suppply chain workload security context can be optionally configured using the workload parameter 
-name "security-context". Security context configured via workload *overrides* default security 
-context defined in the TAP values YAML.
+Optionally, use  the `security-context` workload parameter to configure the supply chain workload security context. This configuration method overrides the default security
+context defined in `tap-values.yaml`.
 
-### <a id="workload-config-yaml"></a> Sample workload YAML with security context 
+### <a id="workload-config-yaml"></a> Sample workload YAML with security context
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -89,8 +83,7 @@ spec:
     subpath: tanzu-java-web-app
 ```
 
-Alternatively, the supply chain workload security context can be set when creating workload using the 
-Tanzu CLI. For example:
+Alternatively, set the supply chain workload security context when creating workloads using the Tanzu CLI. For example:
 
 ```console
 tanzu apps workload create tanzu-java-web-app -n workspace \
@@ -101,3 +94,4 @@ tanzu apps workload create tanzu-java-web-app -n workspace \
   --sub-path tanzu-java-web-app \
   --param-yaml security-context="{"runAsUser":"333"}"
 ```
+
