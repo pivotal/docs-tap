@@ -6,15 +6,16 @@ you to use Configurator to integrate them.
 
 ## <a id='tdp-plug-ins'></a> Tanzu Developer Portal plug-ins
 
-A Tanzu Developer Portal plug-in is a thin wrapper around a Backstage plug-in. It makes it possible 
-to dynamically integrate a Backstage plugin into your Tanzu Developer Portal. It defines integration 
-points with the underlying Backstage instance to remove the need to manually update source code when 
-adding a Backstage plug-in. To learn more about how this works, read the 
-[reate a Tanzu Developer Portal plug-in](../configurator/create-plug-in-wrapper.hbs.md) section.
+A Tanzu Developer Portal plug-in is a Backstage plug-in inside a wrapper. The wrapper makes it
+possible to dynamically integrate a Backstage plug-in into Tanzu Developer Portal. The wrapper
+defines integration points with the underlying Backstage instance to remove the need to manually
+update source code when adding a Backstage plug-in.
+
+<!-- To learn more about how this works, see [Create a Tanzu Developer Portal plug-in](../configurator/create-plug-in-wrapper.hbs.md). -->
 
 ## <a id='tap-plug-ins'></a> Tanzu Application Platform plug-ins
 
-Tanzu Application Platform comes with some pre-built Tanzu Devleoper plug-ins. These 
+Tanzu Application Platform comes with some pre-built Tanzu Devleoper plug-ins. These
 Tanzu Application Platform plug-ins are already integrated with Tanzu Developer Portal. You don't
 need to configure these plug-ins. To use a Tanzu Application Platform plug-in, you must install the
 relevant Tanzu Application Platform component.
