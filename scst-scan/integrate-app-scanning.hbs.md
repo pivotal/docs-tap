@@ -14,7 +14,7 @@ SCST - Scan 2.0 includes two integrations for container image scanners:
 
 VMware recommends using Aqua Trivy scanner with Tanzu Application Platform for
 container image scanning.  Anchore Grype is included as an open source
-alternative and for users who want to remain constitent with the default scanner
+alternative and for users who want to remain consistent with the default scanner
 in SCST - Scan 1.0.  Additionally, you can build an integration for additional
 scanners by following the [Bring Your Own Scanner
 guide](./bring-your-own-scanner.hbs.md).
