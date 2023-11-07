@@ -100,8 +100,8 @@ Register a Backstage CatalogProcessor that will apply transformations to unproce
 
 [https://backstage.io/docs/features/software-catalog/life-of-an-entity\#processing](https://backstage.io/docs/features/software-catalog/life-of-an-entity#processing)
 
-| Parameter | Type                                                                                 | Description     |
-|-----------|--------------------------------------------------------------------------------------|-----------------|
+| Parameter | Type                                                                                 | Description                                              |
+|-----------|--------------------------------------------------------------------------------------|----------------------------------------------------------|
 | `builder` | [CatalogProcessorBuilder](#vmware-tanzu-core-backend-catalog-processor-builder-type) | Builds a CatalogProcessor for a given PluginEnvironment. |
 
 ##### addEntityProviderBuilder(builder: EntityProviderBuilder): void
@@ -120,8 +120,8 @@ Register Backstage CatalogPermissionRules to limit access to catalog entries.
 
 [https://backstage.io/docs/permissions/custom-rules](https://backstage.io/docs/permissions/custom-rules)
 
-| Parameter | Type                                                                             | Description |
-|-----------|----------------------------------------------------------------------------------|-------------|
+| Parameter | Type                                                                             | Description                                                  |
+|-----------|----------------------------------------------------------------------------------|--------------------------------------------------------------|
 | `builder` | [PermissionRuleBuilder](#vmware-tanzu-core-backend-permission-rule-builder-type) | Builds CatalogPermissionRules for a given PluginEnvironment. |
 
 ##### addRouterBuilder(routerBuilder: RouterBuilder): void
@@ -475,17 +475,17 @@ Add content to the main section below the widget grid.
 
 Add a widget to the Home screen's widget grid.
 
-| Parameter | Type                | Description                             |
-|-----------|---------------------|-----------------------------------------|
-| `item`    | ReactElement        | Widget to add.                          |
+| Parameter | Type                | Description                                                                                                                                                                                              |
+|-----------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `item`    | ReactElement        | Widget to add.                                                                                                                                                                                           |
 | `config`  | LayoutConfiguration | (Optional) layout configuration for the widget. The `config.component` field must match the added widget either by name (if provided as string) or by direct reference (if provided as a React element). |
 
 ##### addWidgetConfig(config: LayoutConfiguration): void
 
 Specify layout configuration for a widget.
 
-| Parameter | Type                | Description  |
-|-----------|---------------------|--------------|
+| Parameter | Type                | Description                                                                                                                                                                                              |
+|-----------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `config`  | LayoutConfiguration | Optional layout configuration for a widget. The config.component field must match some registered widget either by name (if provided as string) or by direct reference (if provided as a React element). |
 
 ## Package @vmware-tanzu/tdp-plugin-ldap-backend
