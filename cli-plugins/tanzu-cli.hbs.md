@@ -45,11 +45,11 @@ Tanzu CLI Product Documentation.
 | Command Reference Documentation | Release Notes | 
 |:--------|:---------|
 |[Accelerator command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-accelerator.html)|[Accelerator release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-apps.html)|
-|[Apps command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html)|[Apps release notes](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html)|
-|[Build Service command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-build-service.html)|[Build Service release notes](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-build-service.html)|
-|[External Secrets command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-external-secrets.html)|[External Secrets release notes](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-external-secrets.html)|
-|[Insight command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-insight.html)|[Insight release notes](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-insight.html)|
-|[Services command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-services.html)|[Services release notes](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-services.html)|
+|[Apps command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html)|[Apps release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html)|
+|[Build Service command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-build-service.html)|[Build Service release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-build-service.html)|
+|[External Secrets command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-external-secrets.html)|[External Secrets release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-external-secrets.html)|
+|[Insight command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-insight.html)|[Insight release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-insight.html)|
+|[Services command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-services.html)|[Services release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-services.html)|
 
 ## <a id="tanzu-cli-install"></a>Tanzu CLI installation
 
