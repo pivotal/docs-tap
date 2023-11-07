@@ -1274,16 +1274,16 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Convention OOMKilled
 
-While processing workloads with large SBOM, the cartographer convention controller manager pod can be failing with status `CrashLoopBackOff` or `OOMKilled`. 
+While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can be fail with the status `CrashLoopBackOff` or `OOMKilled`. 
 
-For a workaround, increasing the memory limit to `512Mi` has proven to fix the pod crash. Please see the steps to increase the memory limit in [Cartographer Convention documentation](/cartographer-conventions/troubleshooting.hbs.md#oomkilled-convention-controller)
+To work around this problem you can increase the memory limit to `512Mi` has proven to fix the pod crash. Please see the steps to increase the memory limit in [Cartographer Convention documentation](/cartographer-conventions/troubleshooting.hbs.md#oomkilled-convention-controller)
 
-Similar memory limit may need to be increased for the convention webhook servers. Use the following steps to increase the memory limit for the following convention servers,
+You may need to increase the memory limit for the various convention webhook servers. Use the following steps to increase the memory limit for the following Convention servers,
 - app-live-view-conventions
 - spring-boot-webhook
 - developer-conventions/webhook
 
-1. Create a Secret with the following ytt overlay.
+1. Create a `Secret` with the following ytt overlay.
 
 ```yaml
 apiVersion: v1
@@ -1350,7 +1350,7 @@ stringData:
                   memory: 512Mi     
 ```
 
-2. Update the TAP values YAML file to include a package_overlays field:
+2. Update the TAP values YAML file to include a `package_overlays` field:
 
 ```yaml
 package_overlays:

@@ -188,8 +188,8 @@ secrets:
 
 ### Symptoms
 
-While processing workloads with large SBOM, the cartographer convention controller manager pod can 
-be failing with status `CrashLoopBackOff` or `OOMKilled`. For example:
+While processing workloads with large SBOM, the Cartographer Convention controller manager pod can 
+be failing with the status `CrashLoopBackOff` or `OOMKilled`. For example:
 
 ```console
 NAME                                                          READY   STATUS             RESTARTS          AGE
@@ -197,7 +197,7 @@ cartographer-controller-6996774647-bs98l                      1/1     Running   
 cartographer-conventions-controller-manager-ff4cdf59d-5nzl5   0/1     CrashLoopBackOff   1292 (109s ago)   5d3h
 ```
 
-Controller pod staltus may look like the following.
+The controller pod status may look like the following:
 
 ```yaml
 containerStatuses:
@@ -218,14 +218,14 @@ containerStatuses:
 
 This error usually occurs when a `workload` image, built by the supply chain, contains a large SBOM.
 In some cases, the default resource limit set during installation may not be enough to process the 
-pod conventions which can lead to a crashing pod.  
+pod conventions which can lead to the controller pod crashing.  
 
 ### Solution 
 
-Using a ytt overlay, cartographer convention controller manager memory limit can be increased post 
-TAP installation. Here is an exmaple of a ytt overlay to icrease the memory limit.
+By using a ytt overlay, the Cartographer Convention controller manager memory limit can be increased 
+after TAP installation. Here is an exmaple of a ytt overlay to increase the memory limit.
 
-1. Create a Secret with the following ytt overlay.
+1. Create a `Secret` with the following ytt overlay:
 
 ```yaml
 apiVersion: v1
@@ -251,11 +251,11 @@ stringData:
                   memory: 512Mi
 ```
 
-2. Update the TAP values YAML file to include a package_overlays field:
+2. Update the TAP values YAML file to include a `package_overlays` field:
 
 ```yaml
 package_overlays:
-- name: Cartographer
+- name: cartographer
   secrets:
   - name: patch-cartographer-convention-controller
 ```
