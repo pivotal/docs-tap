@@ -68,6 +68,7 @@
       - [Opt in or opt out of Pendo telemetry](tap-portal-telemetry.hbs.md)
 - [Scale workloads](scalability.hbs.md)
 - [Security and compliance overview](security-and-compliance/about.hbs.md)
+  - [Configure pod security for workloads](security-and-compliance/pod-security-for-workloads.hbs.md)
   - [TLS and certificates in Tanzu Application Platform overview](security-and-compliance/tls-and-certificates/about.hbs.md)
       - [Secure Ingress certificates in Tanzu Application Platform](security-and-compliance/tls-and-certificates/ingress/about.hbs.md)
           - [Shared Ingress issuer in Tanzu Application Platform](security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md)
