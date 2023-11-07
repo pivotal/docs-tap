@@ -183,3 +183,87 @@ imagePullSecrets:
 secrets:
 - name: registry-credentials
 ``` 
+
+## <a id="oom-killed"></a> `OOMKilled` Convention Controller 
+
+### Symptoms
+
+While processing workloads with large SBOM, the cartographer convention controller manager pod can 
+be failing with status `CrashLoopBackOff` or `OOMKilled`. For example:
+
+```console
+NAME                                                          READY   STATUS             RESTARTS          AGE
+cartographer-controller-6996774647-bs98l                      1/1     Running            0                 6d7h
+cartographer-conventions-controller-manager-ff4cdf59d-5nzl5   0/1     CrashLoopBackOff   1292 (109s ago)   5d3h
+```
+
+Controller pod staltus may look like the following.
+
+```yaml
+containerStatuses:
+  - containerID: containerd://b7b7159a9e00ef726944d642a1b649108bba610b34d8d10f9b5270ea25d3db94
+    image: sha256:9827e8e5b30d47c9373a1907dc5e7e15a76d2a4581e803eb6f2cb24e3a9ea62e
+    imageID: my.image.registry.com/tanzu-application-platform/tap-packages@sha256:3cd1ae92f534ff935fbaf992b8308aa3dac3d1b6cbc8cf8a856451c8c92540f66
+    lastState:
+      terminated:
+        containerID: containerd://b7b7159a9e00ef726944d642a1b649108bba610b34d8d10f9b5270ea25d3db94
+        exitCode: 137
+        finishedAt: "2023-11-06T21:02:56Z"
+        reason: OOMKilled
+        startedAt: "2023-11-06T21:02:10Z"
+    name: manager
+```
+
+### Cause
+
+This error usually occurs when a `workload` image, built by the supply chain, contains a large SBOM.
+In some cases, the default resource limit set during installation may not be enough to process the 
+pod conventions which can lead to a crashing pod.  
+
+### Solution 
+
+Using a ytt overlay, cartographer convention controller manager memory limit can be increased post 
+TAP installation. Here is an exmaple of a ytt overlay to icrease the memory limit.
+
+1. Create a Secret with the following ytt overlay.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: patch-cartographer-convention-controller
+  namespace: tap-install
+stringData:
+  patch-conventions-controller.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    
+    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"cartographer-conventions-controller-manager", "namespace": "cartographer-system"}}), expects="0+"
+    ---
+    spec:
+      template:
+        spec:
+          containers:
+            #@overlay/match by=overlay.subset({"name": "manager"})
+            - name: manager
+              resources:
+                limits:
+                  cpu: 100m
+                  memory: 512Mi
+```
+
+2. Update the TAP values YAML file to include a package_overlays field:
+
+```yaml
+package_overlays:
+- name: Cartographer
+  secrets:
+  - name: patch-cartographer-convention-controller
+```
+
+3. Update Tanzu Application Platform by running:
+
+```console
+tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
+```
+
+For more information about the package customization, please see [Customize your package installation](/customize-package-installation.hbs.md).
