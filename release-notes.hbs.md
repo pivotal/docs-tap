@@ -283,7 +283,7 @@ This release includes the following changes, listed by component and area.
   upgrading `app-scanning.apps.tanzu.vmware.com` to v0.2.0.
   See [Troubleshooting](./scst-scan/app-scanning-troubleshooting.hbs.md#upgrading-scan-0.2.0).
 
-#### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documenation
+#### <a id='1-7-0-cli-re-br'></a> v1.7.0 Breaking changes: Tanzu CLI command reference documentation
 
 - The Tanzu CLI plug-in command reference documentation has moved from the Tanzu Application Platform
   documentation to the [VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html)
@@ -1125,7 +1125,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-7-0-vscode-plugin-ri'></a> v1.7.0 Resolved issues: Tanzu Developer Tools for VS Code
 
-- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is is correctly
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is correctly
   categorized as **Supply Chain**.
 
 ---
@@ -1206,7 +1206,7 @@ This release has the following known issues, listed by component and area.
   repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
 
 - If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
-  the Supply Chain does not function. If you use the default Carvel package parameters, you this
+  the Supply Chain does not function. If you use the default Carvel package parameters, this
   issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
   If you exceed the size limit, you can either deactivate this feature, or use a workaround.
   The workaround requires enabling a Tekton feature flag. For more information, see the
@@ -1238,7 +1238,7 @@ This release has the following known issues, listed by component and area.
         image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
     ```
 
-- When using SCST - Scan 2.0, Trivy is must be pinned to v0.42.1. This is because CycloneDX v1.5 is
+- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
 #### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
