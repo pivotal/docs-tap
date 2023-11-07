@@ -674,7 +674,7 @@
              - [Create an Application Accelerator Git repository](tap-gui/plugins/application-accelerator-git-repo.hbs.md)
          - [API documentation](tap-gui/plugins/api-docs.hbs.md)
              - [API documentation overview](tap-gui/plugins/api-docs.hbs.md)
-             - [Get started](tap-gui/plugins/api-docs-get-started.hbs.md)
+             - [Get started](tap-gui/plugins/api-docs-getting-started.hbs.md)
          - [DORA metrics](tap-gui/plugins/dora.hbs.md)
          - [Security Analysis](tap-gui/plugins/sa-tap-gui.hbs.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.hbs.md)
