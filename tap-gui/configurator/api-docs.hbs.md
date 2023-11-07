@@ -1,5 +1,7 @@
 # API documentation for surfaces
 
+This topic tells you about API references for surfaces in Tanzu Developer Portal.
+
 ## Package @tpb/plugin-catalog
 
 ### Class EntityPageSurface
@@ -11,7 +13,7 @@ of those templates and allows for some amount of external configuration.
 
 Here's an example of adding a tab to the template for Backstage Service entities:
 
-```console
+```typescript
 context.applyWithDependency(
   AppRouteSurface,
   EntityPageSurface,
