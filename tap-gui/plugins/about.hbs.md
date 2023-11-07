@@ -45,3 +45,12 @@ Tanzu Developer Portal Configurator.
 These plug-ins are typically published to npmjs.org or a similar npm registry alternative. If you
 want to integrate an external plug-in that is not validated for use with Tanzu Developer Portal, you
 must write a custom wrapper for it.
+
+## <a id='ver-table'></a> Backstage Version Compatibility Reference
+
+The "Backstage Version Compatibility" table below facilitates a clearer understanding of the correspondence between Tanzu Application Platform versions and Backstage versions, crucial for plugin development. By referencing this table, developers can ensure plugin compatibility with their current Tanzu Application Platform installation and foresee how potential Tanzu Application Platform upgrades could affect this compatibility. Each entry also links to the respective Backstage dependencies manifest file, providing further insights into the dependencies involved.
+
+| TAP Version | Backstage Version | Dependencies Manifest                                                             |
+| ----------- | ----------------- | --------------------------------------------------------------------------------- |
+| 1.6.0       | v1.13             | [Manifest File](https://github.com/backstage/backstage/blob/v1.13.0/package.json) |
+| 1.7.0       | v1.15             | [Manifest File](https://github.com/backstage/backstage/blob/v1.15.0/package.json) |
