@@ -242,7 +242,7 @@ This release includes the following changes, listed by component and area.
 
 - Minikube support has been removed.
 
-### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
+#### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
 
 - The `appliveview_connector.backend.sslDisabled` key has been removed and is replaced by
   `appliveview_connector.backend.sslDeactivated`.
@@ -290,7 +290,7 @@ This release includes the following changes, listed by component and area.
   documentation. The following Tanzu CLI plug-ins are impacted: Accelerator, Apps, Build Service,
   External Secrets, Insight, and Tanzu Service.
 
-### <a id="1-7-0-rbac-plugin-br"></a> v1.7.0 Breaking changes: Tanzu CLI RBAC plug-in
+#### <a id="1-7-0-rbac-plugin-br"></a> v1.7.0 Breaking changes: Tanzu CLI RBAC plug-in
 
 - The RBAC plug-in for the Tanzu CLI, which was released as a beta to help manage user and group bindings to the
   Tanzu Application Platform [Default Roles](./authn-authz/overview.hbs.md#default-roles), has been removed in favor of native Kubernetes capability.
@@ -1280,7 +1280,7 @@ to ensure that they are correctly created.
 
 #### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Convention OOMKilled
 
-While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can be fail with the status `CrashLoopBackOff` or `OOMKilled`. 
+While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can be fail with the status `CrashLoopBackOff` or `OOMKilled`.
 
 To work around this problem you can increase the memory limit to `512Mi` to fix the pod crash. For information about how to increase the memory limit, see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
 
@@ -1301,7 +1301,7 @@ You might need to increase the memory limit for the convention webhook servers. 
   stringData:
     patch-conventions-controller.yaml: |
       #@ load("@ytt:overlay", "overlay")
-      
+
       #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"appliveview-webhook", "namespace": "app-live-view-conventions"}})
       ---
       spec:
@@ -1322,7 +1322,7 @@ You might need to increase the memory limit for the convention webhook servers. 
   stringData:
     patch-conventions-controller.yaml: |
       #@ load("@ytt:overlay", "overlay")
-      
+
       #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"spring-boot-webhook", "namespace": "spring-boot-convention"}})
       ---
       spec:
@@ -1343,7 +1343,7 @@ You might need to increase the memory limit for the convention webhook servers. 
   stringData:
     patch-conventions-controller.yaml: |
       #@ load("@ytt:overlay", "overlay")
-      
+
       #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"webhook", "namespace": "developer-conventions"}})
       ---
       spec:
@@ -1354,7 +1354,7 @@ You might need to increase the memory limit for the convention webhook servers. 
               - name: webhook
                 resources:
                   limits:
-                    memory: 512Mi     
+                    memory: 512Mi
   ```
 
 2. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
