@@ -1,9 +1,28 @@
 # Add App Scanning to default Test and Scan supply chains
 
-This topic describes how to enable Supply Chain Security Tools (SCST) - Scan 2.0
-and the included Grype scanner with the out of the box test and scan supply
-chain. The default configuration for Out of the Box Supply Chain - Testing and
-Scanning uses SCST - Scan 1.0. 
+This topic tells you how to enable Supply Chain Security Tools (SCST) - Scan 2.0
+and an included container image scanner with the out-of-box box test and scan supply
+chain. The default out-of-box configuration for the `Testing and
+Scanning` supply chain uses SCST - Scan 1.0 but you can switch to using SCST - Scan 2.0 by using this topic.
+
+## <a id="overview"></a> Overview
+
+SCST - Scan 2.0 includes two integrations for container image scanners:
+
+- Anchore Grype
+- Aqua Trivy
+
+VMware recommends using Aqua Trivy scanner with Tanzu Application Platform for
+container image scanning.  Anchore Grype is included as an open source
+alternative and for users who want to remain consistent with the default scanner
+in SCST - Scan 1.0.  Additionally, you can build an integration for additional
+scanners by following the [Bring Your Own Scanner
+guide](./bring-your-own-scanner.hbs.md).
+
+| Container Image Scanner | Documentation | Template Name |  Status |
+| --- | --- | --- | --- |
+| Aqua Trivy | [Link](https://aquasecurity.github.io/trivy) | image-vulnerability-scan-trivy | Recommended out-of-box scanner for Scan 2.0 |
+| Anchore Grype | [Link](https://github.com/anchore/grype) | image-vulnerability-scan-grype | Alternative to Trivy that is used in Scan 1.0 |
 
 ## <a id="prerequisites"></a> Prerequisites
 

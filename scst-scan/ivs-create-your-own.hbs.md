@@ -16,7 +16,7 @@ To customize an ImageVulnerabilityScan to use your scanner:
       name: generic-image-scan
       namespace: DEV-NAMESPACE
     spec:
-      image: nginx@sha256:... # The image to be scanned. Digest must be specified.
+      image: TARGET-IMAGE
       scanResults:
         location: registry/project/scan-results
       serviceAccountNames:
@@ -33,12 +33,12 @@ To customize an ImageVulnerabilityScan to use your scanner:
     Where:
 
     - `DEV-NAMESPACE` is the developer namespace where scanning occurs.
-    - `spec.image` is the image that you are scanning. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest)
+    - `spec.image` is your target image (image that you are scanning). The digest must be specified. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
     - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
     - `serviceAccountNames` includes:
         - `scanner` is the service account that runs the scan. It must have read access to `image`.
         - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
-    - `SCANNER-IMAGE` is the image containing the scanner of your choice.
+    - `SCANNER-IMAGE` is your vulnerability scanner image (the image containing the scanner of your choice).
     - `SCANNER-CLI-COMMAND` is the scanner's CLI command.
     - `SCANNER-NAME` is the scanner image name that is reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
@@ -76,7 +76,7 @@ This section lists optional and required ImageVulnerabilityScan specifications f
 
 Required fields:
 
-- `image` is the registry URL and digest of the image to scan.
+- `image` is the registry URL and digest of the target image.
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
 - `scanResults.location` is the registry URL where results are uploaded.
