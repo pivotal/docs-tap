@@ -42,13 +42,13 @@ ootb_templates:
     procMount: # string - procMount denotes the type of proc mount to use for the containers.
 ```
 
-For information about the configuration setting for the `ootb-templates` package,
-see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md).
+For information about the possible configuration setting for the `ootb-templates` package,
+see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md)
 
 ## <a id="workload-config"></a> Configure a security context with the `security-context` workload parameter
 
 Optionally, use  the `security-context` workload parameter to configure the supply chain workload security context. This configuration method overrides the default security
-context defined in `tap-values.yaml`. Apply this method in either the workload YAML or by using the Tanzu CLI.
+context defined in `tap-values.yaml`.
 
 ### <a id="workload-config-yaml"></a> Sample workload YAML with security context
 
@@ -96,6 +96,3 @@ tanzu apps workload create tanzu-java-web-app -n workspace \
   --sub-path tanzu-java-web-app \
   --param-yaml security-context="{"runAsUser":"333"}"
 ```
-
-For more information about Tanzu CLI apps plug-in commands, see the
-[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/index.html) documentation.
