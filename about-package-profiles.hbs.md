@@ -329,7 +329,7 @@ a predefined group of packages.
   It also contains Tanzu Mission Control specific resources. You cannot install this package on the
   same cluster as Tanzu Developer Portal.
 
-  This package is only for use while installing Tanzu Application Platform using Tanzu Mission Control.
+  This package is only used while [installing Tanzu Application Platform using Tanzu Mission Control](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-1BA391EC-A49B-44AE-A8C7-D72F6012EF58.html).
 
 - **[Tekton Pipelines](tekton/tekton-about.hbs.md)**
 
