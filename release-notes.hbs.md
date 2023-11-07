@@ -11,26 +11,11 @@ v{{ vars.url_version }}.
  
 This release has the following security fixes, listed by component and area. 
  
-#### <a id='1-4-11-COMPONENT-NAME-fixes'></a> v1.4.11 Security fixes: COMPONENT-NAME
- 
-- Security fix description.
- 
-OR add HTML or Markdown table
- 
-<table>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</table> 
- 
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| eventing.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>GHSA-hp87-p4gw-j4gq </li></ul>|
+| contour.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>GHSA-m425-mq94-257g </li></ul>|
+
 ---
  
 ### <a id='1-4-11-resolved-issues'></a> v1.4.11 Resolved issues 
