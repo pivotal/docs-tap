@@ -42,7 +42,7 @@ ootb_templates:
     procMount: # string - procMount denotes the type of proc mount to use for the containers.
 ```
 
-For information about the possible configuration setting for the `ootb-templates` package,
+For information about the configuration setting for the `ootb-templates` package,
 see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md).
 
 ## <a id="workload-config"></a> Configure a security context with the `security-context` workload parameter
@@ -85,7 +85,7 @@ spec:
 
 ### Apply security context with Tanzu CLI
 
-Alternatively, use the Tanzu CLI apps plug-in to apply the `security-context` parameter when creating workloads. For example:
+Alternatively, use the Tanzu CLI to apply the `security-context` parameter when creating workloads. For example:
 
 ```console
 tanzu apps workload create tanzu-java-web-app -n workspace \
