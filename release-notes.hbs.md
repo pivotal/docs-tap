@@ -3,6 +3,68 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
+## <a id='1-7-1'></a> v1.7.1 
+ 
+**Release Date**: 12 December 2023 
+ 
+### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes 
+ 
+This release has the following security fixes, listed by component and area. 
+ 
+#### <a id='1-7-1-COMPONENT-NAME-fixes'></a> v1.7.1 Security fixes: COMPONENT-NAME
+ 
+- Security fix description.
+ 
+OR add HTML or Markdown table
+ 
+<table>
+<thead>
+<tr>
+<th>Package name</th>
+<th>Vulnerabilities resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACKAGE.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table> 
+ 
+---
+ 
+### <a id='1-7-1-resolved-issues'></a> v1.7.1 Resolved issues 
+ 
+The following issues, listed by component and area, are resolved in this release. 
+ 
+#### <a id='1-7-1-COMPONENT-NAME-ri'></a> v1.7.1 Resolved issues: COMPONENT-NAME
+ 
+- Resolved issue description.
+ 
+---
+ 
+### <a id='1-7-1-known-issues'></a> v1.7.1 Known issues 
+ 
+This release has the following known issues, listed by component and area. 
+ 
+#### <a id='1-7-1-COMPONENT-NAME-ki'></a> v1.7.1 Known issues: COMPONENT-NAME
+ 
+- Known issue description with link to workaround.  
+ 
+---
+ 
+### <a id='1-7-1-components'></a> v1.7.1 Component versions
+ 
+The following table lists the supported component versions for this Tanzu Application Platform release.
+ 
+GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+ 
+---   
+
 ## <a id='1-7-0'></a> v1.7.0
 
 **Release Date**: 07 November 2023
