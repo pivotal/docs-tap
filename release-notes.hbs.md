@@ -69,11 +69,18 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-app-sso'></a> v1.7.0 Features: Application Single Sign-On
 
-- Single Page App Support: CORs options so application developers can use client_credentials grants for SPA's
-- New configuration option `AuthServer.spec.session.expiry` to customize how long an Authserver's session is active
-- Authorization servers support the user-information endpoint to obtain users identity information for OIDC providers
-- UI updates with clearer messaging on login and consent screens
-- Enhancements in audit log, error handling, and status fields
+- Includes cross-origin resource sharing (CORS) options so application developers can use
+  `client_credentials` grants for single-page apps.
+
+- Adds new configuration option `AuthServer.spec.session.expiry` to customize how long an Authserver's
+  session is active.
+
+- Authorization servers support the user-information endpoint to obtain users identity information
+  for OpenID Connect (OIDC) providers.
+
+- Updates the UI to have clearer messaging on login and consent screens.
+
+- Enhances audit log, error handling, and status fields.
 
 #### <a id='1-7-0-bitnami-services'></a> v1.7.0 Features: Bitnami Services
 

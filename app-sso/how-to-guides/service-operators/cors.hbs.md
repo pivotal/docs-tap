@@ -1,32 +1,32 @@
 # Public clients and CORS for AppSSO
 
-This topic tells you how to configure Application Single Sign-On (commonly called AppSSO) 
-to use public clients. 
+This topic tells you how to configure Application Single Sign-On (commonly called AppSSO)
+to use public clients.
 
 ## Overview
 
-A public client is a client application that does not require credentials to obtain tokens, such as single-page 
+A public client is a client application that does not require credentials to obtain tokens, such as single-page
 apps (SPAs) or mobile devices. Public clients rely on Proof Key for Code Exchange (PKCE) Authorization Code flow extension.
 
 Follow these steps to configure an `AuthServer` and `ClientRegistration`s for use with public clients:
 
 1. Specify allowed HTTP origin (one or more) by using the `AuthServer.spec.cors` API.
 
-    The authorization server relaxes the same-origin policy for the specified domain (one or more), 
-    enabling browser-based, single-page applications to interact with the designated authorization server. 
+    The authorization server relaxes the same-origin policy for the specified domain (one or more),
+    enabling browser-based, single-page applications to interact with the designated authorization server.
     For more information, see [CORS configuration](#cors-configuration).
 
 1. Set `clientAuthenticationMethod` to `none` within `ClientRegistration` resource.
 
     Native applications and browser-based applications are considered public clients
-    and must not rely on client credentials. Instead, PKCE must be used. 
-    Setting `clientAuthenticationMethod: none` ensures client credentials are not used, 
-    and makes PKCE mandatory for those clients. 
+    and must not rely on client credentials. Instead, PKCE must be used.
+    Setting `clientAuthenticationMethod: none` ensures client credentials are not used,
+    and makes PKCE mandatory for those clients.
     For more information, see [Client authentication](#client-authentication).
 
 ## <a id="cors-configuration"></a> CORS configuration
 
-A browser-based public client can interact with an `AuthServer` if the `AuthServer` 
+A browser-based public client can interact with an `AuthServer` if the `AuthServer`
 has the public clients' origin (one or more) specified in `AuthServer.spec.cors`.
 
 VMware recommends designating specific origins as follows:
@@ -57,7 +57,7 @@ spec:
 
 > **Caution** Do not allow all origins in production environments.
 
-You must use the `allow-unsafe-cors` annotation when allowing all origin allowance. 
+You must use the `allow-unsafe-cors` annotation when allowing all origin allowance.
 The `AuthServer` sends the `Access-Control-Allow-Origin: *` HTTP response header.
 
 Requirements for allowed origin designations include:
@@ -69,8 +69,8 @@ Requirements for allowed origin designations include:
 ## <a id="client-authentication"></a>Client authentication
 
 When configuring a `ClientRegistration` for a public client, you must set your client authentication method to
-`none` and ensure that your public client supports Authorization Code with PKCE. 
-With PKCE, the client does not authenticate, but presents a code challenge and 
+`none` and ensure that your public client supports Authorization Code with PKCE.
+With PKCE, the client does not authenticate, but presents a code challenge and
 subsequent code verifier to establish trust with the authorization server.
 
 To set Client Authentication Method to `none`, ensure your `ClientRegistration` resource defines the following:
@@ -90,14 +90,14 @@ Public clients supporting Authorization Code with PKCE flow ensure that:
   Public clients do not provide a Client Secret because they are not tailored to
   retain any secrets in public view.
 
-For public clients, the `AuthServer` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single page apps cannot safely store sensitive information such as client secrets.
+For public clients, the `AuthServer` only supports the Authorization Code Flow: `response_type=code`,  because public clients such as single-page apps cannot safely store sensitive information such as client secrets.
 
 ## <a id="client-credentials"></a>Client credentials code grant
 
 Some single-page applications require obtaining a token by using the `client_credentials`. This is
 not a recommended practice because a browser-based app cannot protect its `client_secret`.
 
-In this scenario, the `ClientRegistration` cannot use `none` as its `clientAuthenticationMethod`. 
+In this scenario, the `ClientRegistration` cannot use `none` as its `clientAuthenticationMethod`.
 It must use either `client_secret_basic` or `client_secret_post`. For example:
 
 ```yaml
@@ -111,8 +111,8 @@ spec:
 
 ## <a id="cors-config"></a> Additional CORS configuration
 
-When you define either `allowOrigins` or `allowAllOrigins`, default values are 
-set for other CORS-related headers. VMware provides configuration options to customize 
+When you define either `allowOrigins` or `allowAllOrigins`, default values are
+set for other CORS-related headers. VMware provides configuration options to customize
 some of these headers. The following is the full CORS configuration using `allowOrigins`:
 
 ```yaml
