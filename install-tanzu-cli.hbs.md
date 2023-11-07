@@ -84,7 +84,7 @@ and install manually from Tanzu Network, VMware Customer Connect, or GitHub.
 
 Basic installation instructions are provided below. For more information including how to install
 the Tanzu CLI and CLI plug-ins in Internet-restricted environments, see the
-[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/index.html) documentation.
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/{{ vars.tanzu-cli.url_version }}/tanzu-cli/index.html) documentation.
 
 > **Note** To retain an existing installation of the Tanzu CLI, move the CLI binary from `/usr/local/bin/tanzu`
 or `C:\Program Files\tanzu` on Windows to a different location before following the steps below.
@@ -263,13 +263,13 @@ Use the following commands to search for, install, and verify Tanzu CLI plug-in 
 #### Install the version of the Tanzu Application Platform plug-in group matching your target environment
 
   ```console
-  tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
+  tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.plugin_group_version }}
   ```
 
 #### Verify the plug-in group list against the plug-ins that were installed
 
   ```console
-  tanzu plugin group get vmware-tap/default:v{{ vars.tap_version }}
+  tanzu plugin group get vmware-tap/default:v{{ vars.tanzu-cli.plugin_group_version }}
   ```
 
   ```console
