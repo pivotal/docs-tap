@@ -28,4 +28,4 @@ Tanzu Application Platform users must have the following prerequisites:
     - A more customizable scanning experience.
       - For example, you can create an image with the scanner CLI with any dependencies required to run the scanner CLI.
     - Managing your image to meet the Tanzu Application Platform user's compliance standards.
-- Know how your preferred scanner works. For example, commands to use to invoke desired scan results.
+- Know how your preferred scanner works. For example, commands to use to call scan results.
