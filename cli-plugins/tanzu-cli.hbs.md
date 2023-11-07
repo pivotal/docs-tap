@@ -42,10 +42,10 @@ are common to a number of other plug-in groups, for more information, see
  [Command Groups](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) in the
 Tanzu CLI Product Documentation.
 
-| Command Reference Documentation | Release Notes | 
+| Command Reference Documentation | Release Notes |
 |:--------|:---------|
-|[Accelerator command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-accelerator.html)|[Accelerator release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-apps.html)|
-|[Apps command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html)|[Apps release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html)|
+|[Accelerator command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-accelerator.html)|[Accelerator release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-accelerator.html)|
+|[Apps command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html)|[Apps release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-apps.html)|
 |[Build Service command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-build-service.html)|[Build Service release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-build-service.html)|
 |[External Secrets command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-external-secrets.html)|[External Secrets release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-external-secrets.html)|
 |[Insight command reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-insight.html)|[Insight release notes](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/release-notes-insight.html)|
