@@ -1,11 +1,10 @@
-# Troubleshoot Workload
+# Troubleshoot workloads
 
-This topic gives you guidance about how to troubleshoot issues with Supply Chain Workload.
+This topic gives you guidance about how to troubleshoot issues with supply chain workloads in Tanzu Application Platform (commonly known as TAP).
 
 ## <a id="pod-security-workload"></a> Errors when the security context is misconfigured
 
-If workload in the supply chain fails to progess with the error status shown below, then it is
-possible that the workload security context is misconfigured. For example:
+If the workload in the supply chain fails to progress with the error status shown below, the workload security context might be misconfigured. For example:
 
 ```yaml
 - lastTransitionTime: "2023-09-12T14:45:16Z"
@@ -16,7 +15,5 @@ possible that the workload security context is misconfigured. For example:
    type: ResourcesHealthy
 ```
 
-This error means that the workload Deployment created by the supply chain does not meet 
-[pod security standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)  
-used in the cluster. Please see [Configuring Pod Security for Workloads](/security-and-compliance/pod-security-for-workloads.hbs.md)
-for setting the supply chain workload security context.
+This error means that the workload deployment created by the supply chain does not meet
+[pod security standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) used in the cluster. For information about how to configure the supply chain workload security context, see [Configure pod security for workloads](../security-and-compliance/pod-security-for-workloads.hbs.md).
