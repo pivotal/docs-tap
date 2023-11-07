@@ -35,7 +35,7 @@ Validated plug-ins are Backstage plug-ins or community plug-ins that VMware has 
 with Tanzu Developer Portal. You don't need to create custom wrappers to integrate these plug-ins
 with Tanzu Developer Portal.
 
-For more information, see the [validated community plug-ins section](valid-comm-plugins/about.hbs.md).
+For more information, see the [validated community plug-ins section](valid-plugins/about.hbs.md).
 
 ## <a id='ext-plug-ins'></a> External plug-ins
 

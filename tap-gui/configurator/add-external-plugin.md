@@ -8,8 +8,8 @@ turning it into a customized portal.
 There are several scenarios in which Configurator can help you to integrate a compatible plug-in.
 You can:
 
-- Add a [validated community Backstage plug-in](#validated-community)
-- Add a [non-validated community or custom Backstage plug-in](#non-validated-custom)
+- Add a [validated Backstage plug-in](#validated-backstage)
+- Add a [non-validated community or Backstage plug-in](#non-validated-custom)
 
 As of Tanzu Application Platform v1.7, Configurator can integrate an existing plug-in, but it cannot
 create a new Backstage plug-in.
@@ -21,10 +21,10 @@ modifying an existing plug-in to your specification. For more information, see
 For more information about how to create a Backstage plug-in, see the
 [Backstage documentation](https://backstage.io/docs/plugins/create-a-plugin/).
 
-## <a id="validated-community"></a> Add a validated community Backstage plug-in
+## <a id="validated-backstage"></a> Add a validated Backstage plug-in
 
 (SECTION TO BE ADDED)
 
-## <a id="non-validated-custom"></a> Add a non-validated community or custom Backstage plug-in
+## <a id="non-validated-custom"></a> Add a non-validated community or Backstage plug-in
 
 (SECTION TO BE ADDED)
