@@ -33,12 +33,12 @@ To customize an ImageVulnerabilityScan to use your scanner:
     Where:
 
     - `DEV-NAMESPACE` is the developer namespace where scanning occurs.
-    - `spec.image` is your target image (image that you are scanning). The digest must be specified. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
+    - `spec.image` is the image that you are scanning. You must specify the digest. See [Retrieving an image digest](./ivs-custom-samples.hbs.md#retrieving-an-image-digest).
     - `scanResults.location` is the registry URL where results are uploaded. For example, `my.registry/scan-results`.
     - `serviceAccountNames` includes:
         - `scanner` is the service account that runs the scan. It must have read access to `image`.
         - `publisher` is the service account that uploads results. It must have write access to `scanResults.location`.
-    - `SCANNER-IMAGE` is your vulnerability scanner image (the image containing the scanner of your choice).
+    - `SCANNER-IMAGE` is your vulnerability scanner image, such as the image containing the scanner of your choice.
     - `SCANNER-CLI-COMMAND` is the scanner's CLI command.
     - `SCANNER-NAME` is the scanner image name that is reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
