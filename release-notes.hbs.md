@@ -11,25 +11,10 @@ v{{ vars.url_version }}.
  
 This release has the following security fixes, listed by component and area. 
  
-#### <a id='1-5-7-COMPONENT-NAME-fixes'></a> v1.5.7 Security fixes: COMPONENT-NAME
- 
-- Security fix description.
- 
-OR add HTML or Markdown table
- 
-<table>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</table> 
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-2602</li><li>CVE-2023-2603</li><li>GHSA-2wrh-6pvc-2jm9</li><li>CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049 </li></ul>|
+| contour.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>GHSA-m425-mq94-257g</li><li>CVE-2023-44487 </li></ul>|
  
 ---
  
