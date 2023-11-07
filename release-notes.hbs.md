@@ -1276,102 +1276,103 @@ This release has the following known issues, listed by component and area.
 
 While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can be fail with the status `CrashLoopBackOff` or `OOMKilled`. 
 
-To work around this problem you can increase the memory limit to `512Mi` has proven to fix the pod crash. Please see the steps to increase the memory limit in [Cartographer Convention documentation](/cartographer-conventions/troubleshooting.hbs.md#oomkilled-convention-controller)
+To work around this problem you can increase the memory limit to `512Mi` to fix the pod crash. For information about how to increase the memory limit, see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
 
-You may need to increase the memory limit for the various convention webhook servers. Use the following steps to increase the memory limit for the following Convention servers,
+You might need to increase the memory limit for the convention webhook servers. Use the following steps to increase the memory limit for the following Convention servers:
+
 - app-live-view-conventions
 - spring-boot-webhook
 - developer-conventions/webhook
 
 1. Create a `Secret` with the following ytt overlay.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: patch-app-live-view-conventions
-  namespace: tap-install
-stringData:
-  patch-conventions-controller.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    
-    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"appliveview-webhook", "namespace": "app-live-view-conventions"}})
-    ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by=overlay.subset({"name": "webhook"})
-            - name: webhook
-              resources:
-                limits:
-                  memory: 512Mi
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: patch-spring-boot-conventions
-  namespace: tap-install
-stringData:
-  patch-conventions-controller.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    
-    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"spring-boot-webhook", "namespace": "spring-boot-convention"}})
-    ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by=overlay.subset({"name": "webhook"})
-            - name: webhook
-              resources:
-                limits:
-                  memory: 512Mi
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: patch-developer-conventions
-  namespace: tap-install
-stringData:
-  patch-conventions-controller.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    
-    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"webhook", "namespace": "developer-conventions"}})
-    ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by=overlay.subset({"name": "webhook"})
-            - name: webhook
-              resources:
-                limits:
-                  memory: 512Mi     
-```
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-app-live-view-conventions
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+      
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"appliveview-webhook", "namespace": "app-live-view-conventions"}})
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "webhook"})
+              - name: webhook
+                resources:
+                  limits:
+                    memory: 512Mi
+  ---
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-spring-boot-conventions
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+      
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"spring-boot-webhook", "namespace": "spring-boot-convention"}})
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "webhook"})
+              - name: webhook
+                resources:
+                  limits:
+                    memory: 512Mi
+  ---
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-developer-conventions
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+      
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"webhook", "namespace": "developer-conventions"}})
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "webhook"})
+              - name: webhook
+                resources:
+                  limits:
+                    memory: 512Mi     
+  ```
 
-2. Update the TAP values YAML file to include a `package_overlays` field:
+2. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
 
-```yaml
-package_overlays:
-- name: appliveview-conventions
-  secrets:
-  - name: patch-app-live-view-conventions
-- name: spring-boot-conventions
-  secrets:
-  - name: patch-spring-boot-conventions
-- name: developer-conventions
-  secrets:
-  - name: patch-developer-conventions
-```
+  ```yaml
+  package_overlays:
+  - name: appliveview-conventions
+    secrets:
+    - name: patch-app-live-view-conventions
+  - name: spring-boot-conventions
+    secrets:
+    - name: patch-spring-boot-conventions
+  - name: developer-conventions
+    secrets:
+    - name: patch-developer-conventions
+  ```
 
 3. Update Tanzu Application Platform by running:
 
-```console
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
-```
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
+  ```
 
-For more information about the package customization, please see [Customize your package installation](/customize-package-installation.hbs.md).
+For information about the package customization, see [Customize your package installation](customize-package-installation.hbs.md).
 
 
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ

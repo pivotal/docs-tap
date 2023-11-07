@@ -64,9 +64,9 @@ An unmanaged error occurs in the `convention server` when processing a request.
 
 ### Solution
 
-1. Check the `convention server` logs to identify the cause of the error:
+1. Inspect the `convention server` logs to identify the cause of the error:
 
-   1. Use the following command to retrieve the `convention server` logs:
+   1. To retrieve the `convention server` logs:
 
       ```console
       kubectl -n convention-template logs deployment/webhook
@@ -80,7 +80,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
 
 1. Identify the error and deploy a fixed version of `convention server`.
 
-   + Be aware that the new deployment is not applied to the existing `PodIntent`s. It is only applied to the new `PodIntent`s.
+   + The new deployment is not applied to the existing `PodIntent`s. It is only applied to the new `PodIntent`s.
    + To apply new deployment to exiting `PodIntent`, you must update the `PodIntent`, so the reconciler applies if it matches the criteria.
 
 ## <a id="server-not-secure"></a>Connection refused due to unsecured connection
@@ -96,7 +96,7 @@ An unmanaged error occurs in the `convention server` when processing a request.
 
 + The `convention server` fails to start due to `server gave HTTP response to HTTPS client`:
 
-  + When checking the `convention server` events by running the following command:
+  + When checking the `convention server` events by running:
 
     ```console
     kubectl -n convention-template describe pod webhook-594d75d69b-4w4s8
@@ -184,12 +184,14 @@ secrets:
 - name: registry-credentials
 ``` 
 
-## <a id="oom-killed"></a> `OOMKilled` Convention Controller 
+## <a id="oom-killed"></a> `OOMKilled` Convention controller 
 
 ### Symptoms
 
 While processing workloads with large SBOM, the Cartographer Convention controller manager pod can 
-be failing with the status `CrashLoopBackOff` or `OOMKilled`. For example:
+fail with the status `CrashLoopBackOff` or `OOMKilled`. 
+
+For example:
 
 ```console
 NAME                                                          READY   STATUS             RESTARTS          AGE
@@ -197,7 +199,7 @@ cartographer-controller-6996774647-bs98l                      1/1     Running   
 cartographer-conventions-controller-manager-ff4cdf59d-5nzl5   0/1     CrashLoopBackOff   1292 (109s ago)   5d3h
 ```
 
-The controller pod status may look like the following:
+The following is an example controller pod status:
 
 ```yaml
 containerStatuses:
@@ -217,53 +219,55 @@ containerStatuses:
 ### Cause
 
 This error usually occurs when a `workload` image, built by the supply chain, contains a large SBOM.
-In some cases, the default resource limit set during installation may not be enough to process the 
+The default resource limit set during installation might not be large enough to process the 
 pod conventions which can lead to the controller pod crashing.  
 
 ### Solution 
 
-By using a ytt overlay, the Cartographer Convention controller manager memory limit can be increased 
-after TAP installation. Here is an exmaple of a ytt overlay to increase the memory limit.
+By using a ytt overlay, you can increase the Cartographer Convention controller manager memory limit
+after Tanzu Application Platform installation. 
+
+The following is an exmaple ytt overlay that increases the memory limit:
 
 1. Create a `Secret` with the following ytt overlay:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: patch-cartographer-convention-controller
-  namespace: tap-install
-stringData:
-  patch-conventions-controller.yaml: |
-    #@ load("@ytt:overlay", "overlay")
-    
-    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"cartographer-conventions-controller-manager", "namespace": "cartographer-system"}}), expects="0+"
-    ---
-    spec:
-      template:
-        spec:
-          containers:
-            #@overlay/match by=overlay.subset({"name": "manager"})
-            - name: manager
-              resources:
-                limits:
-                  cpu: 100m
-                  memory: 512Mi
-```
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-cartographer-convention-controller
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+      
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"cartographer-conventions-controller-manager", "namespace": "cartographer-system"}}), expects="0+"
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "manager"})
+              - name: manager
+                resources:
+                  limits:
+                    cpu: 100m
+                    memory: 512Mi
+  ```
 
-2. Update the TAP values YAML file to include a `package_overlays` field:
+1. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
 
-```yaml
-package_overlays:
-- name: cartographer
-  secrets:
-  - name: patch-cartographer-convention-controller
-```
+  ```yaml
+  package_overlays:
+  - name: cartographer
+    secrets:
+    - name: patch-cartographer-convention-controller
+  ```
 
-3. Update Tanzu Application Platform by running:
+1. Update Tanzu Application Platform by running:
 
-```console
-tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
-```
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
+  ```
 
-For more information about the package customization, please see [Customize your package installation](/customize-package-installation.hbs.md).
+For information about the package customization, see [Customize your package installation](../customize-package-installation.hbs.md).
