@@ -1,4 +1,4 @@
-# Configure Pod Security for Workloads
+# Configure pod security for workloads
 
 This topic provides an overview of the configuration options you can use to apply
 security contexts to pods that are running supply chain workloads in Tanzu Application Platform (commonly known as TAP). Use these configuration options to apply security policies that meet the security requirements of applications running on a Kubernetes cluster.
@@ -85,7 +85,7 @@ spec:
 
 ### Apply security context with Tanzu CLI
 
-You can also use the Tanzu CLI to apply the supply chain workload security context when creating workloads. For example:
+Alternatively, use the Tanzu CLI apps plug-in to apply the `security-context` parameter when creating workloads. For example:
 
 ```console
 tanzu apps workload create tanzu-java-web-app -n workspace \
@@ -97,3 +97,5 @@ tanzu apps workload create tanzu-java-web-app -n workspace \
   --param-yaml security-context="{"runAsUser":"333"}"
 ```
 
+For more information about Tanzu CLI apps plug-in commands, see the
+[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/index.html) documentation.
