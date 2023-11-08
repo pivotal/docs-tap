@@ -37,11 +37,11 @@ Deploy a `convention server` ([ClusterPodConvention](reference/cluster-pod-conve
 
 ### Cause
 
-`convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with wrong certificates. The `convention-controller` cannot figure out the *CA Bundle* to perform the request to the *server*.
+`convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with wrong certificates. The `convention-controller` cannot figure out the CA Bundle to perform the request to the server.
 
 ### Solution
 
-Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with the correct certificates. To do so, verify the value of annotation `conventions.carto.run/inject-ca-from` which must be set to the used *Certificate*.
+Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with the correct certificates. To do so, verify the value of annotation `conventions.carto.run/inject-ca-from` which must be set to the used Certificate.
 
 > **Important** Do not set annotation `conventions.carto.run/inject-ca-from` if no certificate is used.
 
