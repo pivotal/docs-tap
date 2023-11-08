@@ -590,21 +590,17 @@ earlier than Tanzu Application Platform v1.6.1, you must uninstall the full depe
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:VERSION \
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:${TAP_VERSION} \
       --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo
     ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
 
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
     tanzu package repository add full-deps-package-repo \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo:VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package-repo:${TAP_VERSION} \
       --namespace tap-install
     ```
-
-    Where `VERSION` is the version of the `tap` package you retrieved earlier.
 
 1. Install the full dependencies package by running:
 
