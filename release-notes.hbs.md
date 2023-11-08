@@ -386,6 +386,8 @@ This release has the following known issues, listed by component and area.
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
+- `tap-gui` package may fail to install on OpenShift when utilizing the view profile. 
+
 ---
 
 ### <a id='1-7-0-components'></a> v1.7.0 Component versions
