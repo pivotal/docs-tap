@@ -48,7 +48,7 @@ spec:
         clientSecretRef:
           name: my-openid-client-secret
         configurationURI: https://openid.example.com/.well-known/openid-configuration
-        issuerURI: https://openid.example.com # DEPRECATED, optional, rely on 'configurationURI'. This field must be unset if 'configurationURI' is set.
+        issuerURI: https://openid.example.com # This field is deprecated, optional and relies on `configurationURI`. It must be unset if `configurationURI` is set.
         scopes:
           - "openid"
           - "other-scope"
@@ -77,8 +77,8 @@ Where:
 
 - `.openID`: The issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, the value of `openID` auto-configures the provider by using the information from `https://openid.example.com/.well-known/openid-configuration`.
 - `.openID.configurationURI`: The OpenID Connect provider configuration endpoint, which must be suffixed
-  with `/.well-known/openid-configuration`. This endpoint must have HTTPS scheme. For more details, see [OpenID Connect provider configuration discovery](#oidc-discovery) section.
-- `.openID.issuerURI` (DEPRECATED, optional, rely on `.openID.configurationURI`): The issuer URI. The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match the value of the `issuer` field. See the OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration` for more information.
+  with `/.well-known/openid-configuration`. This endpoint must have the HTTPS scheme. For more information, see [OpenID Connect provider configuration discovery](#oidc-discovery).
+- `.openID.issuerURI` (optional): The issuer URI. This field is deprecated and it relies on `.openID.configurationURI`. The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match the value of the `issuer` field. For more information, see the OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration`.
 
   > **Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI.
 
@@ -91,9 +91,9 @@ Where:
 - `.openID.displayName` (optional): A user-friendly display name for the provider that is rendered on the login page.
 - `.openID.scopes`: The scopes requested to the issuer in the authorization request. Its value must contain `"openid"`. Other common `openID.scopes` values include `"profile"` and `"email"`.
 - `.openID.clientSecretRef`: The issuer's client secret. The value of `clientSecretRef` must be a `Secret` with the entry `clientSecret`.
-- `.openID.authorizationUri` (optional): The URI for performing an authorization request and obtaining an `authorization_code`. If 'configurationURI' and 'issuerURI' fields are not set, this field may not be empty.
-- `.openID.tokenUri` (optional): The URI for performing a token request and obtaining a token. If 'configurationURI' and 'issuerURI' fields are not set, this field may not be empty.
-- `.openID.jwksUri` (optional): The JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures. If 'configurationURI' and 'issuerURI' fields are not set, this field may not be empty.
+- `.openID.authorizationUri` (optional): The URI for performing an authorization request and obtaining an `authorization_code`. If the `configurationURI` and `issuerURI` fields are not set, this field must not be empty.
+- `.openID.tokenUri` (optional): The URI for performing a token request and obtaining a token. If the `configurationURI` and `issuerURI` fields are not set, this field must not be empty.
+- `.openID.jwksUri` (optional): The JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures. If the `configurationURI` and `issuerURI` fields are not set, this field must not be empty.
 - `.openID.userinfoUri` (optional): The URI for obtaining the additional identity claims from the upstream IdP (identity provider).
 - `.openID.roles.fromUpstream.claim` (optional): Selects which claim in the `id_token` contains the `roles` of
   the user. `roles` is not a standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope, it  populates the `roles` claim in the `id_token` issued by the `AuthServer`. 
@@ -157,38 +157,38 @@ accessible user URI for the `AuthServer`, including scheme and port is `spec.iss
 accessible on `https://appsso.company.example.com:1234/`, the redirect URI registered with the identity provider should
 be `https://appsso.company.example.com:1234/login/oauth2/code/my-provider`.
 
-### <a href='oidc-discovery'></a> OpenID Connect provider configuration discovery
+### <a id='oidc-discovery'></a> OpenID Connect provider configuration discovery
 
-OpenID Connect provider configuration discovery is enabled when field `AuthServer.spec.identityProviders[*].openID.configurationURI` is set.
+OpenID Connect provider configuration discovery is enabled when you set the `AuthServer.spec.identityProviders[*].openID.configurationURI` field.
 
 This field has the following requirements:
 
-- must be a valid URI
-- must have HTTPS scheme (read below for testing with HTTP scheme)
-- must be suffixed with `/.well-known/openid-configuration`
+- It must be a valid URI.
+- It must have HTTPS scheme. For more information about testing with the HTTP scheme, see [Non-HTTPS configuration](#non-https).
+- It must be suffixed with `/.well-known/openid-configuration`
 
-**Non-HTTPS configuration**
+#### <a id='non-https'></a>Non-HTTPS configuration
 
-If required for testing purposes, an annotation of `sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""` can 
-be added to `AuthServer` metadata to allow for connecting to insecure upstream OpenID Connect providers using HTTP scheme. 
-Use this option only in testing or prototyping environments.
+For testing purposes, you can add an annotation of `sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""` to the `AuthServer` metadata for communicating with the insecure upstream OpenID Connect providers by using HTTP scheme.
 
-**Configuring custom CA**
+> **Caution** Use this option only in the testing or prototyping environments.
 
-If using an upstream OpenID provider with a custom or private certificate authority (CA), see instructions 
-on [configuring custom CA certificates](./ca-certs.md).
+#### <a id='custom-ca'></a>Configure custom CA
 
-**Discovery mechanism**
+For more information about using an upstream OpenID provider with a custom or private certificate authority (CA), see [CA certificates for Application Single Sign-On](ca-certs.md).
 
-AppSSO will attempt to resolve the configuration document located at the designated configuration URI. The client
-attempting to resolve the document will wait at most 10 seconds for a response. If there is no response or the response
-is not HTTP `200 OK`, `AuthServer` resource will enter an authorization server configuration error state and will provide a
-relevant error message. The client will re-attempt discovery at least 1 minute after the last failed discovery attempt.
+#### <a id='discovery-mechanism'></a>Discovery mechanism
 
-The AppSSO client supports connecting to OpenID Connect providers configured with TLS protocol version 1.2 and above.
+Application Single Sign-On attempts to resolve the configuration document located at the designated configuration URI. The Application Single Sign-On client attempts to wait for at most 10 seconds to receive a response. If there is no response or the response status is not HTTP `200 OK`, the `AuthServer` resource enters an authorization server configuration error state and provides a corresponding error message. The client re-attempts discovery at least 1 minute after the last failed discovery attempt.
 
-The AppSSO client attempts to discover the following OpenID Connect fields: `authorization_endpoint`, `token_endpoint`,
-`jwks_uri`, and `userinfo_endpoint`.
+The Application Single Sign-On client supports connecting to OpenID Connect providers configured with the TLS protocol v1.2 and later.
+
+The Application Single Sign-On client attempts to discover the following OpenID Connect fields:
+
+- `authorization_endpoint` 
+- `token_endpoint`
+- `jwks_uri`
+- `userinfo_endpoint`
 
 ### Supported token signing algorithms
 

@@ -1,4 +1,4 @@
-# CA certificates for AppSSO
+# CA certificates for Application Single Sign-On
 
 This topic tells you how to configure CA certificates for `AuthServer` in 
 Application Single Sign-On (commonly called AppSSO).
