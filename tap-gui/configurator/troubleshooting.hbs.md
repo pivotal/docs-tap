@@ -78,3 +78,15 @@ spec:
 ```
 
 Now when you submit your workload, the testing stage finishes.
+
+## Symptom
+
+Convention controller keeps crashing and is preventing other workloads from completing.
+
+## Cause
+
+This is caused by the large size of the SBOM for the Tanzu Developer Portal Configurator build process produces. The `podintent` will exhibit a out of memory error.
+
+## Solution
+
+You can create an overlay to increase the size of the `podintents` to 512 MB (up from 256MB). This process is covered in [the Convention Controller Troubleshooting section](../../cartographer-conventions/troubleshooting.hbs.md).
