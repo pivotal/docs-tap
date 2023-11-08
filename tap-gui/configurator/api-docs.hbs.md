@@ -31,6 +31,8 @@ context.applyWithDependency(
 
 #### Properties
 
+This table describes the properties.
+
 | Property             | Type             | Description |
 |----------------------|------------------|-------------|
 | `apiPage`            | `ApiPage`        |             |
@@ -46,7 +48,7 @@ context.applyWithDependency(
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -58,11 +60,15 @@ The package has the following methods.
 
 ##### addComponentPageCase(pageCase: ReactElement): void
 
+This table describes the parameters.
+
 | Parameter  | Type         | Description |
 |------------|--------------|-------------|
 | `pageCase` | ReactElement |             |
 
 ##### addOverviewContent(content: ReactElement): void
+
+This table describes the parameters.
 
 | Parameter | Type         | Description |
 |-----------|--------------|-------------|
@@ -97,7 +103,7 @@ and permissions.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -159,7 +165,7 @@ You can use this class to add plug-ins to the Backstage backend.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -172,7 +178,6 @@ The package has the following methods.
 ##### addPlugin(plugin: Plugin): void
 
 This method registers a named plug-in to handle backend requests at a subpath.
-
 Plug-ins must have unique names. The first plug-in registered with a given name wins.
 
 | Parameter | Type                                                    | Description    |
@@ -191,7 +196,7 @@ The package has the following type.
 
 ### Class ApiSurface
 
-Add Backstage ApiFactories.
+You can use this class to add Backstage ApiFactories.
 
 #### Methods
 
@@ -200,9 +205,7 @@ The package has the following methods.
 ##### add(factory: AnyApiFactory): void
 
 This method registers a new Backstage ApiFactory.
-
 Factories must specify an API with a unique ID. The last factory registered with a given ID wins.
-
 Factories that specify APIs with IDs on the ignored list will not be registered.
 
 | Parameter | Type          | Description |
@@ -215,7 +218,7 @@ You can use this class to replace core components of the Backstage app.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -228,7 +231,6 @@ The package has the following methods.
 ##### add&lt;K extends keyof AppComponents&gt;(key: K, component: AppComponents\[K\]): void
 
 This method replaces a given Backstage AppComponent with another.
-
 AppComponents must be unique by key. The last AppComponent registered with a given key wins.
 
 | Parameter   | Type          | Description                                                |
@@ -244,11 +246,11 @@ You can use this class to register additional frontend plug-ins with the Backsta
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
-Constructs a new instance of the `AppPluginSurface` class
+This constructor constructs a new instance of the `AppPluginSurface` class.
 
 #### Methods
 
@@ -270,7 +272,7 @@ Manipulate routes in the frontend Backstage app.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -282,7 +284,7 @@ The package has the following methods.
 
 ##### add(route: ReactElement): void
 
-This method registers a react-router Route.
+This method registers a react-router route.
 
 | Parameter | Type         | Description                                                                  |
 |-----------|--------------|------------------------------------------------------------------------------|
@@ -290,9 +292,8 @@ This method registers a react-router Route.
 
 ##### addRouteBinder(routeBinder: RouteBinder): void
 
-This method binds external routes.
-
-[https://backstage.io/docs/plugins/composability/\#binding-external-routes-in-the-app](https://backstage.io/docs/plugins/composability/#binding-external-routes-in-the-app)
+This method binds external routes. For more information about binding external routes to apps, see the
+[Backstage documentation](https://backstage.io/docs/plugins/composability/#binding-external-routes-in-the-app).
 
 | Parameter     | Type        | Description |
 |---------------|-------------|-------------|
@@ -304,11 +305,11 @@ You can use this class to add page-level banners to the Backstage app.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
-Constructs a new instance of the `BannerSurface` class
+This constructor constructs a new instance of the `BannerSurface` class.
 
 #### Methods
 
@@ -328,7 +329,7 @@ You can use this class to add tabs to the Settings page.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -340,7 +341,7 @@ The package has the following methods.
 
 ##### add(tab: ReactElement): void
 
-This method adds a new tab to the Settings page.
+This method adds a new tab to the **Settings** page.
 
 | Parameter | Type         | Description                                                                                             |
 |-----------|--------------|---------------------------------------------------------------------------------------------------------|
@@ -351,11 +352,11 @@ This method adds a new tab to the Settings page.
 You can use this class to manipulate entries in sidebar.
 
 Entries are split into two sections: top items appear above a divider and main items appear below
-it. Tabs within each section are rendered in order of registration.
+it. Tabs within each section appear in order of registration.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -387,7 +388,7 @@ You can use this class to manipulate themes available to the Backstage applicati
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -454,7 +455,7 @@ This method registers a new SignInResolver.
 
 ##### getResolver&lt;TAuthResult&gt;(authProviderKey: string): SignInResolver&lt;TAuthResult&gt;
 
-This method gets the first named provider, or fall back to the guest resolver.
+This method gets the first named provider, or falls back to the guest resolver.
 
 | Parameter         | Type | Description |
 |-------------------|------|-------------|
@@ -498,7 +499,7 @@ You can use this class to allow for configuration of the Backstage logger.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -527,7 +528,7 @@ You can use this class to add content to the Backstage Home screen.
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
@@ -572,7 +573,7 @@ You can use this class to allow for manipulation of LDAP groups and users during
 
 #### Constructors
 
-The package has the following constructor(s).
+The package has the following constructor.
 
 ##### constructor()
 
