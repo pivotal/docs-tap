@@ -25,7 +25,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
   <tr>
     <td>Tanzu Kubernetes releases (vSphere with Tanzu)</td>
     <td>TKr v1.25.7 for vSphere v8.x, <br>TKr v1.24.9 for vSphere v8.x,<br>TKr v1.23.8 for vSphere v7.x (Photon)</td>
-    <td>Support for TKr v1.25.7 begins with TAP Tanzu Application Platform v1.4.8<br><br>Support for TKr v1.24.9 begins with Tanzu Application Platform v1.4.4<br></td>
+    <td>Support for TKr v1.25.7 begins with Tanzu Application Platform v1.4.8<br><br>Support for TKr v1.24.9 begins with Tanzu Application Platform v1.4.4<br></td>
   </tr>
   <tr>
     <td>OpenShift</td>
