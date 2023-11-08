@@ -171,7 +171,7 @@ This section tells you about GraphQL query arguments, and lists the fields avail
     appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})
     ```
 
-  - `source`: string representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE` and `INTELLIJ`.
+  - `source`: string representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`.
 
     For example:
 
@@ -187,7 +187,7 @@ This section tells you about GraphQL query arguments, and lists the fields avail
     appAcceleratorRuns(query:{username: "homer.simpson"})
     ```
 
-  - `namespace` and `name`: strings representing the accelerator which
+  - `namespace` and `name`: strings representing the accelerator that
   was used to create an application.
     For example:
 
@@ -195,7 +195,7 @@ This section tells you about GraphQL query arguments, and lists the fields avail
     appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
     ```
 
-  - `appAcceleratorRepoURL`, `appAcceleratorRevision` and `appAcceleratorSubpath`: actual location in VCS about the accelerator sources used.
+  - `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS about the accelerator sources used.
     For example:
 
     ```graphql
@@ -224,13 +224,13 @@ You must specify at least one field.
   the accelerator
 - `namespace` and `name`: strings representing the accelerator which
   was used to create an application
-- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS about the sources of the
+- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS of the sources of the
   accelerator used
-- `appAcceleratorSource`: vcs information of the sources of the accelerator used, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
+- `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
 - `timestamp`: the exact time the accelerator was run
 - `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each AppAcceleratorRun. Those fragment nodes share many of the fields with AppAcceleratorRun, with the same semantics but applied to the particular fragment. Those include:
   - `namespace` and `name`: strings representing the identity of the fragment
-  - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision` and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS about the sources of the fragment used.
+  - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS of the sources of the fragment used
   - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
 
 ### <a id='sample-app-accelerator-runs-query'></a> Sample Application Accelerator queries
