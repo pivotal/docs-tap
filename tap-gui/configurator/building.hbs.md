@@ -150,9 +150,9 @@ Use an existing supply chain
          env:
            - name: BP_NODE_RUN_SCRIPTS
              value: 'set-tdp-config,portal:pack'
-           - name: TDP_CONFIG
+           - name: TPB_CONFIG
              value: /tmp/tdp-config.yaml
-           - name: TDP_CONFIG_STRING
+           - name: TPB_CONFIG_STRING
              value: ENCODED-TDP-CONFIG-VALUE
 
        source:
@@ -187,16 +187,16 @@ Use an existing supply chain
          env:
            - name: BP_NODE_RUN_SCRIPTS
              value: "set-tdp-config,portal:pack"
-           - name: TDP_CONFIG
+           - name: TPB_CONFIG
              value: /tmp/tdp-config.yaml
-           - name: TDP_CONFIG_STRING
+           - name: TPB_CONFIG_STRING
              value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
        source:
          image: TDP-IMAGE-LOCATION
          subPath: builder
      ```
 
-     The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the
+     The `TPB_CONFIG_STRING` value can be decoded as the earlier example that includes the
      TechInsights front-end and back-end plug-ins.
 
      `TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
