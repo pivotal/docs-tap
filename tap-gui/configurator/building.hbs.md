@@ -226,45 +226,45 @@ Use a custom supply chain
      metadata:
        name: tdp-configurator
      spec:
-     resources:
-     - name: source-provider
-       params:
-       - default: default
-         name: serviceAccount
-       - default: TDP-IMAGE-LOCATION
-         name: tdp_configurator_bundle
-       templateRef:
-         kind: ClusterSourceTemplate
-         name: tdp-source-template
-     - name: image-provider
-       params:
-       - default: default
-         name: serviceAccount
-       - name: registry
-         default:
-           ca_cert_data: ""
-           repository: IMAGE-REPOSITORY
-           server: REGISTRY-HOSTNAME
-       - default: default
-         name: clusterBuilder
-       sources:
-       - name: source
-         resource: source-provider
-       templateRef:
-         kind: ClusterImageTemplate
-         name: tdp-kpack-template
+       resources:
+       - name: source-provider
+         params:
+         - default: default
+           name: serviceAccount
+         - default: TDP-IMAGE-LOCATION
+           name: tdp_configurator_bundle
+         templateRef:
+           kind: ClusterSourceTemplate
+           name: tdp-source-template
+       - name: image-provider
+         params:
+         - default: default
+           name: serviceAccount
+         - name: registry
+           default:
+             ca_cert_data: ""
+             repository: IMAGE-REPOSITORY
+             server: REGISTRY-HOSTNAME
+         - default: default
+           name: clusterBuilder
+         sources:
+         - name: source
+           resource: source-provider
+         templateRef:
+           kind: ClusterImageTemplate
+           name: tdp-kpack-template
 
-     selectorMatchExpressions:
-     - key: apps.tanzu.vmware.com/workload-type
-       operator: In
-       values:
-       - tdp
+       selectorMatchExpressions:
+       - key: apps.tanzu.vmware.com/workload-type
+         operator: In
+         values:
+         - tdp
      ---
      apiVersion: carto.run/v1alpha1
      kind: ClusterImageTemplate
      metadata:
-     name: tdp-kpack-template
-       spec:
+       name: tdp-kpack-template
+     spec:
        healthRule:
          multiMatch:
            healthy:
@@ -273,72 +273,72 @@ Use a custom supply chain
                type: BuilderReady
              - status: "True"
                type: Ready
-       unhealthy:
-         matchConditions:
-         - status: "False"
-           type: BuilderReady
-         - status: "False"
-           type: Ready
-     imagePath: .status.latestImage
-     lifecycle: mutable
-     params:
-     - default: default
-       name: serviceAccount
-     - default: default
-       name: clusterBuilder
-     - name: registry
-       default: {}
-     ytt: |
-       #@ load("@ytt:data", "data")
-       #@ load("@ytt:regexp", "regexp")
+           unhealthy:
+             matchConditions:
+             - status: "False"
+               type: BuilderReady
+             - status: "False"
+               type: Ready
+       imagePath: .status.latestImage
+       lifecycle: mutable
+       params:
+       - default: default
+         name: serviceAccount
+       - default: default
+         name: clusterBuilder
+       - name: registry
+         default: {}
+       ytt: |
+         #@ load("@ytt:data", "data")
+         #@ load("@ytt:regexp", "regexp")
 
-       #@ def merge_labels(fixed_values):
-       #@   labels = {}
-       #@   if hasattr(data.values.workload.metadata, "labels"):
-       #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
-       #@     for k,v in dict(data.values.workload.metadata.labels).items():
-       #@       if k not in exclusions:
-       #@         labels[k] = v
-       #@       end
-       #@     end
-       #@   end
-       #@   labels.update(fixed_values)
-       #@   return labels
-       #@ end
+         #@ def merge_labels(fixed_values):
+         #@   labels = {}
+         #@   if hasattr(data.values.workload.metadata, "labels"):
+         #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+         #@     for k,v in dict(data.values.workload.metadata.labels).items():
+         #@       if k not in exclusions:
+         #@         labels[k] = v
+         #@       end
+         #@     end
+         #@   end
+         #@   labels.update(fixed_values)
+         #@   return labels
+         #@ end
 
-       #@ def image():
-       #@   return "/".join([
-       #@    data.values.params.registry.server,
-       #@    data.values.params.registry.repository,
-       #@    "-".join([
-       #@      data.values.workload.metadata.name,
-       #@      data.values.workload.metadata.namespace,
-       #@    ])
-       #@   ])
-       #@ end
+         #@ def image():
+         #@   return "/".join([
+         #@    data.values.params.registry.server,
+         #@    data.values.params.registry.repository,
+         #@    "-".join([
+         #@      data.values.workload.metadata.name,
+         #@      data.values.workload.metadata.namespace,
+         #@    ])
+         #@   ])
+         #@ end
 
-       #@ bp_node_run_scripts = "set-tpb-config,portal:pack"
-       #@ tpb_config = "/tmp/tpb-config.yaml"
+         #@ bp_node_run_scripts = "set-tpb-config,portal:pack"
+         #@ tpb_config = "/tmp/tpb-config.yaml"
 
-       #@ for env in data.values.workload.spec.build.env:
-       #@   if env.name == "TPB_CONFIG_STRING":
-       #@     tpb_config_string = env.value
-       #@   end
-       #@   if env.name == "BP_NODE_RUN_SCRIPTS":
-       #@     bp_node_run_scripts = env.value
-       #@   end
-       #@   if env.name == "TPB_CONFIG":
-       #@     tpb_config = env.value
-       #@   end
-       #@ end
+         #@ for env in data.values.workload.spec.build.env:
+         #@   if env.name == "TPB_CONFIG_STRING":
+         #@     tpb_config_string = env.value
+         #@   end
+         #@   if env.name == "BP_NODE_RUN_SCRIPTS":
+         #@     bp_node_run_scripts = env.value
+         #@   end
+         #@   if env.name == "TPB_CONFIG":
+         #@     tpb_config = env.value
+         #@   end
+         #@ end
 
-     apiVersion: kpack.io/v1alpha2
-       kind: Image
-       metadata:
-         name: #@ data.values.workload.metadata.name
-         labels: #@ merge_labels({ "app.kubernetes.io/component": "build" })
-       spec:
-         tag: #@ image()
+         apiVersion: kpack.io/v1alpha2
+         kind: Image
+         metadata:
+           name: #@ data.values.workload.metadata.name
+           labels: #@ merge_labels({ "app.kubernetes.io/component": "build" })
+         spec:
+           tag: #@ image()
            serviceAccountName: #@ data.values.params.serviceAccount
            builder:
              kind: ClusterBuilder
@@ -393,20 +393,20 @@ Use a custom supply chain
          #@   return labels
          #@ end
 
-     ---
-     apiVersion: source.apps.tanzu.vmware.com/v1alpha1
-     kind: ImageRepository
-     metadata:
-       name: #@ data.values.workload.metadata.name
-       labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
-     spec:
-       serviceAccountName: #@ data.values.params.serviceAccount
-       interval: 10m0s
-       #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
-       image: #@ data.values.workload.spec.source.image
-       #@ else:
-       image: #@ data.values.params.tdp_configurator_bundle
-       #@ end
+         ---
+         apiVersion: source.apps.tanzu.vmware.com/v1alpha1
+         kind: ImageRepository
+         metadata:
+           name: #@ data.values.workload.metadata.name
+           labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
+         spec:
+           serviceAccountName: #@ data.values.params.serviceAccount
+           interval: 10m0s
+           #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
+           image: #@ data.values.workload.spec.source.image
+           #@ else:
+           image: #@ data.values.params.tdp_configurator_bundle
+           #@ end
      ```
 
      Where:
@@ -431,16 +431,16 @@ Use a custom supply chain
      apiVersion: carto.run/v1alpha1
      kind: Workload
      metadata:
-      name: tdp-configurator-1-sc
-      namespace: DEVELOPER-NAMESPACE
-      labels:
-        apps.tanzu.vmware.com/workload-type: tdp
-        app.kubernetes.io/part-of: tdp-configurator-1-custom
-     spec:
-      build:
-        env:
-          - name: TPB_CONFIG_STRING
-            value: ENCODED-TDP-CONFIG-VALUE
+       name: tdp-configurator-1-sc
+       namespace: DEVELOPER-NAMESPACE
+       labels:
+         apps.tanzu.vmware.com/workload-type: tdp
+         app.kubernetes.io/part-of: tdp-configurator-1-custom
+      spec:
+        build:
+          env:
+            - name: TPB_CONFIG_STRING
+              value: ENCODED-TDP-CONFIG-VALUE
      ```
 
      Where:
