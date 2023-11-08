@@ -3,7 +3,7 @@
 This topic tells you about the Application Accelerator `Provenance` transform in Tanzu Application
 Platform, commonly known as TAP.
 
-## <a id="overview"></a> Overview 
+## <a id="overview"></a> Overview
 
 Use the `Provenance` transform to track the life cycle of generated projects.
 
@@ -30,8 +30,8 @@ When you generate an application with an accelerator, an event that contains the
 
 The relevant AMR data models are:
 
-- [AppAcceleratorRun](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorruns). There is one AppAcceleratorRun for each invocation of an accelerator, including version information about which accelerator was used.
-- [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments) There is one instance of AppAcceleratorFragment for each named fragment used by the running accelerator. There is between `0` and `N` instances, `N` being the number of fragments used by the accelerator.
+- [AppAcceleratorRun](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorruns): There is one AppAcceleratorRun for each invocation of an accelerator, including version information about which accelerator was used.
+- [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments): There is one instance of AppAcceleratorFragment for each named fragment used by the running accelerator. There are between `0` and `N` instances, `N` being the number of fragments used by the accelerator.
 
 When invocations were recorded, use the
 [AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query the system about
