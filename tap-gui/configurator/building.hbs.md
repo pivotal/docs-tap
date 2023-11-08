@@ -140,24 +140,24 @@ Use an existing supply chain
      apiVersion: carto.run/v1alpha1
      kind: Workload
      metadata:
-      name: tdp-configurator
-      namespace: DEVELOPER-NAMESPACE
-      labels:
-        apps.tanzu.vmware.com/workload-type: web
-        app.kubernetes.io/part-of: tdp-configurator
+       name: tdp-configurator
+       namespace: DEVELOPER-NAMESPACE
+       labels:
+         apps.tanzu.vmware.com/workload-type: web
+         app.kubernetes.io/part-of: tdp-configurator
      spec:
-      build:
-        env:
-          - name: BP_NODE_RUN_SCRIPTS
-            value: 'set-tdp-config,portal:pack'
-          - name: TDP_CONFIG
-            value: /tmp/tdp-config.yaml
-          - name: TDP_CONFIG_STRING
-            value: ENCODED-TDP-CONFIG-VALUE
+       build:
+         env:
+         - name: BP_NODE_RUN_SCRIPTS
+           value: 'set-tdp-config,portal:pack'
+         - name: TDP_CONFIG
+           value: /tmp/tdp-config.yaml
+         - name: TDP_CONFIG_STRING
+           value: ENCODED-TDP-CONFIG-VALUE
 
-      source:
-        image: TDP-IMAGE-LOCATION
-        subPath: builder
+       source:
+         image: TDP-IMAGE-LOCATION
+         subPath: builder
      ```
 
      Where:
@@ -177,23 +177,23 @@ Use an existing supply chain
      apiVersion: carto.run/v1alpha1
      kind: Workload
      metadata:
-      name: tdp-configurator
-      namespace: default
-      labels:
-        apps.tanzu.vmware.com/workload-type: web
-        app.kubernetes.io/part-of: tdp-configurator
+       name: tdp-configurator
+       namespace: default
+       labels:
+         apps.tanzu.vmware.com/workload-type: web
+         app.kubernetes.io/part-of: tdp-configurator
      spec:
-      build:
-        env:
-          - name: BP_NODE_RUN_SCRIPTS
-            value: "set-tdp-config,portal:pack"
-          - name: TDP_CONFIG
-            value: /tmp/tdp-config.yaml
-          - name: TDP_CONFIG_STRING
-            value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
-      source:
-        image: TDP-IMAGE-LOCATION
-        subPath: builder
+       build:
+         env:
+         - name: BP_NODE_RUN_SCRIPTS
+           value: "set-tdp-config,portal:pack"
+         - name: TDP_CONFIG
+           value: /tmp/tdp-config.yaml
+         - name: TDP_CONFIG_STRING
+           value: YXBwOgogIHBsdWdpbnM6CiAgICAtIG5hbWU6ICdAdm13YXJlLXRhbnp1L3RkcC1wbHVnaW4tdGVjaGluc2lnaHRzJwogICAgICB2ZXJzaW9uOiAnMC4wLjInCgpiYWNrZW5kOgogIHBsdWdpbnM6IAogICAgLSBuYW1lOiAnQHZtd2FyZS10YW56dS90ZHAtcGx1Z2luLXRlY2hpbnNpZ2h0cy1iYWNrZW5kJwogICAgICB2ZXJzaW9uOiAnMC4wLjIn
+       source:
+         image: TDP-IMAGE-LOCATION
+         subPath: builder
      ```
 
      The `TDP_CONFIG_STRING` value can be decoded as the earlier example that includes the
@@ -224,189 +224,189 @@ Use a custom supply chain
      apiVersion: carto.run/v1alpha1
      kind: ClusterSupplyChain
      metadata:
-      name: tdp-configurator
+       name: tdp-configurator
      spec:
-      resources:
-      - name: source-provider
-        params:
-        - default: default
-          name: serviceAccount
-        - default: TDP-IMAGE-LOCATION
-          name: tdp_configurator_bundle
-        templateRef:
-          kind: ClusterSourceTemplate
-          name: tdp-source-template
-      - name: image-provider
-        params:
-        - default: default
-          name: serviceAccount
-        - name: registry
-          default:
-            ca_cert_data: ""
-            repository: IMAGE-REPOSITORY
-            server: REGISTRY-HOSTNAME
-        - default: default
-          name: clusterBuilder
-        sources:
-        - name: source
-          resource: source-provider
-        templateRef:
-          kind: ClusterImageTemplate
-          name: tdp-kpack-template
+       resources:
+       - name: source-provider
+         params:
+       - default: default
+         name: serviceAccount
+       - default: TDP-IMAGE-LOCATION
+         name: tdp_configurator_bundle
+       templateRef:
+         kind: ClusterSourceTemplate
+         name: tdp-source-template
+       - name: image-provider
+         params:
+       - default: default
+         name: serviceAccount
+       - name: registry
+         default:
+           ca_cert_data: ""
+           repository: IMAGE-REPOSITORY
+           server: REGISTRY-HOSTNAME
+       - default: default
+         name: clusterBuilder
+       sources:
+       - name: source
+         resource: source-provider
+       templateRef:
+         kind: ClusterImageTemplate
+         name: tdp-kpack-template
 
-      selectorMatchExpressions:
-      - key: apps.tanzu.vmware.com/workload-type
-        operator: In
-        values:
-        - tdp
-     ---
-     apiVersion: carto.run/v1alpha1
-     kind: ClusterImageTemplate
-     metadata:
-      name: tdp-kpack-template
-     spec:
-      healthRule:
-        multiMatch:
-          healthy:
-            matchConditions:
-            - status: "True"
-              type: BuilderReady
-            - status: "True"
-              type: Ready
-          unhealthy:
-            matchConditions:
-            - status: "False"
-              type: BuilderReady
-            - status: "False"
-              type: Ready
-      imagePath: .status.latestImage
-      lifecycle: mutable
-      params:
-      - default: default
-        name: serviceAccount
-      - default: default
-        name: clusterBuilder
-      - name: registry
-        default: {}
-      ytt: |
-        #@ load("@ytt:data", "data")
-        #@ load("@ytt:regexp", "regexp")
+       selectorMatchExpressions:
+       - key: apps.tanzu.vmware.com/workload-type
+         operator: In
+         values:
+       - tdp
+       ---
+       apiVersion: carto.run/v1alpha1
+       kind: ClusterImageTemplate
+       metadata:
+         name: tdp-kpack-template
+       spec:
+         healthRule:
+           multiMatch:
+             healthy:
+               matchConditions:
+               - status: "True"
+                 type: BuilderReady
+               - status: "True"
+                 type: Ready
+         unhealthy:
+           matchConditions:
+           - status: "False"
+             type: BuilderReady
+           - status: "False"
+             type: Ready
+       imagePath: .status.latestImage
+       lifecycle: mutable
+       params:
+       - default: default
+         name: serviceAccount
+       - default: default
+         name: clusterBuilder
+       - name: registry
+         default: {}
+     ytt: |
+       #@ load("@ytt:data", "data")
+       #@ load("@ytt:regexp", "regexp")
 
-        #@ def merge_labels(fixed_values):
-        #@   labels = {}
-        #@   if hasattr(data.values.workload.metadata, "labels"):
-        #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
-        #@     for k,v in dict(data.values.workload.metadata.labels).items():
-        #@       if k not in exclusions:
-        #@         labels[k] = v
-        #@       end
-        #@     end
-        #@   end
-        #@   labels.update(fixed_values)
-        #@   return labels
-        #@ end
+       #@ def merge_labels(fixed_values):
+       #@   labels = {}
+       #@   if hasattr(data.values.workload.metadata, "labels"):
+       #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+       #@     for k,v in dict(data.values.workload.metadata.labels).items():
+       #@       if k not in exclusions:
+       #@         labels[k] = v
+       #@       end
+       #@     end
+       #@   end
+       #@   labels.update(fixed_values)
+       #@   return labels
+       #@ end
 
-        #@ def image():
-        #@   return "/".join([
-        #@    data.values.params.registry.server,
-        #@    data.values.params.registry.repository,
-        #@    "-".join([
-        #@      data.values.workload.metadata.name,
-        #@      data.values.workload.metadata.namespace,
-        #@    ])
-        #@   ])
-        #@ end
+       #@ def image():
+       #@   return "/".join([
+       #@    data.values.params.registry.server,
+       #@    data.values.params.registry.repository,
+       #@    "-".join([
+       #@      data.values.workload.metadata.name,
+       #@      data.values.workload.metadata.namespace,
+       #@    ])
+       #@   ])
+       #@ end
 
-        #@ bp_node_run_scripts = "set-tpb-config,portal:pack"
-        #@ tpb_config = "/tmp/tpb-config.yaml"
+       #@ bp_node_run_scripts = "set-tpb-config,portal:pack"
+       #@ tpb_config = "/tmp/tpb-config.yaml"
 
-        #@ for env in data.values.workload.spec.build.env:
-        #@   if env.name == "TPB_CONFIG_STRING":
-        #@     tpb_config_string = env.value
-        #@   end
-        #@   if env.name == "BP_NODE_RUN_SCRIPTS":
-        #@     bp_node_run_scripts = env.value
-        #@   end
-        #@   if env.name == "TPB_CONFIG":
-        #@     tpb_config = env.value
-        #@   end
-        #@ end
+       #@ for env in data.values.workload.spec.build.env:
+       #@   if env.name == "TPB_CONFIG_STRING":
+       #@     tpb_config_string = env.value
+       #@   end
+       #@   if env.name == "BP_NODE_RUN_SCRIPTS":
+       #@     bp_node_run_scripts = env.value
+       #@   end
+       #@   if env.name == "TPB_CONFIG":
+       #@     tpb_config = env.value
+       #@   end
+       #@ end
 
-        apiVersion: kpack.io/v1alpha2
-        kind: Image
-        metadata:
-          name: #@ data.values.workload.metadata.name
-          labels: #@ merge_labels({ "app.kubernetes.io/component": "build" })
-        spec:
-          tag: #@ image()
-          serviceAccountName: #@ data.values.params.serviceAccount
-          builder:
-            kind: ClusterBuilder
-            name: #@ data.values.params.clusterBuilder
-          source:
-            blob:
-              url: #@ data.values.source.url
-            subPath: builder
-          build:
-            env:
-            - name: BP_OCI_SOURCE
-              value: #@ data.values.source.revision
-            #@  if regexp.match("^([a-zA-Z0-9\/_-]+)(\@sha1:)?[0-9a-f]{40}$", data.values.source.revision):
-            - name: BP_OCI_REVISION
-              value: #@ data.values.source.revision
-            #@ end
-            - name: BP_NODE_RUN_SCRIPTS
-              value: #@ bp_node_run_scripts
-            - name: TPB_CONFIG
-              value: #@ tpb_config
-            - name: TPB_CONFIG_STRING
-              value: #@ tpb_config_string
+     apiVersion: kpack.io/v1alpha2
+       kind: Image
+       metadata:
+         name: #@ data.values.workload.metadata.name
+         labels: #@ merge_labels({ "app.kubernetes.io/component": "build" })
+       spec:
+         tag: #@ image()
+           serviceAccountName: #@ data.values.params.serviceAccount
+           builder:
+             kind: ClusterBuilder
+             name: #@ data.values.params.clusterBuilder
+           source:
+             blob:
+               url: #@ data.values.source.url
+             subPath: builder
+           build:
+             env:
+             - name: BP_OCI_SOURCE
+               value: #@ data.values.source.revision
+             #@  if regexp.match("^([a-zA-Z0-9\/_-]+)(\@sha1:)?[0-9a-f]{40}$", data.values.source.revision):
+             - name: BP_OCI_REVISION
+               value: #@ data.values.source.revision
+             #@ end
+             - name: BP_NODE_RUN_SCRIPTS
+               value: #@ bp_node_run_scripts
+             - name: TPB_CONFIG
+               value: #@ tpb_config
+             - name: TPB_CONFIG_STRING
+               value: #@ tpb_config_string
 
      ---
      apiVersion: carto.run/v1alpha1
      kind: ClusterSourceTemplate
      metadata:
-      name: tdp-source-template
+       name: tdp-source-template
      spec:
-      healthRule:
-        singleConditionType: Ready
-      lifecycle: mutable
-      params:
-      - default: default
-        name: serviceAccount
-      revisionPath: .status.artifact.revision
-      urlPath: .status.artifact.url
-      ytt: |
-        #@ load("@ytt:data", "data")
+       healthRule:
+         singleConditionType: Ready
+       lifecycle: mutable
+       params:
+       - default: default
+         name: serviceAccount
+       revisionPath: .status.artifact.revision
+       urlPath: .status.artifact.url
+       ytt: |
+         #@ load("@ytt:data", "data")
 
-        #@ def merge_labels(fixed_values):
-        #@   labels = {}
-        #@   if hasattr(data.values.workload.metadata, "labels"):
-        #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
-        #@     for k,v in dict(data.values.workload.metadata.labels).items():
-        #@       if k not in exclusions:
-        #@         labels[k] = v
-        #@       end
-        #@     end
-        #@   end
-        #@   labels.update(fixed_values)
-        #@   return labels
-        #@ end
+         #@ def merge_labels(fixed_values):
+         #@   labels = {}
+         #@   if hasattr(data.values.workload.metadata, "labels"):
+         #@     exclusions = ["kapp.k14s.io/app", "kapp.k14s.io/association"]
+         #@     for k,v in dict(data.values.workload.metadata.labels).items():
+         #@       if k not in exclusions:
+         #@         labels[k] = v
+         #@       end
+         #@     end
+         #@   end
+         #@   labels.update(fixed_values)
+         #@   return labels
+         #@ end
 
-        ---
-        apiVersion: source.apps.tanzu.vmware.com/v1alpha1
-        kind: ImageRepository
-        metadata:
-          name: #@ data.values.workload.metadata.name
-          labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
-        spec:
-          serviceAccountName: #@ data.values.params.serviceAccount
-          interval: 10m0s
-          #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
-          image: #@ data.values.workload.spec.source.image
-          #@ else:
-          image: #@ data.values.params.tdp_configurator_bundle
-          #@ end
+     ---
+     apiVersion: source.apps.tanzu.vmware.com/v1alpha1
+     kind: ImageRepository
+     metadata:
+       name: #@ data.values.workload.metadata.name
+       labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
+     spec:
+       serviceAccountName: #@ data.values.params.serviceAccount
+       interval: 10m0s
+       #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
+       image: #@ data.values.workload.spec.source.image
+       #@ else:
+       image: #@ data.values.params.tdp_configurator_bundle
+       #@ end
      ```
 
      Where:
