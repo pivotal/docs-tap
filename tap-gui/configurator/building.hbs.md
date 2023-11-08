@@ -226,9 +226,9 @@ Use a custom supply chain
      metadata:
        name: tdp-configurator
      spec:
-       resources:
-       - name: source-provider
-         params:
+     resources:
+     - name: source-provider
+       params:
        - default: default
          name: serviceAccount
        - default: TDP-IMAGE-LOCATION
@@ -236,8 +236,8 @@ Use a custom supply chain
        templateRef:
          kind: ClusterSourceTemplate
          name: tdp-source-template
-       - name: image-provider
-         params:
+     - name: image-provider
+       params:
        - default: default
          name: serviceAccount
        - name: registry
@@ -254,40 +254,40 @@ Use a custom supply chain
          kind: ClusterImageTemplate
          name: tdp-kpack-template
 
-       selectorMatchExpressions:
-       - key: apps.tanzu.vmware.com/workload-type
-         operator: In
-         values:
+     selectorMatchExpressions:
+     - key: apps.tanzu.vmware.com/workload-type
+       operator: In
+       values:
        - tdp
-       ---
-       apiVersion: carto.run/v1alpha1
-       kind: ClusterImageTemplate
-       metadata:
-         name: tdp-kpack-template
+     ---
+     apiVersion: carto.run/v1alpha1
+     kind: ClusterImageTemplate
+     metadata:
+     name: tdp-kpack-template
        spec:
-         healthRule:
-           multiMatch:
-             healthy:
-               matchConditions:
-               - status: "True"
-                 type: BuilderReady
-               - status: "True"
-                 type: Ready
-         unhealthy:
-           matchConditions:
-           - status: "False"
-             type: BuilderReady
-           - status: "False"
-             type: Ready
-       imagePath: .status.latestImage
-       lifecycle: mutable
-       params:
-       - default: default
-         name: serviceAccount
-       - default: default
-         name: clusterBuilder
-       - name: registry
-         default: {}
+       healthRule:
+         multiMatch:
+           healthy:
+             matchConditions:
+             - status: "True"
+               type: BuilderReady
+             - status: "True"
+               type: Ready
+       unhealthy:
+         matchConditions:
+         - status: "False"
+           type: BuilderReady
+         - status: "False"
+           type: Ready
+     imagePath: .status.latestImage
+     lifecycle: mutable
+     params:
+     - default: default
+       name: serviceAccount
+     - default: default
+       name: clusterBuilder
+     - name: registry
+       default: {}
      ytt: |
        #@ load("@ytt:data", "data")
        #@ load("@ytt:regexp", "regexp")
