@@ -162,11 +162,11 @@ spec:
                # https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-subdomain-names
                # must not start with 'client' or 'unknown'
       openID:
-        configurationURI: "" # optional. If not specified, must define alternate fields: issuerURI and/or (authorizationUri, tokenUri, and jwksUri). This field must be suffixed with '/.well-known/openid-configuration'
-        issuerURI: "" # DEPRECATED, optional, use 'openid.configurationURI' instead. This field may not be set if 'configurationURI' is specified.
-        authorizationUri: "" # optional. Must be specified if 'configurationURI' and 'issuerURI' are not set.
-        tokenUri: "" # optional.  Must be specified if 'configurationURI' and 'issuerURI' are not set.
-        jwksUri: "" # optional.  Must be specified if 'configurationURI' and 'issuerURI' are not set.
+        configurationURI: "" # optional, if not specified, must define the alternative fields: `issuerURI` or `authorizationUri`, `tokenUri`, and `jwksUri`. This field must be suffixed with '/.well-known/openid-configuration'
+        issuerURI: "" # deprecated, optional, use 'openid.configurationURI' instead. This field must not be set if 'configurationURI' is set.
+        authorizationUri: "" # optional. Must be set if 'configurationURI' and 'issuerURI' are not set.
+        tokenUri: "" # optional, must be set if 'configurationURI' and 'issuerURI' are not set.
+        jwksUri: "" # optional, must be set if 'configurationURI' and 'issuerURI' are not set.
         userinfoUri: "" # optional
         displayName: "" # optional, must be between 2 and 32 characters in length
         clientID: ""
