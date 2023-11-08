@@ -254,33 +254,33 @@ Use a custom supply chain
          kind: ClusterImageTemplate
          name: tdp-kpack-template
 
-     selectorMatchExpressions:
-     - key: apps.tanzu.vmware.com/workload-type
-       operator: In
-       values:
+       selectorMatchExpressions:
+       - key: apps.tanzu.vmware.com/workload-type
+         operator: In
+         values:
        - tdp
-     ---
-     apiVersion: carto.run/v1alpha1
-     kind: ClusterImageTemplate
-     metadata:
-       name: tdp-kpack-template
-     spec:
-       healthRule:
-         multiMatch:
-           healthy:
-             matchConditions:
-             - status: "True"
-               type: BuilderReady
-             - status: "True"
-               type: Ready
+       ---
+       apiVersion: carto.run/v1alpha1
+       kind: ClusterImageTemplate
+       metadata:
+         name: tdp-kpack-template
+       spec:
+         healthRule:
+           multiMatch:
+             healthy:
+               matchConditions:
+               - status: "True"
+                 type: BuilderReady
+               - status: "True"
+                 type: Ready
          unhealthy:
            matchConditions:
            - status: "False"
              type: BuilderReady
            - status: "False"
              type: Ready
-     imagePath: .status.latestImage
-     lifecycle: mutable
+       imagePath: .status.latestImage
+       lifecycle: mutable
        params:
        - default: default
          name: serviceAccount
@@ -395,18 +395,18 @@ Use a custom supply chain
 
      ---
      apiVersion: source.apps.tanzu.vmware.com/v1alpha1
-       kind: ImageRepository
-       metadata:
-         name: #@ data.values.workload.metadata.name
-         labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
-       spec:
-         serviceAccountName: #@ data.values.params.serviceAccount
-         interval: 10m0s
-         #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
-         image: #@ data.values.workload.spec.source.image
-         #@ else:
-         image: #@ data.values.params.tdp_configurator_bundle
-         #@ end
+     kind: ImageRepository
+     metadata:
+       name: #@ data.values.workload.metadata.name
+       labels: #@ merge_labels({ "app.kubernetes.io/component": "source" })
+     spec:
+       serviceAccountName: #@ data.values.params.serviceAccount
+       interval: 10m0s
+       #@ if hasattr(data.values.workload.spec, "source") and hasattr(data.values.workload.spec.source, "image"):
+       image: #@ data.values.workload.spec.source.image
+       #@ else:
+       image: #@ data.values.params.tdp_configurator_bundle
+       #@ end
      ```
 
      Where:
