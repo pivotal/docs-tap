@@ -10,7 +10,7 @@ The following diagram shows the data models used in the AMR to store artifact in
 
 ## <a id='amr-data-models'></a> AMR data models
 
-The following data models are stored in the AMR: 
+The following data models are stored in the AMR:
 
 - `Locations` (alpha)
 - `Containers`
@@ -63,9 +63,9 @@ Event Handler to store new commits.
 Each `Commit` data entry stores information about the deployment location,
 details about the state, and what commit `sha` or `tag` were used. You can only
 associate a `Commits` entry with one `Locations` entry. You can point multiple
-`Commits` entries to the same `Locations` entry. 
+`Commits` entries to the same `Locations` entry.
 
-### <a id='appAcceleratorRuns'></a> AppAcceleratorRuns (alpha)
+### <a id='appacceleratorruns'></a> AppAcceleratorRuns (alpha)
 
 The `AppAcceleratorRuns` data model represents new projects running from Git
 repositories. An `accelerator.yaml` file in the repository declares input
@@ -73,13 +73,13 @@ options for the accelerator. This file contains instructions for processing the
 files when you generate a new project. Observer sends this information to the
 CloudEvent Handler to store `AppAcceleratorRuns`.
 
-Each `AppAcceleratorRun` data entry has a unique `guid`. The `guid` includes information 
-about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`, 
+Each `AppAcceleratorRun` data entry has a unique `guid`. The `guid` includes information
+about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`,
 and `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
 to the same `AppAcceleratorRun` entry. You can also associate an `AppAcceleratorRun`
-with one `AppAcceleratorSource`, also known as `Commit`. 
+with one `AppAcceleratorSource`, also known as `Commit`.
 
-### <a id='appAcceleratorFragments'></a> AppAcceleratorFragments (alpha)
+### <a id='appacceleratorfragments'></a> AppAcceleratorFragments (alpha)
 
 The `AppAcceleratorFragments` Accelerator fragments are reusable accelerator
 components that can provide options, files, or transforms. You can import
@@ -91,16 +91,16 @@ Handler to store `AppAcceleratorFragments`.
 
 Each `AppAcceleratorFragment` data entry stores information about source Git repository:
 `AppAcceleratorFragmentSourceRepoURL`, `AppAcceleratorFragmentSourceRevision`, and
-`AppAcceleratorFragmentSourceSubpath`. You can associate an `AppAcceleratorFragment` to 
+`AppAcceleratorFragmentSourceSubpath`. You can associate an `AppAcceleratorFragment` to
 an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
 (also known as `Commit`) to one `AppAcceleratorFragment`.
 
 ### <a id='doraMetrics'></a> DoraMetrics (alpha)
 
-The `DoraMetrics` data model represents the DORA Metric information. The Observer sends 
-this information to the CloudEvent Handler to store `DoraMetrics`. 
+The `DoraMetrics` data model represents the DORA Metric information. The Observer sends
+this information to the CloudEvent Handler to store `DoraMetrics`.
 
-`AggregatedLeadTime` is a velocity metric that describes the median amount of time in seconds for a 
+`AggregatedLeadTime` is a velocity metric that describes the median amount of time in seconds for a
 commit to deploy to an environment. `AggregatedDeployments` describes how frequently
 a team releases to production in a time range. You can point multiple
 `DoraMetricsPerCorrelationID` to one `DoraMertric`.
@@ -108,6 +108,6 @@ a team releases to production in a time range. You can point multiple
 ### <a id='metrics-correlation-ID'></a> DoraMetricsPerCorrelationID (alpha)
 
 The `DoraMetricsPerCorrelationID` data model represents the information of DORA Metric for
-a Correlation ID. The Correlation ID groups the all the artifacts together. The 
-Observer sends this information to the CloudEvent Handler to store 
+a Correlation ID. The Correlation ID groups the all the artifacts together. The
+Observer sends this information to the CloudEvent Handler to store
 `DoraMetricsPerCorrelationID`.
