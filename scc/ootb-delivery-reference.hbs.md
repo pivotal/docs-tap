@@ -43,4 +43,4 @@ Refers to [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
 
 ### <a id='more-info'></a> More information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Delivery Basic](install-ootb-delivery-basic.hbs.md).
+For information about setting `tap-values.yaml` at installation time, see [Install Out of the Box Delivery Basic](install-ootb-delivery-basic.hbs.md).
