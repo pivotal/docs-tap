@@ -11,29 +11,13 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-6-5-COMPONENT-NAME-fixes'></a> v1.6.5 Security fixes: COMPONENT-NAME
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>CVE-2023-4911</li><li>CVE-2023-1206</li><li>CVE-2023-2156</li><li>CVE-2023-3338</li><li>CVE-2023-34319</li><li>CVE-2023-38432</li><li>CVE-2023-38545</li><li>CVE-2023-38546</li><li>CVE-2023-3863</li><li>CVE-2023-3865</li><li>CVE-2023-3866</li><li>CVE-2023-4132</li><li>CVE-2023-4155</li><li>CVE-2023-4194</li><li>CVE-2023-4244</li><li>CVE-2023-4273</li><li>CVE-2023-42752</li><li>CVE-2023-42753</li><li>CVE-2023-42755</li><li>CVE-2023-42756</li><li>CVE-2023-44466</li><li>CVE-2023-4622</li><li>CVE-2023-4623</li><li>CVE-2023-4881</li><li>CVE-2023-4921</li><li>CVE-2023-5197 </li></ul>|
+| cnrs.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-4374-p667-p6c8 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>GHSA-4374-p667-p6c8</li><li>CVE-2023-4911 </li></ul>|
+| contour.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>GHSA-m425-mq94-257g </li></ul>|
 
-- Security fix description.
-
-OR add HTML or Markdown table
-
-<table>
-<thead>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</tbody>
-</table>
 
 ---
 
