@@ -3,48 +3,66 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-4-11'></a> v1.4.11 
- 
-**Release Date**: 14 November 2023 
- 
-### <a id='1-4-11-security-fixes'></a> v1.4.11 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| eventing.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>GHSA-hp87-p4gw-j4gq </li></ul>|
-| contour.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>GHSA-m425-mq94-257g </li></ul>|
+## <a id='1-4-11'></a> v1.4.11
+
+**Release Date**: 14 November 2023
+
+### <a id='1-4-11-security-fixes'></a> v1.4.11 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contour.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-m425-mq94-257g">GHSA-m425-mq94-257g</a></li>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>eventing.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-hp87-p4gw-j4gq">GHSA-hp87-p4gw-j4gq</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0464">CVE-2023-0464</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3996">CVE-2022-3996</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table>
 
 ---
- 
-### <a id='1-4-11-resolved-issues'></a> v1.4.11 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-4-11-resolved-issues'></a> v1.4.11 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-4-11-COMPONENT-NAME-ri'></a> v1.4.11 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-4-11-known-issues'></a> v1.4.11 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-4-11-known-issues'></a> v1.4.11 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-4-11-COMPONENT-NAME-ki'></a> v1.4.11 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
-### <a id='1-4-11-components'></a> v1.4.11 Component versions
- 
-The following table lists the supported component versions for this Tanzu Application Platform release.
- 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
 
 ## <a id='1-4-10'></a> v1.4.10
 
