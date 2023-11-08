@@ -15,7 +15,7 @@ The following is an example scan custom resource output in CycloneDX's XML struc
 To troubleshoot using this example output:
 
 1. Paste your Rego file and the example output into the [Rego Playground](https://play.openpolicyagent.org/).
-2. Evaluate your Rego file against the example output and verify that your Rego file detects the intended CVEs. For example, see [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
+2. Evaluate your Rego file against the example output and verify that your Rego file detects the intended CVEs. See this Rego [example](https://play.openpolicyagent.org/p/wwkyrYbHAv).
 
 ```json
 {
@@ -183,7 +183,7 @@ The example in this section is a modified scan custom resource input, in  `.spdx
 To troubleshoot using this example output:
 
 1. Paste your Rego file and the example input into the [Rego Playground](https://play.openpolicyagent.org/).
-2. Evaluate your Rego file against the output and verify that your Rego file detects the intended CVEs. For example, see [example](https://play.openpolicyagent.org/p/gp0fUfaxOC). 
+2. Evaluate your Rego file against the output and verify that your Rego file detects the intended CVEs. See this Rego [example](https://play.openpolicyagent.org/p/gp0fUfaxOC). 
 
 ```json
 {
