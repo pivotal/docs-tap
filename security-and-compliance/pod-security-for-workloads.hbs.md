@@ -48,7 +48,7 @@ see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md).
 ## <a id="workload-config"></a> Configure a security context with the `security-context` workload parameter
 
 Optionally, use  the `security-context` workload parameter to configure the supply chain workload security context. This configuration method overrides the default security
-context defined in `tap-values.yaml`.
+context defined in `tap-values.yaml`. Apply this method in either the workload YAML or by using the Tanzu CLI.
 
 ### <a id="workload-config-yaml"></a> Sample workload YAML with security context
 
