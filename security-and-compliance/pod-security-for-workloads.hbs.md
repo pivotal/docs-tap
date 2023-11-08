@@ -42,7 +42,7 @@ ootb_templates:
     procMount: # string - procMount denotes the type of proc mount to use for the containers.
 ```
 
-For information about the configuration setting for the `ootb-templates` package,
+For information about the possible configuration setting for the `ootb-templates` package,
 see [Installing out of the box templates](../scc/install-ootb-templates.hbs.md).
 
 ## <a id="workload-config"></a> Configure a security context with the `security-context` workload parameter
@@ -66,7 +66,7 @@ spec:
     value:
       autoscaling.knative.dev/minScale: "1"
   - name: security-context
-    value: 
+    value:
       allowPrivilegeEscalation: false
       runAsNonRoot: true
       runAsUser: 333
@@ -85,7 +85,7 @@ spec:
 
 ### Apply security context with Tanzu CLI
 
-Alternatively, use the Tanzu CLI apps plug-in to apply the `security-context` parameter when creating workloads. For example:
+Alternatively, use the Tanzu CLI Apps plug-in to apply the `security-context` parameter when creating workloads. For example:
 
 ```console
 tanzu apps workload create tanzu-java-web-app -n workspace \
@@ -97,5 +97,5 @@ tanzu apps workload create tanzu-java-web-app -n workspace \
   --param-yaml security-context="{"runAsUser":"333"}"
 ```
 
-For more information about Tanzu CLI apps plug-in commands, see the
-[VMware Tanzu CLI](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/index.html) documentation.
+For more information about the Tanzu CLI Apps plug-in `workload create` command, see the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/tanzu-apps.html#tanzu-apps-workload-5) documentation.
+
