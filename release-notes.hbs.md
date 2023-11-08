@@ -11,13 +11,85 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>CVE-2023-4911</li><li>CVE-2023-1206</li><li>CVE-2023-2156</li><li>CVE-2023-3338</li><li>CVE-2023-34319</li><li>CVE-2023-38432</li><li>CVE-2023-38545</li><li>CVE-2023-38546</li><li>CVE-2023-3863</li><li>CVE-2023-3865</li><li>CVE-2023-3866</li><li>CVE-2023-4132</li><li>CVE-2023-4155</li><li>CVE-2023-4194</li><li>CVE-2023-4244</li><li>CVE-2023-4273</li><li>CVE-2023-42752</li><li>CVE-2023-42753</li><li>CVE-2023-42755</li><li>CVE-2023-42756</li><li>CVE-2023-44466</li><li>CVE-2023-4622</li><li>CVE-2023-4623</li><li>CVE-2023-4881</li><li>CVE-2023-4921</li><li>CVE-2023-5197 </li></ul>|
-| cnrs.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-4374-p667-p6c8 </li></ul>|
-| api-portal.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>GHSA-4374-p667-p6c8</li><li>CVE-2023-4911 </li></ul>|
-| contour.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>GHSA-m425-mq94-257g </li></ul>|
-
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4911">CVE-2023-4911</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22049">CVE-2023-22049</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22045">CVE-2023-22045</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22044">CVE-2023-22044</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22041">CVE-2023-22041</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22036">CVE-2023-22036</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22006">CVE-2023-22006</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>base-jammy-stack-lite.buildpacks.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5197">CVE-2023-5197</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4921">CVE-2023-4921</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4911">CVE-2023-4911</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4881">CVE-2023-4881</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4623">CVE-2023-4623</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4622">CVE-2023-4622</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44466">CVE-2023-44466</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42756">CVE-2023-42756</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42755">CVE-2023-42755</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42753">CVE-2023-42753</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42752">CVE-2023-42752</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4273">CVE-2023-4273</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4244">CVE-2023-4244</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4194">CVE-2023-4194</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4155">CVE-2023-4155</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4132">CVE-2023-4132</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3866">CVE-2023-3866</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3865">CVE-2023-3865</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3863">CVE-2023-3863</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-38546">CVE-2023-38546</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-38545">CVE-2023-38545</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-38432">CVE-2023-38432</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34319">CVE-2023-34319</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3338">CVE-2023-3338</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2156">CVE-2023-2156</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1206">CVE-2023-1206</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>cnrs.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>contour.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-m425-mq94-257g">GHSA-m425-mq94-257g</a></li>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
@@ -52,7 +124,51 @@ This release has the following known issues, listed by component and area.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+| Component Name                                                   | Version |
+| ---------------------------------------------------------------- | ------- |
+| API Auto Registration                                            |         |
+| API portal                                                       |         |
+| Application Accelerator                                          |         |
+| Application Configuration Service                                |         |
+| Application Live View API Server                                 |         |
+| Application Live View Backend                                    |         |
+| Application Live View Connector                                  |         |
+| Application Live View Conventions                                |         |
+| Application Single Sign-On                                       |         |
+| Authentication and authorization                                 |         |
+| Bitnami Services                                                 |         |
+| Cartographer Conventions                                         |         |
+| cert-manager                                                     |         |
+| Cloud Native Runtimes                                            |         |
+| Contour                                                          |         |
+| Crossplane                                                       |         |
+| Developer Conventions                                            |         |
+| Eventing (deprecated)                                            |         |
+| External Secrets Operator                                        |         |
+| Flux CD Source Controller                                        |         |
+| Learning Center (deprecated)                                     |         |
+| Learning Center workshops (deprecated)                           |         |
+| Local Source Proxy                                               |         |
+| Namespace Provisioner                                            |         |
+| Out of the Box Delivery - Basic                                  |         |
+| Out of the Box Supply Chain - Basic                              |         |
+| Out of the Box Supply Chain - Testing                            |         |
+| Out of the Box Supply Chain - Testing and Scanning               |         |
+| Out of the Box Templates                                         |         |
+| Service Bindings                                                 |         |
+| Services Toolkit                                                 |         |
+| Source Controller                                                |         |
+| Spring Boot conventions                                          |         |
+| Spring Cloud Gateway                                             |         |
+| Supply Chain Choreographer                                       |         |
+| Supply Chain Security Tools - Policy Controller                  |         |
+| Supply Chain Security Tools - Scan                               |         |
+| Supply Chain Security Tools - Store                              |         |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
+| Tanzu Application Platform Telemetry                             |         |
+| Tanzu Build Service                                              |         |
+| Tanzu CLI                                                        |         |
+| Tekton Pipelines                                                 |         |
 
 ---
 
