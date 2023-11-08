@@ -4,14 +4,16 @@ This topic tells you about API references for surfaces in Tanzu Developer Portal
 
 ## Package @tpb/plugin-catalog
 
+The following sections describe the package.
+
 ### Class EntityPageSurface
 
-Manipulate contents of pages for Backstage catalog entities.
+This class can manipulate the contents of pages for Backstage catalog entities.
 
 Each catalog entity subtype can specify a dedicated template. This surface standardizes the contents
 of those templates and allows for some amount of external configuration.
 
-Here's an example of adding a tab to the template for Backstage Service entities:
+This example adds a tab to the template for Backstage Service entities:
 
 ```typescript
 context.applyWithDependency(
@@ -44,11 +46,15 @@ context.applyWithDependency(
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `EntityPageSurface` class
+This constructor constructs a new instance of the `EntityPageSurface` class.
 
 #### Methods
+
+The package has the following methods.
 
 ##### addComponentPageCase(pageCase: ReactElement): void
 
@@ -64,7 +70,11 @@ Constructs a new instance of the `EntityPageSurface` class
 
 ## Package @vmware-tanzu/core-backend
 
+The following sections describe the package.
+
 ### Types
+
+The package has the following types.
 
 <a name="vmware-tanzu-core-backend-backend-plugin-interface-type" />`BackendPluginInterface<T = {}> = (config?: T & BackendPluginConfig) => TpbPluginInterface;`
 
@@ -80,25 +90,33 @@ Constructs a new instance of the `EntityPageSurface` class
 
 ### Class BackendCatalogSurface
 
-Manipulate the catalog backend.
+This class can manipulate the catalog backend.
 
-Provides extension points for registering catalog processors, entity providers, routes, and permissions.
+This class provides extension points for registering catalog processors, entity providers, routes,
+and permissions.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `BackendCatalogSurface` class
+This constructor constructs a new instance of the `BackendCatalogSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### addCatalogProcessorBuilder(builder: CatalogProcessorBuilder): void
 
-Register a Backstage CatalogProcessor that will apply transformations to unprocessed entities
+This method registers a Backstage CatalogProcessor that applies transformations to unprocessed
+entities.
 
-[https://backstage.io/docs/features/software-catalog/configuration/\#processors](https://backstage.io/docs/features/software-catalog/configuration/#processors)
+For more information about processors, see the
+[Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#processors).
 
-[https://backstage.io/docs/features/software-catalog/life-of-an-entity\#processing](https://backstage.io/docs/features/software-catalog/life-of-an-entity#processing)
+For more information about processing, see the
+[Backstage documentation](https://backstage.io/docs/features/software-catalog/life-of-an-entity#processing).
 
 | Parameter | Type                                                                                 | Description                                              |
 |-----------|--------------------------------------------------------------------------------------|----------------------------------------------------------|
@@ -106,9 +124,11 @@ Register a Backstage CatalogProcessor that will apply transformations to unproce
 
 ##### addEntityProviderBuilder(builder: EntityProviderBuilder): void
 
-Register a Backstage EntityProvider to ingest generate catalog entries for further processing.
+This method registers a Backstage EntityProvider to ingest generate catalog entries for further
+processing.
 
-[https://backstage.io/docs/features/software-catalog/life-of-an-entity\#ingestion](https://backstage.io/docs/features/software-catalog/life-of-an-entity#ingestion)
+For more information about ingestion, see the
+[Backstage documentation](https://backstage.io/docs/features/software-catalog/life-of-an-entity#ingestion).
 
 | Parameter | Type                                                                             | Description                                             |
 |-----------|----------------------------------------------------------------------------------|---------------------------------------------------------|
@@ -116,9 +136,10 @@ Register a Backstage EntityProvider to ingest generate catalog entries for furth
 
 ##### addPermissionRuleBuilder(builder: PermissionRuleBuilder): void
 
-Register Backstage CatalogPermissionRules to limit access to catalog entries.
+This method registers Backstage CatalogPermissionRules to limit access to catalog entries.
 
-[https://backstage.io/docs/permissions/custom-rules](https://backstage.io/docs/permissions/custom-rules)
+For more information about custom permission rules, see the
+[Backstage documentation](https://backstage.io/docs/permissions/custom-rules).
 
 | Parameter | Type                                                                             | Description                                                  |
 |-----------|----------------------------------------------------------------------------------|--------------------------------------------------------------|
@@ -126,7 +147,7 @@ Register Backstage CatalogPermissionRules to limit access to catalog entries.
 
 ##### addRouterBuilder(routerBuilder: RouterBuilder): void
 
-Register an Express Router to handle arbitrary requests made to the Backstage backend.
+This method registers an Express Router to handle arbitrary requests made to the Backstage backend.
 
 | Parameter       | Type                                                            | Description                                             |
 |-----------------|-----------------------------------------------------------------|---------------------------------------------------------|
@@ -134,29 +155,37 @@ Register an Express Router to handle arbitrary requests made to the Backstage ba
 
 ### Class BackendPluginSurface
 
-Add plugins to the Backstage backend.
+You can use this class to add plug-ins to the Backstage backend.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `BackendPluginSurface` class
+This constructor constructs a new instance of the `BackendPluginSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### addPlugin(plugin: Plugin): void
 
-Register a named plugin to handle backend requests at some subpath.
+This method registers a named plug-in to handle backend requests at a subpath.
 
-Plugins must have unique names. The first plugin registered with a given name wins.
+Plug-ins must have unique names. The first plug-in registered with a given name wins.
 
-| Parameter | Type                                                    | Description   |
-|-----------|---------------------------------------------------------|---------------|
-| `plugin`  | [Plugin](#vmware-tanzu-core-backend-plugin-2-interface) | Plugin to add |
+| Parameter | Type                                                    | Description    |
+|-----------|---------------------------------------------------------|----------------|
+| `plugin`  | [Plugin](#vmware-tanzu-core-backend-plugin-2-interface) | Plug-in to add |
 
 ## Package @vmware-tanzu/core-frontend
 
+The following sections describe the package.
+
 ### Types
+
+The package has the following type.
 
 <a name="vmware-tanzu-core-frontend-app-plugin-interface-type" />`AppPluginInterface<T = {}> = (config?: T) => TpbPluginInterface;`
 
@@ -166,9 +195,11 @@ Add Backstage ApiFactories.
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(factory: AnyApiFactory): void
 
-Register a new Backstage ApiFactory.
+This method registers a new Backstage ApiFactory.
 
 Factories must specify an API with a unique ID. The last factory registered with a given ID wins.
 
@@ -180,19 +211,23 @@ Factories that specify APIs with IDs on the ignored list will not be registered.
 
 ### Class AppComponentSurface
 
-Substitute replaceable core components of the Backstage app.
+You can use this class to replace core components of the Backstage app.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `AppComponentSurface` class
+This constructor constructs a new instance of the `AppComponentSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### add&lt;K extends keyof AppComponents&gt;(key: K, component: AppComponents\[K\]): void
 
-Substitute a given Backstage AppComponent.
+This method replaces a given Backstage AppComponent with another.
 
 AppComponents must be unique by key. The last AppComponent registered with a given key wins.
 
@@ -203,11 +238,13 @@ AppComponents must be unique by key. The last AppComponent registered with a giv
 
 ### Class AppPluginSurface
 
-Register additional frontend plugins with the Backstage app.
+You can use this class to register additional frontend plug-ins with the Backstage app.
 
 [https://backstage.io/docs/plugins/](https://backstage.io/docs/plugins/)
 
 #### Constructors
+
+The package has the following constructor(s).
 
 ##### constructor()
 
@@ -215,9 +252,11 @@ Constructs a new instance of the `AppPluginSurface` class
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(plugin: BackstagePlugin): void
 
-Register a frontend BackstagePlugin.
+This method registers a frontend BackstagePlugin.
 
 | Parameter | Type            | Description |
 |-----------|-----------------|-------------|
@@ -231,15 +270,19 @@ Manipulate routes in the frontend Backstage app.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
 Constructs a new instance of the `AppRouteSurface` class
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(route: ReactElement): void
 
-Register a react-router Route.
+This method registers a react-router Route.
 
 | Parameter | Type         | Description                                                                  |
 |-----------|--------------|------------------------------------------------------------------------------|
@@ -247,7 +290,7 @@ Register a react-router Route.
 
 ##### addRouteBinder(routeBinder: RouteBinder): void
 
-Bind external routes.
+This method binds external routes.
 
 [https://backstage.io/docs/plugins/composability/\#binding-external-routes-in-the-app](https://backstage.io/docs/plugins/composability/#binding-external-routes-in-the-app)
 
@@ -257,9 +300,11 @@ Bind external routes.
 
 ### Class BannerSurface
 
-Add page-level banners to the Backstage app.
+You can use this class to add page-level banners to the Backstage app.
 
 #### Constructors
+
+The package has the following constructor(s).
 
 ##### constructor()
 
@@ -267,9 +312,11 @@ Constructs a new instance of the `BannerSurface` class
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(banner: ReactElement): void
 
-Add a new page-level banner.
+This method adds a new page-level banner.
 
 | Parameter | Type         | Description |
 |-----------|--------------|-------------|
@@ -277,19 +324,23 @@ Add a new page-level banner.
 
 ### Class SettingsTabsSurface
 
-Add tabs to the Settings page.
+You can use this class to add tabs to the Settings page.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `SettingsTabsSurface` class
+This constructor constructs a new instance of the `SettingsTabsSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(tab: ReactElement): void
 
-Add a new tab to the Settings page.
+This method adds a new tab to the Settings page.
 
 | Parameter | Type         | Description                                                                                             |
 |-----------|--------------|---------------------------------------------------------------------------------------------------------|
@@ -297,22 +348,26 @@ Add a new tab to the Settings page.
 
 ### Class SidebarItemSurface
 
-Manipulate entries in sidebar.
+You can use this class to manipulate entries in sidebar.
 
-Entries are split into two sections: "top items" appear above a divider and "main items" appear
-below it. Tabs within each section are rendered in order of registration.
+Entries are split into two sections: top items appear above a divider and main items appear below
+it. Tabs within each section are rendered in order of registration.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `SidebarItemSurface` class
+This constructor constructs a new instance of the `SidebarItemSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### addMainItem(item: ReactElement): void
 
-Add an item to the "main items" section.
+This method adds an item to the main items section.
 
 | Parameter | Type         | Description |
 |-----------|--------------|-------------|
@@ -320,7 +375,7 @@ Add an item to the "main items" section.
 
 ##### addTopItem(item: ReactElement): void
 
-Add an item to the "top items" section.
+This method adds an item to the top items section.
 
 | Parameter | Type         | Description |
 |-----------|--------------|-------------|
@@ -328,19 +383,23 @@ Add an item to the "top items" section.
 
 ### Class ThemeSurface
 
-Manipulate themes available to the Backstage application.
+You can use this class to manipulate themes available to the Backstage application.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `ThemeSurface` class
+This constructor constructs a new instance of the `ThemeSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### addTheme(theme: AppTheme): void
 
-Register an additional theme.
+This method registers an additional theme.
 
 | Parameter | Type     | Description |
 |-----------|----------|-------------|
@@ -348,7 +407,7 @@ Register an additional theme.
 
 ##### setRootBuilder(builder: (children: JSX.Element) =&gt; ReactElement): void
 
-Register the factory that renders the application's root element.
+This method registers the factory that renders the application's root element.
 
 | Parameter | Type                    | Description |
 |-----------|-------------------------|-------------|
@@ -356,19 +415,21 @@ Register the factory that renders the application's root element.
 
 ## Package @vmware-tanzu/tdp-plugin-auth-backend
 
+The following sections describe the package.
+
 ### Class SignInProviderSurface
 
-Register additional Auth Providers.
+You can use this class to register additional Auth Providers.
 
 [https://backstage.io/docs/auth/add-auth-provider](https://backstage.io/docs/auth/add-auth-provider)
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(signInProvider: SignInProvider): void
 
-Register an additional Auth Provider.
-
-Last named Auth Provider wins.
+This method registers an additional Auth Provider. The Auth Provider named last wins.
 
 | Parameter        | Type           | Description                                                                   |
 |------------------|----------------|-------------------------------------------------------------------------------|
@@ -376,13 +437,15 @@ Last named Auth Provider wins.
 
 ### Class SignInResolverSurface
 
-Register SignInResolvers and provide utility methods to log in with them.
+You can use this class to register SignInResolvers and provide utility methods to log in with them.
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(authProviderKey: string, resolver: SignInResolver&lt;any&gt;): void
 
-Register a new SignInResolver.
+This method registers a new SignInResolver.
 
 | Parameter         | Type           | Description                                                                                                        |
 |-------------------|----------------|--------------------------------------------------------------------------------------------------------------------|
@@ -391,7 +454,7 @@ Register a new SignInResolver.
 
 ##### getResolver&lt;TAuthResult&gt;(authProviderKey: string): SignInResolver&lt;TAuthResult&gt;
 
-Get the first named provider, or fall back to the guest resolver.
+This method gets the first named provider, or fall back to the guest resolver.
 
 | Parameter         | Type | Description |
 |-------------------|------|-------------|
@@ -399,14 +462,14 @@ Get the first named provider, or fall back to the guest resolver.
 
 ##### signInAsGuestResolver&lt;TAuthResult&gt;(): SignInResolver&lt;TAuthResult&gt;
 
-Get a resolver that creates an ad-hoc guest user.
+This method gets a resolver that creates an ad-hoc guest user.
 
 ##### signInWithEmail(email: string, context: AuthResolverContext): Promise&lt;BackstageSignInResult&gt;
 
-Utility function to sign in as a user by email address.
+This method provides a utility function to sign in as a user by email address.
 
-Attempt to match given email with a catalog user's email for sign-in. If that fails, sign in the
-user without associating with a catalog user.
+The method attempts to match the given email address with a catalog user's email address for
+sign-in. If that fails, the method signs the user in without associating with a catalog user.
 
 | Parameter | Type                | Description                            |
 |-----------|---------------------|----------------------------------------|
@@ -415,10 +478,10 @@ user without associating with a catalog user.
 
 ##### signInWithName(name: string, context: AuthResolverContext): Promise&lt;BackstageSignInResult&gt;
 
-Utility function to sign in as a user by name.
+This method provides a utility function to sign in as a user by name.
 
-Attempt to match the name with a catalog user for sign in. If that fails, sign in the user with that
-name without associating with a catalog user.
+The method attempts to match the name with a catalog user for signing in. If that fails, the method
+signs the user in with that name without associating with a catalog user.
 
 | Parameter | Type                | Description                       |
 |-----------|---------------------|-----------------------------------|
@@ -427,23 +490,28 @@ name without associating with a catalog user.
 
 ## Package @vmware-tanzu/tdp-plugin-custom-logger
 
+The following sections describe the package.
+
 ### Class LoggerOptionsSurface
 
-Allow for configuration of the Backstage logger.
+You can use this class to allow for configuration of the Backstage logger.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `LoggerOptionsSurface` class
+This constructor constructs a new instance of the `LoggerOptionsSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### setLoggerOptions(loggerOptions: LoggerOptions): void
 
-Set options for the Backstage logger.
-
-Can be invoked multiple times. Last invocation wins.
+This method sets options for the Backstage logger. This method can be invoked multiple times. The
+last invocation wins.
 
 | Parameter       | Type          | Description |
 |-----------------|---------------|-------------|
@@ -451,21 +519,27 @@ Can be invoked multiple times. Last invocation wins.
 
 ## Package @vmware-tanzu/tdp-plugin-home
 
+The following sections describe the package.
+
 ### Class HomeSurface
 
-Add content to the Backstage Home screen.
+You can use this class to add content to the Backstage Home screen.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `HomeSurface` class
+This constructor constructs a new instance of the `HomeSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### addContent(item: ReactElement): void
 
-Add content to the main section below the widget grid.
+This method adds content to the main section below the widget grid.
 
 | Parameter | Type         | Description  |
 |-----------|--------------|--------------|
@@ -473,7 +547,7 @@ Add content to the main section below the widget grid.
 
 ##### addWidget(item: ReactElement, config?: LayoutConfiguration): void
 
-Add a widget to the Home screen's widget grid.
+This method adds a widget to the Home screen's widget grid.
 
 | Parameter | Type                | Description                                                                                                                                                                                              |
 |-----------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -482,7 +556,7 @@ Add a widget to the Home screen's widget grid.
 
 ##### addWidgetConfig(config: LayoutConfiguration): void
 
-Specify layout configuration for a widget.
+This method specifies the layout configuration for a widget.
 
 | Parameter | Type                | Description                                                                                                                                                                                              |
 |-----------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -490,21 +564,27 @@ Specify layout configuration for a widget.
 
 ## Package @vmware-tanzu/tdp-plugin-ldap-backend
 
+The following sections describe the package.
+
 ### Class LdapSurface
 
-Allow for manipulation of LDAP groups and users during ingestion.
+You can use this class to allow for manipulation of LDAP groups and users during ingestion.
 
 #### Constructors
 
+The package has the following constructor(s).
+
 ##### constructor()
 
-Constructs a new instance of the `LdapSurface` class
+This constructor constructs a new instance of the `LdapSurface` class.
 
 #### Methods
 
+The package has the following methods.
+
 ##### setGroupTransformerBuilder(builder: GroupTransformerBuilder): void
 
-Specify transformation of LDAP groups during ingestion.
+This method specifies the transformation of LDAP groups during ingestion.
 
 | Parameter | Type                    | Description |
 |-----------|-------------------------|-------------|
@@ -512,7 +592,7 @@ Specify transformation of LDAP groups during ingestion.
 
 ##### setUserTransformerBuilder(builder: UserTransformerBuilder): void
 
-Specify transformation of LDAP users during ingestion.
+This method specifies the transformation of LDAP users during ingestion.
 
 | Parameter | Type                   | Description |
 |-----------|------------------------|-------------|
@@ -520,17 +600,22 @@ Specify transformation of LDAP users during ingestion.
 
 ## Package @vmware-tanzu/tdp-plugin-login
 
+The following sections describe the package.
+
 ### Class LoginSurface
 
-Register new login providers with Backstage's SignIn page.
+You can use this class to register new login providers with Backstage's SignIn page.
 
-[https://backstage.io/docs/auth/\#sign-in-configuration](https://backstage.io/docs/auth/#sign-in-configuration)
+For more information about sign-in configuration, see the
+[Backstage documentation](https://backstage.io/docs/auth/#sign-in-configuration).
 
 #### Methods
 
+The package has the following methods.
+
 ##### add(provider: Provider): void
 
-Register a login provider.
+This method registers a login provider.
 
 | Parameter  | Type     | Description |
 |------------|----------|-------------|
@@ -538,15 +623,19 @@ Register a login provider.
 
 ## Package @vmware-tanzu/tdp-plugin-microsoft-graph-org-reader-processor
 
+The following sections describe the package.
+
 ### Class MicrosoftGraphOrgReaderProcessorTransformersSurface
 
-Allow for manipulation of Microsoft Graph groups and users during ingestion.
+You can use this class to allow for manipulation of Microsoft Graph groups and users during ingestion.
 
 #### Methods
 
+The package has the following methods.
+
 ##### setGroupTransformer(groupTransformer: GroupTransformer): void
 
-Specify transformation of Microsoft Graph groups during ingestion.
+This method specifies the transformation of Microsoft Graph groups during ingestion.
 
 | Parameter          | Type             | Description |
 |--------------------|------------------|-------------|
@@ -554,7 +643,7 @@ Specify transformation of Microsoft Graph groups during ingestion.
 
 ##### setOrganizationTransformer(organizationTransformer: OrganizationTransformer): void
 
-Specify transformation of Microsoft Graph organizations during ingestion.
+This method specifies the transformation of Microsoft Graph organizations during ingestion.
 
 | Parameter                 | Type                    | Description |
 |---------------------------|-------------------------|-------------|
@@ -562,7 +651,7 @@ Specify transformation of Microsoft Graph organizations during ingestion.
 
 ##### setUserTransformer(userTransformer: UserTransformer): void
 
-Specify transformation of Microsoft Graph users during ingestion.
+This method specifies the transformation of Microsoft Graph users during ingestion.
 
 | Parameter         | Type            | Description |
 |-------------------|-----------------|-------------|
@@ -570,9 +659,15 @@ Specify transformation of Microsoft Graph users during ingestion.
 
 ## Package @vmware-tanzu/tdp-plugin-permission-backend
 
+The following sections describe the package.
+
 ### Class CustomPermissionPolicy
 
+<!-- Description missing -->
+
 #### Methods
+
+The package has the following methods.
 
 ##### handle(request: PolicyQuery): Promise&lt;PolicyDecision&gt;
 
@@ -582,17 +677,18 @@ Specify transformation of Microsoft Graph users during ingestion.
 
 ### Class PermissionPolicySurface
 
-Define a PermissionPolicy for the Backstage application.
+You can use this class to define a PermissionPolicy for the Backstage application.
 
 [https://backstage.io/docs/permissions/writing-a-policy](https://backstage.io/docs/permissions/writing-a-policy)
 
 #### Methods
 
+The package has the following methods.
+
 ##### set(permissionPolicy: PermissionPolicy): void
 
-Define the PermissionPolicy for the Backstage application.
-
-Can only be invoked a single time.
+This method defines the PermissionPolicy for the Backstage application.
+This method can be invoked only once.
 
 | Parameter          | Type             | Description |
 |--------------------|------------------|-------------|
