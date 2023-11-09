@@ -18,11 +18,10 @@ For more information about Tanzu CLI, see the
 ## <a id="itanzu-cli-architecture"></a>Tanzu CLI architecture
 
 The Tanzu CLI has a pluggable architecture. Plug-ins extend the Tanzu CLI core with additional CLI
-commands. Use the `vmware-tap/default:v{{ vars.tap_version }}` plug-in group with
-Tanzu Application Platform version v{{ vars.tap_version }}. For more information,
+commands. Use the `vmware-tap/default:v{{ vars.tanzu-cli.plugin_group_version }}` plug-in group with Tanzu Application Platform. For more information,
 see [Install Tanzu CLI plug-ins](../install-tanzu-cli.hbs.md).
 
-The `vmware-tap/default:v{{ vars.tap_version }}` plug-in group consists of the following plug-ins:
+The `vmware-tap/default:v{{ vars.tanzu-cli.plugin_group_version }}` plug-in group consists of the following plug-ins:
 
 ```console
 NAME              DESCRIPTION                                                      TARGET      VERSION
@@ -53,8 +52,7 @@ Tanzu CLI Product Documentation.
 
 ## <a id="tanzu-cli-install"></a>Tanzu CLI installation
 
-You install and initialize the Tanzu CLI on a computer. The computer can be a laptop, host, or server.
-To install the CLI see [Install Tanzu CLI](../install-tanzu-cli.hbs.md#cli-and-plugin).
+To install the Tanzu CLI, see [Install Tanzu CLI](../install-tanzu-cli.hbs.md#cli-and-plugin).
 
 ## <a id="tanzu-cli-command-groups"></a>Tanzu CLI command groups
 
@@ -70,10 +68,10 @@ machine.
 
 ## <a id="install-new"></a> Install new plug-ins
 
-Install the CLI plug-ins required for Tanzu Application Platform v{{ vars.tap_version }} by running:
+Install the CLI plug-ins required for Tanzu Application Platform by running:
 
 ```console
-tanzu plugin install --group vmware-tap/default:v{{ vars.tap_version }}
+tanzu plugin install --group vmware-tap/default:v{{ vars.tanzu-cli.plugin_group_version }}
 ```
 
 Plug-ins for the Tanzu CLI are distributed by using a centralized plug-in repository.
