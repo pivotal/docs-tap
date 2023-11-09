@@ -74,7 +74,7 @@ and features.
 
 ### <a id="install-cli"></a> Install the Tanzu CLI
 
-The Tanzu CLI core v1.1 distributed with Tanzu Application Platform is forward and backward
+The Tanzu CLI core {{ vars.tanzu-cli.url_version }} distributed with Tanzu Application Platform is forward and backward
 compatible with all supported Tanzu Application Platform versions. Run a single command to install
 the plug-in group version that matches the Tanzu Application Platform version on any target environment.
 For more information, see [Install Plugins](#install-plugins).
