@@ -5,7 +5,7 @@ v{{ vars.url_version }}.
 
 ## <a id='1-7-1'></a> v1.7.1 
  
-**Release Date**: 12 December 2023 
+**Release Date**: 17 November 2023 
  
 ### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes 
  
