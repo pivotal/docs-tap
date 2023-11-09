@@ -1268,6 +1268,8 @@ to ensure that they are correctly created.
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
+- tap-gui package may fail to install on OpenShift when utilizing the view profile. A fix is planned for the next patch release.
+
 - When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
   does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
   planned for the future. The zoom function was removed because of user feedback.
