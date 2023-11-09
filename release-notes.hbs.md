@@ -202,8 +202,8 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
 Artifact Metadata Repository (AMR) is a new component that extends the
-capabilities of SCST - Store. **Note**: Users upgrading a multi-cluster TAP
-installation should follow the new steps added to the [SCST - Store
+capabilities of SCST - Store. **Note**: Users installing TAP in a multi-cluster
+configuration should be aware of the new steps added to the [SCST - Store
 multi-cluster setup guide](scst-store/multicluster-setup.hbs.md).
 
 - Installing TAP now deploys AMR by default. For more information, see
@@ -1225,8 +1225,8 @@ to ensure that they are correctly created.
 
 #### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools - Store
 
-- **Note**: Users upgrading a multi-cluster TAP installation should follow the
-  new steps added to the [SCST - Store multi-cluster setup
+- **Note**: Users installing TAP in a multi-cluster configuration should be
+  aware of the new steps added to the [SCST - Store multi-cluster setup
   guide](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
