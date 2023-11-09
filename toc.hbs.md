@@ -405,7 +405,7 @@
       - [External Secrets Operator overview](external-secrets/about-external-secrets-operator.hbs.md)
       - [Install Secrets Operator](external-secrets/install-external-secrets-operator.hbs.md)
       - [Integrate External Secrets Operator with HashiCorp Vault](external-secrets/vault-example.hbs.md)
-      - [Tanxu External Secrets CLI plug-in command reference](external-secrets/reference/external-secrets.hbs.md)
+      - [Tanzu External Secrets CLI plug-in command reference](external-secrets/reference/external-secrets.hbs.md)
     - [Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)
       - [Flux CD Source Controller overview](fluxcd-source-controller/about.hbs.md)
       - [Install Flux CD Source Controller](fluxcd-source-controller/install.hbs.md)
