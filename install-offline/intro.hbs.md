@@ -18,5 +18,9 @@ clusters in an air-gapped environment:
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
-After installing Tanzu Application Platform on to your air-gapped cluster, you can start creating workloads that run in your air-gapped containers.
-For instructions, see [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md).
+After installing Tanzu Application Platform on to your air-gapped cluster,
+you can start creating workloads that run in your air-gapped containers.
+For instructions, see:
+
+- [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md) for the Namespace Provisioner mode.
+- [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md) for the legacy mode.
