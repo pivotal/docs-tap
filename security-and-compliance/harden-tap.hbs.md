@@ -36,7 +36,7 @@ following:
 1. Enable user authentication using one of the supported providers. For more information, see [Set up authentication for Tanzu Developer Portal](../tap-gui/auth.hbs.md).
 
   >**Note** Due to the limitations of the Backstage authentication implementation, enabling
-  authentication does not ensure full end-to-end security as Backstage doesn’t currently support per-API authentication. VMware recommends implementing additional security either using an inbound proxy or by leveraging networking using a firewall or VPN. For more information, see [Authentication in Backstage](https://backstage.io/docs/auth/#sign-in-configuration)
+  authentication does not ensure full end-to-end security as Backstage doesn’t currently support per-API authentication. VMware recommends implementing additional security either using an inbound proxy or by leveraging networking using a firewall or VPN. For more information, see [Authentication in Backstage](https://backstage.io/docs/auth/#sign-in-configuration).
 1. Disable guest access in the `tap_gui` section in the `tap-values.yaml` file:
 
    ```yaml
@@ -67,13 +67,11 @@ must be assigned to Kubernetes roles that limit access in a least privilege mode
 ### <a id="cluster-auth"></a> Kubernetes Cluster Authentication and Authorization
 
 VMware recommends enabling authentication
-to the Kubernetes clusters where the Tanzu Application Platform components are installed, using the
-same identity provider that other components are using.
+to the Kubernetes clusters where the Tanzu Application Platform components are installed, using the same identity provider that other components are using.
 
 While there are many options on how to enable OIDC providers for authentication with the Kubernetes
-API, VMware supports the [Pinniped project](https://pinniped.dev/) and has
-[documented](../authn-authz/integrating-identity.hbs.md)
-the process of setting it up as part of the Tanzu Application Platform documentation.
+API, VMware supports the [Pinniped project](https://pinniped.dev/). For information on using Pinniped in Tanzu Application Platform, see
+[Set up authentication for your Tanzu Application Platform deployment](../authn-authz/integrating-identity.hbs.md) and [Install Pinniped on Tanzu Application Platform](../authn-authz/pinniped-install-guide.hbs.md).
 
 By configuring this to use the same identify provider as the Tanzu Developer Portal, users
 can have a common identity across the Kubernetes clusters and the Tanzu Developer Portal.
