@@ -119,14 +119,14 @@ This release has the following known issues, listed by component and area.
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
 
-#### <a id='1-6-5-cert-manager-ki'></a> v1.6-5 Known issues: cert-manager
+#### <a id='1-6-5-cert-manager-ki'></a> v1.6.5 Known issues: cert-manager
 
-- There is currently a known vulnerability with ACME HTTP01 in TAP 1.7.1.
-  Although unlikely, there is a small possibility of exploitation of
-  cert-manager's ACME HTTP01 solver `Pod`. If there is heavy reliance on ACME
-  HTTP01 challenges and your organization believes they cannot take the risk of
-  retrying certificate issuance, consider DNS01 until VMware provides a
-  technical solution, expected to ship with our next patch release.
+- There is a known vulnerability with ACME HTTP01 in Tanzu Application 
+  Platform v1.7.1. 
+  Although the likelihood of exploitation of the cert-manager's ACME HTTP01 
+  solver `Pod` is minimal, if your organization heavily relies on ACME HTTP01 
+  challenges and deems it too risky to retry certificate issuance, consider using 
+  DNS01 until VMware provides a technical solution in the future patch release.
 
 ---
 
