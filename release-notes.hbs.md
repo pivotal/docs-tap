@@ -122,7 +122,7 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-6-5-cert-manager-ki'></a> v1.6.5 Known issues: cert-manager
 
 - There is a known vulnerability with ACME HTTP01 in Tanzu Application 
-  Platform v1.7.1. 
+  Platform v1.6.5. 
   Although the likelihood of exploitation of the cert-manager's ACME HTTP01 
   solver `Pod` is minimal, if your organization heavily relies on ACME HTTP01 
   challenges and deems it too risky to retry certificate issuance, consider using 
