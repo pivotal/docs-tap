@@ -1,37 +1,19 @@
 # Harden Tanzu Application Platform
 
-This topic provides you with installation and configuration guidance for Tanzu Application Platform
-(commonly known as TAP) to comply with the NIST 800-53
-Security and Privacy Controls for Information Systems and Organizations.
+This topic provides you with VMware recommendations on how to install and configure Tanzu Application Platform (commonly known as TAP) so that it to complies with [NIST Publication 800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf).
 
-## <a id="objective"></a> Objective
+Configuring your Tanzu Application Platform installation to this standard does not ensure approval as there are multiple organizational requirements and deviations that a platform team can make during installation and configuration.
 
-This is not a comprehensive security guide, but rather, an abbreviated Tanzu Application Platform
-readiness outline with considerations for hardening Tanzu Application Platform with [800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) controls as a guide.
+Tanzu Application Platform is deployed on Kubernetes and relies on the Kubernetes platform being hardened in a shared responsibility model. For information about hardening Kubernetes, see:
 
-Configuring your Tanzu Application Platform installation to this standard does not ensure approval
-as there are multiple organizational requirements and deviations that a platform team can make during
-installation and configuration.
-
-## <a id="scope"></a> Scope
-
-The document focuses on hardening Tanzu Application Platform.  Tanzu Application Platform
-is deployed on Kubernetes and relies on the Kubernetes platform being hardened in a shared
-responsibility model. For information about hardening Kubernetes, see:
-
-- [NSA/CISA Kubernetes Hardening Guide](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF):
-  Published in Aug 2022, this is a prescriptive document that covers many areas related to
-  Kubernetes security.
-- [NIST Kubernetes STIG Checklist](https://ncp.nist.gov/checklist/996): Published in April 2021,
-  provides a prescriptive list of technical requirements for securing a basic Kubernetes platform.
-- [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes/): Widely used as a
-  secure configuration guide, last updated in June 2021.
+- [NSA/CISA Cybersecurity Technical Report](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+- [NIST Kubernetes STIG Checklist](https://ncp.nist.gov/checklist/996)
+- [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes/)
 
 ## <a id="iam"></a> Identity and Access Management
 
-To provide an audit trail of what a user does in a system, it is important to configure the
-Tanzu Application Platform so that the identity of a user is known. When installing and
-configuring the Tanzu Application Platform, there are several areas where user identity
+To provide an audit trail of what a user does in a system, it is important to configure Tanzu Application Platform so that the identity of a user is known. When installing and
+configuring Tanzu Application Platform, there are several areas where user identity
 configuration must be considered. Tanzu Application Platform has three different
 areas where users have identities.
 
@@ -40,22 +22,22 @@ areas where users have identities.
 3. The Kubernetes cluster that the Tanzu Application Platform components are installed on
 
 It is recommended to use the same identity provider for each of these components so that a common
-identity is shared across the entire Tanzu Application Platform. To facilitate this, components can
+identity is shared across Tanzu Application Platform. To facilitate this, components can
 use common OIDC providers.  Below is the configuration for each component:
 
 ### <a id="tdp"></a> Tanzu Developer Portal
 
-The Tanzu Developer Portal is based on the Backstage open source project and has a variety
+Tanzu Developer Portal is based on the Backstage open source project and has a variety
 of OIDC providers that you can configure as an identity provider.
 
-To configure authentication for the Tanzu Developer Portal, VMware suggests the
+To configure authentication for the Tanzu Developer Portal, VMware recommends the
 following:
 
 1. Enable user authentication using one of the supported providers. For more information, see [Set up authentication for Tanzu Developer Portal](../tap-gui/auth.hbs.md).
 
   >**Note** Due to the limitations of the Backstage authentication implementation, enabling
   authentication does not ensure full end-to-end security as Backstage doesn’t currently support per-API authentication. VMware recommends implementing additional security either using an inbound proxy or by leveraging networking using a firewall or VPN. For more information, see [Authentication in Backstage](https://backstage.io/docs/auth/#sign-in-configuration)
-1. Disable guest access in the `tap_gui` section in the `tap-values.yaml` file.
+1. Disable guest access in the `tap_gui` section in the `tap-values.yaml` file:
 
    ```yaml
    tap_gui:
@@ -84,7 +66,7 @@ must be assigned to Kubernetes roles that limit access in a least privilege mode
 
 ### <a id="cluster-auth"></a> Kubernetes Cluster Authentication and Authorization
 
-Although not a Tanzu Application Platform configuration, VMware recommends enabling authentication
+VMware recommends enabling authentication
 to the Kubernetes clusters where the Tanzu Application Platform components are installed, using the
 same identity provider that other components are using.
 
@@ -100,29 +82,22 @@ the Tanzu CLI.
 
 Using Pinniped provides authentication for Kubernetes clusters but still requires the users to
 be bound to Kubernetes roles.  To provide a starting point, the Tanzu Application Platform provides
-six Kubernetes Roles as part of the installation that users can be bound to.  For more information
+six Kubernetes Roles as part of the installation that users can be bound to. For more information
 about the roles used for authorization, see
 [Default roles for Tanzu Application Platform](../authn-authz/overview.hbs.md).
 
 ### <a id="amr"></a> Artifact Metadata Repository (AMR) Observer, CloudEvent Handler, and GraphQL
 
-AMR Observer deploys on the following Tanzu Application Platform profiles:
+AMR Observer deploys on Full, Build and Run Tanzu Application Platform profiles.
 
-- Full
-- Build
-- Run
-
-AMR CloudEvent Handler and GraphQL deploys on the following Tanzu Application Platform profiles:
-
-- Full
-- View
+AMR CloudEvent Handler and GraphQL deploy on Full and View Tanzu Application Platform profiles.
 
 AMR Observer, AMR CloudEvent Handler, and GraphQL create Kubernetes service accounts, cluster roles,
 cluster role bindings, and secrets required for communication between these components internally and
 externally between Kubernetes clusters.
-For more information, see [Kubernetes service account automatic configuration](../scst-store/amr/auth-k8s-sa-autoconfiguration.md).
+For more information, see [Kubernetes service account automatic configuration](../scst-store/amr/auth-k8s-sa-autoconfiguration.hbs.md).
 
-As best practice, deactivate the automatic configuration for each of these components for the
+Deactivate the automatic configuration for each of these components for the
 respective profiles and manually create them as known resources.
 
 To deactivate AMR Observer automatic configuration, update the `tap-values.yaml` as follows:
@@ -157,7 +132,7 @@ For more information, see [User-defined Kubernetes Service Account Configuration
 
 ## <a id="protection"></a> Cryptographic Protections
 
-Encryption of data is leveraged to prevent unauthorized access to data.  With Tanzu Application
+Encryption of data is leveraged to prevent unauthorized access to data. With Tanzu Application
 Platform, this protection focuses on the two primary states of data that should be encrypted:
 
 1. Encryption of Data in Transit
@@ -182,9 +157,6 @@ that supports traffic encryption, for example, [Antrea](https://github.com/antre
 
 #### <a id="external-comms"></a> External Communication of Data in Transit Configuration
 
-Based upon OSS documentation:
-[https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration)
-
 TLS enables encryption of communication from end-users to the cluster. Because Contour is the edge
 gateway for all the traffic ingressing into the cluster, it is suitable to set up TLS and ensure
 that all communications between users and the cluster are encrypted.
@@ -193,15 +165,14 @@ It also allows cluster owners to satisfy compliance requirements like NIST 800-5
 [SC-8](https://csf.tools/reference/nist-sp-800-53/r4/sc/sc-8/) where it is required to protect the
 confidentiality of transmitted information.
 
-Also, it might be required that certain cipher suites or TLS versions are used when encrypting
-communications.[NIST 800-52r2](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-52r2.pdf)
+It might be required that certain cipher suites or TLS versions are used when encrypting
+communications.[NIST 800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
 requires that all government-only applications use TLS v1.2 and they also must be configured to use
-vTLS 1.3.
+TLS v1.3.
 
 ##### <a id="config-tls"></a> Configuring TLS for Contour
 
-In order to configure Contour to use TLS according to the NIST 800-52r2 requirements,
-create a new section in `tap-values.yaml`:
+In order to configure Contour to use TLS, create a new section in `tap-values.yaml`:
 
 ```yaml
 ...
@@ -222,11 +193,9 @@ contour:
         - 'ECDHE-RSA-AES256-GCM-SHA384'
 ```
 
-After adding this section, apply the tap-values file that will change the configuration of TLS
-to match the requirements.
+After adding this section, apply the `tap-values.yaml` file that will change the configuration of TLS to match the requirements.
 
-For more settings in the Contour component, you can reference the
-[open source documentation](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration).
+For more information, see [TLS Configuration](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration) in the Contour documentation.
 
 #### <a id="ingress-certs"></a> Ingress Certificates
 
@@ -237,7 +206,8 @@ endpoints, see [Ingress certificates](./tls-and-certificates/ingress/about.hbs.m
 
 All data must be encrypted at rest. The Tanzu Application Platform runs on Kubernetes
 and verifies the default storage class configured on the Kubernetes
-cluster. If you require Encryption of Data at Rest (DARE), you must provide a PersistentVolume Provisioner that supports encryption to the Kubernetes infrastructure.
+cluster. If you require Encryption of Data at Rest (DARE), you must provide a PersistentVolume
+Provisioner that supports encryption to the Kubernetes infrastructure.
 
 - PersistentVolume claim encryption
 - Data at rest must be encrypted.
@@ -246,10 +216,11 @@ cluster. If you require Encryption of Data at Rest (DARE), you must provide a Pe
 
 Ports are used in TCP and UDP protocols for identification of applications. While some applications
 use common port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic
-ports. An *open port* refers to a port on which a system is accepting communication. An open port does
+ports. An open port refers to a port on which a system is accepting communication. An open port does
 not always mean that there is a security issue, but it can provide a pathway
 for attackers listening on that port. To help understand the traffic flows
-in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and protocols on request.
+in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and
+protocols on request.
 
 See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
 
@@ -266,26 +237,29 @@ For more information, see [Install Tanzu Application Platform in an air-gapped e
 
 ## <a id="key-management"></a> Key Management
 
-Key management is the foundation of all data security. Data is encrypted and decrypted with encryption keys or secrets that must be safely stored to prevent the loss or compromise of infrastructure, systems, and applications. Tanzu Application Platform values are secrets and must be protected to ensure that the security and integrity of the platform is maintained.
+Key management is the foundation of all data security. Data is encrypted and decrypted with
+encryption keys or secrets that must be safely stored to prevent the loss or compromise of
+infrastructure, systems, and applications. Tanzu Application Platform values are secrets
+and must be protected to ensure that the security and integrity of the platform is maintained.
 
 - Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
 - Encryption of secrets at rest are Kubernetes Distribution Dependent.
-- To store secrets in a Secret Management service, for example, [Hashicorp Vault](https://www.vaultproject.io),
-  [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or
-  [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/)) you can
-  use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md)
-  to automate the lifecycle management (beta).
+- To store secrets in a Secret Management service, for example, [Hashicorp Vault](https://www.vaultproject.io), [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) you can use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md) to automate the lifecycle management (beta).
 - 800-53 [Section AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
-  related to safeguarding sensitive information from exploitation, for example, Tanzu Application Platform values.
+  related to safeguarding sensitive information from exploitation, for example,
+  Tanzu Application Platform values.
 
 ## <a id="logging"></a> Logging
 
-Log files provide an audit trail to monitor activity within infrastructure. Use log files to identify policy violations, unusual activity, and security incidents. It is vital that logs are captured and retained according to the policies set forth by your organization's security team or governing body. Tanzu Application Platform components run as pods on the Kubernetes infrastructure and all components output is captured as part of the pod logs.
+Log files provide an audit trail to monitor activity within infrastructure. Use log files to
+identify policy violations, unusual activity, and security incidents. It is vital that logs are
+captured and retained according to the policies set forth by your organization's security team or governing body. Tanzu Application Platform components run as pods on the Kubernetes infrastructure
+and all components output is captured as part of the pod logs.
 
 All Tanzu Application Platform components follow
 [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
 Log aggregation must be implemented following the best practices of the organization log retention
-process.
+process. For more information, see 
 
 - 800-53 Section [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
 
