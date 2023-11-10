@@ -3,6 +3,10 @@
 This topic for developers guides you through deploying your first workload on Tanzu Application Platform
 (commonly known as TAP) in an air-gapped environment.
 
+>**Note:** For Platform Operators to configure the air-gapped using Namespace Provisioner,
+please refer to [Work with Git repositories in air-gapped with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md)
+
+
 For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
 ## <a id="you-will"></a>What you will do
