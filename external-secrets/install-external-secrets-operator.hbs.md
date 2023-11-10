@@ -112,9 +112,6 @@ To install External Secrets Operator:
       by user or serviceaccount, provider "privileged": Forbidden: not usable by user
       or serviceaccount]'
 
-   You can work around this issue by installing the `full` TAP profile and then installing the
-   External Secrets Operator package.
-
 3. Verify the package installation by running:
 
    ```console
