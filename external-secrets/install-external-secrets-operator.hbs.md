@@ -36,7 +36,7 @@ To install External Secrets Operator:
    tanzu package install external-secrets \
      --package external-secrets.apps.tanzu.vmware.com \
      --version VERSION-NUMBER \
-     --values-file VALUES_FILE.YAML \
+     --values-file VALUES_FILE.YAML \ # The use of this file is optional
      --namespace tap-install
    ```
 
