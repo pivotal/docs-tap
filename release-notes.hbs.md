@@ -121,22 +121,12 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-5-cert-manager-ki'></a> v1.6-5 Known issues: cert-manager
 
-- ACME HTTP01 challenge solvers are vulnerable to
-  [GHSA-4374-p667-p6c8](https://github.com/advisories/GHSA-4374-p667-p6c8) in
-  theory. cert-manager's ACME HTTP01 solver `Pod` is exposed outside the
-  cluster for the duration of the challenge. Even if this is a considerably
-  short timeframe, when it's FQDN could be guessed by an external actor, it is
-  theoretically exploitable. The impact is that the ACME issuer cannot solve
-  the HTTP01 challenge and the certificate would not be issued.
-
-  While it's a conceivable scenario VMware considers
-  `cert-manager.tanzu.vmware.com/2.3.1`'s ACME solver `not_affacted` by
-  [GHSA-4374-p667-p6c8](https://github.com/advisories/GHSA-4374-p667-p6c8) with
-  `protected_by_mitigating_control`.
-
-  In case you rely heavily on ACME HTTP01 challenges and cannot take the risk
-  of having to retry certificate issuance, consider DNS01 until VMware provides
-  a patch.
+- There is currently a known vulnerability with ACME HTTP01 in TAP 1.7.1.
+  Although unlikely, there is a small possibility of exploitation of
+  cert-manager's ACME HTTP01 solver `Pod`. If there is heavy reliance on ACME
+  HTTP01 challenges and your organization believes they cannot take the risk of
+  retrying certificate issuance, consider DNS01 until VMware provides a
+  technical solution, expected to ship with our next patch release.
 
 ---
 
