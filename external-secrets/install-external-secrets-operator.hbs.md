@@ -26,8 +26,8 @@ To install External Secrets Operator:
    For example:
 
    ```console
-   NAME                                    VERSION      RELEASED-AT
-   external-secrets.apps.tanzu.vmware.com  0.6.1+tap.6  2023-03-08 14:00:00 -0500 EST
+   NAME                                    VERSION        RELEASED-AT
+   external-secrets.apps.tanzu.vmware.com  0.9.4+tanzu.2  2023-11-10 00:00:00 -0500 EST
    ```
 
 2. Install the package:
@@ -36,17 +36,22 @@ To install External Secrets Operator:
    tanzu package install external-secrets \
      --package external-secrets.apps.tanzu.vmware.com \
      --version VERSION-NUMBER \
+     --values-file VALUES_FILE.YAML \
      --namespace tap-install
    ```
 
-   Where `VERSION-NUMBER` is the version of the package listed in step 1.
+   Where `VERSION-NUMBER` is the version of the package listed in step 1 and
+   `VALUES_FILE.YAML` is an *optional* YAML file containing values used to configure the
+   External Secrets Operator.  See below for more information related to the
+   configuration file.
 
    For example:
 
    ```console
    tanzu package install external-secrets \
-   --package external-secrets.apps.tanzu.vmware.com
-   --version 0.6.1+tap.6
+   --package external-secrets.apps.tanzu.vmware.com \
+   --version 0.6.1+tap.6 \
+   --values-file external-secrets-values.yaml \
    --namespace tap-install
 
    \ Installing package 'external-secrets.apps.tanzu.vmware.com'
@@ -65,11 +70,55 @@ To install External Secrets Operator:
    Added installed package 'external-secrets'
    ```
 
+   *OPTIONAL* The YAML values file specifies optional configuration for the
+   External Secrets Operator.  At this time there is only one setting that can
+   be used to configure the External Secrets Operator:
+
+     kubernetes_distribution: "" or "openshift"
+
+   If you want to run External Secrets Operator on an OpenShift cluster then you
+   must set the `kubernetes_distribution` value to `openshift`.  Using this
+   setting removes some of the default security settings in External Secrets
+   Operator so that OpenShift can replace the security settings with its own.
+
+   If you are running the External Secrets Operator on any other platforms than
+   you can leave `kubernetes_distribution` as an empty string (i.e.: `""`) or
+   omit the value entirely.
+
+   The External Secrets Operator should be able to inherit this setting from the
+   `shared.kubernetes_distribution` in the top-level values file applied to the
+   TAP install itself.
+
+   The `kubernetes_distribution` setting is available as of release
+   `0.9.4+tanzu.2` of the External Secrets Operator.
+
+   It is a known issue that the External Secrets Operator releases prior to
+   `0.9.4+tanzu.2` may not be able to run on OpenShift clusters.  If you are
+   trying to run older releases of the External Secrets Operator on OpenShift
+   clusters then you may see the following error status in any of the `ReplicaSet` resources:
+
+      message: 'pods "external-secrets-6888645d7f-" is forbidden: unable to validate
+      against any security context constraint: [provider "anyuid": Forbidden: not
+      usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
+      Invalid value: 1000: must be in the ranges: [1001220000, 1001229999], provider
+      "restricted": Forbidden: not usable by user or serviceaccount, provider "nonroot-v2":
+      Forbidden: not usable by user or serviceaccount, provider "nonroot": Forbidden:
+      not usable by user or serviceaccount, provider "hostmount-anyuid": Forbidden:
+      not usable by user or serviceaccount, provider "machine-api-termination-handler":
+      Forbidden: not usable by user or serviceaccount, provider "hostnetwork-v2":
+      Forbidden: not usable by user or serviceaccount, provider "hostnetwork": Forbidden:
+      not usable by user or serviceaccount, provider "hostaccess": Forbidden: not
+      usable by user or serviceaccount, provider "node-exporter": Forbidden: not usable
+      by user or serviceaccount, provider "privileged": Forbidden: not usable by user
+      or serviceaccount]'
+
+   You can work around this issue by installing the `full` TAP profile and then installing the
+   External Secrets Operator package.
+
 3. Verify the package installation by running:
 
    ```console
-   tanzu package installed get external-secrets \
-   --namespace tap-install
+   tanzu package installed get external-secrets --namespace tap-install
    ```
 
    For example:
@@ -79,7 +128,7 @@ To install External Secrets Operator:
 
    NAME:                    external-secrets
    PACKAGE-NAME:            external-secrets.apps.tanzu.vmware.com
-   PACKAGE-VERSION:         0.6.1+tap.6
+   PACKAGE-VERSION:         0.9.4+tanzu.2
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:
