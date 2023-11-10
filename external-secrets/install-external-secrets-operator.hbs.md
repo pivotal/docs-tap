@@ -85,10 +85,6 @@ To install External Secrets Operator:
    you can leave `kubernetes_distribution` as an empty string (i.e.: `""`) or
    omit the value entirely.
 
-   The External Secrets Operator should be able to inherit this setting from the
-   `shared.kubernetes_distribution` in the top-level values file applied to the
-   TAP install itself.
-
    The `kubernetes_distribution` setting is available as of release
    `0.9.4+tanzu.2` of the External Secrets Operator.
 
