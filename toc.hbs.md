@@ -429,6 +429,7 @@ docs.vmware.com is built.
           - [Work with Private Git repositories in Namespace Provisioner](namespace-provisioner/use-case3.hbs.md)
           - [Customize default resources](namespace-provisioner/use-case4.hbs.md)
           - [Install multiple scanners in the developer namespace in Namespace Provisioner](namespace-provisioner/use-case5.hbs.md)
+          - [Work with Git repositories in air-gapped with Namespace Provisioner](namespace-provisioner/use-case7.hbs.md)
       - [Troubleshoot Namespace Provisioner](namespace-provisioner/troubleshooting.hbs.md)
       - [Namespace Provisioner Reference](namespace-provisioner/reference.hbs.md)
     - [Service Bindings](service-bindings/about.hbs.md)
