@@ -317,6 +317,29 @@ This release has the following breaking changes, listed by component and area.
   and `ClusterRoleBinding`.
   For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
 
+#### <a id='1-6-4-contour-br'></a> v1.6.4 Breaking changes: Contour
+
+Change:
+- TAP now defaults to using TLS 1.3 as the minimum TLS version for Contour.
+
+Implication:
+- Certain infrastructure setups may result in request failures if clients of Envoy do not support TLS 1.3. This may result in errors in the Envoy logs like:
+
+```
+[source/extensions/transport_sockets/tls/ssl_socket.cc:233] [C112] remote address:20.27.140.81:3073,TLS error: 268435696:SSL routines:OPENSSL_internal:UNSUPPORTED_PROTOCOL
+```
+
+Mitigation:
+- If you wish to keep the minimum version as TLS 1.2, prior to upgrading, update your tap-values file to add `contour.envoy.workload.type` and set it to `DaemonSet`
+  Example yaml snippet for tap-values:
+
+  ```
+  contour:
+    configFileContents:
+      tls:
+        minimum-protocol-version: "1.2"
+  ```
+
 ---
 
 ### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
