@@ -330,7 +330,7 @@ Implication:
 ```
 
 Mitigation:
-- If you wish to keep the minimum version as TLS 1.2, prior to upgrading, update your tap-values file to add `contour.configFileContents` and set `tls.minimum-protocol-version` to `DaemonSet`
+- If you wish to keep the minimum version as TLS 1.2, prior to upgrading, update your tap-values file to add `contour.configFileContents` and set `tls.minimum-protocol-version` to `1.2`
   Example yaml snippet for tap-values:
 
   ```
