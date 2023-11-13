@@ -58,6 +58,7 @@ stored in dedicated repositories.
 |Cloud Native Runtimes for VMware Tanzu|Cloud Native Runtimes|
 |Contour|Contour|
 |Crossplane|Crossplane|
+|Default Roles for Tanzu Application Platform|Default Roles|
 |Developer Conventions|Developer Conventions|
 |Eventing|Eventing|
 |Flux CD Source Controller|Flux CD Source Controller|
