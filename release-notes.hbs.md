@@ -1113,6 +1113,10 @@ The following issues, listed by component and area, are resolved in this release
 - Certain combinations of app name, namespace, and domain no longer produce Knative Services with
   status `CertificateNotReady`.
 
+#### <a id='1-7-0-crossplane-ri'></a> v1.7.0 Resolved issues: Crossplane
+
+- Crossplane Providers can now communicate with systems using a custom CA.
+
 #### <a id='1-7-0-scc-ri'></a> v1.7.0 Resolved issues: Supply Chain Choreographer
 
 - You can safely ignore the label `apps.tanzu.vmware.com/carvel-package-workflow` when the
@@ -1180,9 +1184,6 @@ This release has the following known issues, listed by component and area.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
 #### <a id='1-7-0-crossplane-ki'></a> v1.7.0 Known issues: Crossplane
-
-- Crossplane Providers cannot communicate with systems using a custom CA.
-  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
