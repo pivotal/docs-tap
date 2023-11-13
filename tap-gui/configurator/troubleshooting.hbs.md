@@ -2,20 +2,20 @@
 
 This topic helps you troubleshoot Tanzu Developer Portal Configurator.
 
-<a id='supply-chain-not-found'></a> No supply chain found in `tdp-workload.yaml`
+## <a id='supply-chain-not-found'></a> No supply chain found in `tdp-workload.yaml`
 
-## Symptom
+### Symptom
 
 No supply chain is found in `tdp-workload.yaml`
 
-## Cause
+### Cause
 
 You might not have specified all of the correct information regarding your workload if you're using
 a supply chain other than `basic`. This documentation has the assumption that you're running the
 `basic` supply chain, so it doesn't tell you to add any tests.
 Because supply chains are configurable, there might be stages unique to your configuration.
 
-## Solution
+### Solution
 
 If you have a supply chain that requires testing, use a no-op set of tests to make the workload
 pass through. For more information about no-op, see [Wikipedia](https://en.wikipedia.org/wiki/NOP_(code)).
@@ -81,19 +81,19 @@ spec:
 
 Now when you submit your workload, the testing stage finishes.
 
-<a id='freq-conv-cntrllr-fail'></a> Convention controller fails frequently
+## <a id='freq-conv-cntrllr-fail'></a> Convention controller fails frequently
 
-## Symptom
+### Symptom
 
 Convention controller fails frequently and prevents other workloads from completing.
 
-## Cause
+### Cause
 
 The frequent failures are caused by the large memory limit of the Software Bill of Materials (SBOM).
 The Tanzu Developer Portal Configurator build process produces this SBOM, and `PodIntent` reports an
 out-of-memory error.
 
-## Solution
+### Solution
 
 Create an overlay to increase the memory limit of `PodIntent` to 512&nbsp;MB.
 To learn how to do so, see
