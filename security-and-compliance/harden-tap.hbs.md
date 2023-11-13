@@ -139,7 +139,7 @@ Platform, there are two states where data should be encrypted:
 ### <a id="encryption-in-transit"></a> Encryption of data in transit
 
 This section describes how to encryption of internal communication between services that originate
-within the cluster, data at rest, and how to secure exposed ingress endpoints.
+within the cluster and data at rest, and how to secure exposed ingress endpoints.
 
 #### <a id="internal-comms"></a> Internal Communication of data in transit configuration
 
@@ -162,18 +162,18 @@ TLS enables encryption of communication from end-users to the cluster. Because C
 gateway for all the traffic ingressing into the cluster, it is suitable to set up TLS and ensure
 that all communications between users and the cluster are encrypted.
 
-It also allows cluster owners to satisfy compliance requirements like NIST 800-53 Control
-[SC-8](https://csf.tools/reference/nist-sp-800-53/r4/sc/sc-8/) where it is required to protect the
+It also allows cluster owners to satisfy compliance requirements such as
+[NIST 800-53 ControlSC-8](https://csf.tools/reference/nist-sp-800-53/r4/sc/sc-8/) to protect the
 confidentiality of transmitted information.
 
 It might be required that certain cipher suites or TLS versions are used when encrypting
-communications.[NIST 800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
+communications. [NIST 800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
 requires that all government-only applications use TLS v1.2 and they also must be configured to use
 TLS v1.3.
 
 ##### <a id="config-tls"></a> Configuring TLS for Contour
 
-In order to configure Contour to use TLS, create a new section in `tap-values.yaml`:
+To configure Contour to use TLS, create a new section in `tap-values.yaml`:
 
 ```yaml
 ...
@@ -202,7 +202,7 @@ For more information, see [TLS Configuration](https://projectcontour.io/docs/v1.
 #### <a id="ingress-certs"></a> Ingress Certificates
 
 For information about how to configure TLS for a Tanzu Application Platform installation's ingress
-endpoints, see [Ingress certificates](./tls-and-certificates/ingress/about.hbs.md).
+endpoints, see [Secure Ingress certificates in Tanzu Application Platform](./tls-and-certificates/ingress/about.hbs.md).
 
 ### <a id="encryption-at-rest"></a> Encryption of Data At Rest
 
@@ -210,9 +210,6 @@ All data must be encrypted at rest. The Tanzu Application Platform runs on Kuber
 and verifies the default storage class configured on the Kubernetes
 cluster. If you require Encryption of Data at Rest (DARE), you must provide a PersistentVolume
 Provisioner that supports encryption to the Kubernetes infrastructure.
-
-- PersistentVolume claim encryption
-- Data at rest must be encrypted.
 
 ## <a id="ports-protocols"></a> Ports and protocols
 
@@ -222,9 +219,7 @@ ports. An open port refers to a port on which a system is accepting communicatio
 not always mean that there is a security issue, but it can provide a pathway
 for attackers listening on that port. To help understand the traffic flows
 in Tanzu Application Platform, VMware provides a list of Tanzu Application Platform ports and
-protocols on request.
-
-See the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
+protocols on request. For more information, see the [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html).
 
 ## <a id="networking"></a> Networking
 
@@ -261,7 +256,7 @@ captured and retained according to the policies set forth by your organization's
 and all components output is captured as part of the pod logs.
 
 All Tanzu Application Platform components follow
-[Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
+[Kubernetes logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
 Log aggregation must be implemented following the best practices of the organization log retention
 process. For more information, see the [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) section in the SP 800-53 publication.
 
