@@ -1,6 +1,6 @@
 # Troubleshoot Tanzu Developer Portal Configurator
 
-This topic helps you troubleshoot Tanzu Developer Portal Configurator.
+This topic helps you troubleshoot Tanzu Developer Portal Configurator.<!--฿ For SEO, introduce alternative product names in the topic short description if there are any. ฿-->
 
 <a id='supply-chain-not-found'></a> No supply chain found in `tdp-workload.yaml`
 
@@ -89,11 +89,12 @@ Convention controller fails frequently and prevents other workloads from complet
 
 ## Cause
 
-The frequent failures are caused by the large size of the SBOM, which the Tanzu Developer Portal
-Configurator build process produces. `PodIntent` reports an out-of-memory error.
+The frequent failures are caused by the large memory limit of the Software Bill of Materials (SBOM).
+The Tanzu Developer Portal Configurator build process produces this SBOM, and `PodIntent` reports an
+out-of-memory error.
 
 ## Solution
 
-Create an overlay to increase the size of `PodIntent` to 512&nbsp;MB (an increase from 256&nbsp;MB).
+Create an overlay to increase the memory limit of `PodIntent` to 512&nbsp;MB.
 To learn how to do so, see
 [Troubleshoot Cartographer Conventions](../../cartographer-conventions/troubleshooting.hbs.md#oom-killed).
