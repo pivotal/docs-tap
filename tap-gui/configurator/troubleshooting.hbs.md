@@ -1,6 +1,6 @@
 # Troubleshoot Tanzu Developer Portal Configurator
 
-This topic helps you troubleshoot Tanzu Developer Portal Configurator.<!--฿ For SEO, introduce alternative product names in the topic short description if there are any. ฿-->
+This topic helps you troubleshoot Tanzu Developer Portal Configurator.
 
 <a id='supply-chain-not-found'></a> No supply chain found in `tdp-workload.yaml`
 
