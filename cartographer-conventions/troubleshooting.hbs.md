@@ -191,7 +191,7 @@ secrets:
 While processing workloads with large SBOM, the Cartographer Convention controller manager pod can 
 fail with the status `CrashLoopBackOff` or `OOMKilled`. 
 
-To work around this problem you can increase the memory limit to `512Mi` to fix the pod crash. For information about how to increase the memory limit, see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+To work around this problem you can increase the memory limit to `512Mi` to fix the pod crash.
 
 For example:
 
