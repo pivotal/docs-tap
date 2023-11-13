@@ -340,6 +340,7 @@ Mitigation:
         minimum-protocol-version: "1.2"
   ```
 
+  For more information on configuring Contour's TLS settings, see [this guide](./contour/configuring-cipher-suites-and-tls-version.hbs.md).
 ---
 
 ### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
