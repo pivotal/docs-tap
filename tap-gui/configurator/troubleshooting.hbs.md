@@ -96,4 +96,4 @@ Configurator build process produces. `PodIntent` reports an out-of-memory error.
 
 Create an overlay to increase the size of `PodIntent` to 512&nbsp;MB (an increase from 256&nbsp;MB).
 To learn how to do so, see
-[Convention Controller Troubleshooting](../../cartographer-conventions/troubleshooting.hbs.md#oom-killed).
+[Troubleshoot Cartographer Conventions](../../cartographer-conventions/troubleshooting.hbs.md#oom-killed).
