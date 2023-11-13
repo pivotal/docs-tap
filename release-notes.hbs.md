@@ -256,7 +256,7 @@ This release includes the following changes, listed by component and area.
 #### <a id="1-7-0-contour-br"></a> v1.7.0 Breaking changes: Contour
 
 Change:
-- TAP now defaults to installing Contour as a Deployment instead of a DaemonSet. It will default to 2 replicas.
+- TAP now defaults to installing Contour as a Deployment instead of a DaemonSet. It will default to 2 replicas. **This will cause downtime when upgrading**.
 
 Implication 1:
 - When upgrading to TAP 1.7.0, the Envoy pods will be deleted and recreated. This means there will be downtime for all workloads exposed publicly (including all Web Workloads, TAP GUI, and any Server workloads exposed manually via an HTTPProxy).
