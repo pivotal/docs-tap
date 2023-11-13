@@ -93,6 +93,17 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
+### <a id='1-6-5-resolved-issues'></a> v1.6.5 Resolved issues
+
+This release has the following resolved issues, listed by component and area.
+
+#### <a id='1-6-5-lsp-ri'></a> v1.6.5 Resolved issues: Local Source Proxy
+
+When installing Local Source Proxy outside of a Tanzu Application Platform profile, there is no
+longer failure at the OpenShift distribution stage.
+
+---
+
 ### <a id='1-6-5-known-issues'></a> v1.6.5 Known issues
 
 This release has the following known issues, listed by component and area.
