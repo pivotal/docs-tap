@@ -2,6 +2,8 @@
 
 This topic helps you troubleshoot Tanzu Developer Portal Configurator.
 
+<a id='supply-chain-not-found'></a> No supply chain found in `tdp-workload.yaml`
+
 ## Symptom
 
 No supply chain is found in `tdp-workload.yaml`
@@ -78,3 +80,20 @@ spec:
 ```
 
 Now when you submit your workload, the testing stage finishes.
+
+<a id='freq-conv-cntrllr-fail'></a> Convention controller fails frequently
+
+## Symptom
+
+Convention controller fails frequently and prevents other workloads from completing.
+
+## Cause
+
+The frequent failures are caused by the large size of the SBOM, which the Tanzu Developer Portal
+Configurator build process produces. `PodIntent` reports an out-of-memory error.
+
+## Solution
+
+Create an overlay to increase the size of `PodIntent` to 512&nbsp;MB (an increase from 256&nbsp;MB).
+To learn how to do so, see
+[Convention Controller Troubleshooting](../../cartographer-conventions/troubleshooting.hbs.md#oom-killed).
