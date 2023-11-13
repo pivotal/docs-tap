@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-7-1'></a> v1.7.1 
- 
-**Release Date**: 17 November 2023 
- 
-### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-7-1'></a> v1.7.1
+
+**Release Date**: 17 November 2023
+
+### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-7-1-COMPONENT-NAME-fixes'></a> v1.7.1 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,46 +33,46 @@ OR add HTML or Markdown table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-7-1-resolved-issues'></a> v1.7.1 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-7-1-resolved-issues'></a> v1.7.1 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-7-1-COMPONENT-NAME-ri'></a> v1.7.1 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-7-1-known-issues'></a> v1.7.1 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-7-1-known-issues'></a> v1.7.1 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-7-1-COMPONENT-NAME-ki'></a> v1.7.1 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
+
+- Known issue description with link to workaround.
 
 #### <a id='1-7-1-cert-manager-ki'></a> v1.7.1 Known issues: cert-manager
- 
-- There is a known vulnerability with ACME HTTP01 in Tanzu Application 
-  Platform v1.7.1. 
-  Although the likelihood of exploitation of the cert-manager's ACME HTTP01 
-  solver `Pod` is minimal, if your organization heavily relies on ACME HTTP01 
-  challenges and deems it too risky to retry certificate issuance, consider using 
+
+- There is a known vulnerability with ACME HTTP01 in Tanzu Application
+  Platform v1.7.1.
+  Although the likelihood of exploitation of the cert-manager's ACME HTTP01
+  solver `Pod` is minimal, if your organization heavily relies on ACME HTTP01
+  challenges and deems it too risky to retry certificate issuance, consider using
   DNS01 until VMware provides a technical solution in the future patch release.
 
 ---
- 
+
 ### <a id='1-7-1-components'></a> v1.7.1 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
+
+---
 
 ## <a id='1-7-0'></a> v1.7.0
 
@@ -301,6 +301,12 @@ Artifact Metadata Repository (AMR) is a new component that extends the capabilit
 - You can rebase vulnerability triage analyses by using the `tanzu insight triage rebase` command.
   For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses)
   and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
+
+#### <a id='1-7-0-tanzu-dev-portal'></a> v1.7.0 Features: Tanzu Developer Portal
+
+- Tanzu Developer Portal Configurator has now reached General Availability. You can use Configurator
+  to make use of VMware validated plug-ins and also integrate custom external plug-ins. For more
+  information, see [the Configurator overview](tap-gui/configurator/about.hbs.md).
 
 #### <a id='1-7-0-vscode-extension'></a> v1.7.0 Features: Tanzu Developer Tools for VS Code
 
