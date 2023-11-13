@@ -44,23 +44,9 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-4-11-resolved-issues'></a> v1.4.11 Resolved issues
-
-The following issues, listed by component and area, are resolved in this release.
-
-#### <a id='1-4-11-COMPONENT-NAME-ri'></a> v1.4.11 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
 ### <a id='1-4-11-known-issues'></a> v1.4.11 Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-4-11-COMPONENT-NAME-ki'></a> v1.4.11 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
+This release introduces no new known issues.
 
 ---
 
