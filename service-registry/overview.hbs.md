@@ -8,6 +8,12 @@ practice of using Spring Cloud Services for Tanzu Application Service to create 
 On-demand namespaced Eureka server instances can be provisioned for microservices Spring Boot
 applications that rely on service discovery.
 
+## <a id="architecture"></a>Architecture
+
+The following diagram of Service Registry components illustrates the Service Registry architecture.
+
+![The Service Registry components.](images/architecture.png)
+
 ## <a id='capacity-reqs'></a> Capacity Requirements
 
 Each node of the Eureka controller requires:
