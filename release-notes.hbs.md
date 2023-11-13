@@ -1280,7 +1280,8 @@ to ensure that they are correctly created.
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
-- tap-gui package may fail to install on OpenShift when utilizing the view profile. A fix is planned for the next patch release.
+- The `tap-gui` package might fail to install on OpenShift when you use the View profile. A fix is
+  planned for a future Tanzu Application Platform version.
 
 - When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
   does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
