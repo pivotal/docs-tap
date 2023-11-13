@@ -231,11 +231,11 @@ Artifact Metadata Repository (AMR) is a new component that extends the capabilit
   For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses)
   and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
 
-#### <a id='1-7-0-tanzu-developer-portal'></a> v1.7.0 Features: Tanzu Developer Portal
+#### <a id='1-7-0-tanzu-dev-portal'></a> v1.7.0 Features: Tanzu Developer Portal
 
-- Tanzu Developer Portal Configurator has now reached General Availability.
-  For more information, see [the configurator overview section](tap-gui/configurator/about.hbs.md).
-- Users now have the ability to leverage VMware validated plug-ins in addition to integrating with custom external plug-ins.
+- Tanzu Developer Portal Configurator has now reached General Availability. You can use Configurator
+  to make use of VMware validated plug-ins and also integrate custom external plug-ins. For more
+  information, see [the Configurator overview](tap-gui/configurator/about.hbs.md).
 
 #### <a id='1-7-0-vscode-extension'></a> v1.7.0 Features: Tanzu Developer Tools for VS Code
 
