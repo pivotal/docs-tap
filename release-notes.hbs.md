@@ -252,6 +252,26 @@ This release includes the following changes, listed by component and area.
 
 - Minikube support has been removed.
 
+
+#### <a id="1-7-0-contour-br"></a> v1.7.0 Breaking changes: Contour
+
+Change:
+- TAP now defaults to installing Contour as a Deployment instead of a DaemonSet
+
+Implications:
+- When upgrading to TAP 1.7.0, the Envoy pods will be deleted and recreated. This means there will be downtime for all workloads exposed publicly (including all Web Workloads, TAP GUI, and any Server workloads exposed manually via an HTTPProxy).
+
+Mitigation:
+- Prior to upgrading, update your tap-values file to add `contour.envoy.workload.type` and set it to `DaemonSet`
+  Example yaml snippet for tap-values:
+  
+  ```
+  contour:
+    envoy:
+      workload:
+        type: DaemonSet
+  ```
+
 #### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
 
 - The `appliveview_connector.backend.sslDisabled` key has been removed and is replaced by
