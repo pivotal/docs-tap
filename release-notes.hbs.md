@@ -99,8 +99,8 @@ This release has the following resolved issues, listed by component and area.
 
 #### <a id='1-6-5-lsp-ri'></a> v1.6.5 Resolved issues: Local Source Proxy
 
-When installing Local Source Proxy outside of a Tanzu Application Platform profile, there is no
-longer failure at the OpenShift distribution stage.
+- When installing Local Source Proxy outside of a Tanzu Application Platform profile, there is no
+  longer failure at the OpenShift distribution stage.
 
 ---
 
