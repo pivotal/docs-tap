@@ -262,7 +262,7 @@ Implication 1:
 - When upgrading to TAP 1.7.0, the Envoy pods will be deleted and recreated. This means there will be downtime for all workloads exposed publicly (including all Web Workloads, TAP GUI, and any Server workloads exposed manually via an HTTPProxy).
 
 Mitigation 1:
-- Prior to upgrading, update your tap-values file to add `contour.envoy.workload.type` and set it to `DaemonSet`
+- If you wish to remain using a DaemonSet, prior to upgrading, update your tap-values file to add `contour.envoy.workload.type` and set it to `DaemonSet`
   Example yaml snippet for tap-values:
   
   ```
