@@ -276,7 +276,7 @@ To increase the memory limit:
   tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
   ```
 
-For information about the package customization, see [Customize your package installation](../customize-package-installation.hbs.md).
+For information about the package customization, see [Customize your package installation](../../docs-tap/customize-package-installation.hbs.md).
 
 #### <a id='increase-webhook'></a> Increase the memory limit for convention webhook servers
 
@@ -374,4 +374,4 @@ You might need to increase the memory limit for the convention webhook servers. 
   tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
   ```
 
-For information about the package customization, see [Customize your package installation](customize-package-installation.hbs.md).
+For information about the package customization, see [Customize your package installation](../../docs-tap/customize-package-installation.hbs.md).
