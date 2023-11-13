@@ -10,7 +10,7 @@ Tanzu Application Platform is deployed on Kubernetes and relies on the Kubernete
 - [NIST Kubernetes STIG Checklist](https://ncp.nist.gov/checklist/996)
 - [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes/)
 
-## <a id="iam"></a> Identity and Access Management
+## <a id="iam"></a> Identity and access management
 
 To provide an audit trail of what a user does in a system, it is important to configure Tanzu Application Platform so that the identity of a user is known. When installing and
 configuring Tanzu Application Platform, there are several areas where user identity
@@ -18,12 +18,12 @@ configuration must be considered. Tanzu Application Platform has three different
 areas where users have identities.
 
 1. Tanzu Developer Portal
-2. Tanzu Developer Portal Authentication to Remote Clusters
-3. The Kubernetes cluster that the Tanzu Application Platform components are installed on
+2. Tanzu Developer Portal authentication to remote clusters
+3. The Kubernetes cluster where Tanzu Application Platform components are installed
 
-It is recommended to use the same identity provider for each of these components so that a common
+VMware recommends using the same identity provider for each of these so that a common
 identity is shared across Tanzu Application Platform. To facilitate this, components can
-use common OIDC providers.  Below is the configuration for each component:
+use common OIDC providers.
 
 ### <a id="tdp"></a> Tanzu Developer Portal
 
@@ -46,7 +46,7 @@ following:
          allowGuestAccess: false
    ```
 
-### <a id="tdp-remote-cluster"></a> Tanzu Developer Portal to Remote Kubernetes Cluster Authentication
+### <a id="tdp-remote-cluster"></a> Tanzu Developer Portal authentication to remote clusters
 
 Several plug-ins within the Tanzu Developer Portal, such as the Runtime Resource Viewer,
 Supply Chain Visualization, and Security Analysis GUI require authentication to remote Kubernetes
@@ -64,7 +64,7 @@ For more information, see
 As best practice, the users on the Kubernetes clusters that are used for remote authentication
 must be assigned to Kubernetes roles that limit access in a least privilege model.
 
-### <a id="cluster-auth"></a> Kubernetes Cluster Authentication and Authorization
+### <a id="cluster-auth"></a> The Kubernetes cluster
 
 VMware recommends enabling authentication
 to the Kubernetes clusters where the Tanzu Application Platform components are installed, using the same identity provider that other components are using.
@@ -84,7 +84,7 @@ six Kubernetes Roles as part of the installation that users can be bound to. For
 about the roles used for authorization, see
 [Default roles for Tanzu Application Platform](../authn-authz/overview.hbs.md).
 
-### <a id="amr"></a> Artifact Metadata Repository (AMR) Observer, CloudEvent Handler, and GraphQL
+#### <a id="amr"></a> Artifact Metadata Repository (AMR) Observer, CloudEvent Handler, and GraphQL
 
 AMR Observer deploys on Full, Build and Run Tanzu Application Platform profiles.
 
@@ -128,17 +128,20 @@ For best practice, users on the Kubernetes clusters must create resources with K
 that limit access in a least privilege model.
 For more information, see [User-defined Kubernetes Service Account Configuration](../scst-store/amr/auth-k8s-sa-user-defined.hbs.md).
 
-## <a id="protection"></a> Cryptographic Protections
+## <a id="protection"></a> Encryption
 
-Encryption of data is leveraged to prevent unauthorized access to data. With Tanzu Application
-Platform, this protection focuses on the two primary states of data that should be encrypted:
+Encryption of data prevents unauthorized access to data. In Tanzu Application
+Platform, there are two states where data should be encrypted:
 
-1. Encryption of Data in Transit
-2. Encryption of Data at Rest
+1. Encryption of data in transit
+2. Encryption of data at rest
 
-### <a id="encryption-in-transit"></a> Encryption of Data in Transit
+### <a id="encryption-in-transit"></a> Encryption of data in transit
 
-#### <a id="internal-comms"></a> Internal Communication of Data in Transit Configuration
+This section describes how to encryption of internal communication between services that originate
+within the cluster, data at rest, and how to secure exposed ingress endpoints.
+
+#### <a id="internal-comms"></a> Internal Communication of data in transit configuration
 
 Communication between services that originate and terminate within the cluster is referred to as
 internal communication. Tanzu Application Platform is in the process of enabling TLS on
@@ -153,7 +156,7 @@ components. For more information, see [Set up Tanzu Service Mesh](../integration
 that supports traffic encryption, for example, [Antrea](https://github.com/antrea-io/antrea/blob/main/docs/traffic-encryption.md).
 3. Use the underlying network infrastructure running Kubernetes which has encryption on all network traffic.
 
-#### <a id="external-comms"></a> External Communication of Data in Transit Configuration
+#### <a id="external-comms"></a> External communication of data in transit configuration
 
 TLS enables encryption of communication from end-users to the cluster. Because Contour is the edge
 gateway for all the traffic ingressing into the cluster, it is suitable to set up TLS and ensure
@@ -191,7 +194,8 @@ contour:
         - 'ECDHE-RSA-AES256-GCM-SHA384'
 ```
 
-After adding this section, apply the `tap-values.yaml` file that will change the configuration of TLS to match the requirements.
+After adding this section, apply the `tap-values.yaml` file that will change the configuration of
+TLS to match the requirements.
 
 For more information, see [TLS Configuration](https://projectcontour.io/docs/v1.22.1/configuration/#tls-configuration) in the Contour documentation.
 
@@ -210,7 +214,7 @@ Provisioner that supports encryption to the Kubernetes infrastructure.
 - PersistentVolume claim encryption
 - Data at rest must be encrypted.
 
-### <a id="ports-protocols"></a> Ports and Protocols
+## <a id="ports-protocols"></a> Ports and protocols
 
 Ports are used in TCP and UDP protocols for identification of applications. While some applications
 use common port numbers, such as 80 for HTTP, or 443 for HTTPS, some applications use dynamic
@@ -233,14 +237,14 @@ Tanzu Application Platform is supported by [Tanzu Service Mesh](../integrations/
 You must configure proper [affinity rules](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity) on Knative deployed services.
 For more information, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
-## <a id="key-management"></a> Key Management
+## <a id="key-management"></a> Key management
 
 Key management is the foundation of all data security. Data is encrypted and decrypted with
 encryption keys or secrets that must be safely stored to prevent the loss or compromise of
 infrastructure, systems, and applications. Tanzu Application Platform values are secrets
 and must be protected to ensure that the security and integrity of the platform is maintained.
 
-- Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
+- Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).
 - Encryption of secrets at rest are Kubernetes Distribution Dependent.
 - To store secrets in a Secret Management service, for example, [Hashicorp Vault](https://www.vaultproject.io), [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) you can use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md) to automate the lifecycle management (beta).
 - 800-53 [Section AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
@@ -261,7 +265,7 @@ process. For more information, see
 
 - 800-53 Section [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
 
-## <a id="architecture"></a> Deployment Architecture
+## <a id="architecture"></a> Deployment architecture
 
 Tanzu Application Platform provides a
 [reference architecture](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-tap-architecture-planning.html) that depicts separate components based on function. VMware recommends multiple Kubernetes clusters for the iterate, build, view, and run functions. This separation enables Kubernetes administrators to manage each function independently
