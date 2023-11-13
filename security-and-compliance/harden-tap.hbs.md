@@ -244,26 +244,26 @@ encryption keys or secrets that must be safely stored to prevent the loss or com
 infrastructure, systems, and applications. Tanzu Application Platform values are secrets
 and must be protected to ensure that the security and integrity of the platform is maintained.
 
-- Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).
-- Encryption of secrets at rest are Kubernetes Distribution Dependent.
-- To store secrets in a Secret Management service, for example, [Hashicorp Vault](https://www.vaultproject.io), [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) you can use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md) to automate the lifecycle management (beta).
-- 800-53 [Section AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
-  related to safeguarding sensitive information from exploitation, for example,
-  Tanzu Application Platform values.
+Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).
+
+Encryption of secrets at rest are Kubernetes distribution dependent.
+
+Use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md) (beta) 
+to automate the lifecycle management of Secrets stored in a Secret management service, such as, [Hashicorp Vault](https://www.vaultproject.io), [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) use.
+
+For more information related to safeguarding sensitive information from exploitation, such as, Tanzu Application Platform values, see the [AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) section in the SP 800-53 publication.
 
 ## <a id="logging"></a> Logging
 
 Log files provide an audit trail to monitor activity within infrastructure. Use log files to
-identify policy violations, unusual activity, and security incidents. It is vital that logs are
+identify policy violations, unusual activity, and security incidents. It is important that logs are
 captured and retained according to the policies set forth by your organization's security team or governing body. Tanzu Application Platform components run as pods on the Kubernetes infrastructure
 and all components output is captured as part of the pod logs.
 
 All Tanzu Application Platform components follow
 [Kubernetes Logging](https://kubernetes.io/docs/concepts/cluster-administration/logging/) best practices.
 Log aggregation must be implemented following the best practices of the organization log retention
-process. For more information, see 
-
-- 800-53 Section [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf)
+process. For more information, see the [AU-4 Audit Log Storage Capacity](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) section in the SP 800-53 publication.
 
 ## <a id="architecture"></a> Deployment architecture
 
