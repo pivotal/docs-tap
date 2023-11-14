@@ -124,7 +124,7 @@ This page displays all details related to used and committed memory of the appli
 This also displays the garbage collection count by generation (gen0/gen1).
 The page also has a feature to download the heap dump for analysis.
 
-![Memory Page in the UI showing charts for Heap Memory, Garbage Collection Count by Generation 0, and Garbage Collection Count by Generation 1.](images/memory-page-steeltoe.png)
+![Memory Page showing charts for Heap Memory, Garbage Collection Count by Generation 0, and Garbage Collection Count by Generation 1.](images/memory-page-steeltoe.png)
 
 ## <a id="request-mappings-page"></a> Request Mappings page
 

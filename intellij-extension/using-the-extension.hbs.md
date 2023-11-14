@@ -55,7 +55,7 @@ To start debugging on the cluster:
 2. Right-click the `workload.yaml` file in your project.
 3. Click **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
 
-    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
+   ![The IntelliJ interface showing the project tab. The workload YAML file pop-up menu is open. The Tanzu Debug Workload option is highlighted.](../images/intellij-debugWorkload.png)
 
 4. Ensure that the configuration parameters are set:
 
