@@ -6,5 +6,5 @@ template_variables:
   app-sso:
     version: 3.1
   tanzu-cli:
-    version: 1.0.0
-    url_version: 1.0
+    version: 1.1.0
+    url_version: 1.1
