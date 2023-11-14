@@ -44,7 +44,12 @@ Options if using Controller
      - `create_export`:  Boolean flag to control creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, ensure that it is exported to the `tap-namespace-provisioning` namespace.
      - `path` must start with the prefix `_ytt_lib/`. Namespace Provisioner mounts all the additional sources as a [ytt library](https://carvel.dev/ytt/docs/v0.44.0/lang-ref-ytt-library/#what-is-a-library) so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the `_ytt_lib`  prefix can be any string value, and must be unique across all additional sources.
 
-   Sample TAP values configuration:
+>**Important** Namespace Provisioner relies on kapp-controller for any tasks involving communication
+with external services, such as registries or Git repositories. When operating in air-gapped
+environments or other scenarios where external services are secured by a Custom CA certificate,
+you must configure kapp-controller with the CA certificate data to prevent
+X.509 certificate errors. For more information, see [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5)
+in the Cluster Essentials for VMware Tanzu documentation.
 
    ```yaml
   namespace_provisioner:
