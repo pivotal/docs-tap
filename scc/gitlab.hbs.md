@@ -20,7 +20,7 @@ The following example uses the GitLab source repository:
 
 `https://gitlab.example.com/my-org/repository.git`
 
-You can configure the supply chain by using `tap-values`:
+You can configure the supply chain by using `tap-values.yaml`:
 
 ```yaml
 ootb_supply_chain_testing_scanning:
@@ -68,9 +68,9 @@ The following example uses the GitLab Git repository:
         ...
   ```
 
-1. Set other GitOps values in either `tap-values` or in the workload parameters.
+1. Set other GitOps values in either `tap-values.yaml` or in the workload parameters.
 
-  By using tap-values:
+  By using `tap-values.yaml`:
 
   ```yaml
       ootb_supply_chain_testing_scanning:
@@ -104,7 +104,7 @@ The following example uses the GitLab repository:
 
 `https://gitlab.example.com/my-org/repository.git`
 
-You can configure the delivery tap-values:
+You can configure the delivery `tap-values.yaml`:
 
 ```yaml
 ootb_delivery_basic:
@@ -127,7 +127,7 @@ spec:
 ### <a id="gitops-read-temp"></a> GitLab over HTTPS with a custom CA certificate
 
 When using HTTPS with a custom certificate authority, you must configure the Git
-secret both in `tap-values` and the Git secret used by the GitRepository.
+secret both in `tap-values.yaml` and the Git secret used by the GitRepository.
 
 1. Set the [shared.ca_cert_data](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
  in `tap-values.yaml`. You must set the Git secret in the `caFile` field.
