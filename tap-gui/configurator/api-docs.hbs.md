@@ -2,7 +2,20 @@
 
 This topic tells you about API references for surfaces in Tanzu Developer Portal.
 
-## Package @tpb/plugin-catalog
+The following packages are described:
+
+- [@tpb/plugin-catalog](#tpb-plugin-catalog)
+- [@vmware-tanzu/core-backend](#tanzu-core-backend)
+- [@vmware-tanzu/core-frontend](#tanzu-core-frontend)
+- [@@vmware-tanzu/tdp-plugin-auth-backend](#tanzu-tdp-plgn-auth-bcknd)
+- [@vmware-tanzu/tdp-plugin-custom-logger](#tanzu-tdp-plgn-cstm-lggr)
+- [@vmware-tanzu/tdp-plugin-home](#tanzu-tdp-plugin-home)
+- [@vmware-tanzu/tdp-plugin-ldap-backend](#tanzu-tdp-plgn-ldap-bcknd)
+- [@vmware-tanzu/tdp-plugin-login](#tanzu-tdp-plugin-login)
+- [@vmware-tanzu/tdp-plugin-microsoft-graph-org-reader-processor](#mcrsft-grph-org-rdr-prcss)
+- [@vmware-tanzu/tdp-plugin-permission-backend](#tdp-plugin-prmssn-bcknd)
+
+## <a id='tpb-plugin-catalog'></a> Package @tpb/plugin-catalog
 
 The following sections describe the package.
 
@@ -74,7 +87,7 @@ This table describes the parameters.
 |-----------|--------------|-------------|
 | `content` | ReactElement |             |
 
-## Package @vmware-tanzu/core-backend
+## <a id='tanzu-core-backend'></a> Package @vmware-tanzu/core-backend
 
 The following sections describe the package.
 
@@ -184,7 +197,7 @@ Plug-ins must have unique names. The first plug-in registered with a given name 
 |-----------|---------------------------------------------------------|----------------|
 | `plugin`  | [Plugin](#vmware-tanzu-core-backend-plugin-2-interface) | Plug-in to add |
 
-## Package @vmware-tanzu/core-frontend
+## <a id='tanzu-core-frontend'></a> Package @vmware-tanzu/core-frontend
 
 The following sections describe the package.
 
@@ -414,7 +427,7 @@ This method registers the factory that renders the application's root element.
 |-----------|-------------------------|-------------|
 | `builder` | JSX.ElementReactElement |             |
 
-## Package @vmware-tanzu/tdp-plugin-auth-backend
+## <a id='tanzu-tdp-plgn-auth-bcknd'></a> Package @vmware-tanzu/tdp-plugin-auth-backend
 
 The following sections describe the package.
 
@@ -489,7 +502,7 @@ signs the user in with that name without associating with a catalog user.
 | `name`    |                     | Username to attempt sign-in with. |
 | `context` | AuthResolverContext |                                   |
 
-## Package @vmware-tanzu/tdp-plugin-custom-logger
+## <a id='tanzu-tdp-plgn-cstm-lggr'></a> Package @vmware-tanzu/tdp-plugin-custom-logger
 
 The following sections describe the package.
 
@@ -518,7 +531,7 @@ last invocation wins.
 |-----------------|---------------|-------------|
 | `loggerOptions` | LoggerOptions |             |
 
-## Package @vmware-tanzu/tdp-plugin-home
+## <a id='tanzu-tdp-plugin-home'></a> Package @vmware-tanzu/tdp-plugin-home
 
 The following sections describe the package.
 
@@ -563,7 +576,7 @@ This method specifies the layout configuration for a widget.
 |-----------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `config`  | LayoutConfiguration | Optional layout configuration for a widget. The config.component field must match some registered widget either by name (if provided as string) or by direct reference (if provided as a React element). |
 
-## Package @vmware-tanzu/tdp-plugin-ldap-backend
+## <a id='tanzu-tdp-plgn-ldap-bcknd'></a> Package @vmware-tanzu/tdp-plugin-ldap-backend
 
 The following sections describe the package.
 
@@ -599,7 +612,7 @@ This method specifies the transformation of LDAP users during ingestion.
 |-----------|------------------------|-------------|
 | `builder` | UserTransformerBuilder |             |
 
-## Package @vmware-tanzu/tdp-plugin-login
+## <a id='tanzu-tdp-plugin-login'></a> Package @vmware-tanzu/tdp-plugin-login
 
 The following sections describe the package.
 
@@ -622,7 +635,7 @@ This method registers a login provider.
 |------------|----------|-------------|
 | `provider` | Provider |             |
 
-## Package @vmware-tanzu/tdp-plugin-microsoft-graph-org-reader-processor
+## <a id='mcrsft-grph-org-rdr-prcss'></a> Package @vmware-tanzu/tdp-plugin-microsoft-graph-org-reader-processor
 
 The following sections describe the package.
 
@@ -658,7 +671,7 @@ This method specifies the transformation of Microsoft Graph users during ingesti
 |-------------------|-----------------|-------------|
 | `userTransformer` | UserTransformer |             |
 
-## Package @vmware-tanzu/tdp-plugin-permission-backend
+## <a id='tdp-plugin-prmssn-bcknd'></a> Package @vmware-tanzu/tdp-plugin-permission-backend
 
 The following sections describe the package.
 
