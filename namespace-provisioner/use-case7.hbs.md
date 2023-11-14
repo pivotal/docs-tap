@@ -1,8 +1,8 @@
-# Work with Git repositories in air-gapped with Namespace Provisioner
+# Work with Git repositories in air-gapped environments with Namespace Provisioner
 
 This section provides instructions on configuring the Namespace Provisioner to utilize air-gapped
 Git repositories. This allows you to store GitOps-based installation files and platform
-operator templated resources intended for creation in your developer namespace within
+operator-templated resources intended for creation in your developer namespace within
 Tanzu Application Platform (TAP).
 
 
@@ -14,13 +14,11 @@ For more details, refer to [Customize Installation of Namespace Provisioner](cus
 
 ### Create the Git Authentication secret in tap-namespace-provisioning namespace
 
-The secrets for Git authentication allow the following keys: ssh-privatekey, ssh-knownhosts, username, and password. If ssh-knownhosts is not specified, Git does not perform strict host checking.
-
 The Git authentication secrets support the following keys: `ssh-privatekey`, `ssh-knownhosts`, `username`, and `password`. If `ssh-knownhosts` is not specified, Git does not perform strict host checking.
 
 >**Important:** In air-gapped environments or other scenarios where external services
 are secured by a Custom CA certificate, configure kapp-controller with the CA certificate data
-to prevent X.508/X.509 certificate errors.
+to prevent X.509 certificate errors.
 For detailed instructions, refer to [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5) in the Cluster Essentials for VMware Tanzu documentation.
 
 
@@ -87,7 +85,7 @@ For detailed instructions, refer to [Deploy onto Cluster](https://{{ vars.stagin
     : Description
 
 
-      **Caution:** In kapp-controller versions less than v0.46.0, there is a limitation that
+      **Caution:** In kapp-controller versions \<v0.46.0, there is a limitation that
       prevents the reuse of the same Git secret multiple times. If you have multiple additional sources
       utilizing repositories with identical credentials, you must create distinct secrets,
       each with the same authentication details.
@@ -258,7 +256,7 @@ To set up the service account to interact with Git repositories, follow the step
       EOF
       ```
 
-2. To create a secret to be added to the service account in the developer namespace within the GitOps repository, you can use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/git.yaml) for HTTP-based or this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/settings.xml.yaml) for `setings.xml`-based, or follow the provided example below.
+2. To create a secret to be added to the service account in the developer namespace within the GitOps repository, you can use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/git.yaml) for HTTP-based or this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/settings-xml.yaml) for `setings.xml`-based, or follow the provided example below.
 
     Rather than directly including the actual username and password in the Git repository secret,
     utilize the `data.values.imported` keys to add references to the values from the `git-auth` secret
@@ -374,7 +372,7 @@ To set up the service account to interact with Git repositories, follow the step
             - git
       ```
 
-      Assuming that `https://git-airgap-server/application-accelerator-samples.git` is a forkof the
+      Assuming that `https://git-airgap-server/application-accelerator-samples.git` is a fork of the
       [application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples) repository,
 
 
@@ -404,7 +402,7 @@ To set up the service account to interact with Git repositories, follow the step
             - git
       ```
 
-      Assuming that `https://git-airgap-server/application-accelerator-samples.git` is a forkof the
+      Assuming that `https://git-airgap-server/application-accelerator-samples.git` is a fork of the
       [application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples) repository,
 
    - The first additional source points to the location where the templated Git secret resides,
@@ -437,7 +435,7 @@ To set up the service account to interact with Git repositories, follow the step
 
 5. Create the workload
 
-    Using HTTP(s)/SSH based Authentication
+    Using HTTP/HTTPS or SSH-based
     : If using Username and Password for authentication.
     
     
