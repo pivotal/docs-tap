@@ -13,7 +13,7 @@ The `workload.yaml` must be a single-document YAML file, not a multidocument YAM
 When working with multiple projects in a single workspace, you can configure the extension settings
 on a per-project basis by using the drop-down menu in **Settings**.
 
-![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu shows both projects in the current workspace.](../images/vscode-multiple-projects.png)
+![The interface showing Tanzu Extension selected in the settings. The Project drop-down menu shows both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="workload-commands"></a> Workload Commands
 
@@ -22,7 +22,7 @@ workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac
 
 - Screenshot of pop-up menu opened from the workload panel:
 
-  ![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
+  ![The interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
 - Screenshot of the command palette:
 
@@ -38,7 +38,7 @@ To apply a workload:
 1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
    Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-2. Select the `Tanzu: Apply Workload` command..
+2. Select the `Tanzu: Apply Workload` command.
 
 3. If applicable, select the workload to apply.
 
