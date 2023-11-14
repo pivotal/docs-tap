@@ -23,4 +23,4 @@ you can start creating workloads that run in your air-gapped containers.
 For instructions, see:
 
 - [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md) for the Namespace Provisioner mode.
-- [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md) for the legacy mode.
+- [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md) for the manual mode.
