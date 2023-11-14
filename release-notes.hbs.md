@@ -50,7 +50,12 @@ This release has the following security fixes, listed by component and area.
 
 ### <a id='1-5-7-known-issues'></a> v1.5.7 Known issues
 
-This release introduces no new known issues.
+This release has the following known issues, listed by component and area.
+
+#### <a id='1-5-7-tap-ki'></a> v1.5.7 Known issues: Tanzu Application Platform
+
+- Tanzu Application Platform v1.5.7 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+  on vSphere with Tanzu v8.
 
 ---
 
