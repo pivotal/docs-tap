@@ -1,15 +1,15 @@
-# Congigure the Envoy pods for Contour
+# Configure the Envoy pods for Contour
 
 This topic tells you how to configure the Envoy pods for Contour in Tanzu 
 Application Platform (commonly known as TAP) to reduce upgrade downtime.
 
 By default, Tanzu Application Platform v1.7 installs Contour's Envoy pods as a 
-`Deployment` instead of a `DaemonSet`. It defaults to two replicas, which causes 
-downtime when performing the upgrade.
+`Deployment` instead of a `DaemonSet`. The default setting includes two replicas, 
+which causes downtime during upgrades.
 
 You can choose either of the following methods to reduce upgrade downtime:
 
-## <a id="daemonset"></a> Congigure the Envoy pods as a `DaemonSet`
+## <a id="daemonset"></a> Configure the Envoy pods as a `DaemonSet`
 
 When upgrading to Tanzu Application Platform v1.7, the Envoy pods are deleted 
 and recreated. This causes downtime for all workloads exposed publicly, including 
@@ -27,7 +27,7 @@ contour:
       type: DaemonSet
 ```
 
-## <a id="daemonset"></a> Congigure the Envoy pods as a `Deployment`
+## <a id="daemonset"></a> Configure the Envoy pods as a `Deployment`
 
 When running Envoy as a `Deployment`, the pods include anti-affinity rules 
 so that they are not installed on the same node. The default value `2` means 
