@@ -27,4 +27,4 @@ contour:
 
 ## <a id="daemonset"></a> Configure the Envoy pods as a `Deployment`
 
-Currently, we do not have steps to make this switch without downtime. Look out for improvements in future versions!
+Currently, we do not have steps to make this switch without downtime.
