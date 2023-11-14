@@ -108,9 +108,10 @@ This release has the following resolved issues, listed by component and area.
 
 This release has the following known issues, listed by component and area.
 
-<!-- #### <a id='1-6-5-tap-ki'></a> v1.6.5 Known issues: Tanzu Application Platform -->
+#### <a id='1-6-5-tap-ki'></a> v1.6.5 Known issues: Tanzu Application Platform
 
-<!-- - Tanzu Application Platform v1.6.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5 on vSphere with Tanzu v8. -->
+- Tanzu Application Platform v1.6.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5 on
+  vSphere with Tanzu v8.
 
 #### <a id='1-6-5-amr-obs-ce-hndlr-ki'></a> v1.6.5 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
