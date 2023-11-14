@@ -114,7 +114,7 @@ your vulnerability scanner image are located in private registries different
 from the `Tanzu Application Platform bundles registry`, you must edit your
 scanner service account to include registry credentials for these registries.
 
->**Important** If your use case is listed below, skip this topic and proceed to [scanning integration](./integrate-app-scanning.hbs.md).
+>**Important** If your use case is listed below, skip this topic and proceed to [Add App Scanning to default Test and Scan supply chains](./integrate-app-scanning.hbs.md).
 
   > - You are running an ImageVulnerabilityScan in the context of a supply chain.
   > - You used the Namespace Provisioner to provision your developer namespace. For more information, see the [Namespace Provisioner documentation](../namespace-provisioner/default-resources.hbs.md).

@@ -218,4 +218,4 @@ This section describes how to create a ClusterImageTemplate using an ImageVulner
     kubectl apply -f custom-ivs-template.yaml
     ```
 
-4. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Supply Chain Security Tools - Scan 2.0](./integrate-app-scanning.hbs.md).
+4. After you create your custom ClusterImageTemplate, you can integrate it with SCST - Scan 2.0. See [Add App Scanning to default Test and Scan supply chains](./integrate-app-scanning.hbs.md).
