@@ -326,37 +326,10 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="1-7-0-contour-br"></a> v1.7.0 Breaking changes: Contour
 
-Change:
-- TAP now defaults to installing Contour as a Deployment instead of a DaemonSet. It will default to 2 replicas. **This will cause downtime when upgrading**.
-
-Implication 1:
-- When upgrading to TAP 1.7.0, the Envoy pods will be deleted and recreated. This means there will be downtime for all workloads exposed publicly (including all Web Workloads, TAP GUI, and any Server workloads exposed manually via an HTTPProxy).
-
-Mitigation 1:
-- If you wish to remain using a DaemonSet, prior to upgrading, update your tap-values file to add `contour.envoy.workload.type` and set it to `DaemonSet`
-  Example yaml snippet for tap-values:
-  
-  ```
-  contour:
-    envoy:
-      workload:
-        type: DaemonSet
-  ```
-
-Implication 2:
-- When running Envoy as a Deployment, the pods include anti-affinity rules so that they are not installed on the same node. With a default of 2, this means your cluster needs a minimum of 2 nodes for a successful install.
-
-Mitigation 2:
-- If you are running a single node cluster, prior to upgrading, update your tap-values file to add `contour.envoy.workload.replicas` and set it to `1`
-  Example yaml snippet for tap-values:
-  
-  ```
-  contour:
-    envoy:
-      workload:
-	    type: Deployment
-        replicas: 2
-  ```
+- By default, Tanzu Application Platform v1.7.0 installs Contour's Envoy pods as 
+a `Deployment` instead of a `DaemonSet`. It defaults to two replicas, which causes 
+downtime when performing the upgrade. For more information about how to reduce upgrade 
+downtime, see [Congigure the Envoy pods for Contour](contour/how-to-guides/configuring-envoy.hbs.md).
 
 #### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
 
