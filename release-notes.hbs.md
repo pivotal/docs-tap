@@ -379,31 +379,6 @@ This release has the following breaking changes, listed by component and area.
   You must now grant the permission to `claim` from a `ClusterInstanceClass` by using a `ClusterRole`
   and `ClusterRoleBinding`.
   For more information, see [The claim verb for ClusterInstanceClass](./services-toolkit/reference/api/rbac.hbs.md#claim-verb).
-
-#### <a id='1-6-4-contour-br'></a> v1.6.4 Breaking changes: Contour
-
-Change:
-- TAP now defaults to using TLS 1.3 as the minimum TLS version for Contour.
-
-Implication:
-- Certain infrastructure setups may result in request failures if clients of Envoy do not support TLS 1.3. This may result in errors in the Envoy logs like:
-
-```
-[source/extensions/transport_sockets/tls/ssl_socket.cc:233] [C112] remote address:20.27.140.81:3073,TLS error: 268435696:SSL routines:OPENSSL_internal:UNSUPPORTED_PROTOCOL
-```
-
-Mitigation:
-- If you wish to keep the minimum version as TLS 1.2, prior to upgrading, update your tap-values file to add `contour.configFileContents` and set `tls.minimum-protocol-version` to `1.2`
-  Example yaml snippet for tap-values:
-
-  ```
-  contour:
-    configFileContents:
-      tls:
-        minimum-protocol-version: "1.2"
-  ```
-
-  For more information on configuring Contour's TLS settings, see [this guide](./contour/configuring-cipher-suites-and-tls-version.hbs.md).
 ---
 
 ### <a id='1-6-4-security-fixes'></a> v1.6.4 Security fixes
@@ -1982,6 +1957,19 @@ This release includes the following changes, listed by component and area.
 - The `provider` configuration option is removed in this release. For more information, see the
  [Deprecation notice](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-release-notes.html#deprecation-notice-13)
  in the Cloud Native Runtimes v2.0 release notes.
+
+#### <a id='1-6-1-contour-br'></a> v1.6.1 Breaking changes: Contour
+
+- By default, Tanzu Application Platform uses TLS 1.3 as the minimum TLS version 
+for Contour. Certain infrastructure setups might cause request failures if the 
+Envoy clients do not support TLS 1.3. You might see the following errors in the 
+Envoy logs:
+
+    ```console
+    [source/extensions/transport_sockets/tls/ssl_socket.cc:233] [C112] remote address:20.27.140.81:3073,TLS error: 268435696:SSL routines:OPENSSL_internal:UNSUPPORTED_PROTOCOL
+    ```
+
+    To set the minimum TLS version to 1.2, see [Configure Cipher Suites and TLS version in Contour](contour/configuring-cipher-suites-and-tls-version.hbs.md).
 
 #### <a id='1-6-1-flux-sc-bc'></a> v1.6.1 Breaking changes: Flux CD Source Controller
 
