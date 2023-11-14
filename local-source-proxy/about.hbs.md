@@ -19,7 +19,7 @@ Consequently, the `--source-image` flag in the Apps CLI becomes optional, and th
 need for Docker registry credentials on the developer’s local machine. Local Source Proxy
 abstracts these details, making deployment more streamlined and user-friendly for developers.
 
-![Box-and-line diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster with Local Source Proxy.](images/lsp-design.png)
+![Diagram showing the relationship between an external registry, a developer workstation, and a Kubernetes cluster with Local Source Proxy.](images/lsp-design.png)
 
 By removing the necessity for specific registry information and credentials, Local Source Proxy
 simplifies the developer experience. This enables developers to focus on developing their applications

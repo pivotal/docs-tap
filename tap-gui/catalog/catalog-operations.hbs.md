@@ -21,8 +21,10 @@ You can use the example blank catalog described in the Tanzu Developer Portal
 (formerly named Tanzu Application Platform GUI) [prerequisites](../../prerequisites.md#tap-gui) as a
 foundation for creating user, group, system, and main component YAML files.
 
-Relationship Diagram:
-![Relationships box-and-line diagram. User 1 is within Group 1, which is within Organization. Component 2 is within System. User 1 owns Component 2. Group 1 owns System.](../images/tap-gui-relationships.jpg)
+The organization contains Group 1, and Group 1 contains Users 1 and 2. System contains Components 1
+and 2. User 1 owns Component 2. Group 1 owns System.
+
+![Box-and-line diagram showing the relationships between the organization, groups, system, and components.](../images/tap-gui-relationships.png)
 
 ### <a id='users-and-groups'></a> Users and groups
 
