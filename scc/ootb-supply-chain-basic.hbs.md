@@ -2,7 +2,7 @@
 
 This topic provides an overview of Out of the Box Supply Chain Basic for Supply Chain Choreographer.
 
-This package contains Cartographer Supply Chains that tie together a series of
+This package contains Cartographer supply chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code
 to a Kubernetes configuration ready to be deployed to a cluster.
 It contains the most basic supply chains that focus on providing a quick path
@@ -148,7 +148,7 @@ imagePullSecrets:
 
 #### <a id="rolebinding"></a> RoleBinding
 
-As the Supply Chain takes action in the cluster on behalf of the users who
+As the supply chain takes action in the cluster on behalf of the users who
 created the workload, it needs permissions within Kubernetes' RBAC system to do
 so.
 
