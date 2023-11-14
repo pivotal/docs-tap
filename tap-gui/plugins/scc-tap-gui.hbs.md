@@ -769,7 +769,7 @@ To see the workload rendered through the Supply Chain plug-in:
 1. Go to the supply chain plug-in section in Tanzu Developer Portal and locate the workload among
    the listed ones:
 
-   ![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload_list.png)
+   ![Screenshot of Workloads list with the tanzu-rockets-x workload listed.](images/workload-list.png)
 
    The workload `tanzu-rockets-x` is **Healthy**. The **Supply Chain** column shows that it is using
    the `source-scan-test-scan-to-url-rockets` supply chain.
