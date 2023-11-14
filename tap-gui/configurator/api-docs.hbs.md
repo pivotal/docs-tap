@@ -7,7 +7,7 @@ The following packages are described:
 - [@tpb/plugin-catalog](#tpb-plugin-catalog)
 - [@vmware-tanzu/core-backend](#tanzu-core-backend)
 - [@vmware-tanzu/core-frontend](#tanzu-core-frontend)
-- [@@vmware-tanzu/tdp-plugin-auth-backend](#tanzu-tdp-plgn-auth-bcknd)
+- [@vmware-tanzu/tdp-plugin-auth-backend](#tanzu-tdp-plgn-auth-bcknd)
 - [@vmware-tanzu/tdp-plugin-custom-logger](#tanzu-tdp-plgn-cstm-lggr)
 - [@vmware-tanzu/tdp-plugin-home](#tanzu-tdp-plugin-home)
 - [@vmware-tanzu/tdp-plugin-ldap-backend](#tanzu-tdp-plgn-ldap-bcknd)
