@@ -1183,6 +1183,14 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
+#### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Cartographer Conventions
+
+- While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can
+  fail with the status `CrashLoopBackOff` or `OOMKilled`.
+  For information about how to increase the memory limit for both the convention server and webhook
+  servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
+  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+
 #### <a id='1-7-0-crossplane-ki'></a> v1.7.0 Known issues: Crossplane
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
@@ -1293,12 +1301,6 @@ to ensure that they are correctly created.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
-
-#### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Convention OOMKilled
-
-While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can be fail with the status `CrashLoopBackOff` or `OOMKilled`.
-
-For information about how to increase the memory limit for both the convention server and webhook servers, includingapp-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook, see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
 
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
 
