@@ -1,4 +1,5 @@
 _md-cli/*
+.DS_Store
 
 # Markdown Project Tool
 _md-cli/
