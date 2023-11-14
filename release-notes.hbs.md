@@ -129,7 +129,7 @@ This release includes the following changes, listed by component and area.
   Artifact Metadata Repository (AMR).
   This enables application architects to get advanced insight into how accelerators are used,
   such as, the most commonly and rarely used accelerators.
-  For more information, see [Integration with AMR](./application-accelerator/provenance.hbs.md#amr)
+  For more information, see [Integration with AMR](./application-accelerator/provenance.hbs.md#amr).
 
 #### <a id='1-7-0-app-config-service'></a> v1.7.0 Features: Application Configuration Service
 
