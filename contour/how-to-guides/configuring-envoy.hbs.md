@@ -1,24 +1,22 @@
-# Configure the Envoy pods for Contour
+# Configuring Envoy for Contour
 
-This topic tells you how to configure the Envoy pods for Contour in Tanzu 
+This topic tells you how to configure the Envoy for Contour in Tanzu 
 Application Platform (commonly known as TAP) to reduce upgrade downtime.
 
 By default, Tanzu Application Platform v1.7 installs Contour's Envoy pods as a 
-`Deployment` instead of a `DaemonSet`. The default setting includes two replicas, 
-which causes downtime during upgrades.
+`Deployment` with 2 replicas instead of a `DaemonSet`. If you switch from DaemonSet to Deployment, the Envoy pods must be deleted and recreated. As a result, **there will be downtime during the update**.
 
-You can choose either of the following methods to reduce upgrade downtime:
+Without intervention, this will happen when upgrading to TAP v1.7.
 
-## <a id="daemonset"></a> Configure the Envoy pods as a `DaemonSet`
+Additionally, when running as a Deployment, Contour includes affinity rules such that no Envoy pod should run on the same node as another Envoy pod. This essentially mimics the DaemonSet behavior, without requiring a pod on every node. This also means that your cluster must have as many nodes as replicas are desired for an Envoy Deployment.
 
-When upgrading to Tanzu Application Platform v1.7, the Envoy pods are deleted 
-and recreated. This causes downtime for all workloads exposed publicly, including 
-all Web Workloads, Tanzu Application Platform GUI, and any Server workloads exposed 
-manually through an HTTPProxy.
+There are a couple options to avoid this downtime.
 
-To install the Envoy pods as a `DaemonSet`, you must update your values file by 
-adding `contour.envoy.workload.type` and setting it to `DaemonSet` before performing 
-the upgrade:
+## <a id="daemonset"></a> Keep Running the Envoy Pods as a `DaemonSet`
+
+The easiest way to avoid downtime is to keep running Envoy as a DaemonSet in TAP v1.7 and beyond.
+
+To do this, you must update your values file by adding `contour.envoy.workload.type` and setting it to `DaemonSet` _before performing the upgrade_:
   
 ```yaml
 contour:
@@ -29,17 +27,4 @@ contour:
 
 ## <a id="daemonset"></a> Configure the Envoy pods as a `Deployment`
 
-When running Envoy as a `Deployment`, the pods include anti-affinity rules 
-so that they are not installed on the same node. The default value `2` means 
-your cluster needs a minimum of two nodes for a successful install.
-
-If you run a single node cluster, you must update your values file by adding `contour.envoy.workload.replicas` and setting it to `1` before performing the 
-upgrade:
-  
-```yaml
-contour:
-  envoy:
-    workload:
-    type: Deployment
-      replicas: 1
-```
+Currently, we do not have steps to make this switch without downtime. Look out for improvements in future versions!
