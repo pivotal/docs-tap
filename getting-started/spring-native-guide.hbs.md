@@ -123,11 +123,11 @@ deterministically. As a consequence, options for running the application in an o
 platform cannot be set automatically by the Spring Boot Convention anymore for native images.
 However, the `tanzu-java-web-app` Tanzu Application Platform accelerator provides a good updated reference.
 
-The most important elements from the configuration are BP_JVM_VERSION, BP_NATIVE_IMAGE and BP_MAVEN_BUILD_ARGUMENTS.
+The most important elements from the configuration are `BP_JVM_VERSION`, `BP_NATIVE_IMAGE` and `BP_MAVEN_BUILD_ARGUMENTS`.
 They provide the instructions for buildpacks to init the native compilation.
 Without these, a normal JVM compilation to generate a regular JAR will occur.
 
-The BP_JVM_VERSION is used to configure buildpacks to use a JDK 17, because Spring Boot 3.x requires
+The `BP_JVM_VERSION` is used to configure buildpacks to use a JDK 17, because Spring Boot 3.x requires
 a JDK 17 as a minimum.
 
 >**Note** Values used at build time do not specify the values that will be used at runtime.
