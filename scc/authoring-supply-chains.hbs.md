@@ -447,3 +447,27 @@ This ensures two things:
 To learn more about the `lifecycle: tekton` field, see the Cartographer tutorial
 [Lifecycle: Templating Objects That Cannot Update](https://cartographer.sh/docs/v0.6.0/tutorials/lifecycle/).
 To learn more about Tekton, see the [Tekton documentation](https://tekton.dev/docs/).
+
+### <a id="tekton-tasks-on-PSA-cluster"></a> Tekton Tasks on a cluster with a Pod Security Admission 
+
+Kubernetes administrators may choose to enable a Pod Security Admission controller
+"to restrict the behavior of pods in a clear, consistent fashion". (Read more in the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-admission/))
+If this is the case on a cluster, the Tekton Tasks must be altered to adhere to the policy.
+
+The Task spec must include a `stepTemplate` field with the following defined:
+```yaml
+  stepTemplate:
+    securityContext:
+      allowPrivilegeEscalation: false
+      runAsUser: 1000
+      capabilities:
+        drop:
+          - ALL
+      seccompProfile:
+        type: "RuntimeDefault"
+      runAsNonRoot: true
+```
+
+Read more about stepTemplate in the
+[Tekton documentation](https://tekton.dev/docs/pipelines/tasks/#specifying-a-step-template).
