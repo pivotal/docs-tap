@@ -26,7 +26,7 @@ Running a native image has several advantages:
 - **Faster start times:** Component initialization is reduced to milliseconds, which makes pod recovery
   time and horizontal scalability faster.
 
-## <a id="spring-boot-3"></a>Spring Boot 3
+## <a id="spring-boot-3"></a>Requirements for your Spring Boot application
 
 To compile your Spring Boot applications into native images using GraalVM on Tanzu Application Platform,
 they have to use Spring Boot 3 and Java 17 as a minimum.
