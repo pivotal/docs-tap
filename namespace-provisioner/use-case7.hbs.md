@@ -312,8 +312,8 @@ To set up the service account to interact with Git repositories, follow the step
               <mirrors>
                   <mirror>
                       <id>reposilite</id>
-                      <name>Tanzu seal Internal Repo</name>
-                      <url>https://reposilite.tap-trust.cf-app.com/releases</url>
+                      <name>Accelerator samples</name>
+                      <url>(@= data.values.imported.git.host @)/vmware-tanzu/application-accelerator-samples</url>
                       <mirrorOf>*</mirrorOf>
                   </mirror>
               </mirrors>
