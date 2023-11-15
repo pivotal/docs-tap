@@ -1,21 +1,24 @@
-# Configuring Envoy for Contour
+# Configure Envoy for Contour
 
 This topic tells you how to configure the Envoy for Contour in Tanzu 
 Application Platform (commonly known as TAP) to eliminate upgrade downtime.
 
-By default, Tanzu Application Platform v1.7 installs Contour's Envoy pods as a 
-`Deployment` with 2 replicas instead of a `DaemonSet`. If you switch from DaemonSet to Deployment, the Envoy pods must be deleted and recreated. As a result, **there will be downtime during the update**.
+By default, Tanzu Application Platform v1.7 installs the Contour's Envoy pods as 
+a `Deployment` with 2 replicas instead of a `DaemonSet`. 
+If you switch from `DaemonSet` to `Deployment`, the Envoy pods must be deleted 
+and recreated, which causes downtime during the Tanzu Application Platform v1.7 
+upgrade.
 
-Without intervention, this will happen when upgrading to TAP v1.7.
+When running as a `Deployment`, Contour includes affinity rules such that 
+no Envoy pod runs on the same node as another Envoy pod. 
+This mimics the `DaemonSet` behavior, without requiring a pod on every node. 
+As a result, your cluster must have as many nodes as the desired replicas for 
+an Envoy deployment.
 
-Additionally, when running as a Deployment, Contour includes affinity rules such that no Envoy pod should run on the same node as another Envoy pod. This essentially mimics the DaemonSet behavior, without requiring a pod on every node. This also means that your cluster must have as many nodes as replicas are desired for an Envoy Deployment.
+To avoid the upgrade downtime for Tanzu Application Platform v1.7 and later, 
+you can keep running Envoy as a `DaemonSet` by adding `contour.envoy.workload.type` 
+to your values file and setting it to `DaemonSet` before performing the upgrade:
 
-## <a id="daemonset"></a> Keep Running the Envoy Pods as a `DaemonSet`
-
-To avoid workload downtime, keep running Envoy as a DaemonSet in TAP v1.7 and beyond.
-
-To do this, you must update your values file by adding `contour.envoy.workload.type` and setting it to `DaemonSet` _before performing the upgrade_:
-  
 ```yaml
 contour:
   envoy:
