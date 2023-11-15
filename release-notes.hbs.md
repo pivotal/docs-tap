@@ -255,8 +255,10 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="1-7-0-contour-br"></a> v1.7.0 Breaking changes: Contour
 
-- By default, Tanzu Application Platform v1.7.0 installs Contour's Envoy pods as 
-a `Deployment` instead of a `DaemonSet`. During an upgrade, this switch **will cause application downtime**. For more information about how to avoid upgrade downtime, see [Configuring Envoy for Contour](contour/how-to-guides/configuring-envoy.hbs.md).
+- By default, Tanzu Application Platform v1.7.0 installs the Contour's Envoy pods 
+as a `Deployment` instead of a `DaemonSet`. This causes application downtime 
+during an upgrade. For more information about how to avoid upgrade downtime, 
+see [Configure Envoy for Contour](contour/how-to-guides/configuring-envoy.hbs.md).
 
 #### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
 
