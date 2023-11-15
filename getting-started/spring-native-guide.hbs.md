@@ -1,5 +1,17 @@
 # Run Spring Boot apps on Tanzu Application Platform as GraalVM native images
 
+This topic guides you through configuring Tanzu Application Platform to compile your Spring Boot
+application into a native executable, running that native executable on the platform, and
+enabling Application Live View for your application.
+<!-- get reviewed -->
+
+## <a id="you-will"></a>What you will do
+
+- Configure your Spring Boot application and `workload.yaml` file to run on Tanzu Application Plaform
+  as a native image.
+- Configure your app and `workload.yaml` file to enable Application Live View.
+<!-- get reviewed -->
+
 ## <a id="introduction"></a>Introduction
 
 You are running Spring Boot applications on Tanzu Application Platform and you want to run them as
@@ -31,15 +43,26 @@ To confirm Spring Boot support for native testing, see the
 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/3.1.2/reference/htmlsingle/#native-image.testing.with-native-build-tools).
 
 If your application can run as native images in general, Tanzu Application Platform allows you
-to run your applications as native executable<!--฿ Do not use as a noun. Use |executable file| instead. ฿-->s on the platform as well - and will<!--฿ Avoid |will|: present tense is preferred. ฿--> try to make it as easy<!--฿ Avoid when describing an instruction. ฿--> as possible over time. But the platform is not a migration tool that enables your Spring Boot application itself to be ready for the GraalVM native image technology.
+to run your applications as native executables on the platform as well and will try to make it as
+easy as possible over time. <!-- make what as easy as possible? -->
+But the platform is not a migration tool that enables your Spring Boot application itself to be ready
+for the GraalVM native image technology.
 
-## <a id="how-to"></a> How to run your Spring Boot workload as a native image
+## <a id="how-to"></a> Run your Spring Boot workload as a native image
 
-This section will<!--฿ Avoid |will|: present tense is preferred. ฿--> guide you through all the various steps that you need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> do in order to<!--฿ |to| is preferred. ฿--> configure the Tanzu Application Platform to compile your Spring Boot application into a native executable<!--฿ Do not use as a noun. Use |executable file| instead. ฿--> and how to run that native executable<!--฿ Do not use as a noun. Use |executable file| instead. ฿--> on the platform.
+This section explains how to configure Tanzu Application Platform to compile your Spring Boot
+application into a native executable and how to run that native executable on the platform.
 
 ### <a id="config-appside"></a> Configure the application side
 
-Applications should<!--฿ Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|. If |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. ฿--> not need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> deviate from the normal process<!--฿ Avoid nominalization: |while deleting| is better than |during the deletion process|. ฿--> of developing and testing workloads that support native images. General information for native image support can be<!--฿ Consider switching to active voice. ฿--> found in the [Spring docs](https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html). Take note of the inclusion of the GrallVM native plugin<!--฿ |plug-in| is the noun or adjective. |plug in| is the verb. ฿--> in your Maven pom<!--฿ |POM| is all caps if it is the initialism for Project Object Model. ฿--> or Gradle build file.
+You can use the usual process for developing and testing workloads that support native images for
+your application.
+
+For general information about native image support, see the [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html).
+
+Take note of the inclusion of the GraalVM native plug-in in your Maven POM or Gradle build file.
+<!-- are you supposed to include this in your build file or do you just need to record something
+that's already there -->
 
 - Example for Maven:
 
@@ -70,12 +93,17 @@ Applications should<!--฿ Favour certainty, agency, and imperatives: |the app n
 
 ### <a id="config-workload"></a> Configure the workload
 
-To enable a native build, the build pack must be configured to perform the native compilation step. Additionally, the native profile may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> also need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> be enabled (mainly for maven/Spring Boot 3.x projects).
+To enable a native build, configure the buildpack to perform the native compilation step.
+Additionally, the native profile might also need to be enabled (mainly for Maven/Spring Boot 3.x projects).
+<!-- would you have to do this for anything other than Maven/Spring Boot 3.x projects -->
 
-These settings are configured using the workload’s spec<!--฿ |specifications| is preferred. ฿-->.build environment parameters. The following example will<!--฿ Avoid |will|: present tense is preferred. ฿--> generically work for all use cases;<!--฿ Two sentences are preferred over a compound sentence that uses a semi-colon. ฿--> the additional maven<!--฿ |Maven| is capitalized if referring to Apache Maven. ฿--> build arguments can be<!--฿ Consider switching to active voice. ฿--> removed if you are using Gradle.
-Here is the full ‘spec<!--฿ |specifications| is preferred. ฿-->.build’ configuration, we<!--฿ |VMware|, the product name, or another term is preferred. Define who |we| is for the reader is preferred. ฿-->’ll discuss the details below<!--฿ If referring to a page location, use |following| or |later| or, better, just use an anchor. If referring to product versions, use |earlier|. ฿-->:
+These settings are configured using the workload’s `spec.build` environment parameters.
+The following example works for all use cases.
+Remove the additional Maven build arguments if you are using Gradle.
 
-```starlark
+The following is the full `spec.build` configuration:
+
+```yaml
 spec:
   build:
   env:
@@ -89,18 +117,29 @@ spec:
       -Dmanagement.endpoints.web.exposure.include=''*'' -Dmanagement.health.probes.enabled=''true''
       -Dmanagement.server.port=8081 -Dserver.port=8080'' '
 ```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
-Because native<!--฿ If this is a compound adjective then it is missing a hyphen. ฿--> images implement a “closed world” philosophy, setting configuration at runtime can not be done deterministically. As a consequence, options for running the application in an optimal way on the platform cannot be set automatically by the Spring Boot Convention anymore for native images. However, the ‘tanzu<!--฿ The brand is |Tanzu|. ฿-->-java<!--฿ |Java| is preferred. ฿-->-web-app’ Tanzu Application Platform accelerator provides a good updated reference.
 
-The most important elements from the configuration are BP_JVM_VERSION, BP_NATIVE_IMAGE and BP_MAVEN_BUILD_ARGUMENTS: they provide the instructions for Buildpacks to init the native compilation. Without these a normal JVM compilation to generate a regular jar<!--฿ |JAR| is preferred. ฿--> will<!--฿ Avoid |will|: present tense is preferred. ฿--> occur.
+Because native images implement a closed world philosophy, you cannot set configuration at runtime
+deterministically. As a consequence, options for running the application in an optimal way on the
+platform cannot be set automatically by the Spring Boot Convention anymore for native images.
+However, the `tanzu-java-web-app` Tanzu Application Platform accelerator provides a good updated reference.
 
-The BP_JVM_VERSION is used here to let<!--฿ Do not use to describe features that a product makes possible. Use |you can| instead. ฿--> the Buildpacks use a JDK 17, since<!--฿ Do not use |since| where you can use |because|. ฿--> Spring Boot 3.x requires a JDK 17 as a minimum. Once<!--฿ Only use |once| when you mean |one time|, not when you mean |after|. ฿--> Buildpacks use JDK 17 as the default JDK level, this setting will<!--฿ Avoid |will|: present tense is preferred. ฿--> not be necessary anymore.
+The most important elements from the configuration are BP_JVM_VERSION, BP_NATIVE_IMAGE and BP_MAVEN_BUILD_ARGUMENTS.
+They provide the instructions for buildpacks to init the native compilation.
+Without these, a normal JVM compilation to generate a regular JAR will occur.
 
-<b>NOTE:</b> Values used at build time do not specify the values that will<!--฿ Avoid |will|: present tense is preferred. ฿--> be used at runtime;<!--฿ Two sentences are preferred over a compound sentence that uses a semi-colon. ฿--> providing build time instrumentation only <b>enables</b> configuration to be set at runtime. Runtime values still need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> be provided separately.
+The BP_JVM_VERSION is used to configure buildpacks to use a JDK 17, because Spring Boot 3.x requires
+a JDK 17 as a minimum.
 
-Depending on the app type (web, server, worker, etc), different methods for monitoring the application’s health are employed which may<!--฿ |can| usually works better. Use |might| to convey possibility. ฿--> require configuring certain runtime parameters.  For applications that do not need auto configured actuators, this can be<!--฿ Consider switching to active voice. ฿--> generically achieved using the following build.spec<!--฿ |specifications| is preferred. ฿--> env<!--฿ |environment| is preferred ฿--> parameters:
+>**Note** Values used at build time do not specify the values that will be used at runtime.
+>If you provide build time instrumentation, it only **enables** configuration to be set at runtime.
+>Runtime values still need to be provided separately.
 
-```starlark
+Depending on the app type (web, server, worker, etc), different methods for monitoring the health of
+the application are employed which might require configuring certain runtime parameters.
+For applications that do not need auto configured actuators, this can be
+generically achieved using the following build.spec environment parameters:
+
+```yaml
  - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS
          value: "true"
        - name: MANAGEMENT_HEALTH_PROBES_ENABLED
@@ -108,12 +147,12 @@ Depending on the app type (web, server, worker, etc), different methods for moni
        - name: SERVER_PORT
          value: "8080"
 ```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
-To set the actual runtime values, the same setting above<!--฿ If referring to a page location, use |earlier| or, better, just use an anchor. If referring to product versions, use |later|. ฿--> can be<!--฿ Consider switching to active voice. ฿--> used in the workload’s spec<!--฿ |specifications| is preferred. ฿-->.env<!--฿ |environment| is preferred ฿--> parameters.
+
+To set the actual runtime values, the same setting above can be used in the workload’s `spec.env` parameters.
 
 The following is an example of a full `workload.yaml` file enabling native image support.
 
-```starlark
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -152,24 +191,36 @@ spec:
      ref:
        branch: main
 ```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
+
 ### <a id="spring-boot-convention"></a> What about the Spring Boot Convention?
 
-Usually the Spring Boot Convention takes care of automatically configuring a workload for the platform when it detects a Spring Boot application, like configuring the server port, etc.<!--฿ |and so on| is preferred. ฿--> The Spring Boot Convention does this by setting the JAVA_TOOL_OPTIONS environment variable and including various system property settings.
+When Spring Boot Convention detects a Spring Boot application, it automatically configures the
+workload for the platform, such as configuring the server port.
+The Spring Boot Convention does this by setting the `JAVA_TOOL_OPTIONS` environment variable and
+including various system property settings.
 
-Since<!--฿ Do not use |Since| where you can use |Because|. ฿--> this mechanism (setting JAVA_TOOL_OPTIONS) doesn’t work anymore for native compiled Spring Boot applications, many of the configurations that the Spring Boot Convention applies don’t have any effect anymore. This is also a reason why you have to configure this manually via<!--฿ |through|, |using| and |by means of| are preferred. ฿--> separate environment variables, as described above<!--฿ If referring to a page location, use |earlier| or, better, just use an anchor. If referring to product versions, use |later|. ฿-->.
+Because this setting `JAVA_TOOL_OPTIONS` no longer works for native compiled Spring Boot applications,
+many of the configurations that the Spring Boot Convention applies don’t have any effect.
+This is why you must configure this manually using separate environment variables as described earlier.
 
 The goal for future versions of the Spring Boot Convention is to improve this and turn many of the manual<!--฿ In preface information, if the document is delivered as a PDF file, replace with |book| or |guide|. ฿--> work that you have to do at the moment<!--฿ 1st preference: delete. 2nd preference: replace these words with |currently|. ฿--> into something the Spring Boot Convention will<!--฿ Avoid |will|: present tense is preferred. ฿--> do automatically for you.
 
-## <a id="using-alv"></a> Using Application Live View with Spring Boot native<!--฿ If this is a compound adjective then it is missing a hyphen. ฿--> images
+## <a id="using-alv"></a> Using Application Live View with Spring Boot native images
 
-The Application Live View functionality<!--฿ |function|, |features|, or |capability| is preferred. ฿--> inside of Tanzu Application Platform is designed around the Spring Boot Actuator extension for Spring Boot and therefore also works for Spring Boot apps that are compiled to native executable<!--฿ Do not use as a noun. Use |executable file| instead. ฿-->s.
+The Application Live View component of Tanzu Application Platform is designed around the
+Spring Boot Actuator extension for Spring Boot and therefore also works for Spring Boot apps that are
+compiled to native executables.
 
-However, due to the limited automation that is in place at the moment<!--฿ 1st preference: delete. 2nd preference: replace these words with |currently|. ฿--> when building and running native images on Tanzu Application Platform, you have to configure specific options when building and running your Spring Boot apps as native images in case you would<!--฿ Re-phrase for present tense if possible. ฿--> like to enable the Application Live View feature for it.
+However, due to current limits to automation, when building and running native images on
+Tanzu Application Platform, you must configure specific options when building and running your
+Spring Boot apps as native images to enable Application Live View.
 
 ### <a id="app-side-alv"></a> Configure the application side
 
-Application Live View relies heavily on information obtained from an application’s actuator endpoints and therefore requires the actuator library to be present. You will<!--฿ Avoid |will|: present tense is preferred. ฿--> need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> ensure that your application is configured to include the actuator library.
+Application Live View relies on information obtained from the actuator endpoints of an application
+and therefore requires the actuator library to be present.
+
+Configure your application to include the actuator library:
 
 - Example for Maven:
 
@@ -198,34 +249,48 @@ Application Live View relies heavily on information obtained from an application
 
 ### <a id="workload-alv"></a> Configure the workload
 
-If an application needs to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> integrate with Application Live View, it must declare this either through
-the `apps.tanzu.vmware.com/auto-configure-actuators` [label](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md) in the workload.yaml or enable the [platform level configuration](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md) for actuator auto configuration in the Spring Boot convention.
+For an application to integrate with Application Live View:
 
-Application Live View needs additional runtime properties to be configured which requires additional AOT instrumentation at build time. Similar to general native image workloads, additional AOT configuration is supplied in the workload.yaml using spec<!--฿ |specifications| is preferred. ฿-->.build environment parameters.  Application Live View requires the following build environment parameters:
+1. The application must declare the integration by either:
 
-```starlark
-  - name: MANAGEMENT_HEALTH_PROBES_ENABLED
-     value: "true"
-   - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS
-     value: "true"
-   - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
-     value: always
-   - name: MANAGEMENT_ENDPOINTS_WEB_BASE_PATH
-     value: /actuator
-   - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-     value: '*'
-   - name: MANAGEMENT_SERVER_PORT
-     value: "8081"
-   - name: SERVER_PORT
-     value: "8080"
-```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
-Also similar to general native image workloads, runtime configuration is also provided through the use of environment variables.
+    - the `apps.tanzu.vmware.com/auto-configure-actuators` [label](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
+    in the `workload.yaml` file.
+
+    - enable the [platform level configuration](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
+    for actuator automatic configuration in the Spring Boot convention.
+     <!-- clarify -- is this set the actuator auto config to true? -->
+
+1. Configure additional runtime properties for Application Live View, which requires additional
+   AOT (ahead-of-time) instrumentation at build time.
+
+   Similar to general native image workloads, supply additional AOT configuration in the
+   `workload.yaml` using `spec.build` environment parameters.
+   Application Live View requires the following build environment parameters:
+
+    ```yaml
+      - name: MANAGEMENT_HEALTH_PROBES_ENABLED
+        value: "true"
+      - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS
+        value: "true"
+      - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+        value: always
+      - name: MANAGEMENT_ENDPOINTS_WEB_BASE_PATH
+        value: /actuator
+      - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+        value: '*'
+      - name: MANAGEMENT_SERVER_PORT
+        value: "8081"
+      - name: SERVER_PORT
+        value: "8080"
+    ```
+
+Also similar to general native image workloads, runtime configuration is also provided through the
+use of environment variables.
 
 The following is an example of a full `workload.yaml` file that enabled both native image compilation
 and integration with Application Live View:
 
-```starlark
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -279,10 +344,13 @@ spec:
      ref:
        branch: main
 ```
-<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
-Usually, this configuration is automatically applied by the Spring Boot Convention when it detects a Spring Boot application. In the case of a natively compiled Spring Boot application, this configuration has to be done manually.
 
-The part that the Application Live View specific part of the Spring Boot Convention is doing here automatically is to flag the workload with a specific label, so that the Application Live View feature is enabled for it.
+Usually, this configuration is automatically applied by the Spring Boot Convention when it detects a
+Spring Boot application. In the case of a natively compiled Spring Boot application, this configuration
+has to be done manually.
+
+The Application Live View specific part of the Spring Boot Convention automatically flags the workload
+with a specific label to enable the Application Live View feature for the workload.
 
 ### <a id="register-in-ui"></a> Register the app in the UI
 
