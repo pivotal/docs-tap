@@ -77,8 +77,8 @@ and your device's certificate chain.
       --output go-template='\{{ index .data "tls.crt" | base64decode }}'
     ```
 
-1. Add the certificate to [custom CAcustom-ca-certificates.hbs.md
-   certificates](../custom-ca-certificates.hbs.md) by appending it to
+1. Add the certificate to [custom CA
+   certificates](custom-ca-certificates.hbs.md) by appending it to
    `shared.ca_cert_data` and applying Tanzu Application Platform's installation values.
 
 1. Add the certificate to your device's trust chain. The trust chain will vary depending on your
@@ -207,8 +207,7 @@ LetsEncrypt staging
     transparency](https://certificate.transparency.dev/). Ensure that you are
     OK with this before using LetsEncrypt.
   - LetsEncrypt's staging API is not a publicly-trusted CA. You have
-    to add its certificate to your devices trust chain and [Tanzu Application Platform's custom CAcustom-ca-certificates.hbs.md
-    certificates](../custom-ca-certificates.hbs.md).
+    to add its certificate to your devices trust chain and [Tanzu Application Platform's custom CA certificates](custom-ca-certificates.hbs.md).
   - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
     the Internet.
   - Depending on your setup you might need to adjust
