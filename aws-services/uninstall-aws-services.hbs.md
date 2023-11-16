@@ -80,7 +80,7 @@ If you want to keep a resource:
       # ...
     ```
 
-1. Save and close your editor.
+1. Save, and close your editor.
 
 1. Delete the claim by running:
 
@@ -150,7 +150,7 @@ remain in the cluster and prevent you from reinstalling the package in the futur
     1. Record the name and namespace of the `Secret` referenced in `spec.credentials`.
     1. Delete the `metadata.finalizers` entry. This allows the `ProviderConfig` to be deleted.
 
-1. Save and close your editor. The `ProviderConfig` is automatically deleted.
+1. Save, and close your editor. The `ProviderConfig` is automatically deleted.
 
 1. Verify the `ProviderConfig` has been removed by running:
 
