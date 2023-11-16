@@ -16,6 +16,10 @@ This release includes the following changes, listed by component and area.
 - Adds support for Openshift clusters. For more information, see
   [Install External Secrets Operator](external-secrets/install-external-secrets-operator.hbs.md).
 
+#### <a id='1-7-1-contour'></a> v1.7.1 Features: Contour
+
+- Contour v1.25.3 is available in Tanzu Application Platform. For more information, see the [Contour v1.25.3 release notes](https://github.com/projectcontour/contour/releases/tag/v1.25.3) in GitHub.
+
 ### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes
 
 This release has the following security fixes, listed by component and area.
