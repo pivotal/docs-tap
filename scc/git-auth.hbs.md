@@ -72,7 +72,7 @@ workload by including it in its set of secrets. For example:
 ## <a id="http-custom-cert"></a>HTTPS with a Custom CA Certificate
 
 In addition to the
-[shared.ca_cert_data](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
+[shared.ca_cert_data](../security-and-compliance/custom-ca-certificates.hbs.md)
 field, you must add the certificate to the secret used to access the Git
 repository. The only platform tested with custom CA certificates is GitLab.
 

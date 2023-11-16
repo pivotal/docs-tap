@@ -202,7 +202,7 @@ For more information, see [TLS Configuration](https://projectcontour.io/docs/v1.
 #### <a id="ingress-certs"></a> Ingress Certificates
 
 For information about how to configure TLS for a Tanzu Application Platform installation's ingress
-endpoints, see [Secure exposed ingress endpoints in Tanzu Application Platform](./tls-and-certificates/ingress/issuer.hbs.md).
+endpoints, see [Secure exposed ingress endpoints in Tanzu Application Platform](./issuer.hbs.md).
 
 ### <a id="encryption-at-rest"></a> Encryption of Data At Rest
 
