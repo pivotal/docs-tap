@@ -129,7 +129,7 @@ spec:
 When using HTTPS with a custom certificate authority, you must configure the Git
 secret both in `tap-values.yaml` and the Git secret used by the GitRepository.
 
-1. Set the [shared.ca_cert_data](../security-and-compliance/tls-and-certificates/custom-ca-certificates.hbs.md)
+1. Set the [shared.ca_cert_data](../security-and-compliance/custom-ca-certificates.hbs.md)
  in `tap-values.yaml`. You must set the Git secret in the `caFile` field.
 
   ```yaml
