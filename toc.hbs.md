@@ -401,7 +401,7 @@
       - [Run Developer Conventions on an OpenShift cluster](developer-conventions/openshift.hbs.md)
     - [External Secrets Operator](external-secrets/about-external-secrets-operator.hbs.md)
       - [External Secrets Operator overview](external-secrets/about-external-secrets-operator.hbs.md)
-      - [Install Secrets Operator](external-secrets/install-external-secrets-operator.hbs.md)
+      - [Install External Secrets Operator](external-secrets/install-external-secrets-operator.hbs.md)
       - [Integrate External Secrets Operator with HashiCorp Vault](external-secrets/vault-example.hbs.md)
       - [Tanzu External Secrets CLI plug-in command reference](external-secrets/reference/external-secrets.hbs.md)
     - [Flux CD Source Controller](fluxcd-source-controller/about.hbs.md)
