@@ -7,7 +7,7 @@ installation profile, excluded packages, and end-user-facing resources such as
 `Workload`, and `AuthServer`. As a result, the number of TLS certificates is not
 fixed but is a function of the platform's configuration and tenancy.
 
-Ingress refers to any resource which facilitates
+Ingress refers to any resource that facilitates
 ingress, for example, core `Ingress` and Contour's `HTTPProxy`.
 
 ## <a id="wildcards"></a>Wildcards
@@ -23,16 +23,15 @@ When using wildcard certificates the approach differs between
 components that have a fixed set of ingress endpoints and those that have
 a variable set of ingress endpoints:
 
-Components with ingress endpoints can have a
-a fixed or variable number of ingress endpoints:
+Components with ingress endpoints can have a fixed or variable number of ingress endpoints:
 
-    - Components with a fixed set of ingress endpoints can receive a reference to
-      the wildcard certificate's `Secret` and an ingress domain, for example, Tanzu Developer Portal.
+- Components with a fixed set of ingress endpoints can receive a reference to
+  the wildcard certificate's `Secret` and an ingress domain, for example, Tanzu Developer Portal.
 
-    - Components with a variable set of ingress endpoints usually offer Kubernetes
-      APIs that create ingress resources. These components allow
-      configuration of domain templating so that wildcard certificates can be used,
-      for example, Cloud Native Runtimes and Application Single Sign-On.
+- Components with a variable set of ingress endpoints usually offer Kubernetes
+  APIs that create ingress resources. These components allow
+  configuration of domain templating so that wildcard certificates can be used,
+  for example, Cloud Native Runtimes and Application Single Sign-On.
 
 ## Ingress support for components
 
