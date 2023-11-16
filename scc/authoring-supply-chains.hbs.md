@@ -453,7 +453,7 @@ To learn more about Tekton, see the [Tekton documentation](https://tekton.dev/do
 Kubernetes administrators may choose to enable the Pod Security Admission controller
 "to restrict the behavior of pods in a clear, consistent fashion". (Read more in the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-admission/))
-If this is the case on a cluster, the Tekton Tasks must be altered to adhere to the policy.
+If this is the case on a cluster, the Tekton Tasks must be altered to adhere to the security context.
 
 The Task spec must include a `stepTemplate` field with the following defined:
 ```yaml
