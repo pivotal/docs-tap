@@ -18,7 +18,7 @@ You have the flexibility to replace Tanzu Application Platform's default ingress
 that is compliant with cert-manager ClusterIssuer. For more information, see the 
 [cert-manager documentation](https://cert-manager.io/docs/configuration/).
 For information about how to replace the default ingress issuer, see
-[Replacing the default ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md).
+[Replacing the default ingress issuer](../../../security-and-compliance/issuer.hbs.md).
 
 To configure Cloud Native Runtimes to use a custom Issuer or ClusterIssuer with the HTTP01 challenge:
 

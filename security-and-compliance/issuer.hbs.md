@@ -23,7 +23,7 @@ It provides a method to set up TLS for the entire platform. The shared ingress i
 
 By default, Tanzu Application Platform installs and uses a self-signed CA ingress issuer for all components.
 The default ingress issuer is a self-signed `cert-manager.io/v1/ClusterIssuer` provided by the
-[cert-manager package](../../../cert-manager/about.hbs.md).
+[cert-manager package](../cert-manager/about.hbs.md).
 
 The ingress issuer is designated by the Tanzu Application Platform configuration value
 `shared.ingress_issuer`. It defaults to `tap-ingress-selfsigned`.
@@ -77,7 +77,7 @@ and your device's certificate chain.
       --output go-template='\{{ index .data "tls.crt" | base64decode }}'
     ```
 
-1. Add the certificate to [custom CA
+1. Add the certificate to [custom CAcustom-ca-certificates.hbs.md
    certificates](../custom-ca-certificates.hbs.md) by appending it to
    `shared.ca_cert_data` and applying Tanzu Application Platform's installation values.
 
@@ -159,7 +159,7 @@ LetsEncrypt production
    for certificates from LetsEncrypt.
 
   > **Caution** ACME HTTP01 challenges can fail under certain conditions. 
-  > For more information, see [ACME challenges](../../../cert-manager/acme-challenges.hbs.md).
+  > For more information, see [ACME challenges](../cert-manager/acme-challenges.hbs.md).
 
   1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
      production API:
@@ -207,7 +207,7 @@ LetsEncrypt staging
     transparency](https://certificate.transparency.dev/). Ensure that you are
     OK with this before using LetsEncrypt.
   - LetsEncrypt's staging API is not a publicly-trusted CA. You have
-    to add its certificate to your devices trust chain and [Tanzu Application Platform's custom CA
+    to add its certificate to your devices trust chain and [Tanzu Application Platform's custom CAcustom-ca-certificates.hbs.md
     certificates](../custom-ca-certificates.hbs.md).
   - LetsEncrypt requires your `shared.ingress_domain` to be accessible from
     the Internet.
@@ -217,7 +217,7 @@ LetsEncrypt staging
     for certificates from LetsEncrypt.
 
   > **Caution** ACME HTTP01 challenges can fail under certain conditions. 
-  > For more information, see [ACME challenges](../../../cert-manager/acme-challenges.hbs.md).
+  > For more information, see [ACME challenges](../cert-manager/acme-challenges.hbs.md).
 
   1. Create a `ClusterIssuer` for [Let's Encrypts](https://letsencrypt.org)
      staging API:
