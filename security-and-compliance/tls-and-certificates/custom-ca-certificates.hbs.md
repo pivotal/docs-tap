@@ -4,7 +4,7 @@ This topic tells you about configuring custom CA certificates in Tanzu Applicati
 (commonly known as TAP).
 
 For egress communication, you can establish trust for custom CA certificates.
-You configure trust for custom CAs. This is helpful if any Tanzu Application Platforms components
+This is helpful if any Tanzu Application Platforms components
 are connecting to services that serve certificates issued by private certificate authorities.
 
 The `shared.ca_cert_data` installation value can contain a PEM-encoded CA bundle. Each component
