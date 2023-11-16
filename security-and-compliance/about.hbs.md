@@ -6,7 +6,7 @@ This section describes how to:
 
 [Configure pod security for workloads](pod-security-for-workloads.hbs.md)
 
-[Secure exposed ingress endpoints in Tanzu Application Platform](./tls-and-certificates/about.hbs.md)
+[Secure exposed ingress endpoints in Tanzu Application Platform](./tls-and-certificates/ingress/issuer.hbs.md)
 
 [Use custom CA certificates in Tanzu Application Platform](./tls-and-certificates/custom-ca-certificates.hbs.md)
 
