@@ -1,4 +1,4 @@
-# Plan Ingress certificates inventory in Tanzu Application Platform
+# Plan ingress certificates inventory in Tanzu Application Platform
 
 This topic tells you how to plan for TLS certificates in Tanzu Application Platform (commonly known as TAP).
 
@@ -7,15 +7,37 @@ installation profile, excluded packages, and end-user-facing resources such as
 `Workload`, and `AuthServer`. As a result, the number of TLS certificates is not
 fixed but is a function of the platform's configuration and tenancy.
 
-Components are categorized into those which don't have ingress
-endpoints and those which do. The latter further breaks down into those which
-have a fixed number of ingress endpoints and those which offer Kubernetes APIs
-with ingress.
+Ingress refers to any resource which facilitates
+ingress, for example, core `Ingress` and Contour's `HTTPProxy`.
 
->**Note** The lowercase ingress refers to any resource which facilitates
->ingress, for example, core `Ingress` and Contour's `HTTPProxy`.
+## <a id="wildcards"></a>Wildcards
 
-Use the following table to help with the planning and accounting of TLS certificates. For a full list of
+You can use wildcard certificates but Tanzu Application Platform does not offer support.
+Wildcard certificates require component-level configuration.
+
+You can use a mixed approach for configuring TLS for components.
+For example, use a shared ingress issuer, but override TLS configuration for select
+components while using wildcard certificates for some.
+
+When using wildcard certificates the approach differs between
+components that have a fixed set of ingress endpoints and those that have
+a variable set of ingress endpoints:
+
+Components with ingress endpoints can have a
+a fixed or variable number of ingress endpoints:
+
+    - Components with a fixed set of ingress endpoints can receive a reference to
+      the wildcard certificate's `Secret` and an ingress domain, for example, Tanzu Developer Portal.
+
+    - Components with a variable set of ingress endpoints usually offer Kubernetes
+      APIs that create ingress resources. These components allow
+      configuration of domain templating so that wildcard certificates can be used,
+      for example, Cloud Native Runtimes and Application Single Sign-On.
+
+## Ingress support for components
+
+Use the following table to help with the planning and accounting of TLS certificates.
+For a full list of
 components and the profiles supported for each component, see
 [About Tanzu Application Platform components and profiles](../../../about-package-profiles.hbs.md#profiles-and-packages).
 
@@ -30,10 +52,7 @@ Package name | Ingress purpose | Supports ingress issuer | Supports wildcards | 
 
 *The SANs is configurable for components in the following two ways:
 
-- Components that install a single ingress resource in the form of `COMPONENT.DOMAIN-NAME`, such as
-  Tanzu Developer Portal
+- Components that install a single ingress resource in the form of `COMPONENT.DOMAIN-NAME`, such as Tanzu Developer Portal
 - Components that install an ingress resource per API instance that gets templated from a
   `domain_template` feeding `DOMAIN-NAME`, such as `cnrs.tanzu.vmware.com` and
   `sso.apps.tanzu.vmware.com`
-
-** Only supports wildcards
