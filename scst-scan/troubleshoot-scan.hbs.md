@@ -149,7 +149,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
             importFromNamespace: metadata-store-secrets
       ```
 
-      **Note** `caSecret.name` is set to `store-ca-cert`. See [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
+      **Note** `caSecret.name` is set to `store-ca-cert`. See [Set up multicluster Supply Chain Security Tools (SCST) - Store](../scst-store/multicluster-setup.hbs.md#export-multicluster).
 
 3. Verify that the `CA-SECRET` secret exists in the `DEV-NAMESPACE`.
 
@@ -178,7 +178,7 @@ To ensure that the `caSecret` from the scanner `DEV-NAMESPACE` matches the `caSe
     ```
 
     - SCST - Store creates the single cluster secretexport by default. See [Deployment details and configuration](../scst-store/deployment-details.hbs.md#exporting-certificates).
-    - For information about creating the multicluster secretexport, see [Multicluster setup](../scst-store/multicluster-setup.hbs.md#export-multicluster).
+    - For information about creating the multicluster secretexport, see [Set up multicluster Supply Chain Security Tools (SCST) - Store](../scst-store/multicluster-setup.hbs.md#export-multicluster).
 
 6. Verify that the `ca.crt` field in both secrets from `METADATASTORE-NAMESPACE` and `DEV-NAMESPACE` match, or that the `ca.crt` field of the secret in the `METADATASTORE-NAMESPACE` includes the `ca.crt` field of the `DEV-NAMESPACE` secret.
 
@@ -379,7 +379,7 @@ A connection error while attempting to connect to the
 local cluster URL causes this error. If this is a multicluster deployment, set the
 `grype.metadataStore.url` property in your Build profile `values.yaml`. You must
 set the ingress domain of SCST - Store which is deployed in the View cluster.
-For information about this configuration, see [Multicluster Setup — How to
+For information about this configuration, see [How to
 configure Grype in the Build profile values
 file](../scst-store/multicluster-setup.hbs.md#grype-mds-config).
 
