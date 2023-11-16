@@ -81,6 +81,7 @@ To install the AWS Services package:
         security_groups:
           - id: "SECURITY-GROUP-ID"
       # Instance-level configuration for the RDS PostgreSQL service applied to all service instances
+      # All instance_configuration is optional. See below for default values.
       instance_configuration:
         instance_class: INSTANCE-CLASS
         engine_version: "ENGINE-VERSION"
@@ -102,6 +103,7 @@ To install the AWS Services package:
         security_groups:
           - id: "SECURITY-GROUP-ID"
       # Instance-level configuration for the RDS MySQL service applied to all service instances
+      # All instance_configuration is optional. See below for default values.
       instance_configuration:
         instance_class: INSTANCE-CLASS
         engine_version: "ENGINE-VERSION"
@@ -122,7 +124,7 @@ To install the AWS Services package:
     - `SECURITY-GROUP-ID` are the IDs of any security groups you created in
       [Plan and configure your infrastructure](#config-infra) earlier.
     - `INSTANCE-CLASS` is the instance type of the RDS instance. The default is `db.t3.micro`.
-    - `ENGINE-VERSION` is the PostgreSQL version. The default is `13.7`.
+    - `ENGINE-VERSION` is the engine version. For PostgreSQL the default is `13.7`. For MySQL the default is `8.0`. The list of avaiilable versions can be found in the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
     - `SKIP-FINAL-SNAPSHOT` is whether a final snapshot is created before the instance is deleted.
        If you specify `true`, no snapshot is created. If you specify `false`, a snapshot called
        `final-snapshot-INSTANCE-NAME` is created before the instance is deleted. The default is `false`.
