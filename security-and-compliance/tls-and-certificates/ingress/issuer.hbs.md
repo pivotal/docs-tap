@@ -26,7 +26,7 @@ The default ingress issuer is a self-signed `cert-manager.io/v1/ClusterIssuer` p
 [cert-manager package](../../../cert-manager/about.hbs.md).
 
 The ingress issuer is designated by the Tanzu Application Platform configuration value
-`shared.ingress_issuer`. Its default to `tap-ingress-selfsigned`.
+`shared.ingress_issuer`. It defaults to `tap-ingress-selfsigned`.
 
 > **Caution** The default ingress issuer is appropriate for testing and evaluation.
 VMware recommends that you replace the default self-signed issuer with your own issuer.
@@ -303,12 +303,12 @@ lock icon in the navigation bar to inspect the certificate.
 In some situations, depending on [prerequisites](./issuer.hbs.md#prerequisites), the shared ingress
 issuer is not the right choice. You can override
 configuration of TLS and certificates per component. A component's
-ingress and TLS configuration takes precedence over the shared ingress issuer.
+ingress and TLS configuration take precedence over the shared ingress issuer.
 
 For a list of components with ingress and how to customize them, see [Plan Ingress certificates inventory in Tanzu Application Platform](./inventory.hbs.md).
 
 Tanzu Application Platform also has limited support for wildcard certificates. For more information,
-see [Use wildcard certificates with ingress endpoints in Tanzu Application Platform](./inventory.hbs.md#wildcards).
+see [Wildcards](./inventory.hbs.md#wildcards).
 
 ### <a id="deactivate"></a>Deactivate TLS for ingress
 

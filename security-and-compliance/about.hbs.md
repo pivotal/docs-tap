@@ -8,6 +8,8 @@ This section describes how to:
 
 [Secure exposed ingress endpoints in Tanzu Application Platform](./tls-and-certificates/ingress/issuer.hbs.md)
 
+[Plan ingress certificates inventory in Tanzu Application Platform](./tls-and-certificates/ingress/inventory.hbs.md)
+
 [Use custom CA certificates in Tanzu Application Platform](./tls-and-certificates/custom-ca-certificates.hbs.md)
 
 [Assess Tanzu Application Platform against the NIST 800-53 Moderate Assessment](tap-nist-matrix.hbs.md)
