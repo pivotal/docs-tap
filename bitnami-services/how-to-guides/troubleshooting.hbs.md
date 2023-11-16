@@ -35,7 +35,7 @@ Error creating: pods "xxx" is forbidden: violates PodSecurity "restricted:latest
 
 **Cause:**
 
-Tanzu Kubernetes releases v1.6 and later enforces a
+Tanzu Kubernetes releases v1.26 and later enforces a
 [`restricted` Pod Security Standard](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted).
 This prevents services created with Tanzu Application Platform v1.6 or earlier from starting.
 
