@@ -27,8 +27,7 @@ in Tanzu Application Platform specifies the ingress issuer and it refers to a `c
 By default, the ingress issuer is self-signed and has limits. For more information about
 the shared ingress issuer, see the following Tanzu Application Platform documentation:
 
-- [Ingress certificates](../../../security-and-compliance/tls-and-certificates/ingress/about.hbs.md)
-- [Shared ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md)
+- [Secure exposed ingress endpoints in Tanzu Application Platform](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md)
 
 The following TLS features are in Cloud Native Runtimes by default:
 
