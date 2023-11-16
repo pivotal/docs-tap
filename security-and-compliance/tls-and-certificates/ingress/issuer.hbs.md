@@ -13,14 +13,12 @@ mixed with the ingress issuer. For more information, see [Override TLS for compo
 
 ## <a id="prerequisites"></a> Default self-signed ingress issuer
 
-By default, a self-signed issuer called `tap-ingress-selfsigned` is used.
-
 By default, Tanzu Application Platform installs and uses a self-signed CA ingress issuer for all components.
 The default ingress issuer is a self-signed `cert-manager.io/v1/ClusterIssuer` provided by the
 [cert-manager package](../../../cert-manager/about.hbs.md).
 
 The ingress issuer is designated by the Tanzu Application Platform configuration value
-`shared.ingress_issuer`.Its default to `tap-ingress-selfsigned`.
+`shared.ingress_issuer`. Its default to `tap-ingress-selfsigned`.
 
 > **Caution** The default ingress issuer is appropriate for testing and evaluation.
 VMware recommends that you replace the default self-signed issuer with your own issuer.
