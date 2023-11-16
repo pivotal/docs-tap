@@ -6,24 +6,26 @@ VMware recommends a shared ingress issuer for issuing ingress certificates on Ta
 Application Platform.
 
 The shared ingress issuer is an on-platform representation of a certificate authority.
-It provides a method to set up TLS for the entire platform. All participating components get their ingress certificates issued by it.
-
-The ingress issuer is designated by the single Tanzu Application Platform configuration value
-`shared.ingress_issuer`. It refers to a `cert-manager.io/v1/ClusterIssuer`.
-
-By default, a self-signed issuer called `tap-ingress-selfsigned` is used. VMware recommends that you
-replace the default self-signed issuer with your own issuer.
+It provides a method to set up TLS for the entire platform. The shared ingress issuer issues ingress certificates for all participating components.
 
 Component-level configuration of TLS takes precedence and can be
 mixed with the ingress issuer. For more information, see [Override TLS for components](#override).
 
-## <a id="prerequisites"></a> The default self-signed issuer
+## <a id="prerequisites"></a> Default self-signed ingress issuer
 
-By default, Tanzu Application Platform installs and uses a self-signed CA as
-its ingress issuer for all components. The default ingress issuer is a self-signed `cert-manager.io/v1/ClusterIssuer` and is provided by Tanzu Application Platform's [cert-manager
-package](../../../cert-manager/about.hbs.md). Its default name is
-`tap-ingress-selfsigned`. The default ingress issuer is appropriate for testing and evaluation,
-but VMware recommends that you replace it with your own issuer.
+By default, a self-signed issuer called `tap-ingress-selfsigned` is used.
+
+By default, Tanzu Application Platform installs and uses a self-signed CA ingress issuer for all components.
+The default ingress issuer is a self-signed `cert-manager.io/v1/ClusterIssuer` provided by the
+[cert-manager package](../../../cert-manager/about.hbs.md).
+
+The ingress issuer is designated by the Tanzu Application Platform configuration value
+`shared.ingress_issuer`.Its default to `tap-ingress-selfsigned`.
+
+> **Caution** The default ingress issuer is appropriate for testing and evaluation.
+VMware recommends that you replace the default self-signed issuer with your own issuer.
+
+### Default self-signed issuer limitations
 
 The default ingress issuer represents a self-signed certificate authority.
 This is not problematic as far as security is concerned, however, it
@@ -37,12 +39,12 @@ representable by a cert-manager `ClusterIssuer`. You need one of
 the following:
 
 - Your own CA certificate
-- Your CA is an ACME, Venafi, or Vault-based issuer, for example, _LetsEncrypt_
+- Your CA is an ACME, Venafi, or Vault-based issuer, for example, LetsEncrypt
 - Your CA can be represented by an
   [external](https://cert-manager.io/docs/configuration/external/) cert-manager
   `ClusterIssuer`.
 
-Without one of the above, you cannot use the issuer ingress, but you can
+Without one of the above, you cannot use the ingress issuer, but you can
 still configure TLS for components. For more information, see
 [Ingress certificates inventory](./inventory.hbs.md).
 
@@ -69,7 +71,7 @@ and your device's certificate chain.
 
 1. Add the certificate to [custom CA
    certificates](../custom-ca-certificates.hbs.md) by appending it to
-   `shared.ca_cert_data` and applying Tanzu Application Platform's installation values
+   `shared.ca_cert_data` and applying Tanzu Application Platform's installation values.
 
 1. Add the certificate to your device's trust chain. The trust chain will vary depending on your
    operating system and privileges.
