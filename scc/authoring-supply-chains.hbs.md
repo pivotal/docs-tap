@@ -469,5 +469,5 @@ The Task spec must include a `stepTemplate` field with the following defined:
       runAsNonRoot: true
 ```
 
-Read more about stepTemplate in the
+Read more about `stepTemplate` in the
 [Tekton documentation](https://tekton.dev/docs/pipelines/tasks/#specifying-a-step-template).
