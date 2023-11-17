@@ -9,7 +9,7 @@ Tanzu Application Platform exposes ingress endpoints so that:
 
 There are two ways of configuring ingress certificates to secure endpoints with TLS, such as  `https://`:
 
-- [Shared Ingress issuer](#shared)
+- [Shared ingress issuer](#shared)
 - [Component-level configuration](#component)
 
 ## <a id="shared"></a> Shared ingress issuer
