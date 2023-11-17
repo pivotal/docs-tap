@@ -30,9 +30,9 @@ To install External Secrets Operator:
    external-secrets.apps.tanzu.vmware.com  0.9.4+tanzu.2  2023-11-10 00:00:00 -0500 EST
    ```
 
-1. (Optional) Create a YAML values file to specify optional configuration for the External Secrets Operator.
-   In this release, there is only one setting: `kubernetes_distribution`, which you can set to
-   `"openshift"` or `""`.
+1. (Optional) For Tanzu Application Platform v1.7.1 and later, you can create a YAML values file to
+   specify optional configuration for the External Secrets Operator. In this release, there is only
+   one setting: `kubernetes_distribution`, which you can set to `"openshift"` or `""`.
 
    - To run External Secrets Operator on an OpenShift cluster, set the `kubernetes_distribution` value
    to `openshift`. This setting removes some of the default security settings in External Secrets Operator
@@ -40,6 +40,30 @@ To install External Secrets Operator:
 
    - If you are running the External Secrets Operator on any other platform, leave `kubernetes_distribution`
    as an empty string or omit the value entirely.
+
+   > **Note** The `kubernetes_distribution` setting is available as of External Secrets Operator
+   > v0.9.4+tanzu.2, which is available in Tanzu Application Platform v1.7.1.
+   > External Secrets Operator v0.9.4+tanzu.1 and earlier might not be able to run on OpenShift clusters.
+   >
+   > If you try to run older releases of the External Secrets Operator on OpenShift clusters, you
+   > might see the following error status in any of the `ReplicaSet` resources:
+   >
+   > ```console
+   > message: 'pods "external-secrets-6888645d7f-" is forbidden: unable to validate
+   > against any security context constraint: [provider "anyuid": Forbidden: not
+   > usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
+   > Invalid value: 1000: must be in the ranges: [1001220000, 1001229999], provider
+   > "restricted": Forbidden: not usable by user or serviceaccount, provider "nonroot-v2":
+   > Forbidden: not usable by user or serviceaccount, provider "nonroot": Forbidden:
+   > not usable by user or serviceaccount, provider "hostmount-anyuid": Forbidden:
+   > not usable by user or serviceaccount, provider "machine-api-termination-handler":
+   > Forbidden: not usable by user or serviceaccount, provider "hostnetwork-v2":
+   > Forbidden: not usable by user or serviceaccount, provider "hostnetwork": Forbidden:
+   > not usable by user or serviceaccount, provider "hostaccess": Forbidden: not
+   > usable by user or serviceaccount, provider "node-exporter": Forbidden: not usable
+   > by user or serviceaccount, provider "privileged": Forbidden: not usable by user
+   > or serviceaccount]'
+   > ```
 
 1. Install the package by running:
 
