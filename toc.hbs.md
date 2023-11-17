@@ -345,6 +345,7 @@
                 - [Uninstall CNRs](./cloud-native-runtimes/how-to-guides/app-operators/uninstall.hbs.md)
                 - [Upgrade CNRs](./cloud-native-runtimes/how-to-guides/app-operators/upgrade.hbs.md)
                 - [Verify CNRs Installation](./cloud-native-runtimes/how-to-guides/app-operators/verify-installation.hbs.md)
+                - [Verify Knative Serving for CNRs](./cloud-native-runtimes/how-to-guides/app-operators/verifying-serving.hbs.md)
             - [Securing Web Workloads in Cloud Native Runtimes](./cloud-native-runtimes/how-to-guides/auto-tls/index.hbs.md)
                 - [Setting up AutoTLS](./cloud-native-runtimes/how-to-guides/auto-tls/auto-tls.hbs.md)
                 - [Deactivate autoTLS](./cloud-native-runtimes/how-to-guides/auto-tls/tls-guides-deactivate-autotls.hbs.md)
