@@ -422,7 +422,7 @@ Use a custom supply chain
   2. Submit the custom supply chain file that you created earlier by running:
 
      ```console
-     tanzu apps workload create -f tdp-sc.yaml
+     kubectl apply -f tdp-sc.yaml
      ```
 
   3. Create a file called `tdp-workload.yaml` with the following content:
