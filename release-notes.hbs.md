@@ -36,6 +36,10 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-8-0-COMPONENT-NAME'></a> v1.8.0 Features: COMPONENT-NAME
  
 - Feature description.
+
+#### <a id='1-8-0-COMPONENT-NAME'></a> v1.8.0 Features: Crossplane
+
+- Updates Universal Crossplane to v1.14.1-up.1. For more information, see the [Upbound blog](https://blog.crossplane.io/crossplane-v1-14/).
  
 ---
  
