@@ -69,11 +69,7 @@ To verify the installation of Knative Serving
     kubectl create namespace ${WORKLOAD_NAMESPACE}
     ```
 
-2. Verify installation of the components that you intend to use:
-
-    | To test…         | Create…                              | For instructions, see…                                      |
-    | -----------------|--------------------------------------|-------------------------------------------------------------|
-    | Knative Serving  | a test service                       | [Verifying Knative Serving](./verifying-serving.hbs.md)     |
+2. Test Knative Serving by creating a test service. See [Verifying Knative Serving](./verifying-serving.hbs.md).
 
 3. Delete the namespace that you created for the demo. Run:
 

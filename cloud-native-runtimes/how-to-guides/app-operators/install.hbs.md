@@ -3,7 +3,7 @@
 This topic describes how you can install Cloud Native Runtimes, commonly known as CNRs, from the Tanzu Application Platform package repository.
 
 >**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
-Both the full and light profiles include Cloud Native Runtimes.
+The full profile includes Cloud Native Runtimes.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../../../install-online/profile.hbs.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
@@ -79,7 +79,7 @@ To install Cloud Native Runtimes:
         To use a separate Contour installation for system-internal traffic, set
         `cnrs.contour.internal.namespace` to the namespace of your separate Contour installation.
 
-        - If you install Cloud Native Runtimes with the default value of `true` for the `allow_manual_configmap_update` configuration, you can only update some ConfigMaps manually. To update all ConfigMaps using overlays, change this value to `false`. In a future release, `false` will be the default configuration. At some point after that, Cloud Native Runtimes will be released without the option to switch and `false` will be the permanent behavior.
+        - If you install Cloud Native Runtimes with the default value of `true` for the `allow_manual_configmap_update` configuration, you can only update some ConfigMaps manually. To update all ConfigMaps using overlays, change this value to `false`.
 
 2. Install the package by running:
 
