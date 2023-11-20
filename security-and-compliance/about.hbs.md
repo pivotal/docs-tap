@@ -4,7 +4,7 @@ Security is a primary focus for Tanzu Application Platform (commonly known as TA
 
 This section describes how to:
 
-[Configure pod security for workloads](pod-security-for-workloads.hbs.md)
+<!-- [Configure pod security for workloads](pod-security-for-workloads.hbs.md) -->
 
 [Secure exposed ingress endpoints in Tanzu Application Platform](./issuer.hbs.md)
 
