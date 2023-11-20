@@ -44,7 +44,7 @@ the list of developer namespaces:
 with external services, such as registries or Git repositories. When operating in air-gapped
 environments or other scenarios where external services are secured by a Custom CA certificate,
 you must configure kapp-controller with the CA certificate data to prevent
-X.508/X.509 certificate errors. For more information, see [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5)
+X.509 certificate errors. For more information, see [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5)
 in the Cluster Essentials for VMware Tanzu documentation.
 
   If the additional sources contain a resource that is scoped to a specific namespace, it is
