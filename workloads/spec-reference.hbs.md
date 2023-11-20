@@ -648,25 +648,6 @@ Parameters:
       </p>
     </td>
   </tr>
-
-  <tr>
-    <td><code>security-context</code></td>
-    <td>
-      Use security-contexts to apply organization security policies 
-      to pods running from the supply chain workloads.
-    </td>
-    <td>
-      <p alignment ="left">
-      - name: security-context
-        value:
-          runAsUser: 1000
-          runAsNonRoot: true
-          capabilities:
-            drop:
-            - ALL
-      </p>
-    </td>
-  </tr>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
