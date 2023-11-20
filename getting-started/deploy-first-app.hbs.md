@@ -7,6 +7,13 @@ Tanzu Developer Portal (formerly named Tanzu Application Platform GUI) software 
 This guide is a continuation from the previous step,
 [Generate an application with Application Accelerator](./generate-first-app.hbs.md).
 
+## <a id="you-will"></a>What you will do
+
+- Deploy an app using the Tanzu CLI.
+- View the build and runtime logs for your app.
+- View the web app in your browser.
+- (Optional) Add your application to Tanzu Developer Portal software catalog.
+
 ## <a id="prereqs"></a>Prerequisites
 
 Before you start, you must have:
@@ -16,13 +23,6 @@ Before you start, you must have:
   [Generate an application with Application Accelerator](./generate-first-app.hbs.md).
 - Created a Git repository during the project creation stage. If the project does not have an
   associated Git repository, create a repository and update the `workload.yaml` the repository URL and branch.
-
-## <a id="you-will"></a>What you will do
-
-- Deploy an app using the Tanzu CLI.
-- View the build and runtime logs for your app.
-- View the web app in your browser.
-- (Optional) Add your application to Tanzu Developer Portal software catalog.
 
 ## <a id="deploy-your-app"></a>Deploy your application using the Tanzu CLI
 

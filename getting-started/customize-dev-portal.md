@@ -7,6 +7,11 @@ The hello-world plug-in is a demonstration of the Configurator tool's capabiliti
 For general information about the Tanzu Developer Portal Configurator and its basic concepts, see
 [Overview of Configurator (beta)](../tap-gui/configurator/about.hbs.md).
 
+## <a id="you-will"></a>What you will do
+
+- Create a customized Tanzu Developer Portal containing the hello-world plug-in
+- Observe the customized Tanzu Developer Portal instance
+
 ## <a id="prereqs"></a>Prerequisites
 
 Before you start, you must have:
@@ -31,11 +36,6 @@ Before you start, you must have:
     > **Note** By default, Tanzu Developer Portal uses a self-signed certificate and might cause
     > a security error in the browser. To address this error, see
     > [Configure a TLS certificate by using an existing certificate](../tap-gui/tls/enable-tls-existing-cert.hbs.md).
-
-## <a id="you-will"></a>What you will do
-
-- Create a customized Tanzu Developer Portal containing the hello-world plug-in
-- Observe the customized Tanzu Developer Portal instance
 
 ## <a id="customize-dev-portal"></a>Customize your Tanzu Developer Portal by adding the hello-world plug-in
 

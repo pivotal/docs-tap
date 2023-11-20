@@ -3,11 +3,8 @@
 This topic for developers guides you through deploying your first workload on Tanzu Application Platform
 (commonly known as TAP) in an air-gapped environment.
 
->**Note:** For Platform Operators to configure the air-gapped using Namespace Provisioner,
-please refer to [Work with Git repositories in air-gapped with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md)
-
-
-For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
+For information about installing Tanzu Application Platform in an air-gapped environment, see
+[Install Tanzu Application Platform in an air-gapped environment](../install-offline/profile.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 
@@ -16,18 +13,17 @@ For information about installing Tanzu Application Platform in an air-gapped env
 - Create a testing supply chain workload.
 - Create a testing scanning supply chain workload.
 
+## <a id="prereqs"></a>Prerequisites
+
+Before you begin, a Platform operator must configure the air-gapped environment using Namespace Provisioner.
+For instructions, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
+
 ## <a id="create-workload"></a>Create a workload from Git
 
 To create a workload from Git through HTTPS, follow these steps:
 
-1. Create a secret in your developer namespace with the `caFile` that matches the `gitops_ssh_secret`
-   name in the `tap_values.yaml` file:
-
-    ```console
-    kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
-    ```
-
-2. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA) certificate, create a file called `git-credentials.yaml`. For example:
+1. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA)
+   certificate, create a file called `git-credentials.yaml`. For example:
 
     ```yaml
     apiVersion: v1
@@ -49,7 +45,7 @@ To create a workload from Git through HTTPS, follow these steps:
     - `PASSWORD` is the password.
     - `CADATA` is the PEM-encoded CA certificate for the Git repository.
 
-3. To pass in a custom `settings.xml` for Java, create a file called `settings-xml.yaml`. For example:
+1. To pass in a custom `settings.xml` for Java, create a file called `settings-xml.yaml`. For example:
 
     ```yaml
     apiVersion: v1
@@ -81,7 +77,7 @@ To create a workload from Git through HTTPS, follow these steps:
         </settings>
     ```
 
-4. Apply the file:
+1. Apply the file:
 
     ```console
     kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
