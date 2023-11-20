@@ -16,7 +16,7 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
 with external services, such as registries or Git repositories. When operating in air-gapped
 environments or other scenarios where external services are secured by a Custom CA certificate,
 you must configure kapp-controller with the CA certificate data to prevent
-X.509 certificate errors. For more information, see [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5)
+X.509 certificate errors. For more information, see [Deploy onto Cluster](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.5/cluster-essentials/deploy.html#deploying-cluster-essentials-v156-0)
 in the Cluster Essentials for VMware Tanzu documentation.
 
 1. Create the Git secret.
