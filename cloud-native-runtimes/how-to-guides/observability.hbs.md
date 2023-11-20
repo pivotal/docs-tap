@@ -175,9 +175,9 @@ then, configure the Wavefront proxy to consume Zipkin spans:
    export WF_NAMESPACE=default
    kubectl label namespace ${WF_NAMESPACE} apps.tanzu.vmware.com/tap-ns=""
 
-   export WF_REGISTRY_HOSTNAME=projects.registry.vmware.com
-   export WF_REGISTRY_USERNAME=<your-password>
-   export WF_REGISTRY_PASSWORD=<your-username>
+   export WF_REGISTRY_HOSTNAME=HOSTNAME
+   export WF_REGISTRY_USERNAME=USERNAME
+   export WF_REGISTRY_PASSWORD=PASSWORD
    tanzu secret registry add registry-credentials \
      --username ${WF_REGISTRY_USERNAME} --password ${WF_REGISTRY_PASSWORD} \
      --server ${WF_REGISTRY_HOSTNAME} \
@@ -187,9 +187,9 @@ then, configure the Wavefront proxy to consume Zipkin spans:
    Where:
 
    - `WF_NAMESPACE` is the namespace where you deployed the Wavefront Proxy.
-   - `WF_REGISTRY_HOSTNAME` is the image registry where the Wavefront Proxy image is located.
-   - `WF_REGISTRY_USERNAME` is your user name to access the image registry to pull the Wavefront Proxy image.
-   - `WF_REGISTRY_PASSWORD` is your password to access the image registry to pull the Wavefront Proxy image.
+   - `HOSTNAME` is the image registry where the Wavefront Proxy image is located.
+   - `USERNAME` is your user name to access the image registry to pull the Wavefront Proxy image.
+   - `PASSWORD` is your password to access the image registry to pull the Wavefront Proxy image.
 
    For more information about how to set up developer namespaces, see [Provision developer namespaces](../../namespace-provisioner/provision-developer-ns.hbs.md).
    [Provision developer namespaces](../../namespace-provisioner/provision-developer-ns.hbs.md).

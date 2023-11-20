@@ -57,7 +57,7 @@ Follow these steps to identify and resolve the problem of the cloud provider not
 
 2. If the output looks similar to the following,
    ensure that your cloud provider supports services of type `LoadBalancer`.
-   For more information, see [Prerequisites](../../tap-gui/accessing-tap-gui.hbs.md).
+   For more information, see [Access Tanzu Developer Portal](../../tap-gui/accessing-tap-gui.hbs.md).
 
     ```console
     6:30:22PM: ongoing: reconcile service/envoy (v1) namespace: CONTOUR-NS
