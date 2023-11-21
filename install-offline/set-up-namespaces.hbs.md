@@ -6,5 +6,6 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md) for the Namespace Provisioner mode.
-- [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md) for manual mode
+For more information about the Namespace Provisioner mode, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
+
+For more information about the manual mode, see [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md).
