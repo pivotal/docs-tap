@@ -179,10 +179,9 @@ When fetching or pushing source code to a repository that requires credentials,
 it's essential to provide those credentials through a Kubernetes secret object referenced by
 the corresponding Kubernetes object created for the action. The following sections describes
 setting up Kubernetes secrets to securely pass these credentials to the relevant resources.
-This procedure provides the steps to:
+This procedure provides the steps to onfigure the `default` service account to interact with Git repositories for workloads and supply chain using Namespace Provisioner.
 
-- Configure the `default` service account to interact with Git repositories for workloads and supply chain using Namespace Provisioner.
-- Set up the service account to interact with Git repositories.
+Set up the service account to interact with Git repositories:
 
 1. Create a secret in the `tap-install` namespace or any preferred namespace, containing Git credentials in YAML format.
 
@@ -409,14 +408,14 @@ This procedure provides the steps to:
    the supply chain to include the `secretRef` when creating the Flux `GitRepository` resource.
    For example:
 
-  ```yaml
-  ootb_supply_chain_testing_scanning:
-    gitops:
-      ssh_secret: git  # Replace with the actual name of your Git secret for the workload, if different
-  ```
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      gitops:
+        ssh_secret: git  # Replace with the actual name of your Git secret for the workload, if different
+    ```
 
-  By providing this configuration, the supply chain associates the created `GitRepository`
-  resource with the specified Git secret managed by Namespace Provisioner.
+    By providing this configuration, the supply chain associates the created `GitRepository`
+    resource with the specified Git secret managed by Namespace Provisioner.
 
 5. Create the workload:
 
