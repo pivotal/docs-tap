@@ -1,8 +1,8 @@
-# Run Spring Boot apps on Tanzu Application Platform as GraalVM native images
+# Deploy Spring Boot apps to Tanzu Application Platform as GraalVM native images
 
-This topic guides you through configuring Tanzu Application Platform to compile your Spring Boot
-application into a native executable file, running that native executable file on the platform, and
-enabling Application Live View for your application.
+This topic tells you how to configure Tanzu Application Platform to compile your Spring Boot
+application into a native executable file, run that native executable file on the platform, and
+enable Application Live View for your application.
 <!-- get reviewed -->
 
 ## <a id="you-will"></a>What you will do
