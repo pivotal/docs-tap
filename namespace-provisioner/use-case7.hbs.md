@@ -256,12 +256,11 @@ Set up the service account to interact with Git repositories:
     Using HTTP(s) based authentication
     : If using user name and password for authentication.
 
-      
       In this configuration for an air-gapped environment,
        the Git repository server has a custom certificate of authority that
        cannot be verified against public issuers, so you must provide
        the `caFile` content to log in against it.
-       
+
        ```yaml
       #@ load("@ytt:data", "data")
       ---
@@ -277,6 +276,7 @@ Set up the service account to interact with Git repositories:
         password: #@ data.values.imported.git.token
         caFile: #@ data.values.imported.git.caFile
       ```
+
 
     Using `settings.xml` based authentication for Java applications
     : If using user name and password for authentication.
@@ -433,6 +433,7 @@ Set up the service account to interact with Git repositories:
       --tail \
       --yes
       ```
+
 
     Use `settings.xml` based authentication for Java applications
     : If using user name and password for authentication.
