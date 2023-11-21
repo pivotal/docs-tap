@@ -355,7 +355,7 @@ with the configured public key. Run:
     pod/cosign created (server dry run)
     ```
 
-    If you are using TKGs, you will need to add some overrides:
+    If you are using TKGs or Openshift, you will need to add some overrides:
     ```
     $ kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
