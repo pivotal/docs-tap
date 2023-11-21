@@ -22,7 +22,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
 1. [Install Supply Chain Choreographer](install-scc.md).
 
-1. [Install Out of the Box Delivery Basic](install-ootb-sc-basic.md).
+1. [Install Out of the Box Delivery Basic](install-ootb-delivery-basic.hbs.md).
 
 1. [Install Tekton Pipelines](../tekton/install-tekton.md).
 
