@@ -280,7 +280,7 @@ To set up the service account to interact with Git repositories:
         caFile: #@ data.values.imported.git.caFile
       ```
 
-    Using settings.xml based authentication for Java applications
+    Using `settings.xml` based authentication for Java applications
     : If using user name and password for authentication.
        
        ```yaml
@@ -392,7 +392,7 @@ To set up the service account to interact with Git repositories:
       Where `https://git-airgap-server/application-accelerator-samples.git` is a fork of the
       [application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples) repository.
 
-   - The first additional source points to the location where the templated Git secret resides,
+   - `additional sources` points to the location where the templated Git secret resides,
   which is created in all developer namespaces.
    - Import the newly created `workload-git-auth` secret into Namespace Provisioner to use in
   `data.values.imported` by adding the secret to `import_data_values_secrets`.
@@ -419,7 +419,7 @@ To set up the service account to interact with Git repositories:
   By providing this configuration, the supply chain associates the created `GitRepository`
   resource with the specified Git secret managed by the Namespace Provisioner.
 
-5. Create the workload
+5. Create the workload:
 
     Use HTTP/HTTPS or SSH-based
     : If using user name and password for authentication.
