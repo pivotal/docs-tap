@@ -11,14 +11,14 @@ Authentication is established through a secret in the `tap-namespace-provisionin
 an existing secret in another namespace referenced in the `secretRef` within `additional_sources`.
 For more information, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
-### Create the Git authentication secret in tap-namespace-provisioning namespace
+### Create the Git authentication secret in `tap-namespace-provisioning` namespace
 
 The Git authentication secrets support the following keys: `ssh-privatekey`, `ssh-knownhosts`, `username`, and `password`. If `ssh-knownhosts` is not specified, Git does not perform strict host checking.
 
 >**Important** In air-gapped environments or other scenarios where external services
 are secured by a Custom CA certificate, configure kapp-controller with the CA certificate data
 to prevent X.509 certificate errors.
-For detailed instructions, see [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5) in the Cluster Essentials for VMware Tanzu documentation.
+For more information, see [Deploy onto Cluster](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#deploy-onto-cluster-5) in the Cluster Essentials for VMware Tanzu documentation.
 
 1. Create the Git secret:
 
@@ -79,7 +79,7 @@ For detailed instructions, see [Deploy onto Cluster](https://{{ vars.staging_tog
     Using GitOps
     : Description
 
-      **Caution** In kapp-controller versions \<v0.46.0, there is a limitation that
+      **Caution** In kapp-controller v0.46.0 and earlier, there is a limitation that
       prevents the reuse of the same Git secret multiple times. If you have multiple additional sources
       using repositories with identical credentials, you must create distinct secrets,
       each with the same authentication details.
@@ -118,7 +118,7 @@ assuming the secret is already exported for the `tap-namespace-provisioning` nam
 However, you can specify if you want the Namespace Provisioner to create a Carvel `SecretExport`
 for that secret.
 
-In the example, the `secretRef` section refers to the `git-auth` secret from the `tap-install` namespace.
+In this example, the `secretRef` section refers to the `git-auth` secret from the `tap-install` namespace.
 
 Using Namespace Provisioner Controller
 : Description
@@ -170,7 +170,7 @@ Using GitOps
 
 After reconciliation, Namespace Provisioner creates:
 
-- [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace, exporting it to the Namespace Provisioner namespace, for example, `tap-install` in the previous example
+- [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace, exporting it to the Namespace Provisioner namespace, for example, `tap-install`
 - [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in the namespace provisioning namespace. This enables Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) to create the required secret, allowing the Namespace Provisioner to connect to the Git repository.
 
 ## <a id= 'git-auth-wl-sc'></a> Git authentication for workloads and supply chain
@@ -193,7 +193,7 @@ To set up the service account to interact with Git repositories:
     >**Note** The `stringData` key of the secret must end with either the `.yaml` or `.yml` suffix.
 
     Using HTTP(s) based authentication
-    : If using user name and Password for authentication.
+    : If using user name and password for authentication.
 
        In this configuration for an air-gapped environment,
        the Git repository server has a custom certificate of authority that
@@ -223,7 +223,7 @@ To set up the service account to interact with Git repositories:
       ```
 
     Using SSH based authentication
-    : If you prefer using an SSH private key for authentication, create the Git secret with the authentication details as follows:
+    : To use an SSH private key for authentication, create the Git secret with the authentication details as follows:
 
       ```yaml
       cat << EOF | kubectl apply -f -
