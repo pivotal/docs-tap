@@ -480,6 +480,7 @@
       - [Configure Spring Boot actuators](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
       - [Configure liveness, readiness, and startup probes for Spring Boot apps (alpha)](spring-boot-conventions/config-probes.hbs.md)
       - [Enable Application Live View for Spring Boot apps](spring-boot-conventions/enabling-app-live-view.hbs.md)
+      - [Enable Application Live View for Spring Native apps](spring-boot-conventions/enable-spring-native-apps.hbs.md)
       - [Conventions](spring-boot-conventions/reference/conventions.hbs.md)
       - [Troubleshoot Spring Boot conventions](spring-boot-conventions/troubleshooting.hbs.md)
     - [Spring Cloud Gateway](spring-cloud-gateway/about.hbs.md)

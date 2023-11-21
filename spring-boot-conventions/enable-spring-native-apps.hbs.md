@@ -1,9 +1,9 @@
 # Enable Spring Native apps for Application Live View
 
-This topic for developers tells you how to configure a Spring Native app to be observed by
-Application Live View within Tanzu Application Platform (commonly known as TAP).
+This topic describes how you can run Spring Native workloads within Tanzu Application Platform (commonly known as TAP). It provides information on how the Spring boot convention server enhances Tanzu PodIntents with metadata such as labels, annotations, or properties required to successfully run native workloads in Tanzy Application Platform.
+This metadata allows Application Live View to discover and register the app instances so that Application Live View can access the actuator data from those workloads.
 
-## <a id="procedure"></a>Procedure
+### <a id="native-application-configuration"></a>Native Application Configuration
 
 For Application Live View to interact with a Spring Native app within Tanzu Application Platform:
 
@@ -59,6 +59,8 @@ Application Live View uses this information to display the Spring Boot version t
       </executions>
     </plugin>
     ```
+
+### <a id="run-native-workload"></a>Run Native Workload
 
 1. Create a workload for the Spring Native application. For example:
 
