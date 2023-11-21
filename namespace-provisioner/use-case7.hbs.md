@@ -179,7 +179,7 @@ When fetching or pushing source code to a repository that requires credentials,
 it's essential to provide those credentials through a Kubernetes secret object referenced by
 the corresponding Kubernetes object created for the action. The following sections describes
 setting up Kubernetes secrets to securely pass these credentials to the relevant resources.
-This procedure provides the steps to onfigure the `default` service account to interact with Git repositories for workloads and supply chain using Namespace Provisioner.
+This procedure provides the steps to configure the `default` service account to interact with Git repositories for workloads and supply chain using Namespace Provisioner.
 
 Set up the service account to interact with Git repositories:
 
