@@ -504,7 +504,7 @@ docs.vmware.com is built.
           - [Customize default resources in Namespace Provisioner](namespace-provisioner/use-case4.hbs.md)
           - [Install multiple scanners in the developer namespace in Namespace Provisioner](namespace-provisioner/use-case5.hbs.md)
           - [Apply ScanTemplate overlays in air-gapped environments in Namespace Provisioner](namespace-provisioner/use-case6.hbs.md)
-          - [Work with Git repositories in air-gapped with Namespace Provisioner](namespace-provisioner/use-case7.hbs.md)
+          - [Work with Git repositories in air-gapped environments with Namespace Provisioner](namespace-provisioner/use-case7.hbs.md)
       - [Troubleshoot Namespace Provisioner](namespace-provisioner/troubleshooting.hbs.md)
       - [Reference](namespace-provisioner/reference.hbs.md)
           - [Known limitations and issues](namespace-provisioner/issues-limitations.hbs.md)
