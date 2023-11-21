@@ -3,7 +3,7 @@
 This topic describes how you can run Spring Native workloads within Tanzu Application Platform
 (commonly known as TAP).
 
-It provides information about how the Spring Boot convention server enhances Tanzu `PodIntents` with
+This topic tells you about how the Spring Boot convention server enhances Tanzu `PodIntents` with
 metadata, such as labels, annotations, or properties required to run native workloads in
 Tanzu Application Platform.
 
@@ -99,10 +99,9 @@ To run a native workload:
      native image-building.
 
    - The override configuration options at runtime provide AOT (Ahead-Of-Time) configuration to the
-     build process by using the `spring-boot.aot.jvmArguments` option.
-
-     For Gradle builds, the `spring-boot.aot.jvmArguments` is set as part of the
-     `BP_GRADLE_ADDITIONAL_BUILD_ARGUMENTS` build environment variable.
+     build process by using the `spring-boot.aot.jvmArguments` option. For Gradle builds, the
+     `spring-boot.aot.jvmArguments` is set as part of the `BP_GRADLE_ADDITIONAL_BUILD_ARGUMENTS`
+     build environment variable.
 
    These build environment parameters do not directly set the runtime values. The build environment
    parameters, provided as part of `spring-boot.aot.jvmArguments`, are only used as build-time
@@ -115,7 +114,6 @@ To run a native workload:
 
      The Spring Boot Conventions add the necessary and appropriate environment variables and labels
      to the workload’s `PodSpec` based on `apps.tanzu.vmware.com/auto-configure-actuators` flag.
-
      When the `apps.tanzu.vmware.com/auto-configure-actuators` is set to `true`, Spring Boot
      conventions adds the following environment variables to the native workload `PodSpec`:
 
@@ -190,8 +188,8 @@ To run a native workload:
             Value:  24s
       ```
 
-The Spring Boot conventions also set the Application Live View labels on the `PodSpec` to enable
-Application Live View.
+     The Spring Boot conventions also set the Application Live View labels on the `PodSpec` to enable
+     Application Live View.
 
 1. Verify the applied labels and annotations by running:
 
