@@ -156,7 +156,7 @@ To create an example Knative service and use it to test Knative Serving:
 
     On success, you see a reply from our mascot, Carl the Yeti.
 
-## Delete the Example Knative Service
+## <a id='delete-service'></a> Delete the Example Knative Service
 
 After verifying your serving installation, delete the example Knative service and unset the environment variable:
 

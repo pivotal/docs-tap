@@ -201,20 +201,17 @@ Use an existing supply chain
 
       `TDP-IMAGE-LOCATION` is the location of your Configurator image identified in earlier steps.
 
-  2. Submit your workload definition file that you created earlier by running:
+  2. Submit the workload definition file by running:
 
       ```console
       tanzu apps workload create -f tdp-workload.yaml
       ```
 
-     After the job finishes the Image Provider stage of your supply chain,
-     [run your customized Tanzu Developer Portal instance](running.hbs.md).
-
      The supply chain does not need to go beyond the image-provider stage. After an image is built,
      you can proceed to [run your customized Tanzu Developer Portal](running.hbs.md).
 
 Use a custom supply chain
-: To use an existing supply chain to build your custom portal, follow these steps.
+: To use a custom supply chain to build your custom portal, follow these steps.
   This method creates a custom supply chain for `workload-type: tdp` that encompasses only the steps
   necessary to build the customized image:
 
@@ -419,7 +416,7 @@ Use a custom supply chain
       - `IMAGE-REPOSITORY` is the name of the repository (folder) on the `REGISTRY-HOSTNAME` that you
         want to push built artifacts to.
 
-  2. Submit the custom supply chain file that you created earlier by running:
+  2. Submit the custom supply chain file by running:
 
      ```console
      kubectl apply -f tdp-sc.yaml
@@ -436,11 +433,11 @@ Use a custom supply chain
         labels:
           apps.tanzu.vmware.com/workload-type: tdp
           app.kubernetes.io/part-of: tdp-configurator-1-custom
-       spec:
-         build:
-           env:
-             - name: TPB_CONFIG_STRING
-               value: ENCODED-TDP-CONFIG-VALUE
+      spec:
+        build:
+          env:
+            - name: TPB_CONFIG_STRING
+              value: ENCODED-TDP-CONFIG-VALUE
       ```
 
       Where:
@@ -448,11 +445,11 @@ Use a custom supply chain
       - `DEVELOPER-NAMESPACE` is an appropriately configured developer namespace on the cluster
       - `ENCODED-TDP-CONFIG-VALUE` is the Base64-encoded value that you encoded earlier
 
-  4. Submit the workload definition file you created earlier by running:
+  4. Submit the workload definition file by running:
 
      ```console
      tanzu apps workload create -f tdp-workload.yaml
      ```
 
-After the job finishes the Image Provider stage of your supply chain,
-[run your customized Tanzu Developer Portal instance](running.hbs.md).
+     After the job finishes the Image Provider stage of your supply chain,
+     [run your customized Tanzu Developer Portal instance](running.hbs.md).

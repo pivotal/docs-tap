@@ -63,13 +63,13 @@ To configure an issuer for wildcard certificates:
   To perform these actions, cert-manager needs access to your DNS provider's API, which requires authentication using API keys, access tokens,
   or other credentials. See [Supported DNS01 providers](https://cert-manager.io/docs/configuration/acme/dns01/#supported-dns01-providers) in the cert-manager documentation.
 
-  >**Note** To test this feature, you can set `spec.acme.server` to https://acme-staging-v02.api.letsencrypt.org/directory.
+  >**Note** To test this feature, you can set `spec.acme.server` to `https://acme-staging-v02.api.letsencrypt.org/directory`.
   > This is the staging URL, which generates self-signed certificates. It is useful for testing without worrying about hitting quotas for your actual domain.
 
 1. Apply the file you saved in the previous section to your cluster:
 
   ```sh
-  kubectl apply -f issuer-wildcard.yaml`
+  kubectl apply -f issuer-wildcard.yaml
   ```
 
 ## <a id="use-wildcard-issuer"></a> Configure Cloud Native Runtimes to use wildcard certificates
