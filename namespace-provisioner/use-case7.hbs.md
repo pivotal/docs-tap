@@ -285,7 +285,7 @@ Set up the service account to interact with Git repositories:
       ```
 
 
-    Using `settings.xml` based authentication for Java applications
+    Using settings.xml based authentication for Java applications
     : If using user name and password for authentication.
        
        ```yaml
@@ -428,7 +428,7 @@ Set up the service account to interact with Git repositories:
 
 5. Create the workload:
 
-    Use HTTP/HTTPS or SSH-based
+    Using HTTP/HTTPS or SSH-based
     : If using user name and password for authentication.
 
       ```console
@@ -444,7 +444,7 @@ Set up the service account to interact with Git repositories:
       ```
 
 
-    Use `settings.xml` based authentication for Java applications
+    Using settings.xml based authentication for Java applications
     : If using user name and password for authentication.
 
       ```console
