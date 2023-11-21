@@ -171,7 +171,7 @@ Using GitOps
 After reconciliation, Namespace Provisioner creates:
 
 - [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace, exporting it to the Namespace Provisioner namespace, for example, `tap-install`
-- [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in the namespace provisioning namespace. This enables Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) to create the required secret, allowing the Namespace Provisioner to connect to the Git repository.
+- [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in the `tap-namespace-provisioning` namespace. This enables Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) to create the required secret, allowing the Namespace Provisioner to connect to the Git repository.
 
 ## <a id= 'git-auth-wl-sc'></a> Git authentication for workloads and supply chain
 
@@ -251,9 +251,9 @@ To set up the service account to interact with Git repositories:
     use the `data.values.imported` keys to add references to the values from the `git-auth` secret
     created in the previous step.
 
-    This secret represents the actual Git secret that is created by the Namespace Provisioner
+    This secret represents the Git secret that is created by the Namespace Provisioner
     in each managed namespace. It must be included in your Git repository linked in the
-    `additional_sources` section of `tap-values.yaml` mentioned in Step 4.
+    `additional_sources` section of `tap-values.yaml` mentioned in the next step.
 
     Using HTTP(s) based authentication
     : If using user name and password for authentication.
