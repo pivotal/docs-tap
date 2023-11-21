@@ -1,9 +1,7 @@
-# Deploy Spring Boot apps to Tanzu Application Platform as GraalVM native images
+# Run Spring Boot apps on Tanzu Application Platform as GraalVM native images
 
-This topic tells you how to configure Tanzu Application Platform to compile your Spring Boot
-application into a native executable file, run that native executable file on the platform, and
-enable Application Live View for your application.
-<!-- get reviewed -->
+This topic guides you through how to run Spring Boot applications on Tanzu Application Platform
+as native images using GraalVM, including the available options.
 
 ## <a id="you-will"></a>What you will do
 
@@ -13,10 +11,6 @@ enable Application Live View for your application.
 <!-- get reviewed -->
 
 ## <a id="introduction"></a>Introduction
-
-You are running Spring Boot applications on Tanzu Application Platform and you want to run them as
-native images using GraalVM? This documentation guides you through how to do this, including the
-available options.
 
 Running a native image has several advantages:
 
@@ -29,14 +23,14 @@ Running a native image has several advantages:
 ## <a id="spring-boot-3"></a>Requirements for your Spring Boot application
 
 To compile your Spring Boot applications into native images using GraalVM on Tanzu Application Platform,
-they have to use Spring Boot 3 and Java 17 as a minimum.
+they must use Spring Boot 3 and Java 17 as a minimum.
 VMware recommends that you use the latest version of Spring Boot 3. To learn more about turning your
 Spring Boot applications into GraalVM native images in general, see the
 [Spring Boot documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#native-image).
 
 Running Spring Boot applications as native images using GraalVM independent of Tanzu Application Platform
 might require some manual work to make your application work correctly when compiled to a native image.
-Changes go from avoiding use of patterns like Reflection to implementing compiler Hints.
+Changes go from avoiding use of patterns like reflection to implementing compiler hints.
 Therefore, VMware recommends that you make your application ready to run as a native image
 from the beginning and run extensive tests before trying to run them as native images on the platform.
 To confirm Spring Boot support for native testing, see the
