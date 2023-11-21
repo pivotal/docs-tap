@@ -1,7 +1,7 @@
 # Run Spring Boot apps on Tanzu Application Platform as GraalVM native images
 
 This topic guides you through configuring Tanzu Application Platform to compile your Spring Boot
-application into a native executable, running that native executable on the platform, and
+application into a native executable file, running that native executable file on the platform, and
 enabling Application Live View for your application.
 <!-- get reviewed -->
 
@@ -43,7 +43,7 @@ To confirm Spring Boot support for native testing, see the
 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/3.1.2/reference/htmlsingle/#native-image.testing.with-native-build-tools).
 
 If your application can run as native images in general, Tanzu Application Platform allows you
-to run your applications as native executables on the platform as well and will try to make it as
+to run your applications as native executable files on the platform as well and will try to make it as
 easy as possible over time. <!-- make what as easy as possible? -->
 But the platform is not a migration tool that enables your Spring Boot application itself to be ready
 for the GraalVM native image technology.
@@ -51,7 +51,7 @@ for the GraalVM native image technology.
 ## <a id="how-to"></a> Run your Spring Boot workload as a native image
 
 This section explains how to configure Tanzu Application Platform to compile your Spring Boot
-application into a native executable and how to run that native executable on the platform.
+application into a native executable file and how to run that native executable file on the platform.
 
 ### <a id="config-appside"></a> Configure the application side
 
@@ -209,7 +209,7 @@ The goal for future versions of the Spring Boot Convention is to improve this an
 
 The Application Live View component of Tanzu Application Platform is designed around the
 Spring Boot Actuator extension for Spring Boot and therefore also works for Spring Boot apps that are
-compiled to native executables.
+compiled to native executable files.
 
 However, due to current limits to automation, when building and running native images on
 Tanzu Application Platform, you must configure specific options when building and running your
