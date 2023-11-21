@@ -355,6 +355,16 @@ with the configured public key. Run:
     pod/cosign created (server dry run)
     ```
 
+    If you are using TKGs, you will need to add some overrides:
+    ```
+    $ kubectl run cosign \
+      --image=gcr.io/projectsigstore/cosign:v1.2.1 \
+      --overrides='{"spec": {"securityContext": {"seccompProfile": {"type": "RuntimeDefault"}}, "containers": [{"name": "cosign", "securityContext": {"allowPrivilegeEscalation": false, "runAsNonRoot": true, "capabilities": {"drop": ["ALL"]}}}]}}' \
+      --override-type strategic \
+      --dry-run=server
+    pod/cosign created (server dry run)
+    ```
+
 1. Verify that the Policy Controller rejects the unmatched image. Run:
 
     ```console
