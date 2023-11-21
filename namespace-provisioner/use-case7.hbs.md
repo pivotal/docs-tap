@@ -177,7 +177,7 @@ After reconciliation, Namespace Provisioner creates:
 
 When fetching or pushing source code to a repository that requires credentials,
 it's essential to provide those credentials through a Kubernetes secret object referenced by
-the corresponding Kubernetes object created for the action. The following sections describes
+the corresponding Kubernetes object created for the action. The following sections describe
 setting up Kubernetes secrets to securely pass these credentials to the relevant resources.
 This procedure provides the steps to configure the `default` service account to interact with Git repositories for workloads and supply chain using Namespace Provisioner.
 
@@ -243,7 +243,7 @@ Set up the service account to interact with Git repositories:
       EOF
       ```
 
-2. To create a secret to be added to the service account in the developer namespace in the GitOps repository, you can use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/git.yaml) for HTTP-based or this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/settings-xml.yaml) for `setings.xml`-based, or follow the provided example below.
+2. To create a secret to be added to the service account in the developer namespace in the GitOps repository, use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/git.yaml) for HTTP-based or this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/settings-xml.yaml) for `setings.xml`-based, or follow the example below.
 
     Rather than directly including the actual user name and password in the Git repository secret,
     use the `data.values.imported` keys to add references to the values from the `git-auth` secret
