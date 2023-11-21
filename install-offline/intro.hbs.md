@@ -20,7 +20,7 @@ clusters in an air-gapped environment:
 
 After installing Tanzu Application Platform on to your air-gapped cluster,
 you can start creating workloads that run in your air-gapped containers.
-For instructions, see:
 
-- [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md) for the Namespace Provisioner mode.
-- [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md) for the manual mode.
+For more information about the Namespace Provisioner mode, see [Work with Git repositories in air-gapped environments with Namespace Provisioner](../namespace-provisioner/use-case7.hbs.md).
+
+For more information about the manual mode, see [Deploy an air-gapped workload](../getting-started/air-gap-workload.hbs.md).
