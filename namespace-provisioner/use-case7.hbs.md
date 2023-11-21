@@ -1,15 +1,15 @@
 # Work with Git repositories in air-gapped environments with Namespace Provisioner
 
-This topic provides instructions for configuring the Namespace Provisioner to use air-gapped
+This topic provides instructions for configuring Namespace Provisioner to use air-gapped
 Git repositories. This allows you to store GitOps-based installation files and platform
-operator-templated resources intended for creation in your developer namespace within
+operator-templated resources intended for creation in your developer namespace in
 Tanzu Application Platform (TAP).
 
 ## <a id= 'git-auth'></a>Git authentication
 
 Authentication is established through a secret in the `tap-namespace-provisioning` namespace or
-an existing secret in another namespace referenced in the `secretRef` within `additional_sources`.
-For more information, see [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
+an existing secret in another namespace referenced in the `secretRef` in `additional_sources`.
+For more details, refer to [Customize Installation of Namespace Provisioner](customize-installation.hbs.md).
 
 ### Create the Git authentication secret in `tap-namespace-provisioning` namespace
 
@@ -115,7 +115,7 @@ If you already have a Git secret created in a namespace other than the `tap-name
 namespace and you want to refer to it, the `secretRef` section must include the namespace
 and the `create_export` flag. The default value for `create_export` is `false`,
 assuming the secret is already exported for the `tap-namespace-provisioning` namespace.
-However, you can specify if you want the Namespace Provisioner to create a Carvel `SecretExport`
+However, you can specify if you want Namespace Provisioner to create a Carvel `SecretExport`
 for that secret.
 
 In this example, the `secretRef` section refers to the `git-auth` secret from the `tap-install` namespace.
@@ -171,19 +171,18 @@ Using GitOps
 After reconciliation, Namespace Provisioner creates:
 
 - [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace, exporting it to the Namespace Provisioner namespace, for example, `tap-install`
-- [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in the `tap-namespace-provisioning` namespace. This enables Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) to create the required secret, allowing the Namespace Provisioner to connect to the Git repository.
+- [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in the `tap-namespace-provisioning` namespace. This enables Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) to create the required secret, allowing Namespace Provisioner to connect to the Git repository.
 
 ## <a id= 'git-auth-wl-sc'></a> Git authentication for workloads and supply chain
 
 When fetching or pushing source code to a repository that requires credentials,
 it's essential to provide those credentials through a Kubernetes secret object referenced by
-the corresponding Kubernetes object created for the action. The following sections provide details
-about setting up Kubernetes secrets to securely pass these credentials to the relevant resources.
+the corresponding Kubernetes object created for the action. The following sections describes
+setting up Kubernetes secrets to securely pass these credentials to the relevant resources.
+This procedure provides the steps to:
 
-This section provides the steps to configure the `default` service account to
-interact with Git repositories for workloads and supply chain using Namespace Provisioner.
-
-To set up the service account to interact with Git repositories:
+- Configure the `default` service account to interact with Git repositories for workloads and supply chain using Namespace Provisioner.
+- Set up the service account to interact with Git repositories.
 
 1. Create a secret in the `tap-install` namespace or any preferred namespace, containing Git credentials in YAML format.
 
@@ -245,7 +244,7 @@ To set up the service account to interact with Git repositories:
       EOF
       ```
 
-2. To create a secret to be added to the service account in the developer namespace within the GitOps repository, you can use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/git.yaml) for HTTP-based or this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/settings-xml.yaml) for `setings.xml`-based, or follow the provided example below.
+2. To create a secret to be added to the service account in the developer namespace in the GitOps repository, you can use this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/git.yaml) for HTTP-based or this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-airgap/resources/settings-xml.yaml) for `setings.xml`-based, or follow the provided example below.
 
     Rather than directly including the actual user name and password in the Git repository secret,
     use the `data.values.imported` keys to add references to the values from the `git-auth` secret
@@ -417,14 +416,13 @@ To set up the service account to interact with Git repositories:
   ```
 
   By providing this configuration, the supply chain associates the created `GitRepository`
-  resource with the specified Git secret managed by the Namespace Provisioner.
+  resource with the specified Git secret managed by Namespace Provisioner.
 
 5. Create the workload:
 
     Use HTTP/HTTPS or SSH-based
     : If using user name and password for authentication.
-    
-    
+
       ```console
       tanzu apps workload apply APP-NAME \
       --git-repo GIT-REPO \
@@ -439,8 +437,7 @@ To set up the service account to interact with Git repositories:
 
     Use `settings.xml` based authentication for Java applications
     : If using user name and password for authentication.
-    
-    
+
       ```console
       tanzu apps workload apply APP-NAME \
       --git-repo GIT_REPO \
@@ -449,7 +446,7 @@ To set up the service account to interact with Git repositories:
       --app APP-NAME \
       --label apps.tanzu.vmware.com/has-tests="true" \
       --namespace DEV-NAMESPACE \
-      --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' 
+      --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]'
       --tail \
       --yes
       ```
