@@ -250,6 +250,29 @@ To install Application Live View back end:
         configuration in your run cluster as listed in
         [Install Application Live View connector](#install-alv-connector).
 
+    - To disable TLS for Application Live View back end:
+
+      By default, Tanzu Application Platform installs and uses a self-signed CA as its ingress issuer for all components by default.
+      The `ingress_issuer` key consumes the value `shared.ingress_issuer` from `tap-values.yaml` by
+      default if you don't specify the `ingress_issuer` in `tap-values.yaml`. This will automatically enable TLS validation on Application Live View back end. 
+
+      To disable TLS validation on Application Live View back end:
+
+      While VMware does not recommend it, you can deactivate the ingress issuer by setting `shared.ingress_issuer: ""` in `tap-values.yaml`
+
+        ```yaml
+            shared: 
+              ingress_issuer: ""
+        ```
+
+      Alternatively, you can set the `ingress_issuer: ""` in `app-live-view-backend-values.yaml`  
+
+        ```yaml
+          ingressEnabled: true
+          ingress_issuer: ""
+        ```
+
+
 1. Install the Application Live View back end package by running:
 
     ```console
