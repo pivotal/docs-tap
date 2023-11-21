@@ -204,7 +204,7 @@ Use an existing supply chain
   2. Submit the workload definition file by running:
 
       ```console
-      tanzu apps workload create -f tdp-workload.yaml
+      kubectl apply -f tdp-workload.yaml
       ```
 
      The supply chain does not need to go beyond the image-provider stage. After an image is built,
