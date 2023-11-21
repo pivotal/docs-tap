@@ -1,6 +1,6 @@
 # Work with Git repositories in air-gapped environments with Namespace Provisioner
 
-This section provides instructions for configuring the Namespace Provisioner to use air-gapped
+This topic provides instructions for configuring the Namespace Provisioner to use air-gapped
 Git repositories. This allows you to store GitOps-based installation files and platform
 operator-templated resources intended for creation in your developer namespace within
 Tanzu Application Platform (TAP).
