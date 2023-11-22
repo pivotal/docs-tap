@@ -150,6 +150,8 @@ this using the following `build.spec` environment parameters:
 To set the actual runtime values, you can use the preceding settings in the `spec.env` parameters
 in the workload.
 
+#### <a id="example-workload-ni"></a> Example workload enabling native images
+
 The following is an example of a full `workload.yaml` file that enables native image support:
 
 ```yaml
@@ -199,9 +201,10 @@ workload for the platform, such as configuring the server port.
 The Spring Boot Convention does this by setting the `JAVA_TOOL_OPTIONS` environment variable and
 including various system property settings.
 
-Because the setting `JAVA_TOOL_OPTIONS` no longer works for native compiled Spring Boot applications,
+Because the setting `JAVA_TOOL_OPTIONS` doesn't work for native compiled Spring Boot applications,
 many of the configurations that the Spring Boot Convention applies don’t have any effect.
 This is why you must configure this manually using separate environment variables as described earlier.
+<!-- where earlier? get link -->
 
 The goal for future versions of the Spring Boot Convention is to have it automatically do much of
 the current manual work.
@@ -212,9 +215,9 @@ The Application Live View component of Tanzu Application Platform is designed ar
 Spring Boot Actuator extension for Spring Boot and therefore also works for Spring Boot apps that are
 compiled to native executable files.
 
-However, due to current limits to automation, when building and running native images on
-Tanzu Application Platform, you must configure specific options when building and running your
-Spring Boot apps as native images to enable Application Live View.
+However, due to current limits to automation, to enable Application Live View for your application
+you must configure specific options when building and running your Spring Boot apps as native images
+on Tanzu Application Platform.
 
 ### <a id="app-side-alv"></a> Configure the application side
 
@@ -253,13 +256,14 @@ Configure your application to include the actuator library:
 For an application to integrate with Application Live View:
 
 1. The application must declare the integration by either:
+    <!-- clarify -- is this enable the actuator auto config? -->
 
-    - the `apps.tanzu.vmware.com/auto-configure-actuators` [label](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
-    in the `workload.yaml` file.
+    - In the `workload.yaml` file, set the `apps.tanzu.vmware.com/auto-configure-actuators` label.
+      For more information, see [Workload-level configuration](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md#workload-config).
 
-    - enable the [platform level configuration](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md)
-    for actuator automatic configuration in the Spring Boot convention.
-     <!-- clarify -- is this set the actuator auto config to true? -->
+    - In the `tap-values.yaml` file, enable platform level configuration for actuator automatic
+      configuration in the Spring Boot convention. For more information, see
+      [Platform-level configuration](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md#platform-config).
 
 1. Configure additional runtime properties for Application Live View, which requires additional
    AOT (ahead-of-time) instrumentation at build time.
@@ -285,10 +289,12 @@ For an application to integrate with Application Live View:
         value: "8080"
     ```
 
-Also similar to general native image workloads, runtime configuration is also provided through the
-use of environment variables.
+    Also similar to general native image workloads, runtime configuration is also provided through the
+    use of environment variables.
 
-The following is an example of a full `workload.yaml` file that enabled both native image compilation
+#### <a id="example-workload-alv"></a> Example workload enabling Application Live View
+
+The following is an example of a full `workload.yaml` file that enables both native image compilation
 and integration with Application Live View:
 
 ```yaml
@@ -355,7 +361,8 @@ with a specific label to enable the Application Live View feature for the worklo
 
 ### <a id="register-in-ui"></a> Register the app in the UI
 
-The previous steps help App Live View to detect your app, but it still won’t show in the UI.
+The previous steps help Application Live View to detect your app, but it still won’t show in the UI
+until you register the app.
 
 To register the app in the UI, you must:
 
