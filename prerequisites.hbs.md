@@ -98,7 +98,7 @@ providers:
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
     control plane is resized after traffic increases. Users can mitigate this by creating a
     regional cluster with three control-plane nodes right from the start.
-- Red Hat OpenShift Container Platform v4.13.
+- Red Hat OpenShift Container Platform v4.13 and v4.14
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
