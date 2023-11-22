@@ -177,3 +177,13 @@ To override the default settings and customize the probes at a cluster level:
            port: 8080
            scheme: HTTP
    ```
+
+## <a id='additional-paths'></a> Setting additional paths for the probes
+
+The Spring Boot convention automatically sets the `management.endpoint.health.probes.add-additional-paths` to true as long as the Spring Boot application is >= v2.6.0. For any versions below v2.6.0, the property `management.endpoint.health.probes.add-additional-paths` is not supported. 
+
+The `spring-boot-actuator-probes` convention in Spring Boot conventions sets the Liveness, Readiness and Startup probe endpoints to `/livez`, `/readyz` and `readyz` respectively. These endpoints will act as additional endpoint paths on the actuator probes.
+
+For example, when we run `https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/livez` to check the liveness probe, we can check the health of the application. This helps us evaluate whether an application that is running in a container is in a healthy state or not.
+
+Similarly, when running `https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/readyz` to check the readiness probe and startup probe, we can evaluate application is ready to receive traffic and whether the application has started up properly.
