@@ -102,19 +102,7 @@ providers:
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
-- vSphere with Tanzu v8.0.1c or later and Tanzu Application Platform v1.6.2 or later.
-    - For vSphere with Tanzu, you must configure the pod security policies so the
-    Tanzu Application Platform controller pods can run as root.
-    For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
-
-        To set the pod security policies, run:
-
-        ```console
-        kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
-        ```
-
-        For more information about the pod security policies on Tanzu for vSphere,
-        see the [VMware vSphere documentation](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-3B7F5B44-E31D-4819-B166-C531D4ECAE7D.html).
+- vSphere with Tanzu v8.0.2 or later and Tanzu Application Platform v1.7.1 or later.
 
 For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).
 
