@@ -22,7 +22,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
 
 1. [Install Supply Chain Choreographer](install-scc.md).
 
-1. [Install Out of the Box Delivery Basic](install-ootb-sc-basic.md).
+1. [Install Out of the Box Delivery Basic](install-ootb-delivery-basic.hbs.md).
 
 1. [Install Tekton Pipelines](../tekton/install-tekton.md).
 
@@ -37,12 +37,12 @@ To install Out of the Box Supply Chain with Testing and Scanning:
         tanzu package installed list --namespace tap-install
         ```
 
-    1. Verify `ootb-supply-chain-testing` is in the output:
+    1. Inspect to determine if `ootb-supply-chain-testing` is in the output:
 
         ```console
         NAME                                PACKAGE-NAME
         ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
-        ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
+        ootb-supply-chain-testing           ootb-supply-chain-testing.tanzu.vmware.com
         ootb-templates                      ootb-templates.tanzu.vmware.com
         ```
 
