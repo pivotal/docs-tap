@@ -13,7 +13,7 @@ app instances so that Application Live View can access the actuator data from th
 
 >**Note** Application Live View conventions now supports only Steeltoe applications. Spring Boot conventions supports both Spring Boot and Spring Cloud Gateway applications. For more information about Spring Boot conventions, see [Enable Application Live View with Spring Boot apps](../../spring-boot-conventions/enabling-app-live-view.hbs.md)
 
-To run Application Live View with Steeltoe apps, the Spring Boot convention recognizes PodIntents and adds the following metadata labels:
+To run Application Live View with Steeltoe apps, the Application Live View convention recognizes PodIntents and adds the following metadata labels:
 
 - `tanzu.app.live.view: "true"`: Enables the connector to observe application pod.
 - `tanzu.app.live.view.application.name: APPLICATION-NAME`: Identifies the app name to be used internally by Application Live View.
