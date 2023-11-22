@@ -1,13 +1,13 @@
 # Enable Spring Native apps for Application Live View
 
-This topic describes how you can run Spring Native workloads within Tanzu Application Platform
+This topic tells you how to run Spring Native workloads within Tanzu Application Platform
 (commonly known as TAP).
 
-This topic tells you about how the Spring Boot convention server enhances Tanzu `PodIntents` with
-metadata, such as labels, annotations, or properties required to run native workloads in
-Tanzu Application Platform.
+This topic describes how the Spring Boot convention server enhances Tanzu `PodIntents` with
+metadata. This metadata can include labels, annotations, or properties required to run native
+workloads in Tanzu Application Platform.
 
-This metadata allows Application Live View to discover and register the app instances so that
+The metadata enables Application Live View to discover and register the app instances so that
 Application Live View can access the actuator data from those workloads.
 
 ## <a id="native-app-config"></a> Configure a Spring Native application
@@ -75,7 +75,7 @@ To run a native workload:
 1. Create a workload for the Spring Native application. For example:
 
    ```console
-   tanzu apps workload create spring-cloud-serverless \
+   $ tanzu apps workload create spring-cloud-serverless \
    --git-repo https://github.com/vudayani-vmw/spring-cloud-serverless --git-branch main \
    --type web --label apps.tanzu.vmware.com/auto-configure-actuators=true \
    --label app.kubernetes.io/part-of=spring-cloud-serverless --yes \
@@ -108,14 +108,14 @@ To run a native workload:
    signals. These signals indicate to generate code that allows configuration options to be set at
    runtime.
 
-   There are two primary ways to override the configuration at runtime:
+   There are two ways to override the configuration at runtime:
 
-   - **(Default) automatic configuration by Spring Boot Conventions:**
+   - **(Default) Automatic configuration by Spring Boot conventions:**
 
-     The Spring Boot Conventions add the necessary and appropriate environment variables and labels
-     to the workload’s `PodSpec` based on `apps.tanzu.vmware.com/auto-configure-actuators` flag.
-     When the `apps.tanzu.vmware.com/auto-configure-actuators` is set to `true`, Spring Boot
-     conventions adds the following environment variables to the native workload `PodSpec`:
+     The Spring Boot conventions add the necessary environment variables and labels to the workload
+     `PodSpec` based on the `apps.tanzu.vmware.com/auto-configure-actuators` flag. When the
+     `apps.tanzu.vmware.com/auto-configure-actuators` is set to `true`, Spring Boot conventions adds
+     the following environment variables to the native workload `PodSpec`:
 
       ```console
       Spec:
@@ -141,9 +141,9 @@ To run a native workload:
 
    - **Manual override by using environment variables:**
 
-     The users have the option to manually override runtime configuration settings by providing
-     environment variables. To customize the configuration, set the relevant environment variables
-     according to your requirements.
+     You can manually override runtime configuration settings by providing environment variables. To
+     customize the configuration, set the relevant environment variables in accordance with your
+     requirements.
 
      The following example overrides `MANAGEMENT_SERVER_PORT` as `8088`, and it overrides
      `SERVER_PORT` as `8082`.
@@ -191,7 +191,7 @@ To run a native workload:
      The Spring Boot conventions also set the Application Live View labels on the `PodSpec` to enable
      Application Live View.
 
-1. Verify the applied labels and annotations by running:
+2. Verify the applied labels and annotations by running:
 
    ```console
    kubectl get podintents.conventions.carto.run WORKLOAD-NAME -o yaml
