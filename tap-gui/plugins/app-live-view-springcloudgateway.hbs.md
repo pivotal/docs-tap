@@ -24,7 +24,7 @@ requests.
 It also provides an **auto refresh** feature to get the updated results.
 These metrics are depicted in a line graph.
 
-![API Overview Page in the UI. Numbers for route count, successes, errors, and rate-limited requests are at the top. A line graph is at the bottom.](images/api-overview.png)
+![API Overview Page. Numbers for route count, successes, errors, and rate-limited requests are at the top. A line graph is at the bottom.](images/api-overview.png)
 
 ## <a id="api-auth-by-path-page"></a> API Authentications By Path page
 

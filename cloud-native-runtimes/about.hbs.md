@@ -28,12 +28,12 @@ CNRs uses Knative Serving to provide:
 
 Cloud Native Runtimes increases administrator control and support.
 
-| Administrators can:                                          |
-|--------------------------------------------------------------|
-| Manage infrastructure costs with request driven autoscaling  |
-| Test deployments with traffic splitting by code version      |
-| Use Carvel command tools to simplify deployment              |
-| Receive Enterprise Support when they need it                 |
+Administrators can:  
+
+- Manage infrastructure costs with request driven autoscaling
+- Test deployments with traffic splitting by code version
+- Use Carvel command tools to simplify deployment
+- Receive Enterprise Support when they need it
 
 Cloud Native Runtimes works well with these use cases:
 

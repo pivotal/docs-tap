@@ -16,6 +16,6 @@ See [Integrating Azure Active Directory](azure-ad.html) for Azure Active Directo
 
 For Tanzu Kubernetes Grid clusters, Pinniped is the default identity solution and is installed as a
 core package. For more information, see
-[Core Packages](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-core-index.html) and
-[Enable Identity Management in an Existing Deployment](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-enable-identity-management.html)
+[Core Packages](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/2/about-tkg/packages-index.html#auto) and
+[Enable Identity Management in an Existing Deployment](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/2.4/tkg-deploy-mc/mgmt-iam-configure-id-mgmt.html)
 in the Tanzu Kubernetes Grid documentation.

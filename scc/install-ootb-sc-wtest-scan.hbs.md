@@ -14,17 +14,19 @@ instance that:
 - Performs validations in terms of running application tests.
 - Scans the source code and image for vulnerabilities.
 
-
-## <a id='ootb-sc-test-scan-prereqs'></a> Prerequisites
-
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install cartographer. For more information, see [Install Supply Chain Choreographer](install-scc.md).
-- Install [Out of the Box Delivery Basic](install-ootb-sc-basic.md)
-- Install [Out of the Box Templates](install-ootb-templates.md)
-
 ## <a id='ins-ootb-sc-test-scan'></a> Install
 
 To install Out of the Box Supply Chain with Testing and Scanning:
+
+1. Complete all [prerequisites](../prerequisites.md) to install Tanzu Application Platform.
+
+1. [Install Supply Chain Choreographer](install-scc.md).
+
+1. [Install Out of the Box Delivery Basic](install-ootb-delivery-basic.hbs.md).
+
+1. [Install Tekton Pipelines](../tekton/install-tekton.md).
+
+1. [Install Out of the Box Templates](install-ootb-templates.md).
 
 1. Ensure you do not have Out of The Box Supply Chain With Testing
 (`ootb-supply-chain-testing.tanzu.vmware.com`) installed:
@@ -35,12 +37,12 @@ To install Out of the Box Supply Chain with Testing and Scanning:
         tanzu package installed list --namespace tap-install
         ```
 
-    1. Verify `ootb-supply-chain-testing` is in the output:
+    1. Inspect to determine if `ootb-supply-chain-testing` is in the output:
 
         ```console
         NAME                                PACKAGE-NAME
         ootb-delivery-basic                 ootb-delivery-basic.tanzu.vmware.com
-        ootb-supply-chain-basic             ootb-supply-chain-basic.tanzu.vmware.com
+        ootb-supply-chain-testing           ootb-supply-chain-testing.tanzu.vmware.com
         ootb-templates                      ootb-templates.tanzu.vmware.com
         ```
 

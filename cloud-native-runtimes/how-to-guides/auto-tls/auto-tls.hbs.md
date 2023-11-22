@@ -27,8 +27,7 @@ in Tanzu Application Platform specifies the ingress issuer and it refers to a `c
 By default, the ingress issuer is self-signed and has limits. For more information about
 the shared ingress issuer, see the following Tanzu Application Platform documentation:
 
-- [Ingress certificates](../../../security-and-compliance/tls-and-certificates/ingress/about.hbs.md)
-- [Shared ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md)
+- [Secure exposed ingress endpoints in Tanzu Application Platform](../../../security-and-compliance/issuer.hbs.md)
 
 The following TLS features are in Cloud Native Runtimes by default:
 
@@ -58,7 +57,7 @@ There are a few ways to customize TLS configuration in Cloud Native Runtimes:
 
 You have the flexibility to replace Tanzu Application Platform's default ingress issuer with any other `certificate authority`
 that is [compliant with cert-manager ClusterIssuer](https://cert-manager.io/docs/configuration/). For information about how to replace the default ingress issuer, see
-[Replacing the default ingress issuer](../../../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md#replace).
+[Replacing the default ingress issuer](../../../security-and-compliance/issuer.hbs.md#replace).
 
 Cloud Native Runtimes uses the issuer specified by the `shared.ingress_issuer` configuration value to issue certificates
 for your workload automatically.

@@ -37,6 +37,11 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
+
+- Updates Universal Crossplane to v1.14.1-up.1. For more information, see the
+  [Upbound blog](https://blog.crossplane.io/crossplane-v1-14/).
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes

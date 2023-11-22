@@ -818,6 +818,7 @@ You must adhere to the following identity token mapping constraints:
 - The value of `claims.fromUpstream` is case-insensitive for LDAP identity providers, and is case-sensitive
   for OpenID and SAML identity providers.
 - `idToken.claims.toClaim` is case-sensitive.
+- Application Single Sign-On collects claims only from the upstream `id_token` and, for OpenID identity providers, from the `userinfo` endpoint defined in `.openID.userinfoUri`.
 - Reserved claims can not be mapped to. Reserved claims are listed as follows:
 
     | Reserved Claim Names |
