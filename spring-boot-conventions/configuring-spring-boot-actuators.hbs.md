@@ -10,11 +10,10 @@ Developers can add a label to their workloads to activate or deactivate the auto
 of actuators. By default, all existing and future accelerator projects are configured to activate
 automatic configuration on the workload level.
 
-To activate or deactivate the automatic configuration of actuators at the workload level, follow these
-steps:
+To activate or deactivate the automatic configuration of actuators at the workload level:
 
-1. To activate automatic configuration of actuators, set the following label to `true` in your
-   workload YAML:
+- To activate automatic configuration of actuators, set the following label to `true` in your
+  workload YAML:
 
     `apps.tanzu.vmware.com/auto-configure-actuators: "true"`
 
@@ -31,8 +30,8 @@ steps:
     - Label on the PodIntent is set as `tanzu.app.live.view.application.actuator: actuator`.
     - Label on the PodIntent is set as `tanzu.app.live.view.application.actuator.port: 8081`.
 
-1. To deactivate automatic configuration of actuators, set the following label to `false` in your
-   workload YAML:
+- To deactivate automatic configuration of actuators, set the following label to `false` in your
+  workload YAML:
 
     `apps.tanzu.vmware.com/auto-configure-actuators: "false"`
 
@@ -67,18 +66,17 @@ individual workloads, you can set a global setting for the platform instead.
 This setting is taken into account ONLY when there is no specific `auto-configure-actuators` setting
 on the individual workload.
 
-To activate or deactivate the automatic configuration of actuators at a global level, follow these
-steps:
+To activate or deactivate the automatic configuration of actuators at a global level:
 
-1. When you install Spring Boot conventions, you can provide an entry in the `values.yaml` file to
-   activate automatic configuration. For example:
+- To activate the automatic configuration, when you install Spring Boot conventions, provide an
+  entry in the `values.yaml` file. For example:
 
     ```yaml
     springboot_conventions:
       autoConfigureActuators: true
     ```
 
-1. To deactivate the automatic configuration, you can provide the following entry:
+- To deactivate the automatic configuration, you can provide the following entry:
 
     ```yaml
     springboot_conventions:
