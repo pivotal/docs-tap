@@ -21,7 +21,7 @@ cluster versions for Tanzu Application Platform v{{ vars.url_version }}.
   </tr>
   <tr>
     <td>OpenShift</td>
-    <td>v4.13</td>
+    <td>v4.13, v4.14</td>
   </tr>
   <tr>
     <td>Azure Kubernetes Service</td>
