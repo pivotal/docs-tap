@@ -200,56 +200,52 @@ version of Tanzu Application Platform.
 
 > **Note** When Tanzu Application Platform is upgraded, new dependencies are installed which might cause workload images to rebuild.
 
-### <a id="upgrade"></a> Upgrade Buildpacks between Tanzu Application Platform releases
+### <a id="upgrade"></a> (Optional) Update buildpacks between Tanzu Application Platform releases
 
-While updating buildpack dependencies outside of upgrades to Tanzu Application Platform is possible,
-VMware recommends upgrading Tanzu Application Platform to consume new build dependencies.
+You can update buildpack dependencies outside of upgrading Tanzu Application Platform, but
+VMware recommends that you simply upgrade Tanzu Application Platform when possible instead.
 
-Before you begin:  Sign into [VMware Tanzu Network](https://network.tanzu.vmware.com/) so that
+1. Sign into [VMware Tanzu Network](https://network.tanzu.vmware.com/) so that
 the image can be retrieved from the registry.
 
-1. Use the links
-provided in the [Language Family Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html) page in the Tanzu Buildpacks documentation to locate the buildpack
-image URL on VMware Tanzu Network. Select `tanzu-buildpacks/<LANGUAGE-FAMILY>` for `full`
-dependencies, or `tanzu-buildpacks/<LANGUAGE-FAMILY>-lite`  for `lite` dependencies. Scroll to the
-Docker command at the bottom, and copy the buildpack image URL for use in the next step.
+1. Select the required buildpack in the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html). Select `full` or `lite` dependencies. Scroll to the Docker command, and copy the buildpack image URL for use in the next step.
 
-1. Relocate the buildpack image using imgpkg copy:
+1. Run:
 
     ```console
-    imgpkg copy -b <BUILDPACK-IMAGE-URL> --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/<BUILDPACK LANGUAGE>
+    imgpkg copy -b BUILDPACK-IMAGE-URL --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/BUILDPACK-LANGUAGE
     ```
 
     Where `BUILDPACK-IMAGE-URL` is the buildpack image URL copied from the Docker command in the previous step
 
-1. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
+2. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
 
     ```console
     apiVersion: kpack.io/v1alpha2
     kind: ClusterBuildpack
     metadata:
-      name: out-of-band-<LANGUAGE-NAME>-<BUILDPACK-VERSION>
+      name: out-of-band-LANGUAGE-NAME-BUILDPACK-VERSION
     spec:
-      image: <RELOCATED-BUILDPACKIMAGE>
+      image: RELOCATED-BUILDPACKIMAGE
       serviceAccountRef:
         name: dependencies-pull-serviceaccount
         namespace: build-service
     ```
 
-    Where `RELOCATED-BUILDPACKIMAGE` is the URL of relocated buildpack image from previous step.
+    Where `RELOCATED-BUILDPACKIMAGE` is the URL of the relocated buildpack image from previous step.
 
     To avoid naming collisions, follow the name conventions specified in `metadata.name`. The name
     can follow any convention that allows the Cluster Operator to distinguish this `ClusterBuildpack`
     from others installed by Tanzu Application Platform.
 
-1. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
+3. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
 
     ```console
-    kubectl apply -f <FILE-FROM-PREVIOUS-STEP>
+    kubectl apply -f FILE-FROM-PREVIOUS-STEP
     ```
 
-The ClusterBuildpack is now deployed. Tanzu Build Service uses the latest
-available version to execute builds. All images that were built with older versions of the buildpack
+The `ClusterBuildpack` is now deployed. Tanzu Build Service uses the latest
+available version to run builds. All images that were built with older versions of the buildpack
 will now be rebuilt.
 
 When you upgrade Tanzu Application Platform, new buildpacks with later versions are installed.
