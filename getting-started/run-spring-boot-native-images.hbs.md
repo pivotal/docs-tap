@@ -39,7 +39,8 @@ To confirm Spring Boot support for native testing, see the
 
 If your application can run as native images in general, Tanzu Application Platform allows you
 to run your applications as native executable files on the platform as well and tries to make it as
-easy as possible over time. <!-- clarify -- make what as easy as possible? -->
+easy as possible over time.
+<!-- clarify -- make what as easy as possible? -->
 But the platform is not a migration tool that enables your Spring Boot application itself to be ready
 for the GraalVM native image technology. <!-- clarify? -->
 
@@ -50,13 +51,13 @@ application into a native executable file and how to run that native executable 
 
 ### <a id="config-appside"></a> Configure the application side
 
-You can use the usual process for developing and testing workloads that support native images for
-your application.
-<!-- what is this process? -->
+For your application, you can use the usual process for developing and testing workloads that support
+native images.
+<!-- clarify -- what is this process? -->
 
 For general information about native image support, see the [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html).
 
-Take note of the inclusion of the GraalVM native plug-in in your Maven POM or Gradle build file.
+Take note of the inclusion of the GraalVM native plug-in in your Maven POM file or Gradle build file.
 <!-- are you supposed to include this in your build file or do you just need to record something that's already there -->
 
 - Example for Maven:
@@ -92,7 +93,7 @@ To enable a native build, configure the buildpack to perform the native compilat
 You might also need to enable the native profile (mainly for Maven/Spring Boot 3.x projects).
 <!-- would you have to do this for anything other than Maven/Spring Boot 3.x projects -->
 
-These settings are configured using the `spec.build` environment parameters in the workload.
+You configure these settings using the `spec.build` environment parameters in the workload.
 The following example works for all use cases.
 <!-- does the "example" refer to just the code snippet L103-L116 or does it refer to this whole section? -->
 If you are using Gradle, remove the additional Maven build arguments.
@@ -116,24 +117,26 @@ spec:
 
 Because native images implement a closed world philosophy, you cannot set configuration at runtime
 deterministically. As a consequence, the Spring Boot Convention cannot automatically set options for
-native images for running the application in an optimal way on the platform.
+native images to optimize running the application on the platform.
 However, the `tanzu-java-web-app` Tanzu Application Platform accelerator provides a good updated reference.
+<!-- clarify previous sentence -->
 
 The most important elements from the configuration are `BP_JVM_VERSION`, `BP_NATIVE_IMAGE` and `BP_MAVEN_BUILD_ARGUMENTS`.
 They provide the instructions for buildpacks to `init` the native compilation.
-Without these, a normal JVM compilation to generate a regular JAR file occurs.
+Without these, a normal Java virtual machine (JVM) compilation to generate a regular JAR file occurs.
 
 The `BP_JVM_VERSION` configures buildpacks to use a JDK 17, because Spring Boot 3.x requires
 a JDK 17 as a minimum.
 
 > **Note** Values used at build time do not specify the values that will be used at runtime.
-> If you provide build time instrumentation, it only **enables** configuration to be set at runtime.
+> If you provide build time instrumentation, it only enables configuration to be set at runtime.
 > You must provide runtime values separately.
 
 Depending on the app type, such as web, server, or worker, different methods for monitoring the
 health of the application are employed that might require configuring certain runtime parameters.
-For applications that do not need auto configured actuators, you can generically achieve this using
-the following `build.spec` environment parameters:
+For applications that do not need automatically configured actuators, you can generically achieve
+this using the following `build.spec` environment parameters:
+<!-- clarify above paragraph -->
 
 ```yaml
  - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS
@@ -147,7 +150,7 @@ the following `build.spec` environment parameters:
 To set the actual runtime values, you can use the preceding settings in the `spec.env` parameters
 in the workload.
 
-The following is an example of a full `workload.yaml` file enabling native image support.
+The following is an example of a full `workload.yaml` file that enables native image support:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
