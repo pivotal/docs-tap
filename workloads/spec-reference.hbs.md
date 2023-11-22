@@ -231,8 +231,7 @@ Parameters:
       <p alignment ="left">
       - name: testing_pipeline_params<br>
         value:<br>
-        - name: verbose<br>
-          value: true<br>
+          verbose: true
       </p>
     </td>
   </tr>
