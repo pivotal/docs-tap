@@ -116,7 +116,7 @@ To override the default settings and customize the probes at a cluster level:
    For example:
 
    ```console
-   tanzu package installed get spring-boot-conventions -n tap-install
+   $ tanzu package installed get spring-boot-conventions -n tap-install
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
@@ -132,7 +132,7 @@ To override the default settings and customize the probes at a cluster level:
    Spring Boot and Spring Native workloads.
 
 5. Verify the `PodIntent` of your workload by ensuring that `spec.containers.livenessProbe` shows the
-   overridden configuration values propagated through the Spring Boot conventions
+   overridden configuration values propagated through the Spring Boot conventions:
 
    ```console
    kubectl get podintents.conventions.carto.run tanzu-java-web-app -o yaml
@@ -180,10 +180,21 @@ To override the default settings and customize the probes at a cluster level:
 
 ## <a id='additional-paths'></a> Setting additional paths for the probes
 
-The Spring Boot convention automatically sets the `management.endpoint.health.probes.add-additional-paths` to true as long as the Spring Boot application is >= v2.6.0. For any versions below v2.6.0, the property `management.endpoint.health.probes.add-additional-paths` is not supported. 
+The Spring Boot convention automatically sets
+`management.endpoint.health.probes.add-additional-paths` to `true` if the Spring Boot application is
+v2.6.0 or later. For any versions earlier than v2.6.0,
+`management.endpoint.health.probes.add-additional-paths` is not supported.
 
-The `spring-boot-actuator-probes` convention in Spring Boot conventions sets the Liveness, Readiness and Startup probe endpoints to `/livez`, `/readyz` and `readyz` respectively. These endpoints will act as additional endpoint paths on the actuator probes.
+The `spring-boot-actuator-probes` convention in Spring Boot conventions sets the liveness,
+readiness, and startup probe endpoints to `/livez`, `/readyz`, and `readyz` respectively. These
+endpoints act as additional endpoint paths on the actuator probes.
 
-For example, when we run `https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/livez` to check the liveness probe, we can check the health of the application. This helps us evaluate whether an application that is running in a container is in a healthy state or not.
+For example, when you run
+`https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/livez` to monitor the
+liveness probe, you can view the health of the application. This helps you evaluate whether an
+application that is running in a container is in a healthy state.
 
-Similarly, when running `https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/readyz` to check the readiness probe and startup probe, we can evaluate application is ready to receive traffic and whether the application has started up properly.
+Similarly, when running
+`https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/readyz` to view the
+readiness probe and the startup probe, you can evaluate whether the application is ready to receive
+traffic and whether the application has started up properly.
