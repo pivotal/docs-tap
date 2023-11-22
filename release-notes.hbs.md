@@ -54,9 +54,10 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-7-1-COMPONENT-NAME-ri'></a> v1.7.1 Resolved issues: COMPONENT-NAME
+#### <a id='1-7-1-tap-ki'></a> v1.7.1 Resolved issues: Tanzu Application Platform
 
-- Resolved issue description.
+- Tanzu Application Platform v1.7.1 is supported with Tanzu Kubernetes releases (TKR) v1.26.5 on
+  vSphere with Tanzu v8.
 
 ---
 
@@ -1239,6 +1240,11 @@ The following issues, listed by component and area, are resolved in this release
 ### <a id='1-7-0-known-issues'></a> v1.7.0 Known issues
 
 This release has the following known issues, listed by component and area.
+
+#### <a id='1-7-0-tap-ki'></a> v1.7.0 Known issues: Tanzu Application Platform
+
+- Tanzu Application Platform v1.7.0 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5 on
+  vSphere with Tanzu v8.
 
 #### <a id='1-7-0-api-autoreg-ki'></a> v1.7.0 Known issues: API Auto Registration
 
