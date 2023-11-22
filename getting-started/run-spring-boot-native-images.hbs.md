@@ -30,17 +30,18 @@ Spring Boot applications into GraalVM native images in general, see the
 
 Running Spring Boot applications as native images using GraalVM independent of Tanzu Application Platform
 might require some manual work to make your application work correctly when compiled to a native image.
-Changes go from avoiding use of patterns like reflection to implementing compiler hints.
+Changes to your application include avoiding the use of patterns such as reflection and implementing
+compiler hints.
 Therefore, VMware recommends that you make your application ready to run as a native image
 from the beginning and run extensive tests before trying to run them as native images on the platform.
 To confirm Spring Boot support for native testing, see the
 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/3.1.2/reference/htmlsingle/#native-image.testing.with-native-build-tools).
 
 If your application can run as native images in general, Tanzu Application Platform allows you
-to run your applications as native executable files on the platform as well and will try to make it as
-easy as possible over time. <!-- make what as easy as possible? -->
+to run your applications as native executable files on the platform as well and tries to make it as
+easy as possible over time. <!-- clarify -- make what as easy as possible? -->
 But the platform is not a migration tool that enables your Spring Boot application itself to be ready
-for the GraalVM native image technology.
+for the GraalVM native image technology. <!-- clarify? -->
 
 ## <a id="how-to"></a> Run your Spring Boot workload as a native image
 
@@ -51,12 +52,12 @@ application into a native executable file and how to run that native executable 
 
 You can use the usual process for developing and testing workloads that support native images for
 your application.
+<!-- what is this process? -->
 
 For general information about native image support, see the [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html).
 
 Take note of the inclusion of the GraalVM native plug-in in your Maven POM or Gradle build file.
-<!-- are you supposed to include this in your build file or do you just need to record something
-that's already there -->
+<!-- are you supposed to include this in your build file or do you just need to record something that's already there -->
 
 - Example for Maven:
 
@@ -88,12 +89,13 @@ that's already there -->
 ### <a id="config-workload"></a> Configure the workload
 
 To enable a native build, configure the buildpack to perform the native compilation step.
-Additionally, the native profile might also need to be enabled (mainly for Maven/Spring Boot 3.x projects).
+You might also need to enable the native profile (mainly for Maven/Spring Boot 3.x projects).
 <!-- would you have to do this for anything other than Maven/Spring Boot 3.x projects -->
 
-These settings are configured using the workload’s `spec.build` environment parameters.
+These settings are configured using the `spec.build` environment parameters in the workload.
 The following example works for all use cases.
-Remove the additional Maven build arguments if you are using Gradle.
+<!-- does the "example" refer to just the code snippet L103-L116 or does it refer to this whole section? -->
+If you are using Gradle, remove the additional Maven build arguments.
 
 The following is the full `spec.build` configuration:
 
@@ -113,25 +115,25 @@ spec:
 ```
 
 Because native images implement a closed world philosophy, you cannot set configuration at runtime
-deterministically. As a consequence, options for running the application in an optimal way on the
-platform cannot be set automatically by the Spring Boot Convention anymore for native images.
+deterministically. As a consequence, the Spring Boot Convention cannot automatically set options for
+native images for running the application in an optimal way on the platform.
 However, the `tanzu-java-web-app` Tanzu Application Platform accelerator provides a good updated reference.
 
 The most important elements from the configuration are `BP_JVM_VERSION`, `BP_NATIVE_IMAGE` and `BP_MAVEN_BUILD_ARGUMENTS`.
-They provide the instructions for buildpacks to init the native compilation.
-Without these, a normal JVM compilation to generate a regular JAR will occur.
+They provide the instructions for buildpacks to `init` the native compilation.
+Without these, a normal JVM compilation to generate a regular JAR file occurs.
 
-The `BP_JVM_VERSION` is used to configure buildpacks to use a JDK 17, because Spring Boot 3.x requires
+The `BP_JVM_VERSION` configures buildpacks to use a JDK 17, because Spring Boot 3.x requires
 a JDK 17 as a minimum.
 
->**Note** Values used at build time do not specify the values that will be used at runtime.
->If you provide build time instrumentation, it only **enables** configuration to be set at runtime.
->Runtime values still need to be provided separately.
+> **Note** Values used at build time do not specify the values that will be used at runtime.
+> If you provide build time instrumentation, it only **enables** configuration to be set at runtime.
+> You must provide runtime values separately.
 
-Depending on the app type (web, server, worker, etc), different methods for monitoring the health of
-the application are employed which might require configuring certain runtime parameters.
-For applications that do not need auto configured actuators, this can be
-generically achieved using the following build.spec environment parameters:
+Depending on the app type, such as web, server, or worker, different methods for monitoring the
+health of the application are employed that might require configuring certain runtime parameters.
+For applications that do not need auto configured actuators, you can generically achieve this using
+the following `build.spec` environment parameters:
 
 ```yaml
  - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS
@@ -142,7 +144,8 @@ generically achieved using the following build.spec environment parameters:
          value: "8080"
 ```
 
-To set the actual runtime values, the same setting above can be used in the workload’s `spec.env` parameters.
+To set the actual runtime values, you can use the preceding settings in the `spec.env` parameters
+in the workload.
 
 The following is an example of a full `workload.yaml` file enabling native image support.
 
@@ -193,11 +196,12 @@ workload for the platform, such as configuring the server port.
 The Spring Boot Convention does this by setting the `JAVA_TOOL_OPTIONS` environment variable and
 including various system property settings.
 
-Because this setting `JAVA_TOOL_OPTIONS` no longer works for native compiled Spring Boot applications,
+Because the setting `JAVA_TOOL_OPTIONS` no longer works for native compiled Spring Boot applications,
 many of the configurations that the Spring Boot Convention applies don’t have any effect.
 This is why you must configure this manually using separate environment variables as described earlier.
 
-The goal for future versions of the Spring Boot Convention is to improve this and turn many of the manual<!--฿ In preface information, if the document is delivered as a PDF file, replace with |book| or |guide|. ฿--> work that you have to do at the moment<!--฿ 1st preference: delete. 2nd preference: replace these words with |currently|. ฿--> into something the Spring Boot Convention will<!--฿ Avoid |will|: present tense is preferred. ฿--> do automatically for you.
+The goal for future versions of the Spring Boot Convention is to have it automatically do much of
+the current manual work.
 
 ## <a id="using-alv"></a> Using Application Live View with Spring Boot native images
 
@@ -360,4 +364,8 @@ To register the app in the UI, you must:
 
 For further instructions, see [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
 
-An important note is that not all the usual information will<!--฿ Avoid |will|: present tense is preferred. ฿--> be available. For example, JVM memory information won’t be since<!--฿ Do not use |since| where you can use |because|. ฿--> native images have a slightly different mode, so are other elements that are not available in the actuator endpoints yet.
+> **Important** Not all the usual information will be available. For example, JVM memory information
+> won’t be available because native images have a slightly different mode and so are other elements
+> that are not available in the actuator endpoints yet.
+
+<!-- clarify what the second sentence of the above note means -->
