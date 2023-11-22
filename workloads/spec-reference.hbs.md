@@ -227,12 +227,11 @@ Parameters:
       `source-revision` and the extra ones declared in this table.
     </td>
     <td>
-      <pre>
-      - name: testing_pipeline_params
-        value:
-        - name: verbose
-          value: true
-      </pre>
+      <p alignment ="left">
+      - name: testing_pipeline_params<br>
+        value:<br>
+          verbose: true
+      </p>
     </td>
   </tr>
 
