@@ -31,10 +31,10 @@ The `sso.apps.tanzu.vmware.com` package has these dependencies:
 - `service-bindings.tanzu.vmware.com`: Required at runtime.
   For more information see, [Install Service Bindings](../../../service-bindings/install-service-bindings.hbs.md).
 
-> **Important** **installation time dependencies** must be present on the cluster at the time the
+> **Important** Installation time dependencies must be present on the cluster at the time the
 > Application Single Sign-On package is being applied.
 >
-> **Runtime dependencies** don't have to be present when the Application Single Sign-On package is
+> Runtime dependencies don't have to be present when the Application Single Sign-On package is
 > being applied, but they are required eventually for it to function fully.
 
 ## <a id="install"></a> Install Application Single Sign-On for VMware Tanzu
