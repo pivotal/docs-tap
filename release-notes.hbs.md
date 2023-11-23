@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-5-8'></a> v1.5.8 
- 
-**Release Date**: 12 December 2023 
- 
-### <a id='1-5-8-security-fixes'></a> v1.5.8 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-5-8'></a> v1.5.8
+
+**Release Date**: 12 December 2023
+
+### <a id='1-5-8-security-fixes'></a> v1.5.8 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-5-8-COMPONENT-NAME-fixes'></a> v1.5.8 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,37 +33,37 @@ OR add HTML or Markdown table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-5-8-resolved-issues'></a> v1.5.8 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-5-8-resolved-issues'></a> v1.5.8 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-5-8-COMPONENT-NAME-ri'></a> v1.5.8 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-5-8-known-issues'></a> v1.5.8 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-5-8-known-issues'></a> v1.5.8 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-5-8-COMPONENT-NAME-ki'></a> v1.5.8 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-5-8-components'></a> v1.5.8 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
+
+---
 
 ## <a id='1-5-7'></a> v1.5.7
 
@@ -116,7 +116,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-5-7-tap-ki'></a> v1.5.7 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.5.7 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+- Tanzu Application Platform v1.5.7 is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 ---
@@ -327,7 +327,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-5-6-tap-ki'></a> v1.5.6 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.5.6 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+- Tanzu Application Platform v1.5.6 is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 ---
@@ -465,7 +465,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-5-5-tap-ki'></a> v1.5.5 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.5.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+- Tanzu Application Platform v1.5.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 ---
