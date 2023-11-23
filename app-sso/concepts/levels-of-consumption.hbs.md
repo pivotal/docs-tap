@@ -4,7 +4,7 @@ This topic tells you about the three levels of consuming Application Single Sign
 (commonly called AppSSO) services and explains the when and why for selecting a specific level over another.
 
 VMware recommends using `ClassClaim` to consume an Application Single Sign-On service.
-However there might be situations where the lower level `WorkloadRegistration` or
+However, there might be situations where the lower level `WorkloadRegistration` or
 `ClientRegistration` are a better fit.
 
 At its core, the process of consuming Application Single Sign-On involves obtaining
@@ -12,7 +12,7 @@ client credentials for an authorization server and loading them into a running w
 This process consists of the following steps:
 
 1. Define your environment-independent OAuth2 client configurations, for example, client
-   authentication method, scopes and so on.
+   authentication method, scopes, and so on.
 
 1. Define your OAuth2 client's redirect URIs.
 
@@ -80,7 +80,7 @@ personas such as platform operators and application operators.
 In most cases, platform operators control how FQDNs are templated and whether
 TLS is used. For the redirect URI, platform operators have full control over all
 the elements in `https://profile.shop.example.com`, which include TLS, the domain
-name template and the top-level ingress domain. These configurations can vary
+name template, and the top-level ingress domain. These configurations can vary
 across different environments. Therefore, in an alternative environment,
 setting `https://profile.shop.staging.example.com` can be the appropriate choice.
 
@@ -95,7 +95,7 @@ to change settings without being coupled to the application operator's configura
 
 A `ClientRegistration` must uniquely identify an `AuthServer`
 by using a label selector. Service operators are in charge of managing `AuthServer`.
-The labels for a resource is not required to be consistent across environments.
+The labels for a resource are not required to be consistent across environments.
 However, this can create complications for application operators. Label selectors
 are considered an advanced concept, and application operators might not be familiar
 with the specific labels associated with their desired `AuthServers`. It might be
@@ -169,8 +169,8 @@ The additional `spec.workloadRef` provides templates for the redirect URIs.
 Templating redirect URIs template decouples the application operators from the
 platform operators. Now the application operator only needs to provide the
 absolute redirect paths, which are consistent across environments. The platform
-operators can configure domain templates, ingress domains and
-TLS as they see fit and rest assured that settings are updated without
+operators can configure domain templates, ingress domains, and
+TLS as they see fit, and rest assured that settings are updated without
 interruption.
 
 However, `WorkloadRegistration` still requires matching an `AuthServer` by the
@@ -189,7 +189,7 @@ concerns of personas.
 
 The final level is to obtain client credentials by claiming them from an
 Application Single Sign-On service. Unlike the previous levels that directly interacted
-with `AuthServer` resources, this level abstract this part away with [Services Toolkit's
+with `AuthServer` resources, this level abstracts this part away with [Services Toolkit's
 APIs](../../services-toolkit/about.hbs.md). This eliminates the last remaining
 coupling between application operators and service operators.
 
@@ -212,7 +212,7 @@ the parameters are essentially the trimmed `spec` of a `WorkloadRegistration`.
 With the Tanzu Service CLI, application operators can discover and consume
 services in a self-service style. Commonly, this is how service operators
 provide all the services required for application teams to run their
-applications. This includes databases, queues, in-memory stores and single sign-on
+applications. This includes databases, queues, in-memory stores, and single sign-on
 by Application Single Sign-On.
 
 The following is a hypothetical `ClassClaim` for an Application Single Sign-On service
