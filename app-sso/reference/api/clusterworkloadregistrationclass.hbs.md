@@ -31,7 +31,7 @@ on all claimed `WorkloadRegistration`. This is how they can match a certain
 
 The base is a partial projection of `WorkloadRegistration`'s specification. It is
 limited to the fields `metadata.labels`, `metadata.annotations`,
-`spec.workloadDomainTemplate` and `spec.authServerSelector`.
+`spec.workloadDomainTemplate`, and `spec.authServerSelector`.
 For more information about the fields, see
 [WorkloadRegistration](workloadregistration.hbs.md).
 
@@ -129,7 +129,7 @@ kubectl explain cwrc
 
 ## <a id="examples"></a> Examples
 
-This is a minimal example which selects an `AuthServer` that is uniquely
+This is a minimal example that selects an `AuthServer` that is uniquely
 identified by the label `sso.apps.tanzu.vmware.com/env=dev`:
 
 ```yaml
@@ -146,10 +146,10 @@ spec:
           sso.apps.tanzu.vmware.com/env: dev
 ```
 
-This is a full example which selects an `AuthServer` that is uniquely identified
+This is a full example that selects an `AuthServer` that is uniquely identified
 by the label `sso.apps.tanzu.vmware.com/env=dev`. It sets a custom
 `workloadDomainTemplate` on the base, a label and an annotation.
-The annotation causes in safe and unsafe redirect URI templating.
+The annotation triggers safe and unsafe redirect URI templating.
 
 ```yaml
 ---
@@ -243,7 +243,7 @@ spec:
       - /redirect/uri/2
 ```
 
-This is a fully-configured example claim for the AppSSO service offering `demo`:
+This is a fully configured example claim for the AppSSO service offering `demo`:
 
 ```yaml
 ---

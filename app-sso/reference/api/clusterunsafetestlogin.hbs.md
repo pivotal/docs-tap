@@ -6,7 +6,7 @@ not safe for production.
 
 `ClusterUnsafeTestLogin` represents the request for an unsafe, ready-to-claim
 AppSSO service offering. It reconciles into an unsafe `AuthServer`, a token
-signing key `Secret` and a `ClusterWorkloadRegistrationClass`. It is
+signing key `Secret`, and a `ClusterWorkloadRegistrationClass`. It is
 cluster-scoped and has no specifications.
 
 Its `AuthServer` is `http` only, which allows all CORS origins and runs with a
