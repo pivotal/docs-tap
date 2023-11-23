@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-6-6'></a> v1.6.6 
- 
-**Release Date**: 12 December 2023 
- 
-### <a id='1-6-6-security-fixes'></a> v1.6.6 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-6-6'></a> v1.6.6
+
+**Release Date**: 12 December 2023
+
+### <a id='1-6-6-security-fixes'></a> v1.6.6 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-6-6-COMPONENT-NAME-fixes'></a> v1.6.6 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,37 +33,37 @@ OR add HTML or Markdown table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-6-6-resolved-issues'></a> v1.6.6 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-6-6-resolved-issues'></a> v1.6.6 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-6-6-COMPONENT-NAME-ri'></a> v1.6.6 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-6-6-known-issues'></a> v1.6.6 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-6-6-known-issues'></a> v1.6.6 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-6-6-COMPONENT-NAME-ki'></a> v1.6.6 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-6-6-components'></a> v1.6.6 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
+
+---
 
 ## <a id='1-6-5'></a> v1.6.5
 
@@ -172,7 +172,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-5-tap-ki'></a> v1.6.5 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.6.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5 on
+- Tanzu Application Platform v1.6.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
   vSphere with Tanzu v8.
 
 #### <a id='1-6-5-amr-obs-ce-hndlr-ki'></a> v1.6.5 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
@@ -569,7 +569,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-4-tap-ki'></a> v1.6.4 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.6.4 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+- Tanzu Application Platform v1.6.4 is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 #### <a id='1-6-4-amr-obs-ce-hndlr-ki'></a> v1.6.4 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
@@ -978,7 +978,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-3-tap-ki'></a> v1.6.3 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.6.3 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5
+- Tanzu Application Platform v1.6.3 is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 #### <a id='1-6-3-app-config-srvc-ki'></a> v1.6.3 Known issues: Application Configuration Service
@@ -1960,9 +1960,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-6-1-contour-br'></a> v1.6.1 Breaking changes: Contour
 
-- By default, Tanzu Application Platform uses TLS 1.3 as the minimum TLS version 
-for Contour. Certain infrastructure setups might cause request failures if the 
-Envoy clients do not support TLS 1.3. You might see the following errors in the 
+- By default, Tanzu Application Platform uses TLS 1.3 as the minimum TLS version
+for Contour. Certain infrastructure setups might cause request failures if the
+Envoy clients do not support TLS 1.3. You might see the following errors in the
 Envoy logs:
 
     ```console
