@@ -34,7 +34,7 @@ the authorization server `Deployment`.
 
 ## <a id="debug"></a> Set up debug logs
 
-> **Caution** Debug logs display all identity information from the usptream
+> **Caution** Debug logs display all identity information from the upstream
 > identity providers, for example, all LDAP attributes for a user. 
 > VMware recommends not using debug logs in production.
 
@@ -154,4 +154,4 @@ Be patient as it can take up to `~60-120s` for the client credentials to be prop
 into the claim's service binding secret.
 
 If you have waited for a considerable amount of time and the credentials still haven't appeared,
-see the [Services Toolkit documentaion](../../services-toolkit/how-to-guides/troubleshooting.hbs.md) for more troubleshooting information.
+see the [Services Toolkit documentation](../../services-toolkit/how-to-guides/troubleshooting.hbs.md) for more troubleshooting information.
