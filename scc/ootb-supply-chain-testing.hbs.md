@@ -141,6 +141,17 @@ spec:
         params:
           - name: source-url
           - name: source-revision
+        # remove this step template for TAP 1.7.0 when running on openshift
+        stepTemplate:
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: "RuntimeDefault"
+            runAsNonRoot: true
         steps:
           - name: test
             image: gradle
