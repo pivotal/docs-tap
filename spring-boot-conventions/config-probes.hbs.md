@@ -33,12 +33,12 @@ To override the default settings and customize the probes at a cluster level:
    --values-schema --namespace tap-install
    ```
 
-   Where `VERSION-NUMBER` is the version of the package listed. For example: `1.7.0`.
+   Where `VERSION-NUMBER` is the version of the package listed. For example: `1.8.0-build.1`.
 
    For example:
 
    ```console
-   $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.7.0 --values-schema --namespace tap-install
+   $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.8.0-build.1 --values-schema --namespace tap-install
         KEY                                          DEFAULT             TYPE     DESCRIPTION
         autoConfigureActuators                       false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level
         kubernetes_distribution                                          string   Kubernetes distribution that this package is being installed on. Accepted
@@ -103,7 +103,7 @@ To override the default settings and customize the probes at a cluster level:
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version 1.7.0 \
+   --version 1.8.0-build.1 \
    --namespace tap-install -f values.yaml
    ```
 
@@ -120,7 +120,7 @@ To override the default settings and customize the probes at a cluster level:
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-   PACKAGE-VERSION:         1.7.0
+   PACKAGE-VERSION:         1.8.0-build.1
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:
