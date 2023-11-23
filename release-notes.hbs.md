@@ -255,9 +255,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="1-7-0-contour-br"></a> v1.7.0 Breaking changes: Contour
 
-- By default, Tanzu Application Platform v1.7.0 installs the Contour's Envoy pods 
-as a `Deployment` instead of a `DaemonSet`. This causes application downtime 
-during an upgrade. For more information about how to avoid upgrade downtime, 
+- By default, Tanzu Application Platform v1.7.0 installs the Contour's Envoy pods
+as a `Deployment` instead of a `DaemonSet`. This causes application downtime
+during an upgrade. For more information about how to avoid upgrade downtime,
 see [Configure Envoy for Contour](contour/how-to-guides/configuring-envoy.hbs.md).
 
 #### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
@@ -1158,7 +1158,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-tap-ki'></a> v1.7.0 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.7.0 is not supported with Tanzu Kubernetes releases (TKR) v1.26.5 on
+- Tanzu Application Platform v1.7.0 is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
   vSphere with Tanzu v8.
 
 #### <a id='1-7-0-api-autoreg-ki'></a> v1.7.0 Known issues: API Auto Registration
