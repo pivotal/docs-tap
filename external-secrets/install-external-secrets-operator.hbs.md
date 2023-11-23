@@ -56,6 +56,7 @@ To install External Secrets Operator:
    ```
 
    Where:
+
    - `VERSION-NUMBER` is the package version you retrieved earlier.
    - (Optional) `VALUES-FILE` is the YAML file you created earlier containing the values used to configure
      External Secrets Operator.
