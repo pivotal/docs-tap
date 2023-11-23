@@ -14,11 +14,10 @@ authorization server.
 
 ## <a id="clientregistrations"></a> Limited number of `ClientRegistrations` per `AuthServer`
 
-The number of `ClientRegistration` for an `AuthServer` is limited at
-arond 2,000. This is a soft limitation. If you attempt to apply more
-`ClientRegistration` resources than the limit, VMware cannot ensure those
-clients applied past the limit to work as expected. This is subject to
-change in future product versions.
+The number of `ClientRegistration` for an `AuthServer` is limited to
+around 2,000. This is a soft limitation. If you attempt to apply more
+`ClientRegistration` resources than the limit, those clients applied past the 
+limit will work. This is subject to change in future product versions.
 
 ## <a id="letsencrypt"></a> LetsEncrypt: domain name for Issuer URI limited to 64 characters maximum
 
@@ -44,5 +43,5 @@ domain_template: "\{{.Name}}.\{{.Domain}}"
 
 ## <a id='classclaim'></a> `ClassClaim` credential propagation time
 
-It can take up 60 to 120 seconds for the client credentials to propagate up into a
+It can take up to 60 to 120 seconds for the client credentials to propagate up into a
 `ClassClaim`'s service binding secret.
