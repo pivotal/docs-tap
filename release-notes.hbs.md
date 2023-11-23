@@ -18,17 +18,13 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-1-contour'></a> v1.7.1 Features: Contour
 
-- Contour v1.25.3 is available in Tanzu Application Platform. For more information, see the [Contour v1.25.3 release notes](https://github.com/projectcontour/contour/releases/tag/v1.25.3) in GitHub.
+- Contour v1.25.3 is available in Tanzu Application Platform. For more information, see the
+  [Contour v1.25.3 release notes](https://github.com/projectcontour/contour/releases/tag/v1.25.3)
+  in GitHub.
 
 ### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes
 
 This release has the following security fixes, listed by component and area.
-
-#### <a id='1-7-1-COMPONENT-NAME-fixes'></a> v1.7.1 Security fixes: COMPONENT-NAME
-
-- Security fix description.
-
-OR add HTML or Markdown table
 
 <table>
 <thead>
@@ -65,9 +61,48 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-1-COMPONENT-NAME-ki'></a> v1.7.1 Known issues: COMPONENT-NAME
+#### <a id='1-7-1-api-autoreg-ki'></a> v1.7.1 Known issues: API Auto Registration
 
-- Known issue description with link to workaround.
+- Registering conflicting `groupId` and `version` with API portal:
+
+  If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version` combination, both
+  reconcile without throwing an error, and the `/openapi?groupId&version` endpoint returns both specifications.
+  If you are adding both specifications to the API portal, only one of them might show up in the
+  API portal UI with a warning indicating that there is a conflict.
+  If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use Spring Cloud Gateway,
+  the generated API specspecification includes API routes from both `CuratedAPIDescriptor`s.
+
+  You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
+
+    ```console
+    $ kubectl get curatedapidescriptors -A
+
+    NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+    my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+    default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
+    ```
+
+#### <a id='1-7-1-amr-obs-ce-hndlr-ki'></a> v1.7.1 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+#### <a id='1-7-1-bitnami-services-ki'></a> v1.7.1 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-7-1-convention-ki'></a> v1.7.1 Known issues: Cartographer Conventions
+
+- While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can
+  fail with the status `CrashLoopBackOff` or `OOMKilled`.
+  For information about how to increase the memory limit for both the convention server and webhook
+  servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
+  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
 
 #### <a id='1-7-1-cert-manager-ki'></a> v1.7.1 Known issues: cert-manager
 
@@ -78,13 +113,194 @@ This release has the following known issues, listed by component and area.
   challenges and deems it too risky to retry certificate issuance, consider using
   DNS01 until VMware provides a technical solution in the future patch release.
 
+#### <a id='1-7-1-crossplane-ki'></a> v1.7.1 Known issues: Crossplane
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-7-1-service-bindings-ki'></a> v1.7.1 Known issues: Service Bindings
+
+- When upgrading Tanzu Application Platform, pods are recreated for all workloads with service bindings.
+  This is because workloads and pods that use service bindings are being updated to new service
+  binding volumes. This happens automatically and will not affect subsequent upgrades.
+
+  Affected pods are updated concurrently. To avoid failures, you must have sufficient Kubernetes
+  resources in your clusters to support the pod rollout.
+
+#### <a id='1-7-1-stk-ki'></a> v1.7.1 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+#### <a id='1-7-1-scc-ki'></a> v1.7.1 Known issues: Supply Chain Choreographer
+
+- By default, Server Workload Carvel packages generated by the Carvel package supply chains no longer
+  contain OpenAPIv3 descriptions of their parameters.
+  These descriptions were omitted to keep the size of the Carvel Package definition under 4&nbsp;KB,
+  which is the size limit for the string output of a Tekton Task. For information about these parameters,
+  see [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md).
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+- Pods created by using Tekton do not adhere to the Pod Security Standard. To run Supply Chains in a cluster
+where this webhook is installed by default, VMware reccomends labeling the namespace with `pod-security.kubernetes.io/enforce=privileged`
+to ensure that they are correctly created.
+
+- Application configuration generated by the OOTB supply chains does not adhere to the Pod Security Standard.
+
+#### <a id='1-7-1-scst-store-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools - Store
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+
+- When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
+  with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
+  `tap-values.yaml` file.
+  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
+  For example, for the Trivy image packaged with Tanzu Application Platform:
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      image_scanner_template_name: image-vulnerability-scan-trivy
+      image_scanning_cli:
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+    ```
+
+- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
+  the default for later versions of Trivy and is not supported by AMR.
+
+#### <a id='1-7-1-tbs-ki'></a> v1.7.1 Known issues: Tanzu Build Service
+
+- During upgrades a large number of builds might be created due to buildpack and stack updates.
+  Some of these builds might fail due to transient network issues,
+  causing the workload to be in an unhealthy state. This resolves itself on subsequent builds
+  after a code change and does not affect the running application.
+
+  If you do not want to wait for subsequent builds to run, you can manually trigger a build.
+  For instructions, see [Troubleshooting](./tanzu-build-service/troubleshooting.hbs.md#failed-builds-upgrade).
+
+#### <a id='1-7-1-tdp-ki'></a> v1.7.1 Known issues: Tanzu Developer Portal
+
+- If you do not configure any authentication providers, and do not allow guest access, the following
+  message appears when loading Tanzu Developer Portal in a browser:
+
+   ```console
+   No configured authentication providers. Please configure at least one.
+   ```
+
+  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+
+- When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
+  does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
+  planned for the future. The zoom function was removed because of user feedback.
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-7-1-intellij-plugin-ki'></a> v1.7.1 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-7-1-vs-plugin-ki'></a> v1.7.1 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
 ---
 
 ### <a id='1-7-1-components'></a> v1.7.1 Component versions
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+| Component Name                                     | Version        |
+| -------------------------------------------------- | -------------- |
+| API Auto Registration                              | 0.4.1          |
+| API portal                                         | 1.4.4          |
+| Application Accelerator                            | 1.7.6          |
+| Application Configuration Service                  | 2.2.0          |
+| Application Live View APIServer                    | 1.7.2          |
+| Application Live View back end                     | 1.7.2          |
+| Application Live View connector                    | 1.7.2          |
+| Application Live View conventions                  | 1.7.2          |
+| Application Single Sign-On                         | 5.0.0          |
+| Artifact Metadata Repository Observer              | 0.2.1          |
+| AWS Services                                       | 0.1.0          |
+| Bitnami Services                                   | 0.3.1          |
+| Carbon Black Scanner for SCST - Scan (beta)        | 1.2.2          |
+| Cartographer Conventions                           | 0.8.5          |
+| cert-manager                                       | 2.4.1          |
+| Cloud Native Runtimes                              | 2.4.3          |
+| Contour                                            | 1.25.3         |
+| Crossplane                                         | 0.3.0          |
+| Default Roles                                      | 1.1.0          |
+| Developer Conventions                              | 0.14.1         |
+| External Secrets Operator                          | 0.9.4+tanzu.2  |
+| Flux CD Source Controller                          | 0.36.1+tanzu.2 |
+| Grype Scanner for SCST - Scan                      | 1.7.0          |
+| Local Source Proxy                                 | 0.2.1          |
+| Namespace Provisioner                              | 0.5.0          |
+| Out of the Box Delivery - Basic                    | 0.14.8         |
+| Out of the Box Supply Chain - Basic                | 0.14.8         |
+| Out of the Box Supply Chain - Testing              | 0.14.8         |
+| Out of the Box Supply Chain - Testing and Scanning | 0.14.8         |
+| Out of the Box Templates                           | 0.14.8         |
+| Service Bindings                                   | 0.10.2         |
+| Service Registry                                   | 1.2.0          |
+| Services Toolkit                                   | 0.12.0         |
+| Snyk Scanner for SCST - Scan (beta)                | 1.1.0          |
+| Source Controller                                  | 0.8.3          |
+| Spring Boot conventions                            | 1.7.2          |
+| Spring Cloud Gateway                               | 2.1.5          |
+| Supply Chain Choreographer                         | 0.8.5          |
+| Supply Chain Security Tools - Policy Controller    | 1.6.3          |
+| Supply Chain Security Tools - Scan                 | 1.7.1          |
+| Supply Chain Security Tools - Scan 2.0             | 0.2.1          |
+| Supply Chain Security Tools - Store                | 1.7.1          |
+| Tanzu Developer Portal                             | 1.7.8          |
+| Tanzu Application Platform Telemetry               | 0.7.0          |
+| Tanzu Build Service                                | 1.12.2         |
+| Tanzu CLI                                          | 1.1.0          |
+| Tekton Pipelines                                   | 0.50.3+tanzu.3 |
 
 ---
 
@@ -1450,8 +1666,8 @@ The following table lists the supported component versions for this Tanzu Applic
 | Crossplane                                         | 0.3.0                               |
 | Default Roles                                      | 1.1.0                               |
 | Developer Conventions                              | 0.14.0                              |
-| External Secrets Operator                          | 0.9.4                               |
-| Flux CD Source Controller                          | 0.36.1                              |
+| External Secrets Operator                          | 0.9.4+tanzu.1                       |
+| Flux CD Source Controller                          | 0.36.1+tanzu.2                      |
 | Grype Scanner for SCST - Scan                      | 1.7.0                               |
 | Local Source Proxy                                 | 0.2.1                               |
 | Namespace Provisioner                              | 0.5.0                               |
@@ -1473,10 +1689,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Security Tools - Scan 2.0             | 0.2.1                               |
 | Supply Chain Security Tools - Store                | 1.7.1                               |
 | Tanzu Developer Portal                             | 1.7.7                               |
-| Tanzu Application Platform Telemetry               | 0.7.0                               |
+| Tanzu Application Platform Telemetry               | 0.7.0-build.3                       |
 | Tanzu Build Service                                | 1.12.2                              |
-| Tanzu CLI                                          | 1.1                                 |
-| Tekton Pipelines                                   | 0.50.1                              |
+| Tanzu CLI                                          | 1.1.0                               |
+| Tekton Pipelines                                   | 0.50.1+tanzu.3                      |
 
 ---
 
