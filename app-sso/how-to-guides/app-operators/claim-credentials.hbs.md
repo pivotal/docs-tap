@@ -111,7 +111,7 @@ or create a `ClassClaim` directly.
 
 ## <a id="inspect"></a>Inspect the progress of your claim
 
-You can inspect the progress of you claim creation by running:
+You can inspect the progress of your claim creation by running:
 
 ```console
 tanzu service class-claim get MY-CLAIM-NAME --namespace MY-NAMESPACE
@@ -124,7 +124,7 @@ kubectl get classclaim MY-CLAIM-NAME --namespace MY-NAMESPACE --output yaml
 ```
 
 > **Caution** It can take approximately 60 to 120 seconds for your Application Single Sign-On
-> credentials propagate into your service bindings secret.
+> credentials to propagate into your service bindings secret.
 
 ## <a id="next-steps"></a>Next steps
 

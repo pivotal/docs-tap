@@ -45,7 +45,7 @@ Follow these steps to fetch the single-page Angular app source code:
           }'
         ```
 
-1. Unzip the resulting `.zip` file into directory `angular-frontend` in your workspace:
+1. Unzip the resulting `.zip` file into the `angular-frontend` directory in your workspace:
 
     ```shell
     unzip angular-frontend

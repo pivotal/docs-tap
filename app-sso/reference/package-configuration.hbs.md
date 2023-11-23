@@ -118,7 +118,7 @@ The domain template is applied with the given `domain_name` and the
 
 To use a wild-card certificate, consider `"\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"`.
 
-VMware recommends to keep the name and namespace sections of the template
+VMware recommends keeping the name and namespace sections of the template
 to avoid domain name collisions.
 
 ### <a id="kubernetes-distribution"></a> `kubernetes_distribution`

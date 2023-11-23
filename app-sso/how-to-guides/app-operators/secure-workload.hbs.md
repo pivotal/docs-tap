@@ -13,7 +13,7 @@ by using a `ClassClaim` resource. In either case, you can customize your OAuth2 
 settings by providing parameters within your claim. To secure your `Workload`,
 you must provide the appropriate parameters relevant to the given situation.
 
-The following sections elaborate on each parameter in details and guide the process
+The following sections elaborate on each parameter in detail and guide the process
 of loading credentials into a `Workload`.
 
 When editing your `ClassClaim`, you must recreate it in order for the changes to
@@ -71,10 +71,10 @@ application code can use them to initiate OAuth2 flows.
 ### <a id='redirect-paths'></a> `redirectPaths`
 
 As a critical part of your client parameters, `redirectPaths` define the locations
-to which you application's end-users are redirected to after the authentication.
+to which your application's end-users are redirected to after the authentication.
 Incorrect redirect URIs often cause errors for clients and are the most common
 source of such issues. When redirect URIs are not configured accurately, your
-application encounter errors and can not perform OAuth2 flows.
+application encounters errors and can not perform OAuth2 flows.
 
 For servlet-based Spring Boot workloads using Spring Security OAuth 2 Client
 library, the default redirect path template looks as follows:
@@ -94,7 +94,7 @@ spec:
       - /login/oauth2/code/my-sso-client
 ```
 
-Behind the scenes your redirect paths are templated into the full redirect URIs
+Behind the scenes, your redirect paths are templated into the full redirect URIs
 including a scheme and fully-qualified domain name. For example, your actual
 redirect URI might look as follows:
 
@@ -133,7 +133,7 @@ you must update this parameter to align with the new name.
 
 ### <a id='auth-grant-types'></a> `authorizationGrantTypes`
 
-In OAuth2, a grant type is the way your application obtains token from the
+In OAuth2, a grant type is the way your application obtains tokens from the
 authorization server. There are different grant types. Some of them allow your
 application to act on behalf of an end user, but others do not.
 
@@ -160,7 +160,7 @@ Application Single Sign-On supports the following OAuth2 grant types:
 - Client Credentials: `client_credentials`
 
     Applications use this grant type to communicate directly to other protected
-    applications throuhg a client identifier and a client secret.
+    applications through a client identifier and a client secret.
     For example, in service-to-service communication, an `AuthServer`
     issues access tokens that define the level of access that the requesting
     service has to the protected service they seek to communicate with.
@@ -175,7 +175,7 @@ Application Single Sign-On supports the following OAuth2 grant types:
     `refresh_token` grant type is included, a refresh token is attached to every
     access token issued by an `AuthServer`. You can use the refresh token to
     fetch the new access tokens before the older ones expire to continue accessing
-    the rotected resources.
+    the protected resources.
 
 ### <a id='client-auth-method'></a> Client authentication method
 
@@ -244,9 +244,9 @@ debugging purposes.
 
 - You create a `ClassClaim` for an Application Single Sign-On service with your
   parameters.
-- An `XWorkloadRegistration` with your parameters are created in the same
+- An `XWorkloadRegistration` with your parameter is created in the same
   namespace.
-- A `WorkloadRegistration` with your parameters are created in the same namespace.
+- A `WorkloadRegistration` with your parameter is created in the same namespace.
   The `WorkloadRegistration` templates your redirect URIs.
 - A `ClientRegistration` with your parameters and the templated redirect URIs
    are created in the same namespace.
@@ -336,7 +336,7 @@ Reading the values from the file system is left to the implementer.
 
 ## <a id='trust-auth'></a> Trusting an authorization server
 
-Your application makes request to the authorization server. The authorization server
+Your application makes a request to the authorization server. The authorization server
 serves traffic using TLS. If your company uses non-public certificate authority (CA),
 you must explicitly trust the authorization server or rather the certificate
 authority. For more information, see

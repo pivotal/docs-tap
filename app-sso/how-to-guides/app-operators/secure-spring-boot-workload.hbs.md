@@ -20,7 +20,7 @@ Follow these steps to fetch the Application Single Sign-On Spring Boot applicati
    (formerly named Tanzu Application Platform GUI) accelerators located on your
    Tanzu Application Platform cluster:
 
-    - Option 1: Use the Tanzu Developer Portal dashboard through browser.
+    - Option 1: Use the Tanzu Developer Portal dashboard through the browser.
 
         Navigate to Application Accelerators and download the "AppSSO Starter Java" accelerator.
 
@@ -29,10 +29,10 @@ Follow these steps to fetch the Application Single Sign-On Spring Boot applicati
         Download the zip file of the accelerator source code by running:
 
         ```shell
-        tanzu accelerator generate appsso-starter-java --server-url <TAP_GUI_SERVER_URL>
+        tanzu accelerator generate appsso-starter-java --server-url TAP_GUI_SERVER_URL
         ```
 
-2. Unzip the resulting `.zip` file into directory `appsso-starter-java` in your workspace.
+2. Unzip the resulting `.zip` file into the `appsso-starter-java` directory in your workspace.
 
     ```shell
     unzip appsso-starter-java
