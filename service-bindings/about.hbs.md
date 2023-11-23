@@ -22,3 +22,7 @@ The following are not supported:
 - [Workload Resource Mapping](https://github.com/k8s-service-bindings/spec/tree/12a9f2e376c50f051cc9aa913443bdecb0a24a01#workload-resource-mapping)
 - Extensions including:
   - [Binding Secret Generation Strategies](https://github.com/k8s-service-bindings/spec/tree/12a9f2e376c50f051cc9aa913443bdecb0a24a01#binding-secret-generation-strategies)
+
+## Known Issues
+
+* `ServiceBinding` not immediately reconciled when `status.binding.name` changes on a previously bound Service resource. This impacts the timely rollout of new connection secrets to workloads. The reconciler will eventually pick up the change but that may take up to 10 hours. As a temporary workaround, a user can either delete the existing `ServiceBinding` and create a new one that is identical, trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label, or delete and recreate the application workload refered to by the `ServiceBinding`.
