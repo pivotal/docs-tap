@@ -14,7 +14,7 @@ submitted to the supply chain in which the convention controller is configured. 
 include:
 
 - Setting liveness/readiness actuator probes
-- Enabling the automatic configuration of actuators on the platform and workload level
+- Enabling the automatic configuration of actuators on the platform and workload levels
 - Setting `JAVA_TOOL_OPTIONS` and Application Live View labels for a Spring Boot application
 
 > **Important** Spring Boot conventions supports Spring Boot and Spring Cloud Gateway applications.

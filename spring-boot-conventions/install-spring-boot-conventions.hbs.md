@@ -34,7 +34,7 @@ To install Spring Boot conventions:
    / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
    NAME                                       VERSION           RELEASED-AT
    ...
-   spring-boot-conventions.tanzu.vmware.com   1.7.0             2023-09-04T00:00:00Z
+   spring-boot-conventions.tanzu.vmware.com   1.8.0-build.1     2023-11-20T10:58:50Z
    ...
    ```
 
@@ -50,7 +50,7 @@ To install Spring Boot conventions:
     For example:
 
     ```console
-    $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.7.0 --values-schema --namespace tap-install
+    $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.8.0-build.1 --values-schema --namespace tap-install
          KEY                                          DEFAULT             TYPE     DESCRIPTION
          autoConfigureActuators                       false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level
          kubernetes_distribution                                          string   Kubernetes distribution that this package is being installed on. Accepted
