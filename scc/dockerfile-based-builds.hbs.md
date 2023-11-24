@@ -130,6 +130,22 @@ the container images.
 > **Note** Such restrictions are due to well-known limitations in how Kaniko
 > performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
 
+## TKG 1.26 and above / Clusters with PSA enabled
+
+Clusters with the [Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) enabled and 
+set to `enforce` will also not be able to run `kaniko` without changes to their configuration.  This is because the webhook 
+requires containers to be run as "non-root" and `kaniko` needs to be "root" to function.
+
+A workaround is to label the namespace that `kaniko` runs as `privileged`
+
+```yaml
+pod-security.kubernetes.io/enforce: privileged 
+```
+
+> **Note** Such restrictions are due to well-known limitations in how Kaniko
+> performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
+
 [kaniko#105]: https://github.com/GoogleContainerTools/kaniko/issues/105
 
 [SecurityContextConstraint]: https://docs.openshift.com/container-platform/4.11/authentication/managing-security-context-constraints.html
+
