@@ -2,9 +2,9 @@
 
 This topic tells you about the Home front-end plug-in.
 
-The Homepage frontend plug-in makes it possible to create a custom home page for your Tanzu
-Developer Portal to conveniently surface important information. For more information, see the
-[Home documentation](https://github.com/backstage/backstage/tree/master/plugins/home).
+The Home frontend plug-in makes it possible to create a custom home page for your
+Tanzu Developer Portal to conveniently surface important information. For more information, see the
+[Home plug-in documentation](https://github.com/backstage/backstage/tree/master/plugins/home).
 
 ## <a id="add-and-configure"></a> Add and configure the plug-in
 

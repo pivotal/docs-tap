@@ -1,8 +1,8 @@
 # Jira in Tanzu Developer Portal
 
-This topic tells you about the Jira validated frontend plugin.
+This topic tells you about the Jira validated front-end plug-in.
 
-The Jira frontend plug-in visualizes your JIRA activity stream in a component **Overview** tab.
+The Jira front-end plug-in visualizes your JIRA activity stream in a component **Overview** tab.
 For more information, see the
 [Jira plug-in documentation](https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-jira).
 
@@ -54,8 +54,8 @@ tap_gui:
 
 Where:
 
-- `JIRA-URL` is the url for your Jira instance.
-- `JIRA-TOKEN` is a valid token for your Jira instance.
+- `JIRA-URL` is the URL for your Jira instance
+- `JIRA-TOKEN` is a valid token for your Jira instance
 
 Add the `annotations` entry for Jira to the catalog entity to display the Jira project results on
 the component overview tab.
