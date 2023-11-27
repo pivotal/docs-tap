@@ -343,6 +343,12 @@ to ensure that they are correctly created.
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
+#### <a id='1-7-1-tap-tsm-integrations-ki'></a> v1.7.1 Known issues: TAP TSM integrations
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  [TAP integration with TSM](integrations/tsm-tap-integration.hbs.md) does not work out of of the box on Vsphere with Tanzu TKr 1.26.
+  One may apply the label advised by [Vsphere with Tanzu 1.26 release notes](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New) as a workaround, but that would be provide more than the
+  mininum necessary privlige to the resources in developer namespaces.
 ---
 
 ### <a id='1-7-1-components'></a> v1.7.1 Component versions
