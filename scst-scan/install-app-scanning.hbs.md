@@ -28,6 +28,15 @@ When you install SCST - Scan 2.0, you can configure the following optional prope
 
 >**Note** If the StorageClass you select does not have a node limit but uses the node storage, such as hostpath, the nodes must have large enough disks. For example, if a scan creates a 2Gi volume on a hostpath type storage class, `2Gi * number of AMR images` indicates how much storage this cluster needs overall. `2Gi * number of AMR images / number of nodes` indicates how much storage each node needs.
 
+You must deactivate the Tekton Affinity Assistant to reduce the number of pod scheduling issues when using Scan v2. 
+To achieve this, add the following to your `tap-values.yaml`:
+
+```yaml
+tekton_pipelines:
+  feature_flags:
+    disable_affinity_assistant: "true"
+```
+
 ## <a id="install-scst-app-scanning"></a> Install
 
 To install SCST - Scan 2.0:
@@ -258,4 +267,5 @@ time and can quickly consume hard disk space.
 
 For information about configuring Harbor tag retention rules, see the [Harbor documentation](https://goharbor.io/docs/2.5.0/working-with-projects/working-with-images/create-tag-retention-rules/#configure-tag-retention-rules). For example, you can configure Harbor to retain the most recently pushed # artifacts or retain the artifacts pushed within the last # days.
 
-Retention policy setup differs between registry providers. Confirm with your specific registry's documentation about configuration options.
+Retention policy setup differs between registry providers. 
+Confirm with your specific registry's documentation about the configuration options.
