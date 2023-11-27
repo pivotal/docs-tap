@@ -1605,6 +1605,16 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
+#### <a id='1-7-0-cbc-scanner-ki'></a> v1.7.0 Known issues: Carbon Black Scanner for SCST - Scan
+
+- Carbon Black Scanner templates will raise a PodSecurity violation error in clusters that use the
+  restricted Pod Security Standard. As a temporary workaround, you can do the following:
+
+  - Copy the template (e.g `carbonblack-private-image-scan-template`) with a different name.
+  - Set `securityContext.runAsNonRoot: true` in the new template
+  - Apply the new template to your cluster
+  - Update the `tap-values.yaml` file to use the new template in your workloads.
+
 #### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Cartographer Conventions
 
 - While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can
