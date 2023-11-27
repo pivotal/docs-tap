@@ -1629,6 +1629,14 @@ This release has the following known issues, listed by component and area.
   Affected pods are updated concurrently. To avoid failures, you must have sufficient Kubernetes
   resources in your clusters to support the pod rollout.
 
+- `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
+  bound service resource. This impacts the timely rollout of new connection secrets to workloads. The reconciler eventually picks up the change but this might take up to 10 hours.
+  As a temporary workaround, you can do one of the following:
+
+  - Delete the existing `ServiceBinding` and create a new one that is identical.
+  - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
+  - Delete and recreate the application workload referred to by the `ServiceBinding`.
+
 #### <a id='1-7-0-stk-ki'></a> v1.7.0 Known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
