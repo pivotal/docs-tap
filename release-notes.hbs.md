@@ -654,6 +654,19 @@ Artifact Metadata Repository (AMR) is a new component that extends the capabilit
   to make use of VMware validated plug-ins and also integrate custom external plug-ins. For more
   information, see [the Configurator overview](tap-gui/configurator/about.hbs.md).
 
+- The following 3rd party plugins have validated compatibility with the Configurator:
+  - Tech Insights -  `@vmware-tanzu/tdp-plugin-techinsights`
+  - Tech Insights Backend - `@vmware-tanzu/tdp-plugin-techinsights-backend`
+  - Sonarqube - `@vmware-tanzu/tdp-plugin-backstage-sonarqube`
+  - Sonarqube Backend -`@vmware-tanzu/tdp-plugin-backstage-sonarqube-backend`
+  - Stack Overflow - `@vmware-tanzu/tdp-plugin-stack-overflow`
+  - Prometheus - `@vmware-tanzu/tdp-plugin-prometheus`
+  - Jira - `@vmware-tanzu/tdp-plugin-backstage-jira`
+  - Grafana - `@vmware-tanzu/tdp-plugin-backstage-grafana`
+  - Github Actions - `@vmware-tanzu/tdp-plugin-github-actions`
+  - Snyk - `@vmware-tanzu/tdp-plugin-snyk`
+  - Tanzu Developer Portal Home - `@vmware-tanzu/tdp-plugin-home`
+
 #### <a id='1-7-0-vscode-extension'></a> v1.7.0 Features: Tanzu Developer Tools for VS Code
 
 - Introduces alpha support for [development containers](https://code.visualstudio.com/docs/devcontainers/containers).
