@@ -9,14 +9,14 @@ To use an integration, you must enable it and provide the necessary token or cre
 To add a GitHub provider integration, edit `tap-values.yaml` as in this example:
 
 ```yaml
-  app_config:
-    app:
-      baseUrl: http://EXTERNAL-IP:7000
-    # Existing tap-values.yaml above
-    integrations:
-      github: # Other integrations available see NOTE below
-        - host: github.com
-          token: GITHUB-TOKEN
+app_config:
+  app:
+    baseUrl: http://EXTERNAL-IP:7000
+  # Existing tap-values.yaml above
+  integrations:
+    github: # Other integrations available see NOTE below
+      - host: github.com
+        token: GITHUB-TOKEN
 ```
 
 Where:
