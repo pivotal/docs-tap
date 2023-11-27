@@ -8,14 +8,14 @@ enable it and provide the necessary token or credentials in `tap-values.yaml`.
 To add a GitHub provider integration, edit `tap-values.yaml` as in this example:
 
 ```yaml
-  app_config:
-    app:
-      baseUrl: http://EXTERNAL-IP:7000
-    # Existing tap-values.yaml above
-    integrations:
-      github: # Other integrations available see NOTE below
-        - host: github.com
-          token: GITHUB-TOKEN
+app_config:
+  app:
+    baseUrl: http://EXTERNAL-IP:7000
+  # Existing tap-values.yaml above
+  integrations:
+    github: # Other integrations available see NOTE below
+      - host: github.com
+        token: GITHUB-TOKEN
 ```
 
 Where:
@@ -33,15 +33,15 @@ information:
 
 1. Add the following YAML to `tap-values.yaml`:
 
-   ```yaml
-     app_config:
-       # Existing tap-values.yaml above
-       backend:
-         reading:
-           allow:
-             - host: "GIT-CATALOG-URL-1"
-             - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
-   ```
+    ```yaml
+    app_config:
+      # Existing tap-values.yaml above
+      backend:
+        reading:
+          allow:
+            - host: "GIT-CATALOG-URL-1"
+            - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
+    ```
 
    Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
    Tanzu Developer Portal can read when registering new components.
@@ -53,14 +53,14 @@ information:
    show any accelerators. Provide a value for Application Accelerator as a workaround, as in this
    example:
 
-   ```yaml
-     app_config:
-       # Existing tap-values.yaml above
-       backend:
-         reading:
-           allow:
-             - host: acc-server.accelerator-system.svc.cluster.local
-   ```
+    ```yaml
+    app_config:
+      # Existing tap-values.yaml above
+      backend:
+        reading:
+          allow:
+            - host: acc-server.accelerator-system.svc.cluster.local
+    ```
 
 ## <a id="add-non-git-integration"></a> Add a non-Git provider integration
 
@@ -69,7 +69,7 @@ To add an integration for a provider that isn't associated with GitHub, see the
 
 ## <a id="update-package-profile"></a> Update the package profile
 
-After making changes to `tap-values.yaml`, update the package profile by running:
+After changing `tap-values.yaml`, update the package profile by running:
 
 ```console
 tanzu package installed update  tap --package tap.tanzu.vmware.com --version VERSION-NUMBER \
