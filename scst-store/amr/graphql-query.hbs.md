@@ -92,7 +92,7 @@ You can specify the following supported arguments when querying for `Location`. 
 
 - `query`: expects an object that specifies additional arguments used to query. The following arguments are supported in this query object:
 
-  - `reference`: string UID representing the location, as a `String` value. A location's `reference` is automatically set to be the `kube-system` namespace UID by the AMR. It is not configurable by the user.
+- `reference`: string UID representing the location, as a `String` value. A location's `reference` is automatically set to be the `kube-system` namespace UID by the AMR. It is not configurable by the user.
 
     For example:
 
@@ -100,7 +100,7 @@ You can specify the following supported arguments when querying for `Location`. 
     locations(query:{reference: "f4f63c6a10ed7cfb06dfb03c2b2d6a9d5bbe95931c71f8cb346fd2284b1e5d82"})
     ```
 
-  - `labels`: specify labels the location must contain. Expects a list of labels.
+- `labels`: specify labels the location must contain. Expects a list of labels.
     A label has `key` and `value` fields of `String` type, at least one of those fields must be provided when querying with labels.
 
     >**Note** The result returns locations that have `all` given labels (i.e. this is an `AND` operation).
