@@ -158,6 +158,17 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
+#### <a id='1-7-1-tap-tsm-integrations-ki'></a> v1.7.1 Known issues: Tanzu Application Platform
+
+- The Tanzu Application Platform integration with Tanzu Service Mesh does not work
+  on vSphere with TKR v1.26. For more information about this integration, see
+  [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md).
+  As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
+  as advised by the release notes for
+  [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
+  However, applying this label provides more than the mininum necessary privlige to the resources in
+  developer namespaces.
+
 #### <a id='1-7-1-api-autoreg-ki'></a> v1.7.1 Known issues: API Auto Registration
 
 - Registering conflicting `groupId` and `version` with API portal:
@@ -343,12 +354,6 @@ to ensure that they are correctly created.
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
-#### <a id='1-7-1-tap-tsm-integrations-ki'></a> v1.7.1 Known issues: TAP TSM integrations
-
-- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
-  [TAP integration with TSM](integrations/tsm-tap-integration.hbs.md) does not work out of of the box on Vsphere with Tanzu TKr 1.26.
-  One may apply the label advised by [Vsphere with Tanzu 1.26 release notes](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New) as a workaround, but that would be provide more than the
-  mininum necessary privlige to the resources in developer namespaces.
 ---
 
 ### <a id='1-7-1-components'></a> v1.7.1 Component versions
