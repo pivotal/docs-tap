@@ -34,15 +34,15 @@ component information:
 
 1. Add the following YAML to `tap-values.yaml`:
 
-   ```yaml
-     app_config:
-       # Existing tap-values.yaml above
-       backend:
-         reading:
-           allow:
-             - host: "GIT-CATALOG-URL-1"
-             - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
-   ```
+    ```yaml
+    app_config:
+      # Existing tap-values.yaml above
+      backend:
+        reading:
+          allow:
+            - host: "GIT-CATALOG-URL-1"
+            - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
+    ```
 
    Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
    Tanzu Application Platform GUI can read when registering new components.
@@ -54,14 +54,14 @@ component information:
    show any accelerators. Provide a value for Application Accelerator as a workaround, as in this
    example:
 
-   ```yaml
-     app_config:
-       # Existing tap-values.yaml above
-       backend:
-         reading:
-           allow:
-             - host: acc-server.accelerator-system.svc.cluster.local
-   ```
+    ```yaml
+    app_config:
+      # Existing tap-values.yaml above
+      backend:
+        reading:
+          allow:
+            - host: acc-server.accelerator-system.svc.cluster.local
+    ```
 
 ## <a id="add-non-git-integration"></a> Add a non-Git provider integration
 
@@ -70,7 +70,7 @@ To add an integration for a provider that isn't associated with GitHub, see the
 
 ## <a id="update-package-profile"></a> Update the package profile
 
-After making changes to `tap-values.yaml`, update the package profile by running:
+After changing `tap-values.yaml`, update the package profile by running:
 
 ```console
 tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER \
