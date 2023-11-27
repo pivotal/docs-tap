@@ -1611,7 +1611,17 @@ This release has the following known issues, listed by component and area.
   restricted Pod Security Standard. As a temporary workaround, you can do the following:
 
   - Copy the template (e.g `carbonblack-private-image-scan-template`) with a different name.
-  - Set `securityContext.runAsNonRoot: true` in the new template
+  - Set the following `securityContext` in the new template:
+    ```
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      privileged: false
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    ```
   - Apply the new template to your cluster
   - Update the `tap-values.yaml` file to use the new template in your workloads.
 
