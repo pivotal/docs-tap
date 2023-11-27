@@ -9,8 +9,9 @@ This repo contains the content for Tanzu Application Platform docs.
 | Branch | Staging | Production |
 |--------|---------|------------|
 | main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.8/tap/overview.html) (Pre-release v1.8 docs) | n/a |
-| 1-7-1  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7.1/tap/overview.html) (Pre-release v1.7.1 docs) | n/a |
-| 1-7-0  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) |
+| 1-7-2  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.7.2/tap/overview.html) (Pre-release v1.7.2 docs) | n/a |
+| 1-7-1  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/overview.html) |
+| 1-7-0  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
 | 1-6-6  | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.6.6/tap/overview.html) (Pre-release v1.6.6 docs) | n/a |
 | 1-6-5  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/overview.html) |
 | 1-6-4  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
