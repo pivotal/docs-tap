@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-7-2'></a> v1.7.2 
- 
-**Release Date**: 12 December 2023 
- 
-### <a id='1-7-2-security-fixes'></a> v1.7.2 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-7-2'></a> v1.7.2
+
+**Release Date**: 12 December 2023
+
+### <a id='1-7-2-security-fixes'></a> v1.7.2 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-7-2-COMPONENT-NAME-fixes'></a> v1.7.2 Security fixes: COMPONENT-NAME
- 
+
 - Security fix description.
- 
+
 OR add HTML or Markdown table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,36 +33,36 @@ OR add HTML or Markdown table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-7-2-resolved-issues'></a> v1.7.2 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-7-2-resolved-issues'></a> v1.7.2 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-7-2-COMPONENT-NAME-ri'></a> v1.7.2 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-7-2-known-issues'></a> v1.7.2 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-7-2-known-issues'></a> v1.7.2 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-7-2-COMPONENT-NAME-ki'></a> v1.7.2 Known issues: COMPONENT-NAME
- 
+
 - Known issue description with link to workaround.  
- 
+
 ---
- 
+
 ### <a id='1-7-2-components'></a> v1.7.2 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
+
 ---   
 
 ## <a id='1-7-1'></a> v1.7.1
@@ -81,7 +81,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-1-eso'></a> v1.7.1 Features: External Secrets Operator
 
-- Adds support for Openshift clusters. For more information, see
+- Adds support for OpenShift clusters. For more information, see
   [Install External Secrets Operator](external-secrets/install-external-secrets-operator.hbs.md).
 
 ### <a id='1-7-1-security-fixes'></a> v1.7.1 Security fixes
@@ -299,6 +299,15 @@ This release has the following known issues, listed by component and area.
   Affected pods are updated concurrently. To avoid failures, you must have sufficient Kubernetes
   resources in your clusters to support the pod rollout.
 
+- `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
+  bound service resource. This impacts the timely rollout of new connection secrets to workloads.
+  The reconciler eventually picks up the change but this might take up to 10 hours.
+  As a temporary workaround, you can do one of the following:
+
+      - Delete the existing `ServiceBinding` and create a new one that is identical.
+      - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
+      - Delete and recreate the application workload referred to by the `ServiceBinding`.
+
 #### <a id='1-7-1-stk-ki'></a> v1.7.1 Known issues: Services Toolkit
 
 - An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
@@ -338,7 +347,7 @@ to ensure that they are correctly created.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
@@ -631,8 +640,8 @@ This release includes the following changes, listed by component and area.
 
 - Introduces the new `servicebinding.tanzu.vmware.com` package, which supersedes the existing
   `service-bindings.labs.vmware.com`. The new package is based on the community maintained
-  [`servicebinding/runtime`](https://github.com/servicebinding/runtime) implementation instead of the
-  VMware-maintained [`vmware-tanzu/servicebinding`](https://github.com/vmware-tanzu/servicebinding).
+  [servicebinding/runtime](https://github.com/servicebinding/runtime) implementation instead of the
+  VMware-maintained [vmware-tanzu/servicebinding](https://github.com/vmware-tanzu/servicebinding).
 
 #### <a id='1-7-0-services-toolkit'></a> v1.7.0 Features: Services Toolkit
 
@@ -644,13 +653,13 @@ This release includes the following changes, listed by component and area.
   For more information, see [Triage Vulnerabilities](tap-gui/plugins/scc-tap-gui.hbs.md#triage-vulnerabilities)
 
 - Adds role-based access control (RBAC) support based on namespace to allow a user with a
-  namespace scoped account to select a namespace within the plugin. For more information, see
+  namespace scoped account to select a namespace within the plug-in. For more information, see
   [Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
 
 #### <a id='1-7-0-security-analysis-plugin'></a> v1.7.0 Features: Security Analysis plug-in for Tanzu Developer Portal
 
 - Adds RBAC support based on namespace to allow a user with a namespace scoped account to
-  select a namespace within the plugin. For more information, see
+  select a namespace within the plug-in. For more information, see
   [Enable role-based access control for the Secure Supply Chains UI and Security Analysis UI plug-ins](tap-gui/tap-gui-rbac/enable-rbac-ssc-sa-plug-ins.hbs.md)
 
 #### <a id='1-7-0-spring-boot-conventions'></a> v1.7.0 Features: Spring Boot Conventions
@@ -672,11 +681,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
-Artifact Metadata Repository (AMR) is a new component that extends the capabilities of SCST - Store. AMR has the following new features in v1.7.0:
+Artifact Metadata Repository (AMR) is a new component that extends the capabilities of SCST - Store.
+AMR has the following new features in v1.7.0:
 
 - AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
-- Installing TAP now deploys AMR by default. For more information, see
+- Installing Tanzu Application Platform now deploys AMR by default. For more information, see
   [Artifact Metadata Repository](scst-store/overview.hbs.md).
 
 - Introduces the AMR authentication and authorization feature. For more information, see
@@ -708,7 +718,7 @@ Artifact Metadata Repository (AMR) is a new component that extends the capabilit
   to make use of VMware validated plug-ins and also integrate custom external plug-ins. For more
   information, see [the Configurator overview](tap-gui/configurator/about.hbs.md).
 
-- The following 3rd party plugins have validated compatibility with the Configurator:
+- The following third-party plug-ins have validated compatibility with the Configurator:
   - Tech Insights -  `@vmware-tanzu/tdp-plugin-techinsights`
   - Tech Insights Backend - `@vmware-tanzu/tdp-plugin-techinsights-backend`
   - Sonarqube - `@vmware-tanzu/tdp-plugin-backstage-sonarqube`
@@ -717,7 +727,7 @@ Artifact Metadata Repository (AMR) is a new component that extends the capabilit
   - Prometheus - `@vmware-tanzu/tdp-plugin-prometheus`
   - Jira - `@vmware-tanzu/tdp-plugin-backstage-jira`
   - Grafana - `@vmware-tanzu/tdp-plugin-backstage-grafana`
-  - Github Actions - `@vmware-tanzu/tdp-plugin-github-actions`
+  - GitHub Actions - `@vmware-tanzu/tdp-plugin-github-actions`
   - Snyk - `@vmware-tanzu/tdp-plugin-snyk`
   - Tanzu Developer Portal Home - `@vmware-tanzu/tdp-plugin-home`
 
@@ -794,8 +804,9 @@ see [Configure Envoy for Contour](contour/how-to-guides/configuring-envoy.hbs.md
 
 #### <a id="1-7-0-rbac-plugin-br"></a> v1.7.0 Breaking changes: Tanzu CLI RBAC plug-in
 
-- The RBAC plug-in for the Tanzu CLI, which was released as a beta to help manage user and group bindings to the
-  Tanzu Application Platform [Default Roles](./authn-authz/overview.hbs.md#default-roles), has been removed in favor of native Kubernetes capability.
+- The RBAC plug-in for the Tanzu CLI, which was released as a beta to help manage user and group
+  bindings to the Tanzu Application Platform [Default Roles](./authn-authz/overview.hbs.md#default-roles),
+  has been removed in favor of native Kubernetes capability.
   For more information, see the [Default roles for Tanzu Application Platform](./authn-authz/overview.hbs.md) documentation.
 
 #### <a id='1-7-0-workloads-br'></a> v1.7.0 Breaking changes: Workloads
@@ -1579,8 +1590,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-7-0-app-sso-ri'></a> v1.7.0 Resolved issues: Application Single Sign-On
 
-- Authorization servers advertise only supported scopes by using the discovery
-  endpoint.
+- Authorization servers advertise only supported scopes by using the discovery endpoint.
 
 - `AuthServer.spec.identityProviders.*.name` has a description.
 
@@ -1710,7 +1720,8 @@ This release has the following known issues, listed by component and area.
   resources in your clusters to support the pod rollout.
 
 - `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
-  bound service resource. This impacts the timely rollout of new connection secrets to workloads. The reconciler eventually picks up the change but this might take up to 10 hours.
+  bound service resource. This impacts the timely rollout of new connection secrets to workloads.
+  The reconciler eventually picks up the change but this might take up to 10 hours.
   As a temporary workaround, you can do one of the following:
 
   - Delete the existing `ServiceBinding` and create a new one that is identical.
@@ -1756,7 +1767,7 @@ to ensure that they are correctly created.
   For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 - `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
