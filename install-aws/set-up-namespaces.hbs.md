@@ -18,7 +18,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     ```
 
-1. Run the following to add secrets, a service account to execute the supply chain, and RBAC rules
+1. Add secrets and a service account to execute the Supply Chain and RBAC rules
    to authorize the service account to the developer namespace:
 
     ```console
