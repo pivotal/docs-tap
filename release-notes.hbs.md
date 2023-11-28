@@ -53,7 +53,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-2-COMPONENT-NAME-ki'></a> v1.7.2 Known issues: COMPONENT-NAME
 
-- Known issue description with link to workaround.  
+- Known issue description with link to workaround.
 
 ---
 
@@ -63,7 +63,7 @@ The following table lists the supported component versions for this Tanzu Applic
 
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
 
----   
+---
 
 ## <a id='1-7-1'></a> v1.7.1
 
@@ -304,9 +304,9 @@ This release has the following known issues, listed by component and area.
   The reconciler eventually picks up the change but this might take up to 10 hours.
   As a temporary workaround, you can do one of the following:
 
-      - Delete the existing `ServiceBinding` and create a new one that is identical.
-      - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
-      - Delete and recreate the application workload referred to by the `ServiceBinding`.
+  - Delete the existing `ServiceBinding` and create a new one that is identical.
+  - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
+  - Delete and recreate the application workload referred to by the `ServiceBinding`.
 
 #### <a id='1-7-1-stk-ki'></a> v1.7.1 Known issues: Services Toolkit
 
