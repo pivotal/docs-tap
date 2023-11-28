@@ -344,15 +344,15 @@ tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
 ```
 
-> **Important** Grype will no longer be installed out of the box as part of the profile installation.
-> You can install Grype by using Namespace Provisioner instead. Grype values will still be used to configure the
-> scanner created by Namespace Provisioner:
+> **Important** The profile installation no longer includes Grype out of the box. 
+> Instead, you can use Namespace Provisioner to install Grype. 
+> Namespace Provisioner still uses Grype values to configure the scanner:
 >
 >
 > ```yaml
 > grype:
 >   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
->```
+> ```
 >
 
 Where:
