@@ -1669,23 +1669,8 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-0-cbc-scanner-ki'></a> v1.7.0 Known issues: Carbon Black Scanner for SCST - Scan
 
-- Carbon Black Scanner templates will raise a PodSecurity violation error in clusters that use the
-  restricted Pod Security Standard. As a temporary workaround, you can do the following:
-
-  - Copy the template (e.g `carbonblack-private-image-scan-template`) with a different name.
-  - Set the following `securityContext` in the new template:
-    ```
-    securityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop: ["ALL"]
-      privileged: false
-      runAsNonRoot: true
-      seccompProfile:
-        type: RuntimeDefault
-    ```
-  - Apply the new template to your cluster
-  - Update the `tap-values.yaml` file to use the new template in your workloads.
+- Carbon Black Scanner templates raise a PodSecurity violation error in clusters that use the
+  restricted Pod Security Standard. As a workaround, see [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#pss).
 
 #### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Cartographer Conventions
 

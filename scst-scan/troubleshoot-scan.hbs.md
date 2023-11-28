@@ -518,7 +518,7 @@ You might see an error message similar to the following when describing the Task
 ```
 
 1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes.
-    
+
     ```yaml
     tekton_pipelines:
         feature_flags:
@@ -536,3 +536,29 @@ You might see an error message similar to the following when describing the Task
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
 3. Re-run the scan.
+
+### <a id="pss"></a> PodSecurity violation error for Carbon Black Scanner templates
+
+**Symptom:**
+
+Carbon Black Scanner templates raise a PodSecurity violation error in clusters that use the
+restricted Pod Security Standard.
+
+**Solution:**
+
+1. Copy the template (`carbonblack-private-image-scan-template`) with a different name.
+1. Set the following `securityContext` in the new template:
+
+    ```yaml
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      privileged: false
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    ```
+
+1. Apply the new template to your cluster.
+1. Update the `tap-values.yaml` file to use the new template in your workloads.
