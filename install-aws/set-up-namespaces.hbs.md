@@ -18,9 +18,20 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     ```
 
-1. Add a service account to execute the supply chain and RBAC rules to authorize the service account to the developer namespace.
+1. Run the following to add secrets, a service account to execute the supply chain, and RBAC rules
+   to authorize the service account to the developer namespace:
 
     ```console
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tap-registry
+      annotations:
+        secretgen.carvel.dev/image-pull-secret: ""
+    type: kubernetes.io/dockerconfigjson
+    data:
+      .dockerconfigjson: e30K
+    ---
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
     apiVersion: v1
     kind: ServiceAccount
@@ -28,18 +39,8 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
       name: default
       annotations:
         eks.amazonaws.com/role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/tap-workload"
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: default-permit-deliverable
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: deliverable
-    subjects:
-      - kind: ServiceAccount
-        name: default
+    imagePullSecrets:
+      - name: tap-registry
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
