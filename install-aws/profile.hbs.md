@@ -62,6 +62,15 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
 
     This namespace keeps the objects grouped together logically.
 
+1. Create a registry secret by running:
+
+     ```console
+     tanzu secret registry add tap-registry \
+       --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} \
+       --server ${INSTALL_REGISTRY_HOSTNAME} \
+       --export-to-all-namespaces --yes --namespace tap-install
+     ```
+
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
     ```console
