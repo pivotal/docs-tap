@@ -19,7 +19,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     ```
 
 1. Add secrets and a service account to execute the Supply Chain and RBAC rules
-   to authorize the service account to the developer namespace by running:
+   to authorize the service account to the developer namespace:
 
     ```console
     apiVersion: v1
