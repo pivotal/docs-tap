@@ -546,7 +546,8 @@ restricted Pod Security Standard.
 
 **Solution:**
 
-1. Copy the template (`carbonblack-private-image-scan-template`) with a different name.
+1. Copy the template you want to use, for example, `carbonblack-private-image-scan-template`.
+1. Rename the new template.
 1. Set the following `securityContext` in the new template:
 
     ```yaml
