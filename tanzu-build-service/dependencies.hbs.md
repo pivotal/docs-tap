@@ -203,14 +203,16 @@ version of Tanzu Application Platform.
 ### <a id="upgrade"></a> (Optional) Update buildpacks between Tanzu Application Platform releases
 
 You can update buildpack dependencies outside of upgrading Tanzu Application Platform, but
-VMware recommends that you simply upgrade Tanzu Application Platform when possible instead.
+VMware recommends that you upgrade Tanzu Application Platform when possible instead.
+Each Tanzu Application Platform release version includes a tested set of buildpacks. If you consume
+a buildpack from VMware Tanzu Network that is not packaged and tested in a Tanzu Application Platform release, it might introduce errors.
 
 1. Sign into [VMware Tanzu Network](https://network.tanzu.vmware.com/) so that
 the image can be retrieved from the registry.
 
 1. Select the required buildpack in the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html). Select `full` or `lite` dependencies. Scroll to the Docker command, and copy the buildpack image URL for use in the next step.
 
-1. Run:
+2. Run:
 
     ```console
     imgpkg copy -b BUILDPACK-IMAGE-URL --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-deps/BUILDPACK-LANGUAGE
@@ -218,7 +220,7 @@ the image can be retrieved from the registry.
 
     Where `BUILDPACK-IMAGE-URL` is the buildpack image URL copied from the Docker command in the previous step
 
-2. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
+3. Create a `ClusterBuildpack` resource referencing the copied buildpack image:
 
     ```console
     apiVersion: kpack.io/v1alpha2
@@ -238,7 +240,7 @@ the image can be retrieved from the registry.
     can follow any convention that allows the Cluster Operator to distinguish this `ClusterBuildpack`
     from others installed by Tanzu Application Platform.
 
-3. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
+4. Apply the YAML from the previous step to the Tanzu Application Platform cluster:
 
     ```console
     kubectl apply -f FILE-FROM-PREVIOUS-STEP
