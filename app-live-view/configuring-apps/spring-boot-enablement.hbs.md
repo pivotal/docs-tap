@@ -46,7 +46,6 @@ the Application Live View labels onto the PodSpec.
 For more information about the labels automatically set by Spring Boot conventions, see
 [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
-
 ## Enable Spring Boot 3 apps
 
 For Application Live View to interact with a Spring Boot 3 app within Tanzu Application Platform,
@@ -121,7 +120,6 @@ Here is an example of creating a workload for a Spring Cloud Gateway Application
 ```console
 tanzu apps workload create tanzu-scg-web-app --git-repo https://github.com/ksankaranara-vmw/gs-gateway.git --git-branch main --type web --label app.kubernetes.io/part-of=tanzu-scg-web-app --yes --annotation autoscaling.knative.dev/min-scale=1
 ```
-
 
 ## Workload image NOT built with Tanzu Build Service
 
