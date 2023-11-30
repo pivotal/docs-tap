@@ -45,6 +45,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-7-2-COMPONENT-NAME-ri'></a> v1.7.2 Resolved issues: Supply Chain Security Tools - Scan and Sacn 2.0
+
+- Controller panic when `container.SecurityContext` is provided but either of fields `Capabilities` or `SeccompProfile` are left emptty is addressed.
+
 ---
 
 ### <a id='1-7-2-known-issues'></a> v1.7.2 Known issues
@@ -361,6 +365,12 @@ to ensure that they are correctly created.
   Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
   corruption issue.
   For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan and Scan 2.0
+
+- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile` are left empty (null),
+  the controller fails because of panic. For a workaround, see
+  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic)
 
 #### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
@@ -1700,6 +1710,12 @@ This release has the following known issues, listed by component and area.
   configuration, the updated private registry configuration does not appear to take effect.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-7-0-cbc-scanner-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan and Scan 2.0
+
+- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile` are left empty (null),
+  the controller fails because of panic. For a workaround, see
+  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic)
 
 #### <a id='1-7-0-cbc-scanner-ki'></a> v1.7.0 Known issues: Carbon Black Scanner for SCST - Scan
 
