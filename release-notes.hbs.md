@@ -51,6 +51,17 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
+<a id='1-7-1-service-bindings-ki'></a> v1.7.2 Known issues: Service Bindings
+
+- `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
+  bound service resource. This impacts the timely rollout of new connection secrets to workloads.
+  The reconciler eventually picks up the change but this might take up to 10 hours.
+  As a temporary workaround, you can do one of the following:
+
+  - Delete the existing `ServiceBinding` and create a new one that is identical.
+  - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
+  - Delete and recreate the application workload referred to by the `ServiceBinding`.
+
 #### <a id='1-7-2-COMPONENT-NAME-ki'></a> v1.7.2 Known issues: COMPONENT-NAME
 
 - Known issue description with link to workaround.
