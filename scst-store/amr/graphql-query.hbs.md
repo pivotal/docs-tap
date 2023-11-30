@@ -195,7 +195,7 @@ This section tells you about GraphQL query arguments, and lists the fields avail
     appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
     ```
 
-  - `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS about the accelerator sources used.
+  - `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS (Version Control System) about the accelerator sources used.
     For example:
 
     ```graphql
