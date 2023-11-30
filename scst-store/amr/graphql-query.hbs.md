@@ -163,54 +163,54 @@ This section tells you about GraphQL query arguments, and lists the fields avail
 
 - `query`: expects an object that specifies additional arguments to query. The following arguments are supported in this query object:
 
-  - `guid`: UID identifying the run, as a `String` value. Each AppAcceleratorRun is automatically assigned a UID.
+- `guid`: UID identifying the run, as a `String` value. Each AppAcceleratorRun is automatically assigned a UID.
 
-    For example:
+  For example:
 
-    ```graphql
-    appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})
-    ```
+  ```graphql
+  appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})
+  ```
 
-  - `source`: string representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`.
+- `source`: string representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`.
 
-    For example:
+  For example:
 
-    ```graphql
-    appAcceleratorRuns(query:{source: "TAP-GUI"})
-    ```
+  ```graphql
+  appAcceleratorRuns(query:{source: "TAP-GUI"})
+  ```
 
-  - `username`: string representing the user name of the person who runs
-  the accelerator, as captured by the client UI.
-    For example:
+- `username`: string representing the user name of the person who runs
+the accelerator, as captured by the client UI.
+  For example:
 
-    ```graphql
-    appAcceleratorRuns(query:{username: "homer.simpson"})
-    ```
+  ```graphql
+  appAcceleratorRuns(query:{username: "homer.simpson"})
+  ```
 
-  - `namespace` and `name`: strings representing the accelerator that
-  was used to create an application.
-    For example:
+- `namespace` and `name`: strings representing the accelerator that
+was used to create an application.
+  For example:
 
-    ```graphql
-    appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
-    ```
+  ```graphql
+  appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
+  ```
 
-  - `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS (Version Control System) about the accelerator sources used.
-    For example:
+- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS (Version Control System) about the accelerator sources used.
+  For example:
 
-    ```graphql
-    appAcceleratorRuns(query:{
-      appAcceleratorRepoURL: "https://github.com/vmware-tanzu/application-accelerator-samples.git",
-      appAcceleratorRevision: "v1.6"
-    })
-    ```
+  ```graphql
+  appAcceleratorRuns(query:{
+    appAcceleratorRepoURL: "https://github.com/vmware-tanzu/application-accelerator-samples.git",
+    appAcceleratorRevision: "v1.6"
+  })
+  ```
 
-  - `timestamp`: string representation of the exact time the accelerator ran. You can query for runs that happened `before` or `after` a particular instant:
-    For example:
+- `timestamp`: string representation of the exact time the accelerator ran. You can query for runs that happened `before` or `after` a particular instant:
+  For example:
 
-    ```graphql
-    appAcceleratorRuns(query: {timestamp: {after: "2023-10-11T13:40:46.952Z"}})
-    ```
+  ```graphql
+  appAcceleratorRuns(query: {timestamp: {after: "2023-10-11T13:40:46.952Z"}})
+  ```
 
 ### <a id='app-accelerator-runs-fields'></a> AppAcceleratorRuns fields
 
