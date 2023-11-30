@@ -2,10 +2,16 @@
 
 This topic describes the objects from templates that you can use with Supply Chain Choreographer.
 
-All the objects referenced in this topic are [Cartographer Templates](https://cartographer.sh/docs/v0.6.0/reference/template/)
+All the objects referenced in this topic are
+[Cartographer Templates](https://cartographer.sh/docs/v0.6.0/reference/template/)
 packaged in [Out of the Box Templates](ootb-templates.hbs.md).
-Their purpose, the one or more objects they create, the supply chains that include them, and
-the parameters they use are detailed in this topic.
+
+This topic describes:
+
+- The purpose of the templates
+- The one or more objects that the templates create
+- The supply chains that include the templates
+- The parameters that the templates use
 
 ## <a id='source-template'></a> source-template
 
