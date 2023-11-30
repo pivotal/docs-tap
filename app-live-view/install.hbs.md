@@ -138,7 +138,8 @@ To install Application Live View back end:
 
 1. Create the file `app-live-view-backend-values.yaml` using the following information:
 
-    - For a single-cluster environment, the Application Live View back end is
+    single-cluster environment
+    : For a single-cluster environment, the Application Live View back end is
     exposed through the Kubernetes cluster service. By default, ingress is
     deactivated for back end.
 
@@ -146,14 +147,16 @@ To install Application Live View back end:
           ingressEnabled: false
         ```
 
-    - For a multicluster environment, set the flag `ingressEnabled` to true for
+    multicluster environment
+    : For a multicluster environment, set the flag `ingressEnabled` to true for
     the Application Live View back end to be exposed on the ingress domain.
 
         ```yaml
           ingressEnabled: true
         ```
 
-    - If you are using a Tanzu Application Platform profile installation and the
+    Using a profile with `shared.ingress_domain` set
+    : If you are using a Tanzu Application Platform profile installation and the
     top-level key `shared.ingress_domain` is set in the `tap-values.yaml`, the
     back end is automatically exposed through the shared ingress.
 
@@ -169,7 +172,10 @@ To install Application Live View back end:
         `tanzu-shared-ingress` service’s external IP address. The `appliveview`
         subdomain is prepended to the value provided.
 
-    - To enable TLS for Application Live View back end using a self-signed certificate:
+1. Enable or disable TLS in your `app-live-view-backend-values.yaml` file:
+
+    Enable TLS with self-signed certificate
+    : To enable TLS for Application Live View back end using a self-signed certificate:
 
         1. Create the `app-live-view` namespace and the TLS secret for the domain.
         You must do this before installing the Tanzu Application Platform packages in the
@@ -219,7 +225,8 @@ To install Application Live View back end:
             app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
             ```
 
-    - To enable TLS for Application Live View back end using ClusterIssuer:
+    Enable TLS using ClusterIssuer
+    : To enable TLS for Application Live View back end using ClusterIssuer:
 
         Set the `ingressEnabled` key to `true` for TLS to be enabled on Application Live View back
         end using ClusterIssuer. This key is set to `false` by default.
@@ -250,28 +257,28 @@ To install Application Live View back end:
         configuration in your run cluster as listed in
         [Install Application Live View connector](#install-alv-connector).
 
-    - To disable TLS for Application Live View back end:
+    Disable TLS
+    : To disable TLS for Application Live View back end:
 
       By default, Tanzu Application Platform installs and uses a self-signed CA as its ingress issuer for all components by default.
       The `ingress_issuer` key consumes the value `shared.ingress_issuer` from `tap-values.yaml` by
-      default if you don't specify the `ingress_issuer` in `tap-values.yaml`. This will automatically enable TLS validation on Application Live View back end. 
+      default if you don't specify the `ingress_issuer` in `tap-values.yaml`. This will automatically enable TLS validation on Application Live View back end.
 
       To disable TLS validation on Application Live View back end:
 
       While VMware does not recommend it, you can deactivate the ingress issuer by setting `shared.ingress_issuer: ""` in `tap-values.yaml`
 
         ```yaml
-            shared: 
+            shared:
               ingress_issuer: ""
         ```
 
-      Alternatively, you can set the `ingress_issuer: ""` in `app-live-view-backend-values.yaml`  
+      Alternatively, you can set the `ingress_issuer: ""` in `app-live-view-backend-values.yaml`
 
         ```yaml
           ingressEnabled: true
           ingress_issuer: ""
         ```
-
 
 1. Install the Application Live View back end package by running:
 
