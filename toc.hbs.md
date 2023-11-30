@@ -543,7 +543,6 @@
         - [Install Supply Chain Security Tools - Scan](scst-scan/install-scst-scan.hbs.md)
         - [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.hbs.md)
         - [Install another Scanner](scst-scan/install-scanners.hbs.md)
-            - [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scst-scan/scanner-matrix.hbs.md)
             - [Prerequisites for Snyk Scanner (Beta)](scst-scan/install-snyk-integration.hbs.md)
             - [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md)
             - [Prerequisites for Prisma Scanner (Alpha)](scst-scan/install-prisma-integration.hbs.md)
