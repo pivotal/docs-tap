@@ -14,6 +14,7 @@ Before installing API Validation and Scoring, complete the following prerequisit
 1. [Install Tanzu CLI](../install-tanzu-cli.hbs.md#cli-and-plugin).
 1. [Install kapp](https://carvel.dev/kapp/docs/v0.54.0/install/).
 1. Install Kubernetes CLI. For more information, see [Install Tools](https://kubernetes.io/docs/tasks/tools) in the Kubernetes documentation.
+1. [Deploy Cluster Essentials](https://{{ vars.staging_toggle }}.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 
 ## <a id='resource-requirements'></a>Resource requirements
 
@@ -100,6 +101,12 @@ To add the API Validation and Scoring package repository to your cluster:
     ```
 
     This namespace keeps the objects grouped together logically.
+
+1. Create a secret for adding the API Validation and Scoring package repository:
+
+    ```console
+    tanzu secret registry add tap-registry --username ${INSTALL_REGISTRY_USERNAME} --password ${INSTALL_REGISTRY_PASSWORD} --server ${INSTALL_REGISTRY_HOSTNAME} --export-to-all-namespaces --yes --namespace apix-install
+    ```
 
 1. Add the API Validation and Scoring package repository to the cluster by running:
 
