@@ -17,8 +17,6 @@ decisions about when and how to mitigate them. The current implementation of tri
 [CycloneDX's Vulnerability Exploitability eXchange (VEX)](https://cyclonedx.org/capabilities/vex/)
 specification, and is designed specifically to work with Tanzu workloads.
 
-For information about this feature, see [Data models and concepts for SCST - Store](../../scst-store/data-models-and-concepts.md).
-
 ## <a id='prerequisites'></a>Prerequisites
 
 Before you begin vulnerability analysis, you must:

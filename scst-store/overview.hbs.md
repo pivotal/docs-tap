@@ -26,8 +26,6 @@ to be deployed on Full and View profile clusters.
 
 - [AMR Architecture](amr/architecture.hbs.md)
 - [AMR Configuration](amr/configuration.hbs.md)
-- [AMR Data Models](amr/data-model-and-concepts.hbs.md)
-- [AMR GraphQL Query](amr/graphql-query.hbs.md)
 
 ## <a id='store'></a> Metadata Store
 
