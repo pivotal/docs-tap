@@ -102,7 +102,7 @@ accelerator:
 engine:
   # this is the 'global' transformation node. It produces the final set of
   # files to be zipped and returned from the accelerator.
-  # As input it receives all the files from the acceletor repo root.
+  # As input it receives all the files from the accelerator repo root.
 
   # The properties in this node dictate how this set of files is
   # transformed into a final set of files to zip up as the accelerator
