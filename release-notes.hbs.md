@@ -1927,6 +1927,10 @@ The following table lists the supported component versions for this Tanzu Applic
 The following features, listed by component, are deprecated.
 Deprecated features remain on this list until they are retired from Tanzu Application Platform.
 
+### <a id='1-7-api-deprecations'></a> API Scoring and Validation deprecations
+
+- The `apix` package is deprecated and will be removed in the next Tanzu Application Platform 1.8 release.
+
 ### <a id='1-7-cnrs-deprecations'></a> Cloud Native Runtimes deprecations
 
 - **`default_tls_secret` config option**: After changes in this release, this config option is moved
