@@ -518,6 +518,7 @@
               - [Use Gitops delivery with Argo CD (beta)](scc/delivery-with-argo.hbs.md)
               - [Use Blue-green deployment with Contour and PackageInstall (beta)](scc/blue-green-with-packageinstall.hbs.md)
               - [Use Canary deployment with Contour and Carvel Packages](scc/canary-deployment.hbs.md)
+              - [Use Blue-green deployments with Flagger](scc/blue-green-with-flagger.hbs.md)
           - [Use an existing image in Your Supply Chain](scc/pre-built-image.hbs.md)
           - [Authenticate Git](scc/git-auth.hbs.md)
           - [Use Azure DevOps as a Git provider](scc/azure.hbs.md)
