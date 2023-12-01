@@ -447,3 +447,53 @@ This ensures two things:
 To learn more about the `lifecycle: tekton` field, see the Cartographer tutorial
 [Lifecycle: Templating Objects That Cannot Update](https://cartographer.sh/docs/v0.6.0/tutorials/lifecycle/).
 To learn more about Tekton, see the [Tekton documentation](https://tekton.dev/docs/).
+
+### <a id="tekton-tasks-on-PSA-cluster"></a> Tekton Tasks on a cluster with a Pod Security Admission
+
+Kubernetes administrators may choose to enable the Pod Security Admission controller
+"to restrict the behavior of pods in a clear, consistent fashion". (Read more in the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-admission/))
+If this is the case on a cluster, the Tekton Tasks must be altered to adhere to the security context.
+
+#### <a id="PSA-compliant-step-template"> Include a PSA compliant stepTemplate
+The Task spec must include a `stepTemplate` field with the following defined:
+```yaml
+  stepTemplate:
+    securityContext:
+      allowPrivilegeEscalation: false
+      runAsUser: 1000
+      capabilities:
+        drop:
+          - ALL
+      seccompProfile:
+        type: "RuntimeDefault"
+      runAsNonRoot: true
+```
+
+Read more about `stepTemplate` in the
+[Tekton documentation](https://tekton.dev/docs/pipelines/tasks/#specifying-a-step-template).
+
+#### <a id="writing-to-appropriate-directories"> Write to available directories
+In order to be PSA compliant, the stepTemplate enforces that it will be run as a
+non-root user. Task authors must ensure that there is no attempt to write to
+protected directories.
+
+As an example, a user may wish to run a golang test and for their Task use the
+[Golang image](https://hub.docker.com/_/golang). In that image, the default value
+for the HOME environment variable is `/root`. This means that when running a command
+like `go test`, binaries would be created in a subdirectory of the root folder,
+which the user does not have permission to do. To address this particular case,
+the task author can include a step env to override the default value:
+
+```yaml
+      steps:
+      - image: golang
+        name: test
+        env:
+        - name: HOME
+          value: /go
+```
+
+Knowing what directories are safe will depend on the image you use. For example,
+the `/go` directory above exists and is not protected on the `golang` image but
+the directory does not exist on an [alpine](https://hub.docker.com/_/alpine) image.
