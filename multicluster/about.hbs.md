@@ -5,8 +5,8 @@ VMware has tested and recommends a multicluster topology for production use.
 Because flexibility and choice are core to Tanzu Application Platform's design,
 none of the implementation recommendations are set in stone.
 
-The multicluster topology uses the [profile capabilities](../overview.md#profiles-and-packages) supported by Tanzu Application Platform.
-Each cluster adopts one of following multicluster-aligned profiles:
+The multicluster topology uses the [profile capabilities](../about-package-profiles.hbs.md#profiles-and-packages)
+supported by Tanzu Application Platform. Each cluster adopts one of following multicluster-aligned profiles:
 
 - **Iterate:** Intended for inner-loop iterative application development.
 
