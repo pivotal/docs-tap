@@ -65,7 +65,7 @@ Before using the extension, you need follow the next steps:
 ## <a id="using-the-extension"></a> Using the extension
 
 After adding the `Tap Gui Url` you can explore the defined accelerators
-accessing the Application Accelerater extension icon:
+accessing the Application Accelerator extension icon:
 
 ![The explorer panel is open, the TIMELINE drop-down is selected, and the Demo Types icon is highlighted.](../images/app-accelerators-vscode-icon.png)
 
