@@ -13,3 +13,4 @@ template_variables:
     version: 1.4
   api-auto-registration:
     scg-version: 2.1
+    plugin_group_version: 1.6
