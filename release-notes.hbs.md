@@ -68,7 +68,12 @@ This release has the following known issues, listed by component and area.
 
   - Delete the existing `ServiceBinding` and create a new one that is identical.
   - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
-  - Delete and recreate the application workload referred to by the `ServiceBinding`.
+
+<a id='1-7-1-api-auto-registration'></a> v1.7.2 Known issues: API Auto Registration
+
+- When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
+  incorrectly uses the API spec url as the server url. For now, users are requested to use just
+  url under `server.url`
 
 #### <a id='1-7-2-COMPONENT-NAME-ki'></a> v1.7.2 Known issues: COMPONENT-NAME
 
