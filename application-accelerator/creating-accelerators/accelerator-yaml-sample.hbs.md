@@ -133,7 +133,7 @@ engine:
     # Each child receives a copy of the current set of input files.
     # (i.e. the files that are remaining after considering the `include` and `exclude`.
     # Each of the children thus produces a set of files.
-    # Merge then combines all the files from all the children, as if by overlaying them on top of eachother
+    # Merge then combines all the files from all the children, as if by overlaying them on top of each other
     # in the same directory. If more than one child produces a file with the same path,
     # this 'conflict' is resolved by dropping the file contents from the earlier child
     # and keeping only the later one.
