@@ -44,7 +44,7 @@ From GitHub release:
         --version v0.12.1
         ```
 
-## Uninstalling Tanzu Apps CLI
+## Uninstall Tanzu Apps CLI
 
 Run:
 
