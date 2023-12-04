@@ -30,7 +30,7 @@ Run:
 tanzu plugin delete apps
 ```
 
-## <a id='changing-clusters'></a>Changing clusters
+## <a id='changing-clusters'></a>Change clusters
 
 The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
 When you run a `tanzu apps` command, the plug-in uses the default context that is defined in that
@@ -46,7 +46,7 @@ There are two ways to change the target cluster:
    >**Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTENT-NAME`
      flag continue to use the default context set in the kubeconfig.
 
-## <a id='override-kubeconfig'></a>Overriding the default kubeconfig
+## <a id='override-kubeconfig'></a>Override the default kubeconfig
 
 There are two approaches to overriding the default kubeconfig:
 
@@ -71,7 +71,7 @@ according to your current setup:
 
 ### <a id='bash'></a>Bash
 
-```bash
+```console
 tanzu completion bash >  HOME/.tanzu/completion.bash.inc
 ```
 
@@ -82,9 +82,7 @@ echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```
 
-## <a id='about-workloads'></a> About workloads
-
-### <a id='creating-workloads'></a>Creating workloads
+## <a id='creating-workloads'></a>Create workloads
 
 Create workloads from one of the following sources:
 
@@ -95,9 +93,9 @@ Create workloads from one of the following sources:
 
 For more information, see [Create a workload](create-workload.hbs.md).
 
-### <a id='debugging-workloads'></a>Debugging and troubleshooting workloads
+## <a id='debugging-workloads'></a>Debug and troubleshoot workloads
 
-Check workload status with the `tanzu apps workload get` and `tanzu apps workload tail` commands.
+Check the workload status with the `tanzu apps workload get` and `tanzu apps workload tail` commands.
 
 Use `tanzu apps workload get` to see the workload specification, the resources attached to it, their
 status and any associated high-level error messages (if they exist).
@@ -105,4 +103,4 @@ status and any associated high-level error messages (if they exist).
 Use `tanzu apps workload tail` to see testing, scanning, build, configuration, deployment, and
 runtime logs associated with a workload and its progression through the supply chain.
 
-For more information about using these commands and common errors, see [Debugging workloads](debug-workload.hbs.md).
+For more information about using these commands and common errors, see [Debug workloads](debug-workload.hbs.md).
