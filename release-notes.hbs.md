@@ -1929,7 +1929,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id='1-7-api-deprecations'></a> API Scoring and Validation deprecations
 
-- The `apix` package is deprecated and will be removed in the next Tanzu Application Platform 1.8 release.
+- The `apix` package is deprecated and will be removed in the next Tanzu Application Platform release.
 
 ### <a id='1-7-cnrs-deprecations'></a> Cloud Native Runtimes deprecations
 
