@@ -53,6 +53,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-7-2-cert-manager-ki'></a> v1.7.2 Resolved issues: cert-manager
+
+- `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
+
 ---
 
 ### <a id='1-7-2-known-issues'></a> v1.7.2 Known issues
@@ -81,6 +85,12 @@ This release has the following known issues, listed by component and area.
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+
+The following table lists the supported component versions for this Tanzu Application Platform release.
+
+| Component Name                                                   | Version |
+| ---------------------------------------------------------------- | ------- |
+| cert-manager                                                     | 2.4.2   |
 
 ---
 
