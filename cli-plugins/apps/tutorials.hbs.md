@@ -6,48 +6,27 @@ This topic describes how to install the Tanzu Apps CLI plug-in.
 
 Ensure that you installed or updated the Tanzu CLI, for more information, see [Install Tanzu CLI](../../install-tanzu-cli.hbs.md#cli-and-plugin).
 
-## <a id='from-tap-net'></a>Install From VMware Tanzu Network
-
-1. From the `HOME/tanzu` directory, run:
-
-    ```console
-    tanzu plugin install apps
-    ```
-
-2. To verify that the CLI is installed correctly, run:
-
-    ```console
-    tanzu apps version
-    ```
-
-    A version displays in the output.
-
-
-## <a id='from-release'></a>Install From Release
-
-The latest release is in the [Github repository releases page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/).
-Each of these releases has the Assets section where the packages for each system-architecture are
-placed.
-
-To install the Apps CLI plug-in:
-
-1. Download the binary executable file `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`:
-
-    ```bash
-    tar -xvf tanzu-apps-plugin-darwin-amd64-v0.10.0.tar.gz
-    ```
-
-2. Run (on macOS with plug-in version 0.10.0):
-
-   ```console
-   tanzu plugin install apps --local ./tanzu-apps-plugin-darwin-amd64-v0.10.0 --version v0.10.0
-   ```
-
-## <a id='uninstall'></a>Uninstalling Apps CLI plug-in
+## Install Tanzu Apps CLI plug-in
 
 Run:
 
-```bash
+```console
+tanzu plugin install apps --group vmware-tap/default:{{ vars.tanzu-cli.plugin_group_version }}
+```
+
+Verify that the plug-in is installed correctly:
+
+```console
+tanzu apps version
+# sample output
+v0.12.1
+```
+
+## <a id='uninstall'></a>Uninstall Apps CLI plug-in
+
+Run:
+
+```console
 tanzu plugin delete apps
 ```
 
