@@ -109,12 +109,6 @@ To get status: "tanzu apps workload get tanzu-java-web-app"
 Another way to pass a workload with the `--file` flag is using a URL, which must contain a raw file
 with the workload definition.
 
-For example:
-
-```console
-tanzu apps workload create --file https://raw.githubusercontent.com/vmware-tanzu/apps-cli-plugin/main/pkg/commands/testdata/workload.yaml
-```
-
 ## <a id='create-workload-git'></a> Create workload from Git source
 
 Use the `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit` flags to create a
