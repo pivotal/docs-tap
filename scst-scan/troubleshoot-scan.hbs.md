@@ -568,7 +568,7 @@ restricted Pod Security Standard.
 
 **Symptom:**
 
-When `container.SecurityContext` is provided but either of fileds `Capabilities` or `SeccompProfile` are left empty like below, the controller for for TAP 1.7.0 and 1.7.1 will panic.
+When `container.SecurityContext` is provided but either the field `Capabilities` or `SeccompProfile` is left empty like below, the controller will panic.
 
   ```yaml
   securityContext:

@@ -45,9 +45,9 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
-#### <a id='1-7-2-COMPONENT-NAME-ri'></a> v1.7.2 Resolved issues: Supply Chain Security Tools - Scan and Sacn 2.0
+#### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: Supply Chain Security Tools - Scan and Scan 2.0
 
-- Controller panic when `container.SecurityContext` is provided but either of fields `Capabilities` or `SeccompProfile` are left emptty is addressed.
+- Scan Controller panic when `container.SecurityContext` is not null but not all fields are provided such as  `Capabilities` or `SeccompProfile` has been resolved.
 
 ---
 
