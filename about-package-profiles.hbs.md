@@ -27,14 +27,6 @@ a predefined group of packages.
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
   URLs to appear in a single instance.
 
-- **[API Scoring and Validation](api-validation-scoring/about.hbs.md)**
-
-  API Validation and Scoring focuses on scanning and validating an OpenAPI specification.
-  The API specification is generated from the [API Auto Registration](api-auto-registration/about.hbs.md).
-  After an API is registered, the API specification goes through static scan analysis and is validated.
-  Based on the validation, a scoring is provided to indicate the quality and health of the API specification
-  as it relates to Documentation, OpenAPI best practices, and Security.
-
 - **[Application Accelerator](application-accelerator/about-application-accelerator.md)**
 
   The Application Accelerator component helps app developers and app operators create application
