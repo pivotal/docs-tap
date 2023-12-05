@@ -1406,6 +1406,10 @@ For information about the package customization, see [Customize your package ins
 - Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
+
+#### <a id='1-7-0-tdp-ki'></a> v1.7.0 Known issues: Tanzu Developer Portal
+- On first install, Tanzu Developer Portal will sometimes experience a transient failure during reconciliation. No action is needed as reconcile will succeed during automatic retry. The issue is related to the order of creation for Kubernetes resources and will be addressed in a future release.
+
 ---
 
 ### <a id='1-7-0-components'></a> v1.7.0 Component versions
