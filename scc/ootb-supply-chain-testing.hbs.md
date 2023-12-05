@@ -59,7 +59,7 @@ If you see `source-test-scan-to-url` in the list, the setup is wrong: you
 **must not have the _source-test-scan-to-url_ installed** at the same time as
 _source-test-to-url_.
 
-## <a id="developer-namespace"></a> Developer Namespace
+## <a id="developer-namespace"></a> Developer namespace
 
 As mentioned in the prerequisites section, this supply chain builds on the
 previous Out of the Box Supply Chain, so only additions are included here.
@@ -166,6 +166,10 @@ not automatically trigger a re-run of the pipeline. That is, a new Tekton
 PipelineRun is not automatically created if a field in the Pipeline object
 is changed. As a workaround, the latest PipelineRun created can be deleted,
 which triggers a re-run.
+
+> **Note** If your cluster has Pod Security Admission enabled, you must update all pipeline tasks to
+> adhere to the admission policy. For more information, see
+> [Tekton Tasks on a cluster with Pod Security Admission](authoring-supply-chains.hbs.md#tekton-tasks-on-psa-clstr).
 
 #### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
 

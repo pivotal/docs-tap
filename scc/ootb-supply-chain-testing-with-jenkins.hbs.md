@@ -15,7 +15,7 @@ can now run from a Tekton `Pipeline`.
 Follow the instructions from either [Out of the Box Supply Chain With
 Testing](ootb-supply-chain-testing.html) or [Out of the Box Supply Chain With
 Testing and Scanning](ootb-supply-chain-testing-scanning.html) to
-install the required packages. You only need to set up only one of these packages.
+install the required packages. You need to set up only one of these packages.
 
 Either of these Supply Chains can use the Jenkins service during the `source-tester`
 phase of the pipeline.
@@ -128,7 +128,7 @@ section.
 A secret must be created in the developer namespace to contain the credentials required to authenticate and interact with your Jenkins instance's builds. The following properties are required:
 
 - `url` **required**: URL of the Jenkins instance that hosts the job, including
-  the scheme. For example: https://my-jenkins.com.
+  the scheme. For example: `https://my-jenkins.com`.
 - `username` **required**: User name of the user that has access to trigger a build on Jenkins.
 - `password` **required**: Password of the user that has access to trigger a build on Jenkins.
 - `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.

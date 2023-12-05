@@ -1,11 +1,12 @@
 # Overview of multicluster Tanzu Application Platform
 
-You can install Tanzu Application Platform (commonly known as TAP) in various topologies to reflect your existing landscape.
-VMware has tested and recommends a multicluster topology for production use.
-Because flexibility and choice are core to Tanzu Application Platform's design,
-none of the implementation recommendations are set in stone.
+You can install Tanzu Application Platform (commonly known as TAP) in various topologies to reflect
+your existing landscape. VMware has tested and recommends a multicluster topology for production
+use. Because flexibility and choice are core to Tanzu Application Platform's design, none of the
+implementation recommendations are set in stone.
 
-The multicluster topology uses the [profile capabilities](../overview.md#profiles-and-packages) supported by Tanzu Application Platform.
+The multicluster topology uses Tanzu Application Platform
+[profiles](../about-package-profiles.hbs.md#profiles-and-packages).
 Each cluster adopts one of following multicluster-aligned profiles:
 
 - **Iterate:** Intended for inner-loop iterative application development.
