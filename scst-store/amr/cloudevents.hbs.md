@@ -100,4 +100,4 @@ Fields that are not part of the required and optional attributes for CloudEvents
 
 ## <a id='batch'></a> Batch CloudEvents
 
-CloudEvents sent to AMR CloudEvent-Handler can in batch format if you use CloudEvent [JSON batch format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format). 
+If you use JSON batch format, you can send multiple CloudEvents to the AMR CloudEvent-Handler in a batch. For more information, see the [CloudEvents documentation](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format) in GitHub.
