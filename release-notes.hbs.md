@@ -65,14 +65,51 @@ This release has the following known issues, listed by component and area.
 
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
-
-
-The following table lists the supported component versions for this Tanzu Application Platform release.
-
 | Component Name                                                   | Version |
 | ---------------------------------------------------------------- | ------- |
+| API Auto Registration                                            |         |
+| API portal                                                       |         |
+| Application Accelerator                                          |         |
+| Application Configuration Service                                |         |
+| Application Live View API Server                                 |         |
+| Application Live View Backend                                    |         |
+| Application Live View Connector                                  |         |
+| Application Live View Conventions                                |         |
+| Application Single Sign-On                                       |         |
+| Bitnami Services                                                 |         |
+| Cartographer Conventions                                         |         |
 | cert-manager                                                     | 2.4.2   |
+| Cloud Native Runtimes                                            |         |
+| Contour                                                          |         |
+| Crossplane                                                       |         |
+| Default Roles                                                    |         |
+| Developer Conventions                                            |         |
+| Eventing (deprecated)                                            |         |
+| External Secrets Operator                                        |         |
+| Flux CD Source Controller                                        |         |
+| Learning Center (deprecated)                                     |         |
+| Learning Center workshops (deprecated)                           |         |
+| Local Source Proxy                                               |         |
+| Namespace Provisioner                                            |         |
+| Out of the Box Delivery - Basic                                  |         |
+| Out of the Box Supply Chain - Basic                              |         |
+| Out of the Box Supply Chain - Testing                            |         |
+| Out of the Box Supply Chain - Testing and Scanning               |         |
+| Out of the Box Templates                                         |         |
+| Service Bindings                                                 |         |
+| Services Toolkit                                                 |         |
+| Source Controller                                                |         |
+| Spring Boot conventions                                          |         |
+| Spring Cloud Gateway                                             |         |
+| Supply Chain Choreographer                                       |         |
+| Supply Chain Security Tools - Policy Controller                  |         |
+| Supply Chain Security Tools - Scan                               |         |
+| Supply Chain Security Tools - Store                              |         |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |         |
+| Tanzu Application Platform Telemetry                             |         |
+| Tanzu Build Service                                              |         |
+| Tanzu CLI                                                        |         |
+| Tekton Pipelines                                                 |         |
 
 ---
 
