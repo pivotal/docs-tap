@@ -7,16 +7,6 @@ v{{ vars.url_version }}.
 
 **Release Date**: 12 December 2023
 
-### <a id='1-7-2-new-features'></a> v1.7.2 New features by component and area
-
-This release includes the following changes, listed by component and area.
-
-#### <a id='1-7-2-scc'></a> v1.7.2 Features: Supply Chain Choreographer
-
-- Documents the procedure for implementing blue-green deployments with Flagger for Carvel-package
-  supply chains. For more information, see
-  [Use blue-green deployment with Flagger for Supply Chain Choreographer (beta)](scc/blue-green-with-flagger.hbs.md).
-
 ### <a id='1-7-2-security-fixes'></a> v1.7.2 Security fixes
 
 This release has the following security fixes, listed by component and area.
