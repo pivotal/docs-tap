@@ -11,7 +11,7 @@ Ensure that you installed or updated the Tanzu CLI, for more information, see [I
 Run:
 
 ```console
-tanzu plugin install apps --group vmware-tap/default:{{ vars.tanzu-cli.plugin_group_version }}
+tanzu plugin install apps --group vmware-tap/default:v{{ vars.tanzu-cli.plugin_group_version }}
 ```
 
 Verify that the plug-in is installed correctly:
