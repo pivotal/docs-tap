@@ -48,9 +48,9 @@ This release includes the following changes, listed by component and area.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-8-0-COMPONENT-NAME-bc'></a> v1.8.0 Breaking changes: COMPONENT-NAME
+#### <a id='1-8-0-apix-bc'></a> v1.8.0 Breaking changes: API Validation and Scoring
 
-- Breaking change description.
+- API Validation and Scoring is removed in this release.
 
 ---
 
