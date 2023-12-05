@@ -53,6 +53,10 @@ The following issues, listed by component and area, are resolved in this release
 
 - Resolved issue description.
 
+#### <a id='1-7-2-cert-manager-ki'></a> v1.7.2 Resolved issues: cert-manager
+
+- `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
+
 #### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: Supply Chain Security Tools - Scan and Scan 2.0
 
 - Scan Controller panic when `container.SecurityContext` is not null but not all fields are provided such as  `Capabilities` or `SeccompProfile` has been resolved.
@@ -90,6 +94,12 @@ This release has the following known issues, listed by component and area.
 The following table lists the supported component versions for this Tanzu Application Platform release.
 
 GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+
+The following table lists the supported component versions for this Tanzu Application Platform release.
+
+| Component Name                                                   | Version |
+| ---------------------------------------------------------------- | ------- |
+| cert-manager                                                     | 2.4.2   |
 
 ---
 
