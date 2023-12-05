@@ -27,7 +27,7 @@ See [Multicluster setup](multicluster-setup.hbs.md) for information about how to
 
 Using the Supply Chain Choreographer in Tanzu Developer Portal
 (formerly named Tanzu Application Platform GUI), you can visualize your supply chain.
-It uses to SCST - Store to show the packages and vulnerabilities in your source code and images.
+It uses SCST - Store to show the packages and vulnerabilities in your source code and images.
 
 ## <a id='additional-info'></a>Additional documentation
 
