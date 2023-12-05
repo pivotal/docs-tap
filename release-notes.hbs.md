@@ -23,7 +23,7 @@ This release has the following security fixes, listed by component and area.
 | conventions.appliveview.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2023-5363</li><li>CVE-2023-29406</li><li>CVE-2023-29409 </li></ul>|
 | grype.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363 </li></ul>|
 | scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2023-5363 </li></ul>|
-| service-registry.spring.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363 </li></ul>|
+| service-registry.spring.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363 </li><li>CVE-2023-39325</li></ul>|
 | snyk.scanning.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363 </li></ul>|
 | spring-boot-conventions.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363 </li></ul>|
 | dotnet-core-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2023-39318</li><li>CVE-2023-39319</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-jq35-85cj-fj4p</li><li>GHSA-2q89-485c-9j2x</li><li>CVE-2023-29409 </li></ul>|
@@ -54,6 +54,10 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: Supply Chain Security Tools - Scan and Scan 2.0
 
 - Scan Controller panic when `container.SecurityContext` is not null but not all fields are provided such as  `Capabilities` or `SeccompProfile` has been resolved.
+
+#### <a id='1-7-2-service-registry-ri'></a> v1.7.2 Resolved issues: Service Registry
+
+- Skips hostname and TLS verification when mTLS is not enabled.
 
 ---
 
@@ -120,7 +124,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Out of the Box Supply Chain - Testing and Scanning |                |
 | Out of the Box Templates                           |                |
 | Service Bindings                                   |                |
-| Service Registry                                   |                |
+| Service Registry                                   | 1.2.1          |
 | Services Toolkit                                   |                |
 | Snyk Scanner for SCST - Scan (beta)                |                |
 | Source Controller                                  |                |
