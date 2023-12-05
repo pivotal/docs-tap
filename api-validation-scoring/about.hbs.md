@@ -1,5 +1,8 @@
 # Overview of API Validation and Scoring
 
+> **Caution** The APIx package used for API scoring and validation is deprecated.
+> It will be removed in the next Tanzu Application Platform release.
+
 API Validation and Scoring focuses on scanning and validating an OpenAPI specification. 
 The API specification is generated from the [API Auto Registration](../api-auto-registration/about.hbs.md). 
 After an API is registered, the API specification goes through static scan analysis and is validated. 
