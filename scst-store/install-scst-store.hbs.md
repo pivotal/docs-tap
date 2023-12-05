@@ -1,14 +1,14 @@
 
-# Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles
+# Install Supply Chain Security Tools - Store
 
 This topic describes how you can install Supply Chain Security Tools (SCST) - Store
-from the Tanzu Application Platform package repository.
+independently from Tanzu Application Platform (commonly known as TAP) profiles.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Security Tools - Store. For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing SCST - Store:
+Before installing SCST - Store from the Tanzu Application Platform package repository:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more
   information, see [Prerequisites](../prerequisites.md).
