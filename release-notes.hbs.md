@@ -724,6 +724,12 @@ This release includes the following changes, listed by component and area.
 
 - Adds support for Kubernetes v1.27.
 
+#### <a id='1-7-0-scc'></a> v1.7.0 Features: Supply Chain Choreographer
+
+- Documents procedure for implementing blue-green deployments with Flagger for Carvel-package supply
+  chains. For more information, see
+  [Use blue-green deployment with Flagger for Supply Chain Choreographer (beta)](scc/blue-green-with-flagger.hbs.md).
+
 #### <a id='1-7-0-supply-chain-plugin'></a> v1.7.0 Features: Supply Chain plug-in for Tanzu Developer Portal
 
 - You can add triage analysis to vulnerabilities from a vulnerability scanner step.
