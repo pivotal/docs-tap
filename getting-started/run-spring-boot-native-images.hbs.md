@@ -7,8 +7,8 @@ as native images using GraalVM, including the available options.
 
 - Configure your Spring Boot application and `workload.yaml` file to run on Tanzu Application Plaform
   as a native image.
-- Configure your app and `workload.yaml` file to enable Application Live View.
-<!-- get reviewed -->
+- Configure your app and `workload.yaml` file to enable Application Live View for Spring Boot native
+  applications.
 
 ## <a id="introduction"></a>Introduction
 
@@ -39,10 +39,7 @@ To confirm Spring Boot support for native testing, see the
 
 If your application can run as native images in general, Tanzu Application Platform allows you
 to run your applications as native executable files on the platform as well and tries to make it as
-easy as possible over time.
-<!-- clarify -- make what as easy as possible? -->
-But the platform is not a migration tool that enables your Spring Boot application itself to be ready
-for the GraalVM native image technology. <!-- clarify? -->
+easy as possible to manage your applications over time.
 
 ## <a id="how-to"></a> Run your Spring Boot workload as a native image
 
@@ -51,14 +48,11 @@ application into a native executable file and how to run that native executable 
 
 ### <a id="config-appside"></a> Configure the application side
 
-For your application, you can use the usual process for developing and testing workloads that support
+For your application, use the usual process for developing and testing workloads that support
 native images.
-<!-- clarify -- what is this process? -->
-
 For general information about native image support, see the [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html).
 
-Take note of the inclusion of the GraalVM native plug-in in your Maven POM file or Gradle build file.
-<!-- are you supposed to include this in your build file or do you just need to record something that's already there -->
+You must include the GraalVM native plug-in in your Maven POM file or Gradle build file.
 
 - Example for Maven:
 
@@ -90,15 +84,13 @@ Take note of the inclusion of the GraalVM native plug-in in your Maven POM file 
 ### <a id="config-workload"></a> Configure the workload
 
 To enable a native build, configure the buildpack to perform the native compilation step.
-You might also need to enable the native profile (mainly for Maven/Spring Boot 3.x projects).
-<!-- would you have to do this for anything other than Maven/Spring Boot 3.x projects -->
+You might also need to enable the native profile, mainly for Maven/Spring Boot 3.x projects.
+<!-- would you have to do this for anything other than Maven/Spring Boot 3.x projects -- will follow up-->
 
 You configure these settings using the `spec.build` environment parameters in the workload.
-The following example works for all use cases.
-<!-- does the "example" refer to just the code snippet L103-L116 or does it refer to this whole section? -->
-If you are using Gradle, remove the additional Maven build arguments.
 
-The following is the full `spec.build` configuration:
+The following example works for all use cases. If you are using Gradle, remove the additional Maven
+build arguments. This example has the full `spec.build` configuration:
 
 ```yaml
 spec:
@@ -118,8 +110,8 @@ spec:
 Because native images implement a closed world philosophy, you cannot set configuration at runtime
 deterministically. As a consequence, the Spring Boot Convention cannot automatically set options for
 native images to optimize running the application on the platform.
-However, the `tanzu-java-web-app` Tanzu Application Platform accelerator provides a good updated reference.
-<!-- clarify previous sentence -->
+However, the `tanzu-java-web-app` Tanzu Application Platform accelerator provides an example that you
+can refer to.
 
 The most important elements from the configuration are `BP_JVM_VERSION`, `BP_NATIVE_IMAGE` and `BP_MAVEN_BUILD_ARGUMENTS`.
 They provide the instructions for buildpacks to `init` the native compilation.
@@ -136,7 +128,6 @@ Depending on the app type, such as web, server, or worker, different methods for
 health of the application are employed that might require configuring certain runtime parameters.
 For applications that do not need automatically configured actuators, you can generically achieve
 this using the following `build.spec` environment parameters:
-<!-- clarify above paragraph -->
 
 ```yaml
  - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ADD_ADDITIONAL_PATHS
@@ -204,7 +195,7 @@ including various system property settings.
 Because the setting `JAVA_TOOL_OPTIONS` doesn't work for native compiled Spring Boot applications,
 many of the configurations that the Spring Boot Convention applies don’t have any effect.
 This is why you must configure this manually using separate environment variables as described earlier.
-<!-- where earlier? get link -->
+<!-- where earlier? get link -- to follow up -->
 
 The goal for future versions of the Spring Boot Convention is to have it automatically do much of
 the current manual work.
@@ -256,7 +247,6 @@ Configure your application to include the actuator library:
 For an application to integrate with Application Live View:
 
 1. The application must declare the integration by either:
-    <!-- clarify -- is this enable the actuator auto config? -->
 
     - In the `workload.yaml` file, set the `apps.tanzu.vmware.com/auto-configure-actuators` label.
       For more information, see [Workload-level configuration](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md#workload-config).
@@ -375,7 +365,5 @@ To register the app in the UI, you must:
 For further instructions, see [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
 
 > **Important** Not all the usual information will be available. For example, JVM memory information
-> won’t be available because native images have a slightly different mode and so are other elements
-> that are not available in the actuator endpoints yet.
-
-<!-- clarify what the second sentence of the above note means -->
+> won’t be available because native images have a slightly different mode, and there are other elements
+> that won't be available in the actuator endpoints.
