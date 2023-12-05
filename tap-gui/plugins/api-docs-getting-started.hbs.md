@@ -217,6 +217,8 @@ about the API.
       status:    # One of the statuses (passed, warning, or failed). Displays the number in green, yellow, or red.
 ```
 
+<!-- Should this section be removed?
+
 ### <a id="automatic-validation"></a> Automatic OpenAPI specification validation
 
 To receive automatic validation analysis for OpenAPI specifications by using API Validation Scoring:
@@ -235,3 +237,5 @@ regular GitOps methods or manual registration.
 Validation analysis is currently unavailable for APIs registered via TAP GUI without being attached \
 to a workload.
 ```
+
+-->
