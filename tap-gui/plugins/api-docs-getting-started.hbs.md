@@ -216,26 +216,3 @@ about the API.
       valueType: # One of the types (percentage or other). Displays the % symbol or displays nothing.
       status:    # One of the statuses (passed, warning, or failed). Displays the number in green, yellow, or red.
 ```
-
-<!-- Should this section be removed?
-
-### <a id="automatic-validation"></a> Automatic OpenAPI specification validation
-
-To receive automatic validation analysis for OpenAPI specifications by using API Validation Scoring:
-
-1. [Install API Validation and Scoring](../../api-validation-scoring/install.hbs.md).
-2. Use [API Auto Registration](../../api-auto-registration/about.hbs.md) or
-   API Validation Scoring Design GitOps to automatically generate the API entities in
-   Tanzu Developer Portal.
-
-The automatic scoring cannot score or replace API entities created through other methods, such as
-regular GitOps or manual registration.
-You might see the following message signaling that the OpenAPI specification was registered with
-regular GitOps methods or manual registration.
-
-```console
-Validation analysis is currently unavailable for APIs registered via TAP GUI without being attached \
-to a workload.
-```
-
--->
