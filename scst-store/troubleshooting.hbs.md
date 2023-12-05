@@ -6,7 +6,7 @@ This topic contains ways you can troubleshoot known issues for Supply Chain Secu
 
 ### <a id='query-cve-symptom'></a>Symptom
 
-When attempting to look up CVE and affected packages, querying `insight source get` (or other `insight source` commands) might return zero results due to supply chain configuration and repository URL.
+The `insight source get` and other `insight source` commands return zero results.
 
 ### <a id='query-cve-solution'></a> Solution
 
