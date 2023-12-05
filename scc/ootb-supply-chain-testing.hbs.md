@@ -167,11 +167,10 @@ PipelineRun is not automatically created if a field in the Pipeline object
 is changed. As a workaround, the latest PipelineRun created can be deleted,
 which triggers a re-run.
 
-##### <a id="enable-success-psa"></a>Enabling success in clusters with Pod Security Admission
-
-If your cluster has Pod Security Admission enabled, you will need to update all of the
-pipeline's tasks to adhere to the Admission policy.
-[Read more here](authoring-supply-chains.hbs.md#a-idtekton-tasks-on-psa-clustera-tekton-tasks-on-a-cluster-with-a-pod-security-admission-).
+> **Note: Enabling success in clusters with Pod Security Admission**
+> If your cluster has Pod Security Admission enabled, you will need to update all
+> pipeline tasks to adhere to the Admission policy.
+> [Read more here](authoring-supply-chains.hbs.md#a-idtekton-tasks-on-psa-clustera-tekton-tasks-on-a-cluster-with-a-pod-security-admission-).
 
 #### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
 

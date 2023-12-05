@@ -37,8 +37,8 @@ To use this supply chain, verify that:
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
-- Developer namespace is configured with the objects according to Out of the Box Supply
-  Chain With Testing guidance. This supply chain is in addition to the Supply Chain with testing.
+- Developer namespace is configured with the objects according to [Out of the Box Supply
+  Chain With Testing guidance](ootb-supply-chain-testing.md#developer-namespace). This supply chain is in addition to the Supply Chain with testing.
 - (Optionally) install [Out of the Box Delivery
   Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
 same cluster as the workload and supply chains.
@@ -83,7 +83,7 @@ the namespace has the objects that you configured in the other supply chain setu
 - **Tekton pipeline**: A pipeline runs whenever the supply chain hits the stage
   of testing the source code.
 
-  For more information, see [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.md).
+  For more information, see [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.md#developer-namespace).
 
 And the new objects, that you create here:
 
