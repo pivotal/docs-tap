@@ -491,4 +491,5 @@ $ yarn tsc && yarn build
 ## Next steps
 
 You should be ready to publish your Tanzu Developer Portal plug-ins to the registry of your choosing.
-Once you have published them, you can [build a customized Tanzu Developer Portal with Configurator](building.hbs.md).
+If you are publishing your plug-ins to a private registry, see the [Configure the Configurator with a private registry](private-registries.hbs.md) tutorial.
+Once you have published your plug-ins, you can [build a customized Tanzu Developer Portal with Configurator](building.hbs.md).
