@@ -199,15 +199,15 @@ To create a ClusterImageTemplate:
 
     ```
 
->**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
+    >**Note** `apps.tanzu.vmware.com/correlationid` contains the metadata of the mapping to the source of the scanned resource.
 
 2. Edit the following in your `custom-ivs-template.yaml` file:
 
-  - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
-  - `REGISTRY-SERVER` is the registry server used for the scan results location.
-  - `REGISTRY-REPOSITORY` is the registry repository used for the scan results location.
-  - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
-  - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
+    - `.metadata.name` is the name of your ClusterImageTemplate. Ensure that it does not conflict with the names of packaged templates. See [Author your supply chains](../scc/authoring-supply-chains.hbs.md#providing-your-own-templates).
+    - `REGISTRY-SERVER` is the registry server used for the scan results location.
+    - `REGISTRY-REPOSITORY` is the registry repository used for the scan results location.
+    - `TRIVY-SCANNER-IMAGE` is the location of your Trivy scanner CLI image
+    - `.metadata.annotations.'app-scanning.apps.tanzu.vmware.com/scanner-name'` is the scanner image name reported in the Tanzu Developer Portal, formerly Tanzu Application Platform GUI.
 
 3. Create the ClusterImageTemplate:
 
