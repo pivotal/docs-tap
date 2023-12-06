@@ -214,12 +214,12 @@ pods "trivy-ivs-abcd-scan-task-pod" is forbidden: violates PodSecurity "restrict
 To resolve this issue:
 
 1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes:
-    
+
     ```yaml
     tekton_pipelines:
         feature_flags:
             set_security_context: "true"
-            disable-affinity-assistant: "true"
+            disable_affinity_assistant: "true"
     ```
 
     Setting the `securityContext` resolves the `prepare` initContainer violation. Deactivating affinity assistant pods is a workaround for the affinity assistant violation as Tekton does not have a way to update the `securityContext` in those pods.
