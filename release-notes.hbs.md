@@ -256,17 +256,15 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-7-2-COMPONENT-NAME-ri'></a> v1.7.2 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
 #### <a id='1-7-2-cert-manager-ki'></a> v1.7.2 Resolved issues: cert-manager
 
 - `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
+<!-- add specific RI -->
 
-#### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: Supply Chain Security Tools - Scan and Scan 2.0
+#### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: SCST - Scan and SCST - Scan 2.0
 
-- Scan Controller panic when `container.SecurityContext` is not null but not all fields are provided such as  `Capabilities` or `SeccompProfile` has been resolved.
+- Resolved an issue that caused Scan Controller to fail because of panic when `container.SecurityContext`
+  is not null and fields such as `Capabilities` or `SeccompProfile` are empty.
 
 #### <a id='1-7-2-service-registry-ri'></a> v1.7.2 Resolved issues: Service Registry
 
@@ -278,7 +276,78 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-<a id='1-7-1-service-bindings-ki'></a> v1.7.2 Known issues: Service Bindings
+#### <a id='1-7-2-tap-tsm-integrations-ki'></a> v1.7.2 Known issues: Tanzu Application Platform
+
+- The Tanzu Application Platform integration with Tanzu Service Mesh does not work
+  on vSphere with TKR v1.26. For more information about this integration, see
+  [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md).
+  As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
+  as advised by the release notes for
+  [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
+  However, applying this label provides more than the mininum necessary privlige to the resources in
+  developer namespaces.
+
+#### <a id='1-7-2-api-auto-reg-ki'></a> v1.7.2 Known issues: API Auto Registration
+
+- Registering conflicting `groupId` and `version` with API portal:
+
+  If you create two `CuratedAPIDescriptor`s with the same `groupId` and `version` combination, both
+  reconcile without throwing an error, and the `/openapi?groupId&version` endpoint returns both specifications.
+  If you are adding both specifications to the API portal, only one of them might show up in the
+  API portal UI with a warning indicating that there is a conflict.
+  If you add the route provider annotation for both of the `CuratedAPIDescriptor`s to use Spring Cloud Gateway,
+  the generated API specspecification includes API routes from both `CuratedAPIDescriptor`s.
+
+  You can see the `groupId` and `version` information from all `CuratedAPIDescriptor`s by running:
+
+    ```console
+    $ kubectl get curatedapidescriptors -A
+
+    NAMESPACE           NAME         GROUPID            VERSION   STATUS   CURATED API SPEC URL
+    my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
+    default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
+    ```
+
+- When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
+  incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
+#### <a id='1-7-2-amr-obs-ce-hndlr-ki'></a> v1.7.2 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+#### <a id='1-7-2-bitnami-services-ki'></a> v1.7.2 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-7-2-convention-ki'></a> v1.7.2 Known issues: Cartographer Conventions
+
+- While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can
+  fail with the status `CrashLoopBackOff` or `OOMKilled`.
+  For information about how to increase the memory limit for both the convention server and webhook
+  servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
+  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-7-2-crossplane-ki'></a> v1.7.2 Known issues: Crossplane
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-7-2-svc-bindings-ki'></a> v1.7.2 Known issues: Service Bindings
+
+- When upgrading Tanzu Application Platform, pods are recreated for all workloads with service bindings.
+  This is because workloads and pods that use service bindings are being updated to new service
+  binding volumes. This happens automatically and will not affect subsequent upgrades.
+
+  Affected pods are updated concurrently. To avoid failures, you must have sufficient Kubernetes
+  resources in your clusters to support the pod rollout.
 
 - `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
   bound service resource. This impacts the timely rollout of new connection secrets to workloads.
@@ -287,16 +356,124 @@ This release has the following known issues, listed by component and area.
 
   - Delete the existing `ServiceBinding` and create a new one that is identical.
   - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
+  - Delete and recreate the application workload referred to by the `ServiceBinding`.
 
-<a id='1-7-1-api-auto-registration'></a> v1.7.2 Known issues: API Auto Registration
+#### <a id='1-7-2-stk-ki'></a> v1.7.2 Known issues: Services Toolkit
 
-- When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
-  incorrectly uses the API spec url as the server url. For now, users are requested to use just
-  url under `server.url`
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
 
-#### <a id='1-7-2-COMPONENT-NAME-ki'></a> v1.7.2 Known issues: COMPONENT-NAME
+#### <a id='1-7-2-scc-ki'></a> v1.7.2 Known issues: Supply Chain Choreographer
 
-- Known issue description with link to workaround.
+- By default, Server Workload Carvel packages generated by the Carvel package supply chains no longer
+  contain OpenAPIv3 descriptions of their parameters.
+  These descriptions were omitted to keep the size of the Carvel Package definition under 4&nbsp;KB,
+  which is the size limit for the string output of a Tekton Task. For information about these parameters,
+  see [Carvel Package Supply Chains](scc/carvel-package-supply-chain.hbs.md).
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+- Pods created by using Tekton do not adhere to the Pod Security Standard. To run Supply Chains in a cluster
+where this webhook is installed by default, VMware reccomends labeling the namespace with `pod-security.kubernetes.io/enforce=privileged`
+to ensure that they are correctly created.
+
+- Application configuration generated by the OOTB supply chains does not adhere to the Pod Security Standard.
+
+#### <a id='1-7-2-scst-scan-2-ki'></a> v1.7.2 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+
+- When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
+  with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
+  `tap-values.yaml` file.
+  You can prevent this by setting the value in your `tap-values.yaml` file to the correct image.
+  For example, for the Trivy image packaged with Tanzu Application Platform:
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      image_scanner_template_name: image-vulnerability-scan-trivy
+      image_scanning_cli:
+        image: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:675673a6d495d6f6a688497b754cee304960d9ad56e194cf4f4ea6ab53ca71d6
+    ```
+
+- When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
+  the default for later versions of Trivy and is not supported by AMR.
+
+#### <a id='1-7-2-scst-store-ki'></a> v1.7.2 Known issues: Supply Chain Security Tools - Store
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-7-2-tbs-ki'></a> v1.7.2 Known issues: Tanzu Build Service
+
+- During upgrades a large number of builds might be created due to buildpack and stack updates.
+  Some of these builds might fail due to transient network issues,
+  causing the workload to be in an unhealthy state. This resolves itself on subsequent builds
+  after a code change and does not affect the running application.
+
+  If you do not want to wait for subsequent builds to run, you can manually trigger a build.
+  For instructions, see [Troubleshooting](./tanzu-build-service/troubleshooting.hbs.md#failed-builds-upgrade).
+
+#### <a id='1-7-2-tdp-ki'></a> v1.7.2 Known issues: Tanzu Developer Portal
+
+- If you do not configure any authentication providers, and do not allow guest access, the following
+  message appears when loading Tanzu Developer Portal in a browser:
+
+   ```console
+   No configured authentication providers. Please configure at least one.
+   ```
+
+  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+
+- When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
+  does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
+  planned for the future. The zoom function was removed because of user feedback.
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-7-2-intellij-plugin-ki'></a> v1.7.2 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-7-2-vs-plugin-ki'></a> v1.7.2 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
 
 ---
 
@@ -353,6 +530,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Build Service                                |                |
 | Tanzu CLI                                          |                |
 | Tekton Pipelines                                   |                |
+
 ---
 
 ## <a id='1-7-1'></a> v1.7.1
@@ -580,7 +758,7 @@ This release has the following known issues, listed by component and area.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
-#### <a id='1-7-1-service-bindings-ki'></a> v1.7.1 Known issues: Service Bindings
+#### <a id='1-7-1-svc-bindings-ki'></a> v1.7.1 Known issues: Service Bindings
 
 - When upgrading Tanzu Application Platform, pods are recreated for all workloads with service bindings.
   This is because workloads and pods that use service bindings are being updated to new service
@@ -628,26 +806,13 @@ to ensure that they are correctly created.
 
 - Application configuration generated by the OOTB supply chains does not adhere to the Pod Security Standard.
 
-#### <a id='1-7-1-scst-store-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools - Store
+#### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan
 
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
+  are left empty (null), the controller fails because of panic. For a workaround, see
+  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-#### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan and Scan 2.0
-
-- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile` are left empty (null),
-  the controller fails because of panic. For a workaround, see
-  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic)
-
-#### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+#### <a id='1-7-1-scst-scan-2-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
 - When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
   with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
@@ -664,6 +829,23 @@ to ensure that they are correctly created.
 
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
+
+- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
+  are left empty (null), the controller fails because of panic. For a workaround, see
+  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
+
+#### <a id='1-7-1-scst-store-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools - Store
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-1-tbs-ki'></a> v1.7.1 Known issues: Tanzu Build Service
 
@@ -1992,12 +2174,6 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
-#### <a id='1-7-0-cbc-scanner-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan and Scan 2.0
-
-- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile` are left empty (null),
-  the controller fails because of panic. For a workaround, see
-  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic)
-
 #### <a id='1-7-0-cbc-scanner-ki'></a> v1.7.0 Known issues: Carbon Black Scanner for SCST - Scan
 
 - Carbon Black Scanner templates raise a PodSecurity violation error in clusters that use the
@@ -2018,7 +2194,7 @@ This release has the following known issues, listed by component and area.
   To workaround, delete the `validatingwebhookconfiguration` manually by running
   `kubectl delete validatingwebhookconfiguration crossplane`.
 
-#### <a id='1-7-0-service-bindings-ki'></a> v1.7.0 Known issues: Service Bindings
+#### <a id='1-7-0-svc-bindings-ki'></a> v1.7.0 Known issues: Service Bindings
 
 - When upgrading Tanzu Application Platform, pods are recreated for all workloads with service bindings.
   This is because workloads and pods that use service bindings are being updated to new service
@@ -2066,20 +2242,13 @@ to ensure that they are correctly created.
 
 - Application configuration generated by the OOTB supply chains does not adhere to the Pod Security Standard.
 
-#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools - Store
+#### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan
 
-- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
+  are left empty (null), the controller fails because of panic. For a workaround, see
+  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
-- SCST - Store automatically detects PostgreSQL database index corruptions.
-  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
-  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
-  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
-  corruption issue.
-  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
-
-#### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
+#### <a id='1-7-0-scst-scan-2-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
 - When using SCST - Scan 2.0 with a ClusterImageTemplate, the value for the scanning image is overwritten
   with an incorrect default value from `ootb_supply_chain_testing_scanning.image_scanner_cli` in the
@@ -2096,6 +2265,23 @@ to ensure that they are correctly created.
 
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
+
+- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
+  are left empty (null), the controller fails because of panic. For a workaround, see
+  [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
+
+#### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Store
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+
+- SCST - Store automatically detects PostgreSQL database index corruptions.
+  SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
+  For how to fix this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a PostgreSQL database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
 
 #### <a id='1-7-0-tbs-ki'></a> v1.7.0 Known issues: Tanzu Build Service
 
