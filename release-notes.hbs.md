@@ -256,7 +256,7 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-7-2-cert-manager-ki'></a> v1.7.2 Resolved issues: cert-manager
+#### <a id='1-7-2-cert-manager-ri'></a> v1.7.2 Resolved issues: cert-manager
 
 - `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
 <!-- add specific RI -->
