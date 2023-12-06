@@ -262,9 +262,6 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 
 profile: full # Can take iterate, build, run, view.
 
-excluded_packages:
-- policy.apps.tanzu.vmware.com
-
 supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
