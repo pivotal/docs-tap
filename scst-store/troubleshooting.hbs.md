@@ -45,7 +45,7 @@ To redeploy the app, either use the same database password or follow these steps
 
 ### <a id='missing-pv-symptom'></a>Symptom
 
-After SCST - Store is deployed, `metadata-store-db` pod might fail for missing volume while
+After SCST - Store is deployed, `metadata-store-db` pod might fail because of a missing volume while
 `postgres-db-pv-claim` pvc is in `PENDING` state.
 
 This is because the cluster where SCST - Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
