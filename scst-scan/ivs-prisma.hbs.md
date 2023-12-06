@@ -4,9 +4,6 @@ This topic gives you an example of how to configure a secret and ImageVulnerabil
 
 ## <a id="secret-example"></a> Example secret
 
->**Important** For the publicly available Prisma scanner CLI image, CLI commands and parameters used are accurate at
-the time of documentation.
-
 This section contains a sample secret containing the Prisma Cloud account access key, secret key, and console URL which are used to authenticate
 your Prisma account. You must apply this once to your developer namespace.
 
@@ -120,4 +117,4 @@ Where:
   Due to needing root access, you cannot run Prisma scans in clusters with
   restricted pod Security Standards.
 
->**Note** For information about using the CLI, see the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images).
+For information about using the CLI, see the Prisma twistcli [docs](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/tools/twistcli_scan_images).
