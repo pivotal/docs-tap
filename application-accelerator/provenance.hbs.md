@@ -21,21 +21,3 @@ project:
 
 For more information about the structure of the file and how to enable application bootstrapping
 provenance, see [Provenance transform](creating-accelerators/transforms/provenance.hbs.md).
-
-## <a id="amr"></a> Integration with AMR
-
-Application Accelerator integrates with [Artifact Metadata Repository](../scst-store/overview.hbs.md) (AMR).
-
-When you generate an application with an accelerator, an event that contains the same information captured by the `Provenance` transform is sent to the AMR store.
-
-The relevant AMR data models are:
-
-- [AppAcceleratorRun](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorruns): There is one AppAcceleratorRun for each invocation of an accelerator, including version information about which accelerator was used.
-- [AppAcceleratorFragments](../scst-store/amr/data-model-and-concepts.hbs.md#appacceleratorfragments): There is one instance of AppAcceleratorFragment for each named fragment used by the running accelerator. There are between `0` and `N` instances, `N` being the number of fragments used by the accelerator.
-
-When invocations were recorded, use the
-[AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query the system about
-accelerator use and gain insights about generated applications.
-
-For more information about the AMR data model, how to use the Artifact Metadata Repository,
-and some sample queries relevant to AppAcceleratorRun, see the [Artifact Metadata Repository](../scst-store/overview.hbs.md).

@@ -6,8 +6,6 @@ This topic describes additional documentation you can use with Supply Chain Secu
 
 - [Multicluster setup](multicluster-setup.hbs.md)
 - [Developer namespace setup](developer-namespace-setup.hbs.md)
-- [API details](api.hbs.md)
-- [API walkthrough](api-walkthrough.hbs.md)
 - [Failover, redundancy, and backups](failover.hbs.md)
 
 ## Troubleshooting and logging

@@ -66,8 +66,3 @@ completed scans. When a scan completes, AMR Observer uses the
 Custom Resources to fetch the SBOM report. After obtaining the SBOM report, AMR Observer 
 wraps it in a CloudEvent and emits it to the AMR CloudEvent Handler. The AMR 
 CloudEvent Handler persists this event in the Metadata Store.
-
-#### <a id='data-models'></a> Data Models
-
-For more information about the data that AMR stores from the observed resources, 
-see [Artifact Metadata Repository (AMR) data model and concepts](./data-model-and-concepts.hbs.md)
