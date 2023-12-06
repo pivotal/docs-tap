@@ -720,6 +720,9 @@ This release has the following known issues, listed by component and area.
     default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
     ```
 
+- When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
+  incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
+
 #### <a id='1-7-1-amr-obs-ce-hndlr-ki'></a> v1.7.1 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
 - Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
@@ -2159,6 +2162,9 @@ This release has the following known issues, listed by component and area.
     my-apps             petstore     test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/my-apps/petstore
     default             mystery      test-api-group     1.2.3     Ready    http://AAR-CONTROLLER-FQDN/openapi/default/mystery
     ```
+
+- When creating an `APIDescriptor` with different `apiSpec.url` and `server.url`, the controller
+  incorrectly uses the API spec URL as the server URL. To avoid this issue, use `server.url` only.
 
 #### <a id='1-7-0-amr-obs-ce-hndlr-ki'></a> v1.7.0 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
 
