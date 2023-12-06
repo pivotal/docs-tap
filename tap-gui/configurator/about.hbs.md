@@ -35,7 +35,7 @@ Tanzu Developer Portal. Tanzu Application Platform automation handles the mainte
 
 - Learn the [Tanzu Developer Portal Configurator concepts](concepts.hbs.md).
 
-- See the [list of Tanzu Developer Portal plug-ins](tdp-plug-ins-list.hbs.md)
+- See the [list of Tanzu Developer Portal plug-ins](dependency-version-refs.hbs.md#external-tdp-plugins)
   currently available for use.
 
 - When you are ready, [build your customized Tanzu Developer Portal with Configurator](building.hbs.md).

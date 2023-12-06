@@ -58,7 +58,7 @@ This is because the version of Tanzu Developer Portal that ships with TAP 1.7 us
 version of Backstage uses verison `0.5.2` of `@backstage/create-app` as you can see in the
 [Backstage version manifeset](https://github.com/backstage/versions/blob/main/v1/releases/1.15.0/manifest.json).
 Making sure you use the correct versions of dependencies based on your TAP version is very important.
-Use the [Backstage version compatibility reference table](dependency-version-reference.hbs.md#bs-ver-table) to find what
+Use the [Backstage version compatibility reference table](dependency-version-refs.hbs.md#bs-ver-table) to find what
 versions of Backstage dependencies will work with your version of TAP.
 
 The `--skip-install` flag tells the script to not run a `yarn install`.
@@ -123,7 +123,7 @@ You will start with the [Tech Insight frontend](https://www.npmjs.com/package/@b
 Run the following command replacing `@mycompany` with whatever namespace you would like to use for your package:
 
 ```shell
-$ yarn backstage-cli new --select plugin --option id=tech-insights-wrapper --scope @mycompany --no-private 
+$ yarn backstage-cli new --select plugin --option id=tech-insights-wrapper --scope @mycompany --no-private
 ```
 
 You will notice that the `yarn install` step of the script will fail due to a Node version issue.
@@ -155,13 +155,13 @@ Replace the `dependencies` in the `package.json` with the following:
 ```
 
 The dependency on `@backstage/plugin-tech-insights` is obvious, but the version should be checked for
-[compatibility with your version of TAP](dependency-version-reference.hbs.md#bs-ver-table).
+[compatibility with your version of TAP](dependency-version-refs.hbs.md#bs-ver-table).
 `@backstage/plugin-catalog` is needed for a UI component we will be using.
 `@vmware-tanzu/core-common` and `@vmware-tanzu/core-frontend` will be used later for the integration between the
 Backstage plug-in and Tanzu Developer Portal.
 Verify you are using the correct versions of `@vmware-tanzu/core-common` and `@vmware-tanzu/core-frontend`
 by cross-referencing the dependency name against your TAP version in the
-[Tanzu Developer Portal plug-in libraries compatibility table](dependency-version-reference.hbs.md#tdp-libraries).
+[Tanzu Developer Portal plug-in libraries compatibility table](dependency-version-refs.hbs.md#tdp-libraries).
 
 Now that you have added your necessary dependencies, install them by running the following:
 
@@ -283,7 +283,7 @@ From the root of your project run the following command replacing `@mycompany` w
 use for your package:
 
 ```shell
-$ yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope @mycompany --no-private 
+$ yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope @mycompany --no-private
 ```
 
 You will notice that the yarn install step of the script will fail due to a Node version issue.
@@ -463,10 +463,11 @@ The majority of the above code is pulled directly from the
 The
 [Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#adding-the-plugin-to-your-packagesbackend)
 also instructs you to create a constant for `techInsightsEnv` then configure the router by doing
-`apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage source code.
-Since you are unable to modify the source code of Tanzu Developer Portal you will instead:
-* Get an instance of the `BackendPluginSurface`, this surface keeps track of all the backend plug-ins <!-- TODO: link to reference docs ESBACK-387 -->
-* Add your plug-in using the `addPlugin` function. The name argument will be used to configure the path in the router <!-- TODO: link to reference docs ESBACK-387 -->
+`apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage source
+code. Because you are unable to modify the source code of Tanzu Developer Portal you will instead:
+
+- Get an instance of the `BackendPluginSurface`, this surface keeps track of all the backend plug-ins <!-- TODO: link to reference docs ESBACK-387 -->
+- Add your plug-in using the `addPlugin` function. The name argument will be used to configure the path in the router <!-- TODO: link to reference docs ESBACK-387 -->
 
 ### Expose the Tanzu Developer Portal plug-in
 
@@ -490,5 +491,8 @@ $ yarn tsc && yarn build
 
 ## Next steps
 
-You should be ready to publish your Tanzu Developer Portal plug-ins to the registry of your choosing.
-Once you have published them, you can [build a customized Tanzu Developer Portal with Configurator](building.hbs.md).
+You can now publish your Tanzu Developer Portal plug-ins to the registry of your choice.
+If you want to publish your plug-ins to a private registry, see
+[Configure the Configurator with a private registry](private-registries.hbs.md).
+After you have published your plug-ins, you can
+[build a customized Tanzu Developer Portal with Configurator](building.hbs.md).
