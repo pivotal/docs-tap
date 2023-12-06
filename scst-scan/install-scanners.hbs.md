@@ -8,7 +8,7 @@ Follow the instructions in this topic to install a scanner other than the out of
 
 Before installing a new scanner, install [Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
->**Note:** Different scanners may have different limits. See [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scanner-matrix.hbs.md).
+>**Note** Different scanners may have different limits. See [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scanner-matrix.hbs.md).
 
 ## <a id="installation"></a> Install
 
