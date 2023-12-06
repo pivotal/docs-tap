@@ -198,7 +198,7 @@ To install SCST - Scan (Scan controller):
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
 
-    **Note** In a single cluster, the connection between the scanning pod and
+    >**Note** In a single cluster, the connection between the scanning pod and
     the metadata store happens inside the cluster and does not pass through
     ingress. This is automatically configured. You do not need to provide an
     ingress connection to the store. For information about troubleshooting
