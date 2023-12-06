@@ -110,7 +110,7 @@ To use a Knative Service, your controller reads the `status.url` as the baseURL.
 
 ### <a id='with-ingress-ref'></a>With an Ingress Object Ref
 
-To use an Ingress instead, your controller reads the URL from the jsonPath specified. When jsonPath is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. For example:
+To use an Ingress instead, your controller reads the URL from the jsonPath specified. When the jsonPath is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL. For example:
 
 ```yaml
 # all other fields similar to the above example
