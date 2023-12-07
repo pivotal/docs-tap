@@ -30,9 +30,9 @@ This section includes commands for debugging or troubleshooting the APIDescripto
     - `NAME` is the name of the CR you want to debug.
     - `NAMESPACE` is the namespace associated with the CR you want to debug.
 
-1. Find the generated SCGRC and SCGM resource associated with a specific APIDescriptor CR from curation.
+1. Find the generated SpringCloudGatewayRouteConfig (commonly known as SCGRC) and SpringCloudGatewayMapping (commonly known as SCGM) resource associated with a specific APIDescriptor CR from curation.
 
-    The generated SCG resources are placed in the same namespace as the CuratedAPIDescriptor,
+    The generated Spring Cloud Gateway (commonly known as SCG) resources are placed in the same namespace as the CuratedAPIDescriptor,
     and the generated name has a prefix with the name of the CuratedAPIDescriptor.
     To see which APIDescriptor the resource was generated for,
     you can list generated SCG resources with additional labels by running:
