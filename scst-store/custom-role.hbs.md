@@ -5,7 +5,7 @@ This topic describes how you can create a service account with a custom cluster 
 ## Example service account
 
 If you do not want to bind to the default cluster role, create a read-only role in the `metadata-store` namespace with a service account.
-The following example creates a service account named `metadata-store-read-client`, depending on the Kubernetes version:
+The following example creates a service account named `metadata-store-read-client`:
 
 ```console
 kubectl apply -f - -o yaml << EOF
@@ -53,9 +53,6 @@ metadata:
     kubernetes.io/service-account.name: "metadata-store-read-client"
 EOF
 ```
-
-> **Note** For Kubernetes v1.24 and later, service account secrets are no longer automatically created.
-> This is why the example adds a `Secret` resource in the earlier YAML.
 
 ## Additional Resources
 
