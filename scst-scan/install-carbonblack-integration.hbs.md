@@ -1,6 +1,6 @@
 # Prerequisites for Carbon Black Scanner for Supply Chain Security Tools - Scan (Beta)
 
-This topic describes prerequisites you must complete to install Supply Chain Security Tools - Scan (Carbon Black Scanner) from the Tanzu Application Platform package repository.
+This topic describes prerequisites you must complete to install Supply Chain Security Tools - Scan (Carbon Black Scanner) from the Tanzu Application Platform package repository. The Carbon Black Scanner integration is only available for an image scan, not a source scan.
 
 >**Important** Carbon Black's image scanning capability is in beta. Carbon Black might only return
 a partial list of CVEs when scanning Buildpack images.
@@ -198,7 +198,5 @@ The SCST - Store integration is enabled by default. If you don’t want to use t
     ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
     ```
-
->**Note** The Carbon Black Scanner integration is only available for an image scan, not a source scan.
 
 After you complete all prerequisites, install the Carbon Black Scanner. See [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
