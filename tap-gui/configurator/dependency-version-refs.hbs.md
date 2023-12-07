@@ -1,4 +1,4 @@
-# Dependency Version Reference
+# Dependency version reference
 
 When using any external dependencies with Tanzu Developer Portal, you will need to verify that the versions are
 compatible.
@@ -11,7 +11,7 @@ In order to use these with the Configurator, you must choose a compatible versio
 
 ### TAP version 1.6.x
 
-TAP version 1.6 does not support any external plug-ins. 
+TAP version 1.6 does not support any external plug-ins.
 
 ### TAP version 1.7.0
 
