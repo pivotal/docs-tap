@@ -258,8 +258,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-7-2-cert-manager-ri'></a> v1.7.2 Resolved issues: cert-manager
 
-- `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
-<!-- add specific RI -->
+- Resolved the known vulnerability with ACME HTTP01 in Tanzu Application Platform.
 
 #### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: SCST - Scan and SCST - Scan 2.0
 
