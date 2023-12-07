@@ -75,7 +75,7 @@ To install Cloud Native Runtimes:
         on Knative Serving, if high availability is not indispensable in your development environment, you can set `pbd.enable` to `false`.
 
         - Cloud Native Runtimes reuses the existing `tanzu-system-ingress` Contour installation for
-        external and internal access when installed in the `light` or `full` profile.
+        external and internal access when installed in the `full` profile.
         To use a separate Contour installation for system-internal traffic, set
         `cnrs.contour.internal.namespace` to the namespace of your separate Contour installation.
 

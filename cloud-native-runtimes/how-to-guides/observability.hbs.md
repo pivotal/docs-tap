@@ -120,12 +120,12 @@ required to collect metrics on apps, see the [Prometheus documentation](https://
 You can use annotation based discovery with Prometheus to define which
 Kubernetes objects in your Cloud Native Runtimes environment to add metadata and
 collect metrics in a more automated way. For more information about using
-annotation based discovery, see the [Wavefront documentation](https://github.com/wavefrontHQ/wavefront-collector-for-kubernetes/blob/6d1cf432d0ef2de4840e96c2b74950451b6bde2f/docs/discovery.md#annotation-based-discovery)
+annotation based discovery, see the [VMware Aria Operations for Applications documentation](https://github.com/wavefrontHQ/wavefront-collector-for-kubernetes/blob/6d1cf432d0ef2de4840e96c2b74950451b6bde2f/docs/discovery.md#annotation-based-discovery)
 in GitHub.
 
 You can then use the Wavefront Collector for Kubernetes collector to dynamically
 discover and scrape pods with the `prometheus.io/scrape` annotation prefix. For
-information about the Kubernetes collector, see the [Wavefront documentation](https://github.com/wavefrontHQ/wavefront-collector-for-kubernetes)
+information about the Kubernetes collector, see the [VMware Aria Operations for Applications documentation](https://github.com/wavefrontHQ/wavefront-collector-for-kubernetes)
 in GitHub.
 
 >**Note** All Cloud Native Runtimes related metrics have the prefix `tanzu.vmware.com/cloud-native-runtimes.*`.
@@ -150,7 +150,7 @@ You can use the OpenTelemetry integration to forward trace data to a data visual
 For more information about using Zipkin for tracing, see the [Zipkin](https://zipkin.io/) documentation.
 
 VMware recommends integrating with VMware Aria Operations for Applications (formerly known as Tanzu Observability by Wavefront).
-For information about forwarding trace data, see the [Wavefront documentation](https://docs.wavefront.com/opentelemetry_overview.html).
+For information about forwarding trace data, see the [VMware Aria Operations for Applications documentation](https://docs.wavefront.com/opentelemetry_overview.html).
 
 ### <a id='send-trace'></a> Sending trace data to VMware Aria Operations for Applications
 
@@ -159,7 +159,7 @@ VMware Aria Operations for Applications to view and monitor your trace data in
 dashboards. VMware Aria Operations for Applications offers several deployment
 options. During development, a single proxy is often sufficient for all data
 sources. For
-more information about other deployment options, see the [Wavefront documentation](https://docs.wavefront.com/proxies.html#proxy-deployment-options).
+more information about other deployment options, see the [VMware Aria Operations for Applications documentation](https://docs.wavefront.com/proxies.html#proxy-deployment-options).
 
 To configure Cloud Native Runtimes to send traces to the Wavefront proxy and
 then, configure the Wavefront proxy to consume Zipkin spans:
@@ -202,7 +202,7 @@ then, configure the Wavefront proxy to consume Zipkin spans:
 
 4. Confirm that the Wavefront Proxy is running and working.
 
-   Verify that pods are running. For more information about how to test a proxy, see the [Wavefront documentation](https://docs.wavefront.com/proxies_installing.html#test-a-proxy).
+   Verify that pods are running. For more information about how to test a proxy, see the [VMware Aria Operations for Applications documentation](https://docs.wavefront.com/proxies_installing.html#test-a-proxy).
 
    ```console
    kubectl get pods -n ${WF_NAMESPACE}
