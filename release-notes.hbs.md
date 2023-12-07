@@ -210,8 +210,7 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-6-6-cert-manager-ri'></a> v1.6.6 Resolved issues: cert-manager
 
-- `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
-<!-- add specific RI -->
+- Resolved the known vulnerability with ACME HTTP01 in Tanzu Application Platform.
 
 ---
 
