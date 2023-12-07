@@ -20,7 +20,7 @@ When you install Tanzu Application Platform, the SCST - Store deployment automat
 This service account is already bound to the `metadata-store-read-write` role.
 
 To create an additional read-write service account, run the following command.
-The command creates a service account called `metadata-store-read-write-client`, depending on the Kubernetes version:
+The command creates a service account called `metadata-store-read-write-client`:
 
 ```console
 kubectl apply -f - -o yaml << EOF
@@ -69,10 +69,6 @@ metadata:
 EOF
 ```
 
-> **Note** For Kubernetes v1.24 and later, services account secrets are no
-> longer automatically created.
-> This is why the example adds a `Secret` resource in the earlier YAML.
-
 ## <a id='ro-serv-accts'></a>Create a read-only service account
 
 You can create a read-only service account with a default cluster role or with a custom cluster role.
@@ -81,8 +77,7 @@ You can create a read-only service account with a default cluster role or with a
 
 During Store installation, the `metadata-store-read-only` cluster role
 is created by default. This cluster role allows the bound user to have `get`
-access to all resources. To bind to this cluster role, run the following command
-depending on the Kubernetes version:
+access to all resources. To bind to this cluster role, run the following command:
 
 ```console
 kubectl apply -f - -o yaml << EOF
@@ -120,10 +115,6 @@ metadata:
     kubernetes.io/service-account.name: "metadata-store-read-client"
 EOF
 ```
-
-> **Note** For Kubernetes v1.24 and later, services account secrets are no
-> longer automatically created.
-> This is why the example adds a `Secret` resource in the earlier YAML.
 
 ### With a custom cluster role
 
