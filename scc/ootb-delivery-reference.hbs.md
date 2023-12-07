@@ -6,8 +6,7 @@ Tanzu Application Platform delivery package installs a single [ClusterDelivery](
 
 The delivery provides some parameters to the templates. The parameters provided by the deliverable might
 override some of the delivery parameters in this topic.
-See [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in
-the Cartographer documentation.
+For more information about how parameters work, including precedence rules, see the [Cartographer](https://cartographer.sh/docs/v0.6.0/templating/#parameters) documentation.
 
 ## <a id='delivery-basic'></a> delivery-basic
 
