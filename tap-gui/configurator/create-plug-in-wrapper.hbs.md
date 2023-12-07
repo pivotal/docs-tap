@@ -38,7 +38,7 @@ This topic tells you how to create two Tanzu Developer Portal plug-ins by wrappi
 `tech-insights` and `tech-insights-backend` Backstage plug-ins. You could create a separate
 repository for each of these plug-ins, but it is easier to do the work for both in a single monorepo.
 
-### <a id="gen-bckstg-app"></a> Generate a Backstage app for the monorepo
+## <a id="gen-bckstg-app"></a> Generate a Backstage app for the monorepo
 
 You will use the Backstage tools `@backstage/create-app` and `backstage-cli` to manage your
 monorepo. The Backstage tools make managing multiple packages easier. However, you will not develop
@@ -113,7 +113,7 @@ a traditional Backstage app, and you will need to remove some portions of genera
    is needed because a transitive dependency is expecting Node v18, but this version of
    Tanzu Developer Portal currently only supports Node v16.
 
-### <a id="tech-insights-frntnd-plgn"></a> Create the Tech Insights front-end Tanzu Developer Portal plug-in
+## <a id="tech-insights-frntnd-plgn"></a> Create the Tech Insights front-end Tanzu Developer Portal plug-in
 
 Now that you have an environment to develop your Tanzu Developer Portal plug-ins, you can begin
 wrapping Backstage plug-ins. You will start with the
