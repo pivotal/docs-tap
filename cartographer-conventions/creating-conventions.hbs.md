@@ -561,13 +561,13 @@ To deploy a convention server:
 
 1. Build and install the convention.
 
-    + If the convention must be built and deployed, use the [ko] tool on GitHub (<https://github.com/google/ko>). It compiles yout *go* code into a Docker image and pushes it to the registry(`KO_DOCKER_REGISTRY`).
+    - To build and deploy the convention, use the [ko tool](https://github.com/google/ko) on GitHub. It compiles your Go code into a Docker image and pushes it to the registry `KO_DOCKER_REGISTRY`.
 
         ```console
         ko apply -f dist/server.yaml
         ```
 
-    + If a different tool builds the image, the configuration is also be applied using either kubectl or `kapp`, setting the correct image in the [Deployment](#install-convention) descriptor.
+    - If a different tool builds the image, the configuration is also applied by using either kubectl or `kapp`, setting the correct image in the [Deployment](#install-convention) descriptor.
 
        kubectl
 
