@@ -1,7 +1,7 @@
 # Create a Tanzu Developer Portal plug-in
 
 This topic teaches you how to create a Tanzu Developer Portal plug-in by wrapping an existing
-Backstage plug-in. After you have created a Tanzu Developer Portal plug-in, you can
+Backstage plug-in. After you create a Tanzu Developer Portal plug-in, you can
 [build a customized Tanzu Developer Portal with Configurator](building.hbs.md).
 
 ## <a id="prereqs"></a> Prerequisites
@@ -10,281 +10,268 @@ Meet the following prerequisites before creating a Tanzu Developer Portal plug-i
 
 ### <a id="software"></a> Software
 
-Ensure you have the following software installed locally to develop a Tanzu Developer Portal plug-in:
+Ensure that you have the following software installed locally to develop a Tanzu Developer Portal
+plug-in:
 
 - Node 16: `nvm` is recommended. For how to install `nvm`, see the
   [GitHub repository](https://github.com/nvm-sh/nvm#install--update-script). For installing a specific
   version of `nvm`, see [NodeJS](https://nodejs.org/en/download/package-manager/#nvm).
 - [yarn v1](https://classic.yarnpkg.com/lang/en/)
-- (Optional) A unix-based OS: If you use Windows, you must find alternatives to some commands in
+- (Optional) A UNIX-based OS: If you use Windows, you must find alternatives to some commands in
   this topic.
 
-### <a id="bckstg-plgn"></a> A Backstage plug-in in an accessible NPM registry
+### <a id="bckstg-plgn-npm"></a> A Backstage plug-in in an accessible npm registry
 
-Ensure that the Backstage plug-in you want to wrap is in an npm registry. This registry can be your
-own private registry or a public registry, such as [NPM JS](https://www.npmjs.com/). The registry is
-accessible to your development machine as well as your Tanzu Application Platform cluster.
+Ensure that the Backstage plug-in you want to wrap is in an npm registry. You can use your own
+private registry or a public registry, such as [NPM JS](https://www.npmjs.com/). Both your
+development machine and your Tanzu Application Platform cluster must have access to the registry.
 
-This topic instructs you to use the Backstage's TechInsights plug-in. This plug-in consists of
-backend and frontend components, both of which are available on NPM JS:
+This topic instructs you to use the Backstage TechInsights plug-in. This plug-in consists of
+back-end and front-end components, both of which are available on NPM JS:
 
-- [@backstage/plugin-tech-insights version 0.3.11](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11)
-- [@backstage/plugin-tech-insights-backend version 0.5.12](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12)
+- [@backstage/plugin-tech-insights v0.3.11](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11)
+- [@backstage/plugin-tech-insights-backend v0.5.12](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12)
 
 ## <a id="set-up-dev-env"></a> Set up a development environment
 
-You will be creating two Tanzu Developer Portal plug-ins by wrapping the
-[`tech-insights`](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11)
-and [`tech-insights-backend`](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12)
-Backstage plug-ins. While you could create a separate repo for each of these plug-ins, we recommend
-doing the work for both in a single monorepo.
+This topic tells you how to create two Tanzu Developer Portal plug-ins by wrapping the
+`tech-insights` and `tech-insights-backend` Backstage plug-ins. You could create a separate
+repository for each of these plug-ins, but it is easier to do the work for both in a single monorepo.
 
 ### <a id="gen-bckstg-app"></a> Generate a Backstage app for the monorepo
 
-You will be using some backstage tooling in order to manage your monorepo. Namely
-`@backstage/create-app` and the `backstage-cli`. The Backstage tooling gives great convenience
-functions for managing multiple packages. However, you will not be developing a traditional
-backstage app and some portions of generated code will need to be removed.
+You will use the Backstage tools `@backstage/create-app` and `backstage-cli` to manage your
+monorepo. The Backstage tools make managing multiple packages easier. However, you will not develop
+a traditional Backstage app, and you will need to remove some portions of generated code.
 
-### <a id="bckstg-plgn"></a> Backstage create app
+1. Run the `create-app` script:
 
-Start by running the `create-app` script. When prompted, enter a name for your app. In this topic
-we are using `plugin-wrappers` as the app name.
+   ```console
+   npx @backstage/create-app@0.5.2 --skip-install
+   ```
 
-```shell
-$ npx @backstage/create-app@0.5.2 --skip-install
-```
+   When prompted, enter a name for your app. In this topic the app name is `plugin-wrappers`.
 
-Note the specific version `0.5.2` of `@backstage/create-app`. This is because the version of Tanzu
-Developer Portal that ships with Tanzu Application Platform v1.7 uses Backstage version `1.15.0`,
-and this version of Backstage uses verison `0.5.2` of `@backstage/create-app` as you can see in the
-[Backstage version manifeset](https://github.com/backstage/versions/blob/main/v1/releases/1.15.0/manifest.json).
+   `@backstage/create-app` v0.5.2 is used because the Tanzu Developer Portal version that ships
+   with Tanzu Application Platform v1.7 uses Backstage v1.15.0. Backstage v1.15.0 uses
+   `@backstage/create-app` v0.5.2. For more information, see the
+   [Backstage version manifest](https://github.com/backstage/versions/blob/main/v1/releases/1.15.0/manifest.json).
 
-Making sure you use the correct versions of dependencies based on your Tanzu Application Platform
-version is very important. Use the
-[Backstage version compatibility reference table](dependency-version-refs.hbs.md#bs-ver-table)
-to find what versions of Backstage dependencies will work with your version of Tanzu Application
-Platform.
+   > **Important** Ensure that you use the correct versions of dependencies for your
+   > Tanzu Application Platform version. Use the
+   > [Backstage version compatibility reference table](dependency-version-refs.hbs.md#bs-ver-table)
+   > to find which versions of Backstage dependencies work with your version of Tanzu Application Platform.
 
-The `--skip-install` flag tells the script to not run a `yarn install`. This is because you will
-remove the unnecessary dependencies that would have been needed if you were building a traditional
-Backstage app.
+   The `--skip-install` flag tells the script to not run `yarn install`, and therefore skip
+   dependencies that are tied to building a traditional Backstage app.
 
-The `create-app` command scaffolds a Backstage project structure under a directory matching your
-project name: `plugin-wrappers`. When the command finishes running, `cd` into this directory:
+   The `create-app` command scaffolds a Backstage project structure under a directory matching your
+   project name.
 
-```shell
-$ cd plugin-wrappers
-```
+1. Run:
 
-### <a id="rmv-deps"></a> Remove unnecessary dependencies
+   ```console
+   cd APP-NAME
+   ```
 
-Before installing your dependencies you should remove the packages directory. This directory
-contains a scaffolded Backstage `app` and `backend` which are only necessary for a traditional
-Backstage app.
+   Where `APP-NAME` is your application name. For example, `plugin-wrappers`.
 
-```shell
-$ rm -rf packages/
-```
+1. Remove the packages directory by running:
 
-And you need to remove the packages directory from the yarn workspaces. Edit the `package.json` file
-to delete the `"packages/*"` line within the `workspaces` attribute.
+   ```console
+   rm -rf packages/
+   ```
 
-```diff
-diff --git a/package.json b/package.json
-index 00d64c9..77f38f3 100644
---- a/package.json
-+++ b/package.json
-@@ -24,7 +24,6 @@
-   },
-   "workspaces": {
-     "packages": [
--      "packages/*",
-       "plugins/*"
-     ]
-   },
-```
+   This directory contains a scaffolded Backstage `app` and `backend` which are only necessary for a
+   traditional Backstage app.
 
-### <a id="install-deps"></a> Install dependencies
+1. Remove the packages directory from the yarn workspaces by deleting the `"packages/*"` line within
+   the `workspaces` attribute in `package.json`. For example:
 
-You are now ready to install your dependencies. Run the following:
-
-```shell
-$ yarn install --ignore-engines
-```
-
-This will install the `backstage-cli` and a few other dependencies. We need in include the
-`--ignore-engines` flag here because a transitive dependency is expecting version 18 of Node, but
-currently only version 16 is supported by Tanzu Developer Portal.
-
-## <a id="tech-insights-frntnd-plgn"></a> Create the Tech Insights frontend Tanzu Developer Portal plug-in
-
-Now that you have an environment to develop your Tanzu Developer Portal plug-ins, you can now start
-the work of wrapping Backstage plug-ins. You will start with the
-[Tech Insight frontend](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11).
-
-### <a id="gen-frntnd-plgn"></a> Generate a frontend plug-in
-
-Run the following command replacing `@mycompany` with whatever namespace you would like to use for
-your package:
-
-```shell
-$ yarn backstage-cli new --select plugin --option id=tech-insights-wrapper --scope @mycompany --no-private
-```
-
-You will notice that the `yarn install` step of the script will fail due to a Node version issue.
-This is ok, you will address this in a later step.
-
-Here is a breakdown of what the `backstage-cli new` script is doing:
-
-- `--select plugin` creates a frontend plug-in
-- `--option id=tech-insights-wrapper` names the plug-in `tech-insights-wrapper`
-- `--scope @mycompany` scopes the package under the `@mycompany` namespace
-- `--no-private` sets the package to public
-
-Open the `plugins/tech-insights-wrapper/package.json` to see how these options were mapped to the
-generated `package.json`.
-
-### <a id="update-deps"></a> Update dependencies
-
-Next update your dependencies for the specific Backstage plug-in you want to wrap.
-Replace the `dependencies` in the `package.json` with the following:
-
-```json
-  ...
-  "dependencies": {
-    "@backstage/plugin-tech-insights": "0.3.11",
-    "@backstage/plugin-catalog": "1.11.2",
-    "@vmware-tanzu/core-common": "1.0.0",
-    "@vmware-tanzu/core-frontend": "1.0.0"
-  },
-  ...
-```
-
-The dependency on `@backstage/plugin-tech-insights` is obvious, but the version should be checked for
-[compatibility with your version of Tanzu Application Platform](dependency-version-refs.hbs.md#bs-ver-table).
-`@backstage/plugin-catalog` is needed for a UI component we will be using.
-
-`@vmware-tanzu/core-common` and `@vmware-tanzu/core-frontend` will be used later for the integration
-between the Backstage plug-in and Tanzu Developer Portal. Verify you are using the correct versions
-of `@vmware-tanzu/core-common` and `@vmware-tanzu/core-frontend` by cross-referencing the dependency
-name against your Tanzu Application Platform version in the
-[Tanzu Developer Portal plug-in libraries compatibility table](dependency-version-refs.hbs.md#tdp-libraries).
-
-Now that you have added your necessary dependencies, install them by running the following:
-
-```shell
-$ cd plugins/tech-insights-wrapper
-$ yarn install --ignore-engines
-```
-
-### <a id="rmv-gen-code"></a> Remove unneeded generated code
-
-The `backstage-cli new` command creates a bunch of example code which you won't be using.
-Remove this code and start with an empty `src` directory by running:
-
-```shell
-$ rm -rf dev/ src/ && mkdir src
-```
-
-### <a id="wrap-bckstg-plgn"></a> Wrap the Backstage plug-in
-
-Take a look at the [documentation for @backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11).
-You will see that in order to use this Backstage plug-in, you need to [modify the contents of the `serviceEntityPage` constant](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11#add-boolean-checks-overview-scorecards-page-to-the-entitypage).
-Since you do not have access to the Tanzu Developer Portal source code, you will not be able to
-change that constant directly. Instead, you will use a [surface](concepts.hbs.md#surfaces-and-wrappers)
-to make the equivalent change.
-
-Start by creating the file where you will use a surface to modify the `serviceEntityPage` constant:
-
-```shell
-$ touch src/TechInsightsFrontendPlugin.tsx
-```
-
-In the `TechInsightsFrontendPlugin.tsx` file add the following content:
-
-```tsx
-import { EntityLayout } from '@backstage/plugin-catalog';
-import { EntityTechInsightsScorecardContent } from '@backstage/plugin-tech-insights';
-import {
-  AppPluginInterface,
-  SurfaceStoreInterface,
-  EntityPageSurface,
-} from '@vmware-tanzu/core-frontend';
-import React from 'react';
-
-export const TechInsightsFrontendPlugin: AppPluginInterface =
-  () => (context: SurfaceStoreInterface) => {
-    context.applyTo(
-      EntityPageSurface,
-      (entityPageSurface) => {
-        entityPageSurface.servicePage.addTab(
-          <EntityLayout.Route path="/techinsights" title="TechInsights">
-            <EntityTechInsightsScorecardContent
-              title="TechInsights Scorecard."
-              description="TechInsight's default fact-checkers"
-            />
-          </EntityLayout.Route>,
-        );
+   ```diff
+   diff --git a/package.json b/package.json
+   index 00d64c9..77f38f3 100644
+   --- a/package.json
+   +++ b/package.json
+   @@ -24,7 +24,6 @@
       },
-    );
-  };
-```
+      "workspaces": {
+        "packages": [
+   -      "packages/*",
+          "plugins/*"
+        ]
+      },
+   ```
 
-The above code accomplishes the same thing as the
-[documentation for @backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11),
-but for an integration with Tanzu Developer Portal instead of a traditional Backstage app.
-There are a few items to take note of here:
+1. Install the dependencies by running:
 
-- `context.applyTo` is a function that takes the class of the surface you want to interact with, and
-  a function that is passed the instance of that class
-  <!-- TODO: need link to API reference documentation. ESBACK-387 -->
-- The `EntityPageSurface` keeps track of tabs that appear on the service page. We add a new tab by
-  calling `entityPageSurface.servicePage.addTab` and passing it the UI component we want it to
-  render
-  <!-- TODO: need link to API reference documentation. ESBACK-387 -->
-- The `TechInsightsFrontendPlugin: AppPluginInterface = () => (context: SurfaceStoreInterface) => {}`
-  code is boilerplate that allows us to interact with the various frontend surfaces in
-  Tanzu Developer Portal
+   ```console
+   yarn install --ignore-engines
+   ```
 
-The `EntityPageSurface` used above is one example of the many surfaces available in
-Tanzu Developer Portal.
+   This command installs `backstage-cli` and a few other dependencies. The `--ignore-engines` flag
+   is needed because a transitive dependency is expecting Node v18, but this version of
+   Tanzu Developer Portal currently only supports Node v16.
 
-- To explore all the surfaces that are currently available checkout the
-  [How to use surfaces guide](how-to-use-surfaces.hbs.md)
-- For surface API reference documentation see the [API documentation for surfaces](api-docs.hbs.md)
+### <a id="tech-insights-frntnd-plgn"></a> Create the Tech Insights front-end Tanzu Developer Portal plug-in
 
-### <a id="expose-tdp-plgn"></a> Expose the Tanzu Developer Portal plug-in
+Now that you have an environment to develop your Tanzu Developer Portal plug-ins, you can begin
+wrapping Backstage plug-ins. You will start with the
+[Tech Insight front-end plug-in](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11).
 
-In order for the Configurator to use your plug-in, you will need to export
-`TechInsightsFrontendPlugin` in a specific way.
+1. Generate the plug-in by running:
 
-Start by creating an `index.ts` file under the `plugins/tech-insights-wrapper/src` directory:
+   ```console
+   yarn backstage-cli new --select plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
+   ```
 
-```shell
-$ touch src/index.ts
-```
+   Where `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
 
-In the `index.ts` file put the following:
+   The `yarn install` step of the script fails because of a Node version issue. This is handled in a
+   later step.
 
-```ts
-export { TechInsightsFrontendPlugin as plugin } from './TechInsightsFrontendPlugin';
-```
+   Here is a summary of what the `backstage-cli new` script does:
 
-The reason you need to alias `TechInsightsFrontendPlugin` to `plugin` is because the
-Tanzu Developer Portal Configurator expects compatible plugins to export a symbol with the name
-`plugin`.
+   - `--select plugin` creates a front-end plug-in
+   - `--option id=tech-insights-wrapper` names the plug-in `tech-insights-wrapper`
+   - `--scope @mycompany` scopes the package under the `@mycompany` namespace
+   - `--no-private` sets the package to public
 
-### <a id="build-your-plug-in"></a> Build your plug-in
+1. Open the `plugins/tech-insights-wrapper/package.json` to see how these options were mapped to the
+   generated `package.json`.
 
-At this point you should be able to build your Tanzu Developer Portal plug-in:
+1. Update your dependencies for the specific Backstage plug-in you want to wrap. Replace the
+   `dependencies` in the `package.json` with the following:
 
-```shell
-$ yarn tsc && yarn build
-```
+   ```json
+      ...
+      "dependencies": {
+        "@backstage/plugin-tech-insights": "0.3.11",
+        "@backstage/plugin-catalog": "1.11.2",
+        "@vmware-tanzu/core-common": "1.0.0",
+        "@vmware-tanzu/core-frontend": "1.0.0"
+      },
+      ...
+   ```
 
-From here you could publish this plug-in to your NPM registry. However, the plug-in's functionality
-is not usable without the backend portion.
+1. The dependency on `@backstage/plugin-tech-insights` is obvious, but verify the version is
+   compatible with your Tanzu Application Platform version by reading the relevant
+   [Dependency version reference](dependency-version-refs.hbs.md#bs-ver-table) table.
+
+   `@backstage/plugin-catalog` is needed for a UI component you will use later.
+
+1. Verify that you are using the correct versions of `@vmware-tanzu/core-common` and
+   `@vmware-tanzu/core-frontend` by cross-referencing the dependency name with your
+   Tanzu Application Platform version in the
+   [Tanzu Developer Portal plug-in libraries compatibility table](dependency-version-refs.hbs.md#tdp-libraries).
+   You will use `@vmware-tanzu/core-common` and `@vmware-tanzu/core-frontend` later for integrating
+   the Backstage plug-in with Tanzu Developer Portal.
+
+1. Install the dependencies you added by running:
+
+   ```console
+   cd plugins/tech-insights-wrapper
+   yarn install --ignore-engines
+   ```
+
+1. Remove unnecessary example code, which was generated by `backstage-cli new`, and start with
+   an empty `src` directory by running:
+
+   ```console
+   rm -rf dev/ src/ && mkdir src
+   ```
+
+1. Edit the contents of the `serviceEntityPage` constant to use @backstage/plugin-tech-insights.
+   Because you do not have access to the Tanzu Developer Portal source code, you cannot change that
+   constant directly. Instead, you must use a [surface](concepts.hbs.md#surfaces-and-wrappers) to make
+   the equivalent change.
+   For more information, see the [npm JS documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11#add-boolean-checks-overview-scorecards-page-to-the-entitypage).
+
+1. Create the file where you will use a surface to edit the `serviceEntityPage` constant by running:
+
+   ```console
+   touch src/TechInsightsFrontendPlugin.tsx
+   ```
+
+1. In the `TechInsightsFrontendPlugin.tsx` file, add the following code:
+
+   ```tsx
+   import { EntityLayout } from '@backstage/plugin-catalog';
+   import { EntityTechInsightsScorecardContent } from '@backstage/plugin-tech-insights';
+   import {
+     AppPluginInterface,
+     SurfaceStoreInterface,
+     EntityPageSurface,
+   } from '@vmware-tanzu/core-frontend';
+   import React from 'react';
+
+   export const TechInsightsFrontendPlugin: AppPluginInterface =
+     () => (context: SurfaceStoreInterface) => {
+       context.applyTo(
+         EntityPageSurface,
+         (entityPageSurface) => {
+           entityPageSurface.servicePage.addTab(
+             <EntityLayout.Route path="/techinsights" title="TechInsights">
+               <EntityTechInsightsScorecardContent
+                 title="TechInsights Scorecard."
+                 description="TechInsight's default fact-checkers"
+               />
+             </EntityLayout.Route>,
+           );
+         },
+       );
+     };
+   ```
+
+   Where:
+
+   - `context.applyTo` is a function that takes the class of the surface you want to interact with,
+     and a function that is passed the instance of that class.
+
+     <!-- TODO: need link to API reference documentation. ESBACK-387 -->
+
+   - The `EntityPageSurface` keeps track of tabs that appear on the service page. You add a new tab by
+     calling `entityPageSurface.servicePage.addTab` and passing it the UI component you want it to
+     render.
+
+     <!-- TODO: need link to API reference documentation. ESBACK-387 -->
+
+   - `TechInsightsFrontendPlugin: AppPluginInterface = () => (context: SurfaceStoreInterface) => {}`
+     is standard-use code, and enables you to interact with the various front-end surfaces in
+     Tanzu Developer Portal.
+
+   - `EntityPageSurface` is one example of the many surfaces available in Tanzu Developer Portal. To
+     discover all the surfaces currently available, see [How to use surfaces](how-to-use-surfaces.hbs.md).
+     For surface API reference information, see [API documentation for surfaces](api-docs.hbs.md).
+
+   This code accomplishes the same thing as the
+   [@backstage/plugin-tech-insights](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11),
+   but for an integration with Tanzu Developer Portal instead of a traditional Backstage app.
+
+1. Create an `index.ts` file under the `plugins/tech-insights-wrapper/src` directory:
+
+   ```console
+   touch src/index.ts
+   ```
+
+1. In the `index.ts` file write the following:
+
+   ```ts
+   export { TechInsightsFrontendPlugin as plugin } from './TechInsightsFrontendPlugin';
+   ```
+
+   This exports `TechInsightsFrontendPlugin` in a way that enables Configurator to use your plug-in.
+   You need to alias `TechInsightsFrontendPlugin` to `plugin` because the Tanzu Developer Portal
+   Configurator expects compatible plug-ins to export a symbol with the name `plugin`.
+
+1. Build your Tanzu Developer Portal plug-in by running:
+
+   ```console
+   yarn tsc && yarn build
+   ```
+
+You can now publish this plug-in to your npm registry. However, the plug-in functionality is not
+usable without the back-end portion.
 
 ## <a id="tech-insights-bcknd-plgn"></a> Create the Tech Insights backend Tanzu Developer Portal plug-in
 
@@ -293,223 +280,222 @@ This section will not describe in detail what is happening at each step except f
 from the prior work. If you want more in-depth explanations of each step, refer back to the
 descriptions found above.
 
-### <a id="gen-bcknd-plgn"></a> Generate a backend plug-in
+1. From the root of your project, generate a backend plug-in by running:
 
-From the root of your project run the following command replacing `@mycompany` with whatever
-namespace you would like to use for your package:
+   ```console
+   yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
+   ```
 
-```shell
-$ yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope @mycompany --no-private
-```
+   Where:
 
-You will notice that the yarn install step of the script will fail due to a Node version issue.
-This is ok, you will address this in a later step.
+   - `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
+   - `--select backend-plugin` tells the `backstage-cli` to generate a back-end plug-in. The ID you
+     provide is the same as the front-end plug-in `--option id=tech-insights-wrapper`.
 
-This time `--select backend-plugin` is specified, this tells the `backstage-cli` to generate a
-backend plug-in. Another thing to note is that the id we provide is the same as the frontend plug-in
-`--option id=tech-insights-wrapper`.
+   The `yarn install` step of the script fails because of a Node version issue. This is handled in a
+   later step.
 
-The `backstage-cli` will automatically append `-backend` to the directory and package name of
-backend plugins, so this will not conflict with the frontend plug-in.
+   `backstage-cli` automatically appends `-backend` to the directory and package-name of back-end
+   plug-ins to prevent conflict with the front-end plug-in.
 
-### <a id="update-deps"></a> Update dependencies
+1. Update the dependencies in `package.json` as follows:
 
-Update the dependencies in the package.json:
+   ```json
+      "dependencies": {
+        "@backstage/plugin-tech-insights-backend": "0.5.12",
+        "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
+        "@vmware-tanzu/core-backend": "1.0.0",
+        "express": "4.18.2"
+      },
+   ```
 
-```json
-  "dependencies": {
-    "@backstage/plugin-tech-insights-backend": "0.5.12",
-    "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
-    "@vmware-tanzu/core-backend": "1.0.0",
-    "express": "4.18.2"
-  },
-```
+1. Install your dependencies by running:
 
-Install your dependencies by running:
+   ```console
+   cd plugins/tech-insights-wrapper-backend/
+   yarn install --ignore-engines
+   ```
 
-```console
-$ cd plugins/tech-insights-wrapper-backend/
-$ yarn install --ignore-engines
-```
+1. Remove the Backstage scaffolded example code by running:
 
-Remove Backstage scaffolded example code:
+   ```console
+   rm -rf src/ && mkdir src
+   ```
 
-```console
-$ rm -rf src/ && mkdir src
-```
+1. Within the `src/` directory, create a file called `TechInsightsBackendPlugin.ts` by running:
 
-Within the `src/` directory create a file called `TechInsightsBackendPlugin.ts`.
+   ```console
+   touch src/TechInsightsBackendPlugin.ts
+   ```
 
-```console
-$ touch src/TechInsightsBackendPlugin.ts
-```
+1. In `TechInsightsBackendPlugin.ts`, add the following code:
 
-Then in the file `TechInsightsBackendPlugin.ts` add the following content:
+   ```ts
+   import {
+     createRouter,
+     buildTechInsightsContext,
+     createFactRetrieverRegistration,
+     entityOwnershipFactRetriever,
+     entityMetadataFactRetriever,
+     techdocsFactRetriever,
+   } from '@backstage/plugin-tech-insights-backend';
+   import { Router } from 'express';
+   import {
+     JsonRulesEngineFactCheckerFactory,
+     JSON_RULE_ENGINE_CHECK_TYPE,
+   } from '@backstage/plugin-tech-insights-backend-module-jsonfc';
+   import {
+     BackendPluginInterface,
+     BackendPluginSurface,
+     PluginEnvironment,
+   } from '@vmware-tanzu/core-backend';
 
-```ts
-import {
-  createRouter,
-  buildTechInsightsContext,
-  createFactRetrieverRegistration,
-  entityOwnershipFactRetriever,
-  entityMetadataFactRetriever,
-  techdocsFactRetriever,
-} from '@backstage/plugin-tech-insights-backend';
-import { Router } from 'express';
-import {
-  JsonRulesEngineFactCheckerFactory,
-  JSON_RULE_ENGINE_CHECK_TYPE,
-} from '@backstage/plugin-tech-insights-backend-module-jsonfc';
-import {
-  BackendPluginInterface,
-  BackendPluginSurface,
-  PluginEnvironment,
-} from '@vmware-tanzu/core-backend';
+   const ttlTwoWeeks = { timeToLive: { weeks: 2 } };
 
-const ttlTwoWeeks = { timeToLive: { weeks: 2 } };
+   export default async function createPlugin(
+           env: PluginEnvironment,
+   ): Promise<Router> {
+     const techInsightsContext = await buildTechInsightsContext({
+       logger: env.logger,
+       config: env.config,
+       database: env.database,
+       discovery: env.discovery,
+       tokenManager: env.tokenManager,
+       scheduler: env.scheduler,
+       factRetrievers: [
+         createFactRetrieverRegistration({
+           cadence: '0 */6 * * *', // Run every 6 hours - https://crontab.guru/#0_*/6_*_*_*
+           factRetriever: entityOwnershipFactRetriever,
+           lifecycle: ttlTwoWeeks,
+         }),
+         createFactRetrieverRegistration({
+           cadence: '0 */6 * * *',
+           factRetriever: entityMetadataFactRetriever,
+           lifecycle: ttlTwoWeeks,
+         }),
+         createFactRetrieverRegistration({
+           cadence: '0 */6 * * *',
+           factRetriever: techdocsFactRetriever,
+           lifecycle: ttlTwoWeeks,
+         }),
+       ],
+       factCheckerFactory: new JsonRulesEngineFactCheckerFactory({
+         logger: env.logger,
+         checks: [
+           {
+             id: 'groupOwnerCheck',
+             type: JSON_RULE_ENGINE_CHECK_TYPE,
+             name: 'Group Owner Check',
+             description:
+                     'Verifies that a Group has been set as the owner for this entity',
+             factIds: ['entityOwnershipFactRetriever'],
+             rule: {
+               conditions: {
+                 all: [
+                   {
+                     fact: 'hasGroupOwner',
+                     operator: 'equal',
+                     value: true,
+                   },
+                 ],
+               },
+             },
+           },
+           {
+             id: 'titleCheck',
+             type: JSON_RULE_ENGINE_CHECK_TYPE,
+             name: 'Title Check',
+             description:
+                     'Verifies that a Title, used to improve readability, has been set for this entity',
+             factIds: ['entityMetadataFactRetriever'],
+             rule: {
+               conditions: {
+                 all: [
+                   {
+                     fact: 'hasTitle',
+                     operator: 'equal',
+                     value: true,
+                   },
+                 ],
+               },
+             },
+           },
+           {
+             id: 'techDocsCheck',
+             type: JSON_RULE_ENGINE_CHECK_TYPE,
+             name: 'TechDocs Check',
+             description:
+                     'Verifies that TechDocs has been enabled for this entity',
+             factIds: ['techdocsFactRetriever'],
+             rule: {
+               conditions: {
+                 all: [
+                   {
+                     fact: 'hasAnnotationBackstageIoTechdocsRef',
+                     operator: 'equal',
+                     value: true,
+                   },
+                 ],
+               },
+             },
+           },
+         ],
+       }),
+     });
 
-export default async function createPlugin(
-        env: PluginEnvironment,
-): Promise<Router> {
-  const techInsightsContext = await buildTechInsightsContext({
-    logger: env.logger,
-    config: env.config,
-    database: env.database,
-    discovery: env.discovery,
-    tokenManager: env.tokenManager,
-    scheduler: env.scheduler,
-    factRetrievers: [
-      createFactRetrieverRegistration({
-        cadence: '0 */6 * * *', // Run every 6 hours - https://crontab.guru/#0_*/6_*_*_*
-        factRetriever: entityOwnershipFactRetriever,
-        lifecycle: ttlTwoWeeks,
-      }),
-      createFactRetrieverRegistration({
-        cadence: '0 */6 * * *',
-        factRetriever: entityMetadataFactRetriever,
-        lifecycle: ttlTwoWeeks,
-      }),
-      createFactRetrieverRegistration({
-        cadence: '0 */6 * * *',
-        factRetriever: techdocsFactRetriever,
-        lifecycle: ttlTwoWeeks,
-      }),
-    ],
-    factCheckerFactory: new JsonRulesEngineFactCheckerFactory({
-      logger: env.logger,
-      checks: [
-        {
-          id: 'groupOwnerCheck',
-          type: JSON_RULE_ENGINE_CHECK_TYPE,
-          name: 'Group Owner Check',
-          description:
-                  'Verifies that a Group has been set as the owner for this entity',
-          factIds: ['entityOwnershipFactRetriever'],
-          rule: {
-            conditions: {
-              all: [
-                {
-                  fact: 'hasGroupOwner',
-                  operator: 'equal',
-                  value: true,
-                },
-              ],
-            },
-          },
-        },
-        {
-          id: 'titleCheck',
-          type: JSON_RULE_ENGINE_CHECK_TYPE,
-          name: 'Title Check',
-          description:
-                  'Verifies that a Title, used to improve readability, has been set for this entity',
-          factIds: ['entityMetadataFactRetriever'],
-          rule: {
-            conditions: {
-              all: [
-                {
-                  fact: 'hasTitle',
-                  operator: 'equal',
-                  value: true,
-                },
-              ],
-            },
-          },
-        },
-        {
-          id: 'techDocsCheck',
-          type: JSON_RULE_ENGINE_CHECK_TYPE,
-          name: 'TechDocs Check',
-          description:
-                  'Verifies that TechDocs has been enabled for this entity',
-          factIds: ['techdocsFactRetriever'],
-          rule: {
-            conditions: {
-              all: [
-                {
-                  fact: 'hasAnnotationBackstageIoTechdocsRef',
-                  operator: 'equal',
-                  value: true,
-                },
-              ],
-            },
-          },
-        },
-      ],
-    }),
-  });
+     return await createRouter({
+       ...techInsightsContext,
+       logger: env.logger,
+       config: env.config,
+     });
+   }
 
-  return await createRouter({
-    ...techInsightsContext,
-    logger: env.logger,
-    config: env.config,
-  });
-}
+   export const TechInsightsBackendPlugin: BackendPluginInterface =
+     () => surfaces =>
+       surfaces.applyTo(BackendPluginSurface, backendPluginSurface => {
+         backendPluginSurface.addPlugin({
+           name: 'tech-insights',
+           pluginFn: createPlugin,
+         });
+       });
+   ```
 
-export const TechInsightsBackendPlugin: BackendPluginInterface =
-  () => surfaces =>
-    surfaces.applyTo(BackendPluginSurface, backendPluginSurface => {
-      backendPluginSurface.addPlugin({
-        name: 'tech-insights',
-        pluginFn: createPlugin,
-      });
-    });
-```
+   The majority of this code comes from the
+   [npm JS documentation for @backstage/plugin-tech-insights-backend](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#backend-example).
 
-The majority of the above code is pulled directly from the
-[official documentation for @backstage/plugin-tech-insights-backend](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#backend-example).
+   The [Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#adding-the-plugin-to-your-packagesbackend)
+   also instructs you to create a constant for `techInsightsEnv` then configure the router by doing
+   `apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage source
+   code. Because you are unable to modify the source code of Tanzu Developer Portal you will instead:
 
-The
-[Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#adding-the-plugin-to-your-packagesbackend)
-also instructs you to create a constant for `techInsightsEnv` then configure the router by doing
-`apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage source
-code. Because you are unable to modify the source code of Tanzu Developer Portal you will instead:
+   - Get an instance of the `BackendPluginSurface`. This surface keeps track of all the backend plug-ins.
 
-- Get an instance of the `BackendPluginSurface`, this surface keeps track of all the backend plug-ins
-  <!-- TODO: link to reference docs ESBACK-387 -->
-- Add your plug-in using the `addPlugin` function. The name argument will be used to configure the
-  path in the router
-  <!-- TODO: link to reference docs ESBACK-387 -->
+     <!-- TODO: link to reference docs ESBACK-387 -->
 
-### <a id="expose-tdp-plgn"></a> Expose the Tanzu Developer Portal plug-in
+   - Add your plug-in by using the `addPlugin` function. The name argument is used to configure the
+     path in the router.
 
-Start by creating an `index.ts` file:
+     <!-- TODO: link to reference docs ESBACK-387 -->
 
-```console
-$ touch src/index.ts
-```
+1. Create an `index.ts` file by running:
 
-In the `index.ts` file write the following:
+   ```console
+   touch src/index.ts
+   ```
 
-```ts
-export { TechInsightsBackendPlugin as plugin } from './TechInsightsBackendPlugin';
-```
+1. In the `index.ts` file, write the following:
 
-Now you can build your plugin
+   ```ts
+   export { TechInsightsBackendPlugin as plugin } from './TechInsightsBackendPlugin';
+   ```
 
-```console
-$ yarn tsc && yarn build
-```
+   This exposes the Tanzu Developer Portal plug-in.
+
+1. Build your plug-in by running:
+
+   ```console
+   yarn tsc && yarn build
+   ```
 
 ## Next steps
 
