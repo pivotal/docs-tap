@@ -154,12 +154,18 @@ You must specify at least one field.
   was used to create an application
 - `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS of the sources of the
   accelerator used
-- `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
+- `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a
+  commit.
+
+  <!-- [commit](data-model-and-concepts.hbs.md#commits) broken link -->
+
 - `timestamp`: the exact time the accelerator was run
 - `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each AppAcceleratorRun. Those fragment nodes share many of the fields with AppAcceleratorRun, with the same semantics but applied to the particular fragment. Those include:
   - `namespace` and `name`: strings representing the identity of the fragment
   - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS of the sources of the fragment used
-  - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a [Commit](./data-model-and-concepts.hbs.md#commits)
+  - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a commit.
+
+    <!-- [commit](data-model-and-concepts.hbs.md#commits) broken link -->
 
 ### <a id='sample-app-accelerator-runs-query'></a> Sample Application Accelerator queries
 
