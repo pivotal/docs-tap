@@ -11,17 +11,196 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| api-portal.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>GHSA-qppj-fm5r-hxr3</li><li>CVE-2023-22025</li><li>CVE-2023-22081</li><li>CVE-2023-35116 </li></ul>|
-| apis.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3 </li></ul>|
-| buildservice.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-36054</li><li>CVE-2023-3817</li><li>CVE-2023-4016</li><li>CVE-2023-5363</li><li>CVE-2023-5981</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-4374-p667-p6c8</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-2650</li><li>GHSA-33pg-m6jh-5237</li><li>GHSA-6wrf-mxfj-pf5p</li><li>GHSA-2c7c-3mj9-8fqh</li><li>CVE-2023-24532</li><li>CVE-2023-29406</li><li>CVE-2023-29409</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2022-41724</li><li>GHSA-m8cg-xc2p-r3fc</li><li>CVE-2022-3996</li><li>CVE-2023-1255</li><li>GHSA-g2j6-57v7-gm8c </li></ul>|
-| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-36054</li><li>CVE-2023-3817</li><li>CVE-2023-5363</li><li>GHSA-qppj-fm5r-hxr3</li><li>CVE-2023-22025</li><li>CVE-2023-22081</li><li>GHSA-vmq6-5m68-f53m</li><li>CVE-2023-44487</li><li>CVE-2023-4911</li><li>GHSA-jgvc-jfgh-rjvv</li><li>GHSA-xpw8-rcwv-8f8p </li></ul>|
-| base-jammy-stack-lite.buildpacks.tanzu.vmware.com | <ul><li> CVE-2023-36054</li><li>CVE-2023-4016</li><li>CVE-2023-5981</li><li>CVE-2023-25775</li><li>CVE-2023-31083</li><li>CVE-2023-31085</li><li>CVE-2023-3772</li><li>CVE-2023-45871 </li></ul>|
-| cert-manager.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3 </li></ul>|
-| eventing.tanzu.vmware.com | <ul><li> GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-4374-p667-p6c8</li><li>CVE-2023-44487</li><li>CVE-2023-24532</li><li>CVE-2023-29406</li><li>CVE-2023-29409</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2022-41724</li><li>GHSA-m425-mq94-257g</li><li>CVE-2022-1705</li><li>CVE-2022-1962</li><li>CVE-2022-27664</li><li>CVE-2022-28131</li><li>CVE-2022-2879</li><li>CVE-2022-2880</li><li>CVE-2022-30630</li><li>CVE-2022-30631</li><li>CVE-2022-30632</li><li>CVE-2022-30633</li><li>CVE-2022-30635</li><li>CVE-2022-32148</li><li>CVE-2022-32189</li><li>CVE-2022-41715</li><li>CVE-2022-41717</li><li>CVE-2022-41722</li><li>CVE-2022-41723</li><li>CVE-2022-41725</li><li>CVE-2023-24534</li><li>CVE-2023-24536</li><li>CVE-2023-24537</li><li>CVE-2023-24538</li><li>CVE-2023-24539</li><li>CVE-2023-24540</li><li>CVE-2023-29400</li><li>CVE-2023-29402</li><li>CVE-2023-29403</li><li>CVE-2023-29404</li><li>CVE-2023-29405</li><li>CVE-2023-39323 </li></ul>|
-| tap-gui.tanzu.vmware.com | <ul><li> CVE-2023-37453</li><li>CVE-2023-3772</li><li>CVE-2023-3773</li><li>CVE-2023-39189</li><li>CVE-2023-39192</li><li>CVE-2023-39193</li><li>CVE-2023-39194</li><li>CVE-2023-39197</li><li>CVE-2023-42754</li><li>CVE-2023-6176</li><li>CVE-2022-40982</li><li>CVE-2023-1206</li><li>CVE-2023-20569</li><li>CVE-2023-20588</li><li>CVE-2023-21400</li><li>CVE-2023-2898</li><li>CVE-2023-31084</li><li>CVE-2023-3212</li><li>CVE-2023-3338</li><li>CVE-2023-34256</li><li>CVE-2023-3863</li><li>CVE-2023-4132</li><li>CVE-2023-4194</li><li>CVE-2023-4273</li><li>CVE-2023-42755</li><li>CVE-2023-42756</li><li>CVE-2022-4269</li><li>CVE-2023-2002</li><li>CVE-2023-2269</li><li>CVE-2022-45887 </li></ul>|
-| cnrs.tanzu.vmware.com | <ul><li> CVE-2023-39318</li><li>CVE-2023-39319 </li></ul>|
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-35116">CVE-2023-35116</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22081">CVE-2023-22081</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22025">CVE-2023-22025</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>apis.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>base-jammy-stack-lite.buildpacks.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5981">CVE-2023-5981</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45871">CVE-2023-45871</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4016">CVE-2023-4016</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3772">CVE-2023-3772</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36054">CVE-2023-36054</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31085">CVE-2023-31085</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31083">CVE-2023-31083</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-25775">CVE-2023-25775</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>buildservice.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-m8cg-xc2p-r3fc">GHSA-m8cg-xc2p-r3fc</a></li>
+<li><a href="https://github.com/advisories/GHSA-g2j6-57v7-gm8c">GHSA-g2j6-57v7-gm8c</a></li>
+<li><a href="https://github.com/advisories/GHSA-6wrf-mxfj-pf5p">GHSA-6wrf-mxfj-pf5p</a></li>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-33pg-m6jh-5237">GHSA-33pg-m6jh-5237</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+<li><a href="https://github.com/advisories/GHSA-2c7c-3mj9-8fqh">GHSA-2c7c-3mj9-8fqh</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5981">CVE-2023-5981</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4016">CVE-2023-4016</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39319">CVE-2023-39319</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39318">CVE-2023-39318</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36054">CVE-2023-36054</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29409">CVE-2023-29409</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29406">CVE-2023-29406</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24532">CVE-2023-24532</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0464">CVE-2023-0464</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41724">CVE-2022-41724</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3996">CVE-2022-3996</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>cert-manager.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>cnrs.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39319">CVE-2023-39319</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39318">CVE-2023-39318</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>eventing.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-m425-mq94-257g">GHSA-m425-mq94-257g</a></li>
+<li><a href="https://github.com/advisories/GHSA-4374-p667-p6c8">GHSA-4374-p667-p6c8</a></li>
+<li><a href="https://github.com/advisories/GHSA-2wrh-6pvc-2jm9">GHSA-2wrh-6pvc-2jm9</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44487">CVE-2023-44487</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39323">CVE-2023-39323</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39319">CVE-2023-39319</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39318">CVE-2023-39318</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29409">CVE-2023-29409</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29406">CVE-2023-29406</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29405">CVE-2023-29405</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29404">CVE-2023-29404</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29403">CVE-2023-29403</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29402">CVE-2023-29402</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29400">CVE-2023-29400</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24540">CVE-2023-24540</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24539">CVE-2023-24539</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24538">CVE-2023-24538</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24537">CVE-2023-24537</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24536">CVE-2023-24536</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24534">CVE-2023-24534</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24532">CVE-2023-24532</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41725">CVE-2022-41725</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41724">CVE-2022-41724</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41723">CVE-2022-41723</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41722">CVE-2022-41722</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41717">CVE-2022-41717</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41715">CVE-2022-41715</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-32189">CVE-2022-32189</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-32148">CVE-2022-32148</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30635">CVE-2022-30635</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30633">CVE-2022-30633</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30632">CVE-2022-30632</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30631">CVE-2022-30631</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-30630">CVE-2022-30630</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2880">CVE-2022-2880</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2879">CVE-2022-2879</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-28131">CVE-2022-28131</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-27664">CVE-2022-27664</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1962">CVE-2022-1962</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-1705">CVE-2022-1705</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>spring-cloud-gateway.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-xpw8-rcwv-8f8p">GHSA-xpw8-rcwv-8f8p</a></li>
+<li><a href="https://github.com/advisories/GHSA-vmq6-5m68-f53m">GHSA-vmq6-5m68-f53m</a></li>
+<li><a href="https://github.com/advisories/GHSA-qppj-fm5r-hxr3">GHSA-qppj-fm5r-hxr3</a></li>
+<li><a href="https://github.com/advisories/GHSA-jgvc-jfgh-rjvv">GHSA-jgvc-jfgh-rjvv</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4911">CVE-2023-4911</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44487">CVE-2023-44487</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36054">CVE-2023-36054</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22081">CVE-2023-22081</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22025">CVE-2023-22025</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>tap-gui.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-6176">CVE-2023-6176</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42756">CVE-2023-42756</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42755">CVE-2023-42755</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42754">CVE-2023-42754</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4273">CVE-2023-4273</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4194">CVE-2023-4194</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4132">CVE-2023-4132</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39197">CVE-2023-39197</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39194">CVE-2023-39194</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39193">CVE-2023-39193</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39192">CVE-2023-39192</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39189">CVE-2023-39189</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3863">CVE-2023-3863</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3773">CVE-2023-3773</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3772">CVE-2023-3772</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-37453">CVE-2023-37453</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34256">CVE-2023-34256</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3338">CVE-2023-3338</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3212">CVE-2023-3212</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-31084">CVE-2023-31084</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2898">CVE-2023-2898</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2269">CVE-2023-2269</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21400">CVE-2023-21400</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20588">CVE-2023-20588</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20569">CVE-2023-20569</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2002">CVE-2023-2002</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1206">CVE-2023-1206</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45887">CVE-2022-45887</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-4269">CVE-2022-4269</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-40982">CVE-2022-40982</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
@@ -29,13 +208,9 @@ This release has the following security fixes, listed by component and area.
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-6-6-COMPONENT-NAME-ri'></a> v1.6.6 Resolved issues: COMPONENT-NAME
+#### <a id='1-6-6-cert-manager-ri'></a> v1.6.6 Resolved issues: cert-manager
 
-- Resolved issue description.
-
-#### <a id='1-6-6-cert-manager-ki'></a> v1.6.6 Resolved issues: cert-manager
-
-- `cert-manager.tanzu.vmware.com/2.4.2` has no known issues.
+- Resolved the known vulnerability with ACME HTTP01 in Tanzu Application Platform.
 
 ---
 
@@ -43,9 +218,137 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-6-6-COMPONENT-NAME-ki'></a> v1.6.6 Known issues: COMPONENT-NAME
+#### <a id='1-6-6-tap-ki'></a> v1.6.6 Known issues: Tanzu Application Platform
 
-- Known issue description with link to workaround.
+- This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
+  vSphere with Tanzu v8.
+
+#### <a id='1-6-6-amr-obs-ce-hndlr-ki'></a> v1.6.6 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
+
+- Periodic reconciliation or restarting of the AMR Observer causes reattempted posting of
+  ImageVulnerabilityScan results. There is an error on duplicate submission of identical
+  ImageVulnerabilityScans you can ignore if the previous submission was successful.
+
+- ReplicaSet status in AMR only has two states: `created` and `deleted`.
+  There is a known issue where the `available` and `unavailable` state is not showing.
+  The workaround is that you can interpolate this information from the `instances` metadata in the
+  AMR for the ReplicaSet.
+
+#### <a id='1-6-6-bitnami-services-ki'></a> v1.6.6 Known issues: Bitnami Services
+
+- If you try to configure private registry integration for the Bitnami services
+  after having already created a claim for one or more of the Bitnami services using the default
+  configuration, the updated private registry configuration does not appear to take effect.
+  This is due to caching behavior in the system which is not accounted for during configuration updates.
+  For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
+
+#### <a id='1-6-6-cnrs-ki'></a> v1.6.6 Known issues: Cloud Native Runtimes
+
+- For Knative Serving, certain app name, namespace, and domain combinations produce Knative Services
+  with status `CertificateNotReady`. For more information, see
+  [Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.3/tanzu-cloud-native-runtimes/troubleshooting.html#certificate-not-ready-kcert).
+
+#### <a id='1-6-6-crossplane-ki'></a> v1.6.6 Known issues: Crossplane
+
+- Crossplane Providers cannot communicate with systems using a custom CA.
+  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+
+- The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
+  Crossplane Package.
+  To workaround, delete the `validatingwebhookconfiguration` manually by running
+  `kubectl delete validatingwebhookconfiguration crossplane`.
+
+#### <a id='1-6-6-eventing-ki'></a> v1.6.6 Known issues: Eventing
+
+- When using vSphere sources in Eventing, the vsphere-source is using a high number of
+  informers to alleviate load on the API server. This causes high memory use.
+
+#### <a id='1-6-6-learningcenter-ki'></a> v1.6.6 Known issues: Learning Center
+
+- [CVE-2023-26114](https://nvd.nist.gov/vuln/detail/CVE-2023-26114):
+  Versions of VS Code server before v4.10.1 are vulnerable to Missing Origin Validation in WebSocket handshakes.
+  For mitigation steps, see [Known issues for Learning Center](./learning-center/known-issues.hbs.md).
+
+#### <a id='1-6-6-stk-ki'></a> v1.6.6 Known issues: Services Toolkit
+
+- An error occurs if `additionalProperties` is `true` in a CompositeResourceDefinition.
+  For more information and a workaround, see [Troubleshoot Services Toolkit](./services-toolkit/how-to-guides/troubleshooting.hbs.md#compositeresourcedef).
+
+#### <a id='1-6-6-scc-ki'></a> v1.6.6 Known issues: Supply Chain Choreographer
+
+- When using the Carvel Package Supply Chains, if the operator updates the parameter
+  `carvel_package.name_suffix`, existing workloads incorrectly output a Carvel package to the GitOps
+  repository that uses the old value of `carvel_package.name_suffix`. You can ignore or delete this package.
+
+- If the size of the resulting OpenAPIv3 specification exceeds a certain size, approximately 3&nbsp;KB,
+  the Supply Chain does not function. If you use the default Carvel package parameters, you this
+  issue does not occur. If you use custom Carvel package parameters, you might encounter this size limit.
+  If you exceed the size limit, you can either deactivate this feature, or use a workaround.
+  The workaround requires enabling a Tekton feature flag. For more information, see the
+  [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
+
+#### <a id='1-6-6-supply-chain-security-tools-store-ki'></a> v1.6.6 Supply Chain Security Tools - Store
+
+- `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
+  Supply Chain Security Tools - Store does not reconcile if it finds a Postgres database index
+  corruption issue.
+  For information about remediating this issue, see [Fix Postgres Database Index Corruption](scst-store/database-index-corruption.hbs.md).
+
+#### <a id='1-6-6-tap-gui-ki'></a> v1.6.6 Known issues: Tanzu Developer Portal (formerly named Tanzu Application Platform GUI)
+
+- If you do not configure any authentication providers, and do not allow guest access, the following
+  message appears when loading Tanzu Developer Portal in a browser:
+
+   ```console
+   No configured authentication providers. Please configure at least one.
+   ```
+
+  To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
+
+- Ad-blocking browser extensions and standalone ad-blocking software can interfere with telemetry
+  collection within the VMware
+  [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
+  and restrict access to all or parts of Tanzu Developer Portal.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+#### <a id='1-6-6-sc-plugin-ki'></a> v1.6.6 Known issues: Tanzu Developer Portal - Supply Chain GUI plug-in
+
+- Any workloads created by using a custom resource definition (CRD) might not work as expected.
+  Only Out of the Box (OOTB) Supply Chains are supported in the UI.
+
+- Downloading the SBOM from a vulnerability scan requires additional configuration in
+  `tap-values.yaml`. For more information, see
+  [Troubleshooting](tap-gui/troubleshooting.hbs.md#sbom-not-working).
+
+#### <a id='1-6-6-intellij-plugin-ki'></a> v1.6.6 Known issues: Tanzu Developer Tools for IntelliJ
+
+- The error `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` is shown in
+  the error logs when attempting to perform a workload action before installing the Tanzu CLI apps
+  plug-in.
+
+- If you restart your computer while running Live Update without terminating the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  For the fix, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lock-prevents-live-update).
+
+- Workload actions and Live Update do not work when in a project with spaces in its name, such as
+  `my app`, or in its path, such as `C:\Users\My User\my-app`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- An **EDT Thread Exception** error is logged or reported as a notification with a message similar to
+  `"com.intellij.diagnostic.PluginException: 2007 ms to call on EDT TanzuApplyAction#update@ProjectViewPopup"`.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ui-liveness-check-error).
+
+#### <a id='1-6-6-vs-plugin-ki'></a> v1.6.6 Known issues: Tanzu Developer Tools for Visual Studio
+
+- Clicking the red square Stop button in the Visual Studio top toolbar can cause a workload to fail.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#stop-button).
+
+#### <a id='1-6-6-vscode-plugin-ki'></a> v1.6.6 Known issues: Tanzu Developer Tools for VS Code
+
+- In the Tanzu activity panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. The correct category is **Supply Chain**.
 
 ---
 
@@ -208,7 +511,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-5-tap-ki'></a> v1.6.5 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.6.5 is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
+- This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
   vSphere with Tanzu v8.
 
 #### <a id='1-6-5-amr-obs-ce-hndlr-ki'></a> v1.6.5 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
@@ -605,7 +908,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-4-tap-ki'></a> v1.6.4 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.6.4 is not supported with Tanzu Kubernetes releases (TKR) v1.26
+- This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 #### <a id='1-6-4-amr-obs-ce-hndlr-ki'></a> v1.6.4 Known issues: Artifact Metadata Repository Observer and CloudEvent Handler
@@ -1014,7 +1317,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-6-3-tap-ki'></a> v1.6.3 Known issues: Tanzu Application Platform
 
-- Tanzu Application Platform v1.6.3 is not supported with Tanzu Kubernetes releases (TKR) v1.26
+- This Tanzu Application Platform release is not supported with Tanzu Kubernetes releases (TKR) v1.26
   on vSphere with Tanzu v8.
 
 #### <a id='1-6-3-app-config-srvc-ki'></a> v1.6.3 Known issues: Application Configuration Service
