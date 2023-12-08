@@ -1,4 +1,4 @@
-# Configuring Supply Chain Security Tools - Policy
+# Configure Supply Chain Security Tools - Policy
 
 This topic describes how you can configure Supply Chain Security Tools - Policy.
 SCST - Policy requires extra configuration steps to verify your container
@@ -355,8 +355,9 @@ with the configured public key. Run:
     pod/cosign created (server dry run)
     ```
 
-    If you are using vSphere with Tanzu or Openshift, you will need to add some overrides:
-    ```
+    If you are using vSphere with Tanzu or OpenShift, you must add some overrides:
+
+    ```console
     $ kubectl run cosign \
       --image=gcr.io/projectsigstore/cosign:v1.2.1 \
       --overrides='{"spec": {"securityContext": {"seccompProfile": {"type": "RuntimeDefault"}}, "containers": [{"name": "cosign", "securityContext": {"allowPrivilegeEscalation": false, "runAsNonRoot": true, "capabilities": {"drop": ["ALL"]}}}]}}' \
