@@ -18,8 +18,8 @@ Example setups include:
 
 - A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to RDS PostgreSQL service instances running in "VPC A"
 - A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to RDS PostgreSQL service instances running in "VPC B"
-- A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to Elasticache Redis service instances running in "VPC B"
-- A Tanzu Application Platform cluster running on Azure AKS connecting to RDS PostgreSQL service instances running in "VPC A"
+- A Tanzu Application Platform cluster running on AWS EKS in "VPC A" connecting to RDS MySQL service instances running in "VPC B"
+- A Tanzu Application Platform cluster running on Azure AKS connecting to RDS MySQL service instances running in "VPC A"
 
 If not handled carefully, accommodating these differences could lead to the package configuration
 becoming too complex.
