@@ -38,10 +38,10 @@ options for the accelerator. This file contains instructions for processing the
 files when you generate a new project. Observer sends this information to the
 CloudEvent Handler to store `AppAcceleratorRuns`.
 
-Each `AppAcceleratorRun` data entry has a unique `guid`. The `guid` includes information
+Each `AppAcceleratorRuns` data entry has a unique `guid`. The `guid` includes information
 about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`,
 and `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
-to the same `AppAcceleratorRun` entry. You can also associate an `AppAcceleratorRun`
+to the same `AppAcceleratorRuns` entry. You can also associate an `AppAcceleratorRuns`
 with one `AppAcceleratorSource`, also known as `Commit`.
 
 There is one AppAcceleratorRun for each invocation of an accelerator, including version information about which accelerator was used.
@@ -59,7 +59,7 @@ Handler to store `AppAcceleratorFragments`.
 Each `AppAcceleratorFragment` data entry stores information about source Git repository:
 `AppAcceleratorFragmentSourceRepoURL`, `AppAcceleratorFragmentSourceRevision`, and
 `AppAcceleratorFragmentSourceSubpath`. You can associate an `AppAcceleratorFragment` to
-an `AppAcceleratorRun`. You can point a `AppAcceleratorFragmentSource`
+an `AppAcceleratorRuns`. You can point a `AppAcceleratorFragmentSource`
 (also known as `Commit`) to one `AppAcceleratorFragment`.
 
 There is one instance of AppAcceleratorFragment for each named fragment used by the running accelerator. There are between `0` and `N` instances, `N` being the number of fragments used by the accelerator.
