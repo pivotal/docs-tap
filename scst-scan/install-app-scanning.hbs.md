@@ -1,6 +1,9 @@
 # Install Supply Chain Security Tools - Scan 2.0 in a cluster
 
-The following sections describe how to install Supply Chain Security Tools (SCST) - Scan 2.0. SCST-Scan 2.0 is in beta and is not installed with any profiles and must be installed following these directions.
+The topic tells you how to install Supply Chain Security Tools (SCST) - Scan 2.0.
+
+>**Caution** SCST-Scan 2.0 is in beta and is not included in any profiles. 
+> You must install SCST-Scan 2.0 by following the instructions described in this topic.
 
 ## <a id="scst-app-scanning-prereqs"></a> Prerequisites
 
@@ -8,7 +11,7 @@ SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is already installed if you installed Tanzu Application Platform by using a profile based installation in both the Full and Build Profiles.
-- Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. You must enable AMR and AMR Observer. See [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
+- Enable AMR and AMR Observer, because downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
 
 >**Note** If you are installing SCST - Scan 2.0 in a cluster with restricted Kubernetes Pod Security Standards, you must update configurations for the Tekton Pipelines package. See [Troubleshooting](./app-scanning-troubleshooting.hbs.md#scanning-in-a-cluster-with-restricted-kubernetes-pod-security-standards).
 
