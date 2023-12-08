@@ -648,7 +648,7 @@ Terms beginning with "V".
   </thead>
   <tbody>
     <tr>
-        <td>VMware Application Catalog</td>
+        <td>VMware Tanzu Application Catalog</td>
         <td>A customizable selection of trusted, pre-packaged application components that are
         continuously maintained and verifiably tested for use in production environments.</td>
     </tr>
