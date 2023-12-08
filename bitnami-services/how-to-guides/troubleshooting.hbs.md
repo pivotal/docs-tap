@@ -3,7 +3,7 @@
 This topic explains how you troubleshoot issues related to Bitnami Services on Tanzu Application Platform
 (commonly known as TAP).
 
-## <a id="private-reg"></a> Private registry or VMware Application Catalog configuration does not take effect
+## <a id="private-reg"></a> Private registry or VMware Tanzu Application Catalog configuration does not take effect
 
 **Symptom:**
 

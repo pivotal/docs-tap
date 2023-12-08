@@ -1,18 +1,18 @@
-# Configure private registry and VMware Application Catalog integration for Bitnami Services
+# Configure private registry and VMware Tanzu Application Catalog integration for Bitnami Services
 
 This topic tells you how to integrate Bitnami Services with private registries
-or with VMware Application Catalog (VAC).
+or with VMware Tanzu Application Catalog.
 You can configure this globally for all services, or on a per-service basis.
 
 ## <a id="prereqs"></a>Prerequisites
 
-Before you integrate Bitnami Services with a private registry or VAC, you must:
+Before you integrate Bitnami Services with a private registry or VMware Tanzu Application Catalog, you must:
 
 - Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`.
 - Have the credentials to access the private registry.
 
-For how to obtain both of these prerequisites for VAC integration, see
-[Obtain credentials for VMware Application Catalog Integration](./obtain-credentials-for-vac-integration.hbs.md).
+For how to obtain both of these prerequisites for VMware Tanzu Application Catalog integration, see
+[Obtain credentials for VMware Tanzu Application Catalog integration](./obtain-credentials-for-vac-integration.hbs.md).
 
 ## <a id="procedure"></a>Procedure
 
