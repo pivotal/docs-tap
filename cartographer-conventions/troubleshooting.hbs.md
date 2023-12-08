@@ -22,7 +22,7 @@ Deploy a `convention server` ([ClusterPodConvention](reference/cluster-pod-conve
 ### Symptoms
 
 + When a `PodIntent` is submitted, the `conventions` are not applied.
-+ The `convention-controller` [logs](#gathering-logs) reports an error `failed to get CABundle` as follows:
++ The `convention-controller` [logs](#gathering-logs) report an error `failed to get CABundle` as follows:
 
     ```console
     {
@@ -37,7 +37,9 @@ Deploy a `convention server` ([ClusterPodConvention](reference/cluster-pod-conve
 
 ### Cause
 
-`convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with wrong certificates. The `convention-controller` cannot figure out the CA Bundle to perform the request to the server.
+`convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with
+the wrong certificates. The `convention-controller` cannot figure out the CA Bundle to perform the
+request to the server.
 
 ### Solution
 
@@ -368,7 +370,7 @@ You might need to increase the memory limit for the convention webhook servers. 
     - name: patch-developer-conventions
   ```
 
-3. Update Tanzu Application Platform by running:
+1. Update Tanzu Application Platform by running:
 
   ```console
   tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
