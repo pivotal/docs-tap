@@ -181,34 +181,12 @@ This release has the following security fixes, listed by component and area.
 </table>
 
 ---
- 
-### <a id='1-4-12-resolved-issues'></a> v1.4.12 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
-#### <a id='1-4-12-COMPONENT-NAME-ri'></a> v1.4.12 Resolved issues: COMPONENT-NAME
- 
-- Resolved issue description.
- 
+
+### <a id='1-4-12-known-issues'></a> v1.4.12 Known issues
+
+This release introduces no new known issues.
+
 ---
- 
-### <a id='1-4-12-known-issues'></a> v1.4.12 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
-#### <a id='1-4-12-COMPONENT-NAME-ki'></a> v1.4.12 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
----
- 
-### <a id='1-4-12-components'></a> v1.4.12 Component versions
- 
-The following table lists the supported component versions for this Tanzu Application Platform release.
- 
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
- 
----   
 
 ## <a id='1-4-11'></a> v1.4.11
 
