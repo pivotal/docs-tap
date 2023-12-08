@@ -223,31 +223,9 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
-### <a id='1-5-8-resolved-issues'></a> v1.5.8 Resolved issues
-
-The following issues, listed by component and area, are resolved in this release.
-
-#### <a id='1-5-8-COMPONENT-NAME-ri'></a> v1.5.8 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
-
----
-
 ### <a id='1-5-8-known-issues'></a> v1.5.8 Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-5-8-COMPONENT-NAME-ki'></a> v1.5.8 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
----
-
-### <a id='1-5-8-components'></a> v1.5.8 Component versions
-
-The following table lists the supported component versions for this Tanzu Application Platform release.
-
-GET-TABLE-FROM-PREVIOUS-PATCH-AND-UPDATE
+This release introduces no new known issues.
 
 ---
 
