@@ -287,7 +287,7 @@ If you encounter the following issue, it might be due to not exporting
 {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
 ```
 
-Configure `ns_for_export_app_cert` in your `tap-values.yaml`.
+Configure `ns_for_export_app_cert` in your `tap-values.yaml` file.
 
 ```yaml
 metadata_store:
@@ -517,7 +517,7 @@ You might see an error message similar to the following when describing the Task
 "scan-source-scan-with-passing-policy-zx46t-pod" is forbidden: violates PodSecurity "restricted:latest": allowPrivilegeEscalation != false (container "prepare" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "prepare" must set securityContext.capabilities.drop=["ALL"]), seccompProfile (pod or container "prepare" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost"). Maybe invalid TaskSpec. ScanPodError PodNotFound: no pod found
 ```
 
-1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` with the following changes.
+1. Update your Tekton Pipelines package configuration in your `tap-values.yaml` file with the following changes.
 
     ```yaml
     tekton_pipelines:
