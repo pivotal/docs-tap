@@ -63,6 +63,8 @@ To integrate Scan 2.0 with an OOTB supply chain using the Trivy scanner:
 
     Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
-1. Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. You must enable AMR and AMR Observer. See [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
+1. Enable AMR and AMR Observer. 
+
+    Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
 
 1. Verify the scan capability is working as expected by creating a workload. See [Verify](./verify-app-scanning-supply-chain.hbs.md).
