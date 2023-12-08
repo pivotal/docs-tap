@@ -282,13 +282,13 @@ For information about the package customization, see [Customize your package ins
 
 #### <a id='increase-webhook'></a> Increase the memory limit for convention webhook servers
 
-You might need to increase the memory limit for the convention webhook servers. 
+You might need to increase the memory limit for the following convention webhook servers:
 
 - app-live-view-conventions
 - spring-boot-webhook
 - developer-conventions/webhook
 
-Use this procedure to increase the memory limit for the following Convention servers:
+Use this procedure to increase the memory limit:
 
 1. Create a `Secret` with the following ytt overlay.
 
