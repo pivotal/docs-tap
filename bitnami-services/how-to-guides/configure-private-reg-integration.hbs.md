@@ -1,20 +1,20 @@
-# Configure private registry and VMware Application Catalog integration for Bitnami Services
+# Configure private registry and VMware Tanzu Application Catalog integration for Bitnami Services
 
 This topic tells you how to integrate Bitnami Services with private registries
-or with VMware Application Catalog (VAC).
+or with VMware Tanzu Application Catalog.
 You can configure this globally for all services, or on a per-service basis.
 
 ## <a id="prereqs"></a>Prerequisites
 
-Before you integrate Bitnami Services with a private registry or VAC, you must:
+Before you integrate Bitnami Services with a private registry or VMware Tanzu Application Catalog, you must:
 
 - Have your Helm Chart repository URL in the format `oci://REPOSITORY-NAME/charts`.
-  Some VAC instances append the operating system to the repository URL, in which case, use
-  the URL format `oci://REPOSITORY-NAME/charts/centos-7`.
+  Some VMware Tanzu Application Catalog instances append the operating system to the repository URL,
+  in which case, use the URL format `oci://REPOSITORY-NAME/charts/centos-7`.
 - Have the credentials to access the private registry.
 
-For how to obtain both of these prerequisites for VAC integration, see
-[Obtain credentials for VMware Application Catalog Integration](./obtain-credentials-for-vac-integration.hbs.md).
+For how to obtain both of these prerequisites for VMware Tanzu Application Catalog integration, see
+[Obtain credentials for VMware Tanzu Application Catalog integration](./obtain-credentials-for-vac-integration.hbs.md).
 
 ## <a id="procedure"></a>Procedure
 
@@ -84,9 +84,10 @@ For how to obtain both of these prerequisites for VAC integration, see
             tanzu package installed update tap -p tap.tanzu.vmware.com --values-file tap-values.yaml -n tap-install
             ```
 
-1. If your VAC instance does not have the default version of a given chart or you want to use a
-   different version, configure the version for the chart by updating the `helm_chart.version` value
-   for the service. For example:
+1. If your VMware Tanzu Application Catalog instance does not have the default
+   version of a given chart or you want to use a different version, configure the
+   version for the chart by updating the `helm_chart.version` value for the service.
+   For example:
 
     ```yaml
     bitnami_services:

@@ -10,7 +10,6 @@ In release notes, this condition hides content that describes an unreleased patc
 
 {{/unless}}
 
-
 ## <a id='1-8-0'></a> v1.8.0
 
 **Release Date**: 29 February 2024
