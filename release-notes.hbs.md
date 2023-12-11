@@ -263,7 +263,7 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: SCST - Scan and SCST - Scan 2.0
 
 - Resolved an issue that caused Scan Controller to fail because of panic when `container.SecurityContext`
-  is not null and the `Capabilities` field or `SeccompProfile` field is null.
+  is not null and the `Capabilities` or `SeccompProfile` field is null.
 
 #### <a id='1-7-2-service-registry-ri'></a> v1.7.2 Resolved issues: Service Registry
 
@@ -811,7 +811,7 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan
 
-- When `container.SecurityContext` is not null and the `Capabilities` field or `SeccompProfile` field
+- When `container.SecurityContext` is not null and the `Capabilities` or `SeccompProfile` field
   is empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
@@ -833,7 +833,7 @@ This release has the following known issues, listed by component and area.
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
-- When `container.SecurityContext` is not null and the `Capabilities` field or `SeccompProfile` field
+- When `container.SecurityContext` is not null and the `Capabilities` or `SeccompProfile` field
   is empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
