@@ -257,7 +257,7 @@ To wrap the Backstage plug-in:
      Tanzu Developer Portal.
 
    - `EntityPageSurface` is one example of the many surfaces available in Tanzu Developer Portal. To
-     discover all the surfaces currently available, see [How to use surfaces](how-to-use-surfaces.hbs.md).
+     discover all the surfaces currently available, see [How to use surfaces](using-surfaces.hbs.md).
      For surface API reference information, see [API documentation for surfaces](api-docs.hbs.md).
 
    This code accomplishes the same thing as the

@@ -1,7 +1,7 @@
-# How to use surfaces
+# Using surfaces
 
-This guide contains small, simple examples of how to use the various surfaces when creating a Tanzu Developer Portal
-plug-in.
+This topic gives you small basic examples of how to use the various surfaces when creating a
+Tanzu Developer Portal plug-in.
 
 <!-- ## ApiSurface -->
 
@@ -23,9 +23,10 @@ plug-in.
 
 <!-- TODO -->
 
-## BackendPluginSurface
+## <a id="backend-plugin-surface"></a> BackendPluginSurface
 
-Use the `BackendPluginSurface` if you need to add routes to the `apiRouter` commonly found in `packages/backend/src/index.ts`.
+Use `BackendPluginSurface` if you must add routes to the `apiRouter` commonly found in
+`packages/backend/src/index.ts`.
 
 Example:
 
@@ -159,11 +160,12 @@ export const TechInsightsBackendPlugin: BackendPluginInterface =
     });
 ```
 
-## BannerSurface
+## <a id="banner-surface"></a> BannerSurface
 
-This surface allows you to add to the DOM at the top of the page before the content, this is usually used for banners.
-The only elements that can appear before the banners in the DOM are `AlertDisplay` and `OAuthRequestDialog`.
-Multiple banners can be added to the surface; they will be rendered in the order of registration.
+`BannerSurface` enables you to add to the DOM at the top of the page before the content, which is
+commonly used for banners. The only elements that can appear before the banners in the DOM are
+`AlertDisplay` and `OAuthRequestDialog`. You can add multiple banners to the surface. The multiple
+banners are rendered in order of registration.
 
 Example:
 
@@ -181,9 +183,10 @@ export const HelloWorldPlugin: AppPluginInterface = () => context => {
 };
 ```
 
-## EntityPageSurface
+## <a id="entity-page-surface"></a> EntityPageSurface
 
-Use the `EntityPageSurface` if you need to add to the `serviceEntityPage` constant found in `packages/app/src/components/catalog/EntityPage.tsx`.
+Use `EntityPageSurface` if you must add to the `serviceEntityPage` constant found in
+`packages/app/src/components/catalog/EntityPage.tsx`.
 
 Example:
 
@@ -239,10 +242,11 @@ export const TechInsightsFrontendPlugin: AppPluginInterface =
 
 <!-- TODO -->
 
-## SettingsTabsSurface
+## <a id="settings-tabs-surface"></a> SettingsTabsSurface
 
-Use the `SettingsTabsSurface` if you want to add child routes to the `/settings` route defined in the `route` constant of `packages/app/src/App.tsx`.
-This will also add a tab to the settings page to allow navigation to your new route via the UI.
+Use `SettingsTabsSurface` if you want to add child routes to the `/settings` route defined in the
+`route` constant of `packages/app/src/App.tsx`. This action also adds a tab to the settings page so
+that you can use the UI to access your new route.
 
 Example:
 
@@ -266,11 +270,12 @@ export const HelloWorldPlugin: AppPluginInterface = () => context => {
 
 ```
 
-## SidebarItemSurface
+## <a id="sidebar-item-surface"></a> SidebarItemSurface
 
-Using the `SidebarItemSurface` will allow you to render links into the sidebar for easy navigation to your plug-in.
-The `SidebarItemsSurface` allows you to change the contents of the `root` constant in `packages/app/src/components/Root/Root.tsx`.
-All items you add to the sidebar will appear at the bottom of existing sidebar items, in the order that they are registered.
+`SidebarItemSurface` enables you to render links in the sidebar to quickly access your
+plug-in. `SidebarItemsSurface` enables you to change the content of the `root` constant
+in `packages/app/src/components/Root/Root.tsx`. All items you add to the sidebar appear at the
+bottom of existing sidebar items, in the order that they were registered.
 
 Example:
 
