@@ -1,4 +1,4 @@
-# Cloud Native Runtimes for App Operators
+# Cloud Native Runtimes for app operators
 
 This topic outlines topics related to installing, updating, and uninstalling Cloud Native Runtimes.
 

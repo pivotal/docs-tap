@@ -22,7 +22,7 @@ namespace `tanzu-system-ingress` for both internal and external traffic.
 
 If you already use a Contour instance to route requests from clients outside and
 inside the cluster, you can use your own Contour if it matches the Contour
-version used by [Tanzu Application's Platform](../../cert-manager/install.hbs.md).
+version used by [Tanzu Application Platform](../../cert-manager/install.hbs.md).
 
 You can use the same single instance of Contour for both internal and external
 traffic. However, this causes Contour to handle internal and external traffic

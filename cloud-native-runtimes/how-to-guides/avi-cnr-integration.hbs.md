@@ -19,11 +19,10 @@ see [VMware NSX Advanced Load Balancer Documentation](https://docs.vmware.com/en
 
 ## <a id="prerecs"></a> Prerequisites
 
-The following prerequisite is required to integrate VMware NSX Advanced Load Balancer with Cloud Native Runtimes:
+To integrate VMware NSX Advanced Load Balancer with Cloud Native Runtimes, you must first install Cloud Native Runtimes:
 
-- Install Cloud Native Runtimes.
-   If you have not already installed Cloud Native Runtimes, see [Installing Cloud Native Runtimes](./app-operators/install.hbs.md).
-   If you already have a Contour installation on your cluster, see [Installing Cloud Native Runtimes with an Existing Contour Installation](./contour.hbs.md).
+- If you have not already installed Cloud Native Runtimes, see [Installing Cloud Native Runtimes](./app-operators/install.hbs.md).
+- If you already have a Contour installation on your cluster, see [Installing Cloud Native Runtimes with an Existing Contour Installation](./contour.hbs.md).
 
 ## <a id="integrate-avi"></a> Integrate VMware NSX Advanced Load Balancer with Cloud Native Runtimes
 
@@ -74,4 +73,4 @@ After NSX Advanced Load Balancer Controller creates a Virtual Service, the Contr
 
 The NSX Advanced Load Balancer Controller provides Envoy with an external IP address so that apps are reachable by the app developer.
 
-> **Note** NSX Advanced Load Balancer does not interact directly with any Cloud Native Runtimes resources. VMware NSX Advanced Load Balancer forwards all incoming traffic to Envoy.
+> **Note** VMware NSX Advanced Load Balancer does not interact directly with any Cloud Native Runtimes resources. VMware NSX Advanced Load Balancer forwards all incoming traffic to Envoy.
