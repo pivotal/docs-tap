@@ -263,7 +263,7 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-7-2-scst-scan-ri'></a> v1.7.2 Resolved issues: SCST - Scan and SCST - Scan 2.0
 
 - Resolved an issue that caused Scan Controller to fail because of panic when `container.SecurityContext`
-  is not null and fields such as `Capabilities` or `SeccompProfile` are empty.
+  is not null and the `Capabilities` field or `SeccompProfile` field is null.
 
 #### <a id='1-7-2-service-registry-ri'></a> v1.7.2 Resolved issues: Service Registry
 
@@ -810,8 +810,8 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan
 
-- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
-  are left empty (null), the controller fails because of panic. For a workaround, see
+- When `container.SecurityContext` is not null and the `Capabilities` field or `SeccompProfile` field
+  is empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
 #### <a id='1-7-1-scst-scan-2-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
@@ -832,8 +832,8 @@ This release has the following known issues, listed by component and area.
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
-- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
-  are left empty (null), the controller fails because of panic. For a workaround, see
+- When `container.SecurityContext` is not null and the `Capabilities` field or `SeccompProfile` field
+  is empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
 #### <a id='1-7-1-scst-store-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools - Store
@@ -2247,8 +2247,8 @@ to ensure that they are correctly created.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan
 
-- When `container.SecurityContext` is not null but either of fields `Capabilities` or `SeccompProfile`
-  are left empty (null), the controller fails because of panic. For a workaround, see
+- When `container.SecurityContext` is not null and the `Capabilities` field or `SeccompProfile` field
+  is empty (null), the controller fails because of panic. For a workaround, see
   [Troubleshoot Supply Chain Security Tools - Scan](./scst-scan/troubleshoot-scan.hbs.md#pss-panic).
 
 #### <a id='1-7-0-scst-scan-2-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
