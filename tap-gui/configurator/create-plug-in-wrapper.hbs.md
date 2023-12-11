@@ -37,14 +37,13 @@ back-end and front-end components, both of which are available on npm JS:
 
 This topic tells you how to create two Tanzu Developer Portal plug-ins by wrapping the
 `tech-insights` and `tech-insights-backend` Backstage plug-ins. You can create a separate
-repository for each of these plug-ins, but it is easier to do the work for both in a single monorepo.
+repository for each of these plug-ins, but it's easier to do the work for both in a single monorepo.
 
 ## <a id="gen-bckstg-app"></a> Generate a Backstage app for the monorepo
 
 This section describes how to use the Backstage tools `@backstage/create-app` and `backstage-cli` to
 manage your monorepo. The Backstage tools make managing multiple packages easier. However, you will
-not develop a traditional Backstage app, and you will need to remove some portions of generated
-code.
+not develop a traditional Backstage app, and you will remove some portions of generated code later.
 
 1. Run the `create-app` script and, when prompted, enter a name for your app:
 
@@ -89,7 +88,7 @@ To remove unnecessary dependencies and then install the ones you need:
    The packages directory contains a scaffolded Backstage `app` and `backend`, which are only
    necessary for a traditional Backstage app.
 
-2. Remove the packages directory from the `yarn` workspaces by deleting the `"packages/*"` line
+1. Remove the packages directory from the `yarn` workspaces by deleting the `"packages/*"` line
    within the `workspaces` attribute in `package.json`. For example:
 
    ```diff
@@ -107,7 +106,7 @@ To remove unnecessary dependencies and then install the ones you need:
       },
    ```
 
-3. Install the dependencies by running:
+1. Install the dependencies by running:
 
    ```console
    yarn install --ignore-engines
@@ -145,24 +144,24 @@ This section describes how to generate a front-end plug-in.
    - `--scope PACKAGE-NAMESPACE` scopes the package under the `PACKAGE-NAMESPACE` namespace
    - `--no-private` sets the package to public
 
-2. Open the `plugins/tech-insights-wrapper/package.json` to see how these options were mapped to the
+1. Open the `plugins/tech-insights-wrapper/package.json` to see how these options were mapped to the
    generated `package.json`.
 
 ### <a id="update-deps-frntnd"></a> Update dependencies for the front-end plug-in
 
 To update your dependencies for the specific Backstage plug-in you want to wrap:
 
-1. Replace the `dependencies` in the `package.json` with the following:
+1. Replace the `dependencies` in the `package.json` with:
 
    ```json
-      ...
-      "dependencies": {
-        "@backstage/plugin-tech-insights": "0.3.11",
-        "@backstage/plugin-catalog": "1.11.2",
-        "@vmware-tanzu/core-common": "1.0.0",
-        "@vmware-tanzu/core-frontend": "1.0.0"
-      },
-      ...
+   ...
+   "dependencies": {
+     "@backstage/plugin-tech-insights": "0.3.11",
+     "@backstage/plugin-catalog": "1.11.2",
+     "@vmware-tanzu/core-common": "1.0.0",
+     "@vmware-tanzu/core-frontend": "1.0.0"
+   },
+   ...
    ```
 
 1. The dependency on `@backstage/plugin-tech-insights` is obvious, but verify the version is
@@ -204,13 +203,13 @@ To wrap the Backstage plug-in:
    the equivalent change.
    For more information, see the [npm JS documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights/v/0.3.11#add-boolean-checks-overview-scorecards-page-to-the-entitypage).
 
-2. Create the file where you will use a surface to edit the `serviceEntityPage` constant by running:
+1. Create the file where you will use a surface to edit the `serviceEntityPage` constant by running:
 
    ```console
    touch src/TechInsightsFrontendPlugin.tsx
    ```
 
-3. In the `TechInsightsFrontendPlugin.tsx` file, add the following code:
+1. In the `TechInsightsFrontendPlugin.tsx` file, add the following code:
 
    ```tsx
    import { EntityLayout } from '@backstage/plugin-catalog';
@@ -275,7 +274,7 @@ To expose and then build the front-end plug-in:
    touch src/index.ts
    ```
 
-1. In the `index.ts` file write the following:
+1. In the `index.ts` file write:
 
    ```ts
    export { TechInsightsFrontendPlugin as plugin } from './TechInsightsFrontendPlugin';
@@ -291,34 +290,36 @@ To expose and then build the front-end plug-in:
    yarn tsc && yarn build
    ```
 
-You can now publish this plug-in to your npm registry. However, the plug-in functionality is not
-usable without the back-end portion.
+You can now publish this plug-in to your npm registry. However, you cannot use the plug-in functions
+without the back-end portion.
 
 ## <a id="tech-insights-bcknd-plgn"></a> Create the Tech Insights back-end Tanzu Developer Portal plug-in
 
-Creating the back-end plug-in is very similar to the work you just did for the front-end plug-in.
+Creating the back-end plug-in is very similar to the work you did for the front-end plug-in.
 This section does not describe in detail what is happening at each step except for where it differs
 from the previous work.
 
 ### <a id="gen-bcknd-plgn"></a> Generate a back-end plug-in
 
-> **Important** The `yarn install` step of the script will fail because of a Node version issue.
+This describes how to generate a back-end plug-in.
+
+> **Important** The `yarn install` step of the script fails because of a Node version issue.
 > This is handled in a later step.
 
-1. From the root of your project, generate a back-end plug-in by running:
+From the root of your project, generate a back-end plug-in by running:
 
-   ```console
-   yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
-   ```
+```console
+yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
+```
 
-   Where:
+Where:
 
-   - `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
-   - `--select backend-plugin` tells the `backstage-cli` to generate a back-end plug-in. The ID you
-     provide is the same as the front-end plug-in, `--option id=tech-insights-wrapper`.
+- `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
+- `--select backend-plugin` tells the `backstage-cli` to generate a back-end plug-in. The ID you
+  provide is the same as the front-end plug-in, `--option id=tech-insights-wrapper`.
 
-   `backstage-cli` automatically appends `-backend` to the directory and package-name of back-end
-   plug-ins to prevent conflict with the front-end plug-in.
+`backstage-cli` automatically appends `-backend` to the directory and package-name of back-end
+plug-ins to prevent conflict with the front-end plug-in.
 
 ### <a id="update-deps-bcknd"></a> Update dependencies for the back-end plug-in
 
@@ -327,12 +328,12 @@ To update your dependencies for the specific Backstage plug-in you want to wrap:
 1. Update the dependencies in `package.json` as follows:
 
    ```json
-      "dependencies": {
-        "@backstage/plugin-tech-insights-backend": "0.5.12",
-        "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
-        "@vmware-tanzu/core-backend": "1.0.0",
-        "express": "4.18.2"
-      },
+   "dependencies": {
+     "@backstage/plugin-tech-insights-backend": "0.5.12",
+     "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
+     "@vmware-tanzu/core-backend": "1.0.0",
+     "express": "4.18.2"
+   },
    ```
 
 1. Install your dependencies by running:
@@ -490,11 +491,11 @@ To update your dependencies for the specific Backstage plug-in you want to wrap:
    > The [Backstage plug-in documentation](https://www.npmjs.com/package/@backstage/plugin-tech-insights-backend/v/0.5.12#adding-the-plugin-to-your-packagesbackend)
    > instructs you to create a constant for `techInsightsEnv` and then configure the router by using
    > `apiRouter.use('/tech-insights', await techInsights(techInsightsEnv))` all in the Backstage
-   > source code. Because you are unable to modify the source code of Tanzu Developer Portal, the
+   > source code. Because you are unable to edit the source code of Tanzu Developer Portal, the
    > next steps use a workaround.
 
 1. Get an instance of the `BackendPluginSurface` instead. This surface keeps track of all the
-   backend plug-ins.
+   back-end plug-ins.
 
    <!-- TODO: link to reference docs ESBACK-387 -->
 
@@ -513,7 +514,7 @@ To expose and then build the back-end plug-in:
    touch src/index.ts
    ```
 
-1. In the `index.ts` file, write the following:
+1. In the `index.ts` file, write:
 
    ```ts
    export { TechInsightsBackendPlugin as plugin } from './TechInsightsBackendPlugin';
