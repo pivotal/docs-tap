@@ -102,9 +102,9 @@ To install Contour from the Tanzu Application Platform package repository withou
           KEY                                                       DEFAULT                   TYPE     DESCRIPTION
           kubernetes_distribution                                                             string   The distribution of Kubernetes, used to determine if distribution-specific
                                                                                                        configurations need to be applied. Options are empty and openshift. If running
-                                                                                                       on an Openshift cluster, this must be set to openshift. When set to openshift,
+                                                                                                       on an OpenShift cluster, this must be set to openshift. When set to openshift,
                                                                                                        a Role and RoleBinding are created to associate Contour's controllers with the
-                                                                                                       appropriate Openshift Security Context Constraint resource.
+                                                                                                       appropriate OpenShift Security Context Constraint resource.
           kubernetes_version                                        0.0.0                     string   The version of Kubernetes being used, for enabling version-specific behaviors.
                                                                                                        Accept any valid major.minor.patch version of Kubernetes. This field is
                                                                                                        optional. Currently only has effect when kubernetes_distribution is set to
