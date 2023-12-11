@@ -43,18 +43,18 @@ To create a `EurekaServer` resource:
     apiVersion: service-registry.spring.apps.tanzu.vmware.com/v1alpha1
     kind: EurekaServer
     metadata:
-      name: my-eurekaserver
-      namespace: my-namespace
+      name: eurekaserver-sample
+      namespace: my-apps
     spec:
       replicas: 2
     ```
 
-1. Save the YAML definition as `my-eurekaserver.yaml`.
+1. Save the YAML definition as `eurekaserver.yaml`.
 
 1. Apply the YAML definition by running:
 
    ```console
-   kubectl apply -f my-eurekaserver.yaml
+   kubectl apply -f eurekaserver.yaml
    ```
 
 1. Check the status of the `EurekaServer` resource by running:
@@ -66,10 +66,10 @@ To create a `EurekaServer` resource:
    For example:
 
    ```console
-   $ kubectl describe eurekaservers.service-registry.spring.apps.tanzu.vmware.com my-eurekaserver
+   $ kubectl describe eurekaservers.service-registry.spring.apps.tanzu.vmware.com eurekaserver
 
-   Name:         my-eurekaserver
-   Namespace:    my-namespace
+   Name:         eurekaserver
+   Namespace:    my-apps
    Labels:       <none>
    Annotations:  <none>
    API Version:  service-registry.spring.apps.tanzu.vmware.com/v1alpha1
@@ -83,7 +83,7 @@ To create a `EurekaServer` resource:
      Replicas:  2
    Status:
      Binding:
-       Name:  eureka-my-eurekaserver-client-binding-mvvlx
+       Name:  eureka-eurekaserver-client-binding-mvvlx
      Conditions:
        Last Transition Time:  2023-08-30T14:51:04Z
        Message:               EurekaServer reconciled
@@ -93,7 +93,7 @@ To create a `EurekaServer` resource:
        Type:                  Ready
      Observed Generation:     1
      Server Binding:
-       Name:  eureka-my-eurekaserver-server-binding-2jq76
+       Name:  eureka-eurekaserver-server-binding-2jq76
    Events:    <none>
    ```
 
