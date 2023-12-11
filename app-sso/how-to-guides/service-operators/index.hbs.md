@@ -8,17 +8,17 @@ results in the deployment of an authorization server backed by Redis. A Redis
 with mTLS is either automatically deployed for `AuthServer` or credentials to
 [external storage](storage.hbs.md) can be provided. You can configure the
 labels with which clients can select an `AuthServer`, the namespaces it allows
-clients from, its issuer URI, its token signature keys, identity providers and
+clients from, its issuer URI, its token signature keys, identity providers, and
 further details for its deployment.
 
 `ClusterWorkloadRegistrationClass` exposes an `AuthServer` as a ready-to-claim
-service offering. _Application operators_ can disover this offering and claim
+service offering. Application operators can discover this offering and claim
 credentials. The mechanisms for this are provided by [Services
 Toolkit](../../../services-toolkit/about.hbs.md). This is the recommended way for
 offering and consuming AppSSO.
 
 If you just want to get started in a non-production environment,
-`ClusterUnsafeTestLogin` is a zero-config API which produces an unsafe,
+`ClusterUnsafeTestLogin` is a zero-config API that produces an unsafe,
 ready-to-claim AppSSO service offering. It is a higher-level alternative to the
 combination of `AuthServer` and `ClusterWorkloadRegistrationClass`.
 

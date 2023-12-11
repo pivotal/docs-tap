@@ -635,4 +635,4 @@ To exclude packages from a Tanzu Application Platform profile:
 
 - (Optional) [Install individual packages](components.hbs.md)
 - [Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)
-- [Replace the default ingress issuer](../security-and-compliance/tls-and-certificates/ingress/issuer.hbs.md#replace)
+- [Replace the default ingress issuer](../security-and-compliance/issuer.hbs.md#replace)

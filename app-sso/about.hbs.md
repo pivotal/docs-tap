@@ -17,7 +17,7 @@ It's easy to get started with AppSSO, deploy an authorization server with static
 multiple authorization servers of production-grade scale with token key rotation, multiple upstream identity providers,
 configured secure storage, and client restrictions.
 
-AppSSO's authorization server is based off of Spring Authorization Server project.
+AppSSO's authorization server is based on the Spring Authorization Server project.
 For more information, see [Spring documentation](https://spring.io/projects/spring-authorization-server).
 
 ## <a id="doc-org"></a> Document organization
@@ -25,6 +25,8 @@ For more information, see [Spring documentation](https://spring.io/projects/spri
 The Application Single Sign-On component documentation consists of the following
 subsections that relate to what you want to achieve:
 
+- [Get started](how-to-guides/getting-started.hbs.md): To understand the basics 
+of getting started with Application Single Sign-On.
 - [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve
   a specific problem acting as a certain user persona.
 - [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Application
@@ -39,16 +41,16 @@ The following is a selection of useful topics on offer:
 
 **For application developers:**
 
-- How-to guide: [Secure an application with Application Single Sign-On](./how-to-guides/app-operators/index.hbs.md)
+- [Application Single Sign-On for App Operators](how-to-guides/app-operators/index.hbs.md)
 
 **For service operators:**
 
-- How-to guide: [Provide Application Single Sign-On services](./how-to-guides/service-operators/index.hbs.md)
+- [Application Single Sign-On for Service Operators](how-to-guides/service-operators/index.hbs.md)
 
 **For platform operators:**
 
-- How-to guide: [Manage an Application Single Sign-On installation](./how-to-guides/platform-operators/index.hbs.md)
+- [Application Single Sign-On for Platform Operators](how-to-guides/platform-operators/index.hbs.md)
 
 **For everyone:**
 
-- Concept: [The three levels of Application Single Sign-On consumption](./concepts/levels-of-consumption.hbs.md)
+- [Levels of consumption for Application Single Sign-On](concepts/levels-of-consumption.hbs.md)

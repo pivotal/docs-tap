@@ -22,19 +22,19 @@ installed on your Kubernetes cluster.
 
 The `sso.apps.tanzu.vmware.com` package has these dependencies:
 
-- `cert-manager.tanzu.vmware.com`: Required at installation-time and runtime.
+- `cert-manager.tanzu.vmware.com`: Required at installation time and runtime.
   For more information see, [Install cert-manager](../../../cert-manager/install.hbs.md).
 
-- `crossplane.tanzu.vmware.com`: Required at installation-time and runtime.
+- `crossplane.tanzu.vmware.com`: Required at installation time and runtime.
   For more information see, [Install Crossplane](../../../crossplane/install-crossplane.hbs.md).
 
 - `service-bindings.tanzu.vmware.com`: Required at runtime.
   For more information see, [Install Service Bindings](../../../service-bindings/install-service-bindings.hbs.md).
 
-> **Important** **Installation-time dependencies** must be present on the cluster at the time the
+> **Important** Installation time dependencies must be present on the cluster at the time the
 > Application Single Sign-On package is being applied.
 >
-> **Runtime dependencies** don't have to be present when the Application Single Sign-On package is
+> Runtime dependencies don't have to be present when the Application Single Sign-On package is
 > being applied, but they are required eventually for it to function fully.
 
 ## <a id="install"></a> Install Application Single Sign-On for VMware Tanzu

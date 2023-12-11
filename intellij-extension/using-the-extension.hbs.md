@@ -37,7 +37,7 @@ To delete a workload right-click anywhere in the IntelliJ project explorer and c
 **Tanzu** > **Delete Workload** or right-click on an associated workload in the Workloads panel and
 click **Delete Workload**.
 
-![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
+![The IntelliJ interface showing the project tab. The workload YAML file pop-up menu is open. The Tanzu Delete Workload option is highlighted.](../images/intellij-delete-workload.png)
 
 A message appears that prompts you to delete the workload and not warn again, delete the workload,
 or cancel. A notification appears showing that the workload was deleted.
@@ -63,7 +63,7 @@ To start debugging on the cluster:
    in the pop-up menu or right-click on an associated workload in the Workloads panel and click
    **Debug Workload**.
 
-   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
+   ![The IntelliJ interface showing the project tab. The workload YAML file pop-up menu is open. The Tanzu Debug Workload option is highlighted.](../images/intellij-debugWorkload.png)
 
 3. Ensure that the configuration parameters are set:
 

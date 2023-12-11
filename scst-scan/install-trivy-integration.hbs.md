@@ -223,7 +223,7 @@ When installing Trivy, find your CA secret name and authentication token secret
 name for your `values.yaml` ny looking at the configuration of a prior installed
 scanner in the same namespace as it already exists.
 
-For information about how the scanner was initially created, see [Multicluster Setup](../scst-store/multicluster-setup.hbs.md).
+For information about how the scanner was initially created, see [Set up multicluster Supply Chain Security Tools (SCST) - Store](../scst-store/multicluster-setup.hbs.md).
 
 The following example `values.yaml` has other scanners already installed in the
 same `dev-namespace` where Trivy is installed:
@@ -257,8 +257,7 @@ Where:
 ### <a id='trivy-only'></a> Trivy is the only scanner installed
 
 For a walk through of creating and exporting secrets for the Metadata Store CA
-and authentication token which referenced in the data values, see [Multicluster
-Setup](../scst-store/multicluster-setup.hbs.md).
+and authentication token which referenced in the data values, see [Set up multicluster Supply Chain Security Tools (SCST) - Store](../scst-store/multicluster-setup.hbs.md).
 
 The following example `values.yaml` has no other scanner integrations installed
 in the same `dev-namespace` where Trivy is installed:

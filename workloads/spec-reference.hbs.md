@@ -71,7 +71,7 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
-      The name of the secret in the same namespace as the `Workload` used for
+      The name of the secret in the same namespace as the <code>Workload</code> used for
       providing credentials for fetching source code from the Git repository.
       For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
@@ -89,7 +89,7 @@ For information about the features supported by each implementation, see
 
 For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see
-[Create a workload from GitHub repository](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-from-git-source).
+[Create a workload from GitHub repository](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-git).
 
 For more information about GitRepository objects, see
 [Git Repository](https://fluxcd.io/flux/components/source/gitrepositories/) in the Flux documentation.
@@ -115,7 +115,7 @@ Parameters:
     <td><code>serviceAccount</code></td>
     <td>
       Name of the service account (in the same namespace as the workload)<br> to use
-      to provide the credentials to `ImageRepository`<br> for fetching
+      to provide the credentials to <code>ImageRepository</code><br> for fetching
       the container images.
     </td>
     <td>
@@ -206,7 +206,7 @@ Parameters:
     <td>
       The set of labels to use when searching for<br> Tekton Pipeline objects in the
       same namespace as the workload.<br> By default, a Pipeline labeled as<br>
-      `apps.tanzu.vmware.com/pipeline: test` is selected,<br> but when using
+      <code>apps.tanzu.vmware.com/pipeline: test</code> is selected,<br> but when using
       this parameter,<br> it's possible to override the behavior.
     </td>
     <td>
@@ -222,17 +222,16 @@ Parameters:
   <tr>
     <td><code>testing_pipeline_params</code></td>
     <td>
-      The set of extra parameters, aside from `source-url` and
-      `source-revision`, to pass to the Tekton Pipeline. The Tekton Pipeline
-      <b>must</b> declare both the required parameters `source-url` and
-      `source-revision` and the extra ones declared in this table.
+      The set of extra parameters, aside from <code>source-url</code> and
+      <code>source-revision</code>, to pass to the Tekton Pipeline. The Tekton Pipeline
+      <b>must</b> declare both the required parameters <code>source-url</code> and
+      <code>source-revision</code> and the extra ones declared in this table.
     </td>
     <td>
       <p alignment ="left">
       - name: testing_pipeline_params<br>
         value:<br>
-        - name: verbose<br>
-          value: true<br>
+          verbose: true
       </p>
     </td>
   </tr>
@@ -344,7 +343,7 @@ Parameters:
     <td><code>serviceAccount</code></td>
     <td>
       The name of the serviceaccount (in the same namespace as the workload) to use
-      for providing credentials to `Image` for pushing the
+      for providing credentials to <code>Image</code> for pushing the
       container images it builds to the configured registry.
     </td>
     <td>
@@ -496,7 +495,7 @@ Parameters:
     <td><code>serviceAccount</code></td>
     <td>
       The name of the serviceaccount (in the same namespace as the workload) to use
-      for providing the credentials to `ImageRepository` for fetching
+      for providing the credentials to <code>ImageRepository</code> for fetching
       the container images.
     </td>
     <td>
@@ -594,7 +593,7 @@ Parameters:
     <td><code>serviceAccount</code></td>
     <td>
       The name of the serviceaccount (in the same namespace as the workload) to use
-      for providing the necessary credentials to `PodIntent` for fetching
+      for providing the necessary credentials to <code>PodIntent</code> for fetching
       the container image to inspect the metadata to pass to convention
       servers and the serviceAccountName set in the
       podtemplatespec.
@@ -720,7 +719,7 @@ Only the `server` workload type has the following configurable parameters:
   </tr>
 </table>
 
-For more information about the three different types of workloads, see [workload types](../workloads/workload-types.hbs.md).
+For more information about the three different types of workloads, see [Overview of workloads](../workloads/workload-types.hbs.md).
 For a more detailed overview of the ports parameter, see [server-specific Workload
 parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
@@ -833,8 +832,7 @@ There are three methods:
 - publishing the configuration to a Git repository by using the push of a commit, or
 - publishing the configuration to a Git repository by pushing a commit _and_ opening a pull request.
 
-For more information about the different modes of operation, see [Gitops vs
-RegistryOps](../scc/gitops-vs-regops.hbs.md).
+For more information about the different modes of operation, see [Use GitOps or RegistryOps with Supply Chain Choreographer](../scc/gitops-vs-regops.hbs.md).
 
 ### <a id ="deliverable"></a> deliverable
 
@@ -947,9 +945,9 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
-      The name of the secret in the same namespace as the `deliverable` used for
+      The name of the secret in the same namespace as the <code>deliverable</code> used for
       providing credentials for fetching Kubernetes configuration files from
-      the Git repository pointed at. See [Git authentication](../scc/git-auth.md).
+      the Git repository pointed at. See <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
     <td>
       <p alignment ="left">
@@ -990,7 +988,7 @@ Parameters:
     <td><code>serviceAccount</code></td>
     <td>
       The name of the service account, in the same namespace as the deliverable, you
-      want to use to provide the necessary permissions for `kapp-controller` to
+      want to use to provide the necessary permissions for <code></code>kapp-controller</code> to
       deploy the objects to the cluster.
     </td>
     <td>
@@ -1034,7 +1032,7 @@ Parameters:
     <td><code>serviceAccount</code></td>
     <td>
       The name of the service account, in the same namespace as the deliverable,
-      you want to use to provide the necessary privileges for `App` to apply
+      you want to use to provide the necessary privileges for <code>App</code> to apply
       the Kubernetes objects to the cluster.
     </td>
     <td>

@@ -58,7 +58,7 @@ This release includes the following changes, listed by component and area.
   Artifact Metadata Repository (AMR).
   This enables application architects to get advanced insight into how accelerators are used,
   such as, the most commonly and rarely used accelerators.
-  For more information, see [Integration with AMR](./application-accelerator/provenance.hbs.md#amr)
+  For more information, see [Integration with AMR](./application-accelerator/provenance.hbs.md#amr).
 
 #### <a id='1-7-0-app-config-service'></a> v1.7.0 Features: Application Configuration Service
 
@@ -201,7 +201,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-7-0-scst-store'></a> v1.7.0 Features: Supply Chain Security Tools (SCST) - Store
 
-- Deploys Artifact Metadata Repository (AMR) by default. For more information, see
+Artifact Metadata Repository (AMR) is a new component that extends the capabilities of SCST - Store. AMR has the following new features in v1.7.0:
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
+
+- Installing TAP now deploys AMR by default. For more information, see
   [Artifact Metadata Repository](scst-store/overview.hbs.md).
 
 - Introduces the AMR authentication and authorization feature. For more information, see
@@ -227,6 +231,12 @@ This release includes the following changes, listed by component and area.
   For more information, see [Rebase multiple analyses](cli-plugins/insight/triaging-vulnerabilities.hbs.md#rebase-multiple-analyses)
   and the [Tanzu CLI Command Reference](https://docs.vmware.com/en/VMware-Tanzu-CLI/1.1/tanzu-cli/command-ref.html) documentation.
 
+#### <a id='1-7-0-tanzu-dev-portal'></a> v1.7.0 Features: Tanzu Developer Portal
+
+- Tanzu Developer Portal Configurator has now reached General Availability. You can use Configurator
+  to make use of VMware validated plug-ins and also integrate custom external plug-ins. For more
+  information, see [the Configurator overview](tap-gui/configurator/about.hbs.md).
+
 #### <a id='1-7-0-vscode-extension'></a> v1.7.0 Features: Tanzu Developer Tools for VS Code
 
 - Introduces alpha support for [development containers](https://code.visualstudio.com/docs/devcontainers/containers).
@@ -241,6 +251,14 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-7-0-tap-br'></a> v1.7.0 Breaking changes: Tanzu Application Platform
 
 - Minikube support has been removed.
+
+
+#### <a id="1-7-0-contour-br"></a> v1.7.0 Breaking changes: Contour
+
+- By default, Tanzu Application Platform v1.7.0 installs the Contour's Envoy pods
+as a `Deployment` instead of a `DaemonSet`. This causes application downtime
+during an upgrade. For more information about how to avoid upgrade downtime,
+see [Configure Envoy for Contour](contour/how-to-guides/configuring-envoy.hbs.md).
 
 #### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
 
@@ -1103,6 +1121,10 @@ The following issues, listed by component and area, are resolved in this release
 - Certain combinations of app name, namespace, and domain no longer produce Knative Services with
   status `CertificateNotReady`.
 
+#### <a id='1-7-0-crossplane-ri'></a> v1.7.0 Resolved issues: Crossplane
+
+- Crossplane Providers can now communicate with systems using a custom CA.
+
 #### <a id='1-7-0-scc-ri'></a> v1.7.0 Resolved issues: Supply Chain Choreographer
 
 - You can safely ignore the label `apps.tanzu.vmware.com/carvel-package-workflow` when the
@@ -1133,6 +1155,11 @@ The following issues, listed by component and area, are resolved in this release
 ### <a id='1-7-0-known-issues'></a> v1.7.0 Known issues
 
 This release has the following known issues, listed by component and area.
+
+#### <a id='1-7-0-tap-ki'></a> v1.7.0 Known issues: Tanzu Application Platform
+
+- Tanzu Application Platform v1.7.0 is not supported with Tanzu Kubernetes releases (TKR) v1.26 on
+  vSphere with Tanzu v8.
 
 #### <a id='1-7-0-api-autoreg-ki'></a> v1.7.0 Known issues: API Auto Registration
 
@@ -1169,10 +1196,15 @@ This release has the following known issues, listed by component and area.
   This is due to caching behavior in the system which is not accounted for during configuration updates.
   For a workaround, see [Troubleshoot Bitnami Services](bitnami-services/how-to-guides/troubleshooting.hbs.md#private-reg).
 
-#### <a id='1-7-0-crossplane-ki'></a> v1.7.0 Known issues: Crossplane
+#### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Cartographer Conventions
 
-- Crossplane Providers cannot communicate with systems using a custom CA.
-  For more information and a workaround, see [Troubleshoot Crossplane](./crossplane/how-to-guides/troubleshooting.hbs.md#cp-custom-cert-inject).
+- While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can
+  fail with the status `CrashLoopBackOff` or `OOMKilled`.
+  For information about how to increase the memory limit for both the convention server and webhook
+  servers, including app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook,
+  see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
+
+#### <a id='1-7-0-crossplane-ki'></a> v1.7.0 Known issues: Crossplane
 
 - The Crossplane `validatingwebhookconfiguration` is not removed when you uninstall the
   Crossplane package.
@@ -1219,6 +1251,8 @@ to ensure that they are correctly created.
 - Application configuration generated by the OOTB supply chains does not adhere to the Pod Security Standard.
 
 #### <a id='1-7-0-scst-store-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools - Store
+
+- AMR-specific steps have been added to the [Multicluster setup for Supply Chain Security Tools - Store](scst-store/multicluster-setup.hbs.md).
 
 - SCST - Store automatically detects PostgreSQL database index corruptions.
   SCST - Store does not reconcile if it finds a PostgresSQL database index corruption issue.
@@ -1268,6 +1302,9 @@ to ensure that they are correctly created.
 
   To resolve this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#authn-not-configured).
 
+- The `tap-gui` package might fail to install on OpenShift when you use the View profile. A fix is
+  planned for a future Tanzu Application Platform version.
+
 - When viewing a supply chain with the Supply Chain Choreographer plug-in, scrolling horizontally
   does not work. Click and drag left or right instead to move the supply chain diagram. A fix is
   planned for the future. The zoom function was removed because of user feedback.
@@ -1277,109 +1314,6 @@ to ensure that they are correctly created.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
-
-#### <a id='1-7-0-convention-ki'></a> v1.7.0 Known issues: Convention OOMKilled
-
-While processing workloads with large SBOMs, the Cartographer Convention controller manager pod can be fail with the status `CrashLoopBackOff` or `OOMKilled`.
-
-To work around this problem you can increase the memory limit to `512Mi` to fix the pod crash. For information about how to increase the memory limit, see [Troubleshoot Cartographer Conventions](../docs-tap/cartographer-conventions/troubleshooting.hbs.md).
-
-You might need to increase the memory limit for the convention webhook servers. Use the following steps to increase the memory limit for the following Convention servers:
-
-- app-live-view-conventions
-- spring-boot-webhook
-- developer-conventions/webhook
-
-1. Create a `Secret` with the following ytt overlay.
-
-  ```yaml
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: patch-app-live-view-conventions
-    namespace: tap-install
-  stringData:
-    patch-conventions-controller.yaml: |
-      #@ load("@ytt:overlay", "overlay")
-
-      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"appliveview-webhook", "namespace": "app-live-view-conventions"}})
-      ---
-      spec:
-        template:
-          spec:
-            containers:
-              #@overlay/match by=overlay.subset({"name": "webhook"})
-              - name: webhook
-                resources:
-                  limits:
-                    memory: 512Mi
-  ---
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: patch-spring-boot-conventions
-    namespace: tap-install
-  stringData:
-    patch-conventions-controller.yaml: |
-      #@ load("@ytt:overlay", "overlay")
-
-      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"spring-boot-webhook", "namespace": "spring-boot-convention"}})
-      ---
-      spec:
-        template:
-          spec:
-            containers:
-              #@overlay/match by=overlay.subset({"name": "webhook"})
-              - name: webhook
-                resources:
-                  limits:
-                    memory: 512Mi
-  ---
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: patch-developer-conventions
-    namespace: tap-install
-  stringData:
-    patch-conventions-controller.yaml: |
-      #@ load("@ytt:overlay", "overlay")
-
-      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"webhook", "namespace": "developer-conventions"}})
-      ---
-      spec:
-        template:
-          spec:
-            containers:
-              #@overlay/match by=overlay.subset({"name": "webhook"})
-              - name: webhook
-                resources:
-                  limits:
-                    memory: 512Mi
-  ```
-
-2. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
-
-  ```yaml
-  package_overlays:
-  - name: appliveview-conventions
-    secrets:
-    - name: patch-app-live-view-conventions
-  - name: spring-boot-conventions
-    secrets:
-    - name: patch-spring-boot-conventions
-  - name: developer-conventions
-    secrets:
-    - name: patch-developer-conventions
-  ```
-
-3. Update Tanzu Application Platform by running:
-
-  ```console
-  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
-  ```
-
-For information about the package customization, see [Customize your package installation](customize-package-installation.hbs.md).
-
 
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
 

@@ -10,14 +10,15 @@ You can use [Velero](https://velero.io/) to create regular backups.
 >**Note** Backup support for `PersistentVolume` depends on the used `StorageClass` and existing provider plug-ins. See the officially [supported plug-ins here](https://velero.io/plugins/).
 
 ```bash
-velero install --provider <provider> --bucket <bucket-name> --plugins <plugin-image-location> --secret-file <secrets-file>
+velero install --provider PROVIDER --bucket BUCKET-NAME --plugins PLUGIN-IMAGE-LOCATION --secret-file SECRET-FILE
 ```
 
-For example:
+Where:
 
-```console
-velero install --provider gcp --bucket <gcs-bucket-name> --plugins velero/velero-plugin-for-gcp:v1.3.0 --secret-file <gcp-json-credentials>
-```
+- `PROVIDER` is the name of the provider you want to use.
+- `BUCKET-NAME` is the name of the bucket you want to use.
+- `PLUGIN-IMAGE-LOCATION` is the location of the plug ins you want to use.
+- `SECRET-FILE` is the file where the secret is located.
 
 Velero CLI can then be used to create a backup of all the resources in the `metadata-store` namespace, including `PersistentVolumeClaim` and `PersistentVolume`.
 

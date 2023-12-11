@@ -1,6 +1,6 @@
 # SonarQube in Tanzu Developer Portal
 
-This topic tells you about the SonarQube validated front-end and back-end plugins.
+This topic tells you about the SonarQube validated front-end and back-end plug-ins.
 
 The SonarQube front-end plug-in displays static analysis code quality statistics.
 For more information, see the
@@ -35,8 +35,8 @@ Where `VERSION` is the latest version for each plug-in. For example, `^0.0.2` an
 
 ### <a id="configure-plug-in"></a> Configure the plug-in
 
-To connect your Stack Overflow plug-in to a running instance, update the `app_config` section of
-your `tap-values.yaml` file. For example:
+To connect your SonarQube plug-in to a running instance, update the `app_config` section of your
+`tap-values.yaml` file. For example:
 
 ```yaml
 tap_gui:
@@ -46,7 +46,6 @@ tap_gui:
     sonarqube:
       baseUrl: 'SONARQUBE-URL'
       apiKey: 'SONARQUBE-API-KEY'
-
 ```
 
 Where:

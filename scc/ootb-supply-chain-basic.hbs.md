@@ -2,7 +2,7 @@
 
 This topic provides an overview of Out of the Box Supply Chain Basic for Supply Chain Choreographer.
 
-This package contains Cartographer Supply Chains that tie together a series of
+This package contains Cartographer supply chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code
 to a Kubernetes configuration ready to be deployed to a cluster.
 It contains the most basic supply chains that focus on providing a quick path
@@ -85,7 +85,7 @@ run pods using images from the installation of Tanzu Application Platform.
 
     - `REGISTRY-SERVER` is the URL of the registry. For Docker Hub, this must be
       `https://index.docker.io/v1/`. Specifically, it must have the leading
-      `https://`, the `v1` path, and the trailing `/`. For GCR, this is
+      `https://`, the `v1` path, and the trailing `/`. For Google Container Registry (GCR), this is
       `gcr.io`.  Based on the information used in [Installing the Tanzu
       Application Platform package and profiles](../install-online/profile.hbs.md), you can use the
       same registry server as in `ootb_supply_chain_basic` - `registry` -
@@ -116,7 +116,6 @@ With the two secrets created:
   application container images are pushed to.
 
 The following section discusses setting up the identity required for the workload.
-
 
 #### <a id="service-account"></a> ServiceAccount
 
@@ -149,7 +148,7 @@ imagePullSecrets:
 
 #### <a id="rolebinding"></a> RoleBinding
 
-As the Supply Chain takes action in the cluster on behalf of the users who
+As the supply chain takes action in the cluster on behalf of the users who
 created the workload, it needs permissions within Kubernetes' RBAC system to do
 so.
 

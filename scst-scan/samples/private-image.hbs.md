@@ -11,10 +11,10 @@ This example describes how you can perform a scan against an image located in a 
 
   ```
   kubectl create secret docker-registry TARGET-REGISTRY-CREDENTIALS-SECRET \
-    --docker-server=<your-registry-server> \
-    --docker-username=<your-name> \
-    --docker-password=<your-password> \
-    --docker-email=<your-email> \
+    --docker-server=YOUR-REGISTRY-SERVER \
+    --docker-username=YOUR-NAME \
+    --docker-password=YOUR-PASSWORD \
+    --docker-email=YOUR-EMAIL \
     -n DEV-NAMESPACE
   ```
 
@@ -22,6 +22,10 @@ This example describes how you can perform a scan against an image located in a 
 
   - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that is created.
   - `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
+  - `YOUR-REGISTRY-SERVER` is the registry server you want to use.
+  - `YOUR-NAME` is the name associated with the secret. 
+  - `YOUR-PASSWORD` is the password associated with the secret. 
+  - `YOUR-EMAIL` is the email associated with the secret. 
 
 1. Update the `tap-values.yaml` file to include the name of secret created earlier.
 

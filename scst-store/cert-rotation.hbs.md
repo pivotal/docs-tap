@@ -40,6 +40,7 @@ metadata_store:
 ```
 
 Where: 
+
 - `CA-DURATION` is the duration that the ca certificate is valid for. Must be
   given in `h`, `m`, or `s`. Default value is 8760h.
 - `CA-RENEW` is how long before the expiry of the ca certificate is renewed.
@@ -49,12 +50,10 @@ Where:
 - `API-RENEW` is how long before the expiry of the API certificate is renewed.
   Must be given in h, m, or s. Default value is 24h.
 
->**Important**
-   - The `*_cert_duration` and the corresonding `*_renew_before` settings must
-     not be ["very
-     close"](https://cert-manager.io/docs/usage/certificate/#renewal). This can
-     lead to a renewal loop.
-   - The `*_cert_duration` must be greater than the corresponding
-     `*_renew_before`.
-   - The earlier settings only take effect when `use_cert_manager` is `"true"`.
-     If the `use_cert_manager` is not set, it defaults to `"true"`.
+>**Important** The `*_cert_duration` and the corresponding `*_renew_before`
+settings must not be close. For more information, see the [cert-manager
+documentation](https://cert-manager.io/docs/usage/certificate/#renewal). This
+can lead to a renewal loop. The `*_cert_duration` must be greater than the
+corresponding `*_renew_before`. The earlier settings only take effect when
+`use_cert_manager` is `"true"`. If the `use_cert_manager` is not set, it
+defaults to `"true"`.

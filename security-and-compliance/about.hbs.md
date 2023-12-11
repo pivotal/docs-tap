@@ -2,11 +2,15 @@
 
 Security is a primary focus for Tanzu Application Platform (commonly known as TAP).
 
-This section describes:
+This section describes how to:
 
-[Overview of TLS and certificates in Tanzu Application Platform](./tls-and-certificates/about.hbs.md)
+[Configure pod security for workloads](pod-security-for-workloads.hbs.md)
 
-[Use custom CA certificates in Tanzu Application Platform](./tls-and-certificates/custom-ca-certificates.hbs.md)
+[Secure exposed ingress endpoints in Tanzu Application Platform](./issuer.hbs.md)
+
+[Plan ingress certificates inventory in Tanzu Application Platform](./inventory.hbs.md)
+
+[Use custom CA certificates in Tanzu Application Platform](./custom-ca-certificates.hbs.md)
 
 [Assess Tanzu Application Platform against the NIST 800-53 Moderate Assessment](tap-nist-matrix.hbs.md)
 

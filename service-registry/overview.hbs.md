@@ -8,6 +8,14 @@ practice of using Spring Cloud Services for Tanzu Application Service to create 
 On-demand namespaced Eureka server instances can be provisioned for microservices Spring Boot
 applications that rely on service discovery.
 
+## <a id="architecture"></a> Architecture
+
+Workloads communicate with the EurekaServer resources in the application namespace. From within
+Tanzu Application Platform, the Eureka controller communicates with the EurekaServer resources in
+the application namespace.
+
+![Diagram showing the relationships between the the Eureka controller, EurekaServer resources, and workloads.](images/architecture.png)
+
 ## <a id='capacity-reqs'></a> Capacity Requirements
 
 Each node of the Eureka controller requires:

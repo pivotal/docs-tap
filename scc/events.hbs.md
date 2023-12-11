@@ -6,7 +6,7 @@ Events are emitted when Choreographer edits resources or notices a change in
 their output or healthy state. Don't treat events like logs, however they can
 offer valuable insight into what's happening in a supply chain over time. For
 example, very high occurrences of events in a short period of time might be a
-sign of resources thrashing.
+sign of slow application-level processing due to many page faults and a lack of storage resources.
 
 Events are published on Workload, Deliverable, and Runnable resources. You can
 view them manually using:

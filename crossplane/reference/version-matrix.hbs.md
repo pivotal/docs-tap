@@ -36,5 +36,13 @@ used in UXP, provider-helm, and provider-kubernetes.
         <td>0.15.0</td>
         <td>0.8.0</td>
     </tr>
+    <tr>
+        <td>1.7.0</td>
+        <td>0.3.0</td>
+        <td>1.13.2-up.1</td>
+        <td>1.13.2-up.1</td>
+        <td>0.15.0</td>
+        <td>0.9.0</td>
+    </tr>
   </tbody>
 </table>

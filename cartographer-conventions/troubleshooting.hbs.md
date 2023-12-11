@@ -184,12 +184,14 @@ secrets:
 - name: registry-credentials
 ``` 
 
-## <a id="oom-killed"></a> `OOMKilled` Convention controller 
+## <a id="oom-killed"></a> `OOMKilled` convention controller 
 
 ### Symptoms
 
 While processing workloads with large SBOM, the Cartographer Convention controller manager pod can 
 fail with the status `CrashLoopBackOff` or `OOMKilled`. 
+
+To work around this problem you can increase the memory limit to `512Mi` to fix the pod crash.
 
 For example:
 
@@ -214,20 +216,24 @@ containerStatuses:
         reason: OOMKilled
         startedAt: "2023-11-06T21:02:10Z"
     name: manager
-```
+``` 
 
 ### Cause
 
 This error usually occurs when a `workload` image, built by the supply chain, contains a large SBOM.
 The default resource limit set during installation might not be large enough to process the 
-pod conventions which can lead to the controller pod crashing.  
+pod conventions which can lead to the controller pod crashing. 
 
-### Solution 
+### Solution
 
-By using a ytt overlay, you can increase the Cartographer Convention controller manager memory limit
-after Tanzu Application Platform installation. 
+To increase the Cartographer Convention controller manager memory limit by using a ytt overlay, see one of the following procedures:
 
-The following is an exmaple ytt overlay that increases the memory limit:
+- To increase the memory limit for convention server, see [Increase the memory limit for convention server](#increase-server).
+- To increase the memory limit for convention webhook servers, such as app-live-view-conventions, spring-boot-webhook, and developer-conventions/webhook, see [Increase the memory limit for convention webhook servers](#increase-webhook).
+
+#### <a id='increase-server'></a> Increase the memory limit for convention server
+
+To increase the memory limit:
 
 1. Create a `Secret` with the following ytt overlay:
 
@@ -270,4 +276,102 @@ The following is an exmaple ytt overlay that increases the memory limit:
   tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
   ```
 
-For information about the package customization, see [Customize your package installation](../customize-package-installation.hbs.md).
+For information about the package customization, see [Customize your package installation](../../docs-tap/customize-package-installation.hbs.md).
+
+#### <a id='increase-webhook'></a> Increase the memory limit for convention webhook servers
+
+You might need to increase the memory limit for the convention webhook servers. Use this procedure to increase the memory limit for the following Convention servers:
+
+- app-live-view-conventions
+- spring-boot-webhook
+- developer-conventions/webhook
+
+1. Create a `Secret` with the following ytt overlay.
+
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-app-live-view-conventions
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"appliveview-webhook", "namespace": "app-live-view-conventions"}})
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "webhook"})
+              - name: webhook
+                resources:
+                  limits:
+                    memory: 512Mi
+  ---
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-spring-boot-conventions
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"spring-boot-webhook", "namespace": "spring-boot-convention"}})
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "webhook"})
+              - name: webhook
+                resources:
+                  limits:
+                    memory: 512Mi
+  ---
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: patch-developer-conventions
+    namespace: tap-install
+  stringData:
+    patch-conventions-controller.yaml: |
+      #@ load("@ytt:overlay", "overlay")
+
+      #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata":{"name":"webhook", "namespace": "developer-conventions"}})
+      ---
+      spec:
+        template:
+          spec:
+            containers:
+              #@overlay/match by=overlay.subset({"name": "webhook"})
+              - name: webhook
+                resources:
+                  limits:
+                    memory: 512Mi
+  ```
+
+1. Update the Tanzu Application Platform values YAML file to include a `package_overlays` field:
+
+  ```yaml
+  package_overlays:
+  - name: appliveview-conventions
+    secrets:
+    - name: patch-app-live-view-conventions
+  - name: spring-boot-conventions
+    secrets:
+    - name: patch-spring-boot-conventions
+  - name: developer-conventions
+    secrets:
+    - name: patch-developer-conventions
+  ```
+
+3. Update Tanzu Application Platform by running:
+
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v 1.7.0  --values-file tap-values.yaml -n tap-install
+  ```
+
+For information about the package customization, see [Customize your package installation](../../docs-tap/customize-package-installation.hbs.md).
