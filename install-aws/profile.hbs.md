@@ -134,7 +134,7 @@ To add the Tanzu Application Platform package repository to your cluster:
       api-portal.tanzu.vmware.com                          API portal                                                                
       apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    
       apiserver.appliveview.tanzu.vmware.com               Application Live View ApiServer for VMware Tanzu                          
-      app-scanning.apps.tanzu.vmware.com                   Supply Chain Security Tools - App Scanning (Alpha)                        
+      app-scanning.apps.tanzu.vmware.com                   SCST - Scan 2.0                        
       application-configuration-service.tanzu.vmware.com   Application Configuration Service                                         
       backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    
       base-jammy-builder-lite.buildpacks.tanzu.vmware.com  base-jammy-builder-lite                                                   
