@@ -189,6 +189,41 @@ To use Eureka for service discovery in workloads:
    tanzu apps workload create -f greeter.yaml --yes
    ```
 
+3. Retrieve the ingress route associated with the Greeter application using the tanzu cli:
+
+   ```console
+   tanzu apps workload get greeter
+   ```
+
+   For example:
+
+   ```console
+   $ tanzu apps workload get greeter
+
+   # other output...
+
+   🚢 Knative Services
+      NAME      READY   URL
+      greeter   Ready   https://greeter.my-apps.tap
+
+   To see logs: "tanzu apps workload tail greeter --timestamp --since 1h"
+   ```
+
+   Where `https://greeter.my-apps.tap` is the accessible ingress route to the greeter application
+
+4. Visit `[ROUTE]/hello`, where `[ROUTE]` is the ingress route you just retrieved. The Greeter application will use the Service Registry to look up the Message Generation application and get a greeting message, which (to begin with) should be “Hello, Bob!”
+
+5. You can see what the Message Generation application is sending back by viewing its logs, using `tanzu apps workload tail greeter-messages`:
+
+   ```console
+   $ tanzu apps workload tail greeter-messages
+
+   greeter-messages-579d67c498-bf6zl[workload] 2023-10-20T17:52:17.001Z  INFO 1 --- [nio-8080-exec-3] messages.MessagesController              : Now saying "Hi" to John
+   ```
+
+
+6. To get a different greeting message, you can provide `salutation` and `name` parameters, as in `[ROUTE]/hello?salutation=Hi&name=John`. The Greeter application will send those parameters to the Message Generation application and the resulting greeting will be customized to match.
+
 ## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable JAR file application
 
 In the greeting application example, `BP_GRADLE_BUILD_ARGUMENTS` is set to include the `bootJar`
