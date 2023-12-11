@@ -219,7 +219,7 @@ To resolve this issue:
     tekton_pipelines:
         feature_flags:
             set_security_context: "true"
-            disable-affinity-assistant: "true"
+            disable_affinity_assistant: "true"
     ```
 
     Setting the `securityContext` resolves the `prepare` initContainer violation. Deactivating affinity assistant pods is a workaround for the affinity assistant violation as Tekton does not have a way to update the `securityContext` in those pods.
