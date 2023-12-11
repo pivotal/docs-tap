@@ -10,7 +10,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 
 shared:
   ingress_domain: "INGRESS-DOMAIN"
-  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
   kubernetes_version: "K8S-VERSION"
   ca_cert_data: | # To be passed if using custom certificates.
     -----BEGIN CERTIFICATE-----

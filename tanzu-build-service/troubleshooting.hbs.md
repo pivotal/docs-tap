@@ -76,7 +76,7 @@ For GKE, see:
 For OpenShift, see:
 
 - The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
-- The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
+- The [Red Hat OpenShift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
 
 ---
 

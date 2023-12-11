@@ -16,7 +16,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 
 shared:
   ingress_domain: "INGRESS-DOMAIN"
-  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
   kubernetes_version: "K8S-VERSION"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
