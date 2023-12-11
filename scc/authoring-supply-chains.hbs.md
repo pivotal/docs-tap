@@ -158,7 +158,7 @@ To change the shape of a supply chain or the template that it points to, do the 
 ### <a id="example-ootb-sc"></a> Example
 
 In this example, you have a new `ClusterImageTemplate` object named `foo` that you
-want use for building container images instead of the out of the box object that
+want to use for building container images instead of the out of the box object that
 makes use of Kpack. The supply chain that you want to apply the
 modification to is `source-to-url` provided by the
 `ootb-supply-chain-basic` package.
@@ -372,7 +372,7 @@ Because the installation is based on Kubernetes primitives, `PackageInstall` tri
 This is great but presents challenges for modifying the
 contents of some of the objects that the installation submits to the cluster.
 Namely, such modifications cause the original definition
-persisting instead of the changes.
+to persist instead of the changes.
 
 For this reason, before you perform any customization to
 the Out of the Box packages, you must pause the top-level
