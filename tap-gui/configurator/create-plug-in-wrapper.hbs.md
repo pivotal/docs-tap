@@ -154,16 +154,16 @@ To update your dependencies for the specific Backstage plug-in you want to wrap:
 
 1. Replace the `dependencies` in the `package.json` with the following:
 
-   ```json
-      ...
-      "dependencies": {
-        "@backstage/plugin-tech-insights": "0.3.11",
-        "@backstage/plugin-catalog": "1.11.2",
-        "@vmware-tanzu/core-common": "1.0.0",
-        "@vmware-tanzu/core-frontend": "1.0.0"
-      },
-      ...
-   ```
+    ```json
+       ...
+       "dependencies": {
+         "@backstage/plugin-tech-insights": "0.3.11",
+         "@backstage/plugin-catalog": "1.11.2",
+         "@vmware-tanzu/core-common": "1.0.0",
+         "@vmware-tanzu/core-frontend": "1.0.0"
+       },
+       ...
+    ```
 
 1. The dependency on `@backstage/plugin-tech-insights` is obvious, but verify the version is
    compatible with your Tanzu Application Platform version by reading the relevant
@@ -305,20 +305,20 @@ from the previous work.
 > **Important** The `yarn install` step of the script will fail because of a Node version issue.
 > This is handled in a later step.
 
-1. From the root of your project, generate a back-end plug-in by running:
+From the root of your project, generate a back-end plug-in by running:
 
-   ```console
-   yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
-   ```
+```console
+yarn backstage-cli new --select backend-plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
+```
 
-   Where:
+Where:
 
-   - `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
-   - `--select backend-plugin` tells the `backstage-cli` to generate a back-end plug-in. The ID you
-     provide is the same as the front-end plug-in, `--option id=tech-insights-wrapper`.
+- `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
+- `--select backend-plugin` tells the `backstage-cli` to generate a back-end plug-in. The ID you
+  provide is the same as the front-end plug-in, `--option id=tech-insights-wrapper`.
 
-   `backstage-cli` automatically appends `-backend` to the directory and package-name of back-end
-   plug-ins to prevent conflict with the front-end plug-in.
+`backstage-cli` automatically appends `-backend` to the directory and package-name of back-end
+plug-ins to prevent conflict with the front-end plug-in.
 
 ### <a id="update-deps-bcknd"></a> Update dependencies for the back-end plug-in
 
@@ -326,14 +326,14 @@ To update your dependencies for the specific Backstage plug-in you want to wrap:
 
 1. Update the dependencies in `package.json` as follows:
 
-   ```json
-      "dependencies": {
-        "@backstage/plugin-tech-insights-backend": "0.5.12",
-        "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
-        "@vmware-tanzu/core-backend": "1.0.0",
-        "express": "4.18.2"
-      },
-   ```
+    ```json
+       "dependencies": {
+         "@backstage/plugin-tech-insights-backend": "0.5.12",
+         "@backstage/plugin-tech-insights-backend-module-jsonfc": "0.1.30",
+         "@vmware-tanzu/core-backend": "1.0.0",
+         "express": "4.18.2"
+       },
+    ```
 
 1. Install your dependencies by running:
 
