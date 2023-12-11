@@ -660,7 +660,7 @@
          - [Configure the Configurator with a private registry](tap-gui/configurator/private-registries.hbs.md)
          - [Run your customized Tanzu Developer Portal](tap-gui/configurator/running.hbs.md)
          - [Troubleshoot Tanzu Developer Portal Configurator](tap-gui/configurator/troubleshooting.hbs.md)
-         - [How to use surfaces](tap-gui/configurator/how-to-use-surfaces.hbs.md)
+         - [Using surfaces](tap-gui/configurator/using-surfaces.hbs.md)
          - [API documentation for surfaces](tap-gui/configurator/api-docs.hbs.md)
          - [Dependency Version Reference](tap-gui/configurator/dependency-version-refs.hbs.md)
       - [Tanzu Developer Portal plug-ins](tap-gui/plugins/about.hbs.md)
