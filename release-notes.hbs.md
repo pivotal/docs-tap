@@ -381,9 +381,9 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-- Supply Chains that use [SSH auth](scc/git-auth.hbs.md#a-idsshassh) with the git-writer resource will fail in the
-  [gitops](scc/gitops-vs-regops.hbs.md#a-idgitopsagitops) step. As a workaround, use
-  [HTTPS auth](scc/git-auth.hbs.md#a-idhttpahttp).
+- Supply Chains that use [SSH auth](scc/git-auth.hbs.md#sshassh) with the git-writer resource will fail in the
+  [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
+  [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
 #### <a id='1-7-2-scst-scan-2-ki'></a> v1.7.2 Known issues: Supply Chain Security Tools (SCST) - Scan 2.0
 
@@ -804,9 +804,9 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
-- Supply Chains that use [SSH auth](scc/git-auth.hbs.md#a-idsshassh) with the git-writer resource will fail in the
-  [gitops](scc/gitops-vs-regops.hbs.md#a-idgitopsagitops) step. As a workaround, use
-  [HTTPS auth](scc/git-auth.hbs.md#a-idhttpahttp).
+- Supply Chains that use [SSH auth](scc/git-auth.hbs.md#sshassh) with the git-writer resource will fail in the
+  [gitops](scc/gitops-vs-regops.hbs.md#gitopsagitops) step. As a workaround, use
+  [HTTPS auth](scc/git-auth.hbs.md#httpahttp).
 
 #### <a id='1-7-1-scst-scan-ki'></a> v1.7.1 Known issues: Supply Chain Security Tools (SCST) - Scan
 
