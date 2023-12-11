@@ -520,9 +520,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Choreographer                         | 0.8.5          |
 | Supply Chain Security Tools - Policy Controller    | 1.6.3          |
 | Supply Chain Security Tools - Scan                 | 1.7.3          |
-| Supply Chain Security Tools - Scan 2.0             | 0.2.2          |
+| Supply Chain Security Tools - Scan 2.0 (beta)             | 0.2.2          |
 | Supply Chain Security Tools - Store                | 1.7.2          |
 | Tanzu Developer Portal                             | 1.7.8          |
+| Tanzu Developer Portal Configurator                | 1.0.4          |
 | Tanzu Application Platform Telemetry               | 0.7.0          |
 | Tanzu Build Service                                | 1.12.4         |
 | Tanzu CLI                                          | 1.1.0          |
@@ -953,9 +954,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Choreographer                         | 0.8.5          |
 | Supply Chain Security Tools - Policy Controller    | 1.6.3          |
 | Supply Chain Security Tools - Scan                 | 1.7.1          |
-| Supply Chain Security Tools - Scan 2.0             | 0.2.1          |
+| Supply Chain Security Tools - Scan 2.0 (beta)      | 0.2.1          |
 | Supply Chain Security Tools - Store                | 1.7.1          |
 | Tanzu Developer Portal                             | 1.7.8          |
+| Tanzu Developer Portal Configurator                | 1.0.4          |
 | Tanzu Application Platform Telemetry               | 0.7.0          |
 | Tanzu Build Service                                | 1.12.2         |
 | Tanzu CLI                                          | 1.1.0          |
@@ -2390,9 +2392,10 @@ The following table lists the supported component versions for this Tanzu Applic
 | Supply Chain Choreographer                         | 0.8.5                               |
 | Supply Chain Security Tools - Policy Controller    | 1.6.3                               |
 | Supply Chain Security Tools - Scan                 | 1.7.1                               |
-| Supply Chain Security Tools - Scan 2.0             | 0.2.1                               |
+| Supply Chain Security Tools - Scan 2.0 (beta)      | 0.2.1                               |
 | Supply Chain Security Tools - Store                | 1.7.1                               |
 | Tanzu Developer Portal                             | 1.7.7                               |
+| Tanzu Developer Portal Configurator                | 1.0.3                               |
 | Tanzu Application Platform Telemetry               | 0.7.0-build.3                       |
 | Tanzu Build Service                                | 1.12.2                              |
 | Tanzu CLI                                          | 1.1.0                               |
