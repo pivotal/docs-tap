@@ -243,7 +243,7 @@ Tanzu Application Platform stores all sensitive values as [Kubernetes Secrets](h
 
 Encryption of secrets at rest are Kubernetes distribution dependent.
 
-Use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md) (beta) 
+Use [External Secrets Operator](../external-secrets/about-external-secrets-operator.hbs.md)
 to automate the lifecycle management of Secrets stored in a Secret management service, such as, [Hashicorp Vault](https://www.vaultproject.io), [Google Secrets Manager](https://cloud.google.com/secret-manager), [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/), or [Microsoft Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault/) use.
 
 For more information related to safeguarding sensitive information from exploitation, such as, Tanzu Application Platform values, see the [AC-23](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) section in the SP 800-53 publication.

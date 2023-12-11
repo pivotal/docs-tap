@@ -475,7 +475,7 @@ For a diagram showing the packages contained in each profile, see
    <td>&check;</td>
   </tr>
   <tr>
-   <th scope="row">Artifact Metadata Repository Observer (alpha)</th>
+   <th scope="row">Artifact Metadata Repository Observer</th>
    <td>&check;</td>
    <td></td>
    <td>&check;</td>
