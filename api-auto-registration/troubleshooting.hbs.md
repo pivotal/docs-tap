@@ -4,7 +4,8 @@ This topic contains ways that you can troubleshoot API Auto Registration.
 
 ## <a id='debug'></a> Debug API Auto Registration
 
-This section includes commands for debugging or troubleshooting the APIDescriptor CR.
+This section includes commands for debugging or troubleshooting the APIDescriptor 
+Custom Resource (commonly known as CR).
 
 1. Get the details of CRs.
 
