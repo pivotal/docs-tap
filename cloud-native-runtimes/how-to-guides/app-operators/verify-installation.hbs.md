@@ -9,7 +9,8 @@ You can verify that your Cloud Native Runtimes installation was successful by te
    >**Note** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered when
-   >developer namespaces are set up to use installed packages.
+   >developer namespaces are set up to use installed packages. 
+   >For more information, see [Set up developer namespaces to use your installed packages](../../../install-online/set-up-namespaces.hbs.md). 
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
     ```console
