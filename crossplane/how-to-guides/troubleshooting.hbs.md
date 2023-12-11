@@ -103,4 +103,4 @@ connecting to a Kubernetes APIServer. This issue might be resolved in a later re
 Use admission control that allows you to mutate objects, in this case pods, and injects the appropriate
 CA certificates.
 You can use any system that can mutate objects at admission to mutate the Crossplane Provider pods.
-For example, to inject CA certificates you can use this sample in the [Kyverno documentation](https://kyverno.io/policies/other/a/add-certificates-volume/add-certificates-volume/).
+For example, to inject CA certificates you can use this sample in the [Kyverno documentation](https://kyverno.io/policies/other/add-certificates-volume/add-certificates-volume/).
