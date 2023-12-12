@@ -18,20 +18,9 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     ```
 
-1. Add secrets and a service account to execute the Supply Chain and RBAC rules
-   to authorize the service account to the developer namespace:
+1. Add a service account to execute the supply chain and RBAC rules to authorize the service account to the developer namespace.
 
     ```console
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: tap-registry
-      annotations:
-        secretgen.carvel.dev/image-pull-secret: ""
-    type: kubernetes.io/dockerconfigjson
-    data:
-      .dockerconfigjson: e30K
-    ---
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
     apiVersion: v1
     kind: ServiceAccount
@@ -39,8 +28,6 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
       name: default
       annotations:
         eks.amazonaws.com/role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/tap-workload"
-    imagePullSecrets:
-      - name: tap-registry
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
@@ -53,6 +40,33 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     subjects:
       - kind: ServiceAccount
         name: default
+    EOF
+    ```
+
+    Where `YOUR-NAMESPACE` is your developer namespace.
+
+1. (Optional) If you haven't relocated the images to ECR, add a placeholder secret for gathering the credentials used for pulling container images.
+
+    ```console
+    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: tap-registry
+      annotations:
+        secretgen.carvel.dev/image-pull-secret: ""
+    type: kubernetes.io/dockerconfigjson
+    data:
+      .dockerconfigjson: e30K
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: default
+      annotations:
+        eks.amazonaws.com/role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/tap-workload"
+    imagePullSecrets:
+      - name: tap-registry
     EOF
     ```
 
