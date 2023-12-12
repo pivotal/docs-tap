@@ -43,12 +43,12 @@ the deployment name from the earlier step.
 Flagger creates three ClusterIP services
 (hello-app.dev.tap-primary,hello-app.dev.tap-canary, hello-app.dev.tap) and a
 shadow deployment named app-primary that represents the blue version. When a new
-version is detected, Flagger scales up the green version and run the conformance
+version is detected, Flagger scales up the green version and runs the conformance
 tests, the tests target the hello-app.dev.tap-canary ClusterIP service to reach
 the green version. If the conformance tests are passing, Flagger starts the load
-tests and validate them with custom Prometheus queries. If the load test
+tests and validates them with custom Prometheus queries. If the load test
 analysis is successful, Flagger promotes the new version to
-hello-app.dev.tap-primary and scale down the green version. Flagger extends a
+hello-app.dev.tap-primary and scales down the green version. Flagger extends a
 canary analysis through [custom metrics](https://docs.flagger.app/usage/metrics)
 and [webhooks](https://docs.flagger.app/usage/webhooks) for running load tests,
 acceptance tests, or any other custom validation.
