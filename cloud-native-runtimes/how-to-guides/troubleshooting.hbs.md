@@ -146,4 +146,4 @@ Resolving this is unique to each Knative service. It is likely to involve renami
 
 For example, `foo-java.cody.iterate.tanzu-azure-lab.winterfell.fun` is hashed and trimmed into `foo-java-contour-5f549ae3e6f584a5f33d069a0650c0d8foo-java.cody.`, leaving an invalid `.` at the end.
 
-However, changing the app name to `foo-jav` causes `foo-jav-contour-SOME-DIFFERENT-HASHfoo-jav.cody.it`, which is a valid name.
+However, changing the app name to `foo-jav` causes `foo-jav-contour-SOME-DIFFERENT-HASH-foo-jav.cody.it`, which is a valid name.
