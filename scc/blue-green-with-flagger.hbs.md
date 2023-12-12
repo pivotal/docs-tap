@@ -40,15 +40,13 @@ To get the name of the deployment you want to use:
 Create a canary custom resource using the [Flagger instructions](https://docs.flagger.app/tutorials/kubernetes-blue-green#bootstrap) using
 the deployment name from the earlier step.
 
-Flagger creates three ClusterIP services
-(hello-app.dev.tap-primary,hello-app.dev.tap-canary, hello-app.dev.tap) and a
-shadow deployment named app-primary that represents the blue version. When a new
-version is detected, Flagger scales up the green version and run the conformance
-tests, the tests target the hello-app.dev.tap-canary ClusterIP service to reach
+Flagger creates three ClusterIP services: `hello-app.dev.tap-primary`, `hello-app.dev.tap-canary`, `hello-app.dev.tap`. It also creates a shadow deployment named `app-primar`y that represents the blue version. When a new
+version is detected, Flagger scales up the green version and runs the conformance
+tests, the tests target the `hello-app.dev.tap-canary` ClusterIP service to reach
 the green version. If the conformance tests are passing, Flagger starts the load
 tests and validate them with custom Prometheus queries. If the load test
 analysis is successful, Flagger promotes the new version to
-hello-app.dev.tap-primary and scale down the green version. Flagger extends a
+`hello-app.dev.tap-primary` and scales down the green version. Flagger extends a
 canary analysis through [custom metrics](https://docs.flagger.app/usage/metrics)
 and [webhooks](https://docs.flagger.app/usage/webhooks) for running load tests,
 acceptance tests, or any other custom validation.
@@ -56,7 +54,7 @@ acceptance tests, or any other custom validation.
 Flagger includes a [load generation
 tool](https://docs.flagger.app/usage/webhooks#load-testing) to ensure that the
 canary version of an application has enough traffic to generate metrics for
-analysis. Without an HPA, Flagger does not dynamically scale up or down the new
+analysis. Without an HPA (Horizontal Pod Autoscaler), Flagger does not dynamically scale up or down the new
 version based on traffic weight. This implies that the number of pods for the
 new version remains constant throughout deployment. Consequently, performance
 issues like high latency, errors, or timeouts can arise if the new version
@@ -64,6 +62,6 @@ receives more traffic than it can handle. This situation can also impact the
 metrics and webhooks that Flagger uses to validate the new version, potentially
 leading to a rollback or promotion delay.
 
-Workloads of type `Web` use knative, which has its own [custom
+Workloads of type `Web` use Knative, which has its own [custom
 autoscaler](https://knative.dev/docs/serving/autoscaling/autoscaler-types/) and
 doesn't use HPA by default, however you can configure the Knative to use it.
