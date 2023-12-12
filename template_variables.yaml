@@ -1,6 +1,6 @@
 ---
 template_variables:
-  tap_version: 1.6.6
+  tap_version: 1.6.7
   url_version: 1.6
   hide_content: true
   staging_toggle: docs
