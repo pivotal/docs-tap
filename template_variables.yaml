@@ -1,6 +1,6 @@
 ---
 template_variables:
-  tap_version: 1.7.2
+  tap_version: 1.7.3
   url_version: 1.7
   hide_content: true
   staging_toggle: docs
@@ -14,4 +14,3 @@ template_variables:
     version: 1.4
   api-auto-registration:
     scg-version: 2.1
-
