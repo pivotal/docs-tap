@@ -21,7 +21,7 @@ Using Tanzu CLI
        --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
        --resource-name RESOURCE-NAME \
        --resource-namespace RESOURCE-NAMESPACE \
-       --namespace WORKLOAD-NAMESPACE \
+       --namespace WORKLOAD-NAMESPACE
    ```
 
    Where:
@@ -34,36 +34,36 @@ Using Tanzu CLI
    For example:
 
    ```console
-   $ tanzu service resource-claim create my-eurekaserver-claim \
+   $ tanzu service resource-claim create eurekaserver-sample \
        --resource-kind EurekaServer \
        --resource-api-version service-registry.spring.apps.tanzu.vmware.com/v1alpha1 \
-       --resource-name my-eurekaserver \
-       --resource-namespace my-namespace \
-       --namespace my-namespace \
+       --resource-name eurekaserver-sample \
+       --resource-namespace my-apps \
+       --namespace my-apps
    ```
 
 Using a ResourceClaim
-: Create a YAML file, similar to the following example, and name it `my-eurekaserver-claim.yaml`:
+: Create a YAML file, similar to the following example, and name it `resource-claim.yaml`:
 
     ```yaml
     ---
     apiVersion: services.apps.tanzu.vmware.com/v1alpha1
     kind: ResourceClaim
     metadata:
-      name: my-eurekaserver-claim
-      namespace: my-namespace
+      name: eurekaserver-sample
+      namespace: my-apps
     spec:
       ref:
         apiVersion: service-registry.spring.apps.tanzu.vmware.com/v1alpha1
         kind: EurekaServer
-        name: my-eurekaserver
-        namespace: my-namespace
+        name: eurekaserver-sample
+        namespace: my-apps
     ```
 
     In kubectl, create the `ResourceClaim` by running:
 
     ```console
-    kubectl apply -f my-eurekaserver-claim.yaml
+    kubectl apply -f resource-claim.yaml
     ```
 
 ## <a id="inspect"></a> Inspect the progress of your claim
@@ -95,7 +95,7 @@ To use Eureka for service discovery in workloads:
           ref:
             apiVersion: services.apps.tanzu.vmware.com/v1alpha1
             kind: ResourceClaim
-            name: my-eurekaserver-claim
+            name: eurekaserver-sample
     ```
 
    By claiming the credentials, a workload has its Eureka client configured to interact with the
@@ -113,7 +113,7 @@ To use Eureka for service discovery in workloads:
     kind: Workload
     metadata:
       name: greeter-messages
-      namespace: my-namespace
+      namespace: my-apps
       labels:
         apps.tanzu.vmware.com/workload-type: server
         apps.tanzu.vmware.com/has-tests: "true"
@@ -135,7 +135,7 @@ To use Eureka for service discovery in workloads:
           ref:
             apiVersion: services.apps.tanzu.vmware.com/v1alpha1
             kind: ResourceClaim
-            name: my-eurekaserver-claim
+            name: eurekaserver-sample
       source:
         git:
           url: https://github.com/spring-cloud-services-samples/greeting
@@ -152,7 +152,7 @@ To use Eureka for service discovery in workloads:
     kind: Workload
     metadata:
       name: greeter
-      namespace: my-namespace
+      namespace: my-apps
       labels:
         apps.tanzu.vmware.com/workload-type: web
         apps.tanzu.vmware.com/has-tests: "true"
@@ -174,7 +174,7 @@ To use Eureka for service discovery in workloads:
           ref:
             apiVersion: services.apps.tanzu.vmware.com/v1alpha1
             kind: ResourceClaim
-            name: my-eurekaserver-claim
+            name: eurekaserver-sample
       source:
         git:
           url: https://github.com/spring-cloud-services-samples/greeting
@@ -188,6 +188,41 @@ To use Eureka for service discovery in workloads:
    tanzu apps workload create -f greeter-messages.yaml --yes
    tanzu apps workload create -f greeter.yaml --yes
    ```
+
+3. Retrieve the ingress route associated with the Greeter application using the tanzu cli:
+
+   ```console
+   tanzu apps workload get greeter
+   ```
+
+   For example:
+
+   ```console
+   $ tanzu apps workload get greeter
+
+   # other output...
+
+   🚢 Knative Services
+      NAME      READY   URL
+      greeter   Ready   https://greeter.my-apps.tap
+
+   To see logs: "tanzu apps workload tail greeter --timestamp --since 1h"
+   ```
+
+   Where `https://greeter.my-apps.tap` is the accessible ingress route to the greeter application
+
+4. Visit `[ROUTE]/hello`, where `[ROUTE]` is the ingress route you just retrieved. The Greeter application will use the Service Registry to look up the Message Generation application and get a greeting message, which (to begin with) should be “Hello, Bob!”
+
+5. You can see what the Message Generation application is sending back by viewing its logs, using `tanzu apps workload tail greeter-messages`:
+
+   ```console
+   $ tanzu apps workload tail greeter-messages
+
+   greeter-messages-579d67c498-bf6zl[workload] 2023-10-20T17:52:17.001Z  INFO 1 --- [nio-8080-exec-3] messages.MessagesController              : Now saying "Hi" to John
+   ```
+
+
+6. To get a different greeting message, you can provide `salutation` and `name` parameters, as in `[ROUTE]/hello?salutation=Hi&name=John`. The Greeter application will send those parameters to the Message Generation application and the resulting greeting will be customized to match.
 
 ## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable JAR file application
 
