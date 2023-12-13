@@ -37,8 +37,7 @@ without running Docker inside a container.
   </tr>
 </table>
 
-
-For example, assuming that you want to build a container image our of a
+For example, if you want to build a container image from a
 repository named `github.com/foo/bar` whose Dockerfile resides in the root of
 that repository, you can switch from using Kpack to building from that
 Dockerfile by passing the `dockerfile` parameter:
@@ -83,14 +82,14 @@ $ tanzu apps workload create foo \
 ```
 
 > **Important** This feature has no platform operator configurations to be passed
-> through `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
+> through the `tap-values.yaml` file, but if `ootb-supply-chain-*.registry.ca_cert_data` or
 `shared.ca_cert_data` is configured in `tap-values`, the certificates
 > are considered when pushing the container image.
 
 ## OpenShift
 
-Despite that Kaniko can perform container image builds without
-needing either a Docker daemon or privileged containers, it does
+Kaniko can perform container image builds without
+a Docker daemon or privileged containers. It does
 require the use of:
 
 - Capabilities usually dropped from the more restrictive
@@ -100,13 +99,12 @@ require the use of:
 To overcome such limitations imposed by the default unprivileged
 SecurityContextConstraints (SCC), Tanzu Application Platform installs:
 
-- `SecurityContextConstraints/ootb-templates-kaniko-restricted-v2-with-anyuid` with enough extra privileges for
-  Kaniko to operate.
-- `ClusterRole/ootb-templates-kaniko-restricted-v2-with-anyuid` to permit the use of such SCC to any actor binding to
-  that cluster role.
+- `SecurityContextConstraints/ootb-templates-kaniko-restricted-v2-with-anyuid` with enough extra privileges for Kaniko to operate.
+- `ClusterRole/ootb-templates-kaniko-restricted-v2-with-anyuid` to permit the use of such SCC to any actor binding to that cluster role.
 
 Each developer namespace needs a role binding that binds the role to an actor: `ServiceAccount`.
-For more information, see [Set up developer namespaces to use your installed packages ](../install-online/set-up-namespaces.hbs.md).
+For more information, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
+For more information about SCC, see [Openshift](https://docs.openshift.com/container-platform/4.11/authentication/managing-security-context-constraints.html.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -126,26 +124,18 @@ With the SCC created and the ServiceAccount bound to the role that permits the
 use of the SCC, OpenShift accepts the pods created to run Kaniko to build
 the container images.
 
+For more information about this limitation, see
+[Run Kaniko as non-root user within the container #105](https://github.com/GoogleContainerTools/kaniko/issues/105) in the Kaniko Github repository.
 
-> **Note** Such restrictions are due to well-known limitations in how Kaniko
-> performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
+## Tanzu Kubernetes Grid and clusters with PSA enabled
 
-## TKG 1.26 and above / Clusters with PSA enabled
+Tanzu Kubernetes Grid v1.26 and later and clusters with the [Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) enabled that are set to `enforce` are not able to run Kaniko without changes to their configuration. This is because the webhook
+requires containers to run as a non-root user and Kaniko needs to run as a root user. This Kaniko limitation relates to how
+image builds are run. For more information about this limitation, see [Run Kaniko as non-root user within the container #105](https://github.com/GoogleContainerTools/kaniko/issues/105) in the Kaniko Github repository.
 
-Clusters with the [Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) enabled and 
-set to `enforce` will also not be able to run `kaniko` without changes to their configuration.  This is because the webhook 
-requires containers to be run as "non-root" and `kaniko` needs to be "root" to function.
-
-A workaround is to label the namespace that `kaniko` runs as `privileged`
+A workaround is to label the namespace that Kaniko runs as `privileged`
 
 ```yaml
-pod-security.kubernetes.io/enforce: privileged 
+pod-security.kubernetes.io/enforce: privileged
 ```
-
-> **Note** Such restrictions are due to well-known limitations in how Kaniko
-> performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
-
-[kaniko#105]: https://github.com/GoogleContainerTools/kaniko/issues/105
-
-[SecurityContextConstraint]: https://docs.openshift.com/container-platform/4.11/authentication/managing-security-context-constraints.html
 
