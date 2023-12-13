@@ -15,7 +15,7 @@ Documentation](https://cartographer.sh/docs/v0.6.0/reference/workload/#workload)
 Workload labels affect which supply chain is selected. For information about which template is defined for a particular reference, see [Selectors](https://cartographer.sh/docs/v0.6.0/architecture/#selectors) in the Cartographer documentation.
 Individual templates can also use workload labels.
 
-OOTB Supply Chains use the following workload labels:
+The following are workload label keys whose values change the behavior of OOTB Supply Chains:
 
 - `apps.tanzu.vmware.com/has-tests` by
   [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) and
