@@ -3,20 +3,20 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-7-3'></a> v1.7.3 
- 
-**Release Date**: 09 January 2024 
- 
-### <a id='1-7-3-security-fixes'></a> v1.7.3 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
+## <a id='1-7-3'></a> v1.7.3
+
+**Release Date**: 09 January 2024
+
+### <a id='1-7-3-security-fixes'></a> v1.7.3 Security fixes
+
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-7-3-COMPONENT-NAME-fixes'></a> v1.7.3 Security fixes: COMPONENT-NAME
- 
+
 - [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
+
 OR add HTML table
- 
+
 <table>
 <thead>
 <tr>
@@ -33,37 +33,37 @@ OR add HTML table
 </ul></details></td>
 </tr>
 </tbody>
-</table> 
- 
+</table>
+
 ---
- 
-### <a id='1-7-3-resolved-issues'></a> v1.7.3 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
+
+### <a id='1-7-3-resolved-issues'></a> v1.7.3 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
 #### <a id='1-7-3-COMPONENT-NAME-ri'></a> v1.7.3 Resolved issues: COMPONENT-NAME
- 
+
 - Resolved issue description.
- 
+
 ---
- 
-### <a id='1-7-3-known-issues'></a> v1.7.3 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
+
+### <a id='1-7-3-known-issues'></a> v1.7.3 Known issues
+
+This release has the following known issues, listed by component and area.
+
 #### <a id='1-7-3-COMPONENT-NAME-ki'></a> v1.7.3 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
+
+- Known issue description with link to workaround.
+
 ---
- 
+
 ### <a id='1-7-3-components'></a> v1.7.3 Component versions
- 
+
 The following table lists the supported component versions for this Tanzu Application Platform release.
- 
+
 GET-TABLE-FROM-PREVIOUS-PATCH
- 
----   
+
+---
 
 ## <a id='1-7-2'></a> v1.7.2
 
@@ -2374,6 +2374,11 @@ to ensure that they are correctly created.
   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html)
   and restrict access to all or parts of Tanzu Developer Portal.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#ad-block-interference).
+
+- When installing Tanzu Developer Portal for the first time, there might be a transient failure
+  during reconciliation. No action is needed because the reconciliation succeeds during the
+  automatic retry. The issue is related to the order of creation for Kubernetes resources.
+  A fix is planned for a later release.
 
 #### <a id='1-7-0-intellij-plugin-ki'></a> v1.7.0 Known issues: Tanzu Developer Tools for IntelliJ
 
