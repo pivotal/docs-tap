@@ -189,7 +189,7 @@ To use Eureka for service discovery in workloads:
    tanzu apps workload create -f greeter.yaml --yes
    ```
 
-3. Retrieve the ingress route associated with the Greeter application using the tanzu cli:
+3. From the Tanzu CLI, retrieve the ingress route associated with the greeter application by running:
 
    ```console
    tanzu apps workload get greeter
@@ -211,9 +211,17 @@ To use Eureka for service discovery in workloads:
 
    Where `https://greeter.my-apps.tap` is the accessible ingress route to the greeter application
 
-4. Visit `[ROUTE]/hello`, where `[ROUTE]` is the ingress route you just retrieved. The Greeter application will use the Service Registry to look up the Message Generation application and get a greeting message, which (to begin with) should be “Hello, Bob!”
+4. Visit `ROUTE/hello`, where `ROUTE` is the ingress route you just retrieved. The greeter
+   application uses Service Registry to look up the Message Generation application and get a
+   greeting message. This message initially is `Hello, Bob!`.
 
-5. You can see what the Message Generation application is sending back by viewing its logs, using `tanzu apps workload tail greeter-messages`:
+5. See what the Message Generation application is sending back from viewing its logs by running:
+
+   ```console
+   tanzu apps workload tail greeter-messages
+   ```
+
+   Example:
 
    ```console
    $ tanzu apps workload tail greeter-messages
@@ -221,8 +229,15 @@ To use Eureka for service discovery in workloads:
    greeter-messages-579d67c498-bf6zl[workload] 2023-10-20T17:52:17.001Z  INFO 1 --- [nio-8080-exec-3] messages.MessagesController              : Now saying "Hi" to John
    ```
 
+6. Create a different greeting message by providing the `salutation` and `name` parameters.
+   Example:
 
-6. To get a different greeting message, you can provide `salutation` and `name` parameters, as in `[ROUTE]/hello?salutation=Hi&name=John`. The Greeter application will send those parameters to the Message Generation application and the resulting greeting will be customized to match.
+   ```console
+   ROUTE/hello?salutation=Hi&name=John
+   ```
+
+   The greeter application sends those parameters to the Message Generation application, and the
+   resulting greeting is customized to match.
 
 ## <a id="exec-jar-file-app"></a> (Optional) Use Service Registry with an executable JAR file application
 
@@ -234,8 +249,8 @@ not inject the `spring-cloud-bindings` library into the application if it is an 
 `spring-cloud-bindings` is required to process the `serviceClaim` into properties that tell the
 discovery client how to find the Eureka server.
 
-To use Service Registry with an executable JAR file application, you must explicitly include
-[spring-cloud-bindings v1.13.0](https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bindings/1.13.0)
-or later and set the `org.springframework.cloud.bindings.boot.enable=true` system property as described
-in the [library README file](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration)
+To use Service Registry with an executable JAR file application, you must explicitly include [spring-cloud-bindings v1.13.0](https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bindings/1.13.0)
+or later and set the `org.springframework.cloud.bindings.boot.enable=true` system property as
+described in the
+[library README file](https://github.com/spring-cloud/spring-cloud-bindings#spring-boot-configuration)
 in GitHub.
