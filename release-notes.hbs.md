@@ -345,7 +345,7 @@ This release has the following known issues, listed by component and area.
   As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
   as advised by the release notes for
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
-  However, applying this label provides more than the mininum necessary privlige to the resources in
+  However, applying this label provides more than the minimum necessary privlidge to the resources in
   developer namespaces.
 
 #### <a id='1-7-2-api-auto-reg-ki'></a> v1.7.2 Known issues: API Auto Registration
@@ -760,7 +760,7 @@ This release has the following known issues, listed by component and area.
   As a workaround, you can apply the label to update pod security on a TKr v1.26 Kubernetes namespace
   as advised by the release notes for
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
-  However, applying this label provides more than the mininum necessary privlige to the resources in
+  However, applying this label provides more than the minimum necessary privlidge to the resources in
   developer namespaces.
 
 #### <a id='1-7-1-api-autoreg-ki'></a> v1.7.1 Known issues: API Auto Registration
@@ -2300,7 +2300,7 @@ This release has the following known issues, listed by component and area.
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
 - Pods created by using Tekton do not adhere to the Pod Security Standard. To run Supply Chains in a cluster
-where this webhook is installed by default, VMware reccomends labeling the namespace with `pod-security.kubernetes.io/enforce=privileged`
+where this webhook is installed by default, VMware recommends labeling the namespace with `pod-security.kubernetes.io/enforce=privileged`
 to ensure that they are correctly created.
 
 #### <a id='1-7-0-scst-scan-ki'></a> v1.7.0 Known issues: Supply Chain Security Tools (SCST) - Scan
