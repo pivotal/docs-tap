@@ -26,9 +26,9 @@ provenance, see [Provenance transform](creating-accelerators/transforms/provenan
 
 Application Accelerator integrates with [Artifact Metadata Repository](../scst-store/overview.hbs.md) (AMR).
 
-When you generate an application with an accelerator, an event that contains the same information captured by the `Provenance` transform is sent to the AMR store.
-
-The relevant data saved to AMR are:
+When you generate an application with an accelerator, an event that contains the same information
+captured by the `Provenance` transform is sent to the AMR store. The relevant data saved to AMR is
+AppAcceleratorRuns (alpha) and AppAcceleratorFragments (alpha):
 
 ### <a id='appacceleratorruns'></a> AppAcceleratorRuns (alpha)
 
@@ -64,7 +64,7 @@ an `AppAcceleratorRuns`. You can point a `AppAcceleratorFragmentSource`
 
 There is one instance of AppAcceleratorFragment for each named fragment used by the running accelerator. There are between `0` and `N` instances, `N` being the number of fragments used by the accelerator.
 
-### <a id='querying_data'></a> Querying the data
+## <a id='querying_data'></a> Querying the data
 
 When invocations were recorded, use the
 [AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query the system about

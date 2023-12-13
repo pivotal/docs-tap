@@ -1,22 +1,22 @@
-# AMR GraphQL Querying
+# Run query with GraphQL
 
 This topic tells you how to connect to the GraphQL playground and how to run some queries.
 
-## <a id='connecting-to-graphql'></a> Connecting to AMR GraphQL
+## <a id='connecting-to-graphql'></a> Connect to AMR GraphQL
 
 There are two ways you can perform GraphQL queries:
 
 - Using the GraphQL playground
-- Using [cURL](https://curl.se/)
+- Using [curl](https://curl.se/)
 
 VMware recommends enabling ingress. The Supply Chain Security
 Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
 the same ingress configuration. For information about enabling ingress,
 see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
 
-### <a id='amr-graphql-access-token'></a> Retrieving the AMR GraphQL Access Token
+### <a id='amr-graphql-access-token'></a> Retrieve the AMR GraphQL Access Token
 
-When you access the AMR GraphQL by using the GraphQL playground or cURL, you
+When you access the AMR GraphQL using the GraphQL playground or curl, you
 must retrieve the access token.
 
 To fetch the token, run:
@@ -25,7 +25,7 @@ To fetch the token, run:
 kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
 ```
 
-### <a id='connect-graphql-playground'></a> Connecting to AMR GraphQL playground
+### <a id='connect-graphql-pg'></a> Connect to AMR GraphQL playground
 
 To connect to the AMR GraphQL playground when you enabled ingress, visit
 `https://amr-graphql.INGRESS-DOMAIN/play`.
@@ -44,9 +44,9 @@ Where `ACCESS-TOKEN` is the AMR GraphQL access token.
 
 You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
 
-### <a id='connecting-to-graphql-curl'></a> Connecting to AMR GraphQL through cURL
+### <a id='connect-to-graphql-curl'></a> Connect to AMR GraphQL through curl
 
-To connect to the AMR GraphQL using cURL when you enabled ingress, you first need the AMR GraphQL
+To connect to the AMR GraphQL using curl when you enabled ingress, you first need the AMR GraphQL
 access token and its CA certificate.
 
 To fetch the AMR GraphQL CA certificate:
@@ -55,7 +55,7 @@ To fetch the AMR GraphQL CA certificate:
 kubectl get secret amr-app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
 ```
 
-After the token and certificate are retrieved, you can use cURL to perform GraphQL queries by using the
+After the token and certificate are retrieved, you can use curl to perform GraphQL queries by using the
 `https://amr-graphql.INGRESS-DOMAIN/query` endpoint.
 
 Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
@@ -78,14 +78,14 @@ Where:
 
 You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
 
-This section uses cURL to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint
+This section uses curl to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint
 and provide them with the AMR GraphQL access token and CA certificate.
 
-## <a id='query-app-accelerator-runs'></a> Querying for AppAcceleratorRuns (alpha)
+## <a id='query-app-accel-runs'></a> Query for AppAcceleratorRuns (alpha)
 
 This section tells you about GraphQL query arguments, and lists the fields available for `AppAcceleratorRuns` and `AppAcceleratorFragments`.
 
-### <a id='app-accelerator-runs-query-args'></a> AppAcceleratorRuns query arguments
+### <a id='app-accel-query-args'></a> AppAcceleratorRuns query arguments
 
 (Optional) You can specify the following supported arguments when querying for `AppAcceleratorRuns`.
 
@@ -140,7 +140,7 @@ was used to create an application.
   appAcceleratorRuns(query: {timestamp: {after: "2023-10-11T13:40:46.952Z"}})
   ```
 
-### <a id='app-accelerator-runs-fields'></a> AppAcceleratorRuns fields
+### <a id='app-accel-runs-fields'></a> AppAcceleratorRuns fields
 
 You can choose the following fields to return in the GraphQL query.
 See the section above for details about those fields.
@@ -156,18 +156,13 @@ You must specify at least one field.
   accelerator used
 - `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a
   commit.
-
-  <!-- [commit](data-model-and-concepts.hbs.md#commits) broken link -->
-
 - `timestamp`: the exact time the accelerator was run
 - `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each AppAcceleratorRun. Those fragment nodes share many of the fields with AppAcceleratorRun, with the same semantics but applied to the particular fragment. Those include:
   - `namespace` and `name`: strings representing the identity of the fragment
   - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS of the sources of the fragment used
   - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a commit.
 
-    <!-- [commit](data-model-and-concepts.hbs.md#commits) broken link -->
-
-### <a id='sample-app-accelerator-runs-query'></a> Sample Application Accelerator queries
+### <a id='sample-app-accel-query'></a> Sample Application Accelerator queries
 
 - Get the list of all Application Accelerator runs, with the fragments used for each.
 
