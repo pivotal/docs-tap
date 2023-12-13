@@ -1,6 +1,6 @@
-# Verify scanning without Supply Chain integration
+# Verifying an ImageVulnerabilityScan
 
-This topic tells you how to validate Scanning without Supply Chain integration.
+This topic tells you how to verify an ImageVulnerabilityScan without Supply Chain integration.
 
 ## <a id="overview"></a> Overview
 
@@ -67,7 +67,7 @@ To retrieve a vulnerability report:
 
 ## <a id="validating-scan-format"></a> Validating scan format
 
-After retrieving the scan results, you must verfiy that the scan results are in a format that downstream Tanzu Application Platform services, such as AMR Observer, support.
+After retrieving the scan results, you must verify that the scan results are in a format that downstream Tanzu Application Platform services, such as AMR Observer, support.
 
 <table>
   <caption>AMR Observer Supported SBOM Format/Versions</caption>
@@ -89,7 +89,7 @@ VMware recommends validating the scan results by using this CycloneDX tool, [sbo
 
 **Note** The output of the scan must be valid in accordance with SPDX or CycloneDX specifications. If not, although it might be parsed correctly, VMware cannot ensure that the information is parsed correctly, and results might not be displayed accurately in Tanzu Developer Portal and Tanzu Application s CLI.
 
-To validate scan format with sbom:
+To validate a scan format with sbom:
 
 1. Setup and install sbom. See the [sbom](https://github.com/CycloneDX/sbom-utility#installation) documentation.
 2. Run the `sbom-utility` CLI with the subcommand [validate](https://github.com/CycloneDX/sbom-utility#validate) to validate the scan report against its declared format, such as SPDX, CycloneDX, and version.
