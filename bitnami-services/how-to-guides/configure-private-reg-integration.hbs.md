@@ -24,14 +24,14 @@ For how to obtain both of these prerequisites for VMware Tanzu Application Catal
    namespace you prefer.
 
     ```console
-    $ kubectl create secret generic vac-chart-pull \
+    $ kubectl create secret generic tac-chart-pull \
       -n default \
       --from-literal=username='USERNAME' \
       --from-literal=password='TOKEN'
     ```
 
     ```console
-    $ kubectl create secret docker-registry vac-container-pull \
+    $ kubectl create secret docker-registry tac-container-pull \
       -n default \
       --docker-server='REGISTRY-HOSTNAME' \
       --docker-username='USERNAME' --docker-password='TOKEN'
@@ -48,10 +48,10 @@ For how to obtain both of these prerequisites for VMware Tanzu Application Catal
                 helm_chart:
                   repo: oci://REPOSITORY-NAME/charts # Update this value.
                   chart_pull_secret_ref:
-                    name: vac-chart-pull
+                    name: tac-chart-pull
                     namespace: default
                   container_pull_secret_ref:
-                    name: vac-container-pull
+                    name: tac-container-pull
                     namespace: default
             ```
 
@@ -71,10 +71,10 @@ For how to obtain both of these prerequisites for VMware Tanzu Application Catal
                 helm_chart:
                   repo: oci://REPOSITORY-NAME/charts # Update this value.
                   chart_pull_secret_ref:
-                    name: vac-chart-pull
+                    name: tac-chart-pull
                     namespace: default
                   container_pull_secret_ref:
-                    name: vac-container-pull
+                    name: tac-container-pull
                     namespace: default
             ```
 
