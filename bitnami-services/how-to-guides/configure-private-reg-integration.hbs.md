@@ -34,7 +34,8 @@ For how to obtain both of these prerequisites for VMware Tanzu Application Catal
     $ kubectl create secret docker-registry tac-container-pull \
       -n default \
       --docker-server='REGISTRY-HOSTNAME' \
-      --docker-username='USERNAME' --docker-password='TOKEN'
+      --docker-username='USERNAME' \
+      --docker-password='TOKEN'
     ```
 
 1. Apply the configuration either to all Bitnami services or to one specific service.
