@@ -30,7 +30,8 @@ The following examples put these in the `default` namespace, but you can choose 
     $ kubectl create secret docker-registry tac-container-pull \
       -n default \
       --docker-server='REGISTRY-HOSTNAME' \
-      --docker-username='USERNAME' --docker-password='TOKEN'
+      --docker-username='USERNAME' \
+      --docker-password='TOKEN'
     ```
 
 1. Apply the configuration either to all Bitnami services or to one specific service.
