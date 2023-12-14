@@ -20,7 +20,7 @@ Use the following sections to learn how to configure identity providers for an `
 - [OpenID Connect](#openid)
 - [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
-- [InternalUnsafe)](#internal-unsafe)
+- [InternalUnsafe](#internal-unsafe)
 
 Use the following sections for a deeper understanding of advanced identity provider configurations:
 
@@ -80,7 +80,7 @@ Where:
   with `/.well-known/openid-configuration`. This endpoint must have the HTTPS scheme. For more information, see [OpenID Connect provider configuration discovery](#oidc-discovery).
 - `.openID.issuerURI` (optional): The issuer URI. This field is deprecated and it relies on `.openID.configurationURI`. The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match the value of the `issuer` field. For more information, see the OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration`.
 
-  > **Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI.
+  > **Note** You can retrieve the values of `issuerURI` (`https://openid.example.com`) and `clientID` (`my-client-abcdef`) when registering a client with the provider, which in most cases, is by using a web UI.
 
   You can also run the following to retrieve the correct `issuerURI` value from the upstream identity provider: 
 
@@ -164,8 +164,8 @@ OpenID Connect provider configuration discovery is enabled when you set the `Aut
 This field has the following requirements:
 
 - It must be a valid URI.
-- It must have HTTPS scheme. For more information about testing with the HTTP scheme, see [Non-HTTPS configuration](#non-https).
-- It must be suffixed with `/.well-known/openid-configuration`
+- It must have the HTTPS scheme. For more information about testing with the HTTP scheme, see [Non-HTTPS configuration](#non-https).
+- It must be suffixed with `/.well-known/openid-configuration`.
 
 #### <a id='non-https'></a>Non-HTTPS configuration
 
