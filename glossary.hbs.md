@@ -103,7 +103,7 @@ Terms beginning with "A".
     </tr>
         <tr>
         <td>Artifact Metadata Repository (AMR) CloudEvent Handler</td>
-        <td>AMR CloudEvent Handler receives CloudEvents and stores relevant information in 
+        <td>AMR CloudEvent Handler receives CloudEvents and stores relevant information in
         the Artifact Metadata Repository or Metadata Store.</td>
     </tr>
     <tr>
@@ -485,9 +485,9 @@ Terms beginning with "S".
     </tr>
         <tr>
         <td>Service Registry</td>
-        <td>This Tanzu Application Platform component provides on-demand Eureka servers for your Tanzu Application Platform
-        (commonly known as TAP) clusters. With Service Registry, you can create Eureka servers in
-        your namespaces and bind Spring Boot workloads to them.</td>
+        <td>This Tanzu Application Platform component provides on-demand Eureka servers for your
+        Tanzu Application Platform (commonly known as TAP) clusters. With Service Registry, you can
+        create Eureka servers in your namespaces and bind Spring Boot workloads to them.</td>
     </tr>
     <tr>
         <td>Service resource</td>
