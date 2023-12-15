@@ -68,6 +68,11 @@ gcloud container clusters get-credentials ${your_cluster_name} --region ${your_r
 ```
 
 For how to connect to a cluster, see the documentation for your specific cloud provider.
+Examples:
+
+- [Azure Kubernetes Service documentation](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster)
+- [Amazon Elastic Kubernetes Service documentation](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html)
+- [Google Kubernetes Engine documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
 
 ## <a id="restart-the-ide"></a> Restart the IDE
 
