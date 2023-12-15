@@ -37,7 +37,7 @@ back-end and front-end components, both of which are available on npm JS:
 
 This topic tells you how to create two Tanzu Developer Portal plug-ins by wrapping the
 `@backstage/plugin-tech-insights` and `@backstage/plugin-tech-insights-backend` Backstage plug-ins. You can create a separate
-repository for each of these plug-ins, but it's easier and simplier to do the work for both in a single monorepo.
+repository for each of these plug-ins, but it's easier and simpler to do the work for both in a single monorepo.
 
 ## <a id="gen-bckstg-app"></a> Generate a Backstage app for the monorepo
 
@@ -134,7 +134,7 @@ This section describes how to generate a front-end plug-in.
    yarn backstage-cli new --select plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
    ```
 
-   > **Important** The `yarn install` step of will fail because of a Node version issue.
+   > **Important** The `yarn install` step of the previous command will fail because of a Node version issue.
    > This is handled in a later step.
 
    Here is a summary of what the `backstage-cli new` script does:
@@ -185,7 +185,7 @@ Update your dependencies for the specific Backstage plug-in you want to wrap:
    yarn install --ignore-engines
    ```
 
-### <a id="remove-code"></a> Remove unnecessary code for the front-end plug-in
+### <a id="remove-code-frntnd-plgn"></a> Remove unnecessary code for the front-end plug-in
 
 The `backstage-cli new` command created example code that you don't need. Remove this code and start
 with an empty `src` directory by running:
@@ -339,7 +339,7 @@ To add your dependencies for the specific Backstage plug-in you want to wrap:
    yarn install --ignore-engines
    ```
 
-### <a id="remove-code"></a> Remove unnecessary code for the back-end plug-in
+### <a id="remove-code-bcknd-plgn"></a> Remove unnecessary code for the back-end plug-in
 
 1. Remove the Backstage scaffolded example code by running:
 
@@ -347,7 +347,7 @@ To add your dependencies for the specific Backstage plug-in you want to wrap:
    rm -rf src/ && mkdir src
    ```
 
-### <a id="wrap-bs-frntnd-plgn"></a> Wrap the Backstage back-end plug-in
+### <a id="wrap-bs-bcknd-plgn"></a> Wrap the Backstage back-end plug-in
 
 1. Within the `src/` directory, create a file called `TechInsightsBackendPlugin.ts` by running:
 
