@@ -53,7 +53,7 @@ access token and its CA certificate.
 To fetch the AMR GraphQL CA certificate:
 
 ```console
-kubectl get secret amr-app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
+kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
 ```
 
 After the token and certificate are retrieved, you can use cURL to perform GraphQL queries by using the
