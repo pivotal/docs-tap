@@ -1,4 +1,4 @@
-SCST - Scan 2.0# Install Tanzu Application Platform package and profiles on AWS
+# Install Tanzu Application Platform package and profiles on AWS
 
 This topic tells you how to install Tanzu Application Platform (commonly known as TAP)
 packages from your Tanzu Application Platform package repository on to AWS.
