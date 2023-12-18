@@ -3,9 +3,9 @@
 This topic explains how you can use Dockerfile-based builds with Supply Chain Choreographer.
 
 For source-based supply chains, when you specify the `dockerfile`
-parameter in a workload, the builds switch from using Kpack to using Kaniko.
+parameter in a workload, the builds switch from using Kpack to using kaniko.
 Source-based supply chains are supply chains that don't take a pre-built image.
-Kaniko is an open-source tool for building container images from a Dockerfile
+kaniko is an open-source tool for building container images from a Dockerfile
 without running Docker inside a container.
 
 <table>
@@ -30,7 +30,7 @@ without running Docker inside a container.
   <tr>
     <td><code>docker_build_extra_args<code></td>
     <td>
-      list of flags to pass directly to Kaniko (such as providing arguments,
+      list of flags to pass directly to kaniko (such as providing arguments,
       and so on to a build)
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
@@ -39,7 +39,7 @@ without running Docker inside a container.
 
 ## Example 1
 
-If you want to build a container image from the
+To build a container image from the
 `github.com/foo/bar` repository where the Dockerfile resides in the root of
 that repository, you can switch from using Kpack to building from that
 Dockerfile by passing the `dockerfile` parameter:
@@ -92,7 +92,7 @@ $ tanzu apps workload create foo \
 
 ## OpenShift
 
-Kaniko can perform container image builds without
+kaniko can perform container image builds without
 a Docker daemon or privileged containers. It does
 require the use of:
 
@@ -103,7 +103,7 @@ require the use of:
 To overcome the limitations imposed by the default unprivileged
 SCC, Tanzu Application Platform installs:
 
-- `SecurityContextConstraints/ootb-templates-kaniko-restricted-v2-with-anyuid` with enough extra privileges for Kaniko to operate.
+- `SecurityContextConstraints/ootb-templates-kaniko-restricted-v2-with-anyuid` with enough extra privileges for kaniko to operate.
 - `ClusterRole/ootb-templates-kaniko-restricted-v2-with-anyuid` to permit the use of SCC to any actor binding to that cluster role.
 
 Each developer namespace needs a role binding that binds the role to an actor: `ServiceAccount`.
@@ -124,7 +124,7 @@ subjects:
 ```
 
 With the SCC created and the ServiceAccount bound to the role that permits the
-use of the SCC, OpenShift accepts the pods created to run Kaniko to build
+use of the SCC, OpenShift accepts the pods created to run kaniko to build
 the container images.
 
 For more information, see [Set up developer namespaces to use your installed packages](../install-online/set-up-namespaces.hbs.md).
@@ -133,14 +133,14 @@ For more information about SCC, see the [Openshift](https://docs.openshift.com/c
 
 ## Tanzu Kubernetes Grid and clusters with PSA enabled
 
-Tanzu Kubernetes Grid v1.26 and later clusters with the Pod Security admission feature enabled and set to `enforce` cannot run Kaniko without configuration changes. This is because the webhook requires containers to run as a non-root user and Kaniko needs to run as a root user. This Kaniko limitation relates to how image builds are run.
+Tanzu Kubernetes Grid v1.26 and later clusters with the Pod Security admission feature enabled and set to `enforce` cannot run kaniko without configuration changes. This is because the webhook requires containers to run as a non-root user and kaniko needs to run as a root user. This kaniko limitation relates to how image builds are run.
 
-To workaround this limitation, label the namespace that Kaniko runs as `privileged`. For example:
+To workaround this limitation, label the namespace that kaniko runs as `privileged`. For example:
 
 ```yaml
 pod-security.kubernetes.io/enforce: privileged
 ```
 
-For more information about this Kaniko limitation, see the [Kaniko](https://github.com/GoogleContainerTools/kaniko/issues/105) documentation.
+For more information about this kaniko limitation, see the [kaniko](https://github.com/GoogleContainerTools/kaniko/issues/105) documentation.
 
-For more information about Pod Security admission feature, see the [Kubernetes](https://kubernetes.io/docs/concepts/security/pod-security-admission/) documentation.
+For more information about the Pod Security admission feature, see the [Kubernetes](https://kubernetes.io/docs/concepts/security/pod-security-admission/) documentation.
