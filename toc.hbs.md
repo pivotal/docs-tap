@@ -509,7 +509,7 @@
           - [Integrate Testing on Jenkins with OOTB Supply Chain](scc/ootb-supply-chain-testing-with-jenkins.hbs.md)
           - [Building container images](scc/build-container-img.hbs.md)
             - [Building from source](scc/building-from-source.hbs.md)
-            - [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md)
+            - [Use Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md)
             - [Tanzu Build Service integration](scc/tbs.hbs.md)
             - [Configure and deploy to multiple environments with custom parameters](scc/config-deploy-multi-env.hbs.md)
               -  [Carvel Package Supply Chains (beta)](scc/carvel-package-supply-chain.hbs.md)
