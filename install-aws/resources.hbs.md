@@ -121,7 +121,7 @@ additional system-related repositories:
 To create these repositories, run:
 
 ```console
-aws ecr create-repository --repository-name full-deps-package --region $AWS_REGION
+aws ecr create-repository --repository-name full-deps --region $AWS_REGION
 aws ecr create-repository --repository-name tap-lsp --region $AWS_REGION
 aws ecr create-repository --repository-name tanzu-cluster-essentials --region $AWS_REGION
 ```
@@ -182,11 +182,11 @@ Create the following IAM Roles:
 
 - Tanzu Build Service: Gives write access to the repository to allow the service
   to automatically upload new images. Also provides elevated batch read access
-  to the `tap-images` and `full-deps-package` repositories. This is limited in scope
+  to the `tap-images` and `full-deps` repositories. This is limited in scope
   to the service account for `kpack` and the dependency updater.
 
 - Workload: Gives write access to the entire ECR registry with a prepended path.
-  Also provides elevated batch read access to the `full-deps-package` repository if
+  Also provides elevated batch read access to the `full-deps` repository if
   you use Tanzu Build Service full dependencies. This prevents you from updating
   the policy for each new workload created.
 
@@ -298,7 +298,7 @@ cat << EOF > build-service-policy.json
                 "ecr:SetRepositoryPolicy"
             ],
             "Resource": [
-                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/full-deps-package",
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/full-deps",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-build-service",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tap-images"
             ],
@@ -366,7 +366,7 @@ cat << EOF > workload-policy.json
                 "ecr:SetRepositoryPolicy"
             ],
             "Resource": [
-                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/full-deps-package",
+                "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/full-deps",
                 "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT_ID}:repository/tanzu-application-platform/*"
             ],
             "Effect": "Allow",

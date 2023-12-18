@@ -407,7 +407,7 @@ you must install the `full` dependencies package.
 1. Create an ECR repository for Tanzu Build Service full dependencies by running:
 
     ```console
-    aws ecr create-repository --repository-name full-deps-package --region ${AWS_REGION}
+    aws ecr create-repository --repository-name full-deps --region ${AWS_REGION}
     ```
 
 1. (Optional) If you have an existing installation of the full dependencies package from a version
@@ -452,8 +452,8 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps-package
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/full-deps
     ```
 
     Where `VERSION` is the version of the `tap` package you retrieved in the previous step.
@@ -461,8 +461,8 @@ earlier than Tanzu Application Platform v{{ vars.tap_version }}, you must uninst
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
-    tanzu package repository add full-deps-package \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps-package:VERSION \
+    tanzu package repository add full-deps \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/full-deps:VERSION \
       --namespace tap-install
     ```
 
