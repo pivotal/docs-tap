@@ -11,27 +11,26 @@ without running Docker inside a container.
 <table>
   <tr>
     <th>Parameter name</th>
-    <th>Meaning</th>
+    <th>Description</th>
     <th>Example</th>
   </tr>
 
   <tr>
     <td><code>dockerfile<code></td>
-    <td>relative path to the Dockerfile file in the build context</td>
+    <td>The relative path to the Dockerfile file in the build context.</td>
     <td><pre>./Dockerfile</pre></td>
   </tr>
 
   <tr>
     <td><code>docker_build_context<code></td>
-    <td>relative path to the directory where the build context is</td>
+    <td>The relative path to the directory where the build context is.</td>
     <td><pre>.</pre></td>
   </tr>
 
   <tr>
     <td><code>docker_build_extra_args<code></td>
     <td>
-      list of flags to pass directly to kaniko (such as providing arguments,
-      and so on to a build)
+      The list of flags to pass directly to kaniko, such as providing arguments to a build.
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
   </tr>
