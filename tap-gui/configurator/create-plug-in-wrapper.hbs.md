@@ -80,7 +80,7 @@ not develop a traditional Backstage app, and you will remove some portions of ge
 
 ### <a id="manage-deps"></a> Remove some dependencies
 
-To remove unnecessary dependencies:
+To remove unnecessary dependencies you must:
 
 1. Remove the packages directory by running:
 
