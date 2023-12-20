@@ -22,7 +22,7 @@ By default, the Contour package progams Envoy's listeners to use IPv6 addresses.
 
 To switch to using IPv4 addresses on the listeners, you just need to update the Tanzu Application Platform values file (commonly called `tap-values.yaml`).
 
-The following is an example snippet of the Contour section of the values file:
+The following is an example of the Contour section of the values file:
 
 ```yaml
 contour:
