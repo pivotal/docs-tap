@@ -14,7 +14,7 @@ The Contour package fails to reconcile, and the Envoy pods fail with errors like
 
 ### Explanation
 
-By default, the Contour package progams Envoy's listeners to use IPv6 addresses. In most cases, this is okay. However, some clusters (such as TKGI) only support IPv4. 
+By default, the Contour package programs Envoy's listeners to use IPv6 addresses. In most cases, this is okay. However, some clusters (such as TKGI) only support IPv4.
 
 ### Solution
 
