@@ -40,7 +40,7 @@ tekton_pipelines:
     disable_affinity_assistant: "true"
 ```
 
-Having affinity assistance `enabled` specifically on clusters with restricted pod context like TKGs 1.26+ where Pod Scurity Admission Pod Security Standards is set to be restricted by default, can cause a deadlock where affinity pod cannot be scheduled and will prevent scanning go ahead.
+Having the Affinity Assistant feature `enabled` on clusters where the Kubernetes Pod Security Admission is enforcing Pod Security Standards to be restricted by default (like TKGs 1.26+), can cause a deadlock where the affinity pod cannot be scheduled and it will prevent scanning go ahead.
 
 ## <a id="install-scst-app-scanning"></a> Install
 
