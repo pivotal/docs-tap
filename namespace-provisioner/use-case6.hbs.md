@@ -58,7 +58,8 @@ by the reference to this overlay in the annotation `ext.packaging.carvel.dev/ytt
         #@ def matchGrypeScanners(index, left, right):
           #@ if left["apiVersion"] != "packaging.carvel.dev/v1alpha1" or left["kind"] != "PackageInstall":
             #@ return False
-          #@ end      #@ return left["metadata"]["name"].startswith("grype-scanner")
+          #@ end
+          #@ return left["metadata"]["name"].startswith("grype-scanner")
         #@ end
         #@overlay/match by=matchGrypeScanners, expects="0+"
         ---
