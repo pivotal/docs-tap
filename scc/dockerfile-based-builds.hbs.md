@@ -47,6 +47,7 @@ Dockerfile by passing the `dockerfile` parameter:
 $ tanzu apps workload create foo \
   --git-repo https://github.com/foo/bar \
   --git-branch dev \
+  --label app.kubernetes.io/part-of=foo \
   --param dockerfile=./Dockerfile \
   --type web
 
