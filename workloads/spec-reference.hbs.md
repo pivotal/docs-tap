@@ -13,19 +13,19 @@ resources might not be applicable depending on the supply chain in use.
 
 ### List of Supply Chain Resources for Workload Object
 
-| Supply Chain Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
-|---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
-| [source-provider](#source-provider)   | Source                          | Fetches source code                                                                               | Yes   | Yes     | Yes |
-| [source-tester](#source-tester)       | Source                          | Tests source code                                                                                 | No | Yes     | Yes |
-| [source-scanner](#source-scanner)     | Source                          | Scans source code                                                                                 | No | No      | Yes |
-| [image-provider](#image-provider)      | Image                           | Builds application container image                                                                        | Yes | Yes     | Yes |
-| [image-scanner](#image-scanner)       | Image | Scans application container image                                                                         | No | No | Yes     |
-| [config-provider](#config-provider)   | Podtemplate spec                | Tailors a pod spec based on the application image and conventions set up in the cluster                   | Yes | Yes     | Yes |
-| [app-config](#app-config)             | Kubernetes configuration        | Creates Kubernetes config files (knative service/deployment - depending on workload type)       | Yes | Yes     | Yes |
-| [service-bindings](#service-bindings) | Kubernetes configuration        | Adds service bindings to the set of config files                                                  | Yes | Yes     | Yes |
-| [api-descriptors](#api-descriptors)   | Kubernetes configuration        | Adds api descriptors to the set of config files                                                   | Yes | Yes     | Yes |
-| [config-writer](#config-writer)       | Kubernetes configuration        | Writes configuration to a destination (git or registry) for further deployment to a run cluster | Yes | Yes     | Yes |
-| [deliverable](#deliverable)           | Kubernetes configuration        | Writes deliverable content to be extracted for use in a run cluster | Yes | Yes | Yes |
+| Supply Chain Resource                 | Output Type              | Purpose                                                                                         | Basic | Testing | Scanning |
+|---------------------------------------|--------------------------|-------------------------------------------------------------------------------------------------|-------|---------|----------|
+| [source-provider](#source-provider)   | Source                   | Fetches source code                                                                             | Yes   | Yes     | Yes      |
+| [source-tester](#source-tester)       | Source                   | Tests source code                                                                               | No    | Yes     | Yes      |
+| [source-scanner](#source-scanner)     | Source                   | Scans source code                                                                               | No    | No      | Yes      |
+| [image-provider](#image-provider)     | Image                    | Builds application container image                                                              | Yes   | Yes     | Yes      |
+| [image-scanner](#image-scanner)       | Image                    | Scans application container image                                                               | No    | No      | Yes      |
+| [config-provider](#config-provider)   | Podtemplate spec         | Tailors a pod spec based on the application image and conventions set up in the cluster         | Yes   | Yes     | Yes      |
+| [app-config](#app-config)             | Kubernetes configuration | Creates Kubernetes config files (knative service/deployment - depending on workload type)       | Yes   | Yes     | Yes      |
+| [service-bindings](#service-bindings) | Kubernetes configuration | Adds service bindings to the set of config files                                                | Yes   | Yes     | Yes      |
+| [api-descriptors](#api-descriptors)   | Kubernetes configuration | Adds api descriptors to the set of config files                                                 | Yes   | Yes     | Yes      |
+| [config-writer](#config-writer)       | Kubernetes configuration | Writes configuration to a destination (git or registry) for further deployment to a run cluster | Yes   | Yes     | Yes      |
+| [deliverable](#deliverable)           | Kubernetes configuration | Writes deliverable content to be extracted for use in a run cluster                             | Yes   | Yes     | Yes      |
 
 For information about supply chains, see:
 
@@ -47,12 +47,14 @@ available in the cluster.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>gitImplementation</code></td>
     <td>
@@ -67,7 +69,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
@@ -82,6 +83,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 It might not be necessary to change the default Git  implementation, but some providers such as
@@ -110,12 +112,14 @@ from local source code](../cli-plugins/apps/create-workload.hbs.md#workload-loca
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter Name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -130,7 +134,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </tbody>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
@@ -150,12 +154,14 @@ is solely driven by parameters in the workload.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter Name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>maven</code></td>
     <td>
@@ -174,6 +180,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 For information about the
@@ -201,12 +208,14 @@ execution of the PipelineRuns through `testing_pipeline_params`.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>testing_pipeline_matching_labels</code></td>
     <td>
@@ -224,7 +233,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>testing_pipeline_params</code></td>
     <td>
@@ -242,7 +250,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </tbody>
 </table>
 
 For information about how to set up the
@@ -266,12 +274,14 @@ You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>scanning_source_template</code></td>
     <td>
@@ -285,7 +295,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>scanning_source_policy</code></td>
     <td>
@@ -299,6 +308,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 For more information, see [Out of the Box Supply Chain with Testing and
@@ -340,12 +350,14 @@ For more information, see [Tanzu Build Service](../tanzu-build-service/tbs-about
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -360,7 +372,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>clusterBuilder</code></td>
     <td>
@@ -374,7 +385,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>buildServiceBindings</code></td>
     <td>
@@ -392,7 +402,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>live-update</code></td>
     <td>
@@ -405,7 +414,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </tbody>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in  the workload object.
@@ -431,24 +440,24 @@ instantiates Tekton TaskRun objects to call the execution of [kaniko](https://gi
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>dockerfile</code></td>
     <td>The relative path to the Dockerfile file in the build context.</td>
     <td><pre>./Dockerfile</pre></td>
   </tr>
-
   <tr>
     <td><code>docker_build_context</code></td>
     <td>The relative path to the directory where the build context is.</td>
     <td><pre>.</pre></td>
   </tr>
-
   <tr>
     <td><code>docker_build_extra_args</code></td>
     <td>
@@ -456,6 +465,7 @@ Parameters:
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
   </tr>
+  </tbody>
 </table>
 
 For information about how to use Dockerfile-based builds and limitations associated with the function,
@@ -473,12 +483,14 @@ supply chain.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -493,6 +505,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
@@ -515,12 +528,14 @@ object create for doing so.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>scanning_image_template</code></td>
     <td>
@@ -534,7 +549,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>scanning_image_policy</code></td>
     <td>
@@ -548,6 +562,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 For information about the ImageScan custom resource, see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
@@ -571,12 +586,14 @@ final deployment configuration.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -593,7 +610,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>annotations</code></td>
     <td>
@@ -609,7 +625,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>debug</code></td>
     <td>
@@ -622,7 +637,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>live-update</code></td>
     <td>
@@ -635,6 +649,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
@@ -664,12 +679,14 @@ apply based on the labels set in the workload object created by the developer:
 Only the `server` workload type has the following configurable parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>ports</code></td>
     <td>
@@ -686,6 +703,7 @@ Only the `server` workload type has the following configurable parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 For more information about the three different types of workloads, see [workload types](../workloads/workload-types.hbs.md).
@@ -701,12 +719,14 @@ configuration files to promote for deployment.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>annotations</code></td>
     <td>
@@ -723,6 +743,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 For an example, see
@@ -741,12 +762,14 @@ Kubernetes objects to deploy. This enables API auto registration.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>annotations</code></td>
     <td>
@@ -762,7 +785,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>api_descriptor</code></td>
     <td>
@@ -783,6 +805,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 The workload must include the `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
@@ -814,12 +837,14 @@ that are produced by the supply chain.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -835,6 +860,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </tbody>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
@@ -854,10 +880,10 @@ ClusterDelivery resources section. These are part of the `ootb-delivery-basic` p
 
 ### List of Cluster Delivery Resources for Deliverable Object
 
-| Cluster Delivery Resource                 | Output Type                     | Purpose                                                                                           |
-|---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|
-| [source provider](#source-provider-del)           | Source       | Fetches the Kubernetes configuration file from Git repository or image registry |
-| [app deployer](#app-deployer)           | Source       | Applies configuration produced by a supply chain to the cluster |
+| Cluster Delivery Resource               | Output Type | Purpose                                                                         |
+|-----------------------------------------|-------------|---------------------------------------------------------------------------------|
+| [source provider](#source-provider-del) | Source      | Fetches the Kubernetes configuration file from Git repository or image registry |
+| [app deployer](#app-deployer)           | Source      | Applies configuration produced by a supply chain to the cluster                 |
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 and the templates used by it, see:
@@ -892,12 +918,14 @@ resources in the ClusterDelivery.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>gitImplementation</code></td>
     <td>
@@ -912,7 +940,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
@@ -926,8 +953,8 @@ Parameters:
         value: git-credentials
       </pre>
     </td>
-
   </tr>
+  </tbody>
 </table>
 
 It might not be necessary to change the default Git implementation but some providers, such as
@@ -952,12 +979,14 @@ to a Git repository.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -972,7 +1001,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </tbody>
 </table>
 
 The `--service-account` flag sets the `spec.serviceAccountName` key in the deliverable object.
@@ -996,12 +1025,14 @@ instantiated to deploy the set of Kubernetes configuration files to the cluster.
 Parameters:
 
 <table>
+  <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-
+  </thead>
+  <tbody>
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
@@ -1016,7 +1047,6 @@ Parameters:
       </pre>
     </td>
   </tr>
-
   <tr>
     <td><code>gitops_sub_path<code> (deprecated)</td>
     <td>
@@ -1030,7 +1060,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </tbody>
 </table>
 
 The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
