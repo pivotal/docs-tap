@@ -12,6 +12,7 @@ clusters with internet access:
 |5.| (Optional) Install any additional packages that were not in the profile. |[Install individual packages](components.hbs.md)|
 |6.| Set up developer namespaces to use your installed packages. |[Set up developer namespaces to use your installed packages](set-up-namespaces.hbs.md)|
 |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for your VS Code](vscode-install.hbs.md)|
+|8.| (Optional) Access an experimental hosted developer sandbox environment. |[Access an experimental developer sandbox environment](sandbox.hbs.md)|
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 

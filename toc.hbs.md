@@ -66,6 +66,7 @@
   - [Upgrade by GitOps (beta)](install-gitops/upgrading.hbs.md)
   - [Opt out of telemetry collection](opting-out-telemetry.hbs.md)
       - [Opt in or opt out of Pendo telemetry](tap-portal-telemetry.hbs.md)
+  - [Access an experimental developer sandbox environment](install-online/sandbox.hbs.md)
 - [Scale workloads](scalability.hbs.md)
 - [Security and compliance](security-and-compliance/about.hbs.md)
   - [Secure exposed ingress endpoints in Tanzu Application Platform](security-and-compliance/issuer.hbs.md)
