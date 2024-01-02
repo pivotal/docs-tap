@@ -4,6 +4,8 @@ Welcome to Tanzu Application Platform (commonly known as TAP).
 The guides in this section provide hands-on instructions for developers and operators to help you
 get started on Tanzu Application Platform.
 
+VMware also provides an experimental developer sandbox environment. For more information, see [Access an experimental developer sandbox environment](install-online/sandbox.hbs.md).
+
 ## <a id="get-started-prereqs"></a>Prerequisites
 
 Before you start, verify you have successfully:
