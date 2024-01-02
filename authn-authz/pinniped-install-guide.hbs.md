@@ -137,8 +137,8 @@ spec:
     fqdn: "DNS-NAME"
     tls:
       passthrough: true
-  routes:
-  - services:
+  tcpproxy:
+    services:
     - name: pinniped-supervisor
       port: 8443
 ```
@@ -369,8 +369,8 @@ spec:
     fqdn: "DNS-NAME"
     tls:
       passthrough: true
-  routes:
-  - services:
+  tcpproxy:
+    services:
     - name: pinniped-supervisor
       port: 8443
 ```
