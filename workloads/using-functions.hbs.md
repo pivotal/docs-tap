@@ -1,12 +1,12 @@
 # Use functions (Beta)
 
-This topic tells you how to create and deploy a HTTP or CloudEvent function from an
-Application Accelerator starter template in an online or air-gapped environment on Tanzu Application Platform (commonly known as TAP).
+This topic tells you how to create and deploy a HTTP or CloudEvent function from an Application
+Accelerator starter template in an online or air-gapped environment on Tanzu Application Platform
+(commonly known as TAP).
 
-> **Important** Function Buildpacks for Knative and the corresponding
-> Application Accelerator starter templates for Python and Java are
-> deprecated and will be removed in Tanzu Application Platform v1.7. This beta product will not
-> receive any future updates or patches.
+> **Important** Function Buildpacks for Knative and the corresponding Application Accelerator
+> starter templates for Python and Java are deprecated and will be removed in
+> Tanzu Application Platform v1.7. This beta product will not receive any future updates or patches.
 
 ## <a id="overview"></a> Overview
 
@@ -14,8 +14,8 @@ The function experience on Tanzu Application Platform enables you to deploy func
 starter templates to bootstrap your function, and write only the code that matters to your business.
 You can run a single CLI command to deploy your functions to an auto-scaled cluster.
 
-Functions provide a quick way to get started writing an application.
-Compared with a traditional application:
+Functions provide a quick way to get started writing an application. Compared with a traditional
+application:
 
 - Functions have a single entry-point and perform a single task. This means that functions can be
   easier to understand and monitor.
@@ -26,12 +26,13 @@ Compared with a traditional application:
 - A traditional webserver application might be a better fit if you want to implement an entire
   website or API in a single container
 
-> **Important** Beta features have been tested for functionality, but not performance.
-> Features enter the beta stage so that customers can gain early access, and give
-> feedback on the design and behavior.
+> **Important** Beta features have been tested for functionality, but not performance. Features
+> enter the beta stage so that customers can gain early access, and give feedback on the design and
+> behavior.
+>
 > Beta features might undergo changes based on this feedback before the end of the beta stage.
-> VMware discourages running beta features in production.
-> VMware cannot guarantee that you can upgrade any beta feature in the future.
+> VMware discourages running beta features in production. VMware cannot guarantee that you can
+> upgrade any beta feature in the future.
 
 ### <a id="supportedlangs"></a> Supported languages and frameworks
 
@@ -191,7 +192,7 @@ To deploy and verify your function:
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
 1. (Optional) You can test your function using a curl command. To do so, you must have curl
-installed on your computer. Java function POST example:
+   installed on your computer. Java function POST example:
 
    ```console
    curl -w'\n' URL-FROM-YOUR-WORKLOAD-KNATIVE-SERVICES-SECTION \
