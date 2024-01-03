@@ -8,7 +8,7 @@ This topic tells you how to use the `web` workload type in Tanzu Application Pla
 The `web` workload type allows you to deploy web applications on Tanzu Application Platform.
 Using an application workload specification, you can turn source code into a scalable, stateless
 application that runs in a container with an automatically-assigned URL.
-This type of application is often called "serverless", and is deployed using Knative.
+This type of application is often called serverless, and is deployed using Knative.
 
 The `web` workload type is suitable for modern stateless web applications that follow
 [the twelve-factor app](https://12factor.net) methodology and have the following characteristics:
@@ -26,7 +26,7 @@ Applications using the `web` workload type have the following features:
 - Blue-green application rollouts
 
 When creating a workload with the `tanzu apps workload create` command, you can use the `--type=web`
-argument to select the `web` workload type. For more information, see the
+argument to select the `web` workload type. For more information, see
 [Use the web Workload Type](#using) later in this topic.
 
 You can also use the `apps.tanzu.vmware.com/workload-type:web` label in the YAML workload description
