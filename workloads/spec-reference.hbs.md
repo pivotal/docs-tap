@@ -150,9 +150,6 @@ For information about custom resource details, see the
 reference topic.
 
 For information about how to use ImageRepository with the Tanzu CLI, see
-[Create a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-local).
-
-For information about how to use ImageRepository with the Tanzu CLI, see
 [Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plugins).
 
 #### MavenArtifact
