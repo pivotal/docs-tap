@@ -1,15 +1,19 @@
 # Parameter reference
 
-This topic tells you about the default supply chains and templates provided by Tanzu Application Platform (commonly known as TAP). It describes the `workload.spec.params` parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that are configured
-in the deliverable object.
+This topic tells you about the default supply chains and templates provided by
+Tanzu Application Platform (commonly known as TAP). This topic describes the `workload.spec.params`
+parameters that are configured in workload objects, and the `deliverable.spec.params` parameters that
+are configured in the deliverable object.
 
 ## <a id="workload-parameter"></a> Workload Parameter Reference
 
 The supply chains and templates provided by the Out of the Box packages contain a series of
 parameters that customize supply chain behavior. This section describes the `workload.spec.params`
-parameters that can be configured in workload objects. The following table provides a list of supply
-chain resources organized by the resource in the supply chain where they are used. Some of these
-resources might not be applicable depending on the supply chain in use.
+parameters that can be configured in workload objects.
+
+The following table provides a list of supply chain resources organized by the resource in the
+supply chain where they are used. Some of these resources might not be applicable depending on the
+supply chain in use.
 
 ### List of Supply Chain Resources for Workload Object
 
@@ -32,7 +36,8 @@ For information about supply chains, see:
 - [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
 - [Out of the Box Supply Chain Testing](../scc/ootb-supply-chain-testing.hbs.md)
 - [Out of the Box Supply Chain Testing Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
-### <a id="source-provider"></a>source-provider
+
+### <a id="source-provider"></a> source-provider
 
 The `source-provider` resource in the supply chain creates objects that fetch either source code or
 pre-compiled Java applications depending on how the workload is configured.
@@ -91,7 +96,8 @@ Azure DevOps, require you to use `libgit2` as the server-side implementation pro
  only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 
 For information about the features supported by each implementation, see
-[Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux documentation.
+[Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
+in the Flux documentation.
 
 For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
@@ -102,12 +108,11 @@ For more information about GitRepository objects, see
 
 #### ImageRepository
 
-Use the ImageRepository when fetching source code from container images. It
-makes the contents of the container image available as a tarball to further
-resources in the supply chain. The contents of the container image
-are fetched by using Git or Maven.
-For more information, see [Create a workload
-from local source code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
+Use the ImageRepository when fetching source code from container images. It makes the contents of
+the container image available as a tarball to further resources in the supply chain. The contents of
+the container image are fetched by using Git or Maven.
+
+For more information, see [Create a workload from local source code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
 Parameters:
 
@@ -137,19 +142,25 @@ Parameters:
   </tbody>
 </table>
 
-The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
-configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
+The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
+To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
-For information about custom resource details, see [ImageRepository](../source-controller/reference.hbs.md#imagerepository) reference topic.
+For information about custom resource details, see the
+[ImageRepository](../source-controller/reference.hbs.md#imagerepository)
+reference topic.
 
-For information about how to use ImageRepository with the Tanzu
-CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plugins).
+For information about how to use ImageRepository with the Tanzu CLI, see
+[Create a workload](../cli-plugins/apps/tutorials/create-update-workload.hbs.md#create-workload-local).
+
+For information about how to use ImageRepository with the Tanzu CLI, see
+[Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plugins).
+
 #### MavenArtifact
 
-When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to
-further resources in the supply chain as a tarball. You can wrap the tarball as
-a container image for further deployment. Differently from `git` and `image`, its configuration
-is solely driven by parameters in the workload.
+When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to further
+resources in the supply chain as a tarball. You can wrap the tarball as a container image for
+further deployment. Differently from `git` and `image`, its configuration is solely driven by
+parameters in the workload.
 
 Parameters:
 
@@ -183,27 +194,24 @@ Parameters:
   </tbody>
 </table>
 
-For information about the
-custom resource, see [MavenArtifact reference
-docs](../source-controller/reference.hbs.md#mavenartifact).
+For information about the custom resource, see the
+[MavenArtifact reference documentation](../source-controller/reference.hbs.md#mavenartifact).
 
 For information about how to use the custom resource with the `tanzu apps workload` CLI
-plug-in, see [Create a workload from Maven repository
-artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
+plug-in, see [Create a workload from Maven repository artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
 
 ### <a id="source-tester"></a>source-tester
 
 The `source-tester` resource is in `ootb-supply-chain-testing` and
-`ootb-supply-chain-testing-scanning`. This resource is responsible for instantiating a
-Tekton [PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) object that
-calls the execution of a Tekton Pipeline, in the same namespace as the
-workload, whenever its inputs change. For example, the source code revision that you want to test changes.
+`ootb-supply-chain-testing-scanning`. This resource is responsible for instantiating a Tekton
+[PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) object that calls the execution of a
+Tekton Pipeline, in the same namespace as the workload, whenever its inputs change.
+For example, the source code revision that you want to test changes.
 
-A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
-object is instantiated to ensure that there's always a run for a particular set
-of inputs. The parameters are passed from the workload down to Runnable's
-Pipeline selection mechanism through `testing_pipeline_matching_labels` and the
-execution of the PipelineRuns through `testing_pipeline_params`.
+A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/) object is instantiated to
+ensure that there's always a run for a particular set of inputs. The parameters are passed from the
+workload down to Runnable's Pipeline selection mechanism through `testing_pipeline_matching_labels`
+and the execution of the PipelineRuns through `testing_pipeline_params`.
 
 Parameters:
 
@@ -253,21 +261,17 @@ Parameters:
   </tbody>
 </table>
 
-For information about how to set up the
-Workload namespace for testing with Tekton, see [Out of the Box Supply Chain with
-Testing](../scc/ootb-supply-chain-testing.hbs.md).
+For information about how to set up the Workload namespace for testing with Tekton, see
+[Out of the Box Supply Chain with Testing](../scc/ootb-supply-chain-testing.hbs.md).
 
-For information about how to use the parameters to customize this resource to
-test using a Jenkins cluster, see [Out of the Box Supply Chain
-with Testing on Jenkins](../scc/ootb-supply-chain-testing-with-jenkins.hbs.md).
+For information about how to use the parameters to customize this resource to test using a Jenkins
+cluster, see [Out of the Box Supply Chain with Testing on Jenkins](../scc/ootb-supply-chain-testing-with-jenkins.hbs.md).
 
 ### <a id="source-scanner"></a>source-scanner
 
-The `source-scanner` resource is available in
-`ootb-supply-chain-testing-scanning`. It scans the source code
-that is tested by pointing a
-[SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
-code as the tests.
+The `source-scanner` resource is available in `ootb-supply-chain-testing-scanning`. It scans the
+source code that is tested by pointing a [SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan)
+object at the same source code as the tests.
 
 You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.md) with parameters.
 
@@ -311,24 +315,23 @@ Parameters:
   </tbody>
 </table>
 
-For more information, see [Out of the Box Supply Chain with Testing and
-Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) for details about how to
-set up the workload namespace with the ScanPolicy and ScanTemplate required for
-this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
-for details about the SourceScan custom resource.
+For more information, see
+[Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
+for details about how to set up the workload namespace with the ScanPolicy and ScanTemplate required
+for this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan) for details
+about the SourceScan custom resource.
 
-For information about how the artifacts found
-during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
-Store](../scst-store/overview.hbs.md).
+For information about how the artifacts found during scanning are catalogued, see
+[Supply Chain Security Tools for Tanzu – Store](../scst-store/overview.hbs.md).
 
-### <a id="image-provider"></a>image-provider
+### <a id="image-provider"></a> image-provider
 
-The `image-provider` in the supply chains provides a
-container image carrying the application already built to further resources.
+The `image-provider` in the supply chains provides a container image carrying the application
+already built to further resources.
 
-Different semantics apply, depending on how the workload is configured, for example, if using [pre-built
-images](../scc/pre-built-image.hbs.md) or [building from
-source](../scc/building-from-source.hbs.md):
+Different semantics apply, depending on how the workload is configured, for example, if using
+[pre-built images](../scc/pre-built-image.hbs.md) or
+[building from source](../scc/building-from-source.hbs.md):
 
 - pre-built: an `ImageRepository` object is created aiming at providing a
   reference to the latest image found matching the name as specified in
@@ -340,12 +343,11 @@ source](../scc/building-from-source.hbs.md):
 
 #### Kpack Image
 
-Use the Kpack Image object to build a
-container image out of source code or pre-built Java artifact. This makes the
-container image available to further resources in the supply chain through a
-content addressable image reference that's carried to the final
-deployment objects unchanged.
-For more information, see [Tanzu Build Service](../tanzu-build-service/tbs-about.hbs.md).
+Use the Kpack Image object to build a container image out of source code or pre-built Java artifact.
+
+This makes the container image available to further resources in the supply chain through a content
+addressable image reference that's carried to the final deployment objects unchanged. For more
+information, see [Tanzu Build Service](../tanzu-build-service/tbs-about.hbs.md).
 
 Parameters:
 
@@ -420,8 +422,8 @@ Parameters:
 The `--service-account` flag sets the `spec.serviceAccountName` key in  the workload object.
 To configure the `serviceAccount` parameter, use  `--param serviceAccount=SERVICE-ACCOUNT`.
 
-For information about
-the integration with Tanzu Build Service, see [Tanzu Build Service Integration](../scc/tbs.hbs.md).
+For information about the integration with Tanzu Build Service, see
+[Tanzu Build Service Integration](../scc/tbs.hbs.md).
 
 For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md)
 and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
@@ -429,13 +431,14 @@ and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about
 For information about using Kpack builders with `clusterBuilder`,
 see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
 
-For information about `buildServiceBindings`, see [Service
-Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
+For information about `buildServiceBindings`, see
+[Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
 
 #### Runnable (TaskRuns for Dockerfile-based builds)
 
 To perform Dockerfile-based builds, all the supply chains instantiate a Runnable object that
-instantiates Tekton TaskRun objects to call the execution of [kaniko](https://github.com/GoogleContainerTools/kaniko)  builds.
+instantiates Tekton TaskRun objects to call the execution of
+[kaniko](https://github.com/GoogleContainerTools/kaniko) builds.
 
 Parameters:
 
@@ -473,12 +476,12 @@ see [Dockerfile-based builds](../scc/dockerfile-based-builds.hbs.md).
 
 #### Pre-built image (ImageRepository)
 
-For applications that already have their container images built outside
-the supply chains, such as providing an image reference under
-`workload.spec.image`, an `ImageRepository` object is created to keep track of
-any images pushed under that name. This makes the content-addressable name, such as
-the image name containing the digest, available for further resources in the
-supply chain.
+For applications that already have their container images built outside the supply chains, such as
+providing an image reference under `workload.spec.image`, an `ImageRepository` object is created to
+keep track of any images pushed under that name.
+
+This makes the content-addressable name, such as the image name containing the digest, available for
+further resources in the supply chain.
 
 Parameters:
 
@@ -508,22 +511,21 @@ Parameters:
   </tbody>
 </table>
 
-The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
-configure the `serviceAccount` parameter, use  `--param serviceAccount=...`.
+The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
+To configure the `serviceAccount` parameter, use `--param serviceAccount=...`.
 
-For information about the
-ImageRepository resource, see [ImageRepository reference
-docs](../source-controller/reference.hbs.md#imagerepository).
-For information about the prebuild image function, see [Using a prebuilt
-image](../scc/pre-built-image.hbs.md).
+For information about the ImageRepository resource, see the
+[ImageRepository reference documentation](../source-controller/reference.hbs.md#imagerepository).
+For information about the prebuild image function, see
+[Using a prebuilt image](../scc/pre-built-image.hbs.md).
 
-### <a id="image-scanner"></a>image-scanner
+### <a id="image-scanner"></a> image-scanner
 
 The `image-scanner` resource is included only in `ootb-supply-chain-testing-scanning`.
+
 This resource scans a container image (either built by using the supply chain or prebuilt),
-persisting the results in the store, and gating the image from moving forward in
-case the CVEs found are not compliant with the ScanPolicy referenced by the ImageScan
-object create for doing so.
+persisting the results in the store, and gating the image from moving forward in case the CVEs found
+are not compliant with the ScanPolicy referenced by the ImageScan object create for doing so.
 
 Parameters:
 
@@ -565,18 +567,19 @@ Parameters:
   </tbody>
 </table>
 
-For information about the ImageScan custom resource, see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
+For information about the ImageScan custom resource, see
+[ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
 
-For information about how the artifacts found
-during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
-Store](../scst-store/overview.hbs.md).
+For information about how the artifacts found during scanning are catalogued, see
+[Supply Chain Security Tools for Tanzu – Store](../scst-store/overview.hbs.md).
 
 ### <a id ="config-provider"></a>config-provider
 
-The `config-provider` resource in the supply chains generates a PodTemplateSpec
-to use in application configs, such as Knative services and deployments,
-to represent the desired pod configuration to instantiate to run the application in containers.
-For more information, see [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
+The `config-provider` resource in the supply chains generates a PodTemplateSpec to use in
+application configs, such as Knative services and deployments, to represent the desired pod
+configuration to instantiate to run the application in containers. For more information, see
+[PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)
+in the Kubernetes documentation.
 
 The `config-provider` resource manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
 object that represents the intention of having PodTemplateSpec enhanced with conventions installed
@@ -655,22 +658,21 @@ Parameters:
 The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
-For more information about the controller behind `PodIntent`, see [Cartographer Conventions](../cartographer-conventions/about.hbs.md).
+For more information about the controller behind `PodIntent`, see
+[Cartographer Conventions](../cartographer-conventions/about.hbs.md).
 
-For more details about the two
-convention servers enabled by default in Tanzu Application Platform installations, see [Developer
-Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
-conventions](../spring-boot-conventions/about.hbs.md).
+For more details about the two convention servers enabled by default in Tanzu Application Platform
+installations, see [Developer Conventions](../developer-conventions/about.hbs.md) and
+[Spring Boot conventions](../spring-boot-conventions/about.hbs.md).
 
 ### <a id ="app-config"></a>app-config
 
-The `app-config` resource prepares a ConfigMap with the
-Kubernetes configuration that is used for instantiating an application in
-the form of a particular workload type in a cluster.
+The `app-config` resource prepares a ConfigMap with the Kubernetes configuration that is used for
+instantiating an application in the form of a particular workload type in a cluster.
 
-The resource is configured in the supply chain to allow, by
-default, three types of workloads with the selection of which workload type to
-apply based on the labels set in the workload object created by the developer:
+The resource is configured in the supply chain to allow, by default, three types of workloads with
+the selection of which workload type to apply based on the labels set in the workload object created
+by the developer:
 
 - `apps.tanzu.vmware.com/workload-type: web`
 - `apps.tanzu.vmware.com/workload-type: worker`
@@ -706,15 +708,15 @@ Only the `server` workload type has the following configurable parameters:
   </tbody>
 </table>
 
-For more information about the three different types of workloads, see [workload types](../workloads/workload-types.hbs.md).
-For a more detailed overview of the ports parameter, see [server-specific Workload
-parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
+For more information about the three different types of workloads, see
+[workload types](../workloads/workload-types.hbs.md).
+For a more detailed overview of the ports parameter, see
+[server-specific Workload parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
 ### <a id ="service-bindings"></a>service-bindings
 
-The `service-bindings` resource adds
-[ServiceBindings](../service-bindings/about.hbs.md) to the set of Kubernetes
-configuration files to promote for deployment.
+The `service-bindings` resource adds [ServiceBindings](../service-bindings/about.hbs.md) to the set
+of Kubernetes configuration files to promote for deployment.
 
 Parameters:
 
@@ -750,14 +752,13 @@ For an example, see
 [--service-ref](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
 in Tanzu CLI documentation.
 
-For an overview of the function, see [Consume services on
-Tanzu Application Platform](../getting-started/consume-services.hbs.md).
+For an overview of the function, see
+[Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).
 
-### <a id ="api-descriptors"></a>api-descriptors
+### <a id ="api-descriptors"></a> api-descriptors
 
-The `api-descriptor` resource adds an
-[APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
-Kubernetes objects to deploy. This enables API auto registration.
+The `api-descriptor` resource adds an [APIDescriptor](../api-auto-registration/key-concepts.hbs.md)
+to the set of Kubernetes objects to deploy. This enables API auto registration.
 
 Parameters:
 
@@ -811,28 +812,28 @@ Parameters:
 The workload must include the `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
 this function.
 
-For more details about API auto registration, see [Use API Auto Registration](../api-auto-registration/usage.hbs.md).
+For more details about API auto registration, see
+[Use API Auto Registration](../api-auto-registration/usage.hbs.md).
 
 ### <a id ="config-writer"></a> config-writer (git or registry)
 
-The `config-writer` resource is responsible for performing the last mile of the
-supply chain: persisting in an external system (registry or Git repository) the
-Kubernetes configuration generated throughout the supply chain.
+The `config-writer` resource is responsible for performing the last mile of the supply chain:
+persisting in an external system (registry or Git repository) the Kubernetes configuration generated
+throughout the supply chain.
 
 There are three methods:
 
-- publishing the configuration to a container image registry
-- publishing the configuration to a Git repository by using the push of a commit, or
-- publishing the configuration to a Git repository by pushing a commit _and_ opening a pull request.
+- Publishing the configuration to a container image registry
+- Publishing the configuration to a Git repository by using the push of a commit
+- Publishing the configuration to a Git repository by pushing a commit and opening a pull request
 
-For more information about the different modes of operation, see [Gitops vs
-RegistryOps](../scc/gitops-vs-regops.hbs.md).
+For more information about the different modes of operation, see
+[Gitops vs RegistryOps](../scc/gitops-vs-regops.hbs.md).
 
 ### <a id ="deliverable"></a> deliverable
 
-The `deliverable` resource creates a `deliverable` object
-that represents the intention of delivering to the cluster the configurations
-that are produced by the supply chain.
+The `deliverable` resource creates a `deliverable` object that represents the intention of
+delivering to the cluster the configurations that are produced by the supply chain.
 
 Parameters:
 
@@ -885,34 +886,32 @@ ClusterDelivery resources section. These are part of the `ootb-delivery-basic` p
 | [source provider](#source-provider-del) | Source      | Fetches the Kubernetes configuration file from Git repository or image registry |
 | [app deployer](#app-deployer)           | Source      | Applies configuration produced by a supply chain to the cluster                 |
 
-For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
-and the templates used by it, see:
+For information about the ClusterDelivery shipped with `ootb-delivery-basic`, and the templates used
+by it, see:
 
 - [Out of the Box Delivery Basic](../scc/ootb-delivery-basic.hbs.md)
 - [Out of the Templates](../scc/ootb-templates.hbs.md)
 
-For information about the use of the deliverable object in a multicluster
-environment, see [Getting started with multicluster Tanzu Application
-Platform](../multicluster/getting-started.hbs.md).
+For information about the use of the deliverable object in a multicluster environment, see
+[Getting started with multicluster Tanzu Application Platform](../multicluster/getting-started.hbs.md).
 
-For reference information about deliverable, see [Deliverable and Delivery
-custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/) in the Cartographer documentation.
+For reference information about deliverable, see
+[Deliverable and Delivery custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/)
+in the Cartographer documentation.
 
-### <a id ="source-provider-del"></a>source-provider
+### <a id ="source-provider-del"></a> source-provider
 
-The `source-provider` resource in the basic ClusterDelivery creates objects
-that continuously fetch Kubernetes configuration files from a Git repository
-or container image registry so that it can apply those to the cluster.
+The `source-provider` resource in the basic ClusterDelivery creates objects that continuously fetch
+Kubernetes configuration files from a Git repository or container image registry so that it can
+apply those to the cluster.
 
-Regardless of where it fetches that Kubernetes configuration from (Git
-repository or image registry), it exposes those files to further resources along
-the ClusterDelivery as a tarball.
+Regardless of where it fetches that Kubernetes configuration from (Git repository or image registry),
+it exposes those files to further resources along the ClusterDelivery as a tarball.
 
 #### GitRepository
 
-A GitRepository object is instantiated when `deliverable.spec.source.git`
-is configured to continuously look for a Kubernetes
-configuration pushed to a Git repository, making it available for
+A GitRepository object is instantiated when `deliverable.spec.source.git` is configured to
+continuously look for a Kubernetes configuration pushed to a Git repository, making it available for
 resources in the ClusterDelivery.
 
 Parameters:
@@ -962,13 +961,14 @@ Azure DevOps, require you to use `libgit2` as the server-side implementation pro
 for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 
 For information about the features supported by each implementation, see [git
-implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux
-documentation.
+implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the
+Flux documentation.
 
 For information about how to create a workload that uses a GitHub repository as the provider
 of source code, see [Create a workload from GitHub repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
-For information about GitRepository objects, see [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
+For information about GitRepository objects, see
+[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
 
 #### ImageRepository
 
@@ -1007,20 +1007,20 @@ Parameters:
 The `--service-account` flag sets the `spec.serviceAccountName` key in the deliverable object.
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
-For information about custom resource details, see [ImageRepository reference
-docs](../source-controller/reference.hbs.md#imagerepository).
+For information about custom resource details, see the
+[ImageRepository reference documentation](../source-controller/reference.hbs.md#imagerepository).
 
 ### <a id="app-deployer"></a>app deployer
 
-The `app-deploy` resource in the ClusterDelivery applies the
-Kubernetes configuration that is built by the supply chain, pushed to
-either a Git repository or image repository, and applied to the cluster.
+The `app-deploy` resource in the ClusterDelivery applies the Kubernetes configuration that is built
+by the supply chain, pushed to either a Git repository or image repository, and applied to the
+cluster.
 
 #### App
 
 Regardless of where the configuration comes from, an
-[App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
-instantiated to deploy the set of Kubernetes configuration files to the cluster.
+[App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/)
+object is instantiated to deploy the set of Kubernetes configuration files to the cluster.
 
 Parameters:
 
@@ -1070,5 +1070,5 @@ The `--service-account` flag sets the `spec.serviceAccountName` key in  the deli
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For details about RBAC and how `kapp-controller` uses the ServiceAccount provided to it using the
-`serviceAccount` parameter in the `deliverable` object, see [`kapp-controller`'s Security
-Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.
+`serviceAccount` parameter in the `deliverable` object, see
+[the Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).

@@ -25,28 +25,31 @@ Applications using the `web` workload type have the following features:
 - Automatic health check definitions, if not provided by a convention.
 - Blue-green application roll outs.
 
-When creating a workload with the `tanzu apps workload create` command, you can use the
-`--type=web` argument to select the `web` workload type.
-For more information, see the [Use the web Workload Type](#using) later in this topic.
-You can also use the `apps.tanzu.vmware.com/workload-type:web` label in the
-YAML workload description to support this deployment type.
+When creating a workload with the `tanzu apps workload create` command, you can use the `--type=web`
+argument to select the `web` workload type. For more information, see the
+[Use the web Workload Type](#using) later in this topic.
+
+You can also use the `apps.tanzu.vmware.com/workload-type:web` label in the YAML workload description
+to support this deployment type.
 
 ## <a id="using"></a> Use the `web` workload type
 
-The `tanzu-java-web-app` workload used in [Deploy an app on Tanzu Application Platform](../getting-started/deploy-first-app.hbs.md) in the Get started guide is a good match for the `web`
-workload type.
+The `tanzu-java-web-app` workload used in
+[Deploy an app on Tanzu Application Platform](../getting-started/deploy-first-app.hbs.md) in the
+Get started guide is a good match for the `web` workload type.
 
 This is because it serves HTTP requests and does not perform any background processing.
 
-You can experiment with the differences between the `web` and `server` workload types
-by changing the workload type:
+You can experiment with the differences between the `web` and `server` workload types by changing
+the workload type:
 
 ```console
 tanzu apps workload apply tanzu-java-web-app --type=server
 ```
 
 After changing the workload type to `server`, the application does not autoscale or expose an
-external URL. For more information about the server workload type, see [Using Server workloads](server.hbs.md).
+external URL. For more information about the server workload type, see
+[Using Server workloads](server.hbs.md).
 
 Switch back to the `web` workload by running:
 
@@ -54,8 +57,8 @@ Switch back to the `web` workload by running:
 tanzu apps workload apply tanzu-java-web-app --type=web
 ```
 
-Use this to test which applications can function well as serverless web applications,
-and which are more suited to the `server` application style.
+Use this to test which applications can function well as serverless web applications, and which are
+more suited to the `server` application style.
 
 ## <a id="communication"></a> Calling `web` workloads within a cluster
 
@@ -87,4 +90,3 @@ workloads using curl. Specify the namespace for both, as follows:
 kubectl exec busybox -n dev-namespace -- curl server-workload.dev-namespace.svc.cluster.local -v
 kubectl exec busybox -n dev-namespace -- curl web-workload.dev-namespace.svc.cluster.local -v
 ```
-

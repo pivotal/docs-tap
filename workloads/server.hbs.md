@@ -3,14 +3,15 @@
 This topic tells you how to use the `server` workload type in Tanzu Application Platform
 (commonly known as TAP).
 
-## <a id="overview"></a>Overview
+## <a id="overview"></a> Overview
 
 The `server` workload type allows you to deploy traditional network applications on
 Tanzu Application Platform.
-Using an application workload specification, you can build and deploy application
-source code to a manually-scaled Kubernetes deployment which exposes an in-cluster Service endpoint.
-If required, you can use environment-specific LoadBalancer Services or Ingress resources to
-expose these applications outside the cluster.
+
+Using an application workload specification, you can build and deploy application source code to a
+manually-scaled Kubernetes deployment which exposes an in-cluster Service endpoint. If required, you
+can use environment-specific LoadBalancer Services or Ingress resources to expose these applications
+outside the cluster.
 
 The `server` workload is suitable for traditional applications, including HTTP applications,
 which have the following characteristics:
@@ -43,8 +44,10 @@ in the Get started guide is a good match for the `server` workload type.
 This is because it runs continuously to extract information from a RabbitMQ queue,
 and stores the resulting data locally in memory and presents it through a web UI.
 
-In the Services Toolkit example in [Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind), you can update the `spring-sensors-consumer-web` workload to use the `server` supply
-chain by changing the workload:
+In the Services Toolkit example in
+[Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind),
+you can update the `spring-sensors-consumer-web` workload to use the `server` supply chain by
+changing the workload:
 
 ```console
 tanzu apps workload apply spring-sensors-consumer-web --type=server
@@ -54,23 +57,25 @@ This shows the change in the workload label and prompts you to accept the change
 After the workload completes the new deployment, there are a few differences:
 
 - The workload no longer exposes a URL. It's available within the cluster as
-`spring-sensors-consumer-web` within the namespace, but you must use
-`kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port 8080.
+  `spring-sensors-consumer-web` within the namespace, but you must use
+  `kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port
+  8080.
 
-    You can set up a Kubernetes Ingress rule to direct traffic from outside the cluster to the workload.
-    Use an Ingress rule to specify that specific host names or paths must be routed to the application.
-    For more information about Ingress rules, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+  You can set up a Kubernetes Ingress rule to direct traffic from outside the cluster to the workload.
+  Use an Ingress rule to specify that specific host names or paths must be routed to the application.
+  For more information about Ingress rules, see the
+  [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-- The workload no longer autoscales based on request traffic.
-For the `spring-sensors-consumer-web` workload, this means that it never spawns
-a second instance that consumes part of the request queue.
-Also, it does not scale down to zero instances.
+- The workload no longer autoscales based on request traffic. For the `spring-sensors-consumer-web`
+  workload, this means that it never spawns a second instance that consumes part of the request
+  queue. Also, it does not scale down to zero instances.
 
 ## <a id="params"></a> `server`-specific workload parameters
 
 In addition to the common supply chain parameters, `server` workloads can expose one or more network
 ports from the application to the Kubernetes cluster by using the `ports` parameter.
 This parameter is a list of port objects, similar to a Kubernetes service specification.
+
 If you do not configure the `ports` parameter, the applied container conventions in the cluster
 establishes the set of exposed ports.
 
@@ -96,19 +101,19 @@ spec:
 
 This snippet configures:
 
-- One service on port 25, which is redirected to port 2025 on the application.
-- One service on port 8080, which is routed to port 8080 on the application.
+- One service on port 25, which is redirected to port 2025 on the application
+- One service on port 8080, which is routed to port 8080 on the application
 
-You can set the `ports` parameter from the `tanzu apps workload create` command
-as `--param-yaml 'ports=[{"port": 8080}]'`.
+You can set the `ports` parameter from the `tanzu apps workload create` command as
+`--param-yaml 'ports=[{"port": 8080}]'`.
 
 The following values are valid within the `ports` argument:
 
-| Field | Value |
-|-------|-------|
-| `port` | The port on which the application is exposed to the rest of the cluster |
+| Field           | Value                                                                                  |
+|-----------------|----------------------------------------------------------------------------------------|
+| `port`          | The port on which the application is exposed to the rest of the cluster                |
 | `containerPort` | The port on which the application listens for requests. Defaults to `port` if not set. |
-| `name` | A human-readable name for the port. Defaults to `port` if not set. |
+| `name`          | A human-readable name for the port. Defaults to `port` if not set.                     |
 
 ## <a id="exposing-server-workloads"></a> Exposing `server` workloads outside the cluster
 
@@ -118,8 +123,8 @@ Expose HTTP `server` workloads by creating an Ingress resource and using cert-ma
 TLS signed certificates.
 
 1. Use the `spring-sensors-consumer-web` workload as an example from
-[Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind).
-Create the following `Ingress`:
+   [Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind).
+   Create the following `Ingress`:
 
     ```console
     apiVersion: networking.k8s.io/v1
@@ -151,28 +156,28 @@ Create the following `Ingress`:
     ```
 
     - Replace `DEVELOPER-NAMESPACE` with your developer namespace
-    - Replace `INGRESS-DOMAIN` with the domain name defined in `tap-values.yaml` during the installation.
+    - Replace `INGRESS-DOMAIN` with the domain name defined in `tap-values.yaml` during the installation
     - Set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value
-      configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.
+      configured during installation or leave it as `tap-ingress-selfsigned` to use the default one
     - Update the port exposed by your `Service` resource, in the previous snippet it is set
-      to `8080`.
+      to `8080`
 
-2. Access the `server` workload with https:
+1. Access the `server` workload with https:
 
     ```console
     curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
     ```
 
-### Define a workload type that exposes _server_ workloads outside the cluster
+### Define a workload type that exposes `server` workloads outside the cluster
 
 Tanzu Application Platform allows you to create new workload types. Start by taking the existing
 `server-template` `ClusterConfigTemplate` and edit it to add an `Ingress` resource when this new
- type of workload is created.
+type of workload is created.
 
 **Before you begin:**
 
-- Make sure you delete the `Ingress` resource previously created.
-- Install the `yq` cli on your computer.
+- Make sure you delete the `Ingress` resource previously created
+- Install the `yq` cli on your computer
 
 **Procedure**
 
@@ -231,7 +236,7 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
     ```
 
 4. Add the above `Ingress` resource snippet to the `spec-ytt.yaml` file and save. Look for the
- `Service` resource, and insert the snippet before the last `#@ end`. For example:
+   `Service` resource, and insert the snippet before the last `#@ end`. For example:
 
     ```yaml
 
@@ -338,8 +343,8 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
     worker-template          82m
     ```
 
-9. Add the new workload type to the `tap-values.yaml`. The new workload type is named
-   `secure-server` and the `cluster_config_template_name` is `secure-server-template`.
+9. Add the new workload type to the `tap-values.yaml`. The new workload type is named `secure-server`
+   and the `cluster_config_template_name` is `secure-server-template`.
 
     ```yaml
     ootb_supply_chain_basic:
