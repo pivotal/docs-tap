@@ -14,16 +14,16 @@ kubectl get ksvc WORKLOAD-NAME -n YOUR-DEVELOPER-NAMESPACE -ojsonpath="{status.a
 ```
 
 > **Note** When calling a Knative service, both the Service name and namespace are required.
-This behavior is distinct from `server` type workloads, which do not rely on the namespace name to
-establish service-to-service communication between applications within the same namespace.
+> This behavior is distinct from `server` type workloads, which do not rely on the namespace name to
+> establish service-to-service communication between applications within the same namespace.
 
 ## Example of service-to-service communication for `web` and `server` workloads
 
 You have three applications deployed to the namespace called `dev-namespace`:
 
-1. A `server` type workload named `server-workload`
-2. A `web` type workload named `web-workload`
-3. A pod running the busybox image with `curl`, named `busybox`
+- A `server` type workload named `server-workload`
+- A `web` type workload named `web-workload`
+- A pod running the busybox image with `curl`, named `busybox`
 
 Open a shell to the running container of the `busybox` pod and send requests to the `server` and `web`
 workloads using curl. Specify the namespace for both, as follows:
@@ -33,4 +33,6 @@ kubectl exec busybox -n dev-namespace -- curl server-workload.dev-namespace.svc.
 kubectl exec busybox -n dev-namespace -- curl web-workload.dev-namespace.svc.cluster.local -v
 ```
 
-You can alternatively reference a web service as `workload-name.namespace`, or `web-workload.dev-namespace` in the following example. You can also reference a Server workload that lives in the same namespace as `workload-name`, or `server-workload`.
+You can alternatively reference a web service as `workload-name.namespace` or
+`web-workload.dev-namespace` in this example. You can also reference a `server` workload that exists
+in the same namespace as `workload-name`, or `server-workload`.
