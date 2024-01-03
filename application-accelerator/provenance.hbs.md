@@ -28,7 +28,7 @@ Application Accelerator integrates with [Artifact Metadata Repository](../scst-s
 
 When you generate an application with an accelerator, an event that contains the same information
 captured by the `Provenance` transform is sent to the AMR store. The relevant data saved to AMR is
-AppAcceleratorRuns (alpha) and AppAcceleratorFragments (alpha):
+`AppAcceleratorRuns` (alpha) and `AppAcceleratorFragments` (alpha).
 
 ### <a id='appacceleratorruns'></a> AppAcceleratorRuns (alpha)
 
@@ -38,13 +38,14 @@ options for the accelerator. This file contains instructions for processing the
 files when you generate a new project. Observer sends this information to the
 CloudEvent Handler to store `AppAcceleratorRuns`.
 
-Each `AppAcceleratorRuns` data entry has a unique `guid`. The `guid` includes information
+Each `AppAcceleratorRuns` data entry has a unique `guid`. The `guid` contains information
 about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`,
-and `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
+and, `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
 to the same `AppAcceleratorRuns` entry. You can also associate an `AppAcceleratorRuns`
 with one `AppAcceleratorSource`, also known as `Commit`.
 
-There is one AppAcceleratorRun for each invocation of an accelerator, including version information about which accelerator was used.
+There is one `AppAcceleratorRuns` for each invocation of an accelerator, including version
+information about which accelerator was used.
 
 ### <a id='appacceleratorfragments'></a> AppAcceleratorFragments (alpha)
 
@@ -52,7 +53,7 @@ The `AppAcceleratorFragments` Accelerator fragments are reusable accelerator
 components that can provide options, files, or transforms. You can import
 accelerators using an `import` entry. An `InvokeFragment` transform references
 the transforms from the fragment in the accelerator that declares the import.
-The AppAcceleratorFragments data model represents the information of a fragment
+The `AppAcceleratorFragments` data model represents the information of a fragment
 in the accelerator app. The Observer sends this information to the Cloud Event
 Handler to store `AppAcceleratorFragments`.
 
@@ -62,13 +63,16 @@ Each `AppAcceleratorFragment` data entry stores information about source Git rep
 an `AppAcceleratorRuns`. You can point a `AppAcceleratorFragmentSource`
 (also known as `Commit`) to one `AppAcceleratorFragment`.
 
-There is one instance of AppAcceleratorFragment for each named fragment used by the running accelerator. There are between `0` and `N` instances, `N` being the number of fragments used by the accelerator.
+There is one instance of AppAcceleratorFragment for each named fragment used by the running
+accelerator.
 
 ## <a id='querying_data'></a> Querying the data
 
-When invocations were recorded, use the
-[AMR GraphQL](../scst-store/amr/graphql-query.hbs.md) capability to query the system about
-accelerator use and gain insights about generated applications.
+When invocations are recorded, use the
+GraphQL capability to query the system about
+accelerator use and gain insights about generated applications. For more information,
+see [Run query with GraphQL](../scst-store/amr/graphql-query.hbs.md)
 
 For more information about how to use the Artifact Metadata Repository,
-and some sample queries relevant to AppAcceleratorRun, see the [Artifact Metadata Repository](../scst-store/overview.hbs.md).
+and some sample queries relevant to `AppAcceleratorRuns`, see
+the [Artifact Metadata Repository](../scst-store/overview.hbs.md#amr).
