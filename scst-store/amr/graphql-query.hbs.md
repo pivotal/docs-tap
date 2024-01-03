@@ -9,15 +9,13 @@ There are two ways you can perform GraphQL queries:
 - Use the GraphQL playground
 - Use [curl](https://curl.se/)
 
-VMware recommends enabling ingress. The Supply Chain Security
-Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
-the same ingress configuration. For information about enabling ingress,
-see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
-
 Use the GraphQL playground
 : Complete the following steps to perform GraphQL queries:
-    1. When you access the AMR GraphQL by using the GraphQL playground or curl, you
-    must retrieve the access token. To fetch the token, run:
+    1. Enable ingress. VMware recommends enabling ingress. The Supply Chain Security
+       Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
+       the same ingress configuration. For information about enabling ingress,
+       see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
+    1. Retrieve the access token. Run:
 
       ```console
       kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
@@ -40,18 +38,22 @@ Use the GraphQL playground
 
       You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
 
-Connect to AMR GraphQL through curl
+Use curl
 : Write and execute GraphQL queries to fetch data from the AMR. This procedure uses
 curl to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint:
 
+     1. Enable ingress. VMware recommends enabling ingress. The Supply Chain Security
+    Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
+    the same ingress configuration. For information about enabling ingress,
+    see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
     1. To connect to the AMR GraphQL by using curl after you enable ingress, you first need the AMR GraphQL
-    access token and its CA certificate. To fetch the AMR GraphQL CA certificate, run:
+    access token and its CA certificate. Run:
 
         ```console
         kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
         ```
 
-    2. After the token and certificate are retrieved, use curl to perform GraphQL queries. Run:
+    1. After the token and certificate are retrieved, use curl to perform GraphQL queries. Run:
 
         ```console
         curl "https://amr-graphql.INGRESS-DOMAIN/query" \
@@ -69,11 +71,14 @@ curl to query the AMR GraphQL endpoint, but you can use other similar tools to a
 
 ## <a id='query-app-accel-runs'></a> Query for AppAcceleratorRuns (alpha)
 
-This section tells you about GraphQL query arguments, and lists the fields available for `AppAcceleratorRuns` and `AppAcceleratorFragments`.
+This section tells you about GraphQL query arguments, and lists the fields available for
+`AppAcceleratorRuns` and `AppAcceleratorFragments`.
 
 ### <a id='app-accel-query-args'></a> (Optional) AppAcceleratorRuns query arguments
 
-You can specify the following supported arguments when querying for `AppAcceleratorRuns`. `query` expects an object that specifies additional arguments to query. You must specify at least one field. You can choose the following fields to return in the GraphQL query.
+You can specify the following supported arguments when querying for `AppAcceleratorRuns`. `query`
+expects an object that specifies additional arguments to query. You must specify at least one field.
+You can choose the following fields to return in the GraphQL query.
 
 - `guid`: UID identifying the run, as a string value. Each AppAcceleratorRuns is automatically assigned a UID.
 
