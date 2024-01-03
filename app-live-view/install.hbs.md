@@ -448,7 +448,8 @@ To install Application Live View connector:
         Application Live View back end in view cluster.
         The `host` is the backend host in the view cluster.
 
-        To retrieve the certificate from the HTTPProxy secret, run the following command in the view cluster:
+        To retrieve the certificate from the HTTPProxy secret, run the following command in the view
+        cluster:
 
         ```console
         kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
@@ -473,7 +474,11 @@ To install Application Live View connector:
         end on port 80/443 by default. Therefore, you are not required to explicitly
         configure the `port` field.
 
-    - By default, the connector is deployed as a Kubernetes DaemonSet to discover applications across all the namespaces running in a worker node of a Kubernetes cluster. You can override the default settings to run connector in deployment mode or namespace-scope. For more information, please refer to the [Connector Deployment Modes](./connector-deployment-modes.md).
+    - By default, the connector is deployed as a Kubernetes DaemonSet to discover applications
+      across all the namespaces running in a worker node of a Kubernetes cluster. You can override
+      the default settings to run the connector in deployment mode or a namespace-scope. For more
+      information, see
+      [Connector deployment modes in Application Live View](connector-deployment-modes.hbs.md).
 
 1. Install the Application Live View connector package by running:
 
