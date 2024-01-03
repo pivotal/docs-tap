@@ -4,26 +4,34 @@ This topic tells you about service-to-service communication for `web` and `serve
 
 ## <a id="communication"></a> Calling `web` workloads within a cluster
 
-When a  `web` workload type is created, a Knative service is deployed to the cluster.
+When a `web` workload type is created, a Knative service is deployed to the cluster.
 To access your application, you need the URL for the route created by the Knative Service.
-Obtain it by running one of these commands:
 
-```console
-tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
-kubectl get ksvc WORKLOAD-NAME -n YOUR-DEVELOPER-NAMESPACE -ojsonpath="{status.address.url}"
-```
+Obtain the URL by running one of these commands:
+
+- To use the `tanzu apps` command, run:
+
+   ```console
+   tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
+   ```
+
+- To use the `kubectl get` command, run:
+
+   ```console
+   kubectl get ksvc WORKLOAD-NAME -n YOUR-DEVELOPER-NAMESPACE -ojsonpath="{status.address.url}"
+   ```
 
 > **Note** When calling a Knative service, both the Service name and namespace are required.
 > This behavior is distinct from `server` type workloads, which do not rely on the namespace name to
 > establish service-to-service communication between applications within the same namespace.
 
-## Example of service-to-service communication for `web` and `server` workloads
+## <a id="example"></a> Example of service-to-service communication for `web` and `server` workloads
 
 You have three applications deployed to the namespace called `dev-namespace`:
 
 - A `server` type workload named `server-workload`
 - A `web` type workload named `web-workload`
-- A pod running the busybox image with `curl`, named `busybox`
+- A pod running the busybox image with `curl` that is named `busybox`
 
 Open a shell to the running container of the `busybox` pod and send requests to the `server` and `web`
 workloads using curl. Specify the namespace for both, as follows:
