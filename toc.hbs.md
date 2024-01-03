@@ -222,6 +222,7 @@
     - [Application Live View](app-live-view/about-app-live-view.hbs.md)
         - [Application Live View overview](app-live-view/about-app-live-view.hbs.md)
         - [Install Application Live View](app-live-view/install.hbs.md)
+        - [Connector Deployment Modes](app-live-view/connector-deployment-modes.md)
         - [Configure security and access control](app-live-view/improved-security-and-access-control.hbs.md)
         - [Configure apps](app-live-view/configuring-apps/spring-boot-enablement.hbs.md)
             - [Enable Spring Boot apps](app-live-view/configuring-apps/spring-boot-enablement.hbs.md)
