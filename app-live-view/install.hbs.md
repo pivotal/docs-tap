@@ -448,7 +448,8 @@ To install Application Live View connector:
         Application Live View back end in view cluster.
         The `host` is the backend host in the view cluster.
 
-        To retrieve the certificate from the HTTPProxy secret, run the following command in the view cluster:
+        To retrieve the certificate from the HTTPProxy secret, run the following command in the view
+        cluster:
 
         ```console
         kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
@@ -479,7 +480,7 @@ To install Application Live View connector:
       information, see
       [Connector deployment modes in Application Live View](connector-deployment-modes.hbs.md).
 
-2. Install the Application Live View connector package by running:
+1. Install the Application Live View connector package by running:
 
     ```console
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
@@ -509,7 +510,7 @@ To install Application Live View connector:
     Application Live View connector component is deployed in
     `app-live-view-connector` namespace by default.
 
-3. Verify the `Application Live View connector` package installation by running:
+1. Verify the `Application Live View connector` package installation by running:
 
     ```console
     tanzu package installed get appliveview-connector -n tap-install
