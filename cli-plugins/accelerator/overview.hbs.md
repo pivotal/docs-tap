@@ -36,7 +36,7 @@ Accelerator server, if that is configured to be exposed. VMware recommends using
 
     ```yaml
     accelerator:
-        ingress:
+      ingress:
         include: true
     ```
 
