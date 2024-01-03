@@ -36,8 +36,8 @@ When the connector is running as a regular deployment, it will observe all the a
       backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on back end.
 
       backend.port                          <nil>               number      Port to reach the Application Live View back end.
-      connector.deployment.enabled            false             boolean     Flag for the connector to run in deployment mode
-      connector.deployment.replicas             1               number      Number of replicas of connector pods at any given time      
+      connector.deployment.enabled          false               boolean     Flag for the connector to run in deployment mode
+      connector.deployment.replicas           1                 number      Number of replicas of connector pods at any given time      
       connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope.
       connector.namespace_scoped.namespace  default             string      Namespace to deploy connector.
       kubernetes_distribution                                   string      Kubernetes distribution that this package is being installed on. Accepted
