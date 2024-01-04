@@ -3,7 +3,7 @@
 This topic provides you with an overview of workload types in Tanzu Application Platform
 (commonly known as TAP).
 
-## Workload features
+## <a id="workload-features"></a> Workload features
 
 Tanzu Application Platform allows you to quickly build and test applications regardless of your
 familiarity with Kubernetes.
@@ -17,18 +17,22 @@ repository location, environment variables, service binding, and so on.
 For more information about workload creation and management, see
 [Commands Details](../cli-plugins/apps/command-reference/commands-details.hbs.md).
 
-The Out of the Box Supply Chains support a range of workload types, including scalable web
-applications (`web`), traditional application servers (`server`), background applications
-(`worker`), and serverless functions. You can use a collection of workloads of different types to
-deploy microservices that function as a logical application, or deploy your entire application as a
-single monolith.
+The Out of the Box supply chains support a range of workload types, including
 
-If you build your own supply chains, you can define additional deployment methods beyond those
-included in the Out of the Box Supply Chain templates.
+- Scalable web applications (`web`)
+- Traditional application servers (`server`)
+- Background applications (`worker`)
+- Serverless functions
 
-## <a id="types"></a> Available Workload types
+You can use a collection of workloads of different types to deploy microservices that function as a
+logical application. Alternatively, you can deploy your entire application as a single monolith.
 
-When using the Out of the Box Supply Chain, the `apps.tanzu.vmware.com/workload-type` annotation
+If you build your own supply chains, you can define additional deployment methods beyond those in
+the Out of the Box supply-chain templates.
+
+## <a id="types"></a> Available workload types
+
+When using the Out of the Box supply chain, the `apps.tanzu.vmware.com/workload-type` annotation
 selects which style of deployment is suitable for your application. The valid values are:
 
 <table>
@@ -42,11 +46,11 @@ selects which style of deployment is suitable for your application. The valid va
 <tbody>
 <tr>
   <td><code>web<code></td>
-  <td>Scalable Web Applications</td>
+  <td>Scalable web applications</td>
   <td>
     <ul>
       <li>Scales based on request load</li>
-      <li>Automatically exposed by means of HTTP Ingress</li>
+      <li>Automatically exposed by HTTP Ingress</li>
       <li>Does not perform background work</li>
       <li>Works with Service Bindings</li>
       <li>Stateless</li>
@@ -56,11 +60,11 @@ selects which style of deployment is suitable for your application. The valid va
 </tr>
 <tr>
   <td><code>server<code></td>
-  <td>Traditional Applications</td>
+  <td>Traditional applications</td>
   <td>
     <ul>
       <li>Provides HTTP or TCP services on the network</li>
-      <li>Exposed by means of external Ingress or LoadBalancer settings</li>
+      <li>Exposed by external Ingress or LoadBalancer settings</li>
       <li>Might perform background work from a queue</li>
       <li>Works with Service Bindings</li>
       <li>Fixed scaling, no disk persistence</li>
@@ -70,7 +74,7 @@ selects which style of deployment is suitable for your application. The valid va
 </tr>
 <tr>
   <td><code>worker<code></td>
-  <td>Background Applications</td>
+  <td>Background applications</td>
   <td>
     <ul>
       <li>Does not provide network services</li>
