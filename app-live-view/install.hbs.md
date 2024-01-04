@@ -97,7 +97,7 @@ To install Application Live View back end:
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
       NAME                                  VERSION        RELEASED-AT
-      backend.appliveview.tanzu.vmware.com  1.5.1          2023-03-29T00:00:00Z
+      backend.appliveview.tanzu.vmware.com  1.8.0          2023-12-27T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -107,12 +107,12 @@ To install Application Live View back end:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.5.1 --values-schema --namespace tap-install
+    $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.8.0 --values-schema --namespace tap-install
       KEY                      DEFAULT          TYPE        DESCRIPTION
       tls.namespace            <nil>            string      The targeted namespace for secret consumption by the HTTPProxy.
 
@@ -285,7 +285,7 @@ To install Application Live View back end:
     For example:
 
     ```console
-    $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.5.1 -n tap-install -f app-live-view-backend-values.yaml
+    $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.8.0 -n tap-install -f app-live-view-backend-values.yaml
     - Installing package 'backend.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'backend.appliveview.tanzu.vmware.com'
@@ -314,7 +314,7 @@ To install Application Live View back end:
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.5.1
+    PACKAGE-VERSION:         1.8.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -338,7 +338,7 @@ To install Application Live View connector:
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
       NAME                                    VERSION        RELEASED-AT
-      connector.appliveview.tanzu.vmware.com  1.5.1          2023-03-29T00:00:00Z
+      connector.appliveview.tanzu.vmware.com  1.8.0          2023-12-27T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -348,12 +348,12 @@ To install Application Live View connector:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.5.1 --values-schema --namespace tap-install
+    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.8.0 --values-schema --namespace tap-install
       KEY                                   DEFAULT             TYPE        DESCRIPTION
       backend.caCertData                      cert-in-pem-format  string    CA Cert Data for ingress domain
       backend.host                            <nil>               string    Domain to be used to reach the application live view backend. Prepend
@@ -365,6 +365,8 @@ To install Application Live View connector:
       backend.sslDeactivated                  false               boolean   Flag for whether or not to deactivate ssl
       backend.sslDisabled                     false               boolean   The key sslDisabled has been deprecated in TAP 1.4.0 and will be removed in TAP
                                                                             1.X+Y.0 of TAP, please migrate to the key sslDeactivated
+      connector.deployment.enabled            false               boolean   Flag for the connector to run in deployment mode
+      connector.deployment.replicas             1                 number    Number of replicas of connector pods at any given time
       connector.namespace_scoped.enabled      false               boolean   Flag for the connector to run in namespace scope
       connector.namespace_scoped.namespace    default             string    Namespace to deploy connector
       kubernetes_distribution                                     string    Kubernetes distribution that this package is being installed on. Accepted
@@ -446,7 +448,8 @@ To install Application Live View connector:
         Application Live View back end in view cluster.
         The `host` is the backend host in the view cluster.
 
-        To retrieve the certificate from the HTTPProxy secret, run the following command in the view cluster:
+        To retrieve the certificate from the HTTPProxy secret, run the following command in the view
+        cluster:
 
         ```console
         kubectl get secret appliveview-cert -n app-live-view -o yaml |  yq '.data."ca.crt"' | base64 -d
@@ -471,6 +474,12 @@ To install Application Live View connector:
         end on port 80/443 by default. Therefore, you are not required to explicitly
         configure the `port` field.
 
+    - By default, the connector is deployed as a Kubernetes DaemonSet to discover applications
+      across all the namespaces running in a worker node of a Kubernetes cluster. You can override
+      the default settings to run the connector in deployment mode or a namespace-scope. For more
+      information, see
+      [Connector deployment modes in Application Live View](connector-deployment-modes.hbs.md).
+
 1. Install the Application Live View connector package by running:
 
     ```console
@@ -478,12 +487,12 @@ To install Application Live View connector:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.5.1 -n tap-install -f app-live-view-connector-values.yaml
+    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.8.0 -n tap-install -f app-live-view-connector-values.yaml
     | Installing package 'connector.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'connector.appliveview.tanzu.vmware.com'
@@ -514,7 +523,7 @@ To install Application Live View connector:
     | Retrieving installation details for appliveview-connector...
     NAME:                    appliveview-connector
     PACKAGE-NAME:            connector.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.5.1
+    PACKAGE-VERSION:         1.8.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -538,7 +547,7 @@ To install Application Live View conventions:
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
       NAME                                      VERSION        RELEASED-AT
-      conventions.appliveview.tanzu.vmware.com  1.5.1          2023-03-29T00:00:00Z
+      conventions.appliveview.tanzu.vmware.com  1.8.0          2023-12-27T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -548,12 +557,12 @@ To install Application Live View conventions:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get conventions.appliveview.tanzu.vmware.com/1.5.1 --values-schema --namespace tap-install
+    $ tanzu package available get conventions.appliveview.tanzu.vmware.com/1.8.0 --values-schema --namespace tap-install
       KEY                               DEFAULT             TYPE     DESCRIPTION
       kubernetes_distribution                               string  Kubernetes distribution that this package is installed on. Accepted values: ['''',''openshift''].
       kubernetes_version                                    string  Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
@@ -569,12 +578,12 @@ To install Application Live View conventions:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.5.1 -n tap-install
+    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.8.0 -n tap-install
     - Installing package 'conventions.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'conventions.appliveview.tanzu.vmware.com'
@@ -601,7 +610,7 @@ To install Application Live View conventions:
     | Retrieving installation details for appliveview-conventions...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            conventions.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.5.1
+    PACKAGE-VERSION:         1.8.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -626,7 +635,7 @@ To install Application Live View APIServer:
     $ tanzu package available list apiserver.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for apiserver.appliveview.tanzu.vmware.com...
       NAME                                    VERSION       RELEASED-AT
-      apiserver.appliveview.tanzu.vmware.com  1.5.1         2023-03-29T00:00:00Z
+      apiserver.appliveview.tanzu.vmware.com  1.8.0         2023-12-27T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -636,12 +645,12 @@ To install Application Live View APIServer:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get apiserver.appliveview.tanzu.vmware.com/1.5.1 --values-schema --namespace tap-install
+    $ tanzu package available get apiserver.appliveview.tanzu.vmware.com/1.8.0 --values-schema --namespace tap-install
       KEY                               DEFAULT             TYPE     DESCRIPTION
       kubernetes_distribution                               string  Kubernetes distribution that this package is installed on. Accepted values: ['''',''openshift''].
       kubernetes_version                                    string  Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
@@ -657,12 +666,12 @@ To install Application Live View APIServer:
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    `1.8.0`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-apiserver -p apiserver.appliveview.tanzu.vmware.com -v 1.5.1 -n tap-install
+    $ tanzu package install appliveview-apiserver -p apiserver.appliveview.tanzu.vmware.com -v 1.8.0 -n tap-install
     - Installing package 'apiserver.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'apiserver.appliveview.tanzu.vmware.com'
@@ -686,7 +695,7 @@ To install Application Live View APIServer:
     | Retrieving installation details for appliveview-apiserver...
     NAME:                    appliveview-apiserver
     PACKAGE-NAME:            apiserver.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.5.1
+    PACKAGE-VERSION:         1.8.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:

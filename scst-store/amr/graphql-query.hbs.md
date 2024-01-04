@@ -6,92 +6,81 @@ This topic tells you how to connect to the GraphQL playground and how to run som
 
 There are two ways you can perform GraphQL queries:
 
-- Using the GraphQL playground
-- Using [curl](https://curl.se/)
+- Use the GraphQL playground
+- Use [curl](https://curl.se/)
 
-VMware recommends enabling ingress. The Supply Chain Security
-Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
-the same ingress configuration. For information about enabling ingress,
-see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
+Use the GraphQL playground
+: Complete the following steps to perform GraphQL queries:
+    1. Enable ingress. VMware recommends enabling ingress. The Supply Chain Security
+       Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
+       the same ingress configuration. For information about enabling ingress,
+       see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
+    1. Retrieve the access token. Run:
 
-### <a id='amr-graphql-access-token'></a> Retrieve the AMR GraphQL Access Token
+      ```console
+      kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
+      ```
 
-When you access the AMR GraphQL using the GraphQL playground or curl, you
-must retrieve the access token.
+    2. To connect to the AMR GraphQL playground, after enabling ingress, visit
+    `https://amr-graphql.INGRESS-DOMAIN/play`.
 
-To fetch the token, run:
+        Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
 
-```console
-kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
-```
+    3. In the **Headers** tab at the bottom of the query window, add a JSON block containing the following authentication header:
 
-### <a id='connect-graphql-pg'></a> Connect to AMR GraphQL playground
+        ```json
+        {
+          "Authorization": "Bearer ACCESS-TOKEN"
+        }
+        ```
 
-To connect to the AMR GraphQL playground when you enabled ingress, visit
-`https://amr-graphql.INGRESS-DOMAIN/play`.
+        Where `ACCESS-TOKEN` is the AMR GraphQL access token.
 
-Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
+      You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
 
-In the **Headers** tab at the bottom of the query window, add a JSON block containing the following authentication header:
+Use curl
+: Write and execute GraphQL queries to fetch data from the AMR. This procedure uses
+curl to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint:
 
-```json
-{
-  "Authorization": "Bearer ACCESS-TOKEN"
-}
-```
+     1. Enable ingress. VMware recommends enabling ingress. The Supply Chain Security
+    Tools for Tanzu – Store and Artifact Metadata Repository (AMR) packages share
+    the same ingress configuration. For information about enabling ingress,
+    see [Ingress support for Supply Chain Security Tools - Store](../ingress.hbs.md).
+    1. To connect to the AMR GraphQL by using curl after you enable ingress, you first need the AMR GraphQL
+    access token and its CA certificate. Run:
 
-Where `ACCESS-TOKEN` is the AMR GraphQL access token.
+        ```console
+        kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
+        ```
 
-You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
+    1. After the token and certificate are retrieved, use curl to perform GraphQL queries. Run:
 
-### <a id='connect-to-graphql-curl'></a> Connect to AMR GraphQL through curl
+        ```console
+        curl "https://amr-graphql.INGRESS-DOMAIN/query" \
+          --cacert FILE-LOCATION \
+          -H "Authorization: Bearer ACCESS-TOKEN" \
+          -H 'accept: application/json' \
+          -H 'content-type: application/json' \
+          --data-raw '{"query":"query getAppAcceleratorRuns { appAcceleratorRuns(first: 250){ nodes { guid name namespace timestamp } pageInfo{ endCursor hasNextPage } } }"}' | jq .
+        ```
 
-To connect to the AMR GraphQL using curl when you enabled ingress, you first need the AMR GraphQL
-access token and its CA certificate.
-
-To fetch the AMR GraphQL CA certificate:
-
-```console
-kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/graphql-ca.crt
-```
-
-After the token and certificate are retrieved, you can use curl to perform GraphQL queries by using the
-`https://amr-graphql.INGRESS-DOMAIN/query` endpoint.
-
-Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
-
-For example:
-
-```console
-curl "https://amr-graphql.<ingress-domain>/query" \
-  --cacert /tmp/graphql-ca.crt \
-  -H "Authorization: Bearer ACCESS-TOKEN" \
-  -H 'accept: application/json' \
-  -H 'content-type: application/json' \
-  --data-raw '{"query":"query getAppAcceleratorRuns { appAcceleratorRuns(first: 250){ nodes { guid name namespace timestamp } pageInfo{ endCursor hasNextPage } } }"}' | jq .
-```
-
-Where:
-
-- `ACCESS-TOKEN` is the AMR GraphQL access token
-- `/tmp/graphql-ca.crt` is the file location containing the AMR GraphQL CA certificate
-
-You can use this to write and execute your own GraphQL queries to fetch data from the AMR.
-
-This section uses curl to query the AMR GraphQL endpoint, but you can use other similar tools to access the endpoint
-and provide them with the AMR GraphQL access token and CA certificate.
+        Where:
+        - `INGRESS-DOMAIN` is the domain of the ingress you want to use.
+        - `ACCESS-TOKEN` is the AMR GraphQL access token
+        - `FILE-LOCATION` is the file containing the AMR GraphQL CA certificate, for example, `/tmp/graphql-ca.crt`
 
 ## <a id='query-app-accel-runs'></a> Query for AppAcceleratorRuns (alpha)
 
-This section tells you about GraphQL query arguments, and lists the fields available for `AppAcceleratorRuns` and `AppAcceleratorFragments`.
+This section tells you about GraphQL query arguments, and lists the fields available for
+`AppAcceleratorRuns` and `AppAcceleratorFragments`.
 
-### <a id='app-accel-query-args'></a> AppAcceleratorRuns query arguments
+### <a id='app-accel-query-args'></a> (Optional) AppAcceleratorRuns query arguments
 
-(Optional) You can specify the following supported arguments when querying for `AppAcceleratorRuns`.
+You can specify the following supported arguments when querying for `AppAcceleratorRuns`. `query`
+expects an object that specifies additional arguments to query. You must specify at least one field.
+You can choose the following fields to return in the GraphQL query.
 
-- `query`: expects an object that specifies additional arguments to query. The following arguments are supported in this query object:
-
-- `guid`: UID identifying the run, as a `String` value. Each AppAcceleratorRun is automatically assigned a UID.
+- `guid`: UID identifying the run, as a string value. Each AppAcceleratorRuns is automatically assigned a UID.
 
   For example:
 
@@ -99,7 +88,7 @@ This section tells you about GraphQL query arguments, and lists the fields avail
   appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})
   ```
 
-- `source`: string representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`.
+- `source`: String representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`.
 
   For example:
 
@@ -107,15 +96,15 @@ This section tells you about GraphQL query arguments, and lists the fields avail
   appAcceleratorRuns(query:{source: "TAP-GUI"})
   ```
 
-- `username`: string representing the user name of the person who runs
+- `username`: String representing the user name of the person who runs
 the accelerator, as captured by the client UI.
   For example:
 
   ```graphql
-  appAcceleratorRuns(query:{username: "homer.simpson"})
+  appAcceleratorRuns(query:{username: "test.user"})
   ```
 
-- `namespace` and `name`: strings representing the accelerator that
+- `namespace` and `name`: Strings representing the accelerator that
 was used to create an application.
   For example:
 
@@ -123,7 +112,7 @@ was used to create an application.
   appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
   ```
 
-- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS (Version Control System) about the accelerator sources used.
+- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: Location in VCS (Version Control System) of the accelerator sources used.
   For example:
 
   ```graphql
@@ -133,7 +122,7 @@ was used to create an application.
   })
   ```
 
-- `timestamp`: string representation of the exact time the accelerator ran. You can query for runs that happened `before` or `after` a particular instant:
+- `timestamp`: String representation of the exact time the accelerator ran. You can query for runs that happened `before` or `after` a particular instant:
   For example:
 
   ```graphql
@@ -147,17 +136,17 @@ See the section above for details about those fields.
 You must specify at least one field.
 
 - `guid`: UID identifying the run
-- `source`: string representing the client used to run the accelerator
-- `username`: string representing the user name of the person who ran
+- `source`: String representing the client used to run the accelerator
+- `username`: String representing the user name of the person who ran
   the accelerator
-- `namespace` and `name`: strings representing the accelerator which
+- `namespace` and `name`: Strings representing the accelerator which
   was used to create an application
 - `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS of the sources of the
   accelerator used
 - `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a
   commit.
 - `timestamp`: the exact time the accelerator was run
-- `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each AppAcceleratorRun. Those fragment nodes share many of the fields with AppAcceleratorRun, with the same semantics but applied to the particular fragment. Those include:
+- `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each `AppAcceleratorRuns`. Those fragment nodes share many of the fields with `AppAcceleratorRuns`, with the same semantics but applied to the particular fragment. Those include:
   - `namespace` and `name`: strings representing the identity of the fragment
   - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS of the sources of the fragment used
   - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a commit.

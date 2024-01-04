@@ -30,8 +30,6 @@ To configure the memory and CPU allocation for the deployments in the `knative-s
 - `net-certmanager-webhook`
 - `net-contour-controller`
 - `webhook`
-- `net-istio-controller`
-- `net-istio-webhook`
 
 ### <a id='resource-mgmt-example'></a> Example: updating the activator deployment
 
