@@ -11,5 +11,5 @@ publication:
     PublicationKeywords:
     BatchProcessingInstruction:
     PDFLink: tap
-    WordLink:
+    WordLink: test
     PublicationAuthor: apeek@vmware.com
