@@ -8,12 +8,13 @@ with external tools.
 [Prometheus](https://prometheus.io/) is an open-source monitoring tool that is supported by client libraries for a wide 
 range of programming languages and frameworks. 
 
-Using those client libraries in your applications, you can easily create metrics in a 
-standardized format on an HTTP endpoint that can be consumed (scraped) by Prometheus and other observability tools. 
+By integrating these client libraries into your applications, you can effortlessly generate metrics in a standardized format. 
+These metrics are accessible via an HTTP endpoint, enabling Prometheus and other observability tools to conveniently 
+consume (scrape) them. 
 
-There is a convention to enable auto discovery of pods in Kubernetes that expose Prometheus metrics. 
-It comprises several annotations on the pods that tell Prometheus whether to look for metrics or not and where the 
-metrics endpoint is.
+For Kubernetes, there's an established convention that facilitates the automatic discovery of pods exposing Prometheus metrics.
+This involves incorporating specific annotations on the pods, which guide Prometheus in determining the presence of metrics 
+and locating the metrics endpoint.
 
 The pod annotations would look like this for a Spring Boot workload:
 
@@ -27,7 +28,7 @@ annotations:
 We will explain the setup of the following observability tools that use those annotations:
 
 * [Install Prometheus](#install-prometheus)
-* [Install Datadog](#datadog)
+* [Install Datadog](#install-datadog)
 
 ## <a id="install-prometheus"></a> Install Prometheus
 
@@ -35,7 +36,7 @@ There are multiple ways to install Prometheus on your cluster:
 
 * [Prometheus Operator](#prometheus-operator)
 * [kube-prometheus-stack Helm chart](#kube-prometheus-stack)
-* [Prometheus Helm chart](#helm-chart)
+* [Prometheus Helm chart](#prometheus-helm-chart)
 
 ### <a id="prometheus-operator"></a> Install Prometheus Operator
 
@@ -57,10 +58,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: prometheus
-EOF
-```
-```console
-cat <<EOF | kubectl apply -f -
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -85,10 +83,7 @@ rules:
   verbs: ["get", "list", "watch"]
 - nonResourceURLs: ["/metrics"]
   verbs: ["get"]
-EOF
-```
-```console
-cat <<EOF | kubectl apply -f -
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -104,13 +99,13 @@ subjects:
 EOF
 ```
 
-Next, we have to create a configuration for a Prometheus scraping job that will monitor all pods that have the special 
-Prometheus annotations.
+Next, you have to configure a Prometheus scraping job. This job will be designed to monitor all pods that are marked 
+with the designated Prometheus annotations.
 
-> The prometheus operator does not support annotation-based discovery of services out-of-the-box, using the PodMonitor 
-> or ServiceMonitor CRD in its place as they provide far more configuration options. 
+> The Prometheus Operator, by default, does not support annotation-based discovery of services, using the PodMonitor 
+> or ServiceMonitor Custom Resource Definitions (CRD) instead as they provide a broader range of configuration options. 
 > 
-> That's why we configure a custom scrape job configuration for the annotations to work.
+> Therefore, to enable the functionality of these annotations, it's necessary to set up a custom scrape job configuration.
 
 Create a file `prometheus-scrape-config.yaml` with the following content:
 
@@ -176,16 +171,16 @@ Create a file `prometheus-scrape-config.yaml` with the following content:
       target_label: node
 ```
 
-Now create a secret from that file:
+Now, proceed to generate a secret using that file:
 
 ```console
 kubectl create secret generic additional-scrape-configs --from-file=prometheus-scrape-config.yaml 
 ```
 
-Finally, we create a Prometheus resource that uses this secret.
+Finally, create a Prometheus resource that uses this secret.
 
-Prometheus Operator will pick up the configuration and create a scrape job from it that is run regularly from the
-created Prometheus instance.
+The Prometheus Operator will automatically detect the configuration and generate a scrape job from it. This job will be 
+executed regularly by the Prometheus instance that will be set up.
 
 ```console
 cat <<EOF | kubectl apply -f -
@@ -206,14 +201,15 @@ spec:
 EOF
 ```
 
-If you want to access the Prometheus web interface, you have to expose the port `9090` of the Prometheus server pod
-outside the cluster using a Kubernetes service or forward the port to your machine using `kubectl`.
+To access the Prometheus web interface, you need to make the port `9090` of the Prometheus server pod accessible outside 
+the cluster via a Kubernetes service or ingress. For development purposed you can forward the port to 
+your local machine using the `kubectl` command.
 
 For further information about Prometheus Operator refer to the [Prometheus Operator README](https://github.com/prometheus-operator/prometheus-operator/blob/main/README.md).
 
 #### <a id="troubleshooting"></a> Troubleshooting
 
-**Where can I see the scrape config that has been picked up by Prometheus?**
+**Where can I see the scrape config that has been picked up by the Prometheus instance?**
 
 ```console
 kubectl get secret prometheus-prometheus -ojson | jq -r '.data["prometheus.yaml.gz"]' | base64 -d | gunzip
@@ -221,84 +217,87 @@ kubectl get secret prometheus-prometheus -ojson | jq -r '.data["prometheus.yaml.
 
 ### <a id="kube-prometheus-stack"></a> Install kube-prometheus-stack Helm chart
 
-This is a Helm chart by the Prometheus community which sets up a complete cluster monitoring stack including Prometheus 
-Operator, high availability, Node Exporter, Grafana dashboards and more.
+This Helm chart, developed by the Prometheus community, establishes a comprehensive cluster monitoring stack. It includes 
+the Prometheus Operator, cluster monitoring, ensures high availability, and integrates Node Exporter, Grafana dashboards, 
+among other features.
 
-To install, add Helm repository:
+To install, add the Helm repository:
 
 ```console
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ```
+Since there isn't a pre-defined scrape job configuration to support annotation-based discovery of services, 
+you must first create the configuration secret `additional-scrape-configs` from the 
+`prometheus-scrape-config.yaml` file (as described in the [Install Prometheus Operator](#prometheus-operator) section).
 
-As there is no pre-defined scrape job configuration, you have to create the configuration secret from the file 
-`prometheus-scrape-config.yaml` first (like described in [Install Prometheus Operator](#prometheus-operator)) 
-and then use it as a configuration on the Helm install command.
-
-Finally, install kube-prometheus-stack:
+Once this is done, you can then utilize it as a parameter in the Helm installation command:
 
 ```console
-helm upgrade kube-prometheus-stack prometheus-community/kube-prometheus-stack \
+helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack \
   --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.name=additional-scrape-configs \
   --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.key=prometheus-scrape-config.yaml \
   --set prometheus.prometheusSpec.additionalScrapeConfigsSecret.enabled=true
 ```
+
+The Helm chart also sets up various scraping jobs for metrics related to the Kubernetes cluster.
 
 Also refer to [kube-prometheus-stack README](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 for further information.
 
 #### <a id="troubleshooting"></a> Troubleshooting
 
-**Where can I see the scrape config that has been picked up by Prometheus?**
+**Where can I see the scrape config that has been picked up by the Prometheus instance?**
 
 ```console
 kubectl get secret prometheus-kube-prometheus-stack-prometheus -ojson | jq -r '.data["prometheus.yaml.gz"]' | base64 -d | gunzip
 ```
 
-### <a id="helm-chart"></a> Install Prometheus Helm chart
+### <a id="prometheus-helm-chart"></a> Install Prometheus Helm chart
 
-This is a Helm chart by the Prometheus community that installs Prometheus on your Kubernetes cluster, including
-Alert Manager, kube-state-metrics, Node Exporter and Push Gateway.
+This Helm chart, provided by the Prometheus community, facilitates the installation of Prometheus on your Kubernetes cluster. 
+It includes key components such as Alert Manager, kube-state-metrics, Node Exporter, and Push Gateway.
 
-To install, add Helm repository:
+To install, add the Helm repository:
 
 ```console
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 ```
 
-Then, install Prometheus:
+Finally, install the Prometheus Helm chart:
 
 ```console
-helm install prometheus prometheus-community/prometheus
+helm upgrade --install prometheus prometheus-community/prometheus
 ```
 
-The Helm chart automatically installs scraping job configuration for pods and services with the Prometheus scraping
-annotations and also for metrics about the Kubernetes cluster. 
-
-It also installs the Alert Manager.
-
-**Advantage**: A lot of scrape job configurations are already pre-configured, including for services and pods with the 
-Prometheus annotations.
+The Helm chart seamlessly installs scraping job configurations for pods and services tagged with Prometheus scraping annotations
+and also sets up scraping for metrics related to the Kubernetes cluster.
 
 Also refer to [Prometheus Helm chart README](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus).
 
-## <a id="datadog"></a> Install Datadog
+## <a id="install-datadog"></a> Install Datadog
 
 If you are using Datadog you can also use it to scrape the Prometheus endpoints without having to install Prometheus
 itself. You can use the **Datadog Agent** to forward the metrics to the Datadog servers.
 
-First, install the Datadog Agent with HELM:
+To install, add the Helm repository:
 
 ```console
 helm repo add datadog https://helm.datadoghq.com
+helm repo update
+```
+
+Then, install the Datadog Agent Helm chart:
+
+```console
 helm install datadog-operator datadog/datadog-operator
 ```
 
-Next, generate anew API key in Datadog for the Agent that needs to push metrics to Datadog.
-This is done in the Datadog UI under `Profile/Organization Settings/API Keys`.
+Next, generate a new API key in Datadog for the Agent that needs to push metrics to Datadog.
+This can be accomplished through the Datadog user interface, under `Profile/Organization Settings/API Keys`.
 
-Now, create a secret for Datadog API key:
+Now, create a secret for the Datadog API key:
 
 ```console
 kubectl create secret generic datadog-secret --from-literal api-key=<api-key>
@@ -327,8 +326,8 @@ spec:
 EOF
 ```
 
-Datadog is able to automatically collect Prometheus metrics from pods when they are annotated with the default
-Prometheus annotations as described above.
+Datadog is designed to automatically gather Prometheus metrics from pods that are annotated with the default Prometheus 
+annotations, as previously described.
 
 ## <a id="enable-spring-boot-workloads"></a> Enable Spring Boot workloads
 
@@ -351,12 +350,11 @@ In order to enable Spring Boot workloads to create Prometheus metrics you have t
 
 This will create default metrics for the JVM, HTTP traffic and more. 
 
-When Spring Boot workloads are deployed on TAP,
-Spring Boot Conventions will make sure the actuator endpoints are exposed and with them also the Prometheus metrics
-endpoint. 
+When deploying Spring Boot workloads on Tanzu Application Platform (TAP), the Spring Boot Conventions ensure that actuator 
+endpoints are exposed. Along with these endpoints, the Prometheus metrics endpoint is also made accessible.
 
-To tell Prometheus where it can find this endpoint on a pod you need to add the annotations to your `workload.yaml` 
-according to your configuration and deploy the changes:
+To guide Prometheus to the location of this endpoint on a pod, you need to include specific annotations in your `workload.yaml` file. 
+These annotations should align with your configuration. After adding these annotations, deploy the changes:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
