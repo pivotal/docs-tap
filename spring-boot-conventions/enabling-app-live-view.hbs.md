@@ -116,7 +116,6 @@ status:
           spring-boot-convention/app-live-view-appflavour-check
           spring-boot-convention/app-live-view-connector-boot
           spring-boot-convention/app-live-view-appflavours-boot
-          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -240,7 +239,6 @@ status:
           spring-boot-convention/app-live-view-appflavours-boot
           spring-boot-convention/app-live-view-connector-scg
           spring-boot-convention/app-live-view-appflavours-scg
-          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
