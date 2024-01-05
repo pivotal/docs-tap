@@ -10,31 +10,16 @@ v{{ vars.url_version }}.
 ### <a id='1-5-9-security-fixes'></a> v1.5.9 Security fixes 
  
 This release has the following security fixes, listed by component and area. 
- 
-#### <a id='1-5-9-COMPONENT-NAME-fixes'></a> v1.5.9 Security fixes: COMPONENT-NAME
- 
-- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
-OR add HTML table
- 
-<table>
-<thead>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</tbody>
-</table> 
- 
+
+| Package Name | Vulnerabilities Resolved |
+| ------------ | ------------------------ |
+| application-configuration-service.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-vmq6-5m68-f53m</li><li>CVE-2023-34053</li><li>GHSA-w33c-445m-f8w7 </li></ul>|
+| cnrs.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>CVE-2023-39326</li><li>CVE-2023-45285 </li></ul>|
+| api-portal.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-36054</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-5981</li><li>GHSA-vmq6-5m68-f53m </li></ul>|
+| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-39804</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5981</li><li>GHSA-jjfh-589g-3hjx</li><li>CVE-2023-34053 </li></ul>|
+| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>CVE-2023-20861</li><li>CVE-2023-20863</li><li>CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>GHSA-vmq6-5m68-f53m</li><li>CVE-2023-34053</li><li>CVE-2023-34035 </li></ul>|
+| metadata-store.apps.tanzu.vmware.com | <ul><li> CVE-2022-41717</li><li>CVE-2022-2879</li><li>CVE-2022-2880</li><li>CVE-2022-41715 </li></ul>|
+
 ---
  
 ### <a id='1-5-9-resolved-issues'></a> v1.5.9 Resolved issues 
