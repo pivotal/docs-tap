@@ -13,7 +13,7 @@ This release has the following security fixes, listed by component and area.
 
 | Package Name | Vulnerabilities Resolved |
 | ------------ | ------------------------ |
-| application-configuration-service.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>GHSA-qppj-fm5r-hxr3</li><li>GHSA-vmq6-5m68-f53m</li><li>CVE-2023-34053</li><li>GHSA-w33c-445m-f8w7 </li></ul>|
+| application-configuration-service.tanzu.vmware.com | <ul><li>CVE-2023-6378</li><li>CVE-2023-3635</li><li>CVE-2023-34053</li><li>CVE-2023-44487</li><li>CVE-2023-39325</li></ul>|
 | cnrs.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>CVE-2023-39326</li><li>CVE-2023-45285 </li></ul>|
 | api-portal.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-36054</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-5981</li><li>GHSA-vmq6-5m68-f53m </li></ul>|
 | spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-39804</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5981</li><li>GHSA-jjfh-589g-3hjx</li><li>CVE-2023-34053 </li></ul>|
