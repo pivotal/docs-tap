@@ -22,7 +22,7 @@ This release has the following security fixes, listed by component and area.
 | servicebinding.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-39318</li><li>CVE-2023-39319</li><li>CVE-2023-5363</li><li>CVE-2023-39325 </li></ul>|
 | sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-5363</li><li>CVE-2023-34053</li><li>GHSA-vmq6-5m68-f53m </li></ul>|
 | developer-conventions.tanzu.vmware.com | <ul><li> CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156 </li></ul>|
-| service-registry.spring.apps.tanzu.vmware.com | <ul><li> CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>GHSA-2wrh-6pvc-2jm9</li><li>GHSA-qppj-fm5r-hxr3</li><li>CVE-2023-34053</li><li>GHSA-jjfh-589g-3hjx</li><li>GHSA-v94h-hvhg-mf9h</li><li>GHSA-hr8g-6v94-x4m9</li><li>GHSA-vmq6-5m68-f53m</li><li>CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>CVE-2023-39325 </li></ul>|
+| service-registry.spring.apps.tanzu.vmware.com | <ul><li>CVE-2023-39325</li><li>CVE-2023-6378</li><li>CVE-2023-34053</li></ul>|
 | accelerator.apps.tanzu.vmware.com | <ul><li> CVE-2023-34053</li><li>CVE-2023-45285</li><li>GHSA-jjfh-589g-3hjx</li><li>GHSA-v94h-hvhg-mf9h </li></ul>|
 | apis.apps.tanzu.vmware.com | <ul><li> CVE-2023-45285 </li></ul>|
 
@@ -564,7 +564,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Out of the Box Supply Chain - Testing and Scanning | 0.14.8         |
 | Out of the Box Templates                           | 0.14.8         |
 | Service Bindings                                   | 0.10.2         |
-| Service Registry                                   | 1.2.1          |
+| Service Registry                                   | 1.2.2          |
 | Services Toolkit                                   | 0.12.0         |
 | Snyk Scanner for SCST - Scan (beta)                | 1.1.3          |
 | Source Controller                                  | 0.8.3          |
