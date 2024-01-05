@@ -191,7 +191,9 @@ To access the Prometheus web interface, you need to make the port `9090` of the 
 the cluster via a Kubernetes service or ingress. For development purposed you can forward the port to 
 your local machine using the `kubectl` command.
 
-For further information about Prometheus Operator refer to the [Prometheus Operator README](https://github.com/prometheus-operator/prometheus-operator/blob/main/README.md).
+For further information on the Prometheus Operator, including details on how to persist your metrics or activate alerting 
+features, please consult the 
+[Prometheus Operator documentation](https://prometheus-operator.dev/docs/prologue/introduction/).
 
 #### <a id="troubleshooting"></a> Troubleshooting
 
@@ -228,7 +230,7 @@ helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheu
 
 The Helm chart also sets up various scraping jobs for metrics related to the Kubernetes cluster.
 
-Also refer to [kube-prometheus-stack README](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+Also refer to [kube-prometheus-stack Helm chart README](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 for further information.
 
 #### <a id="troubleshooting"></a> Troubleshooting
