@@ -3,32 +3,24 @@
 This topic provides information about how to generate metrics for your applications in order to enable observability
 with external tools.
 
-## <a id="prometheus"></a> Prometheus
+## <a id="prometheus-metrics"></a> Prometheus metrics
 
-[Prometheus](https://prometheus.io/) is an open-source monitoring tool that is supported by client libraries for a wide 
-range of programming languages and frameworks. 
+[Prometheus](https://prometheus.io/) is an open-source monitoring tool that defines a simple text-based metrics format that 
+is supported by client libraries for a wide range of programming languages and frameworks. 
 
-By integrating these client libraries into your applications, you can effortlessly generate metrics in a standardized format. 
+By integrating these client libraries into your applications, you can effortlessly generate metrics in the Prometheus format. 
 These metrics are accessible via an HTTP endpoint, enabling Prometheus and other observability tools to conveniently 
 consume (scrape) them. 
 
 For Kubernetes, there's an established convention that facilitates the automatic discovery of pods exposing Prometheus metrics.
-This involves incorporating specific annotations on the pods, which guide Prometheus in determining the presence of metrics 
-and locating the metrics endpoint.
+This involves incorporating specific annotations on the pods exposing information for path and port of the metrics endpoint.
 
-The pod annotations would look like this for a Spring Boot workload:
+Prometheus and other observability tools like Datadog are able to discover annotated pods and collect the metrics from the endpoint.
 
-```yaml
-annotations:
-  prometheus.io/scrape: 'true'
-  prometheus.io/path: '/actuator/prometheus'
-  prometheus.io/port: '8081'
-```
-
-We will explain the setup of the following observability tools that use those annotations:
+In the following we will explain the setup of Prometheus on your cluster and the integration of an existing Datadog installation.
 
 * [Install Prometheus](#install-prometheus)
-* [Install Datadog](#install-datadog)
+* [Install Datadog Agent](#install-datadog-agent)
 
 ## <a id="install-prometheus"></a> Install Prometheus
 
@@ -102,9 +94,7 @@ EOF
 Next, you have to configure a Prometheus scraping job. This job will be designed to monitor all pods that are marked 
 with the designated Prometheus annotations.
 
-> The Prometheus Operator, by default, does not support annotation-based discovery of services, using the PodMonitor 
-> or ServiceMonitor Custom Resource Definitions (CRD) instead as they provide a broader range of configuration options. 
-> 
+> The Prometheus Operator, by default, does not support annotation-based discovery of services. 
 > Therefore, to enable the functionality of these annotations, it's necessary to set up a custom scrape job configuration.
 
 Create a file `prometheus-scrape-config.yaml` with the following content:
@@ -115,8 +105,7 @@ Create a file `prometheus-scrape-config.yaml` with the following content:
 # The relabeling allows the actual pod scrape endpoint to be configured via the
 # following annotations:
 #
-# * `prometheus.io/scrape`: Only scrape pods that have a value of `true`,
-# except if `prometheus.io/scrape-slow` is set to `true` as well.
+# * `prometheus.io/scrape`: Only scrape pods that have a value of `true`.
 # * `prometheus.io/scheme`: If the metrics endpoint is secured then you will need
 # to set this to `https` & most likely set the `tls_config` of the scrape config.
 # * `prometheus.io/path`: If the metrics path is not `/metrics` override this.
@@ -130,9 +119,6 @@ Create a file `prometheus-scrape-config.yaml` with the following content:
   relabel_configs:
     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
       action: keep
-      regex: true
-    - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape_slow]
-      action: drop
       regex: true
     - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scheme]
       action: replace
@@ -276,10 +262,10 @@ and also sets up scraping for metrics related to the Kubernetes cluster.
 
 Also refer to [Prometheus Helm chart README](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus).
 
-## <a id="install-datadog"></a> Install Datadog
+## <a id="install-datadog-agent"></a> Install Datadog Agent
 
 If you are using Datadog you can also use it to scrape the Prometheus endpoints without having to install Prometheus
-itself. You can use the **Datadog Agent** to forward the metrics to the Datadog servers.
+itself. You can use the Datadog Agent to forward the metrics to the Datadog servers.
 
 To install, add the Helm repository:
 
@@ -291,7 +277,7 @@ helm repo update
 Then, install the Datadog Agent Helm chart:
 
 ```console
-helm install datadog-operator datadog/datadog-operator
+helm upgrade --install datadog-operator datadog/datadog-operator
 ```
 
 Next, generate a new API key in Datadog for the Agent that needs to push metrics to Datadog.
