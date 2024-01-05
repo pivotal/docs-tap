@@ -32,20 +32,20 @@ without running Docker inside a container.
     <td>
       The list of flags to pass directly to kaniko, such as providing arguments to a build.
     </td>
-    <td><pre>- --build-arg=FOO=BAR</pre></td>
+    <td><pre>- --build-arg=MY_KEY=MY_VALUE</pre></td>
   </tr>
 </table>
 
 ## Example 1
 
 To build a container image from the
-`github.com/foo/bar` repository where the Dockerfile resides in the root of
+`github.com/my-foo/bar` repository where the Dockerfile resides in the root of
 that repository, you can switch from using Kpack to building from that
 Dockerfile by passing the `dockerfile` parameter:
 
 ```console
-$ tanzu apps workload create foo \
-  --git-repo https://github.com/foo/bar \
+$ tanzu apps workload create my-foo \
+  --git-repo https://github.com/my-foo/bar \
   --git-branch dev \
   --label app.kubernetes.io/part-of=foo \
   --param dockerfile=./Dockerfile \
@@ -58,7 +58,7 @@ $ tanzu apps workload create foo \
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: foo
+      7 + |  name: my-foo
       8 + |  namespace: dev
       9 + |spec:
      10 + |  params:
@@ -68,7 +68,7 @@ $ tanzu apps workload create foo \
      14 + |    git:
      15 + |      ref:
      16 + |        branch: dev
-     17 + |      url: https://github.com/foo/bar
+     17 + |      url: https://github.com/my-foo/bar
 ```
 
 ## Example 2
@@ -78,8 +78,8 @@ directory within the repository, use the `docker_build_context` parameter
 to change that:
 
 ```console
-$ tanzu apps workload create foo \
-  --git-repo https://github.com/foo/bar \
+$ tanzu apps workload create my-foo \
+  --git-repo https://github.com/my-foo/bar \
   --git-branch dev \
   --param dockerfile=MyDockerfile \
   --param docker_build_context=./src
