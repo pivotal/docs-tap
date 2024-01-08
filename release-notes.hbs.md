@@ -11,42 +11,105 @@ v{{ vars.url_version }}.
 
 This release has the following security fixes, listed by component and area.
 
-| Package Name | Vulnerabilities Resolved |
-| ------------ | ------------------------ |
-| application-configuration-service.tanzu.vmware.com | <ul><li>CVE-2023-6378</li><li>CVE-2023-3635</li><li>CVE-2023-34053</li><li>CVE-2023-44487</li><li>CVE-2023-39325</li></ul>|
-| cnrs.tanzu.vmware.com | <ul><li> CVE-2022-3996</li><li>CVE-2023-0464</li><li>CVE-2023-0465</li><li>CVE-2023-1255</li><li>CVE-2023-2650</li><li>CVE-2023-2975</li><li>CVE-2023-3446</li><li>CVE-2023-3817</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>CVE-2023-39326</li><li>CVE-2023-45285 </li></ul>|
-| api-portal.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-36054</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-5981</li><li>GHSA-vmq6-5m68-f53m </li></ul>|
-| spring-cloud-gateway.tanzu.vmware.com | <ul><li> CVE-2022-48522</li><li>CVE-2023-39804</li><li>CVE-2023-4016</li><li>CVE-2023-47038</li><li>CVE-2023-4806</li><li>CVE-2023-4813</li><li>CVE-2023-5156</li><li>CVE-2023-5981</li><li>GHSA-jjfh-589g-3hjx</li><li>CVE-2023-34053 </li></ul>|
-| sso.apps.tanzu.vmware.com | <ul><li> CVE-2023-2975</li><li>CVE-2023-5156</li><li>CVE-2023-5363</li><li>CVE-2023-20861</li><li>CVE-2023-20863</li><li>CVE-2023-22006</li><li>CVE-2023-22036</li><li>CVE-2023-22041</li><li>CVE-2023-22044</li><li>CVE-2023-22045</li><li>CVE-2023-22049</li><li>GHSA-vmq6-5m68-f53m</li><li>CVE-2023-34053</li><li>CVE-2023-34035 </li></ul>|
-| metadata-store.apps.tanzu.vmware.com | <ul><li> CVE-2022-41717</li><li>CVE-2022-2879</li><li>CVE-2022-2880</li><li>CVE-2022-41715 </li></ul>|
-
----
-
-### <a id='1-5-9-resolved-issues'></a> v1.5.9 Resolved issues
-
-The following issues, listed by component and area, are resolved in this release.
-
-#### <a id='1-5-9-COMPONENT-NAME-ri'></a> v1.5.9 Resolved issues: COMPONENT-NAME
-
-- Resolved issue description.
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api-portal.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-vmq6-5m68-f53m">GHSA-vmq6-5m68-f53m</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5981">CVE-2023-5981</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-47038">CVE-2023-47038</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4016">CVE-2023-4016</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36054">CVE-2023-36054</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48522">CVE-2022-48522</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>application-configuration-service.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-6378">CVE-2023-6378</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44487">CVE-2023-44487</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39325">CVE-2023-39325</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3635">CVE-2023-3635</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34053">CVE-2023-34053</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>cnrs.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5156">CVE-2023-5156</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4813">CVE-2023-4813</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4806">CVE-2023-4806</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-45285">CVE-2023-45285</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39326">CVE-2023-39326</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3817">CVE-2023-3817</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-3446">CVE-2023-3446</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2650">CVE-2023-2650</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-1255">CVE-2023-1255</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0465">CVE-2023-0465</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0464">CVE-2023-0464</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-3996">CVE-2022-3996</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>metadata-store.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41717">CVE-2022-41717</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-41715">CVE-2022-41715</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2880">CVE-2022-2880</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-2879">CVE-2022-2879</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>spring-cloud-gateway.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-jjfh-589g-3hjx">GHSA-jjfh-589g-3hjx</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5981">CVE-2023-5981</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5156">CVE-2023-5156</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4813">CVE-2023-4813</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4806">CVE-2023-4806</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-47038">CVE-2023-47038</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4016">CVE-2023-4016</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-39804">CVE-2023-39804</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34053">CVE-2023-34053</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-48522">CVE-2022-48522</a></li>
+</ul></details></td>
+</tr>
+<tr>
+<td>sso.apps.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-vmq6-5m68-f53m">GHSA-vmq6-5m68-f53m</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5363">CVE-2023-5363</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-5156">CVE-2023-5156</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34053">CVE-2023-34053</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-34035">CVE-2023-34035</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2975">CVE-2023-2975</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22049">CVE-2023-22049</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22045">CVE-2023-22045</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22044">CVE-2023-22044</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22041">CVE-2023-22041</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22036">CVE-2023-22036</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-22006">CVE-2023-22006</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20863">CVE-2023-20863</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20861">CVE-2023-20861</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
 ### <a id='1-5-9-known-issues'></a> v1.5.9 Known issues
 
-This release has the following known issues, listed by component and area.
-
-#### <a id='1-5-9-COMPONENT-NAME-ki'></a> v1.5.9 Known issues: COMPONENT-NAME
-
-- Known issue description with link to workaround.
-
----
-
-### <a id='1-5-9-components'></a> v1.5.9 Component versions
-
-The following table lists the supported component versions for this Tanzu Application Platform release.
-
-GET-TABLE-FROM-PREVIOUS-PATCH
+This release introduces no new known issues.
 
 ---
 
