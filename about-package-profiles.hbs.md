@@ -298,526 +298,306 @@ For a diagram showing the packages contained in each profile, see
 [Overview of multicluster Tanzu Application Platform](./multicluster/about.hbs.md).
 
 <table>
+ <thead>
   <tr>
-   <td><strong>Package Name</strong>
-   </td>
-   <td><strong>Full</strong>
-   </td>
-   <td><strong>Iterate</strong>
-   </td>
-   <td><strong>Build</strong>
-   </td>
-   <td><strong>Run</strong>
-   </td>
-   <td><strong>View</strong>
-   </td>
+   <th scope="col">Package Name</th>
+   <th scope="col">Full</th>
+   <th scope="col">Iterate</th>
+   <th scope="col">Build</th>
+   <th scope="col">Run</th>
+   <th scope="col">View</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th scope="row">API Auto Registration</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>API Auto Registration
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">API portal</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-  <tr>
-   <td>API portal
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Application Accelerator</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Application Accelerator
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Application Live View back end</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-  <td>Application Live View back end
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Application Live View connector</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Application Live View connector
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Application Live View conventions</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Application Live View conventions
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Application Single Sign-On</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Application Single Sign-On
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">cert-manager</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>cert-manager
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Cloud Native Runtimes</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Cloud Native Runtimes
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Contour</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Contour
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Convention controller</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Convention controller
-    </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Default Roles</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Default Roles
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Developer Conventions</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Developer Conventions
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <td>Eventing
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Eventing</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Flux Source Controller
-  </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Flux Source Controller</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Grype
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Grype</th>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Learning Center
-  </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Learning Center</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-    <tr>
-   <td>Namespace Provisioner
-  </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Namespace Provisioner</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Out of the Box Delivery - Basic
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Out of the Box Delivery - Basic</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Out of the Box Supply Chain - Basic
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Out of the Box Supply Chain - Basic</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Out of the Box Supply Chain - Testing
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Out of the Box Supply Chain - Testing</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Out of the Box Supply Chain - Testing and Scanning
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Out of the Box Supply Chain - Testing and Scanning</th>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Out of the Box Templates
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Out of the Box Templates</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Service Bindings
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Service Bindings</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Services Toolkit
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Services Toolkit</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>Source Controller
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Source Controller</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Spring Boot conventions
-  </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Spring Boot conventions</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Supply Chain Choreographer
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">Supply Chain Choreographer</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>SCST - Policy Controller
-  </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">SCST - Policy Controller</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>SCST - Scan</td>
-  </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">SCST - Scan</th>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>SCST - Sign (deprecated)
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
+   <th scope="row">SCST - Sign (deprecated)</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td></td>
   </tr>
   <tr>
-   <td>SCST - Store</td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">SCST - Store</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Tanzu Build Service
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Tanzu Build Service</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Tanzu Application Platform GUI
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Tanzu Application Platform GUI</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Tekton Pipelines
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">Tekton Pipelines</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Telemetry
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Telemetry</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
-  <tr>
+ </tbody>
 </table>
 
 >**Note** You can only install one supply chain at any given time. For information about switching
@@ -829,167 +609,100 @@ The following table shows the languages and frameworks supported by
 Tanzu Application Platform components.
 
 <table>
+ <thead>
   <tr>
-   <td><strong>Language or Framework</strong>
-   </td>
-   <td><strong>Tanzu Build Service</strong>
-   </td>
-   <td><strong>Runtime Conventions</strong>
-   </td>
-   <td><strong>Tanzu Developer Tooling</strong>
-   </td>
-   <td><strong>Application Live View</strong>
-   </td>
-   <td><strong>Functions</strong>
-   </td>
-   <td><strong>Extended Scanning Coverage using Buildpack SBOM's</strong>
-   </td>
+   <th>Language or Framework</th>
+   <th>Tanzu Build Service</th>
+   <th>Runtime Conventions</th>
+   <th>Tanzu Developer Tooling</th>
+   <th>Application Live View</th>
+   <th>Functions</th>
+   <th>Extended Scanning Coverage using Buildpack SBOM's</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th scope="row">Java</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Java
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Spring Boot</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Spring Boot
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">.NET Core</th>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>.NET Core
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Steeltoe</th>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
-   <td>Steeltoe
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
+   <th scope="row">NodeJS</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>NodeJS
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Python</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>Python
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">golang</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>golang
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">PHP</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
   <tr>
-   <td>PHP
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
+   <th scope="row">Ruby</th>
+   <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>&check;</td>
   </tr>
-  <tr>
-   <td>Ruby
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-  </tr>
+ </tbody>
 </table>
 
 **Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
