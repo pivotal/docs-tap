@@ -55,72 +55,64 @@ To create an example Knative service and use it to test Knative Serving:
 3. Run one of these commands to retrieve the external address for your ingress, depending on your IaaS:
 
   <table>
-  <tr>
-    <th>IaaS
-    </th>
-    <th>Command
-    </th>
-  </tr>
-  <tr>
-    <td>Tanzu Kubernetes Grid on AWS
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].hostname}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Tanzu Mission Control on AWS
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].hostname}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Amazon Elastic Kubernetes Service
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].hostname}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>vSphere 7.0 on Tanzu
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Tanzu Kubernetes Grid on vSphere, Azure, or Google Cloud Platform (GCP)
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Tanzu Kubernetes Grid Integrated Edition
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Tanzu Mission Control on vSphere
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Azure Kubernetes Service
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Google Kubernetes Engine
-    </td>
-    <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
-    </td>
-  </tr>
-  <tr>
-    <td>Docker desktop
-    </td>
-    <td><code>export EXTERNAL_ADDRESS='localhost:8080'</code> And set up port-forwarding in a separate terminal: <code>kubectl -n tanzu-system-ingress port-forward svc/envoy 8080:80</code> 
-    </td>
-  </tr>
+    <thead>
+      <tr>
+        <th>IaaS</th>
+        <th>Command</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tanzu Kubernetes Grid on AWS</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].hostname}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Tanzu Mission Control on AWS</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].hostname}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Amazon Elastic Kubernetes Service</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].hostname}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>vSphere 7.0 on Tanzu</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Tanzu Kubernetes Grid on vSphere, Azure, or Google Cloud Platform (GCP)</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Tanzu Kubernetes Grid Integrated Edition</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Tanzu Mission Control on vSphere</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Azure Kubernetes Service</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Google Kubernetes Engine</td>
+        <td><code>export EXTERNAL_ADDRESS=$(kubectl get service envoy -n tanzu-system-ingress -ojsonpath="{.status.loadBalancer.ingress[0].ip}")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>Docker desktop</td>
+        <td><code>export EXTERNAL_ADDRESS='localhost:8080'</code> And set up port-forwarding in a separate terminal: <code>kubectl -n tanzu-system-ingress port-forward svc/envoy 8080:80</code>
+        </td>
+      </tr>
+    </tbody>
   </table>
 
 1. Connect to the app.
