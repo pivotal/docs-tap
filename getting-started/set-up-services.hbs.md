@@ -290,8 +290,13 @@ You have set the scene for the application developer to inspect the claim and to
 There are more service use cases not covered in this Getting started guide. See the following:
 
 <table class="nice">
-  <th><strong>Use Case</strong></th>
-  <th><strong>Short Description</strong></th>
+  <thead>
+  <tr>
+    <th><strong>Use Case</strong></th>
+    <th><strong>Short Description</strong></th>
+  </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>
       <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-introducing_different_service_implementations_in_different_environments.html">Introducing Different Service Implementatations in Different Environments</a>
@@ -347,6 +352,7 @@ There are more service use cases not covered in this Getting started guide. See 
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
+  </tbody>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the

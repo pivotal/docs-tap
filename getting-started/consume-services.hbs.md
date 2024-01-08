@@ -141,8 +141,13 @@ the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` se
 There are more service use cases not covered in this getting started guide. See the following:
 
 <table class="nice">
-  <th><strong>Use Case</strong></th>
-  <th><strong>Short Description</strong></th>
+  <thead>
+  <tr>
+    <th><strong>Use Case</strong></th>
+    <th><strong>Short Description</strong></th>
+  </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>
       <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_ack.html#dscvr-claim-bind">Consuming AWS RDS on Tanzu Application Platform</a>
@@ -190,6 +195,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
+  </tbody>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the

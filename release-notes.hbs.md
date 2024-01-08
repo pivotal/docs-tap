@@ -3,67 +3,21 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
-## <a id='1-4-13'></a> v1.4.13 
- 
-**Release Date**: 09 January 2024 
- 
-### <a id='1-4-13-security-fixes'></a> v1.4.13 Security fixes 
- 
-This release has the following security fixes, listed by component and area. 
- 
-#### <a id='1-4-13-COMPONENT-NAME-fixes'></a> v1.4.13 Security fixes: COMPONENT-NAME
- 
-- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
- 
-OR add HTML table
- 
-<table>
-<thead>
-<tr>
-<th>Package name</th>
-<th>Vulnerabilities resolved</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PACKAGE.tanzu.vmware.com</td>
-<td><details><summary>Expand to see the list</summary><ul>
-<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
-</ul></details></td>
-</tr>
-</tbody>
-</table> 
- 
+## <a id='1-4-13'></a> v1.4.13
+
+**Release Date**: 09 January 2024
+
+### <a id='1-4-13-security-fixes'></a> v1.4.13 Security fixes
+
+This release has no security fixes.
+
 ---
- 
-### <a id='1-4-13-resolved-issues'></a> v1.4.13 Resolved issues 
- 
-The following issues, listed by component and area, are resolved in this release. 
- 
-#### <a id='1-4-13-COMPONENT-NAME-ri'></a> v1.4.13 Resolved issues: COMPONENT-NAME
- 
-- Resolved issue description.
- 
+
+### <a id='1-4-13-known-issues'></a> v1.4.13 Known issues
+
+This release introduces no new known issues.
+
 ---
- 
-### <a id='1-4-13-known-issues'></a> v1.4.13 Known issues 
- 
-This release has the following known issues, listed by component and area. 
- 
-#### <a id='1-4-13-COMPONENT-NAME-ki'></a> v1.4.13 Known issues: COMPONENT-NAME
- 
-- Known issue description with link to workaround.  
- 
----
- 
-### <a id='1-4-13-components'></a> v1.4.13 Component versions
- 
-The following table lists the supported component versions for this Tanzu Application Platform release.
- 
-GET-TABLE-FROM-PREVIOUS-PATCH
- 
----   
 
 ## <a id='1-4-12'></a> v1.4.12
 
@@ -306,10 +260,13 @@ This release introduces no new known issues.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>accelerator.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -358,6 +315,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-3712">CVE-2021-3712</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -377,10 +335,13 @@ This release introduces no new known issues.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>api-portal.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -458,6 +419,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-45886">CVE-2022-45886</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -496,10 +458,13 @@ This issue resolves after a few minutes.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>ootb-templates.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -548,6 +513,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-5155">CVE-2009-5155</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -585,10 +551,13 @@ This release has the following known issues, listed by component and area.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>sso.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -618,6 +587,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-2004">CVE-2023-2004</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -637,10 +607,13 @@ This release introduces no new known issues.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>api-portal.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -673,6 +646,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://github.com/advisories/GHSA-f9xv-q969-pqx4">GHSA-f9xv-q969-pqx4</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -713,10 +687,13 @@ This release introduces no new known issues.
 This release has the following security fixes, listed by component and area.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>accelerator.apps.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -751,6 +728,7 @@ This release has the following security fixes, listed by component and area.
 <li><a href="https://github.com/advisories/GHSA-vvpx-j8f3-3w6h">GHSA-vvpx-j8f3-3w6h</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
@@ -765,10 +743,13 @@ This release has the following security fixes, listed by package name and
 vulnerabilities.
 
 <table>
+<thead>
 <tr>
 <th>Package Name</th>
 <th>Vulnerabilities Resolved</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>buildservice.tanzu.vmware.com</td>
 <td><details><summary>Expand to see the list</summary><ul>
@@ -834,6 +815,7 @@ vulnerabilities.
 <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0461">CVE-2023-0461</a></li>
 </ul></details></td>
 </tr>
+</tbody>
 </table>
 
 ---
