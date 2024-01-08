@@ -590,6 +590,7 @@
           - [Kubernetes service account autoconfiguration](scst-store/amr/auth-k8s-sa-autoconfiguration.md)
           - [User-defined kubernetes service account configuration](scst-store/amr/auth-k8s-sa-user-defined.hbs.md)
       - [Run query with GraphQL](scst-store/amr/graphql-query.hbs.md)
+      - [table](scst-store/amr/table.hbs.md)
       - [Install AMR CloudEvent Handler](scst-store/amr/install-amr-cloudevent-handler.hbs.md)
       - [Install AMR Observer](scst-store/amr/install-amr-observer.hbs.md)
       - [Troubleshooting](scst-store/amr/troubleshooting.hbs.md)
