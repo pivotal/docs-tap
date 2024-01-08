@@ -74,79 +74,38 @@ curl to query the AMR GraphQL endpoint, but you can use other similar tools to a
 This section tells you about GraphQL query arguments, and lists the fields available for
 `AppAcceleratorRuns` and `AppAcceleratorFragments`.
 
-### <a id='app-accel-query-args'></a> (Optional) AppAcceleratorRuns query arguments
+### <a id='app-accel-query-args'></a> AppAcceleratorRuns query arguments
 
 You can specify the following supported arguments when querying for `AppAcceleratorRuns`. `query`
-expects an object that specifies additional arguments to query. You must specify at least one field.
-You can choose the following fields to return in the GraphQL query.
+expects an object that specifies additional arguments to query. If you don't specify an argument the
+query will return all AppAcceleratorRuns.
 
-- `guid`: UID identifying the run, as a string value. Each AppAcceleratorRuns is automatically assigned a UID.
-
-  For example:
-
-  ```graphql
-  appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})
-  ```
-
-- `source`: String representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`.
-
-  For example:
-
-  ```graphql
-  appAcceleratorRuns(query:{source: "TAP-GUI"})
-  ```
-
-- `username`: String representing the user name of the person who runs
-the accelerator, as captured by the client UI.
-  For example:
-
-  ```graphql
-  appAcceleratorRuns(query:{username: "test.user"})
-  ```
-
-- `namespace` and `name`: Strings representing the accelerator that
-was used to create an application.
-  For example:
-
-  ```graphql
-  appAcceleratorRuns(query:{name: "tanzu-java-web-app"})
-  ```
-
-- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: Location in VCS (Version Control System) of the accelerator sources used.
-  For example:
-
-  ```graphql
-  appAcceleratorRuns(query:{
-    appAcceleratorRepoURL: "https://github.com/vmware-tanzu/application-accelerator-samples.git",
-    appAcceleratorRevision: "v1.6"
-  })
-  ```
-
-- `timestamp`: String representation of the exact time the accelerator ran. You can query for runs that happened `before` or `after` a particular instant:
-  For example:
-
-  ```graphql
-  appAcceleratorRuns(query: {timestamp: {after: "2023-10-11T13:40:46.952Z"}})
-  ```
+| **Argument** | **Description** | **Example** |
+|--------|---------|------------|------------|
+|`guid`|String value unique identifier for each AppAcceleratorRuns.|`appAcceleratorRuns(query:{guid: "d2934b09-5d4c-45da-8eb1-e464f218454e"})`|
+|`source`|String representing the client used to run the accelerator. Supported values include `TAP-GUI`, `VSCODE`, and `INTELLIJ`|`appAcceleratorRuns(query:{source: "TAP-GUI"})`|
+|`username`|String representing the user name of the person who runs the accelerator, as captured by the client UI.|`appAcceleratorRuns(query:{username: "test.user"})`|
+|`namespace` and `name`|Strings representing the accelerator that was used to create an application.|`appAcceleratorRuns(query:{name: "tanzu-java-web-app"})`|
+|`appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`|Location in VCS (Version Control System) of the accelerator sources used.|`appAcceleratorRuns(query:{appAcceleratorRepoURL: "https://github.com/vmware-tanzu/application-accelerator-samples.git", appAcceleratorRevision: "v1.6"`|
+|`timestamp`|String representation of the time the accelerator ran. You can query for runs that happened `before` or `after` a particular instant.|`appAcceleratorRuns(query: {timestamp: {after: "2023-10-11T13:40:46.952Z"}}`)|
 
 ### <a id='app-accel-runs-fields'></a> AppAcceleratorRuns fields
 
 You can choose the following fields to return in the GraphQL query.
-See the section above for details about those fields.
 You must specify at least one field.
 
-- `guid`: UID identifying the run
-- `source`: String representing the client used to run the accelerator
+- `guid`: String value unique identifier for each AppAcceleratorRuns.
+- `source`: String representing the client used to run the accelerator.
 - `username`: String representing the user name of the person who ran
-  the accelerator
-- `namespace` and `name`: Strings representing the accelerator which
-  was used to create an application
-- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: actual location in VCS of the sources of the
-  accelerator used
+  the accelerator.
+- `namespace` and `name`: Strings representing the accelerator that
+  was used to create an application.
+- `appAcceleratorRepoURL`, `appAcceleratorRevision`, and `appAcceleratorSubpath`: Location in VCS of
+the accelerator sources used.
+- `timestamp`: String representation of the time the accelerator ran.
 - `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a
   commit.
-- `timestamp`: the exact time the accelerator was run
-- `appAcceleratorFragments`: a one-to-many container of nodes representing the fragment versions used in each `AppAcceleratorRuns`. Those fragment nodes share many of the fields with `AppAcceleratorRuns`, with the same semantics but applied to the particular fragment. Those include:
+- `appAcceleratorFragments`: A one-to-many container of nodes representing the fragment versions used in each `AppAcceleratorRuns`. Fragment nodes share many of the fields with `AppAcceleratorRuns`, with the same semantics but applied to the particular fragment. These include:
   - `namespace` and `name`: strings representing the identity of the fragment
   - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS of the sources of the fragment used
   - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a commit.
