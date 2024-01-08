@@ -31,7 +31,11 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-6-7-COMPONENT-NAME-ri'></a> v1.6.7 Resolved issues: COMPONENT-NAME
  
 - Resolved issue description.
- 
+
+#### <a id='1-6-7-cnr-ri'></a> v1.6.7 Resolved issues: Cloud Native Runtimes
+
+- Cloud Native Runtimes was rebuilt with an updated golang base image version (1.20.12) to address CVEs
+
 ---
  
 ### <a id='1-6-7-known-issues'></a> v1.6.7 Known issues 
