@@ -800,6 +800,7 @@ The following table shows the languages and frameworks supported by
 Tanzu Application Platform components.
 
 <table>
+  <thead>
   <tr>
    <th scope="col">Language or Framework</th>
    <th scope="col">Tanzu Build Service</th>
@@ -809,6 +810,8 @@ Tanzu Application Platform components.
    <th scope="col">Functions</th>
    <th scope="col">Extended Scanning Coverage using Buildpack SBOM's</th>
   </tr>
+  </thead>
+  <tbody>
   <tr>
    <th scope="row">Java</th>
    <td>&check;</td>
@@ -890,6 +893,7 @@ Tanzu Application Platform components.
    <td></td>
    <td>&check;</td>
   </tr>
+  </tbody>
 </table>
 
 **Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
