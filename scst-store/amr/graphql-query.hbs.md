@@ -21,7 +21,7 @@ Use the GraphQL playground
       kubectl -n metadata-store get secret amr-graphql-view-token -o json | jq -r ".data.token" | base64 -d
       ```
 
-    2. To connect to the AMR GraphQL playground, after enabling ingress, visit
+    2. To connect to the AMR GraphQL playground, visit
     `https://amr-graphql.INGRESS-DOMAIN/play`.
 
         Where `INGRESS-DOMAIN` is the domain of the ingress you want to use.
@@ -76,9 +76,9 @@ This section tells you about GraphQL query arguments, and lists the fields avail
 
 ### <a id='app-accel-query-args'></a> AppAcceleratorRuns query arguments
 
-You can specify the following supported arguments when querying for `AppAcceleratorRuns`. `query`
-expects an object that specifies additional arguments to query. If you don't specify an argument the
-query will return all AppAcceleratorRuns.
+You can specify the following arguments when querying for `AppAcceleratorRuns`. If you
+don't specify an argument the query will return all AppAcceleratorRuns.
+`query` expects an object that specifies additional arguments to query.
 
 | **Argument** | **Description** | **Example** |
 |--------|---------|------------|------------|
@@ -106,8 +106,8 @@ the accelerator sources used.
 - `appAcceleratorSource`: VCS information of the sources of the accelerator used, but navigable as a
   commit.
 - `appAcceleratorFragments`: A one-to-many container of nodes representing the fragment versions used in each `AppAcceleratorRuns`. Fragment nodes share many of the fields with `AppAcceleratorRuns`, with the same semantics but applied to the particular fragment. These include:
-  - `namespace` and `name`: strings representing the identity of the fragment
-  - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: actual location in VCS of the sources of the fragment used
+  - `namespace` and `name`: Strings representing the identity of the fragment.
+  - `appAcceleratorFragmentSourceRepoURL` , `appAcceleratorFragmentSourceRevision`, and  `appAcceleratorFragmentSourceSubpath`: Location in VCS of the sources of the fragment used
   - `appAcceleratorFragmentSource`: VCS information of the sources of the fragment, but navigable as a commit.
 
 ### <a id='sample-app-accel-query'></a> Sample Application Accelerator queries
