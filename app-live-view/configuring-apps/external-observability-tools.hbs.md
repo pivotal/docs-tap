@@ -19,10 +19,10 @@ Prometheus and other observability tools like Datadog are able to discover annot
 
 In the following we will explain the setup of Prometheus on your cluster and the integration of an existing Datadog installation.
 
-* [Install Prometheus](#install-prometheus)
-* [Install Datadog Agent](#install-datadog-agent)
+* [Using Prometheus as the observability tool](#install-prometheus)
+* [Using Datadog as the observability tool](#install-datadog-agent)
 
-## <a id="install-prometheus"></a> Install Prometheus
+## <a id="install-prometheus"></a> Using Prometheus as the observability tool
 
 There are multiple ways to install Prometheus on your cluster:
 
@@ -264,7 +264,7 @@ and also sets up scraping for metrics related to the Kubernetes cluster.
 
 Also refer to [Prometheus Helm chart README](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus).
 
-## <a id="install-datadog-agent"></a> Install Datadog Agent
+## <a id="install-datadog-agent"></a> Using Datadog as the observability tool
 
 If you are using Datadog you can also use it to scrape the Prometheus endpoints without having to install Prometheus
 itself. You can use the Datadog Agent to forward the metrics to the Datadog servers.
@@ -317,7 +317,7 @@ EOF
 Datadog is designed to automatically gather Prometheus metrics from pods that are annotated with the default Prometheus 
 annotations, as previously described.
 
-## <a id="enable-spring-boot-workloads"></a> Enable Spring Boot workloads
+## <a id="enable-spring-boot-workloads"></a> Enable metric collection on Spring Boot workloads
 
 In order to enable Spring Boot workloads to create Prometheus metrics you have to add the following dependencies to your
 `pom.xml` (if using Maven):
