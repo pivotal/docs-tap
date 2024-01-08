@@ -87,9 +87,14 @@ Platform and the responsibilities assumed by each. The following table describes
 each user role.
 
 <table class="nice">
-  <th><strong>User role</strong></th>
-  <th><strong>Exists as a default role in Tanzu Application Platform?</strong></th>
-  <th><strong>Responsibilities</strong></th>
+  <thead>
+  <tr>
+    <th><strong>User role</strong></th>
+    <th><strong>Exists as a default role in Tanzu Application Platform?</strong></th>
+    <th><strong>Responsibilities</strong></th>
+  </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>Service operator</td>
     <td>Yes - <a href="../authn-authz/role-descriptions.md#service-operator">service-operator</a></td>
@@ -117,6 +122,7 @@ each user role.
     </td>
     <td>Binding service instances to application workloads</td>
   </tr>
+  </tbody>
 </table>
 
 ## Next steps
