@@ -837,11 +837,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
 
 <div>
 <table style="width:100%">
+  <thead>
   <tr>
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Age</th>
   </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>Jill</td>
     <td>Smith</td>
@@ -852,6 +855,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
     <td>Jackson</td>
     <td>94</td>
   </tr>
+  </tbody>
 </table>
 </div>
 
@@ -866,11 +870,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
 ++++
 <div>
 <table style="width:100%">
+  <thead>
   <tr>
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Age</th>
   </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>Jill</td>
     <td>Smith</td>
@@ -881,6 +888,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
     <td>Jackson</td>
     <td>94</td>
   </tr>
+  </tbody>
 </table>
 </div>
 ++++
