@@ -10,7 +10,7 @@ For more information about Application Live View packages, see
 
 ## <a id='sec-ac-overview'></a>Security and access control overview
 
-There is one instance of Application Live View back end installed per `view` profile.
+There is one instance of Application Live View back end installed per View profile.
 Multiple users access this back-end API to fetch actuator data for different applications.
 All the REST API calls to the back end are secured.
 A token must be passed to the Application Live View back end on each call to the REST API to fetch
@@ -27,6 +27,8 @@ securely query for the actuator data for a pod. It requests a token from Applica
 APIServer and passes it in the subsequent calls to the back end. This ensures that actuator data
 from the running application is fetched only if the user is authorized to see the live information
 for the pod.
+
+![Diagram of the security and access control process described in this section.](images/security-and-access-control.png)
 
 The Application Live View UI plug-in relies on Tanzu Developer Portal authentication and
 authorization to access the Application Live View APIServer and fetch the Application Live View tokens.
@@ -117,7 +119,7 @@ following steps.
 
       backend.port                          <nil>               number      Port to reach the Application Live View back end.
       connector.deployment.enabled            false             boolean     Flag for the connector to run in deployment mode
-      connector.deployment.replicas             1               number      Number of replicas of connector pods at any given time      
+      connector.deployment.replicas             1               number      Number of replicas of connector pods at any given time
       connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope.
       connector.namespace_scoped.namespace  default             string      Namespace to deploy connector.
       kubernetes_distribution                                   string      Kubernetes distribution that this package is being installed on. Accepted
