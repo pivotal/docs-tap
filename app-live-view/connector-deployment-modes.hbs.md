@@ -14,8 +14,9 @@ running in a worker node of a Kubernetes cluster.
 When the connector is running as a regular deployment, it observes all the applications across
 all the namespaces in the cluster and registers with the back end.
 
-1. To run the connector as a regular deployment, change the default installation settings for
-   Application Live View connector by running:
+To run the connector as a regular deployment:
+
+1. Change the default installation settings for Application Live View connector by running:
 
    ```console
    tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
@@ -50,8 +51,8 @@ all the namespaces in the cluster and registers with the back end.
 
    For more information about values schema options, see the properties listed earlier.
 
-2. To override the deployment mode for the connector, create `app-live-view-connector-values.yaml`
-   with the following details:
+2. Override the deployment mode for the connector by using the following configuration values for the
+   `app-live-view-connector-values.yaml`:
 
     ```yaml
     appliveview_connector:
