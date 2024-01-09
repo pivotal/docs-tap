@@ -5,7 +5,7 @@ This topic tells you how to install Application Live View from the Tanzu Applica
 
 ## <a id='overview'></a>Overview
 
-Application Live View includes four packages you can install. The following table lists these packages
+Application Live View includes four packages you must install. The following table lists these packages
 and shows the Tanzu Application Platform profiles each package is included in.
 
 <table>
