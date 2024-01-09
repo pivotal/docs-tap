@@ -89,7 +89,9 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-8-0-COMPONENT-NAME-ri'></a> v1.8.0 Resolved issues: COMPONENT-NAME
 
-- Resolved issue description.
+#### <a id='1-8-0-scst-store-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Store
+
+- This release fixes the issue with expired certificates where users need to restart the metadata-store pods when the internal database certificate gets rotated by cert-manager. Users should no longer see this issue with the default internal database, but the solution does not cover the case of an external database.  
 
 ---
 
