@@ -5,7 +5,7 @@ v{{ vars.url_version }}.
 
 ## <a id='1-5-10'></a> v1.5.10 
  
-**Release Date**: 13 Feburary 2024 
+**Release Date**: 13 February 2024 
  
 ### <a id='1-5-10-security-fixes'></a> v1.5.10 Security fixes 
  
