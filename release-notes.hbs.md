@@ -3,6 +3,116 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
+## <a id='1-7-4'></a> v1.7.4 
+ 
+**Release Date**: 13 February 2024 
+ 
+### <a id='1-7-4-security-fixes'></a> v1.7.4 Security fixes 
+ 
+This release has the following security fixes, listed by component and area. 
+ 
+#### <a id='1-7-4-COMPONENT-NAME-fixes'></a> v1.7.4 Security fixes: COMPONENT-NAME
+ 
+- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
+ 
+OR add HTML table
+ 
+<table>
+<thead>
+<tr>
+<th>Package name</th>
+<th>Vulnerabilities resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACKAGE.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table> 
+ 
+---
+ 
+### <a id='1-7-4-resolved-issues'></a> v1.7.4 Resolved issues 
+ 
+The following issues, listed by component and area, are resolved in this release. 
+ 
+#### <a id='1-7-4-COMPONENT-NAME-ri'></a> v1.7.4 Resolved issues: COMPONENT-NAME
+ 
+- Resolved issue description.
+ 
+---
+ 
+### <a id='1-7-4-known-issues'></a> v1.7.4 Known issues 
+ 
+This release has the following known issues, listed by component and area. 
+ 
+#### <a id='1-7-4-COMPONENT-NAME-ki'></a> v1.7.4 Known issues: COMPONENT-NAME
+ 
+- Known issue description with link to workaround.  
+ 
+---
+ 
+### <a id='1-7-4-components'></a> v1.7.4 Component versions
+ 
+The following table lists the supported component versions for this Tanzu Application Platform release.
+ 
+| Component Name                                     | Version        |
+| -------------------------------------------------- | -------------- |
+| API Auto Registration                              |                |
+| API portal                                         |                |
+| Application Accelerator                            |                |
+| Application Configuration Service                  |                |
+| Application Live View APIServer                    |                |
+| Application Live View back end                     |                |
+| Application Live View connector                    |                |
+| Application Live View conventions                  |                |
+| Application Single Sign-On                         |                |
+| Artifact Metadata Repository Observer              |                |
+| AWS Services                                       |                |
+| Bitnami Services                                   |                |
+| Carbon Black Scanner for SCST - Scan (beta)        |                |
+| Cartographer Conventions                           |                |
+| cert-manager                                       |                |
+| Cloud Native Runtimes                              |                |
+| Contour                                            |                |
+| Crossplane                                         |                |
+| Default Roles                                      |                |
+| Developer Conventions                              |                |
+| External Secrets Operator                          |                |
+| Flux CD Source Controller                          |                |
+| Grype Scanner for SCST - Scan                      |                |
+| Local Source Proxy                                 |                |
+| Namespace Provisioner                              |                |
+| Out of the Box Delivery - Basic                    |                |
+| Out of the Box Supply Chain - Basic                |                |
+| Out of the Box Supply Chain - Testing              |                |
+| Out of the Box Supply Chain - Testing and Scanning |                |
+| Out of the Box Templates                           |                |
+| Service Bindings                                   |                |
+| Service Registry                                   |                |
+| Services Toolkit                                   |                |
+| Snyk Scanner for SCST - Scan (beta)                |                |
+| Source Controller                                  |                |
+| Spring Boot conventions                            |                |
+| Spring Cloud Gateway                               |                |
+| Supply Chain Choreographer                         |                |
+| Supply Chain Security Tools - Policy Controller    |                |
+| Supply Chain Security Tools - Scan                 |                |
+| Supply Chain Security Tools - Scan 2.0 (beta)      |                |
+| Supply Chain Security Tools - Store                |                |
+| Tanzu Developer Portal                             |                |
+| Tanzu Developer Portal Configurator                |                |
+| Tanzu Application Platform Telemetry               |                |
+| Tanzu Build Service                                |                |
+| Tanzu CLI                                          |                |
+| Tekton Pipelines                                   |                |
+---
+
 ## <a id='1-7-3'></a> v1.7.3
 
 **Release Date**: 09 January 2024
