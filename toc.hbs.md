@@ -663,7 +663,7 @@
          - [Troubleshoot Tanzu Developer Portal Configurator](tap-gui/configurator/troubleshooting.hbs.md)
          - [Using surfaces](tap-gui/configurator/using-surfaces.hbs.md)
          - [API documentation for surfaces](tap-gui/configurator/api-docs.hbs.md)
-         - [Dependency Version Reference](tap-gui/configurator/dependency-version-refs.hbs.md)
+         - [Dependency version reference](tap-gui/configurator/dependency-version-refs.hbs.md)
       - [Tanzu Developer Portal plug-ins](tap-gui/plugins/about.hbs.md)
          - [Tanzu Developer Portal plug-ins overview](tap-gui/plugins/about.hbs.md)
          - [Runtime resources visibility](tap-gui/plugins/runtime-resource-visibility.hbs.md)
