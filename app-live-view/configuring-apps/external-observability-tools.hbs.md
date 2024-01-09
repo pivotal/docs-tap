@@ -291,7 +291,8 @@ Now, create a secret for the Datadog API key:
 kubectl create secret generic datadog-secret --from-literal api-key=<api-key>
 ```
 
-Finally, install Datadog Agent (replace `site` value with your Datadog host name):
+Finally, install Datadog Agent (replace the `clusterName` value with the name of your cluster as you want to see it in
+Datadog and the `site` value with your Datadog host name):
 
 ```console
 cat <<EOF | kubectl apply -f -
@@ -301,7 +302,7 @@ metadata:
   name: datadog
 spec:
   global:
-    clusterName: shepherd-tap
+    clusterName: your-cluster-name
     site: datadoghq.eu
     credentials:
       apiSecret:
@@ -336,7 +337,8 @@ In order to enable Spring Boot workloads to create Prometheus metrics you have t
 </dependencies>
 ```
 
-This will create default metrics for the JVM, HTTP traffic and more. 
+This will create default metrics for the JVM, HTTP traffic and more. For a list of supported metrics refer to 
+[Supported Metrics and Meters](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.metrics.supported).
 
 When deploying Spring Boot workloads on Tanzu Application Platform (TAP), the Spring Boot Conventions ensure that actuator 
 endpoints are exposed. Along with these endpoints, the Prometheus metrics endpoint is also made accessible.
