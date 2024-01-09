@@ -3,6 +3,118 @@
 This topic describes the changes in Tanzu Application Platform (commonly known as TAP)
 v{{ vars.url_version }}.
 
+## <a id='1-6-8'></a> v1.6.8 
+ 
+**Release Date**: 13 February 2024 
+ 
+### <a id='1-6-8-security-fixes'></a> v1.6.8 Security fixes 
+ 
+This release has the following security fixes, listed by component and area. 
+ 
+#### <a id='1-6-8-COMPONENT-NAME-fixes'></a> v1.6.8 Security fixes: COMPONENT-NAME
+ 
+- [CVE-2023-1234](https://nvd.nist.gov/vuln/detail/CVE-2023-1234): Security fix description.
+ 
+OR add HTML table
+ 
+<table>
+<thead>
+<tr>
+<th>Package name</th>
+<th>Vulnerabilities resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACKAGE.tanzu.vmware.com</td>
+<td><details><summary>Expand to see the list</summary><ul>
+<li><a href="https://github.com/advisories/GHSA-xxxx-xxxx-xxxx">GHSA-xxxx-xxxx-xxxx</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-12345">CVE-2023-12345</a></li>
+</ul></details></td>
+</tr>
+</tbody>
+</table> 
+ 
+---
+ 
+### <a id='1-6-8-resolved-issues'></a> v1.6.8 Resolved issues 
+ 
+The following issues, listed by component and area, are resolved in this release. 
+ 
+#### <a id='1-6-8-COMPONENT-NAME-ri'></a> v1.6.8 Resolved issues: COMPONENT-NAME
+ 
+- Resolved issue description.
+ 
+---
+ 
+### <a id='1-6-8-known-issues'></a> v1.6.8 Known issues 
+ 
+This release has the following known issues, listed by component and area. 
+ 
+#### <a id='1-6-8-COMPONENT-NAME-ki'></a> v1.6.8 Known issues: COMPONENT-NAME
+ 
+- Known issue description with link to workaround.  
+ 
+---
+ 
+### <a id='1-6-8-components'></a> v1.6.8 Component versions
+ 
+The following table lists the supported component versions for this Tanzu Application Platform release.
+ 
+| Component Name                                                   | Version        |
+| ---------------------------------------------------------------- | -------------- |
+| API Auto Registration                                            |                |
+| API portal                                                       |                |
+| Application Accelerator                                          |                |
+| Application Configuration Service                                |                |
+| Application Live View API Server                                 |                |
+| Application Live View Backend                                    |                |
+| Application Live View Connector                                  |                |
+| Application Live View Conventions                                |                |
+| Application Single Sign-On                                       |                |
+| Artifact Metadata Repository Observer (alpha)                    |                |
+| Bitnami Services                                                 |                |
+| Carbon Black Scanner for SCST - Scan (beta)                      |                |
+| Cartographer Conventions                                         |                |
+| cert-manager                                                     |                |
+| Cloud Native Runtimes                                            |                |
+| Contour                                                          |                |
+| Crossplane                                                       |                |
+| Default Roles                                                    |                |
+| Developer Conventions                                            |                |
+| Eventing (deprecated)                                            |                |
+| External Secrets Operator                                        |                |
+| Flux CD Source Controller                                        |                |
+| Grype Scanner for SCST - Scan                                    |                |
+| Learning Center (deprecated)                                     |                |
+| Learning Center workshops (deprecated)                           |                |
+| Local Source Proxy                                               |                |
+| Namespace Provisioner                                            |                |
+| Out of the Box Delivery - Basic                                  |                |
+| Out of the Box Supply Chain - Basic                              |                |
+| Out of the Box Supply Chain - Testing                            |                |
+| Out of the Box Supply Chain - Testing and Scanning               |                |
+| Out of the Box Templates                                         |                |
+| Service Bindings                                                 |                |
+| Services Toolkit                                                 |                |
+| Snyk Scanner for SCST - Scan (beta)                              |                |
+| Source Controller                                                |                |
+| Spring Boot conventions                                          |                |
+| Spring Cloud Gateway                                             |                |
+| Supply Chain Choreographer                                       |                |
+| Supply Chain Security Tools - Policy Controller                  |                |
+| Supply Chain Security Tools - Scan                               |                |
+| Supply Chain Security Tools - Scan 2.0 (beta)                    |                |
+| Supply Chain Security Tools - Store                              |                |
+| Tanzu Developer Portal (formerly Tanzu Application Platform GUI) |                |
+| Tanzu Developer Portal Configurator (beta)                       |                |
+| Tanzu Application Platform Telemetry                             |                |
+| Tanzu Build Service                                              |                |
+| Tanzu CLI                                                        |                |
+| Tekton Pipelines                                                 |                |
+
+---
+
 ## <a id='1-6-7'></a> v1.6.7
 
 **Release Date**: 09 January 2024
