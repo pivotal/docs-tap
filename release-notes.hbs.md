@@ -9,7 +9,27 @@ v{{ vars.url_version }}.
 
 ### <a id='1-4-13-security-fixes'></a> v1.4.13 Security fixes
 
-This release has no security fixes.
+This release has the following security fixes, listed by component and area.
+
+<table>
+<thead>
+<tr>
+<th>Package Name</th>
+<th>Vulnerabilities Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cnrs.tanzu.vmware.com</td>
+<td><ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24534">CVE-2023-24534</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-24536">CVE-2023-24536</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-29403">CVE-2023-29403</a></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-44487">CVE-2023-44487</a></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
 
 ---
 
