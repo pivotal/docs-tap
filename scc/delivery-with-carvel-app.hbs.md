@@ -108,12 +108,12 @@ app.default.tap/
        hostname: app.mycompany.com
    ```
 
-Where:
+    Where:
 
-- `PACKAGE-NAME` is the name of your Carvel package you want to use.
-- `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+    - `PACKAGE-NAME` is the name of your Carvel package you want to use.
+    - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
 
-> **Note** You must set a value for the `workload_name` parameter. You can skip setting other fields to use the default parameter values.
+    > **Note** You must set a value for the `workload_name` parameter. You can skip setting other fields to use the default parameter values.
 
 1. For each run cluster, create a `PackageInstall`. Reference the `Secret` you created earlier. Store the `PackageInstall` in your GitOps repository at `PACKAGE-NAME/RUN-CLUSTER/packageinstall.yaml`.
 
@@ -134,19 +134,19 @@ Where:
          name: app-values # Secret created in previous step
    ```
 
-Where:
+    Where:
 
-- `PACKAGE-NAME` is the name of your Carvel package you want to use.
-- `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
-- `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
+    - `PACKAGE-NAME` is the name of your Carvel package you want to use.
+    - `RUN-CLUSTER` is the name of the run cluster you want to use with the package.
+    - `RUN-CLUSTER-NS-SA` is the ServiceAccount on your run cluster with permissions to deploy the package.
 
-To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
+    To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field and annotate the PackageInstall:
 
-  ```console
-  packaging.carvel.dev/downgradable: ""
-  ```
+      ```console
+      packaging.carvel.dev/downgradable: ""
+      ```
 
-See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
+    See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
 
 1. Push the `PackageInstalls` and `Secrets` to your GitOps repository.
 
@@ -160,11 +160,11 @@ See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/p
        --from-file=value.yaml=PATH-TO-RUN-CLUSTER-KUBECONFIG
    ```
 
-Where:
+    Where:
 
-- `RUN-CLUSTER` is the name of the run cluster you want to use with your app.
-- `BUILD-CLUSTER-NS` is the namespace of the build cluster you want to use.
-- `PATH-TO-RUN-CLUSTER-KUBECONFIG` is the location of your run cluster kubeconfig.
+    - `RUN-CLUSTER` is the name of the run cluster you want to use with your app.
+    - `BUILD-CLUSTER-NS` is the namespace of the build cluster you want to use.
+    - `PATH-TO-RUN-CLUSTER-KUBECONFIG` is the location of your run cluster kubeconfig.
 
 2. Each Carvel `App` custom resource (CR) must specify either a service account, by using
    `spec.serviceAccountName`, in the same namespace where the App CR is located
