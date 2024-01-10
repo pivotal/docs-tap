@@ -129,13 +129,12 @@ wrapping Backstage plug-ins. You will start with the
 
 This section describes how to generate a front-end plug-in:
 
-1. Generate a front-end plug-in by running:
+1. Generate a front-end plug-in by running the following command, replacing `PACKAGE-NAMESPACE` with
+   your namespace (for example, `@mycompany`):
 
    ```console
    yarn backstage-cli new --select plugin --option id=tech-insights-wrapper --scope PACKAGE-NAMESPACE --no-private
    ```
-
-   Where `PACKAGE-NAMESPACE` is the namespace for your package. For example, `@mycompany`.
 
    > **Important** The `yarn install` step of the previous command fails because of a Node version
    > issue. This is handled in a later step.
