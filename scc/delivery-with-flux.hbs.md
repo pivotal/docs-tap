@@ -141,16 +141,16 @@ app.default.tap/
          name: app-values # Secret created in previous step
    ```
 
-To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field
- and annotate the PackageInstall:
+    To continuously deploy the latest version of your `Package`, set `versionSelection.constraints: >=0.0.0`. To revert to a previous version, update the `versionSelection.constraints:` field
+    and annotate the PackageInstall:
 
-  ```console
-  packaging.carvel.dev/downgradable: ""
-  ```
+      ```console
+      packaging.carvel.dev/downgradable: ""
+      ```
 
-See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
+    See the [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.32.0/package-consumer-concepts/#downgrading).
 
-1. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
+3. Push the newly created `PackageInstalls` and `Secrets` to your GitOps repository.
 
 ## <a id="create-flux"></a> Create Flux CD GitRepository and Flux CD Kustomizations on the build cluster
 
