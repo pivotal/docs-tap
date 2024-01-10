@@ -302,27 +302,27 @@ To use the Carvel Package Supply Chains, you must add the label `apps.tanzu.vmwa
     --image springcommunity/spring-framework-petclinic
   ```
 
-Expect to see the following output:
+    Expect to see the following output:
 
-  ```console
-  Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
-      7 + |    apps.tanzu.vmware.com/carvel-package-workflow: "true"
-      8 + |    apps.tanzu.vmware.com/workload-type: server
-      9 + |  name: tanzu-java-web-app
-     10 + |  namespace: DEVELOPER_NAMESPACE
-     11 + |spec:
-     12 + |  image: springcommunity/spring-framework-petclinic
-  ```
+      ```console
+      Create workload:
+          1 + |---
+          2 + |apiVersion: carto.run/v1alpha1
+          3 + |kind: Workload
+          4 + |metadata:
+          5 + |  labels:
+          6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
+          7 + |    apps.tanzu.vmware.com/carvel-package-workflow: "true"
+          8 + |    apps.tanzu.vmware.com/workload-type: server
+          9 + |  name: tanzu-java-web-app
+        10 + |  namespace: DEVELOPER_NAMESPACE
+        11 + |spec:
+        12 + |  image: springcommunity/spring-framework-petclinic
+      ```
 
-  You can override most parameters set by the operator.
+      You can override most parameters set by the operator.
 
-  > **Note** Developers cannot override `carvel_package_parameters` as it presents a security risk.
+      > **Note** Developers cannot override `carvel_package_parameters` as it presents a security risk.
 
 1. (Optional) Set a GitOps subpath. This verifies the path in your GitOps repository where Carvel Packages are written. Defaults to `""`. See [Template reference](ootb-template-reference.hbs.md#carvel).
 
