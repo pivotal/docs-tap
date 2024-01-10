@@ -78,7 +78,7 @@ Where:
 - `.openID`: The issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, the value of `openID` auto-configures the provider by using the information from `https://openid.example.com/.well-known/openid-configuration`.
 - `.openID.configurationURI`: The OpenID Connect provider configuration endpoint, which must be suffixed
   with `/.well-known/openid-configuration`. This endpoint must have the HTTPS scheme. For more information, see [OpenID Connect provider configuration discovery](#oidc-discovery).
-- `.openID.issuerURI` (optional): The issuer URI. This field is deprecated and it relies on `.openID.configurationURI`. The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match the value of the `issuer` field. For more information, see the OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration`.
+- `.openID.issuerURI` (optional): The issuer URI. This field is deprecated and it relies on `.openID.configurationURI`. The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match the value of the `issuer` field. For more information, see the OpenID Connect documentation for your issuer, for example, at `https://openid.example.com/.well-known/openid-configuration`.
 
   > **Note** You can retrieve the values of `issuerURI` (`https://openid.example.com`) and `clientID` (`my-client-abcdef`) when registering a client with the provider, which in most cases, is by using a web UI.
 
