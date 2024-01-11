@@ -1,6 +1,6 @@
 # Application Live View convention server
 
-This topic provides information about Application Live View convention, which provides a
+This topic gives you information about Application Live View convention, which provides a
 Webhook handler for
 [Cartographer Conventions](../../cartographer-conventions/about.hbs.md).
 
