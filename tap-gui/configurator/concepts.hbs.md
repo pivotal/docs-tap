@@ -64,7 +64,7 @@ same thing.
 A Tanzu Developer Portal plug-in is simply a Backstage plug-in wrapped in a small amount of
 code to facilitate easy integration into Configurator and Tanzu Developer Portal.
 
-### <a id="plug-ins"></a> Internal plug-ins and external plug-ins
+### <a id="int-and-ext-plug-ins"></a> Internal plug-ins and external plug-ins
 
 Internal Tanzu Developer Portal plug-ins are included inside the Tanzu Developer Portal
 Configurator image. These include:
