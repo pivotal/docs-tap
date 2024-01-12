@@ -32,20 +32,17 @@ captured by the `Provenance` transform is sent to the AMR store. The relevant da
 
 ### <a id='appacceleratorruns'></a> AppAcceleratorRuns (alpha)
 
-The `AppAcceleratorRuns` data model represents new projects running from Git
-repositories. An `accelerator.yaml` file in the repository declares input
+The `AppAcceleratorRuns` data model represents a generation of a project from an accelerator.
+An `accelerator.yaml` file in the repository declares input
 options for the accelerator. This file contains instructions for processing the
-files when you generate a new project. Observer sends this information to the
+files when you generate a new project. This information is sent to the
 CloudEvent Handler to store `AppAcceleratorRuns`.
-
-Each `AppAcceleratorRuns` data entry has a unique `guid`. The `guid` contains information
-about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`,
-and, `AppAcceleratorSubpath`. You can point multiple `AppAcceleratorFragments` entries
-to the same `AppAcceleratorRuns` entry. You can also associate an `AppAcceleratorRuns`
-with one `AppAcceleratorSource`, also known as `Commit`.
 
 There is one `AppAcceleratorRuns` for each invocation of an accelerator, including version
 information about which accelerator was used.
+Each `AppAcceleratorRuns` data entry has a unique `guid`.
+The `AppAcceleratorRuns` data entry contains information about the Git repository including, `AppAcceleratorRepoURL`, `AppAcceleratorRevision`, and `AppAcceleratorSubpath`.
+Multiple `AppAcceleratorFragments` entries can point to the same `AppAcceleratorRuns` entry. `AppAcceleratorRuns` are associated with one `AppAcceleratorSource`, also known as `Commit`.
 
 ### <a id='appacceleratorfragments'></a> AppAcceleratorFragments (alpha)
 
