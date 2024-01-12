@@ -9,7 +9,7 @@ The following are Tanzu Developer Portal plug-ins that are not included by defau
 with Configurator, you must choose a compatible version based on your version of
 Tanzu Application Platform.
 
-Tanzu Application Platform v1.6 does not support any external plug-ins.
+Tanzu Application Platform versions earlier than v1.7 do not support any external plug-ins.
 
 Tanzu Application Platform v1.7.0 offers the following support:
 
@@ -39,7 +39,8 @@ The following are libraries used to create Tanzu Developer Portal plug-ins.
 When using these libraries, you must choose a compatible version based on your version of
 Tanzu Application Platform.
 
-Tanzu Application Platform v1.6 does not support creating your own Tanzu Developer Portal plug-ins.
+Tanzu Application Platform versions earlier than v1.7 do not support creating your own
+Tanzu Developer Portal plug-ins.
 
 Tanzu Application Platform v1.7.0 offers the following support:
 
