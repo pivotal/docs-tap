@@ -145,9 +145,9 @@ To prepare to overlay your customized image onto the currently running instance:
    [Install your Tanzu Application Platform package](../../install-online/profile.hbs.md#install-your-tanzu-application-platform-package).
 
 > **Important** The cluster that is running Tanzu Developer Portal (formerly known as `TAP-GUI`)
-> needs the appropriate credentials to pull images from the container registry that contains your
+> needs the relevant credentials to pull images from the container registry that contains your
 > customized portal.
 >
 > If the cluster is in a `full` profile, it likely has the necessary credentials.
-> In a multicluster installation (`view` profile) you likely need to use Tanzu CLI to add
-> the appropriate credentials.
+> In a multicluster installation (`view` profile) you likely need to use the Tanzu CLI to add
+> the relevant credentials.

@@ -1,7 +1,7 @@
 # Catalog operations
 
-The software catalog setup procedures in this topic make use of Backstage.
-For more information about Backstage, see the
+This topic tells you how to manage catalog operations. The software catalog setup procedures in this
+topic make use of Backstage. For more information about Backstage, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/).
 
 ## <a id='add-cat-entities'></a> Adding catalog entities
@@ -18,7 +18,7 @@ For information about all types of entities, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
 You can use the example blank catalog described in the Tanzu Developer Portal
-[prerequisites](../../prerequisites.md#tap-gui) as a foundation for creating user, group, system, and
+[prerequisites](../../prerequisites.hbs.md#tap-gui) as a foundation for creating user, group, system, and
 main component YAML files.
 
 The organization contains Group 1, and Group 1 contains Users 1 and 2. System contains Components 1
@@ -250,7 +250,7 @@ Backstage components.
 
 #### <a id='install-yelb'></a> Install Yelb
 
-1. Download the appropriate file for running the Yelb application itself from
+1. Download the necessary file for running the Yelb application itself from
    [GitHub](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml).
 2. Install the application on the Kubernetes cluster that you used for Tanzu Application Platform.
    Preserve the metadata labels on the Yelb application objects.
@@ -258,6 +258,6 @@ Backstage components.
 #### <a id='install-yelb-cat'></a> Install the Yelb catalog
 
 1. From the
-   [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
+   [Tanzu Application Platform downloads](https://network.tanzu.vmware.com/products/tanzu-application-platform)
    page, click **tanzu-developer-portal-catalogs-latest** > **Tanzu Developer Portal Yelb Catalog**.
 1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
