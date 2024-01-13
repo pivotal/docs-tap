@@ -94,7 +94,7 @@ Tanzu CLI packages are accessible through repositories. By adding the Tanzu Appl
 # The registry from which the Tanzu Application Platform package is retrieved.
 export INSTALL_REGISTRY_USERNAME=TANZUNET_REGISTRY_USERNAME
 export INSTALL_REGISTRY_PASSWORD=TANZUNET_REGISTRY_PASSWORD
-export INSTALL_REGISTRY_HOSTNAME=”registry.tanzu.vmware.com”
+export INSTALL_REGISTRY_HOSTNAME="registry.tanzu.vmware.com"
 export TAP_VERSION=VERSION-NUMBER
 export INSTALL_REPO="tanzu-application-platform"
 
