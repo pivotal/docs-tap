@@ -9,7 +9,7 @@ The following are required to install Tanzu Application Platform (commonly known
 1. Review the Tanzu Application Platform [Planning and Architecture Reference](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-index-tap.html) documentation.
 
 2. (Optional) To gain an understanding of Tanzu Application Platform, experiment with a
-Tanzu Application Platform sandbox. For more information, see [Access an experimental developer sandbox environment](install-online/sandbox.hbs.md).
+Tanzu Application Platform sandbox. For more information, see [Access an experimental developer sandbox environment](sandbox.hbs.md).
 
 ## Installation prerequisites
 
