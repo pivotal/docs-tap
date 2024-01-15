@@ -95,12 +95,12 @@ Prometheus Operator
       ```
 
   1. Configure a Prometheus scraping job. This job must monitor all pods that are marked with the
-  designated Prometheus annotations.
+     designated Prometheus annotations.
 
       > **Note** The Prometheus Operator does not support annotation-based discovery of services by default.
       > To enable these annotations, you must set up a custom scrape job configuration.
 
-      1. Create a file `prometheus-scrape-config.yaml` with the following content:
+      1. Create a file named `prometheus-scrape-config.yaml` with the following content:
 
           ```yaml
           # Example scrape config for pods
@@ -249,8 +249,10 @@ kube-prometheus-stack Helm chart
       ```
 
 Prometheus Helm chart
-: The Prometheus community provides the Prometheus Helm chart, which installs Prometheus on your
+: The Prometheus community provides the Prometheus Helm chart to install Prometheus on your
   Kubernetes cluster.
+  The Helm chart installs scraping job configurations for pods and services tagged with Prometheus
+  scraping annotations and sets up scraping for metrics related to the Kubernetes cluster.
   It includes key components such as Alert Manager, kube-state-metrics, Node Exporter, and Push Gateway.
 
   For more information, see the [Prometheus Helm chart README](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus) in GitHub.
@@ -270,9 +272,6 @@ Prometheus Helm chart
       helm upgrade --install prometheus prometheus-community/prometheus
       ```
 
-  The Helm chart installs scraping job configurations for pods and services tagged with Prometheus
-  scraping annotations and sets up scraping for metrics related to the Kubernetes cluster.
-
 ## <a id="install-datadog-agent"></a> Use Datadog as your observability tool
 
 If you use Datadog, you can use it to scrape the Prometheus endpoints without having to install
@@ -280,7 +279,7 @@ Prometheus itself.
 Datadog automatically gathers Prometheus metrics from pods that are annotated with the default Prometheus
 annotations. The Datadog Agent forwards the metrics to the Datadog servers.
 
-To install Datadog:
+To use Datadog as your observability tool:
 
 1. Add the Helm repository by running:
 
