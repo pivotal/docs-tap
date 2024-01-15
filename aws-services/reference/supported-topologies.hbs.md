@@ -4,11 +4,9 @@ This topic gives you the list of Tanzu Application Platform (commonly known as T
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
 Each supported topology lists relevant package values configurations and one-time manual setup steps.
 
-## <a id="postgresql-mysql"></a> PostgreSQL and MySQL
+The topologies described in this topic are available for both the PostgreSQL and MySQL services.
 
-This section describes the available topologies for PostgreSQL and MySQL services.
-
-### <a id="same-vpc"></a> Topology 1: service instance accessed by a workload in the same VPC
+## <a id="same-vpc"></a> Topology 1: service instance accessed by a workload in the same VPC
 
 Topology 1 is a service instance in a VPC accessed by a workload in a Tanzu Application Platform
 cluster in the same VPC.
@@ -17,7 +15,7 @@ This topology is very similar to a database instance in a VPC accessed by an EC2
 VPC as described in the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario1).
 
-#### <a id="same-vpc-properties"></a> Key properties of topology 1
+### <a id="same-vpc-properties"></a> Key properties for topology 1
 
 The key properties of this topology are:
 
@@ -29,7 +27,7 @@ The key properties of this topology are:
 
 This topology is recommended if your Tanzu Application Platform cluster is running in AWS.
 
-#### <a id="same-vpc-config"></a> Configuration tasks for topology 1
+### <a id="same-vpc-config"></a> Configuration tasks for topology 1
 
 To configure the service from the AWS Services package for this type of topology you must:
 
@@ -72,7 +70,7 @@ For MySQL
         - id: "SECURITY-GROUP-ID"
   ```
 
-### <a id="external"></a> Topology 2: service instance accessed by a workload external to AWS
+## <a id="external"></a> Topology 2: service instance accessed by a workload external to AWS
 
 Topology 2 is a service instance in a VPC accessed by a workload in a Tanzu Application Platform
 cluster running external to AWS.
@@ -80,7 +78,7 @@ cluster running external to AWS.
 This topology is very similar to a database instance in a VPC accessed by a client application through
 the Internet as described in the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario4).
 
-#### <a id="external-vpc-properties"></a> Key properties of topology 2
+### <a id="external-vpc-properties"></a> Key properties for topology 2
 
 The key properties of this topology are:
 
@@ -94,7 +92,7 @@ The key properties of this topology are:
 This topology is recommended if your Tanzu Application Platform cluster is running external to AWS,
 for example, on-prem or in another cloud such as Azure.
 
-#### <a id="external-vpc-config"></a> Configuration tasks for topology 2
+### <a id="external-vpc-config"></a> Configuration tasks for topology 2
 
 To configure the service from the AWS Services package for this type of topology you must:
 
