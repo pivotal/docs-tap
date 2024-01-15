@@ -4,6 +4,8 @@ The following are required to install Tanzu Application Platform (commonly known
 
 ## Installation planning
 
+Before you begin a Tanzu Application Platform installation:
+
 1. Review the Tanzu Application Platform [Planning and Architecture Reference](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap-reference-architecture/GUID-reference-designs-index-tap.html) documentation.
 
 2. (Optional) To gain an understanding of Tanzu Application Platform, experiment with a
