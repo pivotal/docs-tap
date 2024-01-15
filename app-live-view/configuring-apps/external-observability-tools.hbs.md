@@ -295,7 +295,7 @@ To install Datadog:
     helm upgrade --install datadog-operator datadog/datadog-operator
     ```
 
-  > **Note** There is a Known Issue with Datadog Cluster Agent on AKS cluster. Please refer to the [Known Issue: Cluster Agent Cannot Reconcile Webhook on AKS](#known-issue-cluster-agent-cannot-reconcile-webhook-on-aks) section below.
+  > **Note** There is a Known Issue with Datadog Cluster Agent on AKS cluster. Please refer to the [Known issue: Datadog agent cannot reconcile webhook on AKS](#known-issue-datadog-agent-cannot-reconcile-webhook-on-aks) section below.
 
 1. Generate a new API key in Datadog for the Agent that wil push metrics to Datadog.
    You do this in the Datadog UI, under `Profile/Organization Settings/API Keys`.
@@ -338,7 +338,7 @@ To install Datadog:
     - `DATADOG-HOST-NAME` is your Datadog host name, for example, `datadoghq.eu`.
 
 
-  #### <a id="known-datadog-agent-issue-on-aks"></a> Known Issue: Cluster Agent Cannot Reconcile Webhook on AKS
+  #### <a id="known-issue-datadog-agent-cannot-reconcile-webhook-on-aks"></a> Known issue: Datadog agent cannot reconcile webhook on AKS
   Issue Description:
   The Datadog Cluster Agent encounters an issue where it cannot reconcile the webhook, leading to an Error state. This is particularly observed on Azure Kubernetes Service (AKS).
 
