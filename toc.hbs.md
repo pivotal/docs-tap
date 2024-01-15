@@ -7,8 +7,8 @@
 - [Components and installation profiles](about-package-profiles.hbs.md)
 - [Installation](install-intro.hbs.md)
   - [Introduction](install-intro.hbs.md)
-  - [Prerequisites and Planning](prerequisites.hbs.md)
-  - [Planning and Architecture Reference](reference-architecture.hbs.md)
+  - [Prerequisites and planning](prerequisites.hbs.md)
+  - [Planning and architecture reference](reference-architecture.hbs.md)
       <!-- - [Kubernetes version support](k8s-matrix.hbs.md) -->
   - [Install Tanzu CLI](install-tanzu-cli.hbs.md)
   - [Online install](install-online/intro.hbs.md)

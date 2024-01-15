@@ -1,4 +1,4 @@
-# Prerequisites and Planning for installing Tanzu Application Platform
+# Prerequisites and planning for installing Tanzu Application Platform
 
 The following are required to install Tanzu Application Platform (commonly known as TAP):
 
