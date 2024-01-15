@@ -295,6 +295,8 @@ To install Datadog:
     helm upgrade --install datadog-operator datadog/datadog-operator
     ```
 
+  > **Note** There is a Known Issue with Datadog Cluster Agent on AKS cluster. Please refer to the [Known Issue: Cluster Agent Cannot Reconcile Webhook on AKS](#known-issue-cluster-agent-cannot-reconcile-webhook-on-aks) section below.
+
 1. Generate a new API key in Datadog for the Agent that wil push metrics to Datadog.
    You do this in the Datadog UI, under `Profile/Organization Settings/API Keys`.
 
@@ -334,6 +336,35 @@ To install Datadog:
 
     - `YOUR-CLUSTER-NAME` is the name of your cluster as you want to see it in Datadog.
     - `DATADOG-HOST-NAME` is your Datadog host name, for example, `datadoghq.eu`.
+
+
+  #### <a id="known-datadog-agent-issue-on-aks"></a> Known Issue: Cluster Agent Cannot Reconcile Webhook on AKS
+  Issue Description:
+  The Datadog Cluster Agent encounters an issue where it cannot reconcile the webhook, leading to an Error state. This is particularly observed on Azure Kubernetes Service (AKS).
+
+  Workaround:
+  To address this issue on AKS, you can apply the following workaround:
+
+  1. Create a Custom `values.yaml` file
+
+  1. Set `clusterAgent.admissionController` to `false` and set the envar `DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS` to `true` in the custom values.yaml as shown below:
+
+  ```console
+  clusterAgent:
+  admissionController:
+    enabled: false
+  env:
+    - name: "DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS"
+      value: "true"
+  ```
+
+  1. Install Datadog Agent Helm chart with Custom Values:
+
+  ```console
+  helm upgrade --install datadog-operator datadog/datadog-operator -f values.yaml
+  ```
+
+  > **Note**: This workaround disables the admission controller, which may have implications on certain functionalities. Please consult Datadog documentation or support for additional guidance based on your specific use case.
 
 ## <a id="enable-sb-workloads"></a> Enable metric collection on Spring Boot workloads
 
