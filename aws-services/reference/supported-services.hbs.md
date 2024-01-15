@@ -2,7 +2,7 @@
 
 This topic lists the services that the AWS Services package supports.
 
-In Tanzu Application Platform v1.7, the AWS Services package supports the following AWS services:
+In Tanzu Application Platform v{{ vars.tap_version }}, the AWS Services package supports the following AWS services:
 
 - RDS PostgreSQL
 - RDS MySQL

@@ -41,38 +41,40 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-- For PostgreSQL:
+For PostgreSQL
+:
 
-    ```yaml
-    postgresql:
-      enabled: true
-      region: "REGION"
-      infrastructure:
-        subnet_group:
-          name: "SUBNET-GROUP-NAME"
-        security_groups:
-          - id: "SECURITY-GROUP-ID"
-    ```
+  ```yaml
+  postgresql:
+    enabled: true
+    region: "REGION"
+    infrastructure:
+      subnet_group:
+        name: "SUBNET-GROUP-NAME"
+      security_groups:
+        - id: "SECURITY-GROUP-ID"
+  ```
 
-- For MySQL:
+For MySQL
+:
 
-    ```yaml
-    mysql:
-      enabled: true
-      region: "REGION"
-      infrastructure:
-        subnet_group:
-          name: "SUBNET-GROUP-NAME"
-        security_groups:
-          - id: "SECURITY-GROUP-ID"
-    ```
+  ```yaml
+  mysql:
+    enabled: true
+    region: "REGION"
+    infrastructure:
+      subnet_group:
+        name: "SUBNET-GROUP-NAME"
+      security_groups:
+        - id: "SECURITY-GROUP-ID"
+  ```
 
 ### <a id="external"></a> A service instance in a VPC accessed by a workload in a Tanzu Application Platform cluster running external to AWS
 
 This topology is very similar to a database instance in a VPC accessed by a client application through
 the Internet as described in the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario4).
 
-#### <a id="same-vpc-properties"></a> Key properties
+#### <a id="external-vpc-properties"></a> Key properties
 
 The key properties of this topology are:
 
@@ -86,7 +88,7 @@ The key properties of this topology are:
 This topology is recommended if your Tanzu Application Platform cluster is running external to AWS,
 for example, on-prem or in another cloud such as Azure.
 
-#### <a id="same-vpc-config"></a> Configuration tasks
+#### <a id="external-vpc-config"></a> Configuration tasks
 
 To configure the service from the AWS Services package for this type of topology you must:
 
@@ -102,32 +104,34 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-- For PostgreSQL:
+For PostgreSQL
+:
 
-    ```yaml
-    postgresql:
-      enabled: true
-      region: "REGION"
-      infrastructure:
-        subnet_group:
-          name: "SUBNET-GROUP-NAME"
-        security_groups:
-          - id: "SECURITY-GROUP-ID"
-      instance_configuration:
-        publicly_accessible: true
-    ```
+  ```yaml
+  postgresql:
+    enabled: true
+    region: "REGION"
+    infrastructure:
+      subnet_group:
+        name: "SUBNET-GROUP-NAME"
+      security_groups:
+        - id: "SECURITY-GROUP-ID"
+    instance_configuration:
+      publicly_accessible: true
+  ```
 
-- For MySQL:
+For MySQL
+:
 
-    ```yaml
-    mysql:
-      enabled: true
-      region: "REGION"
-      infrastructure:
-        subnet_group:
-          name: "SUBNET-GROUP-NAME"
-        security_groups:
-          - id: "SECURITY-GROUP-ID"
-      instance_configuration:
-        publicly_accessible: true
-    ```
+  ```yaml
+  mysql:
+    enabled: true
+    region: "REGION"
+    infrastructure:
+      subnet_group:
+        name: "SUBNET-GROUP-NAME"
+      security_groups:
+        - id: "SECURITY-GROUP-ID"
+    instance_configuration:
+      publicly_accessible: true
+  ```
