@@ -61,7 +61,7 @@ To install the AWS Services package:
     ```yaml
     # aws-services-values.yaml
     ---
-    # Optional, add any custom CA certificate data required by your Tanzu Application Plaform installation
+    # Optional, add any custom CA certificate data required by your Tanzu Application Platform installation
     ca_cert_data: |
         -----BEGIN CERTIFICATE-----
         MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -71,9 +71,9 @@ To install the AWS Services package:
     postgresql:
       # Enable the RDS PostgreSQL service. The default is set to false.
       enabled: true
-      region: REGION
+      region: "REGION"
       provider_config_ref:
-        name: PROVIDER-CONFIG-NAME
+        name: "PROVIDER-CONFIG-NAME"
       # Infrastructure configuration for the RDS PostgreSQL service
       infrastructure:
         subnet_group:
@@ -83,7 +83,7 @@ To install the AWS Services package:
       # Instance-level configuration for the RDS PostgreSQL service applied to all service instances
       # All instance_configuration is optional. See below for default values.
       instance_configuration:
-        instance_class: INSTANCE-CLASS
+        instance_class: "INSTANCE-CLASS"
         engine_version: "ENGINE-VERSION"
         skip_final_snapshot: SKIP-FINAL-SNAPSHOT
         publicly_accessible: PUBLICLY-ACCESSIBLE
@@ -93,9 +93,9 @@ To install the AWS Services package:
     mysql:
       # Enable the RDS MySQL service. The default is set to false.
       enabled: true
-      region: REGION
+      region: "REGION"
       provider_config_ref:
-        name: PROVIDER-CONFIG-NAME
+        name: "PROVIDER-CONFIG-NAME"
       # Infrastructure configuration for the RDS MySQL service
       infrastructure:
         subnet_group:
@@ -105,7 +105,7 @@ To install the AWS Services package:
       # Instance-level configuration for the RDS MySQL service applied to all service instances
       # All instance_configuration is optional. See below for default values.
       instance_configuration:
-        instance_class: INSTANCE-CLASS
+        instance_class: "INSTANCE-CLASS"
         engine_version: "ENGINE-VERSION"
         skip_final_snapshot: SKIP-FINAL-SNAPSHOT
         publicly_accessible: PUBLICLY-ACCESSIBLE
