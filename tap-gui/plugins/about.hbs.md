@@ -15,7 +15,7 @@ update source code when adding a Backstage plug-in.
 
 ## <a id='tap-plug-ins'></a> Tanzu Application Platform plug-ins
 
-Tanzu Application Platform comes with some pre-built Tanzu Developer plug-ins. These
+Tanzu Application Platform includes some pre-built Tanzu Developer plug-ins. These
 Tanzu Application Platform plug-ins are already integrated with Tanzu Developer Portal. You don't
 need to configure these plug-ins. To use a Tanzu Application Platform plug-in, you must install the
 relevant Tanzu Application Platform component.
