@@ -100,17 +100,21 @@ You will no longer see this issue with the default internal database, but the so
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-8-0-COMPONENT-NAME-ki'></a> v1.8.0 Known issues: COMPONENT-NAME
+#### <a id='1-8-0-app-live-view-ki'></a> v1.8.0 Known issues: Application Live View
 
-#### v1.8.0 Known issues: Service Bindings
+- On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
+  leads to an error.
+  For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](app-live-view/troubleshooting.hbs.md#datadog-agent-aks).
 
-`ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
+#### <a id='1-8-0-service-bindings-ki'></a> v1.8.0 Known issues: Service Bindings
+
+- `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
 bound service resource. This impacts the timely rollout of new connection secrets to workloads. The reconciler eventually picks up the change but this might take up to 10 hours.
 As a temporary workaround, you can do one of the following:
 
-- Delete the existing `ServiceBinding` and create a new one that is identical.
-- Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
-- Delete and recreate the application workload referred to by the `ServiceBinding`.
+  - Delete the existing `ServiceBinding` and create a new one that is identical.
+  - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
+  - Delete and recreate the application workload referred to by the `ServiceBinding`.
 
 ---
 

@@ -4,11 +4,11 @@ This topic provides information to help you troubleshoot Application Live View.
 
 ## <a id="app-not-showing"></a> App is not visible in Application Live View UI
 
-**Symptom**
+**Symptom:**
 
 Your app is not visible in the Application Live View UI.
 
-**Solution**
+**Solution:**
 
 The connector component is responsible for discovering the app and registering it with Application Live View.
 
@@ -46,14 +46,15 @@ See also:
 - [App is not visible in Application Live View UI with actuator endpoints enabled](#acutator-endpoints)
 - [The UI does not show any information for an app with actuator endpoints exposed at root](#endpoints-at-root)
 
+---
 
 ## <a id="acutator-endpoints"></a> App is not visible in Application Live View UI with actuator endpoints enabled
 
-**Symptom**
+**Symptom:**
 
 Your app is not visible in Application Live View UI, but the actuator endpoints are enabled.
 
-**Solution**
+**Solution:**
 
 To troubleshoot:
 
@@ -85,27 +86,29 @@ If they are configured on a different paths, set the labels in your app deployme
     - `APPLICATION-PATH` is the application port.
     - `ACTUATOR-PATH` is the actuator port.
 
+---
 
 ## <a id="endpoints-at-root"></a> The UI does not show any information for an app with actuator endpoints exposed at root
 
-**Symptom**
+**Symptom:**
 
 Your app has actuator endpoints exposed at root and the UI does not show any information.
 
-**Cause**
+**Cause:**
 
 Application Live View cannot display the app details when the app
 is exposing the actuator endpoint on root (`/`) .
 This is due to conflict in the actuator context path and app default context path.
 
+---
 
 ## <a id="no-health-info"></a> No information shown on the Health page
 
-**Symptom**
+**Symptom:**
 
 The app shows up in Application Live View UI, but the **Health** page does not show details of health.
 
-**Solution**
+**Solution:**
 
 The information exposed by the health endpoint depends on the `management.endpoint.health.show-details` property.
 This must be set to `always` as as follows:
@@ -114,14 +117,16 @@ This must be set to `always` as as follows:
 management.endpoint.health.show-details: "always"
 ```
 
+---
+
 ## <a id="stale-info"></a> Stale information in Application Live View
 
-**Symptom**
+**Symptom:**
 
 You can find your app in the UI, but it is an old instance that no longer exists while the new
 instance doesn't show up yet.
 
-**Solution**
+**Solution:**
 
 To troubleshoot:
 
@@ -133,13 +138,15 @@ To troubleshoot:
     kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
 
+---
+
 ## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in Application Live View convention
 
-**Symptom**
+**Symptom:**
 
 The certificate request is missing for certificate `app-live-view-conventions/appliveview-webhook-cert`.
 
-**Solution**
+**Solution:**
 
 To troubleshoot:
 
@@ -155,18 +162,20 @@ To troubleshoot:
 
     This recreates the certificate request and updates the corresponding certificate.
 
+---
+
 ## <a id="no-live-info"></a> No live information for pod with ID
 
-**Symptom**
+**Symptom:**
 
 In Tanzu Developer Portal, you receive the error `No live information for pod with id`.
 
-**Cause**
+**Cause:**
 
 This might happen because of stale information in Application Live View because it is an old instance that
 no longer exists while the new instance doesn't show up yet.
 
-**Solution**
+**Solution:**
 
 The workaround is to delete the connector pod so it is re-created by running:
 
@@ -174,32 +183,76 @@ The workaround is to delete the connector pod so it is re-created by running:
 kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
 ```
 
+---
+
 ## <a id="cannot-override-act-path"></a> Cannot override the actuator path in the labels
 
-**Symptom**
+**Symptom:**
 
 You are unable to override the actuator path in the labels as part of the workload deployment.
 
-**Cause**
+**Cause:**
 
 The changes to add or override the labels or annotations in the `Workload` are in progress.
 The changes from the `Workload` must be propagated up through the supply chain for the PodIntent to see the new changes.
 
+---
 
 ## <a id="cannot-config-ssl"></a> Cannot configure SSL in appliveview-connector
 
-**Symptom**
+**Symptom:**
 
 This might be because `sslDeactivated` flag in the values YAML file does not accept values without quotes.
 
-**Cause**
+**Cause:**
 
 The `sslDeactivated` Boolean flag is treated as a string in the Kubernetes YAML file.
 
-**Solution**
+**Solution:**
 
 You must specify the value within double quotation marks for the configuration to be picked up.
 
+---
+
+## <a id="datadog-agent-aks"></a> Datadog agent cannot reconcile webhook on AKS
+
+**Symptom:**
+
+On Azure Kubernetes Service (AKS), you receive an error because the Datadog Cluster Agent cannot
+reconcile the webhook.
+
+**Solution:**
+
+> **Note** This workaround disables the admission controller, which might have implications on
+> certain functionalities. See the Datadog documentation or contact support for guidance based on
+> your specific use case.
+
+To work around this issue:
+
+1. Create a custom `values.yaml` file for Datadog.
+<!-- Is this values file for datadog? Will the only things to add be the items in step 2? -->
+
+1. In your `values.yaml` file, set `clusterAgent.admissionController` to `false` and set the envar
+  `DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS` to `true` as follows:
+    <!-- should admissionController and env be indented under clusterAgent? -->
+    <!-- envar == environment variable? -->
+
+    ```yaml
+    clusterAgent:
+    admissionController:
+      enabled: false
+    env:
+      - name: "DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS"
+        value: "true"
+    ```
+
+1. Install the Datadog Agent Helm chart with your custom `values.yaml` file:
+
+    ```console
+    helm upgrade --install datadog-operator datadog/datadog-operator -f values.yaml
+    ```
+
+---
 
 ## <a id="verify-labels"></a> Verify the labels in your workload YAML file
 
@@ -273,7 +326,6 @@ properties in `application.properties` or `application.yml` in the Spring Boot A
 before deploying the workload in Tanzu Application Platform.
 Environment properties updated in your app take precedence over the default values
 set by Application Live View convention server.
-
 
 ## <a id="config-labels"></a> Configure labels when management.endpoints.web.base-path and management.server.port are set
 
