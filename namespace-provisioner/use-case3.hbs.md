@@ -77,11 +77,6 @@ in the Cluster Essentials for VMware Tanzu documentation.
     Using GitOps
     : Description
 
-      **Caution** There is a current limitation in kapp-controller which does not allow you to
-      re-use the same Git secret multiple times. If you have multiple additional sources using private
-      repositories with the same credentials, you must create different secrets with the same
-      authentication details for each of them.
-
       In this example, the location where the list of namespaces resides is also a private repository. So you must create a secret named `git-auth-install` with the same authentication details.
 
       ```yaml
