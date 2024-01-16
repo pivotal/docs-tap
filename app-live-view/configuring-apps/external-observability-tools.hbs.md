@@ -20,9 +20,7 @@ This involves incorporating specific annotations on the pods exposing informatio
 
 Prometheus and other observability tools like Datadog can discover annotated pods and collect the metrics from the endpoint.
 
-This topic explains how to set up Prometheus on your cluster and integrate an existing Datadog installation.
-<!-- Could this say "or integrate an existing Datadog installation? -->
-<!-- You can use either Prometheus or Datadog, right? -->
+This topic explains how to set up Prometheus on your cluster or integrate an existing Datadog installation.
 
 ## <a id="install-prometheus"></a> Use Prometheus as your observability tool
 
@@ -231,7 +229,7 @@ kube-prometheus-stack Helm chart
     of services, you must create the configuration secret `additional-scrape-configs` from the
     `prometheus-scrape-config.yaml` file as described in the Prometheus Operator installation method.
     <!-- do you also have to create prometheus-scrape-config.yaml or is this provided for you? -->
-    <!-- probably include the full steps because it might be difficult to link to another tab. -->
+    <!-- probably include the full steps (use partial) because it might be difficult to link to another tab. -->
 
   1. Install the `kube-prometheus-stack` Helm chart by running:
 
@@ -331,7 +329,6 @@ To use Datadog as your observability tool:
           enableServiceEndpoints: true
     EOF
     ```
-    <!-- is api-key a placeholder variable? -->
 
     Where:
 
