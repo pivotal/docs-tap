@@ -20,9 +20,7 @@ This involves incorporating specific annotations on the pods exposing informatio
 
 Prometheus and other observability tools like Datadog can discover annotated pods and collect the metrics from the endpoint.
 
-This topic explains how to set up Prometheus on your cluster and integrate an existing Datadog installation.
-<!-- Could this say "or integrate an existing Datadog installation? -->
-<!-- You can use either Prometheus or Datadog, right? -->
+This topic explains how to set up Prometheus on your cluster or integrate an existing Datadog installation.
 
 ## <a id="install-prometheus"></a> Use Prometheus as your observability tool
 
@@ -231,7 +229,7 @@ kube-prometheus-stack Helm chart
     of services, you must create the configuration secret `additional-scrape-configs` from the
     `prometheus-scrape-config.yaml` file as described in the Prometheus Operator installation method.
     <!-- do you also have to create prometheus-scrape-config.yaml or is this provided for you? -->
-    <!-- probably include the full steps because it might be difficult to link to another tab. -->
+    <!-- probably include the full steps (use partial) because it might be difficult to link to another tab. -->
 
   1. Install the `kube-prometheus-stack` Helm chart by running:
 
@@ -294,7 +292,9 @@ To use Datadog as your observability tool:
     helm upgrade --install datadog-operator datadog/datadog-operator
     ```
 
-  > **Note** There is a Known Issue with Datadog Cluster Agent on AKS cluster. Please refer to the [Known issue: Datadog agent cannot reconcile webhook on AKS](#known-issue-datadog-agent-cannot-reconcile-webhook-on-aks) section below.
+    > **Note** There is a known issue with Datadog Cluster Agent on Azure Kubernetes Service (AKS) clusters.
+    > For more information, see the troubleshooting item
+    > [Datadog agent cannot reconcile webhook on AKS](../troubleshooting.hbs.md#datadog-agent-aks).
 
 1. Generate a new API key in Datadog for the Agent that wil push metrics to Datadog.
    You do this in the Datadog UI, under `Profile/Organization Settings/API Keys`.
@@ -329,41 +329,11 @@ To use Datadog as your observability tool:
           enableServiceEndpoints: true
     EOF
     ```
-    <!-- is api-key a placeholder variable? -->
 
     Where:
 
     - `YOUR-CLUSTER-NAME` is the name of your cluster as you want to see it in Datadog.
     - `DATADOG-HOST-NAME` is your Datadog host name, for example, `datadoghq.eu`.
-
-
-  #### <a id="known-issue-datadog-agent-cannot-reconcile-webhook-on-aks"></a> Known issue: Datadog agent cannot reconcile webhook on AKS
-  Issue Description:
-  The Datadog Cluster Agent encounters an issue where it cannot reconcile the webhook, leading to an Error state. This is particularly observed on Azure Kubernetes Service (AKS).
-
-  Workaround:
-  To address this issue on AKS, you can apply the following workaround:
-
-  1. Create a Custom `values.yaml` file
-
-  1. Set `clusterAgent.admissionController` to `false` and set the envar `DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS` to `true` in the custom values.yaml as shown below:
-
-  ```console
-  clusterAgent:
-  admissionController:
-    enabled: false
-  env:
-    - name: "DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS"
-      value: "true"
-  ```
-
-  1. Install Datadog Agent Helm chart with Custom Values:
-
-  ```console
-  helm upgrade --install datadog-operator datadog/datadog-operator -f values.yaml
-  ```
-
-  > **Note**: This workaround disables the admission controller, which may have implications on certain functionalities. Please consult Datadog documentation or support for additional guidance based on your specific use case.
 
 ## <a id="enable-sb-workloads"></a> Enable metric collection on Spring Boot workloads
 
