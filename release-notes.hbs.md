@@ -41,9 +41,12 @@ OR add HTML table
  
 The following issues, listed by component and area, are resolved in this release. 
  
-#### <a id='1-6-8-COMPONENT-NAME-ri'></a> v1.6.8 Resolved issues: COMPONENT-NAME
+#### <a id='1-6-8-app-sso-ri'></a> v1.5.10 Resolved issues: Application Single Sign-On (AppSSO)
  
-- Resolved issue description.
+- When requesting an `access_token` through the the Authorization Code flow, scopes in the token are
+  filtered based on user roles. In this version, the `scope` paramater of the
+  [access token response](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-10.html#name-token-response)
+  is also filtered, with the same rules.
  
 ---
  
