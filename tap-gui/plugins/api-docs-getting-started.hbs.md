@@ -155,10 +155,10 @@ other software catalog entity:
 
     ![Screenshot of the APIs page. It shows the system diagram for the demo dash app.](../images/api-plugin-8.png)
 
-### <a id="deploy-your-app"></a> Update your demo API entry
+### <a id="update-demo-api-entry"></a> Update your demo API entry
 
-To update your demo API entry, click on **demo-api** from the list of available APIs in your
-software catalog and click the **Edit** icon on the Overview page.
+To update your demo API entry, click **demo-api** in the list of available APIs in your software
+catalog and click the **Edit** icon on the Overview page.
 
 It opens the source `catalog-info.yaml` file that you can edit. For example, you can change the
 `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and then save your changes.
