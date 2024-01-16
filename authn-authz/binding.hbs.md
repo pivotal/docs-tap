@@ -36,7 +36,6 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: developer-1
-EOF
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -50,6 +49,7 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: developer-1
+EOF
 ```
 
 Where `DEVELOPER-NAMESPACE` is the namespace for scoping the developers access.
@@ -74,7 +74,6 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: developers
-EOF
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -88,6 +87,7 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
   name: developers
+EOF
 ```
 
 Where `DEVELOPER-NAMESPACE` is the namespace for scoping the developers access.
