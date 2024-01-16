@@ -223,27 +223,24 @@ reconcile the webhook.
 
 **Solution:**
 
-> **Note** This workaround disables the admission controller, which might have implications on
-> certain functionalities. See the Datadog documentation or contact support for guidance based on
-> your specific use case.
+> **Note** This workaround deactivates the admission controller, which might have implications for
+> certain features. See the [Datadog documentation](https://docs.datadoghq.com/) or contact support
+> for guidance based on your specific use case.
 
 To work around this issue:
 
-1. Create a custom `values.yaml` file for Datadog.
-<!-- Is this values file for datadog? Will the only things to add be the items in step 2? -->
+1. Create a custom values file for Datadog named `values.yaml`.
 
-1. In your `values.yaml` file, set `clusterAgent.admissionController` to `false` and set the envar
-  `DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS` to `true` as follows:
-    <!-- should admissionController and env be indented under clusterAgent? -->
-    <!-- envar == environment variable? -->
+1. Enter the following YAML into your `values.yaml` file, which sets `clusterAgent.admissionController`
+   to `false` and sets the environment variable `DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS` to `true`:
 
     ```yaml
     clusterAgent:
-    admissionController:
-      enabled: false
-    env:
-      - name: "DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS"
-        value: "true"
+      admissionController:
+        enabled: false
+      env:
+        - name: "DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS"
+          value: "true"
     ```
 
 1. Install the Datadog Agent Helm chart with your custom `values.yaml` file:
