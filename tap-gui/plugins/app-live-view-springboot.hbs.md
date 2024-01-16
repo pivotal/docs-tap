@@ -103,7 +103,7 @@ the application.
 This tracks live threads and daemon threads real-time. It is a snapshot of different thread states.
 Navigating to a thread state displays all the information about a particular thread and its stack trace.
 
-Use the search feature enables to search for threads by thread ID or state.
+Use the search feature to search for threads by thread ID or state.
 The refresh icon refreshes to the latest state of the threads.
 You can view more thread details by clicking on the Thread ID.
 The page also has a feature to download thread dump data for analysis purposes.
@@ -137,7 +137,7 @@ To go to the Request Mappings page, select the **Request Mappings** option from 
 
 This page provides information about the application’s request mappings.
 For each mapping, it displays the request handler method.
-You can view more details of the request mapping such as header metadata of the application.
+You can view more details of the request mapping, such as the header metadata of the application.
 
 When you click on the request mapping, a side panel appears.
 This panel contains information about the mapping-media types `Produces` and `Consumes`.
