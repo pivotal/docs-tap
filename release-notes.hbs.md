@@ -100,11 +100,11 @@ You will no longer see this issue with the default internal database, but the so
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-8-0-app-live-view-ki'></a> v1.8.0 Known issues: Application Live View
+#### <a id='1-8-0-app-live-view-ki'></a> v1.8.0 Known issues: Tanzu Application Platform
 
 - On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
   leads to an error.
-  For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](app-live-view/troubleshooting.hbs.md#datadog-agent-aks).
+  For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
 
 #### <a id='1-8-0-service-bindings-ki'></a> v1.8.0 Known issues: Service Bindings
 

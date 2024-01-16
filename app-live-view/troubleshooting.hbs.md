@@ -214,43 +214,6 @@ You must specify the value within double quotation marks for the configuration t
 
 ---
 
-## <a id="datadog-agent-aks"></a> Datadog agent cannot reconcile webhook on AKS
-
-**Symptom:**
-
-On Azure Kubernetes Service (AKS), you receive an error because the Datadog Cluster Agent cannot
-reconcile the webhook.
-
-**Solution:**
-
-> **Note** This workaround deactivates the admission controller, which might have implications for
-> certain features. See the [Datadog documentation](https://docs.datadoghq.com/) or contact support
-> for guidance based on your specific use case.
-
-To work around this issue:
-
-1. Create a custom values file for Datadog named `values.yaml`.
-
-1. Enter the following YAML into your `values.yaml` file, which sets `clusterAgent.admissionController`
-   to `false` and sets the environment variable `DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS` to `true`:
-
-    ```yaml
-    clusterAgent:
-      admissionController:
-        enabled: false
-      env:
-        - name: "DD_ADMISSION_CONTROLLER_ADD_AKS_SELECTORS"
-          value: "true"
-    ```
-
-1. Install the Datadog Agent Helm chart with your custom `values.yaml` file:
-
-    ```console
-    helm upgrade --install datadog-operator datadog/datadog-operator -f values.yaml
-    ```
-
----
-
 ## <a id="verify-labels"></a> Verify the labels in your workload YAML file
 
 To verify that the labels in your workload YAML file are working:

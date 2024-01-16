@@ -1,6 +1,5 @@
 # Use external observability tools
 
-<!-- can I mention App Live View in the title? -->
 This topic tells you how to generate metrics for your Tanzu Application Platform (commonly known as TAP)
 applications to enable observability with external tools.
 
@@ -16,9 +15,11 @@ tools to conveniently consume (scrape) them.
 
 For Kubernetes, there is an established convention that facilitates the automatic discovery of pods
 exposing Prometheus metrics.
-This involves incorporating specific annotations on the pods exposing information for path and port of the metrics endpoint.
+This involves incorporating specific annotations on the pods exposing information for path and port
+of the metrics endpoint.
 
-Prometheus and other observability tools like Datadog can discover annotated pods and collect the metrics from the endpoint.
+Prometheus and other observability tools like Datadog can discover annotated pods and collect the
+metrics from the endpoint.
 
 This topic explains how to set up Prometheus on your cluster or integrate an existing Datadog installation.
 
@@ -98,9 +99,9 @@ Prometheus Operator
       > **Note** The Prometheus Operator does not support annotation-based discovery of services by default.
       > To enable these annotations, you must set up a custom scrape job configuration.
 
-      <!-- The below partial is in the docs-tap/partials directory -->
+      <!-- The following partial is in the docs-tap/partials directory -->
 
-      {{> 'partials/app-live-view/configuring-apps/prometheus' }}
+      {{> 'partials/integrations/create-config-secret' }}
 
       1. Create a Prometheus resource that uses this secret by running:
 
@@ -166,7 +167,9 @@ kube-prometheus-stack Helm chart
   1. Because there isn't a predefined scrape job configuration to support annotation-based discovery
     of services, you must create the configuration secret `additional-scrape-configs`.
 
-      {{> 'partials/app-live-view/configuring-apps/prometheus' }}
+      <!-- The following partial is in the docs-tap/partials directory -->
+
+      {{> 'partials/integrations/create-config-secret' }}
 
   1. Install the `kube-prometheus-stack` Helm chart by running:
 
@@ -231,7 +234,7 @@ To use Datadog as your observability tool:
 
     > **Note** There is a known issue with Datadog Cluster Agent on Azure Kubernetes Service (AKS) clusters.
     > For more information, see the troubleshooting item
-    > [Datadog agent cannot reconcile webhook on AKS](../troubleshooting.hbs.md#datadog-agent-aks).
+    > [Datadog agent cannot reconcile webhook on AKS](../troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
 
 1. Generate a new API key in Datadog for the Agent that wil push metrics to Datadog.
    You do this in the Datadog UI, under `Profile/Organization Settings/API Keys`.
