@@ -48,7 +48,6 @@ The following issues, listed by component and area, are resolved in this release
   access token response is also filtered, with the same rules. 
   For more information, see the [OAuth documentation](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-10.html#name-token-response).
 
- 
 ---
  
 ### <a id='1-7-4-known-issues'></a> v1.7.4 Known issues 
@@ -115,6 +114,7 @@ The following table lists the supported component versions for this Tanzu Applic
 | Tanzu Build Service                                |                |
 | Tanzu CLI                                          |                |
 | Tekton Pipelines                                   |                |
+
 ---
 
 ## <a id='1-7-3'></a> v1.7.3
