@@ -68,7 +68,7 @@ To retrieve a vulnerability report:
 
 ## <a id="validating-scan-format"></a> Validating scan format
 
-After retrieving the scan results, you must verify that the scan results are in a format that downstream Tanzu Application Platform services, such as AMR Observer, support. AMR Observer supports the following SBOM formats and versions.
+After retrieving the scan results, you must verify that the scan results are in a format that downstream Tanzu Application Platform services such as AMR Observer support. AMR Observer supports the following SBOM formats and versions.
 
 <table>
 
