@@ -113,7 +113,7 @@
       - [Consume services](getting-started/about-consuming-services.hbs.md)
 - [Integrations](integrations/tsm-tap-integration.hbs.md)
   - [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md)
-  - [Use external observability tools](app-live-view/configuring-apps/external-observability-tools.hbs.md)
+  - [Use external observability tools](integrations/external-observability-tools.hbs.md)
 - [Workloads](workloads/workload-types.hbs.md)
   - [Workload types](workloads/workload-types.hbs.md)
   - [Use web workloads](workloads/web.hbs.md)
