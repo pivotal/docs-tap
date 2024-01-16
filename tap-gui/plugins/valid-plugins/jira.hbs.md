@@ -60,7 +60,7 @@ Where:
 Add the `annotations` entry for Jira to the catalog entity to display the Jira project results on
 the component overview tab.
 
-#### Catalog
+#### <a id="catalog"></a> Catalog
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
