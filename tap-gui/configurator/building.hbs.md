@@ -151,7 +151,7 @@ Use an existing supply chain
             - name: BP_NODE_RUN_SCRIPTS
               value: 'set-tdp-config,portal:pack'
             - name: TPB_CONFIG
-              value: /tmp/tdp-config.yaml
+              value: /tmp/tpb-config.yaml
             - name: TPB_CONFIG_STRING
               value: ENCODED-TDP-CONFIG-VALUE
 
