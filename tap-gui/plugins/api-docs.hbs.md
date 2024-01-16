@@ -11,7 +11,7 @@ components and systems of the Tanzu Application Platform GUI software catalog.
 
 Each API entity can reflect the components that provide that API and the list of components
 that are consumers of that API.
-Also, an API entity can be associated with systems and show up on the system diagram.
+Also, an API entity can be associated with systems and appear on the system diagram.
 To show this dependency, make the `spec.providesApis:` and `spec.consumesApis:` sections of the
 component definition files reference the name of the API entity.
 
