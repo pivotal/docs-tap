@@ -77,12 +77,13 @@ contents of the Git repository as a tarball available in the cluster.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>gitImplementation<code></td>
     <td>
@@ -112,6 +113,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+  </body>
 </table>
 
 > **Note** It might not be necessary to change the default Git
@@ -138,11 +140,13 @@ from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-wor
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -158,7 +162,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </body>
 </table>
 
 For information about custom resource details, see [ImageRepository reference
@@ -182,11 +186,13 @@ parameters in the Workload.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>maven<code></td>
@@ -206,6 +212,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 For information about the
@@ -231,11 +238,13 @@ execution of the PipelineRuns through `testing_pipeline_params`.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>testing_pipeline_matching_labels<code></td>
@@ -272,7 +281,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </body>
 </table>
 
 For information about how to set up the
@@ -296,11 +305,13 @@ You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>scanning_source_template<code></td>
@@ -329,6 +340,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 See [Out of the Box Supply Chain with Testing and
@@ -369,11 +381,13 @@ Service](../tanzu-build-service/tbs-about.hbs.md).
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -434,7 +448,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </body>
 </table>
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
@@ -460,11 +474,13 @@ instantiate Tekton TaskRun objects to call the execution of
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>dockerfile<code></td>
@@ -502,6 +518,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 For information about how to use Dockerfile-based builds and limits associated with the function, see [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
@@ -518,11 +535,13 @@ supply chain.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -538,6 +557,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
@@ -561,11 +581,13 @@ by the ImageScan object create for doing so.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>scanning_image_template<code></td>
@@ -594,6 +616,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 For information about the ImageScan custom resource, see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
@@ -618,11 +641,13 @@ passed forward to other resources to form the final deployment configuration.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -682,6 +707,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
@@ -714,11 +740,13 @@ apply based on the labels set in the Workload object created by the developer:
 Only the `server` workload type has the following configurable parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>ports<code></td>
@@ -736,8 +764,8 @@ Only the `server` workload type has the following configurable parameters:
       </pre>
     </td>
   </tr>
+  </body>
 </table>
-
 
 See [workload types](../workloads/workload-types.hbs.md) for more details about the
 three different types of workloads, and [`server`-specific Workload
@@ -753,11 +781,13 @@ configuration files to promote for deployment.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>annotations<code></td>
@@ -775,6 +805,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 For an example, see
@@ -792,11 +823,13 @@ Kubernetes objects to deploy such that API auto registration takes place.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>annotations<code></td>
@@ -834,6 +867,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 > **Note** it's required that the Workload include the
@@ -869,11 +903,13 @@ that are produced by the supply chain.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -890,6 +926,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
@@ -973,11 +1010,13 @@ resources in the ClusterDelivery.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>gitImplementation<code></td>
@@ -1009,6 +1048,7 @@ Parameters:
       </pre>
     </td>
   </tr>
+    </body>
 </table>
 
 > **Note** It might not be necessary to change the default Git implementation
@@ -1035,11 +1075,13 @@ as opposed to a Git repository.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1055,7 +1097,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </body>
 </table>
 
 For information about custom resource details, see [ImageRepository reference
@@ -1080,11 +1122,13 @@ instantiated to deploy the set of Kubernetes configuration files to the cluster.
 Parameters:
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+<body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1114,7 +1158,7 @@ Parameters:
       </pre>
     </td>
   </tr>
-
+  </body>
 </table>
 
 > **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
