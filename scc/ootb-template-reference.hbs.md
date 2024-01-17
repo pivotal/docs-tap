@@ -994,7 +994,7 @@ Kubernetes objects to deploy such that API auto registration takes place.
 
 A ConfigMap. This template consumes input of multiple YAML files and
 enriches the input with an APIDescriptor if
-the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
+the workload has a label `apis.apps.tanzu.vmware.com/register-api` set to `true`.
 
 ### <a id='api-descriptors-params'></a> Parameters
 
@@ -1004,7 +1004,7 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>annotations<code></td>
