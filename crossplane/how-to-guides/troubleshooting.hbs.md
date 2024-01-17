@@ -47,6 +47,8 @@ Create a `ConfigMap` with the PEM encoded certificate data for your CA certifica
 > **Note** From Tanzu Application Platform v1.6, the Crossplane Package inherits the data configured
 > in `shared.ca_cert_data` of `tap-values.yaml` and this workaround will no longer be needed.
 
+---
+
 ## <a id="cp-custom-cert-inject"></a>Crossplane Providers cannot communicate with systems using a custom CA
 
 **Symptom:**
