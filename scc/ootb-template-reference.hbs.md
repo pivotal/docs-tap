@@ -44,12 +44,12 @@ cluster. Other resources in the supply chain can then access that code.
 ##### <a id='source-template-params'></a> Parameters
 
 <table>
- <thread>
+ <thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
   <body>
   <tr>
     <td><code>gitImplementation<code></td>
@@ -98,12 +98,12 @@ For information about GitRepository objects, see
 ##### <a id='image-repository-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -144,13 +144,13 @@ parameters in the Workload.
 ##### <a id='maven-artifact-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
   </tr>
-</thread>
+</thead>
 <body>
   <tr>
     <td><code>maven<code></td>
@@ -230,12 +230,12 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
 ### <a id='testing-pipeline-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>testing_pipeline_matching_labels<code></td>
@@ -302,12 +302,12 @@ This is used as the `source-scanner` resource.
 ### <a id='source-scanner-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>scanning_source_template<code></td>
@@ -376,12 +376,12 @@ ImageRepository.source.apps.tanzu.vmware.com
 ### Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -433,12 +433,12 @@ These are used as the `image-provider` resource when the workload parameter `doc
 ### <a id='kpack-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
   <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -544,12 +544,12 @@ flag to create new immutable objects rather than updating the previous object.
 ### <a id='kaniko-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>dockerfile<code></td>
@@ -634,12 +634,12 @@ ImageScan.scanning.apps.tanzu.vmware.com
 ### <a id='image-scanner-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>scanning_image_template<code></td>
@@ -708,12 +708,12 @@ to represent the shape of the pods to run the application in containers.
 ### <a id='convention-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -935,12 +935,12 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 ### <a id='service-bindings-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>annotations<code></td>
@@ -1071,12 +1071,12 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
 ### <a id='config-writer-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1456,12 +1456,12 @@ preconfigured with reference to a repository or registry from which to fetch Kub
 ### <a id='deliverable-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1808,7 +1808,7 @@ cluster. Other resources in the supply chain can then access that code.
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>gitImplementation<code></td>
@@ -1905,7 +1905,7 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
@@ -2176,12 +2176,12 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
 ### <a id='package-config-writer-params'></a> Parameters
 
 <table>
-<thread>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr></thread>
+  </tr></thead>
 <body>
   <tr>
     <td><code>serviceAccount<code></td>
