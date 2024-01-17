@@ -876,11 +876,12 @@ Deployment and a Kubernetes Service to expose the pods.
 ### <a id='server-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
 
   <tr>
     <td><code>ports<code></td>
@@ -998,12 +999,13 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
 ### <a id='api-descriptors-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thread>
+<body>
   <tr>
     <td><code>annotations<code></td>
     <td>
@@ -1261,12 +1263,13 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 ### <a id='config-writer-pr-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
@@ -1631,12 +1634,13 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
 ### <a id='external-deliverable-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
@@ -1803,7 +1807,7 @@ cluster. Other resources in the supply chain can then access that code.
 ##### <a id='delivery-source-params'></a> Parameters
 
 <table>
-
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
@@ -1857,12 +1861,13 @@ For information about GitRepository objects, see
 ##### <a id='image-repo-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
@@ -1900,7 +1905,7 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
 ### <a id='app-deploy-params'></a> Parameters
 
 <table>
-
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
@@ -1967,12 +1972,13 @@ flag to create new immutable objects rather than updating the previous object.
 ### <a id='carvel-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
@@ -2387,12 +2393,13 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 ### <a id='package-config-writer-pr-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
@@ -2457,6 +2464,7 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
         value: alice@example.com
       </pre>
     </td>
+    </body>
   </tr>
 
   <tr>
