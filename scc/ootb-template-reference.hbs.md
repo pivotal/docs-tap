@@ -44,11 +44,13 @@ cluster. Other resources in the supply chain can then access that code.
 ##### <a id='source-template-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>gitImplementation<code></td>
@@ -79,6 +81,7 @@ cluster. Other resources in the supply chain can then access that code.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ##### <a id='source-template-more-info'></a> More information
@@ -96,11 +99,13 @@ For information about GitRepository objects, see
 ##### <a id='image-repository-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -115,7 +120,7 @@ For information about GitRepository objects, see
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
@@ -141,11 +146,13 @@ parameters in the Workload.
 ##### <a id='maven-artifact-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>maven<code></td>
@@ -188,6 +195,7 @@ parameters in the Workload.
         value: auth-secret
       </pre>
     </td>
+    </body>
 </table>
 
 ##### <a id='maven-artifact-more-info'></a> More information
@@ -224,11 +232,13 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
 ### <a id='testing-pipeline-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>testing_pipeline_matching_labels<code></td>
@@ -264,8 +274,9 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
           value: bar
       </pre>
     </td>
+        </body>
   </tr>
-
+</body>
 </table>
 
 ### <a id='testing-pipeline-more-info'></a> More information
@@ -294,11 +305,13 @@ This is used as the `source-scanner` resource.
 ### <a id='source-scanner-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>scanning_source_template<code></td>
@@ -312,6 +325,7 @@ This is used as the `source-scanner` resource.
         value: private-source-scan-template
       </pre>
     </td>
+    
   </tr>
 
   <tr>
@@ -327,6 +341,7 @@ This is used as the `source-scanner` resource.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='source-scanner-more-info'></a> More information
@@ -366,11 +381,13 @@ ImageRepository.source.apps.tanzu.vmware.com
 ### Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -385,7 +402,7 @@ ImageRepository.source.apps.tanzu.vmware.com
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
@@ -422,11 +439,13 @@ These are used as the `image-provider` resource when the workload parameter `doc
 ### <a id='kpack-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -486,7 +505,7 @@ These are used as the `image-provider` resource when the workload parameter `doc
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
@@ -532,11 +551,13 @@ flag to create new immutable objects rather than updating the previous object.
 ### <a id='kaniko-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>dockerfile<code></td>
@@ -589,6 +610,7 @@ flag to create new immutable objects rather than updating the previous object.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='kaniko-more-info'></a> More information
@@ -620,11 +642,13 @@ ImageScan.scanning.apps.tanzu.vmware.com
 ### <a id='image-scanner-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>scanning_image_template<code></td>
@@ -653,6 +677,7 @@ ImageScan.scanning.apps.tanzu.vmware.com
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='image-scanner-more-info'></a> More information
@@ -692,11 +717,13 @@ to represent the shape of the pods to run the application in containers.
 ### <a id='convention-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -756,6 +783,7 @@ to represent the shape of the pods to run the application in containers.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
@@ -858,11 +886,13 @@ Deployment and a Kubernetes Service to expose the pods.
 ### <a id='server-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>ports<code></td>
@@ -880,6 +910,7 @@ Deployment and a Kubernetes Service to expose the pods.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='server-more-info'></a> More information
@@ -916,11 +947,13 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 ### <a id='service-bindings-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>annotations<code></td>
@@ -938,6 +971,7 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='service-bindings-more-info'></a> More information
@@ -976,11 +1010,13 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
 ### <a id='api-descriptors-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>annotations<code></td>
@@ -1018,6 +1054,7 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='api-descriptors-more-info'></a> More information
@@ -1048,11 +1085,13 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
 ### <a id='config-writer-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1205,7 +1244,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 ### <a id='config-writer-more-info'></a> More information
@@ -1236,11 +1275,13 @@ A Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 ### <a id='config-writer-pr-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1414,7 +1455,7 @@ A Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 ### <a id='config-writer-pr-more-info'></a> More information
@@ -1447,11 +1488,13 @@ preconfigured with reference to a repository or registry from which to fetch Kub
 ### <a id='deliverable-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1582,6 +1625,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
@@ -1620,11 +1664,13 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
 ### <a id='external-deliverable-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1755,6 +1801,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='external-deliverable-more-info'></a> More information
@@ -1791,11 +1838,13 @@ cluster. Other resources in the supply chain can then access that code.
 ##### <a id='delivery-source-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>gitImplementation<code></td>
@@ -1826,6 +1875,7 @@ cluster. Other resources in the supply chain can then access that code.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ##### <a id='delivery-source-more-info'></a> More information
@@ -1843,11 +1893,13 @@ For information about GitRepository objects, see
 ##### <a id='image-repo-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1862,7 +1914,7 @@ For information about GitRepository objects, see
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 ##### <a id='image-repo-more-info'></a> More information
@@ -1886,11 +1938,13 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
 ### <a id='app-deploy-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -1920,7 +1974,7 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 > **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
@@ -1953,11 +2007,13 @@ flag to create new immutable objects rather than updating the previous object.
 ### <a id='carvel-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -2156,6 +2212,7 @@ flag to create new immutable objects rather than updating the previous object.
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='carvel-more-info'></a> More information
@@ -2181,11 +2238,13 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
 ### <a id='package-config-writer-params'></a> Parameters
 
 <table>
+<thead>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
+  </tr></thead>
+  <body>
 
   <tr>
     <td><code>serviceAccount<code></td>
@@ -2364,6 +2423,7 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       </pre>
     </td>
   </tr>
+</body>
 </table>
 
 ### <a id='package-config-writer-more-info'></a> More information
@@ -2389,6 +2449,8 @@ A Tekton TaskRun which refers to the Tekton Task `commit-and-pr`.
 ### <a id='package-config-writer-pr-params'></a> Parameters
 
 <table>
+<thead></thead>
+  <body>
   <tr>
     <th>Parameter name</th>
     <th>Meaning</th>
@@ -2593,7 +2655,7 @@ A Tekton TaskRun which refers to the Tekton Task `commit-and-pr`.
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 ### <a id='package-config-writer-pr-more-info'></a> More information
