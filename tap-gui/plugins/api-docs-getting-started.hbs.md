@@ -164,7 +164,6 @@ software catalog and click the **Edit** icon on the Overview page.
 It opens the source `catalog-info.yaml` file that you can edit. For example, you can change the
 `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and then save your changes.
 
-<<<<<<< HEAD
     ![Screenshot of the overview of demo dash api. The edit button on the card labeled About is framed in red.](../images/api-plugin-9.png)
 
     It opens the source `catalog-info.yaml` file that you can edit. For example, you can change the
@@ -172,9 +171,6 @@ It opens the source `catalog-info.yaml` file that you can edit. For example, you
 
    After making any edits, Tanzu Application Platform GUI re-renders the API entry with the next
    refresh cycle.
-=======
-After making any edits, Tanzu Developer Portal re-renders the API entry with the next refresh cycle.
->>>>>>> d789df077 ([TAAP-2961] Mostly replacing the user with you)
 
 ## <a id="validation-api"></a> Validation Analysis of API specifications
 
