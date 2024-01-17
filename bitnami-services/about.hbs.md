@@ -13,6 +13,6 @@ This makes it incredibly quick and easy to get started working with services on 
 ## <a id="getting-started"></a> Getting started
 
 If this is your first time working with Bitnami Services on Tanzu Application Platform,
-you might want to start with the tutorial
+you can start with the tutorial
 [Working with Bitnami Services](tutorials/working-with-bitnami-services.hbs.md).
 Otherwise, see the [how-to guides](how-to-guides/index.hbs.md) and [reference material](reference/index.hbs.md).
