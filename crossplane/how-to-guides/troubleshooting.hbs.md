@@ -19,7 +19,7 @@ Resource already exists
 **Explanation:**
 
 Crossplane is already installed on the cluster. You cannot install the Crossplane package on a cluster
-that already has Crossplane installed on it by using another method, such as, Helm install.
+that already has Crossplane installed on it by using another method, such as Helm install.
 
 **Solution:**
 
