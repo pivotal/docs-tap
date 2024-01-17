@@ -26,6 +26,8 @@ that already has Crossplane installed on it by using another method, such as, He
 Exclude the Crossplane package in the `tap-values.yaml` file.
 For more information, see [Use your existing Crossplane installation](./use-existing-crossplane.hbs.md).
 
+---
+
 ## <a id="validatingwebhookconfig"></a>The `validatingwebhookconfiguration` is not removed when you uninstall the Crossplane Package
 
 **Symptom:**
