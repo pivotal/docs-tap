@@ -1054,7 +1054,7 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` set to `true`
           description: "example"
       </pre>
     </td>
-  </tr><
+  </tr>
   </body>
 </table>
 
