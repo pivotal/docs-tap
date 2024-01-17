@@ -26,6 +26,8 @@ that already has Crossplane installed on it by using another method, such as, He
 Exclude the Crossplane package in the `tap-values.yaml` file.
 For more information, see [Use your existing Crossplane installation](./use-existing-crossplane.hbs.md).
 
+---
+
 ## <a id="cp-custom-cert-inject"></a>Crossplane Providers cannot communicate with systems using a custom CA
 
 **Symptom:**
@@ -87,6 +89,8 @@ For example, to inject CA certificates you can use this sample in the [Kyverno d
 > **Note** From Tanzu Application Platform v1.7, the Crossplane Package will inherit this data through
 > `shared.ca_cert_data` of `tap-values.yaml` and configure the Crossplane Providers accordingly.
 > This workaround will no longer be needed.
+
+---
 
 ## <a id="validatingwebhookconfig"></a>The `validatingwebhookconfiguration` is not removed when you uninstall the Crossplane Package
 
