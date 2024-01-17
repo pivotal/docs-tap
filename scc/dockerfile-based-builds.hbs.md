@@ -9,12 +9,13 @@ Kaniko is an open-source tool for building container images from a Dockerfile
 without running Docker inside a container.
 
 <table>
+<thead>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
-  </tr>
-
+    <th>Parameter name</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr></thead>
+<body>
   <tr>
     <td><code>dockerfile<code></td>
     <td>relative path to the Dockerfile file in the build context</td>
@@ -35,6 +36,7 @@ without running Docker inside a container.
     </td>
     <td><pre>- --build-arg=MY_KEY=MY_VALUE</pre></td>
   </tr>
+  </body>
 </table>
 
 

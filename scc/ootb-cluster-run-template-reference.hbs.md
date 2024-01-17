@@ -25,12 +25,13 @@ user's Tekton Pipeline.
 ### <a id='pipelinerun-creates'></a> Inputs
 
 <table>
+<thead>
   <tr>
     <th>Input name</th>
     <th>Meaning</th>
     <th>Example</th>
-  </tr>
-
+  </tr></thead>
+<body>
   <tr>
     <td><code>tekton-params<code></td>
     <td>
@@ -49,7 +50,7 @@ user's Tekton Pipeline.
       </pre>
     </td>
   </tr>
-
+</body>
 </table>
 
 ### <a id='pipelinerun-more-info'></a> More information
