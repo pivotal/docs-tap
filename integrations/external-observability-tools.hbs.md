@@ -2,6 +2,7 @@
 
 This topic tells you how to generate metrics for your Tanzu Application Platform (commonly known as TAP)
 applications to enable observability with external tools.
+It explains how to set up Prometheus on your cluster or integrate an existing Datadog installation.
 
 ## <a id="prometheus-metrics"></a> About Prometheus metrics
 
@@ -20,8 +21,6 @@ of the metrics endpoint.
 
 Prometheus and other observability tools like Datadog can discover annotated pods and collect the
 metrics from the endpoint.
-
-This topic explains how to set up Prometheus on your cluster or integrate an existing Datadog installation.
 
 ## <a id="install-prometheus"></a> Use Prometheus as your observability tool
 
