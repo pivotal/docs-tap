@@ -71,13 +71,12 @@ To retrieve a vulnerability report:
 After retrieving the scan results, you must verify that the scan results are in a format that downstream Tanzu Application Platform services such as AMR Observer support. AMR Observer supports the following SBOM formats and versions.
 
 <table>
-
-  <tr>
   <thead>
+  <tr>
    <td>SBOM Formats</td>
    <td>Versions</td>
   </tr></thead>
-  <tbody>
+  <body>
   <tr>
    <td>CycloneDX</td>
    <td>1.2, 1.3, 1.4</td>
@@ -86,7 +85,7 @@ After retrieving the scan results, you must verify that the scan results are in 
    <td>SPDX</td>
    <td>2.2</td>
   </tr>
-  </tbody>
+  </body>
 </table>
 
 VMware recommends validating the scan results by using this CycloneDX tool, [sbom-utility](https://github.com/CycloneDX/sbom-utility). This tool validates CycloneDX and SPDX BOMs against versioned schemas.
