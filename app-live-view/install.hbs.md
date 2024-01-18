@@ -397,25 +397,25 @@ To install Application Live View connector:
 
         ```yaml
         backend:
-        caCertData: |-
-          -----BEGIN CERTIFICATE-----
-          MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
-          BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-          -----END CERTIFICATE-----
+          caCertData: |-
+            -----BEGIN CERTIFICATE-----
+            MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+            BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+            -----END CERTIFICATE-----
         ```
 
     - To enable TLS using ClusterIssuer, set the following connector configuration in the run cluster:
 
         ```yaml
         backend:
-        ingressEnabled: true
-        sslDeactivated: false
-        host: appliveview.INGRESS-DOMAIN
-        caCertData: |-
-          -----BEGIN CERTIFICATE-----
-          MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
-          BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-          -----END CERTIFICATE-----
+          ingressEnabled: true
+          sslDeactivated: false
+          host: appliveview.INGRESS-DOMAIN
+          caCertData: |-
+            -----BEGIN CERTIFICATE-----
+            MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+            BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+            -----END CERTIFICATE-----
         ```
 
         Where `caCertData` is the certificate retrieved from the HTTPProxy secret exposed by the
