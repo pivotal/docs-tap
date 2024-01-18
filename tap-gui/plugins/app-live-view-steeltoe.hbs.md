@@ -33,7 +33,7 @@ menu.
 The health page provides detailed information about the health of the application.
 It lists all the components that make up the health of the application, such as readiness, liveness,
 and disk space.
-It displays the status and details associated with each of the components.
+It displays the status and details associated with each component.
 
 ![Health Page in the UI showing information such as readiness, disk space, and liveness.](images/health-steeltoe.png)
 
@@ -44,12 +44,12 @@ To access the **Environment** page, select the **Environment** option from the
 
 The Environment page contains details of the applications' environment.
 It contains properties including, but not limited to, system properties, environment variables, and
-configuration properties (such as appsettings.json) in a Steeltoe application.
+configuration properties (such as `appsettings.json`) in a Steeltoe application.
 
 The page includes the following capabilities for `viewing` configured environment properties:
 
-- The UI has a search feature that enables the user to search for a property or values.
-- Each property has a search icon at the right corner which helps the user quickly see all the
+- The UI has a search feature that enables you to search for a property or values.
+- Each property has a search icon at the right corner which helps you quickly see all the
   occurrences of a specific property key without manually typing in the search box.
   Clicking the search button locates the property name.
 - The **Refresh Scope** button on the top right corner of the page probes the application to refresh
@@ -57,17 +57,17 @@ The page includes the following capabilities for `viewing` configured environmen
 
 The page also includes the following capabilities for `editing` configured environment properties:
 
-- The UI allows the user to edit environment properties and see the live changes in the application.
+- The UI allows you to edit environment properties and see the live changes in the application.
   These edits are temporary and go away if the underlying pod is restarted.
-- For each of the configured environment properties, the user can edit its value by clicking on the
+- For each of the configured environment properties, you can edit its value by clicking on the
   **Override** button in the same row.
-  After the value is saved, the user can view the message that the property was overridden from the
+  After the value is saved, you can view the message that the property was overridden from the
   initial value. Also, the updated property is visible in the **Applied Overrides** section at the
   top of the page.
   The **Reset** button in the same row resets the environment property to the initial state.
-- The user can also edit or remove the overridden environment variables in the **Applied Overrides**
+- You can also edit or remove the overridden environment variables in the **Applied Overrides**
   section.
-- The **Applied Overrides** section also enables the user to add new environment properties to the
+- The **Applied Overrides** section also enables you to add new environment properties to the
   application.
 
 > **Note** The `management.endpoint.env.post.enabled=true` must be set in the application config
@@ -94,7 +94,7 @@ Use the **Changes Only** toggle to display the changed log levels.
 Use the search feature to search by logger name.
 Click **Reset All** to reset all the loggers to the default state.
 
-> **Note** The UI allows the user to change the log levels and see the live changes on the application.
+> **Note** The UI allows you to change the log levels and see the live changes on the application.
 > These changes are temporary and go away if the underlying pod is restarted.
 
 ![Screenshot of the Log Levels page. The log level WARN is selected for every logger except Default.](images/log-levels-steeltoe.png)
@@ -135,12 +135,12 @@ To access the **Request Mappings** page, select the **Request Mappings** option 
 
 This page provides information about the application’s request mappings.
 For each mapping, the page displays the request handler method.
-The user can view more details of the request mapping, such as the header metadata of the application.
+You can view more details of the request mapping, such as the header metadata of the application.
 
-When a user clicks on the request mapping, a side panel appears.
+When you click on the request mapping, a side panel appears.
 This panel contains information about the mapping-media types `Produces` and `Consumes`.
 The panel also displays the `Handler` class for the request.
-The search feature enables the user to search for the request mapping or the method.
+The search feature enables you to search for the request mapping or the method.
 The toggle **/actuator/\*\* Request Mappings** displays the actuator-related mappings of the
 application.
 
@@ -155,13 +155,13 @@ The **HTTP Requests** page provides information about HTTP request-response exch
 application.
 
 The graph visualizes the requests per second, which indicates the response status of all the requests.
-The user can filter by the response statuses, which include **info**, **success**, **redirects**,
+You can filter by the response statuses, which include **info**, **success**, **redirects**,
 **client-errors**, and **server-errors**.
 The trace data is captured in detail in a tabular format with metrics, such as **timestamp**,
 **method**, **path**, **status**, **content-type**, **length**, and **time**.
 
 The search feature on the table filters the traces based on the search text box value.
-By clicking on the timestamp, the user can view more details of the request, such as method, headers,
+By clicking on the timestamp, you can view more details of the request, such as method, headers,
 and the response of the application.
 
 The refresh icon above the graph loads the latest traces of the application.
@@ -203,7 +203,7 @@ You can choose from a list of actuator endpoints and parse through the raw actua
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
-You might run into cases where a workload running on your cluster does not show up in the
+You might run into cases where a workload running on your cluster does not appear in the
 Application Live View overview, or the Details pages do not load any information while running, or
 other similar issues.
 For help with troubleshooting common issues, see [Troubleshooting](../../app-live-view/troubleshooting.hbs.md).

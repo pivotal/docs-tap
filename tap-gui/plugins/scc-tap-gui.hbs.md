@@ -92,7 +92,8 @@ For more information, see [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hb
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
-Before using the SCC plug-in to visualize a workload, you must create a workload.
+Before using the Supply Chain Visibility (SCC) plug-in to visualize a workload, you must create a
+workload.
 
 The workload must have the `app.kubernetes.io/part-of` label specified, whether you manually create
 the workload or use one supplied with the OOTB supply chains.
