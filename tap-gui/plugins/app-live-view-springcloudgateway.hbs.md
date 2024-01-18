@@ -33,7 +33,7 @@ option from the **Information Category** drop-down menu.
 
 The API Authentications By Path page displays the total requests, number of successes, and forbidden
 and unsuccessful authentications grouped by the HTTP method and gateway route path.
-The page also displays the success rate for each of the routes.
+The page also displays the success rate for each route.
 
 ![API Authentications By Path Page in the UI. The table gives information including numbers for requests, successes, and forbidden errors.](images/api-authentications-by-path.png)
 
@@ -41,8 +41,8 @@ The page also displays the success rate for each of the routes.
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
-You might run into cases where a workload running on your cluster does not show up in the
-Application Live View overview, or the detail pages do not load any information while running,
-or other similar issues.
-For more information, see [Troubleshooting](../../app-live-view/troubleshooting.md) in the
-Application Live View documentation.
+You might run into cases where a workload running on your cluster does not appear in the Application
+Live View overview, or the detail pages do not load any information while running, or other similar
+issues.
+For more information about such issues, see [Troubleshooting](../../app-live-view/troubleshooting.hbs.md)
+in the Application Live View documentation.
