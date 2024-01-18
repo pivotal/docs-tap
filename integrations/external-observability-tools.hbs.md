@@ -27,7 +27,7 @@ metrics from the endpoint.
 There are multiple ways to install Prometheus on your cluster:
 
 - Use the Prometheus Operator
-- Use the kube-prometheus-stack Helm chart
+- Use the `kube-prometheus-stack` Helm chart
 - Use the Prometheus Helm chart
 
 Prometheus Operator
@@ -43,7 +43,7 @@ Prometheus Operator
       curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/${LATEST}/bundle.yaml | kubectl create -f -
       ```
 
-  1. For RBAC based environments, create the RBAC rules for the Prometheus service account by running:
+  1. For RBAC-based environments, create the RBAC rules for the Prometheus service account by running:
 
       ```console
       cat <<EOF | kubectl apply -f -
