@@ -9,9 +9,9 @@ associated with their workloads.
 
 Do one of the following actions to access the Runtime Resources Visibility plug-in:
 
-- [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
-- [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
-  install [Tanzu Developer Portal separately](../install-tap-gui.md)
+- [Install the Tanzu Application Platform Full or View profile](../../install-intro.hbs.md)
+- [Install Tanzu Application Platform without using a profile](../../install-intro.hbs.md) and then
+  install [Tanzu Developer Portal separately](../install-tap-gui.hbs.md)
 - Review the section [If you have a metrics server](#metrics-server)
 
 ## <a id="metrics-server"></a> If you have a metrics server
@@ -45,17 +45,17 @@ Where:
 
 You can retrieve this secret's ID by running:
 
-```kubectl
+```console
 kubectl get secrets -n tap-gui
 ```
 
 and then running
 
-```kubectl
+```console
 kubectl describe secret tap-gui-token-ID
 ```
 
-Where ID is the secret name from the first step.
+Where `ID` is the secret name from the first step.
 
 > **Caution** If you enable metrics for a cluster but do not have a metrics server running on it,
 > Tanzu Application Platform web interface users see an error notifying them that there is a
@@ -63,10 +63,10 @@ Where ID is the secret name from the first step.
 
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Developer Portal
 
-In order to view your applications on Tanzu Developer Portal, use the following steps:
+To view your applications on Tanzu Developer Portal, use the following steps:
 
-1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
-1. [Add your application to Tanzu Developer Portal Software Catalog](../../getting-started/deploy-first-app.md#add-app-to-gui-cat)
+1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.hbs.md)
+1. [Add your application to Tanzu Developer Portal Software Catalog](../../getting-started/deploy-first-app.hbs.md#add-app-to-gui-cat)
 
 ## <a id="nav-rr-vis-screen"></a> Navigate to the **Runtime Resources Visibility** screen
 
@@ -101,7 +101,7 @@ Supply Chain, including:
 - Knative Services, Configurations, Revisions, and Routes
 
 For more information, see
-[Supply Chain Choreographer in Tanzu Developer Portal](scc-tap-gui.md).
+[Supply Chain Choreographer in Tanzu Developer Portal](scc-tap-gui.hbs.md).
 
 CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
 resources even further down the chain.
@@ -132,8 +132,8 @@ The following are some attributes that are displayed in the overview card:
 
 ![Screenshot of an Overview card. The VIEW POD LOGS and VIEW dot YAML buttons are at the top-right.](images/runtime-resources-overview.png)
 
->**Note** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
-applications supporting Application Live View.
+> **Note** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
+> applications supporting Application Live View.
 
 ### <a id="status-card"></a>Status card
 
@@ -187,7 +187,7 @@ user-configured resource limits on the pod, defined in accordance with the
 
 For applications built using Spring Boot, you can also monitor the actual
 real-time resource use using
-[Screenshot of Application Live View for Spring Boot Applications in Tanzu Developer Portal.](app-live-view-springboot.md).
+[Screenshot of Application Live View for Spring Boot Applications in Tanzu Developer Portal.](app-live-view-springboot.hbs.md).
 
 Metrics and limits are also displayed for each container on a pod details page.
 If a particular container's current limit conflicts with a namespace-level
@@ -215,7 +215,7 @@ Kubernetes manages these resource units by using a binary base, which is explain
 ## <a id="pod-details"></a>Navigating to Application Live View
 
 To view additional information about your running applications, see the
-[Application Live View](app-live-view-springboot.md) section in the **Pod Details** page.
+[Application Live View](app-live-view-springboot.hbs.md) section in the **Pod Details** page.
 
 ![Screenshot of Tanzu Java web app runtime resource detail page.](images/runtime-resources-pod-details.png)
 
@@ -251,7 +251,7 @@ For optimal performance, the pod logs page limits the total log entries displaye
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
-If the pod is associated with an application that supports [Application Live View](app-live-view.md),
+If the pod is associated with an application that supports [Application Live View](app-live-view.hbs.md),
 you can change the application's log levels by clicking the **Change Log Levels** button.
 You then see a panel that enables you to select levels for each logger associated with your application.
 
