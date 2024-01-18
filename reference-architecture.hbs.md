@@ -9,5 +9,5 @@ The Tanzu Application Platform Planning and Architecture Reference documentation
 This documentation helps you to understand the main design issues you encounter when
 planning your Tanzu Application Platform environment.
 
-**Important** You should review the Tanzu Application Platform Planning and Architecture Reference
+>**Important** You should review the Tanzu Application Platform Planning and Architecture Reference
 documentation before you install Tanzu Application Platform.
