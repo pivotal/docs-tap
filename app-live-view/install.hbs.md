@@ -146,14 +146,17 @@ To install Application Live View back end:
       ```yaml
         ingressEnabled: false
       ```
+      <!-- is this backend.ingressEnabled? Do they need to add any thing to the YAML file for this? -->
+      <!-- for single cluster, would there ever be circumstances to set ingressEnabled: true? -->
 
     Multicluster environment
-    : For a multicluster environment, set the flag `ingressEnabled` to true for
+    : For a multicluster environment, set the flag `ingressEnabled` to `true` for
       the Application Live View back end to be exposed on the ingress domain.
 
       ```yaml
         ingressEnabled: true
       ```
+      <!-- is this backend.ingressEnabled? -->
 
     Profile install using shared ingress domain key
     : If you are using a Tanzu Application Platform profile installation and the
@@ -167,6 +170,7 @@ To install Application Live View back end:
         ingressEnabled: true
         ingressDomain: ${INGRESS-DOMAIN}
       ```
+      <!-- is this backend.ingressEnabled? -->
 
       Where `INGRESS-DOMAIN` is the top-level domain you use for the
       `tanzu-shared-ingress` service’s external IP address. The `appliveview`
@@ -259,9 +263,7 @@ To install Application Live View back end:
          [Install Application Live View connector](#install-alv-connector).
 
     Deactivate TLS
-    : To deactivate TLS for Application Live View back end:
-
-      By default, Tanzu Application Platform installs and uses a self-signed CA as its ingress issuer
+    : By default, Tanzu Application Platform installs and uses a self-signed CA as its ingress issuer
       for all components.
       If you don't specify the `ingress_issuer` in `tap-values.yaml`, the `ingress_issuer` key
       consumes the value `shared.ingress_issuer` from `tap-values.yaml`.
@@ -270,19 +272,21 @@ To install Application Live View back end:
       To deactivate TLS validation on Application Live View back end do one of the following:
 
       - While VMware discourages it, you can deactivate the ingress issuer by setting
-        `shared.ingress_issuer: ""` in `tap-values.yaml`. For example:
+        `shared.ingress_issuer:` to `""` in `tap-values.yaml`. For example:
 
           ```yaml
+          ...
               shared:
                 ingress_issuer: ""
           ```
 
-      - Set `ingress_issuer: ""` in `app-live-view-backend-values.yaml`. For example:
+      - Set `ingress_issuer` to `""` in `app-live-view-backend-values.yaml`. For example:
 
           ```yaml
             ingressEnabled: true
             ingress_issuer: ""
           ```
+          <!-- is this backend.ingress_issuer? what if they set ingressEnabled: false earlier? -->
 
 1. Install the Application Live View back end package by running:
 
@@ -400,6 +404,8 @@ To install Application Live View connector:
 
       By default, ingress is deactivated for connector.
 
+      <!-- is there anything to add to the app-live-view-connector-values.yaml file here? -->
+
     Multicluster environment
     : For a multicluster environment, set the flag `ingressEnabled` to `true` for
       the Application Live View connector to connect to the Application Live View
@@ -409,6 +415,8 @@ To install Application Live View connector:
       backend:
         ingressEnabled: true
       ```
+
+      <!-- Do you have to add backend.ingressEnabled to the app-live-view-connector-values.yaml as well as the app-live-view-backend-values.yaml? -->
 
     Profile install using shared ingress domain key
     : If you are using a Tanzu Application Platform profile installation and the top-level key
@@ -431,22 +439,23 @@ To install Application Live View connector:
 
 1. Configure TLS in your `app-live-view-connector-values.yaml` depending on how you activated or
    deactivated TLS in [Install Application Live View back end](#install-app-live-view-back-end) earlier.
+   <!-- check if the above step is correct -->
 
     Configure TLS with self-signed certificate
-    : The `backend.sslDeactivated` is set to `false` by default. You can set the CA certificate for
-    the ingress domain in the `backend.caCertData` key for SSL validation. For example:
+    : The `backend.sslDeactivated` is set to `false` by default. Set the CA certificate for
+      the ingress domain in the `backend.caCertData` key for SSL validation as follows:
 
-    ```yaml
-    backend:
-    caCertData: |-
-      -----BEGIN CERTIFICATE-----
-      MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
-      BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-      -----END CERTIFICATE-----
-    ```
+      ```yaml
+      backend:
+        caCertData: |-
+          -----BEGIN CERTIFICATE-----
+          MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+          BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+          -----END CERTIFICATE-----
+      ```
 
     Configure TLS using ClusterIssuer
-    : To enable TLS using ClusterIssuer,
+    : To enable TLS using ClusterIssuer:
 
       1. Retrieve the certificate from the HTTPProxy secret by running the following command in the
          view cluster:
@@ -459,21 +468,21 @@ To install Application Live View connector:
 
           ```yaml
           backend:
-          ingressEnabled: true
-          sslDeactivated: false
-          host: appliveview.INGRESS-DOMAIN
-          caCertData: |-
-            -----BEGIN CERTIFICATE-----
-            MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
-            BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-            -----END CERTIFICATE-----
+            ingressEnabled: true
+            sslDeactivated: false
+            host: appliveview.INGRESS-DOMAIN
+            caCertData: |-
+              -----BEGIN CERTIFICATE-----
+              MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+              BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+              -----END CERTIFICATE-----
           ```
+          <!-- Why does this specify to add this to the run cluster app-live-view-connector-values.yaml when none of the other configs specify a cluster? Does it matter which cluster for the other configs? -->
 
           Where:
 
-          - `caCertData` is the certificate retrieved from the HTTPProxy secret exposed by the
-          Application Live View back end in view cluster.
-          - The `host` is the backend host in the view cluster.
+          - `caCertData` is the certificate you retrieved from the HTTPProxy secret.
+          - `host` is the backend host in the view cluster.
 
     Deactivate TLS
     : If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View
