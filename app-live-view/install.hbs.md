@@ -155,7 +155,7 @@ To install Application Live View back end:
         ingressEnabled: true
       ```
 
-    Profile install using `shared.ingress_domain` key
+    Profile install using shared ingress domain key
     : If you are using a Tanzu Application Platform profile installation and the
       top-level key `shared.ingress_domain` is set in the `tap-values.yaml`, the
       back end is automatically exposed through the shared ingress.
@@ -410,7 +410,7 @@ To install Application Live View connector:
         ingressEnabled: true
       ```
 
-    Profile install using `shared.ingress_domain` key
+    Profile install using shared ingress domain key
     : If you are using a Tanzu Application Platform profile installation and the top-level key
       `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector
       and Application Live View back end are configured to communicate through ingress.
