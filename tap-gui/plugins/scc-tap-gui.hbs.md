@@ -35,8 +35,8 @@ Tanzu Developer Portal has automation for enabling connection between Tanzu Deve
 no configuration.
 
 > **Important** There is a known issue with the automatic configuration breaking the SBOM download
-> feature introduced in Tanzu Application Platform v1.6. Please update `tap-values.yaml` as described
-> in [Troubleshooting](../../tap-gui/troubleshooting.hbs.md#sbom-not-working).
+> feature introduced in Tanzu Application Platform v1.6. To fix this issue, edit `tap-values.yaml` as
+> described in [Troubleshooting](../../tap-gui/troubleshooting.hbs.md#sbom-not-working).
 
 To deactivate this automation, add the following block to the Tanzu Developer Portal section within
 `tap-values.yaml`:
@@ -104,7 +104,7 @@ tap_gui:
         target: SOMETHING
 ```
 
-### <a id="scan-manual"></a> Manually connect Tanzu Developer Portal to Metadata Store
+### <a id="scan-manual"></a> Manually connect Tanzu Developer Portal to the Metadata Store
 
 To manually enable CVE scan results:
 
@@ -140,7 +140,8 @@ For more information, see [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hb
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
-Before using the SCC plug-in to visualize a workload, you must create a workload.
+Before using the Supply Chain Visibility (SCC) plug-in to visualize a workload, you must create a
+workload.
 
 The workload must have the `app.kubernetes.io/part-of` label specified, whether you manually create
 the workload or use one supplied with the OOTB supply chains.
@@ -661,7 +662,7 @@ To define a new `ClusterTemplate`:
    For example:
 
    ```console
-   kubectl get ClusterTemplates config-writer-template -n my-apps -oyaml >> ~/cluster-template.yaml
+   $ kubectl get ClusterTemplates config-writer-template -n my-apps -oyaml >> ~/cluster-template.yaml
    ```
 
 3. Verify that the file, when cleaned up, looks similar to the following:
