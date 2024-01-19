@@ -13,6 +13,8 @@ create GitHub repositories.
 
 The supported Git providers are GitHub and GitLab.
 
+> Note: To create a repo in a self-hosted GitLab, you will need to add a custom GitLab integration in `tap-values.yaml` as described in the [Full Profile sample](../../install-offline/profile.hbs.md#full-profile).
+
 ## <a id="configuration"></a> Configure
 
 The following steps describe an example configuration that uses GitHub:
