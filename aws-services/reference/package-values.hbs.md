@@ -11,7 +11,7 @@ The following table lists global configuration that applies across all services.
 | ca_cert_data                        | `""`                | string  | PEM-encoded certificate data for the AWS Providers to trust TLS connections with a custom CA                                            |
 | globals.crossplane_system_namespace | `crossplane-system` | string  | The name of the namespace in which Crossplane and the providers are deployed to                                                         |
 | globals.create_clusterroles         | `true`              | boolean | Specifies whether to create default ClusterRoles that grant `claim` permissions to all Tanzu Application Platform application operators |
-| role_arn                            | ""                  | string  | The ARN for the role that will be associated to the service account running the providers. Necessary when using a `spec.credentials.source` or `IRSA` in your ``ProviderConfig`. See https://docs.upbound.io/providers/provider-aws/authentication/#iam-roles-for-service-accounts for more details. |
+| role_arn                            | ""                  | string  | The ARN for the role that will be associated to the service account running the providers. Necessary when using a `spec.credentials.source` of `IRSA` in your ``ProviderConfig`. See https://docs.upbound.io/providers/provider-aws/authentication/#iam-roles-for-service-accounts for more details. |
 
 ## <a id="postgresql"></a> PostgreSQL
 
