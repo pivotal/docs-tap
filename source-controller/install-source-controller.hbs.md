@@ -55,7 +55,7 @@ To install Source Controller:
     ```
 
 3. (Optional) Create a file named `source-controller-values.yaml` to override the default installation
-   settings for Source Controller. You can configure the following fields:
+   settings. You can configure the following fields:
 
     - `ca_cert_data`: Enables Source Controller to connect to image registries that use self-signed
       or private certificate authorities.
