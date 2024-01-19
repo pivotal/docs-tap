@@ -21,30 +21,30 @@ Use the following procedure to install Service Bindings:
 1. List version information for the package by running:
 
     ```console
-    tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
+    tanzu package available list servicebinding.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
     ```console
-    $ tanzu package available list service-bindings.labs.vmware.com --namespace tap-install
-    - Retrieving package versions for service-bindings.labs.vmware.com...
+    $ tanzu package available list servicebinding.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for servicebinding.tanzu.vmware.com...
       NAME                              VERSION  RELEASED-AT
-      service-bindings.labs.vmware.com  0.5.0    2021-09-15T00:00:00Z
+      servicebinding.tanzu.vmware.com   0.10.3   2023-12-05T08:26:41Z
     ```
 
 1. Install the package by running:
 
     ```console
-    tanzu package install service-bindings -p service-bindings.labs.vmware.com -v 0.5.0 -n tap-install
+    tanzu package install service-bindings -p servicebinding.tanzu.vmware.com  -v 0.10.3 -n tap-install
     ```
 
     Example output:
 
     ```console
-    / Installing package 'service-bindings.labs.vmware.com'
+    / Installing package 'servicebinding.tanzu.vmware.com'
     | Getting namespace 'tap-install'
-    - Getting package metadata for 'service-bindings.labs.vmware.com'
+    - Getting package metadata for 'servicebinding.tanzu.vmware.com'
     | Creating service account 'service-bindings-tap-install-sa'
     | Creating cluster admin role 'service-bindings-tap-install-cluster-role'
     | Creating cluster role binding 'service-bindings-tap-install-cluster-rolebinding'
@@ -65,8 +65,8 @@ Use the following procedure to install Service Bindings:
     ```console
     - Retrieving installation details for service-bindings...
     NAME:                    service-bindings
-    PACKAGE-NAME:            service-bindings.labs.vmware.com
-    PACKAGE-VERSION:         0.5.0
+    PACKAGE-NAME:            servicebinding.tanzu.vmware.com
+    PACKAGE-VERSION:         0.10.3
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -82,8 +82,8 @@ Use the following procedure to install Service Bindings:
 
     ```console
     $ kubectl get pods -n service-bindings
-    NAME                       READY   STATUS    RESTARTS   AGE
-    manager-6d85fffbcd-j4gvs   1/1     Running   0          22s
+    NAME                                                 READY   STATUS    RESTARTS   AGE
+    servicebinding-controller-manager-7856497ddd-bmgv2   1/1     Running   0          5m59s
     ```
 
     Verify that `STATUS` is `Running`
