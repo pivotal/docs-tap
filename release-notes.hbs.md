@@ -64,12 +64,11 @@ This release includes the following changes, listed by component and area.
 - Add the Patch and Transform Function
   - The Crossplane Package now ships with the Patch and Transform function, which allows users who wish to take advantage of function pipelines in their Compositions to use this function without having to explicitly install it themselves
 
-
 #### <a id='1-8-0-service-bindings'></a> v1.8.0 Features: Service Bindings
 
-- Update [servicebinding/runtime](https://github.com/servicebinding/runtime) to v0.7.0
-  - Resolves an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
-bound service resource.
+- Updated [servicebinding/runtime](https://github.com/servicebinding/runtime) to v0.7.0.
+  This update fixes the issue of `ServiceBinding` not immediately reconciling when `status.binding.name`
+  changes on a previously bound service resource.
 
 #### <a id='1-8-0-services-toolkit'></a> v1.8.0 Features: Services Toolkit
 
