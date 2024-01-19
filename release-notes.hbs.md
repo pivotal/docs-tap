@@ -45,10 +45,47 @@ This release includes the following changes, listed by component and area.
   - This allows users to specify a `role_arn`, which will result in the Provider pods running as a service account which will be mapped to the corresponding IAM role in AWS
 - Bumped upbound/provider-aws from v0.39.0 to 0.46.0
 
+#### <a id='1-8-0-bitnami-services'></a> v1.8.0 Features: Bitnami Services
+
+- Updated all `Compositions` to use function pipelines rather than Crossplane’s default patch and transform
+  - New instances created via class claim will be composed using the new `Compositions`
+  - No impact to existing instances
+  - Resulting composed service instances look and behave the same as before, this is mostly a “behind the scenes” update
+
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
-- Updates Universal Crossplane to v1.14.1-up.1. For more information, see the
-  [Upbound blog](https://blog.crossplane.io/crossplane-v1-14/).
+- Update [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1
+  - For more information, see the [Upbound blog](https://blog.crossplane.io/crossplane-v1-14/)
+- Update `provider-helm` to v0.16.0
+- Update `provider-kubernetes` to v0.11.0
+- Add support for Composition Functions
+  - Composition Functions have matured to beta for Crossplane v1.14
+  - Learn more in the [Upbound Documentation](https://docs.crossplane.io/latest/concepts/composition-functions)
+- Add the Patch and Transform Function
+  - The Crossplane Package now ships with the Patch and Transform function, which allows users who wish to take advantage of function pipelines in their Compositions to use this function without having to explicitly install it themselves
+
+
+#### <a id='1-8-0-service-bindings'></a> v1.8.0 Features: Service Bindings
+
+- Update [servicebinding/runtime](https://github.com/servicebinding/runtime) to v0.7.0
+  - Resolves an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
+bound service resource.
+
+#### <a id='1-8-0-services-toolkit'></a> v1.8.0 Features: Services Toolkit
+
+- The following experimental APIs are now marked as deprecated and will be removed in the next release of Tanzu Application Platform:
+  - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `downstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `upstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterresourceexportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterresourceimportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `resourceexportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+- Bump reconciler-runtime to v0.15.1
 
 ---
 
@@ -98,6 +135,11 @@ The following issues, listed by component and area, are resolved in this release
 
 #### <a id='1-8-0-COMPONENT-NAME-ri'></a> v1.8.0 Resolved issues: COMPONENT-NAME
 
+#### <a id='1-8-0-COMPONENT-NAME-ri'></a> v1.8.0 Resolved issues: Service Bindings
+
+- Resolved an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
+bound service resource.
+
 #### <a id='1-8-0-scst-store-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Store
 
 - This release fixes the issue with expired certificates where you must restart the metadata-store pods when the internal database certificate is rotated by cert-manager.
@@ -114,16 +156,6 @@ This release has the following known issues, listed by component and area.
 - On Azure Kubernetes Service (AKS), the Datadog Cluster Agent cannot reconcile the webhook, which
   leads to an error.
   For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
-
-#### <a id='1-8-0-service-bindings-ki'></a> v1.8.0 Known issues: Service Bindings
-
-- `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
-bound service resource. This impacts the timely rollout of new connection secrets to workloads. The reconciler eventually picks up the change but this might take up to 10 hours.
-As a temporary workaround, you can do one of the following:
-
-  - Delete the existing `ServiceBinding` and create a new one that is identical.
-  - Trigger reconciliation of the existing `ServiceBinding` by adding an arbitrary annotation or label.
-  - Delete and recreate the application workload referred to by the `ServiceBinding`.
 
 ---
 
@@ -192,5 +224,20 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 ### <a id='COMPONENT-NAME-deprecations'></a> COMPONENT-NAME deprecations
 
 - Deprecation description including the release when the feature will be removed.
+
+### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
+
+- The following experimental APIs are now marked as deprecated and will be removed in the next release of Tanzu Application Platform:
+  - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `downstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `upstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterresourceexportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `clusterresourceimportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `resourceexportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
+  - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
 
 ---
