@@ -55,44 +55,44 @@ To install Spring Cloud Gateway:
 
 3. Install Spring Cloud Gateway by running:
 
-Default values
-: Run this command to install Spring Cloud Gateway with the default values
+    Default values
+    : Run this command to install Spring Cloud Gateway with the default values
 
-    ```console
-    tanzu package install spring-cloud-gateway \
-      --package spring-cloud-gateway.tanzu.vmware.com \
-      --version VERSION-NUMBER \
-      --namespace tap-install
-    ```
+        ```console
+        tanzu package install spring-cloud-gateway \
+          --package spring-cloud-gateway.tanzu.vmware.com \
+          --version VERSION-NUMBER \
+          --namespace tap-install
+        ```
 
-    For example:
+        For example:
 
-    ```console
-    $ tanzu package install spring-cloud-gateway \
-        --package spring-cloud-gateway.tanzu.vmware.com \
-        --version 2.0.0 \
-        --namespace tap-install
+        ```console
+        $ tanzu package install spring-cloud-gateway \
+            --package spring-cloud-gateway.tanzu.vmware.com \
+            --version 2.0.0 \
+            --namespace tap-install
 
-    Installing package 'spring-cloud-gateway.tanzu.vmware.com'
-    Getting package metadata for 'spring-cloud-gateway.tanzu.vmware.com'
-    Creating service account 'spring-cloud-gateway-tap-install-sa'
-    Creating cluster admin role 'spring-cloud-gateway-tap-install-cluster-role'
-    Creating cluster role binding 'spring-cloud-gateway-tap-install-cluster-rolebinding'
-    Creating package resource
-    Waiting for 'PackageInstall' reconciliation for 'spring-cloud-gateway'
-    'PackageInstall' resource install status: Reconciling
-    'PackageInstall' resource install status: ReconcileSucceeded
+        Installing package 'spring-cloud-gateway.tanzu.vmware.com'
+        Getting package metadata for 'spring-cloud-gateway.tanzu.vmware.com'
+        Creating service account 'spring-cloud-gateway-tap-install-sa'
+        Creating cluster admin role 'spring-cloud-gateway-tap-install-cluster-role'
+        Creating cluster role binding 'spring-cloud-gateway-tap-install-cluster-rolebinding'
+        Creating package resource
+        Waiting for 'PackageInstall' reconciliation for 'spring-cloud-gateway'
+        'PackageInstall' resource install status: Reconciling
+        'PackageInstall' resource install status: ReconcileSucceeded
 
-    Added installed package 'spring-cloud-gateway'
-    ```
+        Added installed package 'spring-cloud-gateway'
+        ```
 
-Overriding values
-: Run this command to install Spring Cloud Gateway while overriding the default values
+    Overriding values
+    : Run this command to install Spring Cloud Gateway while overriding the default values
 
-    ```console
-    tanzu package install spring-cloud-gateway \
-      --package spring-cloud-gateway.tanzu.vmware.com \
-      --version VERSION-NUMBER \
-      --namespace tap-install \
-      --values-file values.yml
-    ```
+        ```console
+        tanzu package install spring-cloud-gateway \
+          --package spring-cloud-gateway.tanzu.vmware.com \
+          --version VERSION-NUMBER \
+          --namespace tap-install \
+          --values-file values.yml
+        ```
