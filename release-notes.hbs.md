@@ -36,6 +36,15 @@ This release includes the following changes, listed by component and area.
 
 - Feature description.
 
+#### <a id='1-8-0-aws-services'></a> v1.8.0 Features: AWS Services
+
+- Added new AWS Service - Amazon MQ for RabbitMQ
+  - Set `rabbitmq.enabled: true` in your `aws-services-values.yaml` file to enable the service
+  - Refer to [Package values for AWS Services](aws-services/reference/package-values.hbs.md) for full configuration options
+- Added new Package value - `crossplane.role_arn`
+  - This allows users to specify a `role_arn`, which will result in the Provider pods running as a service account which will be mapped to the corresponding IAM role in AWS
+- Bumped upbound/provider-aws from v0.39.0 to 0.46.0
+
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
 - Updates Universal Crossplane to v1.14.1-up.1. For more information, see the

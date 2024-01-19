@@ -4,7 +4,7 @@ This topic gives you the list of Tanzu Application Platform (commonly known as T
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
 Each supported topology lists relevant package values configurations and one-time manual setup steps.
 
-The topologies described in this topic are available for both the PostgreSQL and MySQL services.
+The topologies described in this topic are available for both the PostgreSQL, MySQL and RabbitMQ services.
 
 ## <a id="same-vpc"></a> Topology 1: service instance accessed by a workload in the same VPC
 
@@ -19,7 +19,7 @@ VPC as described in the
 
 The key properties of this topology are:
 
-- Uses subnets to separate where application workloads run and where RDS service instances run
+- Uses subnets to separate where application workloads run and where service instances run
 - Uses security groups to manage access between the subnets
 - Service instances are not publicly accessible
 
@@ -32,9 +32,9 @@ This topology is recommended if your Tanzu Application Platform cluster is runni
 To configure the service from the AWS Services package for this type of topology you must:
 
 - Manually create all required subnets and security groups in AWS.
-- Add a rule to permit TCP port 5432 from the subnet where the Tanzu Application Platform application
-workloads run to the subnet where the RDS service instances run.
-- Create a database subnet group consisting of the subnets.
+- Add a rule to permit TCP port 5432 (PostgreSQL, MySQL) or 5671 (RabbitMQ) from the subnet where the Tanzu Application Platform application
+workloads run to the subnet where the service instances run.
+- Create a database subnet group (PostgreSQL, MySQL) consisting of the subnets.
 
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario1).
@@ -70,6 +70,19 @@ For MySQL
         - id: "SECURITY-GROUP-ID"
   ```
 
+For RabbitMQ
+:
+
+  ```yaml
+  rabbitmq:
+    enabled: true
+    region: "REGION"
+    infrastructure:
+      subnet_id: "SUBNET-ID"
+      security_group_ids:
+        - "SECURITY-GROUP-ID"
+  ```
+
 ## <a id="external"></a> Topology 2: service instance accessed by a workload external to AWS
 
 Topology 2 is a service instance in a VPC accessed by a workload in a Tanzu Application Platform
@@ -82,7 +95,7 @@ the Internet as described in the [AWS documentation](https://docs.aws.amazon.com
 
 The key properties of this topology are:
 
-- Uses a public subnet in which to run RDS service instances
+- Uses a public subnet in which to run service instances
 - Uses an Internet gateway to provide connectivity over the Internet
 - Uses security groups to manage access to the subnet
 - Service instances are publicly accessible over the Internet
@@ -98,9 +111,9 @@ To configure the service from the AWS Services package for this type of topology
 
 - Manually create all required subnets and security groups in AWS.
 - Create an Internet gateway.
-- Add a rule to permit TCP port 5432 from the subnet where the Tanzu Application Platform application
-workloads run to the subnet where the RDS service instances run.
-- Create a database subnet group consisting of the subnets.
+- Add a rule to permit TCP port 5432 (PostgreSQL, MySQL) or 5671 (RabbitMQ) from the subnet where the Tanzu Application Platform application
+workloads run to the subnet where the service instances run.
+- Create a database subnet group (PostgreSQL, MySQL) consisting of the subnets.
 
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario4).
@@ -136,6 +149,19 @@ For MySQL
         name: "SUBNET-GROUP-NAME"
       security_groups:
         - id: "SECURITY-GROUP-ID"
+    instance_configuration:
+      publicly_accessible: true
+  ```
+
+For RabbitMQ
+:
+
+  ```yaml
+  rabbitmq:
+    enabled: true
+    region: "REGION"
+    infrastructure:
+      subnet_id: "SUBNET-ID"
     instance_configuration:
       publicly_accessible: true
   ```

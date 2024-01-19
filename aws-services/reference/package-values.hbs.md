@@ -11,6 +11,7 @@ The following table lists global configuration that applies across all services.
 | ca_cert_data                        | `""`                | string  | PEM-encoded certificate data for the AWS Providers to trust TLS connections with a custom CA                                            |
 | globals.crossplane_system_namespace | `crossplane-system` | string  | The name of the namespace in which Crossplane and the providers are deployed to                                                         |
 | globals.create_clusterroles         | `true`              | boolean | Specifies whether to create default ClusterRoles that grant `claim` permissions to all Tanzu Application Platform application operators |
+| role_arn                            | ""                  | string  | The ARN for the role that will be associated to the service account running the providers. Necessary when setting `spec.credentials.source` to `IRSA` in your `ProviderConfig`. See https://docs.upbound.io/providers/provider-aws/authentication/#iam-roles-for-service-accounts for more details. |
 
 ## <a id="postgresql"></a> PostgreSQL
 
@@ -45,3 +46,20 @@ The following table lists configuration that applies to the `mysql` service.
 | mysql.instance_configuration.skip_final_snapshot | `false`                 | boolean | Determines whether a final snapshot is created before the instance is deleted. If you specify `true`, no snapshot is created. If you specify `false`, a snapshot called `final-snapshot-INSTANCE-NAME` is created before the instance is deleted.                                      |
 | mysql.provider_config_ref.name                   | `"default"`             | string  | Name of your ProviderConfig for the `mysql` service                                                                                                                                                                                                                                    |
 | mysql.region                                     | `"us-east-1"`           | string  | The AWS region to create databases in                                                                                                                                                                                                                                                  |
+
+## <a id="mysql"></a> RabbitMQ
+
+The following table lists configuration that applies to the `rabbitmq` service.
+| KEY                                                                       | DEFAULT     | TYPE    | DESCRIPTION |
+| ------------------------------------------------------------------------- | ----------- | ------- | ----------- |
+| rabbitmq.enabled                                                          | false       | boolean | Enable the RabbitMQ service class. |
+| rabbitmq.infrastructure.security_group_ids                                |             | array   | The security groups your RabbitMQ brokers will belong to. |
+| rabbitmq.infrastructure.subnet_id                                         | ""          | string  | The subnet group your RabbitMQ brokers will belong to. |
+| rabbitmq.instance_configuration.publicly_accessible                       | false       | boolean | Control if your instances will be publicly accessible. |
+| rabbitmq.instance_configuration.engine_version                            | 3.11.20     | string  | The RabbitMQ version. See https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/rabbitmq-version-management.html. |
+| rabbitmq.instance_configuration.instance_class                            | mq.t3.micro | string  | The instance type of the MQ broker. See https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-instance-types.html#rabbitmq-broker-instance-types. |
+| rabbitmq.instance_configuration.maintenance_window_start_time.day_of_week | MONDAY      | string  | The day of the week. Possible values: MONDAY | TUESDAY | WEDNESDAY | THURSDAY | FRIDAY | SATURDAY | SUNDAY. |
+| rabbitmq.instance_configuration.maintenance_window_start_time.time_of_day | "00:00"     | string  | The time, in 24-hour format. |
+| rabbitmq.instance_configuration.maintenance_window_start_time.time_zone   | UTC         | string  | The time zone. |
+| rabbitmq.provider_config_ref.name                                         | default     | string  |                |
+| rabbitmq.region                                                           | us-east-1   | string  | The AWS region to create brokers in. |
