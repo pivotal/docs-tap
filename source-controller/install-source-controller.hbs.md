@@ -35,7 +35,7 @@ To install Source Controller:
       controller.source.apps.tanzu.vmware.com  0.4.1    2022-06-09 19:00:00 -0500 -05
     ```
 
-2. (Optional) Gather values schema:
+2. (Optional) Gather the values schema:
 
     ```console
     tanzu package available get controller.source.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
@@ -54,39 +54,37 @@ To install Source Controller:
     ca_cert_data               string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
-3. (Optional) There are two optional fields that can override Source Controller's default installation setting:
+3. (Optional) Create a file named `source-controller-values.yaml` to override the default installation
+   settings for Source Controller. You can configure the following fields:
 
     - `ca_cert_data`: Enables Source Controller to connect to image registries that use self-signed
-    or private certificate authorities.
-    If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be
-    used to trust additional certificate authorities.
+      or private certificate authorities.
+      If a certificate error `x509: certificate signed by unknown authority` occurs, use this option
+      to trust additional certificate authorities.
+
+        To provide a custom certificate, add the PEM-encoded CA certificate data to `source-controller-values.yaml`.
+        For example:
+
+        ```yaml
+        ca_cert_data: |
+            -----BEGIN CERTIFICATE-----
+            MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+            ...
+            9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+            -----END CERTIFICATE-----
+        ```
 
     - `aws_iam_role_arn`: Annotates the Source Controller service with an AWS Identity and Access Management
-    (IAM) role. This allows Source Controller to pull images from Amazon Elastic Container Registry (ECR).
+      (IAM) role. This allows Source Controller to pull images from Amazon Elastic Container Registry (ECR).
 
-    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes
-    the PEM-encoded CA certificate data.
+        To add the AWS IAM role Amazon Resource Name (ARN) to the Source Controller service, add the ARN
+        to `source-controller-values.yaml`. For example:
 
-    For example:
+        ```yaml
+        aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
+        ```
 
-    ```yaml
-    ca_cert_data: |
-        -----BEGIN CERTIFICATE-----
-        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
-        ...
-        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
-        -----END CERTIFICATE-----
-    ```
-
-    To add the AWS IAM role Amazon Resource Name (ARN) to the Source Controller service, create a
-    file named `source-controller-values.yaml` that includes the following:
-
-    ```yaml
-    aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
-
-    ```
-
-4. Install the package:
+4. Install the package by running:
 
     ```console
     tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f VALUES-FILE
@@ -110,8 +108,6 @@ To install Source Controller:
     | Creating package resource
     - Waiting for 'PackageInstall' reconciliation for 'source-controller'
     - 'PackageInstall' resource install status: Reconciling
-
-
 
      Added installed package 'source-controller'
     ```
