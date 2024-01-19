@@ -6,5 +6,6 @@ In Tanzu Application Platform v{{ vars.tap_version }}, the AWS Services package 
 
 - RDS PostgreSQL
 - RDS MySQL
+- Amazon MQ (RabbitMQ)
 
 VMware plans to add more services to the package in future releases.

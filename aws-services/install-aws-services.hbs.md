@@ -67,6 +67,9 @@ To install the AWS Services package:
         MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
         -----END CERTIFICATE-----
 
+    # Optional, the ARN for the role that will be associated to the service account running the providers.
+    role_arn: "ROLE-ARN"
+
     # Configuration specific to the RDS PostgreSQL service
     postgresql:
       # Enable the RDS PostgreSQL service. The default is set to false.
@@ -110,10 +113,34 @@ To install the AWS Services package:
         skip_final_snapshot: SKIP-FINAL-SNAPSHOT
         publicly_accessible: PUBLICLY-ACCESSIBLE
         maintenance_window: "MAINTENANCE-WINDOW"
+
+    # Configuration specific to the Amazon MQ (RabbitMQ) service
+    rabbitmq:
+      # Enable the Amazon MQ (RabbitMQ) service. The default is set to false.
+      enabled: true
+      region: "REGION"
+      provider_config_ref:
+        name: "PROVIDER-CONFIG-NAME"
+      # Infrastructure configuration for the Amazon MQ (RabbitMQ) service
+      infrastructure:
+        subnet_id: "SUBNET-NAME"
+        security_group_ids:
+          - "SECURITY-GROUP-ID"
+      # Instance-level configuration for the Amazon MQ (RabbitMQ) service applied to all service instances
+      # All instance_configuration is optional. See below for default values.
+      instance_configuration:
+        publicly_accessible: PUBLICLY-ACCESSIBLE
+        engine_version: "ENGINE-VERSION"
+        instance_class: "INSTANCE-CLASS"
+        maintenance_window_start_time:
+          day_of_week: "DAY-OF-WEEK"
+          time_of_day: "TIME-OF-DAY"
+          time_zone: "TIMEZONE"
     ```
 
     Where:
 
+    - `ROLE_ARN` is the ARN for the role that will be associated to the service account running the providers.
     - `REGION` is the AWS region you want, for example, `us-east-1`.
     - `PROVIDER-CONFIG-NAME` is the name of the ProviderConfig for this service.
       Choose a name, or enter `default`.
@@ -135,6 +162,12 @@ To install the AWS Services package:
        See [Supported Topologies](./reference/supported-topologies.hbs.md). The default is `false`.
     - `MAINTENANCE-WINDOW` is the window to perform maintenance in. The syntax is `ddd:hh24:mi-ddd:hh24:mi`.
        The default is `Mon:00:00-Mon:03:00`.
+    - `DAY-OF-WEEK` is the day of the week. The syntax is `MONDAY`.
+       The default is `MONDAY`.
+    - `TIME-OF-DAY` is time of day. The syntax is `00:00` (24 hour).
+       The default is `00:00`.
+    - `TIMEZONE` is the timezone. The syntax is `UTC`.
+       The default is `UTC`.
 
     For the full list of values you can configure, see [Package values for AWS Services](reference/package-values.hbs.md).
 
