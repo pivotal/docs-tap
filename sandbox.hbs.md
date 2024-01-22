@@ -17,5 +17,5 @@ The sandbox environment includes the following services:
 
 2. Get started with your [developer sandbox](https://tanzu.academy/guides/developer-sandbox) in Tanzu Academy.
 
-**Note** This is an evaluation environment only, do not use it for production applications or to
+>**Note** This is an evaluation environment only, do not use it for production applications or to
 store sensitive data.

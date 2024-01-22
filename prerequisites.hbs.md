@@ -7,7 +7,7 @@ The following are required to install Tanzu Application Platform (commonly known
 Before you begin a Tanzu Application Platform installation:
 
 1. Review the Tanzu Application Platform planning and architecture documentation.
-For more information, see [Planning and Architecture Reference](reference-architecture.hbs.md).
+For more information, see [Planning and architecture reference](reference-architecture.hbs.md).
 
 1. (Optional) To gain an understanding of Tanzu Application Platform, experiment with a
 Tanzu Application Platform sandbox. For more information, see [Access an experimental developer sandbox environment](sandbox.hbs.md).
