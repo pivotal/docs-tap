@@ -440,6 +440,7 @@
       - [Install Service Bindings](service-bindings/install-service-bindings.hbs.md)
       - [Troubleshoot Service Bindings](service-bindings/troubleshooting.hbs.md)
       - [Service Bindings resource specification](service-bindings/resources.hbs.md)
+      - [Version matrix for service binding](service-bindings/version-matrix.hbs.md)
     - [Service Registry](service-registry/overview.hbs.md)
       - [Service Registry overview](service-registry/overview.hbs.md)
       - [Install Service Registry](service-registry/install-service-registry.hbs.md)
