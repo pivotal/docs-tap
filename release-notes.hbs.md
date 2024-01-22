@@ -32,59 +32,48 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id='1-8-0-COMPONENT-NAME'></a> v1.8.0 Features: COMPONENT-NAME
-
-- Feature description.
-
 #### <a id='1-8-0-aws-services'></a> v1.8.0 Features: AWS Services
 
-- Added new AWS Service - Amazon MQ for RabbitMQ
-  - Set `rabbitmq.enabled: true` in your `aws-services-values.yaml` file to enable the service
-  - Refer to [Package values for AWS Services](aws-services/reference/package-values.hbs.md) for full configuration options
-- Added new Package value - `crossplane.role_arn`
-  - This allows users to specify a `role_arn`, which will result in the Provider pods running as a service account which will be mapped to the corresponding IAM role in AWS
-- Bumped upbound/provider-aws from v0.39.0 to 0.46.0
+- Adds the service Amazon MQ for RabbitMQ. To enable the new service, set `rabbitmq.enabled: true`
+  in your `aws-services-values.yaml`. For more configuration options, see
+  [Package values for AWS Services](aws-services/reference/package-values.hbs.md).
+
+- Adds the package value `crossplane.role_arn`. Users can specify a `role_arn`, which causes
+  the Provider pods to run as a service account that is mapped to the corresponding IAM role in AWS.
+
+- Updates upbound/provider-aws from v0.39.0 to v0.46.0.
 
 #### <a id='1-8-0-bitnami-services'></a> v1.8.0 Features: Bitnami Services
 
-- Updated all `Compositions` to use function pipelines rather than Crossplane’s default patch and transform
-  - New instances created via class claim will be composed using the new `Compositions`
-  - No impact to existing instances
-  - Resulting composed service instances look and behave the same as before, this is mostly a “behind the scenes” update
+- Updates all Compositions to use function pipelines rather than Crossplane’s default patch and transform.
+  New instances created using a class claim are now composed using the new Compositions.
+  There is no change to how the resulting composed service instances operate.
+  There is no impact to existing instances.
 
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
-- Update [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1
-  - For more information, see the [Upbound blog](https://blog.crossplane.io/crossplane-v1-14/)
-- Update `provider-helm` to v0.16.0
-- Update `provider-kubernetes` to v0.11.0
-- Add support for Composition Functions
-  - Composition Functions have matured to beta for Crossplane v1.14
-  - Learn more in the [Upbound Documentation](https://docs.crossplane.io/latest/concepts/composition-functions)
-- Add the Patch and Transform Function
-  - The Crossplane Package now ships with the Patch and Transform function, which allows users who wish to take advantage of function pipelines in their Compositions to use this function without having to explicitly install it themselves
+- Updates [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1
+  For more information, see the [Upbound blog](https://blog.crossplane.io/crossplane-v1-14/).
+
+- Updates provider-helm to v0.16.0.
+
+- Updates provider-kubernetes to v0.11.0.
+
+- Adds support for composition functions. Composition functions are beta in for Crossplane v1.14.
+  For more information, see the [Upbound Documentation](https://docs.crossplane.io/latest/concepts/composition-functions).
+
+- Adds the patch and transform function. Users who want to use function pipelines in their Compositions
+  can use this function without having to explicitly install it.
 
 #### <a id='1-8-0-service-bindings'></a> v1.8.0 Features: Service Bindings
 
-- Updated [servicebinding/runtime](https://github.com/servicebinding/runtime) to v0.7.0.
+- Updates [servicebinding/runtime](https://github.com/servicebinding/runtime) to v0.7.0.
   This update fixes the issue of `ServiceBinding` not immediately reconciling when `status.binding.name`
   changes on a previously bound service resource.
 
 #### <a id='1-8-0-services-toolkit'></a> v1.8.0 Features: Services Toolkit
 
-- The following experimental APIs are now marked as deprecated and will be removed in the next release of Tanzu Application Platform:
-  - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `downstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `upstreamclusterlinks.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `clusterresourceexportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `clusterresourceimportmonitors.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `resourceexportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `resourceimportmonitorbindings.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `secretexports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-  - `secretimports.replication.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
-- Bump reconciler-runtime to v0.15.1
+- Updates reconciler-runtime to v0.15.1.
 
 ---
 
@@ -132,12 +121,10 @@ OR add HTML or Markdown table
 
 The following issues, listed by component and area, are resolved in this release.
 
-#### <a id='1-8-0-COMPONENT-NAME-ri'></a> v1.8.0 Resolved issues: COMPONENT-NAME
-
 #### <a id='1-8-0-COMPONENT-NAME-ri'></a> v1.8.0 Resolved issues: Service Bindings
 
-- Resolved an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name` changes on a previously
-bound service resource.
+- Resolved an issue in which `ServiceBinding` is not immediately reconciled when `status.binding.name`
+  changes on a previously bound service resource.
 
 #### <a id='1-8-0-scst-store-ri'></a> v1.8.0 Resolved issues: Supply Chain Security Tools - Store
 
@@ -226,7 +213,9 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
 
-- The following experimental APIs are now marked as deprecated and will be removed in the next release of Tanzu Application Platform:
+- The following experimental APIs are now marked as deprecated and will be removed in the next
+  release of Tanzu Application Platform v1.9:
+
   - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `apiresourceimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
   - `clusterapigroupimports.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`
