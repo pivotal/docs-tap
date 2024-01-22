@@ -4,6 +4,7 @@
 
 - [Tanzu Application Platform v{{ vars.url_version }}](overview.hbs.md)
 - [Release notes](release-notes.hbs.md)
+- [Planning and architecture reference](reference-architecture.hbs.md)
 - [Components and installation profiles](about-package-profiles.hbs.md)
 - [Installation](install-intro.hbs.md)
   - [Introduction](install-intro.hbs.md)
