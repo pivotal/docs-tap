@@ -1,10 +1,22 @@
-# Prerequisites for installing Tanzu Application Platform
+# Prerequisites and planning for installing Tanzu Application Platform
 
 The following are required to install Tanzu Application Platform (commonly known as TAP):
 
-## <a id='tn-and-cont-img-reg-reqs'></a> VMware Tanzu Network and container image registry requirements
+## Installation planning
+
+Before you begin a Tanzu Application Platform installation:
+
+1. Review the Tanzu Application Platform planning and architecture documentation.
+For more information, see [Planning and Architecture Reference](reference-architecture.hbs.md).
+
+1. (Optional) To gain an understanding of Tanzu Application Platform, experiment with a
+Tanzu Application Platform sandbox. For more information, see [Access an experimental developer sandbox environment](sandbox.hbs.md).
+
+## Installation prerequisites
 
 Installation requires:
+
+### <a id='tn-and-cont-img-reg-reqs'></a> VMware Tanzu Network and container image registry requirements
 
 - Access to VMware Tanzu Network:
 
@@ -33,7 +45,6 @@ Installation requires:
 Tanzu Application Platform to store images.
 
 - Network access to your chosen container image registry.
-
 
 ### <a id='dns-records'></a>DNS Records
 
