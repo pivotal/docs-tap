@@ -1,4 +1,4 @@
-# Planning and Architecture Reference
+# Planning and architecture reference
 
 This topic tells you how to access the Tanzu Application Platform (commonly known as TAP)
 planning and architecture reference documentation.
