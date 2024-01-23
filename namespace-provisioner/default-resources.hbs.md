@@ -4,10 +4,9 @@ This topic tells you about the resources that are templated in the default-resou
 different installation profile and supply chain value combinations in Tanzu Application Platform
 (commonly known as TAP).
 
-Namespace Provisioner is installed as part of the standard installation profile. The default set of
-resources provisioned in a namespace is based on a combination of the installation profile employed
-and the supply chain that is installed on the cluster. For more information about installation
-profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages)
+Namespace Provisioner is installed as part of the full, iterate, build, and run installation
+profiles. The default set of resources provisioned in a namespace is based on a combination of the installation profile employed and the supply chain that is installed on the cluster. For more information about installation profiles, see
+[Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
 
 The following table shows the list of resources that are templated in the default-resources secret
 for each installation profile and supply chain value combination:
