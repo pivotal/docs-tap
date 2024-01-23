@@ -50,6 +50,10 @@ This release includes the following changes, listed by component and area.
   There is no change to how the resulting composed service instances operate.
   There is no impact to existing instances.
 
+#### <a id='1-8-0-cert-manager'></a> v1.8.0 Features: cert-manager
+
+- Updates to [cert-manager@1.13.3](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3)
+
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
 - Updates [Universal Crossplane](https://github.com/upbound/universal-crossplane) to v1.14.5-up.1
