@@ -1,1 +1,1 @@
-# How To guides for Tanzu Supplu Chain
+# How To guides for Tanzu Supply Chain
