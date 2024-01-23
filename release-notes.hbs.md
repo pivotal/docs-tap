@@ -213,7 +213,7 @@ Deprecated features remain on this list until they are retired from Tanzu Applic
 
 ### <a id='services-toolkit-deprecations'></a> Services Toolkit deprecations
 
-- The following experimental APIs are now marked as deprecated and will be removed in
+- The following experimental APIs are marked as deprecated and will be removed in
   Tanzu Application Platform v1.9:
 
   - `apiexportrolebindings.projection.apiresources.multicluster.x-tanzu.vmware.com/v1alpha1`

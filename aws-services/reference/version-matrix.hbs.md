@@ -1,10 +1,6 @@
-# Version matrix for AWS Services 
+# Version matrix for AWS Services
 
-This topic provides you a matrix of versions between
-
-- Tanzu Application Platform
-- The AWS Services package (`aws.services.tanzu.vmware.com`)
-- [provider-aws](https://github.com/upbound/provider-aws)
+This topic provides you with a matrix of versions for Tanzu Application Platform, the AWS Services package, (`aws.services.tanzu.vmware.com`) and [provider-aws](https://github.com/upbound/provider-aws).
 
 > **Note** Tanzu Application Platform patch releases are only added to the table when there
 > is a change to one or more of the other versions in the table. Otherwise, the corresponding
