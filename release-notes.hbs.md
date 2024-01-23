@@ -341,11 +341,21 @@ This release has the following security fixes, listed by component and area.
 
 ---
 
+### <a id='1-7-3-resolved-issues'></a> v1.7.3 Resolved issues
+
+The following issues, listed by component and area, are resolved in this release.
+
+#### <a id='1-7-3-tap-ri'></a> v1.7.3 Resolved issues: Tanzu Application Platform
+
+- Tanzu Mission Control has support for this Tanzu Application Platform release.
+
+---
+
 ### <a id='1-7-3-known-issues'></a> v1.7.3 Known issues
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-3-tap-tsm-integrations-ki'></a> v1.7.3 Known issues: Tanzu Application Platform
+#### <a id='1-7-3-tap-ki'></a> v1.7.3 Known issues: Tanzu Application Platform
 
 - The Tanzu Application Platform integration with Tanzu Service Mesh does not work
   on vSphere with TKR v1.26. For more information about this integration, see
@@ -873,7 +883,7 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-2-tap-tsm-integrations-ki'></a> v1.7.2 Known issues: Tanzu Application Platform
+#### <a id='1-7-2-tap-ki'></a> v1.7.2 Known issues: Tanzu Application Platform
 
 - The Tanzu Application Platform integration with Tanzu Service Mesh does not work
   on vSphere with TKR v1.26. For more information about this integration, see
@@ -883,6 +893,8 @@ This release has the following known issues, listed by component and area.
   [TKr 1.26.5 for vSphere 8.x](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-releases/services/rn/vmware-tanzu-kubernetes-releases-release-notes/index.html#TKr%201.26.5%20for%20vSphere%208.x-What's%20New).
   However, applying this label provides more than the minimum necessary privlidge to the resources in
   developer namespaces.
+
+- Tanzu Mission Control does not support this Tanzu Application Platform release.
 
 #### <a id='1-7-2-api-auto-reg-ki'></a> v1.7.2 Known issues: API Auto Registration
 
@@ -1288,7 +1300,7 @@ The following issues, listed by component and area, are resolved in this release
 
 This release has the following known issues, listed by component and area.
 
-#### <a id='1-7-1-tap-tsm-integrations-ki'></a> v1.7.1 Known issues: Tanzu Application Platform
+#### <a id='1-7-1-tap-ki'></a> v1.7.1 Known issues: Tanzu Application Platform
 
 - The Tanzu Application Platform integration with Tanzu Service Mesh does not work
   on vSphere with TKR v1.26. For more information about this integration, see
