@@ -6,11 +6,7 @@ This topic includes an example API call that you can use with Supply Chain Secur
 
 The following procedure explains how to use CURL to POST an image report.
 
-1. Port Forward the metadata-store-app. Run:
-
-    ```console
-    kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
-    ```
+1. In your terminal, switch to the kubectl context or kubeconfig to target the TAP _View_ cluster.
 
 2. Retrieve the `metadata-store-read-write-client` access token.
     See [Retrieve access tokens](retrieve-access-tokens.hbs.md). Run:
@@ -25,7 +21,7 @@ The following procedure explains how to use CURL to POST an image report.
     kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
     ```
 
-4. Run the Curl POST Command:
+4. Run the Curl POST command. This assumes that you have deployed TAP with ingress enabled. We discuss in a [different section](#without-ingress) what to do if ingress is not enabled.
 
     ```console
     curl https://metadata-store.<ingress-domain>/api/imageReport \
@@ -36,11 +32,11 @@ The following procedure explains how to use CURL to POST an image report.
         --data "@<ABSOLUTE PATH TO THE POST BODY>"
     ```
 
-5. Replace <ABSOLUTE PATH TO THE POST BODY> with the absolute path of the POST body.
+5. Replace \<ABSOLUTE PATH TO THE POST BODY\> with the absolute filepath of the API JSON for an image report.
 
-6. The following is a sample POST body of a image report:
+6. The following is a sample POST body of a image report API JSON:
 
-    ```text
+    ```json
     {
       "Name" : "burger-image-2",
       "Registry" : "test-registry",
@@ -99,3 +95,18 @@ The following procedure explains how to use CURL to POST an image report.
       ]
     }
     ```
+
+## Without ingress
+
+The instructions in the previous section assume that the TAP was deployed with ingress enabled, which is the recommended configuration. However, you can still connect to SCST - Store without ingress by setting up a proxy.
+
+1. In your terminal, switch your kubectl context or kubeconfig to target the TAP View cluster.
+
+2. Port forward the `metadata-store-app`. Run:
+
+    ```console
+    kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
+    ```
+
+3. Continue following the instructions from the previous section.
+
