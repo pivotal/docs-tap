@@ -4,7 +4,7 @@ This topic gives you the list of Tanzu Application Platform (commonly known as T
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
 Each supported topology lists relevant package values configurations and one-time manual setup steps.
 
-The topologies described in this topic are available for both the PostgreSQL, MySQL and RabbitMQ services.
+The topologies described in this topic are available for the PostgreSQL, MySQL and RabbitMQ services.
 
 ## <a id="same-vpc"></a> Topology 1: service instance accessed by a workload in the same VPC
 
@@ -32,9 +32,10 @@ This topology is recommended if your Tanzu Application Platform cluster is runni
 To configure the service from the AWS Services package for this type of topology you must:
 
 - Manually create all required subnets and security groups in AWS.
-- Add a rule to permit TCP port 5432 (PostgreSQL, MySQL) or 5671 (RabbitMQ) from the subnet where the Tanzu Application Platform application
-workloads run to the subnet where the service instances run.
-- Create a database subnet group (PostgreSQL, MySQL) consisting of the subnets.
+- Add a rule to permit the TCP port from the subnet where the Tanzu Application Platform application
+  workloads run to the subnet where the service instances run.
+  Create the rule for TCP port 5432 for PostgreSQL and MySQL, or 5671 for RabbitMQ.
+- For PostgreSQL and MySQL, create a database subnet group consisting of the subnets.
 
 For instructions for these tasks, see the
 [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html#USER_VPC.Scenario1).
@@ -42,7 +43,7 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-For PostgreSQL
+PostgreSQL
 :
 
   ```yaml
@@ -56,7 +57,7 @@ For PostgreSQL
         - id: "SECURITY-GROUP-ID"
   ```
 
-For MySQL
+MySQL
 :
 
   ```yaml
@@ -70,7 +71,7 @@ For MySQL
         - id: "SECURITY-GROUP-ID"
   ```
 
-For RabbitMQ
+RabbitMQ
 :
 
   ```yaml
@@ -121,7 +122,7 @@ For instructions for these tasks, see the
 After completing configuration in AWS, you must configure your `aws-services-values.yaml` file using
 the following values when installing the package:
 
-For PostgreSQL
+PostgreSQL
 :
 
   ```yaml
@@ -137,7 +138,7 @@ For PostgreSQL
       publicly_accessible: true
   ```
 
-For MySQL
+MySQL
 :
 
   ```yaml
@@ -153,7 +154,7 @@ For MySQL
       publicly_accessible: true
   ```
 
-For RabbitMQ
+RabbitMQ
 :
 
   ```yaml

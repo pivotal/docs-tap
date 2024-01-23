@@ -67,7 +67,7 @@ To install the AWS Services package:
         MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
         -----END CERTIFICATE-----
 
-    # Optional, the ARN for the role that will be associated to the service account running the providers.
+    # Optional, the ARN for the role to be associated with the service account running the providers.
     role_arn: "ROLE-ARN"
 
     # Configuration specific to the RDS PostgreSQL service
@@ -140,7 +140,8 @@ To install the AWS Services package:
 
     Where:
 
-    - `ROLE_ARN` is the ARN for the role that will be associated to the service account running the providers.
+    - (Optional) `ROLE_ARN` is the ARN for the role to be associated with the service account
+      running the providers.
     - `REGION` is the AWS region you want, for example, `us-east-1`.
     - `PROVIDER-CONFIG-NAME` is the name of the ProviderConfig for this service.
       Choose a name, or enter `default`.
@@ -162,12 +163,9 @@ To install the AWS Services package:
        See [Supported Topologies](./reference/supported-topologies.hbs.md). The default is `false`.
     - `MAINTENANCE-WINDOW` is the window to perform maintenance in. The syntax is `ddd:hh24:mi-ddd:hh24:mi`.
        The default is `Mon:00:00-Mon:03:00`.
-    - `DAY-OF-WEEK` is the day of the week. The syntax is `MONDAY`.
-       The default is `MONDAY`.
-    - `TIME-OF-DAY` is time of day. The syntax is `00:00` (24 hour).
-       The default is `00:00`.
-    - `TIMEZONE` is the timezone. The syntax is `UTC`.
-       The default is `UTC`.
+    - `DAY-OF-WEEK` is the day of the week. The syntax is `MONDAY`. The default is `MONDAY`.
+    - `TIME-OF-DAY` is time of day. The syntax is `00:00` (24 hour). The default is `00:00`.
+    - `TIMEZONE` is the timezone. The syntax is `UTC`. The default is `UTC`.
 
     For the full list of values you can configure, see [Package values for AWS Services](reference/package-values.hbs.md).
 
