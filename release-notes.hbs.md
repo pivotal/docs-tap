@@ -32,6 +32,39 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
+
+- The authorization server can auto-discover upstream identity provider
+  configuration from
+  `AuthServer.spec.identityProviders[].openID.configurationURI`. See [the
+  guide](./app-sso/how-to-guides/service-operators/identity-providers.hbs.md)
+  for more.
+
+- The _userinfo_ endpoint of an upstream identity provider will be called when
+  it's known and configured with scope `openid`. That means user information is
+  retrieved even for non-standard providers.
+
+- Scopes in the token response are filtered according to the roles filtering as
+  defined on the `AuthServer`
+
+- Advertise the AppSSO version on components
+
+  - The controller workloads are annotated with
+    `sso.apps.tanzu.vmware.com/version`
+  - `AuthServer`-owned workloads are annotated with
+    `sso.apps.tanzu.vmware.com/version`
+  - Authorization servers report the version through the endpoint
+    `<fdqn>/actuator/info`
+
+- Shows an error message when attempting unsupported, RP-initiated logout
+
+- Shows an improved error message when using `localhost` in
+  `ClientRegistration.spec.redirectURIs`
+
+- Bundles the latest `bitnami/redis:7.2.4`
+
+- Supports Kubernetes 1.29
+
 #### <a id='1-8-0-aws-services'></a> v1.8.0 Features: AWS Services
 
 - Adds the service Amazon MQ for RabbitMQ. To enable the new service, set `rabbitmq.enabled: true`
