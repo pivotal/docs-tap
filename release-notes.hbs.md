@@ -85,7 +85,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-cert-manager'></a> v1.8.0 Features: cert-manager
 
-- Updates to [cert-manager@1.13.3](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3)
+- Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
 
 #### <a id='1-8-0-crossplane'></a> v1.8.0 Features: Crossplane
 
