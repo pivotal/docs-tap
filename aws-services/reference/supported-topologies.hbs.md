@@ -4,7 +4,7 @@ This topic gives you the list of Tanzu Application Platform (commonly known as T
 service instance Virtual Private Cloud (VPC) topologies that the AWS Services package supports.
 Each supported topology lists relevant package values configurations and one-time manual setup steps.
 
-The topologies described in this topic are available for the PostgreSQL, MySQL and RabbitMQ services.
+The topologies described in this topic are available for the PostgreSQL, MySQL, and RabbitMQ services.
 
 ## <a id="same-vpc"></a> Topology 1: service instance accessed by a workload in the same VPC
 
