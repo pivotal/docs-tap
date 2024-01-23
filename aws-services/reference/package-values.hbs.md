@@ -50,16 +50,16 @@ The following table lists configuration that applies to the `mysql` service.
 ## <a id="mysql"></a> RabbitMQ
 
 The following table lists configuration that applies to the `rabbitmq` service.
-| KEY                                                                       | DEFAULT     | TYPE    | DESCRIPTION |
-| ------------------------------------------------------------------------- | ----------- | ------- | ----------- |
-| rabbitmq.enabled                                                          | false       | boolean | Enable the RabbitMQ service class. |
-| rabbitmq.infrastructure.security_group_ids                                |             | array   | The security groups your RabbitMQ brokers will belong to. |
-| rabbitmq.infrastructure.subnet_id                                         | ""          | string  | The subnet group your RabbitMQ brokers will belong to. |
-| rabbitmq.instance_configuration.publicly_accessible                       | false       | boolean | Control if your instances will be publicly accessible. |
-| rabbitmq.instance_configuration.engine_version                            | 3.11.20     | string  | The RabbitMQ version. See https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/rabbitmq-version-management.html. |
-| rabbitmq.instance_configuration.instance_class                            | mq.t3.micro | string  | The instance type of the MQ broker. See https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-instance-types.html#rabbitmq-broker-instance-types. |
-| rabbitmq.instance_configuration.maintenance_window_start_time.day_of_week | MONDAY      | string  | The day of the week. Possible values: MONDAY | TUESDAY | WEDNESDAY | THURSDAY | FRIDAY | SATURDAY | SUNDAY. |
-| rabbitmq.instance_configuration.maintenance_window_start_time.time_of_day | "00:00"     | string  | The time, in 24-hour format. |
-| rabbitmq.instance_configuration.maintenance_window_start_time.time_zone   | UTC         | string  | The time zone. |
-| rabbitmq.provider_config_ref.name                                         | default     | string  |                |
-| rabbitmq.region                                                           | us-east-1   | string  | The AWS region to create brokers in. |
+| KEY                                                                       | DEFAULT       | TYPE    | DESCRIPTION |
+| ------------------------------------------------------------------------- | ------------- | ------- | ----------- |
+| rabbitmq.enabled                                                          | `false`       | boolean | Enable the RabbitMQ service class. |
+| rabbitmq.infrastructure.security_groups                                   |               | array   | The security groups your RabbitMQ brokers will belong to. Do not provide any security groups if you're setting `rabbitmq.instance_configuration.publicly_accessible` to true. |
+| rabbitmq.infrastructure.subnet_id                                         | `""`          | string  | The ID of the subnet your RabbitMQ brokers will belong to. |
+| rabbitmq.instance_configuration.publicly_accessible                       | `false`       | boolean | Control if your instances will be publicly accessible. |
+| rabbitmq.instance_configuration.engine_version                            | `3.11.20`     | string  | The RabbitMQ version. See https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/rabbitmq-version-management.html. |
+| rabbitmq.instance_configuration.instance_class                            | `mq.t3.micro` | string  | The instance type of the MQ broker. See https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-instance-types.html#rabbitmq-broker-instance-types. |
+| rabbitmq.instance_configuration.maintenance_window_start_time.day_of_week | `MONDAY`      | string  | The day of the week. Possible values: `MONDAY` | `TUESDAY` | `WEDNESDAY` | `THURSDAY` | `FRIDAY` | `SATURDAY` | `SUNDAY`. |
+| rabbitmq.instance_configuration.maintenance_window_start_time.time_of_day | `"00:00"`     | string  | The time, in 24-hour format. |
+| rabbitmq.instance_configuration.maintenance_window_start_time.time_zone   | `UTC`         | string  | The time zone. |
+| rabbitmq.provider_config_ref.name                                         | `default`     | string  | The name of the ProviderConfig to use to create your RabbitMQ brokers. |
+| rabbitmq.region                                                           | `us-east-1`   | string  | The AWS region to create brokers in. |

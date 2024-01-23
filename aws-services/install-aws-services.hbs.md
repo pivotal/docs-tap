@@ -124,8 +124,8 @@ To install the AWS Services package:
       # Infrastructure configuration for the Amazon MQ (RabbitMQ) service
       infrastructure:
         subnet_id: "SUBNET-NAME"
-        security_group_ids:
-          - "SECURITY-GROUP-ID"
+        security_groups:
+          - id: "SECURITY-GROUP-ID"
       # Instance-level configuration for the Amazon MQ (RabbitMQ) service applied to all service instances
       # All instance_configuration is optional. See below for default values.
       instance_configuration:

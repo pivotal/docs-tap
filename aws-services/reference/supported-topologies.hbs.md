@@ -79,8 +79,8 @@ For RabbitMQ
     region: "REGION"
     infrastructure:
       subnet_id: "SUBNET-ID"
-      security_group_ids:
-        - "SECURITY-GROUP-ID"
+      security_groups:
+        - id: "SECURITY-GROUP-ID"
   ```
 
 ## <a id="external"></a> Topology 2: service instance accessed by a workload external to AWS
