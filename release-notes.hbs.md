@@ -36,34 +36,33 @@ This release includes the following changes, listed by component and area.
 
 - The authorization server can auto-discover upstream identity provider
   configuration from
-  `AuthServer.spec.identityProviders[].openID.configurationURI`. See [the
-  guide](./app-sso/how-to-guides/service-operators/identity-providers.hbs.md)
-  for more.
+  `AuthServer.spec.identityProviders[].openID.configurationURI`. 
+  For more information, see [Identity providers for Application Single Sign-On](app-sso/how-to-guides/service-operators/identity-providers.hbs.md).
 
-- The _userinfo_ endpoint of an upstream identity provider will be called when
-  it's known and configured with scope `openid`. That means user information is
-  retrieved even for non-standard providers.
+- The `userinfo` endpoint of an upstream identity provider is called when
+  it's known and configured with the scope `openid`. That means user information 
+  is retrieved for non-standard providers.
 
-- Scopes in the token response are filtered according to the roles filtering as
-  defined on the `AuthServer`
+- Scopes in the token response are filtered according to the roles filtering 
+  defined on the `AuthServer`.
 
-- Advertise the AppSSO version on components
+- Advertises the Application Single Sign-On version on components:
 
   - The controller workloads are annotated with
-    `sso.apps.tanzu.vmware.com/version`
+    `sso.apps.tanzu.vmware.com/version`.
   - `AuthServer`-owned workloads are annotated with
-    `sso.apps.tanzu.vmware.com/version`
-  - Authorization servers report the version through the endpoint
-    `<fdqn>/actuator/info`
+    `sso.apps.tanzu.vmware.com/version`.
+  - Authorization servers report the version by using the endpoint
+    `FDQN/actuator/info`.
 
-- Shows an error message when attempting unsupported, RP-initiated logout
+- Shows an error message when attempting unsupported, Relying Party (RP)-Initiated Logout.
 
 - Shows an improved error message when using `localhost` in
-  `ClientRegistration.spec.redirectURIs`
+  `ClientRegistration.spec.redirectURIs`.
 
-- Bundles the latest `bitnami/redis:7.2.4`
+- Bundles the latest `bitnami/redis:7.2.4`.
 
-- Supports Kubernetes 1.29
+- Supports Kubernetes v1.29.
 
 #### <a id='1-8-0-aws-services'></a> v1.8.0 Features: AWS Services
 
