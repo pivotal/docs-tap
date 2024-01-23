@@ -108,9 +108,9 @@ Namespace Provisioner reserves certain parameters for its use. The following is 
 used by the Namespace Provisioner, which apply to both the `default_parameters` in `tap-values.yaml` and the namespace parameters through labels and annotations:
 
 - `limits` (object): Use to configure the LimitRange. For more information, see
-[Deactivate LimitRange Setup](use-case4.hbs.md#custom-lr).
+[Customize Limit Range defaults](use-case4.hbs.md#custom-lr).
 - `skip_limit_range` (boolean): Use to determine if the LimitRange should be created. For more
-information, see [Deactivate LimitRange Setup](use-case4.hbs.md#deactivate-lr).
+information, see [Customize Limit Range defaults](use-case4.hbs.md#deactivate-lr).
 - `skip_grype` (boolean): Use to determine if Grype scanner resources are going to be created.
 For more information, see [Deactivate Grype install](use-case4.hbs.md#deactivate-grype).
 - `supply_chain_service_account` (object): Contains the secrets and imagePullSecrets to be added
