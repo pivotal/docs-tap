@@ -6,20 +6,22 @@ This topic includes an example API call that you can use with Supply Chain Secur
 
 The following procedure explains how to use CURL to POST an image report.
 
-1. Retrieve the `metadata-store-read-write-client` access token.
+1. In your terminal, switch to the kubectl context or kubeconfig to target the TAP _View_ cluster.
+
+2. Retrieve the `metadata-store-read-write-client` access token.
     See [Retrieve access tokens](retrieve-access-tokens.hbs.md). Run:
 
     ```console
     export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
     ```
 
-2. Retrieve the CA Certificate and store it locally. Run:
+3. Retrieve the CA Certificate and store it locally. Run:
 
     ```console
     kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
     ```
 
-3. Run the Curl POST command. This assumes that you have deployed TAP with ingress enabled. We discuss in a [different section](#without-ingress) what to do if ingress is not enabled.
+4. Run the Curl POST command. This assumes that you have deployed TAP with ingress enabled. We discuss in a [different section](#without-ingress) what to do if ingress is not enabled.
 
     ```console
     curl https://metadata-store.<ingress-domain>/api/imageReport \
@@ -30,9 +32,9 @@ The following procedure explains how to use CURL to POST an image report.
         --data "@<ABSOLUTE PATH TO THE POST BODY>"
     ```
 
-4. Replace \<ABSOLUTE PATH TO THE POST BODY\> with the absolute filepath of the API JSON for an image report.
+5. Replace \<ABSOLUTE PATH TO THE POST BODY\> with the absolute filepath of the API JSON for an image report.
 
-5. The following is a sample POST body of a image report API JSON:
+6. The following is a sample POST body of a image report API JSON:
 
     ```json
     {
