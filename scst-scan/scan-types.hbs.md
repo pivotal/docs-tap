@@ -50,27 +50,27 @@ To add source scanning to the default out-of-the-box test and scan supply chain:
       #@overlay/match by=overlay.subset({"metadata":{"name":"source-test-scan-to-url"}, "kind": "ClusterSupplyChain"})
       ---
       spec:
-      resources:
-        #@overlay/match by=overlay.index(2)
-        #@overlay/insert before=True
-            - name: source-scanner
-              params:
-              - default: scan-policy
-                name: scanning_source_policy
-              - default: blob-source-scan-template
-                name: scanning_source_template
-              sources:
-              - name: source
-                resource: source-tester
-              templateRef:
-                kind: ClusterSourceTemplate
-                name: source-scanner-template
-            #@overlay/match by="name"
-            - name: image-provider
-              sources:
+        resources:
+          #@overlay/match by=overlay.index(2)
+          #@overlay/insert before=True
+              - name: source-scanner
+                params:
+                - default: scan-policy
+                  name: scanning_source_policy
+                - default: blob-source-scan-template
+                  name: scanning_source_template
+                sources:
+                - name: source
+                  resource: source-tester
+                templateRef:
+                  kind: ClusterSourceTemplate
+                  name: source-scanner-template
               #@overlay/match by="name"
-              - name: source
-                resource: source-scanner
+              - name: image-provider
+                sources:
+                #@overlay/match by="name"
+                - name: source
+                  resource: source-scanner
    ```
 
    For information about ytt overlays, see the
