@@ -176,7 +176,7 @@ To install Application Live View back end:
       `tanzu-shared-ingress` service’s external IP address. The `appliveview`
       subdomain is prepended to the value provided.
 
-1. Activate or deactivate TLS in your `app-live-view-backend-values.yaml` file:
+1. Configure TLS in your `app-live-view-backend-values.yaml` file:
 
     Activate TLS with self-signed certificate
     : To enable TLS for Application Live View back end using a self-signed certificate:
@@ -437,8 +437,8 @@ To install Application Live View connector:
       clusters to reach the Application Live View back end. Prepend the
       `appliveview` subdomain to the provided value.
 
-1. Configure TLS in your `app-live-view-connector-values.yaml` depending on how you activated or
-   deactivated TLS in [Install Application Live View back end](#install-app-live-view-back-end) earlier.
+1. Configure TLS in your `app-live-view-connector-values.yaml`. Choose a tab depending on how you
+   configured TLS in [Install Application Live View back end](#install-app-live-view-back-end) earlier.
    <!-- check if the above step is correct -->
 
     Configure TLS with self-signed certificate
@@ -477,7 +477,7 @@ To install Application Live View connector:
               BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
               -----END CERTIFICATE-----
           ```
-          <!-- Why does this specify to add this to the run cluster app-live-view-connector-values.yaml when none of the other configs specify a cluster? Does it matter which cluster for the other configs? -->
+          <!-- Why does this specify to add this to the run cluster app-live-view-connector-values.yaml when none of the other configs specify a cluster? Does it matter which cluster for the other configs? What you've set up single cluster environment -->
 
           Where:
 
