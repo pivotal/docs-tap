@@ -1,12 +1,13 @@
 # API walkthrough for Supply Chain Security Tools - Store
 
-This topic includes an example API call that you can use with Supply Chain Security Tools - Store. For information about using the SCST - Store API, see [full API documentation](api.md).
+This topic includes an example API call that you can use with Supply Chain Security Tools - Store.
+For information about using the SCST - Store API, see [API reference for Supply Chain Security Tools - Store](api.hbs.md).
 
 ## <a id='curltopost'></a>Using CURL to POST an image report
 
 The following procedure explains how to use CURL to POST an image report.
 
-1. In the terminal, switch to the kubectl context or kubeconfig to target the TAP _View_ cluster.
+1. In the terminal, switch to the kubectl context or kubeconfig to target the Tanzu Application Platform _View_ cluster.
 
 2. Retrieve the CA certificate and store it locally. Run:
 
