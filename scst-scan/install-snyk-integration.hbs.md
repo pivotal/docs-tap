@@ -64,7 +64,7 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
     ```yaml
     #! ...
     metadataStore:
-      #! The url where the Store deployment is accesible.
+      #! The url where the Store deployment is accessible.
       #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
       url: "STORE-URL"
       caSecret:
@@ -84,7 +84,7 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
     ```yaml
     #! ...
     metadataStore:
-      #! The url where the Store deployment is accesible.
+      #! The url where the Store deployment is accessible.
       #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
       url: "STORE-URL"
       caSecret:

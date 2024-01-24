@@ -96,7 +96,7 @@ needing either a Docker daemon or privileged containers, it does
 require the use of:
 
 - Capabilities usually dropped from the more restrictive
-  SecurityContextContraints enabled by default in OpenShift.
+  SecurityContextConstraints (SCC) enabled by default in OpenShift.
 - The root user.
 
 To overcome such limitations imposed by the default unprivileged

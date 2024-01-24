@@ -116,7 +116,7 @@ To persist the results found by the Carbon Black Scanner,
        ```yaml
        #! ...
        metadataStore:
-         #! The url where the Store deployment is accesible.
+         #! The url where the Store deployment is accessible.
          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
          url: "STORE-URL"
          caSecret:
