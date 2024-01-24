@@ -6,3 +6,4 @@ In this section:
 
 - [Dependencies](dependencies.hbs.md)
 - [Package values](package-values.hbs.md)
+- [Version matrix](version-matrix.hbs.md)
