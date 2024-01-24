@@ -32,7 +32,7 @@ There are multiple ways to install Prometheus on your cluster:
 
 Prometheus Operator
 : The Prometheus Operator offers a simplified way to use custom resources to deploy and configure
-  Prometheus, Alertmanager and related monitoring components.
+  Prometheus, Alertmanager, and related monitoring components.
 
   To install using the Prometheus Operator:
 
@@ -126,7 +126,7 @@ Prometheus Operator
           The Prometheus Operator automatically detects the configuration and generates a scrape job
           from it. This job is executed regularly by the Prometheus instance that is set up.
 
-  1. To access the Prometheus web interface, you must make the port `9090` of the Prometheus server pod
+  1. To access the Prometheus web interface, you must make port `9090` of the Prometheus server pod
     accessible outside the cluster through a Kubernetes service or ingress.
     For development purposes, you can forward the port to your local machine using kubectl.
 
@@ -235,7 +235,7 @@ To use Datadog as your observability tool:
     > For more information, see the troubleshooting item
     > [Datadog agent cannot reconcile webhook on AKS](../troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
 
-1. Generate a new API key in Datadog for the Agent that wil push metrics to Datadog.
+1. Generate a new API key in Datadog for the Agent that will push metrics to Datadog.
    You do this in the Datadog UI, under `Profile/Organization Settings/API Keys`.
 
 1. Create a secret for the Datadog API key by running:
