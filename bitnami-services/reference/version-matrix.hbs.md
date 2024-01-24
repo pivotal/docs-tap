@@ -1,10 +1,14 @@
 # Version matrix for Bitnami Services
 
-This topic provides you a matrix of versions between
+This topic provides you with a version matrix for Tanzu Application Platform (commonly known as TAP),
+the Bitnami Services package, and its open source components.
+
+This includes:
 
 - Tanzu Application Platform
-- The Bitnami Services package (`servicebinding.tanzu.vmware.com`)
-- Default helm charts versions for each of the Bitnami services. Helm charts versions can be overwritten via package values. This matrix documents the default versions.
+- The Bitnami Services package (`bitnami.services.tanzu.vmware.com`)
+- The default Helm chart versions for each of the Bitnami services. You can overwrite Helm chart
+  versions by configuring package values.
 
 > **Note** Tanzu Application Platform patch releases are only added to the table when there
 > is a change to one or more of the other versions in the table. Otherwise, the corresponding
