@@ -259,7 +259,7 @@ you must edit the configurations to deactivate the Store:
 
   - Install a version of [Tanzu Build
     Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft
-    Schema Version. This is the method VMware reccomends.
+    Schema Version. This is the method VMware recommends.
   - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security
     Tools - Scan](install-scst-scan.md). Although this change bypasses the check on Syft Schema
     Version, it does not resolve the incompatibility issue and produces a partial scanning result.

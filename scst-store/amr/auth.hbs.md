@@ -49,4 +49,4 @@ token bound to a Kubernetes role.
 5. The cloudevent-handler does a **SubjectAccessReview** using the userinfo returned from TokenReview and the resource information as described in #1.
 6. The SubjectAccessReview looks, according to the Kubernetes RBAC system, for any Role/ClusterRole associations by using bindings to find a match between the assigned roles to the specific service account and the requested resource information.
 
-![AMR auth architecdture](../images/auth-architecture.jpg)
+![AMR auth architecture](../images/auth-architecture.jpg)
