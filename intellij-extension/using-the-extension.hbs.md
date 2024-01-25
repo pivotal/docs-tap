@@ -280,7 +280,7 @@ You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Develo
 
 ![Preferences showing the workload apply configuration.](../images/intellij-workload-apply-configuration.png).
 
-## <a id="workload-port-forward"></a> Port forward
+## <a id="workload-port-forward"></a> Portforward to access app locally
 
 {{> 'partials/ide-extensions/workload-port-forward' }}
 

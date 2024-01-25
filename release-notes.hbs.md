@@ -32,6 +32,16 @@ This release includes the following platform-wide enhancements.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
+
+- Developers can create portforwards with [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#portforward-to-access-app-locally) action from Tanzu panel.
+- Developers can easily access the application when iterating locally from Local URL (via `Tanzu: Portforward`) or Knative URL (for web type of workloads) from Tanzu panel
+
+#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for Intellij
+
+- Developers can create portforwards with [Tanzu: Portforward](intellij-extension/using-the-extension.hbs.md#portforward-to-access-app-locally) action from Tanzu panel.
+- Developers can easily access the application when iterating locally from Local URL (via `Tanzu: Portforward`) or Knative URL (for web type of workloads) from Tanzu panel
+
 #### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
 
 - The authorization server can auto-discover upstream identity provider
