@@ -736,13 +736,13 @@ For a diagram showing the packages contained in each profile, see
    <td></td>
   </tr>
   <tr>
-   <th scope="row">SCST - Scan 2.0 (beta)</th>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td></td>
+   <th scope="row">SCST - Scan 2.0</th>
+   <td>&check;</td>
    <td></td>
    <td>&check;</td>
+   <td></td>
+   <td></td>
+   <td></td>
   </tr>
   <tr>
    <th scope="row">SCST - Sign (deprecated)</th>
