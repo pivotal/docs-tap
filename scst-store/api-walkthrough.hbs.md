@@ -1,7 +1,8 @@
 # API walkthrough for Supply Chain Security Tools - Store
 
-This topic includes an example API call that you can use with Supply Chain Security Tools - Store.
-For information about using the SCST - Store API, see [API reference for Supply Chain Security Tools - Store](api.hbs.md).
+This topic tells you how to make an API call that you can use with Supply Chain Security Tools - Store.
+For information about using the SCST - Store API, see
+[API reference for Supply Chain Security Tools - Store](api.hbs.md).
 
 ## <a id='curltopost'></a>Using curl to post an image report
 
@@ -13,7 +14,7 @@ For information about using the SCST - Store API, see [API reference for Supply 
     kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
     ```
 
-3. Using `health` endpoint as an example, run:
+3. Using the `health` endpoint as an example, run:
 
    ```console
    curl -i https://metadata-store.INGRESS-DOMAIN/api/health \
@@ -54,7 +55,7 @@ For information about using the SCST - Store API, see [API reference for Supply 
 
     Where `ABSOLUTE-PATH-TO-THE-POST-BODY` is the absolute filepath of the API JSON for an image report.
 
-For example, the following is a sample post body of an image report API JSON:
+    For example, the following is a sample post body of an image report API JSON:
 
     ```json
     {
