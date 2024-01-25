@@ -167,7 +167,8 @@ The following issues, listed by component and area, are resolved in this release
 - This release fixes the issue with expired certificates where you must restart the metadata-store pods when the internal database certificate is rotated by cert-manager.
 You will no longer see this issue with the default internal database, but the solution does not cover the case of an external database.
 
-- Artifact Metadata Repository now properly sets the `hasNextPage` to `false` when there is no more items to be retrieved during a paginated query. This fixes the issue
+- Artifact Metadata Repository now properly sets the `hasNextPage` to `false` when there are
+no more items to be retrieved during a paginated query. This fixes the issue
 where the last page always returns an empty list.
 
 ---
