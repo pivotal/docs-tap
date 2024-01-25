@@ -60,6 +60,7 @@ Other general guidance:
 
 If you require policy to block a workload in a supply chain based on detected vulnerabilities, use Scan 1.0.
 If you wish to create a scan integration for a scan tool that does not exist, use Scan 2.0 as the [process is greatly simplified](./bring-your-own-scanner.hbs.md).
+If you opt in to using Supply Chains (Cartographer V2), use Scan 2.0 as only Scan 2.0 is supported with Supply Chains.
 
 ## <a id="scst-scan-note"></a>A Note on Vulnerability Scanners
 
