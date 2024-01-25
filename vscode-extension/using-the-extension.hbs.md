@@ -192,6 +192,7 @@ To deploy to a different namespace from where you created the workload:
 
 {{> 'partials/ide-extensions/workload-panel-intro' }}
 
+
 ![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
 
 To add a namespace:
@@ -338,10 +339,12 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 
 {{> 'partials/ide-extensions/java-native-images' }}
 
+
 ![Tanzu Workloads panel showing a workload that uses a native image.](../images/vscode-native-panel.png).
 
 ## <a id="workload-apply-config"></a> Update Workload Apply configurations
 
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
+
 
 ![Preferences showing workload apply configurations.](../images/vscode-workload-apply-configuration.png).
