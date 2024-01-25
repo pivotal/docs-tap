@@ -333,20 +333,11 @@ To debug the cluster:
 1. [Apply your application to the cluster.](#apply-your-app)
 
 1. Obtain the URL for your workload:
-   1. In the center panel of the **Tanzu Panel** go to
-      **Workload/tanzu-java-web-app** > **Running Application** > **Service/tanzu-java-web-app**.
 
-   2. Right-click the `Service/tanzu-java-web-app` entry and select **Describe**.
+   1. If your app deploys Knative URL, that url is visible and clickable from the Workload panel.
+   ![Knative url](../images/intellij-knative-url.png)
 
-      ![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
-
-   3. In the resulting output, copy the value after **Status** > **URL:** that begins with
-      `https://tanzu-java-web-app...`. Make sure you copy the value from
-      **Status** > **URL:** and *not* the value under **Status** > **Address** > **URL**.
-
-      ![IntelliJ terminal showing the pod URL.](../images/getting-started-iterate-intellij-service-url.png)
-
-   4. Open your web browser and paste the URL you copied to access your workload.
+   1. If it does not deploy a Knative URL, but exposes an app port, you can access your app through a [portforward](../intellij-extension/using-the-extension.hbs.md#portforward-to-access-app-locally)
 
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name
    `tanzu-java-web-app` and select **Run \'Tanzu Debug Workload - tanzu-java-web-app\'** to begin debugging

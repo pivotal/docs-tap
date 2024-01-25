@@ -289,3 +289,9 @@ You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Develo
 ![Stop portforward.](../images/intellij-workload-portforward-stop.png).
 
 ![Existing portforward shown in Workload panel.](../images/intellij-workload-portforward-existing.png).
+
+## <a id="workload-knative-url"></a> Viewing the Knative URL
+
+{{> 'partials/ide-extensions/workload-knative-url' }}
+
+![Knative URL](../images/intellij-knative-url.png).

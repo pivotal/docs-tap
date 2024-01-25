@@ -258,23 +258,12 @@ To debug the cluster:
 
 1. [Apply your application to the cluster.](#apply-your-app)
 
-1. Open the Panel at the bottom of VS Code by clicking **View** > **Appearance** > **Panel**.
+1. Access your app on the browser
 
-1. In the Panel, click the **TANZU ACTIVITY** tab.
+   1. If your app deploys Knative URL, that url is visible and clickable from the Workload panel.
+   ![Knative url](../images/vscode-knative-url.png)
 
-1. In the **TANZU ACTIVITY** tab, go to **Workload/tanzu-java-web-app** > **Running Application** > **Service/tanzu-java-web-app**.
-
-1. Right-click the **Pod...** entry and select **Describe**.
-
-   ![VS Code Tanzu Activity tab showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-vscode-service-describe.png)
-
-1. In resulting output, copy the value after **Status** > **URL:** that begins with
-   `https://tanzu-java-web-app...`. Make sure you copy the value from
-   **Status** > **URL:** and *not* the value under **Status** > **Address** > **URL**.
-
-   ![VS Code terminal showing the pod url.](../images/getting-started-iterate-vscode-service-url.png)
-
-1. Open your web browser and paste the URL you copied to access your workload.
+   1. If it does not deploy a Knative URL, but exposes an app port, you can access your app through a [portforward](../vscode-extension/using-the-extension.hbs.md#portforward-to-access-app-locally)
 
 1. Begin debugging the workload on the cluster by doing one of the following:
 

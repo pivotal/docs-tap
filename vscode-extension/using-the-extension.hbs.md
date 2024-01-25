@@ -356,3 +356,9 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 ![Stop portforward.](../images/vscode-workload-portforward-stop.png).
 
 ![Existing portforward shown in Workload panel.](../images/vscode-workload-portforward-existing.png).
+
+## <a id="workload-knative-url"></a> Viewing the Knative URL
+
+{{> 'partials/ide-extensions/workload-knative-url' }}
+
+![Knative URL](../images/vscode-knative-url.png).
