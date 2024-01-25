@@ -50,7 +50,7 @@ For information about using the SCST - Store API, see
         -H "Authorization: Bearer ${METADATA_STORE_ACCESS_TOKEN}" \
         -H "Content-Type: application/json" \
         -X POST \
-        --data "@ABSOLUTE-PATH-TO-THE-POST-BODY>"
+        --data "@ABSOLUTE-PATH-TO-THE-POST-BODY"
     ```
 
     Where `ABSOLUTE-PATH-TO-THE-POST-BODY` is the absolute filepath of the API JSON for an image report.
@@ -117,6 +117,6 @@ For information about using the SCST - Store API, see
     }
     ```
 
-> **Note** If Tanzu Application Platform is deployed without Ingress, see the following topics:
-> [Use your NodePort with Supply Chain Security Tools - Store](use-node-port.hbs.md)
+> **Note** If Tanzu Application Platform is deployed without Ingress, for more information, see
+> [Use your NodePort with Supply Chain Security Tools - Store](use-node-port.hbs.md) and
 > [Use your LoadBalancer with Supply Chain Security Tools - Store](use-load-balancer.hbs.md)
