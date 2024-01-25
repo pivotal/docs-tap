@@ -19,20 +19,47 @@ For information about the languages and frameworks that are supported by Tanzu A
 
 The following use cases apply to SCST - Scan:
 
-- Use your scanner as a plug-in to scan source code repositories and images for known Common Vulnerabilities and Exposures (CVEs) before deploying to a cluster.
-- Identify CVEs by continuously scanning each new code commit or each new image built.
-- Analyze scan results against user-defined policies by using Open Policy Agent.
-- Produce vulnerability scan results and post them to the SCST - Store from where they are queried.
+- Scan source code repositories and images for known Common Vulnerabilities and Exposures (CVEs) as part of your software supply chain
+- Use one of the out-of-box provided scan integrations or create your own to leverage your existing vulnerability scanning platforms
+- Identify CVEs by continuously scanning container images for newly reported vulnerabilities
+- Analyze supply chain scan results against user-defined policies
+- Store vulnerability scan results in SCST - Store for long term archival and reporting
 
-## <a id="scst-scan-feat"></a>SCST - Scan features
+## <a id="scst-scan-feat"></a>SCST - Scan Versions
 
-The following SCST - Scan features enable the [Use cases](#use-cases):
+There are currently two versions of SCST - Scan:
 
-- Kubernetes controllers to run scan TaskRuns.
-- Custom Resource Definitions (`CRD`s) for Image and Source Scan.
-- `CRD` for a scanner plug-in. Example is available by using Anchore's Syft and Grype.
-- `CRD` for policy enforcement.
-- Enhanced scanning coverage by analyzing the Cloud Native Buildpack SBoMs that Tanzu Build Service images provide.
+### Scan 1.0
+
+Scan 1.0 has been in the testing and scanning supply chain since it was introduced with TAP 1.0.  Scan 1.0 includes the ability to scan a workload for vulnerabilities, submit the scan results to SCST - Store for long term storage and reporting, and compare the results against a policy defined by the user.  This is all included in a tightly coupled scan job that is executed as part of the testing and scanning supply chain.  
+
+This tight coupling of the capabilities made it difficult to develop and maintain integrations for the vast ecosystem of vulnerability scanning platforms.  To simplify this integration process, we have introduced Scan 2.0.
+
+Although other scan integrations are available, the default configuration for Scan 1.0 was the open-source [Anchore Grype](https://anchore.com/opensource/).
+
+### Scan 2.0
+
+Scan 2.0 was introduced in the TAP 1.5 release as an Alpha and now enters GA in TAP 1.8.  This iteration of SCST - Scan focuses on simplifying the integration experience by decoupling SCST - Store submission and policy from the scanning task.  This allows integration to be simplified and focused on the task of scanning workloads for vulnerabilities. 
+
+The Scan 2.0 engine also allows us to introduce the ability to scan container images after the initial creation of the workload.  This allows you to have visibility in the security posture of images as new vulnerabilities are reported.
+
+Scan 2.0 ships with the default configuration to use open-source [Aqua Trivy](https://www.aquasec.com/products/trivy/) as the imager scanner, and we include a Grype template for backwards compatibility.  Examples of other integrations, as well as how to build your own integration with this simplified interface, are provided in documentation.
+
+### Which version should I use?
+
+In TAP 1.8, both Scan 1.0 and Scan 2.0 are supported.  In a future release, Scan 1.0 will be deprecated and replaced with Scan 2.0.  To help facilitate this transition, we are slowly making Scan 2.0 the default component based on the environment TAP is installed in.  Those defaults are as follows:
+
+| Installation Type | Default Component | Detail |
+| --- | --- | --- |
+| [Online Installation](../install-online/intro.hbs.md) | Scan 1.0 | Scan 1.0 remains the default with the option for users to opt in to Scan 2.0 |
+| [Offline Installation](../install-offline/intro.hbs.md) | Scan 2.0 | Scan 2.0 is the default due to a much simplified air gap experience with Trivy |
+| [Azure Installation](../install-azure/intro.hbs.md)| Scan 1.0 | Scan 1.0 remains the default with the option for users to opt in to Scan 2.0 |
+| [AWS Installation](../install-aws/intro.hbs.md)| Scan 1.0 | Scan 1.0 remains the default with the option for users to opt in to Scan 2.0 |
+
+Other general guidance:
+
+If you require policy to block a workload in a supply chain based on detected vulnerabilities, use Scan 1.0.
+If you wish to create a scan integration for a scan tool that does not exist, use Scan 2.0 as the [process is greatly simplified](./bring-your-own-scanner.hbs.md).
 
 ## <a id="scst-scan-note"></a>A Note on Vulnerability Scanners
 
