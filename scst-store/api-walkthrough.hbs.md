@@ -7,7 +7,7 @@ For information about using the SCST - Store API, see [API reference for Supply 
 
 The following procedure explains how to use CURL to POST an image report.
 
-1. In the terminal, switch to the kubectl context or kubeconfig to target the Tanzu Application Platform _View_ cluster.
+1. Switch to the kubectl context or kubeconfig to target the View cluster.
 
 2. Retrieve the CA certificate and store it locally. Run:
 
@@ -15,10 +15,10 @@ The following procedure explains how to use CURL to POST an image report.
     kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
     ```
 
-3. Use Curl to make a request to the health endpoint as an example. This assumes that you have deployed TAP with ingress enabled. We discuss in a [different section](#without-ingress) what to do if ingress is not enabled.
+3. Using `health` endpoint as an example, run:
 
    ```console
-   curl -i https://metadata-store.<ingress-domain>/api/health \
+   curl -i https://metadata-store.INGRESS-DOMAIN/api/health \
        --cacert /tmp/ca.crt
    ```
 
@@ -35,27 +35,28 @@ The following procedure explains how to use CURL to POST an image report.
    server: envoy
    ```
 
-4. Next we'll try an _authenticated_ endpoint. Authenticated endpoints require an access token. Retrieve the `metadata-store-read-write-client` access token.
-    (See [Retrieve access tokens](retrieve-access-tokens.hbs.md) for more details). Run:
+4. To make a request to an authenticated endpoint an access token is required. To, retrieve the `metadata-store-read-write-client` access token. Run:
 
     ```console
     export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
     ```
 
-5. We'll use the `api/imageReport` endpoint as an example. Use Curl to create a POST request: 
+    For more information, see [Retrieve access tokens for Supply Chain Security Tools - Store](retrieve-access-tokens.hbs.md).
+
+5. Using the `api/imageReport` endpoint as an example, create a POST request:
 
     ```console
-    curl https://metadata-store.<ingress-domain>/api/imageReport \
+    curl https://metadata-store.INGRESS-DOMAIN/api/imageReport \
         --cacert /tmp/ca.crt \
         -H "Authorization: Bearer ${METADATA_STORE_ACCESS_TOKEN}" \
         -H "Content-Type: application/json" \
         -X POST \
-        --data "@<ABSOLUTE PATH TO THE POST BODY>"
+        --data "@ABSOLUTE-PATH-TO-THE-POST-BODY>"
     ```
 
-    Replace \<ABSOLUTE PATH TO THE POST BODY\> with the absolute filepath of the API JSON for an image report.
+    Where `ABSOLUTE-PATH-TO-THE-POST-BODY` is the absolute filepath of the API JSON for an image report.
 
-6. The following is a sample POST body of a image report API JSON:
+6. The following is a sample POST body of an image report API JSON:
 
     ```json
     {
@@ -117,17 +118,6 @@ The following procedure explains how to use CURL to POST an image report.
     }
     ```
 
-## Without ingress
-
-The instructions in the previous section assume that the TAP was deployed with ingress enabled, which is the recommended configuration. However, you can still connect to SCST - Store without ingress by setting up a proxy.
-
-1. In your terminal, switch your kubectl context or kubeconfig to target the TAP View cluster.
-
-2. Port forward the `metadata-store-app`. Run:
-
-    ```console
-    kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
-    ```
-
-3. Continue following the instructions from the previous section.
-
+> **Note** If Tanzu Application Platform is deployed without Ingress, see the following topics:
+> [Use your NodePort with Supply Chain Security Tools - Store](use-node-port.hbs.md)
+> [Use your LoadBalancer with Supply Chain Security Tools - Store](use-load-balancer.hbs.md)
