@@ -44,7 +44,7 @@ The following issues, listed by component and area, are resolved in this release
 #### <a id='1-7-4-app-sso-ri'></a> v1.7.4 Resolved issues: Application Single Sign-On (AppSSO)
  
 - When requesting an `access_token` by using the the Authorization Code flow, scopes in the token are
-  filtered based on user roles. In this version, the `scope` paramater of the
+  filtered based on user roles. In this version, the `scope` parameter of the
   access token response is also filtered, with the same rules. 
   For more information, see the [OAuth documentation](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-10.html#name-token-response).
 
