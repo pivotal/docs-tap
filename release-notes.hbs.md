@@ -48,6 +48,12 @@ The following issues, listed by component and area, are resolved in this release
   access token response is also filtered, with the same rules. 
   For more information, see the [OAuth documentation](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-10.html#name-token-response).
 
+#### <a id='1-7-4-scst-store-ri'></a> v1.7.4 Resolved issues: Supply Chain Security Tools - Store
+
+- Artifact Metadata Repository now properly sets the `hasNextPage` to `false` when there are
+no more items to be retrieved during a paginated query. This fixes the issue
+where the last page always returns an empty list.
+
 ---
  
 ### <a id='1-7-4-known-issues'></a> v1.7.4 Known issues 
