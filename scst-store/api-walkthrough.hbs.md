@@ -117,6 +117,6 @@ For information about using the SCST - Store API, see
     }
     ```
 
-> **Note** If Tanzu Application Platform is deployed without Ingress, for more information, see
+> **Note** If Tanzu Application Platform is deployed without Ingress, see
 > [Use your NodePort with Supply Chain Security Tools - Store](use-node-port.hbs.md) and
-> [Use your LoadBalancer with Supply Chain Security Tools - Store](use-load-balancer.hbs.md)
+> [Use your LoadBalancer with Supply Chain Security Tools - Store](use-load-balancer.hbs.md).
