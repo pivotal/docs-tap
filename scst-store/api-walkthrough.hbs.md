@@ -3,9 +3,7 @@
 This topic includes an example API call that you can use with Supply Chain Security Tools - Store.
 For information about using the SCST - Store API, see [API reference for Supply Chain Security Tools - Store](api.hbs.md).
 
-## <a id='curltopost'></a>Using CURL to POST an image report
-
-The following procedure explains how to use CURL to POST an image report.
+## <a id='curltopost'></a>Using curl to post an image report
 
 1. Switch to the kubectl context or kubeconfig to target the View cluster.
 
@@ -35,7 +33,7 @@ The following procedure explains how to use CURL to POST an image report.
    server: envoy
    ```
 
-4. To make a request to an authenticated endpoint an access token is required. To, retrieve the `metadata-store-read-write-client` access token. Run:
+4. To make a request to an authenticated endpoint an access token is required. To retrieve the `metadata-store-read-write-client` access token, run:
 
     ```console
     export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
@@ -43,7 +41,7 @@ The following procedure explains how to use CURL to POST an image report.
 
     For more information, see [Retrieve access tokens for Supply Chain Security Tools - Store](retrieve-access-tokens.hbs.md).
 
-5. Using the `api/imageReport` endpoint as an example, create a POST request:
+5. Using the `api/imageReport` endpoint as an example, create a post request:
 
     ```console
     curl https://metadata-store.INGRESS-DOMAIN/api/imageReport \
@@ -56,7 +54,7 @@ The following procedure explains how to use CURL to POST an image report.
 
     Where `ABSOLUTE-PATH-TO-THE-POST-BODY` is the absolute filepath of the API JSON for an image report.
 
-6. The following is a sample POST body of an image report API JSON:
+For example, the following is a sample post body of an image report API JSON:
 
     ```json
     {
