@@ -1,4 +1,4 @@
-# Supply Chain Security Tools - Scan 2.0 (beta)
+# Supply Chain Security Tools - Scan 2.0
 
 This topic gives you an overview of Supply Chain Security Tools (SCST) - Scan
 2.0. SCST - Scan 2.0 is the next generation scanning framework for the Tanzu
@@ -6,12 +6,6 @@ Application Platform. This will supersede the [SCST - Scan
 component](overview.hbs.md) in a future release. The focus of this next
 generation framework is to simplify the scan integration so that users can
 create integrations for the available scan engines.
-
->**Important** SCST - Scan 2.0 is in beta, which means that it is still in
->active development by VMware and might be subject to change at any point. Users
->might encounter unexpected behavior. This is an opt-in
->component to gather early feedback from beta testers and is not installed by
->default with any profile.
 
 ## <a id="overview"></a>Overview
 
@@ -64,4 +58,4 @@ are passed to it.
 
 ## <a id="getting-started"></a>Getting started with Scan 2.0
 
-To try out the Scan 2.0 component, review the [Scan 2.0 Getting Started guide](getting-started.hbs.md).
+To use the Scan 2.0 component, review the [Scan 2.0 Getting Started guide](getting-started.hbs.md).
