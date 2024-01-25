@@ -279,3 +279,13 @@ You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Develo
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
 
 ![Preferences showing the workload apply configuration.](../images/intellij-workload-apply-configuration.png).
+
+## <a id="workload-port-forward"></a> Port forward
+
+{{> 'partials/ide-extensions/workload-port-forward' }}
+
+![Start portforward.](../images/intellij-workload-portforward-start.png).
+
+![Stop portforward.](../images/intellij-workload-portforward-stop.png).
+
+![Existing portforward shown in Workload panel.](../images/intellij-workload-portforward-existing.png).

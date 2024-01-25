@@ -339,12 +339,20 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 
 {{> 'partials/ide-extensions/java-native-images' }}
 
-
 ![Tanzu Workloads panel showing a workload that uses a native image.](../images/vscode-native-panel.png).
 
 ## <a id="workload-apply-config"></a> Update Workload Apply configurations
 
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
 
-
 ![Preferences showing workload apply configurations.](../images/vscode-workload-apply-configuration.png).
+
+## <a id="workload-port-forward"></a> Port forward
+
+{{> 'partials/ide-extensions/workload-port-forward' }}
+
+![Start portforward.](../images/vscode-workload-portforward-start.png).
+
+![Stop portforward.](../images/vscode-workload-portforward-stop.png).
+
+![Existing portforward shown in Workload panel.](../images/vscode-workload-portforward-existing.png).
