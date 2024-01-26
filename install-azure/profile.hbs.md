@@ -304,7 +304,7 @@ Where:
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file.
   You can download either a blank or populated catalog file from the
-  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
+  [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018).
   Otherwise, you can use a Backstage-compliant catalog that was built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace.
   SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there.

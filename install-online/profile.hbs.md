@@ -112,7 +112,7 @@ To add the Tanzu Application Platform package repository to your cluster:
         --password ${INSTALL_REGISTRY_PASSWORD} \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -341,7 +341,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](../scc/git-auth.hbs.md) for more information.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces. To install Grype in multiple namespaces, use a namespace provisioner. For more information, see [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
