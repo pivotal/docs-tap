@@ -375,7 +375,7 @@ To install Application Live View connector:
 
     Profile install using shared ingress domain key
     : If you are using a Tanzu Application Platform profile installation and the top-level key
-      `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector
+      `shared.ingress_domain` is set in the `tap-values.yaml`, the Application Live View connector
       and Application Live View back end are configured to communicate through ingress.
       The Application Live View connector then uses the `shared.ingress_domain` to reach the back end.
 
@@ -438,7 +438,8 @@ To install Application Live View connector:
 
           Where:
 
-          - `caCertData` is the certificate you retrieved from the HTTPProxy secret.
+          - `caCertData` is the certificate you retrieved from the HTTPProxy secret exposed by the
+             Application Live View back end in the view cluster.
           - `host` is the backend host in the view cluster.
 
     Deactivate TLS
@@ -545,7 +546,7 @@ To install Application Live View connector:
     For example:
 
     ```console
-    tanzu package installed get appliveview-connector -n tap-install                                                                              5s
+    tanzu package installed get appliveview-connector -n tap-install
     | Retrieving installation details for appliveview-connector...
     NAME:                    appliveview-connector
     PACKAGE-NAME:            connector.appliveview.tanzu.vmware.com
