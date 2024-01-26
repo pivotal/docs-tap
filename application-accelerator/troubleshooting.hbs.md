@@ -1,62 +1,6 @@
 # Troubleshoot Application Accelerator
 
-This topic provides troubleshooting steps for development, accelerator authorship, and operations
-issues in Application Accelerator.
-
-## <a id='installation'></a> Installation issues
-
-Depending on the error output, there are some actions that you can take.
-
-### <a id='verify'></a>Verify installed packages
-
-The package might be already installed. Verify this by running:
-
-```console
-tanzu package installed list -n tap-install
-```
-
-Look for any package called `accelerator.apps.tanzu.vmware.com`.
-
-### <a id='resource-events'></a>Look at resource events
-
-The error might be within the custom resources such as accelerator, Git repository, fragment,
-and so on. Find these errors by using the Kubernetes command line interface tool (kubectl).
-
-Here is an example using the custom resource `accelerator`:
-
-1. Check for errors. For example, review the custom resource `accelerator` by running:
-
-    ```console
-    kubectl get acc -n accelerator-system
-    ```
-
-    Note items in the output with a `READY` status `False`:
-
-    ```console
-    NAME                       READY   REASON     AGE
-    appsso-starter-java        True    Ready      5h2m
-    where-for-dinner           True    Ready      5h2m
-    java-function              True    Ready      5h2m
-    java-rest-service          True    Ready      5h2m
-    java-server-side-ui        True    Ready      5h2m
-    node-express               True    Ready      5h2m
-    node-function              False   Not-Ready  5h2m
-    python-function            True    Ready      5h2m
-    spring-cloud-serverless    True    Ready      5h2m
-    spring-smtp-gateway        True    Ready      5h2m
-    tanzu-java-web-app         True    Ready      5h2m
-    tap-initialize             True    Ready      5h2m
-    weatherforecast-csharp     True    Ready      5h2m
-    weatherforecast-steeltoe   True    Ready      5h2m
-    ```
-
-1. To see more information about any error events you found, run:
-
-    ```console
-    kubectl get acc node-function -n accelerator-system -o yaml
-    ```
-
-    Look at the event section for more information about the error.
+This topic provides troubleshooting steps for development, accelerator authorship, and operations issues in Application Accelerator.
 
 ## <a id="dev-issues"></a> Development issues
 

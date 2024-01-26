@@ -344,8 +344,8 @@ tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating the Tanzu Application Platform usage reports.
 ```
 
-> **Important** The profile installation no longer includes Grype out of the box.
-> Instead, you can use Namespace Provisioner to install Grype.
+> **Important** The profile installation no longer includes Grype out of the box. 
+> Instead, you can use Namespace Provisioner to install Grype. 
 > Namespace Provisioner still uses Grype values to configure the scanner:
 >
 >
@@ -424,7 +424,7 @@ Where:
 
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download
   either a blank or populated catalog file from the
-  [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018).
+  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018).
   Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git
   infrastructure.
 
