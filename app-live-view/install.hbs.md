@@ -50,14 +50,14 @@ For more information about these packages, see
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing Application Live View, complete all prerequisites to install
-Tanzu Application Platform. For more information, see
+Before installing Application Live View:
+
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see
 [Prerequisites](../prerequisites.md).
 
-In addition, install Cartographer Conventions, which is bundled with Supply
-Chain Choreographer as of the v0.5.3 release. To install, see [Installing Supply
-Chain Choreographer](../scc/install-scc.md). For more information, see
-[Cartographer Conventions](../cartographer-conventions/about.md).
+- Install Cartographer Conventions, which is bundled with Supply Chain Choreographer as of v0.5.3.
+  To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md).
+  For more information, see [Cartographer Conventions](../cartographer-conventions/about.md).
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
@@ -185,8 +185,8 @@ To install Application Live View back end:
           Expected output:
 
           ```console
-          NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
-          app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
+          NAMESPACE       NAME          FQDN                               TLS SECRET               STATUS   STATUS DESCRIPTION
+          app-live-view   appliveview   appliveview.192.168.42.55.nip.io   app-live-view/alv-cert   valid    Valid HTTPProxy
           ```
 
     Activate TLS using ClusterIssuer
@@ -219,8 +219,8 @@ To install Application Live View back end:
           Expected output:
 
           ```console
-          NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
-          app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 appliveview-cert   valid    Valid HTTPProxy
+          NAMESPACE       NAME          FQDN                               TLS SECRET         STATUS   STATUS DESCRIPTION
+          app-live-view   appliveview   appliveview.192.168.42.55.nip.io   appliveview-cert   valid    Valid HTTPProxy
           ```
 
       1. To verify the Application Live View pages in a multicluster setup, set the appropriate
@@ -353,7 +353,7 @@ To install Application Live View connector:
       connector.appliveview.tanzu.vmware.com  1.8.0          2023-12-27T00:00:00Z
     ```
 
-1. Create `app-live-view-connector-values.yaml` using the following details:
+1. Create the file `app-live-view-connector-values.yaml` using the following details:
 
     Single-cluster environment
     : For a single-cluster environment, the Application Live View connector connects
