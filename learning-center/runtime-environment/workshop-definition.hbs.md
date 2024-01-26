@@ -695,7 +695,7 @@ spec:
         name: kpack-user
       rules:
       - apiGroups:
-        - build.pivotal.io
+        - kpack.io
         resources:
         - builds
         - builders
