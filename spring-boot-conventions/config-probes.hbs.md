@@ -33,12 +33,12 @@ To override the default settings and customize the probes at a cluster level:
    --values-schema --namespace tap-install
    ```
 
-   Where `VERSION-NUMBER` is the version of the package listed. For example: `1.8.0-build.1`.
+   Where `VERSION-NUMBER` is the version of the package listed. For example: `1.7.0`.
 
    For example:
 
    ```console
-   $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.8.0-build.1 --values-schema --namespace tap-install
+   $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.7.0 --values-schema --namespace tap-install
         KEY                                          DEFAULT             TYPE     DESCRIPTION
         autoConfigureActuators                       false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level
         kubernetes_distribution                                          string   Kubernetes distribution that this package is being installed on. Accepted
@@ -103,7 +103,7 @@ To override the default settings and customize the probes at a cluster level:
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version 1.8.0-build.1 \
+   --version 1.7.0 \
    --namespace tap-install -f values.yaml
    ```
 
@@ -116,11 +116,11 @@ To override the default settings and customize the probes at a cluster level:
    For example:
 
    ```console
-   $ tanzu package installed get spring-boot-conventions -n tap-install
+   tanzu package installed get spring-boot-conventions -n tap-install
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-   PACKAGE-VERSION:         1.8.0-build.1
+   PACKAGE-VERSION:         1.7.0
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:
@@ -132,7 +132,7 @@ To override the default settings and customize the probes at a cluster level:
    Spring Boot and Spring Native workloads.
 
 5. Verify the `PodIntent` of your workload by ensuring that `spec.containers.livenessProbe` shows the
-   overridden configuration values propagated through the Spring Boot conventions:
+   overridden configuration values propagated through the Spring Boot conventions
 
    ```console
    kubectl get podintents.conventions.carto.run tanzu-java-web-app -o yaml
@@ -145,7 +145,7 @@ To override the default settings and customize the probes at a cluster level:
            -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*"
            -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081"
            -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-       image: dev.registry.tanzu.vmware.com/app-live-view/test/tanzu-java-web-app-default@sha256:fa822a6585eb1287a817a956f16d77dd391624462a626bf37bbf0f9e89ff7562
+       image: dev.registry.pivotal.io/app-live-view/test/tanzu-java-web-app-default@sha256:fa822a6585eb1287a817a956f16d77dd391624462a626bf37bbf0f9e89ff7562
        livenessProbe:
          httpGet:
            path: /livez
@@ -177,24 +177,3 @@ To override the default settings and customize the probes at a cluster level:
            port: 8080
            scheme: HTTP
    ```
-
-## <a id='additional-paths'></a> Setting additional paths for the probes
-
-The Spring Boot convention automatically sets
-`management.endpoint.health.probes.add-additional-paths` to `true` if the Spring Boot application is
-v2.6.0 or later. For any versions earlier than v2.6.0,
-`management.endpoint.health.probes.add-additional-paths` is not supported.
-
-The `spring-boot-actuator-probes` convention in Spring Boot conventions sets the liveness,
-readiness, and startup probe endpoints to `/livez`, `/readyz`, and `readyz` respectively. These
-endpoints act as additional endpoint paths on the actuator probes.
-
-For example, when you run
-`https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/livez` to monitor the
-liveness probe, you can view the health of the application. This helps you evaluate whether an
-application that is running in a container is in a healthy state.
-
-Similarly, when running
-`https://tanzu-java-web-app.default.apps.20.22.106.199.nip.io/actuator/health/readyz` to view the
-readiness probe and the startup probe, you can evaluate whether the application is ready to receive
-traffic and whether the application has started up properly.

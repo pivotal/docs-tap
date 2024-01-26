@@ -103,7 +103,7 @@ When you install Tanzu Application Platform, it is bootstrapped with the `lite`
 set of dependencies, including buildpacks and stacks, for application builds.
 For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 You can find the buildpack and stack artifacts installed with Tanzu Application Platform
-on [Tanzu Network](https://network.tanzu.vmware.com/products/tbs-dependencies).
+on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
 You can update the dependencies by [upgrading Tanzu Application Platform](../../upgrading.md) to the latest patch.
 
 See [Set up multicluster Supply Chain Security Tools (SCST) - Store](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
