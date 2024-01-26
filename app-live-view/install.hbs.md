@@ -724,7 +724,7 @@ The Application Live View UI plug-in is part of Tanzu Developer Portal.
 To access the Application Live View UI, see [Application Live View in Tanzu
 Application Platform GUI](../tap-gui/plugins/app-live-view.md).
 
-## <a id='sslDisabled'></a> Deprecate the sslDisabled key
+## <a id='sslDisabled'></a> Deprecation notice for the sslDisabled key
 
 The `appliveview_connector.backend.sslDisabled` key has been replaced by
 `appliveview_connector.backend.sslDeactivated`.
