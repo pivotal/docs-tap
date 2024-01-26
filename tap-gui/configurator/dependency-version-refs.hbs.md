@@ -9,65 +9,49 @@ The following are Tanzu Developer Portal plug-ins that are not included by defau
 with Configurator, you must choose a compatible version based on your version of
 Tanzu Application Platform.
 
-Tanzu Application Platform versions earlier than v1.7 do not support any external plug-ins.
+Tanzu Application Platform v1.8 offers the following support:
 
-Supported npm versions per TAP release:
-
-| Plug-in package name                                            | TAP 1.7.0 | TAP 1.8.0 |
-| --------------------------------------------------------------- | --------- | --------- |
-| `@vmware-tanzu/tdp-plugin-auth-backend`                         | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-backstage-grafana`                    | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-backstage-jira`                       | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-backstage-sonarqube`                  | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-backstage-sonarqube-backend`          | 0.0.3     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-custom-logger`                        | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-github-actions`                       | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-home`                                 | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-ldap-backend`                         | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-login`                                | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-microsoft-graph-org-reader-processor` | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-permission-backend`                   | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-prometheus`                           | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-rbac`                                 | NA        | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-rbac-backend`                         | NA        | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-snyk`                                 | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-stack-overflow`                       | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-techinsights`                         | 0.0.2     | 2.0.0     |
-| `@vmware-tanzu/tdp-plugin-techinsights-backend`                 | 0.0.2     | 2.0.1     |
+| Plug-in package name                                            | Compatible npm version |
+| --------------------------------------------------------------- | ---------------------- |
+| `@vmware-tanzu/tdp-plugin-auth-backend`                         | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-backstage-grafana`                    | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-backstage-jira`                       | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-backstage-sonarqube`                  | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-backstage-sonarqube-backend`          | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-custom-logger`                        | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-github-actions`                       | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-home`                                 | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-ldap-backend`                         | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-login`                                | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-microsoft-graph-org-reader-processor` | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-permission-backend`                   | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-prometheus`                           | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-rbac`                                 | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-rbac-backend`                         | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-snyk`                                 | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-stack-overflow`                       | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-techinsights`                         | 2.0.0                  |
+| `@vmware-tanzu/tdp-plugin-techinsights-backend`                 | 2.0.1                  |
 
 ## <a id='tdp-libraries'></a> Tanzu Developer Portal plug-in libraries compatibility
 
 The following are libraries used to create Tanzu Developer Portal plug-ins.
+
 When using these libraries, you must choose a compatible version based on your version of
 Tanzu Application Platform.
 
-Tanzu Application Platform versions earlier than v1.7 do not support creating your own
-Tanzu Developer Portal plug-ins.
+Tanzu Application Platform v1.8 offers the following support:
 
-Supported npm versions per TAP release:
-
-| Library package name          | TAP 1.7.0 | TAP 1.8.0 |
-| ----------------------------- | --------- | --------- |
-| `@vmware-tanzu/core-backend`  | 1.0.0     | 2.0.1     |
-| `@vmware-tanzu/core-common`   | 1.0.0     | 2.0.0     |
-| `@vmware-tanzu/core-frontend` | 1.0.0     | 2.0.0     |
+| Library package name          | Compatible npm version |
+| ----------------------------- | ---------------------- |
+| `@vmware-tanzu/core-backend`  | 2.0.1                  |
+| `@vmware-tanzu/core-common`   | 2.0.0                  |
+| `@vmware-tanzu/core-frontend` | 2.0.0                  |
 
 ## <a id='bs-ver-table'></a> Backstage version compatibility
 
-The following Backstage Version Compatibility table shows which versions of Tanzu Application Platform
-versions are compatible with which Backstage versions. This is crucial information for plug-in
-development.
-
-Use this table to:
-
--   Verify that a dependency used by Backstage is compatible with your current Tanzu Application Platform
-    installation
--   See how Tanzu Application Platform upgrades might affect this compatibility
-
-Each dependencies manifest entry links to the respective Backstage dependencies manifest file.
+Tanzu Application Platform v1.8 is compatible with the following Backstage version. Developers must verify that a dependency used by Backstage is compatible with your current Tanzu Application Platform installation. Care should also be taken to see how Tanzu Application Platform upgrades might affect this compatibility.
 
 | Tanzu Application Platform version | Backstage version | Dependencies manifest                                                             |
 | ---------------------------------- | ----------------- | --------------------------------------------------------------------------------- |
-| 1.6.x                              | v1.13             | [Manifest file](https://github.com/backstage/backstage/blob/v1.13.0/package.json) |
-| 1.7.x                              | v1.15             | [Manifest file](https://github.com/backstage/backstage/blob/v1.15.0/package.json) |
 | 1.8.x                              | v1.20             | [Manifest file](https://github.com/backstage/backstage/blob/v1.20.3/package.json) |
