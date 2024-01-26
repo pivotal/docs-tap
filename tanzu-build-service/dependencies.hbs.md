@@ -232,7 +232,7 @@ Tanzu Build Service descriptors are curated sets of dependencies that include st
 Descriptors are only used if Tanzu Build Service is configured for automatic dependency updates.
 Descriptors are imported into Tanzu Build Service to update the entire cluster.
 
-Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/)
+Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
 page to provide updated buildpack dependencies and updated stack images.
 This allows the use of dependencies that have patched CVEs.
 For more information about buildpacks and stacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).

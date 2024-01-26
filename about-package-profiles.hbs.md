@@ -17,7 +17,7 @@ a predefined group of packages.
   from workloads. You can also use API Auto Registration without supply chains by directly applying
   an `APIDescriptor` CR to the cluster.
 
-- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
+- **[API portal for VMware Tanzu](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/index.html)**
 
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
   applications.

@@ -364,7 +364,7 @@ service's External IP address.
    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](../scc/git-auth.hbs.md) for more information.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](../scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.
@@ -378,12 +378,12 @@ credentials to pull an image from the registry for scanning.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
-The `ingressEnabled` key is set to `false` by default. 
-Set this key to `true` for the Application Live View back end to be exposed on the ingress domain. 
+The `ingressEnabled` key is set to `false` by default.
+Set this key to `true` for the Application Live View back end to be exposed on the ingress domain.
 This creates a HTTPProxy object in the cluster.
 
-You must create the app-live-view namespace and the TLS secret `appliveview-cert` 
-for the domain before installing the Tanzu Application Platform packages on the cluster 
+You must create the app-live-view namespace and the TLS secret `appliveview-cert`
+for the domain before installing the Tanzu Application Platform packages on the cluster
 so that the HTTPProxy is updated with the TLS secret. To create a TLS secret, run:
 
 ```console
