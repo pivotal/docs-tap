@@ -34,26 +34,30 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-vscode'></a> v1.8.0 Features: Tanzu Developer Tools for Visual Studio Code
 
-- Developers can create portforwards with [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#portforward-to-access-app-locally) action from Tanzu panel.
-- Developers can easily access the application when iterating locally from Local URL (via `Tanzu: Portforward`) or Knative URL (for web type of workloads) from Tanzu panel
+- You can create `portforwards` with the [Tanzu: Portforward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
+  when iterating locally from a local URL (via **Tanzu: Portforward**) or a Knative URL (for the web
+  type of workloads) from the Tanzu panel.
 
-#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for Intellij
+#### <a id='1-8-0-intellij'></a> v1.8.0 Features: Tanzu Developer Tools for IntelliJ
 
-- Developers can create portforwards with [Tanzu: Portforward](intellij-extension/using-the-extension.hbs.md#portforward-to-access-app-locally) action from Tanzu panel.
-- Developers can easily access the application when iterating locally from Local URL (via `Tanzu: Portforward`) or Knative URL (for web type of workloads) from Tanzu panel
+- You can create `portforwards` with the [Port Forward](vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+  action from the pop-up menu in the Tanzu panel. This enables you to easily access the application
+  when iterating locally from a local URL (via **Port Forward**) or a Knative URL (for the web
+  type of workloads) from the Tanzu panel.
 
 #### <a id='1-8-0-app-sso'></a> v1.8.0 Features: Application Single Sign-On
 
 - The authorization server can auto-discover upstream identity provider
   configuration from
-  `AuthServer.spec.identityProviders[].openID.configurationURI`. 
+  `AuthServer.spec.identityProviders[].openID.configurationURI`.
   For more information, see [Identity providers for Application Single Sign-On](app-sso/how-to-guides/service-operators/identity-providers.hbs.md).
 
 - The `userinfo` endpoint of an upstream identity provider is called when
-  it's known and configured with the scope `openid`. That means user information 
+  it's known and configured with the scope `openid`. That means user information
   is retrieved for non-standard providers.
 
-- Scopes in the token response are filtered according to the roles filtering 
+- Scopes in the token response are filtered according to the roles filtering
   defined on the `AuthServer`.
 
 - Advertises the Application Single Sign-On version on components:

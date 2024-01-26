@@ -272,26 +272,32 @@ You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Develo
 
 {{> 'partials/ide-extensions/java-native-images' }}
 
+
 ![Tanzu Workloads panel showing a workload that uses a native image.](../images/intellij-native-panel.png).
 
 ## <a id="workload-apply-config"></a> Update Workload Apply configurations
 
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
 
+
 ![Preferences showing the workload apply configuration.](../images/intellij-workload-apply-configuration.png).
 
-## <a id="workload-port-forward"></a> Portforward to access app locally
+## <a id="workload-port-forward"></a> Use a `portforward` to access an application locally
+
+You can create a `portforward` by clicking **Port Forward** in the pop-up menu in the Tanzu Workloads
+panel.
 
 {{> 'partials/ide-extensions/workload-port-forward' }}
 
-![Start portforward.](../images/intellij-workload-portforward-start.png).
+You can stop a `portforward` by clicking **Stop Port Forward** in the pop-up menu in the Tanzu
+Workloads panel. The option to stop a `portforward` is only available if there is an existing
+`portforward`.
 
-![Stop portforward.](../images/intellij-workload-portforward-stop.png).
+![The existing port forward is shown in the Tanzu Workloads panel.](../images/intellij-workload-portforward-existing.png).
 
-![Existing portforward shown in Workload panel.](../images/intellij-workload-portforward-existing.png).
-
-## <a id="workload-knative-url"></a> Viewing the Knative URL
+## <a id="workload-knative-url"></a> View the Knative URL
 
 {{> 'partials/ide-extensions/workload-knative-url' }}
 
-![Knative URL](../images/intellij-knative-url.png).
+
+![The Knative URL is shown in the Tanzu Workloads panel.](../images/intellij-knative-url.png)

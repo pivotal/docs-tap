@@ -339,26 +339,32 @@ You can change the log verbosity in **Preferences** > **Settings** > **Extension
 
 {{> 'partials/ide-extensions/java-native-images' }}
 
+
 ![Tanzu Workloads panel showing a workload that uses a native image.](../images/vscode-native-panel.png).
 
 ## <a id="workload-apply-config"></a> Update Workload Apply configurations
 
 {{> 'partials/ide-extensions/workload-apply-configuration' }}
 
+
 ![Preferences showing workload apply configurations.](../images/vscode-workload-apply-configuration.png).
 
-## <a id="workload-port-forward"></a> Portforward to access app locally
+## <a id="workload-port-forward"></a> Use a `portforward` to access an application locally
+
+You can create a `portforward` by clicking **Tanzu: Portforward** in the pop-up menu in the
+Tanzu Workloads panel.
 
 {{> 'partials/ide-extensions/workload-port-forward' }}
 
-![Start portforward.](../images/vscode-workload-portforward-start.png).
+You can stop a `portforward` by clicking **Tanzu: Stop Portforward** in the pop-up menu in the Tanzu
+Workloads panel. The option to stop a `portforward` is only available if there is an existing
+`portforward`.
 
-![Stop portforward.](../images/vscode-workload-portforward-stop.png).
-
-![Existing portforward shown in Workload panel.](../images/vscode-workload-portforward-existing.png).
+![The existing port forward is shown in the Tanzu Workloads panel.](../images/vscode-workload-portforward-existing.png).
 
 ## <a id="workload-knative-url"></a> Viewing the Knative URL
 
 {{> 'partials/ide-extensions/workload-knative-url' }}
 
-![Knative URL](../images/vscode-knative-url.png).
+
+![The Knative URL is shown in the Tanzu Workloads panel.](../images/vscode-knative-url.png)

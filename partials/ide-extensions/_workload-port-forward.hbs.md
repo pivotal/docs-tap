@@ -1,21 +1,19 @@
-### Start Portforward
+A `portforward` enables you to easily access the application, when iterating locally, in the
+Tanzu Workloads panel from a local URL (via the pop-up menu action) or a Knative URL (for the web type
+of workloads).
 
-Users can portforward to your application directly from the workload panel.
+The option to use a `portforward` is only available if containers in your workload have either:
 
-Existing portforwards will be shown in the workload panel.
+- A `PORT` environment variable
+- An entry in the `ports` array that specifies `TCP` as the `protocol`
 
-The option to portforward is only available if:
+For example:
 
-- containers in your workload has a `PORT` environment variable
-- or containers in your workload has an entry in the `ports` array that specifies `TCP` as the `protocol`. ex.
-
-```
+```yaml
 ports:
 - containerPort: 8080
   name: user-port
   protocol: TCP
 ```
 
-### Stop Portforward
-
-Users can stop a portforward through the workload panel. The option to stop a portforward is only available if there is an existing portforward.
+Existing `portforwards` are shown in the Tanzu Workloads panel.
