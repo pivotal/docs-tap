@@ -24,10 +24,6 @@ workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac
 
   ![The interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
-- Screenshot of the command palette:
-
-  ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
-
 ### <a id="apply-workload"></a> Apply a workload
 
 The extension enables you to apply workloads on your Kubernetes cluster that has
