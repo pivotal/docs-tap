@@ -44,6 +44,9 @@ To apply a workload:
 
    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload3.png)
 
+   A series of input boxes will appear asking for information.
+   ![Apply workload input prompts](../images/vscode-apply-workload-input.png)
+
    A notification appears showing that the workload was applied.
 
    ![Apply Workload notification showing workload has been applied.](../images/vscode-applyworkload4.png)

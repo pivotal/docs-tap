@@ -65,8 +65,10 @@ To configure VMware Tanzu Developer Tools for VS Code:
 2. Go to **Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools** and
    set the following:
 
-   - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a
-     workload.
+   - **Confirm Apply Config**: This controls whether the extension asks to confirm user input when applying a workload.
+   - **Confirm Debug Port**: Controls whether the extension should ask for the local port when executing `Tanzu: Start Java Debug`.
+   - **Confirm Local Port**: Controls whether the extension should ask for the local port when executing `Tanzu: Start Java Debug`.
+   - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a workload.
    - **Enable Live Hover**: For more information, see
      [Integrating Live Hover by using Spring Boot Tools](/docs-tap/vscode-extension/live-hover.hbs.md).
      Reload VS Code for this change to take effect.
@@ -77,6 +79,9 @@ To configure VMware Tanzu Developer Tools for VS Code:
      build. This is the current directory by default.
    - **Namespace**: (Optional) This is the namespace that workloads are deployed into. The namespace
      set in `kubeconfig` is the default.
+   - **Tracked Namespaces**: (Optional) Comma separated list of namespaces. Resources in these namespaces will appear in the Workload Panel and Activity Panel. If empty, defaults to the namespace in the current context
+   - **Wait Timeout**: (Optional) How long to wait for a workload to become ready. Optional.
+   - **Workload Type**: (Optional) Distinguish workload type. Eg. web, server
 
 ## <a id="uninstall"></a> Uninstall
 
