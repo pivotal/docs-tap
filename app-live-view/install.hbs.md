@@ -138,43 +138,43 @@ To install Application Live View back end:
 
 1. Create the file `app-live-view-backend-values.yaml` using the following information:
 
-    Single-cluster environment
-    : For a single-cluster environment, the Application Live View back end is
-      exposed through the Kubernetes cluster service. By default, ingress is
-      deactivated for back end.
+Single-cluster environment
+: For a single-cluster environment, the Application Live View back end is
+  exposed through the Kubernetes cluster service. By default, ingress is
+  deactivated for back end.
 
-      ```yaml
-        ingressEnabled: false
-      ```
-      <!-- is this backend.ingressEnabled? Do they need to add any thing to the YAML file for this? -->
-      <!-- for single cluster, would there ever be circumstances to set ingressEnabled: true? -->
+  ```yaml
+    ingressEnabled: false
+  ```
+  <!-- is this backend.ingressEnabled? Do they need to add any thing to the YAML file for this? -->
+  <!-- for single cluster, would there ever be circumstances to set ingressEnabled: true? -->
 
-    Multicluster environment
-    : For a multicluster environment, set the flag `ingressEnabled` to `true` for
-      the Application Live View back end to be exposed on the ingress domain.
+Multicluster environment
+: For a multicluster environment, set the flag `ingressEnabled` to `true` for
+  the Application Live View back end to be exposed on the ingress domain.
 
-      ```yaml
-        ingressEnabled: true
-      ```
-      <!-- is this backend.ingressEnabled? -->
+  ```yaml
+    ingressEnabled: true
+  ```
+  <!-- is this backend.ingressEnabled? -->
 
-    Profile install using shared ingress domain key
-    : If you are using a Tanzu Application Platform profile installation and the
-      top-level key `shared.ingress_domain` is set in the `tap-values.yaml`, the
-      back end is automatically exposed through the shared ingress.
+Profile install using shared ingress domain key
+: If you are using a Tanzu Application Platform profile installation and the
+  top-level key `shared.ingress_domain` is set in the `tap-values.yaml`, the
+  back end is automatically exposed through the shared ingress.
 
-      To override the shared ingress for Application Live View in a multicluster environment,
-      use the following values:
+  To override the shared ingress for Application Live View in a multicluster environment,
+  use the following values:
 
-      ```yaml
-        ingressEnabled: true
-        ingressDomain: ${INGRESS-DOMAIN}
-      ```
-      <!-- is this backend.ingressEnabled? -->
+  ```yaml
+    ingressEnabled: true
+    ingressDomain: ${INGRESS-DOMAIN}
+  ```
+  <!-- is this backend.ingressEnabled? -->
 
-      Where `INGRESS-DOMAIN` is the top-level domain you use for the
-      `tanzu-shared-ingress` service’s external IP address. The `appliveview`
-      subdomain is prepended to the value provided.
+  Where `INGRESS-DOMAIN` is the top-level domain you use for the
+  `tanzu-shared-ingress` service’s external IP address. The `appliveview`
+  subdomain is prepended to the value provided.
 
 1. Configure TLS in your `app-live-view-backend-values.yaml` file:
 
