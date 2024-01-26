@@ -1,14 +1,14 @@
 # Install Supply Chain Security Tools - Scan 2.0 in a cluster
 
-The topic tells you how to install Supply Chain Security Tools (SCST) - Scan 2.0.
+By default, SCST - Scan 2.0 is installed in the [build and full profiles](../about-package-profiles.hbs.md#installation-profiles-in-tanzu-application-platform-v-varsurl_version). This document will guide you on how to install Supply Chain Security Tools (SCST) - Scan 2.0 if are installing out-of-band of a profile.
 
 ## <a id="scst-app-scanning-prereqs"></a> Prerequisites
 
 SCST - Scan 2.0 requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is already installed if you installed Tanzu Application Platform by using a profile based installation in both the Full and Build Profiles.
-- Enable AMR and AMR Observer, because downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
+- Install the [Tekton component](../tekton/install-tekton.hbs.md).
+- If you wish to store results, AMR and AMR Observer. Downstream Tanzu Application Platform services, such as Tanzu Developer Portal and Tanzu CLI, depend on scan results stored in SCST - Store to display correctly. For more information, see [Artifact Metadata Repository Observer for Supply Chain Security Tools - Store](../scst-store/amr/install-amr-observer.hbs.md).
 
 >**Note** If you are installing SCST - Scan 2.0 in a cluster with restricted Kubernetes Pod Security Standards, you must update configurations for the Tekton Pipelines package. See [Troubleshooting](./app-scanning-troubleshooting.hbs.md#scanning-in-a-cluster-with-restricted-kubernetes-pod-security-standards).
 
