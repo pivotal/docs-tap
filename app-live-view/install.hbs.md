@@ -731,7 +731,7 @@ To install Application Live View APIServer:
       ```console
       $ tanzu package install appliveview-apiserver \
           -p apiserver.appliveview.tanzu.vmware.com \
-          -v 1.8.0 \
+          -v 1.5.1 \
           -n tap-install
 
       - Installing package 'apiserver.appliveview.tanzu.vmware.com'
