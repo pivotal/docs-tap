@@ -681,6 +681,8 @@ To install Application Live View conventions:
         -f app-live-view-conventions-values.yaml
       ```
 
+      Where `VERSION-NUMBER` is the version of the package listed. For example, `1.8.0`.
+
 1. Verify the package install for Application Live View conventions package by
    running:
 
@@ -791,6 +793,8 @@ To install Application Live View APIServer:
         -n tap-install \
         -f app-live-view-apiserver-values.yaml
       ```
+
+      Where `VERSION-NUMBER` is the version of the package listed. For example, `1.8.0`.
 
 1. Verify the package install for Application Live View APIServer package by
    running:
