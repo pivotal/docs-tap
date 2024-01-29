@@ -334,18 +334,20 @@ To debug the cluster:
 
 1. Obtain the URL for your workload:
 
-   1. If your app deploys Knative URL, that url is visible and clickable from the Workload panel.
-   ![Knative url](../images/intellij-knative-url.png)
+   - **If your app deploys Knative URL:** Click the URL from the Workload panel.
 
-   1. If it does not deploy a Knative URL, but exposes an app port, you can access your app through a [portforward](../intellij-extension/using-the-extension.hbs.md#portforward-to-access-app-locally)
+      ![Knative url](../images/intellij-knative-url.png)
+
+   - **If your app does not deploy a Knative URL but exposes an app port:** Access your app through a
+     `portforward`. For instructions, see [Use a portforward to access an application locally](../intellij-extension/using-the-extension.hbs.md#workload-port-forward).
 
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name
    `tanzu-java-web-app` and select **Run \'Tanzu Debug Workload - tanzu-java-web-app\'** to begin debugging
    the application on the cluster.
 
-    1. Alternatively, select the **Edit Run/Debug configurations** drop-down menu in the top-right corner,
-       select **Tanzu Debug Workload - tanzu-java-web-app**, and then click the green debug button to the
-       right of the **Edit Run/Debug configurations** drop-down menu.
+   1. Alternatively, select the **Edit Run/Debug configurations** drop-down menu in the top-right corner,
+      select **Tanzu Debug Workload - tanzu-java-web-app**, and then click the green debug button to the
+      right of the **Edit Run/Debug configurations** drop-down menu.
 
 1. The Debug tab opens and displays a message that it has connected.
 
