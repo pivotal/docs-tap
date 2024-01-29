@@ -265,7 +265,7 @@ To debug the cluster:
       ![Screenshot of the Workloads panel with the Knative URL highlighted under the tanzu-java-web-app.](../images/vscode-knative-url.png)
 
    - **If your app does not deploy a Knative URL but exposes an app port:** Access your app through a
-     `portforward`. For instructions, see [Use a `portforward` to access an application locally](../vscode-extension/using-the-extension.hbs.md#workload-port-forward)
+     `portforward`. For instructions, see [Use a `portforward` to access an application locally](../vscode-extension/using-the-extension.hbs.md#workload-port-forward).
 
 1. Begin debugging the workload on the cluster by doing one of the following:
 
