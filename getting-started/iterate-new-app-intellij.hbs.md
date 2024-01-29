@@ -332,9 +332,9 @@ To debug the cluster:
 
 1. [Apply your application to the cluster.](#apply-your-app)
 
-1. Obtain the URL for your workload:
+1. Obtain the URL for your workload by doing one of the following:
 
-   - **If your app deploys Knative URL:** Click the URL from the Workload panel.
+   - **If your app deploys a Knative URL:** Click the URL from the Workload panel.
 
       ![Knative url](../images/intellij-knative-url.png)
 

@@ -258,9 +258,9 @@ To debug the cluster:
 
 1. [Apply your application to the cluster.](#apply-your-app)
 
-1. Access your app in your browser:
+1. Access your app in your browser by doing one of the following:
 
-   - **If your app deploys Knative URL:** Click the URL from the Workload panel.
+   - **If your app deploys a Knative URL:** Click the URL from the Workload panel.
 
       ![Knative url](../images/vscode-knative-url.png)
 

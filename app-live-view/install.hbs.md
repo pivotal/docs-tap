@@ -337,7 +337,8 @@ To install Application Live View back end:
     For example:
 
     ```console
-    tanzu package installed get appliveview -n tap-install
+    $ tanzu package installed get appliveview -n tap-install
+
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
