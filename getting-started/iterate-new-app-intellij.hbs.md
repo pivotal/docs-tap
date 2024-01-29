@@ -334,9 +334,9 @@ To debug the cluster:
 
 1. Obtain the URL for your workload by doing one of the following:
 
-   - **If your app deploys a Knative URL:** Click the URL from the Workload panel.
+   - **If your app deploys a Knative URL:** Click the URL from the Workloads panel.
 
-      ![Knative url](../images/intellij-knative-url.png)
+      ![Screenshot of the Workloads panel with the Knative URL highlighted under the tanzu-java-web-app.](../images/intellij-knative-url.png)
 
    - **If your app does not deploy a Knative URL but exposes an app port:** Access your app through a
      `portforward`. For instructions, see [Use a portforward to access an application locally](../intellij-extension/using-the-extension.hbs.md#workload-port-forward).
