@@ -2,6 +2,7 @@
 
 This topic tells you about the Application Accelerator component and architecture in Tanzu
 Application Platform (commonly known as TAP).
+
 ## <a id="overview"></a>Overview
 
 Application Accelerator for VMware Tanzu helps you bootstrap developing your applications and
@@ -13,7 +14,7 @@ in their organization ready-made, conforming code and configurations.
 Published accelerator projects are maintained in Git repositories. You can then use Application
 Accelerator to create new projects based on those accelerator projects.
 
-The Application Accelerator user interface(UI) enables you to discover available accelerators,
+The Application Accelerator UI enables you to discover available accelerators,
 configure them, and generate new projects to download.
 
 ## <a id="architecture"></a>Architecture
