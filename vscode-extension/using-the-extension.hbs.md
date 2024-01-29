@@ -24,9 +24,9 @@ workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac
 
   ![The interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
-- Screenshot of the command palette:
+- Screenshot of the command palette
 
-  ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+   ![Tanzu commands in the command palette](../images/vscode-command-palette.png)
 
 ### <a id="apply-workload"></a> Apply a workload
 
@@ -43,6 +43,9 @@ To apply a workload:
 3. If applicable, select the workload to apply.
 
    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload3.png)
+
+   A series of input boxes will appear asking for information.
+   ![Apply workload input prompts](../images/vscode-apply-workload-input.png)
 
    A notification appears showing that the workload was applied.
 
