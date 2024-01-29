@@ -3,8 +3,13 @@
 This topic tells you how to configure Contour to accept traffic from an AWS 
 Network LoadBalancer (NLB) that terminates TLS traffic.
 
->**Important** This guide only applies to the Contour package from 
-Tanzu Application Platform v1.7.0 and later.
+This topic is adapted from the [Contour open source documentation](https://projectcontour.io/docs/1.25/guides/deploy-aws-tls-nlb/#configure). Some differences to note:
+* This topic tells you how to configure the `tap-values.yaml` file instead of modifying the cluster resources directly.
+* This topic instructs you to leave port 80 open on the Envoy service. This is required for TAP, but note that this means routes will be accessible via HTTP. 
+  * The topic will include options on how to limit this at the AWS LB level.
+* This topic instructs you to use the default LoadBalancer provisioned with an EKS cluster, instead of using AWS LoadBalancer Controller.
+
+>**Important** This guide only applies to the Contour package from Tanzu Application Platform v1.7.0 and later.
 
 ## <a id="prereqs"></a>Prerequisites
 
@@ -13,40 +18,98 @@ The following are required before proceeding with the configuration:
 - An EKS cluster.
 - The Contour package installed on the cluster, either as part of Tanzu Application 
 Platform or from the [standalone component installation](install.hbs.md).
-- Access to Route53 and AWS Certificate Manager.
-- A domain registered in Route53. This topic refers to this domain as `DOMAIN`.
+- Access to AWS Certificate Manager.
+- A domain (registered in Route53 or elsewhere). This topic refers to this domain as `DOMAIN`.
+- A certificate for `DOMAIN`.
+
+### <a id="domain-for-certificate"></a> A note on Certificates and Domains
+
+This topic will cover the simplest case of using a wildcard cert for your domain.
+
+For example, if your domain is `bigbiz.com`, then the certificate should be for the wildcard domain `*.bigbiz.com`, and everything routed through Contour should fit that domain pattern.
+
+However, in TAP, the default URL pattern for Web Workloads (i.e. Knative Services) is `{app name}.{namespace}.{domain}`.
+
+The wildcard cert described previously will not apply to these URLs. To account for this, this topic will explain how to configure CNRs (Cloud Native Runtimes) such that Web Workload URLs will also fit the wildcard domain.
 
 ## <a id="procedure"></a>Procedure
 
-The following steps correspond to the steps in the [Contour open source documentation](https://projectcontour.io/docs/1.25/guides/deploy-aws-tls-nlb/#configure). Instead of creating or updating resources manually, this topic tells you how to configure the `tap-values.yaml` file.
 
-1. Create a public TLS certificate for `DOMAIN` by using AWS Certificate Manager (ACM). 
+### <a id="part1"></a>Part 1: Creating a TLS certificate in ACM
 
+1. Using AWS Certificate Manager (ACM), import your certificate. 
+
+    ![Image of ACM import certificate interface.](./images/aws-acm-import-certificate.png)
+    
     This is streamlined when Route 53 manages `DOMAIN`.
 
     Note down the `ARN` of the created certificate, which is required in the following steps.
 
-1. Edit the Contour package install values.
+### <a id="part2"></a>Part 2: Configuring TAP
 
-    - If using a `tap-values.yaml` file, update the Contour section with the following:
+1. Create the following overlay in `overlay-contour-envoy-secret.yaml` and apply it to your cluster:
 
-        ```yaml
-        contour:
-          ...
-          envoy:
-            service:
-            loadBalancerTLSTermination: true
-            annotations: |
-              service.beta.kubernetes.io/aws-load-balancer-type: external
-                service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-                service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-                service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
-                service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-        ```
+   ```
+   apiVersion: v1
+   kind: Secret
+   metadata:
+    name: overlay-contour-envoy
+    namespace: tap-install
+   stringData:
+    overlay-contour-envoy.yml: |
+      #@ load("@ytt:overlay", "overlay")
+   
+      #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "envoy"}})
+      ---
+      spec:
+        ports:
+        #@overlay/match by=overlay.subset({"name":"https"})
+        -
+          targetPort: 8080
+   ```
 
-        Where `ARN` is the ARN noted down from the previous step.
+   ```
+   kubectl apply -f overlay-contour-envoy-secret.yaml
+   ```
 
-    - If installing the Contour package standalone, update your values file with the `envoy.service` section.
+1. Add the following configurations to your TAP values file.
+
+   ```yaml
+   shared:
+     ingress_issuer: ""
+   
+   tap_gui:
+     app_config:
+     app:
+       baseUrl: https://tap-gui.INGRESS_DOMAIN #! note the change in scheme
+     backend:
+       baseUrl: https://tap-gui.INGRESS_DOMAIN #! note the change in scheme
+       reading:
+         allow:
+         - host: *.INGRESS_DOMAIN 
+
+   cnrs:
+     default_external_scheme: "https"
+     ingress_issuer: ""
+     domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+
+   contour:
+     envoy:
+       service:
+         annotations:
+           service.beta.kubernetes.io/aws-load-balancer-type: external
+           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+           service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+           service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
+           service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+
+   package_overlays:
+   - name: contour
+     secrets:
+     - name: overlay-contour-envoy
+   ```
+
+   Where `ARN` is the ARN noted down from part 1.
 
 1. Update your Tanzu Application Platform install:
  
