@@ -9,7 +9,7 @@ This topic is adapted from the [Contour open source documentation](https://proje
   * The topic will include options on how to limit this at the AWS LB level.
 * This topic instructs you to use the default LoadBalancer provisioned with an EKS cluster, instead of using AWS LoadBalancer Controller.
 
->**Important** This guide only applies to the Contour package from Tanzu Application Platform v1.7.0 and later.
+>**Important:** This guide only applies to the Contour package from Tanzu Application Platform v1.7.0 and later.
 
 ## <a id="prereqs"></a>Prerequisites
 
@@ -20,7 +20,7 @@ The following are required before proceeding with the configuration:
 Platform or from the [standalone component installation](install.hbs.md).
 - Access to AWS Certificate Manager.
 - A domain (registered in Route53 or elsewhere). This topic refers to this domain as `DOMAIN`.
-- A certificate for `DOMAIN`.
+- A certificate for `*.DOMAIN`.
 
 ### <a id="domain-for-certificate"></a> A note on Certificates and Domains
 
@@ -31,6 +31,8 @@ For example, if your domain is `bigbiz.com`, then the certificate should be for 
 However, in TAP, the default URL pattern for Web Workloads (i.e. Knative Services) is `{app name}.{namespace}.{domain}`.
 
 The wildcard cert described previously will not apply to these URLs. To account for this, this topic will explain how to configure CNRs (Cloud Native Runtimes) such that Web Workload URLs will also fit the wildcard domain.
+
+It is possible to keep the default URL pattern if your `DOMAIN` includes the namespace where web workloads will be deployed.
 
 ## <a id="procedure"></a>Procedure
 
@@ -43,7 +45,7 @@ The wildcard cert described previously will not apply to these URLs. To account 
     
     This is streamlined when Route 53 manages `DOMAIN`.
 
-    Note down the `ARN` of the created certificate, which is required in the following steps.
+    **Important:** Note down the `ARN` of the created certificate, which is required in the following steps.
 
 ### <a id="part2"></a>Part 2: Configuring TAP
 
@@ -119,6 +121,30 @@ The wildcard cert described previously will not apply to these URLs. To account 
 
     Where `VERSION` is the version of Tanzu Application Platform in use, which must be in the form of `X.X.X`.
 
+
+Assuming TAP has updated successfully, move on to the next part.
+
+### <a id="part3"></a>Part 3: Configuring AWS
+
+1. Configure the listeners on your load balancer.
+   **Note:** If you are using AWS LoadBalancer Controller, it is possible this part is already done.
+
+   1. Find the load balancer associated with Contour's Envoy LoadBalancer Service
+      TODO: how can you find this out?
+
+   1. Under the "Listeners" tab, click "Manage listeners".
+      You should see two listeners, 80 and 443
+
+   1. Modify the 443 Listener
+
+      Listener protocol: SSL
+      Port: 443
+      Instance Protocol: TCP
+      Default SSL/TLS certificate: your certificate
+
+   1. (Optional) Remove the 80 listener
+      Removing this listener will prevent your TAP workloads from being accessed via HTTP.
+
 1. Configure the domain name system (DNS).
 
     1. Get the External IP of the Envoy service:
@@ -151,7 +177,6 @@ The wildcard cert described previously will not apply to these URLs. To account 
         It resembles the following:
 
         ![Screenshot displaying the AWS quick create record interface.](images/aws-dns-record.png)
-
 
 ## <a id="verify"></a>Verification
 
