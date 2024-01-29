@@ -5,7 +5,7 @@ issues in Application Accelerator.
 
 ## <a id='installation'></a> Installation issues
 
-Depending on the error output, there are some actions that you can take.
+Depending on the error output, you can take the following actions to troubleshoot installation problems.
 
 ### <a id='verify'></a>Verify installed packages
 

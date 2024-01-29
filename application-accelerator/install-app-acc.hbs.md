@@ -37,7 +37,7 @@ To install Application Accelerator:
       accelerator.apps.tanzu.vmware.com  1.4.0    2022-12-08 12:00:00 -0500 EST
     ```
 
-2. (Optional) View the changes you can make to the default installation settings by running:
+1. (Optional) View the changes you can make to the default installation settings by running:
 
     ```console
     tanzu package available get "accelerator.apps.tanzu.vmware.com/${ACCELERATOR_VERSION_NUMBER}" \
@@ -59,32 +59,34 @@ To install Application Accelerator:
     For more information about values schema options, see the properties listed in
     [Configure properties and resource use](#app-acc-config) later.
 
-3. Create an `app-accelerator-values.yaml` using the following example code:
+1. Create a file named `app-accelerator-values.yaml` using the following example code:
 
-    ```yaml
-    server:
-      service_type: "LoadBalancer"
-      watched_namespace: "accelerator-system"
-    samples:
-      include: true
-    ```
+    - If your cluster supports the `LoadBalancer` service type:
 
-    Edit the values if needed or leave the default values. You can also add values you want from
-    [Configure properties and resource use](#app-acc-config).
+        ```yaml
+        server:
+          service_type: "LoadBalancer"
+          watched_namespace: "accelerator-system"
+        samples:
+          include: true
+        ```
 
-4. For clusters that do not support the `LoadBalancer` service type, override the default
-    value for `server.service_type`. For example:
+    - For clusters that do not support the `LoadBalancer` service type, override the default
+      value for `server.service_type`. For example:
 
-    <!-- is this really optional for clusters without `LoadBalancer`? -->
-    ```yaml
-    server:
-      service_type: "ClusterIP"
-      watched_namespace: "accelerator-system"
-    samples:
-      include: true
-    ```
+        <!-- is this really optional for clusters without `LoadBalancer`? -->
+        ```yaml
+        server:
+          service_type: "ClusterIP"
+          watched_namespace: "accelerator-system"
+        samples:
+          include: true
+        ```
 
-5. Install the package by running:
+1. Edit the values in your `app-accelerator-values.yaml` if needed, or leave the default values.
+   You can add values you want from [Configure properties and resource use](#app-acc-config).
+
+1. Install the package by running:
 
     ```console
     tanzu package install app-accelerator \
@@ -119,7 +121,7 @@ To install Application Accelerator:
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
-6. Verify the package install by running:
+1. Verify the package install by running:
 
     ```console
     tanzu package installed get app-accelerator -n tap-install
@@ -141,7 +143,7 @@ To install Application Accelerator:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-7. To see the IP address for the Application Accelerator API when the `server.service_type` is set
+1. To see the IP address for the Application Accelerator API when the `server.service_type` is set
    to `LoadBalancer`, run:
 
     ```console
