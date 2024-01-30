@@ -372,7 +372,7 @@ See the component documentation for the package for installation instructions.
 For a diagram showing the packages contained in each profile, see
 [Overview of multicluster Tanzu Application Platform](./multicluster/about.hbs.md).
 
-### <a id='a-c'></a> Packages A to C
+### <a id='a-c'></a> Packages: A to C
 
 <table>
   <thead>
@@ -552,7 +552,7 @@ For a diagram showing the packages contained in each profile, see
   </tbody>
 </table>
 
-### <a id='d-r'></a> Packages D to R
+### <a id='d-r'></a> Packages: D to R
 
 <table>
   <thead>
@@ -678,7 +678,7 @@ For a diagram showing the packages contained in each profile, see
   </tbody>
 </table>
 
-### <a id='s-z'></a> Packages S to Z
+### <a id='s-z'></a> Packages: S to Z
 
 <table>
   <thead>
