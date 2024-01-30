@@ -544,7 +544,7 @@ For a diagram showing the packages contained in each profile, see
   </tbody>
 </table>
 
-### <a id='d-o'></a> Packages D to O
+### <a id='d-o'></a> Packages D to R
 
 <table>
   <thead>
