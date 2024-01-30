@@ -115,6 +115,8 @@ providers:
     - Baremetal
 - Tanzu Kubernetes Grid (commonly called TKG) with Standalone Management Cluster. For more information, see the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html).
 - vSphere with Tanzu v8.0.2 or later
+- Tanzu Kubernetes Grid Integrated 1.18 onwards
+    - In case of TKGi with NSX, the total number of Kubernetes object labels and other tags created by both TKGI and TAP can exceed the number that is allowed by NSX. Create or update your network profile as described in [Creating and Managing Network Profiles (NSX Only)](https://docs-staging.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.18/tkgi/GUID-network-profiles-define.html), setting the cni_configurations parameter extensions.ncp.k8s.label_filtering_regex_list as described under ]cni_configurations Extensions Parameters](https://docs-staging.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.18/tkgi/GUID-network-profiles-define.html#cni-extensions).
 
 For more information about the supported Kubernetes versions, see [Kubernetes version support for Tanzu Application Platform](k8s-matrix.hbs.md).
 
