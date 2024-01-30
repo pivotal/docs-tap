@@ -1,23 +1,16 @@
-# Configure Contour to support TLS termination at an AWS Network LoadBalancer
+# Configure Contour to support TLS termination at an AWS Classic LoadBalancer
 
 This topic tells you how to configure Contour to accept traffic from an AWS 
 Network LoadBalancer (NLB) that terminates TLS traffic.
 
-This topic is adapted from the [Contour open source documentation](https://projectcontour.io/docs/1.25/guides/deploy-aws-tls-nlb/#configure). Some differences to note:
-* This topic tells you how to configure the `tap-values.yaml` file instead of modifying the cluster resources directly.
-* This topic instructs you to leave port 80 open on the Envoy service. This is required for TAP, but note that this means routes will be accessible via HTTP. 
-  * The topic will include options on how to limit this at the AWS LB level.
-* This topic instructs you to use the default LoadBalancer provisioned with an EKS cluster, instead of using AWS LoadBalancer Controller.
-
->**Important:** This guide only applies to the Contour package from Tanzu Application Platform v1.7.0 and later.
+This topic is adapted from this [AWS Knowledge Center Post](https://repost.aws/knowledge-center/terminate-https-traffic-eks-acm).
 
 ## <a id="prereqs"></a>Prerequisites
 
 The following are required before proceeding with the configuration: 
 
 - An EKS cluster.
-- The Contour package installed on the cluster, either as part of Tanzu Application 
-Platform or from the [standalone component installation](install.hbs.md).
+- The Contour package installed on the cluster, either as part of Tanzu Application Platform or from the [standalone component installation](install.hbs.md).
 - Access to AWS Certificate Manager.
 - A domain (registered in Route53 or elsewhere). This topic refers to this domain as `DOMAIN`.
 - A certificate for `*.DOMAIN`.
@@ -28,14 +21,13 @@ This topic will cover the simplest case of using a wildcard cert for your domain
 
 For example, if your domain is `bigbiz.com`, then the certificate should be for the wildcard domain `*.bigbiz.com`, and everything routed through Contour should fit that domain pattern.
 
-However, in TAP, the default URL pattern for Web Workloads (i.e. Knative Services) is `{app name}.{namespace}.{domain}`.
+However, in TAP, the default URL pattern for Web Workloads (i.e. Knative Services) is `{{.Name}}.{{.Namespace}}.{{.Domain}}`.
 
 The wildcard cert described previously will not apply to these URLs. To account for this, this topic will explain how to configure CNRs (Cloud Native Runtimes) such that Web Workload URLs will also fit the wildcard domain.
 
 It is possible to keep the default URL pattern if your `DOMAIN` includes the namespace where web workloads will be deployed.
 
 ## <a id="procedure"></a>Procedure
-
 
 ### <a id="part1"></a>Part 1: Creating a TLS certificate in ACM
 
@@ -79,16 +71,17 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
    ```yaml
    shared:
      ingress_issuer: ""
+     ingress_domain: DOMAIN
    
    tap_gui:
      app_config:
      app:
-       baseUrl: https://tap-gui.INGRESS_DOMAIN #! note the change in scheme
+       baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
      backend:
-       baseUrl: https://tap-gui.INGRESS_DOMAIN #! note the change in scheme
+       baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
        reading:
          allow:
-         - host: *.INGRESS_DOMAIN 
+         - host: *.DOMAIN 
 
    cnrs:
      default_external_scheme: "https"
@@ -99,11 +92,8 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
      envoy:
        service:
          annotations:
-           service.beta.kubernetes.io/aws-load-balancer-type: external
-           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-           service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ARN
-           service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+           service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
 
    package_overlays:
    - name: contour
@@ -124,26 +114,22 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
 
 Assuming TAP has updated successfully, move on to the next part.
 
-### <a id="part3"></a>Part 3: Configuring AWS
+### <a id="part3"></a> Part 3: Configuring AWS
 
-1. Configure the listeners on your load balancer.
-   **Note:** If you are using AWS LoadBalancer Controller, it is possible this part is already done.
 
-   1. Find the load balancer associated with Contour's Envoy LoadBalancer Service
-      TODO: how can you find this out?
+1. (Optional) Find the load balancer associated with Contour's Envoy LoadBalancer Service and confirm that the HTTPS listeners are configured.
+    
+    At this point, you should have an AWS Load Balancer pointing to Contour's Envoy(s).
 
-   1. Under the "Listeners" tab, click "Manage listeners".
-      You should see two listeners, 80 and 443
+    On your LB, you should see two listeners, 80 and 443, both using the certificate associated with the `ARN` in your tap-values file.
 
-   1. Modify the 443 Listener
+    ![Image of listeners on AWS LB.](./images/aws-lb-https-listeners.png)
 
-      Listener protocol: SSL
-      Port: 443
-      Instance Protocol: TCP
-      Default SSL/TLS certificate: your certificate
+    > **Note:** In order to prevent your URLs from being accessible over HTTP, port 80 is also configured to listen on HTTPS. 
+      If you wish to leave port 80 open to HTTP traffic, you can add the annotation `service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"` to your tap-values file at `contour.envoy.service.annotations`.
+      Without that annotation, by default, AWS will add SSL/HTTPS listeners for all ports on the Kubernetes Service. Using the annotation, it only adds an SSL/HTTPS listener for the `https` port on the service. More information on the annotations can be found [here](https://cloud-provider-aws.sigs.k8s.io/service_controller/).
+    
 
-   1. (Optional) Remove the 80 listener
-      Removing this listener will prevent your TAP workloads from being accessed via HTTP.
 
 1. Configure the domain name system (DNS).
 
@@ -162,11 +148,8 @@ Assuming TAP has updated successfully, move on to the next part.
          envoy   LoadBalancer   10.100.24.154   a7ea2bbde8a164036a7e4c1ed5700cdf-154fb911d990bb1f.elb.us-east-2.amazonaws.com   443:31606/TCP      40d
         ```
 
-    1. Set up a DNS entry:
- 
-        Create a DNS record pointing from `DOMAIN` to the NLB Domain, which is the External IP value from the previous step.
+    1. Create a DNS record pointing from `DOMAIN` to the NLB Domain, which is the External IP value from the previous step.
 
-	      If not using AWS Route53, you must create a CNAME entry in your DNS provider. Otherwise, with AWS Route53, you can create an "A" record type, and alias it to the Network Loadbalancer.
 
         In the **Route traffic to** section, you must set:
 
@@ -178,8 +161,8 @@ Assuming TAP has updated successfully, move on to the next part.
 
         ![Screenshot displaying the AWS quick create record interface.](images/aws-dns-record.png)
 
+	    >**Note:** If not using AWS Route53, you must create a CNAME entry in your DNS provider. Otherwise, with AWS Route53, you can create an "A" record type, and alias it to the Network Loadbalancer.
+
 ## <a id="verify"></a>Verification
 
-You can verify this configuration by applying a simple test app and the corresponding HTTPProxy resource.
-
-The FQDN on the HTTPProxy resource must match the `DOMAIN` you used earlier.
+If you have a Web Workload on the cluster, you can check to see that it available at `https://appname-appnamespace.DOMAIN`.
