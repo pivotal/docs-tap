@@ -9,10 +9,10 @@ The following are Tanzu Developer Portal plug-ins that are not included by defau
 with Configurator, you must choose a compatible version based on your version of
 Tanzu Application Platform.
 
-Tanzu Application Platform v1.8 offers the following support:
+Tanzu Application Platform v{{ vars.tap_version }} offers the following support:
 
 | Plug-in package name                                            | Compatible npm version |
-| --------------------------------------------------------------- | ---------------------- |
+|-----------------------------------------------------------------|------------------------|
 | `@vmware-tanzu/tdp-plugin-auth-backend`                         | 2.0.0                  |
 | `@vmware-tanzu/tdp-plugin-backstage-grafana`                    | 2.0.0                  |
 | `@vmware-tanzu/tdp-plugin-backstage-jira`                       | 2.0.0                  |
@@ -40,7 +40,7 @@ The following are libraries used to create Tanzu Developer Portal plug-ins.
 When using these libraries, you must choose a compatible version based on your version of
 Tanzu Application Platform.
 
-Tanzu Application Platform v1.8 offers the following support:
+Tanzu Application Platform v{{ vars.tap_version }} offers the following support:
 
 | Library package name          | Compatible npm version |
 | ----------------------------- | ---------------------- |
@@ -50,8 +50,12 @@ Tanzu Application Platform v1.8 offers the following support:
 
 ## <a id='bs-ver-table'></a> Backstage version compatibility
 
-Tanzu Application Platform v1.8 is compatible with the following Backstage version. Developers must verify that a dependency used by Backstage is compatible with your current Tanzu Application Platform installation. Care should also be taken to see how Tanzu Application Platform upgrades might affect this compatibility.
+Tanzu Application Platform v{{ vars.tap_version }} is compatible with the following Backstage
+version. Developers must verify that a dependency used by Backstage is compatible with your current
+Tanzu Application Platform installation.
+When considering upgrading Tanzu Application Platform, read the relevant documentation to see if
+compatibility would change after upgrading.
 
 | Tanzu Application Platform version | Backstage version | Dependencies manifest                                                             |
-| ---------------------------------- | ----------------- | --------------------------------------------------------------------------------- |
+|------------------------------------|-------------------|-----------------------------------------------------------------------------------|
 | 1.8.x                              | v1.20             | [Manifest file](https://github.com/backstage/backstage/blob/v1.20.3/package.json) |
