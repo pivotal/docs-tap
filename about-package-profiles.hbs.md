@@ -497,7 +497,7 @@ For a diagram showing the packages contained in each profile, see
       <td></td>
     </tr>
     <tr>
-      <th scope="row">Out of the Box Supply Chain - Testing and Scanning</th>
+      <th scope="row">Out of the Box Supply Chain - Testing and <br>Scanning</th>
       <td>&check;</td>
       <td></td>
       <td>&check;</td>
