@@ -40,13 +40,12 @@ To install Application Accelerator:
 1. (Optional) View the changes you can make to the default installation settings by running:
 
     ```console
-    tanzu package available get "accelerator.apps.tanzu.vmware.com/${ACCELERATOR_VERSION_NUMBER}" \
+    tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER \
       --values-schema \
       --namespace tap-install
     ```
-    <!-- should this be an env var or placeholder? what are the quotes about? -->
 
-    Where `ACCELERATOR-VERSION-NUMBER` is the version of the Accelerator package that was listed earlier.
+    Where `VERSION-NUMBER` is the version of the Application Accelerator package listed earlier.
 
     For example:
 
@@ -61,27 +60,13 @@ To install Application Accelerator:
 
 1. Create a file named `app-accelerator-values.yaml` using the following example code:
 
-    - If your cluster supports the `LoadBalancer` service type:
-
-        ```yaml
-        server:
-          service_type: "LoadBalancer"
-          watched_namespace: "accelerator-system"
-        samples:
-          include: true
-        ```
-
-    - For clusters that do not support the `LoadBalancer` service type, override the default
-      value for `server.service_type`. For example:
-
-        <!-- is this really optional for clusters without `LoadBalancer`? -->
-        ```yaml
-        server:
-          service_type: "ClusterIP"
-          watched_namespace: "accelerator-system"
-        samples:
-          include: true
-        ```
+    ```yaml
+    server:
+      service_type: "LoadBalancer"
+      watched_namespace: "accelerator-system"
+    samples:
+      include: true
+    ```
 
 1. Edit the values in your `app-accelerator-values.yaml` if needed, or leave the default values.
    You can add values you want from [Configure properties and resource use](#app-acc-config).
@@ -91,14 +76,12 @@ To install Application Accelerator:
     ```console
     tanzu package install app-accelerator \
       -p accelerator.apps.tanzu.vmware.com \
-      -v ${ACCELERATOR_VERSION_NUMBER} \
+      -v VERSION-NUMBER \
       -n tap-install \
       -f app-accelerator-values.yaml
     ```
-    <!-- should this be an env var or placeholder? -->
 
-    Where `ACCELERATOR-VERSION-NUMBER` is the version of the Application Accelerator package included
-    with the Tanzu Application Platform installation.
+    Where `VERSION-NUMBER` is the version of the Application Accelerator package listed earlier.
 
     For example:
 
