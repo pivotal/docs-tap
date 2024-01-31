@@ -60,13 +60,19 @@ where the last page always returns an empty list.
  
 This release has the following known issues, listed by component and area.
 
+#### <a id='1-7-4-scst-scan-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Scan
+
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
 information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
 Github repository.
  
 #### <a id='1-7-4-COMPONENT-NAME-ki'></a> v1.7.4 Known issues: COMPONENT-NAME
  
-- Known issue description with link to workaround.  
+This release has the following known issues, listed by component and area. 
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
+information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
+Github repository.
  
 ---
  
@@ -493,7 +499,7 @@ This release has the following known issues, listed by component and area.
 - When using SCST - Scan 2.0, Trivy must be pinned to v0.42.1. This is because CycloneDX v1.5 is
   the default for later versions of Trivy and is not supported by AMR.
 
-#### <a id='1-7-4-scst-scan-ki'></a> v1.7.4 Known issues: Supply Chain Security Tools - Scan
+#### <a id='1-7-3-scst-scan-ki'></a> v1.7.3 Known issues: Supply Chain Security Tools - Scan
 
 - The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
 information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
