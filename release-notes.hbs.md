@@ -52,8 +52,12 @@ The following issues, listed by component and area, are resolved in this release
  
 ### <a id='1-5-10-known-issues'></a> v1.5.10 Known issues 
  
-This release has the following known issues, listed by component and area. 
- 
+#### <a id='1-5-10-scst-scan-ki'></a> v1.5.10 Known issues: Supply Chain Security Tools - Scan
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
+information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
+Github repository.
+
 #### <a id='1-5-10-COMPONENT-NAME-ki'></a> v1.5.10 Known issues: COMPONENT-NAME
  
 - Known issue description with link to workaround.  
