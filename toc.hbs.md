@@ -747,6 +747,7 @@
       - [Tanzu Catalog of Supply Chain Components](supply-chain/catalog/about.hbs.md)
           - [Idioms](supply-chain/catalog/idioms.hbs.md)
           - [Source Component](supply-chain/catalog/source.hbs.md)
+          - [Git Writer Component](supply-chain/catalog/git-writer.hbs.md)
       - [API Reference](supply-chain/api/about.hbs.md)
           - [Component API](supply-chain/api/component.hbs.md)
           - [SupplyChain API](supply-chain/api/supplychain.hbs.md)
