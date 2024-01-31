@@ -127,8 +127,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
 
-- Adds support for ingesting SBOMs in CycloneDX 1.5 format
-- Better error messaging for ingestion errors
+- Adds support for ingesting SBOMs in CycloneDX v1.5 format.
+- Better error messaging for ingestion errors.
 
 ---
 
