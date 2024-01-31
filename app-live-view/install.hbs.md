@@ -233,7 +233,7 @@ To install Application Live View back end:
       --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+    Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
     For example:
 
@@ -272,7 +272,7 @@ To install Application Live View back end:
       -f app-live-view-backend-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed.
+    Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
     For example:
 
@@ -457,7 +457,7 @@ To install Application Live View connector:
       --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+    Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
     For example:
 
@@ -499,8 +499,7 @@ To install Application Live View connector:
       -f app-live-view-connector-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
     For example:
 
@@ -578,8 +577,7 @@ To install Application Live View conventions:
       --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example,
-    `1.5.1`.
+    Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
     For example:
 
@@ -608,7 +606,7 @@ To install Application Live View conventions:
         -n tap-install
       ```
 
-      Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+      Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
       For example:
 
@@ -641,7 +639,7 @@ To install Application Live View conventions:
         -f app-live-view-conventions-values.yaml
       ```
 
-      Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+      Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
 1. Verify the package install for Application Live View conventions package by
    running:
@@ -695,7 +693,7 @@ To install Application Live View APIServer:
       --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+    Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
     For example:
 
@@ -724,7 +722,7 @@ To install Application Live View APIServer:
         -n tap-install
       ```
 
-      Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+      Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
       For example:
 
@@ -754,7 +752,7 @@ To install Application Live View APIServer:
         -f app-live-view-apiserver-values.yaml
       ```
 
-      Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.1`.
+      Where `VERSION-NUMBER` is the version of the package listed earlier. For example, `1.5.1`.
 
 1. Verify the package install for Application Live View APIServer package by
    running:
