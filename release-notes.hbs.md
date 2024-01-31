@@ -125,6 +125,11 @@ This release includes the following changes, listed by component and area.
 
 - Updates reconciler-runtime to v0.15.1.
 
+#### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
+
+- Adds support for ingesting SBOMs in CycloneDX 1.5 format
+- Better error messaging for ingestion errors
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
@@ -197,6 +202,9 @@ This release has the following known issues, listed by component and area.
   leads to an error.
   For troubleshooting information, see [Datadog agent cannot reconcile webhook on AKS](./troubleshooting-tap/troubleshoot-using-tap.hbs.md#datadog-agent-aks).
 
+#### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
+
+- When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
 ---
 
 ### <a id='1-8-0-components'></a> v1.8.0 Component versions
