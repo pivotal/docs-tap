@@ -136,6 +136,8 @@ To install Application Accelerator:
     This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the
     Accelerator plug-in `generate` & `generate-from-local` command.
 
+For how to troubleshoot installation issues, see [Troubleshoot Application Accelerator](troubleshooting.hbs.md#installation).
+
 ## <a id='app-acc-config'></a> Configure properties and resource use
 
 When you install the Application Accelerator, you can configure the following optional properties
