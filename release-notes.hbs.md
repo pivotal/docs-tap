@@ -333,6 +333,12 @@ This release has the following known issues, listed by component and area.
   The workaround requires enabling a Tekton feature flag. For more information, see the
   [Tekton documentation](https://tekton.dev/docs/pipelines/additional-configs/#enabling-larger-results-using-sidecar-logs).
 
+#### <a id='1-6-7-scst-scan-ki'></a> v1.6.7 Known issues: Supply Chain Security Tools - Scan
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
+information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
+Github repository.
+
 #### <a id='1-6-7-supply-chain-security-tools-store-ki'></a> v1.6.7 Supply Chain Security Tools - Store
 
 - `Supply Chain Security Tools - Store` automatically detects PostgreSQL Database Index corruptions.
