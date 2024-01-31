@@ -66,7 +66,14 @@ To use the DORA plug-in:
 
 ## <a id="dora-metric-calc"></a> DORA metric calculation
 
-DORA metrics are calculated from the average number of deployments over the last 90 days.
+By default, DORA metrics are calculated from the average number of deployments to all environments
+in the last 90 days. Users have two filtering options available, controlled by drop-down selectors:
+
+* by date range, based on a pre-defined set of choices
+* by environment, based on the location labels configured by a platform engineer
+
+For more information on location configuration, reference the
+[AMR documentation](../../scst-store/amr/configuration.hbs.md).
 
 Tanzu workloads have a correlation ID that groups all of the artifacts together.
 
