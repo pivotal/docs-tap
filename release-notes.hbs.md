@@ -168,6 +168,11 @@ This release has the following security fixes, listed by component and area.
 
 This release introduces no new known issues.
 
+#### <a id='1-5-10-scst-scan-ki'></a> v1.5.10 Known issues: Supply Chain Security Tools - Scan
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
+information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
+Github repository.
 ---
 
 ## <a id='1-5-8'></a> v1.5.8
