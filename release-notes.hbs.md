@@ -58,7 +58,11 @@ where the last page always returns an empty list.
  
 ### <a id='1-7-4-known-issues'></a> v1.7.4 Known issues 
  
-This release has the following known issues, listed by component and area. 
+This release has the following known issues, listed by component and area.
+
+- The Snyk scanner outputs an incorrectly created date, resulting in an invalid date. For more
+information, see this [issue](https://github.com/snyk-tech-services/snyk2spdx/issues/54) in the Snyk
+Github repository.
  
 #### <a id='1-7-4-COMPONENT-NAME-ki'></a> v1.7.4 Known issues: COMPONENT-NAME
  
