@@ -96,6 +96,14 @@ This release includes the following changes, listed by component and area.
   There is no change to how the resulting composed service instances operate.
   There is no impact to existing instances.
 
+#### <a id='1-8-0-buildpacks'></a> v1.8.0 Features: Buildpacks and Stacks
+
+- Adds a new stack - The [`Tanzu Standard Stack for UBI 8`](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubi-8-stacks), along with a builder as part of the [`full`](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-dependencies.html#lite-vs-full) dependencies.
+
+- Adds a new stack - The [`Tanzu Static Stack for Ubuntu 22.04`](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#ubuntu-stacks), along with a builder as part of the [`full`](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.7/tap/tanzu-build-service-dependencies.html#lite-vs-full) dependencies.
+
+- Adds support for [.NET 8](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8) in the Tanzu .NET Core Buildpack.
+
 #### <a id='1-8-0-cert-manager'></a> v1.8.0 Features: cert-manager
 
 - Updates cert-manager to v1.13.3. For more information, see the [cert-manager release notes](https://github.com/cert-manager/cert-manager/releases/tag/v1.13.3) in GitHub.
@@ -139,6 +147,12 @@ This release includes the following changes, listed by component and area.
 #### <a id='1-8-0-apix-bc'></a> v1.8.0 Breaking changes: API Validation and Scoring
 
 - API Validation and Scoring is removed in this release.
+
+#### <a id='1-8-0-buildpacks-bc'></a> v1.8.0 Breaking changes: Buildpacks
+
+- Tanzu Java Buildpack removes Java (BellSoft Liberica) 20, and is replaced with Java 21.
+
+- Tanzu Go Buildpack removes support for the [dep dependency management tool for Go](https://github.com/golang/dep). This tools has been officially deprecated since 2020.
 
 ---
 
