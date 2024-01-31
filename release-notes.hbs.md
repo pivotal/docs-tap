@@ -125,6 +125,11 @@ This release includes the following changes, listed by component and area.
 
 - Updates reconciler-runtime to v0.15.1.
 
+#### <a id='1-8-0-scst-store'></a> v1.8.0 Features: Supply Chain Security Tools - Store
+
+- Adds support for ingesting SBOMs in CycloneDX 1.5 format
+- Better error messaging for ingestion errors
+
 ---
 
 ### <a id='1-8-0-breaking-changes'></a> v1.8.0 Breaking changes
@@ -200,6 +205,10 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-8-0-scst-scan-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Scan
 
 - The Snyk scanner will output an incorrect created at date. More details [here](https://github.com/snyk-tech-services/snyk2spdx/issues/54).
+
+#### <a id='1-8-0-scst-store-ki'></a> v1.8.0 Known issues: Supply Chain Security Tools - Store
+
+- When outputting CycloneDX 1.5 SBOMs, the report is found to be an invalid SBOM by CycloneDX validators. This issue is planned to be fixed in the next patch.
 
 ---
 
