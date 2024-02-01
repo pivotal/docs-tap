@@ -27,6 +27,8 @@ transformations:
   - type: # At this point, no file matching **/secret/** is affected.
 ```
 
+![image](exclude.svg)
+
 ## See also
 
 * [Include](include.md)

@@ -29,6 +29,9 @@ transformations:
   - type: # At this point, only yaml files are affected
 ```
 
+![image](include.svg)
+
+
 ## See also
 
 * [Exclude](exclude.md)

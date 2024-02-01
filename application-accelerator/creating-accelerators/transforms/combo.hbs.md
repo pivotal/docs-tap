@@ -5,6 +5,9 @@ This topic tells you about the Application Accelerator `Combo` transform in Tanz
 The  `Combo` transform combines the behaviors of [Include](include.md), [Exclude](exclude.md),
 [Merge](merge.md), [Chain](chain.md), [UniquePath](unique-path.md), and [Let](let.md).
 
+![image](combo.svg)
+
+
 ## <a id="syntax-referance"></a>Syntax reference
 
 Here is the full syntax of `Combo`:
@@ -116,7 +119,7 @@ transformations:
 
 As with other transforms, the order of declaration of properties has no impact. We've used a
 convention that mimics the actual behavior for clarity, but the following applies **T1** and **T2**
-on all `.yaml` files even though VMware has placed the `include` section after the `merge` section.
+on all `.yaml` files even though one has placed the `include` section after the `merge` section.
 
 ``` console
 merge:
@@ -143,11 +146,12 @@ merge:                   # This uses the Merge syntax in a first Combo.
     chain:
       - type: T1
       - type: T2
-  - include: ['*.yaml']      # Here comes a third Combo, used as the 2nd child inside the first
+  - include: ['*.xml']      # Here comes a third Combo, used as the 2nd child inside the first
     chain:
       - type: T3
       - type: T4
 ```
+![image](combo1.svg)
 
 To apply **T1** then **T2** on all `.yaml` files that are not in any `secret` directory:
 
@@ -160,3 +164,5 @@ chain:
   - type: T2
     ..
 ```
+
+![image](combo2.svg)

@@ -1,0 +1,13 @@
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input\n\nsrc/main/java/com/acme/Foo.java\nsrc/main/java/com/acme/model/Bar.java"; shape="folder"; ]
+  RewritePath_5b58ed3c [label=<<b>RewritePath</b><br/>src/main/java/(.*)<br/> &#x21D2; <br/>'sub-module/src/main/java' + #g1>; ]
+  String_78a287ed [label="output\n\nsub-module/src/main/java/com/acme/Foo.java\nsub-module/src/main/java/com/acme/model/Bar.java"; shape="folder"; ]
+
+  String_5ce33a58 -> RewritePath_5b58ed3c;
+  RewritePath_5b58ed3c -> String_78a287ed;
+}
