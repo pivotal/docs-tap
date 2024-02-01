@@ -206,6 +206,7 @@
                 - [Provenance transform](application-accelerator/creating-accelerators/transforms/provenance.hbs.md)
             - [Use SpEL with Application Accelerator](application-accelerator/creating-accelerators/spel-samples.hbs.md)
             - [Application Accelerator custom resource definition](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
+            - [Use a local Application Accelerator engine server](application-accelerator/creating-accelerators/using-local-engine-server.hbs.md)
             - [Test accelerators](application-accelerator/creating-accelerators/testing-accelerators.hbs.md)
         - [Track life cycle using Provenance transform](application-accelerator/provenance.hbs.md)
         - [Use the Application Accelerator Visual Studio Code extension](application-accelerator/vscode.hbs.md)
