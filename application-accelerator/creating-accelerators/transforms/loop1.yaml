@@ -1,0 +1,12 @@
+engine:
+  type: Merge
+  sources:
+    - type: RewritePath
+      regex: "template/(.*)"
+      rewriteTo: "'module-1' + '/' + #g1"
+    - type: RewritePath
+      regex: "template/(.*)"
+      rewriteTo: "'module-2' + '/' + #g1"
+    - type: RewritePath
+      regex: "template/(.*)"
+      rewriteTo: "'module-3' + '/' + #g1"
