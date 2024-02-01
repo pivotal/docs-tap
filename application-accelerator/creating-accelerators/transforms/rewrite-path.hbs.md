@@ -57,6 +57,8 @@ type: RewritePath
 regex: src/main/java/(.*)
 rewriteTo: "'sub-module/src/main/java' + #g1"   # 'sub-module/' + #g0 works too
 ```
+![image](rewrite-path.svg)
+
 
 The following flattens all files found inside the `sub-path` directory and its subdirectories,
 and puts them into the `flattened` folder:

@@ -1,0 +1,21 @@
+engine:
+  type: Chain
+  transformations:
+    - type: OpenRewriteRecipe
+      recipe: org.openrewrite.maven.AddDependency
+      options:
+        groupId: "'org.springframework'"
+        artifactId: "'spring-core'"
+        version: "'5.7.1'"
+    - type: OpenRewriteRecipe
+      recipe: org.openrewrite.maven.AddDependency
+      options:
+        groupId: "'org.springframework'"
+        artifactId: "'spring-web'"
+        version: "'5.7.1'"
+    - type: OpenRewriteRecipe
+      recipe: org.openrewrite.maven.AddDependency
+      options:
+        groupId: "'org.springframework'"
+        artifactId: "'spring-transaction'"
+        version: "'5.7.1'"
