@@ -1,0 +1,46 @@
+// This file was auto-generated from conflict-resolution1.yaml - DO NOT MODIFY
+
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input"; shape="folder"; ]
+  String_78a287ed [label="output"; shape="folder"; ]
+
+  T4_d5ae57e -> String_78a287ed;
+  String_5ce33a58 -> T1_7e242b4d;
+  String_5ce33a58 -> T2_305f031;
+  String_5ce33a58 -> T3_592e843a;
+
+  subgraph cluster_410ae9a3 {
+    label=<combo>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    subgraph cluster_1536602f {
+      label=<chain>;
+      color="#DDDDDD";
+      fontcolor="#dddddd";
+
+      UniquePath_235f4c10 [label=<<b>UniquePath</b><br/>UseLast>; ]
+      T4_d5ae57e [label=<<b>T4</b>>; ]
+
+      UniquePath_235f4c10 -> T4_d5ae57e;
+      T1_7e242b4d -> UniquePath_235f4c10;
+      T2_305f031 -> UniquePath_235f4c10;
+      T3_592e843a -> UniquePath_235f4c10;
+
+      subgraph cluster_44c79f32 {
+        label=<merge>;
+        color="#DDDDDD";
+        fontcolor="#dddddd";
+
+        T1_7e242b4d [label=<<b>T1</b>>; ]
+        T2_305f031 [label=<<b>T2</b>>; ]
+        T3_592e843a [label=<<b>T3</b>>; ]
+      }
+    }
+  }
+}

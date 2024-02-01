@@ -1,0 +1,29 @@
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_2dbe250d [label="input\n\nREADME.md: hello-world-app example"; shape="folder"; ]
+  String_553f1d75 [label="output\n\nREADME.md: my-project example"; shape="folder"; ]
+
+  ReplaceText_4264b240 -> String_553f1d75;
+  String_2dbe250d -> Include_51850751;
+
+  subgraph cluster_3d3ba765 {
+    label=<combo>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    subgraph cluster_58e6d4b8 {
+      label=<chain>;
+      color="#DDDDDD";
+      fontcolor="#dddddd";
+
+      Include_51850751 [label=<<b>Include</b><br/>**/*.md<br/>**/*.xml<br/>**/*.yaml>; ]
+      ReplaceText_4264b240 [label=<<b>ReplaceText</b><br/>hello-world-app &#x21D2; #artifactId>; ]
+
+      Include_51850751 -> ReplaceText_4264b240;
+    }
+  }
+}

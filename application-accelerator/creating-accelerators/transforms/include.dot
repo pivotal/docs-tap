@@ -1,0 +1,13 @@
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input\n\nREADME.md\nsecret/passwd\ndocument.yaml"; shape="folder"; ]
+  Include_3ebff828 [label=<<b>Include</b><br/>*.yaml>; ]
+  String_78a287ed [label="output\n\ndocument.yaml"; shape="folder"; ]
+
+  String_5ce33a58 -> Include_3ebff828;
+  Include_3ebff828 -> String_78a287ed;
+}
