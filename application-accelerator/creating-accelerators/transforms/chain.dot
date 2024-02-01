@@ -1,0 +1,27 @@
+// This file was auto-generated from chain.yaml - DO NOT MODIFY
+
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input"; shape="folder"; ]
+  String_78a287ed [label="output"; shape="folder"; ]
+
+  T3_2f162cc0 -> String_78a287ed;
+  String_5ce33a58 -> T1_ce5a68e;
+
+  subgraph cluster_493dfb8e {
+    label=<chain>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    T1_ce5a68e [label=<<b>T1</b>>; ]
+    T2_9d157ff [label=<<b>T2</b>>; ]
+    T3_2f162cc0 [label=<<b>T3</b>>; ]
+
+    T1_ce5a68e -> T2_9d157ff;
+    T2_9d157ff -> T3_2f162cc0;
+  }
+}

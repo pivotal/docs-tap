@@ -62,6 +62,7 @@ chain:
       - text: "hello-world-app"
         with: "#artifactId"
 ```
+![image](replace-text1.svg)
 
 Doing the same in the `README-fr.md` and `README-de.md` files, which are encoded using
 the `ISO-8859-1` charset:

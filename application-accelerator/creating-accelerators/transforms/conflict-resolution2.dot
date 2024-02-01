@@ -1,0 +1,27 @@
+// This file was auto-generated from conflict-resolution2.yaml - DO NOT MODIFY
+
+digraph G {
+  rankdir="LR";
+  labeljust="l";
+  node [shape="rect"; style="rounded"; ]
+
+
+  String_5ce33a58 [label="input"; shape="folder"; ]
+  String_78a287ed [label="output"; shape="folder"; ]
+
+  UniquePath_77192705 -> String_78a287ed;
+  String_5ce33a58 -> T1_5241cf67;
+
+  subgraph cluster_4fad94a7 {
+    label=<chain>;
+    color="#DDDDDD";
+    fontcolor="#dddddd";
+
+    T1_5241cf67 [label=<<b>T1</b>>; ]
+    T2_716a7124 [label=<<b>T2</b>>; ]
+    UniquePath_77192705 [label=<<b>UniquePath</b><br/>Fail>; ]
+
+    T1_5241cf67 -> T2_716a7124;
+    T2_716a7124 -> UniquePath_77192705;
+  }
+}
