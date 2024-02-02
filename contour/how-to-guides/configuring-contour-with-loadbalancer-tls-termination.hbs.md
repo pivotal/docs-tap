@@ -1,4 +1,4 @@
-# Configure Contour to support TLS termination at an AWS Classic LoadBalancer
+# Configure Contour to support TLS termination at an AWS NLB
 
 This topic tells you how to configure Contour to accept traffic from an AWS 
 Network LoadBalancer (NLB) that terminates TLS traffic.
@@ -75,13 +75,13 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
    
    tap_gui:
      app_config:
-     app:
-       baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-     backend:
-       baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
-       reading:
-         allow:
-         - host: *.DOMAIN 
+        app:
+          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+        backend:
+          baseUrl: https://tap-gui.DOMAIN #! note the change in scheme
+          reading:
+            allow:
+            - host: "*.DOMAIN"
 
    cnrs:
      default_external_scheme: "https"
@@ -106,7 +106,7 @@ It is possible to keep the default URL pattern if your `DOMAIN` includes the nam
 1. Update your Tanzu Application Platform install:
  
     ```console
-    tanzu package installed update tap -n tap-install -f tap-values.yaml -p tap.tanzu.vmware.com -v VERSION
+    tanzu package installed update tap -n tap-install --values-file tap-values.yaml -p tap.tanzu.vmware.com -v VERSION
     ```
 
     Where `VERSION` is the version of Tanzu Application Platform in use, which must be in the form of `X.X.X`.
