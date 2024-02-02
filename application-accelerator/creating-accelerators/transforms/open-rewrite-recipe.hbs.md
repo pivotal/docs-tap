@@ -49,4 +49,4 @@ chain:
       newPackageName: "#companyPkg"
 ```
 
-![image](open-rewrite-recipe.svg.svg)
+<!-- ![image](open-rewrite-recipe.svg.svg) -->
